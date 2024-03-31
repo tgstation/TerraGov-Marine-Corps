@@ -1,0 +1,9 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "Pillar of Spring's Vehicle Bay"
+  - rscadd: "Change POS's TO and PO's bunk"
+  - rscadd: "expand PoS' req"
+  - rscadd: "Move PoS' OB to be closer to CIC. Also add brig."
+  - rscadd: "move PoS' droppod to where mech is and vice versa"
+  - rscadd: "move PoS' tadpole to where briefing is and vice versa"

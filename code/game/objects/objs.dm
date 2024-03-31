@@ -104,7 +104,7 @@
 	. = ..()
 	if(.)
 		return
-	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+	if((atom_flags & ON_BORDER) && !(get_dir(loc, target) & dir))
 		return TRUE
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
@@ -136,7 +136,7 @@
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(atom_flags & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 
 	knownblockers += src
@@ -145,7 +145,7 @@
 ///Signal handler to check if you can move from one low object to another
 /obj/proc/can_climb_over(datum/source, atom/mover)
 	SIGNAL_HANDLER
-	if(!(flags_atom & ON_BORDER) && density)
+	if(!(atom_flags & ON_BORDER) && density)
 		return TRUE
 
 /obj/proc/updateUsrDialog()

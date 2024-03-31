@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: Fixed the sword lunge ability not properly doing damage"

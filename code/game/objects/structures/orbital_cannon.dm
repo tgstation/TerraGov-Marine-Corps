@@ -214,7 +214,8 @@
 		fuel_warning = "Warhead fuel level: incorrect.<br>Warhead may be inaccurate."
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-
+	GLOB.round_statistics.obs_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "obs_fired")
 	priority_announce(
 		message = "Get out of danger close!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
 		title = "Orbital bombardment launch command detected!",
@@ -433,7 +434,7 @@
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
-	flags_atom = ON_BORDER|CONDUCT
+	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
 /obj/machinery/computer/orbital_cannon_console/Initialize(mapload)

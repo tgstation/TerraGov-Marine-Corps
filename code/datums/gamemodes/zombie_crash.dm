@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	flags_round_type = MODE_XENO_SPAWN_PROTECTION
+	round_type_flags = MODE_XENO_SPAWN_PROTECTION
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 8,

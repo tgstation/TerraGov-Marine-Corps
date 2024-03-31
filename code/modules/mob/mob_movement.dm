@@ -180,7 +180,7 @@
 
 		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
 			var/mob/living/carbon/human/H = src
-			if((istype(turf,/turf/open/floor)) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
+			if((istype(turf,/turf/open/floor)) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.inventory_flags & NOSLIPPING)))
 				continue
 
 

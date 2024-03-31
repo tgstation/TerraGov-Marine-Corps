@@ -270,7 +270,7 @@
 				continue
 			if(!AM.density)
 				continue
-			if(AM.flags_atom & ON_BORDER && AM.dir != user.dir)
+			if(AM.atom_flags & ON_BORDER && AM.dir != user.dir)
 				if(istype(AM, /obj/structure/window))
 					var/obj/structure/window/W = AM
 					if(!W.is_full_window())

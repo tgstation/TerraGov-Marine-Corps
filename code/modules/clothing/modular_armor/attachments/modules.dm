@@ -18,7 +18,7 @@
 	icon_state = "pt_belt"
 	item_state = "pt_belt_a"
 	slot = ATTACHMENT_SLOT_BELT
-	flags_attach_features = ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_HANDS
 
 /**
  * Shoulder lamp strength module
@@ -83,11 +83,11 @@
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features |= ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags |= ARMOR_FIRE_RESISTANT
 
 /obj/item/armor_module/module/fire_proof/on_detach(obj/item/detaching_from, mob/user)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.flags_armor_features &= ~ARMOR_FIRE_RESISTANT
+	parent.armor_features_flags &= ~ARMOR_FIRE_RESISTANT
 	return ..()
 
 /obj/item/armor_module/module/fire_proof/som
@@ -491,7 +491,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -510,14 +510,14 @@
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
 	if(active)
-		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		DISABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		DISABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		DISABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		DISABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection -= eye_protection_mod // reset to the users base eye
 	else
-		ENABLE_BITFIELD(parent.flags_inventory, COVEREYES)
-		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
-		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
+		ENABLE_BITFIELD(parent.inventory_flags, COVEREYES)
+		ENABLE_BITFIELD(parent.inv_hide_flags, HIDEEYES)
+		ENABLE_BITFIELD(parent.armor_protection_flags, EYES)
 		parent.eye_protection += eye_protection_mod
 
 	active = !active
@@ -534,7 +534,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head_som"
 	item_state = "welding_head_som_a"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/module/welding/superior
 	name = "Superior Welding Helmet Module"
@@ -543,7 +543,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
 
@@ -558,10 +558,10 @@
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
 	active = FALSE
-	flags_item = DOES_NOT_NEED_HANDS
+	item_flags = DOES_NOT_NEED_HANDS
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -605,7 +605,7 @@
 	icon_state = "artemis_head"
 	item_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
@@ -622,7 +622,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
@@ -683,7 +683,7 @@
 	desc = "Installation kit for the BE-35 night vision system. Slightly impedes movement."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "night_vision"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 	slowdown = 0.1

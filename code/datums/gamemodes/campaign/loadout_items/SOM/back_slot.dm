@@ -67,11 +67,24 @@
 	desc = "This backpack holds 4 RPGs, in addition to a V-71 RPG launcher. Equipped with radioactive and incendiary warheads, \
 	the V-71 is incredibly effective at softening up or flushing out organic targets, making them easy prey to finish off. Has a draw delay."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
+	ui_icon = "rpg"
 	purchase_cost = 50
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/back/som_heat_rocket_bag
+	name = "HEAT RPG bag"
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 high explosive anti armor RPGs, in addition to a V-71 RPG launcher. Deals significant damage against vehicles and mechs, but will also generally devastate human victims in a pinch. \
+	Has a draw delay and has poor accuracy against human targets."
+	ui_icon = "rpg"
+	unlock_cost = 300
+	purchase_cost = 100
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/som/heat
+	jobs_supported = list(SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/back/volkite_powerpack
 	name = "M-70 powerpack"

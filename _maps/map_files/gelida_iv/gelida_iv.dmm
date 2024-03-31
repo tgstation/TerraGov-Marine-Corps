@@ -1704,9 +1704,6 @@
 /obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/cavestructuretwo)
-"beU" = (
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/central_caves/garbledradio)
 "beW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8165,7 +8162,9 @@
 /area/gelida/indoors/a_block/bridges/corpo_fitness)
 "flF" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2", "set3")
+	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "flJ" = (
@@ -10061,7 +10060,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set2", "set3", "set4")
+	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "gDB" = (
@@ -21883,10 +21884,6 @@
 	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_2)
-"owj" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/central_caves)
 "owm" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
@@ -23049,7 +23046,9 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "pfn" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2", "set4")
+	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "pfs" = (
@@ -23638,7 +23637,9 @@
 /turf/open/floor/plating,
 /area/gelida/powergen)
 "pzF" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1")
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -24562,7 +24563,9 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "qdj" = (
-/obj/machinery/computer/intel_computer,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set4")
+	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "qdK" = (
@@ -25985,9 +25988,6 @@
 /obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
-"raa" = (
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/west_caves/garbledradio)
 "rai" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -30062,10 +30062,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/central_streets)
-"tJg" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/sterilewhite/full,
-/area/gelida/indoors/a_block/medical)
 "tJs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
@@ -31551,11 +31547,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
-"uMH" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves)
 "uMZ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 8;
@@ -35499,6 +35490,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
+"xDw" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/hallway)
 "xDF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -35524,7 +35519,9 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "xDW" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1", "set3")
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -36505,9 +36502,6 @@
 "yiB" = (
 /turf/closed/wall,
 /area/gelida/cavestructuretwo)
-"yjx" = (
-/turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/caves/central_caves)
 "yjB" = (
 /obj/item/stack/rods,
 /obj/structure/window_frame/colony,
@@ -40416,8 +40410,8 @@ qxI
 qxI
 qxI
 qxI
-cmF
-uzr
+qxI
+qEf
 xIt
 xIt
 xIt
@@ -42187,7 +42181,7 @@ qxI
 qxI
 qxI
 qxI
-anV
+hLP
 xIt
 xIt
 xIt
@@ -42648,7 +42642,7 @@ qxI
 qxI
 xjB
 cJC
-cmF
+qxI
 rih
 otX
 rih
@@ -43517,7 +43511,7 @@ xIt
 xIt
 xIt
 xIt
-wpv
+xjB
 qxI
 qxI
 qxI
@@ -45733,7 +45727,7 @@ xIt
 xIt
 xIt
 xIt
-raa
+xIt
 qxI
 xjB
 qxI
@@ -48190,9 +48184,9 @@ oHy
 oHy
 eVB
 oHy
-qTf
-qTf
-uMH
+oHy
+oHy
+pwZ
 vqi
 vqi
 vqi
@@ -50199,7 +50193,7 @@ ubb
 oHy
 ubb
 cYz
-yjx
+bcB
 tzc
 eue
 tzc
@@ -50421,7 +50415,7 @@ cYz
 oHy
 cYz
 cYz
-yjx
+bcB
 rai
 eue
 tzc
@@ -50852,7 +50846,7 @@ ubb
 nue
 vqi
 vqi
-qTf
+oHy
 oHy
 nue
 oHy
@@ -51064,7 +51058,7 @@ fPM
 pxr
 ubb
 cYz
-beU
+xIt
 xIt
 xIt
 cYz
@@ -59271,7 +59265,7 @@ uGF
 gfl
 uGF
 uGF
-owj
+vqi
 uGF
 uGF
 kST
@@ -70462,7 +70456,7 @@ pYZ
 fBW
 orh
 mhj
-tJg
+mxg
 vCT
 ojR
 ojR
@@ -72463,7 +72457,7 @@ orh
 nPI
 tcF
 wvV
-wsk
+xDw
 orh
 hPB
 rRB

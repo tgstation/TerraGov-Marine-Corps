@@ -2,7 +2,7 @@
 /obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
 	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
-	icon = 'icons/Xeno/resinpod.dmi'
+	icon = 'icons/Xeno/resin_pod.dmi'
 	icon_state = "resinpod"
 	density = FALSE
 	opacity = FALSE

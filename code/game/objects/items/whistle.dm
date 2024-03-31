@@ -4,12 +4,12 @@
 	desc = "A metal pea-whistle. Can be blown while held, or worn in the mouth"
 	icon_state = "whistle"
 	w_class = WEIGHT_CLASS_TINY
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_MASK
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_MASK
 
 	var/volume = 60
-	var/spamcheck = FALSE
-
+	/// The range in tiles which whistle makes people warcry
+	var/warcryrange = 9
 
 /obj/item/whistle/attack_self(mob/user)
 	. = ..()
@@ -34,14 +34,21 @@
 
 
 /obj/item/whistle/proc/whistle_playsound(mob/user as mob)
-	if (spamcheck)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_WHISTLE_BLOW))
+		user.balloon_alert(user, "Catch your breath!")
 		return
 
 	user.visible_message(span_warning("[user] blows into [src]!"))
 	playsound(get_turf(src), 'sound/items/whistle.ogg', volume, 1)
 
-	spamcheck = TRUE
-	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 3 SECONDS)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_WHISTLE_WARCRY))
+		to_chat(user, span_notice("You have to wait a little longer to rally your troops..."))
+	else
+		TIMER_COOLDOWN_START(src, COOLDOWN_WHISTLE_WARCRY, 15 SECONDS)
+		for(var/mob/living/carbon/human/human in get_hearers_in_view(warcryrange, user.loc))
+			human.emote("warcry")
+
+	TIMER_COOLDOWN_START(src, COOLDOWN_WHISTLE_BLOW, 3 SECONDS)
 
 
 /obj/item/hailer
@@ -51,7 +58,7 @@
 	icon_state = "voice"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = WEIGHT_CLASS_TINY
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	var/spamcheck = FALSE
 
 

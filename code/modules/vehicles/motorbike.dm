@@ -10,6 +10,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = /obj/item/key/motorbike
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
+	key_type = null
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over

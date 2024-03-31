@@ -16,7 +16,7 @@
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/som_support_grenades
-	name = "Support grenades"
+	name = "Support nades"
 	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
@@ -24,14 +24,14 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/som_standard_grenades
-	name = "Standard grenades"
+	name = "Standard nades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE and incendiary grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/war_crime_grenades
-	name = "Warcrime grenades"
+	name = "Warcrime nades"
 	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
 	ui_icon = "grenade"
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
@@ -74,8 +74,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/r_pocket/som_magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Mag pouch-P"
+	desc = "A pouch containing three ammo magazines. Will contain a primary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
@@ -123,21 +123,21 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/som_support_grenades
-	name = "Support grenades"
+	name = "Support nades"
 	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/combat_patrol
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/som_standard_grenades
-	name = "Standard grenades"
+	name = "Standard nades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE and incendiary grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/war_crime_grenades
-	name = "Warcrime grenades"
+	name = "Warcrime nades"
 	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
 	ui_icon = "grenade"
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
@@ -180,8 +180,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/som_magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Mag pouch-S"
+	desc = "A pouch containing three ammo magazines. Will contain a secondary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)

@@ -173,6 +173,8 @@
 		. += "[seperator]+RUNTIME"
 	if(rights & R_LOG)
 		. += "[seperator]+LOG"
+	if(rights & R_POLLS)
+		. += "[seperator]+POLLS"
 
 
 /proc/ui_style2icon(ui_style)

@@ -163,7 +163,7 @@
 */
 /datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, obj/projectile/proj)
 	SIGNAL_HANDLER
-	if(!(proj.ammo.flags_ammo_behavior & AMMO_FLAME))
+	if(!(proj.ammo.ammo_behavior_flags & AMMO_FLAME))
 		return
 	evasion_stacks = max(0, evasion_stacks - proj.damage) // We lose evasion stacks equal to the burn damage.
 	if(evasion_stacks)
@@ -230,7 +230,7 @@
 		return FALSE
 	if(xeno_owner.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
 		return COMPONENT_PROJECTILE_DODGE
-	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
+	if(proj.ammo.ammo_behavior_flags & AMMO_FLAME) //We can't dodge literal fire
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE

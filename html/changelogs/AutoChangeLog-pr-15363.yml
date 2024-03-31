@@ -1,0 +1,6 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscdel: "Removed RR launcher, AT gun and it's ammo from regular Valhalla vendors."
+  - rscadd: "Added the RR launcher, AT gun and it's ammo to the Valhalla req vendors."
+  - rscadd: "Added the small HMG magazines to the regular Valhalla vendors."

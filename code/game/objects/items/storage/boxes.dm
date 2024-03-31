@@ -235,7 +235,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/tool/match
 	spawn_number = 14
 
