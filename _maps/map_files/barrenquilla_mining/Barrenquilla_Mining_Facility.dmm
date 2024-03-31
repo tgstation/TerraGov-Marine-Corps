@@ -5938,6 +5938,7 @@
 /obj/structure/cable,
 /obj/structure/table,
 /obj/item/toy/dice/d20,
+/obj/structure/sign/hydro,
 /turf/open/floor,
 /area/barren/civilian)
 "Jj" = (
@@ -7546,10 +7547,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
-/area/barren/civilian)
-"Sw" = (
-/obj/structure/sign/hydro,
-/turf/closed/wall,
 /area/barren/civilian)
 "Sx" = (
 /obj/structure/closet/crate/internals,
@@ -25514,7 +25511,7 @@ OG
 OG
 YK
 Ji
-Sw
+sj
 tR
 Nv
 Lr
