@@ -34,7 +34,6 @@
 
 
 /obj/item/whistle/proc/whistle_playsound(mob/user as mob)
-	CHECK_TICK
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_BLOW))
 		user.balloon_alert(user, "Catch your breath!")
 		return
@@ -50,6 +49,7 @@
 			if(!TIMER_COOLDOWN_CHECK(human, COOLDOWN_WHISTLE_WARCRIER))
 				human.emote("warcry")
 				TIMER_COOLDOWN_START(human, COOLDOWN_WHISTLE_WARCRIER, 15 SECONDS)
+				CHECK_TICK
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_BLOW, 3 SECONDS)
 
