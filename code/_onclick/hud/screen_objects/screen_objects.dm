@@ -293,7 +293,9 @@
 	var/total_w = 0
 	for(var/obj/item/I in S)
 		total_w += I.w_class
-	var/fullness = round(10 * max(length(S.contents) / S.atom_storage.storage_slots, total_w / S.atom_storage.max_storage_space))
+	var/storage_slot_fullness = S.atom_storage.storage_slots ? (length(S.contents) / S.atom_storage.storage_slots) : 0
+	var/slotless_fullness = S.atom_storage.max_storage_space ? (total_w / S.atom_storage.max_storage_space) : 0
+	var/fullness = round(10 * max(storage_slot_fullness, slotless_fullness))
 	switch(fullness)
 		if(10)
 			color = "#ff0000"
