@@ -20,19 +20,22 @@
 	max_occupants = 4
 	move_delay = 0.9 SECONDS
 	ram_damage = 100
+	easy_load_list = list(
+		/obj/item/ammo_magazine/tank/ltb_cannon,
+		/obj/item/ammo_magazine/tank/ltaap_chaingun,
+		/obj/item/ammo_magazine/tank/flamer,
+		/obj/item/ammo_magazine/tank/towlauncher,
+		/obj/item/ammo_magazine/tank/secondary_cupola,
+		/obj/item/ammo_magazine/tank/tank_glauncher,
+		/obj/item/ammo_magazine/tank/tank_slauncher
+		)
 
 ///returns a list of possible locations that this vehicle may be entered from
-/obj/vehicle/sealed/armored/multitile/proc/enter_locations(mob/M)
+/obj/vehicle/sealed/armored/multitile/enter_locations(mob/M)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
 
 /obj/vehicle/sealed/armored/multitile/exit_location(mob/M)
 	return pick(enter_locations(M))
-
-/obj/vehicle/sealed/armored/multitile/mob_try_enter(mob/M)
-	if(!isobserver(M) && !(M.loc in enter_locations(M)))
-		balloon_alert(M, "Not at entrance")
-		return FALSE
-	return ..()
 
 /obj/vehicle/sealed/armored/multitile/enter_checks(mob/M)
 	. = ..()

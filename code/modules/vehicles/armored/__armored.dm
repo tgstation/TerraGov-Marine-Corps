@@ -70,6 +70,8 @@
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
+	/// List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	var/list/easy_load_list
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	if(interior)
@@ -142,6 +144,12 @@
 	if(max_occupants > 1)
 		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 
+/obj/vehicle/sealed/armored/proc/enter_locations(mob/M)
+	// from any adjacent position
+	if(Adjacent(M, src))
+		return list(get_turf(M))
+
+
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
@@ -184,6 +192,18 @@
 	. += span_notice("There is [isnull(primary_weapon) ? "nothing" : "[primary_weapon]"] in the primary attachment point, [isnull(secondary_weapon) ? "nothing" : "[secondary_weapon]"] installed in the secondary slot, [isnull(driver_utility_module) ? "nothing" : "[driver_utility_module]"] in the driver utility slot and [isnull(gunner_utility_module) ? "nothing" : "[gunner_utility_module]"] in the gunner utility slot.")
 	if(!isxeno(user))
 		. += "<b>It is currently at <u>[PERCENT(obj_integrity / max_integrity)]%</u> integrity.</b>"
+
+/obj/vehicle/sealed/armored/get_mechanics_info()
+	. = ..()
+	var/list/namedPaths = list()
+	namedPaths += "<b> You can easily load the following items by attacking the vehicle at its entrance </b>"
+	for(var/obj/path AS in easy_load_list)
+		namedPaths.Add(initial(path:name))
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry?.mechanics_text)
+		namedPaths += general_entry.mechanics_text
+	return jointext(namedPaths, "<br>")
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
@@ -251,6 +271,9 @@
 	if(!ishuman(M))
 		return FALSE
 	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		return FALSE
+	if(!(M.loc in enter_locations(M)))
+		balloon_alert(M, "not at entrance")
 		return FALSE
 	return ..()
 
@@ -384,6 +407,20 @@
 		mod.on_equip(src, user)
 		return
 	if(interior) // if interior handle by gun breech
+		// check for easy loading instead
+		if(I.type in easy_load_list)
+			if(!interior)
+				user.balloon_alert(user, "no interior")
+				return
+			if(!interior.door)
+				user.balloon_alert(user, "no door")
+				return
+			if(!(user.loc in enter_locations(user)))
+				user.balloon_alert(user, "not at entrance")
+				return
+			user.temporarilyRemoveItemFromInventory(I)
+			I.forceMove(interior.door.get_enter_location())
+			user.balloon_alert(user, "item thrown inside")
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
