@@ -32,7 +32,6 @@
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -128,7 +127,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
@@ -231,7 +229,6 @@ Make the TGMC proud!"})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -317,7 +314,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -396,7 +392,6 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -468,7 +463,6 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
@@ -518,6 +512,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 
+#define ASSAULT_CREWMAN_POPLOCK 0
 //tank/arty driver+gunner
 /datum/job/terragov/command/assault_crewman
 	title = ASSAULT_CREWMAN
@@ -548,10 +543,11 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "assault_crew"
 
-/datum/job/terragov/command/assault_crewman/add_job_points(amount)
-	. = ..()
-	if(total_positions % 2)
-		add_job_positions(1) //always 2 there are, a master and an apprentice
+/datum/job/terragov/command/assault_crewman/on_pre_setup()
+	if(total_positions)
+		return
+	if(length(GLOB.clients) >= ASSAULT_CREWMAN_POPLOCK)
+		add_job_positions(2) //always 2 there are, a master and an apprentice
 
 /datum/job/terragov/command/assault_crewman/radio_help_message(mob/M)
 	. = ..()
@@ -591,7 +587,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 
-
+#define TRANSPORT_CREWMAN_POPLOCK 30
 //apc/jeep driver
 /datum/job/terragov/command/transport_crewman
 	title = TRANSPORT_CREWMAN
@@ -625,6 +621,12 @@ You can serve your Division in a variety of roles, so choose carefully."})
 /datum/job/terragov/command/transport_crewman/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a Transport Crewman. You operate the TGMC's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."})
+
+/datum/job/terragov/command/transport_crewman/on_pre_setup()
+	if(total_positions)
+		return
+	if(length(GLOB.clients) >= TRANSPORT_CREWMAN_POPLOCK)
+		add_job_positions(1)
 
 /datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -687,7 +689,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -762,7 +763,6 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -841,7 +841,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -929,7 +928,6 @@ A happy ship is a well-functioning ship."})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -1014,7 +1012,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -1101,7 +1098,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -1188,7 +1184,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
@@ -1263,7 +1258,6 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Soul Crushing<br /><br />
@@ -1342,7 +1336,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-		/datum/job/terragov/command/assault_crewman = ARMORED_VEHICLE_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />

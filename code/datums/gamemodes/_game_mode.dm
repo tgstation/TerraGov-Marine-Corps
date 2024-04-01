@@ -102,6 +102,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	for(var/datum/job/job AS in SSjob.joinable_occupations)
+		job.on_pre_setup()
+
 	return TRUE
 
 /datum/game_mode/proc/setup()
