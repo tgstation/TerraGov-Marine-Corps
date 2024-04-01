@@ -23412,14 +23412,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/north)
-"kym" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	locked = 1;
-	name = "Maintainance"
-	},
-/turf/open/floor/dark2,
-/area/corsat/gamma/hallwaysouth)
 "kyr" = (
 /obj/machinery/door/airlock/mainship/research{
 	dir = 1;
@@ -83843,7 +83835,7 @@ gck
 rJY
 bHX
 saa
-kym
+nmm
 vHg
 vHg
 vHg
