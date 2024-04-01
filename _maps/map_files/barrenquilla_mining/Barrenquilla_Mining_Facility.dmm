@@ -1338,10 +1338,6 @@
 /obj/structure/barricade/guardrail,
 /turf/open/liquid/lava/autosmoothing,
 /area/barren)
-"hR" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/prison/plate,
-/area/ai_monitored/storage/secure)
 "hT" = (
 /obj/machinery/washing_machine,
 /obj/machinery/light{
@@ -2469,7 +2465,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/wood,
 /area/barren/security)
 "oj" = (
@@ -3791,7 +3786,6 @@
 /area/barren/civilian)
 "vU" = (
 /obj/structure/sign/poster,
-/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "vV" = (
@@ -6645,7 +6639,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/barren/civilian/workdorm)
 "Nn" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -33351,7 +33345,7 @@ Bh
 py
 bs
 HO
-hR
+bs
 oc
 bs
 qw
