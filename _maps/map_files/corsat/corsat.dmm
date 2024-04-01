@@ -4087,7 +4087,9 @@
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/researcher)
 "bUY" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/closed/wall/r_wall,
 /area/corsat/dropzone/landingzonethree)
 "bVk" = (
@@ -6071,7 +6073,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/corsat/dropzone/landingzonethree)
 "cLs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9027,12 +9029,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
-"ecc" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/corsat/dropzone/landingzonethree)
 "ece" = (
 /obj/machinery/power/apc/hyper,
 /obj/structure/flora/pottedplant,
@@ -13066,13 +13062,6 @@
 /obj/effect/turf_decal/tile/corsatsemi/white,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
-"fSM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/corsat/dropzone/landingzonethree)
 "fSR" = (
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/north)
@@ -28536,6 +28525,13 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential)
+"mGc" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "mGd" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -29278,10 +29274,6 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/researcher)
-"mUl" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/corsat/dropzone/landingzonethree)
 "mUn" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/dark2,
@@ -31717,6 +31709,12 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/hallways)
+"nYx" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/dropzone/landingzonethree)
 "nYN" = (
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
@@ -48541,9 +48539,11 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/south/complex)
 "uYt" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirt,
 /area/corsat/dropzone/landingzonethree)
 "uYK" = (
@@ -50878,12 +50878,8 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/hangar/checkpoint)
 "wcU" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/corsat/dropzone/landingzonethree)
 "wde" = (
 /obj/machinery/door/airlock/mainship/engineering{
@@ -107164,21 +107160,21 @@ oPf
 oPf
 oPf
 oPf
-pdl
-pdl
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-aXN
-dNf
+alz
+aoc
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+gzE
+cLo
 dNf
 aDk
 dNf
@@ -107421,7 +107417,7 @@ oPf
 oPf
 oPf
 oPf
-pdl
+alz
 aXN
 aXN
 aXN
@@ -107431,25 +107427,25 @@ aXN
 aXN
 aXN
 aXN
-iCQ
-gzE
-gzE
-gzE
+gJZ
+gJZ
+gJZ
+gJZ
 kym
 kym
 kym
-uYt
+cLo
 dNf
 dNf
 dNf
 dne
-uYt
+cLo
 kym
 kym
 kym
 kym
-mUl
-ecc
+wcU
+nYx
 aXN
 aXN
 aXN
@@ -107678,7 +107674,7 @@ oPf
 oPf
 oPf
 oPf
-pdl
+alz
 gJZ
 gJZ
 gJZ
@@ -107688,19 +107684,19 @@ gJZ
 gJZ
 gJZ
 gJZ
-ilb
+gJZ
 fTJ
 fTJ
 fTJ
 fTJ
 fTJ
 fTJ
-uYt
-kym
-kym
-kym
-wcU
 cLo
+kym
+kym
+kym
+uYt
+bUY
 fTJ
 fTJ
 fTJ
@@ -107936,16 +107932,16 @@ oPf
 oPf
 oPf
 alz
-bUY
-bUY
-bUY
-bUY
-bUY
-bUY
-bUY
-bUY
-bUY
-cLo
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
+fTJ
 fTJ
 bgm
 bgm
@@ -109770,7 +109766,7 @@ bBm
 wtX
 bgm
 fTJ
-cLo
+bUY
 aXN
 aXN
 aXN
@@ -110027,7 +110023,7 @@ bgm
 qkp
 bgm
 fTJ
-uYt
+cLo
 dNf
 bxd
 bxd
@@ -110284,7 +110280,7 @@ aoz
 cOL
 bgm
 fTJ
-uYt
+cLo
 dNf
 dNf
 bxd
@@ -110541,7 +110537,7 @@ dlO
 cOL
 bgm
 fTJ
-uYt
+cLo
 aDk
 dNf
 dNf
@@ -110798,7 +110794,7 @@ aoz
 anA
 jcA
 bDm
-fSM
+mGc
 vGX
 vGX
 vGX
@@ -111055,7 +111051,7 @@ dlO
 qkp
 oFD
 fTJ
-cLo
+bUY
 kym
 dNf
 dNf
@@ -111313,7 +111309,7 @@ qkp
 bgm
 bgm
 fTJ
-uYt
+cLo
 dNf
 dNf
 dNf
@@ -111570,7 +111566,7 @@ pSs
 dlO
 aoz
 oVJ
-uYt
+cLo
 dNf
 dNf
 aDk
@@ -111827,7 +111823,7 @@ uDd
 aoz
 aoz
 bgm
-uYt
+cLo
 dNf
 dNf
 cWe
@@ -112084,7 +112080,7 @@ cOL
 bgm
 bgm
 fTJ
-uYt
+cLo
 dNf
 dNf
 dNf
@@ -112340,7 +112336,7 @@ aoz
 qkp
 bgm
 fTJ
-cLo
+bUY
 kym
 dNf
 dNf
@@ -112597,7 +112593,7 @@ aoz
 cOL
 qek
 fTJ
-uYt
+cLo
 dNf
 dNf
 dNf
@@ -112854,7 +112850,7 @@ aoz
 qkp
 oFD
 fTJ
-uYt
+cLo
 dNf
 dNf
 dNf
