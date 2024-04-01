@@ -100,6 +100,10 @@
 /obj/effect/turf_decal/tile/corsatstraight/blue,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
+"aX" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/corsat/gamma/biodome)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -8401,7 +8405,7 @@ ZG
 uH
 ZG
 cE
-ZG
+aX
 ZG
 Xz
 XB

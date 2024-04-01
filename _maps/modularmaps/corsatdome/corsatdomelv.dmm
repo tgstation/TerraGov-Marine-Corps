@@ -1525,6 +1525,12 @@
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass/weedable,
 /area/corsat/theta/biodome)
+"rz" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
 "rL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7409,7 +7415,7 @@ rL
 Iu
 ZD
 Iu
-iM
+rz
 Iu
 Iu
 Iu

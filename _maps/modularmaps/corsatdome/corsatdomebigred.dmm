@@ -1823,6 +1823,10 @@
 	dir = 8
 	},
 /area/corsat/sigma/biodome)
+"Ip" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
 "Is" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Mixed Air Control"
@@ -6160,7 +6164,7 @@ Jq
 Op
 Op
 Op
-Op
+Ip
 Op
 Jq
 Op

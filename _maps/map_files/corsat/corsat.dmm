@@ -58,12 +58,6 @@
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/corsat/gamma/hangar/monorail/control)
-"acz" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/four)
 "acH" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 1
@@ -126,6 +120,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
+"aeA" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "aeH" = (
 /obj/effect/turf_decal/tile/corsatsemi/green{
 	dir = 1
@@ -346,11 +345,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/monorail/control)
-"akm" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/two)
 "akJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "Arcade"
@@ -601,9 +595,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
-"apP" = (
-/turf/closed/wall/r_wall,
-/area/corsat/sigma/southeast/datalab)
 "apR" = (
 /obj/machinery/light{
 	dir = 4
@@ -1148,6 +1139,7 @@
 /obj/effect/turf_decal/tile/corsatcorner/red{
 	dir = 4
 	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
 "aAQ" = (
@@ -1487,6 +1479,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/dropzone/landingzonethree)
+"aKq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/hangar/monorail)
 "aKr" = (
 /obj/effect/turf_decal/tile/corsatcorner/green{
 	dir = 4
@@ -1494,6 +1492,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hangar/monorail)
+"aKv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "aKP" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
@@ -1872,6 +1877,10 @@
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south)
+"aTT" = (
+/obj/effect/acid_hole,
+/turf/closed/wall,
+/area/corsat/sigma/south/complex)
 "aTW" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -2032,6 +2041,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/hangar_storage/research)
+"aYe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "aYk" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
@@ -2647,10 +2662,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hangar/monorail)
-"bmZ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "bng" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
@@ -3597,10 +3608,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/security/cells)
-"bIY" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/sigma/southeast/datalab)
 "bJd" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -4959,6 +4966,11 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/sigmaremote)
+"clG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "clN" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -5003,11 +5015,12 @@
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/east)
 "cmL" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/corsat/dropzone/landingzonethree)
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "cmT" = (
 /obj/effect/turf_decal/tile/full/darkgray,
 /obj/effect/landmark/weed_node,
@@ -5733,11 +5746,6 @@
 "cCY" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/corsat/sigma/south/robotics)
-"cDe" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/two)
 "cDi" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/rad,
@@ -6044,6 +6052,10 @@
 /obj/item/newspaper,
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
+"cKm" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/dropzone/landingzonethree)
 "cKo" = (
 /obj/effect/turf_decal/tile/corsatstraight/red{
 	dir = 8
@@ -6100,9 +6112,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/three)
 "cLo" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirt,
-/area/corsat/dropzone/landingzonethree)
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "cLs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -6205,6 +6217,12 @@
 	dir = 5
 	},
 /area/corsat/gamma/sigmaremote)
+"cNf" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/som/som_23,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/one)
 "cNk" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -6519,6 +6537,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/checkpoint)
+"cUj" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/grayscale/white,
+/area/corsat/sigma/south/complex)
 "cUk" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2;
@@ -7034,6 +7056,10 @@
 	dir = 4
 	},
 /area/corsat/dropzone/landingzoneone)
+"dfH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "dfX" = (
 /obj/effect/turf_decal/tile/corsatstraight/red{
 	dir = 4
@@ -7067,6 +7093,14 @@
 "dgX" = (
 /turf/open/floor/grayscale/darkred,
 /area/corsat/omega/offices)
+"dhf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/sigma/south/complex)
 "dhj" = (
 /obj/structure/rack,
 /turf/open/floor/grayscale/round/black,
@@ -7383,11 +7417,6 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/south/offices)
-"dnK" = (
-/obj/effect/spawner/random/engineering/metal,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/sigma/southeast/datalab)
 "dnO" = (
 /obj/machinery/landinglight/lz1{
 	dir = 4
@@ -8737,6 +8766,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
+"dSn" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/four)
 "dSC" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round,
@@ -8789,6 +8824,10 @@
 /obj/structure/stairs,
 /turf/open/floor/dark2,
 /area/corsat/gamma/residential/east)
+"dUU" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
+/area/corsat/sigma/cafe)
 "dUX" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
@@ -8975,6 +9014,11 @@
 "dZS" = (
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/biodome)
+"eag" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "eaA" = (
 /obj/effect/turf_decal/warning_stripes/smallstripevertical{
 	dir = 8
@@ -9053,10 +9097,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/engineering)
-"ebO" = (
-/obj/effect/acid_hole,
-/turf/closed/wall,
-/area/corsat/gamma/residential/west)
 "ebS" = (
 /obj/machinery/light{
 	dir = 8
@@ -10243,6 +10283,19 @@
 /obj/item/tool/analyzer,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/sigmaremote)
+"eBZ" = (
+/obj/structure/platform{
+	dir = 4;
+	layer = 2.7
+	},
+/obj/effect/turf_decal/tile/corsatstraight/white{
+	dir = 8
+	},
+/obj/structure/stairs/corner_seamless{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/south)
 "eCa" = (
 /obj/effect/turf_decal/tile/corsatstraight/cyan{
 	dir = 4
@@ -10408,6 +10461,10 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/tile/lightred,
 /area/corsat/omega/biodome/two)
+"eGk" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "eGl" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
@@ -10597,6 +10654,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
+"eLh" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "eLk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11932,11 +11993,6 @@
 /obj/machinery/light,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hangar/monorail)
-"fqB" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "fqG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -12541,6 +12597,12 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/canteen)
+"fEq" = (
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "fEr" = (
 /turf/closed/wall/r_wall,
 /area/corsat/hangar_storage/research)
@@ -14170,11 +14232,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/residential/east)
-"gpC" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/corsat/sigma/southeast/datalab)
 "gpN" = (
 /obj/machinery/light{
 	dir = 4
@@ -14411,6 +14468,10 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/gamma/hangar/office)
+"gvr" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/grayscale/black,
+/area/corsat/emergency_access)
 "gvv" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -15049,10 +15110,6 @@
 "gJZ" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/corsat/dropzone/landingzonethree)
-"gKa" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/grayscale/black,
-/area/corsat/emergency_access)
 "gKo" = (
 /obj/structure/closet/secure_closet/security_empty{
 	name = "Head of Security's Locker"
@@ -15697,6 +15754,12 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/southeast/datalab)
+"gYS" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/dropzone/landingzonethree)
 "gYY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -15781,6 +15844,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/researcher)
+"haM" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "haY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "Arrivals"
@@ -15851,6 +15920,10 @@
 /obj/item/paper,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
+"hdy" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "hdz" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/engineering/tech_supply,
@@ -16035,6 +16108,14 @@
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
+"hiK" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "hiM" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -16655,10 +16736,6 @@
 	dir = 10
 	},
 /area/corsat/dropzone/landingzoneone)
-"hxq" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall,
-/area/corsat/sigma/south/security)
 "hxH" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
@@ -17180,11 +17257,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)
-"hKK" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "hKQ" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -17472,11 +17544,6 @@
 /obj/effect/turf_decal/tile/corsatsemi/red,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/security)
-"hSf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/misc/structure/girder,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "hSh" = (
 /obj/effect/turf_decal/tile/corsatstraight/cyan{
 	dir = 1
@@ -18092,14 +18159,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/omega/hangar/office)
-"ifm" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/machinery/door/airlock/mainship/maint{
-	locked = 1;
-	name = "\improper Emergency Access"
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/two)
 "ifn" = (
 /obj/structure/bookcase,
 /turf/open/floor/grayscale/darkred,
@@ -19276,12 +19335,6 @@
 /obj/effect/turf_decal/tile/corsatsemi/red,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/security)
-"iJG" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/cable,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/four)
 "iJX" = (
 /obj/effect/turf_decal/tile/corsatcorner/blue{
 	dir = 8
@@ -19767,11 +19820,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
-"iTO" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "iTX" = (
 /obj/effect/turf_decal/tile/corsatstraight/blue{
 	dir = 1
@@ -19861,16 +19909,18 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential/researcher)
+"iVF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "iVK" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/hallways)
-"iVX" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "iVY" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -20138,11 +20188,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
-"jdL" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "jdT" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
@@ -20406,6 +20451,10 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/corsat/gamma/airlock/north)
+"jjJ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "jjM" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -20713,6 +20762,11 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
+"jqA" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "jqE" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/misc/trash,
@@ -20946,11 +21000,6 @@
 /obj/structure/sign/safety/storage,
 /turf/closed/wall/r_wall,
 /area/corsat/sigma/cargo)
-"jvF" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/corsat/omega/biodome/four)
 "jvI" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
@@ -21952,14 +22001,6 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
-"jQB" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tracks/wheels/bloody{
-	dir = 4
-	},
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "jQG" = (
 /obj/effect/turf_decal/tile/corsatstraight/yellow{
 	dir = 1
@@ -22221,10 +22262,6 @@
 "jWO" = (
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/residential/maint)
-"jWQ" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "jWU" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
@@ -22759,11 +22796,6 @@
 "khd" = (
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/medbay/morgue)
-"khQ" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "khV" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -22944,6 +22976,14 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
+"kmG" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/machinery/door/airlock/mainship/maint{
+	locked = 1;
+	name = "\improper Emergency Access"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "kmN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23529,13 +23569,9 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/north)
 "kym" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirt,
-/area/corsat/dropzone/landingzonethree)
+/obj/effect/landmark/patrol_point/tgmc_12,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "kyr" = (
 /obj/machinery/door/airlock/mainship/research{
 	dir = 1;
@@ -23988,6 +24024,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/maint)
+"kIP" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/south/engineering)
 "kIT" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -24206,6 +24246,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/foyer)
+"kNK" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "kNR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/turf_decal/tile/corsatstraight/cyan{
@@ -24367,11 +24412,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/omega/complex)
-"kRt" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/two)
 "kRw" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
@@ -24658,12 +24698,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/researcher)
-"kXf" = (
-/obj/effect/turf_decal/tracks/wheels/bloody{
-	dir = 4
-	},
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "kXs" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -25138,6 +25172,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/dorms)
+"liE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "liH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -25801,10 +25839,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/three)
-"lwa" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "lwe" = (
 /obj/effect/turf_decal/tile/corsatstraight/brown{
 	dir = 4
@@ -26043,12 +26077,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/freezer)
-"lAq" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/two)
 "lAt" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
@@ -26539,10 +26567,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/hallwaysouth)
-"lKH" = (
-/obj/effect/acid_hole,
-/turf/closed/wall,
-/area/corsat/sigma/south/complex)
 "lKI" = (
 /obj/machinery/door/window{
 	dir = 2;
@@ -27189,6 +27213,11 @@
 /obj/effect/turf_decal/tile/full/white,
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/south/complex)
+"lZW" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "mad" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/tile/full/black,
@@ -27334,6 +27363,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/theta/airlock/west)
+"mdl" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating,
+/area/corsat/sigma/southeast/datalab)
 "mdv" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -27623,7 +27656,7 @@
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/southeast/datalab)
 "mju" = (
-/obj/machinery/computer3,
+/obj/machinery/computer/intel_computer,
 /turf/open/shuttle/dropship/three,
 /area/corsat/hangar_storage/research/ship)
 "mjC" = (
@@ -27848,6 +27881,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/dropzone/landingzonethree)
+"mnE" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/complex)
 "mnI" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/bodybags,
@@ -28158,6 +28196,23 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/sigmaremote)
+"muw" = (
+/obj/structure/platform{
+	dir = 1;
+	layer = 2.7
+	},
+/obj/structure/platform{
+	dir = 4;
+	layer = 2.7
+	},
+/obj/effect/turf_decal/tile/corsatsemi/white{
+	dir = 8
+	},
+/obj/structure/stairs/corner_seamless{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/south)
 "muz" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/machinery/atmospherics/pipe/manifold/green{
@@ -29399,6 +29454,11 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
+"mTX" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/corsat/sigma/southeast/datalab)
 "mUa" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
@@ -30809,14 +30869,6 @@
 "nza" = (
 /turf/open/floor/mainship/research/containment/corner3,
 /area/corsat/inaccessible)
-"nzf" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "nzj" = (
 /obj/machinery/light{
 	dir = 8
@@ -31144,6 +31196,13 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/corsat/gamma/engineering/lobby)
+"nHu" = (
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "nHF" = (
 /obj/structure/table/mainship,
 /obj/item/tool/screwdriver,
@@ -31683,6 +31742,10 @@
 "nUN" = (
 /turf/closed/wall/r_wall,
 /area/corsat/gamma/residential/lavatory)
+"nVd" = (
+/obj/effect/landmark/patrol_point/som/som_13,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "nVg" = (
 /obj/structure/sink{
 	dir = 1;
@@ -31767,6 +31830,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/rnr)
+"nWs" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/grayscale/white,
+/area/corsat/sigma/north)
 "nWJ" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
@@ -32714,11 +32781,6 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/one)
-"oss" = (
-/obj/effect/turf_decal/tile/full/black,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome/four)
 "osF" = (
 /obj/effect/turf_decal/tile/corsatcorner/green{
 	dir = 4
@@ -33280,6 +33342,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/dropzone/landingzonethree)
+"oGf" = (
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/southeast/datalab)
 "oGs" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
@@ -33288,13 +33355,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/omega/complex)
-"oGA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "oGF" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -33387,6 +33447,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
+"oJs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "oJv" = (
 /obj/structure/bed/psych,
 /obj/machinery/light{
@@ -33718,10 +33785,6 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/sigmaremote)
-"oRt" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "oRy" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -34430,23 +34493,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/three)
-"pfI" = (
-/obj/structure/platform{
-	dir = 1;
-	layer = 2.7
-	},
-/obj/structure/platform{
-	dir = 4;
-	layer = 2.7
-	},
-/obj/effect/turf_decal/tile/corsatsemi/white{
-	dir = 8
-	},
-/obj/structure/stairs/corner_seamless{
-	dir = 8
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/south)
 "pfN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -34589,6 +34635,7 @@
 /obj/effect/turf_decal/tile/corsatsemi/yellow{
 	dir = 8
 	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
 "piP" = (
@@ -35111,6 +35158,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)
+"ptx" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "pty" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -35447,6 +35499,12 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/sigma/south/security)
+"pzq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/hangar/monorail)
 "pzR" = (
 /turf/closed/wall,
 /area/corsat/gamma/residential/showers)
@@ -35853,6 +35911,10 @@
 /obj/effect/turf_decal/tile/corsatstraight/yellow,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hallwaysouth)
+"pKm" = (
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
+/area/corsat/gamma/medbay/morgue)
 "pKr" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/turf_decal/tile/corsatstraight/green{
@@ -36349,6 +36411,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/north/id)
+"pUi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "pUk" = (
 /obj/machinery/light{
 	dir = 4
@@ -36542,11 +36609,6 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hallwaysouth)
-"qas" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/four)
 "qay" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -37055,6 +37117,11 @@
 /obj/effect/turf_decal/tile/full/brown,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/sigma/south/complex)
+"qle" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/som/som_22,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/one)
 "qli" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -37260,6 +37327,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
+"qpR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/southeast/datalab)
 "qpX" = (
 /obj/structure/table/mainship,
 /obj/item/clipboard,
@@ -37479,17 +37550,11 @@
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/dorms)
-"quC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/office/light,
-/obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "quE" = (
-/obj/structure/closet,
 /obj/effect/turf_decal/tile/corsatsemi/green{
 	dir = 8
 	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/morgue)
 "quP" = (
@@ -38080,11 +38145,8 @@
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/north)
 "qGk" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/security{
-	network = list("omega")
-	},
 /obj/effect/turf_decal/tile/corsatstraight/red,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
 "qGo" = (
@@ -39052,9 +39114,10 @@
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
 "rbP" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/corsat/dropzone/landingzonethree)
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/tgmc_14,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "rbW" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	name = "CORSAT Library"
@@ -39209,6 +39272,10 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering)
+"rfr" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/corsat/gamma/security)
 "rft" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -39407,6 +39474,9 @@
 /obj/effect/turf_decal/tile/full/graylarge,
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/morgue)
+"rky" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/southeast/datalab)
 "rkI" = (
 /obj/machinery/light{
 	dir = 1
@@ -40222,6 +40292,9 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/morgue)
+"rEH" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/southeast/datamaint)
 "rEU" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -40305,6 +40378,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/security)
+"rFW" = (
+/obj/effect/acid_hole,
+/turf/closed/wall,
+/area/corsat/gamma/residential/west)
 "rGa" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/grayscale/round,
@@ -40599,10 +40676,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/round,
 /area/corsat/omega/hallways)
-"rNn" = (
-/obj/effect/spawner/random/misc/structure/girder,
-/turf/open/floor/plating,
-/area/corsat/gamma/medbay/morgue)
 "rNw" = (
 /obj/effect/turf_decal/tile/corsatcorner/green{
 	dir = 4
@@ -41508,6 +41581,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/south/offices)
+"sfW" = (
+/obj/effect/landmark/patrol_point/som/som_12,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "sgj" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/round/black,
@@ -42137,6 +42214,11 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/omega/hangar/office)
+"stX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/four)
 "suc" = (
 /obj/machinery/light{
 	dir = 1
@@ -42467,6 +42549,11 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hallwaysouth)
+"sAA" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "sAH" = (
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
@@ -42694,6 +42781,10 @@
 	dir = 1
 	},
 /area/corsat/sigma/hangar)
+"sGe" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "sGl" = (
 /obj/effect/turf_decal/tile/corsatcorner/green,
 /turf/open/floor/grayscale/round/black,
@@ -43024,10 +43115,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/medbay)
-"sNO" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/south/engineering)
 "sOg" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/turf_decal/tile/corsatcorner/yellow{
@@ -43368,6 +43455,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/canteen)
+"sUX" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/bar,
+/area/corsat/gamma/residential/west)
 "sVj" = (
 /obj/structure/table,
 /obj/machinery/computer/emails{
@@ -43694,6 +43785,10 @@
 	dir = 1
 	},
 /area/corsat/gamma/hangar)
+"tbq" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "tbr" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/grayscale/white,
@@ -43869,13 +43964,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/sigma/dorms)
-"tez" = (
-/obj/effect/turf_decal/tracks/wheels/bloody{
-	dir = 4
-	},
-/obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/dark2,
-/area/corsat/omega/biodome/two)
 "teN" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -44408,6 +44496,11 @@
 /obj/effect/turf_decal/tile/full/darkgray,
 /turf/closed/wall/r_wall,
 /area/corsat/gamma/hallwaysouth)
+"tqa" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "tqd" = (
 /obj/effect/turf_decal/tile/corsatcorner/green{
 	dir = 8
@@ -45171,6 +45264,14 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar)
+"tFf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/dropzone/landingzonethree)
 "tFg" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -45513,6 +45614,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/checkpoint)
+"tMh" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "tMq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -45792,6 +45901,12 @@
 /obj/item/tool/surgery/bonegel,
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/surgery)
+"tQJ" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "tQL" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale/black,
@@ -47702,6 +47817,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/security)
+"uDz" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "uDE" = (
 /obj/machinery/botany{
 	name = "hydroponics tray"
@@ -47731,6 +47851,11 @@
 /obj/structure/curtain,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/sigma/lavatory)
+"uEz" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "uEM" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/grayscale/black,
@@ -47774,6 +47899,19 @@
 	},
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
+"uFO" = (
+/obj/effect/turf_decal/tile/corsatstraight/white{
+	dir = 8
+	},
+/obj/structure/stairs/corner_seamless{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4;
+	layer = 2
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/south)
 "uFP" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -48308,19 +48446,6 @@
 /obj/effect/turf_decal/tile/full/darkgray,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/omega/offices)
-"uQY" = (
-/obj/structure/platform{
-	dir = 4;
-	layer = 2.7
-	},
-/obj/effect/turf_decal/tile/corsatstraight/white{
-	dir = 8
-	},
-/obj/structure/stairs/corner_seamless{
-	dir = 1
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/south)
 "uQZ" = (
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple{
 	dir = 4
@@ -48742,11 +48867,9 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/south/complex)
 "uYt" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/corsat/dropzone/landingzonethree)
+/obj/effect/landmark/patrol_point/tgmc_13,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "uYK" = (
 /obj/structure/flora/pottedplant/twentyone,
 /obj/effect/turf_decal/tile/full/black,
@@ -48755,6 +48878,11 @@
 "uYL" = (
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/south)
+"uZf" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/four)
 "uZm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -49009,10 +49137,6 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/sigma/hangar)
-"vfx" = (
-/obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/plating,
-/area/corsat/sigma/southeast/datalab)
 "vfz" = (
 /obj/effect/turf_decal/tile/corsatstraight/green{
 	dir = 4
@@ -49334,6 +49458,11 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/engineering)
+"voi" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/som/som_24,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/one)
 "voj" = (
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
@@ -49499,9 +49628,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/southeast/generator)
-"vqF" = (
-/turf/closed/wall/r_wall,
-/area/corsat/sigma/southeast/datamaint)
 "vqH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -49577,12 +49703,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/checkpoint)
-"vsp" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/corsat/sigma/hangar/monorail)
+"vst" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/dark2,
+/area/corsat/omega/biodome/two)
 "vsU" = (
 /obj/machinery/faxmachine,
 /obj/structure/table/woodentable,
@@ -50225,6 +50349,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/lightred,
 /area/corsat/omega/biodome/one)
+"vGv" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/one)
 "vGL" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/grayscale/black,
@@ -50369,6 +50498,11 @@
 /obj/effect/turf_decal/tile/corsatstraight/yellow,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/engineering/atmos)
+"vJY" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "vKy" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/grayscale/black,
@@ -50850,11 +50984,6 @@
 /obj/effect/turf_decal/tile/full/white,
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/complex)
-"vWK" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "vWL" = (
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/airlock/west)
@@ -51079,6 +51208,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/canteen)
+"wcj" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "wcl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/black,
@@ -51097,12 +51230,10 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/hangar/checkpoint)
 "wcU" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/corsat/dropzone/landingzonethree)
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grayscale/round,
+/area/corsat/gamma/sigmaremote)
 "wde" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "Robotics Storage"
@@ -51950,10 +52081,6 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/omega/biodome/one)
-"wvN" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "wvS" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -53220,6 +53347,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/corsat/sigma/dorms)
+"wWD" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/corsat/omega/biodome/four)
 "wWG" = (
 /obj/effect/turf_decal/tile/corsatstraight/blue,
 /turf/open/floor/grayscale/black,
@@ -54065,6 +54197,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/engineering)
+"xmS" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall,
+/area/corsat/omega/biodome/four)
 "xmT" = (
 /obj/effect/turf_decal/tile/corsatstraight/yellow{
 	dir = 1
@@ -54636,12 +54773,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/security)
-"xxn" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/corsat/sigma/hangar/monorail)
 "xxo" = (
 /obj/machinery/light{
 	dir = 8
@@ -55725,19 +55856,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/corsat/sigma/cafe)
-"xSO" = (
-/obj/effect/turf_decal/tile/corsatstraight/white{
-	dir = 8
-	},
-/obj/structure/stairs/corner_seamless{
-	dir = 8
-	},
-/obj/structure/platform{
-	dir = 4;
-	layer = 2
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/south)
 "xSP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -55942,6 +56060,10 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/corsat/gamma/rnr/bar)
+"xWe" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/south/security)
 "xWt" = (
 /obj/machinery/light,
 /obj/machinery/photocopier,
@@ -56630,10 +56752,6 @@
 "yjv" = (
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/sigma/lavatory)
-"yjx" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/corsat/omega/biodome/four)
 "yjC" = (
 /turf/open/floor/dark2,
 /area/corsat/gamma/engineering)
@@ -56703,6 +56821,11 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/omega/hangar/office)
+"ykH" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/grayscale/round/lightgray,
+/area/corsat/omega/complex)
 "ykQ" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -62507,7 +62630,7 @@ tre
 cvh
 pDG
 xXY
-rNn
+pKm
 qoW
 lKY
 lKY
@@ -62775,7 +62898,7 @@ rYq
 khd
 khd
 svt
-rNn
+pKm
 xBv
 sJA
 tcA
@@ -62899,7 +63022,7 @@ ttf
 bnA
 dEM
 dEM
-dEM
+qle
 dEM
 otG
 dEM
@@ -63153,7 +63276,7 @@ dEM
 dEM
 dEM
 dEM
-dEM
+vGv
 cCz
 cCz
 dEM
@@ -63671,7 +63794,7 @@ dEM
 dEM
 dEM
 bnA
-dEM
+voi
 otG
 dEM
 dEM
@@ -63925,7 +64048,7 @@ dEM
 otG
 ttf
 dEM
-cCz
+cNf
 cCz
 dEM
 dEM
@@ -65591,7 +65714,7 @@ uxI
 cvh
 xMU
 xXY
-rNn
+pKm
 qvw
 qKl
 fGO
@@ -66105,7 +66228,7 @@ rCO
 cvh
 xMU
 xXY
-rNn
+pKm
 qxD
 qLm
 qUG
@@ -66297,7 +66420,7 @@ bQR
 vUr
 giM
 giM
-giM
+kym
 giM
 vUr
 giM
@@ -66551,7 +66674,7 @@ nBE
 osd
 bAZ
 iIe
-giM
+cLo
 sOt
 cBi
 mul
@@ -66932,7 +67055,7 @@ tMG
 lHj
 lBq
 cjs
-xQb
+ykH
 bGk
 cSQ
 ctp
@@ -67068,10 +67191,10 @@ bRG
 giM
 giM
 giM
-qGx
+rbP
 giM
 giM
-giM
+uYt
 oRf
 wsC
 chG
@@ -67321,7 +67444,7 @@ oPf
 nBE
 dFK
 nLa
-bRK
+cmL
 chG
 wuj
 uMG
@@ -69662,7 +69785,7 @@ xXT
 szE
 szE
 cSb
-pkO
+sUX
 oMq
 sJR
 xhs
@@ -70452,7 +70575,7 @@ wBm
 vLl
 sAr
 hmO
-ebO
+rFW
 fGC
 vqi
 xXW
@@ -71313,7 +71436,7 @@ bGk
 wDM
 hwH
 lUF
-vYz
+mnE
 oBv
 mWa
 lUF
@@ -72471,7 +72594,7 @@ sdQ
 ryK
 dAg
 iIh
-iIe
+wcU
 giM
 giM
 giM
@@ -80109,7 +80232,7 @@ bDl
 xHo
 xHo
 xHo
-cDe
+vJY
 xHo
 xHo
 gQA
@@ -80380,7 +80503,7 @@ msS
 msS
 gQA
 xHo
-cDe
+vJY
 xHo
 xHo
 xHo
@@ -80894,7 +81017,7 @@ njh
 gQA
 xHo
 xHo
-cDe
+vJY
 xHo
 xHo
 xHo
@@ -81396,12 +81519,12 @@ xHo
 xHo
 aIk
 xHo
-lAq
+haM
 xHo
 xHo
 xHo
 xHo
-cDe
+vJY
 xHo
 xHo
 xHo
@@ -81654,7 +81777,7 @@ xHo
 xHo
 xHo
 xHo
-cDe
+vJY
 xHo
 xHo
 xHo
@@ -81662,7 +81785,7 @@ xHo
 xHo
 xHo
 xHo
-cDe
+vJY
 xHo
 vRj
 xHo
@@ -82685,7 +82808,7 @@ xHo
 fZR
 xHo
 xHo
-cDe
+vJY
 xHo
 xHo
 xHo
@@ -83200,7 +83323,7 @@ kpw
 kpw
 jGx
 jGx
-jWQ
+vst
 jGx
 jGx
 jGx
@@ -83457,7 +83580,7 @@ oPf
 kpw
 kpw
 kpw
-ifm
+kmG
 kpw
 kpw
 kpw
@@ -83969,9 +84092,9 @@ oPf
 oPf
 oPf
 hDv
-akm
+tqa
 lhV
-tez
+nHu
 gQA
 hDv
 oPf
@@ -84227,8 +84350,8 @@ oPf
 oPf
 hDv
 gQA
-quC
-kXf
+aYe
+fEq
 gQA
 hDv
 oPf
@@ -84485,8 +84608,8 @@ oPf
 hDv
 gQA
 lhV
-bmZ
-akm
+dfH
+tqa
 hDv
 oPf
 oPf
@@ -84741,7 +84864,7 @@ oPf
 oPf
 hDv
 gQA
-iTO
+sAA
 lhV
 gQA
 hDv
@@ -84998,7 +85121,7 @@ oPf
 oPf
 hDv
 gQA
-hSf
+pUi
 lhV
 gQA
 hDv
@@ -85256,7 +85379,7 @@ oPf
 hDv
 gQA
 lhV
-jQB
+hiK
 gQA
 hDv
 oPf
@@ -85769,8 +85892,8 @@ oPf
 oPf
 hDv
 gQA
-bmZ
-oGA
+dfH
+aKv
 gQA
 hDv
 oPf
@@ -86026,9 +86149,9 @@ oPf
 oPf
 hDv
 gQA
-iVX
-kXf
-akm
+jjJ
+fEq
+tqa
 hDv
 oPf
 oPf
@@ -86283,7 +86406,7 @@ oPf
 oPf
 hDv
 gQA
-kRt
+clG
 yeT
 gQA
 hDv
@@ -86541,7 +86664,7 @@ oPf
 hDv
 gQA
 xRI
-gKa
+gvr
 xRI
 xRI
 oPf
@@ -86618,7 +86741,7 @@ fsL
 qSZ
 qSZ
 qSZ
-qSZ
+rfr
 qSZ
 qSZ
 qSZ
@@ -87314,7 +87437,7 @@ xRI
 tTG
 xvr
 sFL
-gKa
+gvr
 nYN
 oHs
 ncU
@@ -87588,7 +87711,7 @@ mRo
 tcm
 jwh
 sBv
-sNO
+kIP
 ncK
 gtU
 uaW
@@ -93720,7 +93843,7 @@ dZn
 uzE
 uzE
 uzE
-hxq
+xWe
 uzE
 uzE
 uzE
@@ -94496,7 +94619,7 @@ dga
 dga
 dga
 lQZ
-dga
+cUj
 xCq
 qwZ
 wUa
@@ -94992,7 +95115,7 @@ aTO
 xXQ
 ndh
 dZn
-rzh
+dhf
 qUk
 ciu
 tGq
@@ -95505,8 +95628,8 @@ cHZ
 ets
 xXQ
 tYo
-lKH
-npu
+aTT
+lno
 myV
 ciu
 uXp
@@ -99377,7 +99500,7 @@ kSU
 kSU
 kSU
 tMJ
-xSO
+uFO
 bSi
 bSi
 bSi
@@ -99387,11 +99510,11 @@ wxn
 wxn
 wxn
 wxn
-pfI
+muw
 bSi
 bSi
 bSi
-uQY
+eBZ
 oYe
 vjc
 ets
@@ -101306,15 +101429,15 @@ oPf
 nCG
 nCG
 sHP
-vsp
+pzq
 sHP
 sHP
 sHP
-vsp
+pzq
 sHP
 sHP
 sHP
-vsp
+pzq
 sHP
 sHP
 sHP
@@ -102667,7 +102790,7 @@ kby
 xVk
 wHJ
 nQS
-uag
+dUU
 hFE
 uag
 xBw
@@ -102966,8 +103089,8 @@ sOG
 gPS
 vuL
 hMK
-vqF
-vqF
+rEH
+rEH
 hCO
 hCO
 hCO
@@ -103109,11 +103232,11 @@ sHP
 sHP
 sHP
 sHP
-xxn
+aKq
 sHP
 cEY
 sHP
-xxn
+aKq
 sHP
 nCG
 nCG
@@ -103224,7 +103347,7 @@ wWG
 vuL
 mbZ
 nEZ
-vqF
+rEH
 sKy
 uGa
 rPm
@@ -105029,7 +105152,7 @@ qrJ
 mjt
 kwd
 vgi
-dnK
+oGf
 opV
 wsX
 wil
@@ -105287,11 +105410,11 @@ lqq
 vBW
 iql
 vpO
-bIY
-gpC
-jdL
-fqB
-qas
+qpR
+mTX
+jqA
+uEz
+stX
 cFZ
 xjW
 bZq
@@ -105543,13 +105666,13 @@ meg
 vBW
 rrX
 mkJ
-bIY
+qpR
 lqq
-vfx
+mdl
 wil
-fqB
-acz
-iJG
+uEz
+dSn
+tQJ
 xjW
 xjW
 xjW
@@ -105800,13 +105923,13 @@ meg
 vBW
 vgi
 bKK
-bIY
+qpR
 beZ
-apP
-yjx
-jvF
+rky
+liE
+xmS
 rnA
-oss
+eag
 hdW
 hdW
 num
@@ -106772,7 +106895,7 @@ xjT
 xjT
 fSR
 fSR
-fSR
+nWs
 fSR
 fSR
 xjT
@@ -107172,11 +107295,11 @@ aXN
 bxd
 dNf
 dNf
-dNf
+tbq
 eyq
 dNf
 dNf
-dNf
+nVd
 dne
 dNf
 dNf
@@ -107355,7 +107478,7 @@ xjW
 xjW
 xjW
 xjW
-xjW
+uDz
 xjW
 xjW
 xjW
@@ -107427,15 +107550,15 @@ gzE
 gzE
 gzE
 gzE
-cmL
+iVF
 dNf
 aDk
 dNf
-dNf
+sfW
 dNf
 kBf
 ukF
-dNf
+eGk
 dNf
 dNf
 dNf
@@ -107600,7 +107723,7 @@ oGF
 nol
 oGF
 nol
-apP
+rky
 xeI
 oPf
 oPf
@@ -107609,7 +107732,7 @@ rnA
 rnA
 bZq
 xjW
-xjW
+ptx
 xjW
 wiC
 xjW
@@ -107684,21 +107807,21 @@ gJZ
 gJZ
 gJZ
 gJZ
-cLo
-cLo
-cLo
-cmL
+eLh
+eLh
+eLh
+iVF
 dNf
 dNf
 dNf
 dne
-cmL
-cLo
-cLo
-cLo
-cLo
-rbP
-uYt
+iVF
+eLh
+eLh
+eLh
+eLh
+cKm
+gYS
 aXN
 aXN
 aXN
@@ -107857,7 +107980,7 @@ rRF
 mDb
 aMU
 mDb
-apP
+rky
 xeI
 oPf
 oPf
@@ -107871,7 +107994,7 @@ bZq
 xjW
 xjW
 xjW
-xjW
+kNK
 xjW
 xjW
 uLe
@@ -107944,11 +108067,11 @@ fTJ
 fTJ
 fTJ
 fTJ
-cmL
-cLo
-cLo
-cLo
-kym
+iVF
+eLh
+eLh
+eLh
+tFf
 bUY
 fTJ
 fTJ
@@ -108110,11 +108233,11 @@ qts
 lJf
 qts
 qts
-apP
-apP
+rky
+rky
 ykx
-apP
-apP
+rky
+rky
 eRa
 eRa
 eRa
@@ -108124,7 +108247,7 @@ bwN
 deQ
 xjW
 xjW
-xjW
+uZf
 xjW
 xjW
 eHm
@@ -108367,15 +108490,15 @@ oEB
 cGc
 oEB
 qts
-hKK
-oRt
-oRt
-wvN
-wvN
-wvN
-wvN
-wvN
-hKK
+aeA
+hdy
+hdy
+wcj
+wcj
+wcj
+wcj
+wcj
+aeA
 mXV
 mXV
 deQ
@@ -108624,15 +108747,15 @@ bDs
 tDo
 kpe
 jKH
-vWK
+lZW
 sGR
 sGR
-khQ
+wWD
 aze
 sGR
-khQ
+wWD
 sGR
-vWK
+lZW
 sGR
 klO
 klO
@@ -108881,18 +109004,18 @@ wwR
 lyP
 lsa
 kMc
-wvN
-lwa
+wcj
+sGe
 wil
 wil
 wil
 dBc
 wil
 wil
-oRt
-lwa
+hdy
+sGe
 wil
-nzf
+tMh
 auS
 wFD
 xjW
@@ -109146,9 +109269,9 @@ eRa
 eRa
 eRa
 eRa
-wvN
-wvN
-lwa
+wcj
+wcj
+sGe
 eRa
 dNU
 sve
@@ -110276,7 +110399,7 @@ bgm
 qkp
 bgm
 fTJ
-cmL
+iVF
 dNf
 bxd
 bxd
@@ -110533,7 +110656,7 @@ aoz
 cOL
 bgm
 fTJ
-cmL
+iVF
 dNf
 dNf
 bxd
@@ -110790,7 +110913,7 @@ dlO
 cOL
 bgm
 fTJ
-cmL
+iVF
 aDk
 dNf
 dNf
@@ -111047,7 +111170,7 @@ aoz
 anA
 jcA
 bDm
-wcU
+oJs
 vGX
 vGX
 vGX
@@ -111305,7 +111428,7 @@ qkp
 oFD
 fTJ
 bUY
-cLo
+eLh
 dNf
 dNf
 dNf
@@ -111562,7 +111685,7 @@ qkp
 bgm
 bgm
 fTJ
-cmL
+iVF
 dNf
 dNf
 dNf
@@ -111819,7 +111942,7 @@ pSs
 dlO
 aoz
 oVJ
-cmL
+iVF
 dNf
 dNf
 aDk
@@ -112076,7 +112199,7 @@ uDd
 aoz
 aoz
 bgm
-cmL
+iVF
 dNf
 dNf
 cWe
@@ -112333,7 +112456,7 @@ cOL
 bgm
 bgm
 fTJ
-cmL
+iVF
 dNf
 dNf
 dNf
@@ -112590,7 +112713,7 @@ qkp
 bgm
 fTJ
 bUY
-cLo
+eLh
 dNf
 dNf
 aDk
@@ -112846,7 +112969,7 @@ aoz
 cOL
 qek
 fTJ
-cmL
+iVF
 dNf
 dNf
 dNf
@@ -113103,7 +113226,7 @@ aoz
 qkp
 oFD
 fTJ
-cmL
+iVF
 dNf
 dNf
 dNf
