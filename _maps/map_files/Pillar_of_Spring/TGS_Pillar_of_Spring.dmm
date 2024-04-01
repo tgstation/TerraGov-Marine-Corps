@@ -478,6 +478,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aIy" = (
@@ -701,6 +703,8 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "aTa" = (
@@ -1076,6 +1080,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bsg" = (
@@ -1368,6 +1374,9 @@
 "bKB" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bLz" = (
@@ -2491,6 +2500,12 @@
 "dii" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dit" = (
@@ -2848,6 +2863,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dGh" = (
@@ -3615,6 +3632,13 @@
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"eFh" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "eFi" = (
 /obj/machinery/light/mainship,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5929,6 +5953,8 @@
 /area/mainship/engineering/port_atmos)
 "hEa" = (
 /obj/structure/closet/toolcloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "hEy" = (
@@ -7274,6 +7300,12 @@
 /area/mainship/living/numbertwobunks)
 "jsw" = (
 /obj/machinery/door_control/mainship/ammo,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "jsE" = (
@@ -7585,6 +7617,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"jTZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "jUl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -8670,8 +8711,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
@@ -11135,13 +11176,6 @@
 /obj/item/ashtray/glass,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
-"obB" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "obQ" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -13845,7 +13879,9 @@
 "rlR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "rmQ" = (
@@ -16207,6 +16243,17 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
+"uhj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/cargo/arrow,
+/area/mainship/hallways/hangar)
 "uhP" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
@@ -16367,13 +16414,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "urD" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -17851,9 +17896,7 @@
 /area/mainship/living/numbertwobunks)
 "wqq" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "wqw" = (
@@ -18756,6 +18799,8 @@
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xuA" = (
@@ -19012,6 +19057,12 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
+"xGc" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "xGl" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -54142,7 +54193,7 @@ mQH
 tlj
 bKB
 imJ
-aoJ
+urD
 aTa
 kDx
 kDx
@@ -54399,7 +54450,7 @@ mQH
 egI
 qmJ
 xad
-dpY
+urD
 aFn
 kDx
 kDx
@@ -54913,7 +54964,7 @@ lET
 tyN
 rYr
 tyN
-dpY
+urD
 lXN
 skU
 fmN
@@ -55170,7 +55221,7 @@ paT
 tyN
 wJQ
 tyN
-dpY
+urD
 dpY
 dpY
 dpY
@@ -55427,20 +55478,20 @@ jhO
 tyN
 lvi
 tyN
-dpY
+jTZ
 aHH
-fPH
+xGc
 aSV
 hEa
-pha
+uhj
 brT
-dii
+ozU
 dFt
 xtU
-urD
+dii
 iFw
-obB
-obB
+eFh
+eFh
 kHN
 aZM
 nPF
