@@ -2305,6 +2305,11 @@ FACTORY
 	contains = list(/obj/item/factory_refill/amr_magazine_flak_refill)
 	cost = 400
 
+/datum/supply_packs/factory/tank_shell_refill
+	name = "LTB tank shell assembly refill"
+	contains = list(/obj/item/factory_refill/tank_shell_refill)
+	cost = 70
+
 /datum/supply_packs/factory/howitzer_shell_he_refill
 	name = "Howitzer HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)

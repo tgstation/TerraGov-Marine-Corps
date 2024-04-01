@@ -342,6 +342,12 @@
 	refill_type = /obj/item/factory_part/amr_magazine_flak
 	refill_amount = 20
 
+/obj/item/factory_refill/tank_shell_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/tank_shell
+	refill_amount = 10
+
 /obj/item/factory_refill/howitzer_shell_he_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."

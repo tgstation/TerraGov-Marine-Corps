@@ -464,6 +464,22 @@ GLOBAL_LIST_INIT(minigun_powerpack, list(
 	. = ..()
 	recipe = GLOB.minigun_powerpack
 
+GLOBAL_LIST_INIT(tank_shell, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/tank_shell
+	name = "tank shell"
+	desc = "An unfinished high explosive tank shell."
+	result = /obj/item/ammo_magazine/tank/ltb_cannon
+
+/obj/item/factory_part/tank_shell/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.tank_shell
+
 GLOBAL_LIST_INIT(howitzer_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
