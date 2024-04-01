@@ -1,6 +1,8 @@
 
 /area/campaign/som_raiding
 	icon_state = "lv-626"
+	area_flags = ALWAYS_RADIO
+	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg')
 
 /area/campaign/som_raiding/ground
 	name = "Ground"

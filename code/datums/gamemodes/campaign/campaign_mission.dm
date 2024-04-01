@@ -21,7 +21,7 @@
 		MISSION_HOSTILE_FACTION = 0,
 	)
 	///Any mission behavior flags
-	var/mission_flags = null
+	var/mission_flags = NONE
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission

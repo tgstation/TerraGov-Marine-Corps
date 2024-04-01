@@ -11,6 +11,7 @@
 		MISSION_STARTING_FACTION = "Infiltrate the SOM base, then plant and defend an orbital beacon until we can drop the hammer on them from orbit!",
 		MISSION_HOSTILE_FACTION = "Stop TGMC forces from infiltrating the base. Prevent them from activating an orbital beacon at all costs!",
 	)
+	mission_flags = MISSION_DISALLOW_DROPPODS
 	max_game_time = 12 MINUTES
 	mission_start_delay = 90 SECONDS
 	shutter_open_delay = list(

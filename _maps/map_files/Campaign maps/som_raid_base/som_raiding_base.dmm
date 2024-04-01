@@ -3798,9 +3798,7 @@
 /obj/structure/stairs/railstairs{
 	dir = 1
 	},
-/turf/open/floor/tile/brown{
-	dir = 4
-	},
+/turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/req/qm)
 "uI" = (
 /obj/structure/largecrate/random,
@@ -7150,6 +7148,9 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/showroom,
 /area/campaign/som_raiding/outpost/living/bathroom)
+"Nl" = (
+/turf/open/floor/tile/dark,
+/area/campaign/som_raiding/outpost/req/qm)
 "Nn" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
@@ -7488,9 +7489,7 @@
 /obj/structure/stairs/railstairs{
 	dir = 8
 	},
-/turf/open/floor/tile/brown{
-	dir = 4
-	},
+/turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/req/qm)
 "Pi" = (
 /obj/structure/table/black,
@@ -25326,7 +25325,7 @@ ga
 iL
 aH
 uH
-aH
+Nl
 Ph
 lv
 hk
