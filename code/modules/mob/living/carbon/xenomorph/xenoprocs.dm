@@ -582,8 +582,8 @@
 	var/list/pistols_by_name = list()
 	//Iterate through the pistols type list to append the name to the pistols_by_name list; would use an assoc list but need key (type path) as well!
 	for(var/atom/type AS in pistols)
-		//No unwanted children
-		if(type.parent_type != /obj/item/weapon/gun/pistol)
+		//No unwanted children; blacklisted guns
+		if(type.parent_type != /obj/item/weapon/gun/pistol || type == /obj/item/weapon/gun/pistol/plasma_pistol || type == /obj/item/weapon/gun/pistol/chimp || type == /obj/item/weapon/gun/pistol/auto9)
 			pistols -= type
 			continue
 		pistols_by_name += type.name
