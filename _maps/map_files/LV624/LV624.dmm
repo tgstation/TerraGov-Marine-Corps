@@ -238,11 +238,6 @@
 /obj/item/tank/anesthetic,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
-"abC" = (
-/obj/structure/cable,
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
 "abD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -523,12 +518,6 @@
 /obj/machinery/mining/brace,
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central3)
-"adC" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 1
-	},
-/area/lv624/lazarus/hydroponics)
 "adD" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -9677,7 +9666,7 @@
 /area/lv624/ground/jungle3)
 "bdK" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bdL" = (
@@ -24368,7 +24357,7 @@ bmw
 bnb
 bnJ
 bou
-abC
+bos
 bou
 bnJ
 brp
@@ -36118,7 +36107,7 @@ avE
 avE
 avE
 avZ
-adC
+awa
 awa
 azn
 avZ
