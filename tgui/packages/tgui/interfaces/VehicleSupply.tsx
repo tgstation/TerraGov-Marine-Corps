@@ -55,7 +55,7 @@ export const VehicleSupply = (props) => {
                     <Collapsible
                       key={primary.name}
                       title={primary.name}
-                      open={primary.isselected}
+                      open
                       buttons={
                         <Button
                           onClick={() =>
@@ -96,7 +96,7 @@ export const VehicleSupply = (props) => {
                     <Collapsible
                       key={secondary.name}
                       title={secondary.name}
-                      open={secondary.isselected}
+                      open
                       buttons={
                         <Button
                           onClick={() =>
