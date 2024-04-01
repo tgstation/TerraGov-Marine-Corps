@@ -77,6 +77,7 @@
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
 	AddComponent(/datum/component/anti_juggling)	//Guns are perpetually "not ready to fire again" without this
+	AddComponent(/datum/component/seethrough_mob)
 
 /mob/living/carbon/xenomorph/register_init_signals()
 	. = ..()
