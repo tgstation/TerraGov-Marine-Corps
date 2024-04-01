@@ -679,6 +679,14 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
+"asq" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "asy" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
@@ -1016,6 +1024,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/monorail/control)
+"ayx" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "ayy" = (
 /obj/structure/table/reinforced,
 /obj/item/paper,
@@ -10835,6 +10849,13 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/security/cells)
+"ePb" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "ePg" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 8
@@ -11679,6 +11700,14 @@
 /obj/effect/turf_decal/tile/corsatcorner/red,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hangar/security)
+"fiG" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/structure/prop/mainship/hangar_stencil/three,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "fiM" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/atmospherics/pipe/manifold/green{
@@ -13250,6 +13279,12 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
+"fUa" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "fUl" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -23765,6 +23800,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/researcher)
+"kCO" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "kCT" = (
 /obj/structure/stairs,
 /obj/effect/turf_decal/tile/corsatstraight/white{
@@ -30202,6 +30243,12 @@
 	},
 /turf/open/floor/dark2,
 /area/corsat/inaccessible)
+"nlp" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "nls" = (
 /obj/effect/turf_decal/tile/corsatstraight/green{
 	dir = 4
@@ -44758,6 +44805,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/hangar/monorail)
+"tuX" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "tvf" = (
 /obj/effect/turf_decal/tile/corsatcorner/red{
 	dir = 8
@@ -52257,6 +52308,13 @@
 /obj/structure/cable,
 /turf/open/floor/dark2,
 /area/corsat/omega/biodome/three)
+"wzT" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "wzY" = (
 /obj/machinery/botany/editor,
 /obj/effect/turf_decal/tile/full/black,
@@ -54652,6 +54710,12 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/checkpoint)
+"xvL" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/dropzone/landingzonethree)
 "xvS" = (
 /obj/item/bodybag,
 /obj/effect/turf_decal/tile/full/black,
@@ -55927,10 +55991,10 @@
 /turf/open/floor/grayscale/round,
 /area/corsat/sigma/hangar/arrivals)
 "xUf" = (
-/obj/machinery/atmospherics/pipe/manifold/green{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/dropzone/landingzonethree)
 "xUm" = (
@@ -109620,9 +109684,9 @@ bWw
 bWw
 pxb
 aoz
-oFD
-bgm
-bgm
+fUa
+kCO
+fiG
 oFD
 bgm
 bgm
@@ -109877,9 +109941,9 @@ bWw
 bWw
 pxb
 aoz
-oFD
-oFD
-oFD
+ayx
+bgm
+tuX
 bgm
 bgm
 bgm
@@ -110135,8 +110199,8 @@ bWw
 bxv
 oCl
 xUf
-eVS
-bBm
+ePb
+asq
 eVS
 bBm
 wtX
@@ -115004,9 +115068,9 @@ alz
 aoc
 bgm
 bgm
-bgm
-bgm
-bgm
+fUa
+kCO
+fiG
 bgm
 uKz
 bgm
@@ -115261,9 +115325,9 @@ oPf
 alz
 aoc
 bgm
+ayx
 bgm
-bgm
-bgm
+tuX
 bgm
 bgm
 tyS
@@ -115518,9 +115582,9 @@ oPf
 oPf
 alz
 aoc
-bgm
-bgm
-bgm
+xvL
+nlp
+wzT
 bgm
 bgm
 lKv
