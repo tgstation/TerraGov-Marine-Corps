@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed posters displaying error signs instead of their valid icon."
