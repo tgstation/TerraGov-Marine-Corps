@@ -1,0 +1,5 @@
+author: "MLGTASTICa"
+delete-after: True
+changes:
+  - balance: "Veteran ERT now starts with their firearms and rifles skills at trained instead of the default(+1)"
+  - balance: "Special Ops ERT now starts with their smg skill set to trained instead of the default(+1)"

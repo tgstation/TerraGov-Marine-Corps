@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - balance: " CSEs now have leadership level 2, down from leadership 3"
