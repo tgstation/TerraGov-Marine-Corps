@@ -1,0 +1,4 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - balance: "SOs have higher engineering and powerloader skill now (shouldn't fumble with OB)"
