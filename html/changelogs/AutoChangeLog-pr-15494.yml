@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - balance: "Increase bulletproof vests armor bullet resistance. Slight energy/laser increase."

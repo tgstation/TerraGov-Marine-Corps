@@ -1,0 +1,11 @@
+2024-04-01:
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new mission - Raiding Base for TGMC'
+  Notamaniac:
+  - bugfix: R76 icon no longer shows up as an error icon in holster
+  Xander3359:
+  - qol: Gives xenos "Toggle Seethrough" ability, making their sprite translucent,
+      allowing you to click through yourself
+2024-04-02:
+  RipGrayson:
+  - bugfix: Fixed posters displaying error signs instead of their valid icon.
