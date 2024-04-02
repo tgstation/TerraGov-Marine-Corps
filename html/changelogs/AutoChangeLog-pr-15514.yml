@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Tanks will now be able to leave the Alamo on Slumbridge"
