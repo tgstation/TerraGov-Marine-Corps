@@ -102,7 +102,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
-	for(var/datum/job/job AS in SSjob.joinable_occupations)
+	for(var/datum/job/job AS in valid_job_types)
+		job = SSjob.GetJobType(job)
 		job.on_pre_setup()
 
 	return TRUE
