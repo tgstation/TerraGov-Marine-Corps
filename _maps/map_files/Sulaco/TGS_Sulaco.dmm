@@ -23198,15 +23198,8 @@
 	},
 /area/sulaco/bridge)
 "sKv" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/railing{
 	id = "vehicle_elevator_railing"
-	},
-/obj{
-	name = "---Merge conflict marker---"
 	},
 /obj/machinery/door/poddoor/mainship/mech{
 	id = "mech_shutters_3"
@@ -23351,6 +23344,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
+"sPF" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/hangar/storage)
 "sPQ" = (
 /obj/item/radio/intercom/general{
 	dir = 4
@@ -24735,7 +24734,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uDV" = (
-/obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -24746,9 +24744,6 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
 	id = "vehicle_elevator_railing"
-	},
-/obj{
-	name = "---Merge conflict marker---"
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -25145,15 +25140,8 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hallway/lower_foreship)
 "vgC" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/railing{
 	id = "vehicle_elevator_railing"
-	},
-/obj{
-	name = "---Merge conflict marker---"
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/mech{
@@ -69124,8 +69112,8 @@ bFa
 bFa
 kOr
 bYM
-bYM
-bYM
+sPF
+sPF
 vgC
 vgC
 sKv
