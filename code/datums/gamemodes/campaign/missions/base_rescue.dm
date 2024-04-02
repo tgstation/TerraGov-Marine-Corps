@@ -42,6 +42,8 @@
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(override_code_received))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(override_code_received))
 
 /datum/campaign_mission/destroy_mission/base_rescue/set_factions()
 	attacking_faction = hostile_faction
@@ -49,7 +51,7 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/unregister_mission_signals()
 	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING))
 
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
@@ -118,6 +120,15 @@
 	map_text_broadcast(attacking_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 	map_text_broadcast(defending_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 
+///Code computer is actively running a segment
+/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_running(datum/source, obj/machinery/computer/nt_access/code_computer)
+	SIGNAL_HANDLER
+	pause_mission_timer(REF(code_computer))
+
+///Code computer stops running a segment
+/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_stop_running(datum/source, obj/machinery/computer/nt_access/code_computer)
+	SIGNAL_HANDLER
+	resume_mission_timer(REF(code_computer))
 
 /obj/effect/landmark/campaign_structure/weapon_x
 	name = "weapon X spawner"

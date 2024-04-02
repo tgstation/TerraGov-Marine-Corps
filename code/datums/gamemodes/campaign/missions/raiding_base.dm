@@ -153,6 +153,7 @@
 ///Handles a beacon being destroyed. Separate from normal objective destruction for convenience as we want the specific beacon ref
 /datum/campaign_mission/raiding_base/proc/beacon_destroyed(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon)
 	SIGNAL_HANDLER
+	UnregisterSignal(beacon, COMSIG_QDELETING)
 	resume_mission_timer(REF(beacon))
 	beacons_remaining --
 	if(outcome)
