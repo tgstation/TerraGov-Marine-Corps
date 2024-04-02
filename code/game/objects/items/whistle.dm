@@ -42,9 +42,9 @@
 	playsound(get_turf(src), 'sound/items/whistle.ogg', volume, 1)
 
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
-		to_chat(user, span_notice("You have to wait a little longer to rally your troops..."))
+		to_chat(user, span_notice("You have to wait a while to rally your troops..."))
 	else
-		TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 15 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
 		for(var/mob/living/carbon/human/human in get_hearers_in_view(warcryrange, user.loc))
 			human.emote("warcry", intentional = TRUE)
 			CHECK_TICK
