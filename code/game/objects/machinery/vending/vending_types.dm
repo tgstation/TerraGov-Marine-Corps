@@ -186,7 +186,7 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
 			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
 			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
 			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
