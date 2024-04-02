@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: Mech pods and deploy point descriptions explain how mechs can use them"
