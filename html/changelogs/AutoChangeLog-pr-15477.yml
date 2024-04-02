@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - code_imp: "Standardized dark frost walls with other wall types."
