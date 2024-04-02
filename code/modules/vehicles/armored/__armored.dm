@@ -408,19 +408,20 @@
 		return
 	if(interior) // if interior handle by gun breech
 		// check for easy loading instead
-		if(I.type in easy_load_list)
-			if(!interior)
-				user.balloon_alert(user, "no interior")
-				return
-			if(!interior.door)
-				user.balloon_alert(user, "no door")
-				return
-			if(!(user.loc in enter_locations(user)))
-				user.balloon_alert(user, "not at entrance")
-				return
-			user.temporarilyRemoveItemFromInventory(I)
-			I.forceMove(interior.door.get_enter_location())
-			user.balloon_alert(user, "item thrown inside")
+		if(!(I.type in easy_load_list))
+			return
+		if(!interior)
+			user.balloon_alert(user, "no interior")
+			return
+		if(!interior.door)
+			user.balloon_alert(user, "no door")
+			return
+		if(!(user.loc in enter_locations(user)))
+			user.balloon_alert(user, "not at entrance")
+			return
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(interior.door.get_enter_location())
+		user.balloon_alert(user, "item thrown inside")
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
