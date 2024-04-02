@@ -14165,7 +14165,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
 "neQ" = (
 /obj/structure/disposalpipe/segment,

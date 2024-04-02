@@ -12,7 +12,7 @@
 	throw_range = 10
 	var/obj/item/tool/pen/haspen		//The stored pen.
 	var/obj/item/toppaper	//The topmost piece of paper.
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/clipboard/Initialize(mapload)
 	. = ..()

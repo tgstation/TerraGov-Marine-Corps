@@ -24,7 +24,7 @@
 	. = ..()
 	root = new_root
 	allow_pass_flags = root.allow_pass_flags
-	flags_atom = root.flags_atom
+	atom_flags = root.atom_flags
 	resistance_flags = root.resistance_flags
 	RegisterSignal(new_root, COMSIG_MOVABLE_MOVED, PROC_REF(root_move))
 	RegisterSignal(new_root, COMSIG_QDELETING, PROC_REF(root_delete))

@@ -211,7 +211,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
-			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])

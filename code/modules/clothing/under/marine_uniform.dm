@@ -107,7 +107,7 @@
 	icon_state = "marine_undersuit"
 	adjustment_variants = list()
 	has_sensor = 2
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
@@ -196,7 +196,7 @@
 	name = "marine officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by logistics officers of the TGMC. Do the corps proud."
 	icon_state = "BO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/ro_suit
 	name = "requisition officer suit"
@@ -208,8 +208,8 @@
 	name = "pilot officer flightsuit"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
-	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = null
+	cold_protection_flags = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	item_map_variant_flags = null
 	adjustment_variants = list(
 		"Half" = "_h",
 	)
@@ -233,13 +233,13 @@
 	name = "staff officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
 	icon_state = "BO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "field commander uniform"
 	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
 	icon_state = "XO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/exec/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
@@ -248,7 +248,7 @@
 	name = "captain uniform"
 	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
 	icon_state = "CO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/admiral
 	name = "admiral uniform"
@@ -545,7 +545,7 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 
 /obj/item/clothing/under/sectoid/Initialize(mapload)
 	. = ..()

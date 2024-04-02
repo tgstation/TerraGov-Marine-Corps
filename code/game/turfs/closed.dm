@@ -162,6 +162,16 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+//basalt mineral wall
+/turf/closed/mineral/smooth/basalt
+	icon = 'icons/turf/walls/basaltwall.dmi'
+	icon_state = "basaltwall-0"
+	base_icon_state = "basaltwall"
+
+/turf/closed/mineral/smooth/basalt/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'

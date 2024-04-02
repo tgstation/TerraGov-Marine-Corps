@@ -678,8 +678,8 @@
 	name = "\improper ML-41 GPMG buttpack magazine (10x26mm)"
 	desc = "A buttpack for the ML-41 which carries the ammo inside."
 	icon_state = "minimi_belt"
-	flags_equip_slot = ITEM_SLOT_BELT
-	flags_magazine = MAGAZINE_WORN
+	equip_slot_flags = ITEM_SLOT_BELT
+	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	max_rounds = 750
 

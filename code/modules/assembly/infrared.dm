@@ -178,7 +178,7 @@
 		return
 	if(offender && isitem(offender))
 		var/obj/item/I = offender
-		if(I.flags_item & ITEM_ABSTRACT)
+		if(I.item_flags & ITEM_ABSTRACT)
 			return
 	return refreshBeam()
 
@@ -248,6 +248,6 @@
 		return
 	if(isitem(AM))
 		var/obj/item/I = AM
-		if(I.flags_item & ITEM_ABSTRACT)
+		if(I.item_flags & ITEM_ABSTRACT)
 			return
 	master.trigger_beam(AM, get_turf(src))

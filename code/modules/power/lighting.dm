@@ -382,7 +382,7 @@
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on && (I.atom_flags & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
@@ -404,7 +404,7 @@
 			newlight.stage = 2
 			qdel(src)
 
-		else if(has_power() && (I.flags_atom & CONDUCT))
+		else if(has_power() && (I.atom_flags & CONDUCT))
 			to_chat(user, "You stick \the [I] into the light socket!")
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)

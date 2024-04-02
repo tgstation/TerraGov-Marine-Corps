@@ -16,7 +16,7 @@
 	name = "research director dress uniform"
 	desc = "Feminine fashion for the style concious RD. Its fabric provides minor protection from biological contaminants."
 	icon_state = "dress_rd"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/rank/scientist
 	desc = "It's made of a special fiber that provides minor protection against small explosions. It has markings that denote the wearer as a scientist."
@@ -61,14 +61,14 @@
 	name = "nurse's suit"
 	icon_state = "nursesuit"
 	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/rank/nurse
 	desc = "A dress commonly worn by the nursing staff in the medical department."
 	name = "nurse's dress"
 	icon_state = "nurse"
 	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN
+	armor_protection_flags = CHEST|GROIN
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/orderly
