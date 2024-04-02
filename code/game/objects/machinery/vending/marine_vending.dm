@@ -942,7 +942,7 @@
 		),
 		"Misc" = list(
 			/obj/item/defibrillator = 8,
-			/obj/item/healthanalyzer = -1,
+			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
 		),
 	)
