@@ -97,31 +97,31 @@
  * METAL = Metal barricade construction with no fumble (TO)
  * PLASTEEL = Plasteel barricade construction with no fumble (RO, SL)
  * ADVANCED = Windows and girder construction (Squad Engineer, CO)
- * MASTER = Computer frames (ST, Synth, CSE)
- * INHUMAN = Early synth level (Early synth)
+ * EXPERT = Computer frames (ST, Synth)
+ * MASTER = Early synth level (Early synth, CSE)
  */
 #define SKILL_CONSTRUCTION_DEFAULT 0
 #define SKILL_CONSTRUCTION_METAL 1
 #define SKILL_CONSTRUCTION_PLASTEEL 2
 #define SKILL_CONSTRUCTION_ADVANCED 3
-#define SKILL_CONSTRUCTION_MASTER 4
-#define SKILL_CONSTRUCTION_INHUMAN 5
+#define SKILL_CONSTRUCTION_EXPERT 4
+#define SKILL_CONSTRUCTION_MASTER 5
 
 /**
  * Engineer skill; higher levels means faster engine repair
  * DEFAULT = Untrained
  * METAL = Metal barricade repair with no fumble, ability to plant detpacks without them instantly exploding; vehicle repair w/o fumble (TC, AC, MP)
  * PLASTEEL = Plasteel cade repair w/o fumble; ability to rig cells to explode without random detonation (SL)
- * ENGI = Hacking, planet engine fixing, APC building (Squad Engineer, FC, CO, TO)
- * MASTER = Faster engine fixing, ability to read fuel cell amounts, computer deconstruction (ST, Synth, CSE)
- * INHUMAN = Early synth level (Early synth)
+ * ENGI = Hacking, planet engine fixing, APC building (Squad Engineer, FC, CO, TO, SO)
+ * EXPERT = Faster engine fixing, ability to read fuel cell amounts, computer deconstruction (ST, Synth)
+ * MASTER = Early synth level (Early synth, CSE)
  */
 #define SKILL_ENGINEER_DEFAULT 0
 #define SKILL_ENGINEER_METAL 1
 #define SKILL_ENGINEER_PLASTEEL 2
 #define SKILL_ENGINEER_ENGI 3
-#define SKILL_ENGINEER_MASTER 4
-#define SKILL_ENGINEER_INHUMAN 5
+#define SKILL_ENGINEER_EXPERT 4
+#define SKILL_ENGINEER_MASTER 5
 
 /**
  * Medical skill; higher levels means faster syringe use and better defibrillation
@@ -187,7 +187,7 @@
  * Powerloader skill; movespeed when using a powerloader (broken currently)
  * DEFAULT = Untrained
  * DABBLING = Squad Engineer
- * TRAINED = FC
+ * TRAINED = FC, SO
  * PRO = Pilot
  * MASTER = CSE, RO, ST, Synths, CO, AI
  */
