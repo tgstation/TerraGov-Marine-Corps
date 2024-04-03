@@ -13,7 +13,7 @@
 /datum/job/mothellian/return_spawn_type(datum/preferences/prefs) // I know, full laziness on my side, moving on.
 	switch(prefs?.species)
 		if("Mothellian")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				return /mob/living/carbon/human/species/moth
 		else
 			return /mob/living/carbon/human/species/moth

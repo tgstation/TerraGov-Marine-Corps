@@ -125,7 +125,7 @@
 	. = ..()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/datum/campaign_asset/mech/light/som)

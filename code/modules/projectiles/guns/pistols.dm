@@ -347,7 +347,7 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You rack the pistol"
 	cock_locked_message = "The pistol is loaded! Fire it first!"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	fire_delay = 2 SECONDS
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 1.2

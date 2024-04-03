@@ -45,10 +45,10 @@
 	desc = "An expensive specially-padded pair-of boots that eliminate footsteps, issued to Senior Operatives of NTC."
 	icon_state = "marine"
 	item_state = "marine"
-	flags_armor_protection = FEET
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
-	flags_inventory = NOQUICKEQUIP|NOSLIPPING
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7

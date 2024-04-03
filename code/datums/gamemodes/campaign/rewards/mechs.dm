@@ -41,7 +41,7 @@
 	name = "tgmc med mech spawner"
 	icon_state = "mech"
 	///Faction associated with this spawner
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///Colours to paint mechs from this spawner
 	var/list/colors = list(ARMOR_PALETTE_SPACE_CADET, ARMOR_PALETTE_GREYISH_TURQUOISE)
 	///Colours to paint mech heads from this spawner for better visual clarity

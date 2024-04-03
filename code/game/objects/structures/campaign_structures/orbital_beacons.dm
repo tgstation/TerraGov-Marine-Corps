@@ -70,7 +70,7 @@
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
 	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion1"
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 	density = FALSE
 	///How long the beacon takes to trigger its effect
 	var/beacon_duration = 3 MINUTES

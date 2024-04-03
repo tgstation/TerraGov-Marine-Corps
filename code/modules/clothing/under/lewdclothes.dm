@@ -10,27 +10,27 @@
 	desc = "Sniffable i guess? you pervert.."
 	icon_state = "polypantsu"
 	item_state = "polypantsu"
-	flags_inventory = GROIN
+	inventory_flags = GROIN
 
 /obj/item/clothing/under/lewd/chaps
 	name = "black chaps"
 	desc = "a very hiding chaps."
 	icon_state = "chaps"
 	item_state = "chaps"
-	flags_inventory = LEGS
+	inventory_flags = LEGS
 
 /obj/item/clothing/under/lewd/corset
 	name = "black corset"
 	desc = "ninetails is not resposible for any organ damage."
 	icon_state = "corset"
-	flags_inventory = CHEST|GROIN
+	inventory_flags = CHEST|GROIN
 
 /obj/item/clothing/under/lewd/stripper
 	name = "pink stripper outfit"
 	desc = "a stripper outfit."
 	icon_state = "stripper_p"
 	item_state = "stripper_p"
-	flags_inventory = CHEST|GROIN
+	inventory_flags = CHEST|GROIN
 
 /obj/item/clothing/under/lewd/stripper/green
 	name = "green stripper outfit"
@@ -48,7 +48,7 @@
 	desc = "A simple, inconspicuous harness replacement for a jumpsuit."
 	icon_state = "gear_harness"
 	item_state = "gear_harness"
-	flags_inventory = CHEST|GROIN
+	inventory_flags = CHEST|GROIN
 
 /obj/item/clothing/under/lewd/keyholesweater
 	name = "keyhole sweater"

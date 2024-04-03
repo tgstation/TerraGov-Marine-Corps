@@ -18,7 +18,7 @@
 				if("Sterling")
 					return /mob/living/carbon/human/species/robot/bravada
 		if("Mothellian")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn

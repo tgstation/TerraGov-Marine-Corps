@@ -389,7 +389,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
 		if("Combat Robot")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				switch(prefs?.robot_type)
 					if("Basic")
 						return /mob/living/carbon/human/species/robot
@@ -404,7 +404,7 @@ GLOBAL_PROTECT(exp_specialmap)
 			to_chat(prefs.parent, span_danger("nonhuman joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
 		if("Mothellian")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
