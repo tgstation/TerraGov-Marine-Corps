@@ -9689,12 +9689,12 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hangar)
 "bPy" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	dir = 1;
-	id = "mech_shutters_3"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "tank_shutters";
 	dir = 1
 	},
 /turf/open/floor/mainship_hull/gray,
@@ -9873,6 +9873,12 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
+"caE" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "caP" = (
 /obj/structure/largecrate/supply/supplies/water,
 /obj/machinery/light/mainship{
@@ -10026,16 +10032,6 @@
 "cod" = (
 /turf/open/floor/prison,
 /area/sulaco/bridge/office)
-"con" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "coO" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
@@ -11564,7 +11560,7 @@
 "ema" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 1;
-	id = "mech_shutters_3"
+	id = "tank_shutters"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -12285,29 +12281,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"fdm" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "fdz" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -12646,11 +12619,11 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "fAk" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	dir = 1;
-	id = "mech_shutters_3"
-	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "tank_shutters";
+	dir = 1
+	},
 /turf/open/floor/mainship_hull/gray,
 /area/sulaco/hangar/storage)
 "fBA" = (
@@ -13018,11 +12991,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"gdt" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/vending/engivend,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "gdR" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -13954,6 +13922,10 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"hns" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "hnw" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -14277,6 +14249,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"hHk" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "hHK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
@@ -14373,11 +14349,11 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
 "hMG" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
 /obj/effect/turf_decal/warning_stripes/thick/corner,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "hNu" = (
@@ -14433,6 +14409,11 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"hRY" = (
+/obj/machinery/vending/tool,
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "hSC" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/machinery/camera/autoname{
@@ -14454,7 +14435,7 @@
 /area/sulaco/hydro)
 "hSH" = (
 /obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_3"
+	id = "tank_shutters"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -14551,11 +14532,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"hYd" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "hYo" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -14621,9 +14597,14 @@
 	dir = 5
 	},
 /area/sulaco/research)
+"iaN" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "iaR" = (
 /obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "iaY" = (
@@ -14673,6 +14654,10 @@
 	dir = 9
 	},
 /area/sulaco/research)
+"ifo" = (
+/obj/machinery/tank_part_fabricator,
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hangar)
 "ifF" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -15451,11 +15436,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine_monitoring)
-"iVJ" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "iVT" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/opened{
@@ -15520,6 +15500,13 @@
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"iYw" = (
+/obj/structure/rack,
+/obj/machinery/light/mainship/small{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "iYY" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16517,15 +16504,6 @@
 "kme" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
-"kmJ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 8
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -17569,7 +17547,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/structure/computer3frame,
+/obj/machinery/tank_part_fabricator,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "lBU" = (
@@ -21003,13 +20981,6 @@
 	dir = 10
 	},
 /area/space)
-"pUq" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "pVy" = (
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar)
@@ -22251,8 +22222,8 @@
 /area/mainship/shipboard/weapon_room)
 "rCY" = (
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1;
-	id = "mech_shutters_3"
+	id = "tank_shutters";
+	dir = 1
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/sulaco/hangar/storage)
@@ -23389,13 +23360,10 @@
 	},
 /area/sulaco/firingrange)
 "sUF" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 1
 	},
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "sUP" = (
@@ -24479,20 +24447,13 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "umz" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
 /obj/machinery/door/firedoor/mainship,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_3"
+	id = "tank_shutters"
 	},
-/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "umL" = (
@@ -25814,14 +25775,6 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
-"war" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/rack,
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "waM" = (
 /obj/machinery/quick_vendor/beginner,
 /turf/open/floor/prison/green{
@@ -26245,6 +26198,13 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"wIa" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "wIc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -27076,7 +27036,7 @@
 "xNs" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 4;
-	id = "mech_shutters_3"
+	id = "tank_shutters"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -27147,19 +27107,12 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/security)
 "xUZ" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_2"
-	},
-/obj/machinery/door/firedoor/mainship,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_3"
+	id = "tank_shutters"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -67507,7 +67460,7 @@ aaa
 aaa
 aaa
 nzi
-bFa
+ifo
 aPF
 aPF
 ewe
@@ -69061,8 +69014,8 @@ bFa
 bFa
 kOr
 bYM
-con
-con
+xUZ
+xUZ
 xUZ
 xUZ
 umz
@@ -69314,9 +69267,9 @@ vDU
 vDU
 vDU
 vDU
-vDU
 mDu
 kOr
+hRY
 iaR
 exf
 exf
@@ -69571,16 +69524,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ykt
-iVJ
+hHk
+iaR
 exf
 exf
 exf
 exf
 exf
-lBh
+fjy
 lEr
 bYM
 aeL
@@ -69828,10 +69781,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ykt
-hYd
+tld
+iaR
 exf
 exf
 exf
@@ -70085,10 +70038,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ykt
-gdt
+hns
+iaR
 exf
 exf
 exf
@@ -70342,10 +70295,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 kOr
-war
+iYw
+iaR
 exf
 exf
 exf
@@ -70599,15 +70552,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 kOr
-kOr
-kOr
-kmJ
+pWS
+iaN
 ojX
-fdm
-pUq
+ojX
+ojX
+ojX
+ojX
 hMG
 sUF
 bPy
@@ -70856,17 +70809,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
 tZr
-vDU
-mDu
 kOr
 kOr
 kOr
 kOr
-ykt
-ykt
-kOr
+caE
+wIa
+swy
+swy
+swy
+pWS
 kOr
 pWS
 hlB
@@ -71114,17 +71067,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 tZr
 vDU
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+kOr
+kOr
+kOr
 ykt
+ykt
+ykt
+kOr
+kOr
 aeL
 bWI
 dQF
@@ -71373,9 +71326,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-nzi
+tZr
+vDU
+vDU
 mDu
 mDu
 mDu
@@ -71632,8 +71585,8 @@ aaa
 aaa
 aaa
 aaa
-tZr
-mDu
+aaa
+nzi
 mDu
 mDu
 mDu
