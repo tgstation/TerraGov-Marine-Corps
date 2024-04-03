@@ -55,7 +55,7 @@
 	///Records whether the OB has been called
 	var/ob_called = FALSE
 	///Count of beacons still in play
-	var/beacons_remaining = 3
+	var/beacons_remaining = 4
 
 /datum/campaign_mission/raiding_base/get_status_tab_items(mob/source, list/items)
 	. = ..()
@@ -68,9 +68,7 @@
 	for(var/i = 1 to beacons_remaining)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
-
-		var/beacon = new /obj/item/campaign_beacon/bunker_buster(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
-		RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(beacon_destroyed))
+		new /obj/item/campaign_beacon/bunker_buster(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
 
 /datum/campaign_mission/raiding_base/start_mission()
 	. = ..()
@@ -147,13 +145,17 @@
 ///Reacts to an OB beacon being successfully triggered
 /datum/campaign_mission/raiding_base/proc/beacon_placed(datum/source, obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon)
 	SIGNAL_HANDLER
+	RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(beacon_destroyed))
+	pause_mission_timer(REF(beacon))
 	var/area/deployed_area = get_area(beacon)
 	map_text_broadcast(starting_faction, "Confirming beacon deployed in [deployed_area]. Defend it until we can secure a target lock marines!", "TGS Horizon", /atom/movable/screen/text/screen_text/picture/potrait/pod_officer, "sound/effects/alert.ogg")
 	map_text_broadcast(hostile_faction, "Orbital beacon detected in [deployed_area]. Destroy that beacon before they can secure a target lock!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
 
-///Handles a beacon being destroyed. Separate from normal objective destruction as the beacon item is not an objective type
-/datum/campaign_mission/raiding_base/proc/beacon_destroyed(obj/item/campaign_beacon/source)
+///Handles a beacon being destroyed. Separate from normal objective destruction for convenience as we want the specific beacon ref
+/datum/campaign_mission/raiding_base/proc/beacon_destroyed(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon)
 	SIGNAL_HANDLER
+	UnregisterSignal(beacon, COMSIG_QDELETING)
+	resume_mission_timer(REF(beacon))
 	beacons_remaining --
 	if(outcome)
 		return
@@ -164,14 +166,15 @@
 ///Reacts to an OB beacon being successfully triggered
 /datum/campaign_mission/raiding_base/proc/beacon_triggered(datum/source, obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, activation_delay)
 	SIGNAL_HANDLER
-	deltimer(game_timer) //stops the game from ending if it comes down to the wire
+	pause_mission_timer() //stops the game from ending if it comes down to the wire
 	addtimer(CALLBACK(src, PROC_REF(beacon_effect), beacon, beacon.loc), activation_delay)
 
 ///Handles the actual detonation effects
 /datum/campaign_mission/raiding_base/proc/beacon_effect(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, turf/location)
 	ob_called = TRUE
+	resume_mission_timer(src, TRUE)
 	//We handle this here instead of the beacon structure because it could be destroyed before this triggers
-	explosion(location, 25, 30)
+	explosion(location, 45, flame_range = 45)
 	if(QDELETED(beacon))
 		return
 	qdel(beacon)
