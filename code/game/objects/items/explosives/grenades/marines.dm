@@ -348,6 +348,12 @@
 	smoketype = /datum/effect_system/smoke_spread/tactical
 	smokeradius = 7
 
+/obj/item/explosive/grenade/smokebomb/cloak/som
+	name = "\improper S30-C smoke grenade"
+	desc = "A sophisticated version of the S30-S with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
+	icon_state = "grenade_cloak_som"
+	item_state = "grenade_cloak_som"
+
 /obj/item/explosive/grenade/smokebomb/cloak/ags
 	name = "\improper AGLS-37 SCDP smoke grenade"
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
