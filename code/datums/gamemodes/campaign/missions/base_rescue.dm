@@ -42,8 +42,8 @@
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(override_code_received))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(override_code_received))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(computer_running))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(computer_stop_running))
 
 /datum/campaign_mission/destroy_mission/base_rescue/set_factions()
 	attacking_faction = hostile_faction
