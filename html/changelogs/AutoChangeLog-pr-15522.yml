@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Campaign: Added a few new loadout options and tweaked a few existing ones"
-  - bugfix: "Campaign: Fixed a few incorrect gun sprites in the loadout menu"
