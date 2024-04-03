@@ -185,8 +185,8 @@
 	base_icon_state = "bulb"
 
 /obj/machinery/light/red
-	base_state = "tubered"
-	icon_state = "tubered1"
+	base_state = "tube_red"
+	icon_state = "tube_red"
 	light_color = LIGHT_COLOR_FLARE
 	brightness = 3
 	bulb_power = 0.5
@@ -274,7 +274,7 @@
 	. = ..()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
-			icon_state = "[base_state][light_on]"
+			icon_state = "[base_state]_[light_on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -670,13 +670,6 @@
 	light_tile.update_icon()
 	to_chat(user, span_notice("You replace the light bulb."))
 
-/obj/item/light_bulb/bulb/fire
-	name = "fire bulb"
-	desc = "A replacement fire bulb."
-	icon_state = "fbulb"
-	base_state = "fbulb"
-	item_state = "egg4"
-	brightness = 5
 
 // update the icon state and description of the light
 

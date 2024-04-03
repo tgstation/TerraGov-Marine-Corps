@@ -43,10 +43,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			light.brightness = 8
 			light.light_range = 8
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.icon_state = "bulb1"
-				light.base_state = "bulb"
+				light.icon_state = "bulb-on"
+				light.base_state = "tube-off"
 			else
-				light.icon_state = "tube1"
+				light.icon_state = "tube-on"
 			light.update_light()
 	else
 		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
@@ -55,7 +55,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			else
 				alarmplayer.deltalarm.start(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
-			light.base_state = "tubered"
+			light.base_state = "tube_red"
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
@@ -68,10 +68,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 					rangelevel -= pick(0.5,1.0,1.5,2.0)
 				light.light_range = rangelevel
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.icon_state = "bulbred1"
-				light.base_state = "bulbred"
+				light.icon_state = "bulb_red"
+				light.base_state = "bulb_red"
 			else
-				light.icon_state = "tubered1"
+				light.icon_state = "tube_red"
 			light.update_light()
 
 	//Will not be announced if you try to set to the same level as it already is
