@@ -1,0 +1,4 @@
+author: "homexp13"
+delete-after: True
+changes:
+  - balance: "Silo larva gene now decreases more depending on the marine to xenos ratio."

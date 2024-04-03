@@ -1,0 +1,49 @@
+2024-04-01:
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new mission - Raiding Base for TGMC'
+  Notamaniac:
+  - bugfix: R76 icon no longer shows up as an error icon in holster
+  Xander3359:
+  - qol: Gives xenos "Toggle Seethrough" ability, making their sprite translucent,
+      allowing you to click through yourself
+2024-04-02:
+  RipGrayson:
+  - bugfix: Fixed posters displaying error signs instead of their valid icon.
+2024-04-03:
+  AusarAtkin:
+  - balance: Welder repair amount scale off Engi skill.
+  Barnet2:
+  - balance: Warding pheros have near half effectiveness, from 2.5 armor per aura
+      level to 1.5
+  Lumipharon:
+  - rscadd: 'Campaign: Added a few new loadout options and tweaked a few existing
+      ones'
+  - bugfix: 'Campaign: Fixed a few incorrect gun sprites in the loadout menu'
+  - qol: 'Campaign: Updated mech colours to distinguish the different weight classes
+      better'
+  - bugfix: 'Campaign: fixed a few minor issues on Raiding Base'
+  - qol: 'Campaign: Mech pods and deploy point descriptions explain how mechs can
+      use them'
+  MLGTASTICa:
+  - balance: Veteran ERT now starts with their firearms and rifles skills at trained
+      instead of the default(+1)
+  - balance: Special Ops ERT now starts with their smg skill set to trained instead
+      of the default(+1)
+  Naaanii:
+  - rscadd: Actually adds the cloak nade refill to req.
+  - balance: rebalances grenade pricing and reqtorio yield.
+  TiviPlus:
+  - bugfix: ACs can no longer use mech console
+  blackdav123:
+  - bugfix: Tanks will now be able to leave the Alamo on Slumbridge
+  - code_imp: Standardized dark frost walls with other wall types.
+  coldironwarrior:
+  - balance: CSE now has 5 in engineering and construction skills
+  - balance: SOs have higher engineering and powerloader skill now (shouldn't fumble
+      with OB)
+  - balance: ' CSEs now have leadership level 2, down from leadership 3'
+  lbnesquik:
+  - balance: Increase bulletproof vests armor bullet resistance. Slight energy/laser
+      increase.
+  novaepee:
+  - bugfix: PoS req and tc
