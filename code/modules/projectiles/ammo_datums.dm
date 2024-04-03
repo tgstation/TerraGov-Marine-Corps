@@ -1203,7 +1203,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 15
+	sundering = 30
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
