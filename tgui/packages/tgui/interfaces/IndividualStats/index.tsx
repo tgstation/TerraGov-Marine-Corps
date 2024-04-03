@@ -95,8 +95,8 @@ export const IndividualStats = (props) => {
     <Window
       theme={data.ui_theme}
       title={'Prep screen'}
-      width={850}
-      height={750}
+      width={980}
+      height={775}
     >
       <Window.Content>
         {unlockedPerk ? (

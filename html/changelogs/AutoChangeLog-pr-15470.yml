@@ -1,0 +1,7 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Add alternate ammo MLRS ammo to the req factory"
+  - bugfix: "Fix the MLRS gas and cloaking gas sharing the same path and likely bugging out"
+  - code_imp: "Renames the MLRS ammo to a more consistent schema"
+  - bugfix: "Fix the MLRS having free ammo thanks to init mapload :("

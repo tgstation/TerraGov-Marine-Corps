@@ -59,7 +59,11 @@
 	name = "TELEBLOCKER"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "drop_block"
-	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/fire_support_raid)
+	mission_types = list(
+		/datum/campaign_mission/destroy_mission/supply_raid,
+		/datum/campaign_mission/destroy_mission/fire_support_raid,
+		/datum/campaign_mission/raiding_base,
+	)
 	spawn_object = /obj/structure/campaign_deployblocker/drop_blocker
 
 /obj/structure/campaign_deployblocker/drop_blocker
