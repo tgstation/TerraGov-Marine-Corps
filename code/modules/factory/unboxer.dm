@@ -484,31 +484,31 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/atgun_aphe
-	refill_amount = 15
+	refill_amount = 30
 
 /obj/item/factory_refill/atgun_apcr_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/atgun_apcr
-	refill_amount = 15
+	refill_amount = 30
 
 /obj/item/factory_refill/atgun_he_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/atgun_he
-	refill_amount = 15
+	refill_amount = 30
 
 /obj/item/factory_refill/atgun_beehive_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/atgun_beehive
-	refill_amount = 15
+	refill_amount = 30
 
 /obj/item/factory_refill/atgun_incend_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/atgun_incend
-	refill_amount = 15
+	refill_amount = 30
 
 /obj/item/factory_refill/heavy_isg_he_refill
 	name = "box of rounded metal plates"
