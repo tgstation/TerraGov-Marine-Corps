@@ -37,7 +37,7 @@
 #define INTENT_NUMBER_HARM 3
 
 //Ammo defines for gun/projectile related things.
-//flags_ammo_behavior
+//ammo_behavior_flags
 
 ///Ammo will impact a targeted open turf instead of continuing past it
 #define AMMO_TARGET_TURF (1<<0)
@@ -75,7 +75,7 @@
 #define AMMO_SOUND_PITCH (1<<16)
 
 //Gun defines for gun related thing. More in the projectile folder.
-//flags_gun_features
+//gun_features_flags
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_UNUSUAL_DESIGN (1<<1)
 #define GUN_AMMO_COUNTER (1<<2)
@@ -126,7 +126,7 @@
 #define AUTOFIRE_CONTINUE (1<<0)
 #define AUTOFIRE_SUCCESS (1<<1)
 
-//Ammo magazine defines, for flags_magazine
+//Ammo magazine defines, for magazine_flags
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)

@@ -224,7 +224,7 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
-	if(I.flags_item & ITEM_ABSTRACT)
+	if(I.item_flags & ITEM_ABSTRACT)
 		return FALSE
 	. = ..()
 	if(opened)
@@ -459,7 +459,7 @@
 		return FALSE
 	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
-	if(CHECK_BITFIELD(flags_item, DELONDROP))
+	if(CHECK_BITFIELD(item_flags, DELONDROP))
 		return FALSE
 	var/item_size = CEILING(w_class * 0.5, 1)
 	if(item_size + destination.item_size_counter > destination.storage_capacity)

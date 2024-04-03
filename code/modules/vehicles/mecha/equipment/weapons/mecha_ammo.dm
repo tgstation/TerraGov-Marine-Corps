@@ -97,7 +97,7 @@
 //greyscale mech stuff
 /obj/item/mecha_ammo/vendable
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 
 /obj/item/mecha_ammo/vendable/lmg
 	name = "box of LMG bullets"

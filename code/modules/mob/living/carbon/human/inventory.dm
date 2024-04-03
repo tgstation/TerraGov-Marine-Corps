@@ -142,11 +142,11 @@
 		if(s_store)
 			dropItemToGround(s_store)
 		I.unequipped(src, SLOT_WEAR_SUIT)
-		if(I.flags_inv_hide & HIDESHOES)
+		if(I.inv_hide_flags & HIDESHOES)
 			update_inv_shoes()
-		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+		if(I.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair()
-		if(I.flags_inv_hide & HIDEJUMPSUIT)
+		if(I.inv_hide_flags & HIDEJUMPSUIT)
 			update_inv_w_uniform()
 		update_inv_wear_suit()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -166,19 +166,19 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == head)
 		var/updatename = 0
-		if(head.flags_inv_hide & HIDEFACE)
+		if(head.inv_hide_flags & HIDEFACE)
 			updatename = 1
 		head = null
 		I.unequipped(src, SLOT_HEAD)
 		if(updatename)
 			name = get_visible_name()
-		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
+		if(I.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 			update_hair()	//rebuild hair
-		if(I.flags_inv_hide & HIDEEARS)
+		if(I.inv_hide_flags & HIDEEARS)
 			update_inv_ears()
-		if(I.flags_inv_hide & HIDEMASK)
+		if(I.inv_hide_flags & HIDEMASK)
 			update_inv_wear_mask()
-		if(I.flags_inv_hide & HIDEEYES)
+		if(I.inv_hide_flags & HIDEEYES)
 			update_inv_glasses()
 		update_inv_head()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -236,11 +236,11 @@
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
-	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+	if(I.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair
-	if(I.flags_inv_hide & HIDEEARS)
+	if(I.inv_hide_flags & HIDEEARS)
 		update_inv_ears()
-	if(I.flags_inv_hide & HIDEEYES)
+	if(I.inv_hide_flags & HIDEEYES)
 		update_inv_glasses()
 	return ..()
 
@@ -326,15 +326,15 @@
 			update_inv_gloves()
 		if(SLOT_HEAD)
 			head = W
-			if(head.flags_inv_hide & HIDEFACE)
+			if(head.inv_hide_flags & HIDEFACE)
 				name = get_visible_name()
-			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
+			if(head.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 				update_hair()	//rebuild hair
-			if(head.flags_inv_hide & HIDEEARS)
+			if(head.inv_hide_flags & HIDEEARS)
 				update_inv_ears()
-			if(head.flags_inv_hide & HIDEMASK)
+			if(head.inv_hide_flags & HIDEMASK)
 				update_inv_wear_mask()
-			if(head.flags_inv_hide & HIDEEYES)
+			if(head.inv_hide_flags & HIDEEYES)
 				update_inv_glasses()
 			W.equipped(src, slot)
 			update_inv_head()
@@ -344,11 +344,11 @@
 			update_inv_shoes()
 		if(SLOT_WEAR_SUIT)
 			wear_suit = W
-			if(wear_suit.flags_inv_hide & HIDESHOES)
+			if(wear_suit.inv_hide_flags & HIDESHOES)
 				update_inv_shoes()
-			if(wear_suit.flags_inv_hide & HIDEJUMPSUIT)
+			if(wear_suit.inv_hide_flags & HIDEJUMPSUIT)
 				update_inv_w_uniform()
-			if( wear_suit.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+			if( wear_suit.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair()
 			W.equipped(src, slot)
 			update_inv_wear_suit()

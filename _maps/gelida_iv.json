@@ -6,7 +6,10 @@
         "COLD": true
     },
 	"disk_sets": {
-		"basic": 1
+		"set1": 2,
+		"set2": 1,
+		"set3": 1,
+		"set4": 2
 	},
     "armor": "ice",
 	"quickbuilds": 1600,

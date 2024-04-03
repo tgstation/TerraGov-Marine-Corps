@@ -252,10 +252,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /mob/proc/abiotic(full_body)
-	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
+	if(full_body && ((l_hand && !( l_hand.item_flags & ITEM_ABSTRACT )) || (r_hand && !( r_hand.item_flags & ITEM_ABSTRACT ))))
 		return TRUE
 
-	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
+	if((src.l_hand && !( src.l_hand.item_flags & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.item_flags & ITEM_ABSTRACT )))
 		return TRUE
 
 	return FALSE

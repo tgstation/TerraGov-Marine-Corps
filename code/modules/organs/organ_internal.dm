@@ -50,7 +50,7 @@
 	owner = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
-	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
+	if(SSticker.mode?.round_type_flags & MODE_NO_PERMANENT_WOUNDS)
 		return
 	if(amount <= 0)
 		heal_organ_damage(-amount)

@@ -55,6 +55,14 @@
 	name = "\improper AR-18 rubber magazine (10x24mm)"
 	icon_state = "t18_r"
 	default_ammo = /datum/ammo/bullet/rifle/rubber
+
+/obj/item/ammo_magazine/rifle/standard_carbine/ap
+	name = "\improper AR-18 AP magazine (10x24mm)"
+	desc = "A 10mm assault carbine magazine, loaded with light armor piercing rounds."
+	icon_state = "t18_ap"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	bonus_overlay = "t18_ap"
+
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -72,6 +80,13 @@
 	name = "\improper AR-12 rubber magazine (10x24mm)"
 	icon_state = "t12_r"
 	default_ammo = /datum/ammo/bullet/rifle/rubber
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
+	name = "\improper AR-12 AP magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine, loaded with light armor piercing rounds."
+	icon_state = "t12_ap"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	bonus_overlay = "t12_ap"
 
 //-------------------------------------------------------
 //T37 DMR
@@ -685,8 +700,8 @@
 	name = "\improper ML-41 GPMG buttpack magazine (10x26mm)"
 	desc = "A buttpack for the ML-41 which carries the ammo inside."
 	icon_state = "minimi_belt"
-	flags_equip_slot = ITEM_SLOT_BELT
-	flags_magazine = MAGAZINE_WORN
+	equip_slot_flags = ITEM_SLOT_BELT
+	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	max_rounds = 750
 

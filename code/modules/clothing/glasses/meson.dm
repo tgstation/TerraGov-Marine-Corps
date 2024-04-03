@@ -31,7 +31,7 @@
 	icon_state = "enggoggles"
 	item_state = "enggoggles"
 	deactive_state = "degoggles_enggoggles"
-	flags_equip_slot = ITEM_SLOT_EYES
+	equip_slot_flags = ITEM_SLOT_EYES
 	goggles = TRUE
 
 /obj/item/clothing/glasses/meson/enggoggles/prescription

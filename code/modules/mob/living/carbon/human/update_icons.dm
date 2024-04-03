@@ -52,7 +52,6 @@ There are several things that need to be remembered:
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
 																			...eyes were merged into update_body)
-		update_targeted() // Updates the target overlay when someone points a gun at you
 
 >	If you need to update all overlays you can use regenerate_icons(). it works exactly like update_clothing used to.
 
@@ -309,13 +308,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	//masks and helmets can obscure our hair.
-	if((head?.flags_inv_hide & HIDEALLHAIR) || (wear_mask?.flags_inv_hide & HIDEALLHAIR))
+	if((head?.inv_hide_flags & HIDEALLHAIR) || (wear_mask?.inv_hide_flags & HIDEALLHAIR))
 		return
 
 	//base icons
 	var/icon/face_standing = new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style && !(wear_suit?.flags_inv_hide & HIDELOWHAIR) && !(wear_mask?.flags_inv_hide & HIDELOWHAIR))
+	if(f_style && !(wear_suit?.inv_hide_flags & HIDELOWHAIR) && !(wear_mask?.inv_hide_flags & HIDELOWHAIR))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style?.species_allowed && (species.name in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -327,7 +326,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head?.flags_inv_hide & HIDETOPHAIR))
+	if(h_style && !(head?.inv_hide_flags & HIDETOPHAIR))
 		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -346,7 +345,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	var/mutable_appearance/hair_final = mutable_appearance(face_standing, layer =-HAIR_LAYER)
 
-	if(head?.flags_inv_hide & HIDE_EXCESS_HAIR)
+	if(head?.inv_hide_flags & HIDE_EXCESS_HAIR)
 		var/image/mask = image('icons/mob/human_face.dmi', null, "Jeager_Mask")
 		mask.render_target = "*[REF(src)]"
 		hair_final.overlays += mask
@@ -354,20 +353,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	overlays_standing[HAIR_LAYER] = hair_final
 	apply_overlay(HAIR_LAYER)
-
-//Call when target overlay should be added/removed
-/mob/living/carbon/human/update_targeted()
-	remove_overlay(TARGETED_LAYER)
-	var/image/I
-	if(holo_card_color)
-		if(I)
-			I.overlays += image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]")
-		else
-			I = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]", "layer" =-TARGETED_LAYER)
-	if(I)
-		overlays_standing[TARGETED_LAYER] = I
-	apply_overlay(TARGETED_LAYER)
-
 
 /* --------------------------------------- */
 //For legacy support.
@@ -407,7 +392,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		w_uniform.screen_loc = ui_iclothing
 		client.screen += w_uniform
 
-	if(wear_suit?.flags_inv_hide & HIDEJUMPSUIT)
+	if(wear_suit?.inv_hide_flags & HIDEJUMPSUIT)
 		return
 
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(species_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/clothing/uniforms/uniform_0.dmi', default_layer = UNIFORM_LAYER)
@@ -483,7 +468,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_ear.screen_loc = ui_wear_ear
 		client.screen += wear_ear
-	if((head?.flags_inv_hide & HIDEEARS) || (wear_mask?.flags_inv_hide & HIDEEARS))
+	if((head?.inv_hide_flags & HIDEEARS) || (wear_mask?.inv_hide_flags & HIDEEARS))
 		return
 
 	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(species_type = species.name, slot_name = slot_ear_str, default_icon = 'icons/mob/clothing/ears.dmi', default_layer = EARS_LAYER)
@@ -495,7 +480,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 			shoes.screen_loc = ui_shoes
 			client.screen += shoes
-	if(wear_suit?.flags_inv_hide & HIDESHOES)
+	if(wear_suit?.inv_hide_flags & HIDESHOES)
 		return
 
 	if(shoes)
@@ -579,7 +564,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(!wear_mask)
 		return
 
-	if(head?.flags_inv_hide & HIDEMASK)
+	if(head?.inv_hide_flags & HIDEMASK)
 		return
 
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)

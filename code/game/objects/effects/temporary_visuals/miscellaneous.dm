@@ -114,14 +114,21 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	opacity = FALSE
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
+	randomdir = FALSE
+	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
 /obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
 	. = ..()
-	appearance = owner.appearance
-	setDir(owner.dir)
-	alpha = initial(alpha)
-	layer = initial(layer)
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/mutable_appearance/xeno_afterimage = new()
+	xeno_afterimage.appearance = owner.appearance
+	xeno_afterimage.render_target = null
+	xeno_afterimage.density = initial(density)
+	xeno_afterimage.alpha = initial(alpha)
+	xeno_afterimage.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	xeno_afterimage.setDir(owner.dir)
+	xeno_afterimage.pixel_x = owner.pixel_x
+	xeno_afterimage.pixel_y = owner.pixel_y
+	appearance = xeno_afterimage
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/ob_impact

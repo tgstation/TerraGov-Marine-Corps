@@ -265,7 +265,7 @@
 	if(A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(source, span_warning("That target is too deep underground!"))
 		return
-	if(A.flags_area & OB_CAS_IMMUNE)
+	if(A.area_flags & OB_CAS_IMMUNE)
 		to_chat(source, span_warning("Our payload won't reach this target!"))
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)

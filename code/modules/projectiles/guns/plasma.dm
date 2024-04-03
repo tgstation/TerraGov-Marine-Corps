@@ -10,7 +10,7 @@
 	heat_per_fire = 5
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 	muzzleflash_iconstate = "muzzle_flash_pulse"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.5
 	scatter = 4
@@ -120,7 +120,7 @@
 	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, is an absolutely incredibly devastating weapon to behold... if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible armor shattering potiential upon hitting a target."
 	icon_state = "plasma_cannon"
 	item_state = "plasma_cannon"
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 
 	aim_slowdown = 1.2
@@ -135,11 +135,12 @@
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_1.ogg'
 	force = 35
-	ammo_datum_type = /datum/ammo/energy/plasma/cannon_standard
+	ammo_datum_type = /datum/ammo/energy/plasma/cannon_heavy
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	fire_delay = 2.5 SECONDS
+	fire_delay = 2 SECONDS
 	heat_per_fire = 50
 	rounds_per_shot = 180
+	windup_delay = 0.5 SECONDS
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_cannon/cannon_standard,
 		"Shatter" = /datum/lasrifle/base/plasma_cannon/shatter_blast,

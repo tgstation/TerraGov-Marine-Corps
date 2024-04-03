@@ -32,7 +32,7 @@
 	if(skill_name)
 		traits += "This weapons is effected by the user's <U>[skill_name]</U> rating. <br>"
 
-	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
+	if(gun_features_flags & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."

@@ -270,6 +270,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
 
+#define isbarricade(A) (istype(A, /obj/structure/barricade))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

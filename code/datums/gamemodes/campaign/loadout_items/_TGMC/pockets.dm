@@ -5,6 +5,7 @@
 /datum/loadout_item/r_pocket/empty
 	name = "no right pocket"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -44,7 +45,7 @@
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/r_pocket/marine_support_grenades
-	name = "Support grenades"
+	name = "Support nades"
 	desc = "A pouch carrying a set of six standard support grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
@@ -52,7 +53,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/r_pocket/marine_standard_grenades
-	name = "Standard grenades"
+	name = "Standard nades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE, lasburster and incendiary grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/standard
@@ -85,8 +86,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/r_pocket/magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Mag pouch-P"
+	desc = "A pouch containing three ammo magazines. Will contain a primary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
@@ -117,6 +118,7 @@
 /datum/loadout_item/l_pocket/empty
 	name = "no left pocket"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -158,14 +160,14 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/l_pocket/marine_support_grenades
-	name = "Support grenades"
+	name = "Support nades"
 	desc = "A pouch carrying a set of six standard support grenades. Includes smoke grenades of both lethal and nonlethal varieties, as well as stun grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/combat_patrol
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/marine_standard_grenades
-	name = "Standard grenades"
+	name = "Standard nades"
 	desc = "A pouch carrying a set of six standard offensive grenades. Contains HE, lasburster and incendiary grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/standard
@@ -198,8 +200,8 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/magazine
-	name = "Magazine pouch"
-	desc = "A pouch containing three ammo magazines."
+	name = "Mag pouch-S"
+	desc = "A pouch containing three ammo magazines. Will contain a secondary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
 	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)

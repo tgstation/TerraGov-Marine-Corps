@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
-	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
+	if(SSticker.mode?.round_type_flags & MODE_SILOS_SPAWN_MINIONS)
 		//Balance spawners output
 		for(var/silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(monitor)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
 			human_on_ground++
-			if(myarea.flags_area & NEAR_FOB)
+			if(myarea.area_flags & NEAR_FOB)
 				human_in_FOB++
 		else if(is_mainship_level(TU.z))
 			human_on_ship++

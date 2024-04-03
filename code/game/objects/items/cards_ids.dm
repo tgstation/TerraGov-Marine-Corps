@@ -67,7 +67,7 @@
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 
 
 /obj/item/card/id
@@ -76,9 +76,9 @@
 	icon_state = "id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	flags_equip_slot = ITEM_SLOT_ID
+	equip_slot_flags = ITEM_SLOT_ID
 	///Miscelaneous ID flags
-	var/flags_id = CAN_BUY_LOADOUT
+	var/id_flags = CAN_BUY_LOADOUT
 
 	var/blood_type = "\[UNSET\]"
 

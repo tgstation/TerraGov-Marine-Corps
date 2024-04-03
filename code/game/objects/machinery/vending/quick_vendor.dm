@@ -218,15 +218,15 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(selected_loadout.jobtype != user_job)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
-			if(user_id.flags_id & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
+			if(user_id.id_flags & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
 				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 				return FALSE
-			if(user_id.flags_id & CAN_BUY_LOADOUT)
-				user_id.flags_id &= ~CAN_BUY_LOADOUT
+			if(user_id.id_flags & CAN_BUY_LOADOUT)
+				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)
 					for(var/obj/item/inventory_items in ui.user)
-						if(inventory_items.flags_equip_slot == ITEM_SLOT_ID)
+						if(inventory_items.equip_slot_flags == ITEM_SLOT_ID)
 							continue
 						ui.user.dropItemToGround(inventory_items)
 				selected_loadout.equip(ui.user) //actually equips the loadout

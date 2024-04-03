@@ -86,55 +86,6 @@
 	else if(dead_mech.faction == starting_faction)
 		hostile_team_cap_points += 10
 
-//mech spawn points
-/obj/effect/landmark/campaign/mech_spawner
-	name = "tgmc med mech spawner"
-	icon_state = "mech"
-	var/faction = FACTION_NTC
-	var/list/colors = list(ARMOR_PALETTE_SPACE_CADET, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_MAGENTA)
-	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
-
-/obj/effect/landmark/campaign/mech_spawner/Initialize(mapload)
-	. = ..()
-	GLOB.campaign_mech_spawners[faction] += list(src)
-
-/obj/effect/landmark/campaign/mech_spawner/Destroy()
-	GLOB.campaign_mech_spawners[faction] -= src
-	return ..()
-
-/obj/effect/landmark/campaign/mech_spawner/proc/spawn_mech()
-	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech = new mech_type(loc)
-	for(var/i in new_mech.limbs)
-		var/datum/mech_limb/limb = new_mech.limbs[i]
-		limb.update_colors(arglist(colors))
-	new_mech.update_icon()
-	return new_mech
-
-/obj/effect/landmark/campaign/mech_spawner/heavy
-	name = "tgmc heavy mech spawner"
-	icon_state = "mech_heavy"
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
-
-/obj/effect/landmark/campaign/mech_spawner/light
-	name = "tgmc light mech spawner"
-	icon_state = "mech_light"
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
-
-/obj/effect/landmark/campaign/mech_spawner/som
-	name = "som med mech spawner"
-	faction = FACTION_SOM
-	colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
-
-/obj/effect/landmark/campaign/mech_spawner/som/heavy
-	name = "som heavy mech spawner"
-	icon_state = "mech_heavy"
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
-
-/obj/effect/landmark/campaign/mech_spawner/som/light
-	name = "som light mech spawner"
-	icon_state = "mech_light"
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
-
 /datum/campaign_mission/tdm/mech_wars/som
 	name = "Mech war"
 	mission_icon = "mech_war"

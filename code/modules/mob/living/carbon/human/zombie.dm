@@ -32,7 +32,7 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
 	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
-	flags_item = CAN_BUMP_ATTACK|DELONDROP
+	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission

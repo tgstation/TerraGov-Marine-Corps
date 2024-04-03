@@ -33,7 +33,7 @@
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
 	dat += "<center><a href='byond://?src=[text_ref(src)];allitems=TRUE'>Dispense All</a></center><br/>"
-	dat += "<a href='?src=[text_ref(src)];operation=guns'>Guns</a><br>"
+	dat += "<a href='?src=[text_ref(src)];operation=gun'>Guns</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=ammo'>Ammo</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=explosive'>Explosives</a><br>"
 	dat += "<a href='?src=[text_ref(src)];operation=melee'>Melee</a><br>"
@@ -121,7 +121,7 @@
 		return
 
 	switch(href_list["operation"])
-		if("guns")
+		if("gun")
 			state = STATE_GUN
 		if("ammo")
 			state = STATE_AMMO
@@ -133,7 +133,7 @@
 			state = STATE_CLOTHING
 		if("food")
 			state = STATE_FOOD
-		if("drugs")
+		if("drug")
 			state = STATE_DRUGS
 		if("container")
 			state = STATE_CONTAINERS
@@ -173,7 +173,27 @@
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
-		for(var/obj/item/I in GLOB.cryoed_item_list_gun || GLOB.cryoed_item_list_ammo || GLOB.cryoed_item_list_explosive || GLOB.cryoed_item_list_melee || GLOB.cryoed_item_list_clothing || GLOB.cryoed_item_list_food || GLOB.cryoed_item_list_drugs || GLOB.cryoed_item_list_containers || GLOB.cryoed_item_list_other)
+		var/list/combined_list
+		switch(state)
+			if(STATE_GUN)
+				combined_list = GLOB.cryoed_item_list_gun
+			if(STATE_AMMO)
+				combined_list = GLOB.cryoed_item_list_ammo
+			if(STATE_EXPLOSIVE)
+				combined_list = GLOB.cryoed_item_list_explosive
+			if(STATE_MELEE)
+				combined_list = GLOB.cryoed_item_list_melee
+			if(STATE_CLOTHING)
+				combined_list = GLOB.cryoed_item_list_clothing
+			if(STATE_FOOD)
+				combined_list = GLOB.cryoed_item_list_food
+			if(STATE_DRUGS)
+				combined_list = GLOB.cryoed_item_list_drugs
+			if(STATE_CONTAINERS)
+				combined_list = GLOB.cryoed_item_list_containers
+			if(STATE_OTHER)
+				combined_list = GLOB.cryoed_item_list_other
+		for(var/obj/item/I in combined_list)
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
@@ -331,7 +351,7 @@
 	return ..()
 
 /obj/item/proc/store_in_cryo()
-	if(is_type_in_typecache(src, GLOB.do_not_preserve) || HAS_TRAIT(src, TRAIT_NODROP) || (flags_item & (ITEM_ABSTRACT|DELONDROP)))
+	if(is_type_in_typecache(src, GLOB.do_not_preserve) || HAS_TRAIT(src, TRAIT_NODROP) || (item_flags & (ITEM_ABSTRACT|DELONDROP)))
 		if(!QDELETED(src))
 			qdel(src)
 		return
@@ -340,17 +360,17 @@
 		GLOB.cryoed_item_list_gun += src
 	else if(istype(src, /obj/item/ammo_magazine))
 		GLOB.cryoed_item_list_ammo += src
-	else if(istype(src, /obj/item/explosive/))
+	else if(istype(src, /obj/item/explosive))
 		GLOB.cryoed_item_list_explosive += src
-	else if(istype(src, /obj/item/weapon/))
+	else if(istype(src, /obj/item/weapon))
 		GLOB.cryoed_item_list_melee += src
-	else if(istype(src, /obj/item/clothing/))
+	else if(istype(src, /obj/item/clothing))
 		GLOB.cryoed_item_list_clothing += src
-	else if(istype(src, /obj/item/reagant_containers/food/))
+	else if(isfood(src))
 		GLOB.cryoed_item_list_food += src
-	else if(istype(src, /obj/item/reagent_containers/hypospray/) || istype(src, /obj/item/reagent_containers/syringe) || istype(src, /obj/item/reagent_containers/pill))
+	else if(istype(src, /obj/item/reagent_containers/hypospray) || istype(src, /obj/item/reagent_containers/syringe) || istype(src, /obj/item/reagent_containers/pill))
 		GLOB.cryoed_item_list_drugs += src
-	else if(istype(src, /obj/item/storage/))
+	else if(istype(src, /obj/item/storage))
 		GLOB.cryoed_item_list_containers += src
 	else
 		GLOB.cryoed_item_list_other += src

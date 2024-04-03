@@ -18,9 +18,9 @@
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon,
@@ -43,7 +43,7 @@
 		/obj/item/weapon/energy/sword,
 	)
 
-	flags_equip_slot = ITEM_SLOT_OCLOTHING
+	equip_slot_flags = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
 	unequip_delay_self = 1 SECONDS
@@ -206,6 +206,24 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
+/obj/item/clothing/suit/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/suit/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
+
 /obj/item/clothing/suit/modular/rownin
 	name = "\improper Rownin Skeleton"
 	desc = "A light armor, if you can even call it that, for marines that want to have agility in exchange for protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -299,12 +317,12 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1
 	greyscale_colors = ARMOR_PALETTE_DESERT
 
-	flags_armor_protection = HEAD
-	flags_armor_features = ARMOR_NO_DECAP
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDE_EXCESS_HAIR
+	armor_protection_flags = HEAD
+	armor_features_flags = ARMOR_NO_DECAP
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDE_EXCESS_HAIR
 	allowed = null
-	flags_equip_slot = ITEM_SLOT_HEAD
+	equip_slot_flags = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
@@ -372,6 +390,16 @@
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
+/obj/item/clothing/head/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/head/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
+
 /** Colorable masks */
 /obj/item/clothing/mask/gas/modular
 	name = "style mask"
@@ -385,5 +413,3 @@
 
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
-
-

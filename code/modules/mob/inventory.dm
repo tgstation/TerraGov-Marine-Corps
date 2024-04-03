@@ -173,7 +173,7 @@
 	return FALSE					//nonliving mobs don't have hands
 
 /mob/living/put_in_hand_check(obj/item/I, hand_index)
-	if((I.flags_item & ITEM_ABSTRACT) || !istype(I))
+	if((I.item_flags & ITEM_ABSTRACT) || !istype(I))
 		return FALSE
 	if(incapacitated() || lying_angle || (status_flags & INCORPOREAL))
 		return FALSE
@@ -330,7 +330,7 @@
 /mob/living/proc/get_equipped_items(include_pockets = FALSE, include_accessories = FALSE)
 	var/list/items = list()
 	for(var/obj/item/item_contents in contents)
-		if(item_contents.flags_item & IN_INVENTORY)
+		if(item_contents.item_flags & IN_INVENTORY)
 			items += item_contents
 	items -= get_active_held_item()
 	items -= get_inactive_held_item()
@@ -371,7 +371,7 @@
 	var/hidden_slots = NONE
 
 	for(var/obj/item/I in get_equipped_items())
-		hidden_slots |= I.flags_inv_hide
+		hidden_slots |= I.inv_hide_flags
 
 	if(hidden_slots & HIDEMASK)
 		obscured |= ITEM_SLOT_MASK

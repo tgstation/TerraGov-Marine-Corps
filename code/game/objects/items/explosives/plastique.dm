@@ -5,7 +5,7 @@
 	icon = 'icons/obj/det.dmi'
 	icon_state = "plastic-explosive"
 	item_state = "plasticx"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
 	/// whether the plastic explosive is armed or not
 	var/armed = FALSE

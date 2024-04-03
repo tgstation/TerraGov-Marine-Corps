@@ -303,7 +303,7 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(damage_amount <= 0)
 		return
 	if(prob(10))
@@ -397,7 +397,7 @@
 		return
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
-	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
@@ -469,7 +469,7 @@
 				continue
 			if(ismob(AM))
 				continue
-			if(!(AM.allow_pass_flags & (gun.ammo_datum_type::flags_ammo_behavior & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE) && !(AM.type in ignored_terrains))) //todo:accurately populate ignored_terrains
+			if(!(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE) && !(AM.type in ignored_terrains))) //todo:accurately populate ignored_terrains
 				return FALSE
 
 	return TRUE
@@ -541,7 +541,7 @@
 	var/obj/item/item = get_internal_item()
 	if(!item)
 		return
-	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
 		balloon_alert(user, "Cannot disassemble")
 		return
 	if(!match_iff(user)) //You can't steal other faction's turrets
@@ -559,7 +559,7 @@
 		set_on(TRUE)
 		return
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+	DISABLE_BITFIELD(attached_item.item_flags, IS_DEPLOYED)
 
 	attached_item.reset()
 	user.unset_interaction()

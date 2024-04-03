@@ -9348,6 +9348,12 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
+"nze" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile/side{
+	dir = 6
+	},
+/area/centcom/valhalla)
 "nzE" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Bedroom"
@@ -26485,7 +26491,7 @@ ulf
 rus
 dFY
 cYQ
-lJu
+nze
 kfP
 lRu
 lRu

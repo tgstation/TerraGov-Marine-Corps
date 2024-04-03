@@ -4,7 +4,7 @@
 
 /obj/structure/patrol_point
 	name = "Patrol start point"
-	desc = "A one way ticket to the combat zone."
+	desc = "A one way ticket to the combat zone. Shift click to deploy when inside a mech."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "patrolpoint"
 	anchored = TRUE

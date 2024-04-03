@@ -473,7 +473,7 @@
 	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
 	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
-	chassis.flags_atom |= DIRLOCK
+	chassis.atom_flags |= DIRLOCK
 	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(drop_afterimage))
 	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
 	return ..()
@@ -492,7 +492,7 @@
 	chassis.update_icon()
 	execute_melee(cutter)
 	cutter = null
-	chassis.flags_atom &= ~DIRLOCK
+	chassis.atom_flags &= ~DIRLOCK
 
 ///executes a melee attack in the direction that the mech is facing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)

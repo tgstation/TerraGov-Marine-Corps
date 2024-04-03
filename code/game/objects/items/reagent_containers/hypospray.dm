@@ -12,8 +12,8 @@
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
-	flags_equip_slot = ITEM_SLOT_BELT
-	flags_item = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags = INTERACT_OBJ_UI
 	var/skilllock = 1

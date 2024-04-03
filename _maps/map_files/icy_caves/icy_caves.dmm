@@ -413,7 +413,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "bS" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/northern)
 "bU" = (
 /obj/structure/cable,
@@ -572,7 +572,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "cK" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/northwestmonorail)
 "cL" = (
 /obj/structure/monorail,
@@ -2115,10 +2115,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves/cavesbrig)
-"mo" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside/center)
 "mp" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2159,9 +2155,6 @@
 /obj/machinery/vending/security,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
-"mv" = (
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
 "mw" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/machinery/light{
@@ -2839,7 +2832,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/outpost/outside)
 "qg" = (
 /obj/structure/closet/secure_closet/miner,
@@ -4360,7 +4353,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "xa" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/west)
 "xc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7389,7 +7382,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "LY" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/outpost/outside)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -7437,7 +7430,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "Ml" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/outpost/LZ1)
 "Mm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7453,7 +7446,7 @@
 /area/icy_caves/outpost/medbay)
 "Mr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/rock)
 "Ms" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -7968,7 +7961,7 @@
 /area/icy_caves/caves/east)
 "OU" = (
 /obj/structure/sign/double/barsign/carp,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/rock)
 "OZ" = (
 /obj/structure/cargo_container/gorg,
@@ -8699,7 +8692,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/outpost/LZ1)
 "Tg" = (
 /obj/machinery/light/small{
@@ -9074,7 +9067,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "Vd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "Ve" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9380,7 +9373,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "Wx" = (
 /turf/open/floor/plating/ground/snow/layer2,
@@ -9562,7 +9555,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "Xp" = (
 /obj/structure/cable,
@@ -9748,7 +9741,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/security)
 "Yf" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "Yi" = (
 /obj/machinery/computer/intel_computer,
@@ -9804,7 +9797,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "Yy" = (
 /obj/structure/bed/roller,
@@ -10062,7 +10055,7 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "ZP" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/rock)
 "ZR" = (
 /turf/closed/wall/r_wall,
@@ -10094,7 +10087,7 @@
 /area/icy_caves/outpost/refinery)
 "ZY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves)
 "ZZ" = (
 /obj/structure/morgue{
@@ -10264,9 +10257,9 @@ EM
 MN
 MN
 MN
-mv
-mv
-mv
+EM
+EM
+EM
 ZP
 ZP
 ZP
@@ -10420,9 +10413,9 @@ EM
 MN
 Qb
 MN
-mv
-mv
-mv
+EM
+EM
+EM
 ZP
 ZP
 ZP
@@ -10576,9 +10569,9 @@ EM
 MN
 MN
 MN
-mv
-mv
-mv
+EM
+EM
+EM
 ZP
 ZP
 ZP
@@ -10729,12 +10722,12 @@ EM
 "}
 (5,1,1) = {"
 EM
-mv
-mv
-mv
-mv
-mv
-mv
+EM
+EM
+EM
+EM
+EM
+EM
 ZP
 ZP
 ZP
@@ -10885,12 +10878,12 @@ EM
 "}
 (6,1,1) = {"
 EM
-mv
-mv
-mv
-mv
-mv
-mv
+EM
+EM
+EM
+EM
+EM
+EM
 ZP
 ZP
 ZP
@@ -19867,7 +19860,7 @@ ow
 ow
 nL
 ZI
-mo
+li
 li
 ow
 ZI

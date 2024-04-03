@@ -20,8 +20,17 @@
 /turf/open/floor/mainship/plate/outline
 	icon_state = "test_floor5"
 
+/turf/open/floor/mainship/hexagon
+	icon_state = "hexagon"
+
 /turf/open/floor/mainship/cargo
 	icon_state = "cargo"
+
+/turf/open/floor/mainship/yellow_cargo
+	icon_state = "yellow_cargo"
+
+/turf/open/floor/mainship/yellow_cargo/arrow
+	icon_state = "yellow_cargo_arrow"
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
@@ -905,6 +914,46 @@
 
 /turf/open/floor/carpet/side
 	icon_state = "carpetside"
+
+/turf/open/floor/carpet/blue
+	icon = 'icons/turf/floors/carpet_blue.dmi'
+	base_icon_state = "carpet_blue"
+	icon_state = "carpet_blue-0"
+
+/turf/open/floor/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	base_icon_state = "carpet_black"
+	icon_state = "carpet_black-0"
+
+/turf/open/floor/carpet/green
+	icon = 'icons/turf/floors/carpet_green.dmi'
+	base_icon_state = "carpet_green"
+	icon_state = "carpet_green-0"
+
+/turf/open/floor/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	base_icon_state = "carpet_orange"
+	icon_state = "carpet_orange-0"
+
+/turf/open/floor/carpet/purple
+	icon = 'icons/turf/floors/carpet_purple.dmi'
+	base_icon_state = "carpet_purple"
+	icon_state = "carpet_purple-0"
+
+/turf/open/floor/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	base_icon_state = "carpet_red"
+	icon_state = "carpet_red-0"
+
+/turf/open/floor/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	base_icon_state = "carpet_cyan"
+	icon_state = "carpet_cyan-0"
+
+/turf/open/floor/carpet/royalblack
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	base_icon_state = "carpet_royalblack"
+	icon_state = "carpet_royalblack-0"
 
 // Start Prison tiles
 

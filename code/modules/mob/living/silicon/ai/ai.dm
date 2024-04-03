@@ -138,19 +138,6 @@
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
-	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
-
-	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED)
 	QDEL_NULL(mini)
 	return ..()
 

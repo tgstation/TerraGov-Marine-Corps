@@ -8,8 +8,8 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
 
 	var/pressure_full = ONE_ATMOSPHERE*4

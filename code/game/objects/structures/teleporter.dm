@@ -147,10 +147,10 @@
 	icon_state = "teleporter"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	item_flags = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	///The linked teleporter
 	var/obj/item/teleporter_kit/linked_teleporter
 	///The optional cell to power the teleporter if off the grid

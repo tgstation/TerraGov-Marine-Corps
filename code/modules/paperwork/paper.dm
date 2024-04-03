@@ -16,8 +16,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
 	throw_speed = 1
-	flags_equip_slot = ITEM_SLOT_HEAD
-	flags_armor_protection = HEAD
+	equip_slot_flags = ITEM_SLOT_HEAD
+	armor_protection_flags = HEAD
 	attack_verb = list("bapped")
 
 	var/info		//What's actually written on the paper.

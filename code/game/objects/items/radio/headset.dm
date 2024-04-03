@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
-	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
