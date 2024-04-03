@@ -1176,13 +1176,13 @@
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
-	spawn_number = 15
+	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/phosphorus/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 15
+	atom_storage.storage_slots = 25
 	atom_storage.max_storage_space = 30
 
 /obj/item/storage/box/visual/grenade/impact
@@ -1223,13 +1223,13 @@
 /obj/item/storage/box/visual/grenade/razorburn
 	name = "razorburn grenade box"
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
-	spawn_number = 15
+	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_small
 	closed_overlay = "grenade_box_overlay_razorburn"
 
 /obj/item/storage/box/visual/grenade/razorburn/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 15
+	atom_storage.storage_slots = 25
 	atom_storage.max_storage_space = 30
 
 /obj/item/storage/box/visual/grenade/razorburn_large

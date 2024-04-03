@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Deploying an OB beacon in the Raiding Base mission pauses the game timer"
+  - balance: "Campaign: Running a code computer on NT Base Rescue pauses the game timer"
