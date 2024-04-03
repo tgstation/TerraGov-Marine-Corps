@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "Activating supply beacons notify the shipside console with a noise"
