@@ -283,7 +283,7 @@
 	///radius this smoke grenade will encompass
 	var/smokeradius = 6
 	///The duration of the smoke
-	var/smoke_duration = 11
+	var/smoke_duration = 9
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
@@ -346,6 +346,7 @@
 	hud_state = "grenade_hide"
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
+	smoke_duration = 11
 	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/cloak/ags
@@ -364,6 +365,7 @@
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+	smoke_duration = 11
 	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/antigas
@@ -376,6 +378,7 @@
 	icon_state_mini = "grenade_antigas"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/antigas
+	smoke_duration = 11
 	smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/drain/agls
