@@ -1183,7 +1183,7 @@
 /obj/item/storage/box/visual/grenade/phosphorus/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 25
-	atom_storage.max_storage_space = 30
+	atom_storage.max_storage_space = 50
 
 /obj/item/storage/box/visual/grenade/impact
 	name = "\improper M40 IMDP grenade box"
@@ -1230,7 +1230,7 @@
 /obj/item/storage/box/visual/grenade/razorburn/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.storage_slots = 25
-	atom_storage.max_storage_space = 30
+	atom_storage.max_storage_space = 50
 
 /obj/item/storage/box/visual/grenade/razorburn_large
 	name = "razorburn canister box"
