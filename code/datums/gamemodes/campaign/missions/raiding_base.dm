@@ -173,7 +173,7 @@
 	ob_called = TRUE
 	resume_mission_timer(src, TRUE)
 	//We handle this here instead of the beacon structure because it could be destroyed before this triggers
-	explosion(location, 25, 30)
+	explosion(location, 45, flame_range = 45)
 	if(QDELETED(beacon))
 		return
 	qdel(beacon)
