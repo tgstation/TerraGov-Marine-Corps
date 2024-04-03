@@ -43,10 +43,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			light.brightness = 8
 			light.light_range = 8
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.icon_state = "bulb-on"
-				light.base_state = "tube-off"
+				light.icon_state = "bulb_1"
+				light.base_state = "tube"
 			else
-				light.icon_state = "tube-on"
+				light.icon_state = "tube_1"
 			light.update_light()
 	else
 		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
@@ -68,10 +68,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 					rangelevel -= pick(0.5,1.0,1.5,2.0)
 				light.light_range = rangelevel
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.icon_state = "bulb_red"
+				light.icon_state = "bulb_red_1"
 				light.base_state = "bulb_red"
 			else
-				light.icon_state = "tube_red"
+				light.icon_state = "tube_red_1"
 			light.update_light()
 
 	//Will not be announced if you try to set to the same level as it already is
