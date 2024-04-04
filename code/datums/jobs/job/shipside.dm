@@ -589,6 +589,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	head = /obj/item/clothing/head/helmet/marine/assault_crewman
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
+	l_store = /obj/item/pamphlet/tank_loader
 
 
 //apc/jeep driver
