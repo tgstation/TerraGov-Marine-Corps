@@ -528,7 +528,6 @@ What a mess.*/
 							if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 								GLOB.datacore.medical -= R
 								qdel(R)
-							else
 						qdel(active1)
 						active1 = null
 					if (active2)
