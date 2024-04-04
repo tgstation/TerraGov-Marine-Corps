@@ -218,12 +218,12 @@
 		/obj/item/whistle,
 	))
 
-/datum/storage/internal/modular/general
+/datum/storage/internal/general
 	max_storage_space = 6
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-/datum/storage/internal/modular/general/New(atom/parent)
+/datum/storage/internal/general/New(atom/parent)
 	. = ..()
 	set_holdable(
 		cant_hold_list = list(/obj/item/cell/lasgun/volkite/powerpack),
@@ -239,12 +239,12 @@
 		)
 	)
 
-/datum/storage/internal/modular/ammo_mag
+/datum/storage/internal/ammo_mag
 	max_storage_space = 15
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-/datum/storage/internal/modular/ammo_mag/New(atom/parent)
+/datum/storage/internal/ammo_mag/New(atom/parent)
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
@@ -263,12 +263,12 @@
 		/obj/item/reagent_containers/food/snacks,
 	))
 
-/datum/storage/internal/modular/engineering
+/datum/storage/internal/engineering
 	max_storage_space = 15
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
 
-/datum/storage/internal/modular/engineering/New(atom/parent)
+/datum/storage/internal/engineering/New(atom/parent)
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/stack/barbed_wire,
@@ -301,12 +301,12 @@
 		/obj/item/lightreplacer,
 	))
 
-/datum/storage/internal/modular/medical
+/datum/storage/internal/medical
 	max_storage_space = 30
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
 
-/datum/storage/internal/modular/medical/New(atom/parent)
+/datum/storage/internal/medical/New(atom/parent)
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/healthanalyzer,
@@ -329,29 +329,29 @@
 		/obj/item/whistle,
 	))
 
-/datum/storage/internal/modular/injector
+/datum/storage/internal/injector
 	max_storage_space = 10
 	storage_slots = 10
 	max_w_class = WEIGHT_CLASS_TINY
 
-/datum/storage/internal/modular/injector/New(atom/parent)
+/datum/storage/internal/injector/New(atom/parent)
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	))
 
-/datum/storage/internal/modular/integrated
+/datum/storage/internal/integrated
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-/datum/storage/internal/modular/grenade
+/datum/storage/internal/grenade
 	max_storage_space = 12
 	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_SMALL
 
-/datum/storage/internal/modular/grenade/New(atom/parent)
+/datum/storage/internal/grenade/New(atom/parent)
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/explosive/grenade,
