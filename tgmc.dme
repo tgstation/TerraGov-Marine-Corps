@@ -1586,7 +1586,6 @@
 #include "code\modules\mapping\verify.dm"
 #include "code\modules\mapping\space_management\space_level.dm"
 #include "code\modules\mapping\space_management\space_reservation.dm"
-#include "code\modules\mapping\space_management\space_transition.dm"
 #include "code\modules\mapping\space_management\traits.dm"
 #include "code\modules\mapping\space_management\zlevel_manager.dm"
 #include "code\modules\mining\alloys.dm"
