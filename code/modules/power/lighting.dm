@@ -164,73 +164,8 @@
 	///looping sound for flickering lights
 	var/datum/looping_sound/flickeringambient/lightambient
 
-/obj/machinery/light/mainship
-	base_state = "tube"
-
-/obj/machinery/light/mainship/Initialize(mapload)
-	. = ..()
-	GLOB.mainship_lights += src
-
-/obj/machinery/light/mainship/Destroy()
-	. = ..()
-	GLOB.mainship_lights -= src
-
-/obj/machinery/light/mainship/small
-	icon_state = "bulb_1"
-	base_state = "bulb"
-	fitting = "bulb"
-	brightness = 4
-	desc = "A small lighting fixture."
-	light_type = /obj/item/light_bulb/bulb
-	base_icon_state = "bulb"
-
-/obj/machinery/light/red
-	base_state = "tube_red"
-	icon_state = "tube_red"
-	light_color = LIGHT_COLOR_FLARE
-	brightness = 3
-	bulb_power = 0.5
-	bulb_colour = LIGHT_COLOR_FLARE
-
-// the smaller bulb light fixture
-
-/obj/machinery/light/small
-	icon_state = "bulb_1"
-	base_state = "bulb"
-	fitting = "bulb"
-	brightness = 4
-	desc = "A small lighting fixture."
-	light_type = /obj/item/light_bulb/bulb
-	base_icon_state = "bulb"
-
-/obj/machinery/light/spot
-	name = "spotlight"
-	fitting = "large tube"
-	light_type = /obj/item/light_bulb/tube/large
-	brightness = 12
-
-/obj/machinery/light/built/Initialize(mapload)
-	. = ..()
-	status = LIGHT_EMPTY
-	update(FALSE)
-
-
-/obj/machinery/light/small/built/Initialize(mapload)
-	. = ..()
-	status = LIGHT_EMPTY
-	update(FALSE)
-
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
-	switch(dir)
-		if(NORTH)
-			light_pixel_y = 15
-		if(SOUTH)
-			light_pixel_y = -15
-		if(WEST)
-			light_pixel_x = 15
-		if(EAST)
-			light_pixel_x = -15
 	. = ..()
 
 	GLOB.nightfall_toggleable_lights += src
@@ -244,17 +179,9 @@
 				broken(TRUE)
 
 	update(FALSE)
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = 20
-		if(EAST)
-			pixel_x = 10
-		if(WEST)
-			pixel_x = -10
+	update_offsets()
 
 	return INITIALIZE_HINT_LATELOAD
-
 
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
@@ -269,6 +196,35 @@
 	if(status == LIGHT_BROKEN)
 		return TRUE
 	return FALSE
+
+/obj/machinery/light/setDir(newdir)
+	. = ..()
+	update_offsets()
+
+///Sets the correct offsets for the object and light based on dir
+/obj/machinery/light/proc/update_offsets()
+	switch(dir)
+		if(NORTH)
+			light_pixel_y = 15
+			light_pixel_x = 0
+			pixel_y = 20
+			pixel_x = 0
+		if(SOUTH)
+			light_pixel_y = -15
+			light_pixel_x = 0
+			pixel_y = 0
+			pixel_x = 0
+		if(WEST)
+			light_pixel_y = 0
+			light_pixel_x = 15
+			pixel_y = 0
+			pixel_x = -10
+		if(EAST)
+			light_pixel_y = 0
+			light_pixel_x = -15
+			pixel_y = 0
+			pixel_x = 10
+
 
 /obj/machinery/light/update_icon_state()
 	. = ..()
@@ -606,6 +562,63 @@
 /obj/machinery/light/proc/delayed_explosion()
 	explosion(loc, 0, 1, 3, 0, 2)
 	qdel(src)
+
+//types
+/obj/machinery/light/mainship
+	base_state = "tube"
+
+/obj/machinery/light/mainship/Initialize(mapload)
+	. = ..()
+	GLOB.mainship_lights += src
+
+/obj/machinery/light/mainship/Destroy()
+	. = ..()
+	GLOB.mainship_lights -= src
+
+/obj/machinery/light/mainship/small
+	icon_state = "bulb_1"
+	base_state = "bulb"
+	fitting = "bulb"
+	brightness = 4
+	desc = "A small lighting fixture."
+	light_type = /obj/item/light_bulb/bulb
+	base_icon_state = "bulb"
+
+/obj/machinery/light/red
+	base_state = "tube_red"
+	icon_state = "tube_red"
+	light_color = LIGHT_COLOR_FLARE
+	brightness = 3
+	bulb_power = 0.5
+	bulb_colour = LIGHT_COLOR_FLARE
+
+// the smaller bulb light fixture
+
+/obj/machinery/light/small
+	icon_state = "bulb_1"
+	base_state = "bulb"
+	fitting = "bulb"
+	brightness = 4
+	desc = "A small lighting fixture."
+	light_type = /obj/item/light_bulb/bulb
+	base_icon_state = "bulb"
+
+/obj/machinery/light/spot
+	name = "spotlight"
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
+
+/obj/machinery/light/built/Initialize(mapload)
+	. = ..()
+	status = LIGHT_EMPTY
+	update(FALSE)
+
+
+/obj/machinery/light/small/built/Initialize(mapload)
+	. = ..()
+	status = LIGHT_EMPTY
+	update(FALSE)
 
 // the light item
 // can be tube or bulb subtypes
