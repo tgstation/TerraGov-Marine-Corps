@@ -16,4 +16,4 @@
 		if(!is_ground_level(z) && !is_mainship_level(z))
 			continue
 
-		TEST_FAIL(log_entry)
+		Fail(log_entry)
