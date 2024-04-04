@@ -59,7 +59,7 @@
 	name = "General Purpose Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
 	icon_state = "mod_general_bag"
-	storage_type = /datum/storage/internal/modular/general
+	storage_type = /datum/storage/internal/general
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
@@ -71,7 +71,7 @@
 	name = "Magazine Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage. Looks like it might slow you down a bit."
 	icon_state = "mod_mag_bag"
-	storage_type = /datum/storage/internal/modular/ammo_mag
+	storage_type = /datum/storage/internal/ammo_mag
 	slowdown = 0.1
 
 /obj/item/armor_module/storage/ammo_mag/freelancer/PopulateContents()
@@ -96,7 +96,7 @@
 	name = "Engineering Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
 	icon_state = "mod_engineer_bag"
-	storage_type = /datum/storage/internal/modular/engineering
+	storage_type = /datum/storage/internal/engineering
 
 /obj/item/armor_module/storage/engineering/som
 	name = "Engineering Storage module"
@@ -108,7 +108,7 @@
 	name = "Medical Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
-	storage_type = /datum/storage/internal/modular/medical
+	storage_type = /datum/storage/internal/medical
 
 /obj/item/armor_module/storage/medical/freelancer/PopulateContents()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
@@ -127,20 +127,20 @@
 	name = "Injector Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
 	icon_state = "mod_injector_bag"
-	storage_type = /datum/storage/internal/modular/injector
+	storage_type = /datum/storage/internal/injector
 
 /obj/item/armor_module/storage/integrated
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
-	storage_type = /datum/storage/internal/modular/integrated
+	storage_type = /datum/storage/internal/integrated
 	slowdown = 0.2
 
 /obj/item/armor_module/storage/grenade
 	name = "Grenade Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
 	icon_state = "mod_grenade_harness"
-	storage_type = /datum/storage/internal/modular/grenade
+	storage_type = /datum/storage/internal/grenade
 
 /obj/item/armor_module/storage/boot
 	name = "boot storage module"
