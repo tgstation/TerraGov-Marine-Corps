@@ -373,7 +373,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 		if(istype(target, /obj/machinery/light))
 			var/obj/machinery/light/fixture = target
-			if(fixture.is_broken())
+			if(fixture.status == LIGHT_BROKEN && fixture.has_power())
 				light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
 				return
 	return ..()
