@@ -37,7 +37,7 @@
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
 	// *** Pheromones *** //
-	aura_strength = 6
+	aura_strength = 4.5
 
 	minimap_icon = "xenoking"
 
