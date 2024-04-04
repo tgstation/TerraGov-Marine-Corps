@@ -746,7 +746,7 @@
 
 		// Hey I don't think this code does anything, it looks like it wants to restock things that are inside a storage?
 		// Probably should be running a loop over every item inside the storage, but whatever that's not for this PR
-		else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+		else if(item_to_stock.item_flags & IN_STORAGE) //inside a storage item
 			var/obj/item/storage/S = item_to_stock.loc
 			S.atom_storage.remove_from_storage(item_to_stock, user.loc, user)
 

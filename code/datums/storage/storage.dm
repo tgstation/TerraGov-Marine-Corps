@@ -885,16 +885,16 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.
 /datum/storage/proc/storage_depth(atom/container)
 	var/depth = 0
-	var/atom/cur_atom = src
+	var/obj/item/current_item = src
 
-	while (cur_atom && !(cur_atom in container.contents))
-		if (isarea(cur_atom))
+	while(current_item && !(current_item in container.contents))
+		if(isarea(current_item))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if(current_item.item_flags & IN_STORAGE)
 			depth++
-		cur_atom = cur_atom.loc
+		current_item = current_item.loc
 
-	if (!cur_atom)
+	if(!current_item)
 		return -1	//inside something with a null loc.
 
 	return depth
@@ -902,16 +902,16 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Like storage depth, but returns the depth to the nearest turf. Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
 /datum/storage/proc/storage_depth_turf()
 	var/depth = 0
-	var/atom/cur_atom = src
+	var/obj/item/current_item = src
 
-	while (cur_atom && !isturf(cur_atom))
-		if (isarea(cur_atom))
+	while(current_item && !isturf(current_item))
+		if(isarea(current_item))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if(current_item.item_flags & IN_STORAGE)
 			depth++
-		cur_atom = cur_atom.loc
+		current_item = current_item.loc
 
-	if (!cur_atom)
+	if(!current_item)
 		return -1	//inside something with a null loc.
 
 	return depth
