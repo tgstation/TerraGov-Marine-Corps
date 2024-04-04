@@ -74,7 +74,11 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/campaign/som_raiding/cave/tunnel
-	name = "\improper Old tunnels"
+	name = "\improper Old tunnels - South"
+	icon_state = "explored"
+
+/area/campaign/som_raiding/cave/tunnel_west
+	name = "\improper Old tunnels - West"
 	icon_state = "explored"
 
 //outpost
