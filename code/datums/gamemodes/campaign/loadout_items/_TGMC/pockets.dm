@@ -77,7 +77,7 @@
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
 	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/marine_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_R_POUCH)
@@ -191,7 +191,7 @@
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
 	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/marine_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_L_POUCH)
