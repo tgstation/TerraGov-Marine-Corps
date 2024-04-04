@@ -57,8 +57,9 @@ Marines have a variety of different roles, broadly categorised as infantry, engi
 | Combat Initiation | **Medium** (grenades, rockets, tangle OB, squad leader orders) | **Very Strong** (multiple quick abilities that can be used for crowd control or cover to begin combat on favourable terms e.g. Queen's Screech, Defiler's Neurogas, etc)
 | Backlining | **Weak** (low Mobility means difficult to retreat or get reinforcements) | **Very Strong** (several castes can reliabily win 1v1s, destroy structures, retreat if necessary, etc)
 | Terrain Advantage | **Open Air** | **Caves** (this prevents Orbital Strikes, Close Air Support, Drop-pods, Tadpole and radio communication) | 
-| Chokepoints | **Very Strong** (can focus heavy suppressive fire in one direction) | **Weak** |
+| Chokepoints | **Very Strong** (can focus heavy suppressive fire in one direction) | **Weak** (Warlock can reflect projectiles, but otherwise not much) |
 | Open Areas | **Very Strong** (allows for many marines to do suppressive machine gun or sniper fire) | **Weak** (usually takes too damage whilst trying to engage, better off Flanking then slowly encroaching with weeds and walls) |
+| Mazes (Twisting Paths) | **Weak** (blocks sightlines for most weaponry) | **Very Strong** (allows xenos to utilise their high mobility to gapclose and initiate combat, and quickly retreat out of combat)
 
 ### Misc
 
