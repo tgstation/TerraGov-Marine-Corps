@@ -1,5 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - rscadd: "Actually adds the cloak nade refill to req."
-  - balance: "rebalances grenade pricing and reqtorio yield."

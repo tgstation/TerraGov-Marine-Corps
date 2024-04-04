@@ -21,7 +21,7 @@
 		MISSION_HOSTILE_FACTION = 0,
 	)
 	///Any mission behavior flags
-	var/mission_flags = null
+	var/mission_flags = NONE
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission
@@ -77,7 +77,7 @@
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
 	///The length of time until mission ends, if timed
-	var/max_game_time = null
+	var/max_game_time = 0
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///Delay before the mission actually starts
@@ -207,7 +207,7 @@
 	if(max_time_reached)
 		items += "Mission status: Mission complete"
 		items += ""
-	else if(game_timer)
+	else
 		items += "Mission time remaining: [mission_end_countdown()]"
 		items += ""
 
@@ -255,16 +255,35 @@
 
 ///sets up the timer for the mission
 /datum/campaign_mission/proc/set_mission_timer()
-	if(!iscampaigngamemode(SSticker.mode))
+	if(game_timer)
 		return
-
 	game_timer = addtimer(VARSET_CALLBACK(src, max_time_reached, TRUE), max_game_time, TIMER_STOPPABLE)
+
+///Pauses the gametimer, recording the remaining time left in max_game_time
+/datum/campaign_mission/proc/pause_mission_timer(trait_source = TRAIT_GENERIC)
+	if(!trait_source)
+		trait_source = TRAIT_GENERIC
+	ADD_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED, trait_source)
+	if(!game_timer)
+		return
+	max_game_time = timeleft(game_timer)
+	deltimer(game_timer)
+	game_timer = null
+
+///Attempts to resume the gametimer
+/datum/campaign_mission/proc/resume_mission_timer(trait_source = TRAIT_GENERIC, forced = FALSE)
+	REMOVE_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED, trait_source)
+	if(!forced && HAS_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED))
+		return
+	set_mission_timer()
 
 ///accesses the timer for status panel
 /datum/campaign_mission/proc/mission_end_countdown()
-	if(max_time_reached)
-		return "Mission finished"
-	var/eta = timeleft(game_timer) * 0.1
+	//if(max_time_reached)
+	//	return "Mission finished"
+	if(!game_timer && HAS_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED))
+		return "Timer paused"
+	var/eta = game_timer ? (timeleft(game_timer) * 0.1) : (max_game_time * 0.1)
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
