@@ -1,0 +1,9 @@
+author: "PestoVerde322"
+delete-after: True
+changes:
+  - bugfix: "The lightbulbs on red alert or low power now no longer turn into a massive error"
+  - bugfix: "The welding glasses have been aligned instead of nudging off weirdly when toggled"
+  - bugfix: "The door control button will stay in place if you don't have access"
+  - bugfix: "The error on the escape pod controller is gone"
+  - imagedel: "Cleared some unused icons in lighting.dmi"
+  - rscdel: "Removed the unused firelight"
