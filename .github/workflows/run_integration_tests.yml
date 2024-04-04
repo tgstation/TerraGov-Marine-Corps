@@ -38,9 +38,9 @@ jobs:
         run: |
           sudo systemctl start mysql
           mysql -u root -proot -e 'CREATE DATABASE tg_ci;'
-          mysql -u root -proot tg_ci < SQL/tgmc_schema.sql
+          mysql -u root -proot tg_ci < SQL/tgmc-schema.sql
           mysql -u root -proot -e 'CREATE DATABASE tg_ci_prefixed;'
-          mysql -u root -proot tg_ci_prefixed < SQL/tgmc_schema_prefixed.sql
+          mysql -u root -proot tg_ci_prefixed < SQL/tgmc-schema_prefixed.sql
       - name: Install rust-g
         run: |
           bash tools/ci/install_rust_g.sh
