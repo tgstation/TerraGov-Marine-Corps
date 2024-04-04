@@ -2,7 +2,46 @@
 set -euo pipefail
 
 #nb: must be bash to support shopt globstar
-shopt -s globstar
+shopt -s globstar extglob
+
+#ANSI Escape Codes for colors to increase contrast of errors
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+BLUE="\033[0;34m"
+NC="\033[0m" # No Color
+
+
+# check for ripgrep
+if command -v rg >/dev/null 2>&1; then
+	grep=rg
+	pcre2_support=1
+	if [ ! rg -P '' >/dev/null 2>&1 ] ; then
+		pcre2_support=0
+	fi
+	code_files="code/**/**.dm"
+	map_files="_maps/**/**.dmm"
+	code_x_515="code/**/!(__byond_version_compat).dm"
+else
+	pcre2_support=0
+	grep=grep
+	code_files="-r --include=code/**/**.dm"
+	map_files="-r --include=_maps/**/**.dmm"
+	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
+fi
+
+echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
+
+part=0
+section() {
+	echo -e "${BLUE}Checking for $1${NC}..."
+	part=0
+}
+
+part() {
+	part=$((part+1))
+	padded=$(printf "%02d" $part)
+	echo -e "${GREEN} $padded- $1${NC}"
+}
 
 st=0
 
@@ -47,27 +86,27 @@ if grep -nP '^\t+ [^ *]' code/**/*.dm; then
     st=1
 fi;
 echo "Checking long list formatting"
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\t{2,}' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\(\n\1\t{2,}' code/**/*.dm; then
     echo "long list overidented, should be two tabs"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\S' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\(\n\1\S' code/**/*.dm; then
     echo "long list underindented, should be two tabs"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\([^\s)]+( ?= ?[\w\d]+)?,\n' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\([^\s)]+( ?= ?[\w\d]+)?,\n' code/**/*.dm; then
     echo "first item in a long list should be on the next line"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t\S+( ?= ?[\w\d]+)?,\n)*\1\t[^\s,)]+( ?= ?[\w\d]+)?\n' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\(\n(\1\t\S+( ?= ?[\w\d]+)?,\n)*\1\t[^\s,)]+( ?= ?[\w\d]+)?\n' code/**/*.dm; then
     echo "last item in a long list should still have a comma"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)]+( ?= ?[\w\d]+)?\)' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)]+( ?= ?[\w\d]+)?\)' code/**/*.dm; then
     echo ") in a long list should be on a new line"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' code/**/*.dm; then
+if grep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' code/**/*.dm; then
     echo "the ) in a long list should match identation of the opening list line"
     st=1
 fi;
