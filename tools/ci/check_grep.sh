@@ -118,7 +118,6 @@ if $grep -PU '[^\n]$(?!\n)' $code_files; then
 	echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
 	st=1
 fi
-done < <(find . -type f -name '*.dm')
 if grep -nP '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
     echo "changed files contains proc argument starting with 'var'"
     st=1
