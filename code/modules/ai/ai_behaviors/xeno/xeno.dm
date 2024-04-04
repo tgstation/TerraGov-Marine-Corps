@@ -44,31 +44,39 @@
 			action.action_activate()
 	return ..()
 
+#define ESCORTING_MAX_DISTANCE 10
+
 /datum/ai_behavior/xeno/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
 		if(ESCORTING_ATOM)
-			if(get_dist(escorted_atom, mob_parent) > 10)
+			if(get_dist(escorted_atom, mob_parent) > ESCORTING_MAX_DISTANCE)
 				cleanup_current_action()
 				base_action = MOVING_TO_NODE
 				late_initialize()
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
 					try_to_heal() //If we have some damage, look for some healing
+					return
+				if(!goal_node) // We are randomly moving
+					var/atom/xeno_to_follow = get_nearest_target(mob_parent, ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+					if(xeno_to_follow)
+						set_escorted_atom(null, xeno_to_follow)
+						return
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
 			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
@@ -77,7 +85,7 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We are safe, try to find some weeds
 				target_distance = initial(target_distance)
 				cleanup_current_action()
@@ -88,7 +96,7 @@
 				return
 			change_action(null, next_target, INFINITY)
 		if(IDLE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
@@ -227,7 +235,7 @@
 	var/mob/living/living_mob = mob_parent
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 	if(!next_target)
 		return
 	target_distance = 15
