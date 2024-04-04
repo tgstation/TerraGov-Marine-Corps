@@ -47,3 +47,30 @@
       increase.
   novaepee:
   - bugfix: PoS req and tc
+2024-04-04:
+  AusarAtkin:
+  - qol: Examining stasis bag while wearing med hud now show defib status (DNR, Almost
+      departed) and DNR timer
+  Lumipharon:
+  - bugfix: fixed conveyors breaking in certain scenarios
+  - code_imp: Fixed a minor runtime and removed an unneeded stack trace
+  - balance: 'Campaign: Deploying an OB beacon in the Raiding Base mission pauses
+      the game timer'
+  - balance: 'Campaign: Running a code computer on NT Base Rescue pauses the game
+      timer'
+  TiviPlus:
+  - balance: Doubled AI xeno spawnrate
+  - bugfix: Fixed tank ammo rack LTA-AP Overlay
+  Xander3359:
+  - qol: All chems (except neuraline) are scannable by a health scanner
+  coldironwarrior:
+  - rscadd: adds the paramedic labcoat
+  homexp13:
+  - balance: Silo larva gene now decreases more depending on the marine to xenos ratio.
+  lbnesquik:
+  - qol: Activating supply beacons notify the shipside console with a noise
+  - rscadd: Add alternate ammo MLRS ammo to the req factory
+  - bugfix: Fix the MLRS gas and cloaking gas sharing the same path and likely bugging
+      out
+  - code_imp: Renames the MLRS ammo to a more consistent schema
+  - bugfix: Fix the MLRS having free ammo thanks to init mapload :(
