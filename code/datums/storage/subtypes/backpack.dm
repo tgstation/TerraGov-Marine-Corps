@@ -11,7 +11,7 @@
 		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.back == src)
+		if(human_user.back == parent)
 			return TRUE
 	return FALSE
 
@@ -73,4 +73,4 @@
 		return ..()
 
 /datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
-	to_chat(usr, span_notice("You can't grab anything out of [parent] while it's not deployed."))
+	to_chat(user, span_notice("You can't grab anything out of [parent] while it's not deployed."))

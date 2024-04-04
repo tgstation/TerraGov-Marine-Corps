@@ -42,11 +42,9 @@
 		if(2 to INFINITY)
 			. += "There are [length(contents)] [icon_type]s in the box."
 
-
 /*
 * Egg Box
 */
-
 /obj/item/storage/fancy/egg_box
 	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "eggbox"
@@ -60,11 +58,9 @@
 	atom_storage.storage_slots = 12
 	atom_storage.max_storage_space = 24
 
-
 /*
 * Candle Box
 */
-
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
 	desc = "A pack of red candles."
@@ -84,7 +80,6 @@
 /*
 * Crayon Box
 */
-
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
@@ -190,7 +185,6 @@
 		/obj/item/storage/box/matches,
 	))
 
-
 /obj/item/storage/fancy/chemrettes/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/mask/cigarette/bica(src)
@@ -200,7 +194,6 @@
 		new /obj/item/clothing/mask/cigarette/tram(src)
 	for(var/i in 1 to 5)
 		new /obj/item/clothing/mask/cigarette/antitox(src)
-
 	new /obj/item/tool/lighter(src)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
@@ -249,11 +242,9 @@
 	. = ..()
 	atom_storage.storage_slots = 7
 
-
 /obj/item/storage/fancy/cigar/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][length(contents)]"
-
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
@@ -272,7 +263,6 @@
 /*
 * Vial Box
 */
-
 /obj/item/storage/fancy/vials
 	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox6"

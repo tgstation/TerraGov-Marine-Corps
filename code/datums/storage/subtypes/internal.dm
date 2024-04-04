@@ -26,24 +26,24 @@
 //Reason for this override is due to conflict signal from modules, which detach on ALT+CLICK
 /datum/storage/internal/unregister_storage_signals(atom/parent)
 	UnregisterSignal(parent, list(
-	COMSIG_ATOM_ATTACKBY,
-	COMSIG_ATOM_ATTACK_HAND,
-	COMSIG_ITEM_ATTACK_SELF,
-	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
-	COMSIG_CLICK_ALT_RIGHT,
-	COMSIG_CLICK_CTRL,
-	COMSIG_ATOM_ATTACK_GHOST,
-	COMSIG_MOUSEDROP_ONTO,
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ATOM_ATTACK_HAND,
+		COMSIG_ITEM_ATTACK_SELF,
+		COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+		COMSIG_CLICK_ALT_RIGHT,
+		COMSIG_CLICK_CTRL,
+		COMSIG_ATOM_ATTACK_GHOST,
+		COMSIG_MOUSEDROP_ONTO,
 
-	COMSIG_ATOM_EMP_ACT,
-	COMSIG_CONTENTS_EX_ACT,
+		COMSIG_ATOM_EMP_ACT,
+		COMSIG_CONTENTS_EX_ACT,
 
-	COMSIG_ATOM_CONTENTS_DEL,
-	ATOM_MAX_STACK_MERGING,
-	ATOM_RECALCULATE_STORAGE_SPACE,
-	COMSIG_ITEM_EQUIPPED,
-	COMSIG_ITEM_DROPPED,
-	COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_CONTENTS_DEL,
+		ATOM_MAX_STACK_MERGING,
+		ATOM_RECALCULATE_STORAGE_SPACE,
+		COMSIG_ITEM_EQUIPPED,
+		COMSIG_ITEM_DROPPED,
+		COMSIG_ITEM_QUICK_EQUIP,
 	))
 
 /datum/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
@@ -188,11 +188,11 @@
 	)
 
 /datum/storage/internal/pocket/insertion_message(obj/item/item, mob/user)
-	var/visidist = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
+	var/vision_distance = item.w_class >= WEIGHT_CLASS_NORMAL ? 3 : 1
 	//Grab the name of the object this pocket belongs to
 	user.visible_message(span_notice("[user] puts \a [item] into \the [parent.name]."),\
 						span_notice("You put \the [item] into \the [parent.name]."),\
-						null, visidist)
+						null, vision_distance)
 
 /datum/storage/internal/pocket/medical
 	max_storage_space = 30
@@ -430,20 +430,20 @@
 //Reason for this override is due to conflict controls from deployables
 /datum/storage/internal/ammo_rack/unregister_storage_signals(atom/parent)
 	UnregisterSignal(parent, list(
-	COMSIG_ATOM_ATTACKBY,
-	COMSIG_ITEM_ATTACK_SELF,
-	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
-	COMSIG_ATOM_ATTACK_GHOST,
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ITEM_ATTACK_SELF,
+		COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+		COMSIG_ATOM_ATTACK_GHOST,
 
-	COMSIG_ATOM_EMP_ACT,
-	COMSIG_CONTENTS_EX_ACT,
+		COMSIG_ATOM_EMP_ACT,
+		COMSIG_CONTENTS_EX_ACT,
 
-	COMSIG_ATOM_CONTENTS_DEL,
-	ATOM_MAX_STACK_MERGING,
-	ATOM_RECALCULATE_STORAGE_SPACE,
-	COMSIG_ITEM_EQUIPPED,
-	COMSIG_ITEM_DROPPED,
-	COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_CONTENTS_DEL,
+		ATOM_MAX_STACK_MERGING,
+		ATOM_RECALCULATE_STORAGE_SPACE,
+		COMSIG_ITEM_EQUIPPED,
+		COMSIG_ITEM_DROPPED,
+		COMSIG_ITEM_QUICK_EQUIP,
 	))
 
 // Special override to reload our gun if it's empty before putting extra shells into storage
@@ -457,7 +457,7 @@
 				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
 				return
 
-	if(!can_be_inserted(attacking_item))
+	if(!can_be_inserted(attacking_item, user))
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK

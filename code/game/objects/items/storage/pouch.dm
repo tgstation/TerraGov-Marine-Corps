@@ -43,7 +43,7 @@
 
 /obj/item/storage/pouch/general/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.draw_mode = 1
+	atom_storage.draw_mode = TRUE
 	atom_storage.storage_type_limits = list(/obj/item/ammo_magazine/packet)
 
 /obj/item/storage/pouch/general/medium
@@ -54,7 +54,7 @@
 	. = ..()
 	atom_storage.storage_slots = 2
 	atom_storage.sprite_slots = 2
-	atom_storage.draw_mode = 0
+	atom_storage.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large
 	name = "general pouch"
@@ -65,7 +65,7 @@
 	atom_storage.storage_slots = null
 	atom_storage.max_storage_space = 6
 	atom_storage.sprite_slots = 3
-	atom_storage.draw_mode = 0
+	atom_storage.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large/command/PopulateContents()
 	new /obj/item/binoculars/tactical(src)
@@ -81,7 +81,7 @@
 /obj/item/storage/pouch/general/som/Initialize(mapload, ...)
 	. = ..()
 	atom_storage.sprite_slots = null
-	atom_storage.draw_mode = 1
+	atom_storage.draw_mode = TRUE
 
 /obj/item/storage/pouch/general/large/som
 	desc = "A general purpose pouch used to carry small items used during mining."
@@ -104,7 +104,7 @@
 		/obj/item/attachable/bayonet,
 	))
 	atom_storage.storage_slots = 3
-	atom_storage.draw_mode = 1
+	atom_storage.draw_mode = TRUE
 
 /obj/item/storage/pouch/bayonet/full
 	fill_type = /obj/item/weapon/combat_knife
@@ -228,7 +228,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 	))
-	atom_storage.draw_mode = 1
+	atom_storage.draw_mode = TRUE
 
 /obj/item/storage/pouch/pistol/vp70/PopulateContents()
 	new /obj/item/weapon/gun/pistol/vp70(src)
@@ -264,7 +264,7 @@
 	atom_storage.sprite_slots = 2
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.storage_slots = 2
-	atom_storage.draw_mode = 0
+	atom_storage.draw_mode = FALSE
 	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
@@ -763,7 +763,7 @@
 	atom_storage.storage_slots = 5
 	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
 	atom_storage.sprite_slots = 4
-	atom_storage.draw_mode = 1
+	atom_storage.draw_mode = TRUE
 	atom_storage.set_holdable(can_hold_list = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,
@@ -935,7 +935,7 @@
 	. = ..()
 	atom_storage.sprite_slots = 4
 	atom_storage.storage_slots = 4
-	atom_storage.draw_mode = 0
+	atom_storage.draw_mode = FALSE
 	atom_storage.set_holdable(can_hold_list = list(/obj/item/ammo_magazine/handful))
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)

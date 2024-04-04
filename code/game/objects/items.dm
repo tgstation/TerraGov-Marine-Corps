@@ -315,7 +315,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		for(var/obj/item/IM in loc)
 			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
 				continue
-			if(!S.atom_storage.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+			if(!S.atom_storage.can_be_inserted(IM, user))	// Note can_be_inserted still makes noise when the answer is no
 				rejections += IM.type	// therefore full bags are still a little spammy
 				failure = TRUE
 				continue
@@ -328,7 +328,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		else
 			to_chat(user, span_notice("You fail to pick anything up with [S]."))
 
-	else if(S.atom_storage.can_be_inserted(src))
+	else if(S.atom_storage.can_be_inserted(src, user))
 		S.atom_storage.handle_item_insertion(src, FALSE, user)
 
 
@@ -698,7 +698,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!storage_datum)
 		return FALSE
 
-	return storage_datum.can_be_inserted(src, warning)
+	return storage_datum.can_be_inserted(src, user, warning)
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
@@ -1410,7 +1410,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	//Put item into player's currently open storage
-	if(fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+	if(fill_container && user.s_active && user.s_active.can_be_inserted(src, user, FALSE))
 		user.s_active.handle_item_insertion(src, FALSE, user)
 		return
 	//Equip item onto player

@@ -27,28 +27,16 @@
 
 /datum/storage/wallet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(.)
-		var/obj/item/storage/wallet/parent_wallet = parent
-		if(item == parent_wallet.front_id)
-			parent_wallet.front_id = null
-			parent_wallet.name = initial(parent_wallet.name)
-			parent_wallet.update_icon()
+	var/obj/item/storage/wallet/parent_wallet = parent
+	if(item == parent_wallet.front_id)
+		parent_wallet.front_id = null
+		parent_wallet.name = initial(parent_wallet.name)
+		parent_wallet.update_icon()
 
-/datum/storage/wallet/handle_item_insertion(obj/item/item as obj, prevent_warning = 0)
-	. = ..(item, prevent_warning)
-	if(.)
-		var/obj/item/storage/wallet/parent_wallet = parent
-		if(!parent_wallet.front_id && istype(item, /obj/item/card/id))
-			parent_wallet.front_id = item
-			parent_wallet.name = "[parent_wallet.name] ([parent_wallet.front_id])"
-			parent_wallet.update_icon()
-
-
-
-
-
-
-
-
-
-
+/datum/storage/wallet/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	. = ..()
+	var/obj/item/storage/wallet/parent_wallet = parent
+	if(!parent_wallet.front_id && istype(item, /obj/item/card/id))
+		parent_wallet.front_id = item
+		parent_wallet.name = "[parent_wallet.name] ([parent_wallet.front_id])"
+		parent_wallet.update_icon()

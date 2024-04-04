@@ -123,7 +123,7 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage.atom_storage.can_be_inserted(item_to_insert))
+		if(storage.atom_storage.can_be_inserted(item_to_insert, user))
 			storage.atom_storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))

@@ -95,11 +95,11 @@
 	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/allow_quick_gather
 	///whether this object can change its drawing method
-	var/allow_drawing_method = FALSE
-	///0 = will open the inventory if you click on the storage container, 1 = will draw from the inventory if you click on the storage container
-	var/draw_mode = 0
-	////0 = pick one at a time, 1 = pick all on tile
-	var/collection_mode = 1;
+	var/allow_drawing_method
+	///FALSE = will open the inventory if you click on the storage container, TRUE = will draw from the inventory if you click on the storage container
+	var/draw_mode = FALSE
+	///FALSE = pick one at a time, TRUE = pick all on tile
+	var/collection_mode = TRUE
 	///BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/foldable = null
 	///sound played when used. null for no sound.
@@ -213,7 +213,7 @@
 	if(trash_item)
 		new trash_item(get_turf(parent))
 	parent = null
-	. = ..()
+	return ..()
 
 /// Set the passed atom as the parent
 /datum/storage/proc/set_parent(atom/new_parent)
@@ -251,25 +251,25 @@
 ///Unregisters our signals from parent. Used when parent loses storage but is not destroyed
 /datum/storage/proc/unregister_storage_signals(atom/parent)
 	UnregisterSignal(parent, list(
-	COMSIG_ATOM_ATTACKBY,
-	COMSIG_ATOM_ATTACK_HAND,
-	COMSIG_ITEM_ATTACK_SELF,
-	COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
-	COMSIG_CLICK_ALT,
-	COMSIG_CLICK_ALT_RIGHT,
-	COMSIG_CLICK_CTRL,
-	COMSIG_ATOM_ATTACK_GHOST,
-	COMSIG_MOUSEDROP_ONTO,
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ATOM_ATTACK_HAND,
+		COMSIG_ITEM_ATTACK_SELF,
+		COMSIG_ATOM_ATTACK_HAND_ALTERNATE,
+		COMSIG_CLICK_ALT,
+		COMSIG_CLICK_ALT_RIGHT,
+		COMSIG_CLICK_CTRL,
+		COMSIG_ATOM_ATTACK_GHOST,
+		COMSIG_MOUSEDROP_ONTO,
 
-	COMSIG_ATOM_EMP_ACT,
-	COMSIG_CONTENTS_EX_ACT,
+		COMSIG_ATOM_EMP_ACT,
+		COMSIG_CONTENTS_EX_ACT,
 
-	COMSIG_ATOM_CONTENTS_DEL,
-	ATOM_MAX_STACK_MERGING,
-	ATOM_RECALCULATE_STORAGE_SPACE,
-	COMSIG_ITEM_EQUIPPED,
-	COMSIG_ITEM_DROPPED,
-	COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_CONTENTS_DEL,
+		ATOM_MAX_STACK_MERGING,
+		ATOM_RECALCULATE_STORAGE_SPACE,
+		COMSIG_ITEM_EQUIPPED,
+		COMSIG_ITEM_DROPPED,
+		COMSIG_ITEM_QUICK_EQUIP,
 	))
 
 /// Almost 100% of the time the lists passed into set_holdable are reused for each instance
@@ -315,7 +315,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			if(istype(attacking_item, typepath))
 				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
 				return
-	if(!can_be_inserted(attacking_item))
+	if(!can_be_inserted(attacking_item, user))
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -412,15 +412,15 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	set category = "Object"
 
 	collection_mode = !collection_mode
-	switch (collection_mode)
-		if(1)
-			to_chat(usr, "[parent.name] now picks up all items in a tile at once.")
-		if(0)
-			to_chat(usr, "[parent.name] now picks up one item at a time.")
+	if(collection_mode)
+		to_chat(usr, "[parent.name] now picks up all items in a tile at once.")
+	else
+		to_chat(usr, "[parent.name] now picks up one item at a time.")
 
 /datum/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
 	set category = "Object"
+
 	draw_mode = !draw_mode
 	if(draw_mode)
 		to_chat(usr, "Clicking [parent.name] with an empty hand now puts the last stored item in your hand.")
@@ -441,13 +441,12 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	return inventory
 
-/datum/storage/proc/show_to(mob/user as mob)
+///Shows our inventory to user, we become s_active and user is added to our content_watchers
+/datum/storage/proc/show_to(mob/user)
 	if(user.s_active != src)
 		for(var/obj/item/item in parent)
 			if(item.on_found(user))
 				return
-	if(user.s_active == src)
-		hide_from(user)
 	user.client.screen -= boxes
 	user.client.screen -= storage_start
 	user.client.screen -= storage_continue
@@ -467,9 +466,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	user.s_active = src
 	content_watchers |= user
 
-
-/datum/storage/proc/hide_from(mob/user as mob)
-
+///Hides our inventory from user, sets s_active to null and removes user from content_watchers
+/datum/storage/proc/hide_from(mob/user)
 	if(!user.client)
 		return
 	user.client.screen -= src.boxes
@@ -482,20 +480,22 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		user.s_active = null
 	content_watchers -= user
 
+///Returns a list of lookers, basically any mob that can see our contents
 /datum/storage/proc/can_see_content()
 	var/list/lookers = list()
 	for(var/i in content_watchers)
-		var/mob/M = i
-		if(M.s_active == src && M.client)
-			lookers |= M
+		var/mob/content_watcher_mob = i
+		if(content_watcher_mob.s_active == src && content_watcher_mob.client)
+			lookers |= content_watcher_mob
 		else
-			content_watchers -= M
+			content_watchers -= content_watcher_mob
 	return lookers
 
+///Opens our storage, closes the storage if we are s_active
 /datum/storage/proc/open(mob/user)
 	if(!opened)
 		orient2hud()
-		opened = 1
+		opened = TRUE
 	if(use_sound && user.stat != DEAD)
 		playsound(parent.loc, use_sound, 25, 1, 3)
 
@@ -507,6 +507,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	show_to(user)
 	return TRUE
 
+///Closes our storage
 /datum/storage/proc/close(mob/user)
 	hide_from(user)
 
@@ -564,8 +565,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(show_storage_fullness)
 		boxes.update_fullness(parent)
 
+///Generates a UI for slotless storage based on the objects inside of it
 /datum/storage/proc/space_orient_objs(list/obj/item/display_contents)
-
 	///should be equal to default backpack capacity
 	var/baseline_max_storage_space = 21
 	///length of sprite for start and end of the box representing total storage space
@@ -573,7 +574,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	///length of sprite for start and end of the box representing the stored item
 	var/stored_cap_width = 4
 	///length of sprite for the box representing total storage space
-	var/storage_width = min( round( 258 * max_storage_space/baseline_max_storage_space ,1) ,284)
+	var/storage_width = min(round(258 * max_storage_space/baseline_max_storage_space, 1), 284)
 
 	click_border_start.Cut()
 	click_border_end.Cut()
@@ -619,7 +620,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
 /datum/numbered_display
+	///Object to compare to the item inside of a slotless storage
 	var/obj/item/sample_object
+	///Used to display a number on the object inside of a storage
 	var/number
 
 /datum/numbered_display/New(obj/item/sample)
@@ -635,33 +638,34 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /datum/storage/proc/orient2hud()
 	var/adjusted_contents = length(parent.contents)
-	//Numbered contents display
-	var/list/datum/numbered_display/numbered_contents
+	var/list/datum/numbered_display/numbered_contents //Numbered contents display
+
 	if(display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = 0
 		for(var/obj/item/item in parent.contents)
-			var/found = 0
-			for(var/datum/numbered_display/ND in numbered_contents)
-				if(ND.sample_object.type == item.type)
-					ND.number++
-					found = 1
+			var/found = FALSE
+			for(var/datum/numbered_display/numbered_display_checked in numbered_contents)
+				if(numbered_display_checked.sample_object.type == item.type)
+					numbered_display_checked.number++
+					found = TRUE
 					break
 			if(!found)
 				adjusted_contents++
 				numbered_contents.Add( new/datum/numbered_display(item) )
 
 	if(storage_slots == null)
-		src.space_orient_objs(numbered_contents)
-	else
-		var/row_num = 0
-		var/col_count = min(7,storage_slots) -1
-		if(adjusted_contents > 7)
-			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		slot_orient_objs(row_num, col_count, numbered_contents)
+		space_orient_objs(numbered_contents)
+		return
+
+	var/row_num = 0
+	var/col_count = min(7,storage_slots) -1
+	if(adjusted_contents > 7)
+		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
+	slot_orient_objs(row_num, col_count, numbered_contents)
 
 ///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
-/datum/storage/proc/can_be_inserted(obj/item/item_to_insert as obj, warning = TRUE)
+/datum/storage/proc/can_be_inserted(obj/item/item_to_insert, mob/user, warning = TRUE)
 	if(!istype(item_to_insert) || HAS_TRAIT(item_to_insert, TRAIT_NODROP))
 		return //Not an item
 
@@ -669,22 +673,22 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && length(parent.contents) >= storage_slots)
 		if(warning)
-			to_chat(usr, span_notice("[parent.name] is full, make some space."))
+			to_chat(user, span_notice("[parent.name] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
 		if(warning)
-			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
+			to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
 	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert]."))
+			to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
 	if(!is_type_in_typecache(item_to_insert, typecacheof(storage_type_limits)) && item_to_insert.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, span_notice("[item_to_insert] is too long for this [parent.name]."))
+			to_chat(user, span_notice("[item_to_insert] is too long for this [parent.name]."))
 		return FALSE
 
 	var/sum_storage_cost = item_to_insert.w_class
@@ -693,7 +697,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, span_notice("[parent.name] is full, make some space."))
+			to_chat(user, span_notice("[parent.name] is full, make some space."))
 		return FALSE
 
 	if(isitem(parent))
@@ -701,7 +705,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(storage_type_limits)))
 			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
-					to_chat(usr, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
+					to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
 				return FALSE //To prevent the stacking of same sized storage items.
 
 	for(var/limited_type in storage_type_limits_max)
@@ -709,15 +713,13 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		if(storage_type_limits_max[limited_type] == 0)
 			if(warning)
-				to_chat(usr, span_warning("[parent.name] can't fit any more of those.") )
+				to_chat(user, span_warning("[parent.name] can't fit any more of those.") )
 			return FALSE
 
 	if(istype(item_to_insert, /obj/item/tool/hand_labeler))
 		var/obj/item/tool/hand_labeler/L = item_to_insert
 		if(L.on)
 			return FALSE
-		else
-			return TRUE
 
 	return TRUE
 
@@ -735,10 +737,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return FALSE
 
 	if(!alert_user)
-		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src)
+		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, parent)
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [parent.name]")
-	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, src))
+	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, parent))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
@@ -846,7 +848,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		user.balloon_alert(user, "[refiller] is empty.")
 		return
 
-	if(!can_be_inserted(refiller.contents[1]))
+	if(!can_be_inserted(refiller.contents[1], user))
 		user.balloon_alert(user, "[parent.name] is full.")
 		return
 
@@ -857,27 +859,28 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	playsound(user.loc, refill_sound, 15, 1, 6)
 	for(var/obj/item/IM in refiller)
-		if(!can_be_inserted(refiller.contents[1]))
+		if(!can_be_inserted(refiller.contents[1], user))
 			return
 
 		remove_from_storage(IM)
 		handle_item_insertion(IM, TRUE, user)
 
-/datum/storage/proc/quick_empty()
-
-	if((!ishuman(usr) && parent.loc != usr) || usr.restrained())
+///Dumps out the contents of our inventory onto our turf
+/datum/storage/proc/quick_empty(datum/source, mob/user)
+	if((!ishuman(user) && parent.loc != user) || user.restrained())
 		return
 
 	var/turf/T = get_turf(src)
-	hide_from(usr)
+	hide_from(user)
 	for(var/obj/item/item in parent.contents)
-		remove_from_storage(item, T, usr)
+		remove_from_storage(item, T, user)
 
 ///Delete everything that's inside the storage
 /datum/storage/proc/delete_contents()
-	for(var/obj/item/item AS in parent.contents)
-		item.on_exit_storage(src)
-		qdel(item)
+	for(var/obj/item/item in parent.contents)
+		if(item.item_flags & IN_STORAGE)
+			item.on_exit_storage(src)
+			qdel(item)
 
 ///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.
 /datum/storage/proc/storage_depth(atom/container)
@@ -913,18 +916,13 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	return depth
 
-//Equips an item from our storage, returns signal COMSIG_QUICK_EQUIP_HANDLED to prevent standard quick equip behaviour
+///Equips an item from our storage, returns signal COMSIG_QUICK_EQUIP_HANDLED to prevent standard quick equip behaviour
 /datum/storage/proc/on_quick_equip_request(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(!length(parent.contents)) //we don't want to equip the storage item itself
 		return COMSIG_QUICK_EQUIP_BLOCKED
-	/*if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents
-		if(holstered_item in parent.contents)
-			INVOKE_ASYNC(src, PROC_REF(remove_from_storage), holstered_item, null, user)
-			return COMSIG_QUICK_EQUIP_HANDLED*/
-	else
-		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
-		return COMSIG_QUICK_EQUIP_HANDLED
+	INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
+	return COMSIG_QUICK_EQUIP_HANDLED
 
 ///Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage
 /datum/storage/proc/on_emp(datum/source, severity)
@@ -936,7 +934,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/on_attack_self(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(allow_quick_empty)
-		INVOKE_ASYNC(src, PROC_REF(quick_empty))
+		INVOKE_ASYNC(src, PROC_REF(quick_empty), user)
 		return
 
 	if(!foldable) //Gotta be foldable to be folded obviously
@@ -946,7 +944,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return
 
 	// Close any open UI windows first
-	for(var/mob/watcher_mob in content_watchers)
+	for(var/mob/watcher_mob AS in content_watchers)
 		close(watcher_mob)
 
 	// Now make the cardboard
@@ -958,7 +956,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///signal sent from /atom/proc/handle_atom_del(atom/A)
 /datum/storage/proc/handle_atom_del(datum/source, atom/movable/movable_atom)
 	SIGNAL_HANDLER
-	if(istype(movable_atom, /obj/item))
+	if(isitem(movable_atom))
 		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, movable_atom.loc, usr)
 
 ///signal sent from /atom/proc/max_stack_merging()
@@ -980,14 +978,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!length(lookers))
 		return
 	orient2hud()
-	for(var/X in lookers)
-		var/mob/M = X //There is no need to typecast here, really, but for clarity.
-		show_to(M)
+	for(var/X AS in lookers)
+		var/mob/looker_mob = X //There is no need to typecast here, really, but for clarity.
+		show_to(looker_mob)
 
 ///handles explosions on parent exploding the things in storage
 /datum/storage/proc/on_contents_explode(datum/source, severity)
 	SIGNAL_HANDLER
-	for(var/stored_items in parent.contents)
+	for(var/stored_items AS in parent.contents)
 		var/atom/atom = stored_items
 		atom.ex_act(severity)
 

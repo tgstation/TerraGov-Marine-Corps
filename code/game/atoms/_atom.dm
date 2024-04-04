@@ -453,6 +453,7 @@ directive is properly returned.
 
 
 /atom/proc/contents_explosion(severity)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CONTENTS_EX_ACT, severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
 

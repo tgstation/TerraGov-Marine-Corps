@@ -3,7 +3,8 @@
  */
 /obj/structure/ammo_rack //Parent type, only used as a template
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
-	var/datum/storage/storage_type = /datum/storage/tank
+	///Determines what subtype of storage is on our item, see datums\storage\subtypes
+	var/storage_type = /datum/storage/tank
 
 /obj/structure/ammo_rack/Initialize(mapload)
 	. = ..()

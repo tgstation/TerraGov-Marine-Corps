@@ -112,7 +112,7 @@
 		max_buckled_mobs = 2
 		max_occupants = 2
 		return TRUE
-	. = ..()
+	return ..()
 
 /obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
 	SIGNAL_HANDLER

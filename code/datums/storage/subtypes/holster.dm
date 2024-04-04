@@ -1,5 +1,5 @@
 /datum/storage/holster
-	max_w_class = WEIGHT_CLASS_BULKY ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
+	max_w_class = WEIGHT_CLASS_BULKY // normally the special item will be larger than what should fit. Child items will have lower limits and an override
 	storage_slots = 1
 	max_storage_space = 4
 	draw_mode = 1
@@ -15,23 +15,23 @@
 		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.back == src)
+		if(human_user.back == parent)
 			return TRUE
 	return FALSE
 
-/datum/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
+/datum/storage/holster/handle_item_insertion(obj/item/item, prevent_warning = 0)
 	. = ..()
 	var/obj/item/storage/holster/holster = parent
-	if(!. || !is_type_in_list(W, holster.holsterable_allowed)) //check to see if the item being inserted is the snowflake item
+	if(!. || !is_type_in_list(item, holster.holsterable_allowed)) //check to see if the item being inserted is the snowflake item
 		return
-	holster.holstered_item = W
+	holster.holstered_item = item
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(parent, sheathe_sound, 15, 1)
 
-/datum/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
+/datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	var/obj/item/storage/holster/holster = parent
-	if(!. || !is_type_in_list(W, holster.holsterable_allowed)) //check to see if the item being removed is the snowflake item
+	if(!. || !is_type_in_list(item, holster.holsterable_allowed)) //check to see if the item being removed is the snowflake item
 		return
 	holster.holstered_item = null
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
@@ -54,8 +54,8 @@
 			/obj/item/ammo_magazine/rocket,
 			/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 		),
-		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)	//only one RR per bag
-		)
+		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle) //only one RR per bag
+	)
 
 /datum/storage/holster/backholster/rpg/som/New(atom/parent)
 	. = ..()
@@ -65,7 +65,7 @@
 			/obj/item/weapon/gun/launcher/rocket/som,
 		),
 		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/som)
-		)
+	)
 
 /datum/storage/holster/backholster/mortar
 	max_w_class = WEIGHT_CLASS_NORMAL
@@ -104,6 +104,8 @@
 	var/obj/item/storage/holster/backholster/flamer/holster = parent
 	if(holster.holstered_item == item)
 		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
+		if(flamer.chamber_items.len == 0)
+			return
 		holster.refuel(flamer.chamber_items[1], user)
 		flamer.update_ammo_count()
 
@@ -204,12 +206,3 @@
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/handful,
 	))
-
-
-
-
-
-
-
-
-

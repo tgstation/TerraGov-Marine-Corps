@@ -595,7 +595,7 @@
 
 		attack_hand(user)
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
-			if(!S.atom_storage.can_be_inserted(G))
+			if(!S.atom_storage.can_be_inserted(G, user))
 				return
 			S.atom_storage.handle_item_insertion(G, TRUE, user)
 

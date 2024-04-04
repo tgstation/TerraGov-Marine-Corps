@@ -16,11 +16,10 @@
 	attack_verb = list("robusted")
 
 
-/obj/item/storage/toolbox/emergency/PopulateContents()
+/obj/item/storage/toolbox/emergency
 	name = "emergency toolbox"
 	icon_state = "red"
 	item_state = "toolbox_red"
-
 
 /obj/item/storage/toolbox/emergency/PopulateContents()
 	new /obj/item/tool/crowbar/red(src)
@@ -30,12 +29,10 @@
 	else
 		new /obj/item/explosive/grenade/flare/civilian(src)
 
-
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-
 
 /obj/item/storage/toolbox/mechanical/PopulateContents()
 	new /obj/item/tool/screwdriver(src)
@@ -45,12 +42,10 @@
 	new /obj/item/tool/analyzer(src)
 	new /obj/item/tool/wirecutters(src)
 
-
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
-
 
 /obj/item/storage/toolbox/electrical/PopulateContents()
 	var/color = pick("red", "yellow", "green", "blue", "pink", "orange", "cyan", "white")
@@ -65,13 +60,11 @@
 	else
 		new /obj/item/stack/cable_coil(src, 30, color)
 
-
 /obj/item/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	force = 7
-
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
 	var/color = pick("red", "yellow", "green", "blue", "pink", "orange", "cyan", "white")

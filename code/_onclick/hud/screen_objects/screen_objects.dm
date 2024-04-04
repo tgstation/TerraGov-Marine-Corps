@@ -260,7 +260,7 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	var/list/PL = params2list(params)
+	var/list/modifiers = params2list(params)
 
 	if(!master)
 		return
@@ -272,7 +272,7 @@
 		return
 
 	// Taking something out of the storage screen (including clicking on item border overlay)
-	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
+	var/list/screen_loc_params = splittext(modifiers["screen-loc"], ",")
 	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
 
@@ -329,9 +329,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 	if (!choice)
 		return TRUE
@@ -345,9 +345,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 
 	if(hovering == choice)

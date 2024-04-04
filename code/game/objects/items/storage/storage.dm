@@ -2,11 +2,12 @@
  * Contains obj/item/storage template
  */
 
-//--------------------------------
-// When creating a new storage, you may use /obj/item/storage as a template which automates create_storage() on .../Initialize
-// However, this is no longer a hard requirement, since storage is a /datum now
-// Just make sure to pass whatever arguments you need to create_storage() which is an /atom level proc
-// (This means that any atom can have storage :D )
+/**
+ * When creating a new storage, you may use /obj/item/storage as a template which automates create_storage() on .../Initialize
+ * However, this is no longer a hard requirement, since storage is a /datum now
+ * Just make sure to pass whatever arguments you need to create_storage() which is an /atom level proc
+ * (This means that any atom can have storage :D )
+ */
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
@@ -16,7 +17,7 @@
 	)
 	w_class = WEIGHT_CLASS_NORMAL
 	///Determines what subtype of storage is on our item, see datums\storage\subtypes
-	var/datum/storage/storage_type = /datum/storage
+	var/storage_type = /datum/storage
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()

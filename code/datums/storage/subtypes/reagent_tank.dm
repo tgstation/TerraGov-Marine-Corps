@@ -19,9 +19,9 @@
 		return FALSE
 	return ..()
 
-/datum/storage/reagent_tank/can_be_inserted(obj/item/item_to_insert, warning)
+/datum/storage/reagent_tank/can_be_inserted(obj/item/item_to_insert, mob/user, warning)
 	var/obj/item/reagent_tank = parent
 	if(!CHECK_BITFIELD(reagent_tank.item_flags, IS_DEPLOYED))
-		usr.balloon_alert(usr, "Not deployed")
+		user.balloon_alert(user, "Not deployed")
 		return FALSE
 	return ..()

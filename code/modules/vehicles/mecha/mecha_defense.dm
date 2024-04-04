@@ -105,6 +105,7 @@
 		living_occupant.Stagger(stagger_duration)
 
 /obj/vehicle/sealed/mecha/contents_explosion(severity)
+	. = ..()
 	severity--
 
 	switch(severity)

@@ -24,22 +24,22 @@
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(storage_type.use_sound)
-		playsound(loc, storage_type.use_sound, 15, 1, 6)
+	if(atom_storage.use_sound)
+		playsound(loc, atom_storage.use_sound, 15, 1, 6)
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-		if(storage_type.use_sound)
-			playsound(loc, storage_type.use_sound, 15, 1, 6)
-	..()
+		if(atom_storage.use_sound)
+			playsound(loc, atom_storage.use_sound, 15, 1, 6)
+	return ..()
 
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
 	return ..()
 
 /obj/item/storage/backpack/vendor_equip(mob/user)
-	. = ..()
+	..()
 	return user.equip_to_appropriate_slot(src)
 
 /*

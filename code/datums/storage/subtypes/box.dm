@@ -6,7 +6,7 @@
 /datum/storage/box/lights
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	max_storage_space = 42	//holds 21 items of w_class 2
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /datum/storage/box/mre
 	storage_slots = 4
@@ -97,6 +97,6 @@
 /datum/storage/box/crate/sentry/New(atom/parent)
 	. = ..()
 	set_holdable(
-	can_hold_list = list(/obj/item/weapon/gun/sentry, /obj/item/ammo_magazine/sentry),
-	storage_type_limits_list = list(/obj/item/weapon/gun/sentry, /obj/item/ammo_magazine/sentry)
+		can_hold_list = list(/obj/item/weapon/gun/sentry, /obj/item/ammo_magazine/sentry),
+		storage_type_limits_list = list(/obj/item/weapon/gun/sentry, /obj/item/ammo_magazine/sentry)
 	)
