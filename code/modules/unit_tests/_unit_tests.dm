@@ -57,6 +57,7 @@
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "implanting.dm"
+#include "item_variant_test.dm"
 #include "keybinding_init.dm"
 #include "map_templates.dm"
 #include "mapping.dm"
@@ -70,7 +71,6 @@
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
-#include "item_variant_test.dm"
 #include "xenoaccuracy.dm"
 // END_INCLUDE
 
