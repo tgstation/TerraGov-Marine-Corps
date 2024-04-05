@@ -9678,12 +9678,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
-"bOG" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "bOX" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -12144,9 +12138,6 @@
 "eUP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -69816,7 +69807,7 @@ exf
 fjy
 ebs
 bYM
-bOG
+jYO
 wTC
 jJa
 bYM

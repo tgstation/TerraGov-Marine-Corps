@@ -1850,7 +1850,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/starboard_hull)
 "bLP" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/black,
@@ -8885,7 +8884,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
 "hFd" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
@@ -9302,16 +9300,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
-"hYZ" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
-/area/mainship/living/evacuation)
 "hZr" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -25048,15 +25036,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
-"veo" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
-/area/mainship/living/evacuation)
 "veE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25982,17 +25961,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical)
-"vQh" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
-/area/mainship/living/evacuation)
 "vQH" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/sterile/dark,
@@ -34779,7 +34747,7 @@ fyL
 lfY
 bLP
 hFd
-vQh
+qRH
 oaL
 pHG
 dGV
@@ -34881,7 +34849,7 @@ fyL
 wmf
 puU
 etL
-veo
+bUi
 jou
 pHG
 fld
@@ -34983,7 +34951,7 @@ fyL
 wmf
 hEO
 dGV
-veo
+bUi
 efm
 xha
 xDu
@@ -35085,7 +35053,7 @@ rZc
 rwL
 uYs
 dGV
-hYZ
+bUi
 ecY
 ecY
 ncu
