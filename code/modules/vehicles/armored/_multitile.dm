@@ -24,7 +24,6 @@
 		/obj/item/ammo_magazine/tank
 	)
 
-///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/multitile/enter_locations(mob/M)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
 

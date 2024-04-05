@@ -69,8 +69,8 @@
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
-	/// List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
-	/// This will be turned into a typeCache on  initialize
+	/**  List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	 This will be turned into a typeCache on  initialize */
 	var/list/easy_load_list
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
@@ -145,11 +145,11 @@
 	if(max_occupants > 1)
 		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 
+///returns a list of possible locations that this vehicle may be entered from
 /obj/vehicle/sealed/armored/proc/enter_locations(mob/M)
 	// from any adjacent position
 	if(Adjacent(M, src))
 		return list(get_turf(M))
-
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
@@ -449,17 +449,20 @@
 	// Bypass to parent to handle mobs entering the vehicle.
 	if(dropping == M)
 		return ..()
-	if(ismovable(dropping) && is_type_in_typecache(dropping.type, easy_load_list) && M)
-		if(!interior)
-			return ..()
-		if(!interior.door)
-			return ..()
-		if(!(M.loc in enter_locations(M)))
-			M.balloon_alert(M, "not at entrance")
-			return
-		M.temporarilyRemoveItemFromInventory(dropping)
-		dropping.forceMove(interior.door.get_enter_location())
-		M.balloon_alert(M, "item thrown inside")
+	if(!M)
+		return ..()
+	if(!interior)
+		return ..()
+	if(!interior.door)
+		return ..()
+	if(!(ismovable(dropping) && is_type_in_typecache(dropping.type, easy_load_list)))
+		return ..()
+	if(!(M.loc in enter_locations(M)))
+		M.balloon_alert(M, "not at entrance")
+		return
+	M.temporarilyRemoveItemFromInventory(dropping)
+	dropping.forceMove(interior.door.get_enter_location())
+	M.balloon_alert(M, "item thrown inside")
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
