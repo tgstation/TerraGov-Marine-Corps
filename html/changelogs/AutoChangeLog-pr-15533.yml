@@ -1,0 +1,5 @@
+author: "MLGTASTICa"
+delete-after: True
+changes:
+  - code_imp: "Moved entrance code from the armored/sealed/multitile type to armored/sealed. Refactors the NT mini tank code to work with this."
+  - balance: "You can now throw shells to the interior of the MT Ares by attacking the tank with them at an entrance."
