@@ -455,7 +455,7 @@
 		return ..()
 	if(!isliving(M))
 		return
-	try_easy_load(droppin, M)
+	try_easy_load(dropping, M)
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
