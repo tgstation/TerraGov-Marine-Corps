@@ -69,9 +69,9 @@
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
-	/***
-		List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
-		This will be turned into a typeCache on  initialize
+	/**
+	 * List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	 * This will be turned into a typeCache on  initialize
 	*/
 	var/list/easy_load_list
 
