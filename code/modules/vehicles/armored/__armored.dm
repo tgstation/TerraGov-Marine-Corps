@@ -1,4 +1,3 @@
-
 /obj/vehicle/sealed/armored
 	name = "\improper MT - Shortstreet MK4"
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
@@ -71,9 +70,11 @@
 	/// damage done by rams
 	var/ram_damage = 20
 	/// List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	/// This will be turned into a typeCache on  initialize
 	var/list/easy_load_list
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
 	. = ..()
@@ -195,15 +196,15 @@
 
 /obj/vehicle/sealed/armored/get_mechanics_info()
 	. = ..()
-	var/list/namedPaths = list()
-	namedPaths += "<b> You can easily load the following items by attacking the vehicle at its entrance </b>"
+	var/list/named_paths = list()
+	named_paths += "<b> You can easily load the following items by attacking the vehicle at its entrance or click dragging them </b>"
 	for(var/obj/path AS in easy_load_list)
-		namedPaths.Add(initial(path:name))
+		named_paths.Add(initial(path:name))
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry?.mechanics_text)
-		namedPaths += general_entry.mechanics_text
-	return jointext(namedPaths, "<br>")
+		named_paths += general_entry.mechanics_text
+	return jointext(named_paths, "<br>")
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
@@ -408,7 +409,7 @@
 		return
 	if(interior) // if interior handle by gun breech
 		// check for easy loading instead
-		if(!(I.type in easy_load_list))
+		if(!is_type_in_typecache(I.type, easy_load_list))
 			return
 		if(!interior)
 			user.balloon_alert(user, "no interior")
@@ -443,6 +444,38 @@
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
+
+/obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
+	// Bypass to parent to handle mobs entering the vehicle.
+	if(dropping == M)
+		return ..()
+	if(ismovable(dropping) && is_type_in_typecache(dropping.type, easy_load_list) && M)
+		if(!interior)
+			return ..()
+		if(!interior.door)
+			return ..()
+		if(!(M.loc in enter_locations(M)))
+			M.balloon_alert(M, "not at entrance")
+			return
+		M.temporarilyRemoveItemFromInventory(dropping)
+		dropping.forceMove(interior.door.get_enter_location())
+		M.balloon_alert(M, "item thrown inside")
+
+/obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
+	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
+		return ..()
+	var/atom/movable/grabbed_thing = grab.grabbed_thing
+	if(!interior)
+		user.balloon_alert(user, "no interior")
+		return
+	if(!interior.door)
+		user.balloon_alert(user, "no door")
+		return
+	if(!(user.loc in enter_locations(user)))
+		user.balloon_alert(user, "not at entrance")
+		return
+	grabbed_thing.forceMove(interior.door.get_enter_location())
+	user.balloon_alert(user, "item thrown inside")
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
