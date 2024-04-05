@@ -9153,10 +9153,6 @@
 /obj/machinery/camera/autoname/thunderdome/hidden,
 /turf/open/floor/plating,
 /area/tdome/tdome2)
-"ndC" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "ndM" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags{
@@ -19411,15 +19407,15 @@ lEp
 lEp
 lEp
 box
-ndC
+box
 box
 box
 box
 box
 dhU
 box
-ndC
-ndC
+box
+box
 box
 box
 box
