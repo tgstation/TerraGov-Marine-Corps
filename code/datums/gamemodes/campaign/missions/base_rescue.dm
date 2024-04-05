@@ -67,7 +67,7 @@
 
 	var/datum/faction_stats/defending_team = mode.stat_list[defending_faction]
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
-	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar)
+	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar/instant)
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
 	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
