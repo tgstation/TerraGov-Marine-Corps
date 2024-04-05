@@ -466,6 +466,7 @@
 //Combat patrol spawn in spots
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
+	icon_state = "blue_1"
 	///ID to link with an associated start point
 	var/id = null
 	///Faction this belongs to for minimap purposes
@@ -504,25 +505,30 @@
 /obj/effect/landmark/patrol_point/tgmc_21
 	name = "TGMC exit point 21"
 	id = "TGMC_21"
+	icon_state = "blue_2"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_22
 	name = "TGMC exit point 22"
 	id = "TGMC_22"
+	icon_state = "blue_2"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_23
 	name = "TGMC exit point 23"
 	id = "TGMC_23"
+	icon_state = "blue_2"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_24
 	name = "TGMC exit point 24"
 	id = "TGMC_24"
+	icon_state = "blue_2"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/som
 	faction = FACTION_SOM
+	icon_state = "red_1"
 	minimap_icon = "som_patrol_1"
 
 /obj/effect/landmark/patrol_point/som/som_11
@@ -544,21 +550,25 @@
 /obj/effect/landmark/patrol_point/som/som_21
 	name = "SOM exit point 21"
 	id = "SOM_21"
+	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/patrol_point/som/som_22
 	name = "SOM exit point 22"
 	id = "SOM_22"
+	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/patrol_point/som/som_23
 	name = "SOM exit point 23"
 	id = "SOM_23"
+	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/patrol_point/som/som_24
 	name = "SOM exit point 24"
 	id = "SOM_24"
+	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/eord_roomba

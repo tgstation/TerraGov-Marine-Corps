@@ -5,8 +5,8 @@
 /obj/structure/patrol_point
 	name = "Patrol start point"
 	desc = "A one way ticket to the combat zone. Shift click to deploy when inside a mech."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "patrolpoint"
+	icon = 'icons/effects/campaign_effects.dmi'
+	icon_state = "patrol_point_1"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
@@ -162,15 +162,19 @@
 
 /obj/structure/patrol_point/tgmc_21
 	id = "TGMC_21"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/tgmc_22
 	id = "TGMC_22"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/tgmc_23
 	id = "TGMC_23"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/tgmc_24
 	id = "TGMC_24"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_11
 	id = "SOM_11"
@@ -186,15 +190,19 @@
 
 /obj/structure/patrol_point/som_21
 	id = "SOM_21"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_22
 	id = "SOM_22"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_23
 	id = "SOM_23"
+	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_24
 	id = "SOM_24"
+	icon_state = "patrol_point_2"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"
