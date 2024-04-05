@@ -1509,7 +1509,7 @@
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
 			/obj/item/clothing/glasses/night_vision = -1,
-			/obj/item/clothing/glasses/night_vision/mounted = -1,
+			/obj/item/armor_module/module/night_vision = -1,
 			/obj/item/cell/night_vision_battery = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
