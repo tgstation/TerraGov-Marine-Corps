@@ -8525,6 +8525,13 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
+"ejb" = (
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ekU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -48768,7 +48775,7 @@ nja
 blA
 esw
 lOP
-lvI
+ejb
 bRE
 bRE
 tWq

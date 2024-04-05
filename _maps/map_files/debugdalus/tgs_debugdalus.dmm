@@ -4,38 +4,38 @@
 /area/space)
 "aab" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aac" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aad" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aae" = (
 /obj/machinery/cryopod,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aaf" = (
 /obj/effect/landmark/start/job/squadengineer,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aag" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aah" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aai" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/effect/landmark/start/latejoin,
@@ -43,67 +43,67 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aaj" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aak" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aal" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aam" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aan" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aao" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aaq" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/cas,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aat" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aav" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaw" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "aax" = (
 /obj/machinery/self_destruct/rod,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aay" = (
 /turf/open/shuttle/escapepod/eleven,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaz" = (
 /obj/machinery/marine_selector/clothes/leader,
 /obj/structure/window/reinforced{
@@ -113,10 +113,10 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaA" = (
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaB" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /obj/structure/window/reinforced{
@@ -126,19 +126,19 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaC" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaD" = (
 /turf/open/shuttle/escapepod/five,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaE" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaF" = (
 /obj/machinery/marine_selector/gear/leader,
 /obj/structure/window/reinforced,
@@ -146,7 +146,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaI" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/structure/window/reinforced,
@@ -154,7 +154,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaJ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -164,7 +164,7 @@
 	},
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaL" = (
 /obj/machinery/marine_selector/clothes/medic,
 /obj/structure/window/reinforced{
@@ -174,21 +174,21 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaM" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "aaO" = (
 /obj/machinery/self_destruct/console,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaQ" = (
 /obj/machinery/power/apc/mainship/hardened{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aaR" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -196,7 +196,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaS" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -206,7 +206,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaT" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -216,53 +216,53 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaU" = (
 /obj/machinery/marine_selector/gear/medic,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "aaV" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "aaW" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "aaX" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "aaY" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aaZ" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aba" = (
 /obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "abb" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abc" = (
 /obj/machinery/vending/uniform_supply,
 /obj/structure/window/reinforced{
@@ -272,7 +272,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abf" = (
 /obj/machinery/vending/medical,
 /obj/structure/window/reinforced,
@@ -280,36 +280,36 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abh" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abi" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abl" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "abn" = (
 /obj/machinery/tank_part_fabricator,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abo" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abp" = (
 /obj/structure/rack,
 /obj/item/tool/weldingtool,
@@ -319,7 +319,7 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abq" = (
 /obj/structure/rack,
 /obj/item/storage/backpack/marine/engineerpack,
@@ -329,28 +329,28 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abr" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abs" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abt" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abu" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abv" = (
 /obj/machinery/marine_selector/clothes/engi,
 /obj/structure/window/reinforced{
@@ -360,67 +360,67 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abw" = (
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abx" = (
 /obj/structure/prop/mainship/ship_memorial,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abz" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "abC" = (
 /turf/open/shuttle/escapepod/eight,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abD" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abG" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abH" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abI" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "abK" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abM" = (
 /obj/machinery/light,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abN" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abP" = (
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abQ" = (
 /obj/machinery/vending/engivend,
 /obj/structure/window/reinforced,
@@ -428,33 +428,33 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "abR" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "abT" = (
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abU" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "abV" = (
 /obj/structure/dropship_equipment/shuttle/sentry_holder,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "abX" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 2;
@@ -462,14 +462,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "abY" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "acf" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -477,32 +477,32 @@
 	},
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acg" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ach" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "aci" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acj" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acn" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "aco" = (
 /obj/machinery/keycard_auth{
 	pixel_y = 30
@@ -512,30 +512,30 @@
 	amount = 25
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acp" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acq" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acs" = (
 /obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acu" = (
 /obj/machinery/computer/atmos_alert,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acv" = (
 /obj/machinery/vending/tool,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acx" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -545,49 +545,49 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acy" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
 /obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acz" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acA" = (
 /obj/machinery/vending/engivend,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acB" = (
 /obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acD" = (
 /obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acE" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acF" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acI" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acJ" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acK" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -595,37 +595,37 @@
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "acL" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "acM" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acN" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acP" = (
 /obj/machinery/fuelcell_recycler,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "acQ" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "acT" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acX" = (
 /obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
@@ -653,104 +653,104 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/mono,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "acZ" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "ada" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "adc" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "add" = (
 /turf/open/shuttle/escapepod/plain,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "ade" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adh" = (
 /obj/structure/prop/mainship/ship_memorial,
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "adi" = (
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "adj" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "adk" = (
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adl" = (
 /obj/structure/rack,
 /obj/item/storage/pouch/tools,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adm" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ado" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "adp" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "adr" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ads" = (
 /obj/machinery/power/terminal{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adt" = (
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adu" = (
 /obj/structure/table/mainship,
 /obj/item/tool/pen,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adv" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adw" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "adx" = (
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
@@ -760,11 +760,11 @@
 /obj/machinery/computer/camera_advanced/overwatch/alpha,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ady" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adz" = (
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
@@ -774,37 +774,37 @@
 /obj/machinery/computer/camera_advanced/overwatch/bravo,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adA" = (
 /obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adB" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adC" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adD" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adE" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adF" = (
 /obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "adG" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -812,15 +812,15 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "adH" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adI" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "adJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/squad_changer,
@@ -829,7 +829,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adK" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -838,7 +838,7 @@
 /obj/machinery/computer/security/marinemainship_network,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adL" = (
 /obj/machinery/light{
 	dir = 1
@@ -846,11 +846,11 @@
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adM" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adN" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/shiptech,
@@ -858,35 +858,35 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adO" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adP" = (
 /obj/structure/table/mainship,
 /obj/item/fuel_cell/full,
 /obj/item/fuel_cell/full,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adQ" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
 /obj/item/fuel_cell/full,
 /obj/item/fuel_cell/full,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "adR" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "adS" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "adU" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/alamo{
@@ -896,44 +896,44 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "adV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/skills,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adW" = (
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "adZ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "aea" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "aef" = (
 /obj/machinery/door/window{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeh" = (
 /obj/effect/landmark/start/job/captain,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aei" = (
 /obj/structure/closet/secure_closet/req_officer,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aek" = (
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ael" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aen" = (
 /obj/machinery/power/apc/mainship,
 /obj/machinery/light{
@@ -942,16 +942,16 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aet" = (
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aev" = (
 /obj/machinery/power/fusion_engine/preset,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "aex" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/plasmacutter,
@@ -960,7 +960,7 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aey" = (
 /obj/effect/landmark/start/job/ai,
 /obj/structure/window/reinforced,
@@ -971,37 +971,37 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aez" = (
 /obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeA" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeB" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeD" = (
 /obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeF" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeG" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/toughened{
@@ -1011,44 +1011,44 @@
 /obj/item/storage/box/ids,
 /obj/item/card/id/captains_spare,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeH" = (
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeI" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "aeJ" = (
 /obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aeK" = (
 /obj/structure/supply_drop,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aeM" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeN" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeP" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeR" = (
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aeS" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
 /turf/open/floor/mainship/mono,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeT" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table/mainship,
@@ -1057,13 +1057,13 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeU" = (
 /obj/machinery/door/window/right{
 	dir = 2
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeV" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/toughened{
@@ -1072,15 +1072,15 @@
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/computer/camera_advanced/overwatch/main,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeW" = (
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aeX" = (
 /obj/machinery/prop/autolathe,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afd" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/paperbin,
@@ -1088,15 +1088,15 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afe" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afg" = (
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/secure/req,
@@ -1104,70 +1104,70 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afi" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afj" = (
 /obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afk" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afl" = (
 /obj/machinery/telecomms/server/presets/requisitions,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afm" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afn" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afp" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afq" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afs" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afu" = (
 /obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afv" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afw" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afx" = (
 /obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afy" = (
 /obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afz" = (
 /obj/machinery/photocopier,
 /obj/machinery/light,
@@ -1175,7 +1175,7 @@
 	pixel_y = -30
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afA" = (
 /obj/machinery/status_display{
 	pixel_y = -30
@@ -1186,24 +1186,24 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afB" = (
 /obj/machinery/light,
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "afC" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afD" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afE" = (
 /obj/machinery/computer/ordercomp,
 /obj/structure/cable,
@@ -1211,11 +1211,11 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "afF" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afG" = (
 /obj/machinery/line_nexter_control{
 	id = "line2";
@@ -1232,7 +1232,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afH" = (
 /obj/structure/table/mainship,
 /obj/item/tool/stamp{
@@ -1241,97 +1241,97 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afI" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afM" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afO" = (
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "afQ" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
 	name = "Telecommunications"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "afU" = (
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "afX" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "afY" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "afZ" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aga" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/charlie,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "agb" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/vehicle/unmanned/droid,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "agd" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "age" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agf" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agg" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agh" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agi" = (
 /obj/machinery/computer/telecomms/monitor,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "agj" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "agk" = (
 /obj/machinery/computer/telecomms/server,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ago" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/mainship,
@@ -1341,93 +1341,93 @@
 	pixel_y = 16
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "agp" = (
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agq" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agr" = (
 /obj/structure/closet/crate/science,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agt" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "agz" = (
 /obj/structure/closet/crate/construction,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agA" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agB" = (
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agC" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agD" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/mainship/empty,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agE" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agF" = (
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agG" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agH" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/structure/orbital_cannon,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agJ" = (
 /obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "agN" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "agO" = (
 /obj/structure/prop/mainship/cannon_cables,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agP" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agQ" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agU" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "agV" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -1435,7 +1435,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agW" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -1443,7 +1443,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "agX" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -1451,29 +1451,29 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "agY" = (
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "agZ" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aha" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ahb" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "ahc" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -1481,42 +1481,42 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ahd" = (
 /obj/structure/rack,
 /obj/item/binoculars/tactical,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "ahg" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahh" = (
 /obj/machinery/light,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ahi" = (
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahj" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahk" = (
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahl" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahm" = (
 /obj/structure/closet/secure_closet/captain,
 /obj/item/weapon/claymore/mercsword/captain,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ahn" = (
 /obj/machinery/marine_selector/clothes/synth,
 /obj/structure/cable,
@@ -1524,14 +1524,14 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aho" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahq" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahr" = (
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
@@ -1545,53 +1545,53 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/rack,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "ahs" = (
 /obj/machinery/light,
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "aht" = (
 /obj/docking_port/stationary/ert/target{
 	name = "Hangar"
 	},
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ahu" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "ahv" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahw" = (
 /obj/structure/sink,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahx" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahy" = (
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahz" = (
 /obj/machinery/sleeper,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahA" = (
 /obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahB" = (
 /obj/item/weapon/gun/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
@@ -1607,77 +1607,77 @@
 /obj/item/armor_module/storage/uniform/holster,
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ahC" = (
 /obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahD" = (
 /obj/machinery/chem_dispenser,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahE" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahF" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahG" = (
 /obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahH" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahI" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahJ" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahK" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahL" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "ahO" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/research,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahP" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahQ" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahR" = (
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/rack,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "ahS" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv{
@@ -1697,11 +1697,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahT" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahU" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -1709,14 +1709,14 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahV" = (
 /obj/machinery/smartfridge/chemistry,
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahX" = (
 /obj/item/storage/box/pillbottles,
 /obj/item/storage/box/gloves{
@@ -1734,19 +1734,19 @@
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ahY" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ahZ" = (
 /obj/effect/landmark/start/job/cmo,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aia" = (
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aib" = (
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
@@ -1756,32 +1756,32 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "aic" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aid" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aie" = (
 /obj/machinery/bodyscanner{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aif" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aig" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aih" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/mainship,
@@ -1795,7 +1795,7 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aij" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/fire{
@@ -1821,46 +1821,46 @@
 	pixel_y = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ail" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "aim" = (
 /obj/structure/closet/secure_closet/pilot_officer,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ain" = (
 /obj/machinery/computer/cryopod,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ais" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ait" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiu" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "aiv" = (
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/rack,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "aiw" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aix" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv{
@@ -1896,44 +1896,44 @@
 	pixel_y = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiy" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 1
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiz" = (
 /turf/closed/wall/mainship/research/containment/wall/north,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiA" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 4
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiD" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aiE" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aiF" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "aiG" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
 	dir = 4
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiH" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 9
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiN" = (
 /obj/machinery/flasher{
 	id = "Containment Cell 3";
@@ -1942,45 +1942,45 @@
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 1
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiO" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiP" = (
 /turf/closed/wall/mainship/research/containment/wall/east,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aiR" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aiS" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/delta,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aiT" = (
 /obj/machinery/light,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "aiV" = (
 /obj/machinery/vending/medical,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiW" = (
 /obj/machinery/vending/MarineMed/Blood,
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiX" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/lifesaver/full,
@@ -2001,27 +2001,27 @@
 /obj/item/healthanalyzer,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiY" = (
 /obj/machinery/door/poddoor/shutters/mainship/cell,
 /obj/machinery/door/airlock/mainship/research/glass/cell,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aiZ" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 8
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aja" = (
 /turf/open/floor/mainship/research/containment/floor1,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajb" = (
 /obj/structure/prop/mainship/mapping_computer,
 /obj/item/radio/intercom/general{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ajd" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/mainship,
@@ -2031,21 +2031,21 @@
 	pixel_y = 16
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ajf" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 4
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aji" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "ajj" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
 /turf/closed/wall/mainship/research/containment/wall/east,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajk" = (
 /obj/structure/bed,
 /obj/structure/bed,
@@ -2054,42 +2054,42 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajl" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
 	dir = 8
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajm" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 10
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ajq" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ajr" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/research/containment/floor2,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajs" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 6
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajt" = (
 /obj/machinery/cloning/vats,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajw" = (
 /obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajB" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -2098,17 +2098,17 @@
 	dir = 1
 	},
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "ajC" = (
 /obj/machinery/robotic_fabricator,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajD" = (
 /obj/structure/morgue{
 	dir = 2
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajE" = (
 /obj/structure/morgue{
 	dir = 2
@@ -2117,53 +2117,53 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajF" = (
 /turf/open/floor/mainship/empty,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ajG" = (
 /obj/structure/morgue/crematorium,
 /obj/machinery/crema_switch{
 	pixel_x = 24
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajH" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 8
 	},
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajK" = (
 /turf/closed/wall/mainship/research/containment/wall/south,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajL" = (
 /turf/closed/wall/mainship/research/containment/wall/corner,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajM" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajN" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajO" = (
 /obj/item/storage/box/monkeycubes,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajP" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajQ" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
@@ -2173,11 +2173,11 @@
 /obj/item/defibrillator,
 /obj/item/reagent_containers/glass/beaker/biomass,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajR" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajS" = (
 /obj/structure/table/mainship,
 /obj/item/healthanalyzer,
@@ -2186,52 +2186,52 @@
 /obj/item/roller,
 /obj/item/roller,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajT" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajU" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajV" = (
 /obj/structure/sink{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajW" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ajX" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajY" = (
 /obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ajZ" = (
 /obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aka" = (
 /obj/structure/closet/secure_closet/guncabinet/incendiary,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "aoI" = (
 /turf/closed/wall/mainship/outer/reinforced,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "aoJ" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "apF" = (
 /obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
@@ -2244,7 +2244,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "apH" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2252,84 +2252,84 @@
 	},
 /obj/effect/turf_decal/warning_stripes/medical,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "auM" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/grass,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "awM" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "azU" = (
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "aGU" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "aPt" = (
 /obj/docking_port/stationary/marine_dropship/cas,
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bgb" = (
 /turf/closed/wall/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bhC" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bkg" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "blr" = (
 /obj/docking_port/stationary/marine_dropship/minidropship,
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bwS" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bEy" = (
 /obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bOe" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "bOu" = (
 /turf/open/floor/plating,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bXE" = (
 /obj/structure/ship_ammo/cas/bomb/fourhundred,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "bXN" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical_doctor,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "cCb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "djH" = (
 /obj/vehicle/ridden/powerloader,
 /obj/machinery/landinglight/cas,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "dkH" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/toughened{
@@ -2337,45 +2337,45 @@
 	},
 /obj/machinery/computer/communications,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "dwY" = (
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "dPu" = (
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "dTa" = (
 /obj/machinery/robotic_cradle,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "dZo" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ecg" = (
 /obj/machinery/landinglight/alamo{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ecz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "ekJ" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "eBB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "eDr" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -2388,7 +2388,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "eDC" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -2398,24 +2398,24 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "eLW" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "fAT" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "fVU" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "gas" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
@@ -2423,11 +2423,11 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "gsp" = (
 /obj/structure/ship_rail_gun,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "gtH" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2440,23 +2440,23 @@
 	},
 /obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "gOE" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "gUp" = (
 /obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "hyS" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "hCx" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -2466,12 +2466,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ieJ" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "ivw" = (
 /obj/machinery/landinglight/alamo{
 	dir = 8
@@ -2480,55 +2480,55 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "iSK" = (
 /obj/effect/landmark/start/job/staffofficer,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "iUB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "jxJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "jPH" = (
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "jRy" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship,
-/area/debugdalus/living/port_garden)
+/area/mainship/living/port_garden)
 "kmz" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "kon" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "kso" = (
 /turf/open/floor/mainship,
-/area/debugdalus/command/self_destruct)
+/area/mainship/command/self_destruct)
 "ksL" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "kEy" = (
 /obj/machinery/light{
 	dir = 4
@@ -2538,27 +2538,27 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "kQa" = (
 /obj/machinery/light,
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "lcb" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "ldZ" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "leh" = (
 /obj/machinery/door_display/research_cell/cell{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ljg" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2566,18 +2566,18 @@
 	},
 /obj/effect/turf_decal/warning_stripes/engineer,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "ljw" = (
 /obj/machinery/landinglight/tadpole{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "ljx" = (
 /obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "lmD" = (
 /obj/effect/turf_decal/warning_stripes/engineer,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2585,7 +2585,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "lmU" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -2595,24 +2595,24 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "lGz" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "lIR" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "mlP" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "mXV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
@@ -2623,44 +2623,44 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "nak" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "nRd" = (
 /obj/structure/ship_ammo/cas/bomblet,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "oNT" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "oPy" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/box/small,
 /obj/effect/turf_decal/warning_stripes/engineer,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "oQb" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "qko" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "qrl" = (
 /obj/structure/closet/emcloset,
 /obj/item/radio/intercom/general{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "qxC" = (
 /obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
@@ -2673,7 +2673,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "qzT" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -2686,51 +2686,51 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "qBy" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "qCi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "qEm" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "qFU" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "qWi" = (
 /obj/machinery/landinglight/tadpole,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "rmh" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/alamo{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "rmt" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "rrI" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "rtT" = (
 /obj/effect/turf_decal/warning_stripes/medical,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2738,16 +2738,16 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "rDw" = (
 /turf/open/floor/mainship,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "rPl" = (
 /obj/machinery/landinglight/tadpole{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "rSb" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -2758,7 +2758,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "soy" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -2768,58 +2768,58 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "syF" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/alamo{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "sAD" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "tae" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "tdM" = (
 /obj/machinery/landinglight/tadpole{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "tmK" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "tpB" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/engineering_workshop)
+/area/mainship/engineering/engineering_workshop)
 "ttO" = (
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "tWe" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/alamo{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "tZD" = (
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 "ual" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -2829,7 +2829,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "uhl" = (
 /obj/effect/turf_decal/warning_stripes/leader,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2837,48 +2837,48 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "umn" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship,
-/area/debugdalus/medical/lower_medical)
+/area/mainship/medical/lower_medical)
 "ung" = (
 /obj/structure/bed/chair/ob_chair,
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "vsI" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "vAz" = (
 /obj/machinery/landinglight/cas,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "vHf" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "vPb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/weapon_room)
+/area/mainship/shipboard/weapon_room)
 "vSw" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "way" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "wgC" = (
 /obj/effect/turf_decal/warning_stripes/smartgunner,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2886,20 +2886,20 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "wpk" = (
 /obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "wqS" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/squads/general)
+/area/mainship/squads/general)
 "wXp" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -2907,18 +2907,18 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "wYp" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship,
-/area/debugdalus/command/cic)
+/area/mainship/command/cic)
 "wYr" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/vehicle/unmanned/droid/scout,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/debugdalus/command/telecomms)
+/area/mainship/command/telecomms)
 "xot" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2926,7 +2926,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -2934,38 +2934,38 @@
 /obj/machinery/computer/supplydrop_console,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "xBy" = (
 /obj/machinery/computer/dropship_picker,
 /obj/machinery/landinglight/tadpole{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "xFR" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/debugdalus/living/cryo_cells)
+/area/mainship/living/cryo_cells)
 "xJD" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/debugdalus/squads/req)
+/area/mainship/squads/req)
 "xNw" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/hangar)
+/area/mainship/hallways/hangar)
 "xTV" = (
 /turf/open/floor/mainship,
-/area/debugdalus/exoarmor)
+/area/mainship/hallways/exoarmor)
 "ybc" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/debugdalus/medical/medical_science)
+/area/mainship/medical/medical_science)
 
 (1,1,1) = {"
 aaa
