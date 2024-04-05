@@ -21,13 +21,7 @@
 	move_delay = 0.9 SECONDS
 	ram_damage = 100
 	easy_load_list = list(
-		/obj/item/ammo_magazine/tank/ltb_cannon,
-		/obj/item/ammo_magazine/tank/ltaap_chaingun,
-		/obj/item/ammo_magazine/tank/flamer,
-		/obj/item/ammo_magazine/tank/towlauncher,
-		/obj/item/ammo_magazine/tank/secondary_cupola,
-		/obj/item/ammo_magazine/tank/tank_glauncher,
-		/obj/item/ammo_magazine/tank/tank_slauncher,
+		/obj/item/ammo_magazine/tank
 	)
 
 ///returns a list of possible locations that this vehicle may be entered from
