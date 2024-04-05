@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign: Loadout options with a cost are now coloured to indicate this"
