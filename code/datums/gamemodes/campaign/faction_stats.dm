@@ -66,6 +66,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/tdm/mech_wars = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid = 15,
 		/datum/campaign_mission/destroy_mission/base_rescue = 12,
+		/datum/campaign_mission/raiding_base = 6,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_mission/tdm/orion = 10,
@@ -216,6 +217,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		faction_assets[new_asset] = new new_asset(src)
 		RegisterSignals(faction_assets[new_asset], list(COMSIG_CAMPAIGN_ASSET_ACTIVATION, COMSIG_CAMPAIGN_DISABLER_ACTIVATION), PROC_REF(force_update_static_data))
 
+///Removes an asset from a faction entirely
+/datum/faction_stats/proc/remove_asset(datum/campaign_asset/removed_asset)
+	if(faction_assets[removed_asset])
+		QDEL_NULL(faction_assets[removed_asset])
+
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
@@ -258,6 +264,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		if(human_mob.job.job_cost) //We don't refund ally roles
 			human_mob.job.add_job_positions(1)
 		qdel(human_mob)
+		if(!ghost) //if they ghosted already
+			return
 		var/datum/game_mode/mode = SSticker.mode
 		mode.player_respawn(ghost) //auto open the respawn screen
 

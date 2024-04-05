@@ -301,7 +301,7 @@
 		. += span_info("The power gauge reads: [power_gen_percent]%")
 	if(fusion_cell)
 		. += span_info("You can see a fuel cell in the receptacle.")
-		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_MASTER)
+		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_EXPERT)
 			switch(fusion_cell.fuel_amount)
 				if(0 to 10)
 					. += span_danger("The fuel cell is critically low.")
