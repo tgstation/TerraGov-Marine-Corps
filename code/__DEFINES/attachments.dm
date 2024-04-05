@@ -7,7 +7,7 @@
 #define CAN_ATTACH "can_attach"
 #define PIXEL_SHIFT_X "pixel_shift_x"
 #define PIXEL_SHIFT_Y "pixel_shift_y"
-#define attach_features_flags "attach_features_flags"
+#define FLAGS_ATTACH_FEATURES "attach_features_flags"
 #define ATTACH_DELAY "attach_delay"
 #define DETACH_DELAY "detach_delay"
 #define ATTACH_SKILL "attach_skill"
