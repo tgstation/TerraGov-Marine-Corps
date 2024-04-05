@@ -91,7 +91,7 @@
 			return
 	balloon_alert(user, "Starts digging")
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-	if(!do_after(user, shovelspeed, NONE, T, BUSY_ICON_BUILD))
+	if(!do_after(user, shovelspeed, NONE, target_turf, BUSY_ICON_BUILD))
 		return
 	var/transf_amt = dirt_amt_per_dig
 	if(turfdirt == DIRT_TYPE_SNOW)
