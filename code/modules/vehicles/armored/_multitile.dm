@@ -21,7 +21,7 @@
 	move_delay = 0.9 SECONDS
 	ram_damage = 100
 	easy_load_list = list(
-		/obj/item/ammo_magazine/tank
+		/obj/item/ammo_magazine/tank,
 	)
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(mob/M)

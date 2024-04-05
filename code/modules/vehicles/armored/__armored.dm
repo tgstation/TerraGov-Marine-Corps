@@ -265,6 +265,23 @@
 		return
 	mob_exit(leaver, TRUE)
 
+/// call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc
+/obj/vehicle/sealed/armored/proc/try_easy_load(atom/movable/item, mob/living/user)
+	if(!is_type_in_typecache(item.type, easy_load_list))
+		return
+	if(!interior)
+		user.balloon_alert(user, "no interior")
+		return
+	if(!interior.door)
+		user.balloon_alert(user, "no door")
+		return
+	if(!(user.loc in enter_locations(user)))
+		user.balloon_alert(user, "not at entrance")
+		return
+	user.temporarilyRemoveItemFromInventory(item)
+	item.forceMove(interior.door.get_enter_location())
+	user.balloon_alert(user, "item thrown inside")
+
 /obj/vehicle/sealed/armored/mob_try_enter(mob/M)
 	if(isobserver(M))
 		interior?.mob_enter(M)
@@ -409,20 +426,7 @@
 		return
 	if(interior) // if interior handle by gun breech
 		// check for easy loading instead
-		if(!is_type_in_typecache(I.type, easy_load_list))
-			return
-		if(!interior)
-			user.balloon_alert(user, "no interior")
-			return
-		if(!interior.door)
-			user.balloon_alert(user, "no door")
-			return
-		if(!(user.loc in enter_locations(user)))
-			user.balloon_alert(user, "not at entrance")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(interior.door.get_enter_location())
-		user.balloon_alert(user, "item thrown inside")
+		try_easy_load(I, user)
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
@@ -449,36 +453,14 @@
 	// Bypass to parent to handle mobs entering the vehicle.
 	if(dropping == M)
 		return ..()
-	if(!M)
-		return ..()
-	if(!interior)
-		return ..()
-	if(!interior.door)
-		return ..()
-	if(!(ismovable(dropping) && is_type_in_typecache(dropping.type, easy_load_list)))
-		return ..()
-	if(!(M.loc in enter_locations(M)))
-		M.balloon_alert(M, "not at entrance")
+	if(!isliving(M))
 		return
-	M.temporarilyRemoveItemFromInventory(dropping)
-	dropping.forceMove(interior.door.get_enter_location())
-	M.balloon_alert(M, "item thrown inside")
+	try_easy_load(droppin, M)
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
 		return ..()
-	var/atom/movable/grabbed_thing = grab.grabbed_thing
-	if(!interior)
-		user.balloon_alert(user, "no interior")
-		return
-	if(!interior.door)
-		user.balloon_alert(user, "no door")
-		return
-	if(!(user.loc in enter_locations(user)))
-		user.balloon_alert(user, "not at entrance")
-		return
-	grabbed_thing.forceMove(interior.door.get_enter_location())
-	user.balloon_alert(user, "item thrown inside")
+	try_easy_load(grab.grabbed_thing, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
