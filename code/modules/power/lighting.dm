@@ -420,9 +420,6 @@
 	qdel(src)
 
 //types
-/obj/machinery/light/mainship
-	bulb_type = "tube"
-
 /obj/machinery/light/mainship/Initialize(mapload)
 	. = ..()
 	GLOB.mainship_lights += src
@@ -442,7 +439,6 @@
 
 /obj/machinery/light/red
 	bulb_type = "tube_red"
-	icon_state = "tube_empty"
 	light_color = LIGHT_COLOR_FLARE
 	brightness = 3
 	bulb_power = 0.5
