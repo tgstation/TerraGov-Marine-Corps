@@ -31,7 +31,7 @@
 	var/flicker_time = 2 SECONDS
 	///the type of light item
 	var/light_type = /obj/item/light_bulb/tube
-	///the bulb item in this light
+	///the bulb item name in this light
 	var/fitting = "tube"
 	///count of number of times switched on/off. this is used to calc the probability the light burns out
 	var/switchcount = 0
@@ -145,14 +145,14 @@
 		return
 
 	if(istype(I, /obj/item/lightreplacer))
-		var/obj/item/lightreplacer/LR = I
 		if(!isliving(user))
 			return
+		var/mob/living/living_user = user
+		var/obj/item/lightreplacer/lightreplacer = I
+		lightreplacer.ReplaceLight(src, living_user)
+		return
 
-		var/mob/living/L = user
-		LR.ReplaceLight(src, L)
-
-	else if(istype(I, /obj/item/light_bulb))
+	if(istype(I, /obj/item/light_bulb))
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [fitting] already inserted.")
 			return
@@ -176,42 +176,52 @@
 
 		if(light_on && rigged)
 			explode()
+		return
 
-	else if(status == LIGHT_OK || status == LIGHT_BURNED)
-		if(!prob(1 + I.force * 5))
-			to_chat(user, "You hit the light!")
-			return
+	if(status == LIGHT_EMPTY && has_power() && (I.atom_flags & CONDUCT))
+		to_chat(user, "You stick \the [I] into the light socket!")
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread(src)
+		s.set_up(3, 1, loc)
+		s.start()
+		if(prob(75))
+			electrocute_mob(user, get_area(src), src, rand(7, 10) * 0.1)
 
-		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.atom_flags & CONDUCT) && prob(12))
-			electrocute_mob(user, get_area(src), src, 0.3)
-		broken()
+/obj/machinery/light/attacked_by(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(status != LIGHT_OK && status != LIGHT_BURNED)
+		return
+	if(!prob(1 + I.force * 5))
+		return
 
-	else if(status == LIGHT_EMPTY)
-		if(isscrewdriver(I))
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			user.visible_message("[user] opens [src]'s casing.", \
-				"You open [src]'s casing.", "You hear a noise.")
-			var/obj/machinery/light_construct/newlight
-			switch(fitting)
-				if("tube")
-					newlight = new /obj/machinery/light_construct(loc)
-					newlight.icon_state = "tube-construct-stage2"
+	visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
+	if(light_on && (I.atom_flags & CONDUCT) && prob(12))
+		electrocute_mob(user, get_area(src), src, 0.3)
+	broken()
 
-				if("bulb")
-					newlight = new /obj/machinery/light_construct/small(loc)
-					newlight.icon_state = "bulb-construct-stage2"
-			newlight.setDir(dir)
-			newlight.stage = 2
-			qdel(src)
+/obj/machinery/light/screwdriver_act(mob/living/user, obj/item/I)
+	if(user.a_intent == INTENT_HARM)
+		return FALSE
+	if(status != LIGHT_EMPTY)
+		balloon_alert(user, "Remove bulb")
+		return TRUE
 
-		else if(has_power() && (I.atom_flags & CONDUCT))
-			to_chat(user, "You stick \the [I] into the light socket!")
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(3, 1, src)
-			s.start()
-			if(prob(75))
-				electrocute_mob(user, get_area(src), src, rand(7, 10) * 0.1)
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	user.visible_message("[user] opens [src]'s casing.", \
+		"You open [src]'s casing.", "You hear a noise.")
+	var/obj/machinery/light_construct/newlight
+	switch(fitting)
+		if("bulb")
+			newlight = new /obj/machinery/light_construct/small(loc)
+			newlight.icon_state = "bulb-construct-stage2"
+		else //we'll assume tube as the default in case of shitcodery
+			newlight = new /obj/machinery/light_construct(loc)
+			newlight.icon_state = "tube-construct-stage2"
+	newlight.setDir(dir)
+	newlight.stage = 2
+	qdel(src)
+	return TRUE
 
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -385,10 +395,10 @@
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-//		if(on)
-//			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-//			s.set_up(3, 1, src)
-//			s.start()
+		if(status == LIGHT_OK && has_power())
+			var/datum/effect_system/spark_spread/spark_spread = new /datum/effect_system/spark_spread(src)
+			spark_spread.set_up(3, 1, loc)
+			spark_spread.start()
 	status = LIGHT_BROKEN
 	update()
 
