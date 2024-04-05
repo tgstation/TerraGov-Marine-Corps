@@ -21238,22 +21238,6 @@
 	},
 /turf/open/floor/freezer,
 /area/sulaco/cap_office)
-"qsy" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/hangar/storage)
 "qtj" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -67238,7 +67222,7 @@ lRu
 bYM
 gNn
 aWo
-qsy
+bWI
 lOC
 lOC
 peL
