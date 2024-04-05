@@ -51,9 +51,7 @@
 	switch(current_action)
 		if(ESCORTING_ATOM)
 			if(get_dist(escorted_atom, mob_parent) > ESCORTING_MAX_DISTANCE)
-				cleanup_current_action()
-				base_action = MOVING_TO_NODE
-				late_initialize()
+				look_for_next_node()
 				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
@@ -68,12 +66,12 @@
 				if(!goal_node) // We are randomly moving
 					var/atom/xeno_to_follow = get_nearest_target(mob_parent, ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 					if(xeno_to_follow)
-						set_escorted_atom(null, xeno_to_follow)
+						set_escorted_atom(null, xeno_to_follow, TRUE)
 						return
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
-			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
+			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
