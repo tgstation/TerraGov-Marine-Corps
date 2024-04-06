@@ -151,7 +151,7 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 
-			if(!(user_id.flags_id & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+			if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
 				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
 				return FALSE
 			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
@@ -205,7 +205,7 @@
 			if(use_points && (item_category in user_id.marine_points))
 				user_id.marine_points[item_category] -= cost
 			. = TRUE
-			user_id.flags_id |= USED_GHMME
+			user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
