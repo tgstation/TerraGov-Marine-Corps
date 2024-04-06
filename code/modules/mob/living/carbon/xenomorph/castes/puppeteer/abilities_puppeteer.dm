@@ -491,7 +491,7 @@
 	action_icon_state = "enrage"
 	desc = "Send out your puppets to attack puppets"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,
 	)
 
 /datum/action/ability/xeno_action/puppeteer_unleash/action_activate(mob/living/victim)
@@ -510,7 +510,7 @@
 	action_icon_state = "rally"
 	desc = "Recall your puppets"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALLPUPPETS,
 	)
 
 /datum/action/ability/xeno_action/puppeteer_recall/action_activate(mob/living/victim)

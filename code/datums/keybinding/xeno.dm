@@ -1078,6 +1078,17 @@
 	description = "Give orders to your puppets, altering their behaviour."
 	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
 
+/datum/keybinding/xeno/unleash_puppet
+	name = "Unleash puppets"
+	full_name = "Puppeteer: Unleash puppets"
+	description = "Unleash puppets to attack nearby humans."
+	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+/datum/keybinding/xeno/recall_puppet
+	name = "Recalls puppets"
+	full_name = "Puppeteer: Recalls puppets"
+	description = "Recalls your puppets, making them follow you once more"
+	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
+
 /datum/keybinding/xeno/bestow_blessing
 	name = "Bestow Blessings"
 	full_name = "Puppeteer: Bestow Blessings"
