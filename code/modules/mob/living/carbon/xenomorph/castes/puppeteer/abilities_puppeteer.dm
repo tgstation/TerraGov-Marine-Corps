@@ -479,6 +479,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/puppeteer_recall
 	name = "Recall Puppets"
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "rally"
 	desc = "Recall your puppets to follow you once more"
 	keybinding_signals = list(
