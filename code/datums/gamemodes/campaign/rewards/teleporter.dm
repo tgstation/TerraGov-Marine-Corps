@@ -42,18 +42,18 @@
 //adds more charges
 /datum/campaign_asset/teleporter_charges
 	name = "Teleporter Array charges"
-	desc = "+2 uses of the Teleporter Array"
-	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
+	desc = "+6 uses of the Teleporter Array"
+	detailed_desc = "Central command have allocated the battalion with six additional uses of the Teleporter Array, with two added per use. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_uses"
-	uses = 3
+	uses = 6
 	cost = 6
 
 /datum/campaign_asset/teleporter_charges/activated_effect()
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
-		teleporter.charges ++
+		teleporter.charges += 2
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
 		return
 
