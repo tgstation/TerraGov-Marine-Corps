@@ -51,7 +51,6 @@
 #define PUPPET_RECALL "recall puppet"
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
 #define PUPPET_ATTACK "seek and attack order"
-#define PUPPET_SCOUT "scouting order"
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
