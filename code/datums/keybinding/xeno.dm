@@ -1077,6 +1077,7 @@
 	full_name = "Puppeteer: Unleash puppets"
 	description = "Unleash puppets to attack nearby humans."
 	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+
 /datum/keybinding/xeno/recall_puppet
 	name = "Recall puppets"
 	full_name = "Puppeteer: Recall puppets"
