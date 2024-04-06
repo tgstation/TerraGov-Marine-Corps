@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes:
-  - rscadd: "Idled minions will now follow xenos players to the front"
