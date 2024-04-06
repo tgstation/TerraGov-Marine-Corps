@@ -181,8 +181,8 @@
 ///Attach the instantiated item on an armor
 /datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/thing_to_install_on, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
-	//if(!item_type)
-	//	return
+	if(!item_type)
+		return
 	var/obj/item/armor_module/module_type = item_type
 	if(!CHECK_BITFIELD(initial(module_type.attach_features_flags), ATTACH_REMOVABLE))
 		bypass_vendor_check = TRUE
@@ -205,7 +205,7 @@
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
 	..()
 	var/obj/item/armor_module/storage/storage_module = item_to_copy
-	var/obj/item/storage/internal/modular/internal_storage = storage_module.atom_storage
+	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage_type
 	storage = new(internal_storage)
 
 /datum/item_representation/armor_module/storage/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
@@ -213,8 +213,10 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/storage/storage_module = .
+	if(!storage_module)
+		return
 	if(!storage)
 		return
-	qdel(storage_module.atom_storage) //an empty storage item is generated when the module is initialised
-	storage_module.atom_storage = storage.instantiate_object(seller, storage_module, user)
+	//XANTODO qdel(storage_module.atom_storage) //an empty storage item is generated when the module is initialised
+	storage_module = storage.instantiate_datum(seller, storage_module, user)
 

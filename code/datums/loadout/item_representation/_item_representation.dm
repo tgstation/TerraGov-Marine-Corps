@@ -14,7 +14,7 @@
 	var/bypass_vendor_check = FALSE
 
 /datum/item_representation/New(obj/item/item_to_copy)
-	if(!item_to_copy)
+	if(!item_to_copy && !isobj(item_to_copy))
 		return
 	item_type = item_to_copy.type
 	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -53,6 +53,18 @@
 		item.update_icon()
 	return item
 
+///Like instantiate_object(), but returns a /datum instead of a /item, master is REQUIRED and it must be at least an atom
+/datum/item_representation/proc/instantiate_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
+	if(!master)
+		stack_trace("instantiate_datum called with null master")
+		return FALSE
+	if(!isatom(master))
+		stack_trace("[master] is not a /atom, it cannot have storage")
+		return FALSE
+	item_type = master
+	var/datum/return_storage = master.atom_storage
+	return return_storage // Due to storage refactor, storage is a datum, so we can no longer treat it as an item
+
 /**
  * This is in charge of generating a visualisation of the item, that will then be gave to TGUI
  */
@@ -84,8 +96,6 @@
 /datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!item_to_copy.atom_storage)
-		CRASH("/datum/item_representation/storage created from an item that has no storage")
 	..()
 	//Internal storage are not in vendors. They should always be available for the loadout vendors, because they are instantiated like any other object
 	if(istype(item_to_copy, /obj/item/storage/internal))
@@ -99,18 +109,18 @@
 			item_representation_type = /datum/item_representation
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+/datum/item_representation/storage/instantiate_datum(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	//Some storage cannot handle custom contents
 	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save))
 		return
-	var/obj/item/storage/storage = .
+	var/datum/storage/datum_storage = .
 	var/list/obj/item/starting_items = list()
-	for(var/obj/item/I AS in storage.contents)
+	for(var/obj/item/I AS in item_type.contents)
 		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
-	storage.atom_storage.delete_contents()
+	datum_storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
@@ -123,8 +133,8 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage.atom_storage.can_be_inserted(item_to_insert, user))
-			storage.atom_storage.handle_item_insertion(item_to_insert)
+		if(datum_storage.can_be_inserted(item_to_insert, user))
+			datum_storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
 

@@ -27,7 +27,7 @@
 	equip_delay_self = parent.equip_delay_self
 	strip_delay = parent.strip_delay
 
-	atom_storage.register_storage_signals(attaching_to)
+	atom_storage.register_storage_signals(attaching_to) //XANTODO calls 0.register_storage_signals()
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)

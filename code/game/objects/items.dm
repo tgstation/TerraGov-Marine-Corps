@@ -149,7 +149,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 
 /obj/item/Initialize(mapload)
-
 	if(species_exception)
 		species_exception = string_list(species_exception)
 	if(length(colorable_colors))
