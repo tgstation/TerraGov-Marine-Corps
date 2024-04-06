@@ -6,7 +6,6 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_asset/bonus_job/pmc,
 		/datum/campaign_asset/bonus_job/combat_robots,
 		/datum/campaign_asset/fire_support/mortar,
-		/datum/campaign_asset/droppod_refresh,
 		/datum/campaign_asset/droppod_enabled,
 	),
 	FACTION_SOM = list(
@@ -14,7 +13,6 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_asset/bonus_job/colonial_militia,
 		/datum/campaign_asset/bonus_job/icc,
 		/datum/campaign_asset/fire_support/som_mortar,
-		/datum/campaign_asset/teleporter_charges,
 		/datum/campaign_asset/teleporter_enabled,
 	),
 ))

@@ -5,7 +5,7 @@
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_active"
-	uses = 2
+	uses = 3
 	cost = 5
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	already_active_message = "The Teleporter Array is already activated!"
