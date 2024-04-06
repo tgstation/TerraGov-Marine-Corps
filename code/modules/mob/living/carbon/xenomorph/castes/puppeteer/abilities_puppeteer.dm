@@ -462,7 +462,7 @@
 /datum/action/ability/xeno_action/puppeteer_unleash
 	name = "Unleash Puppets"
 	action_icon_state = "enrage"
-	desc = "Send out your puppets to attack puppets"
+	desc = "Send out your puppets to attack nearby humans"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,
 	)
@@ -480,7 +480,7 @@
 /datum/action/ability/xeno_action/puppeteer_recall
 	name = "Recall Puppets"
 	action_icon_state = "rally"
-	desc = "Recall your puppets"
+	desc = "Recall your puppets to follow you once more"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALLPUPPETS,
 	)

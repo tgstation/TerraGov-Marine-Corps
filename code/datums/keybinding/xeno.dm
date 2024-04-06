@@ -1078,8 +1078,8 @@
 	description = "Unleash puppets to attack nearby humans."
 	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
 /datum/keybinding/xeno/recall_puppet
-	name = "Recalls puppets"
-	full_name = "Puppeteer: Recalls puppets"
+	name = "Recall puppets"
+	full_name = "Puppeteer: Recall puppets"
 	description = "Recalls your puppets, making them follow you once more"
 	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
 
