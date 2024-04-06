@@ -74,3 +74,35 @@
       out
   - code_imp: Renames the MLRS ammo to a more consistent schema
   - bugfix: Fix the MLRS having free ammo thanks to init mapload :(
+2024-04-05:
+  PestoVerde322:
+  - bugfix: The lightbulbs on red alert or low power now no longer turn into a massive
+      error
+  - bugfix: The welding glasses have been aligned instead of nudging off weirdly when
+      toggled
+  - bugfix: The door control button will stay in place if you don't have access
+  - bugfix: The error on the escape pod controller is gone
+  - imagedel: Cleared some unused icons in lighting.dmi
+  - rscdel: Removed the unused firelight
+  TiviPlus:
+  - bugfix: Probably fixed AI roaming and that one startup runtime
+  exdal:
+  - bugfix: Fixes full_name typo in Orbit UI
+2024-04-06:
+  BraveMole:
+  - rscadd: Idled minions will now follow xenos players to the front
+  Lumipharon:
+  - bugfix: fixed infinite projectile reflection
+  - qol: 'Campaign: Loadout options with a cost are now coloured to indicate this'
+  - balance: Reduced the duration of smoke nades used in HvH
+  MLGTASTICa:
+  - code_imp: Moved entrance code from the armored/sealed/multitile type to armored/sealed.
+      Refactors the NT mini tank code to work with this.
+  - balance: You can now throw shells to the interior of the MT Ares by attacking
+      the tank with them at an entrance.
+  - qol: Radial menus for applying medicine will now fit all LIMBS on a ring instead
+      of having 2 pages.
+  Victor239:
+  - code_imp: Updated faction comparison docs.
+  yyzsong:
+  - rscadd: Adds night vision goggles to valhalla
