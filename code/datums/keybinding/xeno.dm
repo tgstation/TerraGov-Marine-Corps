@@ -1072,12 +1072,6 @@
 	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	keybind_signal = COMSIG_XENOABILITY_TENDRILS
 
-/datum/keybinding/xeno/send_orders_puppet
-	name = "Give Orders to Puppets"
-	full_name = "Puppeteer: Give Orders to Puppets"
-	description = "Give orders to your puppets, altering their behaviour."
-	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
-
 /datum/keybinding/xeno/unleash_puppet
 	name = "Unleash puppets"
 	full_name = "Puppeteer: Unleash puppets"

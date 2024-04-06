@@ -457,35 +457,8 @@
 	add_cooldown()
 
 // ***************************************
-// *********** Orders
-// ***************************************
-
-/datum/action/ability/xeno_action/puppeteer_orders
-	name = "Give Orders to Puppets"
-	action_icon_state = "orders"
-	desc = "Give orders to your puppets, altering their behaviour."
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
-	)
-
-/datum/action/ability/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
-	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
-	if(!choice)
-		return
-	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, choice))
-		owner.balloon_alert(owner, "success")
-		switch(choice)
-			if(PUPPET_ATTACK)
-				owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
-			if(PUPPET_RECALL)
-				owner.visible_message(span_warning("[owner] quickly manipulates the psychic strings of the puppets, drawing them near!"))
-	else
-		owner.balloon_alert(owner, "fail")
-
-// ***************************************
 // *********** Unleash puppets
 // ***************************************
-
 /datum/action/ability/xeno_action/puppeteer_unleash
 	name = "Unleash Puppets"
 	action_icon_state = "enrage"
@@ -504,7 +477,6 @@
 // ***************************************
 // *********** Recall puppets
 // ***************************************
-
 /datum/action/ability/xeno_action/puppeteer_recall
 	name = "Recall Puppets"
 	action_icon_state = "rally"

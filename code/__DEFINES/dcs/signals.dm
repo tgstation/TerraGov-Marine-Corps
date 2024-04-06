@@ -937,7 +937,6 @@
 #define COMSIG_XENOABILITY_DREADFULPRESENCE "xenoability_dreadfulpresence"
 #define COMSIG_XENOABILITY_PINCUSHION "xenoability_pincushion"
 #define COMSIG_XENOABILITY_FLAY "xenoability_flay"
-#define COMSIG_XENOABILITY_SENDORDERS "xenoability_sendorders"
 #define COMSIG_XENOABILITY_UNLEASHPUPPETS "xenoability_unleashpuppets"
 #define COMSIG_XENOABILITY_RECALLPUPPETS "xenoability_recallpuppets"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
