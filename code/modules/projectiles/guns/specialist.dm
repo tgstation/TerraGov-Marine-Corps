@@ -994,7 +994,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/railgun/hvap,
 	)
 	force = 40
-	wield_delay = 2.0 SECONDS
+	wield_delay = 2.4 SECONDS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -1005,7 +1005,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 3 SECONDS
-	windup_delay = 0.3 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3
