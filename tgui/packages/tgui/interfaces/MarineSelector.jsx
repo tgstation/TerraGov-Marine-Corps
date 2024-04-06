@@ -80,7 +80,6 @@ const ItemCategory = (props) => {
   const cant_buy =
     (choice === 'choice' && !remaining) ||
     (choice === 'points' && !remaining_points);
-
   return (
     <Section
       title={name}
@@ -143,117 +142,109 @@ const ItemLine = (props) => {
     cant_buy,
     remaining_points,
   } = props;
-
+  const colorToElement = {
+    white: (
+      <Box inline mr="6px" ml="6px">
+        Essential!
+      </Box>
+    ),
+    orange: (
+      <Box inline mr="6px" ml="6px" color="orange">
+        Recommended
+      </Box>
+    ),
+    'engi-tool': (
+      <Box inline mr="6px" ml="6px" color="#FFE4C4">
+        Tools
+      </Box>
+    ),
+    'engi-construction': (
+      <Box inline mr="6px" ml="6px" color="#7FFFD4">
+        Materials
+      </Box>
+    ),
+    'engi-artillery': (
+      <Box inline mr="6px" ml="6px" color="#CD5C5C">
+        Artillery
+      </Box>
+    ),
+    'engi-mining': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Mining
+      </Box>
+    ),
+    'engi-explosive': (
+      <Box inline mr="6px" ml="6px" color="#FF7F50">
+        Explosives
+      </Box>
+    ),
+    'engi-other': (
+      <Box inline mr="6px" ml="6px" color="#BA55D3">
+        Other
+      </Box>
+    ),
+    'corps-meds': (
+      <Box inline mr="6px" ml="6px" color="#7FFFD4">
+        Medicine
+      </Box>
+    ),
+    'corps-tools': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Tools
+      </Box>
+    ),
+    'sg-minigun': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Minigun
+      </Box>
+    ),
+    'sg-targetrifle': (
+      <Box inline mr="6px" ml="6px" color="#BA55D3">
+        Target Rifle
+      </Box>
+    ),
+    'sg-machinegun': (
+      <Box inline mr="6px" ml="6px" color="#00FF00">
+        Machinegun
+      </Box>
+    ),
+    'sg-smartpistol': (
+      <Box inline mr="6px" ml="6px" color="#FFE4C4">
+        Smartpistol
+      </Box>
+    ),
+    'synth-cosmetic': (
+      <Box inline mr="6px" ml="6px" color="blue">
+        Cosmetic
+      </Box>
+    ),
+    'synth-armor': (
+      <Box inline mr="6px" ml="6px" color="red">
+        Armor
+      </Box>
+    ),
+    'synth-rcarmor': (
+      <Box inline mr="6px" ml="6px" color="orange">
+        Recommended -Armor
+      </Box>
+    ),
+    'synth-arcarmstorage': (
+      <Box inline mr="6px" ml="6px" color="green">
+        Recommended - Armor and Suit Storage
+      </Box>
+    ),
+    'synth-attachable': (
+      <Box inline mr="6px" ml="6px" color="green">
+        Recommended - Attachable to Flak Jacket
+      </Box>
+    ),
+  };
   return (
     <LabeledList.Item
       key={id}
       buttons={
         <>
-          {prod_color === 'white' && (
-            <Box inline mr="6px" ml="6px">
-              Essential!
-            </Box>
-          )}
-          {prod_color === 'orange' && (
-            <Box inline mr="6px" ml="6px" color="orange">
-              Recommended
-            </Box>
-          )}
-          {prod_color === 'engi-tool' && (
-            <Box inline mr="6px" ml="6px" color="#FFE4C4">
-              Tools
-            </Box>
-          )}
-          {prod_color === 'engi-construction' && (
-            <Box inline mr="6px" ml="6px" color="#7FFFD4">
-              Materials
-            </Box>
-          )}
-          {prod_color === 'engi-artillery' && (
-            <Box inline mr="6px" ml="6px" color="#CD5C5C">
-              Artillery
-            </Box>
-          )}
-          {prod_color === 'engi-mining' && (
-            <Box inline mr="6px" ml="6px" color="#1E90FFe">
-              Mining
-            </Box>
-          )}
-          {prod_color === 'engi-explosive' && (
-            <Box inline mr="6px" ml="6px" color="#FF7F50">
-              Explosives
-            </Box>
-          )}
-          {prod_color === 'engi-other' && (
-            <Box inline mr="6px" ml="6px" color="#BA55D3">
-              Other
-            </Box>
-          )}
-          {prod_color === 'corps-meds' && (
-            <Box inline mr="6px" ml="6px" color="#7FFFD4">
-              Medicine
-            </Box>
-          )}
-          {prod_color === 'corps-tools' && (
-            <Box inline mr="6px" ml="6px" color="#1E90FF">
-              Tools
-            </Box>
-          )}
-          {prod_color === 'sg-minigun' && (
-            <Box inline mr="6px" ml="6px" color="#1E90FF">
-              Gatling Gun
-            </Box>
-          )}
-          {prod_color === 'sg-targetrifle' && (
-            <Box inline mr="6px" ml="6px" color="#BA55D3">
-              Target Rifle
-            </Box>
-          )}
-          {prod_color === 'sg-machinegun' && (
-            <Box inline mr="6px" ml="6px" color="#00FF00">
-              Machine Gun
-            </Box>
-          )}
-          {prod_color === 'sg-smartpistol' && (
-            <Box inline mr="6px" ml="6px" color="#FFE4C4">
-              Smartpistol
-            </Box>
-          )}
-          {prod_color === 'synth-cosmetic' && (
-            <Box inline mr="6px" ml="6px" color="blue">
-              Cosmetic
-            </Box>
-          )}
-          {prod_color === 'synth-storage' && (
-            <Box inline mr="6px" ml="6px" color="#7FFFD4">
-              Storage
-            </Box>
-          )}
-          {prod_color === 'synth-armor' && (
-            <Box inline mr="6px" ml="6px" color="red">
-              Armor
-            </Box>
-          )}
-          {prod_color === 'synth-rcmarmor' && (
-            <Box inline mr="6px" ml="6px" color="orange">
-              Recommended - Armor
-            </Box>
-          )}
-          {prod_color === 'synth-rcmarmstorage' && (
-            <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Armor and Suit Storage
-            </Box>
-          )}
-          {prod_color === 'synth-attachable' && (
-            <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Attachable to Flak Jacket
-            </Box>
-          )}
-          {prod_cost > 0 && (
-            <Box inline width="75px" mr="6px" ml="6px">
-              {prod_cost} points
-            </Box>
-          )}
+          {colorToElement[prod_color]}
           <Button
             disabled={cant_buy || prod_cost > remaining_points}
             onClick={() => act('vend', { vend: prod_index })}
