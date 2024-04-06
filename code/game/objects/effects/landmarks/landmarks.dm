@@ -466,6 +466,7 @@
 //Combat patrol spawn in spots
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
+	icon = 'icons/effects/campaign_effects.dmi'
 	icon_state = "blue_1"
 	///ID to link with an associated start point
 	var/id = null
