@@ -14703,9 +14703,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "dcL" = (
@@ -16491,12 +16489,10 @@
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "dvl" = (
-/obj/machinery/meter,
 /obj/machinery/door/window{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/visible,
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8
 	},
@@ -19186,6 +19182,7 @@
 /area/deltastation/engineering/atmos/hfr_room)
 "dUy" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
+/obj/machinery/atmospherics/components/unary/outlet_injector,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "dUB" = (
@@ -25143,7 +25140,6 @@
 /area/deltastation/maintenance/solars/port/fore)
 "fcu" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -27163,7 +27159,6 @@
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen)
 "fxi" = (
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/structure/prop/mainship/gelida/propserver,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -30713,12 +30708,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
-"ghi" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/structure/cable,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
-/turf/open/floor/plating,
-/area/deltastation/science/server)
 "ghk" = (
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/effect/spawner/random/misc/structure/directional_window/east,
@@ -32158,7 +32147,6 @@
 /turf/closed/mineral/smooth,
 /area/deltastation/asteroidcaves/rock)
 "gvz" = (
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
@@ -41698,6 +41686,7 @@
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "ixq" = (
@@ -43189,6 +43178,7 @@
 	},
 /obj/structure/sign/securearea,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /turf/open/floor/plating,
 /area/deltastation/security/execution/education)
 "iLy" = (
@@ -47254,10 +47244,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "jEO" = (
@@ -65569,6 +65557,7 @@
 /obj/item/tank/oxygen/red,
 /obj/item/tank/oxygen/red,
 /obj/item/tank/oxygen/red,
+/obj/machinery/meter,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "nuu" = (
@@ -72172,7 +72161,6 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/components/unary/outlet_injector,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "oLV" = (
@@ -75873,7 +75861,6 @@
 /area/deltastation/hallway/primary/central/fore)
 "pys" = (
 /obj/structure/cable,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
@@ -78813,7 +78800,6 @@
 	},
 /obj/structure/prop/mainship/turretprop,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -82508,7 +82494,6 @@
 /obj/effect/spawner/random/misc/structure/directional_window/west,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/iron/dark,
@@ -83718,13 +83703,14 @@
 "raq" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "rax" = (
@@ -89612,7 +89598,6 @@
 	name = "Server Access"
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -97166,7 +97151,6 @@
 "tLZ" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/iron,
 /area/deltastation/science/server)
@@ -97587,9 +97571,7 @@
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
+/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "tPO" = (
@@ -101826,7 +101808,6 @@
 /area/deltastation/security/checkpoint/medical/medsci)
 "uIk" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/item/tool/wrench,
 /obj/structure/rack,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -104005,7 +103986,6 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "vcY" = (
-/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /obj/structure/prop/mainship/gelida/propserver,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -110783,7 +110763,6 @@
 /area/deltastation/asteroidcaves/derelictwest)
 "wur" = (
 /obj/effect/spawner/random/misc/plant,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -116364,6 +116343,7 @@
 /obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "xzU" = (
@@ -148811,7 +148791,7 @@ wua
 cNO
 dXs
 uIk
-ghi
+qRX
 xdj
 fxi
 xEN

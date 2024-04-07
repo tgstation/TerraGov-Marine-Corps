@@ -13743,23 +13743,14 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
 	id = "vehicle_elevator_railing"
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "hbH" = (
