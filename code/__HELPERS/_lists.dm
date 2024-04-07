@@ -313,9 +313,11 @@
 	if(!L)
 		return
 	L = L.Copy()
+	var/list_length = length(L)
 
-	for(var/i in 1 to length(L)-1)
-		L.Swap(i,rand(1, length(L)))
+	var/generator/randomer_generator = generator("num", 1, list_length, UNIFORM_RAND)
+	for(var/i in 1 to list_length)
+		L.Swap(i,randomer_generator.Rand(1, list_length))
 
 	return L
 
