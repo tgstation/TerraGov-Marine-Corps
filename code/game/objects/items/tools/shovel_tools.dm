@@ -55,7 +55,7 @@
 				new /obj/item/stack/snow(T, dirt_amt)
 		dirt_amt = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tool/shovel/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
@@ -79,7 +79,7 @@
 			else
 				new /obj/item/stack/snow(target_turf, dirt_amt)
 		dirt_amt = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	var/turfdirt = target_turf.get_dirt_type()
@@ -106,7 +106,7 @@
 		balloon_alert(user, "Digs up dirt")
 	dirt_amt = transf_amt
 	dirt_type = turfdirt
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tool/shovel/spade
 	name = "spade"
