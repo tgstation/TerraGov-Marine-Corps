@@ -1940,6 +1940,13 @@ Slots: [job.spawn_positions]</span>
 					if(new_s_tone)
 						skin_tone = listy[new_s_tone]
 
+				if("charflaw")
+					var/selectedflaw
+					selectedflaw = input(user, "Choose your character's flaw:", "Character Preference") as null|anything in GLOB.character_flaws
+					if(selectedflaw)
+						charflaw = GLOB.character_flaws[selectedflaw]
+						charflaw = new charflaw()
+
 				if("ooccolor")
 					var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference",ooccolor) as color|null
 					if(new_ooccolor)

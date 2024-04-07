@@ -8,7 +8,6 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/heartfeltlord
 	maxchosen = 1
 	pickprob = 100
-	plevel_req = 2
 
 /datum/outfit/job/roguetown/adventurer/heartfeltlord/pre_equip(mob/living/carbon/human/H)
 	..()
