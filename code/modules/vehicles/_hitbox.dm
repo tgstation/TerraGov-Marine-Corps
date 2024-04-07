@@ -110,8 +110,13 @@
 	forceMove(mover.loc)
 	for(var/mob/living/tank_desant AS in tank_desants)
 		step(tank_desant, direction, root.step_size)
-		if(isxeno(tank_desant) || move_dist > 1) //skips xenos, and
-			return
+		if(isxeno(tank_desant) || move_dist > 1)
+			continue
+		if(move_dist > 1)
+			continue
+		if(!tank_desant.l_hand || !tank_desant.r_hand)
+			continue
+		balloon_alert(tank_desant, "poor grip!")
 		var/away_dir = get_dir(tank_desant, root)
 		if(!away_dir)
 			away_dir = pick(GLOB.alldirs)
