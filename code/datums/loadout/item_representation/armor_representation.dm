@@ -204,9 +204,7 @@
 	if(!ismodulararmorstoragemodule(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
 	..()
-	var/obj/item/armor_module/storage/storage_module = item_to_copy
-	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage_type
-	storage = new(internal_storage)
+	storage = new(item_to_copy)
 
 /datum/item_representation/armor_module/storage/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
 	. = ..()
@@ -217,6 +215,4 @@
 		return
 	if(!storage)
 		return
-	//XANTODO qdel(storage_module.atom_storage) //an empty storage item is generated when the module is initialised
-	storage_module = storage.instantiate_datum(seller, storage_module, user)
-
+	storage_module = storage.instantiate_storage_datum(seller, storage_module, user)
