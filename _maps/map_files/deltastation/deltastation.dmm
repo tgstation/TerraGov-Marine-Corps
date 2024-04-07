@@ -20636,8 +20636,10 @@
 /area/deltastation/command/heads_quarters/rd)
 "ehW" = (
 /obj/structure/prop/mainship/supermatter,
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
+/obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "ehZ" = (
@@ -30707,6 +30709,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
+"ghi" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/deltastation/engineering/supermatter)
 "ghk" = (
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/effect/spawner/random/misc/structure/directional_window/east,
@@ -36563,8 +36576,6 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/command/heads_quarters/hos)
 "hpF" = (
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -36573,6 +36584,12 @@
 	},
 /obj/structure/prop/mainship/doorblocker/engi{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -48709,12 +48726,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "engsm";
 	name = "Radiation Shutters Control"
 	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "jUE" = (
@@ -52963,11 +52980,15 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
 "kNX" = (
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 6
 	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -59163,12 +59184,13 @@
 /turf/open/floor/iron,
 /area/deltastation/security/prison)
 "mbE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1
-	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
 	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -64430,10 +64452,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/structure/sign/securearea{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden/layer3,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "nhB" = (
@@ -74223,8 +74245,6 @@
 /turf/open/floor/plating,
 /area/deltastation/engineering/transit_tube)
 "pir" = (
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -74233,6 +74253,15 @@
 	},
 /obj/structure/prop/mainship/doorblocker/engi{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 8
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -75716,6 +75745,17 @@
 /obj/machinery/air_alarm,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/fore)
+"pwT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/engine,
+/area/deltastation/engineering/supermatter)
 "pwX" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
@@ -95334,8 +95374,12 @@
 /area/deltastation/medical/chemistry)
 "ttl" = (
 /obj/effect/turf_decal/box,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "ttm" = (
@@ -101351,11 +101395,11 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "uCs" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "uCE" = (
@@ -110828,18 +110872,18 @@
 /turf/open/floor/iron,
 /area/deltastation/security/execution/transfer)
 "wvg" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 1;
-	name = "Engine Cooling Bypass"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
-/obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/effect/turf_decal/box/corners,
 /obj/effect/turf_decal/box/corners{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 9
 	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
@@ -141554,7 +141598,7 @@ seK
 tbJ
 uCs
 ehW
-mbE
+pwT
 aIN
 vRs
 mEc
@@ -141810,7 +141854,7 @@ kTe
 lvk
 gWn
 uCs
-kNX
+ghi
 mbE
 oMW
 qnb
