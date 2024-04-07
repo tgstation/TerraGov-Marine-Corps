@@ -993,6 +993,7 @@
 /obj/structure/sign/poster{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/showroom,
 /area/space)
 "fS" = (
@@ -5193,6 +5194,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/space)
+"Ew" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth,
+/area/space)
 "Ex" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/structure/cable,
@@ -6661,6 +6666,13 @@
 /area/space)
 "MA" = (
 /turf/open/floor/mainship/blue,
+/area/space)
+"MC" = (
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/showroom,
 /area/space)
 "MD" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -8516,6 +8528,13 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/space)
+"Xy" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
+/area/space)
 "Xz" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -8582,6 +8601,11 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/wrapped/proteinbar,
 /turf/open/floor/prison,
+/area/space)
+"XO" = (
+/obj/structure/cable,
+/obj/machinery/power/apc,
+/turf/open/floor/tile/showroom,
 /area/space)
 "XP" = (
 /obj/structure/flora/pottedplant/twentyone,
@@ -13264,9 +13288,9 @@ NO
 NO
 NO
 uM
-Uw
-PH
-PH
+Xy
+gt
+MC
 PH
 PH
 VR
@@ -14632,9 +14656,9 @@ IQ
 Hg
 rJ
 dl
-WV
-PH
-PH
+uM
+gt
+gt
 JC
 PH
 JC
@@ -14786,7 +14810,7 @@ Hg
 DT
 WV
 Hg
-kY
+bq
 JC
 PH
 JC
@@ -15090,7 +15114,7 @@ Hg
 kc
 WV
 Hg
-PH
+XO
 PH
 PH
 PH
@@ -25221,7 +25245,7 @@ tc
 (108,1,1) = {"
 tc
 VR
-VR
+Ew
 VR
 VR
 VR
