@@ -116,6 +116,10 @@
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/campaign/tgmc_raiding/colony/indoor/bathroom
+	name = "Colony Restroom"
+	icon_state = "toilet"
+
 //Underground
 
 /area/campaign/tgmc_raiding/underground
@@ -205,6 +209,10 @@
 	name = "Marine Laundromat"
 	icon_state = "fitness"
 
+/area/campaign/tgmc_raiding/underground/living/boxing
+	name = "Boxing Ring"
+	icon_state = "fitness"
+
 /area/campaign/tgmc_raiding/underground/living/chapel
 	name = "Marine Chapel"
 	icon_state = "chapeloffice"
@@ -239,12 +247,12 @@
 
 /area/campaign/tgmc_raiding/underground/cargo
 	name = "Cargo Dock"
-	icon_state = "cargo_bay"
+	icon_state = "eva"
 	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/campaign/tgmc_raiding/underground/cargo/storage
 	name = "Cargo Storage"
-	icon_state = "cargo_warehouse"
+	icon_state = "auxstorage"
 
 /area/campaign/tgmc_raiding/underground/maintenance
 	icon_state = "maintcentral"
