@@ -92,7 +92,7 @@
 
 /datum/storage/internal/vest/New(atom/parent)
 	. = ..()
-	set_holdable(can_hold_list = list(
+	set_holdable(cant_hold_list = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
