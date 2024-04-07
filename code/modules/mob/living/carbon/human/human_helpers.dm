@@ -216,7 +216,7 @@
 
 /mob/living/carbon/human/get_permeability_protection()
 	// hands = 1 | chest = 2 | groin = 3 | legs = 4 | feet = 5 | arms = 6 | head = 7
-	var/list/prot = list(7)
+	var/list/prot = list(0,0,0,0,0,0,0)
 	for(var/obj/item/I in get_equipped_items())
 		if(I.armor_protection_flags & HANDS)
 			prot[1] = max(1 - I.permeability_coefficient, prot[1])
