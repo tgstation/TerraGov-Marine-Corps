@@ -77,7 +77,7 @@
 "as" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "at" = (
 /obj/machinery/light{
 	dir = 4
@@ -282,7 +282,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "bl" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/plating_catwalk,
@@ -315,7 +315,7 @@
 "br" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "bs" = (
 /obj/machinery/gibber,
 /turf/open/floor/freezer,
@@ -503,7 +503,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "cm" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/plating_catwalk,
@@ -511,7 +511,7 @@
 "cn" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "co" = (
 /obj/machinery/light{
 	dir = 4
@@ -563,7 +563,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "cA" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
@@ -808,7 +808,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "dF" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/plating/ground/concrete,
@@ -981,7 +981,7 @@
 "eq" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "es" = (
 /turf/closed/wall,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
@@ -1837,7 +1837,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "hK" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/medical/health_analyzer,
@@ -1878,7 +1878,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "hU" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/medical/heal_pack,
@@ -2012,7 +2012,7 @@
 /area/campaign/tgmc_raiding/underground/command)
 "iz" = (
 /turf/open/floor/mainship/orange/full,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "iA" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -2813,7 +2813,7 @@
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "lZ" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/ground/concrete,
@@ -3365,7 +3365,7 @@
 "ot" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "ov" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/colonist,
@@ -4491,7 +4491,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "tt" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -4641,7 +4641,7 @@
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "tZ" = (
 /turf/open/floor/wood,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "ua" = (
 /obj/structure/table/mainship,
 /obj/item/attachable/motiondetector,
@@ -5073,7 +5073,7 @@
 "vO" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "vP" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -5461,7 +5461,7 @@
 "xB" = (
 /obj/machinery/line_nexter,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "xD" = (
 /obj/structure/monorail,
 /obj/effect/landmark/patrol_point/tgmc_13,
@@ -5718,7 +5718,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "yC" = (
 /obj/structure/bed/chair,
 /turf/open/floor/plating/plating_catwalk,
@@ -6241,7 +6241,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "AR" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/blue{
@@ -7687,7 +7687,7 @@
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Hg" = (
 /turf/closed/wall/mainship/gray,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "Hh" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -8067,7 +8067,7 @@
 /area/campaign/tgmc_raiding/underground/general/firing_range)
 "IQ" = (
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "IR" = (
 /obj/structure/stairs/seamless,
 /obj/structure/barricade/guardrail{
@@ -8105,7 +8105,7 @@
 "IX" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "IY" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/cargo,
@@ -8720,7 +8720,7 @@
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "Ls" = (
 /turf/open/floor/mainship/blue/full,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "Lt" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -8774,7 +8774,7 @@
 /area/campaign/tgmc_raiding/underground/general/prep)
 "LD" = (
 /turf/open/floor/mainship/red/full,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "LG" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
@@ -8851,7 +8851,7 @@
 /obj/structure/sink,
 /obj/structure/mirror,
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "LX" = (
 /obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -9078,7 +9078,7 @@
 /area/campaign/tgmc_raiding/underground/living/chapel)
 "MQ" = (
 /turf/closed/wall,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "MR" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating/ground/concrete,
@@ -9338,7 +9338,7 @@
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
 "Oc" = (
 /turf/open/floor/mainship/purple/full,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "Od" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/prison/darkbrown{
@@ -9396,7 +9396,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "Or" = (
 /obj/structure/prop/vehicle/van,
 /obj/structure/cable,
@@ -9700,7 +9700,7 @@
 "PM" = (
 /obj/structure/closet/boxinggloves,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "PN" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/command/east)
@@ -9718,7 +9718,7 @@
 "PS" = (
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/wood,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "PT" = (
 /obj/structure/rack,
 /obj/item/flash,
@@ -9875,7 +9875,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "QG" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -10423,7 +10423,7 @@
 "SV" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "SX" = (
 /obj/machinery/light{
 	dir = 1
@@ -11106,7 +11106,7 @@
 /area/campaign/tgmc_raiding/underground/tunnel/station)
 "VR" = (
 /turf/closed/mineral/smooth,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "VS" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -11320,7 +11320,7 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /obj/machinery/light,
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/campaign/tgmc_raiding/underground/living/boxing)
 "WN" = (
 /obj/structure/rack,
 /obj/item/restraints/handcuffs,
@@ -12004,7 +12004,7 @@
 /area/campaign/tgmc_raiding/underground/general/hallway)
 "ZN" = (
 /turf/open/floor/prison,
-/area/space)
+/area/campaign/tgmc_raiding/colony/indoor/bathroom)
 "ZO" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
