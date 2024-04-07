@@ -2,7 +2,7 @@
 	category = CATEGORY_CLIENT
 	weight = WEIGHT_HIGHEST
 
-/*
+
 /datum/keybinding/client/admin_help
 	hotkey_keys = list("F1")
 	name = "admin_help"
@@ -13,7 +13,7 @@
 	user.get_adminhelp()
 	return TRUE
 
-
+/*
 /datum/keybinding/client/screenshot
 	hotkey_keys = list("F2")
 	name = "screenshot"

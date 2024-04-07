@@ -27,10 +27,6 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		var/area/C = get_area(user)
-		if(!(istype(C, /area/rogue/indoors/town/church/chapel)))
-			if(!(istype(C, /area/rogue/underworld)))
-				to_chat(user, "<span class='danger'>I should go to the Chapel!</span>")
-				return		
 		var/msg = input("Whisper your prayer:", "Prayer") as text|null
 		if(msg)
 			L.whisper(msg)
@@ -52,7 +48,7 @@
 /mob/living/proc/check_prayer(mob/living/L,message)
 	if(!L || !message)
 		return FALSE
-	var/list/bannedwords = list("zizo","cock","dick","fuck","shit","pussy","cuck","fucker","fucked","cunt","asshole")
+	var/list/bannedwords = list("cock","dick","fuck","shit","pussy","cuck","fucker","fucked","cunt","asshole")
 	var/message2recognize = sanitize_hear_message(message)
 	var/mob/living/carbon/human/M = L
 	for(var/T in bannedwords)
@@ -81,7 +77,7 @@
 /mob/living/proc/check_prayer_underworld(mob/living/L,message)
 	if(!L || !message)
 		return FALSE
-	var/list/bannedwords = list("zizo","cock","dick","fuck","shit","pussy","ass","cuck","fucker","fucked","cunt","asshole")
+	var/list/bannedwords = list("cock","dick","fuck","shit","pussy","ass","cuck","fucker","fucked","cunt","asshole")
 	var/message2recognize = sanitize_hear_message(message)
 	var/mob/living/carbon/spirit/M = L
 	for(var/T in bannedwords)
