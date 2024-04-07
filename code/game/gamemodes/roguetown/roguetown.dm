@@ -7,8 +7,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	report_type = "roguemode"
 	false_report_weight = 0
 	required_players = 0
-	required_enemies = 0
-	recommended_enemies = 0
+	required_enemies = 1
+	recommended_enemies = 3
 	enemy_minimum_age = 0
 
 	announce_span = "danger"
