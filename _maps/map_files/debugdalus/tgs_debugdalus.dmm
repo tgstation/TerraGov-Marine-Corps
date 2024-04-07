@@ -2325,6 +2325,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"cXg" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "djH" = (
 /obj/vehicle/ridden/powerloader,
 /obj/machinery/landinglight/cas,
@@ -2339,6 +2346,10 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "dwY" = (
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"dLM" = (
+/obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "dPu" = (
@@ -2498,6 +2509,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"jxZ" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "jPH" = (
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship,
@@ -2529,6 +2547,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
+"kEg" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "kEy" = (
 /obj/machinery/light{
 	dir = 4
@@ -2542,6 +2569,10 @@
 "kQa" = (
 /obj/machinery/light,
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"kVr" = (
+/obj/machinery/gear/vehicle,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "lcb" = (
@@ -2596,6 +2627,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"lGu" = (
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "lGz" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/camera/autoname/mainship{
@@ -2608,6 +2643,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"mfs" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "mlP" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/cable,
@@ -2712,6 +2755,9 @@
 /obj/machinery/landinglight/tadpole,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"qWN" = (
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
 "rmh" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/alamo{
@@ -2742,6 +2788,10 @@
 "rDw" = (
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
+"rMD" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "rPl" = (
 /obj/machinery/landinglight/tadpole{
 	dir = 8
@@ -2759,12 +2809,23 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"skH" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "soy" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /obj/machinery/landinglight/cas{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"sru" = (
+/obj/structure/table/mainship,
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -2779,6 +2840,10 @@
 "sAD" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"sDt" = (
+/obj/docking_port/stationary/supply/vehicle,
+/turf/open/floor/mainship/empty,
 /area/mainship/hallways/hangar)
 "tae" = (
 /obj/machinery/camera/autoname/mainship{
@@ -2848,6 +2913,13 @@
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"uyq" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "vsI" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
@@ -2887,6 +2959,12 @@
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"wlt" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "wpk" = (
 /obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light{
@@ -3160,16 +3238,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
 aaa
 aaa
 aaa
@@ -3220,16 +3298,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+lGu
+kVr
+wlt
+kEg
+wlt
+wlt
+wlt
+kVr
+bgb
 aaa
 aaa
 aaa
@@ -3280,16 +3358,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dwY
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3340,16 +3418,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dwY
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3400,16 +3478,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+sru
+cXg
+qWN
+qWN
+sDt
+qWN
+qWN
+mfs
+bgb
 aaa
 aaa
 aaa
@@ -3460,16 +3538,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+skH
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3520,16 +3598,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+rMD
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3580,16 +3658,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dLM
+kVr
+jxZ
+jxZ
+jxZ
+jxZ
+jxZ
+kVr
+bgb
 aaa
 aaa
 aaa
@@ -3644,9 +3722,9 @@ bgb
 bgb
 bgb
 bgb
-bgb
-bgb
-bgb
+dwY
+dwY
+dwY
 bgb
 bgb
 bgb
@@ -3703,9 +3781,9 @@ oQb
 dwY
 dwY
 dwY
-dwY
-dwY
 oQb
+dwY
+dwY
 dwY
 dwY
 dwY
