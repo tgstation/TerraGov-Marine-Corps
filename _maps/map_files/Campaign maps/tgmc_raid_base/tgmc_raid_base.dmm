@@ -652,6 +652,12 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/space)
+"fe" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/space)
 "fg" = (
 /obj/structure/largecrate/supply/ammo/standard_ammo,
 /turf/open/floor/mainship/red/full,
@@ -682,11 +688,16 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/floor,
 /area/space)
+"fv" = (
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/space)
 "fy" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security,
 /turf/open/floor/mainship/red{
-	dir = 1
+	dir = 5
 	},
 /area/space)
 "fC" = (
@@ -749,6 +760,11 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/space)
+"fT" = (
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/space)
 "ga" = (
 /obj/structure/stairs/seamless,
 /obj/structure/barricade/guardrail{
@@ -809,7 +825,9 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/space)
 "gx" = (
 /obj/structure/closet/secure_closet/medical1/colony,
@@ -896,6 +914,10 @@
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
+/area/space)
+"hd" = (
+/obj/structure/bed/chair/sofa/corsat/left,
+/turf/open/floor/mainship/black,
 /area/space)
 "he" = (
 /obj/machinery/iv_drip,
@@ -1310,6 +1332,12 @@
 	dir = 6
 	},
 /area/space)
+"ki" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/space)
 "kk" = (
 /turf/open/floor/mainship/red{
 	dir = 5
@@ -1526,12 +1554,6 @@
 	},
 /turf/open/floor/mainship/green{
 	dir = 4
-	},
-/area/space)
-"lX" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/red{
-	dir = 5
 	},
 /area/space)
 "md" = (
@@ -1875,6 +1897,12 @@
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"oK" = (
+/obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/space)
 "oO" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/plating/plating_catwalk,
@@ -2179,6 +2207,10 @@
 	dir = 4
 	},
 /area/space)
+"qT" = (
+/obj/structure/sign/restroom,
+/turf/open/floor/mainship/black,
+/area/space)
 "qU" = (
 /obj/structure/table,
 /obj/item/toy/card/ace/spades,
@@ -2200,7 +2232,7 @@
 /area/space)
 "rb" = (
 /obj/structure/bed/chair/sofa/corsat,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black,
 /area/space)
 "rd" = (
 /obj/structure/bed/chair/comfy{
@@ -2292,6 +2324,11 @@
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"rJ" = (
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/space)
 "rK" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -2349,7 +2386,9 @@
 /obj/structure/sign/restroom{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
 /area/space)
 "sd" = (
 /obj/machinery/light{
@@ -2586,7 +2625,9 @@
 /area/space)
 "tw" = (
 /obj/structure/bed/chair,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
 /area/space)
 "tx" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -3009,6 +3050,11 @@
 /obj/structure/rock/basalt/pile,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/space)
+"wu" = (
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/space)
 "wv" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/mainship/floor,
@@ -3023,6 +3069,11 @@
 "wz" = (
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/mainship/floor,
+/area/space)
+"wA" = (
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
 /area/space)
 "wE" = (
 /obj/structure/toilet,
@@ -3099,6 +3150,11 @@
 	pixel_y = 5
 	},
 /turf/open/floor/mainship/floor,
+/area/space)
+"xa" = (
+/obj/structure/table/mainship,
+/obj/item/phone,
+/turf/open/floor/mainship/red/full,
 /area/space)
 "xd" = (
 /obj/structure/rack,
@@ -3262,7 +3318,7 @@
 /area/space)
 "yg" = (
 /obj/structure/sign/engie,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black,
 /area/space)
 "yh" = (
 /obj/item/trash/hotdog,
@@ -3289,6 +3345,11 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"yn" = (
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/space)
 "yp" = (
 /obj/structure/stairs{
@@ -4301,6 +4362,12 @@
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/prison/marked,
 /area/space)
+"Gf" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/space)
 "Gl" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
@@ -4595,6 +4662,12 @@
 "Il" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
+/area/space)
+"In" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
 /area/space)
 "Ip" = (
 /obj/structure/table/mainship,
@@ -5141,6 +5214,11 @@
 /obj/structure/sink,
 /turf/open/floor/prison,
 /area/space)
+"Lz" = (
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/space)
 "LD" = (
 /turf/open/floor/mainship/red/full,
 /area/space)
@@ -5434,6 +5512,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/floor,
 /area/space)
+"NT" = (
+/turf/open/floor/mainship/black/corner,
+/area/space)
 "NX" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -5443,6 +5524,11 @@
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/red{
 	dir = 8
+	},
+/area/space)
+"Oa" = (
+/turf/open/floor/mainship/black/corner{
+	dir = 1
 	},
 /area/space)
 "Oc" = (
@@ -5546,6 +5632,11 @@
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/prison/darkbrown{
 	dir = 10
+	},
+/area/space)
+"ON" = (
+/turf/open/floor/mainship/black/corner{
+	dir = 8
 	},
 /area/space)
 "OO" = (
@@ -5814,6 +5905,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
+/area/space)
+"QG" = (
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
 /area/space)
 "QH" = (
 /obj/structure/closet/secure_closet/medical3/colony,
@@ -6389,6 +6485,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/space)
+"UD" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/space)
 "UE" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/mainship/floor,
@@ -6602,6 +6704,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/space)
+"Ws" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
+/area/space)
 "Wt" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/blue{
@@ -6690,6 +6798,9 @@
 "WS" = (
 /obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
+"WV" = (
+/turf/open/floor/mainship/black,
 /area/space)
 "WZ" = (
 /obj/structure/flora/pottedplant/twentytwo,
@@ -7047,6 +7158,12 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/floor,
+/area/space)
+"ZM" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
 /area/space)
 "ZN" = (
 /turf/open/floor/prison,
@@ -9853,16 +9970,16 @@ fm
 fm
 fm
 Er
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+wA
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Lz
 Hg
 VR
 VR
@@ -10005,6 +10122,7 @@ fm
 fm
 fm
 Hg
+QG
 fm
 fm
 fm
@@ -10012,9 +10130,8 @@ fm
 fm
 fm
 fm
-fm
-fm
-Il
+NT
+ZM
 VR
 VR
 VR
@@ -10157,15 +10274,15 @@ fm
 fm
 fm
 Er
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+rJ
+yn
+yn
+yn
+yn
+yn
+yn
+fv
+WV
 Hg
 VR
 VR
@@ -10186,8 +10303,8 @@ TZ
 YR
 IQ
 Oi
-fm
-fm
+wA
+Lz
 gy
 Kz
 IQ
@@ -10316,8 +10433,8 @@ VR
 VR
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 VR
 VR
@@ -10338,8 +10455,8 @@ TZ
 YR
 IQ
 IQ
-fm
-fm
+QG
+WV
 fm
 Kz
 IQ
@@ -10468,9 +10585,9 @@ VR
 VR
 VR
 Hg
-fm
-fm
-Il
+QG
+ON
+ki
 VR
 VR
 VR
@@ -10490,8 +10607,8 @@ IQ
 IQ
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 mE
 IQ
@@ -10620,9 +10737,9 @@ VR
 VR
 VR
 Hg
+QG
 fm
-fm
-fm
+WV
 Hg
 Hg
 Hg
@@ -10642,8 +10759,8 @@ YR
 TZ
 YR
 Hg
-fm
-fm
+QG
+WV
 Hg
 mE
 IQ
@@ -10772,15 +10889,15 @@ VR
 VR
 VR
 VR
+QG
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+ON
+wu
+wu
+wu
+wu
+wu
+ki
 Hg
 Bd
 TZ
@@ -10794,8 +10911,8 @@ YR
 TZ
 YR
 Hg
-fm
-fm
+QG
+WV
 Hg
 mE
 IQ
@@ -10924,15 +11041,15 @@ VR
 VR
 VR
 VR
+QG
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+NT
+yn
+yn
+yn
+fv
+WV
 Hg
 IQ
 IQ
@@ -10946,8 +11063,8 @@ IQ
 IQ
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hd
 tU
@@ -11076,15 +11193,15 @@ VR
 VR
 VR
 VR
+QG
 fm
 fm
-fm
-OQ
+hd
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -11098,8 +11215,8 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -11228,34 +11345,34 @@ VR
 VR
 VR
 Hg
-fm
+QG
 fm
 fm
 rb
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+wA
+wu
+Oa
+ON
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Oa
+ON
+wu
+wu
+wu
+ki
 Hg
 PH
 qV
@@ -11380,34 +11497,34 @@ VR
 VR
 VR
 Hg
-fm
-fm
-fm
-lF
+QG
+NT
+yn
+oK
 Hg
+QG
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+fv
 fm
 fm
 fm
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+WV
 Uw
 PH
 PH
@@ -11532,13 +11649,13 @@ Hg
 VR
 VR
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 iZ
@@ -11554,12 +11671,12 @@ iZ
 Hg
 Hg
 tw
-Pw
+Gf
 gv
-fm
-fm
-fm
-Cx
+yn
+yn
+fv
+qT
 Hg
 Hg
 Hg
@@ -11680,17 +11797,17 @@ Hg
 IQ
 IQ
 vI
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+wA
+wu
+wu
+wu
+Oa
+ON
+wu
+wu
+wu
+Oa
+WV
 Hg
 pI
 ht
@@ -11710,8 +11827,8 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 wE
 VZ
@@ -11832,17 +11949,17 @@ Hg
 IQ
 IQ
 IQ
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+ZM
 Hg
 jv
 IQ
@@ -11862,8 +11979,8 @@ VO
 nv
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -11984,8 +12101,8 @@ IQ
 IQ
 Oo
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 IQ
@@ -12014,8 +12131,8 @@ Nb
 Yi
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 tQ
 SB
@@ -12136,8 +12253,8 @@ TZ
 YR
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 EO
 ht
@@ -12166,8 +12283,8 @@ IQ
 IQ
 IQ
 ZK
-fm
-fm
+QG
+WV
 Hg
 eP
 SB
@@ -12288,8 +12405,8 @@ Hg
 SV
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Um
 IQ
@@ -12318,8 +12435,8 @@ JD
 CG
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -12434,14 +12551,14 @@ JD
 IQ
 IQ
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+wA
+wu
+wu
+wu
+wu
+wu
+Oa
+WV
 Hg
 WO
 IQ
@@ -12470,9 +12587,9 @@ IQ
 IQ
 IQ
 ZK
-fm
-fm
-lI
+QG
+ON
+UD
 Hg
 Ho
 oq
@@ -12586,14 +12703,14 @@ Hg
 js
 Hg
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+yn
+yn
+yn
+yn
+ZM
 Hg
 fq
 IQ
@@ -12622,9 +12739,9 @@ uR
 JD
 IQ
 Hg
+QG
 fm
-fm
-fm
+WV
 NL
 PH
 PH
@@ -12734,12 +12851,12 @@ IQ
 IQ
 IQ
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
+wA
+wu
+wu
+wu
+Oa
+WV
 Hg
 Hg
 Hw
@@ -12774,9 +12891,9 @@ Qp
 IQ
 IQ
 Hg
-fm
-fm
-fm
+rJ
+fv
+WV
 PH
 PH
 JC
@@ -12886,12 +13003,12 @@ mS
 Aw
 IQ
 vI
-fm
-fm
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+yn
+yn
+ZM
 Hg
 ek
 BP
@@ -12927,8 +13044,8 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 PH
 JC
@@ -13038,8 +13155,8 @@ fj
 Bw
 IQ
 IQ
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -13079,8 +13196,8 @@ pi
 eH
 MP
 Hg
-fm
-fm
+QG
+WV
 Hg
 fQ
 JC
@@ -13190,8 +13307,8 @@ IQ
 Ip
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 xF
 sd
@@ -13231,8 +13348,8 @@ GB
 tj
 Kc
 Hg
-fm
-fm
+QG
+WV
 Hg
 PH
 PH
@@ -13342,8 +13459,8 @@ VR
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Lw
 Hw
@@ -13383,8 +13500,8 @@ pi
 DU
 EH
 Hg
-fm
-fm
+QG
+WV
 Hg
 GD
 Hg
@@ -13492,10 +13609,10 @@ VR
 VR
 VR
 VR
-fm
-fm
-fm
-fm
+wA
+wu
+Oa
+WV
 Hg
 Cs
 gB
@@ -13535,8 +13652,8 @@ GB
 tj
 Kc
 Hg
-fm
-fm
+QG
+WV
 Hg
 IQ
 KP
@@ -13644,10 +13761,10 @@ VR
 VR
 VR
 VR
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+ZM
 Hg
 Hg
 BM
@@ -13687,8 +13804,8 @@ pi
 eH
 pi
 ZK
-fm
-fm
+QG
+WV
 SV
 Bd
 vm
@@ -13796,8 +13913,8 @@ Eo
 Eo
 VR
 VR
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -13839,8 +13956,8 @@ GB
 td
 Rf
 Hg
-fm
-fm
+QG
+WV
 SV
 Bd
 TZ
@@ -13948,8 +14065,8 @@ Hg
 Gm
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 ek
 BP
@@ -13962,8 +14079,8 @@ fb
 kg
 ZB
 LL
-fm
-fm
+wA
+Lz
 fq
 RW
 IQ
@@ -13991,8 +14108,8 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 IQ
 WE
@@ -14100,8 +14217,8 @@ PH
 PH
 PH
 Hg
-fm
-fm
+QG
+WV
 Hg
 FV
 Hw
@@ -14114,8 +14231,8 @@ Hw
 Hw
 ZB
 Hw
-fm
-fm
+QG
+WV
 GI
 su
 IQ
@@ -14137,14 +14254,14 @@ iZ
 iZ
 Hg
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+wA
+wu
+wu
+wu
+wu
+wu
+Oa
+WV
 Hg
 Hg
 Hg
@@ -14252,8 +14369,8 @@ Df
 PH
 PH
 Uw
-fm
-fm
+QG
+WV
 LL
 ea
 Hw
@@ -14266,8 +14383,8 @@ Hw
 Hw
 oG
 Hg
-fm
-fm
+QG
+WV
 Hg
 Pu
 IQ
@@ -14278,25 +14395,25 @@ IQ
 IQ
 sl
 Hg
-lI
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+Ws
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Oa
+NT
+yn
+yn
+yn
+yn
+yn
+fT
 SC
 Eo
 Eo
@@ -14405,7 +14522,7 @@ Hg
 PH
 Hg
 sb
-fm
+WV
 Hw
 ea
 Hw
@@ -14418,8 +14535,8 @@ Mh
 Hw
 Gn
 Hg
-fm
-fm
+QG
+WV
 GI
 Lx
 IQ
@@ -14430,19 +14547,19 @@ VO
 IQ
 Ck
 Hg
+QG
 fm
 fm
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+fT
 VR
 VR
 VR
@@ -14556,8 +14673,8 @@ wE
 VZ
 PH
 Hg
-fm
-fm
+QG
+WV
 Hg
 ea
 Hw
@@ -14570,8 +14687,8 @@ Wo
 Hw
 Vd
 Hg
-fm
-fm
+QG
+WV
 Hg
 If
 Yw
@@ -14582,12 +14699,12 @@ Kd
 HX
 Ry
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
+QG
+NT
+yn
+yn
+fv
+WV
 Hg
 Hg
 Hg
@@ -14708,8 +14825,8 @@ VR
 VR
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 he
 Hw
@@ -14722,8 +14839,8 @@ Mh
 Hw
 iR
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 IQ
@@ -14734,12 +14851,12 @@ GI
 GI
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 vc
 vc
@@ -14860,8 +14977,8 @@ VR
 VR
 VR
 VR
-fm
-fm
+QG
+WV
 Hg
 xS
 Bl
@@ -14874,24 +14991,24 @@ Wo
 Hw
 PO
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+QG
+ON
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Oa
+WV
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 IQ
 IQ
@@ -15012,8 +15129,8 @@ VR
 VR
 VR
 VR
-fm
-fm
+QG
+WV
 Hg
 gc
 AH
@@ -15026,24 +15143,24 @@ Ph
 gB
 Rv
 Hg
+QG
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+fv
 fm
 fm
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+ON
+wu
+wu
+Oa
+WV
 pX
 IQ
 sg
@@ -15164,8 +15281,8 @@ VR
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -15178,24 +15295,24 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 GI
 TZ
 DC
 GI
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+ZM
 Hg
 IQ
 IQ
@@ -15316,30 +15433,30 @@ Eo
 Eo
 Eo
 SC
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+QG
+ON
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Oa
+WV
 GI
 by
 qP
 qW
 nd
 lm
-fm
-fm
+QG
+WV
 Hg
 VR
 VR
@@ -15468,30 +15585,30 @@ Eo
 Eo
 uU
 Hg
+rJ
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+fv
 fm
 fm
 fm
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+WV
 GI
 fy
-mr
+dG
 dG
 Va
 TZ
-fm
-fm
+QG
+WV
 Hg
 Hg
 VR
@@ -15629,26 +15746,26 @@ Hg
 Hg
 Hg
 Hg
-Il
+fe
+yn
+yn
+fv
 fm
 fm
-fm
-fm
-fm
-fm
-GI
-lX
-Sd
+WV
+Hg
+Hg
+xa
 Hg
 Np
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+QG
+ON
+wu
+wu
+wu
+wu
+Lz
 Er
 fm
 fm
@@ -15784,23 +15901,23 @@ Hg
 Hg
 Hg
 Hg
-Il
-fm
-fm
-fm
+fe
+yn
+fv
+ON
+Lz
 Hg
 GI
-GI
 Hg
+wA
+wu
+Oa
 fm
 fm
 fm
 fm
 fm
-fm
-fm
-fm
-fm
+WV
 Hg
 fm
 fm
@@ -15938,21 +16055,21 @@ ku
 Hg
 Hg
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+rJ
+fv
+ON
+wu
+wu
+wu
+Oa
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+fT
 Er
 eB
 xE
@@ -16091,13 +16208,13 @@ eF
 fk
 Hg
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+QG
+NT
+yn
+yn
+yn
+yn
+ZM
 Hg
 Hg
 Hg
@@ -16243,8 +16360,8 @@ IQ
 sx
 xh
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -16395,8 +16512,8 @@ IQ
 IQ
 xA
 GI
-fm
-fm
+QG
+WV
 Hg
 OY
 Ap
@@ -16547,8 +16664,8 @@ Ei
 IQ
 MA
 Ds
-fm
-fm
+QG
+WV
 Hg
 fH
 RE
@@ -16699,8 +16816,8 @@ IQ
 IQ
 MA
 IQ
-fm
-fm
+QG
+WV
 Hg
 fH
 RE
@@ -16851,8 +16968,8 @@ IQ
 IQ
 if
 GI
-fm
-fm
+QG
+WV
 Hg
 uh
 IQ
@@ -16987,8 +17104,8 @@ CZ
 ht
 CH
 Hg
-fm
-Il
+wA
+ki
 Hg
 Hg
 Hg
@@ -17003,8 +17120,8 @@ IQ
 IQ
 Ne
 Hg
-fm
-fm
+QG
+WV
 Hg
 ig
 IQ
@@ -17139,10 +17256,10 @@ TZ
 Ei
 MA
 Ds
-fm
-fm
-fm
-Il
+QG
+ON
+wu
+ki
 Hg
 Hg
 Hg
@@ -17155,8 +17272,8 @@ IQ
 fj
 Vi
 Hg
-fm
-fm
+QG
+WV
 Hg
 pM
 uW
@@ -17291,10 +17408,10 @@ Yw
 iH
 xQ
 IQ
-fm
-fm
-fm
-fm
+rJ
+yn
+fv
+WV
 Hg
 Hg
 Hg
@@ -17307,8 +17424,8 @@ HN
 pL
 vE
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 VI
@@ -17445,8 +17562,8 @@ Hg
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 RO
 ht
@@ -17459,8 +17576,8 @@ GI
 Hg
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 ry
 TN
@@ -17597,8 +17714,8 @@ ky
 NM
 BW
 Hg
-fm
-fm
+QG
+WV
 Hg
 Km
 IQ
@@ -17610,8 +17727,8 @@ ht
 KM
 dm
 Hg
-Il
-fm
+In
+Oa
 yg
 Hg
 oR
@@ -17749,8 +17866,8 @@ RV
 IQ
 IQ
 KS
-fm
-fm
+QG
+WV
 Hg
 su
 IQ
@@ -17762,9 +17879,9 @@ IQ
 IQ
 Ur
 Hg
+QG
 fm
-fm
-fm
+WV
 ZY
 Qe
 IQ
@@ -17901,8 +18018,8 @@ wc
 IQ
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 jv
 IQ
@@ -17914,9 +18031,9 @@ IQ
 IQ
 mo
 Hg
+QG
 fm
-fm
-fm
+WV
 IQ
 Qe
 IQ
@@ -18053,8 +18170,8 @@ fN
 IQ
 aZ
 Hg
-fm
-fm
+QG
+WV
 GI
 jv
 IQ
@@ -18066,7 +18183,7 @@ IQ
 IQ
 MA
 Ds
-fm
+QG
 fm
 yg
 Hg
@@ -18205,8 +18322,8 @@ Hg
 Gm
 Hg
 Hg
-fm
-fm
+QG
+WV
 GI
 jv
 IQ
@@ -18218,9 +18335,9 @@ IQ
 IQ
 MA
 IQ
+QG
 fm
-fm
-fm
+WV
 Hg
 Fr
 rK
@@ -18357,8 +18474,8 @@ Eo
 Eo
 sf
 Hg
-fm
-fm
+QG
+WV
 Hg
 CN
 NN
@@ -18370,9 +18487,9 @@ wF
 Yw
 QL
 Hg
+QG
 fm
-fm
-fm
+WV
 Hg
 Hg
 Hg
@@ -18509,8 +18626,8 @@ Eo
 Eo
 Fs
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Ti
@@ -18522,10 +18639,10 @@ BX
 Hg
 Hg
 Hg
+QG
 fm
-fm
-fm
-fm
+ON
+Lz
 VR
 VR
 VR
@@ -18661,9 +18778,9 @@ Hg
 Eo
 Eo
 Hg
-fm
-fm
-Il
+QG
+ON
+ki
 Hg
 Hg
 Hg
@@ -18672,16 +18789,16 @@ Hg
 GI
 Hg
 Hg
+wA
+wu
+Oa
 fm
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+ON
+wu
+wu
+wu
+Lz
 Hg
 kK
 lm
@@ -18813,27 +18930,27 @@ Hg
 tm
 Eo
 Hg
+QG
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+ON
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+wu
+Oa
+NT
+yn
+yn
+yn
+yn
+yn
+yn
+fv
+WV
 Hg
 Qe
 IQ
@@ -18965,27 +19082,27 @@ VR
 Eo
 Eo
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-Il
+rJ
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+yn
+ZM
 Hg
 Hg
 IQ
 Uy
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hx
 wK
@@ -19136,8 +19253,8 @@ IQ
 IQ
 IQ
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 Hg
@@ -19288,8 +19405,8 @@ QF
 IQ
 ot
 SV
-fm
-fm
+QG
+WV
 VR
 VR
 VR
@@ -19440,8 +19557,8 @@ iz
 cz
 br
 Hg
-fm
-fm
+QG
+WV
 VR
 VR
 VR
@@ -19592,8 +19709,8 @@ tZ
 cz
 IQ
 SV
-fm
-fm
+QG
+WV
 VR
 VR
 Hg
@@ -19744,8 +19861,8 @@ tZ
 cz
 ot
 Hg
-fm
-fm
+QG
+WV
 VR
 VR
 Hg
@@ -19896,10 +20013,10 @@ Ls
 cz
 br
 SV
-fm
-fm
-fm
-fm
+QG
+ON
+wu
+Lz
 Tp
 ET
 mC
@@ -20048,10 +20165,10 @@ xB
 IQ
 PM
 Hg
+rJ
+fv
 fm
-fm
-fm
-fm
+WV
 Hg
 ET
 dh
@@ -20201,9 +20318,9 @@ Hg
 Hg
 Hg
 VR
-Il
-fm
-fm
+fe
+fv
+WV
 Tp
 ET
 WE
@@ -20354,8 +20471,8 @@ VR
 VR
 VR
 VR
-fm
-fm
+QG
+WV
 Hg
 kk
 dG
@@ -20506,8 +20623,8 @@ VR
 VR
 VR
 Hg
-fm
-fm
+QG
+WV
 Hg
 Hg
 IQ
@@ -20658,15 +20775,15 @@ VR
 VR
 VR
 Hg
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+QG
+ON
+wu
+wu
+wu
+wu
+wu
+wu
+Lz
 Hg
 LH
 iW
@@ -20810,15 +20927,15 @@ VR
 VR
 VR
 Hg
+rJ
+yn
+yn
+yn
+yn
+yn
+fv
 fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+WV
 Hg
 Pv
 Cf
@@ -20968,9 +21085,9 @@ VR
 Hg
 Hg
 Hg
-Il
-fm
-fm
+fe
+fv
+WV
 Hg
 ET
 IQ
@@ -21121,8 +21238,8 @@ VR
 VR
 Hg
 Hg
-fm
-fm
+QG
+WV
 Hg
 ET
 IQ
@@ -21273,8 +21390,8 @@ VR
 VR
 VR
 Hg
-fm
-fm
+QG
+WV
 mk
 ET
 IQ
@@ -21425,8 +21542,8 @@ VR
 VR
 VR
 Hg
-fm
-fm
+rJ
+fT
 IQ
 ET
 IQ
