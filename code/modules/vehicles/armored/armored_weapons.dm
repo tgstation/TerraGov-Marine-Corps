@@ -322,7 +322,7 @@
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	variance = 15
+	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 3 SECONDS
 	maximum_magazines = 5
