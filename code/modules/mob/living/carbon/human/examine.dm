@@ -494,7 +494,8 @@
 
 	if(hasHUD(user,"medical"))
 		var/cardcolor = holo_card_color
-		if(!cardcolor) cardcolor = "none"
+		if(!cardcolor) 
+			cardcolor = "none"
 		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
 
 		// scan reports
