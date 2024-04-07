@@ -1,4 +1,3 @@
-
 /obj/vehicle/sealed/armored
 	name = "\improper MT - Shortstreet MK4"
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
@@ -70,8 +69,14 @@
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
+	/**
+	 * List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	 * This will be turned into a typeCache on  initialize
+	*/
+	var/list/easy_load_list
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
 	. = ..()
@@ -142,6 +147,12 @@
 	if(max_occupants > 1)
 		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 
+///returns a list of possible locations that this vehicle may be entered from
+/obj/vehicle/sealed/armored/proc/enter_locations(mob/M)
+	// from any adjacent position
+	if(Adjacent(M, src))
+		return list(get_turf(M))
+
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
@@ -184,6 +195,18 @@
 	. += span_notice("There is [isnull(primary_weapon) ? "nothing" : "[primary_weapon]"] in the primary attachment point, [isnull(secondary_weapon) ? "nothing" : "[secondary_weapon]"] installed in the secondary slot, [isnull(driver_utility_module) ? "nothing" : "[driver_utility_module]"] in the driver utility slot and [isnull(gunner_utility_module) ? "nothing" : "[gunner_utility_module]"] in the gunner utility slot.")
 	if(!isxeno(user))
 		. += "<b>It is currently at <u>[PERCENT(obj_integrity / max_integrity)]%</u> integrity.</b>"
+
+/obj/vehicle/sealed/armored/get_mechanics_info()
+	. = ..()
+	var/list/named_paths = list()
+	named_paths += "<b> You can easily load the following items by attacking the vehicle at its entrance or click dragging them </b>"
+	for(var/obj/path AS in easy_load_list)
+		named_paths.Add(initial(path:name))
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry?.mechanics_text)
+		named_paths += general_entry.mechanics_text
+	return jointext(named_paths, "<br>")
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
@@ -244,6 +267,23 @@
 		return
 	mob_exit(leaver, TRUE)
 
+/// call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc
+/obj/vehicle/sealed/armored/proc/try_easy_load(atom/movable/item, mob/living/user)
+	if(!is_type_in_typecache(item.type, easy_load_list))
+		return
+	if(!interior)
+		user.balloon_alert(user, "no interior")
+		return
+	if(!interior.door)
+		user.balloon_alert(user, "no door")
+		return
+	if(!(user.loc in enter_locations(user)))
+		user.balloon_alert(user, "not at entrance")
+		return
+	user.temporarilyRemoveItemFromInventory(item)
+	item.forceMove(interior.door.get_enter_location())
+	user.balloon_alert(user, "item thrown inside")
+
 /obj/vehicle/sealed/armored/mob_try_enter(mob/M)
 	if(isobserver(M))
 		interior?.mob_enter(M)
@@ -251,6 +291,9 @@
 	if(!ishuman(M))
 		return FALSE
 	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		return FALSE
+	if(!(M.loc in enter_locations(M)))
+		balloon_alert(M, "not at entrance")
 		return FALSE
 	return ..()
 
@@ -384,6 +427,8 @@
 		mod.on_equip(src, user)
 		return
 	if(interior) // if interior handle by gun breech
+		// check for easy loading instead
+		try_easy_load(I, user)
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
@@ -405,6 +450,19 @@
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
+
+/obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
+	// Bypass to parent to handle mobs entering the vehicle.
+	if(dropping == M)
+		return ..()
+	if(!isliving(M))
+		return
+	try_easy_load(dropping, M)
+
+/obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
+	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
+		return ..()
+	try_easy_load(grab.grabbed_thing, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()

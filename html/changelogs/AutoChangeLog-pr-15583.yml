@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - bugfix: "fixes grenade box storage amount for some of the boxes."
