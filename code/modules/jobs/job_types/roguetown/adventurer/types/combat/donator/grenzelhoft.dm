@@ -6,7 +6,6 @@
 	"Tiefling",
 	"Aasimar")
 	outfit = /datum/outfit/job/roguetown/adventurer/grenzelhoft
-	plevel_req = 2
 
 /datum/outfit/job/roguetown/adventurer/grenzelhoft/pre_equip(mob/living/carbon/human/H)
 	..()

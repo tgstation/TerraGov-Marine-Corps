@@ -5,7 +5,6 @@
 							"Humen",
 							"Tiefling")
 	outfit = /datum/outfit/job/roguetown/adventurer/crusader
-	plevel_req = 4
 	special_req = TRUE
 	maxchosen = 0
 	isvillager = FALSE
