@@ -30714,9 +30714,11 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
+	dir = 6
 	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -50286,6 +50288,17 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
+"klJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/engine,
+/area/deltastation/engineering/supermatter)
 "klM" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -52984,11 +52997,9 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -74254,9 +74265,6 @@
 /obj/structure/prop/mainship/doorblocker/engi{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
 	dir = 4
 	},
@@ -75745,17 +75753,6 @@
 /obj/machinery/air_alarm,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/fore)
-"pwT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/deltastation/engineering/supermatter)
 "pwX" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
@@ -141340,7 +141337,7 @@ jHw
 jdQ
 gWn
 uCs
-kNX
+ghi
 mbE
 oMW
 nzj
@@ -141598,7 +141595,7 @@ seK
 tbJ
 uCs
 ehW
-pwT
+klJ
 aIN
 vRs
 mEc
@@ -141854,7 +141851,7 @@ kTe
 lvk
 gWn
 uCs
-ghi
+kNX
 mbE
 oMW
 qnb
