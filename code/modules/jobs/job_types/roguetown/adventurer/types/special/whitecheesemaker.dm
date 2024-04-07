@@ -4,7 +4,9 @@
 	allowed_races = list("Humen",
 							"Humen")
 	outfit = /datum/outfit/job/roguetown/adventurer/whitecheese
-	plevel_req = 999
+	// oh god oh fuck this dont seem very safe to do
+	// this looks kinda op so imma just leave it at patreon level 1 until someone puts this behind a different lock
+	plevel_req = 1
 	special_req = TRUE
 	maxchosen = 1
 	isvillager = FALSE
