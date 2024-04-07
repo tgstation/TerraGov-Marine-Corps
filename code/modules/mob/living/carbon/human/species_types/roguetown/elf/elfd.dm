@@ -47,7 +47,7 @@
 	specstats_f = list("strength" = -1, "perception" = -2, "intelligence" = 2, "constitution" = -1, "endurance" = 1, "speed" = 1, "fortune" = 0)
 	enflamed_icon = "widefire"
 	possible_faiths = list(FAITH_SPIDER)
-	patreon_req = 1
+
 
 /datum/species/elf/dark/get_span_language(datum/language/message_language)
 	if(!message_language)

@@ -46,7 +46,7 @@
 	specstats = list("strength" = 0, "perception" = 1, "intelligence" = 2, "constitution" = -1, "endurance" = 0, "speed" = 0, "fortune" = -1)
 	specstats_f = list("strength" = -1, "perception" = 1, "intelligence" = 2, "constitution" = -2, "endurance" = 1, "speed" = 1, "fortune" = -1)
 	enflamed_icon = "widefire"
-	patreon_req = 1
+
 
 /datum/species/tieberian/check_roundstart_eligible()
 	return TRUE
