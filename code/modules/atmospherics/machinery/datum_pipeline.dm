@@ -35,7 +35,7 @@
 						if(!members.Find(item))
 
 							if(item.parent)
-								log_mapping("build_pipeline(): [item.type] added to pipenet multiple times. (pipes leading to the same spot stacking in one turf). Target:[AREACOORD(item)],  src:[AREACOORD(src)]")
+								log_mapping("build_pipeline(): [item.type] added to pipenet multiple times. (pipes leading to the same spot stacking in one turf). Target:[AREACOORD(item)],  Base:[AREACOORD(base)]")
 							members += item
 							RegisterSignal(item, COMSIG_QDELETING, PROC_REF(clean_members))
 							possible_expansions += item
