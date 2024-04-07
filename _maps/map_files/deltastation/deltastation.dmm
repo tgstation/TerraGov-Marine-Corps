@@ -48709,7 +48709,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/simple_pipes/cyan/visible,
 /obj/effect/mapping_helpers/simple_pipes/cyan/visible/layer2,
 /obj/machinery/door_control{
 	dir = 4;
@@ -64431,7 +64430,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/simple_pipes/green/visible,
 /obj/effect/mapping_helpers/simple_pipes/green/visible/layer4,
 /obj/structure/sign/securearea{
 	dir = 8
