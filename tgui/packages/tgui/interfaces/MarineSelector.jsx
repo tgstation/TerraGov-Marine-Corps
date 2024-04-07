@@ -225,12 +225,12 @@ const ItemLine = (props) => {
     ),
     'synth-rcarmor': (
       <Box inline mr="6px" ml="6px" color="orange">
-        Recommended -Armor
+        Recommended - Armor
       </Box>
     ),
     'synth-arcarmstorage': (
       <Box inline mr="6px" ml="6px" color="green">
-        Recommended - Armor and Suit Storage
+        Recommended - Armor and Storage
       </Box>
     ),
     'synth-attachable': (
