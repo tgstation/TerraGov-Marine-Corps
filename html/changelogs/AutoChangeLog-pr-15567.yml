@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Nymphs and non-minion AI will no longer be suicidal"

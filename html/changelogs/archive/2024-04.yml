@@ -106,3 +106,13 @@
   - code_imp: Updated faction comparison docs.
   yyzsong:
   - rscadd: Adds night vision goggles to valhalla
+2024-04-07:
+  Naaanii:
+  - bugfix: fixes grenade box storage amount for some of the boxes.
+  TiviPlus:
+  - rscadd: AI can use evasion
+  - rscadd: Nymphs and non-minion AI will no longer be suicidal
+  blackdav123:
+  - balance: Gelida caves can now be plasmacut one tile deep.
+  lbnesquik:
+  - rscadd: Added extra clone bays to TGS Theseus
