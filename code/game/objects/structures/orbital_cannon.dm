@@ -42,6 +42,9 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
+	if(GLOB.marine_main_ship.orbital_cannon == src)
+		GLOB.marine_main_ship.orbital_cannon = null
+	QDEL_NULL(tray)
 	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
