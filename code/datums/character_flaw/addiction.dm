@@ -104,4 +104,3 @@
 	desc = "I need to pray to my Patron, their blessings are stronger."
 	time = 25 MINUTES
 	needsate_text = "Time to pray."
-
