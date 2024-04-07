@@ -1505,7 +1505,6 @@
 			/obj/structure/largecrate/supply/weapons/heavy_flakgun = -1,
 			/obj/item/ammo_magazine/heavy_isg/he = -1,
 			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
-
 		),
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
