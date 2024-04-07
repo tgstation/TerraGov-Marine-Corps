@@ -264,6 +264,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		if(human_mob.job.job_cost) //We don't refund ally roles
 			human_mob.job.add_job_positions(1)
 		qdel(human_mob)
+		if(!ghost) //if they ghosted already
+			return
 		var/datum/game_mode/mode = SSticker.mode
 		mode.player_respawn(ghost) //auto open the respawn screen
 
