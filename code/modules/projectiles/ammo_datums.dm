@@ -303,6 +303,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
 /datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+	if(!bonus_projectiles_type) //while fire_bonus_projectiles does not require this var, it can cause infinite recursion in some cases, leading to death tiles
+		return
 	var/new_range = proj.proj_max_range - proj.distance_travelled
 	if(new_range <= 0)
 		return
@@ -2826,7 +2828,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(5, T, 6)
 	smoke.start()
 
-/datum/ammo/mortar/rocket/smoke/mlrs
+/datum/ammo/mortar/rocket/smoke/mlrs/cloak
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
 /*

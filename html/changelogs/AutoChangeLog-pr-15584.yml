@@ -1,0 +1,5 @@
+author: "PestoVerde322"
+delete-after: True
+changes:
+  - bugfix: "The M30 box magazine and the generic rocket launcher rocket have now a proper path"
+  - bugfix: "Altought impossible to spot in normal game conditions, the 67mm internal tube rocket is now rightfully 68mm"
