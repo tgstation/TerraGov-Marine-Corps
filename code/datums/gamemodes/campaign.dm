@@ -274,7 +274,7 @@
 			if(!SSticker)
 				return
 			var/mob/candidate = locate(href_list["player"])
-			if(!candidate.client)
+			if(!candidate || !candidate.client)
 				return
 
 			if(!GLOB.enter_allowed)
@@ -289,7 +289,7 @@
 
 			if(!attrition_respawn(ready_candidate, job_datum))
 				ready_candidate.mind.transfer_to(candidate)
-				ready_candidate.client.screen.Cut()
+				ready_candidate?.client?.screen.Cut()
 				qdel(ready_candidate)
 				return
 			if(isobserver(candidate))

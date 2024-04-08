@@ -412,10 +412,11 @@
 		return
 	stats.current_mob = owner //taking over ssd's creates a mismatch
 	//we have to update selected tab/job so we load the correct data for the UI
-	if(!isliving(owner))
+	var/mob/living/living_owner = owner
+
+	if(!isliving(owner) || !(living_owner.job.title in stats.valid_jobs))
 		stats.selected_job = stats.valid_jobs[1]
 	else
-		var/mob/living/living_owner = owner
 		stats.selected_job = living_owner.job.title
 	stats.selected_tab = TAB_LOADOUT
 	stats.interact(owner)
