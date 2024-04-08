@@ -45,5 +45,5 @@
 /obj/item/storage/bible/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(atom_storage.use_sound)
-		playsound(loc, atom_storage.use_sound, 25, 1, 6)
+	if(storage_datum.use_sound)
+		playsound(loc, storage_datum.use_sound, 25, 1, 6)

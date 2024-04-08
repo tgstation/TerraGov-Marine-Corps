@@ -401,15 +401,15 @@
 	var/datum/storage/selected_storage
 	if(isdatumstorage(selected_slot))
 		selected_storage = selected_slot
-	else if(selected_slot.atom_storage)
-		selected_storage = selected_slot.atom_storage
+	else if(selected_slot.storage_datum)
+		selected_storage = selected_slot.storage_datum
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
 		for(var/key AS in selected_clothing.attachments_by_slot)
 			var/atom/attachment = selected_clothing.attachments_by_slot[key]
-			if(!attachment?.atom_storage)
+			if(!attachment?.storage_datum)
 				continue
-			selected_storage = attachment.atom_storage
+			selected_storage = attachment.storage_datum
 			break
 
 	if(!selected_storage)

@@ -26,8 +26,8 @@
 
 /obj/item/storage/firstaid/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.use_sound = 'sound/effects/toolbox.ogg'
-	atom_storage.set_holdable(cant_hold_list = list(
+	storage_datum.use_sound = 'sound/effects/toolbox.ogg'
+	storage_datum.set_holdable(cant_hold_list = list(
 		/obj/item/ammo_magazine,
 		/obj/item/explosive/grenade,
 	))
@@ -159,8 +159,8 @@
 
 /obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 3
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 3
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
 	))
@@ -278,7 +278,7 @@
 
 /obj/item/storage/pill_bottle/PopulateContents()
 	if(pill_type_to_fill)
-		for(var/i in 1 to atom_storage.max_storage_space)
+		for(var/i in 1 to storage_datum.max_storage_space)
 			new pill_type_to_fill(src)
 	update_icon()
 
@@ -288,7 +288,7 @@
 		return
 	if(length(contents))
 		var/obj/item/I = contents[1]
-		if(!atom_storage.remove_from_storage(I,user,user))
+		if(!storage_datum.remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
 			if(iscarbon(user))
@@ -335,7 +335,7 @@
 
 /obj/item/storage/pill_bottle/kelotane/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
@@ -354,7 +354,7 @@
 
 /obj/item/storage/pill_bottle/dylovene/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/isotonic
 	name = "isotonic pill bottle"
@@ -365,7 +365,7 @@
 
 /obj/item/storage/pill_bottle/isotonic/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
@@ -384,7 +384,7 @@
 
 /obj/item/storage/pill_bottle/tramadol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
@@ -397,7 +397,7 @@
 
 /obj/item/storage/pill_bottle/paracetamol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
@@ -416,7 +416,7 @@
 
 /obj/item/storage/pill_bottle/bicaridine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
@@ -488,7 +488,7 @@
 
 /obj/item/storage/pill_bottle/tricordrazine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_flags = BYPASS_VENDOR_CHECK
+	storage_datum.storage_flags = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
@@ -498,7 +498,7 @@
 
 /obj/item/storage/pill_bottle/happy/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 7
+	storage_datum.max_storage_space = 7
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
@@ -509,7 +509,7 @@
 
 /obj/item/storage/pill_bottle/zoom/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 7
+	storage_datum.max_storage_space = 7
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()

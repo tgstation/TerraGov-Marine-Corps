@@ -52,10 +52,10 @@
 /obj/item/storage/box/Initialize(mapload, ...)
 	. = ..()
 	if(spawn_type)
-		if(!(spawn_type in atom_storage.can_hold))
+		if(!(spawn_type in storage_datum.can_hold))
 			// must be set before parent init for typecacheof
-			var/list/new_hold_list = atom_storage.can_hold + spawn_type
-			atom_storage.set_holdable(can_hold_list = list(new_hold_list))
+			var/list/new_hold_list = storage_datum.can_hold + spawn_type
+			storage_datum.set_holdable(can_hold_list = list(new_hold_list))
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)
@@ -226,7 +226,7 @@
 
 /obj/item/storage/box/snappops/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 8
+	storage_datum.max_storage_space = 8
 
 /obj/item/storage/box/matches
 	name = "matchbox"
@@ -294,7 +294,7 @@
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/light_bulb/tube/large,
 		/obj/item/light_bulb/bulb,
 	))
@@ -322,7 +322,7 @@
 
 /obj/item/storage/box/combat_lolipop/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.draw_mode = TRUE
+	storage_datum.draw_mode = TRUE
 
 /obj/item/storage/box/combat_lolipop/tricord
 	name = "box of Tricord-pops"
@@ -351,7 +351,7 @@
 
 /obj/item/storage/box/explosive_mines/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 10
+	storage_datum.max_storage_space = 10
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	. = ..()
@@ -368,7 +368,7 @@
 
 /obj/item/storage/box/explosive_mines/large/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 20
+	storage_datum.max_storage_space = 20
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
@@ -391,7 +391,7 @@
 
 /obj/item/storage/box/m94/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 14
+	storage_datum.max_storage_space = 14
 
 /obj/item/storage/box/m94/update_icon_state()
 	. = ..()
@@ -452,7 +452,7 @@
 
 /obj/item/storage/box/MRE/som/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.trash_item = /obj/item/trash/mre/som
+	storage_datum.trash_item = /obj/item/trash/mre/som
 
 /**
  * # fillable box
@@ -509,7 +509,7 @@
 /obj/item/storage/box/visual/proc/update_stats()
 	SHOULD_CALL_PARENT(TRUE)
 	max_overlays = amt_horizontal * amt_vertical
-	overlay_w_class = FLOOR(atom_storage.max_storage_space / max_overlays, 1)
+	overlay_w_class = FLOOR(storage_datum.max_storage_space / max_overlays, 1)
 	update_icon() //Getting the closed_overlay onto it
 
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
@@ -540,7 +540,7 @@
 
 /obj/item/storage/box/visual/attack_hand(mob/living/user)
 	if(loc == user)
-		atom_storage.open(user) //Always show content when holding box
+		storage_datum.open(user) //Always show content when holding box
 		return
 
 	if(!deployed)
@@ -548,12 +548,12 @@
 		return
 
 	else if(deployed)
-		atom_storage.draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
-		if(atom_storage.draw_mode && ishuman(user) && length(contents))
+		storage_datum.draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
+		if(storage_datum.draw_mode && ishuman(user) && length(contents))
 			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
-		atom_storage.open(user)
+		storage_datum.open(user)
 
 /obj/item/storage/box/visual/MouseDrop(atom/over_object)
 	if(!deployed)
@@ -650,11 +650,11 @@
 	storage_type = /datum/storage/box/visual/magazine/compact
 
 /obj/item/storage/box/visual/magazine/compact/update_stats()
-	for(var/item_path in atom_storage.can_hold)
+	for(var/item_path in storage_datum.can_hold)
 		var/obj/item/I = item_path
 		if(I)
-			atom_storage.max_storage_space = max(initial(I.w_class) * atom_storage.storage_slots, atom_storage.max_storage_space)
-			atom_storage.max_w_class = max(initial(I.w_class), atom_storage.max_w_class)
+			storage_datum.max_storage_space = max(initial(I.w_class) * storage_datum.storage_slots, storage_datum.max_storage_space)
+			storage_datum.max_w_class = max(initial(I.w_class), storage_datum.max_w_class)
 	return ..()
 
 // --PREFILLED MAG BOXES--
@@ -668,7 +668,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_pistol,
 	))
 
@@ -683,7 +683,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_heavypistol,
 	))
 
@@ -698,7 +698,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/revolver/standard_revolver,
 	))
 
@@ -713,7 +713,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/standard_pocketpistol,
 	))
 
@@ -728,7 +728,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/vp70/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/vp70,
 	))
 
@@ -744,7 +744,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/derringer/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/derringer,
 	))
 
@@ -759,7 +759,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol/plasma_pistol,
 	))
 
@@ -776,7 +776,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/smg/standard_smg,
 	))
 
@@ -791,7 +791,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 	))
 
@@ -806,8 +806,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/pepperball/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/pepperball,
 	))
 
@@ -824,8 +824,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
 	))
 
@@ -840,8 +840,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_carbine,
 	))
 
@@ -856,8 +856,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_skirmishrifle,
 	))
 
@@ -872,8 +872,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/ar11/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/tx11,
 	))
 
@@ -888,8 +888,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/martini/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/martini,
 	))
 
@@ -904,8 +904,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/sh15/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/tx15_flechette,
 		/obj/item/ammo_magazine/rifle/tx15_slug,
 	))
@@ -934,8 +934,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/sectoid_rifle,
 	))
 
@@ -957,8 +957,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/cell/lasgun/lasrifle,
 	))
 
@@ -973,8 +973,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/cell/lasgun/lasrifle,
 	))
 
@@ -991,8 +991,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_dmr/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_dmr,
 	))
 
@@ -1007,8 +1007,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_br/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/standard_br,
 	))
 
@@ -1023,8 +1023,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
 	))
 
@@ -1039,8 +1039,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/mosin/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle/bolt,
 		/obj/item/ammo_magazine/rifle/boltclip,
 	))
@@ -1062,8 +1062,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_lmg,
 	))
 
@@ -1078,8 +1078,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_gpmg,
 	))
 
@@ -1094,8 +1094,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_mmg/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/standard_mmg,
 	))
 
@@ -1111,8 +1111,8 @@
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 30
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/heavymachinegun,
 	))
 
@@ -1182,8 +1182,8 @@
 
 /obj/item/storage/box/visual/grenade/phosphorus/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 25
-	atom_storage.max_storage_space = 50
+	storage_datum.storage_slots = 25
+	storage_datum.max_storage_space = 50
 
 /obj/item/storage/box/visual/grenade/impact
 	name = "\improper M40 IMDP grenade box"
@@ -1229,8 +1229,8 @@
 
 /obj/item/storage/box/visual/grenade/razorburn/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 25
-	atom_storage.max_storage_space = 50
+	storage_datum.storage_slots = 25
+	storage_datum.max_storage_space = 50
 
 /obj/item/storage/box/visual/grenade/razorburn_large
 	name = "razorburn canister box"
@@ -1241,7 +1241,7 @@
 
 /obj/item/storage/box/visual/grenade/razorburn_large/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 10
+	storage_datum.storage_slots = 10
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"

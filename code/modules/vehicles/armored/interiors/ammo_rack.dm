@@ -27,7 +27,7 @@
 		var/total_w = 0
 		for(var/obj/item/I AS in contents)
 			total_w += I.w_class
-		var/thirds = clamp(round(3 * (total_w / atom_storage.max_storage_space)), 1, 3)
+		var/thirds = clamp(round(3 * (total_w / storage_datum.max_storage_space)), 1, 3)
 		. += image(icon, src, bottommost.icon_state + "_" + "[thirds]") // "ltb_3"/"ltb_2"/"ltb_1"
 
 /obj/structure/ammo_rack/primary

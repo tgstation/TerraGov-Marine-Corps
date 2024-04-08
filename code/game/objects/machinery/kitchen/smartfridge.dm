@@ -101,7 +101,7 @@
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 
-			P.atom_storage.remove_from_storage(G, src, user)
+			P.storage_datum.remove_from_storage(G, src, user)
 			item_quants[strip_improper(G.name)]++
 			plants_loaded++
 

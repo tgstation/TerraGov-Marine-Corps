@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	. = ..()
 
-	if(loc?.atom_storage)
+	if(loc?.storage_datum)
 		on_enter_storage()
 
 	for(var/path in actions_types)
@@ -265,7 +265,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	set_throwing(FALSE)
 
 	if(item_flags & IN_STORAGE)
-		var/datum/storage/current_storage = loc.atom_storage
+		var/datum/storage/current_storage = loc.storage_datum
 		if(!current_storage.remove_from_storage(src, user.loc, user))
 			return
 
@@ -303,10 +303,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/obj/item/storage/S = I
 
-	if(!S.atom_storage.use_to_pickup || !isturf(loc))
+	if(!S.storage_datum.use_to_pickup || !isturf(loc))
 		return
 
-	if(S.atom_storage.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+	if(S.storage_datum.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 		var/list/rejections = list()
 		var/success = FALSE
 		var/failure = FALSE
@@ -314,12 +314,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		for(var/obj/item/IM in loc)
 			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
 				continue
-			if(!S.atom_storage.can_be_inserted(IM, user))	// Note can_be_inserted still makes noise when the answer is no
+			if(!S.storage_datum.can_be_inserted(IM, user))	// Note can_be_inserted still makes noise when the answer is no
 				rejections += IM.type	// therefore full bags are still a little spammy
 				failure = TRUE
 				continue
 			success = TRUE
-			S.atom_storage.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+			S.storage_datum.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 		if(success && !failure)
 			to_chat(user, span_notice("You put everything in [S]."))
 		else if(success)
@@ -327,8 +327,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		else
 			to_chat(user, span_notice("You fail to pick anything up with [S]."))
 
-	else if(S.atom_storage.can_be_inserted(src, user))
-		S.atom_storage.handle_item_insertion(src, FALSE, user)
+	else if(S.storage_datum.can_be_inserted(src, user))
+		S.storage_datum.handle_item_insertion(src, FALSE, user)
 
 
 /obj/item/attackby_alternate(obj/item/I, mob/user, params)
@@ -677,27 +677,27 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!selected_slot)
 		return FALSE
 
-	var/datum/storage/storage_datum
+	var/datum/storage/current_storage_datum
 
 	if(isdatumstorage(selected_slot))
-		storage_datum = selected_slot
+		current_storage_datum = selected_slot
 
-	else if(selected_slot.atom_storage)
-		storage_datum = selected_slot.atom_storage
+	else if(selected_slot.storage_datum)
+		current_storage_datum = selected_slot.storage_datum
 
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
 		for(var/key AS in selected_clothing.attachments_by_slot)
 			var/atom/attachment = selected_clothing.attachments_by_slot[key]
-			if(!attachment?.atom_storage)
+			if(!attachment?.storage_datum)
 				continue
-			storage_datum = attachment.atom_storage
+			current_storage_datum = attachment.storage_datum
 			break
 
-	if(!storage_datum)
+	if(!current_storage_datum)
 		return FALSE
 
-	return storage_datum.can_be_inserted(src, user, warning)
+	return current_storage_datum.can_be_inserted(src, user, warning)
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)

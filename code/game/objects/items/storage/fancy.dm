@@ -23,7 +23,7 @@
 /obj/item/storage/fancy/Initialize(mapload, ...)
 	. = ..()
 	if(spawn_type)
-		atom_storage.set_holdable(can_hold_list = list(spawn_type))
+		storage_datum.set_holdable(can_hold_list = list(spawn_type))
 	if(spawn_type)
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)
@@ -55,8 +55,8 @@
 
 /obj/item/storage/fancy/egg_box/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 12
-	atom_storage.max_storage_space = 24
+	storage_datum.storage_slots = 12
+	storage_datum.max_storage_space = 24
 
 /*
 * Candle Box
@@ -75,7 +75,7 @@
 
 /obj/item/storage/fancy/candle_box/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 5
+	storage_datum.storage_slots = 5
 
 /*
 * Crayon Box
@@ -90,8 +90,8 @@
 
 /obj/item/storage/fancy/crayons/Initialize(mapload)
 	. = ..()
-	atom_storage.storage_slots = 6
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/toy/crayon))
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/toy/crayon))
 
 /obj/item/storage/fancy/crayons/PopulateContents()
 	new /obj/item/toy/crayon/red(src)
@@ -139,9 +139,9 @@
 
 /obj/item/storage/fancy/cigarettes/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 18
-	atom_storage.storage_slots = 18
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.max_storage_space = 18
+	storage_datum.storage_slots = 18
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter,
 	))
@@ -157,7 +157,7 @@
 	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
-			atom_storage.remove_from_storage(C, get_turf(user), user)
+			storage_datum.remove_from_storage(C, get_turf(user), user)
 			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, span_notice("You take a cigarette out of the pack."))
 			update_icon()
@@ -177,9 +177,9 @@
 
 /obj/item/storage/fancy/chemrettes/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 18
-	atom_storage.storage_slots = 18
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.max_storage_space = 18
+	storage_datum.storage_slots = 18
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter,
 		/obj/item/storage/box/matches,
@@ -240,7 +240,7 @@
 
 /obj/item/storage/fancy/cigar/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 7
+	storage_datum.storage_slots = 7
 
 /obj/item/storage/fancy/cigar/update_icon_state()
 	. = ..()
@@ -253,7 +253,7 @@
 	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
-			atom_storage.remove_from_storage(C, get_turf(user), user)
+			storage_datum.remove_from_storage(C, get_turf(user), user)
 			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, span_notice("You take a cigar out of the case."))
 			update_icon()
@@ -284,10 +284,10 @@
 
 /obj/item/storage/lockbox/vials/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_NORMAL
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/glass/beaker/vial))
-	atom_storage.max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
-	atom_storage.storage_slots = 6
+	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/glass/beaker/vial))
+	storage_datum.max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
+	storage_datum.storage_slots = 6
 	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon_state()

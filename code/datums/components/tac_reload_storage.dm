@@ -11,10 +11,10 @@
 	var/obj/item/storage/reloading_storage
 
 /datum/component/tac_reload_storage/Initialize()
-	if(!isatom(parent)) // atom_storage is a var on /atom, so that's the bare minimum
+	if(!isatom(parent)) // storage_datum is a var on /atom, so that's the bare minimum
 		return COMPONENT_INCOMPATIBLE
 	var/atom/atom_parent = parent
-	if(!atom_parent.atom_storage) //Gotta have some storage to be capable to tac-reload from
+	if(!atom_parent.storage_datum) //Gotta have some storage to be capable to tac-reload from
 		return COMPONENT_INCOMPATIBLE
 
 /datum/component/tac_reload_storage/Destroy(force, silent)
@@ -55,7 +55,7 @@
 	SIGNAL_HANDLER
 	if(!istype(reloading_gun))
 		return
-	if(!reloading_storage.atom_storage)
+	if(!reloading_storage.storage_datum)
 		CRASH("[user] attempted to reload [reloading_gun] on [source], but it has no storage attached!")
 	INVOKE_ASYNC(src, PROC_REF(do_tac_reload), reloading_gun, user, params)
 
@@ -66,7 +66,7 @@
 			continue
 		if(user.get_active_held_item(reloading_gun))
 			reloading_gun.tactical_reload(item_to_reload_with, user)
-			reloading_storage.atom_storage.orient2hud()
+			reloading_storage.storage_datum.orient2hud()
 		return COMPONENT_NO_AFTERATTACK
 
 /**
@@ -79,7 +79,7 @@
  */
 /datum/component/tac_reload_storage/proc/on_suit_attach(obj/item/armor_module/storage/source, obj/item/clothing/new_host, mob/attacher)
 	SIGNAL_HANDLER
-	reloading_storage = source.atom_storage
+	reloading_storage = source.storage_datum
 	RegisterSignal(new_host, COMSIG_ATOM_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
 	RegisterSignal(new_host, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 

@@ -595,7 +595,7 @@
 				to_chat(user, span_warning("[M] is empty."))
 				return
 
-			if(length(contents) >= atom_storage.storage_slots)
+			if(length(contents) >= storage_datum.storage_slots)
 				to_chat(user, span_warning("[src] is full."))
 				return
 
@@ -604,8 +604,8 @@
 			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
-			for(var/x in 1 to (atom_storage.storage_slots - length(contents)))
-				var/cont = atom_storage.handle_item_insertion(M.create_handful(), 1, user)
+			for(var/x in 1 to (storage_datum.storage_slots - length(contents)))
+				var/cont = storage_datum.handle_item_insertion(M.create_handful(), 1, user)
 				if(!cont)
 					break
 
@@ -755,13 +755,13 @@
 
 	if(loc != user)
 		. = ..()
-		for(var/mob/watcher_mobs in atom_storage.content_watchers)
-			atom_storage.close(watcher_mobs)
+		for(var/mob/watcher_mobs in storage_datum.content_watchers)
+			storage_datum.close(watcher_mobs)
 
 	if(!length(contents))
-		atom_storage.open(user) //Empty belt? Open the inventory
+		storage_datum.open(user) //Empty belt? Open the inventory
 
-	if(!atom_storage.draw_mode)
+	if(!storage_datum.draw_mode)
 		return ..() //No draw mode so we just click like normal
 
 	var/obj/item/I = contents[length(contents)]
@@ -871,5 +871,5 @@
 	storage_type = /datum/storage/belt/protein_pack
 
 /obj/item/storage/belt/protein_pack/PopulateContents()
-	for(var/i in 1 to atom_storage.storage_slots)
+	for(var/i in 1 to storage_datum.storage_slots)
 		new /obj/item/reagent_containers/food/snacks/protein_pack(src)

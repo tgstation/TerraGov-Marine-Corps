@@ -222,7 +222,7 @@
 
 /obj/item/storage/box/nt_mre/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(list(/obj/item/reagent_containers/food/snacks))
+	storage_datum.set_holdable(list(/obj/item/reagent_containers/food/snacks))
 
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)

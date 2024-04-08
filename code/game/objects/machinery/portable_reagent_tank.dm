@@ -64,7 +64,7 @@
 	if(user.a_intent == INTENT_GRAB)
 		return drink_from_nozzle(user)
 	var/obj/item/storage/internal_bag = get_internal_item()
-	internal_bag?.atom_storage.open(user)
+	internal_bag?.storage_datum.open(user)
 
 /obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent != INTENT_HARM)
@@ -111,8 +111,8 @@
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
 	. = ..()
 	var/obj/item/storage/internal_bag = get_internal_item()
-	for(var/mob/watching in internal_bag?.atom_storage.content_watchers)
-		internal_bag.atom_storage.close(watching)
+	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
+		internal_bag.storage_datum.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
 
 /obj/item/storage/reagent_tank
@@ -170,7 +170,7 @@
 
 /obj/item/storage/reagent_tank/attack_hand(mob/living/user)
 	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
-		return atom_storage.open(user)
+		return storage_datum.open(user)
 	return ..()
 
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)

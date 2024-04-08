@@ -31,23 +31,23 @@
 
 /obj/item/storage/update_icon_state()
 	. = ..()
-	if(!atom_storage?.sprite_slots)
+	if(!storage_datum?.sprite_slots)
 		icon_state = initial(icon_state)
 		return
 
 	var/total_weight = 0
 
-	if(!atom_storage.storage_slots)
+	if(!storage_datum.storage_slots)
 		for(var/obj/item/i in contents)
 			total_weight += i.w_class
-		total_weight = ROUND_UP(total_weight / atom_storage.max_storage_space * atom_storage.sprite_slots)
+		total_weight = ROUND_UP(total_weight / storage_datum.max_storage_space * storage_datum.sprite_slots)
 	else
-		total_weight = ROUND_UP(length(contents) / atom_storage.storage_slots * atom_storage.sprite_slots)
+		total_weight = ROUND_UP(length(contents) / storage_datum.storage_slots * storage_datum.sprite_slots)
 
 	if(!total_weight)
 		icon_state = initial(icon_state) + "_e"
 		return
-	if(atom_storage.sprite_slots > total_weight)
+	if(storage_datum.sprite_slots > total_weight)
 		icon_state = initial(icon_state) + "_" + num2text(total_weight)
 	else
 		icon_state = initial(icon_state)

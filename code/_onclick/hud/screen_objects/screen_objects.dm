@@ -265,10 +265,10 @@
 	if(!master)
 		return
 
-	var/datum/storage/storage_datum = master
+	var/datum/storage/current_storage_datum = master
 	var/obj/item/item_in_hand = usr.get_active_held_item()
 	if(item_in_hand)
-		storage_datum.parent.attackby(item_in_hand, usr)
+		current_storage_datum.parent.attackby(item_in_hand, usr)
 		return
 
 	// Taking something out of the storage screen (including clicking on item border overlay)
@@ -276,12 +276,12 @@
 	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
 
-	for(var/i = 1 to length(storage_datum.click_border_start))
-		if(storage_datum.click_border_start[i] > click_x || click_x > storage_datum.click_border_end[i])
+	for(var/i = 1 to length(current_storage_datum.click_border_start))
+		if(current_storage_datum.click_border_start[i] > click_x || click_x > current_storage_datum.click_border_end[i])
 			continue
-		if(length(storage_datum.parent.contents) < i)
+		if(length(current_storage_datum.parent.contents) < i)
 			continue
-		item_in_hand = storage_datum.parent.contents[i]
+		item_in_hand = current_storage_datum.parent.contents[i]
 		item_in_hand.attack_hand(usr)
 		return
 
@@ -293,8 +293,8 @@
 	var/total_w = 0
 	for(var/obj/item/I in S)
 		total_w += I.w_class
-	var/storage_slot_fullness = S.atom_storage.storage_slots ? (length(S.contents) / S.atom_storage.storage_slots) : 0
-	var/slotless_fullness = S.atom_storage.max_storage_space ? (total_w / S.atom_storage.max_storage_space) : 0
+	var/storage_slot_fullness = S.storage_datum.storage_slots ? (length(S.contents) / S.storage_datum.storage_slots) : 0
+	var/slotless_fullness = S.storage_datum.max_storage_space ? (total_w / S.storage_datum.max_storage_space) : 0
 	var/fullness = round(10 * max(storage_slot_fullness, slotless_fullness))
 	switch(fullness)
 		if(10)

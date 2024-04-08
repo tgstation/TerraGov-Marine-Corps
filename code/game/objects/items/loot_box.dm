@@ -448,9 +448,9 @@
 
 /obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
-	atom_storage.storage_slots = 100
-	atom_storage.max_storage_space = 100
-	atom_storage.max_w_class = 0 //1 way storage
+	storage_datum.storage_slots = 100
+	storage_datum.max_storage_space = 100
+	storage_datum.max_w_class = 0 //1 way storage
 
 /obj/item/storage/box/crate/loot/PopulateContents()
 	new /obj/item/weapon/banhammer(src)

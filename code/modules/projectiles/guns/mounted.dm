@@ -8,8 +8,8 @@
 
 /obj/item/storage/box/hsg_102/Initialize(mapload)
 	. = ..()
-	atom_storage.storage_slots = 7
-	atom_storage.storage_type_limits = list(
+	storage_datum.storage_slots = 7
+	storage_datum.storage_type_limits = list(
 		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
 	)
@@ -622,7 +622,7 @@
 		return
 
 	if(over == usr && Adjacent(usr)) //This must come before the screen objects only block
-		sponson.atom_storage.open(usr)
+		sponson.storage_datum.open(usr)
 		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)

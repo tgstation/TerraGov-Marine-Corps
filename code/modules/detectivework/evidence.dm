@@ -24,7 +24,7 @@
 	else
 		//If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
 		if(I.item_flags & IN_STORAGE) //in a container.
-			var/sdepth = I.atom_storage.storage_depth(user)
+			var/sdepth = I.storage_datum.storage_depth(user)
 			if (sdepth == -1 || sdepth > 1)
 				return	//too deeply nested to access
 

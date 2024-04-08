@@ -104,8 +104,8 @@
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)
 	var/obj/item/storage/internal_bag = get_internal_item()
-	for(var/mob/watching in internal_bag?.atom_storage.content_watchers)
-		internal_bag.atom_storage.close(watching)
+	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
+		internal_bag.storage_datum.close(watching)
 	return ..()
 
 /obj/item/storage/backpack/dispenser
@@ -124,7 +124,7 @@
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
 	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return ..()
-	atom_storage.open(user)
+	storage_datum.open(user)
 
 /obj/item/storage/backpack/dispenser/do_quick_equip(mob/user)
 	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))

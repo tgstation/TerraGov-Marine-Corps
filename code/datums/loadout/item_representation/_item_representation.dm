@@ -53,8 +53,8 @@
 	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
 		item.current_variant = GLOB.loadout_variant_keys[variant]
 		item.update_icon()
-	if(item.atom_storage)
-		instantiate_storage_datum(seller, item, user)
+	if(item.storage_datum)
+		instantiate_current_storage_datum(seller, item, user)
 	return item
 
 /**
@@ -102,9 +102,9 @@
 		contents += new item_representation_type(thing_in_content)
 
 ///Like instantiate_object(), but returns a /datum instead of a /item, master is REQUIRED and it must be at least an atom
-/datum/item_representation/proc/instantiate_storage_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
+/datum/item_representation/proc/instantiate_current_storage_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
 	if(!master)
-		CRASH("instantiate_storage_datum called with null master")
+		CRASH("instantiate_current_storage_datum called with null master")
 	item_type = master
 	if(!isatom(item_type))
 		CRASH("[item_type] is not a /atom, it cannot have storage")
@@ -112,11 +112,11 @@
 	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save)) //Some storage cannot handle custom contents
 		return
 
-	var/datum/storage/storage_datum = item_type.atom_storage
+	var/datum/storage/current_storage_datum = item_type.storage_datum
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/item_in_contents AS in contents)
 		starting_items[item_in_contents.type] = starting_items[item_in_contents.type] + get_item_stack_number(item_in_contents)
-	storage_datum.delete_contents()
+	current_storage_datum.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
@@ -129,8 +129,8 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage_datum.can_be_inserted(item_to_insert, user))
-			storage_datum.handle_item_insertion(item_to_insert)
+		if(current_storage_datum.can_be_inserted(item_to_insert, user))
+			current_storage_datum.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
 

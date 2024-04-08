@@ -21,9 +21,9 @@
 
 /obj/item/storage/donut_box/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/donut))
-	atom_storage.foldable = /obj/item/stack/sheet/cardboard
-	atom_storage.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/donut))
+	storage_datum.foldable = /obj/item/stack/sheet/cardboard
+	storage_datum.storage_slots = 6
 
 /obj/item/storage/donut_box/PopulateContents()
 	for(var/i in 1 to startswith)

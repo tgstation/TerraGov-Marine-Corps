@@ -25,11 +25,11 @@
 
 /obj/item/storage/holster/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.draw_sound = src.draw_sound
-	atom_storage.sheathe_sound = src.sheathe_sound
-	atom_storage.holsterable_allowed = src.holsterable_allowed
-	atom_storage.holstered_item = src.holstered_item
-	atom_storage.holstered_item_underlay = src.holstered_item_underlay
+	storage_datum.draw_sound = src.draw_sound
+	storage_datum.sheathe_sound = src.sheathe_sound
+	storage_datum.holsterable_allowed = src.holsterable_allowed
+	storage_datum.holstered_item = src.holstered_item
+	storage_datum.holstered_item_underlay = src.holstered_item_underlay
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
@@ -79,7 +79,7 @@
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
-	if(!atom_storage.remove_from_storage(W, null, user))
+	if(!storage_datum.remove_from_storage(W, null, user))
 		return FALSE
 	return W
 
@@ -107,14 +107,14 @@
 //only applies on storage of all items, not withdrawal
 /obj/item/storage/holster/backholster/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(atom_storage.use_sound)
-		playsound(loc, atom_storage.use_sound, 15, 1, 6)
+	if(storage_datum.use_sound)
+		playsound(loc, storage_datum.use_sound, 15, 1, 6)
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK)
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
-		if(atom_storage.use_sound)
-			playsound(loc, atom_storage.use_sound, 15, 1, 6)
+		if(storage_datum.use_sound)
+			playsound(loc, storage_datum.use_sound, 15, 1, 6)
 	return ..()
 
 ///RR bag
@@ -142,7 +142,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/low_impact/PopulateContents()
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
@@ -150,7 +150,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/heam/PopulateContents()
 	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
@@ -158,7 +158,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
@@ -176,7 +176,7 @@
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som/ert/PopulateContents()
 	new /obj/item/ammo_magazine/rocket/som/thermobaric(src)
@@ -184,7 +184,7 @@
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/rpg/som/heat/PopulateContents()
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
@@ -192,7 +192,7 @@
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/heat(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/mortar
 	name = "\improper TGMC mortar bag"
@@ -212,7 +212,7 @@
 
 /obj/item/storage/holster/backholster/mortar/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/mortar_kit(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
@@ -279,7 +279,7 @@
 
 /obj/item/storage/holster/backholster/flamer/full/PopulateContents()
 	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), flamer)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), flamer)
 
 //one slot holsters
 
@@ -301,21 +301,21 @@
 
 /obj/item/storage/holster/blade/machete/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/claymore/harvester,
 	))
 
 /obj/item/storage/holster/blade/machete/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
 /obj/item/storage/holster/blade/machete/full_harvester/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
@@ -328,11 +328,11 @@
 
 /obj/item/storage/holster/blade/katana/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/katana))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/katana))
 
 /obj/item/storage/holster/blade/katana/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/katana(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/officer
 	name = "\improper officer sword scabbard"
@@ -343,11 +343,11 @@
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/claymore/mercsword/machete/officersword))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/claymore/mercsword/machete/officersword))
 
 /obj/item/storage/holster/blade/officer/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 //guns
 
@@ -362,14 +362,14 @@
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
 	))
 
 /obj/item/storage/holster/m37/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t35
 	name = "\improper L44 SH-35 scabbard"
@@ -380,13 +380,13 @@
 
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/shotgun/pump/t35,
 	))
 
 /obj/item/storage/holster/t35/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump/t35(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
@@ -401,11 +401,11 @@
 
 /obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
 
 /obj/item/storage/holster/m25/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t19
 	name = "\improper M276 pattern MP-19 holster rig"
@@ -422,7 +422,7 @@
 
 /obj/item/storage/holster/t19/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/flarepouch
 	name = "flare pouch"
@@ -440,15 +440,15 @@
 	if(flare_gun.in_chamber)
 		return
 	for(var/obj/item/flare in contents)
-		atom_storage.remove_from_storage(flare, get_turf(user), user)
+		storage_datum.remove_from_storage(flare, get_turf(user), user)
 		user.put_in_any_hand_if_possible(flare)
 		flare_gun.reload(flare, user)
 		return
 
 /obj/item/storage/holster/flarepouch/full/PopulateContents()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), flare_gun)
-	for(var/i in 1 to (atom_storage.storage_slots-flare_gun.w_class))
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), flare_gun)
+	for(var/i in 1 to (storage_datum.storage_slots-flare_gun.w_class))
 		new /obj/item/explosive/grenade/flare(src)
 
 
@@ -467,7 +467,7 @@
 	new /obj/item/ammo_magazine/icc_mg/packet(src)
 	new /obj/item/ammo_magazine/icc_mg/packet(src)
 	new /obj/item/ammo_magazine/icc_mg/packet(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 ////////////////////////////// GUN BELTS /////////////////////////////////////
 
@@ -500,7 +500,7 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -516,7 +516,7 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/officer/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
@@ -526,7 +526,7 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
@@ -536,7 +536,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/vp70/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
@@ -546,7 +546,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70/tactical(src)
@@ -556,7 +556,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/vp78/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
@@ -566,7 +566,7 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/som
 	name = "\improper S19 holster rig"
@@ -575,7 +575,7 @@
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
@@ -593,7 +593,7 @@
 	new /obj/item/cell/lasgun/volkite/small(src)
 	new /obj/item/cell/lasgun/volkite/small(src)
 	new /obj/item/cell/lasgun/volkite/small(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	name = "\improper S19-B holster rig"
@@ -608,7 +608,7 @@
 	new /obj/item/cell/lasgun/volkite/small(src)
 	new /obj/item/cell/lasgun/volkite/small(src)
 	new /obj/item/cell/lasgun/volkite/small(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
@@ -616,7 +616,7 @@
 
 /obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 	))
@@ -633,10 +633,10 @@
 
 /obj/item/storage/holster/belt/revolver/standard_revolver/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_type_limits = list(
+	storage_datum.storage_type_limits = list(
 		/obj/item/weapon/gun/revolver,
 	)
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	))
@@ -655,7 +655,7 @@
 	new /obj/item/ammo_magazine/revolver(src)
 	new /obj/item/ammo_magazine/revolver(src)
 	new /obj/item/ammo_magazine/revolver(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/mateba
 	name = "\improper M276 pattern Mateba holster rig"
@@ -671,7 +671,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/mateba/officer
 	icon_state = "c_mateba_holster"
@@ -684,7 +684,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/mateba/notmarine/Initialize(mapload)
 	. = ..()
@@ -698,7 +698,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/korovin
 	name = "\improper Type 41 pistol holster rig"
@@ -714,7 +714,7 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/korovin/tranq/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/tranq(src)
@@ -724,7 +724,7 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/ts34
 	name = "\improper M276 pattern SH-34 shotgun holster rig"
@@ -737,7 +737,7 @@
 /obj/item/storage/holster/belt/ts34/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
@@ -745,7 +745,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
 	))
@@ -758,4 +758,4 @@
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
 	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
-	INVOKE_ASYNC(atom_storage, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)

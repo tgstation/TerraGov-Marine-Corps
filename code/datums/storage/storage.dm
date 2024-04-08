@@ -1,21 +1,21 @@
 /*!
  * Datumized Storage
- * Eliminates the need for custom signals specifically for the storage component, and attaches a storage variable (atom_storage) to every atom.
+ * Eliminates the need for custom signals specifically for the storage component, and attaches a storage variable (storage_datum) to every atom.
  */
 
 ///Helper proc to give something storage
 /atom/proc/create_storage(storage_type = /datum/storage, list/canhold, list/canthold, list/storage_type_limits)
 	RETURN_TYPE(/datum/storage)
 
-	if(atom_storage)
-		QDEL_NULL(atom_storage)
+	if(storage_datum)
+		QDEL_NULL(storage_datum)
 
-	atom_storage = new storage_type(src)
+	storage_datum = new storage_type(src)
 
 	if(canhold || canthold)
-		atom_storage.set_holdable(canhold, canthold, storage_type_limits)
+		storage_datum.set_holdable(canhold, canthold, storage_type_limits)
 
-	return atom_storage
+	return storage_datum
 
 // The parent and real_location variables are both weakrefs, so they must be resolved before they can be used.
 /datum/storage
@@ -437,7 +437,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(recursive)
 		for(var/item in parent.contents)
 			var/atom/atom = item
-			atom.atom_storage?.return_inv(recursive = TRUE)
+			atom.storage_datum?.return_inv(recursive = TRUE)
 
 	return inventory
 

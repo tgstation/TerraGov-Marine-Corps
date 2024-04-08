@@ -212,7 +212,7 @@
 
 /obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_storage_space = 21
+	storage_datum.max_storage_space = 21
 	for(var/i in 1 to 3)
 		new /obj/item/inflatable/door(src)
 	for(var/i in 1 to 4)

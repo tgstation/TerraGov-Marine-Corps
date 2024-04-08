@@ -124,7 +124,7 @@
 	///The list of alternate appearances for this atom
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
-	var/datum/storage/atom_storage
+	var/datum/storage/storage_datum
 
 
 /*
@@ -138,8 +138,8 @@ directive is properly returned.
 	if(reagents)
 		QDEL_NULL(reagents)
 
-	if(atom_storage)
-		QDEL_NULL(atom_storage)
+	if(storage_datum)
+		QDEL_NULL(storage_datum)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 

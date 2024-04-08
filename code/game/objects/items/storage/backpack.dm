@@ -24,14 +24,14 @@
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(atom_storage.use_sound)
-		playsound(loc, atom_storage.use_sound, 15, 1, 6)
+	if(storage_datum.use_sound)
+		playsound(loc, storage_datum.use_sound, 15, 1, 6)
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-		if(atom_storage.use_sound)
-			playsound(loc, atom_storage.use_sound, 15, 1, 6)
+		if(storage_datum.use_sound)
+			playsound(loc, storage_datum.use_sound, 15, 1, 6)
 	return ..()
 
 /obj/item/storage/backpack/dropped(mob/user)

@@ -54,7 +54,7 @@
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
 		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
-		bottle.atom_storage.remove_from_storage(pill,null,user)
+		bottle.storage_datum.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
 

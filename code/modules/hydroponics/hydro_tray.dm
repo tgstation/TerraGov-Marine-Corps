@@ -595,9 +595,9 @@
 
 		attack_hand(user)
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
-			if(!S.atom_storage.can_be_inserted(G, user))
+			if(!S.storage_datum.can_be_inserted(G, user))
 				return
-			S.atom_storage.handle_item_insertion(G, TRUE, user)
+			S.storage_datum.handle_item_insertion(G, TRUE, user)
 
 	else if(istype(I, /obj/item/tool/plantspray))
 		var/obj/item/tool/plantspray/spray = I

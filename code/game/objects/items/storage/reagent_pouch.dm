@@ -59,11 +59,11 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_BULKY
-	atom_storage.allow_drawing_method = TRUE
+	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
+	storage_datum.allow_drawing_method = TRUE
 	//cant_hold_list to prevent chat spam when you try to put the container in
-	atom_storage.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray), cant_hold_list = list(/obj/item/reagent_containers/glass/reagent_canister))
-	atom_storage.draw_mode = TRUE
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray), cant_hold_list = list(/obj/item/reagent_containers/glass/reagent_canister))
+	storage_datum.draw_mode = TRUE
 
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
 	new /obj/item/reagent_containers/hypospray/autoinjector/r_pouch(src)

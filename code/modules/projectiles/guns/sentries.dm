@@ -219,8 +219,8 @@
 
 /obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.storage_slots = 6
-	atom_storage.set_holdable(can_hold_list = list(
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
 	))
@@ -324,10 +324,10 @@
 
 /obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
-	atom_storage.storage_slots = 6
-	atom_storage.max_storage_space = 16
-	atom_storage.set_holdable(
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
 		can_hold_list = list(
 			/obj/item/weapon/gun/sentry/sniper_sentry,
 			/obj/item/ammo_magazine/sentry/sniper,
@@ -376,10 +376,10 @@
 
 /obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
-	atom_storage.storage_slots = 6
-	atom_storage.max_storage_space = 16
-	atom_storage.set_holdable(
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
 		can_hold_list = list(
 			/obj/item/weapon/gun/sentry/shotgun_sentry,
 			/obj/item/ammo_magazine/sentry/shotgun,
@@ -428,10 +428,10 @@
 
 /obj/item/storage/box/crate/sentry_flamer/Initialize(mapload)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_HUGE
-	atom_storage.storage_slots = 6
-	atom_storage.max_storage_space = 16
-	atom_storage.set_holdable(
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
 		can_hold_list = list(
 			/obj/item/weapon/gun/sentry/flamer_sentry,
 			/obj/item/ammo_magazine/sentry/flamer,

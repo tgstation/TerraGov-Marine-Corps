@@ -14,8 +14,8 @@
 
 /obj/item/storage/secure/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_SMALL
-	atom_storage.max_storage_space = 14
+	storage_datum.max_w_class = WEIGHT_CLASS_SMALL
+	storage_datum.max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -73,7 +73,7 @@
 			locked = TRUE
 			overlays = null
 			code = null
-			atom_storage.close(usr)
+			storage_datum.close(usr)
 		else
 			code += href_list["type"]
 			if(length(code) > 5)
@@ -139,13 +139,13 @@
 		return
 
 	if(loc == user && !locked)
-		atom_storage.open(user)
+		storage_datum.open(user)
 		return
 
 	. = ..()
 	for(var/mob/M in range(1))
 		if(M.s_active == src)
-			atom_storage.close(M)
+			storage_datum.close(M)
 
 // -----------------------------
 //        Secure Safe
@@ -166,8 +166,8 @@
 
 /obj/item/storage/secure/safe/Initialize(mapload, ...)
 	. = ..()
-	atom_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
-	atom_storage.set_holdable(cant_hold_list = list(/obj/item/storage/secure/briefcase))
+	storage_datum.max_w_class = WEIGHT_CLASS_GIGANTIC
+	storage_datum.set_holdable(cant_hold_list = list(/obj/item/storage/secure/briefcase))
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)
