@@ -283,23 +283,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		items += "[faction] respawns freely available until next mission starts"
 	items += ""
 
-///Messages faction members when they deploy for a mission
-/datum/faction_stats/proc/deploy_point_activated(mob/living/user)
-	var/text_source = "OVERWATCH"
-	var/portrait_to_use = faction_portrait
-	var/message
-	switch(user.faction)
-		if(FACTION_TERRAGOV)
-			message = "Stick together and achieve those objectives marines. Good luck."
-		if(FACTION_SOM)
-			message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
-
-	if(!message)
-		return
-
-	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[text_source]</u></span><br>" + message, portrait_to_use)
-
 ///Checks if a mob is in a command role for this faction
 /datum/faction_stats/proc/is_leadership_role(mob/living/user)
 	if(user == faction_leader)
