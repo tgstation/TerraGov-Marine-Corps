@@ -3612,36 +3612,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/firing_range)
-"dkl" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clipboard{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/paper{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/tool/pen{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/tool/stamp/qm{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/machinery/door_control/old/req{
-	pixel_y = -5;
-	pixel_x = -9
-	},
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = -8;
-	pixel_y = 10
-	},
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
-/area/mainship/squads/req)
 "dko" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/side,
@@ -9887,21 +9857,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/cmo_office)
-"iwn" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door_control/mainship/req{
-	id = "requisitions";
-	name = "Requisitions Shutters";
-	dir = 8
-	},
-/turf/open/floor/mainship/green{
-	dir = 4
-	},
-/area/mainship/squads/req)
 "iwx" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -12137,13 +12092,6 @@
 "kox" = (
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
-"koG" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "koW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -19114,16 +19062,6 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
-"pTZ" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "pUe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -20490,16 +20428,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
-"rbo" = (
-/obj/machinery/door_control/mainship/mech{
-	dir = 8;
-	name = "Vehicle Bay Shutter";
-	id = "vehicle_shutters"
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "rbz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23447,7 +23375,6 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
-/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -23488,16 +23415,6 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"tFM" = (
-/obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "tGC" = (
 /obj/structure/prop/tgbrokenvendor/sec,
 /turf/open/floor/mainship/floor,
@@ -23644,23 +23561,6 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
-"tNS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "tOf" = (
 /obj/structure/window/framed/mainship/white/toughened,
 /turf/open/floor/mainship/research,
@@ -26238,19 +26138,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"vXb" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/machinery/door_control/mainship/mech{
-	dir = 4;
-	name = "Vehicle Bay Shutter";
-	id = "vehicle_shutters"
-	},
-/turf/open/floor/mainship/orange/corner{
-	dir = 4
-	},
-/area/mainship/living/tankerbunks)
 "vXn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -26558,7 +26445,6 @@
 /area/mainship/shipboard/brig_cells)
 "wkm" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
