@@ -12,6 +12,28 @@
 	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> AO is secured. Enemy mechanised units all confirmed destroyed or falling back, excellent work!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost control of this area, all units, regroup and retreat, we'll make them pay next time.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Confirming hostile mechanised units have been degraded below combat ready status. We ground them down, good work.",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> We've taken too many loses, all forces, pull back now!",
+		),
+		MISSION_OUTCOME_DRAW = list(
+			MISSION_STARTING_FACTION = "<u>Draw</u><br> This was bloodbath on both sides. Any surviving units, retreat to nearest exfil point.",
+			MISSION_HOSTILE_FACTION = "<u>Draw</u><br> What a bloodbath. We bled for it, but enemy assault repelled.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> We're losing to many mechs. All remaining units, regroup at point Echo, fallback!",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Confirming enemy forces are falling back. All units regroup and prepare to pursue!",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> Control of AO lost, this is a disaster. All surviving units, retreat!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> AO secured, enemy forces confirmed terminated or falling back. We've shown them who we are!",
+		),
+	)
 
 /datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(

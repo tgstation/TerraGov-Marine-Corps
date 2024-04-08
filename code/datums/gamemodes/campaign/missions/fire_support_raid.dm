@@ -32,6 +32,24 @@
 
 	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a period of time."
 	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support. Additional equipment and fire support is available if you successfully defend this outpost."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> All fire support targets are out of commission. Outstanding work, they won't forget this any time soon!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> All objectives lost, fallback, fallback!.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Objectives achieved, great work. All forces prepare for redeployment.",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> Fire support has been compromised. All forces regroup, we'll make them pay next time.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Minimal damage confirmed, mission failed. All units, fallback to point delta.",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Enemy forces repelled, confirming fire support still at operational capacity. Great work everyone.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> No permanent damage achieved. What are you doing out there? All forces, retreat!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Enemy attack completely neutralised. Unbelievable work team, we crushed them!",
+		),
+	)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(

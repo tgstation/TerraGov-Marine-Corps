@@ -38,6 +38,16 @@
 
 	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
 	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> SOM forces have been driven back, we've got them on the backfoot now marines!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> The assault is a failure, pull back and regroup!",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> VIP assets destroyed, mission failure. Fallback and regroup marines.",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Outstanding work Martians, Nanotrasen won't be coming back here any time soon!",
+		),
+	)
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission()
 	. = ..()

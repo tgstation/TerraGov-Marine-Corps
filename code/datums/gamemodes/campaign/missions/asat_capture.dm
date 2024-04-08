@@ -40,6 +40,24 @@
 		Protect the ASAT weapons at all costs. Do not allow them to be destroyed or to fall into enemy hands."
 	starting_faction_additional_rewards = "Additional ICC support, ability to counteract TGMC drop pod usage"
 	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> All targets captured and Terrans in disarray. Pack it up, you've done Mars proud!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> All objectives lost. All remaining forces pull back, we'll get them next time.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Objectives achieved. Nice work Martians, head to exfil.",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> Pull back all forces, we'll get them next time.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Insufficient targts captured. All forces pull back, we'll get them next time.",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Excellent work marines, we held them off. Regroup and prepare for the counter attack!",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> Damn it, all surviving forces retreat. The operation is a failure.",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Enemy forces routed, outstanding work! The SOM came to the wrong neighbourhood today marines!",
+		),
+	)
 
 	objectives_total = 6
 	min_capture_amount = 5

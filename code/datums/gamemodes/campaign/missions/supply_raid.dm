@@ -26,6 +26,24 @@
 	)
 	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. Recon mech and gorgon armor available if you successfully protect this depot."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> Enemy base is in ruins, outstanding work!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> The base is a complete loss. All forces, retreat!",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Outstanding work, they won't be recovering from this any time soon!",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> This one is a loss. All units regroup, we'll get them next time..",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Mission failed, they're still up and running. All forces, fallback!",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> We drove them back, confirming minimal damage. Excellent work.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> No notable damage inflicted, what are we doing out there? All forces, retreat!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Enemy assault completely neutralised. Outstanding work!",
+		),
+	)
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()
 	intro_message = list(
