@@ -50,7 +50,7 @@
 			to_chat(C, msg)
 			if(C.prefs.toggles & SOUND_PRAYERS)
 				if(usr.job == "Priest")
-					SEND_SOUND(C, sound('sound/blank.ogg'))
+					SEND_SOUND(C, sound('sound/pray.ogg'))
 
 	for(var/mob/M in GLOB.dead_mob_list)
 		if(!M.client)
