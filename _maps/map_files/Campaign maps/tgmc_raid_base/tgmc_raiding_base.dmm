@@ -124,7 +124,7 @@
 "aB" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
-	id = South-Colony-Garage
+	id = "South-Colony-Garage"
 	},
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -1914,7 +1914,7 @@
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "hE" = (
 /obj/machinery/door_control{
-	id = South-Colony-Garage
+	id = "South-Colony-Garage"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
@@ -4265,7 +4265,7 @@
 /area/campaign/tgmc_raiding/underground/engineering)
 "rz" = (
 /obj/machinery/door_control{
-	id = South-Colony-Garage;
+	id = "South-Colony-Garage";
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -12566,7 +12566,7 @@
 "Zn" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
-	id = South-Colony-Garage
+	id = "South-Colony-Garage"
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/garage)
