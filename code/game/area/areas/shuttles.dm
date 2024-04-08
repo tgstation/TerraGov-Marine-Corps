@@ -95,15 +95,16 @@
 
 /area/shuttle/mining
 	name = "Mining Shuttle"
-//	blob_allowed = FALSE
 
 /area/shuttle/labor
 	name = "Labor Camp Shuttle"
-//	blob_allowed = FALSE
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
-//	blob_allowed = FALSE
+
+/area/shuttle/vehicle_supply
+	name = "Vehicle Supply Shuttle"
+
 /*
 /area/shuttle/escape
 	name = "Emergency Shuttle"

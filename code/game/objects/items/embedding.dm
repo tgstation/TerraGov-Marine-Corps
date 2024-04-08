@@ -103,12 +103,12 @@
 		return //People can safely move inside a vehicle or on a roller bed/chair.
 	var/embedded_thing = carrier.embedded_objects[src]
 	if(embedded_thing == carrier)
-		//carbon stuff
-	else if(istype(embedded_thing, /datum/limb))
-		var/datum/limb/limb_loc = embedded_thing
-		limb_loc.process_embedded(src)
-	else
+		return
+	if(!istype(embedded_thing, /datum/limb))
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
+	var/datum/limb/limb_loc = embedded_thing
+	limb_loc.process_embedded(src)
+
 
 
 /obj/item/proc/embedded_on_limb_destruction(datum/limb/source)

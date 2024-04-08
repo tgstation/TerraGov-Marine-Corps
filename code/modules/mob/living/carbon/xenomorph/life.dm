@@ -161,10 +161,10 @@
 
 	if(warding_aura != (received_auras[AURA_XENO_WARDING] || 0))
 		if(warding_aura) //If either the new or old warding is 0, we can skip adjusting armor for it.
-			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 1.5)
+			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
 		warding_aura = received_auras[AURA_XENO_WARDING] || 0
 		if(warding_aura)
-			soft_armor = soft_armor.modifyAllRatings(warding_aura * 1.5)
+			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
 
 	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
 
