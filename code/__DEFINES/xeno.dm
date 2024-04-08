@@ -106,9 +106,6 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 
 //List of Baneling chemical types available for selection
 GLOBAL_LIST_INIT(baneling_chem_type_list, list(
-		/datum/reagent/toxin/xeno_ozelomelyn,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/acid,
 		))
@@ -169,6 +166,7 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/mantis/ai,
 	/mob/living/carbon/xenomorph/scorpion/ai,
 	/mob/living/carbon/xenomorph/nymph/ai,
+	/mob/living/carbon/xenomorph/baneling/ai,
 ))
 
 ///Heals a xeno, respecting different types of damage

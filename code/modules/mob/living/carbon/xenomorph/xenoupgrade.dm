@@ -377,15 +377,6 @@
 
 //----WARLOCK END----//
 //============//
-//----BANELING START----//
-/mob/living/carbon/xenomorph/baneling
-	upgrade = XENO_UPGRADE_NORMAL
-
-/mob/living/carbon/xenomorph/baneling/primordial
-	upgrade = XENO_UPGRADE_PRIMO
-
-//----BANELING END----//
-//============//
 //----PUPPETEER START----//
 /mob/living/carbon/xenomorph/puppeteer
 	upgrade = XENO_UPGRADE_NORMAL

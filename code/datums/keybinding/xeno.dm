@@ -211,21 +211,6 @@
 //
 // Single caste, alphabetical order
 //
-
-/datum/keybinding/xeno/dash_explosion
-	name = "Dash Explosion"
-	full_name = "Baneling: Dash Explode"
-	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/spawn_pod
-	name = "Spawn Pod"
-	full_name = "Baneling: Spawn Pod"
-	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
-	hotkey_keys = list("F")
-
 /datum/keybinding/xeno/baneling_explode
 	name = "Explode"
 	full_name = "Baneling: Explode"

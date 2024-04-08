@@ -248,9 +248,6 @@
 /obj/structure/xeno/trap/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
 
-/obj/structure/xeno/baneling_pod/AIMiddleClick(mob/living/silicon/ai/user)
-	user.ai_ping(src, COOLDOWN_AI_PING_LOW)
-
 /* acid */
 
 /obj/effect/xenomorph/acid/AIMiddleClick(mob/living/silicon/ai/user)
