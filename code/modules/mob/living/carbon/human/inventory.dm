@@ -399,7 +399,7 @@
 		return FALSE
 
 	var/datum/storage/selected_storage
-	if(isstorage(selected_slot))
+	if(isdatumstorage(selected_slot))
 		selected_storage = selected_slot
 	else if(selected_slot.atom_storage)
 		selected_storage = selected_slot.atom_storage

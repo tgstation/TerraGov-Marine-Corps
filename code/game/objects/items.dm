@@ -679,7 +679,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/datum/storage/storage_datum
 
-	if(isstorage(selected_slot))
+	if(isdatumstorage(selected_slot))
 		storage_datum = selected_slot
 
 	else if(selected_slot.atom_storage)
