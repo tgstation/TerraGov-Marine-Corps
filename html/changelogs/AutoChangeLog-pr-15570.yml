@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Pamphlets now have the ability to prevent being stacked"
