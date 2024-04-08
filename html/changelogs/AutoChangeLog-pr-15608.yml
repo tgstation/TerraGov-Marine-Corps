@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Added glass to each ship CIC and engineering rooms"
+  - rscadd: "Added more materials to the debugabus engineering room"
