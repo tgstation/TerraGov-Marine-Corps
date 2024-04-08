@@ -1,0 +1,11 @@
+author: "TiviPlus, Barnet"
+delete-after: True
+changes:
+  - bugfix: "Fixed an issue with improper naming leading to issues with special walls keybinds. This may result in slight changes to this keybind as it fixes itself"
+  - bugfix: "Fixed the stock uptick event never firing"
+  - bugfix: "Codex entries for factions were not compiled, they now are in the game correctly"
+  - bugfix: "Fixed Zombie Crash not being compiled"
+  - bugfix: "fixed the dev version of tts not working"
+  - code_imp: "Improved automated detection of issues and fixed a number of them"
+  - code_imp: "removed unused files"
+  - code_imp: "the codebase now ships with UpdatePath and midi2piano"
