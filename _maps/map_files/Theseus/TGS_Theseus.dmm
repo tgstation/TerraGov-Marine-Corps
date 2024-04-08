@@ -7961,18 +7961,6 @@
 	dir = 9
 	},
 /area/mainship/living/officer_rnr)
-"dus" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/turf/open/space/basic,
-/area/space)
 "dvk" = (
 /obj/structure/closet,
 /obj/item/toy/plush/slime,
@@ -51337,7 +51325,7 @@ aaa
 aaa
 aaa
 aaa
-dus
+aaa
 aaa
 aaa
 aaa
