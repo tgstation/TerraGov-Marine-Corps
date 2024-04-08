@@ -1661,19 +1661,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
-"axx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "axU" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
@@ -1988,22 +1975,6 @@
 	dir = 8
 	},
 /area/mainship/living/starboard_emb)
-"aJS" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "aKc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3128,6 +3099,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/firing_range)
+"biJ" = (
+/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "bja" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -3860,14 +3835,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
-"boX" = (
-/obj/machinery/camera/autoname/mainship,
-/obj/machinery/computer/cloning_console/vats,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "bpk" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -4009,19 +3976,6 @@
 	dir = 1
 	},
 /area/mainship/shipboard/firing_range)
-"bqR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "bqW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -7247,11 +7201,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
 "cjV" = (
-/obj/machinery/computer/cloning_console/vats,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1
-	},
-/turf/open/floor/mainship/sterile/side{
+/obj/machinery/cloning/vats,
+/turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
@@ -7346,6 +7297,19 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engine_monitoring)
+"csc" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "csd" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -7679,6 +7643,19 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"cTQ" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/structure/cable,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/chemistry)
 "cUz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7709,6 +7686,17 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/starboard_emb)
+"cXk" = (
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "cYh" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/light_bulb/tube,
@@ -7961,18 +7949,6 @@
 	dir = 9
 	},
 /area/mainship/living/officer_rnr)
-"dus" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/turf/open/space/basic,
-/area/space)
 "dvk" = (
 /obj/structure/closet,
 /obj/item/toy/plush/slime,
@@ -8214,17 +8190,6 @@
 	dir = 10
 	},
 /area/mainship/medical/cmo_office)
-"dKa" = (
-/obj/structure/disposalpipe/junction/flipped{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "dKG" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -8273,19 +8238,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"dMY" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "dNk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -9173,10 +9125,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway)
-"fpV" = (
-/obj/machinery/cloning/vats,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "fqH" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
@@ -9458,10 +9406,6 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_hallway)
-"fIY" = (
-/obj/machinery/tank_part_fabricator,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "fKd" = (
 /obj/machinery/microwave,
 /obj/structure/table/mainship/nometal,
@@ -9513,10 +9457,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
-"fOs" = (
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/empty,
-/area/mainship/hallways/hangar)
 "fOx" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/green{
@@ -9531,6 +9471,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
+"fOM" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/computer/cloning_console/vats,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "fPA" = (
 /obj/machinery/light,
 /turf/open/floor/mainship_hull,
@@ -10101,10 +10049,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
-"gKj" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "gLI" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced/windowstake{
@@ -10507,6 +10451,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
+"hmj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "hnw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -10841,18 +10798,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)
-"hQt" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/structure/cable,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/chemistry)
 "hSb" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11323,6 +11268,11 @@
 	dir = 8
 	},
 /area/mainship/command/bridge)
+"iGe" = (
+/obj/machinery/light/mainship,
+/obj/machinery/cloning/vats,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "iGs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -11958,6 +11908,22 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"jIh" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "jIP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -12180,6 +12146,10 @@
 	dir = 1
 	},
 /area/mainship/medical/cmo_office)
+"kje" = (
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "kjG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12579,9 +12549,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
-"kMC" = (
-/turf/open/floor/mainship/empty,
-/area/mainship/hallways/hangar)
 "kMY" = (
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
@@ -12671,6 +12638,13 @@
 	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
+"kVf" = (
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "kVj" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/megaphone,
@@ -14122,6 +14096,10 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
+"mXs" = (
+/obj/docking_port/stationary/supply/vehicle,
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
 "mYJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -14163,12 +14141,6 @@
 	dir = 9
 	},
 /area/mainship/hull/port_hull)
-"ndj" = (
-/obj/machinery/cloning/vats,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "ndz" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
@@ -14298,6 +14270,10 @@
 	dir = 8
 	},
 /area/mainship/medical/lower_medical)
+"npN" = (
+/obj/machinery/cloning/vats,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "nqG" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/regular{
@@ -14410,23 +14386,6 @@
 /obj/structure/prop/mainship/sensor_computer2/sd,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"nBH" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/medical/free_access,
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "nCj" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/dark,
@@ -14522,6 +14481,23 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
+"nKS" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "nMf" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/firedoor/mainship{
@@ -14784,10 +14760,6 @@
 	dir = 1
 	},
 /area/mainship/command/cic)
-"ofQ" = (
-/obj/docking_port/stationary/supply/vehicle,
-/turf/open/floor/mainship/empty,
-/area/mainship/hallways/hangar)
 "ofY" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/FCDRoffice,
@@ -14910,6 +14882,19 @@
 	dir = 10
 	},
 /area/mainship/command/bridge)
+"ooC" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "orG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/personal{
 	name = "\improper Pilot's Bunks Airlock"
@@ -15134,6 +15119,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
+"oIG" = (
+/obj/machinery/computer/cloning_console/vats,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "oJq" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -15326,19 +15320,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"paZ" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/railing{
-	dir = 1;
-	id = "vehicle_elevator_railing"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "pbV" = (
 /turf/open/floor/mainship/green/corner,
 /area/mainship/squads/req)
@@ -15349,10 +15330,6 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"pdH" = (
-/obj/machinery/computer/cloning_console/vats,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "peh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -16080,11 +16057,6 @@
 	dir = 4
 	},
 /area/mainship/living/commandbunks)
-"qmn" = (
-/obj/machinery/light/mainship,
-/obj/machinery/cloning/vats,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "qmJ" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 1
@@ -16246,6 +16218,19 @@
 	dir = 4
 	},
 /area/mainship/hallways/repair_bay)
+"qwe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "qwP" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -16505,6 +16490,22 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"qQb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
+/area/mainship/medical/lower_medical)
 "qQG" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/black,
@@ -16532,6 +16533,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"qRs" = (
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
 "qSA" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/microwave,
@@ -17044,10 +17048,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/bow_hallway)
-"rRE" = (
-/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "rRW" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/binoculars,
@@ -17539,19 +17539,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/bow_hallway)
-"sBz" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/healthanalyzer,
-/obj/item/storage/box/ids/dogtag{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/beaker/biomass{
-	pixel_x = 9;
-	pixel_y = 7
-	},
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "sEZ" = (
 /turf/open/floor/mainship/green{
 	dir = 10
@@ -17810,12 +17797,25 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
+"tdl" = (
+/obj/item/toy/plush/rouny{
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/obj/item/bedsheet/blue,
+/obj/structure/bed/chair/comfy/teal,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/cmo_office)
 "tdp" = (
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"tdJ" = (
+/obj/structure/window/framed/mainship/white,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "ten" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -17901,6 +17901,10 @@
 /obj/structure/rack,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"tkY" = (
+/obj/machinery/computer/cloning_console/vats,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "tlq" = (
 /obj/structure/window/reinforced,
 /obj/machinery/light/mainship{
@@ -18508,22 +18512,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"ufX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/side{
-	dir = 9
-	},
-/area/mainship/medical/lower_medical)
 "ugh" = (
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -18782,10 +18770,6 @@
 	dir = 5
 	},
 /area/mainship/medical/lower_medical)
-"uEK" = (
-/obj/structure/window/framed/mainship/white,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
 "uEX" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -18990,6 +18974,19 @@
 "uVR" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"uWc" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/healthanalyzer,
+/obj/item/storage/box/ids/dogtag{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/beaker/biomass{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "uXw" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -19335,15 +19332,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
-"vyn" = (
-/obj/item/toy/plush/rouny{
-	pixel_x = -1;
-	pixel_y = 9
-	},
-/obj/item/bedsheet/blue,
-/obj/structure/bed/chair/comfy/teal,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/cmo_office)
 "vyN" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/floor,
@@ -19452,6 +19440,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/delta)
+"vJs" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
 "vKk" = (
 /obj/structure/musician/piano,
 /obj/machinery/firealarm{
@@ -20444,6 +20436,18 @@
 	dir = 8
 	},
 /area/mainship/hallways/bow_hallway)
+"xFa" = (
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/obj/item/weapon/gun/rifle/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/space/basic,
+/area/space)
 "xGb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -20699,6 +20703,10 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"ycS" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ydD" = (
 /obj/structure/closet,
 /obj/item/toy/beach_ball,
@@ -44674,7 +44682,7 @@ cuH
 oer
 bqC
 bgb
-gKj
+ycS
 xQe
 mJs
 gfg
@@ -44931,7 +44939,7 @@ yaR
 oer
 lyr
 bgb
-fIY
+kje
 xQe
 pcr
 lvI
@@ -45439,12 +45447,12 @@ aai
 rbR
 bgb
 bgb
-kMC
-kMC
-kMC
-kMC
-kMC
-paZ
+qRs
+qRs
+qRs
+qRs
+qRs
+ooC
 iIi
 bPC
 lvI
@@ -45696,12 +45704,12 @@ aai
 aak
 bgb
 bgb
-kMC
-kMC
-kMC
-kMC
-kMC
-paZ
+qRs
+qRs
+qRs
+qRs
+qRs
+ooC
 sem
 xQe
 mJs
@@ -45953,12 +45961,12 @@ aai
 rbR
 bgb
 bgb
-fOs
-kMC
-ofQ
-kMC
-kMC
-paZ
+vJs
+qRs
+mXs
+qRs
+qRs
+ooC
 sem
 xQe
 pcr
@@ -46210,12 +46218,12 @@ aai
 tDH
 bgb
 bgb
-kMC
-kMC
-kMC
-kMC
-kMC
-paZ
+qRs
+qRs
+qRs
+qRs
+qRs
+ooC
 sem
 xQe
 aTB
@@ -46467,12 +46475,12 @@ aai
 tDH
 bgb
 bgb
-kMC
-kMC
-kMC
-kMC
-kMC
-paZ
+qRs
+qRs
+qRs
+qRs
+qRs
+ooC
 uDz
 bPG
 bbo
@@ -48812,7 +48820,7 @@ nja
 blA
 esw
 lOP
-lvI
+kVf
 bRE
 bRE
 tWq
@@ -51337,7 +51345,7 @@ aaa
 aaa
 aaa
 aaa
-dus
+xFa
 aaa
 aaa
 aaa
@@ -52904,8 +52912,8 @@ bjV
 biu
 nSl
 wyX
-nBH
-uEK
+nKS
+tdJ
 nSl
 bxw
 iZI
@@ -53160,9 +53168,9 @@ bQZ
 bjV
 blj
 nSl
-ndj
-ufX
-sBz
+cjV
+qQb
+uWc
 nSl
 fly
 hiF
@@ -53417,8 +53425,8 @@ biu
 bjV
 biu
 nSl
-cjV
-dKa
+oIG
+cXk
 hSb
 gQu
 bvU
@@ -53675,8 +53683,8 @@ bjV
 biu
 nSl
 oxk
-bqR
-qmn
+hmj
+iGe
 nSl
 bvJ
 bKL
@@ -53931,9 +53939,9 @@ jQk
 bjV
 biu
 nSl
-boX
-axx
-pdH
+fOM
+qwe
+tkY
 nga
 aRw
 jgp
@@ -54189,8 +54197,8 @@ bTZ
 acw
 nSl
 oxk
-dMY
-fpV
+csc
+npN
 nga
 jNB
 bKL
@@ -54447,9 +54455,9 @@ blj
 nSl
 xCj
 yea
-pdH
+tkY
 nga
-hQt
+cTQ
 qgb
 esS
 blP
@@ -54703,8 +54711,8 @@ bjV
 biu
 nSl
 kFq
-aJS
-rRE
+jIh
+biJ
 nSl
 uYN
 vmj
@@ -54960,7 +54968,7 @@ bjV
 biu
 nSl
 nSl
-nBH
+nKS
 nSl
 nSl
 gCW
@@ -58573,7 +58581,7 @@ fAJ
 jDa
 cJu
 hrH
-vyn
+tdl
 aNh
 rbP
 rMd

@@ -26405,7 +26405,10 @@
 /turf/open/floor/tile/red/full,
 /area/daedalusprison/inside/bunker/west)
 "vBE" = (
-/obj/machinery/conveyor/inverted,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoload"
+	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/mining)
 "vBI" = (
