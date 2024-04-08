@@ -8,28 +8,28 @@
 	icon_state = "red"
 
 /area/campaign/tgmc_raiding/colony/outdoor
-	name = "Central Colony Grounds"
+	name = "\improper Central Colony Grounds"
 	ceiling = CEILING_NONE
 	always_unpowered = TRUE
 
 /area/campaign/tgmc_raiding/colony/outdoor/northeast
-	name = "Northeast Colony Grounds"
+	name = "\improper Northeast Colony Grounds"
 	icon_state = "northeast"
 
 /area/campaign/tgmc_raiding/colony/outdoor/east
-	name = "Eastern Colony Grounds"
+	name = "\improper Eastern Colony Grounds"
 	icon_state = "east"
 
 /area/campaign/tgmc_raiding/colony/outdoor/southeast
-	name = "Southeast Colony Grounds"
+	name = "\improper Southeast Colony Grounds"
 	icon_state = "southeast"
 
 /area/campaign/tgmc_raiding/colony/outdoor/south
-	name = "Southern Colony Grounds"
+	name = "\improper Southern Colony Grounds"
 	icon_state = "south"
 
 /area/campaign/tgmc_raiding/colony/outdoor/southwest
-	name = "Southwest Colony Grounds"
+	name = "\improper Southwest Colony Grounds"
 	icon_state = "southwest"
 
 //Colony Buildings
@@ -40,7 +40,7 @@
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed
-	name = "Southwest Maintenance Shed"
+	name = "\improper Southwest Maintenance Shed"
 	icon_state = "panelsA"
 
 /area/campaign/tgmc_raiding/colony/indoor/housing
@@ -48,82 +48,82 @@
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest
-	name = "Southwest Colony Housing"
+	name = "\improper Southwest Colony Housing"
 
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast
-	name = "Southeast Colony Housing"
+	name = "\improper Southeast Colony Housing"
 
 /area/campaign/tgmc_raiding/colony/indoor/housing/east
-	name = "East Colony Housing"
+	name = "\improper East Colony Housing"
 
 /area/campaign/tgmc_raiding/colony/indoor/freezer
-	name = "Colony Meat Locker"
+	name = "\improper Colony Meat Locker"
 	icon_state = "kitchen"
 
 /area/campaign/tgmc_raiding/colony/indoor/engineering
-	name = "Colony Engineering"
+	name = "\improper Colony Engineering"
 	icon_state = "engine_smes"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/campaign/tgmc_raiding/colony/indoor/engineering/storage
-	name = "Colony Engineering Storage"
+	name = "\improper Colony Engineering Storage"
 	icon_state = "engine_storage"
 
 /area/campaign/tgmc_raiding/colony/indoor/garage
-	name = "Colony Garage"
+	name = "\improper Colony Garage"
 	icon_state = "garage"
 
 /area/campaign/tgmc_raiding/colony/indoor/supermarket
-	name = "Colony Supermarket"
+	name = "\improper Colony Supermarket"
 	icon_state = "disposal"
 
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics
-	name = "Colony Hydroponics"
+	name = "\improper Colony Hydroponics"
 	icon_state = "hydro"
 
 /area/campaign/tgmc_raiding/colony/indoor/laundry
-	name = "Colony Laundromat"
+	name = "\improper Colony Laundromat"
 	icon_state = "locker"
 
 /area/campaign/tgmc_raiding/colony/indoor/bar
-	name = "Colony Bar"
+	name = "\improper Colony Bar"
 	icon_state = "bar"
 
 /area/campaign/tgmc_raiding/colony/indoor/toolbox
-	name = "Colony Toolbox Storage"
+	name = "\improper Colony Toolbox Storage"
 	icon_state = "engine_waste"
 
 /area/campaign/tgmc_raiding/colony/indoor/storage
-	name = "Colony Storage Dome"
+	name = "\improper Colony Storage Dome"
 	icon_state = "storage"
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/campaign/tgmc_raiding/colony/indoor/chapel
-	name = "Colony Chapel"
+	name = "\improper Colony Chapel"
 	icon_state = "chapel"
 
 /area/campaign/tgmc_raiding/colony/indoor/security
-	name = "Colony Security"
+	name = "\improper Colony Security"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/campaign/tgmc_raiding/colony/indoor/dome
-	name = "Colony Northeast Dome"
+	name = "\improper Colony Northeast Dome"
 	icon_state = "construction"
 
 /area/campaign/tgmc_raiding/colony/indoor/station
-	name = "Colony Subway Station"
+	name = "\improper Colony Subway Station"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/campaign/tgmc_raiding/colony/indoor/bathroom
-	name = "Colony Restroom"
+	name = "\improper Colony Restroom"
 	icon_state = "toilet"
 
 //Underground
 
 /area/campaign/tgmc_raiding/underground
-	name = "Underground"
+	name = "\improper Underground"
 	icon_state = "cave"
 	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
@@ -134,95 +134,95 @@
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/campaign/tgmc_raiding/underground/tunnel/east
-	name = "East Subway Tunnel"
+	name = "\improper East Subway Tunnel"
 
 /area/campaign/tgmc_raiding/underground/tunnel/central
-	name = "Central Subway Tunnel"
+	name = "\improper Central Subway Tunnel"
 
 /area/campaign/tgmc_raiding/underground/tunnel/south
-	name = "South Subway Tunnel"
+	name = "\improper South Subway Tunnel"
 
 /area/campaign/tgmc_raiding/underground/tunnel/west
-	name = "West Subway Tunnel"
+	name = "\improper West Subway Tunnel"
 
 /area/campaign/tgmc_raiding/underground/tunnel/station
-	name = "Northwest Subway Station"
+	name = "\improper Northwest Subway Station"
 	icon_state = "hangar"
 
 /area/campaign/tgmc_raiding/underground/security
-	name = "Marine Security"
+	name = "\improper Marine Security"
 	icon_state = "brig"
-	minimap_color = MINIMAP_AREA_SEC_CAVE
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/campaign/tgmc_raiding/underground/security/central_outpost
-	name = "Central Security Outpost"
+	name = "\improper Central Security Outpost"
 
 /area/campaign/tgmc_raiding/underground/security/south_outpost
-	name = "South Security Outpost"
+	name = "\improper South Security Outpost"
 
 /area/campaign/tgmc_raiding/underground/engineering
-	name = "Engineering"
+	name = "\improper Engineering"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/campaign/tgmc_raiding/underground/engineering/filtration
-	name = "Water Filtration"
+	name = "\improper Water Filtration"
 	icon_state = "blue2"
 
 /area/campaign/tgmc_raiding/underground/command
-	name = "Central Command Office"
+	name = "\improper Central Command Office"
 	icon_state = "observatory"
-	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/campaign/tgmc_raiding/underground/command/east
-	name = "Eastern Command Office"
+	name = "\improper Eastern Command Office"
 	icon_state = "ai_upload"
 
 /area/campaign/tgmc_raiding/underground/command/captain
-	name = "Captain's Office"
+	name = "\improper Captain's Office"
 	icon_state = "captain"
 
 /area/campaign/tgmc_raiding/underground/medbay
-	name = "Medbay"
+	name = "\improper Medbay"
 	icon_state = "medbay"
-	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/campaign/tgmc_raiding/underground/living
-	minimap_color = MINIMAP_AREA_LIVING_CAVE
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/campaign/tgmc_raiding/underground/living/barracks
-	name = "Barracks"
+	name = "\improper Barracks"
 	icon_state = "crew_quarters"
 
 /area/campaign/tgmc_raiding/underground/living/cafeteria
-	name = "Cafeteria"
+	name = "\improper Cafeteria"
 	icon_state = "cafeteria"
 
 /area/campaign/tgmc_raiding/underground/living/bathroom
-	name = "Central Bathroom"
+	name = "\improper Central Bathroom"
 	icon_state = "toilet"
 
 /area/campaign/tgmc_raiding/underground/living/bathroom/south
-	name = "South Bathroom"
+	name = "\improper South Bathroom"
 
 /area/campaign/tgmc_raiding/underground/living/laundry
-	name = "Marine Laundromat"
+	name = "\improper Marine Laundromat"
 	icon_state = "fitness"
 
 /area/campaign/tgmc_raiding/underground/living/boxing
-	name = "Boxing Ring"
+	name = "\improper Boxing Ring"
 	icon_state = "fitness"
 
 /area/campaign/tgmc_raiding/underground/living/chapel
-	name = "Marine Chapel"
+	name = "\improper Marine Chapel"
 	icon_state = "chapeloffice"
 
 /area/campaign/tgmc_raiding/underground/living/library
-	name = "Marine Library"
+	name = "\improper Marine Library"
 	icon_state = "library"
 
 /area/campaign/tgmc_raiding/underground/living/offices
-	name = "Northwest Offices"
+	name = "\improper Northwest Offices"
 	icon_state = "showroom"
 
 /area/campaign/tgmc_raiding/underground/general
@@ -230,54 +230,54 @@
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/campaign/tgmc_raiding/underground/general/firing_range
-	name = "Firing Range"
+	name = "\improper Firing Range"
 
 /area/campaign/tgmc_raiding/underground/general/prep
-	name = "Marine Prep"
+	name = "\improper Marine Prep"
 
 /area/campaign/tgmc_raiding/underground/general/hallway
-	name = "Central Base Hallway"
+	name = "\improper Central Base Hallway"
 	icon_state = "hallC1"
 
 /area/campaign/tgmc_raiding/underground/general/hallway/west
-	name = "West Base Hallway"
+	name = "\improper West Base Hallway"
 
 /area/campaign/tgmc_raiding/underground/general/hallway/east
-	name = "East Base Hallway"
+	name = "\improper East Base Hallway"
 
 /area/campaign/tgmc_raiding/underground/cargo
-	name = "Cargo Dock"
+	name = "\improper Cargo Dock"
 	icon_state = "eva"
-	minimap_color = MINIMAP_AREA_REQ_CAVE
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/campaign/tgmc_raiding/underground/cargo/storage
-	name = "Cargo Storage"
+	name = "\improper Cargo Storage"
 	icon_state = "auxstorage"
 
 /area/campaign/tgmc_raiding/underground/maintenance
 	icon_state = "maintcentral"
 
 /area/campaign/tgmc_raiding/underground/maintenance/north
-	name = "North Maintenance"
+	name = "\improper North Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen
-	name = "Kitchen Maintenance"
+	name = "\improper Kitchen Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/laundry
-	name = "Laundry Maintenance"
+	name = "\improper Laundry Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/security
-	name = "Security Maintenance"
+	name = "\improper Security Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/filtration
-	name = "Filtration Maintenance"
+	name = "\improper Filtration Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/cargo
-	name = "Cargo Maintenance"
+	name = "\improper Cargo Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/prep
-	name = "Prep Maintenance"
+	name = "\improper Prep Maintenance"
 
 /area/campaign/tgmc_raiding/underground/maintenance/sewer
-	name = "Sewage Tunnel"
+	name = "\improper Sewage Tunnel"
 	icon_state = "blue2"
