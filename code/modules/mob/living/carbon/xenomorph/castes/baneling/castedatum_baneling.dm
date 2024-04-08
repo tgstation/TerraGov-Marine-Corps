@@ -14,14 +14,14 @@
 	attack_delay = 6
 
 	// *** Speed *** //
-	speed = -1.6
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 275
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 100
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
