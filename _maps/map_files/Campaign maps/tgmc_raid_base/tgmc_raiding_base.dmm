@@ -1506,6 +1506,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
+"fV" = (
+/obj/structure/monorail,
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "fW" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison,
@@ -7130,6 +7135,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/security)
+"CL" = (
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "CM" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/plating/plating_catwalk,
@@ -9521,6 +9530,10 @@
 	dir = 6
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"Ml" = (
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/tgmc_raiding/underground/tunnel/west)
 "Mn" = (
 /turf/open/floor/mainship/terragov{
 	dir = 1
@@ -13949,7 +13962,7 @@ tc
 "}
 (8,1,1) = {"
 Qv
-Om
+CL
 Om
 Om
 Om
@@ -14101,7 +14114,7 @@ tc
 "}
 (9,1,1) = {"
 Qv
-Da
+Ml
 Da
 Da
 QN
@@ -14253,7 +14266,7 @@ tc
 "}
 (10,1,1) = {"
 Qv
-Sp
+fV
 Sp
 Sp
 Sp
@@ -14405,7 +14418,7 @@ tc
 "}
 (11,1,1) = {"
 Qv
-Da
+Ml
 Jo
 Da
 Da
@@ -14557,7 +14570,7 @@ tc
 "}
 (12,1,1) = {"
 Qv
-Om
+CL
 Om
 Om
 Da
