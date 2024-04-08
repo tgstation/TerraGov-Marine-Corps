@@ -127,5 +127,5 @@
 /datum/species/elf/snow/random_surname()
 	return " [pick(world.file2list("strings/rt/names/elf/elfwlast.txt"))]"
 
-//datum/species/elf/snow/get_accent_list()
-//	return strings("russian_replacement.json", "russian")
+    datum/species/elf/snow/get_accent_list()
+	return strings("russian_replacement.json", "russian")
