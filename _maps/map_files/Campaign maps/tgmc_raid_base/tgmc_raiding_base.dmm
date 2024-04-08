@@ -6512,6 +6512,12 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command)
+"At" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/maintenance/filtration)
 "Au" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/earmuffs,
@@ -6806,9 +6812,6 @@
 	},
 /area/campaign/tgmc_raiding/underground/command)
 "BJ" = (
-/obj/structure/sign/poster{
-	dir = 1
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -25746,7 +25749,7 @@ Cn
 hO
 hO
 YM
-Im
+At
 Im
 wZ
 YM
