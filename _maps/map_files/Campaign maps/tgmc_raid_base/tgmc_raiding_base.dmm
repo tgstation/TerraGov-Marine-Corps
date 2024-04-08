@@ -3271,7 +3271,7 @@
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "np" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = Train-Mechanic-Storage
+	id = "Train-Mechanic-Storage"
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
@@ -5893,7 +5893,7 @@
 /area/campaign/tgmc_raiding/underground/maintenance/laundry)
 "xU" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = Security-Armory
+	id = "Security-Armory"
 	},
 /turf/open/floor/mainship/red/full,
 /area/campaign/tgmc_raiding/underground/security)
@@ -7799,7 +7799,7 @@
 "FH" = (
 /obj/machinery/door_control{
 	dir = 8;
-	id = Train-Mechanic-Storage
+	id = "Train-Mechanic-Storage"
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
@@ -8987,7 +8987,7 @@
 "KA" = (
 /obj/machinery/door_control{
 	dir = 4;
-	id = Train-Mechanic-Storage
+	id = "Train-Mechanic-Storage"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -9430,7 +9430,7 @@
 "Mk" = (
 /obj/machinery/door_control{
 	dir = 1;
-	id = Security-Armory
+	id = "Security-Armory"
 	},
 /turf/open/floor/mainship/red{
 	dir = 6
