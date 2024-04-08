@@ -80,4 +80,4 @@
 	SIGNAL_HANDLER
 	var/area/A = get_area(callingholopad)
 	to_chat(src, span_notice("Your presence is requested at [A]!"))
-	notify_ai(src, "<b> Your presence is requested at [A]! </b>", source = callingholopad, action = NOTIFY_AI_ALERT, notify_volume = 15)
+	notify_ai(src, "<b> Your presence is requested at [A]! </b>", source = callingholopad, action = NOTIFY_AI_ALERT, notify_volume = 35)
