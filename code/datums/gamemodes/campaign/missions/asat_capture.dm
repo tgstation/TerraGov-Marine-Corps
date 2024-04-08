@@ -56,6 +56,14 @@
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
 	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [objectives_total - min_capture_amount + 1] ASAT systems." : ""]"
 
+/datum/campaign_mission/capture_mission/asat/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Protect our ASAT systems at all cost! Deactivate any the SOM try and steal."
+		if(FACTION_SOM)
+			message = "Move fast marines. Capture every ASAT system you can, and we'll give the Terrans a taste of their own medicine!"
+	return ..()
+
 /datum/campaign_mission/capture_mission/asat/check_mission_progress()
 	if(outcome)
 		return TRUE

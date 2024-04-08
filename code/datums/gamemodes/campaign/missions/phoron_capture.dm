@@ -35,6 +35,16 @@
 	objectives_total = 11
 	min_capture_amount = 7
 
+/datum/campaign_mission/capture_mission/phoron_capture/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "We've caught the SOM with their pants down marines. Move in and secure all the phoron you can find!"
+		if(FACTION_SOM)
+			message = "TGMC fast movers are closing in! Secure all our phoron stores before those thieves can take it!"
+	return ..()
+
 /datum/campaign_mission/capture_mission/phoron_capture/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/tgmc_team = mode.stat_list[starting_faction]

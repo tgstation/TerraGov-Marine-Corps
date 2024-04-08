@@ -59,6 +59,16 @@
 		Repel the enemy and protect the installations until reinforcements can arrive. \
 		Loss of these fire support installations will significantly weaken our forces across this region."
 
+/datum/campaign_mission/destroy_mission/fire_support_raid/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Hustle marines, take out their howitzer positions before the SOM have time to react. Move out!"
+		if(FACTION_SOM)
+			message = "The Terrans are trying to destroy our howitzers. Hold them off at all costs, glory to Mars!"
+	return ..()
+
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
@@ -106,3 +116,11 @@
 	objectives_total = 5
 	min_destruction_amount = 4
 	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support. Combat robots and fire support is available if you successfully defend this outpost."
+
+/datum/campaign_mission/destroy_mission/fire_support_raid/som/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "SOM forces are closing in on our MLRS positions. Hold them back at all costs marines, do not let them take out our fire support!"
+		if(FACTION_SOM)
+			message = "MLRS positions identified. Break through their defenses and take them out. For Mars!"
+	return ..()

@@ -83,6 +83,14 @@
 	starting_faction_objective_description = "Major Victory:Protect the NT base from SOM attack. Do not allow them to override the security lockdown and destroy NT's sensitive equipment"
 	hostile_faction_objective_description = "Major Victory: Override the security lockdown on the NT facility and destroy whatever secrets they are working on"
 
+/datum/campaign_mission/destroy_mission/base_rescue/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "The SOM have a headstart on us, move in quickly and defend the installation. Do not let them override the security lockdowns!"
+		if(FACTION_SOM)
+			message = "Nanotrasen is working on abominations here. Override the security lockdown so we can destroy their project. Show the people of this world we're fighting for them!"
+	return ..()
+
 /datum/campaign_mission/destroy_mission/base_rescue/start_mission()
 	. = ..()
 	//We do this when the mission starts to stop nerds from wasting the militia roles pregame

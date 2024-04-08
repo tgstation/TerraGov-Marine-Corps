@@ -29,6 +29,16 @@
 		Our mechanised forces here are vital to our future plans. The enemy assault has given us a unique opportunity to destroy a significant portion of their mechanised forces with a swift counter attack. \
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
 
+/datum/campaign_mission/tdm/mech_wars/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Heavy mechanised hostile units closing on the AO! Smash their mechs into junk marines!"
+		if(FACTION_SOM)
+			message = "Terran mechanised units confirmed in the AO. Move in and wipe them out, for the glory of Mars!"
+	return ..()
+
 /datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
 	var/obj/effect/landmark/campaign/mech_spawner/spawner

@@ -129,6 +129,14 @@
 		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
+/datum/campaign_mission/raiding_base/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Find any weak spots in the SOM's defences and deploy a beacon deep in their base. Lets wipe them off the map marines!"
+		if(FACTION_SOM)
+			message = "Keep those Terran dogs out of of Zulu. If they deploy a beacon it needs to be destroyed before they can call in a strike. Glory to Mars!"
+	return ..()
+
 ///Returns a list of areas in which the beacon can be deployed
 /datum/campaign_mission/raiding_base/proc/get_valid_beacon_areas()
 	return list(
