@@ -289,7 +289,7 @@
 
 			if(!attrition_respawn(ready_candidate, job_datum))
 				ready_candidate.mind.transfer_to(candidate)
-				ready_candidate?.client?.screen.Cut()
+				ready_candidate?.client?.screen?.Cut()
 				qdel(ready_candidate)
 				return
 			if(isobserver(candidate))
