@@ -32,8 +32,6 @@
 	var/turret_icon_state = "turret"
 	///secondary independently rotating overlay, if we only have a secondary weapon
 	var/image/secondary_weapon_overlay
-	///Icon for the secondary rotating turret, should contain all possible icons. iconstate is fetched from the attached weapon
-	var/secondary_turret_icon
 	///Damage overlay for when the vehicle gets damaged
 	var/atom/movable/vis_obj/tank_damage/damage_overlay
 	///Icon file path for the damage overlay
