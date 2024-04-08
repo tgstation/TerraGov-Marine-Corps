@@ -3,12 +3,16 @@
 	flag = WATCHMAN
 	department_flag = GARRISON
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
+	total_positions = 1
+	spawn_positions = 1
 
 	allowed_sexes = list("male")
 	allowed_races = list("Humen",
-	"Humen"
+	"Humen",
+	"Elf",
+	"Dwarf",
+	"Aasimar",
+	"Half-Elf"
 	)
 	tutorial = "Tales speak of the Gatemaster's legendary ability to stand still at a gate and ask people questions."
 	display_order = JDO_GATEMASTER
