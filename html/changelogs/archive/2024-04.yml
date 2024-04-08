@@ -116,3 +116,26 @@
   - balance: Gelida caves can now be plasmacut one tile deep.
   lbnesquik:
   - rscadd: Added extra clone bays to TGS Theseus
+2024-04-08:
+  Lumipharon:
+  - bugfix: 'Campaign: SOM SL actually gets an axe with the axe perk'
+  - balance: 'Campaign: Various minor loadout additions and tweaks'
+  - bugfix: Larva gen no longer counts minions when calculating xeno pop
+  PestoVerde322:
+  - bugfix: The M30 box magazine and the generic rocket launcher rocket have now a
+      proper path
+  - bugfix: Altought impossible to spot in normal game conditions, the 67mm internal
+      tube rocket is now rightfully 68mm
+  PibeCantina:
+  - balance: 'Lowers king pheros strength to 4.5
+
+      :cl:'
+  TiviPlus:
+  - bugfix: Pamphlets now have the ability to prevent being stacked
+  - balance: LTA-AP spread decreased
+  - rscadd: Tank has been enabled
+  - rscadd: Added tank vendor
+  coldironwarrior:
+  - qol: cleaned up the synth vendor
+  novaepee:
+  - bugfix: update smartgunner's job description to present sg better in 2024
