@@ -13082,6 +13082,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/lightreplacer,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/prison/red{
 	dir = 6
 	},

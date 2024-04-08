@@ -2220,8 +2220,7 @@
 "cSx" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/effect/spawner/random/engineering/glass,
-/obj/effect/spawner/random/engineering/glass,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "cSX" = (

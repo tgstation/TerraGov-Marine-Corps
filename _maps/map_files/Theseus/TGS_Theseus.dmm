@@ -7594,6 +7594,7 @@
 /area/mainship/squads/alpha)
 "cKR" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "cLn" = (

@@ -3590,8 +3590,8 @@
 	pixel_y = 2
 	},
 /obj/machinery/door_control/old/req{
-	pixel_y = -5;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -5
 	},
 /obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -8;
@@ -9847,9 +9847,9 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door_control/mainship/req{
+	dir = 8;
 	id = "requisitions";
-	name = "Requisitions Shutters";
-	dir = 8
+	name = "Requisitions Shutters"
 	},
 /turf/open/floor/mainship/green{
 	dir = 4
@@ -12166,8 +12166,8 @@
 /area/mainship/medical/medical_science)
 "koG" = (
 /obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -19105,8 +19105,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -20428,8 +20428,8 @@
 "rbo" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 8;
-	name = "Vehicle Bay Shutter";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutter"
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -23383,6 +23383,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -23425,8 +23426,8 @@
 /area/mainship/hallways/hangar)
 "tFM" = (
 /obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutters"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
@@ -23591,8 +23592,8 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship/mech{
-	name = "Vehicle Bay Shutters";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -26161,8 +26162,8 @@
 	},
 /obj/machinery/door_control/mainship/mech{
 	dir = 4;
-	name = "Vehicle Bay Shutter";
-	id = "vehicle_shutters"
+	id = "vehicle_shutters";
+	name = "Vehicle Bay Shutter"
 	},
 /turf/open/floor/mainship/orange/corner{
 	dir = 4
@@ -26475,6 +26476,7 @@
 /area/mainship/shipboard/brig_cells)
 "wkm" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
