@@ -105,11 +105,9 @@
 /datum/item_representation/proc/instantiate_storage_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
 	if(!master)
 		CRASH("instantiate_storage_datum called with null master")
-		return FALSE
 	item_type = master
 	if(!isatom(item_type))
 		CRASH("[item_type] is not a /atom, it cannot have storage")
-		return FALSE
 
 	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save)) //Some storage cannot handle custom contents
 		return
