@@ -400,7 +400,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/datum/campaign_asset/asset AS in purchasable_assets)
 		var/list/asset_data = list()
 		asset_data["name"] = initial(asset.name)
-		asset_data["type"] = initial(asset)
+		asset_data["type"] = asset
 		asset_data["desc"] = initial(asset.desc)
 		asset_data["detailed_desc"] = initial(asset.detailed_desc)
 		asset_data["uses_remaining"] = initial(asset.uses)

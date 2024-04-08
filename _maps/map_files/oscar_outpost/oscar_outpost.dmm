@@ -1876,7 +1876,6 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "np" = (
-/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
