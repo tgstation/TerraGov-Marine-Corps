@@ -518,7 +518,7 @@
 /area/campaign/tgmc_raiding/underground/tunnel/south)
 "ci" = (
 /obj/structure/sign/poster{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/campaign/tgmc_raiding/underground/command/captain)
@@ -2165,7 +2165,7 @@
 /area/campaign/tgmc_raiding/underground/tunnel/station)
 "iH" = (
 /obj/structure/sign/poster{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -2436,7 +2436,7 @@
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
 "jN" = (
 /obj/structure/sign/poster{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southwest)
@@ -3954,7 +3954,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/station)
 "qk" = (
 /obj/structure/sign/poster{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -4879,7 +4879,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "tU" = (
 /obj/structure/sign/poster{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/green{
 	dir = 4
@@ -6025,7 +6025,7 @@
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "yv" = (
 /obj/structure/sign/poster{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
@@ -6180,7 +6180,7 @@
 /area/campaign/tgmc_raiding/underground)
 "yX" = (
 /obj/structure/sign/poster{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -8125,7 +8125,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/laundry)
@@ -10384,7 +10384,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/storage)
 "Qp" = (
 /obj/structure/sign/poster{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/maintenance/filtration)
@@ -17511,7 +17511,7 @@ Xm
 kr
 IM
 VO
-nv
+EM
 KH
 fA
 hg
@@ -18422,7 +18422,7 @@ bI
 fd
 kr
 KH
-EM
+nv
 KH
 KH
 fA
