@@ -105,7 +105,7 @@
 	///sound played when used. null for no sound.
 	var/use_sound = "rustle"
 	///Has it been opened before?
-	var/opened = 0
+	var/opened = FALSE
 	///list of mobs currently seeing the storage's contents
 	var/list/content_watchers = list()
 	///How long does it take to put items into or out of this, in ticks
