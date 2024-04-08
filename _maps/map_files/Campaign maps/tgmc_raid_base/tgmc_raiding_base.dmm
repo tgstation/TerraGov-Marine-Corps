@@ -344,7 +344,7 @@
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
 "bu" = (
-/obj/structure/flora/bush,
+/obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
 "bv" = (
@@ -1783,7 +1783,7 @@
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
 "gY" = (
-/obj/structure/flora/desert/cactus,
+/obj/structure/flora/drought/barrel_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
 "gZ" = (
@@ -3961,7 +3961,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/campaign/tgmc_raiding/underground/medbay)
 "qd" = (
-/obj/structure/flora/desert/cactus,
+/obj/structure/flora/drought/barrel_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "qe" = (
@@ -4315,7 +4315,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/garage)
 "rA" = (
 /obj/item/toy/plush/snake,
-/obj/structure/flora/desert/grass/heavy,
+/obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "rB" = (
@@ -4654,7 +4654,7 @@
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
 "sP" = (
-/obj/structure/flora/desert/cactus/multiple,
+/obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "sQ" = (
@@ -5516,7 +5516,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
 "wl" = (
-/obj/structure/flora/desert/cactus,
+/obj/structure/flora/drought/barrel_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "wm" = (
@@ -7468,7 +7468,7 @@
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
 "Ef" = (
-/obj/structure/flora/desert/cactus/multiple,
+/obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
 "Eg" = (
@@ -7596,7 +7596,7 @@
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
 "ED" = (
-/obj/structure/flora/desert/cactus/multiple,
+/obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "EE" = (
@@ -8618,7 +8618,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
 "IO" = (
-/obj/structure/flora/desert/cactus,
+/obj/structure/flora/drought/barrel_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "IP" = (
@@ -8762,7 +8762,7 @@
 /turf/open/liquid/water/river,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "Jq" = (
-/obj/structure/flora/bush,
+/obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "Jr" = (
@@ -9132,7 +9132,7 @@
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
 "KK" = (
-/obj/structure/flora/desert/cactus/multiple,
+/obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "KL" = (
@@ -10821,7 +10821,7 @@
 /turf/open/floor/cult/clock,
 /area/campaign/tgmc_raiding/colony/indoor/bar)
 "RM" = (
-/obj/structure/flora/bush,
+/obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "RN" = (
@@ -12432,7 +12432,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
 "Yf" = (
-/obj/structure/flora/bush,
+/obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Yh" = (
