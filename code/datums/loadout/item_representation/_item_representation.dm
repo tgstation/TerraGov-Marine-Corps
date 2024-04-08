@@ -104,11 +104,11 @@
 ///Like instantiate_object(), but returns a /datum instead of a /item, master is REQUIRED and it must be at least an atom
 /datum/item_representation/proc/instantiate_storage_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
 	if(!master)
-		stack_trace("instantiate_storage_datum called with null master")
+		CRASH("instantiate_storage_datum called with null master")
 		return FALSE
 	item_type = master
 	if(!isatom(item_type))
-		stack_trace("[item_type] is not a /atom, it cannot have storage")
+		CRASH("[item_type] is not a /atom, it cannot have storage")
 		return FALSE
 
 	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save)) //Some storage cannot handle custom contents
