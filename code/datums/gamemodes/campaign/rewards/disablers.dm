@@ -92,6 +92,11 @@
 /datum/campaign_asset/asset_disabler/tgmc_mortar/long
 	uses = 3
 
+/datum/campaign_asset/asset_disabler/tgmc_mortar/instant
+	uses = 1
+	instant_use = TRUE
+	detailed_desc = "Hostile assets in the AO are preventing the use of mortar support during this mission."
+
 /datum/campaign_asset/asset_disabler/som_mortar
 	name = "Mortar support disabled"
 	desc = "Mortar fire support temporarily disabled"
