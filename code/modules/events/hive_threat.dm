@@ -30,7 +30,7 @@
 	ADD_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	hive_target.med_hud_set_status()
 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, PROC_REF(handle_reward))
-	xeno_message("The Queen Mother senses that [hive_target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!", force = TRUE)
+	xeno_message("The Queen Mother senses that [hive_target] is the breeding target of the hive. Fuck or psydrain them for the Queen Mother's blessing!", force = TRUE)
 	for(var/mob/living/carbon/xenomorph/xeno_sound_reciever in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		SEND_SOUND(xeno_sound_reciever, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 

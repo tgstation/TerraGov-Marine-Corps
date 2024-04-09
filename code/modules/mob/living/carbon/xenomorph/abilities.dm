@@ -1590,6 +1590,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
+	var/larva_point_reward = 1
 
 /datum/action/ability/activable/xeno/impregnate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1671,6 +1672,16 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 		personal_statistics.impregnations++
+		if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
+			var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
+			psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X)
+			psy_points_reward = psy_points_reward * 3
+			SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
+			SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
+			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+			xeno_job.add_job_points(larva_point_reward)
+			X.hive.update_tier_limits()
 		add_cooldown()
 		succeed_activate()
 	if(isxeno(A))
