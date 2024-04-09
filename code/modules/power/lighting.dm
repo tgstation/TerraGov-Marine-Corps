@@ -15,8 +15,6 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
 	obj_flags = CAN_BE_HIT
-	///Determines what bulb overlays are used for this light
-	var/bulb_type = "tube"
 	/// power usage and light range when on
 	var/brightness = 8
 	/// basically the light_power of the emitted light source
@@ -84,13 +82,13 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			. += "[bulb_type]_[light_on]"
+			. += "[base_icon_state]_[light_on]"
 		if(LIGHT_EMPTY)
-			. += "[bulb_type]_empty"
+			. += "[base_icon_state]_empty"
 		if(LIGHT_BURNED)
-			. += "[bulb_type]_burned"
+			. += "[base_icon_state]_burned"
 		if(LIGHT_BROKEN)
-			. += "[bulb_type]_broken"
+			. += "[base_icon_state]_broken"
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
@@ -430,15 +428,14 @@
 
 /obj/machinery/light/mainship/small
 	icon_state = "bulb_empty"
-	bulb_type = "bulb"
+	base_icon_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
-	base_icon_state = "bulb"
 
 /obj/machinery/light/red
-	bulb_type = "tube_red"
+	base_icon_state = "tube_red"
 	light_color = LIGHT_COLOR_FLARE
 	brightness = 3
 	bulb_power = 0.5
@@ -448,12 +445,11 @@
 
 /obj/machinery/light/small
 	icon_state = "bulb_empty"
-	bulb_type = "bulb"
+	base_icon_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
-	base_icon_state = "bulb"
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -475,8 +471,8 @@
 /obj/machinery/light/floor
 	name = "floor light"
 	desc = "A tube light fixture set into the floor. Rated for foot traffic."
-	base_state = "floortube"
 	icon_state = "floortube_empty"
+	base_icon_state = "floortube"
 	layer = HOLOPAD_LAYER
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
