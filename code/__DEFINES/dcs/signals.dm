@@ -861,6 +861,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 #define COMSIG_XENOABILITY_TOGGLE_DISGUISE "xenoability_toggle_disguise"
 #define COMSIG_XENOABILITY_MIRAGE "xenoability_mirage"
+#define COMSIG_XENOABILITY_MIRAGE_SWAP "xenoability_mirage_swap"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
