@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - bugfix: "Removed locker floating in space around the Theseus"

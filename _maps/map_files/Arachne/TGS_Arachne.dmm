@@ -23375,6 +23375,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -26445,6 +26446,7 @@
 /area/mainship/shipboard/brig_cells)
 "wkm" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

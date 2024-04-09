@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Deploy and outro messages are now specific to each mission"
+  - code_imp: "reworked how hvh deploy points work"

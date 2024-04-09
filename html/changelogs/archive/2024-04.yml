@@ -139,3 +139,37 @@
   - qol: cleaned up the synth vendor
   novaepee:
   - bugfix: update smartgunner's job description to present sg better in 2024
+2024-04-09:
+  Lumipharon:
+  - imageadd: Improved some colour and detail in campaign portraits
+  - bugfix: fixed being able to dig dirt out of turfs such as solid concrete
+  - balance: 'Campaign: Adjusted the Raiding Base map slightly'
+  Naaanii:
+  - balance: Already infinite pill bottles and chem bottles in marine medivend are
+      now also infinite in med vendors.
+  - balance: Scanners are now infinite in med vendors.
+  - balance: Increases the sunder of AMR flak rounds.
+  TiviPlus:
+  - rscadd: Gives assault crewmen loader pamphlets
+  TiviPlus, Barnet:
+  - bugfix: Fixed an issue with improper naming leading to issues with special walls
+      keybinds. This may result in slight changes to this keybind as it fixes itself
+  - bugfix: Fixed the stock uptick event never firing
+  - bugfix: Codex entries for factions were not compiled, they now are in the game
+      correctly
+  - bugfix: Fixed Zombie Crash not being compiled
+  - bugfix: fixed the dev version of tts not working
+  - code_imp: Improved automated detection of issues and fixed a number of them
+  - code_imp: removed unused files
+  - code_imp: the codebase now ships with UpdatePath and midi2piano
+  blackdav123:
+  - bugfix: Removed locker floating in space around the Theseus
+  coldironwarrior:
+  - balance: AT-36 reqtorio supply packs now have 200 points
+  - bugfix: fixed the AT HE shell pack in req including 2 HE and 1 standard shell
+      instead of 3 HE
+  lbnesquik:
+  - rscadd: Ported floor lights from polaris
+  - bugfix: ' Tank is no longer stuck in Daedalus LZ'
+  - rscadd: Added glass to each ship CIC and engineering rooms
+  - rscadd: Added more materials to the debugabus engineering room

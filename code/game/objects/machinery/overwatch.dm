@@ -482,14 +482,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
-			selected_target = locate(href_list["selected_target"])
+			var/atom/cam_target = locate(href_list["cam_target"])
+			if(!cam_target)
+				return
+			var/turf/cam_target_turf = get_turf(cam_target)
+			if(!cam_target_turf)
+				return
 			if(!isAI(operator))
-				var/atom/cam_target = locate(href_list["cam_target"])
-				if(!cam_target)
-					return
-				var/turf/cam_target_turf = get_turf(cam_target)
-				if(!cam_target_turf)
-					return
 				open_prompt(operator)
 				eyeobj.setLoc(cam_target_turf)
 				if(isliving(cam_target))
@@ -497,6 +496,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					track(L)
 				else
 					to_chat(operator, "[icon2html(src, operator)] [span_notice("Jumping to the latest available location of [cam_target].")]")
+			else
+				// If we are an AI
+				to_chat(operator, "[icon2html(src, operator)] [span_notice("Jumping to the latest available location of [cam_target].")]")
+				var/turf/T = get_turf(cam_target)
+				if(T)
+					var/mob/living/silicon/ai/recipientai = operator
+					recipientai.eyeobj.setLoc(T)
+					// operator.eyeobj.setLoc(get_turf(src))
 
 	updateUsrDialog()
 

@@ -1,0 +1,6 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "fixed AI's not being able to use the overwatch camera jump"
+  - code_imp: "Removed useless comment in the AI hologram code"
+  - admin: "Made the Reload Admins button default to No"
