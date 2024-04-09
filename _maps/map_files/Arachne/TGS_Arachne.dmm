@@ -6138,10 +6138,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
 /obj/machinery/camera/autoname/mainship,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fiW" = (
@@ -16596,6 +16596,9 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 2
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
 "nJH" = (
@@ -24596,12 +24599,12 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
 /obj/machinery/landinglight/alamo{
 	dir = 8;
 	pixel_x = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -25648,6 +25651,19 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
+"vqY" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/alamo{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "vri" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -37374,7 +37390,7 @@ fiz
 tSl
 tSl
 uBv
-fun
+vqY
 fun
 fun
 fun
