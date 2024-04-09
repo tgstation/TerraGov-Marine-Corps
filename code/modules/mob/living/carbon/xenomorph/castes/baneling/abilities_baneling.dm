@@ -5,12 +5,13 @@
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
 	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You die."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
+	)
+	/// List of available reagants for baneling
 	var/static/list/baneling_smoke_list = list(
 		/datum/reagent/toxin/xeno_neurotoxin = /datum/effect_system/smoke_spread/xeno/neuro/medium,
 		/datum/reagent/toxin/acid = /datum/effect_system/smoke_spread/xeno/acid,
-	)
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
 /datum/action/ability/xeno_action/baneling_explode/give_action(mob/living/L)

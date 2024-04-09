@@ -225,13 +225,6 @@
 	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 	hotkey_keys = list("C")
 
-/datum/keybinding/xeno/long_range_sight
-	name = "long_range_sight"
-	full_name = "Boiler: Long Range Sight"
-	description = "Toggles the zoom in."
-	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
-	hotkey_keys = list("E")
-
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
