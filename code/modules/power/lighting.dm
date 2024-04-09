@@ -603,8 +603,8 @@
 
 // called when on fire
 
-/obj/machinery/light/fire_act(exposed_temperature, exposed_volume)
-	if(prob(max(0, exposed_temperature - 673)))   //0% at <400C, 100% at >500C
+/obj/machinery/light/fire_act(burn_level)
+	if(prob(max(0, burn_level * 0.5)))
 		broken()
 
 // explode the light

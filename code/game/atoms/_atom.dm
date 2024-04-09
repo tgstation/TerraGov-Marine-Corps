@@ -419,14 +419,15 @@ directive is properly returned.
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
-/atom/proc/fire_act()
+///Effects of fire
+/atom/proc/fire_act(burn_level)
 	return
 
 ///Effects of lava. Return true where we want the lava to keep processing
 /atom/proc/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	fire_act()
+	fire_act(60)
 	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
@@ -448,12 +449,6 @@ directive is properly returned.
 
 /atom/proc/contents_explosion(severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
-
-
-///Fire effects from a burning turf. Burn level is the base fire damage being received.
-/atom/proc/flamer_fire_act(burnlevel)
-	return
-
 
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)

@@ -228,10 +228,10 @@
 		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
 		open()
 
-/obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
+/obj/structure/closet/bodybag/fire_act(burn_level)
 	if(!opened && bodybag_occupant)
 		balloon_alert(bodybag_occupant, "The fire forces you out")
-		bodybag_occupant.flamer_fire_act(burnlevel)
+		bodybag_occupant.fire_act(burn_level)
 		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
@@ -334,7 +334,7 @@
 
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
 	. = ..()
-	var/mob/living/carbon/human/occupant = bodybag_occupant 
+	var/mob/living/carbon/human/occupant = bodybag_occupant
 	if(!ishuman(occupant))
 		return
 	if(!hasHUD(user,"medical"))
@@ -361,7 +361,7 @@
 		. += span_scanner("Patient have [timer] seconds left before DNR")
 	else
 		. += span_scanner("Patient have [timer] seconds left before DNR")
-	
+
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()

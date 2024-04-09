@@ -181,10 +181,6 @@
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
 
-/mob/living/fire_act()
-	adjust_fire_stacks(rand(1,2))
-	IgniteMob()
-
 /mob/living/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
@@ -200,8 +196,8 @@
 		IgniteMob()
 	return TRUE
 
-/mob/living/flamer_fire_act(burnlevel)
-	if(!burnlevel)
+/mob/living/fire_act(burn_level)
+	if(!burn_level)
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
@@ -209,13 +205,13 @@
 		to_chat(src, span_warning("You are untouched by the flames."))
 		return
 
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
 	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
-	adjust_fire_stacks(burnlevel)
+	adjust_fire_stacks(burn_level)
 	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)

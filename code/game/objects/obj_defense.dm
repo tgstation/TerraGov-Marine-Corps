@@ -72,7 +72,7 @@
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
-	fire_act()
+	fire_act(60)
 	return TRUE
 
 /obj/hitby(atom/movable/AM, speed = 5)
