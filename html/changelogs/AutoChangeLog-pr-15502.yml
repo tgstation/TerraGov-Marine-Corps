@@ -1,5 +1,0 @@
-author: "coldironwarrior"
-delete-after: True
-changes:
-  - balance: "AT-36 reqtorio supply packs now have 200 points"
-  - bugfix: "fixed the AT HE shell pack in req including 2 HE and 1 standard shell instead of 3 HE"

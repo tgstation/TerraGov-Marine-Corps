@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: " Tank is no longer stuck in Daedalus LZ"
