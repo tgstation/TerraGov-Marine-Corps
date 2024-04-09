@@ -7590,6 +7590,7 @@
 /area/mainship/squads/alpha)
 "cKR" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "cLn" = (
@@ -7961,18 +7962,6 @@
 	dir = 9
 	},
 /area/mainship/living/officer_rnr)
-"dus" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/turf/open/space/basic,
-/area/space)
 "dvk" = (
 /obj/structure/closet,
 /obj/item/toy/plush/slime,
@@ -10841,18 +10830,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)
-"hQt" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/structure/cable,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/chemistry)
 "hSb" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -17816,6 +17793,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"tea" = (
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ten" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -18645,6 +18629,19 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
+"utq" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/structure/cable,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/chemistry)
 "uuf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -48812,7 +48809,7 @@ nja
 blA
 esw
 lOP
-lvI
+tea
 bRE
 bRE
 tWq
@@ -51337,7 +51334,7 @@ aaa
 aaa
 aaa
 aaa
-dus
+aaa
 aaa
 aaa
 aaa
@@ -54449,7 +54446,7 @@ xCj
 yea
 pdH
 nga
-hQt
+utq
 qgb
 esS
 blP
