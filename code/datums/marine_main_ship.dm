@@ -36,9 +36,9 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			alarmplayer.deltalarm.stop(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.bulb_type = "bulb"
+				light.base_icon_state = "bulb"
 			else
-				light.bulb_type = "tube"
+				light.base_icon_state = "tube"
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
@@ -54,9 +54,9 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				alarmplayer.deltalarm.start(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			if(istype(light, /obj/machinery/light/mainship/small))
-				light.bulb_type = "bulb_red"
+				light.base_icon_state = "bulb_red"
 			else
-				light.bulb_type = "tube_red"
+				light.base_icon_state = "tube_red"
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
