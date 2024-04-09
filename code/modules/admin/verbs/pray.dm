@@ -104,7 +104,7 @@
 		if(C.prefs.chat_toggles & CHAT_PRAYER)
 			to_chat(C, msg)
 			if(C.prefs.toggles & SOUND_PRAYERS)
-					SEND_SOUND(C, sound('sound/pray.ogg'))
+				SEND_SOUND(C, sound('sound/pray.ogg'))
 
 	for(var/client/J in GLOB.clients)
 		if(!J.mob)
