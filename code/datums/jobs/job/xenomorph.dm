@@ -88,6 +88,8 @@
 
 /datum/job/xenomorph/green
 	title = "Corrupted Xenomorph"
+	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_MARINE_ACCESS
 
 /datum/job/xenomorph/green/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva/Corrupted
