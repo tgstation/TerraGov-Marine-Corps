@@ -38,8 +38,6 @@
 //				break
 			if(istype(C, /area/rogue/underworld))
 				L.check_prayer_underworld(L,msg)
-				L.whisper(msg)
-				L.roguepray(msg)
 				return
 			L.check_prayer(L,msg)
 			for(var/mob/living/L in hearers(2,src))
@@ -88,11 +86,11 @@
 					continue
 				turfs.Add(U)
 
-			var/turf/U = safepick(turfs)
-			if(!U)
+			var/turf/pickedturf = safepick(turfs)
+			if(!pickedturf)
 				return
 			to_chat(L, "<font color='yellow'>INSOLENT WRETCH, YOUR STRUGGLE CONTINUES</font>")
-			L.forceMove(T)
+			L.forceMove(pickedturf)
 			return FALSE
 	if(length(message2recognize) > 15)
 		if(findtext(message2recognize, "[M.PATRON]"))
