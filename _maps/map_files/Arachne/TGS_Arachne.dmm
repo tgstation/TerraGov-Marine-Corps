@@ -3188,6 +3188,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "cQE" = (
@@ -11687,6 +11688,7 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/multitool,
 /obj/machinery/camera/autoname/mainship,
+/obj/item/stack/sheet/glass/glass/large_stack,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "jLZ" = (
