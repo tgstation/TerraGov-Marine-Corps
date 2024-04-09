@@ -43,7 +43,8 @@
 	src.regenerate_limb(BODY_ZONE_L_ARM)
 	for(var/obj/item/bodypart/B in src.bodyparts)
 		B.skeletonize()
-	src.remove_all_languages()
+	// src.remove_all_languages()
+	// removing this because i wanna actually be able to talk as a skellybones fella
 	var/obj/item/organ/eyes/eyes = src.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.Remove(src,1)
@@ -66,6 +67,7 @@
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_LIMBATTACHMENT, TRAIT_GENERIC)
 	if(skel_outfit)
 		var/datum/outfit/OU = new skel_outfit
 		if(OU)
