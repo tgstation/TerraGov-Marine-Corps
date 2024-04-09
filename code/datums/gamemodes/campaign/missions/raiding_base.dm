@@ -52,7 +52,7 @@
 			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Reinforcements are almost here and enemy forces are falling back, you've done Mars proud today marines.",
 		),
 	)
-	///The type of beacon this deploys into
+	///The type of beacon used in this mission
 	var/beacon_type = /obj/item/campaign_beacon/bunker_buster
 	///Records whether the OB has been called
 	var/ob_called = FALSE
@@ -241,6 +241,16 @@
 		/area/campaign/tgmc_raiding/underground/general/hallway/west,
 		/area/campaign/tgmc_raiding/underground/living/offices,
 	)
+
+/datum/campaign_mission/raiding_base/som/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Defend the base at all costs. Hold back those rusters until reinforcements can arrive. Do not let them deploy a beacon!"
+		if(FACTION_SOM)
+			message = "Closing in on the Terran outpost.  Breach their defences and get that beacon down. Glory to Mars!"
+	return ..()
 
 /datum/campaign_mission/raiding_base/som/play_beacon_deployed_annoucement(area/deployed_area)
 	map_text_broadcast(starting_faction, "Confirming beacon deployed in [deployed_area]. Defend it until bluespace artillery has a fix!", "Teleporter Command", /atom/movable/screen/text/screen_text/picture/potrait/som_scientist, "sound/effects/alert.ogg")
