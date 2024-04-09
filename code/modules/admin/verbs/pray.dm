@@ -105,20 +105,3 @@
 			to_chat(C, msg)
 			if(C.prefs.toggles & SOUND_PRAYERS)
 				SEND_SOUND(C, sound('sound/pray.ogg'))
-
-	for(var/client/J in GLOB.clients)
-		if(!J.mob)
-			continue
-//		var/T = get_turf(src)
-		var/go = FALSE
-		if(isliving(J.mob))
-			var/mob/living/M = J.mob
-			if(M.stat == DEAD)
-				go = TRUE
-		if(isobserver(J.mob))
-			go = TRUE
-		if(istype(J.mob, /mob/dead/new_player))
-			go = TRUE
-		if(!go)
-			continue
-		to_chat(J, msg)
