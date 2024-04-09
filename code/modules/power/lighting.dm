@@ -472,6 +472,15 @@
 	status = LIGHT_EMPTY
 	update(FALSE)
 
+/obj/machinery/light/floor
+	name = "floor light"
+	desc = "A tube light fixture set into the floor. Rated for foot traffic."
+	base_state = "floortube"
+	icon_state = "floortube1"
+	layer = HOLOPAD_LAYER
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
 
 //not directly related stuff
 /obj/machinery/landinglight

@@ -303,6 +303,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
 /datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+	if(!bonus_projectiles_type) //while fire_bonus_projectiles does not require this var, it can cause infinite recursion in some cases, leading to death tiles
+		return
 	var/new_range = proj.proj_max_range - proj.distance_travelled
 	if(new_range <= 0)
 		return
@@ -1203,7 +1205,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 15
+	sundering = 30
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)

@@ -2,7 +2,7 @@
 
 /mob/living/carbon/xenomorph/beetle/ai/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
 
 /mob/living/carbon/xenomorph/crusher/ai
 
@@ -50,7 +50,7 @@
 
 /mob/living/carbon/xenomorph/mantis/ai/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
 
 /mob/living/carbon/xenomorph/ravager/ai
 
