@@ -6110,7 +6110,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/item/clothing/suit/chef,
 /turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
@@ -9516,7 +9515,6 @@
 /area/mainship/living/port_emb)
 "iEX" = (
 /obj/item/tool/kitchen/tray,
-/obj/item/clothing/suit/chef/classic,
 /obj/item/clothing/head/chefhat,
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/rollingpin,
@@ -11226,8 +11224,6 @@
 /obj/item/tool/minihoe,
 /obj/item/tool/hatchet,
 /obj/item/tool/hatchet,
-/obj/item/clothing/suit/apron/overalls,
-/obj/item/clothing/suit/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
 /obj/structure/closet/secure_closet/hydroponics{

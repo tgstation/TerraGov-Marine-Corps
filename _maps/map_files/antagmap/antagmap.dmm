@@ -1005,7 +1005,10 @@
 	name = "SOM Prisoner Contaiment"
 	})
 "iZ" = (
-/obj/structure/closet/secure_closet/medical2,
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
+	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
@@ -6400,10 +6403,7 @@
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 6
 	},
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile,
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"

@@ -3465,7 +3465,10 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "bVp" = (
-/obj/machinery/vending/MarineMed/Blood,
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
+	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/patrol_base/som)
 "bVy" = (
@@ -5285,7 +5288,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/loadout_vendor/valhalla,
+/obj/machinery/vending/som/lasgun,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -10565,6 +10568,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
+"jeO" = (
+/obj/machinery/vending/weapon/som,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "jeR" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
@@ -12333,7 +12342,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/kitchen)
 "kRF" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/vending/som/uniform_supply,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -13315,7 +13324,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -14186,7 +14194,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/MarineMed,
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -19143,7 +19151,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "rRN" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/SyndiMed,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -19701,7 +19709,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
 "srT" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/som/armor_supply,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -88389,7 +88397,7 @@ gZx
 srT
 dRb
 kRF
-gZx
+jeO
 afK
 wkw
 fLx

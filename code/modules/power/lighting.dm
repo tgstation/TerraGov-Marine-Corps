@@ -128,7 +128,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	base_icon_state = "tube"
-	icon_state = "tube_1"
+	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = FLY_LAYER
@@ -176,7 +176,7 @@
 	GLOB.mainship_lights -= src
 
 /obj/machinery/light/mainship/small
-	icon_state = "bulb_1"
+	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
@@ -195,7 +195,7 @@
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
-	icon_state = "bulb_1"
+	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
