@@ -59,6 +59,18 @@
 			"icon_state": "eod"
 		}
 	],
+	"mjolnir_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "mjolnir"
+		}
+	],
+	"mjolnir_open_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "mjolnir_open"
+		}
+	],
 	"r_light": [
 		{
 			"type": "hyperscale",
