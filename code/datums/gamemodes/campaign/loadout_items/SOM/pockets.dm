@@ -65,7 +65,7 @@
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
 	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_R_POUCH)
@@ -171,12 +171,22 @@
 	desc = "A pouch containing an assortment of construction supplies. Allows for the rapid establishment of fortified positions."
 	ui_icon = "materials"
 	item_typepath = /obj/item/storage/pouch/construction/som
-	jobs_supported = list(SOM_SQUAD_MARINE)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
+
+/datum/loadout_item/l_pocket/som_construction/engineer
+	desc = "A pouch containing additional metal, plasteel and barbed wire. Allows for the rapid establishment of fortified positions."
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
+
+/datum/loadout_item/l_pocket/som_construction/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_L_POUCH)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/som_magazine

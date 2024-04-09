@@ -117,4 +117,4 @@
 #define SHUTTLE_SUPPLY "supply"
 #define SHUTTLE_SHIPELEVATOR "shipelevator"
 #define SHUTTLE_ELEVATOR "elevator"
-
+#define SHUTTLE_VEHICLE_SUPPLY "vehicle_supply"

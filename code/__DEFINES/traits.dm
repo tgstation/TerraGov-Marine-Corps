@@ -262,3 +262,6 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+
+///Pauses campaign mission timer
+#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"

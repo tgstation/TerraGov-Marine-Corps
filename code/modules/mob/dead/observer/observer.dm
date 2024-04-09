@@ -87,10 +87,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	update_icon()
 
-	if(!T)
+	if(!T && length(GLOB.latejoin))// e.g no shipmap spawn during unit tests or admit shittery
 		T = pick(GLOB.latejoin)
 
-	abstract_move(T)
+	if(T)
+		abstract_move(T)
 
 	if(!name)
 		name = random_unique_name(gender)

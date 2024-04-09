@@ -56,13 +56,13 @@
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
-	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
+	description = "Builds whatever you've selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/secrete_special_resin
 	name = "secrete_special_resin"
-	full name = "Secrete Special Resin"
+	full_name = "Secrete Special Resin"
 	description = "Builds whatever special resin you have selected."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
 	hotkey_keys = list("ShiftR")

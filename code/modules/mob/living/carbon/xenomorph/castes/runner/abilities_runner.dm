@@ -149,6 +149,16 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
 	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
 
+/datum/action/ability/xeno_action/evasion/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/xeno_action/evasion/ai_should_use(atom/target)
+	if(iscarbon(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/hp_left_percent = xeno_owner.health / xeno_owner.maxHealth // minimum_health or retreating ai datum instead maybe?
+	return (hp_left_percent < 0.5)
+
 /datum/action/ability/xeno_action/evasion/process()
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
 	runner_owner.hud_set_evasion(evasion_duration)

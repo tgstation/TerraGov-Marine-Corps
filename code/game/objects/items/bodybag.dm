@@ -334,19 +334,34 @@
 
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
 	. = ..()
-	if(!ishuman(bodybag_occupant))
+	var/mob/living/carbon/human/occupant = bodybag_occupant 
+	if(!ishuman(occupant))
 		return
 	if(!hasHUD(user,"medical"))
 		return
 	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
-		if(medical_record.fields["name"] != bodybag_occupant.real_name)
+		if(medical_record.fields["name"] != occupant.real_name)
 			continue
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
 			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
-
+	if(occupant.stat != DEAD)
+		return
+	var/timer = 0 // variable for DNR timer check
+	timer = (TIME_BEFORE_DNR-(occupant.dead_ticks))*2 //Time to DNR left in seconds
+	if(!occupant.mind && !occupant.get_ghost(TRUE) || occupant.dead_ticks > TIME_BEFORE_DNR || occupant.suiciding) //We couldn't find a suitable ghost or patient has passed their DNR timer or suicided, this means the person is not returning
+		. += span_scanner("Patient is DNR")
+	else if(!occupant.mind && occupant.get_ghost(TRUE)) // Ghost is available but outside of the body
+		. += span_scanner("Defib patient to check departed status")
+		. += span_scanner("Patient have [timer] seconds left before DNR")
+	else if(!occupant.client) //Mind is in the body but no client, most likely currently disconnected.
+		. += span_scanner("Patient is almost departed")
+		. += span_scanner("Patient have [timer] seconds left before DNR")
+	else
+		. += span_scanner("Patient have [timer] seconds left before DNR")
+	
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()

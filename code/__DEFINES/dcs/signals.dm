@@ -69,6 +69,9 @@
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
 #define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
+//Sent when a supply beacon is activated
+#define COMSIG_GLOB_SUPPLY_BEACON_CREATED "!supply_beacon_created"
+
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
@@ -109,6 +112,10 @@
 #define COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED "!campaign_dropblocker_disabled"
 ///Override code for NT base rescue mission
 #define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
+///Code computer starts running
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING "!campaign_nt_override_running"
+///Code computer stops running
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING "!campaign_nt_override_stop_running"
 ///Campaign OB beacon deployed
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION "!campaign_ob_beacon_activation"
 ///Campaign OB beacon going off

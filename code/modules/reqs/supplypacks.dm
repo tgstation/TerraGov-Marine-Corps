@@ -308,7 +308,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun,
 	)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/weapons/antitankgunammo/apcr
 	name = "AT-36 APCR Shell (x3)"
@@ -317,16 +317,16 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 	)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/weapons/antitankgunammo/he
 	name = "AT-36 HE Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
-		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun/he,
 	)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/weapons/antitankgunammo/beehive
 	name = "AT-36 Beehive Shell (x3)"
@@ -335,7 +335,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/beehive,
 		/obj/item/ammo_magazine/standard_atgun/beehive,
 	)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/weapons/antitankgunammo/incendiary
 	name = "AT-36 Napalm Shell (x3)"
@@ -344,7 +344,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/incend,
 		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/weapons/flak_gun
 	name = "FK-88 Flak Gun"
@@ -1031,20 +1031,20 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/mlrs_rockets)
 	cost = 60
 
-/datum/supply_packs/explosives/mlrs_rockets_incendiary
-	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rocket_incendiary)
-	cost = 60
-
 /datum/supply_packs/explosives/mlrs_rockets_gas
 	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
+	contains = list(/obj/item/storage/box/mlrs_rockets/gas)
 	cost = 60
 
 /datum/supply_packs/explosives/mlrs_rockets_cloak
 	name = "TA-40L S-2 MLRS Cloak Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rocket_gas_cloak)
+	contains = list(/obj/item/storage/box/mlrs_rockets/cloak)
 	cost = 50
+
+/datum/supply_packs/explosives/mlrs_rockets_incendiary
+	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rockets/incendiary)
+	cost = 60
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -2437,6 +2437,21 @@ FACTORY
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
 	cost = 220
 
+/datum/supply_packs/factory/mlrs_rocket_refill_cloak
+	name = "MLRS 'S-2' Cloak rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_cloak)
+	cost = 240
+
+/datum/supply_packs/factory/mlrs_rocket_refill_gas
+	name = "MLRS 'X-50' gas rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_gas)
+	cost = 240
+
+/datum/supply_packs/factory/mlrs_rocket_refill_incendiary
+	name = "MLRS Incendiary rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_incendiary)
+	cost = 240
+
 /datum/supply_packs/factory/agls_he_refill
 	name = "AGLS HE magazine assembly refill"
 	contains = list(/obj/item/factory_refill/agls_he_refill)
@@ -2470,27 +2485,27 @@ FACTORY
 /datum/supply_packs/factory/atgun_aphe_refill
 	name = "AT-36 AP-HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_aphe_refill)
-	cost = 100
+	cost = 200
 
 /datum/supply_packs/factory/atgun_apcr_refill
 	name = "AT-36 APCR shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_apcr_refill)
-	cost = 100
+	cost = 200
 
 /datum/supply_packs/factory/atgun_he_refill
 	name = "AT-36 HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_he_refill)
-	cost = 100
+	cost = 200
 
 /datum/supply_packs/factory/atgun_beehive_refill
 	name = "AT-36 Beehive shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_beehive_refill)
-	cost = 100
+	cost = 200
 
 /datum/supply_packs/factory/atgun_incend_refill
 	name = "AT-36 Napalm shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_incend_refill)
-	cost = 100
+	cost = 200
 
 /datum/supply_packs/factory/heavy_isg_he_refill
 	name = "FK-88 Flak HE shell assembly refill"
