@@ -753,6 +753,7 @@
 #include "code\game\objects\effects\landmarks\mode.dm"
 #include "code\game\objects\effects\landmarks\gamemode\campaign_reward_spawns.dm"
 #include "code\game\objects\effects\landmarks\gamemode\crash_spawns.dm"
+#include "code\game\objects\effects\landmarks\gamemode\hvh_deploy_points.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\modularmappingspawner.dm"
