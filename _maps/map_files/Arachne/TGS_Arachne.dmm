@@ -83,6 +83,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -11394,6 +11395,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "jzy" = (
@@ -12253,7 +12258,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "kpp" = (
-/obj/machinery/power/apc/mainship,
 /obj/item/storage/toolbox/electrical,
 /obj/item/tool/wrench,
 /obj/item/cell/apc,
