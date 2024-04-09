@@ -100,9 +100,11 @@
 
 	msg = "<span class='info'>[real_name] prays: [msg]</span>"
 
-//	for(var/client/C in GLOB.admins)
-//		if(C.prefs.chat_toggles & CHAT_PRAYER)
-///			to_chat(C, msg)
+	for(var/client/C in GLOB.admins)
+		if(C.prefs.chat_toggles & CHAT_PRAYER)
+			to_chat(C, msg)
+			if(C.prefs.toggles & SOUND_PRAYERS)
+				SEND_SOUND(C, sound('sound/pray.ogg'))
 
 	for(var/client/J in GLOB.clients)
 		if(!J.mob)
