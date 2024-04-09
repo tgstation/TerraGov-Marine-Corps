@@ -67,7 +67,7 @@
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES
-	respawn_time = 15 MINUTES
+	respawn_time = 5 MINUTES
 	bioscan_interval = 30 MINUTES
 	deploy_time_lock = 15 SECONDS
 
