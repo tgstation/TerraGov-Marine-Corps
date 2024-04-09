@@ -309,7 +309,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		var/datum/data = data_list[key]
 
 		if(isnull(data))
-			EMPTY_BLOCK_GUARD // todo this is probably a bad way to do it
+			// do nothing - nulls are allowed
 
 		else if(islist(data))
 			data = recursive_jsonify(data, semvers)

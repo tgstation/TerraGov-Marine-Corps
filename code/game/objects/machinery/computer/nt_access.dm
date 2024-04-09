@@ -134,7 +134,6 @@
 				visible_message(span_notice("[src] beeps as it finishes sending the security override command."))
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, code_color)
 				busy = FALSE
-				set_disabled() //stops spamming the signal
 				return
 
 			busy = TRUE
@@ -145,7 +144,7 @@
 				return
 
 			busy = FALSE
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, src)
+
 			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
@@ -155,7 +154,6 @@
 
 ///Completes a stage of program progress
 /obj/machinery/computer/nt_access/proc/complete_segment()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, src)
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	deltimer(current_timer)
 	current_timer = null

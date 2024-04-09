@@ -88,7 +88,7 @@
 	name = "\improper generic high-explosive rocket"
 	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = CALIBER_84MM
-	icon_state = "rocket_he"
+	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
@@ -238,7 +238,7 @@
 	reload_delay = 30
 
 /obj/item/ammo_magazine/internal/launcher/rocket/oneuse
-	name = "\improper 68mm internal tube"
+	name = "\improper 67mm internal tube"
 	desc = "The internal tube of a one use rpg."
 	caliber = CALIBER_68MM
 	default_ammo = /datum/ammo/rocket/recoilless

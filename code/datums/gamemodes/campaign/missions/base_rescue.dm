@@ -10,7 +10,7 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
-	max_game_time = 15 MINUTES
+	max_game_time = 17 MINUTES
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 60 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -38,22 +38,10 @@
 
 	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
 	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
-	outro_message = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(
-			MISSION_STARTING_FACTION = "<u>Major victory</u><br> SOM forces have been driven back, we've got them on the backfoot now marines!",
-			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> The assault is a failure, pull back and regroup!",
-		),
-		MISSION_OUTCOME_MAJOR_LOSS = list(
-			MISSION_STARTING_FACTION = "<u>Major loss</u><br> VIP assets destroyed, mission failure. Fallback and regroup marines.",
-			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Outstanding work Martians, Nanotrasen won't be coming back here any time soon!",
-		),
-	)
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(computer_running))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(computer_stop_running))
 
 /datum/campaign_mission/destroy_mission/base_rescue/set_factions()
 	attacking_faction = hostile_faction
@@ -61,7 +49,7 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/unregister_mission_signals()
 	. = ..()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
 
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
@@ -77,7 +65,7 @@
 
 	var/datum/faction_stats/defending_team = mode.stat_list[defending_faction]
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
-	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar/instant)
+	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar)
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
 	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
@@ -92,14 +80,6 @@
 /datum/campaign_mission/destroy_mission/base_rescue/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Protect the NT base from SOM attack. Do not allow them to override the security lockdown and destroy NT's sensitive equipment"
 	hostile_faction_objective_description = "Major Victory: Override the security lockdown on the NT facility and destroy whatever secrets they are working on"
-
-/datum/campaign_mission/destroy_mission/base_rescue/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
-	switch(user.faction)
-		if(FACTION_TERRAGOV)
-			message = "The SOM have a headstart on us, move in quickly and defend the installation. Do not let them override the security lockdowns!"
-		if(FACTION_SOM)
-			message = "Nanotrasen is working on abominations here. Override the security lockdown so we can destroy their project. Show the people of this world we're fighting for them!"
-	return ..()
 
 /datum/campaign_mission/destroy_mission/base_rescue/start_mission()
 	. = ..()
@@ -138,15 +118,6 @@
 	map_text_broadcast(attacking_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 	map_text_broadcast(defending_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 
-///Code computer is actively running a segment
-/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_running(datum/source, obj/machinery/computer/nt_access/code_computer)
-	SIGNAL_HANDLER
-	pause_mission_timer(REF(code_computer))
-
-///Code computer stops running a segment
-/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_stop_running(datum/source, obj/machinery/computer/nt_access/code_computer)
-	SIGNAL_HANDLER
-	resume_mission_timer(REF(code_computer))
 
 /obj/effect/landmark/campaign_structure/weapon_x
 	name = "weapon X spawner"

@@ -43,13 +43,13 @@
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
-	description = "Builds whatever you've selected with (choose resin structure) on your tile."
+	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/secrete_special_resin
 	name = "secrete_special_resin"
-	full_name = "Secrete Special Resin"
+	full name = "Secrete Special Resin"
 	description = "Builds whatever special resin you have selected."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
 	hotkey_keys = list("ShiftR")
@@ -1119,3 +1119,28 @@
 	full_name = "Behemoth: Primal Wrath"
 	description = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
+
+/datum/keybinding/xeno/firecharge
+	name = "Fire Charge"
+	full_name = "Pyrogen: Fire Charge"
+	description = "Charge with the power of the fire , burn the first marine you come across."
+	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE
+
+/datum/keybinding/xeno/firenado
+	name = "Fire Storm"
+	full_name = "Pyrogen: Fire Storm"
+	description = "Unleash 3 firenados that will slowly move towards your targeted turf."
+	keybind_signal = COMSIG_XENOABILITY_FIRENADO
+
+/datum/keybinding/xeno/fireball
+	name = "Fireball"
+	full_name = "Pyrogen: Fireball"
+	description = "Unleash a fireball after a small windup."
+	keybind_signal = COMSIG_XENOABILITY_FIREBALL
+
+/datum/keybinding/xeno/heatray
+	name = "Heatray"
+	full_name = "Pyrogen: Heatray"
+	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
+	keybind_signal = COMSIG_XENOABILITY_HEATRAY
+

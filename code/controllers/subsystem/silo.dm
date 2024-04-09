@@ -16,11 +16,7 @@ SUBSYSTEM_DEF(silo)
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/active_humans = length(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"])
-	var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
-			continue
-		active_xenos ++
+	var/active_xenos = length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) + (xeno_job.total_positions - xeno_job.current_positions)
 	//The larval spawn is based on the amount of silo, ponderated with a define. Larval follow a f(x) = (x + a)/(1 + a) * something law, which is smoother that f(x) = x * something
 	current_larva_spawn_rate = length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) ? SILO_OUTPUT_PONDERATION + length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) : 0
 	//We then are normalising with the number of alive marines, so the balance is roughly the same whether or not we are in high pop
@@ -31,9 +27,7 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	//We scale the rate based on the current ratio of humans to xenos
-	var/current_human_to_xeno_ratio = active_humans / active_xenos
-	var/optimal_human_to_xeno_ratio = xeno_job.job_points_needed / LARVA_POINTS_REGULAR
-	current_larva_spawn_rate *= clamp(current_human_to_xeno_ratio / optimal_human_to_xeno_ratio , 0.7, 1)
+	current_larva_spawn_rate *= clamp(round((active_humans / active_xenos) / (LARVA_POINTS_REGULAR / xeno_job.job_points_needed), 0.01), 0.5, 1)
 
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 

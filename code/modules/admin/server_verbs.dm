@@ -444,7 +444,7 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(tgui_alert(usr, "Are you sure you want to reload admins?", "Reload admins", list("No", "Yes")) != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to reload admins?", "Reload admins", list("Yes", "No")) != "Yes")
 		return
 
 	load_admins()

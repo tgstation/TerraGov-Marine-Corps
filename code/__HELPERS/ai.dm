@@ -60,8 +60,6 @@
 		return
 	var/atom/nearest_target
 	var/shorter_distance = distance + 1
-	// Cache it in case we need it twice
-	var/list/nearby_xeno_list
 	if(target_flags & TARGET_HUMAN)
 		for(var/mob/living/nearby_human AS in cheap_get_humans_near(source, distance))
 			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
@@ -70,8 +68,7 @@
 				nearest_target = nearby_human
 				shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
-		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
-		for(var/mob/nearby_xeno AS in nearby_xeno_list)
+		for(var/mob/nearby_xeno AS in cheap_get_xenos_near(source, shorter_distance - 1))
 			if(source.issamexenohive(nearby_xeno))
 				continue
 			if(nearby_xeno.stat == DEAD || nearby_xeno.alpha <= HUNTER_STEALTH_RUN_ALPHA)
@@ -95,21 +92,6 @@
 			if(!(get_dist(source, nearby_vehicle) < shorter_distance))
 				continue
 			nearest_target = nearby_vehicle
-	if(target_flags & TARGET_FRIENDLY_XENO)
-		if(!nearby_xeno_list)
-			nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
-		for(var/mob/nearby_xeno AS in nearby_xeno_list)
-			if(source == nearby_xeno)
-				continue
-			if(!nearby_xeno.client)
-				continue
-			if(!source.issamexenohive(nearby_xeno))
-				continue
-			if(nearby_xeno.stat == DEAD)
-				continue
-			if(get_dist(source, nearby_xeno) < shorter_distance)
-				nearest_target = nearby_xeno
-				shorter_distance = get_dist(source, nearby_xeno)
 	return nearest_target
 
 /**

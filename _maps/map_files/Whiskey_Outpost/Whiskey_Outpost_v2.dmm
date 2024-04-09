@@ -7055,6 +7055,11 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/west)
+"Rb" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/warning,
+/area/whiskey_outpost/outside/west)
 "Rc" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/jungle,
@@ -15139,7 +15144,7 @@ Hr
 hm
 hm
 Xh
-QX
+Rb
 Hm
 Qu
 In

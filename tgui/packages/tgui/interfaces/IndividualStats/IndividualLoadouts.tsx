@@ -83,14 +83,12 @@ export const IndividualLoadouts = (props) => {
                       color={
                         selectedLoadoutItem.item_type.name ===
                         equippeditem.item_type.name
-                          ? 'green'
+                          ? 'orange'
                           : equippeditem.item_type.quantity === 0
                             ? 'grey'
-                            : !equippeditem.item_type.valid_choice
+                            : equippeditem.item_type.valid_choice === 0
                               ? 'red'
-                              : equippeditem.item_type.purchase_cost > 0
-                                ? 'orange'
-                                : 'blue'
+                              : 'blue'
                       }
                     >
                       <Stack align="center">
@@ -102,14 +100,12 @@ export const IndividualLoadouts = (props) => {
                               'campaign_loadout_items32x32',
                               selectedLoadoutItem.item_type.name ===
                               equippeditem.item_type.name
-                                ? equippeditem.item_type.icon + '_green'
+                                ? equippeditem.item_type.icon + '_orange'
                                 : equippeditem.item_type.quantity === 0
                                   ? equippeditem.item_type.icon + '_grey'
-                                  : !equippeditem.item_type.valid_choice
+                                  : equippeditem.item_type.valid_choice === 0
                                     ? equippeditem.item_type.icon + '_red'
-                                    : equippeditem.item_type.purchase_cost > 0
-                                      ? equippeditem.item_type.icon + '_orange'
-                                      : equippeditem.item_type.icon + '_blue',
+                                    : equippeditem.item_type.icon + '_blue',
                             ])}
                           />
                         )}
@@ -159,15 +155,13 @@ export const IndividualLoadouts = (props) => {
                       }}
                       color={
                         selectedPossibleItem.name === potentialitem.name
-                          ? 'green'
+                          ? 'orange'
                           : !potentialitem.unlocked ||
                               potentialitem.quantity === 0
                             ? 'grey'
                             : !potentialitem.valid_choice
                               ? 'red'
-                              : potentialitem.purchase_cost > 0
-                                ? 'orange'
-                                : 'blue'
+                              : 'blue'
                       }
                     >
                       <Stack align="center" direction="column">
@@ -176,15 +170,13 @@ export const IndividualLoadouts = (props) => {
                             className={classes([
                               'campaign_loadout_items64x64',
                               selectedPossibleItem.name === potentialitem.name
-                                ? potentialitem.icon + '_green' + '_big'
+                                ? potentialitem.icon + '_orange' + '_big'
                                 : !potentialitem.unlocked ||
                                     potentialitem.quantity === 0
                                   ? potentialitem.icon + '_grey' + '_big'
                                   : !potentialitem.valid_choice
                                     ? potentialitem.icon + '_red' + '_big'
-                                    : potentialitem.purchase_cost > 0
-                                      ? potentialitem.icon + '_orange' + '_big'
-                                      : potentialitem.icon + '_blue' + '_big',
+                                    : potentialitem.icon + '_blue' + '_big',
                             ])}
                           />
                         )}
@@ -219,7 +211,7 @@ export const IndividualLoadouts = (props) => {
                     mr={1}
                     className={classes([
                       'campaign_loadout_items64x64',
-                      selectedPossibleItem.icon + '_green' + '_big',
+                      selectedPossibleItem.icon + '_orange' + '_big',
                     ])}
                   />
                   <Stack.Item fontSize="150%" grow={1}>

@@ -74,7 +74,7 @@
 	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	armor_protection_flags = CHEST
-	soft_armor = list(MELEE = 30, BULLET = 75, LASER = 15, ENERGY = 15, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9

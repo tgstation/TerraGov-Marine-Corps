@@ -62,10 +62,13 @@
 /datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/L, metabolism)
 	L.adjust_blurriness(-1)
 	L.adjust_blindness(-1)
-	if(current_cycle > 20)
-		if(prob(current_cycle-10) && iscarbon(L))
-			var/mob/living/carbon/C = L
-			C.disabilities &= ~NEARSIGHTED
+	switch(current_cycle)
+		if(1 to 20)
+			//nothing
+		if(21 to INFINITY)
+			if(prob(current_cycle-10) && iscarbon(L))
+				var/mob/living/carbon/C = L
+				C.disabilities &= ~NEARSIGHTED
 	return ..()
 
 /datum/reagent/consumable/drink/berryjuice

@@ -19,7 +19,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
@@ -55,7 +55,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -84,7 +84,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
@@ -119,7 +119,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
@@ -149,7 +149,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/battle_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x265mm, SLOT_IN_BACKPACK)
@@ -173,7 +173,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x25mm, SLOT_IN_BACKPACK)
@@ -197,7 +197,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/alf/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -228,75 +228,57 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_gpmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(wearer), SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/marine/satchel))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_gpmg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	if(!isstorage(wearer.back))
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-		return
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_mmg
 	name = "MG-27"
-	desc = "Equipped with an unremovable miniscope and tripod. The MG-27 is large, unwieldy machinegun, with terrible mobility and effectively unmanagable handling outside of point blank range. \
-	However the MG-27 is primary used as a deployed weapon, where it offers devastatingly powerful, accurate and long range damage that far exceeds the lighter MG-60. \
+	desc = "Equipped with an unremovable miniscope and tripod. The MG-27 is large, unwieldy machinegun, with terrible mobility an effectively unmanagable handling outside of point blank range. \
+	However the MG-27 is primary used a deployed weapon, where it offers devastatingly powerful, accurate and long range damage that far exceeds the lighter MG-60. \
 	Can quickly mow down any target caught out in the open, it is the final word in static weaponry. It uses 10x27mm caseless ammunition."
 	ui_icon = "ballistic"
 	item_typepath = /obj/item/weapon/gun/standard_mmg/machinegunner
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_mmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	if(istype(wearer.belt, /obj/item/storage/holster/m25))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	else
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(wearer), SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	if(!istype(wearer.back, /obj/item/storage/backpack/marine/satchel))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_mmg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	if(istype(wearer.belt, /obj/item/storage/holster/m25))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
-	else if(isstorage(wearer.back))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	else
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/bullet/laser, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/bullet/laser, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_mg
 	name = "Laser machinegun"
@@ -308,7 +290,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_mg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -338,44 +320,12 @@
 	item_typepath = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
 
-/datum/loadout_item/suit_store/main_gun/marine/flamer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	if(!isstorage(wearer.back))
-		return ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	if(istype(wearer.belt, /obj/item/storage/holster/m25))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	else
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(wearer), SLOT_IN_BACKPACK)
-	if(!istype(wearer.back, /obj/item/storage/backpack/marine/satchel))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X, SLOT_IN_BACKPACK)
-
 /datum/loadout_item/suit_store/main_gun/marine/flamer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	if(istype(wearer.belt, /obj/item/storage/holster/m25))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
-	else if(isstorage(wearer.back))
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	else
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/bullet/laser, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/bullet/laser, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/shotgun
 	name = "SH-35"
@@ -388,7 +338,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -411,42 +361,21 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 
-/datum/loadout_item/suit_store/main_gun/marine/auto_shotgun
-	name = "SH-15"
-	desc = "Equipped with a mag harness, barrel charger and underbarrel grenade launcher. \
-	The SH-15 automatic shotgun has excellent mobility and handling, and offers powerful damage per shot. Its comparatively slow rate of fire means in a straight gunfight its overall damage output is somewhat lacking.\
-	Uses 12-round 16 gauge magazines with slugs and flechette."
-	ui_icon = "tx15"
-	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/standard
-	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
-
-/datum/loadout_item/suit_store/main_gun/marine/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	if(!isstorage(wearer.back))
-		return ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	if(!istype(wearer.back, /obj/item/storage/backpack/marine/satchel))
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
-
-/datum/loadout_item/suit_store/main_gun/marine/laser_carbine
-	name = "Laser carbine"
+/datum/loadout_item/suit_store/main_gun/marine/laser_carbine_scout
+	name = "Laser carbine-S"
 	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The TerraGov laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
 	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
 	req_desc = "Requires a light armour suit."
-	ui_icon = "lasergun"
+	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+	)
 
-/datum/loadout_item/suit_store/main_gun/marine/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/marine/laser_carbine_scout/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -461,7 +390,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/marine/laser_carbine/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/marine/laser_carbine_scout/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -469,7 +398,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine
-	name = "AR-18-scout"
+	name = "AR-18-S"
 	desc = "Equipped with motion detector, extended barrel and underbarrel grenade launcher. The AR-18 is the main weapon of the TGMC, offering excellent mobility and impressive close to medium range damage output. \
 	Compared to the AR-12, it suffers from a comparatively smaller magazine size, and is less effective at longer range. \
 	The motion detector on this example makes it excellent for scouting out enemy positions and tracking down hidden enemies. Uses 10x24mm caseless ammunition."
@@ -483,7 +412,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
@@ -529,7 +458,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine, SLOT_L_HAND)
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
@@ -562,7 +491,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_BACKPACK)
@@ -580,7 +509,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	if(istype(wearer.belt, /obj/item/storage/belt))
 		return ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_ACCESSORY)
@@ -610,7 +539,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -649,7 +578,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
@@ -687,7 +616,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/mag_gl/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -727,7 +656,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -760,7 +689,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -794,7 +723,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_cannon/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!istype(wearer.back, /obj/item/storage))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)

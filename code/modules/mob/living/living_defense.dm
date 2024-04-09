@@ -152,6 +152,9 @@
 /mob/living/proc/ExtinguishMob()
 	if(!on_fire)
 		return FALSE
+	var/datum/status_effect/stacking/melting_fire/xeno_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(xeno_fire)
+		remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	on_fire = FALSE
 	adjust_bodytemperature(-80, 300)
 	fire_stacks = 0

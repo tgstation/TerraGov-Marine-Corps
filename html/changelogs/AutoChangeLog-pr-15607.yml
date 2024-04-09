@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Made it possible to read the amount of fuel in jerry cans"

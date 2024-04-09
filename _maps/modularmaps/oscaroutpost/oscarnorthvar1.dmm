@@ -4357,6 +4357,19 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northeast)
+"Yr" = (
+/obj/structure/barricade/sandbags{
+	dir = 8;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "Yu" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -26911,7 +26924,7 @@ CE
 CE
 YZ
 sV
-Rb
+Yr
 Rb
 Rb
 Rb

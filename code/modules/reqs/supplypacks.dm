@@ -299,7 +299,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun,
 	)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/apcr
 	name = "AT-36 APCR Shell (x3)"
@@ -308,16 +308,16 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 	)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/he
 	name = "AT-36 HE Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
-		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun,
 	)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/beehive
 	name = "AT-36 Beehive Shell (x3)"
@@ -326,7 +326,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/beehive,
 		/obj/item/ammo_magazine/standard_atgun/beehive,
 	)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/incendiary
 	name = "AT-36 Napalm Shell (x3)"
@@ -335,7 +335,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/incend,
 		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/weapons/flak_gun
 	name = "FK-88 Flak Gun"
@@ -870,7 +870,7 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
-	notes = "Contains 25 razor burns"
+	notes = "Contains 15 razor burns"
 	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
 	cost = 500
 
@@ -878,25 +878,25 @@ EXPLOSIVES
 	name = "M40 adhesive charge grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/sticky)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_smokebomb
 	name = "M40 HSDP smokebomb grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/smokebomb)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/frag)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_cloaker
 	name = "M45 Cloaker grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/cloaker)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_antigas
 	name = "M40-AG Anti-Gas grenade box crate"
@@ -908,13 +908,13 @@ EXPLOSIVES
 	name = "M40-2 SCDP grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/cloak)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_lasburster
 	name = "M80 lasburster grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/lasburster)
-	cost = 300
+	cost = 310
 
 /datum/supply_packs/explosives/explosives_hidp
 	name = "M40 HIDP incendiary explosive grenade box crate"
@@ -924,7 +924,7 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_m15
 	name = "M15 fragmentation grenade box crate"
-	notes = "Contains 25 grenades"
+	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 350
 
@@ -932,19 +932,19 @@ EXPLOSIVES
 	name = "M45 Trailblazer grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/trailblazer)
-	cost = 500
+	cost = 350
 
 /datum/supply_packs/explosives/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
-	cost = 1000
+	cost = 700
 
 /datum/supply_packs/explosives/explosives_hefa
 	name = "M25 HEFA grenade box crate"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/hefa)
-	cost = 500
+	cost = 550
 
 /datum/supply_packs/explosives/plastique
 	name = "C4 plastic explosive"
@@ -1004,20 +1004,20 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/mlrs_rockets)
 	cost = 60
 
+/datum/supply_packs/explosives/mlrs_rockets_incendiary
+	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
+	contains = list(/obj/item/storage/box/mlrs_rocket_incendiary)
+	cost = 60
+
 /datum/supply_packs/explosives/mlrs_rockets_gas
 	name = "TA-40L X-50 MLRS Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rockets/gas)
+	contains = list(/obj/item/storage/box/mlrs_rockets_gas)
 	cost = 60
 
 /datum/supply_packs/explosives/mlrs_rockets_cloak
 	name = "TA-40L S-2 MLRS Cloak Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rockets/cloak)
+	contains = list(/obj/item/storage/box/mlrs_rocket_gas_cloak)
 	cost = 50
-
-/datum/supply_packs/explosives/mlrs_rockets_incendiary
-	name = "TA-40L MLRS Incendiary Rocket Pack (x16)"
-	contains = list(/obj/item/storage/box/mlrs_rockets/incendiary)
-	cost = 60
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -2133,12 +2133,12 @@ FACTORY
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade_refill)
-	cost = 550
+	cost = 700
 
 /datum/supply_packs/factory/incennaderefill
 	name = "Incendiary grenade refill"
 	contains = list(/obj/item/factory_refill/incennade_refill)
-	cost = 550
+	cost = 500
 
 /datum/supply_packs/factory/stickynaderefill
 	name = "Adhesive grenade refill"
@@ -2148,17 +2148,12 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 1050
-
-/datum/supply_packs/factory/cloaknade_refill
-	name = "Cloak grenade refill"
-	contains = list(/obj/item/factory_refill/cloaknade_refill)
-	cost = 450
+	cost = 1400
 
 /datum/supply_packs/factory/trailblazerrefill
 	name = "Trailblazer grenade refill"
 	contains = list(/obj/item/factory_refill/trailblazer_refill)
-	cost = 750
+	cost = 500
 
 /datum/supply_packs/factory/lasenaderefill
 	name = "Laserburster grenade refill"
@@ -2168,17 +2163,17 @@ FACTORY
 /datum/supply_packs/factory/hefanaderefill
 	name = "HEFA fragmentation grenade refill"
 	contains = list(/obj/item/factory_refill/hefanade_refill)
-	cost = 750
+	cost = 700
 
 /datum/supply_packs/factory/antigasrefill
 	name = "Anti-Gas grenade refill"
 	contains = list(/obj/item/factory_refill/antigas_refill)
-	cost = 900
+	cost = 800
 
 /datum/supply_packs/factory/razornade_refill
 	name = "Razornade assembly refill"
 	contains = list(/obj/item/factory_refill/razornade_refill)
-	cost = 750
+	cost = 1000
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
@@ -2405,21 +2400,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
 	cost = 240
 
-/datum/supply_packs/factory/mlrs_rocket_refill_cloak
-	name = "MLRS 'S-2' Cloak rocket assembly refill"
-	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_cloak)
-	cost = 240
-
-/datum/supply_packs/factory/mlrs_rocket_refill_gas
-	name = "MLRS 'X-50' gas rocket assembly refill"
-	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_gas)
-	cost = 240
-
-/datum/supply_packs/factory/mlrs_rocket_refill_incendiary
-	name = "MLRS Incendiary rocket assembly refill"
-	contains = list(/obj/item/factory_refill/mlrs_rocket_refill_incendiary)
-	cost = 240
-
 /datum/supply_packs/factory/agls_he_refill
 	name = "AGLS HE magazine assembly refill"
 	contains = list(/obj/item/factory_refill/agls_he_refill)
@@ -2453,27 +2433,27 @@ FACTORY
 /datum/supply_packs/factory/atgun_aphe_refill
 	name = "AT-36 AP-HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_aphe_refill)
-	cost = 200
+	cost = 100
 
 /datum/supply_packs/factory/atgun_apcr_refill
 	name = "AT-36 APCR shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_apcr_refill)
-	cost = 200
+	cost = 100
 
 /datum/supply_packs/factory/atgun_he_refill
 	name = "AT-36 HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_he_refill)
-	cost = 200
+	cost = 100
 
 /datum/supply_packs/factory/atgun_beehive_refill
 	name = "AT-36 Beehive shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_beehive_refill)
-	cost = 200
+	cost = 100
 
 /datum/supply_packs/factory/atgun_incend_refill
 	name = "AT-36 Napalm shell assembly refill"
 	contains = list(/obj/item/factory_refill/atgun_incend_refill)
-	cost = 200
+	cost = 100
 
 /datum/supply_packs/factory/heavy_isg_he_refill
 	name = "FK-88 Flak HE shell assembly refill"

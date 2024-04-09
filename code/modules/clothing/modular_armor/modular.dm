@@ -93,9 +93,6 @@
 		/obj/item/armor_module/armor/legs/marine/ranger,
 		/obj/item/armor_module/armor/arms/marine/ranger,
 
-		/obj/item/armor_module/armor/chest/marine/mjolnir,
-		/obj/item/armor_module/armor/legs/marine/mjolnir,
-		/obj/item/armor_module/armor/arms/marine/mjolnir,
 
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,

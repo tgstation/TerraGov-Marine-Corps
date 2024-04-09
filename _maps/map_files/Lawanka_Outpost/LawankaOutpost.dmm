@@ -1732,6 +1732,9 @@
 /obj/item/stack/sheet/metal,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
 	},
@@ -12497,6 +12500,14 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lawankaoutpost/colony/robotics)
+"kyc" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/lawankaoutpost/colony/operations_storage)
 "kyf" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
@@ -62352,7 +62363,7 @@ oay
 mXv
 hQO
 hQO
-hQO
+kyc
 usj
 pMi
 wgw

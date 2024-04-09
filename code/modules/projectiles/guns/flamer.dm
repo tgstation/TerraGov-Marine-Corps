@@ -315,7 +315,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/large/som,
-		/obj/item/ammo_magazine/flamer_tank/large/X/som,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
@@ -456,15 +455,15 @@
 	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
-	//extinguish any flame present
-	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
+	//check for preexisting fire , update that one if there is one
+	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
-		var/new_fire_level = min(fire_lvl + old_fire.firelevel, fire_lvl * 2)
-		var/new_burn_level = min(burn_lvl + old_fire.burnlevel, burn_lvl * 1.5)
+		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
+		var/new_burn_level = min(burn_lvl + old_fire.burn_level, burn_lvl * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new /obj/fire/flamer(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
@@ -502,130 +501,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	if(set_color != "red") // we're already red colored by default
 		color = set_color
 
-/obj/flamer_fire
-	name = "fire"
-	desc = "Ouch!"
-	anchored = TRUE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	icon = 'icons/effects/fire.dmi'
-	icon_state = "red_2"
-	layer = BELOW_OBJ_LAYER
-	light_system = MOVABLE_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
-	light_on = TRUE
-	light_range = 3
-	light_power = 3
-	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/firelevel = 12
-	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
-	var/burnlevel = 10
-	///The color the flames and associated particles appear
-	var/flame_color = "red"
-
-/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
-	. = ..()
-	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-	updateicon()
-
-	START_PROCESSING(SSobj, src)
-
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-
-/obj/flamer_fire/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-///Effects applied to a mob that crosses a burning turf
-/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
-	if(istype(M))
-		M.flamer_fire_act(burnlevel)
-
-/obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH)) //Fire suppressing smoke
-		return
-
-	firelevel -= 20 //Water level extinguish
-	updateicon()
-	if(firelevel < 1) //Extinguish if our firelevel is less than 1
-		playsound(S, 'sound/effects/smoke_extinguish.ogg', 20)
-		qdel(src)
-
-///Sets the fire object to the correct colour and fire values, and applies the initial effects to any mob on the turf
-/obj/flamer_fire/proc/set_fire(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
-	if(f_color && (flame_color != f_color))
-		flame_color = f_color
-
-	if(!GLOB.flamer_particles[flame_color])
-		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
-
-	particles = GLOB.flamer_particles[flame_color]
-	icon_state = "[flame_color]_2"
-
-	if(fire_lvl)
-		firelevel = fire_lvl
-	if(burn_lvl)
-		burnlevel = burn_lvl
-
-	if(!fire_stacks && !fire_damage)
-		return
-
-	for(var/mob/living/C in get_turf(src))
-		C.flamer_fire_act(fire_stacks)
-		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
-
-/obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_FLAME"
-	var/light_intensity = 3
-	switch(flame_color)
-		if("red")
-			light_color = LIGHT_COLOR_FLAME
-		if("blue")
-			light_color = LIGHT_COLOR_BLUE_FLAME
-		if("green")
-			light_color = LIGHT_COLOR_ELECTRIC_GREEN
-	switch(firelevel)
-		if(1 to 9)
-			icon_state = "[flame_color]_1"
-			light_intensity = 2
-		if(10 to 25)
-			icon_state = "[flame_color]_2"
-			light_intensity = 4
-		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
-			icon_state = "[flame_color]_3"
-			light_intensity = 6
-	set_light_range_power_color(light_intensity, light_power, light_color)
-
-/obj/flamer_fire/process()
-	var/turf/T = loc
-	firelevel = max(0, firelevel)
-	if(!istype(T)) //Is it a valid turf?
-		qdel(src)
-		return
-
-	updateicon()
-
-	if(!firelevel)
-		qdel(src)
-		return
-
-	T.flamer_fire_act(burnlevel)
-
-	var/j = 0
-	for(var/i in T)
-		if(++j >= 11)
-			break
-		var/atom/A = i
-		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
-			continue
-		A.flamer_fire_act(burnlevel)
-
-	firelevel -= 2 //reduce the intensity by 2 per tick
-
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"
 	desc = "For the quenching of unfortunate mistakes."
@@ -656,11 +531,13 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	flame_max_wall_pen_wide = 1
 
 /obj/item/weapon/gun/flamer/hydro_cannon/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
-	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in turf_to_ignite
-	if(current_fire)
-		qdel(current_fire)
-	for(var/mob/living/mob_caught in turf_to_ignite)
-		mob_caught.ExtinguishMob()
+	for(var/atom/movable/relevant_atom AS in turf_to_ignite)
+		if(isfire(relevant_atom))
+			qdel(relevant_atom)
+			continue
+		if(isliving(relevant_atom))
+			var/mob/living/mob_caught = relevant_atom
+			mob_caught.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)

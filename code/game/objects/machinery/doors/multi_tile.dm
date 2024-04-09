@@ -133,11 +133,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor.dmi'
+	opacity = FALSE
+	glass = FALSE
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass
 	name = "\improper Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor_glass.dmi'
-	opacity = FALSE
 	glass = TRUE
 
 //PREP DOORS
@@ -313,6 +314,8 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
+	opacity = FALSE
+	glass = FALSE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass

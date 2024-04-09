@@ -42,9 +42,6 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
-	if(GLOB.marine_main_ship.orbital_cannon == src)
-		GLOB.marine_main_ship.orbital_cannon = null
-	QDEL_NULL(tray)
 	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
@@ -555,12 +552,6 @@
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
-
-/obj/structure/ship_rail_gun/Destroy()
-	if(GLOB.marine_main_ship.rail_gun == src)
-		GLOB.marine_main_ship.rail_gun = null
-	QDEL_NULL(rail_gun_ammo)
-	return ..()
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
 	if(cannon_busy && !ignore_cooldown)

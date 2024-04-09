@@ -1116,7 +1116,6 @@
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
 			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
 			/obj/item/armor_module/armor/chest/marine/ranger = -1,
-			/obj/item/armor_module/armor/chest/marine/mjolnir = -1,
 		),
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1128,7 +1127,6 @@
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
 			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
 			/obj/item/armor_module/armor/arms/marine/ranger = -1,
-			/obj/item/armor_module/armor/arms/marine/mjolnir = -1,
 		),
 		"Jaeger Mk.I legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1141,7 +1139,6 @@
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
 			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
 			/obj/item/armor_module/armor/legs/marine/ranger = -1,
-			/obj/item/armor_module/armor/legs/marine/mjolnir = -1,
 		),
 		"Jaeger Mk.I helmets" = list(
 			/obj/item/clothing/head/modular/marine/old/skirmisher = -1,
@@ -1152,8 +1149,6 @@
 			/obj/item/clothing/head/modular/marine/old/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/old/assault = -1,
 			/obj/item/clothing/head/modular/marine/old/eod = -1,
-			/obj/item/clothing/head/modular/marine/old/mjolnir = -1,
-			/obj/item/clothing/head/modular/marine/mjolnir_open = -1,
 		),
 		"Hardsuits" = list(
 			/obj/item/clothing/suit/modular/hardsuit_exoskeleton = -1,
@@ -1513,9 +1508,6 @@
 		),
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
-			/obj/item/clothing/glasses/night_vision = -1,
-			/obj/item/armor_module/module/night_vision = -1,
-			/obj/item/cell/night_vision_battery = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist/valhalla = -1,

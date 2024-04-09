@@ -60,9 +60,9 @@
 
 /datum/loadout_item/back/flamer_tank/x_fuel
 	name = "X-fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 50
+	purchase_cost = 40
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 

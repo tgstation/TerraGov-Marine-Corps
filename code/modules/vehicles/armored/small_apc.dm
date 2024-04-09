@@ -11,3 +11,5 @@
 	pixel_x = -16
 	pixel_y = -8
 	max_occupants = 3
+	primary_weapon_type = null
+	secondary_weapon_type = null

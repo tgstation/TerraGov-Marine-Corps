@@ -12,7 +12,7 @@
 	///The faction this belongs to
 	var/faction = FACTION_SOM
 	///How many times this can be used
-	var/charges = 3
+	var/charges = 1
 	///The target turf for teleportation
 	var/turf/target_turf
 	///The Z-level that the teleporter can teleport to

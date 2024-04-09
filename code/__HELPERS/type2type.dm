@@ -59,6 +59,25 @@
 		if(SOUTHWEST)
 			return "SW"
 
+// Convertrs a short text dir into a dir
+/proc/short_text2dir(direction)
+	switch(uppertext(direction))
+		if("N")
+			return NORTH
+		if("S")
+			return SOUTH
+		if("E")
+			return EAST
+		if("W")
+			return WEST
+		if("NE")
+			return NORTHEAST
+		if("NW")
+			return NORTHWEST
+		if("SE")
+			return SOUTHEAST
+		if("SW")
+			return SOUTHWEST
 
 //Turns text into proper directions
 /proc/text2dir(direction)

@@ -34,28 +34,6 @@
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
 	starting_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 	hostile_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
-	outro_message = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(
-			MISSION_STARTING_FACTION = "<u>Major victory</u><br> AO secured, hostile forces are on the run. Outstanding work!",
-			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost control of this area. All forces, pull back now!",
-		),
-		MISSION_OUTCOME_MINOR_VICTORY = list(
-			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> We've smashed their forces, regroup and secure the area!",
-			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> We don't have the manpower to keep going, all forces retreat and regroup!",
-		),
-		MISSION_OUTCOME_DRAW = list(
-			MISSION_STARTING_FACTION = "<u>Draw</u><br> There's no victory here... Any survivors, get out of the AO.",
-			MISSION_HOSTILE_FACTION = "<u>Draw</u><br> Enemy operation disrupted. It didn't come cheap though. Any survivors, regroup and fallback, we're going on the counter attack.",
-		),
-		MISSION_OUTCOME_MINOR_LOSS = list(
-			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Casualties are too high, we can't keep this up. All forces, fallback.",
-			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Hostiles forces are falling back. Nice work everyone.",
-		),
-		MISSION_OUTCOME_MAJOR_LOSS = list(
-			MISSION_STARTING_FACTION = "<u>Major loss</u><br> We've lost control here, all survivors retreat, this one is a loss.",
-			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Confirming control of AO. Hostile forces destroyed or retreat, outstanding work!",
-		),
-	)
 
 	///Point limit to win the game via objectives
 	var/capture_point_target = 400
@@ -79,16 +57,6 @@
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 	)
-	return ..()
-
-/datum/campaign_mission/tdm/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
-	if(message)
-		return ..()
-	switch(user.faction)
-		if(FACTION_TERRAGOV)
-			message = "SOM patrol confirmed in the AO! Secure those towers and neutralise all hostile forces. Move it marines!"
-		if(FACTION_SOM)
-			message = "TGMC patrol identified in the AO. Secure those towers and eliminate every Terran you see. For Mars!"
 	return ..()
 
 /datum/campaign_mission/tdm/get_status_tab_items(mob/source, list/items)

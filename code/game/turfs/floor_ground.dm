@@ -257,9 +257,6 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
-/turf/open/floor/plating/ground/ice/get_dirt_type()
-	return NO_DIRT
-
 // Colony tiles
 /turf/open/floor/plating/ground/concrete
 	name = "concrete"
@@ -269,9 +266,6 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
 	minimap_color = MINIMAP_AREA_COLONY
-
-/turf/open/floor/plating/ground/concrete/get_dirt_type()
-	return NO_DIRT
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -312,9 +306,6 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
-
-/turf/open/floor/plating/ground/desertdam/asphalt/get_dirt_type()
-	return NO_DIRT
 
 /turf/open/floor/plating/ground/desertdam/asphalt/cement
 	name = "concrete"

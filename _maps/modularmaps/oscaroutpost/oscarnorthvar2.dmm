@@ -259,6 +259,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"cy" = (
+/obj/structure/table/reinforced,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/turf/open/floor/plating,
+/area/oscar_outpost/outside/north)
 "cz" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -1672,6 +1680,19 @@
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"qC" = (
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "qH" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -5409,6 +5430,19 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"Yr" = (
+/obj/structure/barricade/sandbags{
+	dir = 8;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "Yu" = (
 /obj/structure/platform/rockcliff{
 	dir = 1
@@ -6844,7 +6878,7 @@ eC
 eC
 ZD
 Tj
-Tj
+qC
 Tj
 Rx
 eC
@@ -20612,7 +20646,7 @@ Zl
 th
 Wi
 ZE
-Nh
+cy
 ZE
 ZE
 ZE
@@ -28068,7 +28102,7 @@ Pv
 Pv
 YZ
 FC
-Az
+Yr
 Az
 Az
 Kk

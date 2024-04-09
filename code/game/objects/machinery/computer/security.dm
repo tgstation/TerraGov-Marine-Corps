@@ -195,6 +195,7 @@
 							dat += "<td>[crimstat]</td></tr>"
 						dat += "</table><hr width='75%' />"
 						dat += "<br><A href='?src=[text_ref(src)];choice=Return'>Return to index.</A>"
+				else
 		else
 			dat += "<A href='?src=[text_ref(src)];choice=Log In'>{Log In}</A>"
 
@@ -528,6 +529,7 @@ What a mess.*/
 							if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 								GLOB.datacore.medical -= R
 								qdel(R)
+							else
 						qdel(active1)
 						active1 = null
 					if (active2)

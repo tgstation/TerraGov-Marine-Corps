@@ -762,6 +762,8 @@
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/tool/weldingtool/hugetank,
+		/obj/item/lightreplacer,
+		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
@@ -770,8 +772,6 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
-		/obj/item/cell/high,
-		/obj/item/circuitboard/apc,
 	)
 
 /obj/effect/vendor_bundle/white_dress

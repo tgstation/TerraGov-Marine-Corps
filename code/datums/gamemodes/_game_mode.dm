@@ -102,12 +102,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
-	for(var/datum/job/job AS in valid_job_types)
-		job = SSjob.GetJobType(job)
-		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
-			continue
-		job.on_pre_setup()
-
 	return TRUE
 
 /datum/game_mode/proc/setup()

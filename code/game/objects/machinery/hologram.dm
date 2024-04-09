@@ -246,6 +246,7 @@
 
 	updateUsrDialog()
 
+//do not allow AIs to answer calls or people will use it to meta the AI sattelite
 /obj/machinery/holopad/attack_ai(mob/living/silicon/ai/user)
 	if (!istype(user))
 		return

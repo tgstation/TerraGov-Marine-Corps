@@ -36,9 +36,6 @@
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/rifle/standard_gpmg/machinegunner = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/belt/sparepouch
@@ -70,11 +67,6 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
-	item_whitelist = list(
-		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
-	)
 
 /datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m25/holstered(wearer), SLOT_IN_HOLSTER)

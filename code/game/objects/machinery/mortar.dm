@@ -598,7 +598,7 @@
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
 		return
 
-	if(!istype(I, /obj/item/storage/box/mlrs_rockets))
+	if(!istype(I, /obj/item/storage/box/mlrs_rockets) && !istype(I, /obj/item/storage/box/mlrs_rockets_gas))
 		return ..()
 
 	var/obj/item/storage/box/rocket_box = I
@@ -749,7 +749,7 @@
 	name = "\improper 60mm 'S-2' cloak rocket"
 	desc = "A 60mm rocket loaded with cloak smoke that hides any friendlies inside of it with advanced chemical technology."
 	icon_state = "mlrs_rocket_cloak"
-	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs/cloak
+	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs
 
 /obj/item/mortal_shell/rocket/mlrs/incendiary
 	name = "\improper 60mm incendiary rocket"
@@ -892,7 +892,8 @@
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 16
 
-/obj/item/storage/box/mlrs_rockets/PopulateContents()
+/obj/item/storage/box/mlrs_rockets/Initialize(mapload)
+	. = ..()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
@@ -910,10 +911,13 @@
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 	new /obj/item/mortal_shell/rocket/mlrs(src)
 
-/obj/item/storage/box/mlrs_rockets/gas
+/obj/item/storage/box/mlrs_rockets_gas
 	name = "\improper TA-40L X-50 rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 16
 
-/obj/item/storage/box/mlrs_rockets/gas/PopulateContents()
+/obj/item/storage/box/mlrs_rockets_gas/Initialize(mapload)
+	. = ..()
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
@@ -931,31 +935,13 @@
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
 
-/obj/item/storage/box/mlrs_rockets/cloak
-	name = "\improper TA-40L 'S-2' rocket crate"
-
-/obj/item/storage/box/mlrs_rockets/cloak/PopulateContents()
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
-
-/obj/item/storage/box/mlrs_rockets/incendiary
+/obj/item/storage/box/mlrs_rocket_incendiary
 	name = "\improper TA-40L incendiary rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 16
 
-/obj/item/storage/box/mlrs_rockets/incendiary/PopulateContents()
+/obj/item/storage/box/mlrs_rocket_incendiary/Initialize(mapload)
+	. = ..()
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
@@ -973,7 +959,29 @@
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 
+/obj/item/storage/box/mlrs_rocket_gas_cloak
+	name = "\improper TA-40L 'S-2' rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 16
+
+/obj/item/storage/box/mlrs_rocket_gas_cloak/Initialize(mapload)
+	. = ..()
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
+	new /obj/item/mortal_shell/rocket/mlrs/cloak(src)
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER
-#undef TALLY_ROCKET_ARTY

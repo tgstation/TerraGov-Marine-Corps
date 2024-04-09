@@ -101,7 +101,6 @@
 	name = "escape pod controller"
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	screen_overlay = null
 	power_channel = ENVIRON
 	density = FALSE
 

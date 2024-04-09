@@ -96,7 +96,7 @@
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 
-	for(var/obj/flamer_fire/F in T) //Extinguish all flames in turf
+	for(var/obj/fire/flamer/F in T) //Extinguish all flames in turf
 		qdel(F)
 
 /obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)

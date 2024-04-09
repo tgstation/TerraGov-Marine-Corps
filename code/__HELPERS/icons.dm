@@ -252,7 +252,6 @@ ColorTone(rgb, tone)
 		if(4, 8)
 			usealpha = TRUE
 		if(3, 6) //proceed as normal
-			EMPTY_BLOCK_GUARD // why isnt this a normal if hhhh
 		else
 			return
 

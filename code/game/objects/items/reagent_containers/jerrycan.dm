@@ -9,15 +9,6 @@
 	///how much fuel we use up per spill
 	var/fuel_usage = 10
 
-/obj/item/reagent_containers/jerrycan/examine(mob/user as mob)
-	. = ..()
-	if(!reagents)
-		return
-	if(get_dist(user,src) > 2)
-		. += span_warning("You're too far away to see [src]'s reagent amount!")
-		return
-	. += "There is [volume] units of fuel remaining."
-
 /obj/item/reagent_containers/jerrycan/attack_turf(turf/A, mob/user)
 	. = ..()
 	if(A.density)

@@ -43,11 +43,9 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
-#define TEST_PRE 0
 #define TEST_DEFAULT 1
 #define TEST_DEL_WORLD INFINITY
 
-// BEGIN_INCLUDE
 #include "apc_area_sanity.dm"
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
@@ -57,10 +55,8 @@
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "implanting.dm"
-#include "item_variant_test.dm"
 #include "keybinding_init.dm"
 #include "map_templates.dm"
-#include "mapping.dm"
 #include "spawn_guns.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"
@@ -71,8 +67,8 @@
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
+#include "item_variant_test.dm"
 #include "xenoaccuracy.dm"
-// END_INCLUDE
 
 #ifdef REFERENCE_TRACKING //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"

@@ -79,8 +79,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		else
 			outfit = new outfit //Can be improved to reference a singleton.
 
-///called during gamemode pre_setup, use for stuff like roundstart poplock
-/datum/job/proc/on_pre_setup()
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(isnull(L))
