@@ -324,7 +324,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc == user || parent.loc.loc == user)
-		var/obj/item/item_to_attack
+		var/obj/item/item_to_attack = source
+		if(item_to_attack.item_flags & IN_STORAGE)
+			return //We don't want to open nested storage on left click, on_alt_click() should be the standard "Always open"
 		if(holstered_item in parent.contents)
 			item_to_attack = holstered_item
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
@@ -397,15 +399,29 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!user.restrained() && !user.stat)
 		switch(over_object.name)
 			if("r_hand")
-				user.temporarilyRemoveItemFromInventory(source)
-				if(!user.put_in_r_hand(source))
-					user.dropItemToGround(source)
+				INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
 				return COMPONENT_NO_MOUSEDROP
 			if("l_hand")
-				user.temporarilyRemoveItemFromInventory(source)
-				if(!user.put_in_l_hand(source))
-					user.dropItemToGround(source)
+				INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
 				return COMPONENT_NO_MOUSEDROP
+
+///Removes item_to_put_in_hand from the storage it's currently in, and then places it into our right hand
+/datum/storage/proc/put_item_in_r_hand(obj/item/item_to_put_in_hand, mob/user)
+	if(item_to_put_in_hand.item_flags & IN_STORAGE)
+		if(!item_to_put_in_hand.loc.storage_datum.remove_from_storage(item_to_put_in_hand, user, user))
+			return
+	user.temporarilyRemoveItemFromInventory(item_to_put_in_hand)
+	if(!user.put_in_r_hand(item_to_put_in_hand))
+		user.dropItemToGround(item_to_put_in_hand)
+
+///Removes item_to_put_in_hand from the storage it's currently in, and then places it into our left hand
+/datum/storage/proc/put_item_in_l_hand(obj/item/item_to_put_in_hand, mob/user)
+	if(item_to_put_in_hand.item_flags & IN_STORAGE)
+		if(!item_to_put_in_hand.loc.storage_datum.remove_from_storage(item_to_put_in_hand, user, user))
+			return
+	user.temporarilyRemoveItemFromInventory(item_to_put_in_hand)
+	if(!user.put_in_l_hand(item_to_put_in_hand))
+		user.dropItemToGround(item_to_put_in_hand)
 
 /datum/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -567,13 +583,13 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 ///Generates a UI for slotless storage based on the objects inside of it
 /datum/storage/proc/space_orient_objs(list/obj/item/display_contents)
-	///should be equal to default backpack capacity
+	// should be equal to default backpack capacity
 	var/baseline_max_storage_space = 21
-	///length of sprite for start and end of the box representing total storage space
+	// length of sprite for start and end of the box representing total storage space
 	var/storage_cap_width = 2
-	///length of sprite for start and end of the box representing the stored item
+	// length of sprite for start and end of the box representing the stored item
 	var/stored_cap_width = 4
-	///length of sprite for the box representing total storage space
+	// length of sprite for the box representing total storage space
 	var/storage_width = min(round(258 * max_storage_space/baseline_max_storage_space, 1), 284)
 
 	click_border_start.Cut()
@@ -854,7 +870,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	user.balloon_alert(user, "Refilling.")
 
-	if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 1.5 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 		return
 
 	playsound(user.loc, refill_sound, 15, 1, 6)
@@ -862,7 +878,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(!can_be_inserted(refiller.contents[1], user))
 			return
 
-		remove_from_storage(IM)
+		refiller.storage_datum.remove_from_storage(IM)
 		handle_item_insertion(IM, TRUE, user)
 
 ///Dumps out the contents of our inventory onto our turf

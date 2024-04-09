@@ -290,13 +290,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
 	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
 		color_item(I, user)
-		return
+		return TRUE
+
+	. = ..()
+	if(.)
+		return TRUE
 
 	if(!istype(I, /obj/item/storage))
 		return
@@ -330,15 +330,14 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	else if(S.storage_datum.can_be_inserted(src, user))
 		S.storage_datum.handle_item_insertion(src, FALSE, user)
 
-
 /obj/item/attackby_alternate(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/facepaint))
+		alternate_color_item(I, user)
+		return TRUE
+
 	. = ..()
 	if(.)
-		return
-	if(!istype(I, /obj/item/facepaint))
-		return
-	alternate_color_item(I, user)
-
+		return TRUE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
