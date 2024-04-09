@@ -22,5 +22,5 @@
 		supply_ui = new(src)
 		supply_ui.shuttle_id = SHUTTLE_VEHICLE_SUPPLY
 		supply_ui.home_id = "vehicle_home"
-		supply_ui.faction = FACTION_TERRAGOV
+		supply_ui.faction = FACTION_NTC
 	return supply_ui.interact(user)
