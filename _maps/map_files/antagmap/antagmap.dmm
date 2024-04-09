@@ -3207,12 +3207,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
 "zL" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/obj/item/fulton_extraction_pack,
+/obj/item/fulton_extraction_pack,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "zM" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -3557,10 +3559,6 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
-"Cp" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
 "Cq" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/bcircuit/anim,
@@ -4884,8 +4882,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "ME" = (
-/obj/machinery/door/poddoor/shutters/transit/open,
-/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/obj/structure/prop/mainship/doorblocker/patrol_base/som{
+	dir = 4
+	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
 "MI" = (
@@ -5572,21 +5571,12 @@
 	name = "SOM Medbay"
 	})
 "QY" = (
-/obj/structure/prop/mainship/doorblocker/patrol_base/som,
-/obj/structure/prop/mainship/railing{
-	dir = 8
+/obj/structure/prop/mainship/doorblocker/patrol_base/som{
+	dir = 4
 	},
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/fulton_extraction_pack,
-/obj/item/fulton_extraction_pack,
-/obj/structure/rack,
 /turf/open/shuttle/dropship/three,
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/transport,
-/area/mainship/groundhq/clf/squads/req)
+/area/shuttle/transport)
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
@@ -7482,7 +7472,7 @@ EF
 OT
 OT
 EF
-zL
+EF
 EF
 ZI
 rS
@@ -9839,7 +9829,7 @@ Nj
 er
 Nj
 Nj
-Cp
+gW
 gW
 gW
 gW
@@ -9942,7 +9932,7 @@ aF
 gW
 gW
 gW
-Kc
+tT
 "}
 (101,1,1) = {"
 tT
@@ -9973,7 +9963,7 @@ aF
 aF
 gW
 ai
-Kc
+tT
 "}
 (102,1,1) = {"
 tT
@@ -10004,7 +9994,7 @@ aF
 am
 gW
 gW
-Kc
+tT
 "}
 (103,1,1) = {"
 tT
@@ -10035,7 +10025,7 @@ gW
 gW
 ai
 gW
-Kc
+tT
 "}
 (104,1,1) = {"
 tT
@@ -10066,7 +10056,7 @@ gW
 gW
 gW
 gW
-Kc
+tT
 "}
 (105,1,1) = {"
 tT
@@ -10166,11 +10156,11 @@ VK
 VK
 qM
 pS
-fy
+zL
 xX
 xX
 xX
-fy
+zL
 GL
 SN
 HH
@@ -10180,11 +10170,11 @@ VK
 VK
 Kk
 pS
-fy
+zL
 XE
 XE
 XE
-fy
+zL
 GL
 aM
 Ar
@@ -10290,11 +10280,11 @@ VK
 It
 qM
 je
-fy
+zL
 II
 II
 II
-fy
+zL
 GL
 OK
 Wj
@@ -10304,7 +10294,7 @@ VK
 It
 Kk
 je
-fy
+zL
 sI
 sI
 sI
