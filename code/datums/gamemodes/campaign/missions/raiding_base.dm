@@ -52,6 +52,7 @@
 			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Reinforcements are almost here and enemy forces are falling back, you've done Mars proud today marines.",
 		),
 	)
+	///The type of beacon this deploys into
 	var/beacon_type = /obj/item/campaign_beacon/bunker_buster
 	///Records whether the OB has been called
 	var/ob_called = FALSE
