@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - balance: "Already infinite pill bottles and chem bottles in marine medivend are now also infinite in med vendors."
+  - balance: "Scanners are now infinite in med vendors."
