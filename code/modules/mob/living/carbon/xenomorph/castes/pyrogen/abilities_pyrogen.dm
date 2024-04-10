@@ -192,7 +192,7 @@
 			wall.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)
 			return
-	else if(isobj(target) && !istype(target, type))
+	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
 		var/obj/object = target
 		object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 		qdel(src)
