@@ -46,6 +46,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			light.brightness = initial(light.brightness)
 			light.light_range = initial(light.light_range)
 			light.update_light()
+			light.update_appearance(UPDATE_ICON)
 	else
 		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
 			if(level != SEC_LEVEL_DELTA)
@@ -69,6 +70,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 					rangelevel -= pick(0.5,1.0,1.5,2.0)
 				light.light_range = rangelevel
 			light.update_light()
+			light.update_appearance(UPDATE_ICON)
 
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
