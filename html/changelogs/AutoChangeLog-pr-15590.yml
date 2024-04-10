@@ -1,0 +1,5 @@
+author: "Dikozda"
+delete-after: True
+changes:
+  - rscdel: "Removes puppeteer scout order and order radial menu."
+  - qol: "Puppeteer attack and recall orders are now normal abilitys and have keybinds."
