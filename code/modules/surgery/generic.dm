@@ -163,7 +163,7 @@
 
 /datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		if(affected.surgery_open_stage && !(affected.limb_status & LIMB_WOUND_CLAMPED))
+		if(affected.surgery_open_stage && !(affected.limb_wound_status & LIMB_WOUND_CLAMPED))
 			return SURGERY_CAN_USE
 	return SURGERY_CANNOT_USE
 
