@@ -202,7 +202,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return FALSE
 	if(status != LIGHT_EMPTY)
-		balloon_alert(user, "Remove bulb")
+		balloon_alert(user, "Remove bulb first")
 		return TRUE
 
 	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
