@@ -42,7 +42,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoke_choice(owner_T)
 	X.use_plasma(X.plasma_stored)
 	var/smoke_range = BANELING_SMOKE_RANGE
-	/// If this proc is triggered by signal, we want to divide range by 2
+	/// If this proc is triggered by signal(so death), we want to divide range by 2
 	if(!ability)
 		smoke_range = smoke_range / 2
 	smoke.set_up(smoke_range, owner_T, BANELING_SMOKE_DURATION)
