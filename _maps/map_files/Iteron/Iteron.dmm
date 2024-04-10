@@ -399,6 +399,10 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/hanger)
+"fg" = (
+/obj/structure/prop/mainship/doorblocker/engi,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "fk" = (
 /obj/machinery/prop/computer/tadpole,
 /turf/open/floor/plating/plating_catwalk,
@@ -44617,7 +44621,7 @@ dX
 fV
 fV
 fV
-Bp
+fg
 fV
 fV
 fV
@@ -44627,7 +44631,7 @@ fV
 fV
 fV
 fV
-Bp
+fg
 fV
 fV
 fV
