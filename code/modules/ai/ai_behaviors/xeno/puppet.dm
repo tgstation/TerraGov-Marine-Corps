@@ -145,11 +145,6 @@
 				return TRUE
 			else
 				return seek_and_attack()
-		if(PUPPET_SCOUT) //makes our parent wander and turn off recalling if out of range
-			too_far_escort = FALSE
-			base_action = MOVING_TO_NODE
-			change_action(MOVING_TO_NODE)
-			return TRUE
 
 ///behavior to deal with obstacles
 /datum/ai_behavior/puppet/deal_with_obstacle(datum/source, direction)
