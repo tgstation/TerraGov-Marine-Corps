@@ -427,7 +427,7 @@ directive is properly returned.
 /atom/proc/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	fire_act(60)
+	fire_act(LAVA_BURN_LEVEL)
 	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)

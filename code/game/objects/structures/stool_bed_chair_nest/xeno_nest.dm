@@ -129,7 +129,7 @@
 		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
 /obj/structure/bed/nest/fire_act(burn_level)
-	take_damage(50, BURN, FIRE)
+	take_damage(burnlevel * 2, BURN, FIRE)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

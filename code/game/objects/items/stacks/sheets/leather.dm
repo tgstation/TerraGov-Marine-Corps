@@ -117,14 +117,14 @@
 	if(wetness < 0)
 		return
 	//Try locating an exisitng stack on the tile and add to there if possible
-	for(var/obj/item/stack/sheet/leather/HS in src.loc)
-		if(HS.amount < 50)
-			HS.amount++
-			src.use(1)
+	for(var/obj/item/stack/sheet/leather/leather in src.loc)
+		if(leather.amount < 50)
+			leather.amount++
+			use(1)
 			wetness = initial(wetness)
 			break
 	//If it gets to here it means it did not find a suitable stack on the tile.
-	var/obj/item/stack/sheet/leather/HS = new(src.loc)
-	HS.amount = 1
+	var/obj/item/stack/sheet/leather/leather = new(src.loc)
+	leather.amount = 1
 	wetness = initial(wetness)
-	src.use(1)
+	use(1)
