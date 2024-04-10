@@ -80,7 +80,7 @@
 	action_icon_state = "fireball"
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
-	cooldown_duration = 6 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
@@ -153,6 +153,9 @@
 	pixel_x = -16
 	/// Target turf to bias going towards
 	var/turf/target
+	/// Tracks how many times we moved
+	var/moves = 0
+
 
 /obj/effect/xenomorph/firenado/Initialize(mapload, arg_target)
 	. = ..()
@@ -213,18 +216,25 @@
 	var/target_dir = 666
 	if(target)
 		target_dir = get_dir(src,target)
-	var/turf/move_turf = pickweight(
-		list(
-			get_step(src, NORTH) = target_dir == NORTH ? 3 : 1,
-			get_step(src, SOUTH) = target_dir == SOUTH ? 3 : 1,
-			get_step(src, EAST) = target_dir == EAST ? 3 : 1,
-			get_step(src, WEST) = target_dir == WEST ? 3 : 1,
+	var/turf/move_turf
+	if(moves%2 || !target)
+		move_turf = pickweight(
+			list(
+				get_step(src, NORTH) = target_dir == NORTH ? 3 : 1,
+				get_step(src, SOUTH) = target_dir == SOUTH ? 3 : 1,
+				get_step(src, EAST) = target_dir == EAST ? 3 : 1,
+				get_step(src, WEST) = target_dir == WEST ? 3 : 1,
+			)
 		)
-	)
+	else
+		move_turf = get_step(src, target_dir)
+
+
 	// before moving so that if we hit someone , we don't also put down a fire that they will instantly gain another stack from
 	if(!locate(/obj/fire/melting_fire) in current_location)
 		new /obj/fire/melting_fire(current_location)
 	Move(move_turf)
+	moves++
 
 /datum/action/ability/activable/xeno/firestorm/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
