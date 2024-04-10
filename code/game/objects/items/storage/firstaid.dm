@@ -157,7 +157,7 @@
 	throw_range = 8
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = 3
 	storage_datum.set_holdable(can_hold_list = list(

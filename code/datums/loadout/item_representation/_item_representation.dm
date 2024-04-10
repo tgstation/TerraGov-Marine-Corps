@@ -109,12 +109,12 @@
 	if(!isatom(item_type))
 		CRASH("[item_type] is not a /atom, it cannot have storage")
 
-	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save)) //Some storage cannot handle custom contents
+	if(is_type_in_typecache(item_type, GLOB.loadout_instantiate_default_contents)) //Some storage cannot handle custom contents
 		return
 
 	var/datum/storage/current_storage_datum = item_type.storage_datum
 	var/list/obj/item/starting_items = list()
-	for(var/obj/item/item_in_contents AS in contents)
+	for(var/obj/item/item_in_contents AS in current_storage_datum.parent.contents)
 		starting_items[item_in_contents.type] = starting_items[item_in_contents.type] + get_item_stack_number(item_in_contents)
 	current_storage_datum.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
