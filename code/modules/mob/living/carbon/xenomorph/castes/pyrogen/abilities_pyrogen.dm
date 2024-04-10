@@ -162,7 +162,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	target = arg_target
-	QDEL_IN(2 SECONDS)
+	QDEL_IN(src, 2 SECONDS)
 
 /obj/effect/xenomorph/firenado/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -209,7 +209,6 @@
 		if(humie.stat == DEAD)
 			continue
 		mob_act(humie)
-		burn_ticks_left = 0
 	/// random number so it isn't north biased by default if no target
 	var/target_dir = 666
 	if(target)
@@ -356,4 +355,3 @@
 	targets = null
 	started_firing = 0
 	add_cooldown()
-

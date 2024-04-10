@@ -67,6 +67,9 @@
 #define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
 #define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
+//Sent when a supply beacon is activated
+#define COMSIG_GLOB_SUPPLY_BEACON_CREATED "!supply_beacon_created"
+
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
@@ -79,6 +82,8 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
+///Sent when mob is deployed via a patrol point
+#define COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED "!hvh_deploy_point_activated"
 ///Opens the TGMC shipside shutters on campaign
 #define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
 ///Opens the SOM shipside shutters on campaign
@@ -107,12 +112,14 @@
 #define COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED "!campaign_dropblocker_disabled"
 ///Override code for NT base rescue mission
 #define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
-///Campaign asset obtained for the first time
-#define COMSIG_CAMPAIGN_NEW_ASSET "campaign_new_asset"
-///Campaign asset activation successful
-#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
-///Campaign asset disabler activated
-#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+///Code computer starts running
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING "!campaign_nt_override_running"
+///Code computer stops running
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING "!campaign_nt_override_stop_running"
+///Campaign OB beacon deployed
+#define COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION "!campaign_ob_beacon_activation"
+///Campaign OB beacon going off
+#define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -932,6 +939,11 @@
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
+#define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
+#define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
+#define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
+#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
+
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
 #define COMSIG_XENOABILITY_PUPPET "xenoability_puppet"
@@ -948,11 +960,6 @@
 #define COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE "xenoability_earth_riser_alternate"
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
-
-#define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
-#define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
-#define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
-#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
 
 //sectoid abilities
 #define COMSIG_ABILITY_MINDMELD "ability_mindmeld"
@@ -1095,3 +1102,10 @@
 
 #define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.
 
+//Campaign signals
+///Campaign asset obtained for the first time
+#define COMSIG_CAMPAIGN_NEW_ASSET "campaign_new_asset"
+///Campaign asset activation successful
+#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
+///Campaign asset disabler activated
+#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"

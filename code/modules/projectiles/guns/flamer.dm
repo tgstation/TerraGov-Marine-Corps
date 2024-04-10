@@ -315,6 +315,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/large/som,
+		/obj/item/ammo_magazine/flamer_tank/large/X/som,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
@@ -455,7 +456,7 @@
 	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
-	//check for preexisting fire , update that one if there is one
+	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
 		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
@@ -538,7 +539,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		if(isliving(relevant_atom))
 			var/mob/living/mob_caught = relevant_atom
 			mob_caught.ExtinguishMob()
-	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
+	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, dir)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
 	return
