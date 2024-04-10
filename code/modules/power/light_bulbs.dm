@@ -11,11 +11,15 @@
 	force = 2
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
-	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
-	var/bulb_type
-	var/switchcount = 0	// number of times switched
-	var/rigged = 0		// true if rigged to explode
-	var/brightness = 2 //how much light it gives off
+	base_icon_state
+	///Condition of the bulb
+	var/status = LIGHT_OK
+	///Number of times toggled
+	var/switchcount = 0
+	///If its rigged to explode
+	var/rigged = 0
+	///Light level this gives off when on
+	var/brightness = 2
 
 /obj/item/light_bulb/throw_impact(atom/hit_atom)
 	. = ..()
@@ -27,7 +31,7 @@
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
-	bulb_type = "ltube"
+	base_icon_state = "ltube"
 	item_state = "c_tube"
 	brightness = 8
 
@@ -40,7 +44,7 @@
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
-	bulb_type = "lbulb"
+	base_icon_state = "lbulb"
 	brightness = 5
 
 /obj/item/light_bulb/bulb/attack_turf(turf/T, mob/living/user)
@@ -57,7 +61,7 @@
 
 	user.drop_held_item(src)
 	qdel(src)
-	existing_bulb.state = 0
+	existing_bulb.state = LIGHT_TILE_OK
 	light_tile.update_icon()
 	to_chat(user, span_notice("You replace the light bulb."))
 
@@ -67,13 +71,13 @@
 /obj/item/light_bulb/proc/update()
 	switch(status)
 		if(LIGHT_OK)
-			icon_state = bulb_type
+			icon_state = base_icon_state
 			desc = "A replacement [name]."
 		if(LIGHT_BURNED)
-			icon_state = "[bulb_type]-burned"
+			icon_state = "[base_icon_state]_burned"
 			desc = "A burnt-out [name]."
 		if(LIGHT_BROKEN)
-			icon_state = "[bulb_type]-broken"
+			icon_state = "[base_icon_state]_broken"
 			desc = "A broken [name]."
 
 
@@ -120,7 +124,7 @@
 
 /obj/item/light_bulb/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message(span_warning(" [name] shatters."),span_warning(" You hear a small glass object shatter."))
+		src.visible_message(span_warning("[name] shatters."),span_warning("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = IS_SHARP_ITEM_SIMPLE

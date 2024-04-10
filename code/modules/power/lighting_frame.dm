@@ -5,10 +5,12 @@
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
 	layer = FLY_LAYER
+	///build stage
 	var/stage = 1
+	///What kind of bulb its intended for
 	var/fixture_type = "tube"
+	///Quantity of metal refunded on deconstruction
 	var/sheets_refunded = 2
-	var/obj/machinery/light/newlight = null
 
 /obj/machinery/light_construct/Initialize(mapload)
 	. = ..()
@@ -96,11 +98,14 @@
 			"You close [src]'s casing.", "You hear a noise.")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
+		var/obj/machinery/light/newlight
 		switch(fixture_type)
 			if("tube")
 				newlight = new /obj/machinery/light/built(loc)
 			if("bulb")
 				newlight = new /obj/machinery/light/small/built(loc)
+			else
+				qdel(src) //what did you do
 
 		newlight.setDir(dir)
 		qdel(src)
