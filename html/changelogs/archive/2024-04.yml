@@ -173,3 +173,25 @@
   - bugfix: ' Tank is no longer stuck in Daedalus LZ'
   - rscadd: Added glass to each ship CIC and engineering rooms
   - rscadd: Added more materials to the debugabus engineering room
+2024-04-10:
+  Helg2:
+  - bugfix: deleted some garbage on Big Red.
+  Lumipharon:
+  - qol: 'Campaign: Added some extra context around attrition and mission selection
+      for faction leaders'
+  - qol: 'Campaign: Deploy points have their corrosponding number on the sprite'
+  - balance: 'Campaign: Moved the SOM deploy points on NT Base Rescue a bit further
+      south'
+  - balance: 'Campaign: Both factions no longer get a free use of droppod refresh/teleporter
+      charges assets round start'
+  - balance: 'Campaign: Buffed the uses from teleporter activation, teleporter charges
+      and the default charges on the teleporter'
+  - bugfix: 'Campaign: Fixed the incorrect mortar disabler being applied to TGMC on
+      NT Base Rescue'
+  Scarlet-Oduko:
+  - qol: Allows grenades to be self stickied, instead of having to be applies by others
+  - balance: Self-applied stickies allowing one to use them directly
+  ZeWaka:
+  - qol: Banelings can no longer explode before shutters unless they have a pod placed.
+  ivanmixo:
+  - bugfix: You cannot melt sticky resin anymore
