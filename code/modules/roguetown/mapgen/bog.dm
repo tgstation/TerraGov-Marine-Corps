@@ -20,8 +20,7 @@
 							/obj/item/natural/stone = 8,
 							/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf = 4,
 							/obj/item/grown/log/tree/stick = 4,
-							/obj/structure/flora/roguegrass/maneater/real=8,
-							/obj/item/restraints/legcuffs/beartrap/armed/camouflage=4)
+							/obj/structure/flora/roguegrass/maneater/real=8)
 	spawnableTurfs = list(/turf/open/water/swamp=3)
 	allowed_areas = list(/area/rogue/outdoors/bog)
 

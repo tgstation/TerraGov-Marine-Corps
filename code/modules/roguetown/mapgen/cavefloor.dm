@@ -18,7 +18,7 @@
 /datum/mapGeneratorModule/cavedirt
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/dirt)
-	spawnableAtoms = list(/obj/structure/flora/rogueshroom=20,/obj/structure/roguerock=20,/obj/structure/flora/roguegrass = 14,/obj/structure/closet/dirthole/closed/loot=6,/obj/item/natural/stone = 24,/obj/item/natural/rock = 8, /obj/structure/glowshroom = 3,/obj/item/restraints/legcuffs/beartrap/armed/camouflage=3)
+	spawnableAtoms = list(/obj/structure/flora/rogueshroom=20,/obj/structure/roguerock=20,/obj/structure/flora/roguegrass = 14,/obj/structure/closet/dirthole/closed/loot=6,/obj/item/natural/stone = 24,/obj/item/natural/rock = 8, /obj/structure/glowshroom = 3)
 	allowed_areas = list(/area/rogue/under/cave/spider,/area/rogue/indoors/cave,/area/rogue/under/cavewet,/area/rogue/under/cave,/area/rogue/under/cavelava)
 
 /obj/effect/landmark/mapGenerator/rogue/cave/lava
