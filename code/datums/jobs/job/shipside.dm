@@ -82,9 +82,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
+	head = /obj/item/clothing/head/beret/marine/captain
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
+	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
 /datum/outfit/job/command/captain/robot
 	species = SPECIES_COMBAT_ROBOT
