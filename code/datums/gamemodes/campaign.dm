@@ -274,7 +274,7 @@
 			if(!SSticker)
 				return
 			var/mob/candidate = locate(href_list["player"])
-			if(!candidate || !candidate.client)
+			if(!candidate?.client)
 				return
 
 			if(!GLOB.enter_allowed)
