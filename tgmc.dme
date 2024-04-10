@@ -1790,6 +1790,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\puppeteer\abilities_puppeteer.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\puppeteer\castedatum_puppeteer.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\puppeteer\puppeteer.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\pyrogen\abilities_pyrogen.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\pyrogen\castedatum_pyrogen.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\pyrogen\pyrogen.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\queen\abilities_queen.dm"

@@ -459,7 +459,7 @@
 	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
-		var/new_fire_level = min(fire_lvl + old_fire.fire_level, fire_lvl * 2)
+		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
 		var/new_burn_level = min(burn_lvl + old_fire.burn_level, burn_lvl * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
@@ -532,14 +532,14 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	flame_max_wall_pen_wide = 1
 
 /obj/item/weapon/gun/flamer/hydro_cannon/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
-	for(var/atom/movable/relevant_atom AS in extinguished_turf)
+	for(var/atom/movable/relevant_atom AS in turf_to_ignite)
 		if(isfire(relevant_atom))
 			qdel(relevant_atom)
 			continue
 		if(isliving(relevant_atom))
 			var/mob/living/mob_caught = relevant_atom
 			mob_caught.ExtinguishMob()
-	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
+	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, dir)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
 	return
