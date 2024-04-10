@@ -58,6 +58,10 @@
 		return
 	master_item?.update_icon()
 
+/datum/storage/internal/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
+	if(!ismodulararmormodule(attacking_item))
+		return ..()
+
 /datum/storage/internal/motorbike_pack
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_SMALL
