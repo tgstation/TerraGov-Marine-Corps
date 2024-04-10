@@ -598,8 +598,9 @@
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 
 /// on remove has owner set to null
-/datum/status_effect/stacking/melting_fire/Destroy()
-	debuff_owner.vis_contents -= visual_fire
+/datum/status_effect/stacking/melting_fire/on_remove()
+	owner.vis_contents -= visual_fire
+	debuff_owner = null
 	QDEL_NULL(visual_fire)
 	return ..()
 
