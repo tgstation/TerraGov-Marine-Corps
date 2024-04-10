@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Swapping with an illusion via mirage now breaks stealth"
+  - bugfix: "Mirage no longer lets you teleport across z-levels"
