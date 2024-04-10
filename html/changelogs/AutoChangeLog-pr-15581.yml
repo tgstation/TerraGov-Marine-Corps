@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Gun skills no longer effect fire delay for semi auto firing"
-  - balance: "Gun skills effect reload delay for magazines that have one"

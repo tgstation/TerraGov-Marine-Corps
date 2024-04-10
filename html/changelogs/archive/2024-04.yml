@@ -173,3 +173,34 @@
   - bugfix: ' Tank is no longer stuck in Daedalus LZ'
   - rscadd: Added glass to each ship CIC and engineering rooms
   - rscadd: Added more materials to the debugabus engineering room
+2024-04-10:
+  Lumipharon:
+  - balance: Gun skills no longer effect fire delay for semi auto firing
+  - balance: Gun skills effect reload delay for magazines that have one
+  - qol: 'Campaign: Added some extra context around attrition and mission selection
+      for faction leaders'
+  - qol: 'Campaign: Deploy points have their corrosponding number on the sprite'
+  - balance: 'Campaign: Moved the SOM deploy points on NT Base Rescue a bit further
+      south'
+  - balance: 'Campaign: Both factions no longer get a free use of droppod refresh/teleporter
+      charges assets round start'
+  - balance: 'Campaign: Buffed the uses from teleporter activation, teleporter charges
+      and the default charges on the teleporter'
+  - bugfix: 'Campaign: Fixed the incorrect mortar disabler being applied to TGMC on
+      NT Base Rescue'
+  - rscadd: 'Campaign: Deploy and outro messages are now specific to each mission'
+  - code_imp: reworked how hvh deploy points work
+  - bugfix: You can no longer bypass innate order checks by using a keybind
+  coldironwarrior:
+  - balance: CMOs now heal an additional 7.5 damage per use of sutures
+  - code_imp: suture healing now scales with a divisor based off max med skill of
+      5 instead of 4, and base_healing is upped to 37.5 to accommodate skill 5 having
+      better healing. no changes to other skill levels.
+  lbnesquik:
+  - qol: made reqtorio machines direction indicators much easier to read
+  - bugfix: fixed AI's not being able to use the overwatch camera jump
+  - code_imp: Removed useless comment in the AI hologram code
+  - admin: Made the Reload Admins button default to No
+  - qol: Made it possible to read the amount of fuel in jerry cans
+  novaepee:
+  - rscadd: Mjolnir, a new armor
