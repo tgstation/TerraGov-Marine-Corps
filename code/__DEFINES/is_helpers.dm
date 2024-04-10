@@ -271,6 +271,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
 
+#define isfire(A) istype(A, /obj/fire)
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

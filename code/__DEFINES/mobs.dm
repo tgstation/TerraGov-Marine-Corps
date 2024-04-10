@@ -626,6 +626,54 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
 #define TENTACLE_ABILITY_RANGE 5
 
+// Pyrogen defines
+/// Damage per melting fire stack
+#define PYROGEN_DAMAGE_PER_STACK 2.5
+/// Amount of damage ticks before a stack decays
+#define PYROGEN_STACK_FIRE_DECAY 2
+/// How fast the pyrogen moves when charging using fire charge
+#define PYROGEN_CHARGESPEED 3
+/// Maximum charge distance.
+#define PYROGEN_CHARGEDISTANCE 3
+/// Damage on hitting a mob using fire charge
+#define PYROGEN_FIRECHARGE_DAMAGE 30
+/// Bonus damage per fire stack
+#define PYROGEN_FIRECHARGE_DAMAGE_PER_STACK 10
+/// Bonus damage for directly hitting someone
+#define PYROGEN_FIREBALL_DIRECT_DAMAGE 30
+/// Damage in a 3x3 AOE when we hit anything
+#define PYROGEN_FIREBALL_AOE_DAMAGE 30
+/// Fire stacks on FIREBALL burst in the 3x3 AOE
+#define PYROGEN_FIREBALL_MELTING_STACKS 2
+/// How many turfs can our fireball move
+#define PYROGEN_FIREBALL_MAXDIST 8
+/// How fast the fireball moves
+#define PYROGEN_FIREBALL_SPEED 1
+/// How much damage the fire does per tick or cross.
+#define PYROGEN_MELTING_FIRE_DAMAGE 10
+/// How many melting fire effect stacks we give per tick or cross
+#define PYROGEN_MELTING_FIRE_EFFECT_STACK 2
+/// How many  tornadoes we unleash when using the firestorm
+#define PYROGEN_FIRESTORM_TORNADE_COUNT 3
+/// Damage on fire tornado hit
+#define PYROGEN_TORNADE_HIT_DAMAGE 50
+/// melting fire stacks on fire tornado hit
+#define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
+/// damage on direct hit with the heatray
+#define PYROGEN_HEATRAY_HIT_DAMAGE 50
+/// damage per melting fire stack
+#define PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK 10
+/// Range for the heatray
+#define PYROGEN_HEATRAY_RANGE 7
+/// Time before the beam fires
+#define PYROGEN_HEATRAY_CHARGEUP 1 SECONDS
+/// Max duration of the heatray
+#define PYROGEN_HEATRAY_MAXDURATION 3 SECONDS
+/// Time between each refire of the pyrogen heatray (in 3 seconds it will fire 3 times)
+#define PYROGEN_HEATRAY_REFIRE_TIME 1 SECONDS
+/// Amoutn of stacks removed per resist.
+#define PYROGEN_MELTING_FIRE_STACKS_PER_RESIST 4
+
 //Drone defines
 #define DRONE_HEAL_RANGE 1
 #define AUTO_WEEDING_MIN_DIST 4 //How far the xeno must be from the last spot to auto weed

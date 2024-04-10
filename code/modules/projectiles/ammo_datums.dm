@@ -4495,11 +4495,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = null
 
 /datum/ammo/water/proc/splash(turf/extinguished_turf, splash_direction)
-	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in extinguished_turf
-	if(current_fire)
-		qdel(current_fire)
-	for(var/mob/living/mob_caught in extinguished_turf)
-		mob_caught.ExtinguishMob()
+	for(var/atom/movable/relevant_atom AS in extinguished_turf)
+		if(isfire(relevant_atom))
+			qdel(relevant_atom)
+			continue
+		if(isliving(relevant_atom))
+			var/mob/living/mob_caught = relevant_atom
+			mob_caught.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
 /datum/ammo/water/on_hit_mob(mob/M, obj/projectile/P)
@@ -4586,3 +4588,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/grenade_container/ags_grenade/tanglefoot
 	hud_state = "grenade_drain"
 	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls
+
+/datum/ammo/xeno/fireball
+	name = "fireball"
+	icon_state = "xeno_fireball"
+	damage = 50
+	max_range = 10
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
+	bullet_color = null
+
+/datum/ammo/xeno/fireball/on_hit_mob(mob/target, obj/projectile/projectile)
+	drop_flame(target)
+
+/datum/ammo/xeno/fireball/on_hit_obj(obj/target, obj/projectile/proj)
+	. = ..()
+	drop_flame(target)
+
+/datum/ammo/xeno/fireball/on_hit_turf(turf/target, obj/projectile/proj)
+	. = ..()
+	drop_flame(target.density ? proj : target)
+
+/datum/ammo/xeno/fireball/do_at_max_range(turf/target, obj/projectile/proj)
+	. = ..()
+	drop_flame(target.density ? proj : target)
+
+/datum/ammo/xeno/fireball/drop_flame(atom/target_atom)
+	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(target_atom))
+	for(var/turf/affecting AS in RANGE_TURFS(1, target_atom))
+		new /obj/fire/melting_fire(affecting)
+		for(var/mob/living/carbon/fired in affecting)
+			fired.take_overall_damage(PYROGEN_FIREBALL_AOE_DAMAGE, BURN, ACID, FALSE, FALSE, TRUE, 0, , max_limbs = 2)

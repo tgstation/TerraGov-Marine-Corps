@@ -358,7 +358,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!lit)
 		if(isturf(target))
 			var/turf/T = target
-			if(locate(/obj/flamer_fire) in T.contents)
+			if(locate(/obj/fire) in T.contents)
 				light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
 				return
 
