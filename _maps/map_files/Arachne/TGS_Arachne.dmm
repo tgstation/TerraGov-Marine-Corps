@@ -10933,6 +10933,22 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"jcb" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/alamo{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/machinery/light/floor{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "jcy" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
@@ -11790,15 +11806,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
-"jPb" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical)
 "jPJ" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/plating,
@@ -20835,11 +20842,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
-"rki" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/machinery/floodlight/landing,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "rkn" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -22181,6 +22183,9 @@
 "skN" = (
 /obj/machinery/iv_drip,
 /obj/machinery/iv_drip,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -23976,6 +23981,19 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
+"tXW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/alamo{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tYv" = (
 /obj/structure/table/mainship/nometal,
@@ -26722,6 +26740,19 @@
 "wku" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/morgue)
+"wkH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/alamo{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/machinery/light/floor{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "wkQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -34558,7 +34589,7 @@ rEk
 rEk
 uaV
 nzR
-jPb
+lNM
 rXd
 tPr
 fgS
@@ -36164,12 +36195,12 @@ wGG
 hIO
 uKE
 bZV
+tXW
 bZV
 bZV
 bZV
 bZV
-bZV
-bZV
+tXW
 bZV
 caM
 ckM
@@ -36177,12 +36208,12 @@ ckM
 caM
 dzC
 bZV
+tXW
 bZV
 bZV
 bZV
 bZV
-bZV
-bZV
+tXW
 bZV
 exE
 mFV
@@ -36368,8 +36399,8 @@ rIa
 wQg
 vAL
 mGC
-mGC
-rki
+jfL
+jcy
 lNQ
 mGC
 mGC
@@ -37184,8 +37215,8 @@ twS
 wQg
 vAL
 mGC
-mGC
-rki
+jfL
+jcy
 lNQ
 mGC
 mGC
@@ -37388,12 +37419,12 @@ mMX
 hIO
 fiz
 tSl
-tSl
+jcb
 uBv
 vqY
 fun
 fun
-fun
+wkH
 fun
 thi
 hgw
@@ -37401,12 +37432,12 @@ hgw
 thi
 wwV
 fun
+wkH
 fun
 fun
 fun
 fun
-fun
-fun
+wkH
 fun
 qtB
 mFV
