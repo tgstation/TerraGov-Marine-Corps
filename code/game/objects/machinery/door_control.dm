@@ -240,12 +240,12 @@
 	id = "hangar_lockdown"
 
 /obj/machinery/door_control/mainship/mech
-	name = "Mech Shutters"
+	name = "\improper Mech Shutters"
 	id = "mech_shutters"
 	req_one_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door_control/mainship/vehicle
-	name = "Vehicle Bay Shutters"
+	name = "\improper Vehicle Bay Shutters"
 	id = "vehicle_shutters"
 	req_one_access = list(ACCESS_MARINE_ARMORED, ACCESS_MARINE_MECH)
 
