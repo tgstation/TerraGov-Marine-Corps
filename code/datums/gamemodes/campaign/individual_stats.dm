@@ -7,7 +7,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 450
+	var/currency = 45000
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -100,6 +100,7 @@
 		return
 	if(!(user.job.title in new_perk.jobs_supported))
 		return
+	new_perk.unlock_animation(user)
 	new_perk.apply_perk(user)
 
 ///Unlocks a loadout item for use
