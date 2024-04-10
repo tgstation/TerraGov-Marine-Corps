@@ -414,7 +414,7 @@
 	//we have to update selected tab/job so we load the correct data for the UI
 	var/mob/living/living_owner = owner
 
-	if(!isliving(owner) || !(living_owner.job.title in stats.valid_jobs))
+	if(!isliving(owner) || !(living_owner?.job?.title in stats.valid_jobs))
 		stats.selected_job = stats.valid_jobs[1]
 	else
 		stats.selected_job = living_owner.job.title
