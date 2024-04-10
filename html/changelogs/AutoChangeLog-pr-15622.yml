@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "Fixes surgery blood loss occuring when bleeders are clamped"
+  - bugfix: "Fixes being able to clamp bleeders infinitely"
