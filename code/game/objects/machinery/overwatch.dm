@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///Overrides the minimap action minimap and marker flags
 	var/map_flags = MINIMAP_FLAG_MARINE
 	///Ref of the lase that's had an OB warning mark placed on the minimap
-	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
+	var/obj/effect/overlay/temp/laser_target/ob/marked_lase
 	///Static list of CIC radial options for the camera when clicking on a marine
 	var/static/list/human_radial_options = list(
 		MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
@@ -647,7 +647,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, operator), 3.1 SECONDS)
 
 ///Lets anyone using an overwatch console know that an OB has just been lased
-/obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+/obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/ob/incoming_laser)
 	SIGNAL_HANDLER
 	if(!operator)
 		return
@@ -794,14 +794,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_radial(datum/source, atom/A, params)
 	var/mob/living/carbon/human/human_target
-	var/obj/effect/overlay/temp/laser_target/OB/laser_target
+	var/obj/effect/overlay/temp/laser_target/ob/laser_target
 	var/turf/turf_target
 	var/choice
 	if(ishuman(A))
 		human_target = A
 		choice = show_radial_menu(source, human_target, human_radial_options, null, 48, null, FALSE, TRUE)
 
-	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
+	else if(istype(A, /obj/effect/overlay/temp/laser_target/ob))
 		laser_target = A
 		choice = show_radial_menu(source, laser_target, bombardment_radial_options, null, 48, null, FALSE, TRUE)
 	else

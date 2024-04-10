@@ -369,7 +369,7 @@
 
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
 	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
-	base_icon_state = "aasphalt-sunbleached"
+	base_icon_state = "asphalt-sunbleached"
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
