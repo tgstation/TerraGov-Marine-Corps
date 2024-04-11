@@ -11,11 +11,13 @@
 	worry that someday, it may be impossible to distinguish the two species. \
 	Half-Elves are extremely diverse, as they bring in human and elvish culture\
 	and it is widely considered that Half-Elf culture is simply a melting pot of \
-	various other cultures condensing into one vibrant entity.\
-	Due to their heritage, Half-Elves dont tend to gain or suffer from any racial traits..."
+	various other cultures condensing into one vibrant entity.\ Like their pure blooded kin, Half-Elves are also blessed with enhanced eyesight" 
+
+	//fun fact, elfs to infact have stat differences... so they get darkvision too
+	
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP)
+	inherent_traits = list(TRAIT_NOMOBSWAP,TRAIT_NIGHT_VISION)
 	default_features = list("mcolor" = "FFF", "ears" = "ElfH", "wings" = "None")
 	mutant_bodyparts = list("ears")
 	use_skintones = 1

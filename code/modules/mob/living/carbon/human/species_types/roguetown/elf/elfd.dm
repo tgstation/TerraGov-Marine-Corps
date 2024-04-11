@@ -14,9 +14,9 @@
 	Dark Elves tend to be extremely arrogant of others plights, with selfishness\
 	being seen as a massive boon in their society. They are academic and usually well taught\
 	through are noted to suffer from their biology, which tends to be weak and falls apart\
-	without careful upkeep..."
+	without careful upkeep... Like all elves, they possess enhanced eyesight within the dark"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP)
+	inherent_traits = list(TRAIT_NOMOBSWAP,TRAIT_NIGHT_VISION)
 	default_features = list("mcolor" = "FFF", "ears" = "ElfW", "wings" = "None")
 	use_skintones = 1
 	skinned_type = /obj/item/stack/sheet/animalhide/human
