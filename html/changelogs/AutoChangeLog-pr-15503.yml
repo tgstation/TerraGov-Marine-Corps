@@ -1,5 +1,0 @@
-author: "coldironwarrior"
-delete-after: True
-changes:
-  - balance: "CMOs now heal an additional 7.5 damage per use of sutures"
-  - code_imp: "suture healing now scales with a divisor based off max med skill of 5 instead of 4, and base_healing is upped to 37.5 to accommodate skill 5 having better healing. no changes to other skill levels."

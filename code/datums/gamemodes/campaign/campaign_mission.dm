@@ -344,7 +344,7 @@
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level.z_value)
 			continue
-		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
+		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse?.job?.job_cost)
 			corpse.job.free_job_positions(1)
 
 		qdel(corpse)
