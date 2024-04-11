@@ -13,7 +13,7 @@
 	and it is widely considered that Half-Elf culture is simply a melting pot of \
 	various other cultures condensing into one vibrant entity.\ Like their pure blooded kin, Half-Elves are also blessed with enhanced eyesight" 
 
-	//fun fact, elfs to infact have stat differences... so they get darkvision too
+	//fun fact, elfs do infact have stat differences... so they get darkvision too
 	
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
