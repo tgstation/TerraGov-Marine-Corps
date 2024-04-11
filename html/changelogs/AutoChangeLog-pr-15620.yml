@@ -1,0 +1,7 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - qol: "Orbital bombardments now play screentext to humans that includes the type of the OB"
+  - qol: "Send Orders will now include the sender's faction acronym and job"
+  - spellcheck: "The content of the orbital bombardment announcement is now \"Evacuate the impact zone immediately!\" instead of \"Get out of danger close!\""
+  - code_imp: "\"faction_to_acronym\" global list for getting faction acronyms"

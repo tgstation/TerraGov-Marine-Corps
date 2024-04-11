@@ -182,11 +182,13 @@
 	if(!opened)
 		orient2hud()
 		opened = 1
+	if (user.s_active == src)
+		close(user)
+		return TRUE
+	user.s_active?.close(user)
 	if (use_sound && user.stat != DEAD)
 		playsound(src.loc, src.use_sound, 25, 1, 3)
 
-	if (user.s_active)
-		user.s_active.close(user)
 	show_to(user)
 	return TRUE
 
@@ -559,6 +561,7 @@
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
+		open(user)
 		return FALSE
 	return handle_item_insertion(I, FALSE, user)
 
