@@ -67,6 +67,12 @@
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 8
 
+/datum/storage/internal/motorbike_pack/attempt_draw_object()
+	return //the sidecar upgrade is in parent.contents, so I have to limit this functionality
+
+/datum/storage/internal/motorbike_pack/on_ctrl_click()
+	return //We want to be able to grab the bike without pulling something out
+
 /datum/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 3

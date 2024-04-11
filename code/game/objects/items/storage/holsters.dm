@@ -299,7 +299,7 @@
 		/obj/item/weapon/claymore/harvester,
 	)
 
-/obj/item/storage/holster/blade/machete/full/Initialize(mapload)
+/obj/item/storage/holster/blade/machete/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/claymore/mercsword/machete,

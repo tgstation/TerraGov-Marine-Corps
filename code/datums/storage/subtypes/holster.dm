@@ -201,8 +201,12 @@
 
 /datum/storage/holster/belt/ts34/New(atom/parent)
 	. = ..()
-	set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/shotgun/double/marine,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/handful,
-	))
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/ammo_magazine/handful,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/shotgun/double/marine,
+			/obj/item/ammo_magazine/shotgun,
+		)
+	)
