@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_PIRATE = PIRATE_IFF,
 ))
 
-///List of factions by acronym, or the shortest name possible
+///Acronyms for each faction, or the shortest name possible
 GLOBAL_LIST_INIT(faction_to_acronym, list(
 	FACTION_NEUTRAL = "Neutral",
 	FACTION_TERRAGOV = "TGMC",

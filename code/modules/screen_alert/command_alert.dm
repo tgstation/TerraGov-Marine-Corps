@@ -78,8 +78,8 @@
 	for(var/mob/faction_receiver in alert_receivers)
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
 			var/faction_title = "Command" // the default title, for tgmc announcements
-			if(human_owner.faction != FACTION_TERRAGOV)
-				faction_title = "[GLOB.faction_to_acronym[human_owner.faction]] Command" // if the sender doesn't belong to the TGMC, clarify the faction in the title
+			if(human_owner.faction != FACTION_TERRAGOV) // if the sender doesn't belong to the TGMC, clarify the faction in the title
+				faction_title = GLOB.faction_to_acronym[human_owner.faction] ? GLOB.faction_to_acronym[human_owner.faction] + " Command" : "Unknown Faction" + " Command"
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(faction_title)] ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(faction_receiver, assemble_alert(
 				title = "[faction_title] Announcement",
