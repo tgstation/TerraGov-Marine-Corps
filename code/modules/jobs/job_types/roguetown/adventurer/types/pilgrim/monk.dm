@@ -36,5 +36,5 @@
 		H.change_stat("endurance", 2)
 		H.change_stat("perception", -1)
 	if(H.PATRON != /datum/patrongods/ravox)
-		qdel(H.PATRON)
+		H.PATRON = GLOB.patronlist["Ravox"]
 		H.PATRON = new /datum/patrongods/ravox

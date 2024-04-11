@@ -15,12 +15,10 @@
 	..()
 	var/datum/patrongods/A = H.PATRON
 	if(!(A.name in allowed_patrons))
-		var/list/datum/patrongods/options = list(/datum/patrongods/astrata, /datum/patrongods/dendor, /datum/patrongods/necra)
-		qdel(H.PATRON)
-		var/datum/patrongods/newest = pick(options)
-		H.PATRON = new newest
-	var/datum/patrongods/B = H.PATRON
-	switch(B.name)
+		H.PATRON = GLOB.patronlist[pick(allowed_patrons)]
+		A = H.PATRON
+		to_chat(H, "<span class='warning'> My patron had not endorsed my practices in my younger years. I've since grown acustomed to [A.name].")
+	switch(A.name)
 		if("Astrata")
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 		if("Dendor")
