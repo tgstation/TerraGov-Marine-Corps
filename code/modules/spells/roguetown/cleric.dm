@@ -170,7 +170,7 @@
 		var/mob/living/L = targets[1]
 		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
-			continue
+			return FALSE
 		L.adjust_fire_stacks(5)
 		L.IgniteMob()
 		addtimer(CALLBACK(L, /mob/living/proc/ExtinguishMob), 4 SECONDS)
