@@ -8,7 +8,7 @@
 	emote_hear = null
 	emote_see = null
 	speak_chance = 1
-	turns_per_move = 3
+	turns_per_move = 2
 	see_in_dark = 10
 	move_to_delay = 3
 	base_intents = list(/datum/intent/simple/bite)
@@ -18,8 +18,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = 300
 	maxHealth = 400
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 45
+	melee_damage_upper = 70
 	vision_range = 3
 	aggro_vision_range = 4
 	environment_smash = ENVIRONMENT_SMASH_NONE
