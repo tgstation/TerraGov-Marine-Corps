@@ -13,9 +13,8 @@
 	move_to_delay = 3
 	base_intents = list(/datum/intent/simple/bite)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 10,
-						/obj/item/natural/hide = 10,
-						/obj/item/natural/fur = )
-	faction = list("Caves")
+						/obj/item/natural/hide = 10)
+	faction = list("caves")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = 300
 	maxHealth = 400
