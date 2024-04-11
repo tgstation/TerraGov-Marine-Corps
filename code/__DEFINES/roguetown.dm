@@ -29,16 +29,6 @@
 			else
 				return pick('sound/combat/hits/armor/light_blunt (1).ogg','sound/combat/hits/armor/light_blunt (2).ogg','sound/combat/hits/armor/light_blunt (3).ogg')
 
-#define BCLASS_BLUNT		"blunt"
-#define BCLASS_SMASH		"smashing"
-#define BCLASS_CUT			"slashing"
-#define BCLASS_CHOP			"chopping"
-#define BCLASS_STAB			"stabbing"
-#define BCLASS_PICK			"piercing"
-#define BCLASS_TWIST		"twist"
-#define BCLASS_PUNCH		"punch"
-#define BCLASS_BITE			"bite"
-
 GLOBAL_LIST_INIT(lockhashes, list())
 GLOBAL_LIST_INIT(lockids, list())
 GLOBAL_LIST_EMPTY(credits_icons)

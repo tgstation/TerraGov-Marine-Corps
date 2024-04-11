@@ -290,9 +290,9 @@
 					msg += "[m1] very stressed.\n"
 				if(1 to 9)
 					msg += "[m1] a little stressed.\n"
-				if(0 to -9)
+				if(-9 to 0)
 					msg += "[m1] not stressed.\n"
-				if(-10 to -19)
+				if(-19 to -10)
 					msg += "[m1] somewhat at peace.\n"
 				if(-20 to INFINITY)
 					msg += "[m1] at peace inside.\n"

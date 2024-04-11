@@ -1,5 +1,5 @@
 //How often to check for promotion possibility
-#define HEAD_UPDATE_PERIOD 300
+#define HEAD_UPDATE_PERIOD 300 //SS13 define, redefined in peasantrebel.dm nice job rippin revcode 
 
 /datum/antagonist/rev
 	name = "Revolutionary"

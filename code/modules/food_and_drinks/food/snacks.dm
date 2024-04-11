@@ -300,9 +300,7 @@ All foods are distributed among various categories. Use common sense.
 				if(!do_mob(user, M))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
-//				M.visible_message("<span class='danger'>[user] forces [M] to eat [src]!</span>", \
-//									"<span class='danger'>[user] forces you to eat [src]!</span>")
-
+//				M.visible_message("<span class='danger'>[user] forces [M] to eat [src]!</span>", "<span class='danger'>[user] forces you to eat [src]!</span>")
 			else
 				to_chat(user, "<span class='warning'>[M] doesn't seem to have a mouth!</span>")
 				return
