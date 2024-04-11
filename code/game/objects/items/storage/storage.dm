@@ -561,6 +561,7 @@
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
+		open(user)
 		return FALSE
 	return handle_item_insertion(I, FALSE, user)
 
