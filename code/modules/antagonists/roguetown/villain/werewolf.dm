@@ -79,7 +79,7 @@
 
 /datum/antagonist/werewolf/proc/finalize_werewolf()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/music/wolfintro.ogg', 80, FALSE, pressure_affected = FALSE)
-	..()
+	
 
 /datum/antagonist/werewolf/on_life(mob/user)
 	if(!user)

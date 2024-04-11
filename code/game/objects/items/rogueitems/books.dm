@@ -244,13 +244,14 @@
 	base_icon_state = "xylix"
 	bookfile = "xylix.json"
 
-	/obj/item/book/rogue/xylix/attack_self(mob/user)
-		if(!open)
-			attack_right(user)
-			return
-		..()
-		user.update_inv_hands()
-		to_chat(user, "<span class='notice'>You feel laughter echo in your head.</span>")
+/obj/item/book/rogue/xylix/attack_self(mob/user)
+	if(!open)
+		attack_right(user)
+		return
+	..()
+	user.update_inv_hands()
+	to_chat(user, "<span class='notice'>You feel laughter echo in your head.</span>")
+
 //player made books
 /obj/item/book/rogue/tales1
 	name = "Assorted Tales From Yester Yils"

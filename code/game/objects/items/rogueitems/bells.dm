@@ -76,18 +76,19 @@
 				continue
 			new /obj/structure/bell_barrier(adjacent_turf)
 */
-	/obj/structure/stationary_bell/attackby(obj/item/used_item, mob/user)
-		if(ringing)
-			return
-		if(istype(used_item, /obj/item/rogueweapon/mace/church))
-			playsound(loc, 'sound/misc/bell.ogg', 50, 1)
-			for(var/mob/M in orange(150, src))
-				if(M.client)
-					to_chat(M, "<span class='notice'>The church bell rings, echoing solemnly through the area.</span>")
-			visible_message("<span class='notice'>[user] uses the [used_item] to ring the [src].</span>")
-			ringing = TRUE
-			sleep(cooldown)
-			ringing = FALSE
-		else
 
-			return ..()
+/obj/structure/stationary_bell/attackby(obj/item/used_item, mob/user)
+	if(ringing)
+		return
+	if(istype(used_item, /obj/item/rogueweapon/mace/church))
+		playsound(loc, 'sound/misc/bell.ogg', 50, 1)
+		for(var/mob/M in orange(150, src))
+			if(M.client)
+				to_chat(M, "<span class='notice'>The church bell rings, echoing solemnly through the area.</span>")
+		visible_message("<span class='notice'>[user] uses the [used_item] to ring the [src].</span>")
+		ringing = TRUE
+		sleep(cooldown)
+		ringing = FALSE
+	else
+
+		return ..()

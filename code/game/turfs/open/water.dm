@@ -35,7 +35,7 @@
 	neighborlay_override = "edge"
 	var/water_color = "#6a9295"
 	var/water_reagent = /datum/reagent/water
-	var/water_level = 2
+	water_level = 2
 	var/wash_in = TRUE
 	var/swim_skill = FALSE
 	nomouseover = FALSE

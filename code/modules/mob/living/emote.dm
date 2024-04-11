@@ -40,8 +40,8 @@
 				L.check_prayer_underworld(L,msg)
 				return
 			L.check_prayer(L,msg)
-			for(var/mob/living/L in hearers(2,src))
-				L.succumb_timer=world.time
+			for(var/mob/living/LICKMYBALLS in hearers(2,src))
+				LICKMYBALLS.succumb_timer = world.time
 
 /mob/living/proc/check_prayer(mob/living/L,message)
 	if(!L || !message)

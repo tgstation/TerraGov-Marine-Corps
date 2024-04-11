@@ -1780,8 +1780,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/reverse_revolver
 	name = "Reverse Revolver"
-	desc = "" //drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
-	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
+	//drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall.
+	desc = "The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."  
 	cost = 14
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list("Clown")
@@ -1805,8 +1805,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/costumes/centcom_official
 	name = "CentCom Official Costume"
-	desc = "" //their nuclear disk and weapons system, and then when they decline, pull out a fully automatic rifle and gun down the Captain. \
-			Radio headset does not include encryption key. No gun included."
+	//their nuclear disk and weapons system, and then when they decline, pull out a fully automatic rifle and gun down the Captain. 
+	desc = "Radio headset does not include encryption key. No gun included." 
 	item = /obj/item/storage/box/syndie_kit/centcom_costume
 
 /datum/uplink_item/badass/costumes/clown

@@ -2292,8 +2292,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //					if(prob(I.force))
 //						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20)
 //						if(H.stat == CONSCIOUS)
-//							H.visible_message("<span class='danger'>[H] is knocked senseless!</span>", \
-//											"<span class='danger'>You're knocked senseless!</span>")
+//							H.visible_message("<span class='danger'>[H] is knocked senseless!</span>", "<span class='danger'>You're knocked senseless!</span>")
 //							H.confused = max(H.confused, 20)
 //							H.adjust_blurriness(10)
 //						if(prob(10))
@@ -2320,8 +2319,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(BODY_ZONE_CHEST)
 //				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
 //					if(prob(I.force))
-//						H.visible_message("<span class='danger'>[H] is knocked down!</span>", \
-//									"<span class='danger'>You're knocked down!</span>")
+//						H.visible_message("<span class='danger'>[H] is knocked down!</span>", "<span class='danger'>You're knocked down!</span>")
 //						H.apply_effect(60, EFFECT_KNOCKDOWN, armor_block)
 
 				if(bloody)
@@ -2775,7 +2773,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.set_resting(FALSE, TRUE)
 
 /datum/species/proc/knockback(obj/item/I, mob/living/target, mob/living/user, nodmg)
-	. = ..()
 	if(!istype(I))
 		if(!target.resting)
 			var/chungus_str = target.STASTR
