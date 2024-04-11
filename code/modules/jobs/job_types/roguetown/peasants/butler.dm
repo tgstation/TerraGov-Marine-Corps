@@ -50,6 +50,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 		cloak = /obj/item/clothing/cloak/apron/waist
 		neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+		belt = /obj/item/storage/belt/rogue/leather
 		beltr = /obj/item/keyring/servant
 		H.change_stat("strength", -1)
 		H.change_stat("intelligence", 1)
