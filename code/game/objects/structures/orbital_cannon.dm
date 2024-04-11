@@ -220,13 +220,16 @@
 	GLOB.round_statistics.obs_fired++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "obs_fired")
 	priority_announce(
-		message = "Get out of danger close!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
+		message = "Evacuate the impact zone immediately!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
 		channel_override = SSsounds.random_available_channel(), // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
+	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
+	for(var/mob/living/screentext_receiver AS in receivers)
+		screentext_receiver.play_screen_text("<span class='maptext' style=font-size:36pt;text-align:center valign='top'><u><b>ORBITAL STRIKE IMMINENT</b></u></span><br>TYPE: [uppertext(tray.warhead.warhead_kind)]", /atom/movable/screen/text/screen_text/command_order)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
