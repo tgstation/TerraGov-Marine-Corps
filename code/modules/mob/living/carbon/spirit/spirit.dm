@@ -40,10 +40,11 @@
 	icon_state = "spiritpart"
 
 /mob/living/carbon/spirit/Initialize(mapload, cubespawned=FALSE, mob/spawner)
+	set_light(2, 2, "#547fa4")
 	coin_upkeep()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
-	ADD_TRAIT(src, TRAIT_PACIFISM, "status effects")
+	ADD_TRAIT(src, TRAIT_PACIFISM, TRAIT_GENERIC)
 	name = pick("Wanderer", "Traveler", "Pilgrim", "Mourner", "Sorrowful", "Forlorn", "Regretful", "Piteous", "Rueful", "Dejected")
 
 	//initialize limbs
@@ -51,7 +52,7 @@
 	create_internal_organs()
 	. = ..()
 	var/L = new /obj/item/flashlight/lantern/shrunken(src.loc)
-	put_in_hands(L)	
+	put_in_hands(L)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
 
 /mob/living/carbon/spirit/create_internal_organs()
@@ -81,14 +82,14 @@
 	..()
 	if(statpanel("Status"))
 		stat(null, "Intent: [a_intent]")
-		stat(null, "Move Mode: [m_intent]")		
+		stat(null, "Move Mode: [m_intent]")
 	return
 
 /mob/living/carbon/spirit/returntolobby()
 	set name = "{RETURN TO LOBBY}"
 	set category = "Options"
 	set hidden = 1
-	
+
 	if(key)
 		GLOB.respawntimes[key] = world.time
 
