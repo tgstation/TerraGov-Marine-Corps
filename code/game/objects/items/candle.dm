@@ -42,6 +42,7 @@
 /obj/item/candle/fire_act(added, maxstacks)
 	if(!lit)
 		light()
+		return TRUE
 	return ..()
 
 /obj/item/candle/spark_act()

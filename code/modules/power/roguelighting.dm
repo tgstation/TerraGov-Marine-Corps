@@ -239,6 +239,7 @@
 		if(soundloop)
 			soundloop.start()
 		addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+		return TRUE
 
 /obj/proc/trigger_weather()
 	if(!QDELETED(src))
@@ -502,6 +503,7 @@
 				if(soundloop)
 					soundloop.start()
 				addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+				return TRUE
 
 /obj/machinery/light/rogue/torchholder/Initialize()
 	torchy = new /obj/item/flashlight/flare/torch(src)

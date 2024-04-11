@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(patronlist)
 	summary = "The Firstborn of Psydon, twin of Noc, gifted man the Sun as her divine gift."
 	worshippers = "The Noble Hearted, Zealots, Farmers"
 	t0 = /obj/effect/proc_holder/spell/invoked/heal/lesser
-	t1 = /obj/effect/proc_holder/spell/targeted/sacred_flame_rogue
+	t1 = /obj/effect/proc_holder/spell/invoked/sacred_flame_rogue
 	t2 = /obj/effect/proc_holder/spell/invoked/heal
 	t3 = /obj/effect/proc_holder/spell/invoked/revive
 
