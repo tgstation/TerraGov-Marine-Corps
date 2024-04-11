@@ -288,6 +288,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		cant_hold_list = list(cant_hold_list)
 	if(!isnull(storage_type_limits_list) && !islist(storage_type_limits_list))
 		storage_type_limits_list = list(storage_type_limits_list)
+
 	if(!isnull(can_hold_list) && !isnull(storage_type_limits_list)) //Making sure can_hold_list also includes the things that bypass our w_class
 		can_hold_list += storage_type_limits_list
 
@@ -318,6 +319,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
 				return
 	if(!can_be_inserted(attacking_item, user))
+		open(user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK
