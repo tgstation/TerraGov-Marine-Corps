@@ -727,6 +727,8 @@ GLOBAL_LIST_INIT(loadout_instantiate_default_contents, typecacheof(list(
 	/obj/item/storage/box/MRE,
 	/obj/item/storage/pill_bottle,
 	/obj/item/storage/box/m94,
+	/obj/item/storage/fancy/chemrettes,
+	/obj/item/storage/fancy/cigarettes,
 )))
 
 //Defines use for the visualisation of loadouts
