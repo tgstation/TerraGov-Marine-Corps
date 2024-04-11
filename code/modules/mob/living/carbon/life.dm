@@ -88,7 +88,7 @@
 					if(!fallingas)
 						to_chat(src, "<span class='warning'>I'll fall asleep soon, although a bed would be more comfortable...</span>")
 					fallingas++
-					if(fallingas > 30)
+					if(fallingas > 25)
 						Sleeping(300)
 				else
 					rogstam_add(10)
