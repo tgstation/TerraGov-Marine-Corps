@@ -635,9 +635,8 @@
 		return
 	if(length(debuff_owner.do_actions))
 		return
-	debufff_owner.spin(30, 1.5)
+	debuff_owner.spin(30, 1.5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
-	var/turf/T = get_turf(src)
 	debuff_owner.Paralyze(3 SECONDS)
 	if(stacks > 0)
 		debuff_owner.visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \

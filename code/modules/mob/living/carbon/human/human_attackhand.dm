@@ -26,7 +26,7 @@
 					ExtinguishMob()
 				return TRUE
 
-			var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(burning)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
