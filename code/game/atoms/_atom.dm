@@ -880,7 +880,7 @@ directive is properly returned.
 
 
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+	return FALSE
 
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
 	return FALSE

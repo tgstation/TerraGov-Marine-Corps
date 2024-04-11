@@ -154,7 +154,7 @@
 			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
 				return FALSE //No need for a bump, already procesed.
 			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
-				//Continue. We've plowed through the obstacle.
+				EMPTY_BLOCK_GUARD
 			else
 				mover.Bump(src)
 				return FALSE

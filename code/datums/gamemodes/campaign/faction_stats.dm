@@ -6,7 +6,6 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_asset/bonus_job/pmc,
 		/datum/campaign_asset/bonus_job/combat_robots,
 		/datum/campaign_asset/fire_support/mortar,
-		/datum/campaign_asset/droppod_refresh,
 		/datum/campaign_asset/droppod_enabled,
 	),
 	FACTION_SOM = list(
@@ -14,7 +13,6 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_asset/bonus_job/colonial_militia,
 		/datum/campaign_asset/bonus_job/icc,
 		/datum/campaign_asset/fire_support/som_mortar,
-		/datum/campaign_asset/teleporter_charges,
 		/datum/campaign_asset/teleporter_enabled,
 	),
 ))
@@ -74,6 +72,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/tdm/mech_wars/som = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
 		/datum/campaign_mission/capture_mission/asat = 12,
+		/datum/campaign_mission/raiding_base/som = 6,
 	),
 ))
 
@@ -206,7 +205,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/mob/living/carbon/human/human AS in possible_candidates)
 		human.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", faction_portrait)
-	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
+	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal. \
+	Attrition must be set BEFORE a mission starts ensure you team has access to respawns. Check this in the Faction UI screen. \
+	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
 
 ///Adds a new asset to the faction for use
 /datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
@@ -400,7 +401,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/datum/campaign_asset/asset AS in purchasable_assets)
 		var/list/asset_data = list()
 		asset_data["name"] = initial(asset.name)
-		asset_data["type"] = initial(asset)
+		asset_data["type"] = asset
 		asset_data["desc"] = initial(asset.desc)
 		asset_data["detailed_desc"] = initial(asset.detailed_desc)
 		asset_data["uses_remaining"] = initial(asset.uses)

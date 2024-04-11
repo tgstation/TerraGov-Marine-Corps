@@ -124,6 +124,11 @@
 			continue
 		stat_list[i].get_status_tab_items(source, items)
 
+/datum/game_mode/hvh/campaign/deploy_point_activated(datum/source, mob/living/user)
+	if(!stat_list[user.faction])
+		return
+	current_mission.get_mission_deploy_message(user)
+
 /datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
 	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
@@ -274,7 +279,7 @@
 			if(!SSticker)
 				return
 			var/mob/candidate = locate(href_list["player"])
-			if(!candidate.client)
+			if(!candidate?.client)
 				return
 
 			if(!GLOB.enter_allowed)
@@ -289,7 +294,7 @@
 
 			if(!attrition_respawn(ready_candidate, job_datum))
 				ready_candidate.mind.transfer_to(candidate)
-				ready_candidate.client.screen.Cut()
+				ready_candidate?.client?.screen?.Cut()
 				qdel(ready_candidate)
 				return
 			if(isobserver(candidate))

@@ -12,8 +12,6 @@
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
-	// placeholder, make skill check or similar later
-	req_access = list(ACCESS_MARINE_MECH)
 	move_delay = 0.7 SECONDS
 	max_integrity = 600
 	light_range = 10
@@ -55,10 +53,10 @@
 	var/obj/item/tank_module/driver_utility_module
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
-	//What kind of primary tank weaponry we start with. Defaults to a tank gun.
-	var/primary_weapon_type = /obj/item/armored_weapon
-	//What kind of secondary tank weaponry we start with. Default minigun as standard.
-	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
+	///list of weapons we allow to attach
+	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon)
+	///list of mods we allow to attach
+	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
@@ -105,13 +103,6 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
-		if(primary_weapon_type)
-			var/obj/item/armored_weapon/primary = new primary_weapon_type(src)
-			primary.attach(src, TRUE)
-	if(armored_flags & ARMORED_HAS_SECONDARY_WEAPON)
-		if(secondary_weapon_type)
-			var/obj/item/armored_weapon/secondary = new secondary_weapon_type(src)
-			secondary.attach(src, FALSE)
 	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
@@ -127,13 +118,20 @@
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
-	QDEL_NULL(primary_weapon)
-	QDEL_NULL(secondary_weapon)
-	QDEL_NULL(driver_utility_module)
-	QDEL_NULL(gunner_utility_module)
-	QDEL_NULL(damage_overlay)
-	QDEL_NULL(turret_overlay)
-	QDEL_NULL(interior)
+	if(primary_weapon)
+		QDEL_NULL(primary_weapon)
+	if(secondary_weapon)
+		QDEL_NULL(secondary_weapon)
+	if(driver_utility_module)
+		QDEL_NULL(driver_utility_module)
+	if(gunner_utility_module)
+		QDEL_NULL(gunner_utility_module)
+	if(damage_overlay)
+		QDEL_NULL(damage_overlay)
+	if(turret_overlay)
+		QDEL_NULL(turret_overlay)
+	if(isdatum(interior))
+		QDEL_NULL(interior)
 	underlay = null
 	GLOB.tank_list -= src
 	return ..()
@@ -414,6 +412,9 @@
 	. = ..()
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
+		if(!(gun.type in permitted_weapons))
+			balloon_alert(user, "cannot attach")
+			return
 		if(!(gun.weapon_slot & MODULE_PRIMARY))
 			balloon_alert(user, "not a primary weapon")
 			return
@@ -423,6 +424,9 @@
 		gun.attach(src, TRUE)
 		return
 	if(istype(I, /obj/item/tank_module))
+		if(!(I.type in permitted_mods))
+			balloon_alert(user, "cannot attach")
+			return
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
@@ -471,6 +475,9 @@
 		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
+		if(!(gun.type in permitted_weapons))
+			balloon_alert(user, "cannot attach")
+			return
 		if(!(gun.weapon_slot & MODULE_SECONDARY))
 			balloon_alert(user, "not a secondary weapon")
 			return
