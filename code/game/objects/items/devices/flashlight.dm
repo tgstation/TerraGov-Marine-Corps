@@ -411,6 +411,7 @@
 				var/mob/M = loc
 				M.update_inv_hands()
 			START_PROCESSING(SSobj, src)
+			return TRUE
 	..()
 
 /obj/item/flashlight/flare/torch/afterattack(atom/movable/A, mob/user, proximity)

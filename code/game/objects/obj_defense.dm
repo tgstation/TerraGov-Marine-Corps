@@ -223,7 +223,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 		SSfire_burning.processing[src] = src
 		add_overlay(GLOB.fire_overlay, TRUE)
 		playsound(src, 'sound/misc/enflame.ogg', 100, TRUE)
-		return 1
+		return TRUE
 
 ///called when the obj is destroyed by fire
 /obj/proc/burn()

@@ -54,7 +54,7 @@
 				if(getOxyLoss() < 20)
 					heart_attacking = FALSE
 
-		//healing while sleeping in  abed
+		//Healing while sleeping in a bed
 		if(stat)
 			if(buckled?.sleepy)
 				var/yess = HAS_TRAIT(src, TRAIT_NOHUNGER)
@@ -81,6 +81,33 @@
 						Sleeping(300)
 				else
 					rogstam_add(buckled.sleepy * 10)
+
+			// Resting on the ground (not sleeping or with eyes closed and about to fall asleep)
+			else if(!buckled && lying)
+				if(eyesclosed)
+					if(!fallingas)
+						to_chat(src, "<span class='warning'>I'll fall asleep soon, although a bed would be more comfortable...</span>")
+					fallingas++
+					if(fallingas > 25)
+						Sleeping(300)
+				else
+					rogstam_add(10)
+
+			// Healing while sleeping on the ground (less efficient than comfortable seats/beds)
+				if(stat)
+					var/yess = HAS_TRAIT(src, TRAIT_NOHUNGER)
+					if(nutrition > 0 || yess)
+						rogstam_add(25)
+					if(hydration > 0 || yess)
+						if(!bleed_rate)
+							blood_volume = min(blood_volume + 10, BLOOD_VOLUME_MAXIMUM)
+						for(var/X in bodyparts)
+							var/obj/item/bodypart/affecting = X
+							if(affecting.get_bleedrate() <= 0.1)
+								if(affecting.heal_damage(0.15, 0.15, null, BODYPART_ORGANIC))
+									src.update_damage_overlays()
+						adjustToxLoss(-0.1)
+
 			else if(fallingas)
 				fallingas = 0
 			tiredness = min(tiredness + 1, 100)
