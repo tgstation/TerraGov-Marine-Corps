@@ -115,7 +115,7 @@
 
 /datum/antagonist/vampire/proc/finalize_vampire()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
-	..()
+	
 
 
 /datum/antagonist/vampire/on_life(mob/user)

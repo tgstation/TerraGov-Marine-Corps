@@ -1,4 +1,3 @@
-#define MOBSTATS list("strength", "perception", "intelligence", "constitution", "endurance", "speed", "fortune")
 
 /mob/living
 	var/STASTR = 10

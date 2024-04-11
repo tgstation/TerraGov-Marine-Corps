@@ -10,7 +10,6 @@
 #include "_maps\_basemap.dm"
 #include "code\_compile_options.dm"
 #include "code\rt.dm"
-#include "code\testing.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
 #include "code\__DEFINES\_protect.dm"
