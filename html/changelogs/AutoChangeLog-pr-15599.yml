@@ -1,7 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Made it clearer that the scans on medHud humans inspections refers to body scans, not handheld scanners."
-  - spellcheck: "fixed missing capitalization regarding 2 tips"
-  - spellcheck: "removed superfluous dot at the end of Gas Mask preference"
-  - code_imp: "Go back to the line for some code."

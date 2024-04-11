@@ -1,6 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - rscadd: "Captain now spawns with Captain's cloak and Captain's Beret."
-  - rscadd: "Adds Captain's cloak red to Captain's locker."
-  - rscdel: "Removes Captain's cloak from locker (Captain spawns with it now)."

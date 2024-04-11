@@ -1,9 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Increased the AI holopad notification noise"
-  - qol: "The hand labeler now goes in and out to signify if it is open or not."
-  - bugfix: "Fixed the AI carp holopad choice being called holo4"
-  - bugfix: "Fix the autopsy scanner not having an icon. I took the one from old polaris, or old bay."
-  - bugfix: "Fixed Asphalt  being called aasphalt"
-  - code_imp: "Renamed the OB laser typepath to not have capitals"
