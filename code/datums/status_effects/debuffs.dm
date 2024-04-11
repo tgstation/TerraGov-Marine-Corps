@@ -631,14 +631,18 @@
 		return
 	if(length(debuff_owner.do_actions))
 		return
-	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
-		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
-		return
-	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
-	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
+	spin(30, 1.5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
+	var/turf/T = get_turf(src)
+	Paralyze(3 SECONDS)
 	if(stacks > 0)
-		resist_debuff() // We repeat ourselves as long as the debuff persists.
+		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		span_notice("You stop, drop, and roll!"), null, 5)
+		return
+	visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+	span_notice("You extinguish yourself."), null, 5)
+	qdel(src)
+
 
 
 // ***************************************
