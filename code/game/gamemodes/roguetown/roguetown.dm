@@ -7,8 +7,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	report_type = "roguemode"
 	false_report_weight = 0
 	required_players = 0
-	required_enemies = 1
-	recommended_enemies = 3
+	required_enemies = 0
+	recommended_enemies = 0
 	enemy_minimum_age = 0
 
 	announce_span = "danger"
@@ -130,7 +130,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 		return TRUE
 	for(var/A in GLOB.special_roles_rogue)
 		allantags |= get_players_for_role(A)
-	
+
 	return TRUE
 
 /datum/game_mode/proc/after_DO()
@@ -162,16 +162,16 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 					log_game("Minor Antagonist: Aspirant")
 				if("Extended")
 					log_game("Major Antagonist: Extended")
-		return TRUE 
+		return TRUE
 	switch(majorpicked)
 		if(1)
 			pick_rebels()
-			log_game("Major Antagonist: Rebellion") 
+			log_game("Major Antagonist: Rebellion")
 		if(2)
 			log_game("Major Antagonist: Extended") //gotta put something here.
 		if(3)
 			pick_vampires()
-			log_game("Major Antagonist: Vampire Lord") 
+			log_game("Major Antagonist: Vampire Lord")
 	minor_modes = shuffle(minor_modes)
 	for(var/m in minor_modes)
 		switch(m)
@@ -182,7 +182,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 				pick_aspirants()
 				log_game("Minor Antagonist: Aspirant")
 			if(3)
-				log_game("Minor Antagonist: Extended") // placeholder. 
+				log_game("Minor Antagonist: Extended") // placeholder.
 		if(prob(30))
 			continue
 		else
@@ -458,7 +458,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	var/mob/living/king = SSticker.rulermob
 	var/datum/antagonist/ruler = new /datum/antagonist/aspirant/ruler() // Do the king last.
 	king.mind.add_antag_datum(ruler)
-	
+
 ///////////////// REBELS
 	for(var/datum/mind/rebelguy in pre_rebels)
 		var/datum/antagonist/new_antag = new /datum/antagonist/prebel/head()
