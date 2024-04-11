@@ -45,6 +45,9 @@
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
+		var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(burning)
+			qdel(burning)
 		if(L.fire_stacks <= 0)
 			L.ExtinguishMob()
 

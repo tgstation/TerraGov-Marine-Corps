@@ -80,7 +80,7 @@
 	action_icon_state = "fireball"
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
-	cooldown_duration = 10 SECONDS
+	cooldown_duration = 15 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
@@ -138,7 +138,7 @@
 	desc = "Unleash 3 fiery tornados. They will try to close on your target tile"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 14 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
 	)
@@ -239,7 +239,7 @@
 /datum/action/ability/activable/xeno/firestorm/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
 
-	if(!do_after(xeno, 2 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))

@@ -26,6 +26,17 @@
 					ExtinguishMob()
 				return TRUE
 
+			var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(burning)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
+				span_warning("You try to put out the fire on [src]!"), null, 5)
+				burning.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
+				if(QDELETED(burning))
+					human_user.visible_message(span_danger("[human_user] has successfully extinguished the fire on [src]!"), \
+					span_notice("You extinguished the fire on [src]."), null, 5)
+				return TRUE
+
 			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && human_user != src)
 				human_user.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
 				return TRUE

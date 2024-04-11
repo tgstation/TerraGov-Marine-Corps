@@ -157,6 +157,10 @@
 	. = ..()
 	affected.flamer_fire_act(burn_level)
 
+/obj/fire/flamer/affect_turf(turf/affected)
+	. = ..()
+	affected.flamer_fire_act(burn_level)
+
 /obj/fire/flamer/process()
 	. = ..()
 	update_appearance(UPDATE_ICON)
@@ -172,7 +176,7 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
-	burn_ticks = 10
+	burn_ticks = 5
 
 /// affecting mobs
 /obj/fire/melting_fire/affect_mob(mob/living/carbon/target)
@@ -184,7 +188,7 @@
 		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK)
 	else
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK)
-	target.take_overall_damage(damage, BURN, ACID, max_limbs = 11)
+	target.take_overall_damage(damage, BURN, ACID, max_limbs = 2)
 
 /obj/fire/melting_fire/on_cross(datum/source, mob/living/carbon/human/crosser, oldloc, oldlocs)
 	if(istype(crosser))

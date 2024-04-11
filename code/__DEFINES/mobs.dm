@@ -629,16 +629,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Pyrogen defines
 /// Damage per melting fire stack
 #define PYROGEN_DAMAGE_PER_STACK 2.5
-/// Amount of damage ticks before a stack decays
-#define PYROGEN_STACK_FIRE_DECAY 2
+/// Amount of ticks of fire removed when helped by another human to extinguish
+#define PYROGEN_ASSIST_REMOVAL_STRENGTH 2
 /// How fast the pyrogen moves when charging using fire charge
 #define PYROGEN_CHARGESPEED 3
 /// Maximum charge distance.
 #define PYROGEN_CHARGEDISTANCE 3
 /// Damage on hitting a mob using fire charge
-#define PYROGEN_FIRECHARGE_DAMAGE 30
+#define PYROGEN_FIRECHARGE_DAMAGE 10
 /// Bonus damage per fire stack
-#define PYROGEN_FIRECHARGE_DAMAGE_PER_STACK 10
+#define PYROGEN_FIRECHARGE_DAMAGE_PER_STACK 5
 /// Bonus damage for directly hitting someone
 #define PYROGEN_FIREBALL_DIRECT_DAMAGE 30
 /// Damage in a 3x3 AOE when we hit anything
@@ -671,7 +671,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define PYROGEN_HEATRAY_MAXDURATION 3 SECONDS
 /// Time between each refire of the pyrogen heatray (in 3 seconds it will fire 3 times)
 #define PYROGEN_HEATRAY_REFIRE_TIME 1 SECONDS
-/// Amoutn of stacks removed per resist.
+/// Amount of stacks removed per resist.
 #define PYROGEN_MELTING_FIRE_STACKS_PER_RESIST 4
 
 //Drone defines

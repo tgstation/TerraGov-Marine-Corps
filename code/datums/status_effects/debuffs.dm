@@ -585,7 +585,7 @@
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
 /datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.status_flags & GODMODE)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
 		qdel(src)
 		return
 	. = ..()
@@ -607,6 +607,10 @@
 /datum/status_effect/stacking/melting_fire/tick()
 	. = ..()
 	if(!debuff_owner)
+		qdel(src)
+		return
+	if(debuff_owner.stat == DEAD)
+		qdel(src)
 		return
 	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, ACID, updating_health = TRUE)
 	if(stacks > 4)
@@ -631,15 +635,15 @@
 		return
 	if(length(debuff_owner.do_actions))
 		return
-	spin(30, 1.5)
+	debufff_owner.spin(30, 1.5)
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
 	var/turf/T = get_turf(src)
-	Paralyze(3 SECONDS)
+	debuff_owner.Paralyze(3 SECONDS)
 	if(stacks > 0)
-		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		debuff_owner.visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
 		span_notice("You stop, drop, and roll!"), null, 5)
 		return
-	visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+	debuff_owner.visible_message(span_danger("[src] has successfully extinguished themselves!"), \
 	span_notice("You extinguish yourself."), null, 5)
 	qdel(src)
 

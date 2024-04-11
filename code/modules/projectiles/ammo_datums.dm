@@ -4593,7 +4593,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "fireball"
 	icon_state = "xeno_fireball"
 	damage = 50
-	max_range = 10
+	max_range = 5
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	bullet_color = null
 
