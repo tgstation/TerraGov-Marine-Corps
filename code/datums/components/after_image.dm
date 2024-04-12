@@ -52,7 +52,7 @@
 	if(!previous_loc || get_turf(owner) == previous_loc)
 		return
 
-	var/obj/effect/temp_visual/xenomorph/afterimage/after_image = new(previous_loc, owner, duration)
+	var/obj/effect/temp_visual/after_image/after_image = new(previous_loc, owner, duration)
 
 	//need to recalculate position based on glide_size since it's not possible to get otherwise
 	var/per_step = glide_size * 2 //i don't know why i need to multiply by 2, but that's what seems to make it line up properly
