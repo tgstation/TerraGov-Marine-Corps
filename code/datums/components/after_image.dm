@@ -53,6 +53,7 @@
 		return
 
 	var/obj/effect/temp_visual/after_image/after_image = new(previous_loc, owner, duration)
+	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	//need to recalculate position based on glide_size since it's not possible to get otherwise
 	var/per_step = glide_size * 2 //i don't know why i need to multiply by 2, but that's what seems to make it line up properly
@@ -84,14 +85,3 @@
 	hsv = RotateHue(hsv, (world.time - last_colour) * 15)
 	last_colour = world.time
 	after_image.color = HSVtoRGB(hsv)	//gotta add the flair
-
-
-//object used
-/obj/effect/temp_visual/decoy/after_image
-	layer = BELOW_MOB_LAYER //so they don't appear ontop of the user
-	blocks_emissive = 0
-
-/obj/effect/temp_visual/decoy/after_image/Initialize(mapload, atom/mimiced_atom, decay)
-	duration = decay
-	. = ..()
-	animate(src, alpha = 0, time = duration)

@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 /obj/effect/temp_visual/after_image
 	name = "afterimage"
-	layer = MOB_LAYER
+	layer = BELOW_MOB_LAYER
 	alpha = 64 //Translucent
 	duration
 	density = FALSE
