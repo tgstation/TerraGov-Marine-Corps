@@ -177,6 +177,9 @@
 /datum/greyscale_config/xenonaut/helm/heavy
 	prefix = "heavy_"
 
+/datum/greyscale_config/xenonaut/helm/maska
+	prefix = "maska_"
+
 /datum/greyscale_config/robot
 	icon_file = 'icons/mob/modular/robot_armor.dmi'
 	json_config = 'code/datums/greyscale/json_configs/robot_armor.json'
