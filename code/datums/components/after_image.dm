@@ -17,6 +17,9 @@
 	var/glide_size = 8
 	///Mob we are making images of
 	var/mob/owner
+	var/jump_height = 0
+	var/jump_duration = 0
+	var/jump_start_time = 0
 
 	///Whether we make a rainbow colour cycle
 	var/color_cycle = FALSE
@@ -40,22 +43,31 @@
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(update_step))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(update_glide))
+	RegisterSignal(parent, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(handle_jump))
 	owner = parent
 
 /datum/component/after_image/UnregisterFromParent()
 	deltimer(loop_timer)
-	UnregisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE)
-	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_STARTED))
 
 ///Updates prev loc and move time when starting a step
 /datum/component/after_image/proc/update_step(mob/living/mover, dir)
+	SIGNAL_HANDLER
 	previous_loc = get_turf(mover)
 	last_movement = world.time
 
 ///Updates last dir and glidesize after making a step
 /datum/component/after_image/proc/update_glide(mob/living/mover)
+	SIGNAL_HANDLER
 	last_direction = get_dir(previous_loc, get_turf(mover))
 	glide_size = owner.glide_size
+
+///Records jump details
+/datum/component/after_image/proc/handle_jump(mob/living/mover, jump_height, jump_duration)
+	SIGNAL_HANDLER
+	jump_start_time = world.time
+	src.jump_height = jump_height
+	src.jump_duration = jump_duration
 
 ///Creates the after image
 /datum/component/after_image/proc/spawn_image()
@@ -87,6 +99,8 @@
 		return
 	after_image.pixel_x = (traveled * x_modifier) + owner.pixel_x
 	after_image.pixel_y = (traveled * y_modifier) + owner.pixel_y
+	if((jump_start_time < world.time) && (jump_start_time + jump_duration) > world.time)
+		after_image.pixel_y += jump_height * sin(TODEGREES((PI * (world.time - jump_start_time)) / jump_duration))
 
 	if(!color_cycle)
 		return
