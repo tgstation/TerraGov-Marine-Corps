@@ -1,7 +1,7 @@
 #define SANDEVISTAN_IMPLANT "sandevistan_implant"
 
-/obj/item/implant/spinalspeed
-	name = "neural overclocker implant"
+/obj/item/implant/sandevistan
+	name = "sandevistan spinal implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
 	icon_state = "imp_spinal"
 	//implant_overlay = null
@@ -19,21 +19,21 @@
 	var/speed_modifier = -1
 	COOLDOWN_DECLARE(alertcooldown)
 
-/obj/item/implant/spinalspeed/unimplant()
+/obj/item/implant/sandevistan/unimplant()
 	if(active)
 		toggle()
 	return ..()
 
-/obj/item/implant/spinalspeed/activate()
+/obj/item/implant/sandevistan/activate()
 	return toggle()
 
-/obj/item/implant/spinalspeed/update_icon_state()
+/obj/item/implant/sandevistan/update_icon_state()
 	if(active)
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/implant/spinalspeed/process()
+/obj/item/implant/sandevistan/process()
 	if(active)
 		if(implant_owner.stat != CONSCIOUS)
 			toggle(TRUE)
@@ -67,7 +67,7 @@
 		hasexerted = FALSE
 
 ///Turns it off or on
-/obj/item/implant/spinalspeed/proc/toggle(silent = FALSE)
+/obj/item/implant/sandevistan/proc/toggle(silent = FALSE)
 	if(!active)
 		if(!COOLDOWN_CHECK(src, activation_cooldown))
 			return FALSE
@@ -92,11 +92,11 @@
 	return TRUE
 
 ///Modifies do_after delays
-/obj/item/implant/spinalspeed/proc/apply_do_after_mod(datum/source, list/mod_list)
+/obj/item/implant/sandevistan/proc/apply_do_after_mod(datum/source, list/mod_list)
 	mod_list += -action_modifier
 
 /*
-/obj/item/implant/spinalspeed/emp_act(severity)
+/obj/item/implant/sandevistan/emp_act(severity)
 	. = ..()
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
