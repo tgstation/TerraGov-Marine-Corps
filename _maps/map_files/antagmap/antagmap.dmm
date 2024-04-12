@@ -531,6 +531,7 @@
 	})
 "eT" = (
 /obj/item/lightstick/red/anchored,
+/obj/machinery/robotic_cradle,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -6522,6 +6523,16 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Xu" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/som_floortwomain{
+	name = "SOM Hangar Bay";
+	outside = 0
+	})
 "XB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -7528,7 +7539,7 @@ pd
 rS
 MI
 lP
-lP
+Xu
 vE
 rR
 JI

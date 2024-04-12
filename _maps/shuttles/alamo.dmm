@@ -343,7 +343,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/obj/structure/bed/bunkbed,
+/obj/machinery/robotic_cradle,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo{
 	ceiling = 2
@@ -352,7 +352,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
-/obj/structure/bed/bunkbed,
+/obj/machinery/robotic_cradle,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo{
 	ceiling = 2
