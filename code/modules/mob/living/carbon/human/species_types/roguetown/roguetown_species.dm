@@ -11,8 +11,15 @@
 		if(message[1])
 			if(message[1] != "*")
 				message = " [message]"
-				var/list/spellcheck_words = strings("spellcheck.json", "spellcheck")
+//				var/list/spellcheck_words = strings("spellcheck.json", "spellcheck") Not necessary to fix, but it's just deleting the word. Temporarily commented out, probably permanent.
 				var/list/accent_words = strings("accent_universal.json", "universal")
+				
+/* 				for(var/key in spellcheck_words)
+					var/value = accent_words[key]
+					if(islist(value))
+						value = pick(value)
+
+					message = replacetextEx(message, "[key]", "[value] ") */
 
 				for(var/key in accent_words)
 					var/value = accent_words[key]
@@ -22,13 +29,7 @@
 					message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
 					message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
 					message = replacetextEx(message, " [key]", " [value]")
-				
-				for(var/key in spellcheck_words)
-					var/value = accent_words[key]
-					if(islist(value))
-						value = pick(value)
 
-					message = replacetextEx(message, "[key]", "[value]")
 
 		var/list/species_accent = get_accent_list()
 		if(species_accent)
