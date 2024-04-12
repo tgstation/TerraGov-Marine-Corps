@@ -885,6 +885,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/contents_explosion(severity)
+	. = ..()
 	for(var/thing in contents)
 		var/atom/movable/thing_in_turf = thing
 		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)

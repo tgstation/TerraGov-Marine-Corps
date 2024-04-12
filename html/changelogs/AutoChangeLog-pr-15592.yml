@@ -1,0 +1,4 @@
+author: "Yttriums"
+delete-after: True
+changes:
+  - balance: "Increased RG220 wield delay from 1.2 to 2.0 seconds"
