@@ -74,7 +74,7 @@
 	if(traveled > 32) //don't spawn it if the player is stationary
 		qdel(after_image)
 		return
-	after_imageF.pixel_x = (traveled * x_modifier) + owner.pixel_x
+	after_image.pixel_x = (traveled * x_modifier) + owner.pixel_x
 	after_image.pixel_y = (traveled * y_modifier) + owner.pixel_y
 
 	//give them a random colours
