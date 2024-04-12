@@ -643,7 +643,7 @@
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
 
-		rocket_box.remove_from_storage(mortar_shell,null,user)
+		rocket_box.storage_datum.remove_from_storage(mortar_shell,null,user)
 		rocketsloaded++
 	user.balloon_alert(user, "Right click to fire")
 
@@ -890,7 +890,10 @@
 /obj/item/storage/box/mlrs_rockets
 	name = "\improper TA-40L rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
+
+/obj/item/storage/box/mlrs_rockets/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
@@ -912,6 +915,11 @@
 
 /obj/item/storage/box/mlrs_rockets/gas
 	name = "\improper TA-40L X-50 rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+
+/obj/item/storage/box/mlrs_rockets/gas/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/gas/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
@@ -954,6 +962,11 @@
 
 /obj/item/storage/box/mlrs_rockets/incendiary
 	name = "\improper TA-40L incendiary rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+
+/obj/item/storage/box/mlrs_rockets/incendiary/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/incendiary/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
@@ -972,7 +985,6 @@
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
-
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER

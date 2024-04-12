@@ -20,36 +20,23 @@
 		)
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK	//ERROOOOO
-	max_w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = null
-	max_storage_space = 24
-	access_delay = 1.5 SECONDS
-
-/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
-	if(!taking_out) // Always allow items to be tossed in instantly
-		return FALSE
-	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
-		if(human_user.back == src)
-			return TRUE
-	return FALSE
+	storage_type = /datum/storage/backpack
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if (use_sound)
-		playsound(loc, use_sound, 15, 1, 6)
+	if(storage_datum.use_sound)
+		playsound(loc, storage_datum.use_sound, 15, 1, 6)
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-		if(use_sound)
-			playsound(loc, use_sound, 15, 1, 6)
-	..()
+		if(storage_datum.use_sound)
+			playsound(loc, storage_datum.use_sound, 15, 1, 6)
+	return ..()
 
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
+	return ..()
 
 /obj/item/storage/backpack/vendor_equip(mob/user)
 	..()
@@ -63,8 +50,7 @@
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	icon_state = "holdingpack"
-	max_w_class = WEIGHT_CLASS_BULKY
-	max_storage_space = 28
+	storage_type = /datum/storage/backpack/holding
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/storage/backpack/holding))
@@ -78,9 +64,7 @@
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = null
-	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 400 // can store a ton of shit!
+	storage_type = /datum/storage/backpack/santabag
 
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"
@@ -146,14 +130,11 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	storage_slots = null
-	max_storage_space = 15
-	access_delay = 0
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/storage/wallet/random( src )
-
 
 /obj/item/storage/backpack/satchel/som
 	name = "mining satchel"
@@ -350,41 +331,25 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/big_sentry,
-		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/weapon/gun/hsg_102,
-		/obj/item/ammo_magazine/hsg_102,
-		/obj/item/ammo_magazine/sentry,
-		/obj/item/ammo_magazine/minisentry,
-		/obj/item/mortal_shell,
-		/obj/item/mortar_kit,
-		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags,
-	)
+	storage_type = /datum/storage/backpack/tech
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
 	item_state = "marinesat"
-	storage_slots = null
-	max_storage_space = 15
-	access_delay = 0
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
 	icon_state = "marinesat_green"
-
 
 /obj/item/storage/backpack/marine/corpsman/satchel
 	name = "\improper TGMC corpsman satchel"
 	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinesatm"
 	item_state = "marinesatm"
-	storage_slots = null
-	max_storage_space = 15
-	access_delay = 0
+	storage_type = /datum/storage/backpack/satchel
 	cell = /obj/item/cell/apc
 
 /obj/item/storage/backpack/marine/satchel/tech
@@ -392,21 +357,13 @@
 	desc = "A heavy-duty satchel carried by some TGMC technicians. Can hold the ST-580 point defense sentry and ammo."
 	icon_state = "marinesatt"
 	item_state = "marinesatt"
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/ammo_magazine/hsg_102,
-		/obj/item/ammo_magazine/sentry,
-		/obj/item/ammo_magazine/minisentry,
-		/obj/item/mortal_shell,
-		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags,
-	)
+	storage_type = /datum/storage/backpack/satchel/tech
 
 /obj/item/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
-	access_delay = 0
+	storage_type = /datum/storage/backpack/no_delay
 
 //CLOAKS
 
@@ -711,9 +668,7 @@
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260
-	storage_slots = null
-	max_storage_space = 15
-	access_delay = 0
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -790,23 +745,19 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
-	access_delay = 0
+	storage_type = /datum/storage/backpack/no_delay
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
 	desc = "A heavy-duty bag carried by Nanotrasen commandos."
 	icon_state = "commandopack"
-	storage_slots = null
-	max_storage_space = 40
-	access_delay = 0
+	storage_type = /datum/storage/backpack/commando
 
 /obj/item/storage/backpack/captain
 	name = "marine captain backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
-	storage_slots = null
-	max_storage_space = 30
-
+	storage_type = /datum/storage/backpack/captain
 
 /obj/item/storage/backpack/lightpack/som
 	name = "mining rucksack"

@@ -101,7 +101,7 @@
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 
-			P.remove_from_storage(G, src, user)
+			P.storage_datum.remove_from_storage(G, src, user)
 			item_quants[strip_improper(G.name)]++
 			plants_loaded++
 
@@ -155,6 +155,7 @@
 
 
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
+	. = ..()
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/ui_act(action, list/params)
