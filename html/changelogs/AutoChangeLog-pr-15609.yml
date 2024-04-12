@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes:
-  - qol: "Clicking on a storage with an item that cannot be inserted in said storage will open it"
