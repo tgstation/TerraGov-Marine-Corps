@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	name = "afterimage"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
+	duration
 	density = FALSE
 	opacity = FALSE
 	anchored = FALSE
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	randomdir = FALSE
 	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
-/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner, _duration = 0.5 SECONDS)
 	. = ..()
 	var/mutable_appearance/xeno_afterimage = new()
 	xeno_afterimage.appearance = owner.appearance
@@ -129,6 +129,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	xeno_afterimage.pixel_x = owner.pixel_x
 	xeno_afterimage.pixel_y = owner.pixel_y
 	appearance = xeno_afterimage
+	duration = _duration
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/ob_impact

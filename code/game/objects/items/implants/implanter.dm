@@ -74,3 +74,7 @@
 /obj/item/implanter/suicide_dust
 	name = "Self-Gibbing implant"
 	imp = /obj/item/implant/suicide_dust
+
+/obj/item/implanter/sandy
+	name = "sandevistan implant implanter"
+	imp = /obj/item/implant/spinalspeed
