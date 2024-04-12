@@ -144,19 +144,3 @@
 	damage = 50
 	penetration = 40
 	sundering = 3.5
-
-/datum/ammo/bullet/rifle/mech
-	name = "super-heavy rifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 0.5
-	damage_falloff = 0.8
-
-/datum/ammo/bullet/rifle/mech/burst
-	damage = 35
-	penetration = 10
-
-/datum/ammo/bullet/rifle/mech/lmg
-	damage = 20
-	penetration = 20
-	damage_falloff = 0.7
