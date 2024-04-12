@@ -90,7 +90,7 @@
 		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70)
 		COOLDOWN_START(src, activation_cooldown, cooldown_time)
 		implant_owner.next_move_modifier += action_modifier
-		UnregisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT)
+		UnregisterSignal(implant_owner, list(MOB_GET_DO_AFTER_COEFFICIENT, MOB_GET_MISS_CHANCE_MOD))
 		implant_owner.remove_movespeed_modifier(type)
 		implant_owner.RemoveComponentSource(SANDEVISTAN_IMPLANT, /datum/component/after_image)
 		implant_owner.adjust_mob_scatter(-scatter_mod)
