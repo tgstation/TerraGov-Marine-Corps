@@ -294,8 +294,15 @@
 		if(initial(reagent_entry.name) == selected_option)
 			selected_reagent = reagent_entry
 
+	var/obj/item/item_parent = parent
+	item_parent.update_icon()
+	loaded_reagent = null
+	reagent_select_action.owner.update_inv_r_hand()
+	reagent_select_action.owner.update_inv_l_hand()
+
 	update_selected_reagent(selected_reagent)
 
+	INVOKE_ASYNC(src, PROC_REF(activate_blade_async), item_parent, reagent_select_action.owner) //Load up on the chem we just picked
 
 /datum/component/harvester/proc/update_selected_reagent(datum/reagent/new_reagent)
 	selected_reagent = new_reagent
