@@ -262,12 +262,156 @@ REAGENT SCANNER
 			)
 			damaged_organs += list(current_organ)
 		data["damaged_organs"] = damaged_organs
+
+//advice!
+	var/list/advice = list()
+	var/list/temp_advice = list()
+	if(!permadead)
+		if(human_target_mob.getBruteLoss(robotic_only = TRUE) > 20)
+			advice += list(list(
+				"advice" = "Use a blowtorch or nanopaste to repair the damaged areas.",
+				"icon" = "tools",
+				"color" = "red"
+				))
+		if(human_target_mob.getFireLoss(robotic_only = TRUE) > 20)
+			advice += list(list(
+				"advice" = "Use a cable coil or nanopaste to repair the burned areas.",
+				"icon" = "plug",
+				"color" = "orange"
+				))
+		if(unknown_implants)
+			advice += list(list(
+				"advice" = "Embedded objects detected. Use tweezers to extract.",
+				"icon" = "window-close",
+				"color" = "red"
+				))
+		if(human_target_mob.stat == DEAD)
+			if((human_target_mob.health + 25) > HEALTH_THRESHOLD_DEAD)
+				advice += list(list(
+					"advice" = "Administer shock via defibrillator!",
+					"icon" = "bolt",
+					"color" = "yellow"
+					))
+			else
+				if(human_target_mob.getBruteLoss(organic_only = TRUE) > 30)
+					advice += list(list(
+						"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
+						"icon" = "band-aid",
+						"color" = "green"
+						))
+				if(human_target_mob.getFireLoss(organic_only = TRUE) > 30)
+					advice += list(list(
+						"advice" = "Use burn kits or sutures to repair the burned areas.",
+						"icon" = "band-aid",
+						"color" = "orange"
+						))
+		if(!issynth(human_target_mob))
+			if(human_target_mob.blood_volume <= 500 && !chemicals_lists["nutriment"])
+				advice += list(list(
+					"advice" = "Administer food or recommend that the patient eat.",
+					"icon" = "pizza-slice",
+					"color" = "white"
+					))
+			if(human_target_mob.getToxLoss() > 10 )
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of dylovene.",
+					"icon" = "syringe",
+					"color" = "green"
+					))
+				if(chemicals_lists["anti_toxin"])
+					if(chemicals_lists["anti_toxin"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if((human_target_mob.getToxLoss() > 50 || (human_target_mob.getOxyLoss() > 50 && human_target_mob.blood_volume > 400) || human_target_mob.getBrainLoss() >= 10))
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of peridaxon.",
+					"icon" = "syringe",
+					"color" = "grey"
+					))
+				if(chemicals_lists["peridaxon"])
+					if(chemicals_lists["peridaxon"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(human_target_mob.getOxyLoss() > 50)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of dexalin.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["dexalin"])
+					if(chemicals_lists["dexalin"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(human_target_mob.getFireLoss(organic_only = TRUE) > 30)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of kelotane.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["kelotane"])
+					if(chemicals_lists["kelotane"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(human_target_mob.getBruteLoss(organic_only = TRUE) > 30)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of bicaridine.",
+					"icon" = "syringe",
+					"color" = "red"
+					))
+				if(chemicals_lists["bicaridine"])
+					if(chemicals_lists["bicaridine"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(human_target_mob.health < -50)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of inaprovaline.",
+					"icon" = "syringe",
+					"color" = "purple"
+					))
+				if(chemicals_lists["inaprovaline"])
+					if(chemicals_lists["inaprovaline"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/has_pain = FALSE
+			for(var/datum/effects/pain/P in target_mob.effects_list)
+				has_pain = TRUE
+				break
+
+			if(has_pain && !chemicals_lists["paracetamol"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of tramadol.",
+					"icon" = "syringe",
+					"color" = "white"
+					))
+				if(chemicals_lists["tramadol"])
+					if(chemicals_lists["tramadol"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+
+			if(chemicals_lists["paracetamol"])
+				advice += list(list(
+					"advice" = "Do NOT administer tramadol.",
+					"icon" = "window-close",
+					"color" = "red"
+					))
+	if(advice.len)
+		data["advice"] = advice
+	else
+		data["advice"] = null // even if data isn't set, we can just
+
 	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
-			ssd = "No soul detected." // they ghosted
+			ssd = "No soul detected." // Catatonic- NPC, or ghosted
 		else if(!patient.client)
-			ssd = "SSD detected." // SSD
+			ssd = "Space Sleep Disorder detected." // SSD
 	data["ssd"] = ssd
 
 	return data

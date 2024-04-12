@@ -41,6 +41,7 @@ export const MedScanner = (props) => {
     internal_bleeding,
     implants,
     hugged,
+    advice,
   } = data;
   const chemicals = Object.values(chemicals_lists);
   const limb_data = Object.values(limb_data_lists);
