@@ -365,3 +365,8 @@
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+
+/obj/item/clothing/head/modular/m10x/maska
+	name = "\improper M10ASKA-1SCh pattern marine helmet"
+	desc = "A M10 Pattern Helmet with attach points and a flimsy metal face shield. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	greyscale_config = /datum/greyscale_config/xenonaut/helm/maska
