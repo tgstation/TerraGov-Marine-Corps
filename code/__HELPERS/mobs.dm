@@ -121,9 +121,15 @@
 		qdel(progbar)
 	LAZYDECREMENT(user.do_actions, target)
 
-
-/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
+///Multiplier on all do_afters for this mob
+/mob/proc/do_after_coefficent()
 	. = 1
+	var/list/mod_list = list()
+	SEND_SIGNAL(src, MOB_GET_DO_AFTER_COEFFICIENT, mod_list)
+
+	for(var/num in mod_list)
+		. += num
+	. = max(0, .)
 
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name = 10)
