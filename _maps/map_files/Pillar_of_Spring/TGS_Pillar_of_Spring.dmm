@@ -884,7 +884,7 @@
 "bbw" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "bby" = (
 /obj/effect/ai_node,
 /obj/structure/prop/mainship/name_stencil/G,
@@ -8380,7 +8380,7 @@
 "kHT" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "kIc" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -8634,8 +8634,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "kVD" = (
-/turf/open/floor/mainship/yellow_cargo,
-/area/mainship/hallways/aft_hallway)
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
 "kWc" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -11060,7 +11061,7 @@
 "nIG" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "nJd" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /obj/machinery/door/firedoor/mainship,
@@ -14062,7 +14063,7 @@
 "roN" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "roU" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/microwave{
@@ -14569,7 +14570,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "rWK" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -15366,7 +15367,7 @@
 "tbT" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "tdm" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -16653,7 +16654,7 @@
 "uzy" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "uzA" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -17437,7 +17438,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "vyG" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -17762,7 +17763,7 @@
 "vYB" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "vZa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18798,7 +18799,7 @@
 "xjD" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar/droppod)
 "xjF" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -19786,15 +19787,6 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
-"yiq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "yiF" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -55176,13 +55168,13 @@ fAJ
 fAJ
 fAJ
 fAJ
-hWt
-yiq
-vAn
+kVD
+cTx
+xvv
 xjD
-vAn
-vAn
-vAn
+xvv
+xvv
+xvv
 xJn
 uyy
 uyy
@@ -55434,12 +55426,12 @@ iku
 plO
 fAJ
 rWD
-yiq
-vAn
-kVD
-kVD
-kVD
-vAn
+cTx
+xvv
+kWM
+kWM
+kWM
+xvv
 uyy
 jaA
 hRK
@@ -55690,9 +55682,9 @@ sAI
 sAI
 ebu
 dXO
-hWt
-yiq
-vAn
+kVD
+cTx
+xvv
 kHT
 roN
 nIG
@@ -55948,12 +55940,12 @@ fAJ
 wqZ
 fAJ
 vyj
-yiq
-vAn
+cTx
+xvv
 bbw
 uzy
 tbT
-vAn
+xvv
 uyy
 uyy
 wql
