@@ -475,7 +475,7 @@
 "aGZ" = (
 /obj/structure/sign/pods,
 /turf/closed/wall/mainship,
-/area/crew_quarters/toilet)
+/area/mainship/hallways/hangar/droppod)
 "aHp" = (
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
@@ -753,7 +753,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/machinery/holopad,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -1785,6 +1784,7 @@
 /area/mainship/living/starboard_garden)
 "ciZ" = (
 /obj/structure/prop/mainship/name_stencil,
+/obj/machinery/holopad,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -4665,7 +4665,6 @@
 	},
 /area/mainship/squads/general)
 "fKh" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/holosign_switch{
 	id = "or1sign";
@@ -4673,15 +4672,10 @@
 	pixel_y = 0
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
 	id = "or2privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or1privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
+/obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/operating_room_one)
 "fKj" = (
@@ -5366,7 +5360,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "gCy" = (
-/obj/machinery/holopad,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black{
 	dir = 6
@@ -6830,6 +6823,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
+"iDz" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/stern_hallway)
 "iDE" = (
 /obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/floor/mainship/mono,
@@ -8160,11 +8157,10 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/chapel)
 "kxm" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
+/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
 	id = "or2privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
@@ -8837,14 +8833,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "lhT" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/holosign_switch{
 	id = "or2sign"
 	},
+/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
 	id = "or2privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
@@ -9393,9 +9388,11 @@
 	},
 /area/mainship/living/numbertwobunks)
 "lIW" = (
-/obj/structure/sign/pods,
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/droppod)
+/obj/machinery/holopad,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "lJt" = (
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/silver/full,
@@ -12324,15 +12321,14 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "plO" = (
-/obj/structure/sign/restroom,
-/obj/structure/mirror{
-	dir = 8
-	},
 /obj/structure/sink{
 	dir = 8
 	},
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
+	},
+/obj/structure/mirror{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/crew_quarters/toilet)
@@ -13633,18 +13629,12 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "qMJ" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
 	id = "or2privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or1privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
+/obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/operating_room_one)
 "qMR" = (
@@ -18048,8 +18038,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "wqZ" = (
-/obj/structure/sign/restroom,
 /obj/structure/cable,
+/obj/structure/sign/restroom,
 /turf/open/floor/mainship/mono,
 /area/crew_quarters/toilet)
 "wrb" = (
@@ -46756,7 +46746,7 @@ whZ
 hUf
 uBn
 nHq
-cWu
+iDz
 cWu
 cWu
 bMe
@@ -55184,7 +55174,7 @@ pqQ
 xLu
 fAJ
 fAJ
-aGZ
+fAJ
 fAJ
 hWt
 yiq
@@ -56474,8 +56464,8 @@ fAJ
 tlT
 kMo
 tlT
+aGZ
 pdj
-lIW
 pdj
 pdj
 uyy
@@ -56490,9 +56480,9 @@ uyy
 uyy
 htr
 cPg
-voa
+lOp
 eYx
-cPg
+rHh
 cPg
 cMq
 its
@@ -57523,14 +57513,14 @@ mvQ
 ciZ
 lkH
 lkH
-hdY
+ini
 bby
-lkH
+lIW
 fJI
 lkH
 gCy
 rUm
-lkH
+lIW
 lkH
 lkH
 hdY
