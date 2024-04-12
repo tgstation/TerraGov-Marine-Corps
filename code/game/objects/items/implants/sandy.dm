@@ -1,3 +1,5 @@
+#define SANDEVISTAN_IMPLANT "sandevistan_implant"
+
 /obj/item/implant/spinalspeed
 	name = "neural overclocker implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
@@ -73,7 +75,7 @@
 		implant_owner.add_movespeed_modifier(type, priority = 100, multiplicative_slowdown = speed_modifier)
 		implant_owner.next_move_modifier -= action_modifier
 		RegisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT, PROC_REF(apply_do_after_mod))
-		implant_owner.AddComponent(/datum/component/after_image, 2 SECONDS, 0.5, TRUE)
+		implant_owner.AddComponentFrom(SANDEVISTAN_IMPLANT, /datum/component/after_image, 2 SECONDS, 0.5, TRUE)
 		START_PROCESSING(SSfastprocess, src)
 	else
 		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70)
@@ -81,8 +83,7 @@
 		implant_owner.next_move_modifier += action_modifier
 		UnregisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT)
 		implant_owner.remove_movespeed_modifier(type)
-		var/datum/component/after_image/after_image = implant_owner.GetComponent(/datum/component/after_image)
-		qdel(after_image)
+		implant_owner.RemoveComponentSource(SANDEVISTAN_IMPLANT, /datum/component/after_image)
 	toggle_active(!active)
 	if(!silent)
 		to_chat(implant_owner, span_notice("You turn your spinal implant [active? "on" : "off"]."))
