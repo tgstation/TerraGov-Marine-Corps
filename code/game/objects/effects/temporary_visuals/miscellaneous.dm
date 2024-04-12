@@ -109,7 +109,6 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	name = "afterimage"
 	layer = BELOW_MOB_LAYER
 	alpha = 64 //Translucent
-	duration
 	density = FALSE
 	opacity = FALSE
 	anchored = FALSE
