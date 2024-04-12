@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Reduced lascarbine spread mode's effectiveness at range."
