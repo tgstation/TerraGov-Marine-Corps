@@ -736,14 +736,6 @@
 /area/shuttle/dropship/alamo{
 	ceiling = 2
 	})
-"js" = (
-/obj/structure/largecrate/supply/ammo/sentry,
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/bed/chair/dropship/doublewide/left,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo{
-	ceiling = 2
-	})
 "km" = (
 /obj/machinery/light{
 	dir = 4
@@ -878,7 +870,9 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/structure/bed/chair/dropship/doublewide/right{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo{
 	ceiling = 2
@@ -1081,7 +1075,7 @@ bo
 wO
 km
 wO
-js
+wO
 Of
 Dp
 aS
