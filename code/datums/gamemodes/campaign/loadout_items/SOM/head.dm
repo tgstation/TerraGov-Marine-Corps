@@ -50,6 +50,9 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING)
 
+/datum/loadout_item/helmet/som_tyr/universal
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = NONE
 /datum/loadout_item/helmet/som_mimir
 	name = "Biohazard helmet"
 	desc = "A standard combat helmet with a Mithridatius 'Mith' environmental protection module."
