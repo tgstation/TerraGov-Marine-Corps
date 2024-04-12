@@ -8,8 +8,8 @@
 	implant_color = null
 	w_class = WEIGHT_CLASS_NORMAL
 	allowed_limbs = list(BODY_ZONE_CHEST)
-	cooldown_time = 9 SECONDS
-	///How long its been on for
+	cooldown_time = 5 SECONDS
+	///How long its been on for. Slowly goes down over time
 	var/time_on = 0
 	///If you're pushing it to the edge
 	var/hasexerted = FALSE
@@ -17,6 +17,12 @@
 	var/action_modifier = 0.3
 	///Movement speed modifier
 	var/speed_modifier = -1
+	///Gun scatter modifier
+	var/scatter_mod = 5
+	///Gun accuracy modifier
+	var/accuracy_mod = 30
+	///Modifier for melee/throw miss chance
+	var/miss_chance_mod = 30
 	COOLDOWN_DECLARE(alertcooldown)
 
 /obj/item/implant/sandevistan/unimplant()
@@ -75,7 +81,10 @@
 		implant_owner.add_movespeed_modifier(type, priority = 100, multiplicative_slowdown = speed_modifier)
 		implant_owner.next_move_modifier -= action_modifier
 		RegisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT, PROC_REF(apply_do_after_mod))
+		RegisterSignal(implant_owner, MOB_GET_MISS_CHANCE_MOD, PROC_REF(apply_miss_chance_mod))
 		implant_owner.AddComponentFrom(SANDEVISTAN_IMPLANT, /datum/component/after_image, 2 SECONDS, 0.5, TRUE)
+		implant_owner.adjust_mob_scatter(scatter_mod)
+		implant_owner.adjust_mob_accuracy(accuracy_mod)
 		START_PROCESSING(SSfastprocess, src)
 	else
 		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70)
@@ -84,6 +93,8 @@
 		UnregisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT)
 		implant_owner.remove_movespeed_modifier(type)
 		implant_owner.RemoveComponentSource(SANDEVISTAN_IMPLANT, /datum/component/after_image)
+		implant_owner.adjust_mob_scatter(-scatter_mod)
+		implant_owner.adjust_mob_accuracy(-accuracy_mod)
 	toggle_active(!active)
 	if(!silent)
 		to_chat(implant_owner, span_notice("You turn your spinal implant [active? "on" : "off"]."))
@@ -94,6 +105,10 @@
 ///Modifies do_after delays
 /obj/item/implant/sandevistan/proc/apply_do_after_mod(datum/source, list/mod_list)
 	mod_list += -action_modifier
+
+///Modifies miss chance mod for melee/throw hits
+/obj/item/implant/sandevistan/proc/apply_miss_chance_mod(datum/source, list/mod_list)
+	mod_list += miss_chance_mod
 
 /*
 /obj/item/implant/sandevistan/emp_act(severity)

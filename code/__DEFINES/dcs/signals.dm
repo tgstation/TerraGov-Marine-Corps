@@ -531,6 +531,8 @@
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
 ///From mob/do_after_coefficent()
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
+///From get_zone_with_miss_chance
+#define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
