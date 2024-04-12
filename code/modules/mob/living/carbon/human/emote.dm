@@ -2,7 +2,7 @@
 	mob_type_allowed_typecache = /mob/living/carbon/human
 
 
-/datum/emote/living/carbon/human/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/run_emote(mob/living/carbon/human/user, params, type_override, prefix)
 	var/paygrade = user.get_paygrade()
 	if(paygrade)
 		prefix = "<b>[paygrade]</b> "
@@ -64,7 +64,7 @@
 	emote_type = EMOTE_AUDIBLE
 
 
-/datum/emote/living/carbon/human/collapse/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/collapse/run_emote(mob/living/carbon/human/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -111,7 +111,7 @@
 	message = "faints."
 
 
-/datum/emote/living/carbon/human/faint/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/faint/run_emote(mob/living/carbon/human/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -219,7 +219,7 @@
 	message = "puts their hands on their head and falls to the ground, they surrender!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_overrideintentional)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
@@ -383,7 +383,7 @@
 		return user.species.warcries[NEUTER]
 
 
-/datum/emote/living/carbon/human/warcry/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/warcry/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -462,7 +462,7 @@
 		return user.species.screams[NEUTER]
 
 
-/datum/emote/living/carbon/human/scream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/scream/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -486,7 +486,7 @@
 		return 'sound/voice/human_female_medic.ogg'
 
 
-/datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -509,7 +509,7 @@
 		return user.species.paincries[NEUTER]
 
 
-/datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -533,7 +533,7 @@
 		return user.species.goredcries[NEUTER]
 
 
-/datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return
@@ -558,7 +558,7 @@
 		return user.species.burstscreams[NEUTER]
 
 
-/datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, prefix)
 	. = ..()
 	if(!.)
 		return

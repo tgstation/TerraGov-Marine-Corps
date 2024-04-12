@@ -116,5 +116,5 @@
 ///Check if this message is an emote
 /mob/proc/check_emote(message)
 	if(message[1] == "*")
-		emote(copytext(message, length(message[1]) + 1), intentional = TRUE)
+		emote(copytext(message, length(message[1]) + 1))
 		return TRUE

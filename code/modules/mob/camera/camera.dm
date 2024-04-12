@@ -42,5 +42,5 @@
 	return
 
 
-/mob/camera/emote(act, m_type, message, intentional = FALSE)
+/mob/camera/emote(act, m_type, message)
 	return

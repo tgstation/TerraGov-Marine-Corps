@@ -127,7 +127,7 @@
 	sound = 'sound/effects/alien_tail_swipe3.ogg'
 
 
-/datum/emote/living/carbon/xenomorph/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/xenomorph/run_emote(mob/user, params, type_override, prefix)
 	if(istype(user, /mob/living/carbon/xenomorph/larva))
 		playsound(user.loc, "alien_roar_larva", 15)
 	else

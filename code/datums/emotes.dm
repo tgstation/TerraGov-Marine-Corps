@@ -40,9 +40,9 @@
 	mob_type_ignore_stat_typecache = typecacheof(mob_type_ignore_stat_typecache)
 
 
-/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/proc/run_emote(mob/user, params, type_override, prefix)
 	. = TRUE
-	if(!can_run_emote(user, TRUE, intentional))
+	if(!can_run_emote(user, TRUE))
 		return FALSE
 	var/msg = select_message_type(user)
 	if(params && message_param)
@@ -57,12 +57,11 @@
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		msg += "."
 
-	if(intentional)
-		user.log_message(msg, LOG_EMOTE)
+	user.log_message(msg, LOG_EMOTE)
 	var/dchatmsg = "[prefix]<b>[user]</b> [msg]"
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && (!(emote_flags & EMOTE_FORCED_AUDIO) || !intentional))
+	if(tmp_sound && (!(emote_flags & EMOTE_FORCED_AUDIO)))
 		playsound(user, tmp_sound, 50, emote_flags & EMOTE_VARY)
 
 	if(user.client)
@@ -80,9 +79,7 @@
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 
 /// For handling emote cooldown, return true to allow the emote to happen
-/datum/emote/proc/check_cooldown(mob/user, intentional)
-	if(!intentional)
-		return TRUE
+/datum/emote/proc/check_cooldown(mob/user)
 	if(TIMER_COOLDOWN_CHECK(user, "emote[key]"))
 		return FALSE
 	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
@@ -122,7 +119,7 @@
 	return replacetext(message_param, "%t", params)
 
 
-/datum/emote/proc/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+/datum/emote/proc/can_run_emote(mob/user, status_check = TRUE)
 	. = TRUE
 
 	if(!is_type_in_typecache(user, mob_type_allowed_typecache))
@@ -131,36 +128,33 @@
 	if(is_type_in_typecache(user, mob_type_blacklist_typecache))
 		return FALSE
 
-	if(intentional)
-		if(emote_flags & EMOTE_FORCED_AUDIO)
+	if(emote_flags & EMOTE_FORCED_AUDIO)
+		return FALSE
+
+	if(sound || get_sound(user))
+		if(HAS_TRAIT(user, TRAIT_MUTED)) // Emote user is mute- not to be confused with being muted by an admin
+			to_chat(user, span_warning("You find yourself unable to make noise!"))
+			return FALSE
+		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
+			to_chat(user, span_notice("You just did an audible emote. Wait a while."))
+			return FALSE
+		else
+			TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
+
+	if(user.client)
+		if(user.client.prefs.muted & MUTE_IC)
+			to_chat(user, span_warning("You cannot send emotes (muted)."))
 			return FALSE
 
-		if(sound || get_sound(user))
-			if(HAS_TRAIT(user, TRAIT_MUTED))
-				user.balloon_alert(user, "You are muted!")
-				return FALSE
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
-				user.balloon_alert(user, "You just did an audible emote")
-				return FALSE
-			else
-				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
+		if(user.client.handle_spam_prevention(message, MUTE_IC))
+			return FALSE
 
-		if(user.client)
-			if(user.client.prefs.muted & MUTE_IC)
-				to_chat(user, span_warning("You cannot send emotes (muted)."))
-				return FALSE
-
-			if(user.client.handle_spam_prevention(message, MUTE_IC))
-				return FALSE
-
-			if(is_banned_from(user.ckey, "Emote"))
-				to_chat(user, span_warning("You cannot send emotes (banned)."))
-				return FALSE
+		if(is_banned_from(user.ckey, "Emote"))
+			to_chat(user, span_warning("You cannot send emotes (banned)."))
+			return FALSE
 
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
 		if(user.stat > stat_allowed)
-			if(!intentional)
-				return FALSE
 
 			switch(user.stat)
 				if(UNCONSCIOUS)
@@ -174,8 +168,6 @@
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.incapacitated())
-					if(!intentional)
-						return FALSE
 					user.balloon_alert(user, "You cannot [key] while stunned")
 					return FALSE
 
@@ -189,7 +181,5 @@
 				return FALSE
 
 		if((emote_flags & EMOTE_RESTRAINT_CHECK) && user.restrained())
-			if(!intentional)
-				return FALSE
 			user.balloon_alert(user, "You cannot [key] while restrained")
 			return FALSE

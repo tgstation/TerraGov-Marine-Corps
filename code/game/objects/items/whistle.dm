@@ -46,7 +46,7 @@
 	else
 		TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
 		for(var/mob/living/carbon/human/human in get_hearers_in_view(warcryrange, user.loc))
-			human.emote("warcry", intentional = TRUE)
+			human.emote("warcry")
 			CHECK_TICK
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_BLOW, 3 SECONDS)

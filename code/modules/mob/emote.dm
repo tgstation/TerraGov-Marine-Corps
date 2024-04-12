@@ -1,5 +1,5 @@
-//The code execution of the emote datum is located at code/datums/emotes.dm
-/mob/proc/emote(act, m_type, message, intentional = FALSE)
+///The code execution of the emote datum is located at code/datums/emotes.dm
+/mob/proc/emote(act, m_type, message)
 	act = lowertext(act)
 	var/param = message
 	var/custom_param = findtext(act, " ")
@@ -12,10 +12,10 @@
 	if(!E)
 		to_chat(src, span_notice("Unusable emote '[act]'. Say *help for a list."))
 		return
-	if(!E.check_cooldown(src, intentional))
+	if(!E.check_cooldown(src))
 		to_chat(src, span_notice("You used that emote too recently."))
 		return
-	E.run_emote(src, param, m_type, intentional)
+	E.run_emote(src, param, m_type)
 
 
 /datum/emote/help
@@ -32,7 +32,7 @@
 		if(e in keys)
 			continue
 		E = emote_list[e]
-		if(E.can_run_emote(user, status_check = FALSE, intentional = FALSE))
+		if(E.can_run_emote(user, status_check = FALSE))
 			keys += E.key
 
 	keys = sortList(keys)
@@ -57,7 +57,7 @@
 	emote_flags = NO_KEYBIND //This shouldn't have a keybind
 
 
-/datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/custom/run_emote(mob/user, params, type_override, prefix)
 	message = params
 	return ..()
 
