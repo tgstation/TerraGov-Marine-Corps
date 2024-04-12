@@ -934,7 +934,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
-	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
+	if(issamexenohive(proj.shot_from)) //Aliens won't be harming allied aliens.
 		return
 
 	return ..()
