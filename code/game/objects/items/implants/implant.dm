@@ -70,6 +70,8 @@
 	if(!(user.zone_selected in allowed_limbs))
 		to_chat(user, span_warning("You cannot implant this into that limb!"))
 		return FALSE
+	if((implant_flags & DUPLICATE_IMPLANT_ALLOWED))
+		return
 	return implant(target, user)
 
 /**
@@ -82,6 +84,14 @@
 	var/datum/limb/affected = target.get_limb(limb_targeting)
 	if(!affected)
 		CRASH("[src] implanted into [target] [user ? "by [user]" : ""] but had no limb, despite being set to implant in [limb_targeting].")
+	for(var/obj/item/implant/embedded in affected.implants)
+		if((implant_flags & HIGHLANDER_IMPLANT) || (embedded.implant_flags & HIGHLANDER_IMPLANT))
+			to_chat(user, span_warning("Cannot fit the [name] due to the [embedded.name] already there!"))
+			return FALSE
+		if(!(embedded.type == type) || (implant_flags & DUPLICATE_IMPLANT_ALLOWED))
+			continue
+		to_chat(user, span_warning("There is already another [name] in this limb!"))
+		return FALSE
 	if(!embed_into(target, limb_targeting, TRUE))
 		return FALSE
 	implant_owner = target
