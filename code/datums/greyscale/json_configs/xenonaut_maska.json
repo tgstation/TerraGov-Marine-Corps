@@ -9,10 +9,5 @@
 		"type": "icon_state",
 		"icon_state": "visor",
 		"blend_mode": "overlay"
-	},
-	{
-		"type": "hyperscale",
-		"icon_state": "stripes",
-		"blend_mode": "overlay"
 	}]
 }
