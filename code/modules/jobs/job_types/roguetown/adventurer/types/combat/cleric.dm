@@ -11,22 +11,35 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 
 /datum/outfit/job/roguetown/adventurer/cleric/pre_equip(mob/living/carbon/human/H)
-	var/allowed_patrons = list("Astrata", "Dendor", "Necra")
 	..()
-	var/datum/patrongods/A = H.PATRON
-	if(!(A.name in allowed_patrons))
-		var/list/datum/patrongods/options = list(/datum/patrongods/astrata, /datum/patrongods/dendor, /datum/patrongods/necra)
-		qdel(H.PATRON)
-		var/datum/patrongods/newest = pick(options)
-		H.PATRON = new newest
-	var/datum/patrongods/B = H.PATRON
-	switch(B.name)
+//	var/allowed_patrons = list(GLOB.patronlist["Astrata"], GLOB.patronlist["Dendor"], GLOB.patronlist["Necra"])
+	var/allowed_patrons = list("Astrata", "Dendor", "Necra")
+
+	var/datum/patrongods/ourpatron
+	if(istype(H.PATRON, /datum/patrongods))
+		ourpatron = H.PATRON
+
+	if(!(ourpatron.name in allowed_patrons))
+		var/datum/patrongods/list/possiblegods = GLOB.patronlist
+
+		for(var/datum/patrongods/P in possiblegods)
+			if(!(P.name in allowed_patrons))
+				possiblegods -= P
+
+		ourpatron = pick(possiblegods)
+		H.PATRON = ourpatron
+		to_chat(H, "<span class='warning'> My patron had not endorsed my practices in my younger years. I've since grown acustomed to [H.PATRON].")
+	switch(ourpatron.name)
 		if("Astrata")
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+			world << "ASTRATA"
 		if("Dendor")
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+			world << "DENDOR"
 		if("Necra")
 			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+			world << "NECRA"
+
 	armor = /obj/item/clothing/suit/roguetown/armor/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather

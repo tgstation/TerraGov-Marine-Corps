@@ -1946,6 +1946,8 @@ Slots: [job.spawn_positions]</span>
 					if(selectedflaw)
 						charflaw = GLOB.character_flaws[selectedflaw]
 						charflaw = new charflaw()
+						if(charflaw.desc)
+							to_chat(user, "<span class='info'>[charflaw.desc]</span>")
 
 				if("ooccolor")
 					var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference",ooccolor) as color|null

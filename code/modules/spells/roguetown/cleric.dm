@@ -33,6 +33,9 @@
 
 // Cleric Spell Spawner
 /datum/devotion/cleric_holder/proc/grant_spells_priest(mob/living/carbon/human/H)
+	if(!H || !H.mind)
+		return
+
 	var/datum/patrongods/A = H.PATRON
 	var/spelllist = list(A.t0, A.t1, A.t2, A.t3)
 	for(var/C in spelllist)
@@ -41,6 +44,9 @@
 	update_devotion(300, 900)
 
 /datum/devotion/cleric_holder/proc/grant_spells(mob/living/carbon/human/H)
+	if(!H || !H.mind)
+		return
+
 	var/datum/patrongods/A = H.PATRON
 	var/spelllist = list(A.t0, A.t1)
 	level = CLERIC_T1
