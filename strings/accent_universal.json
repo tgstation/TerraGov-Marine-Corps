@@ -1,8 +1,6 @@
 {
 	
     "universal": {
-//These will autocorrect trashtalk, netspeak and other modern formats to proper era words
-	//General Filters
 	    "day": "dae",
 		"friday": "freyasdaeg",
 		"saturday": "saeterndaeg",
@@ -21,11 +19,9 @@
 		"cenat": "Demon",
 		"mew": "pray",
 		"mewing": "praying",
-	//Religious Slurs
 		"jesus": "divine",
 		"christ": "gods",
 		"allah": "gods",
-	//Hard Modern Slurs
 		"retarded": "foolish nimrod",
 		"retard": "fool nimrod",
 		"negro": "gnerd",
@@ -40,7 +36,6 @@
 		"faggotry": "fatherlessness",
 		"faggot": "fatherless",
 		"jew": "merchant",	
-	//Modern hippie semantics
 		"boomer": "dotard",
 		"boomers": "dotard",
 		"fazbear": "fae",
@@ -93,7 +88,6 @@
 		"pussy": "cunt-bitten coward",
 		"vibing": "selfsucking",
 		"weirdo": "weerdoe",
-	//Lore slur corrections
 		"adonai": "psydon",
 		"praise psydon": "Mourn the Weeper"
 		}
