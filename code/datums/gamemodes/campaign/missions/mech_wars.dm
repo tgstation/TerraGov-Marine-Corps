@@ -12,6 +12,28 @@
 	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> AO is secured. Enemy mechanised units all confirmed destroyed or falling back, excellent work!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost control of this area, all units, regroup and retreat, we'll make them pay next time.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Confirming hostile mechanised units have been degraded below combat ready status. We ground them down, good work.",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> We've taken too many loses, all forces, pull back now!",
+		),
+		MISSION_OUTCOME_DRAW = list(
+			MISSION_STARTING_FACTION = "<u>Draw</u><br> This was bloodbath on both sides. Any surviving units, retreat to nearest exfil point.",
+			MISSION_HOSTILE_FACTION = "<u>Draw</u><br> What a bloodbath. We bled for it, but enemy assault repelled.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> We're losing to many mechs. All remaining units, regroup at point Echo, fallback!",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Confirming enemy forces are falling back. All units regroup and prepare to pursue!",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> Control of AO lost, this is a disaster. All surviving units, retreat!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> AO secured, enemy forces confirmed terminated or falling back. We've shown them who we are!",
+		),
+	)
 
 /datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(
@@ -28,6 +50,16 @@
 	hostile_faction_mission_brief = "A large [starting_faction] mechanised force has been detected enroute towards one of our staging points in this region. \
 		Our mechanised forces here are vital to our future plans. The enemy assault has given us a unique opportunity to destroy a significant portion of their mechanised forces with a swift counter attack. \
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
+
+/datum/campaign_mission/tdm/mech_wars/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Heavy mechanised hostile units closing on the AO! Smash their mechs into junk marines!"
+		if(FACTION_SOM)
+			message = "Terran mechanised units confirmed in the AO. Move in and wipe them out, for the glory of Mars!"
+	return ..()
 
 /datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1

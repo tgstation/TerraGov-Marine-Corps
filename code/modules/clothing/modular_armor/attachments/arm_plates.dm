@@ -54,6 +54,11 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Trooper armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/trooper
 
+/obj/item/armor_module/armor/arms/marine/mjolnir
+	name = "\improper Jaeger Pattern Mjolnir arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mjolnir armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/mjolnir
+
 // Hardsuit Arm Plates
 /obj/item/armor_module/armor/arms/marine/hardsuit_arms
 	name = "\improper FleckTex Base arm plates"
