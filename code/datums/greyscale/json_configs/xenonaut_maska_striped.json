@@ -7,7 +7,7 @@
 	},
 	{
 		"type": "icon_state",
-		"icon_state": "visor_striped",
+		"icon_state": "visor_stripes",
 		"blend_mode": "overlay"
 	}]
 }
