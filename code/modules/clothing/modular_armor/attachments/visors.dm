@@ -153,16 +153,11 @@
 	icon_state = "r_heavy"
 
 
-//Xenonaut & Maska
+//Xenonaut
 /obj/item/armor_module/armor/visor/marine/xenonaut
 	name = "\improper Xenonaut heavy visor"
 	desc = "The visor attachment of the Xenonaut heavy helmet"
 	icon_state = "xenonaut"
-
-/obj/item/armor_module/armor/visor/marine/maska
-	name = "\improper Xenonaut heavy visor"
-	desc = "The visor attachment of the Maska helmet"
-	icon_state = "maska"
 
 
 //old jaeger
