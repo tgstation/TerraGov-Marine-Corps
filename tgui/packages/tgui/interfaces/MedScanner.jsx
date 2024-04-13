@@ -81,7 +81,7 @@ export const MedScanner = (props) => {
                 <ProgressBar
                   value={total_brute}
                   maxvalue={total_brute}
-                  color='bad'
+                  color="bad"
                 >
                   Brute:{total_brute}
                 </ProgressBar>
@@ -91,38 +91,26 @@ export const MedScanner = (props) => {
                 <ProgressBar
                   value={total_burn}
                   maxvalue={total_burn}
-                  color='average'
+                  color="average"
                 >
                   Burn:{total_burn}
                 </ProgressBar>
               </Box>
               <Box inline width={'5px'} />
               <Box inline>
-                <ProgressBar
-                  value={toxin}
-                  maxvalue={toxin}
-                  color='green'
-                >
+                <ProgressBar value={toxin} maxvalue={toxin} color="green">
                   Toxin:{toxin}
                 </ProgressBar>
               </Box>
               <Box inline width={'5px'} />
               <Box inline>
-                <ProgressBar
-                  value={oxy}
-                  maxvalue={oxy}
-                  color='blue'
-                >
+                <ProgressBar value={oxy} maxvalue={oxy} color="blue">
                   Oxygen:{oxy}
                 </ProgressBar>
               </Box>
               <Box inline width={'5px'} />
               <Box inline>
-                <ProgressBar
-                  value={clone}
-                  maxvalue={clone}
-                  color='teal'
-                >
+                <ProgressBar value={clone} maxvalue={clone} color="teal">
                   {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{clone}
                 </ProgressBar>
               </Box>
@@ -172,7 +160,7 @@ export const MedScanner = (props) => {
                             <ProgressBar
                               value={limb.brute}
                               maxvalue={limb.brute}
-                              color='bad'
+                              color="bad"
                             >
                               Brute:{limb.brute}
                             </ProgressBar>
@@ -186,7 +174,7 @@ export const MedScanner = (props) => {
                             <ProgressBar
                               value={limb.burn}
                               maxvalue={limb.burn}
-                              color='average'
+                              color="average"
                             >
                               Burn:{limb.burn}
                             </ProgressBar>
@@ -197,7 +185,7 @@ export const MedScanner = (props) => {
                       {!limb.bandaged ? (
                         <>
                           <Box inline color={'green'}>
-                          {species === 'robot' ? 'Dented' : 'Unbandanged'}
+                            {species === 'robot' ? 'Dented' : 'Unbandanged'}
                           </Box>
                           <Box inline width={'5px'} />
                         </>
@@ -205,7 +193,7 @@ export const MedScanner = (props) => {
                       {!limb.salved ? (
                         <>
                           <Box inline color={'orange'}>
-                          {species === 'robot' ? 'Scorched' : 'Unsalved'}
+                            {species === 'robot' ? 'Scorched' : 'Unsalved'}
                           </Box>
                           <Box inline width={'5px'} />
                         </>
