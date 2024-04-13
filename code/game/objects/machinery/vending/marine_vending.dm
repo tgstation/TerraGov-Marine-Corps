@@ -1041,6 +1041,7 @@
 			/obj/item/clothing/head/modular/m10x = -1,
 			/obj/item/clothing/head/modular/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/m10x/maska = -1,
+			/obj/item/clothing/head/modular/m10x/maska_striped = -1,
 		),
 		"Jaeger" = list(
 			/obj/item/clothing/suit/modular/jaeger/light = -1,
