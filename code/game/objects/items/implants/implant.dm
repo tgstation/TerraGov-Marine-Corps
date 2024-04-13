@@ -19,8 +19,10 @@
 	var/implant_flags = GRANT_ACTIVATION_ACTION
 	///Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default
 	var/list/allowed_limbs
+	///Type of action to give
+	var/action_type = /datum/action/item_action/implant
 	///Activation_action reference
-	var/datum/action/item_action/implant/activation_action
+	var/datum/action/activation_action
 	///Cooldown between usages of the implant
 	var/cooldown_time = 1 SECONDS
 	COOLDOWN_DECLARE(activation_cooldown)
@@ -28,7 +30,7 @@
 /obj/item/implant/Initialize(mapload)
 	. = ..()
 	if(implant_flags & GRANT_ACTIVATION_ACTION)
-		activation_action = new(src, src)
+		activation_action = new action_type(src, src)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
 		reagents.my_atom = WEAKREF(src)
