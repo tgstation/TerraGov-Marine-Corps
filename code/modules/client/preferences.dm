@@ -1373,7 +1373,7 @@ Slots: [job.spawn_positions]</span>
 				ShowChoices(user,4)
 			if("reset")
 				ResetJobs()
-				SetChoices(user,4)
+				SetChoices(user)
 			if("triumphthing")
 				ResetLastClass(user)
 			if("nojob")
