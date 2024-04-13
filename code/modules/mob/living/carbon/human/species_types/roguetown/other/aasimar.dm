@@ -89,7 +89,7 @@
 	return TRUE
 
 /datum/species/aasimar/get_skin_list()
-	return sortList(list(
+	return list(
 	"Planetar" = "ffd859",
 	"Deva"	   = "b6f1f2",
 	"Solar" = "daeaeb",
@@ -99,7 +99,7 @@
 	"Olympia" = "C7f9cc",
 	"Necral" = "23130c",
 	"Abyssal" = "22577a"
-	))
+	)
 
 /datum/species/aasimar/get_hairc_list()
 	return sortList(list(

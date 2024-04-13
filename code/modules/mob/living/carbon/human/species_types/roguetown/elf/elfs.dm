@@ -66,7 +66,7 @@
 	return message_language.spans
 
 /datum/species/elf/snow/get_skin_list()
-	return sortList(list(
+	return list(
 	"Dandelion Creek" = "ffe0d1",
 	"Roseveil" = "fcccb3",
 	"Azuregrove" = "edc6b3",
@@ -74,7 +74,7 @@
 	"Almondvalle" = "c9a893",
 	"Walnut Woods" = "ba9882",
 	"Timberborn" = "5d4c41"
-	))
+	)
 
 /datum/species/elf/snow/get_hairc_list()
 	return sortList(list(

@@ -52,13 +52,13 @@
 	return TRUE
 
 /datum/species/human/halfelf/get_skin_list()
-	return sortList(list(
+	return list(
 	"Timber-Gronn" = "ffe0d1",
 	"Giza-Azure" = "fcccb3",
 	"Walnut-Stine" = "edc6b3",
 	"Etrustcan-Dandelion" = "e2b9a3",
 	"Ebon-Born" = "5a4a41"
-	))
+	)
 
 
 /datum/species/human/halfelf/get_hairc_list()

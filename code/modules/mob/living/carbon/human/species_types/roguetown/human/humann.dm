@@ -51,7 +51,7 @@
 	return TRUE
 
 /datum/species/human/northern/get_skin_list()
-	return sortList(list(
+	return list(
 	"Grenzelhoft" = "fff0e9",
 	"Hammerhold" = "ffe0d1",
 	"Avar" = "fcccb3",
@@ -63,7 +63,7 @@
 	"Shalvistine" = "ac8369",
 	"Lalvestine" = "9c6f52",
 	"Ebon" = "4e3729"
-	))
+	)
 
 /datum/species/human/northern/get_hairc_list()
 	return sortList(list(

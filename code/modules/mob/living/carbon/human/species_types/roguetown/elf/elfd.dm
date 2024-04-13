@@ -84,7 +84,7 @@
 	return TRUE
 
 /datum/species/elf/dark/get_skin_list()
-	return sortList(list(
+	return list(
 	"Commorah" = "9796a9",
 	"Gloomhaven" = "897489",
 	"Darkpila" = "938f9c",
@@ -92,7 +92,7 @@
 	"Llurth Dreir" = "6a616d",
 	"Tafravma" = "5f5f70",
 	"Yuethindrynn" = "2F2F38",
-	))
+	)
 
 /datum/species/elf/dark/get_hairc_list()
 	return sortList(list(

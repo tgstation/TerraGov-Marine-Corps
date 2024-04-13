@@ -67,7 +67,7 @@
 	return message_language.spans
 
 /datum/species/dwarf/mountain/get_skin_list()
-	return sortList(list(
+	return list(
 	"Platinum" = "ffe0d1",
 	"Aurum" = "fcccb3",
 	"Quicksilver" = "edc6b3",
@@ -76,7 +76,7 @@
 	"Malachite" = "c69b83",
 	"Obsidian" = "3b2e27",
 	"Brimstone" = "271f1a"
-	))
+	)
 
 /datum/species/dwarf/mountain/get_hairc_list()
 	return sortList(list(
