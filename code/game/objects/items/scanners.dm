@@ -162,7 +162,7 @@ REAGENT SCANNER
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
 
-		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getOxyLoss() + patient.getCloneLoss() <= 200,
+		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getOxyLoss() + patient.getCloneLoss() <= 225,
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
