@@ -306,7 +306,7 @@ REAGENT SCANNER
 				"color" = "red"
 				))
 		if(patient.stat == DEAD)
-			if(patient.health >= patient.health_threshold_dead - 25)
+			if(patient.health >= patient.health_threshold_dead - 25 || isrobot(patient))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"icon" = "bolt",
@@ -327,17 +327,6 @@ REAGENT SCANNER
 					))
 				if(chemicals_lists["Dylovene"])
 					if(chemicals_lists["Dylovene"]["amount"] < 5)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if((patient.getToxLoss() > 30 || (patient.getOxyLoss() > 30 && patient.blood_volume > 400) || patient.getBrainLoss() >= 10))
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of peridaxon.",
-					"icon" = "syringe",
-					"color" = "grey"
-					))
-				if(chemicals_lists["Peridaxon"])
-					if(chemicals_lists["Peridaxon"]["amount"] < 5)
 						advice += temp_advice
 				else
 					advice += temp_advice
@@ -376,7 +365,7 @@ REAGENT SCANNER
 					advice += temp_advice
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
-					"advice" = "Nanites detected - only administer Peridaxon, Quickclot and Dylovene.", //Do NOT administer healing or painkilling chemicals other than Peridaxon/Quickclot/Inaprovaline.
+					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
 					"icon" = "window-close",
 					"color" = "blue"
 					))
