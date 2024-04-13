@@ -85,7 +85,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "SOM patrol confirmed in the AO! Secure those towers and neutralise all hostile forces. Move it marines!"
 		if(FACTION_SOM)
 			message = "TGMC patrol identified in the AO. Secure those towers and eliminate every Terran you see. For Mars!"

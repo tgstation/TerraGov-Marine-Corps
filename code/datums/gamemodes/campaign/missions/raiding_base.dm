@@ -135,7 +135,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Find any weak spots in the SOM's defences and deploy a beacon deep in their base. Lets wipe them off the map marines!"
 		if(FACTION_SOM)
 			message = "Keep those Terran dogs out of of Zulu. If they deploy a beacon it needs to be destroyed before they can call in a strike. Glory to Mars!"
@@ -246,7 +246,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Defend the base at all costs. Hold back those rusters until reinforcements can arrive. Do not let them deploy a beacon!"
 		if(FACTION_SOM)
 			message = "Closing in on the Terran outpost.  Breach their defences and get that beacon down. Glory to Mars!"

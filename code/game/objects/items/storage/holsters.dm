@@ -359,7 +359,7 @@
 		/obj/item/weapon/gun/shotgun,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	)
-  storage_type = /datum/storage/holster/m37
+	storage_type = /datum/storage/holster/m37
 
 /obj/item/storage/holster/m37/full/Initialize(mapload)
 	. = ..()
@@ -399,7 +399,7 @@
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
-  storage_type = /datum/storage/holster/m25
+	storage_type = /datum/storage/holster/m25
 
 /obj/item/storage/holster/m25/full/Initialize(mapload)
 	. = ..()
@@ -549,7 +549,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/vp70/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)

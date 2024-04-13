@@ -95,7 +95,7 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "The SOM have a headstart on us, move in quickly and defend the installation. Do not let them override the security lockdowns!"
 		if(FACTION_SOM)
 			message = "Nanotrasen is working on abominations here. Override the security lockdown so we can destroy their project. Show the people of this world we're fighting for them!"

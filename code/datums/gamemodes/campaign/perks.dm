@@ -118,7 +118,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	owner.maxHealth -= health_mod
 
 /datum/perk/trait/hp_boost/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(owner_stats.faction == FACTION_TERRAGOV)
+	if(owner_stats.faction == FACTION_NTC)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_tyr/universal, /datum/loadout_item/suit_slot/heavy_tyr, SQUAD_MARINE)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)

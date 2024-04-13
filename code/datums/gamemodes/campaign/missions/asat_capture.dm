@@ -76,7 +76,7 @@
 
 /datum/campaign_mission/capture_mission/asat/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Protect our ASAT systems at all cost! Deactivate any the SOM try and steal."
 		if(FACTION_SOM)
 			message = "Move fast marines. Capture every ASAT system you can, and we'll give the Terrans a taste of their own medicine!"

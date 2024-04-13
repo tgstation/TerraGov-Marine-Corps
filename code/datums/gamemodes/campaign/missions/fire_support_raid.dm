@@ -81,7 +81,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Hustle marines, take out their howitzer positions before the SOM have time to react. Move out!"
 		if(FACTION_SOM)
 			message = "The Terrans are trying to destroy our howitzers. Hold them off at all costs, glory to Mars!"
@@ -137,7 +137,7 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "SOM forces are closing in on our MLRS positions. Hold them back at all costs marines, do not let them take out our fire support!"
 		if(FACTION_SOM)
 			message = "MLRS positions identified. Break through their defenses and take them out. For Mars!"

@@ -369,8 +369,7 @@
 	name = "\improper M2 sniper's smock-lite"
 	desc = "A specially designed smock with pockets for all your sniper needs. This one has smaller storage similiar to a satchel but it is mass produced for standard use."
 	icon_state = "smock"
-	access_delay = 0
-	max_storage_space = 15
+	storage_type = /datum/storage/backpack/satchel
 
 //CLOAKS
 

@@ -189,7 +189,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Returns a message to play to a mob when they deploy into the AO
 /datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			. = "Stick together and achieve those objectives marines. Good luck."
 		if(FACTION_SOM)
 			. = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"

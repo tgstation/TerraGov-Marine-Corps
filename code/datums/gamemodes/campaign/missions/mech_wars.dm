@@ -55,7 +55,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Heavy mechanised hostile units closing on the AO! Smash their mechs into junk marines!"
 		if(FACTION_SOM)
 			message = "Terran mechanised units confirmed in the AO. Move in and wipe them out, for the glory of Mars!"

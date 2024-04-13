@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 ///Acronyms for each faction, or the shortest name possible
 GLOBAL_LIST_INIT(faction_to_acronym, list(
 	FACTION_NEUTRAL = "Neutral",
-	FACTION_TERRAGOV = "TGMC",
+	FACTION_NTC = "TGMC",
 	FACTION_SPECFORCE = "SRF",
 	FACTION_NANOTRASEN = "PMC",
 	FACTION_FREELANCERS = "FRE",

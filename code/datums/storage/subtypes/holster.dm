@@ -227,7 +227,7 @@
 			/obj/item/ammo_magazine/handful,
 			/obj/item/ammo_magazine/rifle/tx15_slug,
 			/obj/item/ammo_magazine/rifle/tx15_flechette,
-		)
+		))
 
 /datum/storage/holster/m25
 	storage_slots = 6
@@ -242,4 +242,4 @@
 			/obj/item/ammo_magazine/smg/m25,
 			/obj/item/ammo_magazine/smg/m25/ap,
 			/obj/item/ammo_magazine/smg/m25/extended,
-		)
+		))

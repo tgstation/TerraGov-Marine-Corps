@@ -202,7 +202,7 @@
 /datum/campaign_mission/proc/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	if(!message) //overridden by specific missions
 		switch(user.faction)
-			if(FACTION_TERRAGOV)
+			if(FACTION_NTC)
 				message = "Stick together and achieve those objectives marines. Good luck."
 			if(FACTION_SOM)
 				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"

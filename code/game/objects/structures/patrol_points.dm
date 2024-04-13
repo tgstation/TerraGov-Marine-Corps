@@ -59,63 +59,8 @@
 				to_chat(user, span_warning("This doesn't seem to go anywhere."))
 			return
 
-	if(obj_mover)
-		obj_mover.forceMove(linked_point.loc)
-	else if(user) //this is mainly configured under the assumption that we only have both an obj and a user if its a manned mech going through
-		user.visible_message(span_notice("[user] goes through the [src]."),
-		span_notice("You walk through the [src]."))
-		user.trainteleport(linked_point.loc)
-		add_spawn_protection(user)
-	if(!obj_mover)
-		new /atom/movable/effect/rappel_rope(linked_point.loc) //mechs don't need a rope
-
-	var/atom/movable/mover = obj_mover ? obj_mover : user
-
-	mover.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
-	var/shadow_filter = mover.get_filter(PATROL_POINT_RAPPEL_EFFECT)
-
-	var/current_layer = mover.layer
-	mover.pixel_y += RAPPEL_HEIGHT
-	mover.layer = FLY_LAYER
-
-	animate(mover, pixel_y = mover.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
-	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
-
-	addtimer(CALLBACK(src, PROC_REF(end_rappel), user, mover, current_layer), RAPPEL_DURATION)
-
-	if(!user)
-		return
-	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	var/message
-	if(issensorcapturegamemode(SSticker.mode))
-		switch(user.faction)
-			if(FACTION_NTC)
-				message = "Reactivate all sensor towers, good luck team."
-			if(FACTION_SOM)
-				message = "Prevent reactivation of the sensor towers, glory to Mars!"
-	else if(iscombatpatrolgamemode(SSticker.mode))
-		switch(user.faction)
-			if(FACTION_NTC)
-				message = "Eliminate all hostile forces in the ao, good luck team."
-			if(FACTION_SOM)
-				message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
-	else if(iscampaigngamemode(SSticker.mode))
-		switch(user.faction)
-			if(FACTION_NTC)
-				message = "Stick together and achieve those objectives marines. Good luck."
-			if(FACTION_SOM)
-				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
-
-	if(!message)
-		return
-
-	switch(user.faction)
-		if(FACTION_NTC)
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
-		if(FACTION_SOM)
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
-		else
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>UNKNOWN</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/unknown)
+	thing_to_move.visible_message(span_notice("[thing_to_move] goes through the [src]."), user ? span_notice("You go through the [src].") : null)
+	linked_point.do_deployment(thing_to_move, user)
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()

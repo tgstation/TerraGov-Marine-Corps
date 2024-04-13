@@ -64,7 +64,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "This base is a key logistic hub for the SOM. Tear it apart and they're crippled in this region. Hustle marines!"
 		if(FACTION_SOM)
 			message = "This is a key logistics hub for us. Hold the line marines, throw back those Terran dogs and show them Martian resolve!"
@@ -122,7 +122,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "This base is a key logistic hub for us. Repel the SOM marauders, protect our assets at all costs!"
 		if(FACTION_SOM)
 			message = "This is a key logistics hub for the TGMC. Smash through their defences and destroy the marked targets. Glory to Mars!"

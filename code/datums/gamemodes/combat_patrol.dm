@@ -121,7 +121,7 @@
 
 /datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			. = "Eliminate all hostile forces in the AO, good luck team."
 		if(FACTION_SOM)
 			. = "Eliminate the TerraGov imperialists in the AO, glory to Mars!"
