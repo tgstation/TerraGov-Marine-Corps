@@ -192,7 +192,7 @@ window "preferences_window"
 		can-close = false
 		can-resize = false
 		icon = 'icons\\tg_32.png'
-	elem "preferences_browser"
+	elem "preferencess_browser"
 		type = BROWSER
 		pos = 0,0
 		size = 700x530
