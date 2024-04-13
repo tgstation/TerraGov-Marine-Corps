@@ -417,7 +417,7 @@ REAGENT SCANNER
 	if(advice.len)
 		data["advice"] = advice
 	else
-		data["advice"] = null // even if data isn't set, we can just
+		data["advice"] = null
 
 	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
