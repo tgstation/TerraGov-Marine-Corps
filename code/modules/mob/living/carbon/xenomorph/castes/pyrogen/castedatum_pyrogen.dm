@@ -55,7 +55,7 @@
 /datum/xeno_caste/pyrogen/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "The fire within this one shimmers brighter than the ones before."
-	primordial_message = "Our fire burns the strongest."
+	primordial_message = "Everything shall experience the cold of the void."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** //
