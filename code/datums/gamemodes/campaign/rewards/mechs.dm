@@ -84,6 +84,12 @@
 	colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_ANGELIC)
 	head_colors = list(ARMOR_PALETTE_ANGELIC, ARMOR_PALETTE_GREY, VISOR_PALETTE_SYNDIE_GREEN)
 
+/obj/effect/landmark/campaign/mech_spawner/som/spawn_mech()
+	. = ..()
+	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech = .
+	new_mech.iff_signal = SOM_IFF
+	return new_mech
+
 /obj/effect/landmark/campaign/mech_spawner/som/heavy
 	name = "som heavy mech spawner"
 	icon_state = "mech_heavy"

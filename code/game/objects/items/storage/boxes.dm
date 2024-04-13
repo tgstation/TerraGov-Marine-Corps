@@ -418,15 +418,18 @@
 	desc = "A box containing the core components for a pipe mine. Think BYOND your traditional bomb training, anyone can make their own explosives!"
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 30
-	storage_slots = 12
 	spawn_number = 6
 	spawn_type = /obj/item/assembly/prox_sensor
-	can_hold = list(/obj/item/pipe, /obj/item/assembly/prox_sensor)
-	max_w_class = WEIGHT_CLASS_NORMAL	//So pipes can be put back in
 
 /obj/item/storage/box/ied_assembly_kit/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.max_storage_space = 30
+	storage_datum.storage_slots = 12
+	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/pipe,
+		/obj/item/assembly/prox_sensor,
+	))
 	//Spawn an equal number of proximity sensors
 	for(var/i in 1 to spawn_number)
 		new /obj/item/pipe(src, /obj/machinery/atmospherics/pipe/simple, NORTH)
