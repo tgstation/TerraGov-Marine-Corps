@@ -734,6 +734,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 //			dat += "<br>"
 //			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "</td></tr></table>"
+
 		if(2) //OOC Preferences
 			used_title = "ooc"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
@@ -803,6 +804,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 				dat += "</td>"
 			dat += "</tr></table>"
+
 		if(3) // Custom keybindings
 			used_title = "Keybinds"
 			// Create an inverted list of keybindings -> key
@@ -844,10 +846,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><br>"
 			dat += "<a href ='?_src_=prefs;preference=keybinds;task=keybindings_set'>\[Reset to default\]</a>"
 			dat += "</body>"
+
 	if(!IsGuestKey(user.key))
 		dat += "<a href='?_src_=prefs;preference=save'>Save</a><br>"
 		dat += "<a href='?_src_=prefs;preference=load'>Undo</a><br>"
 	dat += "<center>"
+
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		switch(N.ready)
 			if(PLAYER_NOT_READY)
@@ -863,13 +867,13 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	if(user.client.is_new_player())
 		dat = list("<center>REGISTER!</center>")
 
-	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>[used_title]</div>", 700, 530)
+	winshow(user, "preferencess_window", TRUE)
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>[used_title]</div>")
 	popup.set_window_options("can_close=0")
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	update_preview_icon()
-//	onclose(user, "preferences_window", src)
+//	onclose(user, "preferencess_window", src)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
