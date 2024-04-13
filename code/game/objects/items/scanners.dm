@@ -295,7 +295,7 @@ REAGENT SCANNER
 					))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
-				"advice" = "Recommend that the patient sleep or seek cryo treatment - [patient.species.species_flags & ROBOTIC_LIMBS ? "integrity damage" : "cellular damage"].",
+				"advice" = "Recommend that the patient [patient.species.species_flags & ROBOTIC_LIMBS ? "seek a robotic cradle - integrity damage" : "sleep or seek cryo treatment - cellular damage"].",
 				"icon" = "window-close",
 				"color" = "teal"
 				))
