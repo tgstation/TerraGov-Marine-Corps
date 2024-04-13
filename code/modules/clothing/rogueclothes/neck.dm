@@ -193,22 +193,6 @@
 	resistance_flags = FIRE_PROOF
 	sellprice = 100
 
-/obj/item/clothing/neck/roguetown/psicross/necra
-	name = "golden psycross"
-	desc = ""
-	icon_state = "psicrossg"
-	//dropshrink = 0.75
-	resistance_flags = FIRE_PROOF
-	sellprice = 100
-
-/obj/item/clothing/neck/roguetown/psicross/noc
-	name = "golden psycross"
-	desc = ""
-	icon_state = "psicrossg"
-	//dropshrink = 0.75
-	resistance_flags = FIRE_PROOF
-	sellprice = 100
-
 /obj/item/clothing/neck/roguetown/talkstone
 	name = "talkstone"
 	desc = ""
