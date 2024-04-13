@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 1
-
+	selection_color = JCOLOR_NOBLE
 	allowed_races = list("Humen",
 	"Humen")
 	allowed_sexes = list(MALE)
