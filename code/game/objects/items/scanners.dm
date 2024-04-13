@@ -319,9 +319,9 @@ REAGENT SCANNER
 					"icon" = "pizza-slice",
 					"color" = "white"
 					))
-			if(patient.getToxLoss() > 10 && !chemicals_lists["Medical nanites"])
+			if(patient.getToxLoss() > 10)
 				temp_advice = list(list(
-					"advice" = "Administer a single dose of dylovene to reduce blood toxins.",
+					"advice" = "Administer a single dose of dylovene.",
 					"icon" = "syringe",
 					"color" = "green"
 					))
