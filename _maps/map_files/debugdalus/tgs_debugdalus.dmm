@@ -1515,7 +1515,7 @@
 /area/mainship/command/telecomms)
 "ahm" = (
 /obj/structure/closet/secure_closet/captain,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "ahn" = (

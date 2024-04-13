@@ -17,7 +17,7 @@
 */
 
 
-/obj/item/weapon/claymore
+/obj/item/weapon/sword
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
@@ -34,25 +34,27 @@
 	///Special attack action granted to users with the right trait
 	var/datum/action/ability/activable/weapon_skill/sword_lunge/special_attack
 
-/obj/item/weapon/claymore/Initialize(mapload)
+/obj/item/weapon/sword/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 	special_attack = new(src, force, penetration)
 
-/obj/item/weapon/claymore/Destroy()
+/obj/item/weapon/sword/Destroy()
 	QDEL_NULL(special_attack)
 	return ..()
 
-/obj/item/weapon/claymore/equipped(mob/user, slot)
+/obj/item/weapon/sword/equipped(mob/user, slot)
 	. = ..()
+	toggle_item_bump_attack(user, TRUE)
 	if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
 		special_attack.give_action(user)
 
-/obj/item/weapon/claymore/dropped(mob/user)
+/obj/item/weapon/sword/dropped(mob/user)
 	. = ..()
+	toggle_item_bump_attack(user, FALSE)
 	special_attack.remove_action(user)
 
-/obj/item/weapon/claymore/suicide_act(mob/user)
+/obj/item/weapon/sword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
 
@@ -111,57 +113,55 @@
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
 		shake_camera(human_victim, 2, 1)
 
-/obj/item/weapon/claymore/mercsword
+/obj/item/weapon/sword/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon_state = "mercsword"
 	item_state = "machete"
 	force = 39
 
-/obj/item/weapon/claymore/mercsword/captain
+/obj/item/weapon/sword/captain
 	name = "Ceremonial Sword"
 	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"
 	item_state = "machete"
 	force = 55
 
-/obj/item/weapon/claymore/mercsword/machete
+/obj/item/weapon/sword/machete
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
+	item_state = "machete"
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
+/obj/item/weapon/sword/machete/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/strappable)
 
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/claymore/mercsword/machete/alt
+/obj/item/weapon/sword/machete/alt
 	name = "machete"
 	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete_alt"
 
 //FC's sword.
 
-/obj/item/weapon/claymore/mercsword/machete/officersword
-	name = "\improper Officers sword"
+/obj/item/weapon/sword/officersword
+	name = "officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
+	force = 75
 	attack_speed = 11
 	penetration = 15
 
-/obj/item/weapon/claymore/mercsword/commissar_sword
-	name = "\improper commissars sword"
+/obj/item/weapon/sword/officersword/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
+/obj/item/weapon/sword/commissar_sword
+	name = "commissars sword"
 	desc = "The pride of an imperial commissar, held high as they charge into battle."
 	icon_state = "comsword"
 	item_state = "comsword"
@@ -169,42 +169,32 @@
 	attack_speed = 10
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/weapon/katana
+/obj/item/weapon/sword/katana
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	atom_flags = CONDUCT
+	item_state = "machete"
 	force = 50
 	throwforce = 10
-	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
-	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/katana/suicide_act(mob/user)
+/obj/item/weapon/sword/katana/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."))
 	return(BRUTELOSS)
 
 //To do: replace the toys.
-/obj/item/weapon/katana/replica
+/obj/item/weapon/sword/katana/replica
 	name = "replica katana"
 	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
 	force = 27
 	throwforce = 7
 
-/obj/item/weapon/katana/samurai
+/obj/item/weapon/sword/katana/samurai
 	name = "\improper tachi"
 	desc = "A genuine replica of an ancient blade. This one is in remarkably good condition. It could do some damage to everyone, including yourself."
 	icon_state = "samurai_open"
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-
-
-/obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
-
 
 /obj/item/tool/kitchen/knife/shiv
 	name = "glass shiv"
