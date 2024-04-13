@@ -96,18 +96,22 @@ export const MedScanner = (props) => {
                   Burn:{total_burn}
                 </ProgressBar>
               </Box>
-              <Box inline width={'5px'} />
-              <Box inline>
-                <ProgressBar value={toxin} maxvalue={toxin} color="green">
-                  Toxin:{toxin}
-                </ProgressBar>
-              </Box>
-              <Box inline width={'5px'} />
-              <Box inline>
-                <ProgressBar value={oxy} maxvalue={oxy} color="blue">
-                  Oxygen:{oxy}
-                </ProgressBar>
-              </Box>
+              {species !== 'robot' ? (
+                <>
+                  <Box inline width={'5px'} />
+                  <Box inline>
+                    <ProgressBar value={toxin} maxvalue={toxin} color="green">
+                      Toxin:{toxin}
+                    </ProgressBar>
+                  </Box>
+                  <Box inline width={'5px'} />
+                  <Box inline>
+                    <ProgressBar value={oxy} maxvalue={oxy} color="blue">
+                      Oxygen:{oxy}
+                    </ProgressBar>
+                  </Box>
+                </>
+              ) : null}
               <Box inline width={'5px'} />
               <Box inline>
                 <ProgressBar value={clone} maxvalue={clone} color="teal">

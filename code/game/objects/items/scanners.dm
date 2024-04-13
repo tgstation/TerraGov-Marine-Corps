@@ -295,7 +295,7 @@ REAGENT SCANNER
 					))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
-				"advice" = "Recommend that the patient [patient.species.species_flags & ROBOTIC_LIMBS ? "seek a robotic cradle - integrity damage" : "sleep or seek cryo treatment - cellular damage"].",
+				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
 				"icon" = "window-close",
 				"color" = "teal"
 				))
@@ -319,6 +319,28 @@ REAGENT SCANNER
 					"icon" = "pizza-slice",
 					"color" = "white"
 					))
+			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
+					"icon" = "syringe",
+					"color" = "red"
+					))
+				if(chemicals_lists["Bicaridine"])
+					if(chemicals_lists["Bicaridine"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of kelotane to reduce burns.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Kelotane"])
+					if(chemicals_lists["Kelotane"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
 			if(patient.getToxLoss() > 10)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dylovene.",
@@ -338,28 +360,6 @@ REAGENT SCANNER
 					))
 				if(chemicals_lists["Dexalin Plus"])
 					if(chemicals_lists["Dexalin Plus"]["amount"] < 3)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
-					"icon" = "syringe",
-					"color" = "red"
-					))
-				if(chemicals_lists["Bicaridine"])
-					if(chemicals_lists["Bicaridine"]["amount"] < 3)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of kelotane to soothe burns.",
-					"icon" = "syringe",
-					"color" = "yellow"
-					))
-				if(chemicals_lists["Kelotane"])
-					if(chemicals_lists["Kelotane"]["amount"] < 3)
 						advice += temp_advice
 				else
 					advice += temp_advice
