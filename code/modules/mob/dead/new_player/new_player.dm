@@ -601,14 +601,11 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 
 /mob/dead/new_player/proc/LateChoices()
-	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	var/list/dat = list("<div class='notice' style='font-style: normal; font-size: 14px; margin-bottom: 2px; padding-bottom: 0px'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time, 1)]</div>")
 	if(SSshuttle.emergency)
 		switch(SSshuttle.emergency.mode)
 			if(SHUTTLE_ESCAPE)
 				dat += "<div class='notice red'>The last boat has left Roguetown.</div><br>"
-//			if(SHUTTLE_CALL)
-//				if(!SSshuttle.canRecall())
-//					dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job
@@ -628,46 +625,67 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		if(!SSjob.name_occupations[category[1]])
 			testing("HELP NO THING FOUND FOR [category[1]]")
 			continue
-		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
-		dat += "<fieldset style='width: 185px; border: 2px solid [cat_color]; display: inline'>"
-		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		if(istype(C))
-			if(C.skeletons)
-				dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=skeleton'>BECOME AN EVIL SKELETON</a>"
-				dat += "</fieldset><br>"
-				column_counter++
-				if(column_counter > 0 && (column_counter % 3 == 0))
-					dat += "</td><td valign='top'>"
-				break
-			if(C.deathknightspawn)
-				dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=Death Knight'>JOIN THE VAMPIRE LORD AS A DEATH KNIGHT</a>"
-				dat += "</fieldset><br>"
-				column_counter++
-				if(column_counter > 0 && (column_counter % 3 == 0))
-					dat += "</td><td valign='top'>"
-				break
-		var/list/dept_dat = list()
+		
+		var/list/available_jobs = list()
 		for(var/job in category)
 			var/datum/job/job_datum = SSjob.name_occupations[job]
 			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
-				var/command_bold = ""
-				if(job in GLOB.noble_positions)
-					command_bold = " command"
-				var/used_name = job_datum.title
-				if(client.prefs.gender == FEMALE && job_datum.f_title)
-					used_name = job_datum.f_title
-				if(job_datum in SSjob.prioritized_jobs)
-					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[used_name] ([job_datum.current_positions])</span></a>"
-				else
-					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[used_name] ([job_datum.current_positions])</a>"
-//		if(!dept_dat.len)
-//			dept_dat += "<span class='nopositions'>No positions open.</span>"
-		dat += jointext(dept_dat, "")
-		dat += "</fieldset><br>"
-		column_counter++
-		if(column_counter > 0 && (column_counter % 3 == 0))
-			dat += "</td><td valign='top'>"
+				available_jobs += job
+
+		if (length(available_jobs))
+			var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
+			var/cat_name = ""
+			switch (SSjob.name_occupations[category[1]].department_flag)
+				if (NOBLEMEN)
+					cat_name = "Nobles"
+				if (GARRISON)
+					cat_name = "Garrison"
+				if (CHURCHMEN)
+					cat_name = "Churchmen"
+				if (SERFS)
+					cat_name = "Serfs"
+				if (PEASANTS)
+					cat_name = "Peasants"
+				if (YOUNGFOLK)
+					cat_name = "Youngfolk"
+
+			dat += "<fieldset style='width: 185px; border: 2px solid [cat_color]; display: inline'>"
+			dat += "<legend align='center' style='font-weight: bold; color: [cat_color]'>[cat_name]</legend>"
+			var/datum/game_mode/chaosmode/C = SSticker.mode
+			if(istype(C))
+				if(C.skeletons)
+					dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=skeleton'>BECOME AN EVIL SKELETON</a>"
+					dat += "</fieldset><br>"
+					column_counter++
+					if(column_counter > 0 && (column_counter % 3 == 0))
+						dat += "</td><td valign='top'>"
+					break
+				if(C.deathknightspawn)
+					dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=Death Knight'>JOIN THE VAMPIRE LORD AS A DEATH KNIGHT</a>"
+					dat += "</fieldset><br>"
+					column_counter++
+					if(column_counter > 0 && (column_counter % 3 == 0))
+						dat += "</td><td valign='top'>"
+					break
+			
+			for(var/job in available_jobs)
+				var/datum/job/job_datum = SSjob.name_occupations[job]
+				if(job_datum)
+					var/command_bold = ""
+					if(job in GLOB.noble_positions)
+						command_bold = " command"
+					var/used_name = job_datum.title
+					if(client.prefs.gender == FEMALE && job_datum.f_title)
+						used_name = job_datum.f_title
+					if(job_datum in SSjob.prioritized_jobs)
+						dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[used_name] ([job_datum.current_positions])</span></a>"
+					else
+						dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[used_name] ([job_datum.current_positions])</a>"
+
+			dat += "</fieldset><br>"
+			column_counter++
+			if(column_counter > 0 && (column_counter % 3 == 0))
+				dat += "</td><td valign='top'>"
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
 	var/datum/browser/popup = new(src, "latechoices", "Choose Class", 680, 580)
