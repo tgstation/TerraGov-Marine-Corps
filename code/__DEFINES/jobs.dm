@@ -171,6 +171,7 @@
 #define JDO_TOWNGUARD 8
 #define JDO_GATEMASTER 9
 #define JDO_DUNGEONEER 10
+#define JDO_KNIGHT 10.1
 #define JDO_SQUIRE 11
 #define JDO_VET 11.1
 

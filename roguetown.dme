@@ -2133,6 +2133,7 @@
 #include "code\modules\jobs\job_types\roguetown\garrison\veteran.dm"
 #include "code\modules\jobs\job_types\roguetown\garrison\villagechief.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\hand.dm"
+#include "code\modules\jobs\job_types\roguetown\nobility\knight.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\lady.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\lord.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\magician.dm"
