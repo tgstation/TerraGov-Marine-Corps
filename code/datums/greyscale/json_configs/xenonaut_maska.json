@@ -7,7 +7,7 @@
 	},
 	{
 		"type": "icon_state",
-		"icon_state": "maska_visor",
+		"icon_state": "visor",
 		"blend_mode": "overlay"
 	}]
 }
