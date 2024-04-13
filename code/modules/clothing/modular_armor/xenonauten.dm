@@ -370,3 +370,4 @@
 	name = "\improper M10ASKA-1SCh pattern marine helmet"
 	desc = "A M10 Pattern Helmet with attach points and a flimsy metal face shield. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	greyscale_config = /datum/greyscale_config/xenonaut/helm/maska
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut/maska, /obj/item/armor_module/storage/helmet)
