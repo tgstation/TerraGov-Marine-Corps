@@ -181,6 +181,10 @@
 	json_config = 'code/datums/greyscale/json_configs/xenonaut_maska.json'
 	prefix = "maska_"
 
+/datum/greyscale_config/xenonaut/helm/maska_striped
+	json_config = 'code/datums/greyscale/json_configs/xenonaut_maska_striped.json'
+	prefix = "maska_"
+
 /datum/greyscale_config/robot
 	icon_file = 'icons/mob/modular/robot_armor.dmi'
 	json_config = 'code/datums/greyscale/json_configs/robot_armor.json'
