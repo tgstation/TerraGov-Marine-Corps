@@ -408,8 +408,7 @@
 //		if(buckled)
 //			to_chat(M, "<span class='warning'>I need to unbuckle [src] first to do that!</span>")
 //			return
-//		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
-//						"<span class='notice'>I shake [src] trying to get [p_them()] up!</span>")
+//		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", "<span class='notice'>I shake [src] trying to get [p_them()] up!</span>")					
 //	else
 	M.visible_message("<span class='notice'>[M] shakes [src].</span>", \
 				"<span class='notice'>I shake [src] to get [p_their()] attention.</span>")

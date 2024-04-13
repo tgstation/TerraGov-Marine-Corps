@@ -21,7 +21,7 @@
 #define ITEM_SLOT_SHOES			(1<<3)
 #define ITEM_SLOT_GLOVES		(1<<4)
 #define ITEM_SLOT_RING			(1<<5)
-#define ITEM_SLOT_MASK			(1<<6)
+//#define ITEM_SLOT_MASK			(1<<6) Redefined twice, now we have a nazty azz empty bitflag 6 here cause it was using the def below by default
 #define ITEM_SLOT_MOUTH			(1<<7)
 #define ITEM_SLOT_HEAD			(1<<8)
 #define ITEM_SLOT_CLOAK			(1<<9)
@@ -174,7 +174,7 @@
 #define NOSE		(1<<16)
 #define RIGHT_EYE	(1<<17)
 #define LEFT_EYE	(1<<18)
-#define HAIR		(1<<19)
+#define HAIR		(1<<19) 
 #define EYES		(LEFT_EYE | RIGHT_EYE)
 #define FACE		(MOUTH | NOSE | EYES)
 #define FULL_HEAD	(HEAD | MOUTH | NOSE | EYES | EARS | HAIR)

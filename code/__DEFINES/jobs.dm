@@ -30,12 +30,12 @@
 #define HOP				(1<<0)
 #define BARTENDER		(1<<1)
 #define BOTANIST		(1<<2)
-#define COOK			(1<<3)
+//#define COOK			(1<<3) //This is redefined below, and is a ss13 leftover.
 #define JANITOR			(1<<4)
 #define CURATOR			(1<<5)
 #define QUARTERMASTER	(1<<6)
 #define CARGOTECH		(1<<7)
-#define MINER			(1<<8)
+//#define MINER			(1<<8) //This is redefined below, and is a ss13 leftover.
 #define LAWYER			(1<<9)
 #define CHAPLAIN		(1<<10)
 #define CLOWN			(1<<11)
@@ -171,6 +171,7 @@
 #define JDO_TOWNGUARD 8
 #define JDO_GATEMASTER 9
 #define JDO_DUNGEONEER 10
+#define JDO_KNIGHT 10.1
 #define JDO_SQUIRE 11
 #define JDO_VET 11.1
 

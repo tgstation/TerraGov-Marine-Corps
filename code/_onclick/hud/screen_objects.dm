@@ -844,28 +844,28 @@
 			L.look_around()
 
 /obj/screen/eye_intent/update_icon(mob/user)
-	if(!user && hud)
-		user = hud.mymob
-	if(!user)
-		return
-	if(!isliving(user))
-		return
-	cut_overlays()
-	var/mob/living/L = user
-	if(L.eyesclosed)
-		icon_state = "eye_closed"
-	else if(user.tempfixeye)
-		icon_state = "eye_target"
-	else if(user.fixedeye)
-		icon_state = "eye_fixed"
-	else
-		icon_state = "eye"
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.eye_color)
-			var/mutable_appearance/MA = mutable_appearance(icon, "o[icon_state]")
-			MA.color = "#[H.eye_color]"
-			add_overlay(MA)
+    if(!user && hud)
+        user = hud.mymob
+    if(!user)
+        return
+    if(!isliving(user))
+        return
+    cut_overlays()
+    var/mob/living/L = user
+    if(L.eyesclosed)
+        icon_state = "eye_closed"
+    else if(user.tempfixeye)
+        icon_state = "eye_target"
+    else if(user.fixedeye)
+        icon_state = "eye_fixed"
+    else
+        icon_state = "eye"
+    /*if(ishuman(user))
+        var/mob/living/carbon/human/H = user
+        if(H.eye_color)
+            var/mutable_appearance/MA = mutable_appearance(icon, "o[icon_state]")
+            MA.color = "#[H.eye_color]"
+            add_overlay(MA)*/
 
 /obj/screen/eye_intent/proc/toggle(mob/user)
 	if(isobserver(user))
@@ -1937,7 +1937,7 @@
 //	var/list/prevcolors = list("background-color=#000000","background-color=#242f28","background-color=#302323","background-color=#999a63","background-color=#7e7e7e")
 
 //obj/screen/char_preview/Click()
-//	winset(usr.client, "preferences_window.character_preview_map", pick(prevcolors))
+//	winset(usr.client, "preferencess_window.character_preview_map", pick(prevcolors))
 
 #define READ_RIGHT 1
 #define READ_LEFT 2

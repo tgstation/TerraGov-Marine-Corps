@@ -9,13 +9,16 @@
 	Having shown up sometime within the past two centuries, very little is known about their culture \
 	as many seem to simply intergrate within whatever society they find themselves in. \
 	Tieflings usually cause strong disturbances with their presence, as their fiendish looks \
-	have claimed that they are the spawn of a succubus (Or incubus) laying with a mortal. \
+	Many have claimed that they are the spawn of a succubus (Or incubus) laying with a mortal. \
 	In this, their species has suffered vast tragedy throughout their short history, \
 	Facing scrutiny, judgement and even genocide in the past. Wounding many tiefling psyche \
 	and leading to most seeking a solitary life outside the watchful eyes of others. \
 	Tiefling cannot reproduce with mortals, and so no half-breed exists. \
 	Tiefling tend to be extremely perceptive and paranoid, as luck is rarely on their side \
 	and their unique biology makes them extremely susceptible to injury."
+
+	string_to_replace_skintone_on_charpref = "Progenitor"
+
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = list("mcolor" = "FFF", "ears" = "ElfW", "tail_human" = "TiebTail", "horns" = "TiebHorns")
@@ -92,12 +95,12 @@
 	return TRUE
 
 /datum/species/tieberian/get_skin_list()
-	return sortList(list(
+	return list(
 	"Castillian" = "cc5757",
-	"Devil" = "ff0000",
-	"Wicked" = "D2042D",
-	"Gypsy" = "a23737"
-	))
+	"Unknown" = "ff0000",
+	"Succubus" = "D2042D",
+	"Incubus" = "a23737"
+	)
 
 /datum/species/tieberian/get_hairc_list()
 	return sortList(list(

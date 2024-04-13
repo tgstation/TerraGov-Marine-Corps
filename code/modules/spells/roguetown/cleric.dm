@@ -33,6 +33,9 @@
 
 // Cleric Spell Spawner
 /datum/devotion/cleric_holder/proc/grant_spells_priest(mob/living/carbon/human/H)
+	if(!H || !H.mind)
+		return
+
 	var/datum/patrongods/A = H.PATRON
 	var/spelllist = list(A.t0, A.t1, A.t2, A.t3)
 	for(var/C in spelllist)
@@ -41,6 +44,9 @@
 	update_devotion(300, 900)
 
 /datum/devotion/cleric_holder/proc/grant_spells(mob/living/carbon/human/H)
+	if(!H || !H.mind)
+		return
+
 	var/datum/patrongods/A = H.PATRON
 	var/spelllist = list(A.t0, A.t1)
 	level = CLERIC_T1
@@ -66,8 +72,6 @@
 /obj/effect/proc_holder/spell/invoked/heal/lesser/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(target == user)
-			return FALSE
 		if(get_dist(user, target) > 7)
 			return FALSE
 		if(target.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
@@ -147,7 +151,7 @@
 	else
 		return FALSE
 
-/obj/effect/proc_holder/spell/targeted/sacred_flame_rogue
+/obj/effect/proc_holder/spell/invoked/sacred_flame_rogue
 	name = "Sacred Flame"
 	overlay_state = "sacredflame"
 	releasedrain = 30
@@ -166,18 +170,30 @@
 	charge_max = 5 SECONDS
 	miracle = TRUE
 	devotion_cost = -45
-	include_user = 0
-	max_targets = 1
 
-/obj/effect/proc_holder/spell/targeted/sacred_flame_rogue/cast(list/targets, mob/user = usr)
-	for(var/mob/living/L in targets)
-		user.visible_message("<font color='yellow'>[user] points at [L]/</font>")
+/obj/effect/proc_holder/spell/invoked/sacred_flame_rogue/cast(list/targets, mob/user = usr)
+	if(isliving(targets[1]))
+		var/mob/living/L = targets[1]
+		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
-			continue
+			return FALSE
 		L.adjust_fire_stacks(5)
 		L.IgniteMob()
-		sleep(40)
-		L.ExtinguishMob()
+		addtimer(CALLBACK(L, /mob/living/proc/ExtinguishMob), 4 SECONDS)
+		return TRUE
+
+	// Spell interaction with ignitable objects (burn wooden things, light torches up)
+	else if(isobj(targets[1]))
+		var/obj/O = targets[1]
+		if(O.fire_act())
+			user.visible_message("<font color='yellow'>[user] points at [O], igniting it with sacred flames!</font>")
+			return TRUE
+		else
+			to_chat(user, "<span class='warning'>You point at [O], but it fails to catch fire.</span>")
+			return FALSE
+
+	else
+		return FALSE
 
 /obj/effect/proc_holder/spell/invoked/revive
 	name = "Anastasis"
