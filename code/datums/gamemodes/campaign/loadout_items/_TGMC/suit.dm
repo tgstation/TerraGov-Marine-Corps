@@ -11,6 +11,7 @@
 /datum/loadout_item/suit_slot/empty
 	name = "no suit"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -33,7 +34,7 @@
 
 
 /datum/loadout_item/suit_slot/light_shield
-	name = "Light shielded armor"
+	name = "L shield armor"
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection."
 	ui_icon = "light_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield
@@ -65,7 +66,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/medium_shield
-	name = "Medium shielded armor"
+	name = "M shield armor"
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	ui_icon = "medium_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield
@@ -97,7 +98,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_shield
-	name = "Heavy shielded armor"
+	name = "H shield armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	ui_icon = "heavy_armour_shield"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
@@ -111,14 +112,16 @@
 	loadout_item_flags = null
 
 /datum/loadout_item/suit_slot/heavy_surt
-	name = "Heavy Surt armor"
+	name = "H Surt armor"
 	desc = "Heavy armor with a Surt fireproof module. Provides excellent protection and almost total fire immunity, but has poor mobility."
+	ui_icon = "heavy_armour"
 	req_desc = "Requires a FL-84 flamethrower."
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	jobs_supported = list(SQUAD_MARINE)
+	item_whitelist = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/heavy_tyr
-	name = "Heavy Tyr armor"
+	name = "H Tyr armor"
 	desc = "Heavy armor with a Tyr extra armor module. Provides incredible protection at the cost of with further reduced mobility."
 	req_desc = "Requires a ALF-51B or SMG-25."
 	ui_icon = "tyr"
@@ -134,15 +137,20 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
 
+/datum/loadout_item/suit_slot/heavy_tyr/universal
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = NONE
+	item_whitelist = null
+
 /datum/loadout_item/suit_slot/medium_valk
-	name = "Medium Valkyrie armor"
+	name = "M Valkyrie armor"
 	desc = "Medium armor with a Valkyrie automedical module. Provides respectable protection, powerful automatic medical assistance, but modest mobility."
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/valk
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_valk
-	name = "Heavy Valkyrie armor"
+	name = "H Valkyrie armor"
 	desc = "Heavy armor with a Valkyrie automedical module. Provides excellent protection, powerful automatic medical assistance, but reduced mobility."
 	ui_icon = "heavy_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
@@ -150,14 +158,14 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/white_dress
-	name = "White dress jacket"
+	name = "Dress jacket"
 	desc = "The perfect white jacket to go with your white dress uniform. WARNING: Incompatible with almost all weapons."
 	item_typepath = /obj/item/clothing/suit/white_dress_jacket
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 //corpsman
 /datum/loadout_item/suit_slot/medium_mimir
-	name = "Medium Mimir armor"
+	name = "M Mimir armor"
 	desc = "Medium armor with a Mimir environmental protection module. Provides respectable armor and total immunity to chemical attacks, and improved radiological protection. Has modest mobility."
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/mimir
@@ -170,7 +178,7 @@
 
 //engineer
 /datum/loadout_item/suit_slot/medium_engineer
-	name = "Medium armor"
+	name = "M armor"
 	desc = "Medium armor with engineering storage. Provides balanced armor and mobility."
 	ui_icon = "medium_armour"
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/engineer

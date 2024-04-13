@@ -59,6 +59,11 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Ranger armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/ranger
 
+/obj/item/armor_module/armor/chest/marine/mjolnir
+	name = "\improper Jaeger Pattern Mjolnir chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Mjolnir armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/mjolnir
+
 // Hardsuit Chest Plates
 /obj/item/armor_module/armor/chest/marine/hardsuit
 	icon_state_variants = list(

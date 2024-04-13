@@ -162,29 +162,22 @@
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 
-/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
-	. = ..()
-	update_helmet_overlays()
-
-/obj/item/clothing/head/helmet/marine/on_pocket_removal()
-	. = ..()
-	update_helmet_overlays()
-
 ///Updates the helmet_overlays list, inserting and removing images from it as necesarry
-/obj/item/clothing/head/helmet/marine/proc/update_helmet_overlays()
+/obj/item/clothing/head/helmet/marine/update_overlays()
+	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 
-	if(length(armor_storage.storage.contents) && (marine_helmet_flags & HELMET_GARB_OVERLAY))
+	if(length(armor_storage.contents) && (marine_helmet_flags & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
 			var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
-			var/obj/O = armor_storage.storage.contents[1]
+			var/obj/O = armor_storage.contents[1]
 			if(O.type in allowed_helmet_items)
 				var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I

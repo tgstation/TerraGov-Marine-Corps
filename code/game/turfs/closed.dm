@@ -111,10 +111,6 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-
-/turf/closed/mineral/smooth/darkfrostwall/cuttable
-	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	name = "tough rock"
@@ -163,6 +159,16 @@
 	walltype = "cave"
 	base_icon_state = "cave"
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+//basalt mineral wall
+/turf/closed/mineral/smooth/basalt
+	icon = 'icons/turf/walls/basaltwall.dmi'
+	icon_state = "basaltwall-0"
+	base_icon_state = "basaltwall"
+
+/turf/closed/mineral/smooth/basalt/indestructible
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
