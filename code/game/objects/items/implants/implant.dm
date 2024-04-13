@@ -39,7 +39,8 @@
 
 
 /obj/item/implant/Destroy(force)
-	unimplant()
+	if(implanted)
+		unembed_ourself()
 	QDEL_NULL(activation_action)
 	part?.implants -= src
 	return ..()
@@ -49,6 +50,10 @@
 
 /obj/item/implant/is_beneficial_implant()
 	return implant_flags & BENEFICIAL_IMPLANT
+
+/obj/item/implant/unembed_ourself()
+	. = ..()
+	unimplant()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
@@ -87,10 +92,7 @@
 	activation_action?.give_action(target)
 	return TRUE
 
-/obj/item/implant/unembed_ourself()
-	. = ..()
-	unimplant()
-
+///Cleans up on being removed from a mob
 /obj/item/implant/proc/unimplant()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!implanted)
@@ -99,9 +101,7 @@
 	if(implant_flags & ACTIVATE_ON_HEAR)
 		UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	implanted = FALSE
-	part.implants -= src
 	part = null
-	forceMove(get_turf(implant_owner))
 	implant_owner = null
 
 ///Returns info about a implant concerning its usage and such
