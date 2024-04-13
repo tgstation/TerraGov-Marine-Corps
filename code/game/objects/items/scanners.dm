@@ -299,6 +299,12 @@ REAGENT SCANNER
 				"icon" = "window-close",
 				"color" = "teal"
 				))
+		if(patient.status_flags & XENO_HOST)
+			advice += list(list(
+				"advice" = "Alien embryo detected. Immediate surgical intervention advised.",
+				"icon" = "window-close",
+				"color" = "purple"
+				))
 		if(unknown_implants)
 			advice += list(list(
 				"advice" = "Recommend that the patient does not move - embedded objects.",
