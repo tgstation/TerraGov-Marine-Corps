@@ -95,12 +95,6 @@
 			"icon_state": "xenonaut"
 		}
 	],
-	"maska": [
-		{
-			"type": "hyperscale",
-			"icon_state": "maska"
-		}
-	],
 	"eva_visor_old": [
 		{
 			"type": "hyperscale",
