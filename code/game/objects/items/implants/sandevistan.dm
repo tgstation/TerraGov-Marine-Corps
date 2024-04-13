@@ -12,7 +12,7 @@
 	///How long its been on for. Slowly goes down over time
 	var/time_on = 0
 	///If you're pushing it to the edge
-	var/hasexerted = FALSE
+	var/exerted = FALSE
 	///modifier to multiplier on move delay and do_after
 	var/action_modifier = 0.3
 	///Movement speed modifier
@@ -40,37 +40,55 @@
 		icon_state = initial(icon_state)
 
 /obj/item/implant/sandevistan/process()
-	if(active)
-		if(implant_owner.stat != CONSCIOUS)
-			toggle(TRUE)
-		time_on ++
-		switch(time_on)
-			if(10 to 25)
-				if(COOLDOWN_CHECK(src, alertcooldown))
-					to_chat(implant_owner, span_alert("You feel your spine tingle."))
-					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-				implant_owner.hallucination += 5
-				implant_owner.adjustFireLoss(1)
-			if(26 to 50)
-				if(COOLDOWN_CHECK(src, alertcooldown) || !hasexerted)
-					to_chat(implant_owner, span_userdanger("Your spine and brain feel like they're burning!"))
-					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
-				hasexerted = TRUE
-				implant_owner.set_drugginess(10)
-				implant_owner.hallucination += 100
-				implant_owner.adjustFireLoss(5)
-			if(51 to INFINITY)//no infinite abuse
-				to_chat(implant_owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
-				implant_owner.gib()
-	else
-		time_on -= 0.5
-		if(time_on <= 0)
-			time_on = 0
-			STOP_PROCESSING(SSfastprocess, src)
+	if(!active)
+		time_on -= 0.1 SECONDS
+		if(time_on > 0)
+			return
+		time_on = 0
+		STOP_PROCESSING(SSfastprocess, src)
+		if(exerted)
+			to_chat(implant_owner, "Your brains feels normal again.")
+			exerted = FALSE
+		return
 
-	if(hasexerted && time_on == 0)
-		to_chat(implant_owner, "Your brains feels normal again.")
-		hasexerted = FALSE
+	if(implant_owner.stat != CONSCIOUS)
+		toggle(TRUE)
+	time_on += 0.2 SECONDS
+	switch(time_on)
+		if(1 SECONDS to 2 SECONDS)
+			if(COOLDOWN_CHECK(src, alertcooldown))
+				to_chat(implant_owner, span_alert("You feel your spine tingle."))
+				COOLDOWN_START(src, alertcooldown, 10 SECONDS)
+			implant_owner.hallucination += 2
+			implant_owner.adjustFireLoss(1)
+		if(2.1 SECONDS to 5 SECONDS)
+			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
+				to_chat(implant_owner, span_userdanger("Your spine and brain feel like they're burning!"))
+				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
+			exerted = TRUE
+			implant_owner.set_drugginess(10)
+			implant_owner.hallucination += 10
+			if(time_on > 3.6 SECONDS)
+				implant_owner.adjustCloneLoss(1)
+				implant_owner.adjustFireLoss(1)
+			else
+				implant_owner.adjustFireLoss(2)
+		if(5.1 SECONDS to INFINITY)//no infinite abuse
+			to_chat(implant_owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
+			implant_owner.gib()
+			return
+
+	if(!exerted)
+		return
+	var/side_effect_roll = rand(1, 100) + (time_on * 0.5)
+	if((side_effect_roll > 90) && iscarbon(implant_owner))
+		var/mob/living/carbon/carbon_owner = implant_owner
+		carbon_owner.emote("me", 1, "coughs up blood!")
+		carbon_owner.drip(10)
+	if(side_effect_roll > 96)
+		implant_owner.Stagger(1 SECONDS)
+	if(side_effect_roll > 126)
+		implant_owner.Stun(0.5 SECONDS)
 
 ///Turns it off or on
 /obj/item/implant/sandevistan/proc/toggle(silent = FALSE)
