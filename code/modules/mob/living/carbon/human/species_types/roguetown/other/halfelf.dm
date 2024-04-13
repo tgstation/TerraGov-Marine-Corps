@@ -11,8 +11,11 @@
 	worry that someday, it may be impossible to distinguish the two species. \
 	Half-Elves are extremely diverse, as they bring in human and elvish culture\
 	and it is widely considered that Half-Elf culture is simply a melting pot of \
-	various other cultures condensing into one vibrant entity.\
-	Due to their heritage, Half-Elves dont tend to gain or suffer from any racial traits..."
+	various other cultures condensing into one vibrant entity. \
+	Due to their heritage, Half-Elves tend to gain racial traits depending on how strong their fathers, or mothers, genes were. \
+	Half-Elves also typically try to find identity in one of two regions they have similarities towards."
+
+	string_to_replace_skintone_on_charpref = "Identifies As"
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
@@ -49,12 +52,13 @@
 	return TRUE
 
 /datum/species/human/halfelf/get_skin_list()
-	return sortList(list(
-	"skin1" = "ffe0d1",
-	"skin2" = "fcccb3",
-	"skin3" = "edc6b3",
-	"skin4" = "e2b9a3"
-	))
+	return list(
+	"Timber-Gronn" = "ffe0d1",
+	"Giza-Azure" = "fcccb3",
+	"Walnut-Stine" = "edc6b3",
+	"Etrustcan-Dandelion" = "e2b9a3",
+	"Ebon-Born" = "5a4a41"
+	)
 
 
 /datum/species/human/halfelf/get_hairc_list()

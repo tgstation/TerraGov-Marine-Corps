@@ -5,6 +5,18 @@
 	name = "Dark Elf"
 	id = "elf"
 	desc = "<b>Dark Elf</b><br>\
+	Elves, are a generic term for tall, pointy-eared humanoids\
+    Of whom trace their original heritage to the ancient mysterious Snow Elves. \
+	These ones are of a dark complexion and originate mostly from the underdark. \
+    Their culture and entire lives normally involve serving Lolth, the spider queen. \
+    Previously rare but in recent times, more and more dark elfs can be seen on the surface\
+    It's rumored that Lolth has been weakened and her power wanes over the dark elfs. \
+    The ones who aren't overtly cruel and bloodthirsty; tend to flee to the surface lest they get culled by their own society, \
+    While some more sinister ones abandon Lolth in search of new and greater power."
+
+/*
+	Former RT Desc: These guys were undead which doesn't really fit considering now you have a ton of them walking around.
+
 	Descending from a perversion of necromancy, Dark Elves are a unique species \
 	that have only recently found themselves a staple of daily life. \
 	They boast a proud, beauty-centric culture that demands only the finest \
@@ -14,7 +26,11 @@
 	Dark Elves tend to be extremely arrogant of others plights, with selfishness\
 	being seen as a massive boon in their society. They are academic and usually well taught\
 	through are noted to suffer from their biology, which tends to be weak and falls apart\
-	without careful upkeep..."
+	without careful upkeep...\
+	They typically trace their beginnings to how their progenator died before being raised."
+*/
+	string_to_replace_skintone_on_charpref = "Origin City-State"
+
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = list("mcolor" = "FFF", "ears" = "ElfW", "wings" = "None")
@@ -44,7 +60,7 @@
 	OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 	OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0))
 	specstats = list("strength" = -2, "perception" = -1, "intelligence" = 1, "constitution" = -1, "endurance" = 1, "speed" = 2, "fortune" = 0)
-	specstats_f = list("strength" = -1, "perception" = -2, "intelligence" = 2, "constitution" = -1, "endurance" = 1, "speed" = 1, "fortune" = 0)
+	specstats_f = list("strength" = 1, "perception" = -1, "intelligence" = 2, "constitution" = 0, "endurance" = 1, "speed" = 1, "fortune" = 0)
 	enflamed_icon = "widefire"
 	possible_faiths = list(FAITH_SPIDER)
 
@@ -68,14 +84,15 @@
 	return TRUE
 
 /datum/species/elf/dark/get_skin_list()
-	return sortList(list(
-	"skin1" = "9796a9",
-	"skin2" = "897489",
-	"skin3" = "938f9c",
-	"skin4" = "737373",
-	"skin5" = "6a616d",
-	"skin6" = "5f5f70"
-	))
+	return list(
+	"Commorah" = "9796a9",
+	"Gloomhaven" = "897489",
+	"Darkpila" = "938f9c",
+	"Sshanntynlan" = "737373",
+	"Llurth Dreir" = "6a616d",
+	"Tafravma" = "5f5f70",
+	"Yuethindrynn" = "2F2F38",
+	)
 
 /datum/species/elf/dark/get_hairc_list()
 	return sortList(list(

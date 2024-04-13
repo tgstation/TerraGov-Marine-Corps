@@ -351,8 +351,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(use_skintones)
 
 //				dat += APPEARANCE_CATEGORY_COLUMN
+				var/skintone_word_swap = "Skin Tone" // Both the skintone names and the word swap here is useless fluff
+				if(pref_species.string_to_replace_skintone_on_charpref) // If they have a string in there on that var
+					skintone_word_swap = pref_species.string_to_replace_skintone_on_charpref // It is now in place of the word Skin Tone which will be the default.
 
-				dat += "<b>Skin Tone: </b><a href='?_src_=prefs;preference=s_tone;task=input'>Change </a>"
+				dat += "<b>[skintone_word_swap]: </b><a href='?_src_=prefs;preference=s_tone;task=input'>Change </a>"
 //				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SKIN_TONE]'>[(randomise[RANDOM_SKIN_TONE]) ? "Lock" : "Unlock"]</A>"
 				dat += "<br>"
 

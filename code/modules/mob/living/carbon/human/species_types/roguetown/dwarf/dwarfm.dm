@@ -16,7 +16,11 @@
 	the various challenges they face. Even if, in some irony: this behaviour \
 	leads the race towards technological advacement as they continue \
 	to improve their craft through powerful mechanization and forging \
-	Dwarves are hearty, but are not known for their speed or eyesight..."
+	Dwarves are hearty, but are not known for their speed or eyesight... \
+	Each dwarf hails from a ancient fortress named after the most plentiful mineral."
+
+	string_to_replace_skintone_on_charpref = "Fortress Origin"
+
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,YOUNGBEARD,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
@@ -63,14 +67,16 @@
 	return message_language.spans
 
 /datum/species/dwarf/mountain/get_skin_list()
-	return sortList(list(
-	"skin1" = "ffe0d1",
-	"skin2" = "fcccb3",
-	"skin3" = "edc6b3",
-	"skin4" = "e2b9a3",
-	"skin5" = "d9a284",
-	"skin6" = "c69b83"
-	))
+	return list(
+	"Platinum" = "ffe0d1",
+	"Aurum" = "fcccb3",
+	"Quicksilver" = "edc6b3",
+	"Brass" = "e2b9a3",
+	"Iron" = "d9a284",
+	"Malachite" = "c69b83",
+	"Obsidian" = "3b2e27",
+	"Brimstone" = "271f1a"
+	)
 
 /datum/species/dwarf/mountain/get_hairc_list()
 	return sortList(list(
