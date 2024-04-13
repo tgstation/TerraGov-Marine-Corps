@@ -1,0 +1,13 @@
+{
+	"helm":[
+	{
+		"type": "hyperscale",
+		"icon_state": "helm"
+		"blend_mode": "overlay"
+	},
+	{
+		"type": "icon_state",
+		"icon_state": "maska_visor",
+		"blend_mode": "overlay"
+	}]
+}
