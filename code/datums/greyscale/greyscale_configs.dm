@@ -178,6 +178,7 @@
 	prefix = "heavy_"
 
 /datum/greyscale_config/xenonaut/helm/maska
+	json_config = 'code/datums/greyscale/json_configs/xenonaut_maska.json'
 	prefix = "maska_"
 
 /datum/greyscale_config/robot
