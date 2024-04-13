@@ -608,6 +608,7 @@
 #include "code\datums\keybinding\client.dm"
 #include "code\datums\keybinding\communication.dm"
 #include "code\datums\keybinding\custom_emote.dm"
+#include "code\datums\keybinding\cyberware.dm"
 #include "code\datums\keybinding\emote.dm"
 #include "code\datums\keybinding\human.dm"
 #include "code\datums\keybinding\item_toggles.dm"
