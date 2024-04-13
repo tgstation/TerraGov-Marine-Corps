@@ -2,7 +2,7 @@
 	"helm":[
 	{
 		"type": "hyperscale",
-		"icon_state": "helm"
+		"icon_state": "helm",
 		"blend_mode": "overlay"
 	},
 	{
