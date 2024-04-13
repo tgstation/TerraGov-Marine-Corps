@@ -460,6 +460,15 @@
 	tgui_panel?.stop_music()
 
 
+/client/verb/toggle_fullscreen()
+	set name = "Toggle Fullscreen"
+	set category = "OOC"
+
+	var/datum/preferences/prefs = src.prefs
+	prefs.fullscreen_mode = !prefs.fullscreen_mode
+	set_fullscreen(prefs.fullscreen_mode)
+
+
 /client/verb/tracked_playtime()
 	set category = "OOC"
 	set name = "View Tracked Playtime"
