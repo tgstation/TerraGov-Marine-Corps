@@ -142,7 +142,7 @@
 		G.kill_hugger()
 		dropItemToGround(G)
 
-
+///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()
 	if(!on_fire)
 		return FALSE
@@ -170,6 +170,7 @@
 		return
 	update_fire()
 
+///Update fire stacks on life tick
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
 		fire_stacks++ //If we've doused ourselves in water to avoid fire, dry off slowly
@@ -219,6 +220,7 @@
 		return
 	IgniteMob()
 
+///Try and remove fire from ourselves
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
