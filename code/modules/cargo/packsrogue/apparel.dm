@@ -6,7 +6,7 @@
 
 /datum/supply_pack/rogue/apparel/hoods
 	name = "Shoulder Hood"
-	cost = 50
+	cost = 30
 	contains = list(/obj/item/clothing/head/roguetown/roguehood/random,
 					/obj/item/clothing/head/roguetown/roguehood/random,
 					/obj/item/clothing/head/roguetown/roguehood/random)
