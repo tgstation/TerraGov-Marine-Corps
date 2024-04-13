@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_gas_mask_sound()
 	set category = "Preferences"
-	set name = "Toggle Gas Mask sounds."
+	set name = "Toggle Gas Mask sounds"
 
 	usr.client.prefs.toggles_sound ^= SOUND_GAS_MASK
 	usr.client.prefs.save_preferences()

@@ -119,6 +119,13 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTC spawned: [GLOB.round_statistics.total_humans_created[FACTION_NTC]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the NTC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
+/datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			. = "Eliminate all hostile forces in the AO, good luck team."
+		if(FACTION_SOM)
+			. = "Eliminate the TerraGov imperialists in the AO, glory to Mars!"
+
 ///round timer
 /datum/game_mode/hvh/combat_patrol/proc/set_game_timer()
 	if(!iscombatpatrolgamemode(SSticker.mode))

@@ -9,7 +9,7 @@
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -1.25

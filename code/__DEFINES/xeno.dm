@@ -61,7 +61,6 @@
 #define PUPPET_RECALL "recall puppet"
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
 #define PUPPET_ATTACK "seek and attack order"
-#define PUPPET_SCOUT "scouting order"
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
@@ -154,13 +153,6 @@ GLOBAL_LIST_INIT(resin_special_images_list, list(
 		FIREPROOF_WALL = image('icons/Xeno/actions.dmi', icon_state = FIREPROOF_WALL),
 		HARDY_WALL = image('icons/Xeno/actions.dmi', icon_state = HARDY_WALL)
 ))
-
-//List of puppeteer order images
-GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
-		PUPPET_ATTACK = image('icons/Xeno/actions.dmi', icon_state = "enrage"),
-		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "66"),
-		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
-		))
 
 //List of puppeteer pheromone images
 GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(

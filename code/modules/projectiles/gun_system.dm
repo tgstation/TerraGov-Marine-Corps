@@ -1309,9 +1309,11 @@
 		(!((loc == user) || (master_gun?.loc == user)) || (new_mag.loc != user)))
 			to_chat(user, span_warning("You need to be carrying both [src] and [new_mag] to connect them!"))
 			return FALSE
-		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
+		var/reload_delay = get_magazine_reload_delay(new_mag)
+		if(reload_delay > 0 && user && !force)
+			reload_delay -= reload_delay * 0.25 * min(gun_user.skills.getRating(gun_skill_category), 2)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
-			if(!do_after(user, get_magazine_reload_delay(new_mag), TRUE, user))
+			if(!do_after(user, reload_delay, NONE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return FALSE
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
@@ -1522,7 +1524,7 @@
 		return
 	make_casing()
 
-///Generates a casing.
+///Generates a casing
 /obj/item/weapon/gun/proc/make_casing(obj/item/magazine, after_fire = TRUE)
 	if(!type_of_casings || (current_chamber_position > length(chamber_items) && after_fire) || (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)))
 		return
@@ -1687,6 +1689,7 @@
 				//						   	\\
 //----------------------------------------------------------
 
+///Checks if the gun can be fired
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
@@ -1736,19 +1739,9 @@
 		return FALSE
 	return TRUE
 
+///Checks if the gun is on cooldown
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
-	if(user)
-		if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
-			added_delay += 3 //untrained humans fire more slowly.
-		else
-			switch(gun_skill_category)
-				if(SKILL_HEAVY_WEAPONS)
-					if(fire_delay > 1 SECONDS) //long delay to fire
-						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(SKILL_SMARTGUN)
-					if(user.skills.getRating(gun_skill_category) < 0)
-						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 	var/delay = last_fired + added_delay
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
@@ -1760,6 +1753,7 @@
 		to_chat(user, span_warning("[src] is not ready to fire again!"))
 	return TRUE
 
+///Plays firing sound when firing
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
 	var/firing_sndfreq = CHECK_BITFIELD(gun_features_flags, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((max(rounds, 1) / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
@@ -1771,7 +1765,7 @@
 		return
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
-
+///Applies gun modifiers to a projectile before firing
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
@@ -1845,6 +1839,7 @@
 			if(shooter_human.marksman_aura)
 				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
 
+///Generates screenshake if the gun has recoil
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED) || !gun_user)
 		return TRUE
@@ -1870,12 +1865,14 @@
 		recoil_camera(gun_user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
 		return TRUE
 
+///Turns off gun fire lighting
 /obj/item/weapon/gun/proc/reset_light_range(lightrange)
 	set_light_range(lightrange)
 	set_light_color(initial(light_color))
 	if(lightrange <= 0)
 		set_light_on(FALSE)
 
+///Removes muzzle flash viscontents
 /obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash

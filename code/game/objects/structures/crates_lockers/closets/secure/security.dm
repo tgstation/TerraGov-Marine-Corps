@@ -10,7 +10,6 @@
 
 
 /obj/structure/closet/secure_closet/captains/PopulateContents()
-	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/captain(src)
 	else
@@ -42,7 +41,6 @@
 
 
 /obj/structure/closet/secure_closet/hop/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/suit/armor/vest(src)
 	new /obj/item/clothing/head/helmet(src)
@@ -63,7 +61,6 @@
 
 
 /obj/structure/closet/secure_closet/hop2/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/dress/dress_hop(src)
 	new /obj/item/clothing/under/dress/dress_hr(src)
@@ -90,7 +87,6 @@
 	icon_off = "hossecureoff"
 
 /obj/structure/closet/secure_closet/hos/PopulateContents()
-	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
 	else
@@ -126,7 +122,6 @@
 
 
 /obj/structure/closet/secure_closet/warden/PopulateContents()
-	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
 	else
@@ -159,7 +154,6 @@
 
 
 /obj/structure/closet/secure_closet/marshal/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/suit/storage/CMB(src)
 	new /obj/item/clothing/under/CM_uniform(src)
 	new /obj/item/storage/backpack/security(src)
@@ -179,7 +173,6 @@
 
 
 /obj/structure/closet/secure_closet/security/PopulateContents()
-	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
 	else
@@ -200,23 +193,19 @@
 
 
 /obj/structure/closet/secure_closet/security/cargo/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/tie/armband/cargo(src)
 
 
 /obj/structure/closet/secure_closet/security/engine/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/tie/armband/engine(src)
 	new /obj/item/encryptionkey/engi(src)
 
 
 /obj/structure/closet/secure_closet/security/science/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/tie/armband/science(src)
 
 
 /obj/structure/closet/secure_closet/security/med/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/tie/armband/medgreen(src)
 	new /obj/item/encryptionkey/med(src)
 
@@ -253,7 +242,6 @@
 
 
 /obj/structure/closet/secure_closet/detective/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/under/rank/det(src)
 	new /obj/item/clothing/under/rank/det/grey(src)
 	new /obj/item/clothing/suit/storage/det_suit(src)
@@ -291,7 +279,6 @@
 
 
 /obj/structure/closet/secure_closet/injection/PopulateContents()
-	. = ..()
 	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
 	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
 
@@ -315,7 +302,6 @@
 
 
 /obj/structure/closet/secure_closet/brig/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/under/rank/prisoner(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/radio/headset(src)
@@ -331,7 +317,6 @@
 
 
 /obj/structure/closet/secure_closet/courtroom/PopulateContents()
-	. = ..()
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/paper/Court (src)
 	new /obj/item/paper/Court (src)

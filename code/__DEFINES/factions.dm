@@ -88,6 +88,24 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_MOTHELLIAN = NTC_LOYALIST_IFF,
 ))
 
+///Acronyms for each faction, or the shortest name possible
+GLOBAL_LIST_INIT(faction_to_acronym, list(
+	FACTION_NEUTRAL = "Neutral",
+	FACTION_TERRAGOV = "TGMC",
+	FACTION_SPECFORCE = "SRF",
+	FACTION_NANOTRASEN = "PMC",
+	FACTION_FREELANCERS = "FRE",
+	FACTION_CLF = "CLF",
+	FACTION_DEATHSQUAD = "Deathsquad",
+	FACTION_IMP = "IMP",
+	FACTION_UNKN_MERCS = "Unknown",
+	FACTION_SECTOIDS = "Sectoids",
+	FACTION_SOM = "SOM",
+	FACTION_ICC = "ICC",
+	FACTION_USL = "USL",
+	FACTION_PIRATE = "Pirates",
+))
+
 ///List of correspond factions to data hud
 GLOBAL_LIST_INIT(faction_to_data_hud, list(
 	FACTION_NTC = DATA_HUD_SQUAD_TERRAGOV,

@@ -174,9 +174,9 @@
   - rscadd: Added glass to each ship CIC and engineering rooms
   - rscadd: Added more materials to the debugabus engineering room
 2024-04-10:
-  Helg2:
-  - bugfix: deleted some garbage on Big Red.
   Lumipharon:
+  - balance: Gun skills no longer effect fire delay for semi auto firing
+  - balance: Gun skills effect reload delay for magazines that have one
   - qol: 'Campaign: Added some extra context around attrition and mission selection
       for faction leaders'
   - qol: 'Campaign: Deploy points have their corrosponding number on the sprite'
@@ -188,10 +188,84 @@
       and the default charges on the teleporter'
   - bugfix: 'Campaign: Fixed the incorrect mortar disabler being applied to TGMC on
       NT Base Rescue'
-  Scarlet-Oduko:
-  - qol: Allows grenades to be self stickied, instead of having to be applies by others
-  - balance: Self-applied stickies allowing one to use them directly
-  ZeWaka:
-  - qol: Banelings can no longer explode before shutters unless they have a pod placed.
-  ivanmixo:
-  - bugfix: You cannot melt sticky resin anymore
+  - rscadd: 'Campaign: Deploy and outro messages are now specific to each mission'
+  - code_imp: reworked how hvh deploy points work
+  - bugfix: You can no longer bypass innate order checks by using a keybind
+  coldironwarrior:
+  - balance: CMOs now heal an additional 7.5 damage per use of sutures
+  - code_imp: suture healing now scales with a divisor based off max med skill of
+      5 instead of 4, and base_healing is upped to 37.5 to accommodate skill 5 having
+      better healing. no changes to other skill levels.
+  lbnesquik:
+  - qol: made reqtorio machines direction indicators much easier to read
+  - bugfix: fixed AI's not being able to use the overwatch camera jump
+  - code_imp: Removed useless comment in the AI hologram code
+  - admin: Made the Reload Admins button default to No
+  - qol: Made it possible to read the amount of fuel in jerry cans
+  novaepee:
+  - rscadd: Mjolnir, a new armor
+2024-04-11:
+  Barnet2:
+  - bugfix: Fixes surgery blood loss occuring when bleeders are clamped
+  - bugfix: Fixes being able to clamp bleeders infinitely
+  Dikozda:
+  - rscdel: Removes puppeteer scout order and order radial menu.
+  - qol: Puppeteer attack and recall orders are now normal abilitys and have keybinds.
+  Lumipharon:
+  - bugfix: fixed a few campaign runtimes
+  - rscadd: 'Campaign: Added a SOM raiding base mission'
+  - qol: 'Campaign: Made some alterations to the home base maps'
+  - balance: Swapping with an illusion via mirage now breaks stealth
+  - bugfix: Mirage no longer lets you teleport across z-levels
+  - bugfix: fixed throwing rock pillars now applying the cooldown in many cases
+  Naaanii:
+  - rscadd: Captain now spawns with Captain's cloak and Captain's Beret.
+  - rscadd: Adds Captain's cloak red to Captain's locker.
+  - rscdel: Removes Captain's cloak from locker (Captain spawns with it now).
+  TiviPlus:
+  - rscadd: Tank riders can now hold on as long as at least one hand is free
+  lbnesquik:
+  - qol: Made it clearer that the scans on medHud humans inspections refers to body
+      scans, not handheld scanners.
+  - spellcheck: fixed missing capitalization regarding 2 tips
+  - spellcheck: removed superfluous dot at the end of Gas Mask preference
+  - code_imp: Go back to the line for some code.
+  - qol: Increased the AI holopad notification noise
+  - qol: The hand labeler now goes in and out to signify if it is open or not.
+  - bugfix: Fixed the AI carp holopad choice being called holo4
+  - bugfix: Fix the autopsy scanner not having an icon. I took the one from old polaris,
+      or old bay.
+  - bugfix: Fixed Asphalt  being called aasphalt
+  - code_imp: Renamed the OB laser typepath to not have capitals
+2024-04-12:
+  BraveMole:
+  - qol: Clicking on an opened storage will close it
+  - qol: Clicking on a storage with an item that cannot be inserted in said storage
+      will open it
+  Lumipharon:
+  - bugfix: fixed a couple minor bugs with light fittings
+  - code_imp: Cleaned up some light fitting code
+  - bugfix: You can once again light cigarettes using broken lights, burning turfs,
+      or burning mobs
+  Neocloudy:
+  - qol: Orbital bombardments now play screentext to humans that includes the type
+      of the OB
+  - qol: Send Orders will now include the sender's faction acronym and job
+  - spellcheck: The content of the orbital bombardment announcement is now "Evacuate
+      the impact zone immediately!" instead of "Get out of danger close!"
+  - code_imp: '"faction_to_acronym" global list for getting faction acronyms'
+2024-04-13:
+  Arturlang:
+  - balance: Ups wraith damage from 20 to 24
+  Lumipharon:
+  - balance: 'Campaign: Improved constitution perk unlocks Tyr/Lorica for all jobs'
+  - bugfix: fixed bemo rock count being updated incorrectly
+  - bugfix: fixed xeno turrets causing FF
+  Xander3359:
+  - refactor: Storage refactor
+  Yttriums:
+  - balance: Increased RG220 wield delay from 1.2 to 2.0 seconds
+  blackdav123:
+  - balance: Reduced lascarbine spread mode's effectiveness at range.
+  jonash07:
+  - balance: Made synthetics scannable

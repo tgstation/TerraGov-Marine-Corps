@@ -699,8 +699,8 @@
  */
 /datum/vending_product/proc/attempt_restock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
 	//More accurate comparison between absolute paths.
-	if(isstorage(item_to_stock)) //Nice try, specialists/engis
-		var/obj/item/storage/storage_to_stock = item_to_stock
+	if(item_to_stock.storage_datum) //Nice try, specialists/engis
+		var/datum/storage/storage_to_stock = item_to_stock.storage_datum
 		if(!(storage_to_stock.storage_flags & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
 			user?.balloon_alert(user, "Can't restock containers!")
 			return FALSE
@@ -744,9 +744,11 @@
 				item_to_stock.unwield(user)
 			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-		else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+		// Hey I don't think this code does anything, it looks like it wants to restock things that are inside a storage?
+		// Probably should be running a loop over every item inside the storage, but whatever that's not for this PR
+		else if(item_to_stock.item_flags & IN_STORAGE) //inside a storage item
 			var/obj/item/storage/S = item_to_stock.loc
-			S.remove_from_storage(item_to_stock, user.loc, user)
+			S.storage_datum.remove_from_storage(item_to_stock, user.loc, user)
 
 	qdel(item_to_stock)
 

@@ -1,7 +1,3 @@
-#define PATROL_POINT_RAPPEL_EFFECT "patrol_point_rappel_effect"
-#define RAPPEL_DURATION 0.6 SECONDS
-#define RAPPEL_HEIGHT 128
-
 /obj/structure/patrol_point
 	name = "Patrol start point"
 	desc = "A one way ticket to the combat zone. Shift click to deploy when inside a mech."
@@ -44,7 +40,7 @@
 	if(user.incapacitated() || !Adjacent(user) || user.lying_angle || user.buckled || user.anchored)
 		return
 
-	activate_point(user)
+	activate_point(user, user)
 
 /obj/structure/patrol_point/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(!Adjacent(user))
@@ -52,8 +48,8 @@
 	activate_point(user, mecha_clicker)
 
 ///Handles sending someone and/or something through the patrol_point
-/obj/structure/patrol_point/proc/activate_point(mob/living/user, obj/obj_mover)
-	if(!user && !obj_mover)
+/obj/structure/patrol_point/proc/activate_point(mob/living/user, atom/movable/thing_to_move)
+	if(!thing_to_move)
 		return
 	if(!linked_point)
 		create_link()
@@ -123,30 +119,14 @@
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
-	if(. || !linked_point)
+	if(.)
 		return
-
+	if(!linked_point)
+		create_link()
+		if(!linked_point)
+			to_chat(user, span_warning("This doesn't seem to go anywhere."))
+			return
 	user.forceMove(linked_point.loc)
-
-///Temporarily applies godmode to prevent spawn camping
-/obj/structure/patrol_point/proc/add_spawn_protection(mob/living/user)
-	user.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
-	user.status_flags |= GODMODE
-	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
-
-///Ends the rappel effects
-/obj/structure/patrol_point/proc/end_rappel(mob/living/user, atom/movable/mover, original_layer)
-	mover.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
-	mover.layer = original_layer
-	SEND_SIGNAL(mover, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
-	if(ismecha(mover))
-		new /obj/effect/temp_visual/rappel_dust(linked_point.loc, 3)
-		playsound(linked_point.loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
-	shake_camera(user, 0.2 SECONDS, 0.5)
-
-///Removes spawn protection godmode
-/obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
-	user.status_flags &= ~GODMODE
 
 /obj/structure/patrol_point/tgmc_11
 	id = "NTC_11"
@@ -203,27 +183,3 @@
 /obj/structure/patrol_point/som_24
 	id = "SOM_24"
 	icon_state = "patrol_point_2"
-
-/atom/movable/effect/rappel_rope
-	name = "rope"
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "rope"
-	layer = ABOVE_MOB_LAYER
-	anchored = TRUE
-	resistance_flags = RESIST_ALL
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/atom/movable/effect/rappel_rope/Initialize(mapload)
-	. = ..()
-	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
-	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
-	balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
-	ropeanimation()
-
-/atom/movable/effect/rappel_rope/proc/ropeanimation()
-	flick("rope_deploy", src)
-	addtimer(CALLBACK(src, PROC_REF(ropeanimation_stop)), 2 SECONDS)
-
-/atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
-	flick("rope_up", src)
-	QDEL_IN(src, 5)

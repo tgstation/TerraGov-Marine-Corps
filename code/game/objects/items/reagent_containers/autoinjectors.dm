@@ -12,11 +12,11 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	. = ..()
-	if(!(reagents.total_volume) && is_drawable())
+	if(!(reagents?.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
 		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
-	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE)) // refilling it somehow
+	else if(reagents?.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE)) // refilling it somehow
 		icon_state = initial(icon_state)
 		name = initial(name)
 		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)

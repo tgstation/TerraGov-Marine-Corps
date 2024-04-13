@@ -575,6 +575,16 @@
 	icon_state = "cryo"
 	minimap_color = MINIMAP_AREA_LIVING
 
+/area/mainship/patrol_base/som/medical
+	name = "SOM Medical bay"
+	icon_state = "medical"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/mainship/patrol_base/som/equipment_bay
+	name = "SOM Equipment bay"
+	icon_state = "req"
+	minimap_color = MINIMAP_AREA_REQ
+
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
