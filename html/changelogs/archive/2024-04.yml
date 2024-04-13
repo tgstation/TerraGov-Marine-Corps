@@ -254,3 +254,18 @@
   - spellcheck: The content of the orbital bombardment announcement is now "Evacuate
       the impact zone immediately!" instead of "Get out of danger close!"
   - code_imp: '"faction_to_acronym" global list for getting faction acronyms'
+2024-04-13:
+  Arturlang:
+  - balance: Ups wraith damage from 20 to 24
+  Lumipharon:
+  - balance: 'Campaign: Improved constitution perk unlocks Tyr/Lorica for all jobs'
+  - bugfix: fixed bemo rock count being updated incorrectly
+  - bugfix: fixed xeno turrets causing FF
+  Xander3359:
+  - refactor: Storage refactor
+  Yttriums:
+  - balance: Increased RG220 wield delay from 1.2 to 2.0 seconds
+  blackdav123:
+  - balance: Reduced lascarbine spread mode's effectiveness at range.
+  jonash07:
+  - balance: Made synthetics scannable
