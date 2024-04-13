@@ -180,8 +180,8 @@ window "popupwindow"
 		can-resize = false
 		icon = 'icons\\tg_32.png'
 
-window "preferences_window"
-	elem "preferences_window"
+window "preferencess_window"
+	elem "preferencess_window"
 		type = MAIN
 		pos = 372,150
 		size = 700x530
@@ -192,7 +192,7 @@ window "preferences_window"
 		can-close = false
 		can-resize = false
 		icon = 'icons\\tg_32.png'
-	elem "preferencess_browser"
+	elem "preferences_browser"
 		type = BROWSER
 		pos = 0,0
 		size = 700x530
