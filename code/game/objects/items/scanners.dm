@@ -330,7 +330,7 @@ REAGENT SCANNER
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if((patient.getToxLoss() > 50 || (patient.getOxyLoss() > 50 && patient.blood_volume > 400) || patient.getBrainLoss() >= 10))
+			if((patient.getToxLoss() > 30 || (patient.getOxyLoss() > 30 && patient.blood_volume > 400) || patient.getBrainLoss() >= 10))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of peridaxon.",
 					"icon" = "syringe",
