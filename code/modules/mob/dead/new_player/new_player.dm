@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			return
 
 	if(href_list["refresh"])
-		winshow(src, "preferences_window", FALSE)
+		winshow(src, "preferencess_window", FALSE)
 		src << browse(null, "window=preferences_browser")
 //		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
@@ -769,7 +769,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	src << browse(null, "window=preferences") //closes job selection
 	src << browse(null, "window=mob_occupation")
 	src << browse(null, "window=latechoices") //closes late job selection
-	winshow(src, "preferences_window", FALSE)
+	winshow(src, "preferencess_window", FALSE)
 	src << browse(null, "window=preferences_browser")
 	src << browse(null, "window=lobby_window")
 // Used to make sure that a player has a valid job preference setup, used to knock players out of eligibility for anything if their prefs don't make sense.

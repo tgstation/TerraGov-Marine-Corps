@@ -495,9 +495,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /client/proc/robust_dress_shop()
 
-	var/list/baseoutfits = list("Naked","Custom","As Job...", "As Plasmaman...")
+	var/list/baseoutfits = list("Naked","Custom","As Job...", "As Plasmaman...", "As Rougetown Job...")
 	var/list/outfits = list()
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman)
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman) - typesof(/datum/outfit/job/roguetown)
 
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
@@ -545,6 +545,20 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
+
+	if (dresscode == "As Rougetown Job...")
+		var/list/roguejob_paths = subtypesof(/datum/outfit/job/roguetown)
+		var/list/roguejob_outfits = list()
+		for(var/path in roguejob_paths)
+			var/datum/outfit/O = path
+			if(initial(O.can_be_admin_equipped))
+				roguejob_outfits[initial(O.name)] = path
+
+		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in sortList(roguejob_outfits)
+		dresscode = roguejob_outfits[dresscode]
+		if(isnull(dresscode))
+			return
+
 
 	return dresscode
 

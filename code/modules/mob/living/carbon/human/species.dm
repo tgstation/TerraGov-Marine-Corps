@@ -117,6 +117,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/possible_faiths
 
+	//If you set a word here it swaps out the word skintone when the species is selected on the pref menu
+	var/string_to_replace_skintone_on_charpref = FALSE
+
 ///////////
 // PROCS //
 ///////////

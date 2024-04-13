@@ -15,7 +15,7 @@
 	bypass_lastclass = FALSE
 	whitelist_req = FALSE
 	min_pq = -4
-	give_bank_account = 99999
+	give_bank_account = 10000
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

@@ -4,7 +4,18 @@
 /datum/species/aasimar
 	name = "Aasimar"
 	id = "aasimar"
-	desc = ""
+	desc = "<b>Aasimar</b><br>\
+	Aasimar are born of a rare union between Humans and Angels. \
+	They bear the mark of their celestial touch through many varying physical features. \
+	Their looks resemble the traditional characteristics of whichever of the Gods the Angel parent was associated with. \
+	Most commonly, Aasimar are similar to Humans, albeit taller, and possess uncanny beauty. \
+	They have strangely colored skin and are more physically frail than the average Human. \
+	Because of their upbringing, they make for natural conduits for godly powers. \
+	Rockhills populace holds them with a mixture of uneasy fear or, and respect. \
+	It is also widely believed that an Aasimars death is a bad omen..."
+
+	string_to_replace_skintone_on_charpref = "Crafted With"
+
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
@@ -78,13 +89,17 @@
 	return TRUE
 
 /datum/species/aasimar/get_skin_list()
-	return sortList(list(
+	return list(
 	"Planetar" = "ffd859",
 	"Deva"	   = "b6f1f2",
 	"Solar" = "daeaeb",
-	"Empyrean" = "a9ded1",
-	"Gaeian" = "db874f"
-	))
+	"Empyrea" = "a9ded1",
+	"Gaeia" = "db874f",
+	"Celestial" = "e1c565",
+	"Olympia" = "C7f9cc",
+	"Necral" = "23130c",
+	"Abyssal" = "22577a"
+	)
 
 /datum/species/aasimar/get_hairc_list()
 	return sortList(list(

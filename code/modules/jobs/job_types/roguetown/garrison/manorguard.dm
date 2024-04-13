@@ -4,14 +4,14 @@
 	department_flag = GARRISON
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 2
+	spawn_positions = 6
 
 	allowed_sexes = list("male", "female")
 	allowed_races = list("Humen",
 	"Humen"
 	)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
-	tutorial = "An elite guardsman with extra training. Guard the Lord's fancy things. Protect the nobles."
+	tutorial = "You've trained enough, either you were born into this position or promoted from a Town Guard; You are loyal to the King especially that your pockets are lined with money, and you eat, drink and no longer have woes of working another day to feed yourself."
 	display_order = JDO_CASTLEGUARD
 	whitelist_req = TRUE
 
@@ -36,12 +36,12 @@
 
 /datum/outfit/job/roguetown/manorguard/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/helmet
+	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	cloak = /obj/item/clothing/cloak/stabard/surcoat/guard
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/merc
-	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
+	armor = /obj/item/clothing/suit/roguetown/armor/plate
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	beltl = /obj/item/keyring/guardcastle
 	belt = /obj/item/storage/belt/rogue/leather
