@@ -39,6 +39,15 @@
 	else
 		icon_state = initial(icon_state)
 
+/obj/item/implant/sandevistan/get_data()
+	return {"
+	<b>Implant Specifications:</b><BR>
+	<b>Name:</b> Nanotrasen CDPR Sandevistan Implant<BR>
+	<HR>
+	<b>Implant Details:</b><BR>
+	<b>Function:</b> Upon activation, this implant increases neural impulse speed, allowing the user's brain to process information, and react quicker than would be normally possible.<BR>
+	The practical result in an increase in mobility and dexterity. <b> WARNING </b> Usage of the sandevistan is extremely taxing on the body, and prolonged use can lead to catastrophic injury or death."}
+
 /obj/item/implant/sandevistan/process()
 	if(!active)
 		time_on -= 0.1 SECONDS
