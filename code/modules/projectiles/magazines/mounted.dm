@@ -197,7 +197,7 @@
 	default_ammo = /datum/ammo/rocket/heavy_isg
 	var/guided = TRUE
 
-/obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
+/obj/item/ammo_magazine/heavy_isg/he/attack_self(mob/living/user)
 	if(guided)
 		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
 		balloon_alert(user, "You swap the shell to unguided form")
