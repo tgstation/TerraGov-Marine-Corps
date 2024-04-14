@@ -62,7 +62,15 @@
 		
 		if(dna.species.use_skintones)
 			var/skin_tone_wording = dna.species.skin_tone_wording ? lowertext(dna.species.skin_tone_wording) : "skin tone"
-			var/skin_tone_seen = lowertext(skin_tone) || "incomprehensible"
+			var/skin_tone_seen = "incomprehensible"
+			if(skin_tone)
+				//AGGHHHHH this is stupid
+				var/list/skin_tones = dna.species.get_skin_list()
+				for(var/tone in skin_tones)
+					var/color = skin_tones[key]
+					if(color == skin_tone)
+						skin_tone_seen = tone
+						break
 			. += "<span class='info'>[capitalize(m2)] [skin_tone_wording] is [skin_tone_seen].</span>"
 
 		if(ishuman(user))
