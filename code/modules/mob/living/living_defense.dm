@@ -211,7 +211,7 @@
 		return FALSE
 
 	. = TRUE
-	adjust_fire_stacks(burnlevel)
+	adjust_fire_stacks(burn_level)
 	if(on_fire || !fire_stacks)
 		return
 	IgniteMob()
