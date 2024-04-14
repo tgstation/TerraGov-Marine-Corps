@@ -876,6 +876,7 @@
 #include "code\game\objects\items\frames\frame.dm"
 #include "code\game\objects\items\frames\light_fixtures.dm"
 #include "code\game\objects\items\frames\table_rack.dm"
+#include "code\game\objects\items\implants\jump_mod.dm"
 #include "code\game\objects\items\implants\implant.dm"
 #include "code\game\objects\items\implants\implant_chem.dm"
 #include "code\game\objects\items\implants\implant_cloak.dm"
