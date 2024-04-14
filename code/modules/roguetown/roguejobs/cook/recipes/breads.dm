@@ -234,7 +234,28 @@
 	subtype_reqs = FALSE
 	craftdiff = 0
 
-/obj/item/reagent_containers/food/snacks/rogue/hbun
+/obj/item/reagent_containers/food/snacks/rogue/butterbun
+	name = "bun of butter"
+	desc = ""
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "butterbiscuit"
+	filling_color = "#F0E68C"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("butter" = 1, "biscuit" = 1)
+	foodtype = GRAIN | BREAKFAST
+
+/datum/crafting_recipe/roguetown/cooking/butterbun
+	name = "butter bun"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/reagent_containers/food/snacks/butter = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/rogue/butterbun
+	subtype_reqs = FALSE
+	craftdiff = 0
+
+/obj/item/reagent_containers/food/snacks/rogue/hpneybun
 	name = "bun of honey"
 	desc = ""
 	icon = 'icons/roguetown/items/food.dmi'
