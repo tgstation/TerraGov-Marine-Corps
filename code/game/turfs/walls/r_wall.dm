@@ -84,7 +84,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/closed/wall/r_wall/prison_unmeltable/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/r_wall/prison_unmeltable/fire_act(burn_level)
 	return
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc

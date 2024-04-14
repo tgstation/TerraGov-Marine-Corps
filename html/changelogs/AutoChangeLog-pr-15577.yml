@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a couple minor bugs with light fittings"
-  - code_imp: "Cleaned up some light fitting code"
-  - bugfix: "You can once again light cigarettes using broken lights, burning turfs, or burning mobs"

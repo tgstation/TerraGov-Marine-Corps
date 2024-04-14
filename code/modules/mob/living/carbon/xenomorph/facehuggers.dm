@@ -645,11 +645,7 @@
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
 
-/obj/item/clothing/mask/facehugger/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		kill_hugger()
-
-/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
+/obj/item/clothing/mask/facehugger/fire_act(burn_level)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)

@@ -149,7 +149,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 
 /obj/item/Initialize(mapload)
-
 	if(species_exception)
 		species_exception = string_list(species_exception)
 	if(length(colorable_colors))
@@ -158,6 +157,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		icon_state_variants = string_list(icon_state_variants)
 
 	. = ..()
+
+	if(loc?.storage_datum)
+		on_enter_storage()
 
 	for(var/path in actions_types)
 		new path(src)
@@ -262,9 +264,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	set_throwing(FALSE)
 
-	if(istype(loc, /obj/item/storage))
-		var/obj/item/storage/S = loc
-		if(!S.remove_from_storage(src, user.loc, user))
+	if(item_flags & IN_STORAGE)
+		var/datum/storage/current_storage = loc.storage_datum
+		if(!current_storage.remove_from_storage(src, user.loc, user))
 			return
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
@@ -288,23 +290,23 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
 	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
 		color_item(I, user)
-		return
+		return TRUE
+
+	. = ..()
+	if(.)
+		return TRUE
 
 	if(!istype(I, /obj/item/storage))
 		return
 
 	var/obj/item/storage/S = I
 
-	if(!S.use_to_pickup || !isturf(loc))
+	if(!S.storage_datum.use_to_pickup || !isturf(loc))
 		return
 
-	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+	if(S.storage_datum.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 		var/list/rejections = list()
 		var/success = FALSE
 		var/failure = FALSE
@@ -312,12 +314,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		for(var/obj/item/IM in loc)
 			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
 				continue
-			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+			if(!S.storage_datum.can_be_inserted(IM, user))	// Note can_be_inserted still makes noise when the answer is no
 				rejections += IM.type	// therefore full bags are still a little spammy
 				failure = TRUE
 				continue
 			success = TRUE
-			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+			S.storage_datum.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 		if(success && !failure)
 			to_chat(user, span_notice("You put everything in [S]."))
 		else if(success)
@@ -325,18 +327,17 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		else
 			to_chat(user, span_notice("You fail to pick anything up with [S]."))
 
-	else if(S.can_be_inserted(src))
-		S.handle_item_insertion(src, FALSE, user)
-
+	else if(S.storage_datum.can_be_inserted(src, user))
+		S.storage_datum.handle_item_insertion(src, FALSE, user)
 
 /obj/item/attackby_alternate(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/facepaint))
+		alternate_color_item(I, user)
+		return TRUE
+
 	. = ..()
 	if(.)
-		return
-	if(!istype(I, /obj/item/facepaint))
-		return
-	alternate_color_item(I, user)
-
+		return TRUE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
@@ -392,11 +393,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
+	item_flags &= ~IN_STORAGE
 	return
 
 
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
+	item_flags |= IN_STORAGE
 	return
 
 
@@ -673,23 +676,27 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!selected_slot)
 		return FALSE
 
-	var/obj/item/storage/storage_item
+	var/datum/storage/current_storage_datum
 
-	if(isstorage(selected_slot))
-		storage_item = selected_slot
+	if(isdatumstorage(selected_slot))
+		current_storage_datum = selected_slot
+
+	else if(selected_slot.storage_datum)
+		current_storage_datum = selected_slot.storage_datum
 
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/attachment_slot in selected_clothing.attachments_by_slot)
-			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
-				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
-				storage_item = storage_attachment.storage
-				break
+		for(var/key AS in selected_clothing.attachments_by_slot)
+			var/atom/attachment = selected_clothing.attachments_by_slot[key]
+			if(!attachment?.storage_datum)
+				continue
+			current_storage_datum = attachment.storage_datum
+			break
 
-	if(!storage_item)
+	if(!current_storage_datum)
 		return FALSE
 
-	return storage_item.can_be_inserted(src, warning)
+	return current_storage_datum.can_be_inserted(src, user, warning)
 
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
@@ -1401,11 +1408,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	//Put item into player's currently open storage
-	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+	if(fill_container && user.s_active && user.s_active.can_be_inserted(src, user, FALSE))
 		user.s_active.handle_item_insertion(src, FALSE, user)
 		return
 	//Equip item onto player
-	if (auto_equip && vendor_equip(user))
+	if(auto_equip && vendor_equip(user))
 		return
 	//Otherwise fall back to putting item in player's hand
 	if(user.put_in_any_hand_if_possible(src, warning = FALSE))

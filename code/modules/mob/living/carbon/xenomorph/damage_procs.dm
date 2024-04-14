@@ -1,9 +1,6 @@
-/mob/living/carbon/xenomorph/fire_act()
+/mob/living/carbon/xenomorph/fire_act(burn_level)
 	if(status_flags & GODMODE)
 		return
-	return ..()
-
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	return ..()

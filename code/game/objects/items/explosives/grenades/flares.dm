@@ -23,7 +23,7 @@
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel)
+/obj/item/explosive/grenade/flare/fire_act(burn_level)
 	if(!fuel) //it's out of fuel, an empty shell.
 		return
 	if(!active)
