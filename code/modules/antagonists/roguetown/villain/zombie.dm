@@ -48,7 +48,7 @@
 	H.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
 	H.update_a_intents()
 	H.setToxLoss(0, 0)
-	H.aggressive=1
+	H.aggressive = 1
 	H.mode = AI_IDLE
 	if(H.mind)
 		H.mind.RemoveAllSpells()
@@ -83,7 +83,7 @@
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		BP.update_disabled()
-//	H.STASTR = rand(12,18)
+	H.STASTR = rand(12,18)
 	H.STASPD = rand(5,7)
 	H.STAINT = 1
 
@@ -103,7 +103,9 @@
 		H.emote("idle")
 		next_idle_sound = world.time + rand(5 SECONDS, 10 SECONDS)
 
-/datum/antagonist/zombie/proc/wake_zombie()
+//Infected wake param is just a transition from living to zombie, via zombie_infect()
+//Previously you just died without warning in 3 minutes, now you just become an antag
+/datum/antagonist/zombie/proc/wake_zombie(infected_wake = FALSE)
 	testing("WAKEZOMBIE")
 	if(owner.current)
 		var/mob/living/carbon/human/H = owner.current
@@ -113,14 +115,16 @@
 		if(!B)
 			qdel(src)
 			return
-		if(H.stat != DEAD)
+		if(H.stat != DEAD && !infected_wake)
 			qdel(src)
 			return
 		if(istype(H.loc, /obj/structure/closet/dirthole))
 			qdel(src)
 			return
-		GLOB.dead_mob_list -= H
-		GLOB.alive_mob_list |= H
+		if(!infected_wake) // they going from living to zombie living
+			GLOB.dead_mob_list -= H
+			GLOB.alive_mob_list |= H
+
 		H.stat = null //the mob starts unconscious,
 		H.blood_volume = BLOOD_VOLUME_MAXIMUM
 		H.updatehealth() //then we check if the mob should wake up.
@@ -169,9 +173,10 @@
 		return
 	to_chat(src, "<span class='warning'>[closest_dist], [dir2text(the_dir)]</span>")
 
+
+//This occurs when one zombie infects a living human, going into instadeath from here is kind of shit and confusing
+//We instead just transform at the end
 /mob/living/carbon/human/proc/zombie_infect()
-	if(prob(80))
-		return
 	if(!mind)
 		return
 	if(mind.has_antag_datum(/datum/antagonist/vampirelord))
@@ -183,10 +188,14 @@
 	var/datum/antagonist/zombie/new_antag = new /datum/antagonist/zombie()
 	mind.add_antag_datum(new_antag)
 	if(stat != DEAD)
-		to_chat(src, "<span class='danger'>I feel horrible...</span>")
+		to_chat(src, "<span class='danger'>I feel horrible... REALLY horrible after that...</span>")
 		if(getToxLoss() >= 75 && blood_volume)
 			mob_timers["puke"] = world.time
 			vomit(1, blood = TRUE)
-		sleep(3 MINUTES)
+		sleep(1 MINUTES) //you get a minute
 		flash_fullscreen("redflash3")
-		death()
+		to_chat(src, "<span class='danger'>It hurts... Is this really the end for me...</span>")
+		emote("scream") // heres your warning to others bro
+		Knockdown(1)
+		new_antag.wake_zombie(TRUE)
+		//death()

@@ -23,7 +23,6 @@
 	var/flee_in_pain = FALSE
 	var/stand_attempts = 0
 
-	var/static_npc = TRUE
 	var/returning_home = FALSE
 
 /mob/living/carbon/human/proc/IsStandingStill()
