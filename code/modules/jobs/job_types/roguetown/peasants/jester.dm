@@ -33,6 +33,11 @@
 	beltl = /obj/item/storage/belt/rogue/pouch
 	head = /obj/item/clothing/head/roguetown/jester
 	neck = /obj/item/clothing/neck/roguetown/coif
+	//Desc says grenzelhoft has great jesters so 50% change to raceswap because slop lore
+	if(ishumannorthern(H) && prob(50))
+		var/list/skin_slop = H.dna.species.get_skin_list()
+		H.skin_tone = skin_slop["Grenzelhoft"]
+		H.update_body()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
@@ -40,6 +45,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/music, pick(1,2), TRUE)
+		H.STASTR = rand(1, 20)
 		H.STAINT = rand(1, 20)
 		H.STALUC = rand(1, 20)
 /*		if(H.gender == MALE)

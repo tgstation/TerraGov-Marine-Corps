@@ -32,6 +32,11 @@
 		H.mind.adjust_skillrank(/datum/skill/labor/mathematics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 	ADD_TRAIT(H, RTRAIT_SEEPRICES, type)
+	//50% chance to be raceswapped to Giza because slop lore
+	if(ishumannorthern(H) && prob(50))
+		var/list/skin_slop = H.dna.species.get_skin_list()
+		H.skin_tone = skin_slop["Giza"]
+		H.update_body()
 	if(H.gender == MALE)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
