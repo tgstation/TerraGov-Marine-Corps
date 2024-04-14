@@ -265,6 +265,11 @@
 	id = "cl_shutters"
 	req_access = list(ACCESS_NT_CORPORATE)
 
+/obj/machinery/door_control/mainship/fc_shutters
+	name = "Privacy Shutters"
+	id = "fc_shutters"
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
 /obj/machinery/door_control/mainship/req
 	name = "RO Line Shutters"
 	id = "ROlobby"
