@@ -85,7 +85,6 @@
 	result = /obj/item/reagent_containers/food/snacks/garlicbread
 	subcategory = CAT_NONE
 
-
 /datum/crafting_recipe/food/butterdog
 	name = "Butterdog"
 	reqs = list(

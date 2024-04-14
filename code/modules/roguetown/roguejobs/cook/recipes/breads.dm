@@ -240,8 +240,7 @@
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "butterbiscuit"
 	filling_color = "#F0E68C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	tastes = list("butter" = 1, "biscuit" = 1)
 	foodtype = GRAIN | BREAKFAST
 

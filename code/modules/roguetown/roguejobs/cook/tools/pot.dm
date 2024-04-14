@@ -1,5 +1,6 @@
-/obj/item/cooking/pot
+/obj/item/reagent_containers/glass/pot
 	force = 10
+	throwforce = 15
 	possible_item_intents = list(INTENT_GENERIC)
 	name = "pot"
 	desc = ""
@@ -9,6 +10,13 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	sharpness = IS_BLUNT
+	w_class = WEIGHT_CLASS_BULKY
+	amount_per_transfer_from_this = 9
+	possible_transfer_amounts = list(9)
+	volume = 99
+	reagent_flags = OPENCONTAINER|REFILLABLE
+	spillable = TRUE
+	possible_item_intents = list(INTENT_GENERIC, /datum/intent/fill, INTENT_POUR, INTENT_SPLASH)
 	//dropshrink = 0.8
+	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	slot_flags = null
-	ingsize = 6

@@ -13,6 +13,7 @@
 	//dropshrink = 0.8
 	slot_flags = ITEM_SLOT_HIP
 	can_parry = TRUE
+	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	wdefense = 5
 	ingsize = 3
 

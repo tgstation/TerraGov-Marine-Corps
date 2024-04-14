@@ -619,10 +619,12 @@
 	var/obj/item/reagent_containers/food/snacks/food = null
 	on = FALSE
 	cookonme = TRUE
+	var/datum/looping_sound/boiling/boil_loop
+	var/boiling = FALSE
 
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
 	if(!attachment)
-		if(istype(W, /obj/item/cooking/pan))
+		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/pot))
 			W.forceMove(src)
 			attachment = W
 			update_icon()
@@ -637,9 +639,23 @@
 					update_icon()
 					playsound(src.loc, 'sound/misc/frying.ogg', 100, FALSE, extrarange = 5)
 					return
+		if(istype(W, /obj/item/reagent_containers/glass/pot))
+			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks) && boiling)
+				var/obj/item/reagent_containers/food/snacks/S = W
+				var/nutrimentamount = A.reagents.get_reagent_amount(/datum/reagent/nutriment)
+				if (nutrimentamount > 0)
+					nutrimentamount = nutriment * 1.25 // small bonus for boiling it
+					attachment.reagents.add_reagent(/datum/reagent/water/nutriment, nutrimentamount)
+					qdel(S)
+				return
+			if(W.type in subtypesof(/obj/item/reagent_containers/glass))
+				var/target = attachment
+				return W.attack_obj(attachment, user)
 	. = ..()
 
-
+/obj/machinery/light/rogue/hearth/Initialize(mapload)
+	. = ..()
+	boil_loop = new(src, FALSE)
 
 /obj/machinery/light/rogue/hearth/update_icon()
 	cut_overlays()
@@ -673,6 +689,11 @@
 					attachment.forceMove(user.loc)
 				attachment = null
 				update_icon()
+		if(attachment.type == /obj/item/reagent_containers/glass/pot)
+			if(!user.put_in_active_hand(attachment))
+				attachment.forceMove(user.loc)
+			attachment = null
+			update_icon()
 	else
 		if(on)
 			var/mob/living/carbon/human/H = user
@@ -704,6 +725,18 @@
 					if(C)
 						qdel(food)
 						food = C
+			if(istype(attachment, /obj/item/reagent_containers/glass/pot))
+				if(attachment.reagents.total_volume > 10) // you need something to boil it in
+					attachment.reagents.expose_temperature(400, 0.033)
+						if(attachment.reagents.chem_temp > 374)
+							boil_loop.start()
+							boiling = TRUE
+						else
+							boil_loop.stop()
+							boiling = FALSE
+			else
+				boil_loop.stop()
+				boiling = FALSE
 		update_icon()
 
 
