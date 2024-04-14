@@ -147,19 +147,19 @@
 /obj/fire/flamer/on_cross(datum/source, mob/living/crosser, oldloc, oldlocs)
 	. = ..()
 	if(istype(crosser) || isobj(crosser))
-		crosser.flamer_fire_act(burn_level)
+		crosser.fire_act(burn_level)
 
 /obj/fire/flamer/affect_mob(mob/living/carbon/affected)
 	. = ..()
-	affected.flamer_fire_act(burn_level)
+	affected.fire_act(burn_level)
 
 /obj/fire/flamer/affect_obj(obj/affected)
 	. = ..()
-	affected.flamer_fire_act(burn_level)
+	affected.fire_act(burn_level)
 
 /obj/fire/flamer/affect_turf(turf/affected)
 	. = ..()
-	affected.flamer_fire_act(burn_level)
+	affected.fire_act(burn_level)
 
 /obj/fire/flamer/process()
 	. = ..()
