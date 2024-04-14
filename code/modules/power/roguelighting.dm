@@ -644,7 +644,9 @@
 					return
 		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/reagent_containers/glass/pot = attachment
-			if(attachment.reagents.chem_temp > 374 && W.type in subtypesof(/obj/item/reagent_containers/food/snacks))
+			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks))
+				if(attachment.reagents.chem_temp < 374)
+					to_chat(user, "<span class='warning'>[attachment] isn't boiling!</span>")
 				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 				if (nutrimentamount > 0)
 					if (nutrimentamount + attachment.reagents.total_volume > pot.volume)
@@ -726,8 +728,8 @@
 						qdel(food)
 						food = C
 			if(istype(attachment, /obj/item/reagent_containers/glass/pot))
-				if(attachment.reagents.total_volume > 10) // you need something to boil it in
-					attachment.reagents.expose_temperature(400, 0.33)
+				if(attachment.reagents)
+					attachment.reagents.expose_temperature(400, 0.033)
 					if(attachment.reagents.chem_temp > 374)
 						boiling.start()
 						playsound(src.loc, 'sound/misc/boiling.ogg', 100, FALSE, extrarange = 5)
