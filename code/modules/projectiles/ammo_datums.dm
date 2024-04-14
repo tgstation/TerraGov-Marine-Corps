@@ -3777,10 +3777,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
-	damage = 25
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 20
+	fire_burst_damage = 15
 	deflagrate_multiplier = 0.9
 
 /datum/ammo/energy/volkite/medium/custom
@@ -3798,6 +3797,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 12
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+	fire_burst_damage = 10
 	penetration = 5
 	deflagrate_multiplier = 0.9
 
