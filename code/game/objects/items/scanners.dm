@@ -267,6 +267,32 @@ REAGENT SCANNER
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(patient.dead_ticks < 150)
+		if(patient.stat == DEAD)
+			var/dead_color
+			switch(patient.dead_ticks)
+				if(0 to 0.4 * TIME_BEFORE_DNR)
+					dead_color = "yellow"
+				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
+					dead_color = "orange"
+				if(0.8 * TIME_BEFORE_DNR to 1 * TIME_BEFORE_DNR)
+					dead_color = "red"
+			advice += list(list(
+				"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+				"icon" = "clock",
+				"color" = dead_color
+				))
+			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
+				advice += list(list(
+					"advice" = "Remove patient's suit or armor.",
+					"icon" = "shield-alt",
+					"color" = "blue"
+					))
+			if(patient.health >= patient.health_threshold_dead - 25 || isrobot(patient))
+				advice += list(list(
+					"advice" = "Administer shock via defibrillator!",
+					"icon" = "bolt",
+					"color" = "yellow"
+					))
 		if(issynth(patient) || isrobot(patient))
 			if(patient.getBruteLoss() > 0)
 				advice += list(list(
@@ -296,14 +322,20 @@ REAGENT SCANNER
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
 				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
-				"icon" = "window-close",
+				"icon" = "dna",
 				"color" = "teal"
 				))
 		if(patient.status_flags & XENO_HOST)
 			advice += list(list(
 				"advice" = "Alien embryo detected. Immediate surgical intervention advised.",
-				"icon" = "window-close",
-				"color" = "purple"
+				"icon" = "exclamation",
+				"color" = "red"
+				))
+		if(infection_message)
+			advice += list(list(
+				"advice" = "Administer a single dose of spaceacilin - infections detected.",
+				"icon" = "biohazard",
+				"color" = "olive"
 				))
 		if(unknown_implants)
 			advice += list(list(
@@ -311,13 +343,6 @@ REAGENT SCANNER
 				"icon" = "window-close",
 				"color" = "red"
 				))
-		if(patient.stat == DEAD)
-			if(patient.health >= patient.health_threshold_dead - 25 || isrobot(patient))
-				advice += list(list(
-					"advice" = "Administer shock via defibrillator!",
-					"icon" = "bolt",
-					"color" = "yellow"
-					))
 		if(!issynth(patient))
 			if(patient.blood_volume <= 500 && !chemicals_lists["Nutriment"])
 				advice += list(list(
@@ -376,7 +401,7 @@ REAGENT SCANNER
 					"color" = "blue"
 					))
 				advice += temp_advice
-			if(patient.health < -50 && !issynth(patient) && !isrobot(patient))
+			if(patient.stat != DEAD && patient.health < -50 && !issynth(patient) && !isrobot(patient))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
 					"icon" = "syringe",
@@ -409,6 +434,12 @@ REAGENT SCANNER
 					"icon" = "window-close",
 					"color" = "red"
 					))
+	else
+		advice += list(list(
+			"advice" = "Patient is braindead.",
+			"icon" = "brain",
+			"color" = "white"
+			))
 	if(advice.len)
 		data["advice"] = advice
 	else
