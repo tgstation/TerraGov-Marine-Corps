@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Add ghosts can now examine miners"

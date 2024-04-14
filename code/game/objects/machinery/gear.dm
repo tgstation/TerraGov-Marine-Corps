@@ -30,3 +30,6 @@
 
 /obj/machinery/elevator_strut/bottom
 	icon_state = "strut_bottom"
+
+/obj/machinery/gear/vehicle // todo do for suppply as well instead of varediting
+	id = "vehicle_elevator_gear"

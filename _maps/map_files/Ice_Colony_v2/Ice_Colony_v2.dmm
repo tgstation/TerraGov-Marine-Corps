@@ -9324,7 +9324,7 @@
 	},
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "beE" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/ice_w)
 "beK" = (
 /obj/machinery/chem_dispenser,
@@ -17416,7 +17416,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bXS" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bXT" = (
 /obj/structure/table,
@@ -19093,7 +19093,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
 "dSq" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves)
 "dTb" = (
 /obj/effect/spawner/random/misc/plant,
@@ -20528,7 +20528,7 @@
 /area/ice_colony/underground/requesition)
 "ghx" = (
 /obj/effect/turf_underlay/icefloor,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "ghG" = (
 /obj/structure/table,
@@ -22771,7 +22771,7 @@
 "jyc" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "jyU" = (
 /obj/machinery/light{
@@ -26979,7 +26979,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "ppt" = (
 /obj/effect/spawner/random/misc/structure/closet/welding,
@@ -27289,7 +27289,7 @@
 /area/ice_colony/underground/medical/hallway)
 "pPK" = (
 /obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves)
 "pQh" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
@@ -27596,7 +27596,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "qlb" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/surface/landing_pad2)
 "qlJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -29062,7 +29062,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "scU" = (
 /obj/structure/bed/chair{
@@ -29221,7 +29221,7 @@
 /area/ice_colony/underground/maintenance/east)
 "snG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves)
 "sox" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29331,7 +29331,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "svd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "svt" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -29716,7 +29716,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "sUw" = (
 /obj/structure/cable,
@@ -30157,7 +30157,7 @@
 /area/ice_colony/surface/engineering/generator)
 "tvD" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves)
 "tvQ" = (
 /obj/effect/spawner/random/misc/plant,
@@ -30243,7 +30243,7 @@
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "tzo" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "tzI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -30842,7 +30842,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "uwf" = (
 /obj/structure/rack,
@@ -31398,7 +31398,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "vdL" = (
 /obj/effect/landmark/weed_node,
@@ -31895,7 +31895,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "vQg" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "vRq" = (
 /obj/structure/disposalpipe/segment{
@@ -32482,7 +32482,7 @@
 "wFT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "wGa" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
@@ -33462,7 +33462,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "xJX" = (
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "xKA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33806,7 +33806,7 @@
 /area/ice_colony/underground/medical/lobby/garbledradio)
 "yeX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/ice_colony/exterior/underground/caves/rock)
 "yfG" = (
 /obj/structure/bed/chair/wood/normal{

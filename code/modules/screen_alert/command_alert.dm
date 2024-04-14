@@ -77,10 +77,11 @@
 		return
 	for(var/mob/faction_receiver in alert_receivers)
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
-			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			var/faction_title = GLOB.faction_to_acronym[human_owner.faction] ? GLOB.faction_to_acronym[human_owner.faction] + " Command" : "Unknown Faction" + " Command"
+			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(faction_title)] ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(faction_receiver, assemble_alert(
-				title = "Command Announcement",
-				subtitle = "Sent by [human_owner.real_name]",
+				title = "[faction_title] Announcement",
+				subtitle = "Sent by [human_owner.job.title] [human_owner.real_name]",
 				message = text
 			))
 			SEND_SOUND(faction_receiver, S)

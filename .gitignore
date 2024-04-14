@@ -47,3 +47,15 @@ dmdoc/*
 tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
 
 tools/hyperscale_converter/output/*
+
+# JavaScript tools
+**/node_modules
+
+# named byond versions config
+/tools/build/dm_versions.json
+
+# From /tools/define_sanity/check.py - potential output file that we load onto the user's machine that we don't want to have committed.
+define_sanity_output.txt
+
+# Running OpenDream locally
+tgmc.json

@@ -12,5 +12,3 @@
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS
 	max_occupants = 5
-	primary_weapon_type = /obj/item/armored_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
-	secondary_weapon_type = null

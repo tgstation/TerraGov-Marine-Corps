@@ -9,6 +9,7 @@
 /datum/loadout_item/helmet/empty
 	name = "no helmet"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -45,7 +46,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/surt
-	name = "M10X-Surt helmet"
+	name = "Surt helmet"
 	desc = "A standard combat helmet with a Surt fireproof module."
 	req_desc = "Requires a suit with a Surt module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/surt
@@ -53,7 +54,7 @@
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/helmet/tyr
-	name = "M10X-Tyr helmet"
+	name = "Tyr helmet"
 	desc = "A standard combat helmet with a Tyr extra armor module."
 	req_desc = "Requires a suit with a Tyr module."
 	ui_icon = "tyr"
@@ -61,19 +62,22 @@
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
 
-
 /datum/loadout_item/helmet/tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
+/datum/loadout_item/helmet/tyr/universal
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = NONE
+
 /datum/loadout_item/helmet/white_dress
-	name = "Dress White Cap"
+	name = "Dress Cap"
 	desc = "The dress white cap for your dress uniform. Pride is your shield, because this isn't."
 	item_typepath = /obj/item/clothing/head/white_dress
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/helmet/mimir
-	name = "M10X-Mimir helmet"
+	name = "Mimir helmet"
 	desc = "A standard combat helmet with a Mimir environmental protection module."
 	req_desc = "Requires a suit with a Mimir module."
 	item_typepath = /obj/item/clothing/head/modular/m10x/mimir
@@ -110,7 +114,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/captain_beret
-	name = "Captains Beret"
+	name = "Captain Beret"
 	desc = "A beret worn by ship's captains. You thought it would have been more fancy."
 	item_typepath = /obj/item/clothing/head/tgmcberet/tan
 	jobs_supported = list(CAPTAIN)

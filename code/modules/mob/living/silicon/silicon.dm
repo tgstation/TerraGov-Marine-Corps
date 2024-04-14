@@ -71,7 +71,7 @@
 
 
 /mob/living/silicon/contents_explosion(severity)
-	return
+	return ..()
 
 
 /mob/living/silicon/emp_act(severity)

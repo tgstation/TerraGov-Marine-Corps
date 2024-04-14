@@ -75,8 +75,8 @@
 	desc = "This leather has been cleaned but still needs to be dried."
 	singular_name = "wet leather piece"
 	icon_state = "sheet-wetleather"
-	var/wetness = 30 //Reduced when exposed to high temperautres
-	var/drying_threshold_temperature = 500 //Kelvin to start drying
+	///How damp it is
+	var/wetness = 30
 
 /obj/item/stack/sheet/leather
 	name = "leather"
@@ -109,20 +109,22 @@
 //Step two - washing..... it's actually in washing machine code.
 
 //Step three - drying
-/obj/item/stack/sheet/wetleather/fire_act(exposed_temperature, exposed_volume)
-	..()
-	if(exposed_temperature >= drying_threshold_temperature)
-		wetness--
-		if(wetness == 0)
-			//Try locating an exisitng stack on the tile and add to there if possible
-			for(var/obj/item/stack/sheet/leather/HS in src.loc)
-				if(HS.amount < 50)
-					HS.amount++
-					src.use(1)
-					wetness = initial(wetness)
-					break
-			//If it gets to here it means it did not find a suitable stack on the tile.
-			var/obj/item/stack/sheet/leather/HS = new(src.loc)
-			HS.amount = 1
+/obj/item/stack/sheet/wetleather/fire_act(burn_level)
+	. = ..()
+	if(!wetness)
+		return
+	wetness--
+	if(wetness < 0)
+		return
+	//Try locating an exisitng stack on the tile and add to there if possible
+	for(var/obj/item/stack/sheet/leather/leather in loc)
+		if(leather.amount < 50)
+			leather.amount++
+			use(1)
 			wetness = initial(wetness)
-			src.use(1)
+			break
+	//If it gets to here it means it did not find a suitable stack on the tile.
+	var/obj/item/stack/sheet/leather/leather = new(loc)
+	leather.amount = 1
+	wetness = initial(wetness)
+	use(1)

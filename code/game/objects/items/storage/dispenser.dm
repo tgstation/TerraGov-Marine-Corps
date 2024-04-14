@@ -104,8 +104,8 @@
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)
 	var/obj/item/storage/internal_bag = get_internal_item()
-	for(var/mob/watching in internal_bag?.content_watchers)
-		internal_bag.close(watching)
+	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
+		internal_bag.storage_datum.close(watching)
 	return ..()
 
 /obj/item/storage/backpack/dispenser
@@ -114,8 +114,8 @@
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	equip_slot_flags = ITEM_SLOT_BACK
-	max_storage_space = 48
 	max_integrity = 250
+	storage_type = /datum/storage/backpack/dispenser
 
 /obj/item/storage/backpack/dispenser/Initialize(mapload, ...)
 	. = ..()
@@ -124,14 +124,7 @@
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
 	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return ..()
-	open(user)
-
-/obj/item/storage/backpack/dispenser/open(mob/user)
-	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
-		return ..()
-
-/obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
-	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))
+	storage_datum.open(user)
 
 /obj/item/storage/backpack/dispenser/do_quick_equip(mob/user)
 	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))

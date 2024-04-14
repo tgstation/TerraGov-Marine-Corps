@@ -1,0 +1,18 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "POS - Fixed a number of areas without any lights"
+  - bugfix: "POS - Verified again that every door has their firelocks"
+  - bugfix: "POS - Verified that all light fixtures, cameras, fire alarms and so on aren't on glass"
+  - bugfix: "POS - deleted a number of duplicate lights"
+  - bugfix: "POS - Moved things like lights from being placed under firelocks, which makes no sense"
+  - bugfix: "POS - Move the button for medical surgery shutters to not be under cameras"
+  - bugfix: "POS - Removed duplicate surgery shutters and make them in the right direction"
+  - bugfix: "ALAMO - Added more holopads to it"
+  - bugfix: "Debugabus - Fixed the bodyscanner being in the wrong direction"
+  - qol: "POS - Added FC privacy shutters"
+  - qol: "POS - Moved the FC not to have their bed in the middle of the room"
+  - qol: "POS - Added cameras coverage and better floor markings in the OB room and brig"
+  - qol: "POS - Moved the ammo crates out of the path to the west of the hangar. Things like black market weapons or surplus weapons."
+  - qol: "POS & Debugabus - Added floorlights to the hangar alongside extra default tubes"
+  - qol: "POS - Moved the leader pods not all being in the centerline of the pod bay"

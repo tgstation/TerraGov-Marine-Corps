@@ -15,7 +15,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SPAWN" = R_SPAWN,
 		"DBRANKS" = R_DBRANKS,
 		"RUNTIME" = R_RUNTIME,
-		"LOG" = R_LOG
+		"LOG" = R_LOG,
+		"POLLS" = R_POLLS
 	),
 	"machine_stat" = list(
 		"BROKEN" = BROKEN,
@@ -479,6 +480,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"FULLY_WIELDED" = FULLY_WIELDED,
 		"HAS_UNDERLAY" = HAS_UNDERLAY,
 		"AUTOBALANCE_CHECK" = AUTOBALANCE_CHECK,
+		"IN_STORAGE" = IN_STORAGE,
 	),
 	"storage_flags" = list(
 		"BYPASS_VENDOR_CHECK" = BYPASS_VENDOR_CHECK,
