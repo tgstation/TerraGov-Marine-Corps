@@ -83,23 +83,26 @@
 		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]"
 
 
-/obj/structure/mineral_door/attackby(obj/item/attacking_item, mob/living/user)
+/obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	. = ..()
 	if(.)
-		return TRUE
+		return
 	if(QDELETED(src))
 		return
 
-	if(isplasmacutter(attacking_item) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/pcutter = attacking_item
-		if(pcutter.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
-			pcutter.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-			user.changeNext_move(attacking_item.attack_speed)
-			user.do_attack_animation(src, used_item = attacking_item)
-			take_damage(max_integrity, BURN, FIRE, armour_penetration = 100)
-		return
+	var/multiplier = 1
+	if(isplasmacutter(W) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+			if(istype(src, /obj/structure/mineral_door/resin))
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
+			else
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1 //generally means we do double damage to resin doors
 
-	attacking_item.attack_obj(src, user)
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype, MELEE)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)
@@ -157,9 +160,9 @@
 	icon_state = "phoron"
 	max_integrity = 250
 
-/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/attacking_item as obj, mob/user as mob)
-	if(istype(attacking_item, /obj/item/tool/weldingtool))
-		var/obj/item/tool/weldingtool/WT = attacking_item
+/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			var/turf/T = get_turf(src)
 			T.ignite(25, 25)

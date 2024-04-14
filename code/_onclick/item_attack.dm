@@ -67,9 +67,6 @@
 	if(.)
 		return TRUE
 
-	if(user.a_intent != INTENT_HARM)
-		return
-
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
