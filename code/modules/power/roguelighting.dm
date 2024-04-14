@@ -642,14 +642,13 @@
 		if(istype(W, /obj/item/reagent_containers/glass/pot))
 			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks) && boiling)
 				var/obj/item/reagent_containers/food/snacks/S = W
-				var/nutrimentamount = A.reagents.get_reagent_amount(/datum/reagent/nutriment)
+				var/nutrimentamount = S.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 				if (nutrimentamount > 0)
-					nutrimentamount = nutriment * 1.25 // small bonus for boiling it
-					attachment.reagents.add_reagent(/datum/reagent/water/nutriment, nutrimentamount)
+					nutrimentamount = nutrimentamount * 1.25 // small bonus for boiling it
+					attachment.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
 					qdel(S)
 				return
 			if(W.type in subtypesof(/obj/item/reagent_containers/glass))
-				var/target = attachment
 				return W.attack_obj(attachment, user)
 	. = ..()
 
@@ -728,12 +727,12 @@
 			if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 				if(attachment.reagents.total_volume > 10) // you need something to boil it in
 					attachment.reagents.expose_temperature(400, 0.033)
-						if(attachment.reagents.chem_temp > 374)
-							boil_loop.start()
-							boiling = TRUE
-						else
-							boil_loop.stop()
-							boiling = FALSE
+					if(attachment.reagents.chem_temp > 374)
+						boil_loop.start()
+						boiling = TRUE
+					else
+						boil_loop.stop()
+						boiling = FALSE
 			else
 				boil_loop.stop()
 				boiling = FALSE

@@ -230,7 +230,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/rogue/bun = 1,
 		/obj/item/reagent_containers/food/snacks/rogue/honey = 1)
-	result = /obj/item/reagent_containers/food/snacks/rogue/hbun
+	result = /obj/item/reagent_containers/food/snacks/rogue/honeybun
 	subtype_reqs = FALSE
 	craftdiff = 0
 
@@ -254,7 +254,7 @@
 	subtype_reqs = FALSE
 	craftdiff = 0
 
-/obj/item/reagent_containers/food/snacks/rogue/hpneybun
+/obj/item/reagent_containers/food/snacks/rogue/honeybun
 	name = "bun of honey"
 	desc = ""
 	icon = 'icons/roguetown/items/food.dmi'
