@@ -328,7 +328,7 @@ REAGENT SCANNER
 				))
 		if(unknown_implants)
 			advice += list(list(
-				"advice" = "Recommend that the patient does not move - embedded objects.",
+				"advice" = "Remove embedded objects with tweezers.",
 				"icon" = "window-close",
 				"color" = "red"
 				))
