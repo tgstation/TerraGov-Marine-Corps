@@ -19,17 +19,13 @@
 	min_pq = -4
 
 /datum/job/roguetown/knight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(istype(H.cloak, /obj/item/clothing/cloak/tabard/knight/guard))
-			var/obj/item/clothing/S = H.cloak
-			var/index = findtext(H.real_name, " ")
-			if(index)
-				index = copytext(H.real_name, 1,index)
-			if(!index)
-				index = H.real_name
-			S.name = "knightly tabard ([index])"
+    ..()
+    if(ishuman(L))
+        var/mob/living/carbon/human/H = L
+        var/prev_name = H.name
+        var/prev_real_name = H.real_name
+        H.name = "Sir [prev_name]"
+            H.real_name = "Sir [prev_real_name]"
 
 
 /datum/outfit/job/roguetown/knight/pre_equip(mob/living/carbon/human/H)

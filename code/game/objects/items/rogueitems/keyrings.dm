@@ -133,7 +133,7 @@
 	keys = list(/obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/walls, /obj/item/roguekey/manor)
 
 /obj/item/keyring/gatemaster
-	keys = list(/obj/item/roguekey/garrison, /obj/item/roguekey/walls)
+	keys = list(/obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/walls, /obj/item/roguekey/manor)
 
 /obj/item/keyring/merchant
 	keys = list(/obj/item/roguekey/shop, /obj/item/roguekey/merchant)

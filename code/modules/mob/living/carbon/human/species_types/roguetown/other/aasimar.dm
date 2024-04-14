@@ -14,7 +14,7 @@
 	Rockhills populace holds them with a mixture of uneasy fear or, and respect. \
 	It is also widely believed that an Aasimars death is a bad omen..."
 
-	string_to_replace_skintone_on_charpref = "Crafted With"
+	skin_tone_wording = "Crafted With"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)

@@ -48,6 +48,11 @@
 		if(5)
 			beltr = /obj/item/rogueweapon/mace/woodclub
 			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
+	//70% chance to be raceswapped to Gronn because slop lore
+	if(ishumannorthern(H) && prob(70))
+		var/list/skin_slop = H.dna.species.get_skin_list()
+		H.skin_tone = skin_slop["Gronn"]
+		H.update_body()
 	H.change_stat("strength", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 1)

@@ -32,13 +32,10 @@
 	switch(ourpatron.name)
 		if("Astrata")
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
-			world << "ASTRATA"
 		if("Dendor")
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
-			world << "DENDOR"
 		if("Necra")
 			neck = /obj/item/clothing/neck/roguetown/psicross/necra
-			world << "NECRA"
 
 	armor = /obj/item/clothing/suit/roguetown/armor/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
