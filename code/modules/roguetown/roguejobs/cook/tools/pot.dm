@@ -4,7 +4,7 @@
 	possible_item_intents = list(INTENT_GENERIC)
 	name = "pot"
 	desc = ""
-	icon_state = "pote"
+	icon_state = "pot"
 	icon = 'icons/roguetown/items/cooking.dmi'
 	item_state = "rods"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'

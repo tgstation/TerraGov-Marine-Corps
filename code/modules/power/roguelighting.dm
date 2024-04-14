@@ -619,14 +619,17 @@
 	var/obj/item/reagent_containers/food/snacks/food = null
 	on = FALSE
 	cookonme = TRUE
-	var/datum/looping_sound/boiling/boil_loop
-	var/boiling = FALSE
+	var/datum/looping_sound/boilloop/boiling
+
+/obj/machinery/light/rogue/hearth/Initialize()
+	boiling = new(list(src), FALSE)
+	. = ..()
 
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
 	if(!attachment)
 		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/pot))
-			W.forceMove(src)
 			attachment = W
+			W.forceMove(src)
 			update_icon()
 			return
 	else
@@ -639,28 +642,25 @@
 					update_icon()
 					playsound(src.loc, 'sound/misc/frying.ogg', 100, FALSE, extrarange = 5)
 					return
-		if(istype(W, /obj/item/reagent_containers/glass/pot))
-			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks) && boiling)
-				var/obj/item/reagent_containers/food/snacks/S = W
-				var/nutrimentamount = S.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
+			var/obj/item/reagent_containers/glass/pot = attachment
+			if(attachment.reagents.chem_temp > 374 && W.type in subtypesof(/obj/item/reagent_containers/food/snacks))
+				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 				if (nutrimentamount > 0)
+					if (nutrimentamount + attachment.reagents.total_volume > pot.volume)
+						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
+						return
 					nutrimentamount = nutrimentamount * 1.25 // small bonus for boiling it
 					attachment.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
-					qdel(S)
+					qdel(W)
 				return
-			if(W.type in subtypesof(/obj/item/reagent_containers/glass))
-				return W.attack_obj(attachment, user)
 	. = ..()
-
-/obj/machinery/light/rogue/hearth/Initialize(mapload)
-	. = ..()
-	boil_loop = new(src, FALSE)
 
 /obj/machinery/light/rogue/hearth/update_icon()
 	cut_overlays()
 	icon_state = "[base_state][on]"
 	if(attachment)
-		if(attachment.type == /obj/item/cooking/pan)
+		if(attachment.type == /obj/item/cooking/pan || attachment.type == /obj/item/reagent_containers/glass/pot)
 			var/obj/item/I = attachment
 			I.pixel_x = 0
 			I.pixel_y = 0
@@ -693,6 +693,7 @@
 				attachment.forceMove(user.loc)
 			attachment = null
 			update_icon()
+			boiling.stop()
 	else
 		if(on)
 			var/mob/living/carbon/human/H = user
@@ -726,16 +727,12 @@
 						food = C
 			if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 				if(attachment.reagents.total_volume > 10) // you need something to boil it in
-					attachment.reagents.expose_temperature(400, 0.033)
+					attachment.reagents.expose_temperature(400, 0.33)
 					if(attachment.reagents.chem_temp > 374)
-						boil_loop.start()
-						boiling = TRUE
+						boiling.start()
+						playsound(src.loc, 'sound/misc/boiling.ogg', 100, FALSE, extrarange = 5)
 					else
-						boil_loop.stop()
-						boiling = FALSE
-			else
-				boil_loop.stop()
-				boiling = FALSE
+						boiling.stop()
 		update_icon()
 
 

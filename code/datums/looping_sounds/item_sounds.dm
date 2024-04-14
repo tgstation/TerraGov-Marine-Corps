@@ -67,7 +67,7 @@
 	extra_range = -2
 	vary = TRUE
 
-/datum/looping_sound/boiling
+/datum/looping_sound/boilloop
 	mid_sounds = list('sound/misc/boiling.ogg')
 	mid_length = 98
 	volume = 50
