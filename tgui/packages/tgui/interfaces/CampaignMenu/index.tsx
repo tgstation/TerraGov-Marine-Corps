@@ -91,7 +91,7 @@ export const CampaignMenu = (props) => {
     <Window
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
-      width={700}
+      width={800}
       height={650}
     >
       <Window.Content>

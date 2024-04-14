@@ -1,0 +1,1 @@
+#define COMSIG_XENOMORPH_UPDATE_ICONS "xenomorph_update_icons"

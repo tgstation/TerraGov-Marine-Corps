@@ -62,10 +62,13 @@
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
 
-
 /datum/loadout_item/helmet/tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/helmet/tyr/universal
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/white_dress
 	name = "Dress Cap"

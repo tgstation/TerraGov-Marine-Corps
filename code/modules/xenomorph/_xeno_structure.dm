@@ -41,11 +41,8 @@
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
-/obj/structure/xeno/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 3, BURN, FIRE)
-
-/obj/structure/xeno/fire_act()
-	take_damage(10, BURN, FIRE)
+/obj/structure/xeno/fire_act(burn_level)
+	take_damage(burn_level / 3, BURN, FIRE)
 
 /// Destroy the xeno structure when the weed it was on is destroyed
 /obj/structure/xeno/proc/weed_removed()

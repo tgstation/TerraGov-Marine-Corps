@@ -97,6 +97,9 @@
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
 
+/datum/greyscale_config/armor_mk1/mjolnir
+	icon_file = 'icons/mob/modular/mark_one/mjolnir.dmi'
+
 //Hardsuits
 
 /datum/greyscale_config/hardsuit_variant
@@ -149,6 +152,9 @@
 
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
+
+/datum/greyscale_config/armor_mk2/mjolnir_open
+	icon_file = 'icons/mob/modular/mark_two/mjolnir_open.dmi'
 
 /datum/greyscale_config/xenonaut
 	icon_file = 'icons/mob/modular/xenonauten.dmi'

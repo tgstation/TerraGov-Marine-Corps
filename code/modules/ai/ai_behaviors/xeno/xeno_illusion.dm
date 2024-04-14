@@ -50,6 +50,7 @@
 	appearance = original_mob.appearance
 	desc = original_mob.desc
 	name = original_mob.name
+	render_target = null
 	RegisterSignals(original_mob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(destroy_illusion))
 	QDEL_IN(src, life_time)
 
