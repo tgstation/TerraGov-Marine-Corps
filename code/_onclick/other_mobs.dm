@@ -205,14 +205,12 @@
 				if(user.mind.has_antag_datum(/datum/antagonist/werewolf))
 					if(!src.mind.has_antag_datum(/datum/antagonist/werewolf))
 						if(prob(10))
-							spawn(3 MINUTES)
-								H.werewolf_infect()
+							H.werewolf_infect()
 							//addtimer(CALLBACK(src, .mob/living/carbon/human/proc/werewolf_infect), 3 MINUTES)
 				if(user.mind.has_antag_datum(/datum/antagonist/zombie))
 					if(!src.mind.has_antag_datum(/datum/antagonist/zombie))
-						if(prob(30))
-							spawn(3 MINUTES)
-								H.zombie_infect()
+						if(prob(25)) // Delay is handled in zombie_infect anyways
+							H.zombie_infect()
 							//addtimer(CALLBACK(src, .mob/living/carbon/human/proc/zombie_infect), 3 MINUTES)
 
 	var/obj/item/grabbing/bite/B = new()
