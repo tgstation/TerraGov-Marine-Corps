@@ -83,8 +83,6 @@
 	switch(status)
 		if(LIGHT_OK)
 			. += "[base_icon_state]_[light_on]"
-		if(LIGHT_EMPTY)
-			. += "[base_icon_state]_empty"
 		if(LIGHT_BURNED)
 			. += "[base_icon_state]_burned"
 		if(LIGHT_BROKEN)
