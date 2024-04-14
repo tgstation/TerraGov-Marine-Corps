@@ -18,7 +18,7 @@
 	bypass_lastclass = TRUE
 	bypass_jobban = TRUE
 
-	tutorial = "The stench of your piss-laden clothes dont bug you anymore, the glances of disgust and loathing others give you is just a friendly greeting; the only reason youve not been killed already is because Volfs are known to be repelled by decaying flesh. Youre going to be a solemn reminder what happens when something unwanted is born into this world."
+	tutorial = "The stench of your piss-laden clothes dont bug you anymore, the glances of disgust and loathing others give you is just a friendly greeting; the only reason you've not been killed already is because Volfs are known to be repelled by decaying flesh. You're going to be a solemn reminder what happens when something unwanted is born into this world."
 	display_order = JDO_VAGRANT
 	show_in_credits = FALSE
 	can_random = FALSE

@@ -1,6 +1,6 @@
 /datum/advclass/grenzelhoft
 	name = "Grenzelhoft mercenary"
-	tutorial = "A mercenary from the grenzelhoft emperiate mercenary guild, only cares about coin."
+	tutorial = "A mercenary from the Grenzelhoft emperiate mercenary guild, only cares about coin."
 	allowed_sexes = list("male")
 	allowed_races = list("Humen",
 	"Tiefling",
