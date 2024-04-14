@@ -1,6 +1,7 @@
 
 /obj/structure/ammo_rack
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
+	resistance_flags = RESIST_ALL
 	///ref to the actual internal storage
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal
 

@@ -262,7 +262,7 @@
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
 			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
 		else
-			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]")
+			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
 	chassis = tank
 	forceMove(tank)

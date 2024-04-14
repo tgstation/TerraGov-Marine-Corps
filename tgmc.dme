@@ -571,6 +571,7 @@
 #include "code\datums\helper_datums\getrev.dm"
 #include "code\datums\helper_datums\stack_end_detector.dm"
 #include "code\datums\interior\_interior.dm"
+#include "code\datums\interior\interior_apc.dm"
 #include "code\datums\interior\interior_tank.dm"
 #include "code\datums\interior\link_interior.dm"
 #include "code\datums\interior\map_templates.dm"
