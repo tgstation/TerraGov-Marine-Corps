@@ -358,6 +358,24 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/scout_rifle_incen_magazine
+	name = "\improper IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity incendiary smart-rounds inside."
+	result = /obj/item/ammo_magazine/rifle/tx8/incendiary
+
+/obj/item/factory_part/scout_rifle_incen_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/scout_rifle_impact_magazine
+	name = "\improper IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity smart-rounds inside."
+	result = /obj/item/ammo_magazine/rifle/tx8/impact
+
+/obj/item/factory_part/scout_rifle_impact_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/amr_magazine
 	name = "\improper IFF antimaterial bullet box"
 	desc = "A box with unfinished antimaterial rifle rounds inside."

@@ -1770,9 +1770,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aie" = (
-/obj/machinery/bodyscanner{
-	dir = 8
-	},
+/obj/machinery/bodyscanner,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aif" = (
@@ -2265,6 +2263,16 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"ayb" = (
+/obj/structure/cable,
+/obj/machinery/landinglight/alamo{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "azU" = (
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -2725,6 +2733,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"oQd" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "qko" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
@@ -2876,6 +2892,21 @@
 "sDt" = (
 /obj/docking_port/stationary/supply/vehicle,
 /turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
+"sPD" = (
+/obj/machinery/landinglight/alamo{
+	dir = 8
+	},
+/obj/machinery/landinglight/cas{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 8
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "tae" = (
 /obj/machinery/camera/autoname/mainship{
@@ -4365,7 +4396,7 @@ rPl
 rPl
 dwY
 dwY
-acI
+oQd
 syF
 syF
 syF
@@ -4376,7 +4407,7 @@ syF
 syF
 syF
 syF
-syF
+ayb
 adG
 syF
 syF
@@ -5094,7 +5125,7 @@ ecg
 tWe
 ivw
 ivw
-ivw
+sPD
 ivw
 ivw
 adU
@@ -5104,7 +5135,7 @@ ivw
 ivw
 ivw
 ivw
-ivw
+sPD
 ivw
 ivw
 ahh

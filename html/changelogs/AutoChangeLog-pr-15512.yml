@@ -1,0 +1,5 @@
+author: "MLGTASTICa"
+delete-after: True
+changes:
+  - code_imp: "Optimized get_permeability_protection()"
+  - balance: "Xeno smoke now checks for acid protection(both soft and hard) whenever dealing burn damage (from XENO_SMOKE_ACID sources) instead of bio."
