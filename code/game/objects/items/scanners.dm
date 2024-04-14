@@ -274,7 +274,7 @@ REAGENT SCANNER
 					dead_color = "yellow"
 				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
 					dead_color = "orange"
-				if(0.8 * TIME_BEFORE_DNR to 1 * TIME_BEFORE_DNR)
+				if(0.8 * TIME_BEFORE_DNR to INFINITY)
 					dead_color = "red"
 			advice += list(list(
 				"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
