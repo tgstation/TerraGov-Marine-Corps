@@ -22,7 +22,7 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/ravager/fire_act(burn_level)
 	. = ..()
 	if(stat)
 		return

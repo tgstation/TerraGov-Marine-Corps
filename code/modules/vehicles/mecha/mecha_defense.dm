@@ -150,7 +150,7 @@
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 
-/obj/vehicle/sealed/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
+/obj/vehicle/sealed/mecha/fire_act(burn_level) //Check if we should ignite the pilot of an open-canopy mech
 	. = ..()
 	if(enclosed || mecha_flags & SILICON_PILOT)
 		return

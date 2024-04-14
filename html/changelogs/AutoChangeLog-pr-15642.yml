@@ -1,0 +1,4 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - refactor: "ammo_datums.dm has been split up into 24 different files"

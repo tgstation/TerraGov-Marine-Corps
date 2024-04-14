@@ -327,7 +327,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!stat && !(species.species_flags & NO_PAIN))
 		emote("scream")
 
-/mob/living/carbon/human/flamer_fire_act(burnlevel)
+/mob/living/carbon/human/fire_act(burn_level)
 	. = ..()
 	if(!.)
 		return

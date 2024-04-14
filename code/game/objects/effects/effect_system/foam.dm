@@ -101,8 +101,8 @@
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
+/obj/effect/particle_effect/foam/fire_act(burn_level)
+	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(min(burn_level * 3, 100)))
 		kill_foam()
 
 /obj/effect/particle_effect/foam/can_slip()
@@ -173,6 +173,6 @@
 		SMOOTH_GROUP_FOAM_WALL,
 	)
 
-/obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
-	take_damage(10, BURN, FIRE)
+/obj/structure/foamedmetal/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
