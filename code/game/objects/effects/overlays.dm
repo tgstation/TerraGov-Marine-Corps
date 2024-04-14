@@ -258,16 +258,16 @@
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB //This is a subtype of CAS so that CIC gets cameras on the lase
+/obj/effect/overlay/temp/laser_target/ob //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
 	lasertype = LASER_TYPE_OB
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/ob/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_laser_targets += src
 
-/obj/effect/overlay/temp/laser_target/OB/Destroy()
+/obj/effect/overlay/temp/laser_target/ob/Destroy()
 	GLOB.active_laser_targets -= src
 	return ..()
 

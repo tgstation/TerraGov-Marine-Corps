@@ -170,8 +170,8 @@
 	return ..()
 
 
-/obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
+/obj/structure/mineral_door/transparent/phoron/fire_act(burn_level)
+	if(burn_level > 30)
 		var/turf/T = get_turf(src)
 		T.ignite(25, 25)
 

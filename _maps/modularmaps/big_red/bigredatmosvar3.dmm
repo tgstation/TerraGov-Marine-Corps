@@ -364,7 +364,7 @@
 "wk" = (
 /obj/structure/cryofeed,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "wY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -416,7 +416,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "yj" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,

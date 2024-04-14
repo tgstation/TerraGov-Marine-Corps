@@ -218,14 +218,16 @@
 	name = "\improper Nanotrasen brand MRE"
 	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
-	can_hold = list(/obj/item/reagent_containers/food/snacks)
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/box/nt_mre/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.set_holdable(list(/obj/item/reagent_containers/food/snacks))
 
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
+
+/obj/item/storage/box/nt_mre/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)

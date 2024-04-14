@@ -102,6 +102,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 
 	for(var/J in 1 to LAZYLEN(fail_reasons))
 		log_entry += "\tREASON #[J]: [fail_reasons[J]]"
+		//TODO missing tg's logging what map it failed on
 	var/message = log_entry.Join("\n")
 	log_test(message)
 

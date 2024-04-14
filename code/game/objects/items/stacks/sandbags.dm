@@ -88,5 +88,5 @@
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
 	. = ..()
-	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent(SKILL_CONSTRUCTION, SKILL_ENGINEER_MASTER))
+	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent(SKILL_CONSTRUCTION, SKILL_ENGINEER_EXPERT))
 	create_object(user, new/datum/stack_recipe("sandbag barricade", /obj/structure/barricade/sandbags, 5, time = building_time, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE), 1)

@@ -43,13 +43,13 @@
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
-	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
+	description = "Builds whatever you've selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/secrete_special_resin
 	name = "secrete_special_resin"
-	full name = "Secrete Special Resin"
+	full_name = "Secrete Special Resin"
 	description = "Builds whatever special resin you have selected."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
 	hotkey_keys = list("ShiftR")
@@ -109,6 +109,13 @@
 	description = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/long_range_sight
+	name = "long_range_sight"
+	full_name = "Long Range Sight"
+	description = "Toggles the zoom in."
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/xenohide
 	name = "xenohide"
@@ -205,13 +212,6 @@
 // Single caste, alphabetical order
 //
 
-/datum/keybinding/xeno/long_range_sight
-	name = "long_range_sight"
-	full_name = "Boiler: Long Range Sight"
-	description = "Toggles the zoom in."
-	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
-	hotkey_keys = list("E")
-
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
 	full_name = "Boiler: Toggle Bombard Type"
@@ -251,7 +251,7 @@
 	full_name = "Bull: Headbutt Charge"
 	description = "A charge that tosses the victim forward or backwards, depending on intent."
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-	hotkey_keys = list("E")
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/gore_charge
 	name = "gore_charge"
@@ -1072,11 +1072,17 @@
 	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	keybind_signal = COMSIG_XENOABILITY_TENDRILS
 
-/datum/keybinding/xeno/send_orders_puppet
-	name = "Give Orders to Puppets"
-	full_name = "Puppeteer: Give Orders to Puppets"
-	description = "Give orders to your puppets, altering their behaviour."
-	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
+/datum/keybinding/xeno/unleash_puppet
+	name = "Unleash puppets"
+	full_name = "Puppeteer: Unleash puppets"
+	description = "Unleash puppets to attack nearby humans."
+	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+
+/datum/keybinding/xeno/recall_puppet
+	name = "Recall puppets"
+	full_name = "Puppeteer: Recall puppets"
+	description = "Recalls your puppets, making them follow you once more"
+	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
 
 /datum/keybinding/xeno/bestow_blessing
 	name = "Bestow Blessings"

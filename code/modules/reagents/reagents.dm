@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
 	/// does this show up on health analyzers
-	var/scannable = FALSE
+	var/scannable = TRUE
 	/// if false stops metab in liverless mobs
 	var/self_consuming = FALSE
 	/// List of reagents removed by this chemical

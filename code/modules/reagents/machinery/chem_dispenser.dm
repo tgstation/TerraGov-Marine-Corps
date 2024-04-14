@@ -118,6 +118,7 @@
 		flick(working_state,src)
 
 /obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
+	. = ..()
 	if(AM == beaker)
 		beaker = null
 

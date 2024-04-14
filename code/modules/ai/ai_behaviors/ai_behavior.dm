@@ -35,13 +35,15 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0
+	var/minimum_health = 0.4
 	///If the mob attached to the ai is offered on xeno creation
 	var/is_offered_on_creation = FALSE
 	///Are we waiting for advanced pathfinding
 	var/registered_for_node_pathfinding = FALSE
 	///Are we already registered for normal pathfinding
 	var/registered_for_move = FALSE
+	///Should we lose the escorted atom if we change action
+	var/weak_escort = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -255,16 +257,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 
-///Set the escorted atom
-/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
+///Set the escorted atom.
+/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
 	SIGNAL_HANDLER
 	clean_escorted_atom()
 	escorted_atom = atom_to_escort
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+	weak_escort = new_escort_is_weak
+	if(!weak_escort)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+		base_action = ESCORTING_ATOM
 	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, PROC_REF(set_escorted_atom))
 	RegisterSignal(escorted_atom, COMSIG_QDELETING, PROC_REF(clean_escorted_atom))
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
-	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 
 ///Change atom to walk to if the order comes from a corresponding commander

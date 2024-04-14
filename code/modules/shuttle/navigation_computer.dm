@@ -295,7 +295,7 @@
 	if(!T || T.x <= 10 || T.y <= 10 || T.x >= world.maxx - 10 || T.y >= world.maxy - 10)
 		return SHUTTLE_DOCKER_BLOCKED
 	var/area/turf_area = get_area(T)
-	if(turf_area.ceiling >= CEILING_OBSTRUCTED)
+	if(turf_area.ceiling >= CEILING_METAL)
 		return SHUTTLE_DOCKER_BLOCKED
 	// If it's one of our shuttle areas assume it's ok to be there
 	if(shuttle_port.shuttle_areas[T.loc])

@@ -27,9 +27,9 @@
 
 /datum/loadout_item/back/som_flamer_tank/x_fuel
 	name = "X-fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the V-62 incinerator."
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the V-62 incinerator."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 40
+	purchase_cost = 50
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -67,6 +67,7 @@
 	desc = "This backpack holds 4 RPGs, in addition to a V-71 RPG launcher. Equipped with radioactive and incendiary warheads, \
 	the V-71 is incredibly effective at softening up or flushing out organic targets, making them easy prey to finish off. Has a draw delay."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
+	ui_icon = "rpg"
 	purchase_cost = 50
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/som/war_crimes
@@ -77,6 +78,7 @@
 	name = "HEAT RPG bag"
 	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 high explosive anti armor RPGs, in addition to a V-71 RPG launcher. Deals significant damage against vehicles and mechs, but will also generally devastate human victims in a pinch. \
 	Has a draw delay and has poor accuracy against human targets."
+	ui_icon = "rpg"
 	unlock_cost = 300
 	purchase_cost = 100
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
@@ -103,6 +105,6 @@
 	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
 	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)
 	loadout_item_flags = NONE
