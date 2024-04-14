@@ -194,8 +194,8 @@
 			vomit(1, blood = TRUE)
 		sleep(1 MINUTES) //you get a minute
 		flash_fullscreen("redflash3")
-		to_chat(src, "<span class='danger'>It hurts...</span>")
-		emote("scream")
-		say("AAAAH!!! IT HURTS!!", forced = "zombie_infect")
+		to_chat(src, "<span class='danger'>It hurts... Is this really the end for me...</span>")
+		emote("scream") // heres your warning to others bro
+		Knockdown(1)
 		new_antag.wake_zombie(TRUE)
 		//death()
