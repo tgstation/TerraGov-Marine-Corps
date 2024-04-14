@@ -69,9 +69,22 @@
 				for(var/tone in skin_tones)
 					var/color = skin_tones[key]
 					if(color == skin_tone)
-						skin_tone_seen = tone
+						skin_tone_seen = lowertext(tone)
 						break
-			. += "<span class='info'>[capitalize(m2)] [skin_tone_wording] is [skin_tone_seen].</span>"
+			var/slop_lore_string = ""
+			if(ishumannorthern(user))
+				var/mob/living/carbon/human/racist = user
+				var/list/user_skin_tones = racist.get_skin_list()
+				var/user_skin_tone_seen = "incomprehensible"
+				for(var/tone in user_skin_tones)
+					var/color = user_skin_tones[key]
+					if(color == racist.skin_tone)
+						user_skin_tone_seen = lowertext(tone)
+						break
+				if((user_skin_tone_seen == "lalvestine" && skin_tone_seen == "shalvistine") || \
+					(user_skin_tone_seen == "shalvistine" && skin_tone_seen == "lalvestine"))
+					slop_lore_string = "<span class='danger'> TRAITOR!</span>"
+			. += "<span class='info'>[capitalize(m2)] [skin_tone_wording] is [skin_tone_seen].[slop_lore_string]</span>"
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
