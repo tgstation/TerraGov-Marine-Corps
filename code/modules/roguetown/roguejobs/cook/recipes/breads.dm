@@ -225,32 +225,34 @@
 	bitesize = 2
 	rotprocess = 30 MINUTES
 
+/datum/crafting_recipe/roguetown/cooking/butterbiscuit
+	name = "butter bun"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/rogue/biscuitcooked = 1,
+		/obj/item/reagent_containers/food/snacks/butterslice= 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/rogue/butterbun
+	subtype_reqs = FALSE
+	craftdiff = 0
+
+/obj/item/reagent_containers/food/snacks/rogue/biscuitcooked/butter
+	name = "biscuit of butter"
+	desc = ""
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "butterbiscuit"
+	filling_color = "#F0E68C"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	tastes = list("butter" = 1, "biscuit" = 1)
+	foodtype = GRAIN
+	bitesize = 3
+	rotprocess = 60 MINUTES
+
 /datum/crafting_recipe/roguetown/cooking/hbun
 	name = "honey bun"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/rogue/bun = 1,
 		/obj/item/reagent_containers/food/snacks/rogue/honey = 1)
 	result = /obj/item/reagent_containers/food/snacks/rogue/honeybun
-	subtype_reqs = FALSE
-	craftdiff = 0
-
-/obj/item/reagent_containers/food/snacks/rogue/butterbun
-	name = "bun of butter"
-	desc = ""
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "butterbiscuit"
-	filling_color = "#F0E68C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
-	tastes = list("butter" = 1, "biscuit" = 1)
-	foodtype = GRAIN | BREAKFAST
-
-/datum/crafting_recipe/roguetown/cooking/butterbun
-	name = "butter bun"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/rogue/butterbun
 	subtype_reqs = FALSE
 	craftdiff = 0
 

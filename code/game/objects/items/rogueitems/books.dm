@@ -230,7 +230,7 @@
 	bookfile = "law.json"
 
 /obj/item/book/rogue/cooking
-	name = "For The Lord's Taste"
+	name = "Tastes Fit For The Lord"
 	desc = ""
 	icon_state ="knowledge0"
 	base_icon_state = "knowledge"
