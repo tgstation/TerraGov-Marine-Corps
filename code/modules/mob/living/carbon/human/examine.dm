@@ -62,13 +62,12 @@
 		
 		if(dna.species.use_skintones)
 			var/skin_tone_wording = dna.species.skin_tone_wording ? lowertext(dna.species.skin_tone_wording) : "skin tone"
+			var/list/skin_tones = dna.species.get_skin_list()
 			var/skin_tone_seen = "incomprehensible"
 			if(skin_tone)
 				//AGGHHHHH this is stupid
-				var/list/skin_tones = dna.species.get_skin_list()
 				for(var/tone in skin_tones)
-					var/color = skin_tones[key]
-					if(color == skin_tone)
+					if(src.skin_tone == skin_tones[tone])
 						skin_tone_seen = lowertext(tone)
 						break
 			var/slop_lore_string = ""
@@ -77,8 +76,7 @@
 				var/list/user_skin_tones = racist.dna.species.get_skin_list()
 				var/user_skin_tone_seen = "incomprehensible"
 				for(var/tone in user_skin_tones)
-					var/color = user_skin_tones[key]
-					if(color == racist.skin_tone)
+					if(racist.skin_tone == user_skin_tones[tone])
 						user_skin_tone_seen = lowertext(tone)
 						break
 				if((user_skin_tone_seen == "lalvestine" && skin_tone_seen == "shalvistine") || \
@@ -96,11 +94,10 @@
 
 		if(real_name in GLOB.outlawed_players)
 			. += "<span class='userdanger'>OUTLAW!</span>"
-		if(mind && mind.special_role)
-		else
-			if(mind && mind.special_role == "Bandit")
+		if(mind)
+			if(mind.special_role == "Bandit")
 				. += "<span class='userdanger'>BANDIT!</span>"
-			if(mind && mind.special_role == "Vampire Lord")
+			if(mind.special_role == "Vampire Lord")
 				. += "<span class='userdanger'>A MONSTER!</span>"
 
 	if(leprosy == 1)
