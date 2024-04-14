@@ -460,9 +460,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	volatility_check(MINE_VOLATILE_EXPLOSION)
 
 //Fire will cause mines to trigger their explosion
-/obj/item/mine/flamer_fire_act(burnlevel)
-	volatility_check(MINE_VOLATILE_FIRE)
-
 /obj/item/mine/fire_act()
 	volatility_check(MINE_VOLATILE_FIRE)
 

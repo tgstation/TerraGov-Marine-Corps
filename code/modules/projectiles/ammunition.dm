@@ -211,7 +211,7 @@
 	caliber = source.caliber
 	default_ammo = source.default_ammo
 
-/obj/item/ammo_magazine/flamer_fire_act(burnlevel)
+/obj/item/ammo_magazine/fire_act(burn_level)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
@@ -464,7 +464,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act(burnlevel)
+/obj/item/big_ammo_box/fire_act(burn_level)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
