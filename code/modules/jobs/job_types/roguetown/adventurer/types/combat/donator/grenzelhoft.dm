@@ -33,7 +33,7 @@
 	//Humie grenzelhofts are always set to be, well, grenzelhoft
 	if(ishumannorthern(H))
 		var/list/skin_slop = H.dna.species.get_skin_list()
-		H.skin_tone = = skin_slop["Grenzelhoft"]
+		H.skin_tone = skin_slop["Grenzelhoft"]
 		H.update_body()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)

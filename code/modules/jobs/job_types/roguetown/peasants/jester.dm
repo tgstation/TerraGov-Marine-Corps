@@ -36,7 +36,7 @@
 	//Desc says grenzelhoft has great jesters so 50% change to raceswap because slop lore
 	if(ishumannorthern(H) && prob(50))
 		var/list/skin_slop = H.dna.species.get_skin_list()
-		H.skin_tone = = skin_slop["Grenzelhoft"]
+		H.skin_tone = skin_slop["Grenzelhoft"]
 		H.update_body()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
