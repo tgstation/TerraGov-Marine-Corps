@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes:
-  - qol: "Clicking on an opened storage will close it"

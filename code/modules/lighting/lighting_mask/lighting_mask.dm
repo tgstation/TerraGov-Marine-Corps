@@ -147,7 +147,7 @@
 /atom/movable/lighting_mask/ex_act(severity, target)
 	return
 
-/atom/movable/lighting_mask/fire_act(exposed_temperature, exposed_volume)
+/atom/movable/lighting_mask/fire_act(burn_level)
 	return
 
 #undef LIGHTING_MASK_SPRITE_SIZE

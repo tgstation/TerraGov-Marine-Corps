@@ -1,11 +1,12 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-/*!
- * TODO SPLIT THIS FILE GODDAM
- */
-
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
+/**
+ * # The base ammo datum
+ *
+ * This datum is the base for absolutely every ammo type in the game.
+*/
 /datum/ammo
 	var/name = "generic bullet"
 	var/icon = 'icons/obj/items/projectiles.dmi'

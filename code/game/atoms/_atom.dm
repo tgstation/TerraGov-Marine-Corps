@@ -123,6 +123,9 @@
 	var/list/managed_vis_overlays
 	///The list of alternate appearances for this atom
 	var/list/alternate_appearances
+	///var containing our storage, see atom/proc/create_storage()
+	var/datum/storage/storage_datum
+
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -134,6 +137,9 @@ directive is properly returned.
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
+
+	if(storage_datum)
+		QDEL_NULL(storage_datum)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -419,14 +425,15 @@ directive is properly returned.
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
-/atom/proc/fire_act()
+///Effects of fire
+/atom/proc/fire_act(burn_level)
 	return
 
 ///Effects of lava. Return true where we want the lava to keep processing
 /atom/proc/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	fire_act()
+	fire_act(LAVA_BURN_LEVEL)
 	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
@@ -447,16 +454,13 @@ directive is properly returned.
 
 
 /atom/proc/contents_explosion(severity)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_CONTENTS_EX_ACT, severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
-
-
-///Fire effects from a burning turf. Burn level is the base fire damage being received.
-/atom/proc/flamer_fire_act(burnlevel)
-	return
-
 
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
@@ -846,9 +850,13 @@ directive is properly returned.
 // Stacks and storage redefined procs.
 
 /atom/proc/max_stack_merging(obj/item/stack/S)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, ATOM_MAX_STACK_MERGING, S)
 	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, ATOM_RECALCULATE_STORAGE_SPACE)
 	return //Nothing to see here.
 
 // Tool-specific behavior procs. To be overridden in subtypes.

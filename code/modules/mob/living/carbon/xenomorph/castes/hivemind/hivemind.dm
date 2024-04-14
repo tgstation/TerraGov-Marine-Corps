@@ -153,7 +153,7 @@
 	update_action_buttons()
 	handle_weeds_adjacent_removed()
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/hivemind/fire_act(burn_level)
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 

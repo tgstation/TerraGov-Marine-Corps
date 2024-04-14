@@ -80,12 +80,8 @@
 		if(EXPLODE_LIGHT)
 			take_damage(300, BRUTE, BOMB)
 
-/obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
-	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
-
-/obj/structure/xeno/xeno_turret/fire_act()
-	take_damage(60, BURN, FIRE)
+/obj/structure/xeno/xeno_turret/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/update_overlays()

@@ -77,10 +77,7 @@
 	. += mutable_appearance(icon, "[charges]", alpha = src.alpha)
 	. += emissive_appearance(icon, "[charges]", alpha = src.alpha)
 
-/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
-	acid_well_fire_interaction()
-
-/obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
+/obj/structure/xeno/acidwell/fire_act(burn_level)
 	acid_well_fire_interaction()
 
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
