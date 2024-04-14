@@ -137,6 +137,11 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
 
+/datum/loadout_item/suit_slot/heavy_tyr/universal
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	loadout_item_flags = NONE
+	item_whitelist = null
+
 /datum/loadout_item/suit_slot/medium_valk
 	name = "M Valkyrie armor"
 	desc = "Medium armor with a Valkyrie automedical module. Provides respectable protection, powerful automatic medical assistance, but modest mobility."

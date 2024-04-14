@@ -15,5 +15,5 @@
 	det_time = initial(det_time) //these can be modified when fired by UGL
 	throw_range = initial(throw_range)
 
-/obj/item/explosive/grenade/training/flamer_fire_act(burnlevel)
+/obj/item/explosive/grenade/training/fire_act(burn_level)
 	return

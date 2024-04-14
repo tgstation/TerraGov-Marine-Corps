@@ -542,7 +542,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 ///Effects applied to a mob that crosses a burning turf
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
 	if(istype(M))
-		M.flamer_fire_act(burnlevel)
+		M.fire_act(burnlevel)
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -575,7 +575,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		return
 
 	for(var/mob/living/C in get_turf(src))
-		C.flamer_fire_act(fire_stacks)
+		C.fire_act(fire_stacks)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
@@ -613,7 +613,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel)
+	T.fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -622,7 +622,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel)
+		A.fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 

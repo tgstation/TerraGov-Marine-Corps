@@ -11,7 +11,7 @@
 /turf/open/floor/plating/ground/burnt_states()
 	return icon_state
 
-/turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/plating/ground/fire_act(burn_level)
 	return
 
 /turf/open/floor/plating/ground/dirt
@@ -369,7 +369,7 @@
 
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
 	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
-	base_icon_state = "aasphalt-sunbleached"
+	base_icon_state = "asphalt-sunbleached"
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave

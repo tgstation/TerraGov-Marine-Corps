@@ -1205,7 +1205,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 15
+	sundering = 30
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
@@ -3096,12 +3096,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
 	bonus_projectiles_amount = 2
-	bonus_projectiles_scatter = 5
+	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 5
+	accurate_range = 3
 	max_range = 8
 	damage = 35
+	damage_falloff = 8
 	penetration = 20
 	sundering = 1
 	hitscan_effect_icon = "pu_laser"
