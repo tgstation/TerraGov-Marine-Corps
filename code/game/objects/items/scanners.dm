@@ -266,7 +266,7 @@ REAGENT SCANNER
 
 	var/list/advice = list()
 	var/list/temp_advice = list()
-	if(patient.dead_ticks < 150)
+	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // Only show advice for revivable patients
 		if(patient.stat == DEAD)
 			var/dead_color
 			switch(patient.dead_ticks)
@@ -276,11 +276,12 @@ REAGENT SCANNER
 					dead_color = "orange"
 				if(0.8 * TIME_BEFORE_DNR to INFINITY)
 					dead_color = "red"
-			advice += list(list(
-				"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
-				"icon" = "clock",
-				"color" = dead_color
-				))
+			if(!issynth(patient)) // synthetics don't expire
+				advice += list(list(
+					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+					"icon" = "clock",
+					"color" = dead_color
+					))
 			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
 				advice += list(list(
 					"advice" = "Remove patient's suit or armor.",
@@ -325,31 +326,36 @@ REAGENT SCANNER
 				"icon" = "dna",
 				"color" = "teal"
 				))
-		if(patient.status_flags & XENO_HOST)
-			advice += list(list(
-				"advice" = "Alien embryo detected. Immediate surgical intervention advised.",
-				"icon" = "exclamation",
-				"color" = "red"
-				))
-		if(infection_message)
-			advice += list(list(
-				"advice" = "Administer a single dose of spaceacilin - infections detected.",
-				"icon" = "biohazard",
-				"color" = "olive"
-				))
 		if(unknown_implants)
 			advice += list(list(
 				"advice" = "Recommend that the patient does not move - embedded objects.",
 				"icon" = "window-close",
 				"color" = "red"
 				))
-		if(!issynth(patient))
+		if(!issynth(patient) && !isrobot(patient)) // Advice that's only relevant to humans
 			if(patient.blood_volume <= 500 && !chemicals_lists["Nutriment"])
 				advice += list(list(
 					"advice" = "Administer food or recommend that the patient eat.",
 					"icon" = "pizza-slice",
 					"color" = "white"
 					))
+			if(patient.status_flags & XENO_HOST)
+				advice += list(list(
+					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
+					"icon" = "exclamation",
+					"color" = "red"
+					))
+			if(infection_message)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"icon" = "biohazard",
+					"color" = "olive"
+					))
+				if(chemicals_lists["Spaceacillin"])
+					if(chemicals_lists["Spaceacillin"]["amount"] < 2)
+						advice += temp_advice
+				else
+					advice += temp_advice
 			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
@@ -372,7 +378,7 @@ REAGENT SCANNER
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getToxLoss() > 10)
+			if(patient.getToxLoss() > 15)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dylovene.",
 					"icon" = "syringe",
@@ -383,7 +389,7 @@ REAGENT SCANNER
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getOxyLoss() > 25)
+			if(patient.getOxyLoss() > 30)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dexalin plus.",
 					"icon" = "syringe",
@@ -401,7 +407,7 @@ REAGENT SCANNER
 					"color" = "blue"
 					))
 				advice += temp_advice
-			if(patient.stat != DEAD && patient.health < -50 && !issynth(patient) && !isrobot(patient))
+			if(patient.stat != DEAD && patient.health < -50)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
 					"icon" = "syringe",
@@ -413,7 +419,7 @@ REAGENT SCANNER
 				else
 					advice += temp_advice
 			var/has_pain = FALSE
-			if(patient.traumatic_shock > 70)
+			if(patient.traumatic_shock > 50)
 				has_pain = TRUE
 
 			if(has_pain && !chemicals_lists["Paracetamol"])
@@ -436,7 +442,7 @@ REAGENT SCANNER
 					))
 	else
 		advice += list(list(
-			"advice" = "Patient is braindead.",
+			"advice" = "Patient is unrevivable.",
 			"icon" = "brain",
 			"color" = "white"
 			))
