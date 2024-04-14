@@ -17,7 +17,7 @@
 	Tiefling tend to be extremely perceptive and paranoid, as luck is rarely on their side \
 	and their unique biology makes them extremely susceptible to injury."
 
-	string_to_replace_skintone_on_charpref = "Progenitor"
+	skin_tone_wording = "Progenitor"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
