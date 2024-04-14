@@ -74,7 +74,7 @@
 			var/slop_lore_string = ""
 			if(ishumannorthern(user))
 				var/mob/living/carbon/human/racist = user
-				var/list/user_skin_tones = racist.get_skin_list()
+				var/list/user_skin_tones = racist.dna.species.get_skin_list()
 				var/user_skin_tone_seen = "incomprehensible"
 				for(var/tone in user_skin_tones)
 					var/color = user_skin_tones[key]
