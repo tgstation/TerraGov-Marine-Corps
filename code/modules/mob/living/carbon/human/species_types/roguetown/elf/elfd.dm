@@ -29,7 +29,7 @@
 	without careful upkeep...\
 	They typically trace their beginnings to how their progenator died before being raised."
 */
-	string_to_replace_skintone_on_charpref = "Origin City-State"
+	skin_tone_wording = "Origin City-State"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)

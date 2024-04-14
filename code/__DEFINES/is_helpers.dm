@@ -87,6 +87,15 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 #define isethereal(A) (is_species(A, /datum/species/ethereal))
 #define isvampire(A) (is_species(A,/datum/species/vampire))
 
+//RT species
+#define ishumannorthern(A) (is_species(A, /datum/species/human/northern))
+#define isdwarf(A) (is_species(A, /datum/species/dwarf))
+#define iself(A) (is_species(A, /datum/species/elf))
+#define isdarkelf(A) (is_species(A, /datum/species/elf/dark))
+#define iswoodelf(A) (is_species(A, /datum/species/elf/snow))
+#define ishalfelf(A) (is_species(A, /datum/species/human/halfelf))
+#define istiefling(A) (is_species(A, /datum/species/tieberian))
+
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
 
