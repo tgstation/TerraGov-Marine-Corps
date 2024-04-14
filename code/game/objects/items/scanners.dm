@@ -443,7 +443,7 @@ REAGENT SCANNER
 	else
 		advice += list(list(
 			"advice" = "Patient is unrevivable.",
-			"icon" = "brain",
+			"icon" = "ribbon",
 			"color" = "white"
 			))
 	if(advice.len)
