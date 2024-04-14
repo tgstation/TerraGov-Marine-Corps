@@ -3097,6 +3097,10 @@
 /obj/item/toy/deck,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"dRR" = (
+/obj/vehicle/sealed/armored/multitile,
+/turf/open/floor/mainship/hexagon,
+/area/centcom/valhalla)
 "dSO" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -3257,6 +3261,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/centcom/valhalla)
+"efF" = (
+/obj/structure/table/mainship,
+/obj/item/armored_weapon,
+/obj/item/armored_weapon/ltaap,
+/turf/open/floor/plating,
 /area/centcom/valhalla)
 "efJ" = (
 /obj/item/radio/intercom{
@@ -4309,7 +4319,7 @@
 	},
 /area/centcom/valhalla)
 "fRn" = (
-/obj/machinery/tank_part_fabricator,
+/obj/vehicle/sealed/armored/multitile,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "fRC" = (
@@ -15301,6 +15311,12 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
+"wlz" = (
+/obj/structure/table/mainship,
+/obj/item/armored_weapon/secondary_weapon,
+/obj/item/armored_weapon/secondary_weapon,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
 "wnL" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral,
@@ -18308,7 +18324,7 @@ boq
 boq
 jba
 cxN
-cxN
+dRR
 cxN
 csi
 boq
@@ -18720,7 +18736,7 @@ bbR
 boq
 boq
 boq
-fRn
+efF
 ivs
 ivs
 ivs
@@ -18858,7 +18874,7 @@ bbR
 boq
 boq
 boq
-boq
+wlz
 ivs
 ivs
 ivs
@@ -19131,7 +19147,7 @@ aMq
 aMq
 aMq
 bbR
-boq
+fRn
 boq
 boq
 wJM
