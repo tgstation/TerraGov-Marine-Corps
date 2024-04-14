@@ -1,6 +1,6 @@
 
 /datum/advclass/dwarfwarrior
-	name = "Warrior"
+	name = "Cavern Warrior"
 	tutorial = "Dwarf Warriors are the bread and butter of their miliary sworn to defend their mountain fortress. Armed with either a battle axe or mace, they are a force to be reckoned with."
 	allowed_sexes = list("male", "female")
 	allowed_races = list("Dwarf","Dwarf")
