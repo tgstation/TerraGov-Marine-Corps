@@ -555,7 +555,7 @@
 	fill_type = /obj/item/mine/flash/battery_included
 	fill_number = 5
 
-/obj/item/storage/pouch/flash/Initialize(mapload)
+/obj/item/storage/pouch/mine/flash/Initialize(mapload)
 	. = ..()
 	//Extra 2 space and 1 slot for the spare battery
 	storage_datum.max_storage_space = 12
@@ -569,7 +569,7 @@
 	fill_type = /obj/item/mine/radiation/fueled
 	fill_number = 5
 
-/obj/item/storage/pouch/radiation/Initialize(mapload)
+/obj/item/storage/pouch/mine/radiation/Initialize(mapload)
 	. = ..()
 	//Extra 1 and slot for the spare fuel
 	storage_datum.max_storage_space = 11

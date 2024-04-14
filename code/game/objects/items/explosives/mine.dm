@@ -145,8 +145,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 /obj/item/mine/examine(mob/user)
 	. = ..()
+	. += range ? "Has a detection range of [span_bold("[range]")] tile[range > 1 ? "s" : ""]." : "Only detonated if stepped on."
+	if(buffer_range)
+		. += "Cannot be triggered within [span_bold("[buffer_range]")] tile[buffer_range > 1 ? "s" : ""] of itself."
 	if(CHECK_BITFIELD(mine_features, MINE_CUSTOM_RANGE))
 		. += "[span_bold("Alt Click")] to change the detection range."
+	if(!CHECK_BITFIELD(mine_features, MINE_DISCERN_LIVING))
+		. += span_warning("This mine can be triggered by objects!")
 	if(armed)
 		. += span_warning("It is active!")
 
@@ -572,7 +577,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	heavy_explosion_range = 3
 	blinding_range = 1
 	launch_distance = 5
-	mine_features = MINE_PRESSURE_SENSITIVE
+	mine_features = MINE_PRESSURE_SENSITIVE|MINE_DISCERN_LIVING
 
 /obj/item/mine/pressure/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
@@ -749,19 +754,21 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	icon_state = "radiation"
 	detonation_message = "clicks, emitting a low hum."
 	range = 2
-	duration = 30 SECONDS
+	duration = -1
 	disarm_delay = 5 SECONDS
 	undeploy_delay = 4 SECONDS	//You turn it off veeeery carefully
 	deploy_delay = 2 SECONDS
 	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE|MINE_ILLEGAL|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_EXPLOSION
 	///Base damage of the radiation pulse, and determines severity of effects; see extra_effects()
 	var/radiation_damage = 20
-	///How many more times the mine pulses out radiation and refreshes the radiation field
-	var/number_of_pulses = 3
-	///How many units of fuel are inside; each unit is 1 tile of range
+	///Radius of the radiation field
+	var/radiation_range = 4
+	///How many units of fuel are inside; each unit is 1 pulse
 	var/current_fuel = 0
 	///The maximum capacity of fuel units
-	var/max_fuel = 10
+	var/max_fuel = 3
+	///Time between pulses
+	var/time_between_pulses = 10 SECONDS
 	///Stored reference to the timer that determines when extra_effects() is called again
 	var/pulse_timer
 
@@ -786,7 +793,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 		var/obj/item/stack/uranium = I
 		var/amount_to_transfer = max(1, min(uranium.amount, max_fuel - current_fuel))
-		if(uranium.use(amount_to_transfer))
+		if(!uranium.use(amount_to_transfer))
 			balloon_alert(user, "Not enough fuel!")
 			return
 
@@ -794,11 +801,17 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		balloon_alert(user, current_fuel == max_fuel ? "Full!" : "[current_fuel]/[max_fuel] fuel!")
 		return
 
+/obj/item/mine/radiation/setup(mob/living/user)
+	if(!current_fuel)
+		balloon_alert(user, "No fuel!")
+		return
+	. = ..()
+
 /obj/item/mine/radiation/disarm()
-	if(triggered)
-		current_fuel = 0	//In the event of disarmament when already detonated, have the fuel be already expended
+	//if(pulse_timer)
 	deltimer(pulse_timer)
-	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range
+	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range and update
+	update_light()
 	return ..()
 
 /obj/item/mine/radiation/trip_mine(atom/movable/victim)
@@ -806,32 +819,46 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	return ..()
 
-/obj/item/mine/radiation/explode(atom/movable/victim)
-	. = ..()
-	if(!.)
-		return FALSE
-	//The deletion_timer lasts a second longer so that the last pulse can go off before qdel()
-	deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-
 /obj/item/mine/radiation/extra_effects(atom/movable/victim)
-	if(!current_fuel)	//While this should NEVER happen, just in case
-		current_fuel = 1	//I would normally have it be disarmed but this mine is not reusable, so just let it continue as normal
-	new /obj/effect/temp_visual/shockwave(get_turf(src), current_fuel * 1.5)
-	light_range = current_fuel * 1.5
+	if(!current_fuel)
+		disarm()
+		return
+
+	current_fuel--
+	new /obj/effect/temp_visual/shockwave(get_turf(src), radiation_range * 1.5)
+	light_range = radiation_range * 1.5
 	set_light(light_range, light_power, light_color)
-	var/list/exclusion_zone = circle_range(get_turf(src), current_fuel)	//Radiation passes through walls
+
+	var/list/exclusion_zone = circle_range(get_turf(src), radiation_range)	//Radiation SHALL NOT pass through walls (too much cope)
 	for(var/mob/living/carbon/radiation_victim in exclusion_zone)
+		if(!check_path(src, radiation_victim, FALSE, TRUE, TRUE, TRUE))	//circle_range() goes through walls, so make sure the target is reachable
+			exclusion_zone -= radiation_victim	//Remove it since it will be iterating again below
+			continue
+
 		//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
 		radiation_victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(radiation_victim) ? pick(GLOB.human_body_parts) : null, BIO)
 		radiation_victim.adjust_stagger(radiation_damage/5 SECONDS)
 		radiation_victim.adjust_radiation(radiation_damage SECONDS)
-	for(var/turf/irradiated_turf in exclusion_zone)
-		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
-		new /obj/effect/temp_visual/radiation(irradiated_turf, (duration/number_of_pulses) - 1)
-	pulse_timer = addtimer(CALLBACK(src, PROC_REF(extra_effects)), duration/number_of_pulses, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
-/obj/item/mine/radiation/fueled
-	current_fuel = 10
+	for(var/turf/irradiated_turf in exclusion_zone)
+		if(!check_path(src, irradiated_turf))
+			continue
+
+		for(var/obj/effect/temp_visual/radiation/rad_effect in irradiated_turf.contents)
+			qdel(rad_effect)	//Delete any present radiation effect, the new one will replace it
+
+		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
+		new /obj/effect/temp_visual/radiation(irradiated_turf, time_between_pulses - 1)
+
+	if(!current_fuel)
+		deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), time_between_pulses - 1, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+		return
+
+	pulse_timer = addtimer(CALLBACK(src, PROC_REF(extra_effects)), time_between_pulses, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/obj/item/mine/radiation/fueled/Initialize(mapload)
+	. = ..()
+	current_fuel = max_fuel
 
 /obj/effect/temp_visual/radiation
 	randomdir = FALSE
@@ -956,6 +983,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
 	var/target
+	var/target_is_living = FALSE	//Probably better to keep track of a boolean than repeating isliving() more than once
 	var/list/nearby_objects = shuffle(circle_range(src, range))
 	nearby_objects -= src	//Prevent the mine from committing suicide
 
@@ -968,30 +996,41 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 		//Mob checks
 		if(isliving(atom))
-			if(ishuman(atom))
-				var/mob/living/carbon/human/human_victim = atom
-				//Will shock a random body part on humans
-				human_victim.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
-				target = human_victim
-			else
-				var/mob/living/living_victim = atom
-				living_victim.apply_damage(damage, BURN, blocked = ENERGY)
-				target = living_victim
-			break
+			target_is_living = TRUE
+			if(isxeno(atom))
+				target = atom
+				break	//Xeno are extra conductive!
+			target = atom
+			continue	//Keep looping in case we find a xeno
 
-		//Check if it's an object that's NOT an effect
-		if(isobj(atom) && !iseffect(atom))
+		//Check if it's an object that's NOT an effect and if there isn't already a living target chosen
+		if(!target_is_living && isobj(atom) && !iseffect(atom))
 			var/obj/lightning_rod = atom
 			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
 			if(lightning_rod.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(lightning_rod.atom_flags, CONDUCT))
 				continue
-			lightning_rod.take_damage(damage, BURN, ENERGY)
-			target = lightning_rod
-			break
+			target = atom
+
+	//Do get_turf() on every target before dealing damage because some things will disappear on death/destruction, causing runtime
+	if(target_is_living)
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_victim = target
+			target = get_turf(target)
+			//Will shock a random body part on humans
+			human_victim.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
+		else
+			var/mob/living/living_victim = target
+			target = get_turf(target)
+			living_victim.apply_damage(damage, BURN, blocked = ENERGY)
+
+	else if(target)
+		var/obj/lightning_rod = target
+		target = get_turf(target)
+		lightning_rod.take_damage(damage, BURN, ENERGY)
 
 	//In the rare event of no valid target, just grab a turf and zap it for the cool effect and to signal it is active
 	//Was considering it not doing anything but then you could exploit it by triggering and having it be active indefinitely
-	if(!target)
+	else
 		for(var/turf/turf in nearby_objects)
 			target = turf
 			break
@@ -1002,9 +1041,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			return
 
 	playsound(loc, "sparks", 100, sound_range = 7)
-	if(target)
-		beam(target, "lightning[rand(1,12)]", time = 0.25 SECONDS)
-		battery.charge -= energy_cost
+	//There should always be a target, hence the get_turf() procs and the else block above
+	beam(target, "lightning[rand(1,12)]", time = 0.25 SECONDS)
+	battery.charge -= energy_cost
 	addtimer(CALLBACK(src, PROC_REF(extra_effects)), fire_delay)
 
 /obj/item/mine/shock/battery_included
