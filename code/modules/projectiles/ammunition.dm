@@ -140,10 +140,10 @@
 		to_chat(user, span_warning("\The [source] is empty."))
 		return
 
-	//using handfuls; and filling internal mags has no delay.
-	if(fill_delay)
+	//if the source has a fill_delay, delay the reload by this amount
+	if(source.fill_delay)
 		to_chat(user, span_notice("You start refilling [src] with [source]."))
-		if(!do_after(user, fill_delay, NONE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, source.fill_delay, NONE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, span_notice("You refill [src] with [source]."))
