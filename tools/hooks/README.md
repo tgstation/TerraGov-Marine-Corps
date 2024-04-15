@@ -5,7 +5,7 @@ Use of these hooks and drivers is optional and they must be installed
 explicitly before they take effect.
 
 To install the current set of hooks, or update if new hooks are added, run
-`Install.bat` (Windows) or `tools/hooks/install.sh` (Unix-like) as appropriate.
+`_Install.bat` (Windows) or `tools/hooks/install.sh` (Unix-like) as appropriate.
 
 If your Git GUI does not support a given hook, there is usually a `.bat` file
 or other script you can run instead - see the links below for details.
