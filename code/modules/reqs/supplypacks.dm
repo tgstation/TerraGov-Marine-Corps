@@ -395,7 +395,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
 	contains = list(/obj/item/weapon/gun/rifle/tx54)
-	cost = 300
+	cost = 100	
 
 /datum/supply_packs/weapons/tx54_airburst
 	name = "GL-54 airburst grenade magazine"
