@@ -10,7 +10,7 @@ For detailed troubleshooting instructions and other tips, visit the
 ## Installation
 
 To install the [Git hooks], open the `tools/hooks/` folder and double-click
-`Install.bat`. Linux users run `tools/hooks/install.sh`.
+`_Install.bat`. Linux users run `tools/hooks/install.sh`.
 
 ## Manual Use
 

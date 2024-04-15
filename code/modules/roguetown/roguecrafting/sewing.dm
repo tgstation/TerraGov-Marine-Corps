@@ -78,12 +78,12 @@
 
 /* craftdif of 2+ */
 
-/datum/crafting_recipe/roguetown/sewing/clotharmor
-	name = "gambeson"
-	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson)
-	reqs = list(/obj/item/natural/cloth = 6,
-				/obj/item/natural/fibers = 2)
-	craftdiff = 3
+/datum/crafting_recipe/roguetown/sewing/robe
+	name = "robes"
+	result = list(/obj/item/clothing/suit/roguetown/shirt/robe)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 2
 
 
 
