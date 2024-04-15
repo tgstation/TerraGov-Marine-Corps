@@ -515,7 +515,7 @@ SUBSYSTEM_DEF(job)
 		//attempt 1 - people with enough pq and set to high
 		//attempt 2 - people with enough pq and set above never
 		//attempt 3 - people with it set above never
-		for(var/attempt=0, attempt<3, attempt++)
+		for(var/attempt = 1, attempt <= 3, attempt++)
 			for(var/mob/dead/new_player/player in unassigned)
 				if(is_banned_from(player.ckey, job.title))
 					continue
