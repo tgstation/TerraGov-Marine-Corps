@@ -193,11 +193,11 @@
 
 /obj/item/ammo_magazine/heavy_isg/he
 	name = "FK-88 HE shell (155mm Shell)"
-	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Activate in hand to swap between unguided and guided modes."
+	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Right-click with other hand to swap between unguided and guided modes."
 	default_ammo = /datum/ammo/rocket/heavy_isg
 	var/guided = TRUE
 
-/obj/item/ammo_magazine/heavy_isg/he/attack_self(mob/living/user)
+/obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
 	if(guided)
 		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
 		balloon_alert(user, "You swap the shell to unguided form")
