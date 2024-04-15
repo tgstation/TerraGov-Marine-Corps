@@ -644,15 +644,16 @@
 					return
 		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/reagent_containers/glass/pot = attachment
-			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks))
+			if(istype(W,/obj/item/reagent_containers/food/snacks)) 
 				if(attachment.reagents.chem_temp < 374)
 					to_chat(user, "<span class='warning'>[attachment] isn't boiling!</span>")
+					return
 				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 				if (nutrimentamount > 0)
 					if (nutrimentamount + attachment.reagents.total_volume > pot.volume)
 						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
 						return
-					nutrimentamount = nutrimentamount * 1.25 // small bonus for boiling it
+					nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable. TODO: doesn't apply to already cooked items
 					attachment.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
 					qdel(W)
 				return
@@ -662,7 +663,7 @@
 	cut_overlays()
 	icon_state = "[base_state][on]"
 	if(attachment)
-		if(attachment.type == /obj/item/cooking/pan || attachment.type == /obj/item/reagent_containers/glass/pot)
+		if(istype(attachment, /obj/item/cooking/pan) || istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/I = attachment
 			I.pixel_x = 0
 			I.pixel_y = 0
@@ -679,7 +680,7 @@
 		return
 
 	if(attachment)
-		if(attachment.type == /obj/item/cooking/pan)
+		if(istype(attachment, /obj/item/cooking/pan))
 			if(food)
 				if(!user.put_in_active_hand(food))
 					food.forceMove(user.loc)
@@ -690,7 +691,7 @@
 					attachment.forceMove(user.loc)
 				attachment = null
 				update_icon()
-		if(attachment.type == /obj/item/reagent_containers/glass/pot)
+		if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 			if(!user.put_in_active_hand(attachment))
 				attachment.forceMove(user.loc)
 			attachment = null
