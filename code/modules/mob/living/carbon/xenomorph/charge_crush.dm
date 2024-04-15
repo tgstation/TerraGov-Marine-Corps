@@ -564,7 +564,7 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -610,7 +610,7 @@
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
-			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
+			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 2, 3)
 			var/turf/destination = loc
 			var/turf/temp
 
