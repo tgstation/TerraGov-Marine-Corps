@@ -79,6 +79,7 @@
 /obj/item/reagent_containers/glass/bowl
 	name = "bowl"
 	desc = ""
+	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "bowl"
 	reagent_flags = OPENCONTAINER
 	w_class = WEIGHT_CLASS_NORMAL

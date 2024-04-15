@@ -998,6 +998,9 @@
 /obj/item/candle/yellow,
 /obj/item/candle/yellow,
 /obj/item/flint,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "adE" = (
@@ -4843,6 +4846,7 @@
 	dir = 4
 	},
 /obj/machinery/light/rogue/wallfire/candle/l,
+/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/tavern)
 "apr" = (
@@ -4939,6 +4943,7 @@
 	dir = 8
 	},
 /obj/machinery/light/rogue/wallfire/candle/r,
+/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
 "apE" = (
@@ -13219,6 +13224,14 @@
 /obj/structure/fluff/statue/gargoyle,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
+"jUZ" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 2
+	},
+/obj/item/reagent_containers/glass/bowl,
+/turf/open/floor/rogue/woodturned,
+/area/rogue/indoors/town/tavern)
 "jZO" = (
 /obj/structure/table/wood{
 	icon_state = "largetable";
@@ -14405,6 +14418,9 @@
 	icon_state = "longtable"
 	},
 /obj/item/reagent_containers/powder/flour,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/rogue/tile{
 	icon_state = "tile"
 	},
@@ -14760,6 +14776,14 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/town)
+"rXK" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 8
+	},
+/obj/item/reagent_containers/glass/bowl,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town/manor)
 "rZJ" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
@@ -123673,7 +123697,7 @@ acJ
 aFL
 aFU
 aGa
-aGa
+rXK
 aGn
 aGx
 acJ
@@ -182575,7 +182599,7 @@ hJn
 akT
 ach
 apQ
-apU
+jUZ
 apW
 akT
 aon
