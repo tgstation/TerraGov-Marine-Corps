@@ -48,11 +48,12 @@ SUBSYSTEM_DEF(overlays)
 		count++
 		if(thing)
 			var/atom/A = thing
-			if(A.overlays.len >= MAX_ATOM_OVERLAYS)
+			/* 4/15/2024 - commented out until we resolve infinite overlays stacking onto mobs, i rather not have people bitch about invisible stuff over lag tbqh
+				if(A.overlays.len >= MAX_ATOM_OVERLAYS)
 				//Break it real GOOD
 				stack_trace("Too many overlays on [A.type] - [A.overlays.len], refusing to update and cutting")
 				A.overlays.Cut()
-				continue
+				continue*/
 			STAT_START_STOPWATCH
 			COMPILE_OVERLAYS(A)
 			STAT_STOP_STOPWATCH
