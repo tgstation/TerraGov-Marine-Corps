@@ -2,9 +2,9 @@
 
 #define JUMP_COMPONENT_COOLDOWN "jump_component_cooldown"
 
-#define MAX_JUMP_CHARGE_TIME 0.5 SECONDS
+#define MAX_JUMP_CHARGE_TIME 0.4 SECONDS
 #define JUMP_CHARGE_DURATION_MULT 1.2
-#define JUMP_CHARGE_HEIGHT_MULT 1.5
+#define JUMP_CHARGE_HEIGHT_MULT 1.8
 
 #define JUMP_SHADOW (1<<0)
 #define JUMP_SPIN (1<<1)
@@ -85,8 +85,6 @@
 		effective_jump_height = LERP(jump_height, jump_height * JUMP_CHARGE_HEIGHT_MULT, charge_time)
 		if(charge_time == 1)
 			effective_jumper_allow_pass_flags |= (PASS_MOB|PASS_DEFENSIVE_STRUCTURE)
-			to_chat(jumper, span_warning("jump charged"))
-		to_chat(jumper, span_warning("[(world.timeofday - jump_start_time)] time charged"))
 		jump_start_time = null
 
 	if(jump_sound)

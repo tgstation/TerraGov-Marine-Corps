@@ -1,6 +1,6 @@
 /obj/item/implant/jump_mod
-	name = "fortified ankled"
-	desc = "desc here."
+	name = "fortified ankles"
+	desc = "This augmentation enhances the users ability to jump with graphene fibre reinforcements and nanogel join fluid capsules. Hold jump to jump higher."
 	implant_flags = BENEFICIAL_IMPLANT
 	w_class = WEIGHT_CLASS_NORMAL
 	allowed_limbs = list(BODY_ZONE_PRECISE_GROIN) //there should only be one, but its technically a leg mod. fuck.
@@ -30,10 +30,10 @@
 /obj/item/implant/jump_mod/proc/handle_jump(mob/living/mover, jump_height, jump_duration)
 	SIGNAL_HANDLER
 	RegisterSignal(mover, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(end_jump))
-	mover.add_movespeed_modifier(type, priority = 1, multiplicative_slowdown = -0.5)
+	mover.add_movespeed_modifier(type, priority = 1, multiplicative_slowdown = -0.8)
 
 ///speedboost mid jump
-/obj/item/implant/jump_mod/proc/handle_jump(mob/living/mover)
+/obj/item/implant/jump_mod/proc/end_jump(mob/living/mover)
 	SIGNAL_HANDLER
 	UnregisterSignal(mover, COMSIG_ELEMENT_JUMP_ENDED)
 	mover.remove_movespeed_modifier(type)
