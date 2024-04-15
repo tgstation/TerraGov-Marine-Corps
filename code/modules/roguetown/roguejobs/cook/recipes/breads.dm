@@ -231,7 +231,7 @@
 		/obj/item/reagent_containers/food/snacks/rogue/biscuitcooked = 1,
 		/obj/item/reagent_containers/food/snacks/butterslice= 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/rogue/butterbun
+	result = /obj/item/reagent_containers/food/snacks/rogue/bun
 	subtype_reqs = FALSE
 	craftdiff = 0
 
