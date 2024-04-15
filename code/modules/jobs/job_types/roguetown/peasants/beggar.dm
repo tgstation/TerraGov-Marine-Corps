@@ -4,8 +4,8 @@
 	flag = APPRENTICE
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = 15
-	spawn_positions = 15
+	total_positions = -1
+	spawn_positions = -1
 
 	allowed_races = list("Humen",
 	"Half-Elf",
