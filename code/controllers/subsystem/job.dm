@@ -541,7 +541,7 @@ SUBSYSTEM_DEF(job)
 				if(job.plevel_req > player.client.patreonlevel())
 					continue
 
-				if(get_playerquality(player.ckey) < job.min_pq || attempt > 2)
+				if(get_playerquality(player.ckey) < job.min_pq && attempt < 3)
 					continue
 
 				if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
