@@ -2,6 +2,7 @@
 
 #define JUMP_COMPONENT_COOLDOWN "jump_component_cooldown"
 
+///Time to max out a charged jump
 #define MAX_JUMP_CHARGE_TIME 0.4 SECONDS
 #define JUMP_CHARGE_DURATION_MULT 1.2
 #define JUMP_CHARGE_HEIGHT_MULT 1.8
