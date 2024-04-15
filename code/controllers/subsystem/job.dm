@@ -519,8 +519,6 @@ SUBSYSTEM_DEF(job)
 				for(var/level in level_order)
 					var/list/candidates = list()
 					candidates = shuffle(FindOccupationCandidates(job, level))
-					if(!candidates.len)
-						continue
 					for(var/mob/dead/new_player/player in candidates)
 						if(is_banned_from(player.ckey, job.title))
 							continue
