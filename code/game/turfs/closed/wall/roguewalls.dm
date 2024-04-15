@@ -268,6 +268,7 @@
 
 /turf/closed/wall/mineral/rogue/decostone/fluffstone
 	icon_state = "fluffstone"
+	passtable = TRUE
 
 
 
