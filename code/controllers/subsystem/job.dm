@@ -570,9 +570,9 @@ SUBSYSTEM_DEF(job)
 
 						// If the job isn't filled.
 						if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-								AssignRole(player, job.title)
-								unassigned -= player
-								amt_picked++
+							AssignRole(player, job.title)
+							unassigned -= player
+							amt_picked++
 	return amt_picked
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
