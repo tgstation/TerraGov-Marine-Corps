@@ -82,9 +82,8 @@
 	if(new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom && top_atom.light_sources) // Remove ourselves from the light sources of that top atom.
 			LAZYREMOVE(top_atom.light_sources, src)
-
+			top_atom = source_atom
 		//if(new_top_atom.flags_2 & BLOCKS_LIGHT_2)
-			//top_atom = source_atom
 		else
 			top_atom = new_top_atom
 
