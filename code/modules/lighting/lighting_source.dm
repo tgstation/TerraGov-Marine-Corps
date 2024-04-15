@@ -9,9 +9,10 @@
 	var/turf/pixel_turf      // The turf the top_atom appears to over.
 	var/light_power    // Intensity of the emitter light.
 	var/light_range      // The range of the emitted light.
+	var/light_color    // The colour of the light, string, decomposed by parse_light_color()
+	var/light_source
 	var/light_depth		//multiz
 	var/light_height
-	var/light_color    // The colour of the light, string, decomposed by parse_light_color()
 
 	// Variables for keeping track of the colour.
 	var/lum_r
@@ -34,8 +35,11 @@
 /datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
 	LAZYADD(source_atom.light_sources, src)
+	//if(top.flags_2 & BLOCKS_LIGHT_2) // If the top atom blocks light, then our owner becomes the topmost instead. This still allows atoms that block light to be a light of their own.
+	//	top_atom = source_atom
+	//else
 	top_atom = top
-	if (top_atom != source_atom)
+	if(top_atom != source_atom)
 		LAZYADD(top_atom.light_sources, src)
 
 	source_turf = top_atom
@@ -45,21 +49,19 @@
 	light_range = source_atom.light_range
 	light_color = source_atom.light_color
 
-	parse_light_color()
+	parse_light_color(src)
 
 	update()
 
-	return ..()
-
 /datum/light_source/Destroy(force)
 	remove_lum()
-	if (source_atom)
+	if(source_atom)
 		LAZYREMOVE(source_atom.light_sources, src)
 
-	if (top_atom)
+	if(top_atom)
 		LAZYREMOVE(top_atom.light_sources, src)
 
-	if (needs_update)
+	if(needs_update)
 		SSlighting.sources_queue -= src
 
 	. = ..()
@@ -68,22 +70,25 @@
 // If you want it to go switch everybody to elastic tab stops.
 // Actually that'd be great if you could!
 #define EFFECT_UPDATE(level)                \
-	if (needs_update == LIGHTING_NO_UPDATE) \
+	if(needs_update == LIGHTING_NO_UPDATE) \
 		SSlighting.sources_queue += src; \
-	if (needs_update < level)               \
+	if(needs_update < level)               \
 		needs_update            = level;    \
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(var/atom/new_top_atom)
+/datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
-	if (new_top_atom && new_top_atom != top_atom)
+	if(new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom && top_atom.light_sources) // Remove ourselves from the light sources of that top atom.
 			LAZYREMOVE(top_atom.light_sources, src)
 
-		top_atom = new_top_atom
+		//if(new_top_atom.flags_2 & BLOCKS_LIGHT_2)
+			//top_atom = source_atom
+		else
+			top_atom = new_top_atom
 
-		if (top_atom != source_atom)
+		if(top_atom != source_atom)
 			LAZYADD(top_atom.light_sources, src) // Add ourselves to the light sources of our new top atom.
 
 	EFFECT_UPDATE(LIGHTING_CHECK_UPDATE)
@@ -95,7 +100,6 @@
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
 	EFFECT_UPDATE(LIGHTING_VIS_UPDATE)
-
 // Decompile the hexadecimal colour into lumcounts of each perspective.
 /datum/light_source/proc/parse_light_color()
 	if (light_color)
@@ -106,7 +110,6 @@
 		lum_r = 1
 		lum_g = 1
 		lum_b = 1
-
 // Macro that applies light to a new corner.
 // It is a macro in the interest of speed, yet not having to copy paste it.
 // If you're wondering what's with the backslashes, the backslashes cause BYOND to not automatically end the line.
@@ -119,7 +122,6 @@
 	. *= light_power;                        \
 	var/OLD = effect_str[C];                 \
 	effect_str[C] = .;                       \
-                                             \
 	C.update_lumcount                        \
 	(                                        \
 		(. * lum_r) - (OLD * applied_lum_r), \
@@ -141,14 +143,14 @@
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 	var/thing
-	for (thing in affecting_turfs)
+	for(thing in affecting_turfs)
 		var/turf/T = thing
 		LAZYREMOVE(T.affecting_lights, src)
 
 	affecting_turfs = null
 
 	var/datum/lighting_corner/C
-	for (thing in effect_str)
+	for(thing in effect_str)
 		C = thing
 		REMOVE_CORNER(C)
 
@@ -156,9 +158,9 @@
 
 	effect_str = null
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/C)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/C)
 	LAZYINITLIST(effect_str)
-	if (effect_str[C]) // Already have one.
+	if(effect_str[C]) // Already have one.
 		REMOVE_CORNER(C)
 		effect_str[C] = 0
 
@@ -169,69 +171,68 @@
 	var/update = FALSE
 	var/atom/source_atom = src.source_atom
 
-	if (QDELETED(source_atom))
+	if(QDELETED(source_atom))
 		qdel(src)
 		return
 
-	if (source_atom.light_power != light_power)
+	if(source_atom.light_power != light_power)
 		light_power = source_atom.light_power
 		update = TRUE
 
-	if (source_atom.light_range != light_range)
+	if(source_atom.light_range != light_range)
 		light_range = source_atom.light_range
 		update = TRUE
 
-	if (source_atom.light_depth != light_depth)
+	if(source_atom.light_depth != light_depth)
 		light_depth = source_atom.light_depth
 		update = TRUE
-
-	if (source_atom.light_height != light_height)
+/*
+	if(source_atom.light_height != light_height)
 		light_height = source_atom.light_height
 		update = TRUE
-
-	if (!top_atom)
+	if(!top_atom)
 		top_atom = source_atom
 		update = TRUE
-
-	if (!light_range || !light_power)
+*/
+	if(!light_range || !light_power)
 		qdel(src)
 		return
 
-	if (isturf(top_atom))
-		if (source_turf != top_atom)
+	if(isturf(top_atom))
+		if(source_turf != top_atom)
 			source_turf = top_atom
 			pixel_turf = source_turf
 			update = TRUE
-	else if (top_atom.loc != source_turf)
+	else if(top_atom.loc != source_turf)
 		source_turf = top_atom.loc
 		pixel_turf = get_turf_pixel(top_atom)
 		update = TRUE
 	else
 		var/P = get_turf_pixel(top_atom)
-		if (P != pixel_turf)
+		if(P != pixel_turf)
 			pixel_turf = P
 			update = TRUE
 
-	if (!isturf(source_turf))
-		if (applied)
+	if(!isturf(source_turf))
+		if(applied)
 			remove_lum()
 		return
 
-	if (light_range && light_power && !applied)
+	if(light_range && light_power && !applied)
 		update = TRUE
 
-	if (source_atom.light_color != light_color)
+	if(source_atom.light_color != light_color)
 		light_color = source_atom.light_color
-		parse_light_color()
+		parse_light_color(src)
 		update = TRUE
 
-	else if (applied_lum_r != lum_r || applied_lum_g != lum_g || applied_lum_b != lum_b)
+	else if(applied_lum_r != lum_r || applied_lum_g != lum_g || applied_lum_b != lum_b)
 		update = TRUE
 
-	if (update)
+	if(update)
 		needs_update = LIGHTING_CHECK_UPDATE
 		applied = TRUE
-	else if (needs_update == LIGHTING_CHECK_UPDATE)
+	else if(needs_update == LIGHTING_CHECK_UPDATE)
 		return //nothing's changed
 
 	var/list/datum/lighting_corner/corners = list()
@@ -239,13 +240,18 @@
 	var/thing
 	var/datum/lighting_corner/C
 	var/turf/T
-	if (source_turf)
+	if(source_turf)
 		var/oldlum = source_turf.luminosity
 		source_turf.luminosity = CEILING(light_range, 1)
 		for(T in view(CEILING(light_range, 1), source_turf))
-			for (thing in T.get_corners(source_turf))
-				C = thing
-				corners[C] = 0
+			if((!IS_DYNAMIC_LIGHTING(T) && !T.light_sources))
+				continue
+			if(!T.has_opaque_atom)
+				if(!T.lighting_corners_initialised)
+					T.generate_missing_corners()
+				for(thing in T.corners)
+					C = thing
+					corners[C] = 0
 			turfs += T
 			var/turf/open/transparent/O = T
 			if(istype(O) && light_depth >= 1)
@@ -289,38 +295,38 @@
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
 	affecting_turfs -= L
-	for (thing in L)
+	for(thing in L)
 		T = thing
 		LAZYREMOVE(T.affecting_lights, src)
 
 	LAZYINITLIST(effect_str)
-	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (thing in  corners - effect_str) // New corners
+	if(needs_update == LIGHTING_VIS_UPDATE)
+		for(thing in  corners - effect_str) // New corners
 			C = thing
 			LAZYADD(C.affecting, src)
-			if (!C.active)
+			if(!C.active)
 				effect_str[C] = 0
 				continue
 			APPLY_CORNER(C)
 	else
 		L = corners - effect_str
-		for (thing in L) // New corners
+		for(thing in L) // New corners
 			C = thing
 			LAZYADD(C.affecting, src)
-			if (!C.active)
+			if(!C.active)
 				effect_str[C] = 0
 				continue
 			APPLY_CORNER(C)
 
-		for (thing in corners - L) // Existing corners
+		for(thing in corners - L) // Existing corners
 			C = thing
-			if (!C.active)
+			if(!C.active)
 				effect_str[C] = 0
 				continue
 			APPLY_CORNER(C)
 
 	L = effect_str - corners
-	for (thing in L) // Old, now gone, corners.
+	for(thing in L) // Old, now gone, corners.
 		C = thing
 		REMOVE_CORNER(C)
 		LAZYREMOVE(C.affecting, src)
