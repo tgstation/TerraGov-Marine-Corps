@@ -350,7 +350,7 @@
 "gY" = (/obj/structure/fluff/railing/wood{icon_state = "woodrailing"; dir = 8; pixel_y = -1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/open/floor/rogue/blocks,/area/rogue/outdoors/town)
 "gZ" = (/obj/structure/chair/wood/rogue,/turf/open/floor/rogue/tile{icon_state = "chess"},/area/rogue/indoors/town/manor)
 "ha" = (/obj/structure/chair/wood/rogue/fancy,/turf/open/floor/rogue/tile{icon_state = "chess"},/area/rogue/indoors/town/manor)
-"hb" = (/obj/structure/gate{gid = "manorgate1"; redstone_id = "gatemanor1"},/turf/open/floor/rogue/carpet/lord/left,/area/rogue/indoors/town/manor)
+"hb" = (/obj/structure/gate{gid = "manorgate1"; redstone_id = "gatemanor3"},/turf/open/floor/rogue/carpet/lord/left,/area/rogue/indoors/town/manor)
 "hc" = (/obj/structure/mineral_door/wood/donjon{dir = 1; icon_state = "donjondir"; locked = 1; lockid = "manor"},/turf/open/floor/rogue/tile{icon_state = "bfloorz"},/area/rogue/indoors/town/manor)
 "hd" = (/turf/open/transparent/openspace,/area/rogue/indoors/town/manor)
 "he" = (/obj/structure/table/wood{icon_state = "tablewood1"; dir = 1},/obj/item/reagent_containers/glass/cup/steel,/obj/item/reagent_containers/glass/cup/steel,/turf/open/floor/rogue/woodturned,/area/rogue/indoors/town/manor)
@@ -951,6 +951,7 @@
 "sQ" = (/turf/open/floor/rogue/blocks/stonered,/area/rogue/indoors/town/dwarfin)
 "sR" = (/obj/machinery/light/rogue/wallfire/candle,/turf/open/floor/rogue/blocks/stonered,/area/rogue/indoors/town/dwarfin)
 "sS" = (/obj/structure/table/wood,/obj/structure/bars{icon_state = "barsbent"; layer = 2.81},/turf/open/floor/rogue/cobble,/area/rogue/indoors/town/manor)
+"sT" = (/obj/structure/winch{dir = 4; gid = "manorgate1"; redstone_id = "gatemanor3"; pixel_x = -6},/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
 "sU" = (/obj/structure/table/wood,/obj/structure/bars{icon_state = "barsbent"; layer = 2.81},/turf/open/floor/rogue/dirt/road,/area/rogue/indoors/town/shop)
 "sV" = (/turf/open/floor/carpet/stellar,/area/rogue/indoors/town/shop)
 "sW" = (/obj/effect/landmark/start/merchant,/turf/open/floor/carpet/stellar,/area/rogue/indoors/town/shop)
@@ -2332,7 +2333,7 @@ eneneneneneneveoeoeoepeveveneneneneneneneneveveoeqeqeqeogegegegegeeoeqeqeoeveven
 eneneneneneneveoeoeoeoeveneneneneneneneneneveoeoeqeqeqgegegygzgegeeoeqeqeoeveneneneneneoeqeqepepeoerereweSeSeweSeBfafafafagBeLeLeLeLgBeLgCeLeygDfHtZfogEfqWAgafYexxHxHxHxHgdgHgISyeBfagAgJeBeReSeSeReweSeserereoeoepeogxgKgKgxgxeoeqgxeoeqenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevevevevepepeoeoeveneneneneneneneneneveveoeqeqeqeogegegegeeoeqeqeoevevenenenenenepeoeoepepeoerereweSgpeweSgqfafafafaeLeLeLeLeLeLeLeLeLgLfnfVeGgjfpgkeGydgleBglVTOdThyneLeLfneBfafafaeBeReSeSYzeweSeserereoeoepeogxgKgKgxgMeqgMgxeoeqeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevepeoeoepepeoeoeveneneneneneneneneneneveveoeqeqeqgeeoeqeqeqeqeoeveveveveneneneoepeoeoepepeoerereweSeSeweSexeHHoexeHeHgdeHeHexeHgFgqgGexgifHgNfofpfqgOgaglOXglglglfnfneLeLeLfOfafafaeBeReSeSeReweSeserereoeoepeogxeqeqeqeogMeqgxeoeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
-enenenevepeoeoeoepeoeoeveveneneneneneneneneneneveoeqeqeqeqeqeqeoeoeoeveneneneveoepepepepepepepepeoerereweSeSeweSeBeLeLgBfGgRgSgRfGgAfaeLeLgTeyfnfVTAfofpfqTUydgVeBglglglfnfnfneLWleBgWgWgWeBeReSeSeReweSewerereoeoepeogxeqeqgMgxgMgMgMeoeqeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
+enenenevepeoeoeoepeoeoeveveneneneneneneneneneneveoeqeqeqeqeqeqeoeoeoeveneneneveoepepepepepepepepeoerereweSeSeweSeBeLeLgBfGgRgSgRfGgAfaeLeLgTeysTfVTAfofpfqTUydgVeBglglglfnfnfneLWleBgWgWgWeBeReSeSeReweSewerereoeoepeogxeqeqgMgxgMgMgMeoeqeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevepeoeoeoepeoeoeoeveveveneneneneneneneneveveveveveveveveveveveveneneneveoepepeqeueuepepgXeperereweSeSeweSeBeLeLeLfGgZhagZfGfafaeLeLeLeyeGeHexhbfpfqeGhceGexOdgVYotSfnfneLizeBhdhdhdeBeReSeSeReweSewerereoeoeoeogxeoeogMeogMgMgMeoeqeqeqeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 eneneneveveoeoepepeoeoepepeoevenenenenenenenenenenenenenenenenenenenenenenenenepeqeqeqeqeqeqeqeqeperereweSeSeweSeBfafahefGhfhghhfGhifafafafaeyeBhjfnfofpfqgleLhkeGeGeHeHezfOeGezeGexhdhdhdeBeReSeSeReweSewerereoeoeoeogxgxgxgxeogxgxeoeoeoeoepepenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 eneneneneveveveoeoeoeoepepepepenenenenenenenenenenenenenenenenenenenenenenenenephleqeqeqeqeqeqeqeperereweSeSeweSeBhmhneGhnhnhohnhpeGhqhmhrhseyeBfneyhtfphueyeLhveBeOfPeOylfuylfPeOeGeBeyeHeGeReSeSeReweSewerereoeoeoeoeoeoeoeoeoeoeoeoeoepepepeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
