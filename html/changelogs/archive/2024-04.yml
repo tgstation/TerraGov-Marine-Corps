@@ -269,3 +269,6 @@
   - balance: Reduced lascarbine spread mode's effectiveness at range.
   jonash07:
   - balance: Made synthetics scannable
+2024-04-14:
+  AzonStarfall:
+  - qol: Adjustments to Arachne Medbay, CAS Bay, Vehicle Bay, and Marine Prep layouts.

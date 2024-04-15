@@ -5,6 +5,7 @@
 	desc = "A packet containing some kind of ammo."
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
+	fill_delay = 1.5 SECONDS
 
 /obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
 	. = ..()
