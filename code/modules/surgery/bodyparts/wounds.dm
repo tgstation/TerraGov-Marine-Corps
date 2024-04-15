@@ -252,7 +252,7 @@
 		if(user)
 			if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 				used += 10
-/*		if(!owner.stat)
+		if(!owner.stat)
 			if(can_bloody_wound())
 				if(prob(used) || (brute_dam >= max_damage))
 					owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out!</span>"
