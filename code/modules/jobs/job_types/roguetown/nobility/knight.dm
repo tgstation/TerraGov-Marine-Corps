@@ -16,7 +16,7 @@
 
 	outfit = /datum/outfit/job/roguetown/knight
 	give_bank_account = 22
-	min_pq = -4
+	min_pq = 5
 
 /datum/job/roguetown/knight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
