@@ -133,7 +133,7 @@
 #define MAGAZINE_REFUND_IN_CHAMBER (1<<3)
 
 //Slowdown from various armors.
-#define SHOES_SLOWDOWN -1.5			// How much shoes slow you down by default. Negative values speed you up
+#define SHOES_SLOWDOWN -2			// How much shoes slow you down by default. Negative values speed you up
 
 #define SLOWDOWN_ARMOR_VERY_LIGHT 0.15
 #define SLOWDOWN_ARMOR_LIGHT 0.2
