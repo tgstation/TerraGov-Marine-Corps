@@ -17,7 +17,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
@@ -58,7 +58,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
@@ -89,7 +89,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
@@ -128,7 +128,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
@@ -159,7 +159,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x265mm, SLOT_IN_BACKPACK)
@@ -191,7 +191,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -226,7 +226,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
@@ -264,7 +264,7 @@
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back)) //bruh
+	if(!isstorageobj(wearer.back)) //bruh
 		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
@@ -317,7 +317,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
@@ -351,7 +351,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
 
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)

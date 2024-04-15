@@ -181,10 +181,6 @@
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
 
-/mob/living/fire_act()
-	adjust_fire_stacks(rand(1,2))
-	IgniteMob()
-
 /mob/living/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
@@ -200,8 +196,8 @@
 		IgniteMob()
 	return TRUE
 
-/mob/living/flamer_fire_act(burnlevel)
-	if(!burnlevel)
+/mob/living/fire_act(burn_level)
+	if(!burn_level)
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
@@ -209,13 +205,13 @@
 		to_chat(src, span_warning("You are untouched by the flames."))
 		return
 
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
 	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
-	adjust_fire_stacks(burnlevel)
+	adjust_fire_stacks(burn_level)
 	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
@@ -257,16 +253,18 @@
 	smoke_contact(S)
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	var/bio_protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	var/acid_protection = max(1 - get_soft_acid_protection(), 0)
+	var/acid_hard_protection = get_hard_acid_protection()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
 		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(15 * protection)
+		adjustFireLoss(15 * bio_protection)
 		to_chat(src, span_danger("It feels as if you've been dumped into an open fire!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		if(prob(25 * protection))
+		if(prob(25 * acid_protection))
 			to_chat(src, span_danger("Your skin feels like it is melting away!"))
-		adjustFireLoss(S.strength * rand(20, 23) * protection)
+		adjustFireLoss(max(S.strength * rand(20, 23) * acid_protection - acid_hard_protection, 0))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
 		if(HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
 			return
@@ -274,10 +272,9 @@
 			var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
 			debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
 		apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
-		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * protection)
+		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
-	return protection
 
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)

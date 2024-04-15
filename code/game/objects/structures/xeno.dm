@@ -36,8 +36,8 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-/obj/alien/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/alien/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/alien/ex_act(severity)
 	switch(severity)
@@ -210,8 +210,8 @@
 		src.balloon_alert(xeno_attacker, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/structure/mineral_door/resin/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/ex_act(severity)
 	switch(severity)
@@ -223,9 +223,6 @@
 			take_damage((rand(50, 60)), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(30, BRUTE, BOMB)
-
-/turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
