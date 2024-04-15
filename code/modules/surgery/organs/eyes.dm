@@ -43,6 +43,8 @@
 			eye_color = HMN.eye_color
 		if(HAS_TRAIT(HMN, TRAIT_NIGHT_VISION) && !lighting_alpha)
 			lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+		if(HAS_TRAIT(HMN, TRAIT_LESSER_NIGHT_VISION) && !lighting_alpha)
+			lighting_alpha =LIGHTING_PLANE_ALPHA_LESSER_NV_TRAIT
 	M.update_tint()
 	owner.update_sight()
 	if(M.has_dna() && ishuman(M))
