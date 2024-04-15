@@ -517,9 +517,10 @@ SUBSYSTEM_DEF(job)
 		for(var/i = job.total_positions, i > 0, i--)
 			for(var/attempt = 1, attempt <= 2, attempt++)
 				for(var/level in level_order)
-					var/list/candidates = list()
-					candidates = FindOccupationCandidates(job, level)
-					for(var/mob/dead/new_player/player in candidates)
+					for(var/mob/dead/new_player/player in unassigned)
+						if(player.client.prefs.job_preferences[job.title] != level)
+							continue
+
 						if(is_banned_from(player.ckey, job.title))
 							continue
 
