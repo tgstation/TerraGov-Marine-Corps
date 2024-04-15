@@ -358,7 +358,9 @@
 	icon_state = "officerrnr"
 
 /area/mainship/medical
+	name = "\improper Medical Bay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	icon_state = "medical"
 
 /area/mainship/medical/lower_medical
 	name = "Medical Lower"

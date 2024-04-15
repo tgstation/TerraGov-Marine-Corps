@@ -688,7 +688,7 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/pillar_destroyed(obj/structure/earth_pillar/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_XENOABILITY_EARTH_PILLAR_THROW))
-	active_pillars -= src
+	active_pillars -= source
 
 /**
  * Changes the maximum amount of Earth Pillars that can be had.

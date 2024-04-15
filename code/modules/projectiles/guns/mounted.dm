@@ -5,14 +5,16 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
-	bypass_w_limit = list(
+
+/obj/item/storage/box/hsg_102/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 7
+	storage_datum.storage_type_limits = list(
 		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
 	)
 
-/obj/item/storage/box/hsg_102/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/hsg_102/PopulateContents()
 	new /obj/item/weapon/gun/hsg_102(src) //gun itself
 	new /obj/item/ammo_magazine/hsg_102(src) //ammo for the gun
 
@@ -577,21 +579,19 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable/atgun
 
 /obj/machinery/deployable/mounted/moveable/atgun
-	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
+	///The internal storage of our atgun
+	var/obj/item/storage/atgun_ammo_rack/sponson = /obj/item/storage/atgun_ammo_rack
+
+/obj/item/storage/atgun_ammo_rack
+	storage_type = /datum/storage/internal/ammo_rack
 
 /obj/machinery/deployable/mounted/moveable/atgun/Destroy()
 	if(sponson)
 		QDEL_NULL(sponson)
 	return ..()
-
-/obj/item/storage/internal/ammo_rack
-	storage_slots = 10
-	max_storage_space = 40
-	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
 /obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
@@ -603,17 +603,26 @@
 		balloon_alert(user, "Busy manning!")
 		return
 
-	return . = ..()
+	if(!sponson.attackby(I, user, params))
+		return ..()
 
 /obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
-	return sponson.open(user)
+	if(user.interactee == src)
+		balloon_alert(user, "Busy manning!")
+		return
 
-/obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
-	if(!ishuman(user) || user.lying_angle || user.incapacitated())
+	return sponson.attack_hand_alternate(user)
+
+/obj/machinery/deployable/mounted/moveable/atgun/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!ishuman(usr) || usr.lying_angle || usr.incapacitated())
 		return FALSE
 
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+	if(usr.interactee == src)
+		balloon_alert(usr, "Busy manning!")
+		return
+
+	if(over == usr && Adjacent(usr)) //This must come before the screen objects only block
+		sponson.storage_datum.open(usr)
 		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)

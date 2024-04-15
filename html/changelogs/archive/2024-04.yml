@@ -237,3 +237,76 @@
       or old bay.
   - bugfix: Fixed Asphalt  being called aasphalt
   - code_imp: Renamed the OB laser typepath to not have capitals
+2024-04-12:
+  BraveMole:
+  - qol: Clicking on an opened storage will close it
+  - qol: Clicking on a storage with an item that cannot be inserted in said storage
+      will open it
+  Lumipharon:
+  - bugfix: fixed a couple minor bugs with light fittings
+  - code_imp: Cleaned up some light fitting code
+  - bugfix: You can once again light cigarettes using broken lights, burning turfs,
+      or burning mobs
+  Neocloudy:
+  - qol: Orbital bombardments now play screentext to humans that includes the type
+      of the OB
+  - qol: Send Orders will now include the sender's faction acronym and job
+  - spellcheck: The content of the orbital bombardment announcement is now "Evacuate
+      the impact zone immediately!" instead of "Get out of danger close!"
+  - code_imp: '"faction_to_acronym" global list for getting faction acronyms'
+2024-04-13:
+  Arturlang:
+  - balance: Ups wraith damage from 20 to 24
+  Lumipharon:
+  - balance: 'Campaign: Improved constitution perk unlocks Tyr/Lorica for all jobs'
+  - bugfix: fixed bemo rock count being updated incorrectly
+  - bugfix: fixed xeno turrets causing FF
+  Xander3359:
+  - refactor: Storage refactor
+  Yttriums:
+  - balance: Increased RG220 wield delay from 1.2 to 2.0 seconds
+  blackdav123:
+  - balance: Reduced lascarbine spread mode's effectiveness at range.
+  jonash07:
+  - balance: Made synthetics scannable
+2024-04-14:
+  AzonStarfall:
+  - qol: Adjustments to Arachne Medbay, CAS Bay, Vehicle Bay, and Marine Prep layouts.
+2024-04-15:
+  Lumipharon:
+  - code_imp: Combined duplicate types of fire_act
+  - bugfix: fixed red lights showing as error when empty
+  MLGTASTICa:
+  - code_imp: Optimized get_permeability_protection()
+  - balance: Xeno smoke now checks for acid protection(both soft and hard) whenever
+      dealing burn damage (from XENO_SMOKE_ACID sources) instead of bio.
+  Naaanii:
+  - rscadd: Adds alternate scout rifle magazines to reqtorio
+  Neocloudy:
+  - refactor: ammo_datums.dm has been split up into 24 different files
+  Yttriums:
+  - balance: loading magazines from ammo packets now has a 1.5 second delay
+  lbnesquik:
+  - bugfix: POS - Fixed a number of areas without any lights
+  - bugfix: POS - Verified again that every door has their firelocks
+  - bugfix: POS - Verified that all light fixtures, cameras, fire alarms and so on
+      aren't on glass
+  - bugfix: POS - deleted a number of duplicate lights
+  - bugfix: POS - Moved things like lights from being placed under firelocks, which
+      makes no sense
+  - bugfix: POS - Move the button for medical surgery shutters to not be under cameras
+  - bugfix: POS - Removed duplicate surgery shutters and make them in the right direction
+  - bugfix: ALAMO - Added more holopads to it
+  - bugfix: Debugabus - Fixed the bodyscanner being in the wrong direction
+  - qol: POS - Added FC privacy shutters
+  - qol: POS - Moved the FC not to have their bed in the middle of the room
+  - qol: POS - Added cameras coverage and better floor markings in the OB room and
+      brig
+  - qol: POS - Moved the ammo crates out of the path to the west of the hangar. Things
+      like black market weapons or surplus weapons.
+  - qol: POS & Debugabus - Added floorlights to the hangar alongside extra default
+      tubes
+  - qol: POS - Moved the leader pods not all being in the centerline of the pod bay
+  - rscadd: Add ghosts can now examine miners
+  novaepee:
+  - bugfix: fix rogue pixel on mjolnir

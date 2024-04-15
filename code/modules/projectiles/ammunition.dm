@@ -140,10 +140,10 @@
 		to_chat(user, span_warning("\The [source] is empty."))
 		return
 
-	//using handfuls; and filling internal mags has no delay.
-	if(fill_delay)
+	//if the source has a fill_delay, delay the reload by this amount
+	if(source.fill_delay)
 		to_chat(user, span_notice("You start refilling [src] with [source]."))
-		if(!do_after(user, fill_delay, NONE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, source.fill_delay, NONE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, span_notice("You refill [src] with [source]."))
@@ -211,7 +211,7 @@
 	caliber = source.caliber
 	default_ammo = source.default_ammo
 
-/obj/item/ammo_magazine/flamer_fire_act(burnlevel)
+/obj/item/ammo_magazine/fire_act(burn_level)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
@@ -464,7 +464,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act(burnlevel)
+/obj/item/big_ammo_box/fire_act(burn_level)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
