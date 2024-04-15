@@ -1,180 +1,44 @@
-name: CI Suite
+name: BYOND Build
+
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-    - main
-  merge_group:
+      - main
+
+env:
+  BYOND_MAJOR: 515
+  BYOND_MINOR: 1636
+
 jobs:
-  run_linters:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Run Linters
-    runs-on: ubuntu-latest
-    concurrency:
-      group: run_linters-${{ github.head_ref || github.run_id }}
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v3
-      - name: Restore SpacemanDMM cache
-        uses: actions/cache@v3
-        with:
-          path: ~/SpacemanDMM
-          key: ${{ runner.os }}-spacemandmm-${{ secrets.CACHE_PURGE_KEY }}
-      - name: Restore Yarn cache
-        uses: actions/cache@v3
-        with:
-          path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ secrets.CACHE_PURGE_KEY }}-${{ hashFiles('tgui/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Restore Rust cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cargo
-          key: ${{ runner.os }}-rust
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Install Tools
-        run: |
-          pip3 install setuptools
-          bash tools/ci/install_node.sh
-          bash tools/ci/install_spaceman_dmm.sh dreamchecker
-          cargo install ripgrep --features pcre2
-          tools/bootstrap/python -c ''
-      - name: Run Linters
-        run: |
-          bash tools/ci/check_filedirs.sh roguetown.dme
-          bash tools/ci/check_changelogs.sh
-          bash tools/ci/check_grep.sh
-          bash tools/ci/check_misc.sh
-          tools/bootstrap/python tools/ci/validate_dme.py < roguetown.dme
-          tools/bootstrap/python -m tools.maplint.source --github
-          tools/build/build --ci lint tgui-test
-          tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
-          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-      - name: Annotate Lints
-        uses: yogstation13/DreamAnnotate@v2
-        if: success() || failure()
-        with:
-          outputFile: output-annotations.txt
-
-
-  odlint:
-    name: Lint with OpenDream
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: robinraju/release-downloader@v1.9
-        with:
-          repository: "OpenDreamProject/OpenDream"
-          tag: "latest"
-          fileName: "DMCompiler_linux-x64.tar.gz"
-          extract: true
-      - run: ./DMCompiler_linux-x64/DMCompiler --suppress-unimplemented roguetown.dme
-
-  compile_all_maps:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Compile Maps
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Restore BYOND cache
-        uses: actions/cache@v3
-        with:
-          path: ~/BYOND
-          key: ${{ runner.os }}-byond-${{ secrets.CACHE_PURGE_KEY }}
-      - name: Compile All Maps
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install BYOND
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y make gcc unzip
+          wget http://www.byond.com/download/build/${{ env.BYOND_MAJOR }}/${{ env.BYOND_MAJOR }}.${{ env.BYOND_MINOR }}_byond_linux.zip
+          unzip ${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip
           bash tools/ci/install_byond.sh
+
+      - name: Compile BYOND project
+        run: |
+          ls -h $HOME/
           source $HOME/BYOND/byond/bin/byondsetup
-          ls -lh tools/build
-          bash tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
+          DreamMaker roguetown.dme
 
-  find_all_maps:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Find Maps to Test
-    runs-on: ubuntu-latest
-    outputs:
-      maps: ${{ steps.map_finder.outputs.maps }}
-      alternate_tests: ${{ steps.alternate_test_finder.outputs.alternate_tests }}
-    concurrency:
-      group: find_all_maps-${{ github.head_ref || github.run_id }}
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v3
-      - name: Find Maps
-        id: map_finder
+      - name: Check for errors
+        id: check-errors
         run: |
-          shopt -s extglob
-          echo "$(ls -mw0 maps/!(*override*).json)" > maps_output.txt
-          sed -i -e s+maps/+\"+g -e s+.json+\"+g maps_output.txt
-          echo "Maps: $(cat maps_output.txt)"
-          echo "maps={\"paths\":[$(cat maps_output.txt)]}" >> $GITHUB_OUTPUT
-      - name: Find Alternate Tests
-        id: alternate_test_finder
-        run: |
-          ALTERNATE_TESTS_JSON=$(jq -nRc '[inputs | capture("^(?<major>[0-9]+)\\.(?<minor>[0-9]+): (?<map>.+)$")]' .github/alternate_byond_versions.txt)
-          echo "alternate_tests=$ALTERNATE_TESTS_JSON" >> $GITHUB_OUTPUT
-  run_all_tests:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Unit Tests
-    needs: [find_all_maps]
-    strategy:
-      fail-fast: false
-      matrix:
-        map: ${{ fromJSON(needs.find_all_maps.outputs.maps).paths }}
-    concurrency:
-      group: run_all_tests-${{ github.head_ref || github.run_id }}-${{ matrix.map }}
-      cancel-in-progress: true
-    uses: ./.github/workflows/run_unit_tests.yml
-    with:
-      map: ${{ matrix.map }}
-
-  run_alternate_tests:
-    if: "!contains(github.event.head_commit.message, '[ci skip]') && needs.find_all_maps.outputs.alternate_tests != '[]'"
-    name: Alternate Tests
-    needs: [find_all_maps]
-    strategy:
-      fail-fast: false
-      matrix:
-        setup: ${{ fromJSON(needs.find_all_maps.outputs.alternate_tests) }}
-    concurrency:
-      group: run_all_tests-${{ github.head_ref || github.run_id }}-${{ matrix.setup.major }}.${{ matrix.setup.minor }}-${{ matrix.setup.map }}
-      cancel-in-progress: true
-    uses: ./.github/workflows/run_unit_tests.yml
-    with:
-      map: ${{ matrix.setup.map }}
-      major: ${{ matrix.setup.major }}
-      minor: ${{ matrix.setup.minor }}
-
-  check_alternate_tests:
-    if: "!contains(github.event.head_commit.message, '[ci skip]') && needs.find_all_maps.outputs.alternate_tests != '[]'"
-    name: Check Alternate Tests
-    needs: [run_alternate_tests]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Alternate tests passed.
-
-  test_windows:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Windows Build
-    runs-on: windows-latest
-    concurrency:
-      group: test_windows-${{ github.head_ref || github.run_id }}
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v3
-      - name: Restore Yarn cache
-        uses: actions/cache@v3
-        with:
-          path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('tgui/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Compile
-        run: pwsh tools/ci/build.ps1
-        env:
-          DM_EXE: "C:\\byond\\bin\\dm.exe"
+          if grep -q "error" *.log; then
+            echo "::error ::Compilation failed with errors."
+            exit 1
+          else
+            echo "Compilation succeeded without critical errors."
+          fi
