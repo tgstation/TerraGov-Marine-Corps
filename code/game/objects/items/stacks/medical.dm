@@ -219,7 +219,7 @@
 	amount = 5
 	max_amount = 5
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
-	unskilled_delay = SKILL_TASK_TOUGH
+	unskilled_delay = SKILL_TASK_EASY
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
 
@@ -240,7 +240,7 @@
 	if(M == user && ((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT)))
 		user.balloon_alert(user, "You are using that arm!")
 		return
-	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
+	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 1)) : applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL), 1), user, M))
 		use(1)
 
 
