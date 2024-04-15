@@ -46,7 +46,7 @@ class DMMParser:
 
     def parse(self):
         if "dmm2tgm" not in self.next_line():
-            self.raise_error("Map isn't in TGM format. Consider using StrongDMM instead of Dream Maker.\n  Please also consider installing the map merge tools, found through Install.bat in the tools/hooks folder.")
+            self.raise_error("Map isn't in TGM format. Consider using StrongDMM instead of Dream Maker.\n  Please also consider installing the map merge tools, found through _Install.bat in the tools/hooks folder.")
 
         try:
             while self.parse_pop():
