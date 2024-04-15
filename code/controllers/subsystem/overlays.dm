@@ -9,7 +9,6 @@ SUBSYSTEM_DEF(overlays)
 	var/list/stats
 	var/list/overlay_icon_state_caches
 	var/list/overlay_icon_cache
-	var/amt2process = 555
 
 /datum/controller/subsystem/overlays/PreInit()
 	overlay_icon_state_caches = list()
@@ -45,16 +44,19 @@ SUBSYSTEM_DEF(overlays)
 		count = 0 //so if we runtime on the Cut, we don't try again.
 		queue.Cut(1,c+1)
 
-	for(var/thing in queue)
+	for (var/thing in queue)
 		count++
 		if(thing)
-			STAT_START_STOPWATCH
 			var/atom/A = thing
+			if(A.overlays.len >= MAX_ATOM_OVERLAYS)
+				//Break it real GOOD
+				stack_trace("Too many overlays on [A.type] - [A.overlays.len], refusing to update and cutting")
+				A.overlays.Cut()
+				continue
+			STAT_START_STOPWATCH
 			COMPILE_OVERLAYS(A)
 			STAT_STOP_STOPWATCH
 			STAT_LOG_ENTRY(stats, A.type)
-		if(count >= amt2process)
-			break
 		if(mc_check)
 			if(MC_TICK_CHECK)
 				break
