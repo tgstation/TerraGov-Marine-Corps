@@ -45,8 +45,8 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
-	if (T) // In case we're on the map's border.
-		if (!T.corners)
+	if(T) // In case we're on the map's border.
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = diagonal
@@ -55,8 +55,8 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
-	if (T) // Ditto.
-		if (!T.corners)
+	if(T) // Ditto.
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
@@ -65,8 +65,8 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
-	if (T)
-		if (!T.corners)
+	if(T)
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
@@ -79,37 +79,38 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	active = FALSE
 	var/turf/T
 	var/thing
-	for (thing in masters)
+	for(thing in masters)
 		T = thing
-		if (T.lighting_object)
+		if(T.lighting_object)
 			active = TRUE
+			return
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
 
-	if ((abs(delta_r)+abs(delta_g)+abs(delta_b)) == 0)
+	if(!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b
 
-	if (!needs_update)
+	if(!needs_update)
 		needs_update = TRUE
 		SSlighting.corners_queue += src
 
 /datum/lighting_corner/proc/update_objects()
-	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
+	// Cache these values ahead of time so 4 individual lighting objects don't all calculate them individually.
 	var/lum_r = src.lum_r
 	var/lum_g = src.lum_g
 	var/lum_b = src.lum_b
 	var/mx = max(lum_r, lum_g, lum_b) // Scale it so one of them is the strongest lum, if it is above 1.
 	. = 1 // factor
-	if (mx > 1)
+	if(mx > 1)
 		. = 1 / mx
 
 	#if LIGHTING_SOFT_THRESHOLD != 0
-	else if (mx < LIGHTING_SOFT_THRESHOLD)
+	else if(mx < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
 	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
@@ -122,22 +123,21 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	#endif
 	cache_mx = round(mx, LIGHTING_ROUND_VALUE)
 
-	for (var/TT in masters)
+	for(var/TT in masters)
 		var/turf/T = TT
-		if (T.lighting_object)
-			if (!T.lighting_object.needs_update)
-				T.lighting_object.needs_update = TRUE
-				SSlighting.objects_queue += T.lighting_object
+		if(T.lighting_object && !T.lighting_object.needs_update)
+			T.lighting_object.needs_update = TRUE
+			SSlighting.objects_queue += T.lighting_object
 
 
 /datum/lighting_corner/dummy/New()
 	return
 
 
-/datum/lighting_corner/Destroy(var/force)
-	if (!force)
+/datum/lighting_corner/Destroy(force)
+	if(!force)
 		return QDEL_HINT_LETMELIVE
 
-	stack_trace("Ok, Look, /tg/, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is 100% retarded and needs his head checked. Thanks. Send them my regards by the way.")
+	stack_trace("Attempted qdel of a lighting corner.")
 
 	return ..()
