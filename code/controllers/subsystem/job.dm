@@ -512,60 +512,64 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = GetJob(X)
 		if(!job)
 			continue
-		for(var/mob/dead/new_player/player in unassigned)
-			if(is_banned_from(player.ckey, job.title))
-				continue
-
-			if(QDELETED(player))
-				break
-
-			if(!job.player_old_enough(player.client))
-				continue
-
-			if(job.required_playtime_remaining(player.client))
-				continue
-
-			if(player.mind && job.title in player.mind.restricted_roles)
-				continue
-
-			if(!(player.client.prefs.pref_species.name in job.allowed_races))
-				continue
-			
-			if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
-				continue
-
-			if(job.plevel_req > player.client.patreonlevel())
-				continue
-
-			if(get_playerquality(player.ckey) < job.min_pq)
-				continue
-
-			if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
-				continue
-
-			if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
-				continue
-
-			if(CONFIG_GET(flag/usewhitelist))
-				if(job.whitelist_req && (!player.client.whitelisted()))
+		//attempt 1 - people with enough pq and set to high
+		//attempt 2 - people with enough pq and set above never
+		//attempt 3 - people with it set above never
+		for(var/attempt=0, attempt<3, attempt++)
+			for(var/mob/dead/new_player/player in unassigned)
+				if(is_banned_from(player.ckey, job.title))
 					continue
 
-			if(!(player.client.prefs.age in job.allowed_ages))
-				continue
+				if(QDELETED(player))
+					break
 
-			if(!(player.client.prefs.gender in job.allowed_sexes))
-				continue
+				if(!job.player_old_enough(player.client))
+					continue
 
-			if(!job.special_job_check(player))
-				continue
+				if(job.required_playtime_remaining(player.client))
+					continue
 
-			// If the player wants that job on this level, then try give it to him.
-			if(player.client.prefs.job_preferences[job.title] == JP_HIGH)
-				// If the job isn't filled
-				if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-					AssignRole(player, job.title)
-					unassigned -= player
-					amt_picked++
+				if(player.mind && job.title in player.mind.restricted_roles)
+					continue
+
+				if(!(player.client.prefs.pref_species.name in job.allowed_races))
+					continue
+				
+				if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
+					continue
+
+				if(job.plevel_req > player.client.patreonlevel())
+					continue
+
+				if(get_playerquality(player.ckey) < job.min_pq || attempt > 2)
+					continue
+
+				if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
+					continue
+
+				if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
+					continue
+
+				if(CONFIG_GET(flag/usewhitelist))
+					if(job.whitelist_req && (!player.client.whitelisted()))
+						continue
+
+				if(!(player.client.prefs.age in job.allowed_ages))
+					continue
+
+				if(!(player.client.prefs.gender in job.allowed_sexes))
+					continue
+
+				if(!job.special_job_check(player))
+					continue
+
+				// If the player wants that job on this level, then try give it to him.
+				if(player.client.prefs.job_preferences[job.title] == JP_HIGH || (attempt > 1 && player.client.prefs.job_preferences[job.title] >= JP_LOW))
+					// If the job isn't filled
+					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+						AssignRole(player, job.title)
+						unassigned -= player
+						amt_picked++
 	return amt_picked
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
