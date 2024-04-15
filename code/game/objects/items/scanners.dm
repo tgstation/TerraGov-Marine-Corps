@@ -341,11 +341,11 @@ REAGENT SCANNER
 				"color" = "red"
 				))
 		if(!issynth(patient) && !isrobot(patient)) // Advice that's only relevant to humans
-			if(patient.blood_volume <= 500 && !chemicals_lists["Nutriment"])
+			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
 				advice += list(list(
-					"advice" = "Administer food or recommend that the patient eat.",
-					"icon" = "pizza-slice",
-					"color" = "white"
+					"advice" = "Administer a single dose of Isotonic solution.",
+					"icon" = "syringe",
+					"color" = "crimson"
 					))
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(

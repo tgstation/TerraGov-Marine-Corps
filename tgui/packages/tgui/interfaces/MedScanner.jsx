@@ -123,7 +123,7 @@ export const MedScanner = (props) => {
               <Box inline>
                 <ProgressBar>
                   {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{' '}
-                  <Box inline color={'teal'}>
+                  <Box inline bold color={'teal'}>
                     {clone}
                   </Box>
                 </ProgressBar>
