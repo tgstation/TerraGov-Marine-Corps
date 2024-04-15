@@ -565,6 +565,10 @@
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
+		if(CHARGE_BULL_GORE)
+			target.apply_status_effect(/datum/status_effect/shatter, CHARGE_SPEED(charge_datum) * 5 SECONDS)
+			M.adjust_stagger(CHARGE_SPEED(charge_datum) * 3 SECONDS)
+			M.adjust_slowdown(CHARGE_SPEED(charge_datum) * 3)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
