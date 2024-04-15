@@ -53,7 +53,7 @@
 /obj/item/storage/pouch/general/medium/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = 4
-	storage_datum.sprite_slots = 4
+	storage_datum.sprite_slots = 2
 	storage_datum.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large
@@ -64,7 +64,7 @@
 	. = ..()
 	storage_datum.storage_slots = null
 	storage_datum.max_storage_space = 8
-	storage_datum.sprite_slots = 4
+	storage_datum.sprite_slots = 3
 	storage_datum.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large/command/PopulateContents()
