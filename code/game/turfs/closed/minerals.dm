@@ -61,14 +61,7 @@
 	if (!user.IsAdvancedToolUser())
 		to_chat(usr, "<span class='warning'>I don't have the dexterity to do this!</span>")
 		return
-	var/olddam = turf_integrity
 	..()
-	if(turf_integrity && turf_integrity > 10)
-		if(turf_integrity < olddam)
-			if(prob(50))
-				if(user.Adjacent(src))
-					var/obj/item/natural/stone/S = new(src)
-					S.forceMove(get_turf(user))
 
 /turf/closed/mineral/turf_destruction(damage_flag)
 	gets_drilled(give_exp = FALSE)
