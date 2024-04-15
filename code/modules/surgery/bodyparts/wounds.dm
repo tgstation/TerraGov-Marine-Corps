@@ -261,7 +261,7 @@
 					if(owner.client)
 						winset(owner.client, "outputwindow.output", "max-lines=1")
 						winset(owner.client, "outputwindow.output", "max-lines=100")
-				return FALSE */
+				return FALSE 
 		for(var/datum/wound/fracture/W in wounds)
 			return FALSE
 		if(prob(used) && (brute_dam / max_damage >= 0.9))
