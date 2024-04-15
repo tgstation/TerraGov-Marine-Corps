@@ -2,7 +2,7 @@
 
 /datum/advclass/templar
 	name = "Paladin"
-	tutorial = "Paladins are former noblemen and clerics who have dedicated themselves to great combat prowess. Often, they were promised redemption for past sins if they crusaded in the name of the gods."
+	tutorial = "Paladins are former noblemen and clerics who have dedicated themselves to great combat prowess. They were promised redemption for past sins if they crusaded in the name of the gods."
 	allowed_sexes = list("male")
 	allowed_races = list("Humen",
 	"Tiefling",

@@ -14,7 +14,7 @@
 	"Dwarf"
 	)
 
-	tutorial = "Grabber is the lowest position in the Merchant\'s Guild reserved for the strong, loyal newcomers. They can be like family to the merchant in these foreign lands."
+	tutorial = "Grabber is the lowest position in the Merchant's Guild, reserved for the strong, loyal newcomers. They can be like family to the merchant in these foreign lands."
 
 	outfit = /datum/outfit/job/roguetown/grabber
 	display_order = JDO_GRABBER
