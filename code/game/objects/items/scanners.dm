@@ -230,12 +230,19 @@ REAGENT SCANNER
 			"salved" = limb.is_salved(),
 			"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
 			"limb_status" = null,
+			"limb_type" = null,
 			"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
 			"open_incision" = limb.surgery_open_stage,
 			"necrotized" = necrotized,
 			"infected" = infected,
 			"implant" = implant
 		)
+		var/limb_type = ""
+		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))
+			limb_type = "Robotic"
+		else if(CHECK_BITFIELD(limb.limb_status, LIMB_BIOTIC))
+			limb_type = "Biotic"
+
 		var/limb_status = ""
 		if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
 			limb_status = "Fracture"
@@ -243,6 +250,7 @@ REAGENT SCANNER
 			limb_status = "Stabilized"
 		else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
 			limb_status = "Splinted"
+		current_list["limb_type"] = limb_type
 		current_list["limb_status"] = limb_status
 		limb_data_lists["[limb.name]"] = current_list
 	data["limb_data_lists"] = limb_data_lists
@@ -303,7 +311,7 @@ REAGENT SCANNER
 					))
 			if(patient.getFireLoss() > 0)
 				advice += list(list(
-					"advice" = "Use a cable coil or nanopaste to repair the burned areas.",
+					"advice" = "Use a cable coil or nanopaste to repair the scorched areas.",
 					"icon" = "plug",
 					"color" = "orange"
 					))

@@ -1,6 +1,7 @@
 import { useBackend } from '../backend';
 import {
   Box,
+  Flex,
   Icon,
   LabeledList,
   NoticeBox,
@@ -47,9 +48,11 @@ export const MedScanner = (props) => {
   } = data;
   const chemicals = Object.values(chemicals_lists);
   const limb_data = Object.values(limb_data_lists);
+  let index = 0;
+  const row_bg_color = 'rgba(255, 255, 255, .05)';
   const theme = species === 'robot' ? 'hackerman' : 'default';
   return (
-    <Window width={500} height={600} theme={theme}>
+    <Window width={500} height={650} theme={theme}>
       <Window.Content>
         <Section title={'Patient: ' + patient}>
           {hugged ? (
@@ -78,44 +81,51 @@ export const MedScanner = (props) => {
             ) : null}
             <LabeledList.Item label="Damage">
               <Box inline>
-                <ProgressBar
-                  value={total_brute}
-                  maxvalue={total_brute}
-                  color="bad"
-                >
-                  Brute:{total_brute}
+                <ProgressBar>
+                  Brute:{' '}
+                  <Box inline bold color={'red'}>
+                    {total_brute}
+                  </Box>
                 </ProgressBar>
               </Box>
               <Box inline width={'5px'} />
               <Box inline>
-                <ProgressBar
-                  value={total_burn}
-                  maxvalue={total_burn}
-                  color="average"
-                >
-                  Burn:{total_burn}
+                <ProgressBar>
+                  Burn:{' '}
+                  <Box inline bold color={'#ffb833'}>
+                    {total_burn}
+                  </Box>
                 </ProgressBar>
               </Box>
               {species !== 'robot' ? (
                 <>
                   <Box inline width={'5px'} />
                   <Box inline>
-                    <ProgressBar value={toxin} maxvalue={toxin} color="green">
-                      Toxin:{toxin}
+                    <ProgressBar>
+                      Toxin:{' '}
+                      <Box inline bold color={'green'}>
+                        {toxin}
+                      </Box>
                     </ProgressBar>
                   </Box>
                   <Box inline width={'5px'} />
                   <Box inline>
-                    <ProgressBar value={oxy} maxvalue={oxy} color="blue">
-                      Oxygen:{oxy}
+                    <ProgressBar>
+                      Oxygen:{' '}
+                      <Box inline bold color={'blue'}>
+                        {oxy}
+                      </Box>
                     </ProgressBar>
                   </Box>
                 </>
               ) : null}
               <Box inline width={'5px'} />
               <Box inline>
-                <ProgressBar value={clone} maxvalue={clone} color="teal">
-                  {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{clone}
+                <ProgressBar>
+                  {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{' '}
+                  <Box inline color={'teal'}>
+                    {clone}
+                  </Box>
                 </ProgressBar>
               </Box>
             </LabeledList.Item>
@@ -149,118 +159,113 @@ export const MedScanner = (props) => {
         ) : null}
         {limbs_damaged ? (
           <Section title="Limbs Damaged">
-            <LabeledList>
+            <Stack vertical fill>
+              <Flex width="100%" height="20px">
+                <Flex.Item basis="85px" />
+                <Flex.Item basis="55px" bold color="red">
+                  Brute
+                </Flex.Item>
+                <Flex.Item basis="55px" bold color="#ffb833">
+                  Burn
+                </Flex.Item>
+                <Flex.Item grow="1" shrink="1" textAlign="right" nowrap>
+                  {'{ } = Untreated'}
+                </Flex.Item>
+              </Flex>
               {limb_data.map((limb) => (
-                <LabeledList.Item key={limb.name} label={limb.name}>
+                <Flex
+                  key={limb.name}
+                  width="100%"
+                  minHeight="15px"
+                  py="3px"
+                  backgroundColor={index++ % 2 === 0 ? row_bg_color : ''}
+                >
+                  <Flex.Item basis="85px" shrink="0" bold pl="3px">
+                    {limb.name[0].toUpperCase() + limb.name.slice(1)}
+                  </Flex.Item>
                   {limb.missing ? (
-                    <Box inline color={'red'} bold={1}>
+                    <Flex.Item color={'red'} bold={1}>
                       MISSING
-                    </Box>
+                    </Flex.Item>
                   ) : (
                     <>
-                      {limb.brute > 0 ? (
-                        <>
-                          <Box inline>
-                            <ProgressBar
-                              value={limb.brute}
-                              maxvalue={limb.brute}
-                              color="bad"
-                            >
-                              Brute:{limb.brute}
-                            </ProgressBar>
-                          </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.burn > 0 ? (
-                        <>
-                          <Box inline>
-                            <ProgressBar
-                              value={limb.burn}
-                              maxvalue={limb.burn}
-                              color="average"
-                            >
-                              Burn:{limb.burn}
-                            </ProgressBar>
-                          </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {!limb.bandaged ? (
-                        <>
-                          <Box inline color={'green'}>
-                            {species === 'robot' ? 'Dented' : 'Unbandanged'}
-                          </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {!limb.salved ? (
-                        <>
-                          <Box inline color={'orange'}>
-                            {species === 'robot' ? 'Scorched' : 'Unsalved'}
-                          </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.bleeding && species !== 'robot' ? (
-                        <>
-                          <Box inline color={'red'} bold={1}>
-                            Bleeding
-                          </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.limb_status ? (
-                        <>
+                      <Flex.Item basis="fit-content" shrink="0">
+                        <Box
+                          inline
+                          width="50px"
+                          color={limb.brute > 0 ? 'red' : 'white'}
+                        >
+                          {limb.bandaged ? `${limb.brute}` : `{${limb.brute}}`}
+                        </Box>
+                        <Box inline width="5px" />
+                        <Box
+                          inline
+                          width="50px"
+                          color={limb.burn > 0 ? '#ffb833' : 'white'}
+                        >
+                          {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
+                        </Box>
+                        <Box inline width="5px" />
+                      </Flex.Item>
+                      <Flex.Item shrink="1">
+                        {limb.limb_status ? (
                           <Box
                             inline
                             color={
-                              limb.limb_status === 'Splinted' ? 'green' : 'red'
+                              limb.limb_status === 'Splinted' ? 'lime' : 'white'
                             }
                             bold={1}
                           >
-                            {limb.limb_status}
+                            [{limb.limb_status}]
                           </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.open_incision ? (
-                        <>
+                        ) : null}
+                        {limb.limb_type ? (
+                          <Box
+                            inline
+                            color={
+                              limb.limb_type === 'Robotic' ? 'pink' : 'tan'
+                            }
+                            bold={1}
+                          >
+                            [{limb.limb_type}]
+                          </Box>
+                        ) : null}
+                        {limb.bleeding ? (
                           <Box inline color={'red'} bold={1}>
-                            Open Surgical Incision
+                            [Bleeding]
                           </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.infected ? (
-                        <>
+                        ) : null}
+                        {limb.internal_bleeding ? (
+                          <Box inline color={'red'} bold={1}>
+                            [Internal Bleeding]
+                          </Box>
+                        ) : null}
+                        {limb.open_incision ? (
+                          <Box inline color={'red'} bold={1}>
+                            [Open Incision]
+                          </Box>
+                        ) : null}
+                        {limb.infected ? (
                           <Box inline color={'olive'} bold={1}>
-                            Infected
+                            [Infected]
                           </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.necrotized ? (
-                        <>
-                          <Box inline color={'brown'} bold={1}>
-                            Necrotizing
+                        ) : null}
+                        {limb.necrotized ? (
+                          <Box inline color={'necrotizing'} bold={1}>
+                            [Necrotizing]
                           </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
-                      {limb.implant ? (
-                        <>
+                        ) : null}
+                        {limb.implant ? (
                           <Box inline color={'white'} bold={1}>
-                            Implant
+                            [Implant]
                           </Box>
-                          <Box inline width={'5px'} />
-                        </>
-                      ) : null}
+                        ) : null}
+                      </Flex.Item>
                     </>
                   )}
-                </LabeledList.Item>
+                </Flex>
               ))}
-            </LabeledList>
+            </Stack>
           </Section>
         ) : null}
         {damaged_organs.length ? (
