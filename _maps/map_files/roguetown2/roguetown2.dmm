@@ -951,7 +951,6 @@
 "sQ" = (/turf/open/floor/rogue/blocks/stonered,/area/rogue/indoors/town/dwarfin)
 "sR" = (/obj/machinery/light/rogue/wallfire/candle,/turf/open/floor/rogue/blocks/stonered,/area/rogue/indoors/town/dwarfin)
 "sS" = (/obj/structure/table/wood,/obj/structure/bars{icon_state = "barsbent"; layer = 2.81},/turf/open/floor/rogue/cobble,/area/rogue/indoors/town/manor)
-"sT" = (/obj/structure/winch{dir = 4; gid = "manorgate1"; redstone_id = "gatemanor3"; pixel_x = -6},/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
 "sU" = (/obj/structure/table/wood,/obj/structure/bars{icon_state = "barsbent"; layer = 2.81},/turf/open/floor/rogue/dirt/road,/area/rogue/indoors/town/shop)
 "sV" = (/turf/open/floor/carpet/stellar,/area/rogue/indoors/town/shop)
 "sW" = (/obj/effect/landmark/start/merchant,/turf/open/floor/carpet/stellar,/area/rogue/indoors/town/shop)
@@ -2054,7 +2053,7 @@
 "RV" = (/obj/structure/bookcase,/obj/item/book/random,/obj/item/book/random,/obj/item/book/random,/obj/item/book/random,/obj/item/book/random,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
 "RZ" = (/obj/item/rogueweapon/mace/wsword,/obj/item/rogueweapon/mace/wsword,/obj/structure/closet/crate/roguecloset/inn/chest,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
 "Sc" = (/obj/structure/table/wood{icon_state = "map6"},/obj/machinery/light/rogue/wallfire{pixel_x = 32},/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
-"Se" = (/obj/item/roguekey/roomv{lockid = "abandonedhouse"; name = "rusty key"; redstone_id = s},/turf/open/floor/rogue/wood,/area/rogue/under/town/basement)
+"Se" = (/obj/item/roguekey/roomv{lockid = "abandonedhouse"; name = "rusty key"},/turf/open/floor/rogue/wood,/area/rogue/under/town/basement)
 "Sl" = (/obj/structure/bookcase,/obj/item/book/random,/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
 "So" = (/obj/structure/fluff/statue/gargoyle,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
 "Sp" = (/obj/item/roguestatue/iron,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
@@ -2098,6 +2097,7 @@
 "Vs" = (/obj/structure/table/wood{icon_state = "tablewood1"},/turf/open/floor/rogue/woodturned,/area/rogue/indoors/town/manor)
 "Vu" = (/obj/structure/fluff/railing/wood{dir = 1; pixel_y = -1},/obj/structure/fluff/railing/wood{icon_state = "woodrailing"; dir = 4},/turf/open/floor/rogue/blocks,/area/rogue/outdoors/town)
 "Vy" = (/obj/structure/chair/bench/couch,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
+"VA" = (/obj/structure/winch{dir = 4; gid = "manorgate1"; redstone_id = "gatemanor3"; pixel_x = -6},/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
 "VE" = (/obj/structure/closet/crate/roguecloset/lord,/obj/item/clothing/shoes/roguetown/nobleboot,/obj/item/rogueweapon/greatsword,/obj/item/scomstone,/obj/item/clothing/suit/roguetown/armor/plate/blkknight,/turf/open/floor/rogue/tile{icon_state = "bfloorz"},/area/rogue/indoors/town/manor)
 "VI" = (/obj/structure/chair/wood/rogue,/turf/open/floor/rogue/wood,/area/rogue/indoors/town/manor)
 "VK" = (/obj/structure/fluff/clock,/turf/open/floor/rogue/carpet,/area/rogue/indoors/town/manor)
@@ -2333,7 +2333,7 @@ eneneneneneneveoeoeoepeveveneneneneneneneneveveoeqeqeqeogegegegegeeoeqeqeoeveven
 eneneneneneneveoeoeoeoeveneneneneneneneneneveoeoeqeqeqgegegygzgegeeoeqeqeoeveneneneneneoeqeqepepeoerereweSeSeweSeBfafafafagBeLeLeLeLgBeLgCeLeygDfHtZfogEfqWAgafYexxHxHxHxHgdgHgISyeBfagAgJeBeReSeSeReweSeserereoeoepeogxgKgKgxgxeoeqgxeoeqenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevevevevepepeoeoeveneneneneneneneneneveveoeqeqeqeogegegegeeoeqeqeoevevenenenenenepeoeoepepeoerereweSgpeweSgqfafafafaeLeLeLeLeLeLeLeLeLgLfnfVeGgjfpgkeGydgleBglVTOdThyneLeLfneBfafafaeBeReSeSYzeweSeserereoeoepeogxgKgKgxgMeqgMgxeoeqeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevepeoeoepepeoeoeveneneneneneneneneneneveveoeqeqeqgeeoeqeqeqeqeoeveveveveneneneoepeoeoepepeoerereweSeSeweSexeHHoexeHeHgdeHeHexeHgFgqgGexgifHgNfofpfqgOgaglOXglglglfnfneLeLeLfOfafafaeBeReSeSeReweSeserereoeoepeogxeqeqeqeogMeqgxeoeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
-enenenevepeoeoeoepeoeoeveveneneneneneneneneneneveoeqeqeqeqeqeqeoeoeoeveneneneveoepepepepepepepepeoerereweSeSeweSeBeLeLgBfGgRgSgRfGgAfaeLeLgTeysTfVTAfofpfqTUydgVeBglglglfnfnfneLWleBgWgWgWeBeReSeSeReweSewerereoeoepeogxeqeqgMgxgMgMgMeoeqeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
+enenenevepeoeoeoepeoeoeveveneneneneneneneneneneveoeqeqeqeqeqeqeoeoeoeveneneneveoepepepepepepepepeoerereweSeSeweSeBeLeLgBfGgRgSgRfGgAfaeLeLgTeyVAfVTAfofpfqTUydgVeBglglglfnfnfneLWleBgWgWgWeBeReSeSeReweSewerereoeoepeogxeqeqgMgxgMgMgMeoeqeqeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 enenenevepeoeoeoepeoeoeoeveveveneneneneneneneneveveveveveveveveveveveveneneneveoepepeqeueuepepgXeperereweSeSeweSeBeLeLeLfGgZhagZfGfafaeLeLeLeyeGeHexhbfpfqeGhceGexOdgVYotSfnfneLizeBhdhdhdeBeReSeSeReweSewerereoeoeoeogxeoeogMeogMgMgMeoeqeqeqeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 eneneneveveoeoepepeoeoepepeoevenenenenenenenenenenenenenenenenenenenenenenenenepeqeqeqeqeqeqeqeqeperereweSeSeweSeBfafahefGhfhghhfGhifafafafaeyeBhjfnfofpfqgleLhkeGeGeHeHezfOeGezeGexhdhdhdeBeReSeSeReweSewerereoeoeoeogxgxgxgxeogxgxeoeoeoeoepepenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
 eneneneneveveveoeoeoeoepepepepenenenenenenenenenenenenenenenenenenenenenenenenephleqeqeqeqeqeqeqeperereweSeSeweSeBhmhneGhnhnhohnhpeGhqhmhrhseyeBfneyhtfphueyeLhveBeOfPeOylfuylfPeOeGeBeyeHeGeReSeSeReweSewerereoeoeoeoeoeoeoeoeoeoeoeoeoepepepeoeoenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen
