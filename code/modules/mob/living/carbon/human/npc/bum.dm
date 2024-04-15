@@ -9,12 +9,12 @@ GLOBAL_LIST_INIT(bum_aggro, world.file2list("strings/rt/bumaggrolines.txt"))
 	dodgetime = 30
 	flee_in_pain = TRUE
 	possible_rmb_intents = list()
-	static_npc = TRUE
+
 	wander = FALSE
 
 /mob/living/carbon/human/species/human/northern/bum/ambush
 	aggressive=1
-	static_npc = FALSE
+
 	wander = TRUE
 
 /mob/living/carbon/human/species/human/northern/bum/retaliate(mob/living/L)
@@ -35,7 +35,9 @@ GLOBAL_LIST_INIT(bum_aggro, world.file2list("strings/rt/bumaggrolines.txt"))
 /mob/living/carbon/human/species/human/northern/bum/Initialize()
 	. = ..()
 	set_species(/datum/species/human/northern)
-	addtimer(CALLBACK(src, .proc/after_creation), 10)
+	spawn(10)
+		after_creation()
+	//addtimer(CALLBACK(src, .proc/after_creation), 10)
 
 /mob/living/carbon/human/species/human/northern/bum/after_creation()
 	..()

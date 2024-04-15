@@ -5,8 +5,8 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	flag = ADVENTURER
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 75
+	spawn_positions = 75
 	allowed_races = list("Humen",
 	"Elf",
 	"Half-Elf",
@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	"Dark Elf",
 	"Aasimar"
 	)
-	tutorial = "Hero of Nothing, Adventurer by trade. Whatever led you to this fate is up to the wind to decide, and youve never fancied yourself for much other than the thrill. Someday your pride is going to catch up to you, and youre going to find out why most men dont end up in the annals of history."
+	tutorial = "Hero of nothing, adventurer by trade. Whatever led you to this fate is up to the wind to decide, and you've never fancied yourself for much other than the thrill. Someday your pride is going to catch up to you, and you're going to find out why most men don't end up in the annals of history."
 
 
 	outfit = null

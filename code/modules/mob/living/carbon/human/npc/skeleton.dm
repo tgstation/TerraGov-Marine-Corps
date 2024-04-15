@@ -1,5 +1,6 @@
 /mob/living/carbon/human/species/skeleton
 	name = "skeleton"
+	
 	race = /datum/species/human/northern
 	gender = MALE
 	bodyparts = list(/obj/item/bodypart/chest, /obj/item/bodypart/head, /obj/item/bodypart/l_arm,
@@ -11,18 +12,20 @@
 	possible_rmb_intents = list()
 
 /mob/living/carbon/human/species/skeleton/npc
-	aggressive=1
+	aggressive = 1
 	mode = AI_IDLE
-	static_npc = TRUE
 	wander = FALSE
 
 /mob/living/carbon/human/species/skeleton/npc/ambush
-	static_npc = FALSE
+
 	wander = TRUE
 
 /mob/living/carbon/human/species/skeleton/Initialize()
 	. = ..()
 	cut_overlays()
+	spawn(10)
+		after_creation()
+
 	addtimer(CALLBACK(src, .proc/after_creation), 10)
 
 /mob/living/carbon/human/species/skeleton/after_creation()

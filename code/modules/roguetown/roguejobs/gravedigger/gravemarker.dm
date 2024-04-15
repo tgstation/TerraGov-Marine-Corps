@@ -60,7 +60,16 @@
 		if(L.stat == DEAD)
 			if(L.mind && L.mind.has_antag_datum(/datum/antagonist/zombie))
 				L.mind.remove_antag_datum(/datum/antagonist/zombie)
-			var/mob/dead/observer/O = L.ghostize(force_respawn = TRUE)
+			var/mob/dead/observer/O
+			//We probably went to the underworld
+			if(!L.client)
+				var/client/friendo = GLOB.directory[lowertext(L.mind.key)]
+				if(friendo && istype(friendo.mob, /mob/living/carbon/spirit))
+					var/mob/living/carbon/spirit/lost_soul = friendo.mob
+					lost_soul = L.ghostize(force_respawn = TRUE)
+					qdel(lost_soul)
+			else
+				O = L.ghostize(force_respawn = TRUE)
 			if(O)
 				testing("bur1")
 				to_chat(O, "<span class='rose'>My soul finds peace buried in creation.</span>")

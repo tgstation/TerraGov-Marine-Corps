@@ -17,11 +17,11 @@
 	not lend itself to the concepts of strength or durability... \
 	There are elves from a small smattering of tribes in these parts."
 
-	string_to_replace_skintone_on_charpref = "Tribal Identity"
+	skin_tone_wording = "Tribal Identity"
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP)
+	inherent_traits = list(TRAIT_NOMOBSWAP,TRAIT_NIGHT_VISION)
 	default_features = list("mcolor" = "FFF", "ears" = "Elf", "wings" = "None")
 	use_skintones = 1
 	skinned_type = /obj/item/stack/sheet/animalhide/human

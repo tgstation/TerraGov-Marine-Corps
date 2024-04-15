@@ -13,7 +13,7 @@
 	tend to find fortune easier than the other races, and are so diverse that no other racial trait\
 	are dominant in their species..."
 
-	string_to_replace_skintone_on_charpref = "Ancestry"
+	skin_tone_wording = "Ancestry"
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)

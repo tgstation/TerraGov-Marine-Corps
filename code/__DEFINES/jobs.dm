@@ -148,11 +148,11 @@
 #define ORPHAN		(1<<3)
 #define PRINCE		(1<<4)
 
-#define JCOLOR_NOBLE "#9c40bf"
-#define JCOLOR_MERCHANT "#c2b449"
-#define JCOLOR_SOLDIER "#b64949"
-#define JCOLOR_SERF "#669968"
-#define JCOLOR_PEASANT "#936d6c"
+#define JCOLOR_NOBLE "#aa83b9"
+#define JCOLOR_CHURCH "#c0ba8d"
+#define JCOLOR_SOLDIER "#b18484"
+#define JCOLOR_SERF "#819e82"
+#define JCOLOR_PEASANT "#b6a68c"
 
 
 // job display orders //
