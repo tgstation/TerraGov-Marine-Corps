@@ -5,8 +5,6 @@
 	icon_state = "ltb_cannon"
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
-	///The turret icon if we equip the weapon in a secondary slot, you should null this if its unequippable as such
-	var/secondary_equipped_icon
 	///Weapon slot this weapon fits in
 	var/weapon_slot = MODULE_PRIMARY
 
@@ -262,7 +260,7 @@
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
 			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
 		else
-			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]")
+			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
 	chassis = tank
 	forceMove(tank)
@@ -300,7 +298,6 @@
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	weapon_slot = MODULE_SECONDARY
-	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -318,7 +315,6 @@
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	weapon_slot = MODULE_PRIMARY
-	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
