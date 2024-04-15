@@ -10,12 +10,13 @@
 	if(!.)
 		return
 	RegisterSignal(target, COMSIG_LIVING_SET_JUMP_COMPONENT, PROC_REF(modify_jump))
+	RegisterSignal(target, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(handle_jump))
 	target.set_jump_component()
 
 /obj/item/implant/jump_mod/unimplant()
 	if(!implant_owner)
 		return ..()
-	UnregisterSignal(implant_owner, COMSIG_LIVING_SET_JUMP_COMPONENT)
+	UnregisterSignal(implant_owner, list(COMSIG_LIVING_SET_JUMP_COMPONENT, COMSIG_ELEMENT_JUMP_STARTED, COMSIG_ELEMENT_JUMP_ENDED))
 	implant_owner.set_jump_component()
 	return ..()
 
@@ -24,3 +25,15 @@
 	SIGNAL_HANDLER
 	arg_list[6] |= JUMP_CHARGEABLE
 	return TRUE
+
+///speedboost mid jump
+/obj/item/implant/jump_mod/proc/handle_jump(mob/living/mover, jump_height, jump_duration)
+	SIGNAL_HANDLER
+	RegisterSignal(mover, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(end_jump))
+	mover.add_movespeed_modifier(type, priority = 1, multiplicative_slowdown = -0.5)
+
+///speedboost mid jump
+/obj/item/implant/jump_mod/proc/handle_jump(mob/living/mover)
+	SIGNAL_HANDLER
+	UnregisterSignal(mover, COMSIG_ELEMENT_JUMP_ENDED)
+	mover.remove_movespeed_modifier(type)
