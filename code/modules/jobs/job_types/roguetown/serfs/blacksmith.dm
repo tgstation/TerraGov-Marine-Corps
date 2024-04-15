@@ -71,7 +71,7 @@
 	"Dwarf",
 	)
 
-	tutorial = "You studied for many decades under your master with a few other apprentices to become a Weaponsmith, a trade that is as ancient as the secrets of steel itself! Youve repaired the blades of cooks, the cracked hoes of peasants and greased the spears of many soldiers into war."
+	tutorial = "You studied for many decades under your master with a few other apprentices to become a Weaponsmith, a trade that is as ancient as the secrets of steel itself! You've repaired the blades of cooks, the cracked hoes of peasants and greased the spears of many soldiers into war."
 
 	outfit = /datum/outfit/job/roguetown/weaponsmith
 	display_order = JDO_WSMITH
