@@ -235,11 +235,6 @@ export const MedScanner = (props) => {
                             [Bleeding]
                           </Box>
                         ) : null}
-                        {limb.internal_bleeding ? (
-                          <Box inline color={'red'} bold={1}>
-                            [Internal Bleeding]
-                          </Box>
-                        ) : null}
                         {limb.open_incision ? (
                           <Box inline color={'red'} bold={1}>
                             [Open Incision]
