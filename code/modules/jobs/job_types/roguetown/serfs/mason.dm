@@ -3,7 +3,7 @@
 	flag = MASON
 	department_flag = SERFS
 	faction = "Station"
-	total_positions = 2
+	total_positions = 3
 	spawn_positions = 2
 
 	allowed_races = list("Humen",
