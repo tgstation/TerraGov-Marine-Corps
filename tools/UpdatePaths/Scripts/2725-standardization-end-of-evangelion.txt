@@ -1,0 +1,13 @@
+/obj/structure{icon_state = "intact-scrubbers"} : /obj/structure/prop/invuln/overhead_pipe{@OLD;icon=@SKIP;icon_state=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;layer = @SKIP;}
+/obj/structure{desc = "A lightweight support lattice."} : /obj/structure/prop/invuln/lattice_prop{@OLD;icon=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;layer=@SKIP;name=@SKIP;desc=@SKIP;}
+/obj/structure{name = "Remote Console Pod"} : /obj/structure/prop/invuln/remote_console_pod
+/obj/structure{icon_state = "arcadeb"} : /obj/structure/prop/broken_arcade
+/obj/structure{name = "broken disposal unit"} : /obj/structure/machinery/disposal/broken
+/obj/structure{name = "\improper Maintenance Hatch"} : /obj/structure/prop/maintenance_hatch{@OLD;name=@SKIP;layer=@SKIP;icon_state=@SKIP;}
+/obj/structure{desc = "What could have done this?"} : /obj/effect/acid_hole
+/obj/structure{name = "fire"} : /obj/structure/prop/invuln/fire{@OLD;color=@SKIP;icon_state=@SKIP;luminosity=@SKIP;icon=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;layer=@SKIP;name=@SKIP;desc=@SKIP;}
+/obj/effect/decal{name = "fire"} : /obj/structure/prop/invuln/fire{@OLD;color=@SKIP;icon_state=@SKIP;luminosity=@SKIP;icon=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;layer=@SKIP;name=@SKIP;desc=@SKIP;}
+/obj/structure{desc = "A shuttle control computer. This one seems powered down."} : /obj/structure/machinery/computer/shuttle/ert/broken
+/obj/structure{name = "puddle"} : /obj/structure/sink/puddle{@OLD;icon=@SKIP;icon_state=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;}
+/obj/structure{name = "\improper S-52 fusion reactor"} : /obj/structure/prop/invuln/fusion_reactor
+/obj/structure/prop/invuln{name = "pipe water"} : /obj/structure/prop/invuln/pipe_water{@OLD;icon=@SKIP;icon_state=@SKIP;density=@SKIP;desc=@SKIP;indestructible=@SKIP;projectile_coverage=@SKIP;unacidable=@SKIP;health=@SKIP;name=@SKIP;}

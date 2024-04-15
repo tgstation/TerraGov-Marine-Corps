@@ -19,7 +19,7 @@ def read_settings():
     try:
         map_folder = os.environ['MAPROOT']
     except KeyError:
-        map_folder = '_maps/'
+        map_folder = 'maps/'
         for _ in range(8):
             if os.path.exists(map_folder):
                 break
