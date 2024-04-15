@@ -4,7 +4,7 @@
 	title = "Templar"	
 	department_flag = CHURCHMEN
 	faction = "Station"
-	tutorial = "Templars are former noblemen and clerics who have dedicated themselves to great combat prowess. Often, they were promised redemption for past sins if they crusaded in the name of the gods."
+	tutorial = "Templars are the stalwart guardians of the church, sworn to protect its sacred grounds and the faithful within. As skilled warriors and devout believers, they stand ready to defend against heretical forces and unholy creatures that threaten the sanctity of the church."
 	allowed_sexes = list("male")
 	allowed_races = list("Humen",
 	"Tiefling",
