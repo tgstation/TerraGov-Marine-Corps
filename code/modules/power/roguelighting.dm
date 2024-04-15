@@ -527,6 +527,7 @@
 	if(torchy)
 		if(!istype(user) || !Adjacent(user) || !user.put_in_active_hand(torchy))
 			torchy.forceMove(loc)
+		torchy.update_light()
 		torchy = null
 		on = FALSE
 		set_light(0)

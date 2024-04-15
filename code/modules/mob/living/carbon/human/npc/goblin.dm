@@ -18,11 +18,11 @@
 	mode = AI_IDLE
 	dodgetime = 30 //they can dodge easily, but have a cooldown on it
 	flee_in_pain = TRUE
-	static_npc = TRUE
+
 	wander = FALSE
 
 /mob/living/carbon/human/species/goblin/npc/ambush
-	static_npc = FALSE
+
 	wander = TRUE
 
 /mob/living/carbon/human/species/goblin/hell
@@ -182,7 +182,9 @@
 
 /mob/living/carbon/human/species/goblin/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/after_creation), 10)
+	spawn(10)
+		after_creation()
+	//addtimer(CALLBACK(src, .proc/after_creation), 10)
 
 /mob/living/carbon/human/species/goblin/handle_combat()
 	if(mode == AI_HUNT)
@@ -398,7 +400,9 @@
 		return
 	spawning = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/creategob), 4 SECONDS)
+	spawn(2 SECONDS)
+		creategob()
+	//addtimer(CALLBACK(src, .proc/creategob), 4 SECONDS)
 
 /obj/structure/gob_portal/Destroy()
 	soundloop.stop()

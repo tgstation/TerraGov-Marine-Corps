@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-
+	selection_color = JCOLOR_SERF
 	allowed_races = list("Humen",
 	"Humen",
 	"Elf",
@@ -13,7 +13,7 @@
 	"Tiefling",
 	"Aasimar"
 	)
-	tutorial = "You were born into wealth, learning from before you could talk about the basics of mathematics. Counting coins is a simple pleasure for any person, but youve made it an artform. These people are addicted to your wares and you are the literal beating heart of this economy: Dont let these filthy-covered troglodytes ever forget that."
+	tutorial = "You were born into wealth, learning from before you could talk about the basics of mathematics. Counting coins is a simple pleasure for any person, but you've made it an artform. These people are addicted to your wares and you are the literal beating heart of this economy: Dont let these filthy-covered troglodytes ever forget that."
 
 	display_order = JDO_MERCHANT
 
@@ -32,6 +32,11 @@
 		H.mind.adjust_skillrank(/datum/skill/labor/mathematics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 	ADD_TRAIT(H, RTRAIT_SEEPRICES, type)
+	//50% chance to be raceswapped to Giza because slop lore
+	if(ishumannorthern(H) && prob(50))
+		var/list/skin_slop = H.dna.species.get_skin_list()
+		H.skin_tone = skin_slop["Giza"]
+		H.update_body()
 	if(H.gender == MALE)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich

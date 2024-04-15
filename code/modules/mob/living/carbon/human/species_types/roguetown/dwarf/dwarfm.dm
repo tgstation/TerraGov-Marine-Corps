@@ -19,11 +19,11 @@
 	Dwarves are hearty, but are not known for their speed or eyesight... \
 	Each dwarf hails from a ancient fortress named after the most plentiful mineral."
 
-	string_to_replace_skintone_on_charpref = "Fortress Origin"
+	skin_tone_wording = "Dwarf Fortress"
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,YOUNGBEARD,STUBBLE,OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP)
+	inherent_traits = list(TRAIT_NOMOBSWAP,TRAIT_DRUNK_HEALING)
 	possible_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
