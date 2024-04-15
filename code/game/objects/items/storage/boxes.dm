@@ -346,6 +346,7 @@
 	desc = "Holds any type of explosive mine."
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
+	spawn_number = 5	//Just for the sake of not repeating it in all the subtypes; does nothing with no spawn_type
 
 /obj/item/storage/box/explosive_mines/Initialize(mapload, ...)
 	. = ..()
@@ -361,7 +362,6 @@
 	name = "\improper M20 claymore box"
 	desc = "A secure box holding anti-personnel claymore mines"
 	spawn_type = /obj/item/mine/claymore
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/claymore/large
 	name = "\improper M20 claymore jumbo box"
@@ -381,37 +381,31 @@
 	desc = "A secure box holding anti-tank proximity mines."
 	icon_state = "atminebox"
 	spawn_type = /obj/item/mine/pressure/anti_tank
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/proximity
 	name = "proximity mine box"
 	desc = "A secure box holding proximity mines."
 	spawn_type = /obj/item/mine/proximity
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/pressure
 	name = "pressure mine box"
 	desc = "A secure box holding pressure mines."
 	spawn_type = /obj/item/mine/pressure
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/incendiary
 	name = "incendiary mine box"
 	desc = "A secure box holding incendiary mines."
 	spawn_type = /obj/item/mine/incendiary
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/tanglefoot
 	name = "tanglefoot mine box"
 	desc = "A secure box holding tanglefoot mines."
 	spawn_type = /obj/item/mine/tanglefoot
-	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/emp
 	name = "\improper EMP mine box"
 	desc = "A secure box holding EMP mines."
 	spawn_type = /obj/item/mine/emp
-	spawn_number = 5
 
 /obj/item/storage/box/ied_assembly_kit
 	name = "\improper BYOND IED assembly kit"
