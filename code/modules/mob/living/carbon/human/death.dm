@@ -45,10 +45,9 @@
 				dust(just_ash=TRUE,drop_items=TRUE)
 				return
 
-	//4/15/2024 - Removes the thing that actually griefs people the most when it goes invisible from the mass overlay segment added to the SS, will come back at some point
-	//if(!gibbed)
-	//	if(!is_in_roguetown(src))
-			//zombie_check()
+	if(!gibbed)
+		if(!is_in_roguetown(src))
+			zombie_check()
 
 	if(client || mind)
 		SSticker.deaths++
