@@ -155,12 +155,6 @@
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/mace
 
-/datum/anvil_recipe/weapons/bolts
-	name = "crossbow bolts (+s)"
-	req_bar = /obj/item/ingot/iron
-	additional_items = list(/obj/item/grown/log/tree/stick)
-	created_item = list(/obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt)
-
 // WOOD HANDLE
 
 /datum/anvil_recipe/weapons/billhook
@@ -211,15 +205,7 @@
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/mace/goden/steel
 
-/datum/anvil_recipe/weapons/ironshield
-	name = "tower shield (+w)"
-	appro_skill = /datum/skill/craft/armorsmithing
-	req_bar = /obj/item/ingot/iron
-	additional_items = list(/obj/item/grown/log/tree/small)
-	created_item = /obj/item/rogueweapon/shield/tower
-
-/// HIDE HANDLE
-
+/// SHIELDS
 /datum/anvil_recipe/weapons/steelshield
 	name = "heraldic shield (2) (+h)"
 	appro_skill = /datum/skill/craft/armorsmithing
@@ -227,10 +213,22 @@
 	additional_items = list(/obj/item/ingot/steel,/obj/item/natural/hide)
 	created_item = /obj/item/rogueweapon/shield/tower/metal
 
-/// WOOD + FIBER
+/datum/anvil_recipe/weapons/ironshield
+	name = "tower shield (+w)"
+	appro_skill = /datum/skill/craft/armorsmithing
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/shield/tower
 
+/// CROSSBOWS
 /datum/anvil_recipe/weapons/xbow
-	name = "crossbow (+w) (+f)"
+	name = "crossbow"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/small, /obj/item/natural/fibers)
 	created_item = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+
+/datum/anvil_recipe/weapons/bolts
+	name = "crossbow bolts"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = list(/obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt, /obj/item/ammo_casing/caseless/rogue/bolt)
