@@ -178,6 +178,7 @@
 #define JDO_PRIEST 12
 #define JDO_CLERIC 13
 #define JDO_MONK 14
+#define JDO_TEMPLAR 14.1
 #define JDO_CHURCHLING 15
 
 #define JDO_PURITAN 16

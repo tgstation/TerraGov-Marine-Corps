@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 			H.possibleclass = list()
 		var/list/classes = GLOB.adv_classes.Copy()
 		var/list/special_classes = list()
-		var/classamt = 5
+		var/classamt = 100
 		if(M.client)
 			if(M.client.patreonlevel() >= 1)
 				classamt = 999

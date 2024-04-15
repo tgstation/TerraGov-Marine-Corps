@@ -115,7 +115,7 @@
 	sound = 'sound/magic/heal.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 5 SECONDS
+	charge_max = 10 SECONDS
 	miracle = TRUE
 	devotion_cost = -45
 
