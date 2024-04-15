@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Adds APC and Transport Crewmen to the game"
