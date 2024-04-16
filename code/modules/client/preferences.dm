@@ -985,12 +985,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				continue
 			if(get_playerquality(user.ckey) < job.min_pq)
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
-				//required jobs can bypass pq system
-				var/required = list()
-				for(var/X in REQUIRED_JOBS)
-					required += SSjob.GetJob(X)
-				if(!job in required)
-					continue
+				continue
 			if(!(user.client.prefs.age in job.allowed_ages))
 				HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 				continue
@@ -1123,7 +1118,7 @@ Slots: [job.spawn_positions]</span>
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
 		return FALSE
-				
+
 	if (level == JP_HIGH) // to high
 		//Set all other high to medium
 		for(var/j in job_preferences)
@@ -1407,22 +1402,7 @@ Slots: [job.spawn_positions]</span>
 			if("setJobLevel")
 				if(SSticker.job_change_locked)
 					return 1
-
-				var/changedjob = href_list["text"]
-				var/changedlevel = text2num(href_list["level"])
-
-				//all this just informs the player a warning message
-				var/required = list()
-				var/datum/job/jobdatum = SSjob.GetJob(changedjob)
-				for(var/X in REQUIRED_JOBS)
-					required += SSjob.GetJob(X)
-				if(jobdatum in required && changedlevel == 1)
-					var/used_name = "[jobdatum.title]"
-					if(gender == FEMALE && jobdatum.f_title)
-						used_name = "[jobdatum.f_title]"
-					to_chat(user, "<font color='red'>Warning: You have too low PQ to normally roll for [used_name], you may only roll for it if there are no eligible players.</font>")
-				
-				UpdateJobPreference(user, changedjob, changedlevel)
+				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
 			else
 				SetChoices(user)
 		return 1
