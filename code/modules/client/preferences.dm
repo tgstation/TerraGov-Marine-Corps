@@ -985,7 +985,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				continue
 			if(get_playerquality(user.ckey) < job.min_pq)
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
-				var/list/requiredjobs
+				var/requiredjobs = list()
 				for(var/X in REQUIRED_JOBS)
 					requiredjobs += SSjob.GetJob(X)
 				if(job in REQUIRED_JOBS)
