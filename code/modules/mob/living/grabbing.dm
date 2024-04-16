@@ -86,7 +86,7 @@
 	return ..()
 
 /obj/item/grabbing/dropped(mob/living/user, show_message = TRUE)
-	SHOULD_CALL_PARENT(0)
+	SHOULD_CALL_PARENT(FALSE)
 	if(grabbed == user.pulling)
 		user.stop_pulling(FALSE)
 	if(!user.pulling)

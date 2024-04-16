@@ -203,7 +203,7 @@
 /datum/config_entry/string/wikiurl
 	config_entry_value = ""
 
-/datum/config_entry/string/forumurl
+/datum/config_entry/string/discordurl
 	config_entry_value = ""
 
 /datum/config_entry/string/rulesurl

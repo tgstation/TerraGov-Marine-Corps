@@ -89,6 +89,7 @@
 	icon_state = "bervor"
 	flags_inv = HIDEFACIALHAIR
 	armor = list("melee" = 100, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/steel
 
 	max_integrity = 300
 	resistance_flags = FIRE_PROOF
@@ -102,7 +103,7 @@
 	icon_state = "gorget"
 	flags_inv = HIDEFACIALHAIR
 	armor = list("melee" = 100, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
+	smeltresult = /obj/item/ingot/iron
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK

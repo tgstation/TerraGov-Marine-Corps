@@ -133,37 +133,24 @@ GLOBAL_VAR(moneymaster)
 	var/found
 	if(specify)
 		found = TRUE
+
+		var/type_to_spawn
+		var/zenars
 		switch(specify)
 			if("GOLD")
-				var/zenars = budget/10
-				if(zenars >= 1)
-					var/obj/item/roguecoin/gold/G = new (T)
-					if(zenars > 1)
-						for(var/i in 2 to zenars)
-							var/obj/item/roguecoin/gold/GV = new /obj/item/roguecoin/gold(G)
-							G.held += GV
-					G.update_icon()
-					user.put_in_hands(G)
+				zenars = budget/10
+				type_to_spawn = /obj/item/roguecoin/gold
 			if("SILVER")
-				var/zenars = budget/5
-				if(zenars >= 1)
-					var/obj/item/roguecoin/silver/G = new (T)
-					if(zenars > 1)
-						for(var/i in 2 to zenars)
-							var/obj/item/roguecoin/silver/GV = new /obj/item/roguecoin/silver(G)
-							G.held += GV
-					G.update_icon()
-					user.put_in_hands(G)
+				zenars = budget/5
+				type_to_spawn = /obj/item/roguecoin/silver
 			if("BRONZE")
-				var/zenars = budget
-				if(zenars >= 1)
-					var/obj/item/roguecoin/copper/G = new (T)
-					if(zenars > 1)
-						for(var/i in 2 to zenars)
-							var/obj/item/roguecoin/copper/GV = new /obj/item/roguecoin/copper(G)
-							G.held += GV
-					G.update_icon()
-					user.put_in_hands(G)
+				zenars = budget
+				type_to_spawn = /obj/item/roguecoin/copper
+		if(zenars <= 1)
+			return
+		var/obj/item/roguecoin/G = new type_to_spawn(T)
+		G.set_quantity(floor(zenars))
+		user.put_in_hands(G)
 	else
 		var/zenars = budget/10
 		if(zenars >= 1)

@@ -177,7 +177,7 @@
 		if(coin_loaded)
 			return
 		var/obj/item/roguecoin/C = P
-		if(C.held.len)
+		if(C.quantity > 1)
 			return
 		coin_loaded = C.get_real_price()
 		qdel(C)
