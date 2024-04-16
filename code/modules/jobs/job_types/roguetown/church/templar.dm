@@ -53,7 +53,8 @@
 		if(H.dna.species.id == "tiefling")
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
-	//Templars start with more devotion but cannot pray to gain new abilities
-	C.update_devotion(100)
+	//Max devotion limit - Templars are stronger but cannot pray to gain more abilities
+	C.max_devotion = 200
+	C.update_devotion(50)
 	C.holder_mob = H
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport)
+	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
