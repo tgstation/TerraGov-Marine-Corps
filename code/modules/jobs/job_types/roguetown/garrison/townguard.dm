@@ -15,7 +15,7 @@
 	"Half-Elf"
 	)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
-	tutorial = "Youve enough training to point your spear in the right direction, and youve enough mammons in your pocket to want to keep this job: But you know youre just as disposable as the last poor bastards to call themselves a Guard."
+	tutorial = "You've enough training to point your spear in the right direction, and you've enough mammons in your pocket to want to keep this job: But you know youre just as disposable as the last poor bastards to call themselves a Guard."
 	display_order = JDO_TOWNGUARD
 	whitelist_req = TRUE
 

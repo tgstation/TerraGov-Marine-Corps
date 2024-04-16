@@ -17,7 +17,7 @@
 	)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 
-	tutorial = "Servitude unto death, your blade a charcuterie of artisanal cheeses and meat, your armor wit and classical training. You dont consider yourself a slave, if anything youre a part of the family now. You alone have raised Kings, Queens, Princesses and Princees; without you the royals would have all starved to death."
+	tutorial = "Servitude unto death; your blade a charcuterie of artisanal cheeses and meat, your armor wit and classical training. You don't consider yourself a servant anymore, if anything, you're a part of the family now. You alone have raised Kings, Queens, Princesses and Princes; without you, the royals would have all starved to death."
 
 	outfit = /datum/outfit/job/roguetown/butler
 	display_order = JDO_BUTLER
