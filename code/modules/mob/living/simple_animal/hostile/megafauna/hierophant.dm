@@ -125,7 +125,6 @@ Difficulty: Hard
 	var/blink_counter = 1 + round(anger_modifier * 0.08)
 	var/cross_counter = 1 + round(anger_modifier * 0.12)
 
-	arena_trap(target)
 	ranged_cooldown = world.time + max(5, ranged_cooldown_time - anger_modifier * 0.75) //scale cooldown lower with high anger.
 
 	var/target_slowness = 0
@@ -418,8 +417,6 @@ Difficulty: Hard
 	. = ..()
 	if(. && target && !targets_the_same)
 		visible_message("<span class='hierophant_warning'>\"[pick(target_phrases)]\"</span>")
-		if(spawned_beacon && loc == spawned_beacon.loc && did_reset)
-			arena_trap(src)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
@@ -458,8 +455,6 @@ Difficulty: Hard
 		var/obj/effect/temp_visual/hierophant/squares/HS = new(oldLoc)
 		HS.setDir(movement_dir)
 		playsound(src, 'sound/blank.ogg', 150, TRUE, -4)
-		if(target)
-			arena_trap(target)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/Goto(target, delay, minimum_distance)
 	wander = TRUE
