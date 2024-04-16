@@ -20,6 +20,7 @@
 	outfit = /datum/outfit/job/roguetown/merchant
 	bypass_lastclass = TRUE
 	give_bank_account = 22
+	required = TRUE
 
 /datum/outfit/job/roguetown/merchant/pre_equip(mob/living/carbon/human/H)
 	..()
