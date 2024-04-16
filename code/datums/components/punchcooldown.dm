@@ -2,7 +2,7 @@
 /datum/component/wearertargeting/punchcooldown
 	signals = list(COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 	mobtype = /mob/living/carbon
-	proctype = .proc/reducecooldown
+	proctype = PROC_REF(reducecooldown)
 	valid_slots = list(SLOT_GLOVES)
 	///The warcry this generates
 	var/warcry = "AT"
