@@ -64,7 +64,7 @@
 	|| user.used_intent.type != ROD_CAST \
 	|| user.doing \
 	|| get_dist(user, target) > 5 \
-	|| isliving(user) \
+	|| !isliving(user) \
 	)
 		return ..()
 
