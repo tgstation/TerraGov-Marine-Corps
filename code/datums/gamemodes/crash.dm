@@ -12,7 +12,7 @@
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/xenomorph = FREE_XENO_AT_START
+		/datum/job/xenomorph = 1
 	)
 	job_points_needed_by_job_type = list(
 		/datum/job/terragov/squad/smartgunner = 20,
