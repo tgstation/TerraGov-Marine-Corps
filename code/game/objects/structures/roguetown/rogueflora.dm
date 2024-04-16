@@ -156,9 +156,9 @@
 	climb_time = 0
 	layer = TABLE_LAYER
 	plane = GAME_PLANE
-	blade_dulling = DULLING_PICK
-	static_debris = null
-	debris = null
+	blade_dulling = DULLING_CUT
+	debris = list(/obj/item/grown/log/tree/stick = 1)
+	static_debris = list(/obj/item/grown/log/tree/small = 1)
 	alpha = 255
 	pixel_x = -16
 	climb_offset = 14
