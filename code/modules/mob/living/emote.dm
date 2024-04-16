@@ -600,10 +600,6 @@
 
 /datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
 	message_param = initial(message_param) // reset
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.zone_selected == BODY_ZONE_PRECISE_STOMACH)
-			message_param = "pops %t's belly!"
 	..()
 
 /mob/living/carbon/human/verb/emote_slap()
