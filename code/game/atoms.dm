@@ -540,7 +540,7 @@
 
 /// Updates the overlays of the atom
 /atom/proc/update_overlays()
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
