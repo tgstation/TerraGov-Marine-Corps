@@ -193,10 +193,8 @@
 		explosion(loc, light_impact_range = 2, flame_range = 2)
 	qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
-	if(temperature > T0C+500)
-		explode()
-	return ..()
+/obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
+	explode()
 
 /obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
@@ -217,9 +215,6 @@
 		reagents.remove_reagent(leaked_reagent.type, amount)
 
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
-
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
-	explode()
 
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"

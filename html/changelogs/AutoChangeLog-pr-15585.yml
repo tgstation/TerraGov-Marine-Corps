@@ -1,4 +1,0 @@
-author: "jonash07"
-delete-after: True
-changes:
-  - balance: "Made synthetics scannable"
