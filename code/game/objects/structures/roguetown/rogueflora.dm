@@ -177,7 +177,6 @@
 	static_debris = list(/obj/item/grown/log/tree = 1)
 	climb_offset = 14
 	stump_type = FALSE
-	
 
 /obj/structure/flora/roguetree/stump/log/Initialize()
 	. = ..()
