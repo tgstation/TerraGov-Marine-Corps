@@ -39,7 +39,7 @@
   * ### when the above doesn't apply:
   *.proc/procname
   *
-  * `CALLBACK(src, .proc/some_proc_here)`
+  * `CALLBACK(src, PROC_REF(some_proc_here))`
   *
   *
   * proc defined on a parent of a some type

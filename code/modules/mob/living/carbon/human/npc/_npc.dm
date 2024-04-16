@@ -193,7 +193,7 @@
 //	else if(istype(I, /obj/item/clothing))
 //		var/obj/item/clothing/C = I
 //		monkeyDrop(C)
-//		addtimer(CALLBACK(src, .proc/pickup_and_wear, C), 5)
+//		addtimer(CALLBACK(src, PROC_REF(pickup_and_wear), C), 5)
 //		return TRUE
 
 	// EVERYTHING ELSE
@@ -208,7 +208,7 @@
 /mob/living/carbon/human/proc/pickup_and_wear(obj/item/clothing/C)
 	if(!equip_to_appropriate_slot(C))
 		monkeyDrop(get_item_by_slot(C)) // remove the existing item if worn
-		addtimer(CALLBACK(src, .proc/equip_to_appropriate_slot, C), 5)
+		addtimer(CALLBACK(src, PROC_REF(equip_to_appropriate_slot), C), 5)
 
 /mob/living/carbon/human/proc/monkeyDrop(obj/item/A)
 	if(A)
@@ -268,7 +268,7 @@
 					back_to_idle()
 					return TRUE
 				m_intent = MOVE_INTENT_WALK
-				INVOKE_ASYNC(src, .proc/walk2derpless, target)
+				INVOKE_ASYNC(src, PROC_REF(walk2derpless), target)
 
 			if(!get_active_held_item() && !get_inactive_held_item())
 				// pickup any nearby weapon

@@ -71,8 +71,8 @@
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
 		if(rogstam <= 0)
-			addtimer(CALLBACK(src, .proc/Knockdown, 30), 10)
-		addtimer(CALLBACK(src, .proc/Immobilize, 30), 10)
+			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 10)
+		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 10)
 		if(iscarbon(src))
 			var/mob/living/carbon/C = src
 			if(C.stress >= 30)
@@ -100,7 +100,7 @@
 		var/stuffy = list("ZIZO GRABS MY WEARY HEART!","ARGH! MY HEART BEATS NO MORE!","NO... MY HEART HAS BEAT IT'S LAST!","MY HEART HAS GIVEN UP!","MY HEART BETRAYS ME!","THE METRONOME OF MY LIFE STILLS!")
 		to_chat(src, "<span class='userdanger'>[pick(stuffy)]</span>")
 		emote("breathgasp", forced = TRUE)
-		addtimer(CALLBACK(src, .proc/adjustOxyLoss, 110), 30)
+		addtimer(CALLBACK(src, PROC_REF(adjustOxyLoss), 110), 30)
 
 /mob/living/proc/freak_out()
 	return

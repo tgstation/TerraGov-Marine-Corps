@@ -74,7 +74,7 @@
 	perform_exposure()
 	setDir(pick(GLOB.cardinals))
 	air_update_turf()
-	addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+	addtimer(CALLBACK(src, PROC_REF(trigger_weather)), rand(5,20))
 
 /obj/effect/hotspot/proc/perform_exposure()
 

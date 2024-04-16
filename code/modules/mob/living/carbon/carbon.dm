@@ -552,7 +552,7 @@
 				mob_timers["puke"] = world.time
 				if(getorgan(/obj/item/organ/stomach))
 					to_chat(src, "<span class='warning'>I'm going to puke...</span>")
-					addtimer(CALLBACK(src, .proc/vomit, 50), rand(8 SECONDS, 15 SECONDS))
+					addtimer(CALLBACK(src, PROC_REF(vomit), 50), rand(8 SECONDS, 15 SECONDS))
 			else
 				if(prob(3))
 					to_chat(src, "<span class='warning'>I feel sick...</span>")
@@ -560,7 +560,7 @@
 			if(getorgan(/obj/item/organ/stomach))
 				mob_timers["puke"] = world.time
 				to_chat(src, "<span class='warning'>I'm going to puke...</span>")
-				addtimer(CALLBACK(src, .proc/vomit, 50), rand(8 SECONDS, 15 SECONDS))
+				addtimer(CALLBACK(src, PROC_REF(vomit), 50), rand(8 SECONDS, 15 SECONDS))
 	add_nausea(-1)
 
 

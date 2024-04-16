@@ -182,7 +182,7 @@
 			R = M.has_antag_datum(/datum/antagonist/prebel/head)
 		R.objectives |= objectives
 
-	addtimer(CALLBACK(src,.proc/update_objectives),INGAME_ROLE_HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
+	addtimer(CALLBACK(src,PROC_REF(update_objectives)),INGAME_ROLE_HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 
 /datum/team/prebels/roundend_report()

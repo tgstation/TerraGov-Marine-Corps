@@ -352,7 +352,7 @@
 		active = TRUE
 		playsound(src, 'sound/blank.ogg', 100)
 		Rumble()
-		addtimer(CALLBACK(src, .proc/stopRumble), 600)
+		addtimer(CALLBACK(src, PROC_REF(stopRumble)), 600)
 	else
 		to_chat(user, "<span class='warning'>[src] is already active!</span>")
 
@@ -460,7 +460,7 @@
 
 /obj/item/ash/snappop_phoenix/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/respawn), respawn_time)
+	addtimer(CALLBACK(src, PROC_REF(respawn)), respawn_time)
 
 /obj/item/ash/snappop_phoenix/proc/respawn()
 	new /obj/item/toy/snappop/phoenix(get_turf(src))
@@ -579,7 +579,7 @@
 		activation_message(user)
 		playsound(loc, 'sound/blank.ogg', 20, TRUE)
 
-		INVOKE_ASYNC(src, .proc/do_toy_talk, user)
+		INVOKE_ASYNC(src, PROC_REF(do_toy_talk), user)
 
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), recharge_time)

@@ -121,7 +121,7 @@
 					var/mob/M = A
 					if(M.mob_negates_gravity())
 						continue
-				INVOKE_ASYNC(src, .proc/do_scatter, A, target)
+				INVOKE_ASYNC(src, PROC_REF(do_scatter), A, target)
 
 			var/turf/T = get_turf(target)
 			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(T)]")

@@ -121,7 +121,7 @@
 		C.throw_mode_on()
 	icon_state = "firelemon_active"
 	playsound(loc, 'sound/blank.ogg', 75, TRUE, -3)
-	addtimer(CALLBACK(src, .proc/prime), rand(10, 60))
+	addtimer(CALLBACK(src, PROC_REF(prime)), rand(10, 60))
 
 /obj/item/reagent_containers/food/snacks/grown/firelemon/burn()
 	prime()

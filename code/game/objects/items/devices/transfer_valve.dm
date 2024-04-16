@@ -130,7 +130,7 @@
 	if(toggle)
 		toggle = FALSE
 		toggle_valve()
-		addtimer(CALLBACK(src, .proc/toggle_off), 5)	//To stop a signal being spammed from a proxy sensor constantly going off or whatever
+		addtimer(CALLBACK(src, PROC_REF(toggle_off)), 5)	//To stop a signal being spammed from a proxy sensor constantly going off or whatever
 
 /obj/item/transfer_valve/proc/toggle_off()
 	toggle = TRUE

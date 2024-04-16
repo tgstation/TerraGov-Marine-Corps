@@ -29,7 +29,7 @@
 	return ..()
 
 /mob/living/carbon/proc/inflate_gib() // Plays an animation that makes mobs appear to inflate before finally gibbing
-	addtimer(CALLBACK(src, .proc/gib, null, null, TRUE, TRUE), 25)
+	addtimer(CALLBACK(src, PROC_REF(gib), null, null, TRUE, TRUE), 25)
 	var/matrix/M = matrix()
 	M.Scale(1.8, 1.2)
 	animate(src, time = 40, transform = M, easing = SINE_EASING)

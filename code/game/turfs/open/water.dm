@@ -360,7 +360,7 @@
 	. = ..()
 	if(isliving(AM))
 		if(!river_processing)
-			river_processing = addtimer(CALLBACK(src, .proc/process_river), 5, TIMER_STOPPABLE)
+			river_processing = addtimer(CALLBACK(src, PROC_REF(process_river)), 5, TIMER_STOPPABLE)
 
 /turf/open/water/river/proc/process_river()
 	river_processing = null

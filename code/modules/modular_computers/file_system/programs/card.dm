@@ -41,7 +41,7 @@
 
 /datum/computer_file/program/card_mod/New()
 	..()
-	addtimer(CALLBACK(src, .proc/SetConfigCooldown), 0)
+	addtimer(CALLBACK(src, PROC_REF(SetConfigCooldown)), 0)
 
 /datum/computer_file/program/card_mod/proc/SetConfigCooldown()
 	change_position_cooldown = CONFIG_GET(number/id_console_jobslot_delay)

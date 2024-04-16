@@ -1898,7 +1898,7 @@
 		return
 	reset_perspective(ceiling)
 	update_cone_show()
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking) //We stop looking up if we move.
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking)) //We stop looking up if we move.
 
 /mob/living/proc/look_further(turf/T)
 
@@ -1929,7 +1929,7 @@
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message("<span class='info'>[src] looks into the distance.</span>")
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking)
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()
 
 /mob/proc/look_down(turf/T)
@@ -1966,7 +1966,7 @@
 	changeNext_move(CLICK_CD_MELEE)
 	reset_perspective(OS)
 	update_cone_show()
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking)
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 
 /mob/living/proc/stop_looking()
 //	animate(client, pixel_x = 0, pixel_y = 0, 2, easing = SINE_EASING)

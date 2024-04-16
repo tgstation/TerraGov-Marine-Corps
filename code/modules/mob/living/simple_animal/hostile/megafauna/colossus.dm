@@ -151,8 +151,8 @@ Difficulty: Very Hard
 	visible_message("<span class='colossus'>\"<b>Die.</b>\"</span>")
 
 	SLEEP_CHECK_DEATH(10)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))

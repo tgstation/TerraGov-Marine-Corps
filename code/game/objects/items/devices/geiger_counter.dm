@@ -136,7 +136,7 @@
 	if(user.used_intent.type == INTENT_HELP)
 		if(!(obj_flags & EMAGGED))
 			user.visible_message("<span class='notice'>[user] scans [target] with [src].</span>", "<span class='notice'>I scan [target]'s radiation levels with [src]...</span>")
-			addtimer(CALLBACK(src, .proc/scan, target, user), 20, TIMER_UNIQUE) // Let's not have spamming GetAllContents
+			addtimer(CALLBACK(src, PROC_REF(scan), target, user), 20, TIMER_UNIQUE) // Let's not have spamming GetAllContents
 		else
 			user.visible_message("<span class='notice'>[user] scans [target] with [src].</span>", "<span class='danger'>I project [src]'s stored radiation into [target]!</span>")
 			target.rad_act(radiation_count)
@@ -217,7 +217,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_ATOM_RAD_ACT)
-	RegisterSignal(user, COMSIG_ATOM_RAD_ACT, .proc/redirect_rad_act)
+	RegisterSignal(user, COMSIG_ATOM_RAD_ACT, PROC_REF(redirect_rad_act))
 	listeningTo = user
 
 /obj/item/geiger_counter/cyborg/proc/redirect_rad_act(datum/source, amount)

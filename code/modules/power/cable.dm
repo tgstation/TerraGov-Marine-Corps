@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(first)
 			first = FALSE
 			continue
-		addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+		addtimer(CALLBACK(O, PROC_REF(auto_propogate_cut_cable), O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 ///////////////////////////////////////////////
 // The cable coil object, used for laying cable
@@ -441,7 +441,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 		"Layer 2" = image(icon = 'icons/mob/radial.dmi', icon_state = "coil-yellow"),
 		"Layer 3" = image(icon = 'icons/mob/radial.dmi', icon_state = "coil-blue")
 		)
-	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(layer_result)

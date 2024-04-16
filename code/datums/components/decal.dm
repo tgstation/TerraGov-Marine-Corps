@@ -18,11 +18,11 @@
 
 /datum/component/decal/RegisterWithParent()
 	if(first_dir)
-		RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/rotate_react)
+		RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate_react))
 	if(cleanable)
-		RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_react)
+		RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_react))
 	if(description)
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
+		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
 
 /datum/component/decal/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_COMPONENT_CLEAN_ACT, COMSIG_PARENT_EXAMINE))

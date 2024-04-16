@@ -55,7 +55,7 @@
 //after spawning
 	playsound(src, 'sound/blank.ogg', 50, TRUE)
 	new /obj/item/storage/toolbox/mechanical(landing_turf) //so they can actually escape maint
-	addtimer(CALLBACK(src, .proc/spawn_hunters), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(spawn_hunters)), 10 MINUTES)
 	role_name = "fugitive hunter"
 	return SUCCESSFUL_SPAWN
 

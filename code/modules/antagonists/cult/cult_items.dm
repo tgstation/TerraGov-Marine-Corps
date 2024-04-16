@@ -229,7 +229,7 @@
 	sword.spinning = TRUE
 	sword.block_chance = 100
 	sword.slowdown += 1.5
-	addtimer(CALLBACK(src, .proc/stop_spinning), 50)
+	addtimer(CALLBACK(src, PROC_REF(stop_spinning)), 50)
 	holder.update_action_buttons_icon()
 
 /datum/action/innate/cult/spin2win/proc/stop_spinning()
@@ -782,10 +782,10 @@
 		qdel(src)
 		return
 	charging = TRUE
-	INVOKE_ASYNC(src, .proc/charge, user)
+	INVOKE_ASYNC(src, PROC_REF(charge), user)
 	if(do_after(user, 90, target = user))
 		firing = TRUE
-		INVOKE_ASYNC(src, .proc/pewpew, user, params)
+		INVOKE_ASYNC(src, PROC_REF(pewpew), user, params)
 		var/obj/structure/emergency_shield/invoker/N = new(user.loc)
 		if(do_after(user, 90, target = user))
 			user.Paralyze(40)

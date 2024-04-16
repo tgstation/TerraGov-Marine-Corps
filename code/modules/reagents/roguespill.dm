@@ -2,7 +2,7 @@
 	. = ..()
 	for(var/obj/item/reagent_containers/I in contents)
 		if(I.reagents && I.spillable)
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_spill, override = TRUE)
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_spill), override = TRUE)
 			break
 
 /obj/item/storage/proc/check_spill()

@@ -85,7 +85,7 @@
 		return
 	host_mob.visible_message("<span class='warning'>[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow...</span>",\
 							"<span class='danger'>I start emitting a high-pitched buzzing, and my skin begins to glow...</span>")
-	addtimer(CALLBACK(src, .proc/boom), CLAMP((nanites.nanite_volume * 0.35), 25, 150))
+	addtimer(CALLBACK(src, PROC_REF(boom)), CLAMP((nanites.nanite_volume * 0.35), 25, 150))
 
 /datum/nanite_program/triggered/explosive/proc/boom()
 	var/nanite_amount = nanites.nanite_volume
@@ -203,7 +203,7 @@
 		sent_directive = directive
 	brainwash(host_mob, sent_directive)
 	log_game("A mind control nanite program brainwashed [key_name(host_mob)] with the objective '[directive]'.")
-	addtimer(CALLBACK(src, .proc/end_brainwashing), 600)
+	addtimer(CALLBACK(src, PROC_REF(end_brainwashing)), 600)
 
 /datum/nanite_program/triggered/comm/mind_control/proc/end_brainwashing()
 	if(host_mob.mind && host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))

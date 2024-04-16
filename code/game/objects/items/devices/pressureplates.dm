@@ -41,7 +41,7 @@
 	else if(!trigger_item)
 		return
 	can_trigger = FALSE
-	addtimer(CALLBACK(src, .proc/trigger), trigger_delay)
+	addtimer(CALLBACK(src, PROC_REF(trigger)), trigger_delay)
 
 /obj/item/pressure_plate/proc/trigger()
 	can_trigger = TRUE

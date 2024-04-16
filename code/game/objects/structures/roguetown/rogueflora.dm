@@ -225,7 +225,7 @@
 	dir = pick(GLOB.cardinals)
 
 /datum/component/roguegrass/Initialize()
-	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED), .proc/Crossed)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED), PROC_REF(Crossed))
 
 /datum/component/roguegrass/proc/Crossed(datum/source, atom/movable/AM)
 	var/atom/A = parent

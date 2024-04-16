@@ -125,7 +125,7 @@
 	var/static/list/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/static/list/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 
-	INVOKE_ASYNC(src, .proc/blood_delusion, victim)
+	INVOKE_ASYNC(src, PROC_REF(blood_delusion), victim)
 
 	var/obj/item/twohanded/required/chainsaw/doomslayer/chainsaw = new(victim.loc)
 	victim.log_message("entered a blood frenzy", LOG_ATTACK)

@@ -1651,7 +1651,7 @@
 	var/can_colour_mobs = TRUE
 
 /datum/reagent/colorful_reagent/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateColor))
+	SSticker.OnRoundstart(CALLBACK(src,PROC_REF(UpdateColor)))
 
 /datum/reagent/colorful_reagent/proc/UpdateColor()
 	color = pick(random_color_list)
@@ -1685,7 +1685,7 @@
 	taste_description = "sourness"
 
 /datum/reagent/hair_dye/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateColor))
+	SSticker.OnRoundstart(CALLBACK(src,PROC_REF(UpdateColor)))
 
 /datum/reagent/hair_dye/proc/UpdateColor()
 	color = pick(potential_colors)

@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(highlander, FALSE)
 	send_to_playing_players("<span class='danger'>Bagpipes begin to blare. You feel Scottish pride coming over you.</span>")
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] used (delayed) THERE CAN BE ONLY ONE!</span>")
 	log_admin("[key_name(usr)] used delayed THERE CAN BE ONLY ONE.")
-	addtimer(CALLBACK(src, .proc/only_one), 420)
+	addtimer(CALLBACK(src, PROC_REF(only_one)), 420)
 
 /mob/living/carbon/human/proc/make_scottish()
 	mind.add_antag_datum(/datum/antagonist/highlander)
