@@ -169,22 +169,6 @@ datum/quirk/fan_mime
 		return
 	eyes.Insert(H) //refresh their eyesight and vision
 
-/datum/quirk/lesser_night_vision
-	name = "Lesser Night Vision"
-	desc = ""
-	value = 1
-	mob_trait = TRAIT_LESSER_NIGHT_VISION
-	gain_text = "<span class='notice'>The shadows seem a little less dark.</span>"
-	lose_text = "<span class='danger'>Everything seems a little darker.</span>"
-	medical_record_text = "Patient's eyes show above-average acclimation to darkness."
-
-/datum/quirk/lesser_night_vision/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/organ/eyes/eyes = H.getorgan(/obj/item/organ/eyes)
-	if(!eyes || eyes.lighting_alpha)
-		return
-	eyes.Insert(H) //refresh their eyesight and vision
-
 /datum/quirk/photographer
 	name = "Photographer"
 	desc = ""

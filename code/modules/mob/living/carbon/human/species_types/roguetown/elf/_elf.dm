@@ -5,6 +5,7 @@
 	name = "Elfb"
 	id = "elf"
 	max_age = 850
+	mutanteyes = /obj/item/organ/eyes/elf
 
 /datum/species/elf/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
