@@ -476,42 +476,31 @@
 	return ..()
 
 
-
-
-GLOBAL_LIST_EMPTY(flamer_particles)
-/particles/flamer_fire
-	icon = 'icons/effects/particles/fire.dmi'
-	icon_state = "bonfire"
-	width = 100
-	height = 100
-	count = 1000
-	spawning = 8
-	lifespan = 0.7 SECONDS
-	fade = 1 SECONDS
+/particles/fire
+	icon = 'icons/effects/fire.dmi'
+	icon_state = list("fire_1" = 1, "fire_2" = 1, "fire_3" = 1, "fire_4" = 1)
+	width = 64
+	height = 128
+	count = 600
+	spawning = 30
+	lifespan = generator(GEN_NUM, 12, 18)
+	fade = generator(GEN_NUM, 60, 80)
 	grow = -0.01
-	velocity = list(0, 0)
-	position = generator(GEN_BOX, list(-16, -16), list(16, 16), NORMAL_RAND)
-	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))
-	gravity = list(0, 0.95)
-	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1,1), NORMAL_RAND)
-	rotation = 30
-	spin = generator(GEN_NUM, -20, 20)
-
-/particles/flamer_fire/New(set_color)
-	..()
-	if(set_color != "red") // we're already red colored by default
-		color = set_color
+	velocity = generator(GEN_CIRCLE, 0.25, 0.25)
+	position = generator(GEN_CIRCLE, 21, 0)
+	drift = generator(GEN_CIRCLE, 0.1, 0)
+	gravity = list(0, 0.3)
+	scale = generator(GEN_NUM, 0.35, 0.3)
+	friction = 0.01
 
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	icon = 'icons/effects/fire.dmi'
-	icon_state = "red_2"
+	icon = null
 	layer = BELOW_OBJ_LAYER
 	light_system = MOVABLE_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
@@ -524,6 +513,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
+	particles = new /particles/fire
 	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 	updateicon()
 
@@ -534,13 +524,14 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 ///Effects applied to a mob that crosses a burning turf
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
+	if(!firelevel)
+		return
 	if(istype(M))
 		M.flamer_fire_act(burnlevel)
 
@@ -560,11 +551,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	if(f_color && (flame_color != f_color))
 		flame_color = f_color
 
-	if(!GLOB.flamer_particles[flame_color])
-		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
-
-	particles = GLOB.flamer_particles[flame_color]
-	icon_state = "[flame_color]_2"
+	add_filter("fire", 3, outline_filter(0.2, flame_color))
 
 	if(fire_lvl)
 		firelevel = fire_lvl
@@ -572,6 +559,9 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		burnlevel = burn_lvl
 
 	if(!fire_stacks && !fire_damage)
+		return
+
+	if(!firelevel)
 		return
 
 	for(var/mob/living/C in get_turf(src))
@@ -590,13 +580,13 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 			light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	switch(firelevel)
 		if(1 to 9)
-			icon_state = "[flame_color]_1"
+			particles.spawning = 10
 			light_intensity = 2
 		if(10 to 25)
-			icon_state = "[flame_color]_2"
+			particles.spawning = 20
 			light_intensity = 4
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
-			icon_state = "[flame_color]_3"
+			particles.spawning = 30
 			light_intensity = 6
 	set_light_range_power_color(light_intensity, light_power, light_color)
 
@@ -610,7 +600,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	updateicon()
 
 	if(!firelevel)
-		qdel(src)
+		particles.spawning = 0
+		QDEL_IN(src, 2 SECONDS)
 		return
 
 	T.flamer_fire_act(burnlevel)
