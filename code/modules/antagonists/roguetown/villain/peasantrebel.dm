@@ -125,7 +125,7 @@
 		user.say(inputty, forced = "spell")
 		var/datum/antagonist/prebel/PR = user.mind.has_antag_datum(/datum/antagonist/prebel)
 		for(var/mob/living/carbon/human/L in get_hearers_in_view(6, get_turf(user)))
-			addtimer(CALLBACK(L,/mob/living/carbon/human.proc/rev_ask, user,PR,inputty),1)
+			addtimer(CALLBACK(L,TYPE_PROC_REF(/mob/living/carbon/human, rev_ask), user,PR,inputty),1)
 
 /mob/living/carbon/human/proc/rev_ask(mob/living/carbon/human/guy,datum/antagonist/prebel/mind_datum,offer)
 	if(!guy || !mind_datum || !offer)

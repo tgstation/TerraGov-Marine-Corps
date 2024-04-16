@@ -54,7 +54,7 @@
 	if(isitem(master))
 		var/obj/item/I = master
 		I.update_slot_icon()
-//		addtimer(CALLBACK(master, /obj/item/.proc/update_slot_icon), 0, TIMER_UNIQUE)
+//		addtimer(CALLBACK(master, TYPE_PROC_REF(/obj/item, update_slot_icon)), 0, TIMER_UNIQUE)
 
 /datum/component/decal/proc/remove(atom/thing)
 	var/atom/master = thing || parent
@@ -62,7 +62,7 @@
 	if(isitem(master))
 		var/obj/item/I = master
 		I.update_slot_icon()
-//		addtimer(CALLBACK(master, /obj/item/.proc/update_slot_icon), 0, TIMER_UNIQUE)
+//		addtimer(CALLBACK(master, TYPE_PROC_REF(/obj/item, update_slot_icon)), 0, TIMER_UNIQUE)
 
 /datum/component/decal/proc/rotate_react(datum/source, old_dir, new_dir)
 	if(old_dir == new_dir)

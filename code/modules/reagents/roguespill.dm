@@ -26,4 +26,4 @@
 				var/obj/item/storage/I = real_location
 				if(ismob(I.loc))
 					var/mob/M = I.loc
-					I.RegisterSignal(M, COMSIG_MOVABLE_MOVED, /obj/item/storage/.proc/check_spill, override = TRUE)
+					I.RegisterSignal(M, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/obj/item/storage, check_spill), override = TRUE)

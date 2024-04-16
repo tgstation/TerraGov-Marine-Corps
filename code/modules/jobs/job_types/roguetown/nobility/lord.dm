@@ -23,7 +23,7 @@
 	if(L)
 		SSticker.select_ruler()
 		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is King of Rockhill.</span></span></b>")
-		addtimer(CALLBACK(L, /mob/.proc/lord_color_choice), 50)
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
 
 
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)

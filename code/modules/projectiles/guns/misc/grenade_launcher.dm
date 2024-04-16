@@ -43,4 +43,4 @@
 	F.active = 1
 	F.icon_state = initial(F.icon_state) + "_active"
 	playsound(user.loc, 'sound/blank.ogg', 75, TRUE, -3)
-	addtimer(CALLBACK(F, /obj/item/grenade.proc/prime), 15)
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/grenade, prime)), 15)

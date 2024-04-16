@@ -55,5 +55,5 @@
 		GLOB.billagerspawns -= H
 
 /datum/advclass/proc/post_equip(mob/living/carbon/human/H)
-	addtimer(CALLBACK(H,/mob/living/carbon/human.proc/add_credit), 20)
+	addtimer(CALLBACK(H,TYPE_PROC_REF(/mob/living/carbon/human, add_credit)), 20)
 	return
