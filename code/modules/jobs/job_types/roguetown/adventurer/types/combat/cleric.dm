@@ -53,7 +53,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)

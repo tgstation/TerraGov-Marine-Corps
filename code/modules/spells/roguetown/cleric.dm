@@ -115,15 +115,13 @@
 	sound = 'sound/magic/heal.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 5 SECONDS
+	charge_max = 10 SECONDS
 	miracle = TRUE
 	devotion_cost = -45
 
 /obj/effect/proc_holder/spell/invoked/heal/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(target == user)
-			return FALSE
 		if(get_dist(user, target) > 7)
 			return FALSE
 		if(target.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
