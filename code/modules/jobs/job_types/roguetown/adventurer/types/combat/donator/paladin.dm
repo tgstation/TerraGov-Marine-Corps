@@ -69,7 +69,8 @@
 		if(H.dna.species.id == "tiefling")
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
+	//Paladins start with more devotion, to cast spells, but can't pray to unlock more abilities
 	C.update_devotion(80)
-	C.grant_spells
 	C.holder_mob = H
+	C.grant_spells(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport)
