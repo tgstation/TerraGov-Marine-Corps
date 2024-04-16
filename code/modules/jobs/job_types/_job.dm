@@ -100,6 +100,8 @@
 
 	var/can_random = TRUE
 
+	//is the job required for game progression
+	var/required = FALSE
 
 /datum/job/proc/special_job_check(mob/dead/new_player/player)
 	return TRUE

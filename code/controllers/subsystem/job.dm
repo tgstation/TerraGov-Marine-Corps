@@ -507,11 +507,11 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/do_required_jobs()
 	var/amt_picked = 0
-	var/list/require = REQUIRED_JOBS
-	for(var/X in require)
-		var/datum/job/job = GetJob(X)
-		if(!job)
-			continue
+	var/require = list()
+	for(var/datum/job/job in occupations)
+		if(job.required)
+			require += job
+	for(var/datum/job/job in require)
 		//attempt 1 - people with enough pq
 		//attempt 2 - anyone
 		for(var/i = job.total_positions, i > 0, i--)
