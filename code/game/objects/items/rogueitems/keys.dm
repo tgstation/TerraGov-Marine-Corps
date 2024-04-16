@@ -139,12 +139,12 @@
 /obj/item/roguekey/church
 	name = "church key"
 	icon_state = "brownkey"
-	lockid = "priest"
+	lockid = "church"
 
 /obj/item/roguekey/priest
 	name = "priest's key"
 	icon_state = "cheesekey"
-	lockid = "hpriest"
+	lockid = "priest"
 
 /obj/item/roguekey/tower
 	name = "tower key"
