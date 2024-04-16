@@ -211,7 +211,7 @@
 				screen += PE
 				current_weathers[WE.type] += PE
 
-/client/proc/fade_weather(var/W)
+/client/proc/fade_weather(W)
 	if(!W)
 		return
 	var/image/P = W
@@ -224,7 +224,7 @@
 		addtimer(CALLBACK(src,.proc/kill_weather,O),10)
 
 
-/client/proc/kill_weather(var/P)
+/client/proc/kill_weather(P)
 	if(!P)
 		return
 	var/image/I = P

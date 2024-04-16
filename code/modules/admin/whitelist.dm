@@ -16,7 +16,7 @@ GLOBAL_PROTECT(whitelist)
 			continue
 		GLOB.whitelist += ckey(line)
 
-/proc/check_whitelist(var/ckey)
+/proc/check_whitelist(ckey)
 	if(!GLOB.whitelist || !GLOB.whitelist.len)
 		load_whitelist()
 #ifdef TESTSERVER

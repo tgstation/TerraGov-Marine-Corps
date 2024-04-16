@@ -467,7 +467,7 @@
 		if(SSticker.rulermob == H)
 			H.receive_submission(src)
 
-/mob/living/carbon/human/proc/receive_submission(var/mob/living/carbon/human/lord)
+/mob/living/carbon/human/proc/receive_submission(mob/living/carbon/human/lord)
 	if(stat)
 		return
 	switch(alert("Submit and Pledge Allegiance to Lord [lord.name]?",,"Yes","No"))

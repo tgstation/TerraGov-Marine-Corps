@@ -175,7 +175,7 @@
 				SStreasury.give_money_account(amount_to_pay, H.real_name)
 	return attack_hand(usr)
 
-/obj/structure/roguemachine/steward/proc/do_import(datum/roguestock/D,var/number)
+/obj/structure/roguemachine/steward/proc/do_import(datum/roguestock/D,number)
 	if(!D)
 		return
 	D = new D

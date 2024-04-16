@@ -635,7 +635,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /client
 	var/musicfading = 0
 
-/mob/living/proc/intro_area(var/area/A)
+/mob/living/proc/intro_area(area/A)
 	if(!mind)
 		return
 	if(A.first_time_text in mind.areas_entered)
@@ -657,7 +657,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	animate(T, alpha = 255, time = 10, easing = EASE_IN)
 	addtimer(CALLBACK(src, .proc/clear_area_text, T), 35)
 
-/mob/living/proc/clear_area_text(var/obj/screen/A)
+/mob/living/proc/clear_area_text(obj/screen/A)
 	if(!A)
 		return
 	if(!client)
@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			client.screen -= A
 			qdel(A)
 
-/mob/living/proc/clear_time_icon(var/obj/screen/A)
+/mob/living/proc/clear_time_icon(obj/screen/A)
 	if(!A)
 		return
 	if(!client)
