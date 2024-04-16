@@ -128,7 +128,7 @@
 ///This is the proc that actually does the throwing. Charge only adds a timer for this.
 /mob/living/simple_animal/hostile/megafauna/legion/proc/throw_thyself()
 	playsound(src, 'sound/blank.ogg', 50, TRUE)
-	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, PROC_REF(playsound), src, 'sound/blank.ogg', 50 * size, TRUE, 2), INFINITY)
+	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/blank.ogg', 50 * size, TRUE, 2), INFINITY)
 
 ///Deals some extra damage on throw impact.
 /mob/living/simple_animal/hostile/megafauna/legion/throw_impact(mob/living/hit_atom, datum/thrownthing/throwingdatum)

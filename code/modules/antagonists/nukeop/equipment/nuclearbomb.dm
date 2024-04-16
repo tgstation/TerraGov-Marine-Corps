@@ -448,7 +448,7 @@
 
 /obj/machinery/nuclearbomb/proc/really_actually_explode(off_station)
 	Cinematic(get_cinematic_type(off_station),world,CALLBACK(SSticker,/datum/controller/subsystem/ticker/proc/station_explosion_detonation,src))
-	INVOKE_ASYNC(GLOBAL_PROC,PROC_REF(KillEveryoneOnZLevel), z)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(KillEveryoneOnZLevel), z)
 
 /obj/machinery/nuclearbomb/proc/get_cinematic_type(off_station)
 	if(off_station < 2)

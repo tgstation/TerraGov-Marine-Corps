@@ -81,7 +81,7 @@
 	if(resolved == FALSE)
 		resolved = TRUE
 		sound_to_playing_players('sound/blank.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(cult_ending_helper)), 120)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper)), 120)
 
 /obj/singularity/narsie/large/cult/Destroy()
 	GLOB.cult_narsie = null
