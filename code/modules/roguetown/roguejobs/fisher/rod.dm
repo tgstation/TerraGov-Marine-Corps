@@ -63,7 +63,7 @@
 	|| !istype(target, /turf/open/water) \
 	|| user.used_intent.type != ROD_CAST \
 	|| user.doing \
-	|| !(target in range(user,5)) \
+	|| get_dist(user, target) > 5 \
 	|| isliving(user) \
 	)
 		return ..()
@@ -83,32 +83,32 @@
 			casting_time = clamp((casting_time - skill_level SECONDS), 1) //Can't go under 1
 			fishing_time = clamp((fishing_time / skill_level), 1)
 
-	if(do_after(current_fisherman, casting_time, target = target))
-		if(!baited)
-			to_chat(current_fisherman, "<span class='warning'>This seems pointless.</span>")
-			return ..()
-		if(prob(baited.baitchance))
-			var/caught_thing = pickweight(baited.fishloot)
-			to_chat(current_fisherman, "<span class='notice'>Something tugs the line!</span>")
-			playsound(loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-			if(!do_after(current_fisherman, fishing_time, target = target))
-				if(ismob(caught_thing))
-					var/mob/caught_mob = caught_thing
-					if(caught_mob.type in subtypesof(/mob/living/simple_animal/hostile))
-						new caught_mob(target)
-						amt2raise = current_fisherman.STAINT * 2
-					else
-						new caught_mob(current_fisherman.loc)
-						amt2raise = current_fisherman.STAINT
-				else
-					new caught_thing(current_fisherman.loc)
-					amt2raise = current_fisherman.STAINT
-				playsound(loc, 'sound/items/Fish_out.ogg', 100, TRUE)
-			else
-				to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
-		else
-			to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
+	if(!do_after(current_fisherman, casting_time, target = target))
+		return
+	if(!baited)
+		to_chat(current_fisherman, "<span class='warning'>This seems pointless.</span>")
+		return
+
+	if(!prob(baited.baitchance))
+		to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
 		QDEL_NULL(baited)
+		update_icon()
+		return
+
+	to_chat(current_fisherman, "<span class='notice'>Something tugs the line!</span>")
+	playsound(loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
+	if(!do_after(current_fisherman, fishing_time, target = target))
+		to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
+		QDEL_NULL(baited)
+		update_icon()
+		return
+
+	var/caught_thing = pickweight(baited.fishloot)
+	new caught_thing(current_fisherman.loc)
+	amt2raise = current_fisherman.STAINT
+	playsound(loc, 'sound/items/Fish_out.ogg', 100, TRUE)
+
+	QDEL_NULL(baited)
 	current_fisherman.mind.adjust_experience(/datum/skill/labor/fishing, amt2raise)
 	update_icon()
 
