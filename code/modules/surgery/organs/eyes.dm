@@ -128,19 +128,17 @@
 	name = "fung-eye"
 	desc = ""
 
-/obj/item/organ/eyes/night_vision/elf
+/obj/item/organ/eyes/elf
 	name = "elf eyes"
 	desc = ""
 	see_in_dark = 3
-	actions_types = list()
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
-/obj/item/organ/eyes/night_vision/halflef
+/obj/item/organ/eyes/halfelf
 	name = "half-elf eyes"
 	desc = ""
-	see_in_dark = 1
-	actions_types = list()
-	lighting_alpha = LIGHTING_PLANE_ALPHA_LESSER_NV_TRAIT
+	see_in_dark = 2
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 ///Robotic
 
