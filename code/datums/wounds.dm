@@ -155,7 +155,8 @@
 	var/sewn_overlay = ""
 	var/bigger_wound
 	var/smaller_wound
-	var/progress
+	///How close our wound is to being treated with 100 being our target
+	var/progress = 0
 	var/passive_heal = FALSE
 
 
