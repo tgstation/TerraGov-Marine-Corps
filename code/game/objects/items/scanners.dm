@@ -272,6 +272,7 @@ REAGENT SCANNER
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
+	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // Only show advice for revivable patients
@@ -341,17 +342,17 @@ REAGENT SCANNER
 				"color" = "red"
 				))
 		if(!issynth(patient) && !isrobot(patient)) // Advice that's only relevant to humans
-			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
-				advice += list(list(
-					"advice" = "Administer a single dose of Isotonic solution.",
-					"icon" = "syringe",
-					"color" = "crimson"
-					))
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
 					"icon" = "exclamation",
 					"color" = "red"
+					))
+			if(internal_bleeding)
+				advice += list(list(
+					"advice" = "Internal bleeding detected. Cryo treatment advised.",
+					"icon" = "tint",
+					"color" = "crimson"
 					))
 			if(infection_message)
 				temp_advice = list(list(
@@ -408,6 +409,12 @@ REAGENT SCANNER
 						advice += temp_advice
 				else
 					advice += temp_advice
+			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
+				advice += list(list(
+					"advice" = "Administer a single dose of Isotonic solution.",
+					"icon" = "syringe",
+					"color" = "crimson"
+					))
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
