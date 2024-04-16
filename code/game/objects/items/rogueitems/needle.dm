@@ -60,48 +60,45 @@
 				I.obj_integrity = I.max_integrity
 				return
 
-/obj/item/needle/proc/sew(mob/living/M, mob/user)
-	if(!get_location_accessible(M, check_zone(user.zone_selected)))
-		to_chat(user, "<span class='warning'>Something in the way.</span>")
+/obj/item/needle/proc/sew(mob/living/target, mob/user)
+	if(!ishuman(target) || !isliving(user))
 		return
-	if(!ishuman(M))
+	var/mob/living/doctor = user
+	var/mob/living/carbon/human/patient = target
+	if(!get_location_accessible(patient, check_zone(doctor.zone_selected)))
+		to_chat(doctor, "<span class='warning'>Something in the way.</span>")
 		return
-	var/mob/living/carbon/human/H = M
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-	if(!H.mind)
-		return
-	if(!affecting)
+	var/obj/item/bodypart/affecting = patient.get_bodypart(check_zone(doctor.zone_selected))
+	if(!patient.mind || !affecting)
 		return
 	if(affecting.bandage)
-		to_chat(user, "<span class='warning'>There is a bandage.</span>")
+		to_chat(doctor, "<span class='warning'>There is a bandage.</span>")
 		return
 	var/list/sewable = affecting.get_sewable()
 	if(!sewable || !sewable.len)
-		to_chat(user, "<span class='warning'>There aren't any wounds large enough to sew.</span>")
+		to_chat(doctor, "<span class='warning'>There aren't any wounds large enough to sew.</span>")
 		return
-	var/datum/wound/W = input(user, "Which wound?", "Roguetown", name) as null|anything in sortList(sewable)
-	if(!W)
+	var/datum/wound/target_wound = input(doctor, "Which wound?", "Roguetown", name) as null|anything in sortList(sewable)
+	if(!target_wound || !target_wound.can_sew || !do_after(doctor, 20))
 		return
-	if(!W || !W.can_sew)
-		return
-	if(do_after(user, 20))
-		playsound(loc, 'sound/foley/sewflesh.ogg', 100, TRUE, -2)
-		var/moveup = 10
-		if(user.mind)
-			moveup = (((user.mind.get_skill_level(/datum/skill/misc/medicine)) * 30) + moveup)
-		W.progress = min(W.progress + moveup, 100)
-		if(W.progress == 100)
-			W.sewn()
 
-		H.update_damage_overlays()
+	playsound(loc, 'sound/foley/sewflesh.ogg', 100, TRUE, -2)
+	var/moveup = 10
+	if(doctor.mind)
+		moveup = (((doctor.mind.get_skill_level(/datum/skill/misc/medicine)) * 30) + moveup)
+	target_wound.progress = min(target_wound.progress + moveup, 100)
+	if(target_wound.progress == 100)
+		target_wound.sewn()
+		doctor.mind.adjust_experience(/datum/skill/misc/medicine, doctor.STAINT * 5)
+		use(1)
 
-		if(M == user)
-			user.visible_message("<span class='notice'>[user] sews \a [W.name] on [user.p_them()]self.</span>", "<span class='notice'>I stitch \a [W.name] on my [affecting].</span>")
-		else
-			user.visible_message("<span class='notice'>[user] sews \a [W.name] on [M]'s [affecting].</span>", "<span class='notice'>I stitch \a [W.name] on [M]'s [affecting].</span>")
-		log_combat(user, H, "sew", "needle")
-		if(prob(50))
-			use(1)
+	patient.update_damage_overlays()
+
+	if(patient == doctor)
+		doctor.visible_message("<span class='notice'>[doctor] sews \a [target_wound.name] on [doctor.p_them()]self.</span>", "<span class='notice'>I stitch \a [target_wound.name] on my [affecting].</span>")
+	else
+		doctor.visible_message("<span class='notice'>[doctor] sews \a [target_wound.name] on [patient]'s [affecting].</span>", "<span class='notice'>I stitch \a [target_wound.name] on [patient]'s [affecting].</span>")
+	log_combat(doctor, patient, "sew", "needle")
 
 /obj/item/needle/thorn
 	name = "needle"
