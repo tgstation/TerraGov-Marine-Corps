@@ -130,6 +130,15 @@
 	name = "fung-eye"
 	desc = ""
 
+/obj/item/organ/eyes/night_vision/elf
+	name = "elf eyes"
+	desc = ""
+
+/obj/item/organ/eyes/night_vision/halflef
+	name = "half-elf eyes"
+	desc = ""
+	see_in_dark = 4
+
 ///Robotic
 
 /obj/item/organ/eyes/robotic
