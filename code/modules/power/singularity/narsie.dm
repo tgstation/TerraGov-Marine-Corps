@@ -92,9 +92,9 @@
 
 /proc/cult_ending_helper(no_explosion = 0)
 	if(no_explosion)
-		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 	else
-		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/singularity/narsie/large/attack_ghost(mob/dead/observer/user as mob)
