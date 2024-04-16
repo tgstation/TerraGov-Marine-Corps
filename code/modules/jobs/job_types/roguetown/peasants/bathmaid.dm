@@ -43,7 +43,7 @@
 
 /obj/item/bath/soap
 	name = "herbal soap"
-	desc = "a soap made from various herbs"
+	desc = "A soap made from various herbs"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "soap"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
