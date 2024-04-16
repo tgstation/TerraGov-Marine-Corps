@@ -985,10 +985,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				continue
 			if(get_playerquality(user.ckey) < job.min_pq)
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
-				var/requiredjobs = list()
+				var/required = list()
 				for(var/X in REQUIRED_JOBS)
-					requiredjobs += SSjob.GetJob(X)
-				if(job in REQUIRED_JOBS)
+					required += SSjob.GetJob(X)
+				if(job in required)
 					to_chat(user, "<font color='red'>Warning: You have too low PQ to normally roll for [used_name], you may only roll for it if there are no eligible players.</font>")
 				else
 					continue
