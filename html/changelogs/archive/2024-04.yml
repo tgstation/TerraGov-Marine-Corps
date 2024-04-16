@@ -310,3 +310,10 @@
   - rscadd: Add ghosts can now examine miners
   novaepee:
   - bugfix: fix rogue pixel on mjolnir
+2024-04-16:
+  MLGTASTICa:
+  - bugfix: fixed people being invincible to acid if they wore anything with more
+      than 11 acid protection.
+  TiviPlus:
+  - bugfix: Big Red is now an actual desert for map variants
+  - rscadd: Adds APC and Transport Crewmen to the game
