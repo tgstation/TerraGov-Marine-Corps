@@ -170,6 +170,8 @@
 
 	else if(!animal_origin)
 		var/mob/living/carbon/human/H = C
+		if(!H.dna || !H.dna.species)
+			return ..()
 		var/datum/species/S = H.dna.species
 
 		//Facial hair
