@@ -14644,7 +14644,7 @@
 "bKg" = (
 /obj/structure/safe,
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/katana,
+/obj/item/weapon/sword/katana,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
