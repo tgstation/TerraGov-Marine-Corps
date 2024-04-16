@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(bum_aggro, world.file2list("strings/rt/bumaggrolines.txt"))
 			say(pick(GLOB.bum_aggro))
 			linepoint(target)
 
-/mob/living/carbon/human/species/human/northern/bum/should_target(var/mob/living/L)
+/mob/living/carbon/human/species/human/northern/bum/should_target(mob/living/L)
 	if(L.stat != CONSCIOUS)
 		return FALSE
 	. = ..()

@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(humannpc)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/humannpc/proc/process_ai(var/mob/living/carbon/human/mobinput)
+/datum/controller/subsystem/humannpc/proc/process_ai(mob/living/carbon/human/mobinput)
 	if(!mobinput)
 		return
 	if(QDELETED(mobinput))

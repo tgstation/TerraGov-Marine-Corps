@@ -47,7 +47,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 		on_applied_obj(source, amount, material_flags)
 
 ///This proc is called when the material is added to an object specifically.
-/datum/material/proc/on_applied_obj(var/obj/o, amount, material_flags)
+/datum/material/proc/on_applied_obj(obj/o, amount, material_flags)
 	var/new_max_integrity = CEILING(o.max_integrity * integrity_modifier, 1)
 	o.modify_max_integrity(new_max_integrity)
 	o.force *= strength_modifier
@@ -77,7 +77,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 		on_removed_obj(source, material_flags)
 
 ///This proc is called when the material is removed from an object specifically.
-/datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
+/datum/material/proc/on_removed_obj(obj/o, amount, material_flags)
 	var/new_max_integrity = initial(o.max_integrity)
 	o.modify_max_integrity(new_max_integrity)
 	o.force = initial(o.force)

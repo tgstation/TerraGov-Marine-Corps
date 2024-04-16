@@ -188,7 +188,7 @@
 		VD.last_transform = world.time
 		vampire_disguise(VD)
 
-/mob/living/carbon/human/proc/vampire_disguise(var/datum/antagonist/vampirelord/VD)
+/mob/living/carbon/human/proc/vampire_disguise(datum/antagonist/vampirelord/VD)
 	if(!VD)
 		return
 	VD.disguised = TRUE
@@ -201,7 +201,7 @@
 	update_hair()
 	update_body_parts(redraw = TRUE)
 
-/mob/living/carbon/human/proc/vampire_undisguise(var/datum/antagonist/vampirelord/VD)
+/mob/living/carbon/human/proc/vampire_undisguise(datum/antagonist/vampirelord/VD)
 	if(!VD)
 		return
 	VD.disguised = FALSE

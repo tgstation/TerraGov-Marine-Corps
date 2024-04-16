@@ -552,7 +552,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 
 
 ////// AI Status ///////
-/mob/living/simple_animal/hostile/proc/AICanContinue(var/list/possible_targets)
+/mob/living/simple_animal/hostile/proc/AICanContinue(list/possible_targets)
 	switch(AIStatus)
 		if(AI_ON)
 			. = 1
@@ -563,7 +563,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 			else
 				. = 0
 
-/mob/living/simple_animal/hostile/proc/AIShouldSleep(var/list/possible_targets)
+/mob/living/simple_animal/hostile/proc/AIShouldSleep(list/possible_targets)
 	if(!FindTarget(possible_targets, 1))
 		return TRUE
 	else
@@ -622,7 +622,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 		toggle_ai(AI_ON)
 		testing("becomeidle [src]")
 
-/mob/living/simple_animal/hostile/proc/ListTargetsLazy(var/_Z)//Step 1, find out what we can see
+/mob/living/simple_animal/hostile/proc/ListTargetsLazy(_Z)//Step 1, find out what we can see
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
 	. = list()
 	for (var/I in SSmobs.clients_by_zlevel[_Z])

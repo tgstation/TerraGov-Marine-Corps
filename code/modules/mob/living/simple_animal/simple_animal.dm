@@ -265,7 +265,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	else
 		move_to_delay = initial(move_to_delay)
 
-/mob/living/simple_animal/hostile/forceMove(var/turf/T)
+/mob/living/simple_animal/hostile/forceMove(turf/T)
 	var/list/BM = list()
 	for(var/m in buckled_mobs)
 		BM += m
@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 						turns_since_move = 0
 			return 1
 
-/mob/living/simple_animal/proc/handle_automated_speech(var/override)
+/mob/living/simple_animal/proc/handle_automated_speech(override)
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
