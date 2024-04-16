@@ -10,7 +10,7 @@
 	"Tiefling",
 	"Aasimar")
 	outfit = /datum/outfit/job/roguetown/templar
-	min_pq = 5
+	min_pq = 2
 	total_positions = 2
 	spawn_positions = 2
 	spells = list(/obj/effect/proc_holder/spell/invoked/heal/lesser, /obj/effect/proc_holder/spell/targeted/churn, /obj/effect/proc_holder/spell/targeted/burialrite)	
@@ -19,7 +19,7 @@
 
 /datum/outfit/job/roguetown/templar/pre_equip(mob/living/carbon/human/H)
 	..()
-	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
+	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
@@ -53,6 +53,7 @@
 		if(H.dna.species.id == "tiefling")
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
-	C.update_devotion(80)
+	//Templars start with more devotion but cannot pray to gain new abilities
+	C.update_devotion(100)
 	C.holder_mob = H
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport)

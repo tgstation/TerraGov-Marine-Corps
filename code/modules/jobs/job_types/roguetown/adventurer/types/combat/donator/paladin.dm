@@ -11,12 +11,37 @@
 
 /datum/outfit/job/roguetown/adventurer/paladin/pre_equip(mob/living/carbon/human/H)
 	..()
-	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
+
+	var/allowed_patrons = list("Astrata", "Dendor", "Necra")
+	
+	var/datum/patrongods/ourpatron
+	if(istype(H.PATRON, /datum/patrongods))
+		ourpatron = H.PATRON
+
+	if(!ourpatron || !(ourpatron.name in allowed_patrons))
+
+		var/list/datum/patrongods/possiblegods = list()
+		for(var/datum/patrongods/P in GLOB.patronlist)
+			if(P.name in allowed_patrons)
+				possiblegods |= P
+
+		ourpatron = pick(possiblegods)
+		H.PATRON = ourpatron
+		to_chat(H, "<span class='warning'> My patron had not endorsed my practices in my younger years. I've since grown acustomed to [H.PATRON].")
+
+	switch(ourpatron.name)
+		if("Astrata")
+			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if("Dendor")
+			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if("Necra")
+			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather/hand
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	id = /obj/item/clothing/ring/silver
 	cloak = /obj/item/clothing/cloak/tabard/crusader
 	if(H.mind)
@@ -37,8 +62,6 @@
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 3)
 		H.change_stat("speed", -2)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/heal/lesser)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/burialrite)
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	if(H.dna?.species)
 		if(H.dna.species.id == "human")
@@ -46,6 +69,8 @@
 		if(H.dna.species.id == "tiefling")
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
+	//Paladins start with more devotion, to cast spells, but can't pray to unlock more abilities
 	C.update_devotion(80)
 	C.holder_mob = H
+	C.grant_spells(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport)
