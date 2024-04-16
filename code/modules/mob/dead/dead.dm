@@ -24,7 +24,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/Destroy()
 	GLOB.mob_list -= src
 	return ..()
-	
 
 /mob/dead/canUseStorage()
 	return FALSE
