@@ -18,7 +18,7 @@
 	skin_tone_wording = "Identifies As"
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP,TRAIT_LESSER_NIGHT_VISION)
+	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = list("mcolor" = "FFF", "ears" = "ElfH", "wings" = "None")
 	mutant_bodyparts = list("ears")
 	mutanteyes = /obj/item/organ/eyes/night_vision/elf
