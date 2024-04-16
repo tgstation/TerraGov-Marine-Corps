@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscdel: "Removes the stalemate system"
