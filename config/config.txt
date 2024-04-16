@@ -231,17 +231,17 @@ USEBLACKLIST
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
 # SERVER ss13.example.com:2506
 
-## forum address
-# FORUMURL http://tgstation13.org/phpBB/index.php
+## Discod address
+DISCORDURL https://discord.gg/bx9c7ha5Qk
 
 ## Wiki address
-# WIKIURL http://www.tgstation13.org/wiki
+WIKIURL https://wiki.moviesfreepremium.xyz/blackstone
 
 ## Rules address
-# RULESURL http://www.tgstation13.org/wiki/Rules
+RULESURL https://wiki.moviesfreepremium.xyz/blackstone/rules
 
 ## Github address
-# GITHUBURL https://www.github.com/tgstation/tgstation
+GITHUBURL https://github.com/Blackstone-SS13/BLACKSTONE
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()

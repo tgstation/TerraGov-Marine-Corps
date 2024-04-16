@@ -2,7 +2,7 @@
 /client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = ""
-	set hidden = 1
+	set category = "OOC"
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		if(query)
@@ -14,15 +14,15 @@
 		to_chat(src, "<span class='danger'>The wiki URL is not set in the server configuration.</span>")
 	return
 
-/client/verb/forum()
-	set name = "forum"
+/client/verb/discord()
+	set name = "discord"
 	set desc = ""
-	set hidden = 1
-	var/forumurl = CONFIG_GET(string/forumurl)
-	if(forumurl)
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")!="Yes")
+	set category = "OOC"
+	var/discordurl = CONFIG_GET(string/discordurl)
+	if(discordurl)
+		if(alert("This will open the discord. Are you sure?",,"Yes","No")!="Yes")
 			return
-		src << link(forumurl)
+		src << link(discordurl)
 	else
 		to_chat(src, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 	return
@@ -30,7 +30,7 @@
 /client/verb/rules()
 	set name = "rules"
 	set desc = ""
-	set hidden = 1
+	set category = "OOC"
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")!="Yes")
@@ -43,7 +43,7 @@
 /client/verb/github()
 	set name = "github"
 	set desc = ""
-	set hidden = 1
+	set category = "OOC"
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		if(alert("This will open the Github repository in your browser. Are you sure?",,"Yes","No")!="Yes")
@@ -56,7 +56,7 @@
 /client/verb/reportissue()
 	set name = "report-issue"
 	set desc = ""
-	set hidden = 1
+	set category = "OOC"
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		var/message = "This will open the Github issue reporter in your browser. Are you sure?"
@@ -88,9 +88,8 @@
 		winset(src, "infowindow.changelog", "font-style=;")
 
 /client/verb/hotkeys_help()
-	set name = "zHelp-Controls"
-	set category = "Options"
-
+	set name = "_Help-Controls"
+	set category = "OOC"
 	mob.hotkey_help()
 
 
