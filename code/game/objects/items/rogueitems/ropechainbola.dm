@@ -139,4 +139,5 @@
 	cuffsound = 'sound/blank.ogg'
 	possible_item_intents = list(/datum/intent/tie, /datum/intent/whip)
 	firefuel = null
+	smeltresult = /obj/item/ingot/iron
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
