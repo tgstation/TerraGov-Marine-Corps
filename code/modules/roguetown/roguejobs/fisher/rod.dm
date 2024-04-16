@@ -80,8 +80,8 @@
 	if(current_fisherman.mind)
 		var/skill_level = current_fisherman.mind.get_skill_level(/datum/skill/labor/fishing)
 		if(skill_level)
-			casting_time = clamp((casting_time - skill_level SECONDS), 1) //Can't go under 1
-			fishing_time = clamp((fishing_time / skill_level), 1)
+			casting_time = clamp((casting_time - skill_level SECONDS), 1, 15 SECONDS) //Can't go under 1
+			fishing_time = clamp((fishing_time / skill_level), 1, 3 SECONDS)
 
 	if(!do_after(current_fisherman, casting_time, target = target))
 		return
