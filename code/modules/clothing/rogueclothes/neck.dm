@@ -110,10 +110,10 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT)
 	blocksound = PLATEHIT
 
-/obj/item/clothing/neck/roguetown/psicross/original
+/obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
 	desc = ""
-	icon_state = "psicrossiron"
+	icon_state = "psicross"
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
@@ -124,44 +124,28 @@
 	name = "amulet of Astrata"
 	desc = ""
 	icon_state = "astrata"
-	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
-	sellprice = 10
-	experimental_onhip = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/noc
 	name = "amulet of Noc"
 	desc = ""
 	icon_state = "noc"
-	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
-	sellprice = 10
-	experimental_onhip = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/dendor
 	name = "amulet of Dendor"
 	desc = ""
 	icon_state = "dendor"
-	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
-	sellprice = 10
-	experimental_onhip = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/necra
 	name = "amulet of Necra"
 	desc = ""
 	icon_state = "necra"
-	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
-	sellprice = 10
-	experimental_onhip = TRUE
 
-/obj/item/clothing/neck/roguetown/psicross/s
+/obj/item/clothing/neck/roguetown/psicross/silver
 	name = "silver psycross"
-	icon_state = "psicross"
+	icon_state = "psicrossiron"
 	sellprice = 50
 
-/obj/item/clothing/neck/roguetown/psicross/s/funny_attack_effects(mob/living/target, mob/living/user, nodmg)
+/obj/item/clothing/neck/roguetown/psicross/silver/funny_attack_effects(mob/living/target, mob/living/user, nodmg)
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -175,7 +159,7 @@
 			target.Knockdown(30)
 			target.Stun(30)
 
-/obj/item/clothing/neck/roguetown/psicross/s/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+/obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
