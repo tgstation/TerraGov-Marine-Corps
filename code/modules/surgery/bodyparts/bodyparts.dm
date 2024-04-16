@@ -422,7 +422,8 @@
 	if(!animal_origin)
 		var/mob/living/carbon/human/H = C
 		should_draw_greyscale = FALSE
-
+		if(!H.dna || !H.dna.species)
+			return
 		var/datum/species/S = H.dna.species
 		species_id = S.limbs_id
 		if(H.gender == MALE)

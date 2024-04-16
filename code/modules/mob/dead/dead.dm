@@ -21,6 +21,10 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	set_focus(src)
 	return INITIALIZE_HINT_NORMAL
 
+/mob/dead/Destroy()
+	GLOB.mob_list -= src
+	return ..()
+
 /mob/dead/canUseStorage()
 	return FALSE
 
