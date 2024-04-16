@@ -1,0 +1,44 @@
+name: BYOND Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  BYOND_MAJOR: 515
+  BYOND_MINOR: 1636
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install BYOND
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y make gcc unzip
+          wget http://www.byond.com/download/build/${{ env.BYOND_MAJOR }}/${{ env.BYOND_MAJOR }}.${{ env.BYOND_MINOR }}_byond_linux.zip
+          unzip ${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip
+          bash tools/ci/install_byond.sh
+
+      - name: Compile BYOND project
+        run: |
+          ls -h $HOME/
+          source $HOME/BYOND/byond/bin/byondsetup
+          DreamMaker roguetown.dme
+
+      - name: Check for errors
+        id: check-errors
+        run: |
+          if grep -q "error" *.log; then
+            echo "::error ::Compilation failed with errors."
+            exit 1
+          else
+            echo "Compilation succeeded without critical errors."
+          fi

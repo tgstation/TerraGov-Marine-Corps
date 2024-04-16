@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	salese = list()
 
 
-/obj/docking_port/mobile/supply/proc/generateManifest(var/list/orders,loc) //generates-the-manifests.
+/obj/docking_port/mobile/supply/proc/generateManifest(list/orders,loc) //generates-the-manifests.
 	var/obj/item/paper/scroll/P = new(loc)
 
 	P.name = "shipping manifest - [station_time_timestamp()]"

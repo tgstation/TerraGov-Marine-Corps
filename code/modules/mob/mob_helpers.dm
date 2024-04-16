@@ -336,7 +336,7 @@
 	if(hud_used && hud_used.action_intent)
 		hud_used.action_intent.icon_state = "[a_intent]"
 
-/mob/proc/examine_intent(var/numb, var/offhand = FALSE)
+/mob/proc/examine_intent(numb, offhand = FALSE)
 	var/datum/intent/to_examine
 	if(offhand)
 		if(numb)
@@ -820,7 +820,7 @@
 			to_chat(user, "<span class='warning'>[affecting] is already in good condition!</span>")
 
 ///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
+/proc/IsAdminGhost(mob/user)
 	if(!user)		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?

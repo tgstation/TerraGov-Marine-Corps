@@ -26,7 +26,7 @@
 /datum/species/werewolf/send_voice(mob/living/carbon/human/H)
 	playsound(get_turf(H), pick('sound/vo/mobs/wwolf/wolftalk1.ogg','sound/vo/mobs/wwolf/wolftalk2.ogg'), 100, TRUE, -1)
 
-/datum/species/werewolf/regenerate_icons(var/mob/living/carbon/human/H)
+/datum/species/werewolf/regenerate_icons(mob/living/carbon/human/H)
 	H.icon = 'icons/roguetown/mob/monster/werewolf.dmi'
 	H.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/wwolf)
 	if(H.gender == MALE)
@@ -42,7 +42,7 @@
 	C.remove_all_languages()
 	C.grant_language(/datum/language/beast)
 
-/datum/species/werewolf/update_damage_overlays(var/mob/living/carbon/human/H)
+/datum/species/werewolf/update_damage_overlays(mob/living/carbon/human/H)
 	H.remove_overlay(DAMAGE_LAYER)
 	var/list/hands = list()
 	var/mutable_appearance/inhand_overlay = mutable_appearance("[H.icon_state]-dam", layer=-DAMAGE_LAYER)

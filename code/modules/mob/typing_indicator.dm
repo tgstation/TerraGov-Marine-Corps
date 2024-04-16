@@ -6,7 +6,7 @@
 
 	var/static/mutable_appearance/typing_indicator
 
-/mob/proc/set_typing_indicator(var/state, hudt)
+/mob/proc/set_typing_indicator(state, hudt)
 	if(!typing_indicator)
 		typing_indicator = mutable_appearance('icons/mob/talk.dmi', "default0", FLY_LAYER)
 		typing_indicator.alpha = 175

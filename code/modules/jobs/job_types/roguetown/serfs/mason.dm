@@ -3,7 +3,7 @@
 	flag = MASON
 	department_flag = SERFS
 	faction = "Station"
-	total_positions = 2
+	total_positions = 3
 	spawn_positions = 2
 
 	allowed_races = list("Humen",
@@ -14,7 +14,7 @@
 	)
 	allowed_sexes = list(MALE, FEMALE)
 
-	tutorial = "There are ancient secrets within stone, something your creed has known since man built upon dirt. Youve pride in your work, youre the only reason this place doesnt fall apart. The King could replace you in a heartbeat, prove to them why youre the Master Mason."
+	tutorial = "There are ancient secrets within stone, something your creed has known since man built upon dirt. You've pride in your work, youre the only reason this place doesnt fall apart. The King could replace you in a heartbeat, prove to them why youre the Master Mason."
 
 	outfit = /datum/outfit/job/roguetown/mason
 	display_order = JDO_MASON

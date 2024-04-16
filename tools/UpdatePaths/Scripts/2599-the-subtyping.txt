@@ -1,0 +1,4 @@
+/turf/@SUBTYPES : /turf/@SUBTYPES{@OLD;tag=@SKIP}
+/obj/@SUBTYPES : /obj/@SUBTYPES{@OLD;tag=@SKIP}
+
+/turf/open/floor/carpet{icon_state = "carpetside"} : /turf/open/floor/carpet/edge{@OLD;icon_state=@SKIP}

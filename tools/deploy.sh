@@ -5,30 +5,32 @@
 #creates a work tree free of everything except what's necessary to run the game
 
 #second arg is working directory if necessary
-if [[ $# -eq 2 ]] ; then
-  cd $2
+if [[ $# -eq 2 ]]; then
+	cd $2
 fi
 
 mkdir -p \
-    $1/_maps \
-    $1/icons \
-    $1/sound/chatter \
-    $1/sound/voice/complionator \
-    $1/sound/instruments \
-    $1/strings
+	$1/maps \
+	$1/icons \
+	$1/sound \
+	$1/config \
+	$1/strings \
+	$1/nano \
+	$1/map_config
 
 if [ -d ".git" ]; then
-  mkdir -p $1/.git/logs
-  cp -r .git/logs/* $1/.git/logs/
+	mkdir -p $1/.git/logs
+	cp -r .git/logs/* $1/.git/logs/
 fi
 
-cp tgstation.dmb tgstation.rsc $1/
-cp -r _maps/* $1/_maps/
-cp icons/default_title.dmi $1/icons/
-cp -r sound/chatter/* $1/sound/chatter/
-cp -r sound/voice/complionator/* $1/sound/voice/complionator/
-cp -r sound/instruments/* $1/sound/instruments/
+cp roguetown.dmb roguetown.rsc $1/
+cp -r maps/* $1/maps/
+cp -r icons/* $1/icons/
+cp -r sound/* $1/sound/
 cp -r strings/* $1/strings/
+cp -r config/* $1/config/
+cp -r nano/* $1/nano/
+cp -r map_config/* $1/map_config/
 
 #remove .dm files from _maps
 
@@ -36,5 +38,6 @@ cp -r strings/* $1/strings/
 #find $1/_maps -name "*.dm" -type f -delete
 
 #dlls on windows
-cp rust_g* $1/ || true
-cp *BSQL.* $1/ || true
+if [ "$(uname -o)" = "Msys" ]; then
+	cp ./*.dll $1/
+fi

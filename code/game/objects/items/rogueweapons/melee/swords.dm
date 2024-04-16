@@ -34,6 +34,7 @@
 		icon_state = "sword[rand(1,3)]"
 
 /obj/item/rogueweapon/sword/decorated
+	name = "engraved sword"
 	icon_state = "decsword1"
 	sellprice = 140
 

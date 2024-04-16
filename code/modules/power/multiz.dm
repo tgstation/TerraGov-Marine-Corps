@@ -53,7 +53,7 @@
 	if(below)
 		below.merge(src)
 
-/obj/machinery/power/deck_relay/proc/merge(var/obj/machinery/power/deck_relay/DR)
+/obj/machinery/power/deck_relay/proc/merge(obj/machinery/power/deck_relay/DR)
 	if(!DR)
 		return
 	var/turf/merge_from = get_turf(DR)

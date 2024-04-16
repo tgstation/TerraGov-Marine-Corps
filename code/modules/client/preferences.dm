@@ -879,7 +879,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key)
 	var/HTML = {"
 	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>
@@ -983,7 +983,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(job.plevel_req > user.client.patreonlevel())
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
 				continue
-			if(get_playerquality(user.ckey) < job.min_pq)
+			if(get_playerquality(user.ckey) < job.min_pq && !job.required)
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
 				continue
 			if(!(user.client.prefs.age in job.allowed_ages))
@@ -1153,11 +1153,15 @@ Slots: [job.spawn_positions]</span>
 		if(1)
 			jpval = JP_HIGH
 
-//	if(role == SSjob.overflow_role)
-//		if(job_preferences[job.title] == JP_LOW)
-//			jpval = null
-//		else
-//			jpval = JP_LOW
+	if(job.required && get_playerquality(user.ckey) < job.min_pq)
+		if(job_preferences[job.title] == JP_LOW)
+			jpval = null
+		else
+			var/used_name = "[job.title]"
+			if(gender == FEMALE && job.f_title)
+				used_name = "[job.f_title]"
+			to_chat(user, "<font color='red'>Warning: You have too low PQ to normally roll for [used_name], you may only roll for it if there are no eligible players.</font>")
+			jpval = JP_LOW
 
 	SetJobPreferenceLevel(job, jpval)
 	SetChoices(user)

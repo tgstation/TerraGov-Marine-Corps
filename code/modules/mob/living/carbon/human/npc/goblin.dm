@@ -108,7 +108,7 @@
 	damage_overlay_type = ""
 	var/raceicon = "goblin"
 
-/datum/species/goblin/regenerate_icons(var/mob/living/carbon/human/H)
+/datum/species/goblin/regenerate_icons(mob/living/carbon/human/H)
 //	H.cut_overlays()
 	H.icon_state = ""
 	if(H.notransform)
@@ -177,7 +177,7 @@
 /mob/living/carbon/human/species/goblin/update_inv_armor()
 	update_wearable()
 
-/datum/species/goblin/update_damage_overlays(var/mob/living/carbon/human/H)
+/datum/species/goblin/update_damage_overlays(mob/living/carbon/human/H)
 	return
 
 /mob/living/carbon/human/species/goblin/Initialize()

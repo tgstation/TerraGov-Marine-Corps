@@ -232,10 +232,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		X = pick(spec_hair)
 		return X.name
 
-/datum/species/proc/regenerate_icons(var/mob/living/carbon/human/H)
+/datum/species/proc/regenerate_icons(mob/living/carbon/human/H)
 	return FALSE
 
-/datum/species/proc/update_damage_overlays(var/mob/living/carbon/human/H)
+/datum/species/proc/update_damage_overlays(mob/living/carbon/human/H)
 	return FALSE
 
 /datum/species/proc/get_spec_facial_list(gender)
@@ -310,7 +310,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						spec_hair += X
 			return spec_hair
 
-/datum/species/proc/get_hexcolor(var/list/L)
+/datum/species/proc/get_hexcolor(list/L)
 	return L
 
 /datum/species/proc/get_skin_list()

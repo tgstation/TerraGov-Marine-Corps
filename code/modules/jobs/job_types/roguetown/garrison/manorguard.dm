@@ -11,7 +11,7 @@
 	"Humen"
 	)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
-	tutorial = "You've trained enough, either you were born into this position or promoted from a Town Guard; You are loyal to the King especially that your pockets are lined with money, and you eat, drink and no longer have woes of working another day to feed yourself."
+	tutorial = "You've trained enough, either you were born into this position or promoted from a Town Guard; You are loyal to the King, especially that your pockets are lined with money, and you eat, drink and no longer have woes of working another day to feed yourself."
 	display_order = JDO_CASTLEGUARD
 	whitelist_req = TRUE
 

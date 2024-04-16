@@ -31,7 +31,7 @@
 	desc = "(RMB WHILE DEFENSE IS ACTIVE) A deceptive half-attack with no follow-through, meant to force your opponent to open their guard. Useless against someone who is dodging."
 	icon_state = "rmbfeint"
 
-/datum/rmb_intent/feint/special_attack(var/mob/living/user, var/atom/target)
+/datum/rmb_intent/feint/special_attack(mob/living/user, atom/target)
 	if(!isliving(target))
 		return
 	if(!user)
