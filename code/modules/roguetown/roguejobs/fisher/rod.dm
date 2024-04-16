@@ -7,9 +7,10 @@
 	icon = 'icons/roguetown/weapons/tools.dmi'
 	sharpness = IS_BLUNT
 	wlength = 33
-	var/obj/item/baited = null
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_HIP
 	w_class = WEIGHT_CLASS_BULKY
+	///The current bait that we have attached to our fishing rod
+	var/obj/item/baited = null
 
 /datum/intent/cast
 	name = "cast"
@@ -57,52 +58,59 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/fishingrod/afterattack(obj/target, mob/user, proximity)
-	if(user.used_intent.type == SPEAR_BASH)
+	if(user.used_intent.type == SPEAR_BASH \
+	|| !check_allowed_items(target,target_self=1) \
+	|| !istype(target, /turf/open/water) \
+	|| user.used_intent.type != ROD_CAST \
+	|| user.doing \
+	|| !(target in range(user,5)) \
+	|| isliving(user) \
+	)
 		return ..()
 
-	if(!check_allowed_items(target,target_self=1))
-		return ..()
+	var/mob/living/current_fisherman = user
+	current_fisherman.visible_message("<span class='warning'>[current_fisherman] casts a line!</span>", \
+						"<span class='notice'>I cast a line.</span>")
+	playsound(loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
 
-	if(istype(target, /turf/open/water))
-		if(user.used_intent.type == ROD_CAST && !user.doing)
-			if(target in range(user,5))
-				user.visible_message("<span class='warning'>[user] casts a line!</span>", \
-									"<span class='notice'>I cast a line.</span>")
-				playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-				if(do_after(user,rand(80,150), target = target)) //rogtodo based on fishing skill
-					if(baited)
-						var/bc = baited.baitchance
-						var/ft = 30
-						if(user.mind)
-							var/sl = user.mind.get_skill_level(/datum/skill/labor/fishing)
-							if(!sl)
-								bc = 0
-							else
-								ft += (sl * 10)
-								bc += (sl * 10)
-						if(prob(bc))
-							var/A = pickweight(baited.fishloot)
-							to_chat(user, "<span class='notice'>Something tugs the line!</span>")
-							playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-							if(!do_after(user,ft, target = target)) //rogtodo based on fishing skill
-								if(ismob(A))
-									var/mob/M = A
-									if(M.type in subtypesof(/mob/living/simple_animal/hostile))
-										new M(target)
-									else
-										new M(user.loc)
-								else
-									new A(user.loc)
-								playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
-							else
-								to_chat(user, "<span class='warning'>Damn, got away...</span>")
-						else
-							to_chat(user, "<span class='warning'>Damn, got away...</span>")
-						qdel(baited)
-						baited = null
+	var/amt2raise = 0 //How much exp we gain on catch
+	var/casting_time = (rand(8 SECONDS, 15 SECONDS)) //How long before a fish bites
+	var/fishing_time = 3 SECONDS //How long to reel in our catch
+
+	if(current_fisherman.mind)
+		var/skill_level = current_fisherman.mind.get_skill_level(/datum/skill/labor/fishing)
+		if(skill_level)
+			casting_time = clamp((casting_time - skill_level SECONDS), 1) //Can't go under 1
+			fishing_time = clamp((fishing_time / skill_level), 1)
+
+	if(do_after(current_fisherman, casting_time, target = target))
+		if(!baited)
+			to_chat(current_fisherman, "<span class='warning'>This seems pointless.</span>")
+			return ..()
+		if(prob(baited.baitchance))
+			var/caught_thing = pickweight(baited.fishloot)
+			to_chat(current_fisherman, "<span class='notice'>Something tugs the line!</span>")
+			playsound(loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
+			if(!do_after(current_fisherman, fishing_time, target = target))
+				if(ismob(caught_thing))
+					var/mob/caught_mob = caught_thing
+					if(caught_mob.type in subtypesof(/mob/living/simple_animal/hostile))
+						new caught_mob(target)
+						amt2raise = current_fisherman.STAINT * 2
 					else
-						to_chat(user, "<span class='warning'>This seems pointless.</span>")
-			update_icon()
+						new caught_mob(current_fisherman.loc)
+						amt2raise = current_fisherman.STAINT
+				else
+					new caught_thing(current_fisherman.loc)
+					amt2raise = current_fisherman.STAINT
+				playsound(loc, 'sound/items/Fish_out.ogg', 100, TRUE)
+			else
+				to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
+		else
+			to_chat(current_fisherman, "<span class='warning'>Damn, got away...</span>")
+		QDEL_NULL(baited)
+	current_fisherman.mind.adjust_experience(/datum/skill/labor/fishing, amt2raise)
+	update_icon()
 
 /obj/item/fishingrod/update_icon()
 	cut_overlays()
