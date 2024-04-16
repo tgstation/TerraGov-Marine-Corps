@@ -102,7 +102,7 @@
 
 /obj/structure/closet/crate/drawer
 	name = "drawer"
-	desc = "a wooden drawer."
+	desc = "A wooden drawer."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "drawer5"
 	base_icon_state = "drawer5"
@@ -119,7 +119,7 @@
 
 /obj/structure/closet/crate/drawer/inn
 	name = "drawer"
-	desc = "a wooden drawer."
+	desc = "A wooden drawer."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "drawer5"
 	base_icon_state = "drawer5"
