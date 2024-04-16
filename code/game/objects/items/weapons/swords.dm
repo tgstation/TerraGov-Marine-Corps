@@ -36,7 +36,7 @@
 	special_attack.remove_action(user)
 
 /obj/item/weapon/sword/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
+	user.visible_message(span_danger("[user] is falling on [user.p_their()] [name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
 
 //Special attack
