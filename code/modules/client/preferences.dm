@@ -987,7 +987,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				HTML += "<font color=#a59461>[used_name]</font></td> <td> </td></tr>"
 				var/list/requiredjobs
 				for(var/X in REQUIRED_JOBS)
-					requiredjobs += GetJob(X)
+					requiredjobs += SSjob.GetJob(X)
 				if(job in REQUIRED_JOBS)
 					to_chat(user, "<font color='red'>Warning: You have too low PQ to normally roll for [used_name], you may only roll for it if there are no eligible players.</font>")
 				else
