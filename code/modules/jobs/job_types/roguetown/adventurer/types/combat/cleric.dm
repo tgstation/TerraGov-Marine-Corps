@@ -12,23 +12,23 @@
 
 /datum/outfit/job/roguetown/adventurer/cleric/pre_equip(mob/living/carbon/human/H)
 	..()
-//	var/allowed_patrons = list(GLOB.patronlist["Astrata"], GLOB.patronlist["Dendor"], GLOB.patronlist["Necra"])
 	var/allowed_patrons = list("Astrata", "Dendor", "Necra")
 
 	var/datum/patrongods/ourpatron
 	if(istype(H.PATRON, /datum/patrongods))
 		ourpatron = H.PATRON
 
-	if(!(ourpatron.name in allowed_patrons))
-		var/datum/patrongods/list/possiblegods = GLOB.patronlist
+	if(!ourpatron || !(ourpatron.name in allowed_patrons))
 
-		for(var/datum/patrongods/P in possiblegods)
-			if(!(P.name in allowed_patrons))
-				possiblegods -= P
+		var/list/datum/patrongods/possiblegods = list()
+		for(var/datum/patrongods/P in GLOB.patronlist)
+			if(P.name in allowed_patrons)
+				possiblegods |= P
 
 		ourpatron = pick(possiblegods)
 		H.PATRON = ourpatron
 		to_chat(H, "<span class='warning'> My patron had not endorsed my practices in my younger years. I've since grown acustomed to [H.PATRON].")
+
 	switch(ourpatron.name)
 		if("Astrata")
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
