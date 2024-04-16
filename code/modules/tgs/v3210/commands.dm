@@ -10,16 +10,19 @@
 	var/warned_about_the_dangers_of_robutussin = !warnings_only
 	for(var/I in typesof(/datum/tgs_chat_command) - /datum/tgs_chat_command)
 		if(!warned_about_the_dangers_of_robutussin)
-			TGS_ERROR_LOG("Custom chat commands in [ApiVersion()] lacks the /datum/tgs_chat_user/sender.channel field!")
+			TGS_WARNING_LOG("Custom chat commands in [ApiVersion()] lacks the /datum/tgs_chat_user/sender.channel field!")
 			warned_about_the_dangers_of_robutussin = TRUE
 		var/datum/tgs_chat_command/stc = I
+		if(stc.ignore_type == I)
+			continue
+
 		var/command_name = initial(stc.name)
 		if(!command_name || findtext(command_name, " ") || findtext(command_name, "'") || findtext(command_name, "\""))
 			if(warnings_only && !warned_command_names[command_name])
 				TGS_ERROR_LOG("Custom command [command_name] can't be used as it is empty or contains illegal characters!")
 				warned_command_names[command_name] = TRUE
 			continue
-		
+
 		if(command_name_types[command_name])
 			if(warnings_only)
 				TGS_ERROR_LOG("Custom commands [command_name_types[command_name]] and [stc] have the same name, only [command_name_types[command_name]] will be available!")
@@ -42,37 +45,14 @@
 	var/datum/tgs_chat_command/stc = new command_type
 	var/datum/tgs_chat_user/user = new
 	user.friendly_name = sender
+
+	// Discord hack, fix the mention if it's only numbers (fuck you IRC trolls)
+	var/regex/discord_id_regex = regex("^\[0-9\]+$")
+	if(findtext(sender, discord_id_regex))
+		sender = "<@[sender]>"
+
 	user.mention = sender
-	return stc.Run(user, params) || TRUE
+	var/datum/tgs_message_content/result = stc.Run(user, params)
+	result = UpgradeDeprecatedCommandResponse(result, command)
 
-/*
-
-#undef SERVICE_JSON_PARAM_HELPTEXT
-#undef SERVICE_JSON_PARAM_ADMINONLY
-#undef SERVICE_JSON_PARAM_REQUIREDPARAMETERS
-
-The MIT License
-
-Copyright (c) 2017 Jordan Brown
-
-Permission is hereby granted, free of charge, 
-to any person obtaining a copy of this software and 
-associated documentation files (the "Software"), to 
-deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, 
-merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom 
-the Software is furnished to do so, 
-subject to the following conditions:
-
-The above copyright notice and this permission notice 
-shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR 
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+	return result ? result.text : TRUE
