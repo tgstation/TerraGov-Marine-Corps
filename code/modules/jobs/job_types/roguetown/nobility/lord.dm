@@ -16,6 +16,7 @@
 	whitelist_req = FALSE
 	min_pq = 2
 	give_bank_account = 10000
+	required = TRUE
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

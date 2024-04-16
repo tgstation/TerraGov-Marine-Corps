@@ -28,6 +28,8 @@
 
 #define SERVICE_RETURN_SUCCESS "SUCCESS"
 
+#define TGS_FILE2LIST(filename) (splittext(trim_left(trim_right(file2text(filename))), "\n"))
+
 /datum/tgs_api/v3210
 	var/reboot_mode = REBOOT_MODE_NORMAL
 	var/comms_key
@@ -39,7 +41,7 @@
 	var/warned_custom_commands = FALSE
 
 /datum/tgs_api/v3210/ApiVersion()
-	return "3.2.1.0"
+	return new /datum/tgs_version("3.2.1.3")
 
 /datum/tgs_api/v3210/proc/trim_left(text)
 	for (var/i = 1 to length(text))
@@ -53,30 +55,36 @@
 			return copytext(text, 1, i + 1)
 	return ""
 
-/datum/tgs_api/v3210/proc/file2list(filename)
-	return splittext(trim_left(trim_right(file2text(filename))), "\n")
-
-/datum/tgs_api/v3210/OnWorldNew(datum/tgs_event_handler/event_handler, minimum_required_security_level)	//don't use event handling in this version
+/datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
 	. = FALSE
 
 	comms_key = world.params[SERVICE_WORLD_PARAM]
 	instance_name = world.params[SERVICE_INSTANCE_PARAM]
 	if(!instance_name)
-		instance_name = "TG Station Server"	//maybe just upgraded
+		instance_name = "TG Station Server" //maybe just upgraded
 
-	var/list/logs = file2list(".git/logs/HEAD")
+	var/list/logs = TGS_FILE2LIST(".git/logs/HEAD")
 	if(logs.len)
-		logs = splittext(logs[logs.len - 1], " ")
-		commit = logs[2]
-	logs = file2list(".git/logs/refs/remotes/origin/master")
+		logs = splittext(logs[logs.len], " ")
+		if (logs.len >= 2)
+			commit = logs[2]
+		else
+			TGS_ERROR_LOG("Error parsing commit logs")
+
+	logs = TGS_FILE2LIST(".git/logs/refs/remotes/origin/master")
 	if(logs.len)
-		originmastercommit = splittext(logs[logs.len - 1], " ")[2]
+		logs = splittext(logs[logs.len], " ")
+		if (logs.len >= 2)
+			originmastercommit = logs[2]
+		else
+			TGS_ERROR_LOG("Error parsing origin commmit logs")
 
 	if(world.system_type != MS_WINDOWS)
 		TGS_ERROR_LOG("This API version is only supported on Windows. Not running on Windows. Aborting initialization!")
 		return
 	ListServiceCustomCommands(TRUE)
-	ExportService("[SERVICE_REQUEST_API_VERSION] [ApiVersion()]", TRUE)
+	var/datum/tgs_version/api_version = ApiVersion()
+	ExportService("[SERVICE_REQUEST_API_VERSION] [api_version.deprefixed_parameter]", TRUE)
 	return TRUE
 
 //nothing to do for v3
@@ -91,14 +99,18 @@
 	if(skip_compat_check && !fexists(SERVICE_INTERFACE_DLL))
 		TGS_ERROR_LOG("Service parameter present but no interface DLL detected. This is symptomatic of running a service less than version 3.1! Please upgrade.")
 		return
-	call_ext(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command)	//trust no retval
+	#if DM_VERSION >= 515
+	call_ext(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command) //trust no retval
+	#else
+	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command) //trust no retval
+	#endif
 	return TRUE
 
 /datum/tgs_api/v3210/OnTopic(T)
 	var/list/params = params2list(T)
 	var/their_sCK = params[SERVICE_CMD_PARAM_KEY]
 	if(!their_sCK)
-		return FALSE	//continue world/Topic
+		return FALSE //continue world/Topic
 
 	if(their_sCK != comms_key)
 		return "Invalid comms key!";
@@ -159,14 +171,15 @@
 		var/datum/tgs_revision_information/test_merge/tm = new
 		tm.number = text2num(I)
 		var/list/entry = json[I]
-		tm.pull_request_commit = entry["commit"]
+		tm.head_commit = entry["commit"]
 		tm.author = entry["author"]
 		tm.title = entry["title"]
 		. += tm
 
 /datum/tgs_api/v3210/Revision()
 	if(!warned_revison)
-		TGS_ERROR_LOG("Use of TgsRevision on [ApiVersion()] origin_commit only points to master!")
+		var/datum/tgs_version/api_version = ApiVersion()
+		TGS_WARNING_LOG("Use of TgsRevision on [api_version.deprefixed_parameter] origin_commit only points to master!")
 		warned_revison = TRUE
 	var/datum/tgs_revision_information/ri = new
 	ri.commit = commit
@@ -174,22 +187,25 @@
 	return ri
 
 /datum/tgs_api/v3210/EndProcess()
-	sleep(world.tick_lag)	//flush the buffers
+	sleep(world.tick_lag) //flush the buffers
 	ExportService(SERVICE_REQUEST_KILL_PROCESS)
 
 /datum/tgs_api/v3210/ChatChannelInfo()
-	return list()
+	return list() // :omegalul:
 
-/datum/tgs_api/v3210/ChatBroadcast(message, list/channels)
+/datum/tgs_api/v3210/ChatBroadcast(datum/tgs_message_content/message, list/channels)
 	if(channels)
 		return TGS_UNIMPLEMENTED
+	message = UpgradeDeprecatedChatMessage(message)
 	ChatTargetedBroadcast(message, TRUE)
 	ChatTargetedBroadcast(message, FALSE)
 
-/datum/tgs_api/v3210/ChatTargetedBroadcast(message, admin_only)
-	ExportService("[admin_only ? SERVICE_REQUEST_IRC_ADMIN_CHANNEL_MESSAGE : SERVICE_REQUEST_IRC_BROADCAST] [message]")
+/datum/tgs_api/v3210/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
+	message = UpgradeDeprecatedChatMessage(message)
+	ExportService("[admin_only ? SERVICE_REQUEST_IRC_ADMIN_CHANNEL_MESSAGE : SERVICE_REQUEST_IRC_BROADCAST] [message.text]")
 
 /datum/tgs_api/v3210/ChatPrivateMessage(message, datum/tgs_chat_user/user)
+	UpgradeDeprecatedChatMessage(message)
 	return TGS_UNIMPLEMENTED
 
 /datum/tgs_api/v3210/SecurityLevel()
@@ -225,29 +241,4 @@
 
 #undef SERVICE_RETURN_SUCCESS
 
-/*
-The MIT License
-
-Copyright (c) 2017 Jordan Brown
-
-Permission is hereby granted, free of charge,
-to any person obtaining a copy of this software and
-associated documentation files (the "Software"), to
-deal in the Software without restriction, including
-without limitation the rights to use, copy, modify,
-merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom
-the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice
-shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+#undef TGS_FILE2LIST

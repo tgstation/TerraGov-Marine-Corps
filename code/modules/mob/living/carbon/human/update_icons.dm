@@ -1652,7 +1652,7 @@ generate/load female uniform sprites matching all previously decided variables
 
 	return standing
 
-/mob/living/carbon/proc/get_sleeves_layer(var/obj/item/I,sleeveindex,layer2use)
+/mob/living/carbon/proc/get_sleeves_layer(obj/item/I,sleeveindex,layer2use)
 	if(!I)
 		return
 	var/list/sleeves = list()

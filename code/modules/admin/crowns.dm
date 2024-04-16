@@ -15,7 +15,7 @@ GLOBAL_PROTECT(crownwearers)
 	if(!GLOB.crownwearers.len)
 		GLOB.crownwearers = null
 
-/proc/check_crownlist(var/ckey)
+/proc/check_crownlist(ckey)
 	if(!GLOB.crownwearers)
 		return FALSE
 	. = (ckey in GLOB.crownwearers)

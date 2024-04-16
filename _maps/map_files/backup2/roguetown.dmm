@@ -856,7 +856,7 @@
 "rt" = (/obj/structure/fluff/walldeco/stone,/turf/closed/wall/mineral/rogue/stone,/area/rogue/outdoors/town)
 "ru" = (/obj/structure/table/wood{icon_state = "longtable_mid"; dir = 1},/obj/structure/bars{icon_state = "barsbent"; layer = 2.81},/turf/open/floor/rogue/hexstone,/area/rogue/indoors/town)
 "rw" = (/turf/open/transparent/openspace,/area/rogue)
-"rx" = (/obj/structure/fluff/walldeco/painting/seraphina{pixel_y = 32},/turf/open/floor/rogue/church,/area/rogue/indoors/town/church/chapel)
+"rx" = (/obj/structure/fluff/walldeco/painting/seraphina{pixel_y = 32},/obj/effect/landmark/start/templar,/turf/open/floor/rogue/church,/area/rogue/indoors/town/church/chapel)
 "ry" = (/obj/structure/fluff/walldeco/church/line{icon_state = "churchslate"; dir = 4},/obj/machinery/light/rogue/wallfire/candle/l,/turf/open/floor/rogue/church,/area/rogue/indoors/town/church/chapel)
 "rz" = (/obj/structure/closet/crate/roguecloset/dark,/obj/item/rogueweapon/tongs,/turf/open/floor/rogue/wood,/area/rogue/indoors/town/dwarfin)
 "rA" = (/obj/machinery/light/rogue/torchholder/r,/turf/open/floor/rogue/church,/area/rogue/indoors/town/church/chapel)
@@ -2058,6 +2058,7 @@
 "WE" = (/obj/structure/chair/bench{icon_state = "bench"; dir = 1},/turf/open/floor/rogue/blocks,/area/rogue/outdoors/town)
 "WF" = (/obj/structure/table/wood{icon_state = "largetable"; dir = 5},/obj/machinery/light/rogue/wallfire/candle,/obj/item/rogueweapon/huntingknife/stoneknife,/turf/open/floor/rogue/woodturned,/area/rogue/indoors/town/garrison)
 "WG" = (/obj/structure/closet/crate/chest,/obj/item/rope,/turf/open/floor/rogue/blocks,/area/rogue/indoors/town/garrison)
+"WI" = (/obj/machinery/light/rogue/wallfire/candle,/obj/effect/landmark/start/templar,/turf/open/floor/rogue/church,/area/rogue/indoors/town/church/chapel)
 "WJ" = (/turf/closed/wall/mineral/rogue/roofwall/outercorner{dir = 1},/area/rogue/indoors/town/shop)
 "WK" = (/obj/structure/mineral_door/wood{locked = 1; lockid = "roomii"; name = "ROOM II"},/turf/open/floor/rogue/ruinedwood{icon_state = "weird1"},/area/rogue/indoors/town/tavern)
 "WL" = (/obj/item/natural/rock,/turf/open/floor/rogue/dirt,/area/rogue/outdoors/town)
@@ -2519,7 +2520,7 @@ EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVV
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVVVRMRMRMRMRMRMRMRMRMRMRMhckAkAkAkAkAkAkAkAkAkAkAkAhcRMRMRMRMRMRMRMqDRMqDRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMtOFFmwmwWGtODqhhDqDqOXDqtORMRMRMRMRMBmQtrYrYrYrYQtqEqgqKqOqPqOqKqRqSpWqgqgpVqKqUqKpVqKqVqKBmGEGEGEGEGEGE
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVVVRMRMRMRMRMRMRMRMRMRMRMhchchcpbhchchchchchchcpbhchcRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMmjmjmjmjmjmjmjmjmjmjmjtOgxmwmwWhtOZqGYDqaIDqDqtORMRMRMRMRMBmqWpWqXqXqXpWpVqYqOqZraCUqOqYpVqXqXqXqXqgqOqgpVqgqOqgBmGEGEGEGEGEGE
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMmjmjmjiPQbMImjiPQbMImjtOXVmwmwaLtOFdGYupwGupUCtORMRMRMRMZpBmqXqXrerfqvqXpWrgrgrirkrmrgrgpWrqrerspWqgqOqgpWqgqOqgPWGEGEGEGEGEGE
-EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMQxMEMExEMEQxRMRMtOtOJWtOtOtOtOwGjMjMjMtOzDmwmwGYtOFdupupitupOAtORMRMRMRMZpBmCVqgqgqgqgCYrxqgqgqgqOqgqgqgCYqgqgqgCYqgqOqgCYqgqOrABmGEGEGEGEGEGE
+EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMQxMEMExEMEQxRMRMtOtOJWtOtOtOtOwGjMjMjMtOzDmwmwGYtOFdupupitupOAtORMRMRMRMZpBmCVqgqgqgqgCYrxqgqgqgqOqgqgqgWIqgqgqgCYqgqOqgCYqgqOrABmGEGEGEGEGEGE
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVVVRMRMRMRMRMRMRMZnqhqhqhrBqhqhqhqhqhqhrBqhqhqhqhZnRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMMEMEFcrErFrMMERMRMtOGYGYGYsaGYYZtOjMjMjMtOYYmwmwGYUYupGYZaGYGYAJtORMRMRMRMZpBmrOrPrPqSrOrOrOrQrREXqOrQrREXrOrOrOrOrOrOqOrOrOrOqOrOBmGEGEGEGEGEGE
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVVVRMRMRMRMRMRMRMqhRTMfrTewaqDWqhrUrVFjFjqhrWrZqhqhqhrBqhZnrwRMRMRMRMRMRMRMRMRMRMQxMEMEMEsbscsdFcMERMRMtOGYECAJGYGYECtOtOtOtOtOSemwmwGYtOupGYlvGYGYGYtORMRMRMRMZpPDqOrPrPsfqOshqOsjslEUqOsjslEUqOqOqOqOqOqOqOqOqOqOqOqOPDGEGEGEGEGEGE
 EyVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyEyVVVVVVVVRMRMRMRMRMRMRMqhsUsosUDWtaDWfNFjFjFjFjijijssqhpystsuLsqhqhRMRMRMRMRMRMRMRMRMRMMEsvsvMEFcFcFcFcMERMxgtOtOtOtOSMtOtOtOtOAJtOtOtOtOtOtOtOtOtOtOtOcntOtORMRMRMRMZpBmqKrPrPqSqKqKqKrQrREXqOrQrREXqKqKqKqKqKqKqKqKqKqKqKqKBmGEGEGEGEGEGE

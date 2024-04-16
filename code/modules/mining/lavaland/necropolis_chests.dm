@@ -255,7 +255,7 @@
 //Wisp Lantern
 /obj/item/wisp_lantern
 	name = "magical lantern"
-	desc = "what is inside it?"
+	desc = "What is inside it?"
 	icon = 'icons/roguetown/items/lighting.dmi'
 	icon_state = "lantern_wisp"
 	item_state = "lantern"

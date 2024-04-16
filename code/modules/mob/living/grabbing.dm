@@ -51,7 +51,7 @@
 			else
 				C.l_grab = src
 
-/datum/proc/grabdropped(var/obj/item/grabbing/G)
+/datum/proc/grabdropped(obj/item/grabbing/G)
 	if(G)
 		for(var/datum/D in G.dependents)
 			if(D == src)

@@ -17,7 +17,7 @@
 	var/progression = 0
 	var/level = CLERIC_T0
 
-/datum/devotion/cleric_holder/New(var/mob/living/carbon/human/holder, god)
+/datum/devotion/cleric_holder/New(mob/living/carbon/human/holder, god)
 	holder_mob = holder
 	holder.cleric = src
 	patron = god

@@ -467,7 +467,7 @@
 		if(SSticker.rulermob == H)
 			H.receive_submission(src)
 
-/mob/living/carbon/human/proc/receive_submission(var/mob/living/carbon/human/lord)
+/mob/living/carbon/human/proc/receive_submission(mob/living/carbon/human/lord)
 	if(stat)
 		return
 	switch(alert("Submit and Pledge Allegiance to Lord [lord.name]?",,"Yes","No"))
@@ -870,7 +870,7 @@
 
 /datum/objective/vampirelord/infiltrate/one/check_completion()
 	var/datum/game_mode/chaosmode/C = SSticker.mode
-	var/list/churchjobs = list("Priest", "Priestess", "Cleric", "Acolyte", "Churchling", "Crusader")
+	var/list/churchjobs = list("Priest", "Priestess", "Cleric", "Acolyte", "Templar", "Churchling", "Crusader")
 	for(var/datum/mind/V in C.vampires)
 		if(V.current.job in churchjobs)
 			return TRUE

@@ -299,7 +299,7 @@
 			return FALSE
 	return TRUE
 
-/mob/living/carbon/proc/kick_attack_check(var/mob/living/L)
+/mob/living/carbon/proc/kick_attack_check(mob/living/L)
 	if(L == src)
 		return FALSE
 	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
@@ -308,7 +308,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/proc/lying_attack_check(var/mob/living/L, obj/item/I)
+/mob/living/carbon/proc/lying_attack_check(mob/living/L, obj/item/I)
 	if(L == src)
 		return TRUE
 	var/CZ = FALSE
@@ -1484,7 +1484,7 @@
 //Mobs on Fire end
 
 // used by secbot and monkeys Crossed
-/mob/living/proc/knockOver(var/mob/living/carbon/C)
+/mob/living/proc/knockOver(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
 						"[C] dives out of [src]'s way!", \

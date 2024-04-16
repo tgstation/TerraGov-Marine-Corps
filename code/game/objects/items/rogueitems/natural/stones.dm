@@ -69,10 +69,9 @@
 	if(!disassembled)
 		if(mineralType && mineralAmt)
 			new mineralType(src.loc, mineralAmt)
-		for(var/i in 1 to rand(1,3))
-			var/obj/item/S = new /obj/item/natural/stone(src.loc)
-			S.pixel_x = rand(25,-25)
-			S.pixel_y = rand(25,-25)
+		var/obj/item/S = new /obj/item/natural/stone(src.loc)
+		S.pixel_x = rand(25,-25)
+		S.pixel_y = rand(25,-25)
 	qdel(src)
 
 /obj/item/natural/rock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)

@@ -26,7 +26,7 @@
 	name = "noble boots"
 	//dropshrink = 0.75
 	color = "#d5c2aa"
-	desc = "fine dark leather boots."
+	desc = "Fine dark leather boots."
 	gender = PLURAL
 	icon_state = "nobleboots"
 	item_state = "nobleboots"

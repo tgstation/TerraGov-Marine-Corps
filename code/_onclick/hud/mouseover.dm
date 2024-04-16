@@ -194,7 +194,7 @@
 	maptext_width = 96
 	alpha = 150
 
-/obj/screen/movable/mouseover/proc/movethis(var/list/PM, hudobj = FALSE)
+/obj/screen/movable/mouseover/proc/movethis(list/PM, hudobj = FALSE)
 	if(locked) //no! I am locked! begone!
 		return
 
