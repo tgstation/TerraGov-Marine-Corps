@@ -58,7 +58,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/fire_act(burn_level)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
@@ -273,5 +273,5 @@ Stepping directly on the mine will also blow it up
 		return
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
-/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/anti_tank/fire_act(burn_level)
 	return //its highly exploitable if fire detonates these

@@ -25,13 +25,8 @@
 			if(prob(10))
 				qdel(src)
 
-
-/obj/structure/flora/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, FIRE)
-
-/obj/structure/flora/fire_act()
-	take_damage(25, BURN, FIRE)
-
+/obj/structure/flora/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 //TREES
 
@@ -103,8 +98,8 @@
 
 	qdel(src)
 
-/obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	take_damage(burnlevel/6, BURN, FIRE)
+/obj/structure/flora/tree/fire_act(burn_level)
+	take_damage(burn_level * 0.3, BURN, FIRE)
 
 
 /obj/structure/flora/tree/update_overlays()

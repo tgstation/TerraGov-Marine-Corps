@@ -4203,7 +4203,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /obj/machinery/door/window/secure{
 	dir = 8
 	},

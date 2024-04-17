@@ -266,11 +266,12 @@
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 			var/skip_embryo_check = FALSE
 			if(length(L.implants))
-				for(var/I in L.implants)
-					if(!is_type_in_list(I,GLOB.known_implants))
-						surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-						if(L.body_part == CHEST)
-							skip_embryo_check = TRUE
+				for(var/obj/item/embedded AS in L.implants)
+					if(embedded.is_beneficial_implant())
+						continue
+					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+					if(L.body_part == CHEST)
+						skip_embryo_check = TRUE
 			var/obj/item/alien_embryo/A = locate() in M
 			if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery on the chest, add an extraction surgery to remove it
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
@@ -572,12 +573,13 @@
 										occupant.status_flags &= ~XENO_HOST
 									qdel(A)
 						if(length(S.limb_ref.implants))
-							for(var/obj/item/I in S.limb_ref.implants)
+							for(var/obj/item/embedded AS in S.limb_ref.implants)
 								if(!surgery)
 									break
-								if(!is_type_in_list(I, GLOB.known_implants))
-									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									I.unembed_ourself(TRUE)
+								if(embedded.is_beneficial_implant())
+									continue
+								sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
+								embedded.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
 							close_encased(occupant, S.limb_ref)
 						if(!surgery)
@@ -1281,8 +1283,8 @@
 				var/datum/limb/L = i
 				var/skip_embryo_check = FALSE
 				var/obj/item/alien_embryo/A = locate() in connected.occupant
-				for(var/I in L.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
+				for(var/obj/item/embedded AS in L.implants)
+					if(embedded.is_beneficial_implant())
 						continue
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 					needed++

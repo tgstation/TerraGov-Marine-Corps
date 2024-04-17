@@ -96,12 +96,7 @@
 		else
 			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act(burnlevel)
-	hugger?.kill_hugger()
-	trigger_trap()
-	set_trap_type(null)
-
-/obj/structure/xeno/trap/fire_act()
+/obj/structure/xeno/trap/fire_act(burn_level)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)

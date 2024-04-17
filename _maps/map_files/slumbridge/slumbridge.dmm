@@ -20006,7 +20006,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/slumbridge/inside/sombase/hangar)
 "oVn" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside/southeast)

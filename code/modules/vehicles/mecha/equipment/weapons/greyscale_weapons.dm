@@ -470,7 +470,7 @@
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
 	icon_state += "_on"
 	chassis.update_icon()
-	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
 	chassis.atom_flags |= DIRLOCK
@@ -481,7 +481,7 @@
 ///signal handler, drops afterimage every move executed while dashing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
 	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)

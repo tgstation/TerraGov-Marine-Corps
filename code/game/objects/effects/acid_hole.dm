@@ -37,11 +37,6 @@
 		holed_wall = null
 	return ..()
 
-
-/obj/effect/acid_hole/fire_act()
-	return
-
-
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
 	. = ..()
 	if(!holed_wall)

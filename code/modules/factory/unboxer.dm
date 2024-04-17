@@ -308,6 +308,18 @@
 	antag_refill_type = /obj/item/factory_part/scout_rifle_magazine
 	refill_amount = 20
 
+/obj/item/factory_refill/scout_rifle_incen_magazine_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/scout_rifle_incen_magazine
+	refill_amount = 20
+
+/obj/item/factory_refill/scout_rifle_impact_magazine_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/scout_rifle_impact_magazine
+	refill_amount = 20
+
 /obj/item/factory_refill/mateba_speedloader_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
@@ -478,7 +490,7 @@
 	refill_type = /obj/item/factory_part/mlrs_rocket
 	antag_refill_type = /obj/item/factory_part/mlrs_rocket
 	refill_amount = 6
-	
+
 /obj/item/factory_refill/mlrs_rocket_refill_gas
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become deadly Gas rockets for an MLRS, once finished."

@@ -2743,7 +2743,7 @@
 /area/oscar_outpost/base)
 "sK" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "sR" = (

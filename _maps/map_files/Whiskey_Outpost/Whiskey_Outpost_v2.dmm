@@ -320,7 +320,7 @@
 /area/whiskey_outpost)
 "br" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "bs" = (

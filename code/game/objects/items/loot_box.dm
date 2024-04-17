@@ -63,7 +63,7 @@
 	uncommon_list = list(
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/storage/fancy/crayons,
-		/obj/item/weapon/claymore,
+		/obj/item/weapon/sword,
 		/obj/vehicle/ridden/motorbike,
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
 		/obj/item/weapon/gun/rifle/m412l1_hpr,

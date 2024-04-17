@@ -5,7 +5,6 @@
 	turret_icon = 'icons/obj/armored/2x2/medium_vehicles.dmi'
 	turret_icon_state = "tank_turret"
 	hitbox = /obj/hitbox/medium
-	secondary_turret_icon = null
 	damage_icon_path = null
 	interior = null
 	icon_state = "tank"

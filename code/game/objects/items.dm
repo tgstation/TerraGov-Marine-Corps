@@ -1500,3 +1500,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	selection.color_item(paint, user)
 	update_icon()
 	update_greyscale()
+
+///Returns whether this is considered beneficial if embedded in a mob
+/obj/item/proc/is_beneficial_implant()
+	return FALSE

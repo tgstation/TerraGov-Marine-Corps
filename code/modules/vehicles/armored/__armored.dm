@@ -32,8 +32,6 @@
 	var/turret_icon_state = "turret"
 	///secondary independently rotating overlay, if we only have a secondary weapon
 	var/image/secondary_weapon_overlay
-	///Icon for the secondary rotating turret, should contain all possible icons. iconstate is fetched from the attached weapon
-	var/secondary_turret_icon
 	///Damage overlay for when the vehicle gets damaged
 	var/atom/movable/vis_obj/tank_damage/damage_overlay
 	///Icon file path for the damage overlay
@@ -358,7 +356,7 @@
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
 	. = ..()
-	if(interior) // handled by gun breech
+	if(interior?.breech) // handled by gun breech
 		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
@@ -384,7 +382,7 @@
 
 /obj/vehicle/sealed/armored/attack_hand_alternate(mob/living/user)
 	. = ..()
-	if(interior) // handled by gun breech
+	if(interior?.secondary_breech) // handled by gun breech
 		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
@@ -430,7 +428,7 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(interior) // if interior handle by gun breech
+	if(interior?.breech) // if interior handle by gun breech
 		// check for easy loading instead
 		try_easy_load(I, user)
 		return
@@ -496,7 +494,7 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(interior) // if interior handle by gun breech
+	if(interior?.secondary_breech) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)

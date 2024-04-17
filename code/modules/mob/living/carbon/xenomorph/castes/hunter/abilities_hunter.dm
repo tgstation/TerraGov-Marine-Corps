@@ -317,7 +317,7 @@
 
 /datum/action/ability/activable/xeno/pounce/proc/movement_fx()
 	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner) //Create the after image.
+	new /obj/effect/temp_visual/after_image(get_turf(owner), owner) //Create the after image.
 
 /datum/action/ability/activable/xeno/pounce/proc/object_hit(datum/source, obj/object_target, speed)
 	SIGNAL_HANDLER
