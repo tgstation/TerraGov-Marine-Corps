@@ -11,6 +11,7 @@
 	bodyparts = list(/obj/item/bodypart/chest/spirit, /obj/item/bodypart/head/spirit, /obj/item/bodypart/l_arm/spirit,
 					 /obj/item/bodypart/r_arm/spirit, /obj/item/bodypart/r_leg/spirit, /obj/item/bodypart/l_leg/spirit)
 	hud_type = /datum/hud/spirit
+	density = FALSE // ghosts can pass through other mobs
 	var/paid = FALSE
 	var/beingmoved = FALSE
 	var/livingname = null
@@ -54,11 +55,14 @@
 	var/L = new /obj/item/flashlight/lantern/shrunken(src.loc)
 	put_in_hands(L)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
-	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 15 MINUTES)
 
 /mob/living/carbon/spirit/proc/give_patron_toll()
-	if(QDELETED(src))
+	if(QDELETED(src) || paid)
 		return
+	for(var/item in held_items)
+		if(istype(item, /obj/item/underworld/coin))
+			return
 	put_in_hands(new /obj/item/underworld/coin/notracking(get_turf(src)))
 	if(PATRON)
 		to_chat(src, "<span class='danger'>Your suffering has not gone unnoticed, [PATRON] has rewarded you with your toll.</span>")

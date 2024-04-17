@@ -70,18 +70,19 @@
 							T.visible_message("<span class='warning'>A coin falls from above.</span>")
 							ADD_TRAIT(H, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
 							qdel(H.mouth)
-							update_inv_mouth()
+							H.update_inv_mouth()
 							break
 			if(L.mind && L.mind.has_antag_datum(/datum/antagonist/zombie))
 				L.mind.remove_antag_datum(/datum/antagonist/zombie)
 			var/mob/dead/observer/O
 			//We probably went to the underworld
 			if(!L.client)
-				var/client/friendo = GLOB.directory[lowertext(L.mind.key)]
-				if(friendo && istype(friendo.mob, /mob/living/carbon/spirit))
-					var/mob/living/carbon/spirit/lost_soul = friendo.mob
-					lost_soul = L.ghostize(force_respawn = TRUE)
-					qdel(lost_soul)
+				if(L.mind)
+					var/client/friendo = GLOB.directory[lowertext(L.mind.key)]
+					if(friendo && istype(friendo.mob, /mob/living/carbon/spirit))
+						var/mob/living/carbon/spirit/lost_soul = friendo.mob
+						lost_soul = L.ghostize(force_respawn = TRUE)
+						qdel(lost_soul)
 			else
 				O = L.ghostize(force_respawn = TRUE)
 			if(O)
