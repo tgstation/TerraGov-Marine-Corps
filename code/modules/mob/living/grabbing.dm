@@ -409,12 +409,12 @@
 				var/mob/living/carbon/human/H = C
 				if(prob(25) && H)
 					H.werewolf_infect()
-					//addtimer(CALLBACK(C, .mob/living/carbon/human/proc/werewolf_infect), 3 MINUTES)
+					//addtimer(CALLBACK(C, /mob/living/carbon/human/proc/werewolf_infect), 3 MINUTES)
 			if(user.mind.has_antag_datum(/datum/antagonist/zombie))
 				var/mob/living/carbon/human/H = C
 				if(prob(25)) //Delay is handled in zombie infect anyways
 					H.zombie_infect()
-					//addtimer(CALLBACK(C, .mob/living/carbon/human/proc/zombie_infect), 3 MINUTES)
+					//addtimer(CALLBACK(C, /mob/living/carbon/human/proc/zombie_infect), 3 MINUTES)
 				if(C.stat)
 					if(istype(limb_grabbed, /obj/item/bodypart/head))
 						var/obj/item/bodypart/head/HE = limb_grabbed
@@ -473,7 +473,7 @@
 		if(VDrinker)
 			if(zomwerewolf)
 				to_chat(user, "<span class='danger'>I'm going to puke...</span>")
-				addtimer(CALLBACK(user, .mob/living/carbon/proc/vomit, 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+				addtimer(CALLBACK(user, /mob/living/carbon/proc/vomit, 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 			else
 				if(VVictim)
 					to_chat(user, "<span class='warning'>It's vitae, just like mine.</span>")
@@ -485,7 +485,7 @@
 						VDrinker.handle_vitae(500)
 		else
 			to_chat(user, "<span class='warning'>I'm going to puke...</span>")
-			addtimer(CALLBACK(user, .mob/living/carbon/proc/vomit, 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+			addtimer(CALLBACK(user, /mob/living/carbon/proc/vomit, 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 	else
 		if(user.mind)
 			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord))
