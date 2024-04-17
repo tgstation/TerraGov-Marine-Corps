@@ -50,7 +50,7 @@
 /mob/living/simple_animal/imp/Initialize()
 	. = ..()
 	set_varspeed(1)
-	addtimer(CALLBACK(src, /mob/living/simple_animal/proc/set_varspeed, 0), 30)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal, set_varspeed), 0), 30)
 
 /datum/antagonist/imp
 	name = "Imp"
