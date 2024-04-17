@@ -47,7 +47,7 @@
 		dat += "<center>No cyborg units detected within access parameters.</center><br><br>"
 	else
 		if(robo_list.len > 1)
-			sortTim(robo_list, /proc/cmp_text_asc)
+			sortTim(robo_list, GLOBAL_PROC_REF(cmp_text_asc))
 		for(var/ai_unit in robo_list)
 			dat += "<center><h3>[ai_unit]</h3></center><div class='statusDisplay'>"
 			var/spacer

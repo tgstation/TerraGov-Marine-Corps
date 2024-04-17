@@ -45,7 +45,7 @@
 			S.ManualFollow(HL)
 			last_scry = world.time
 			user.visible_message("<span class='danger'>[user] stares into [src], \their eyes rolling back into \their head.</span>")
-			addtimer(CALLBACK(S, /mob/dead/observer/.proc/reenter_corpse), 8 SECONDS)
+			addtimer(CALLBACK(S, TYPE_PROC_REF(/mob/dead/observer, reenter_corpse)), 8 SECONDS)
 			if(!HL.stat)
 				if(HL.STAPER >= 15)
 					if(HL.mind)

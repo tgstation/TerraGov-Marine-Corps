@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 			mypool = mansion
 		equip_spawn()
 		greet()
-		addtimer(CALLBACK(owner.current, /mob/living/carbon/human/.proc/spawn_pick_class, "VAMPIRE SPAWN"), 5 SECONDS)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, spawn_pick_class), "VAMPIRE SPAWN"), 5 SECONDS)
 	else
 		forge_vampirelord_objectives()
 		finalize_vampire()
@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		for(var/obj/structure/vampire/bloodpool/mansion in GLOB.vampire_objects)
 			mypool = mansion
 		equip_lord()
-		addtimer(CALLBACK(owner.current, /mob/living/carbon/human/.proc/choose_name_popup, "VAMPIRE LORD"), 5 SECONDS)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "VAMPIRE LORD"), 5 SECONDS)
 		greet()
 	return ..()
 // OLD AND EDITED

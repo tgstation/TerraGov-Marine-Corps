@@ -20,14 +20,20 @@
 /datum/outfit/job/roguetown/templar/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
-	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+	neck = /obj/item/clothing/neck/roguetown/gorget
 	pants = /obj/item/clothing/under/roguetown/chainlegs
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
-	belt = /obj/item/storage/belt/rogue/leather/hand
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/crusader
+	backr = /obj/item/rogueweapon/shield/tower/metal
+	backl = /obj/item/storage/backpack/rogue/satchel
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold
+	beltl = /obj/item/roguekey/church
+	beltr = /obj/item/rogueweapon/sword/decorated
 	id = /obj/item/clothing/ring/silver
-	cloak = /obj/item/clothing/cloak/tabard/crusader
+	cloak = /obj/item/clothing/cloak/stabard/crusader
+	gloves = /obj/item/clothing/gloves/roguetown/chain
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -53,7 +59,8 @@
 		if(H.dna.species.id == "tiefling")
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
-	//Templars start with more devotion but cannot pray to gain new abilities
-	C.update_devotion(100)
+	//Max devotion limit - Templars are stronger but cannot pray to gain more abilities
+	C.max_devotion = 200
+	C.update_devotion(50)
 	C.holder_mob = H
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport)
+	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)

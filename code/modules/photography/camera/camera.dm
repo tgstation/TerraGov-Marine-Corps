@@ -139,11 +139,11 @@
 	var/mob/living/carbon/human/H = user
 	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
 		realcooldown *= 0.5
-	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), realcooldown)
 
 	icon_state = state_off
 
-	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
+	INVOKE_ASYNC(src, PROC_REF(captureimage), target, user, flag, picture_size_x - 1, picture_size_y - 1)
 
 
 /obj/item/camera/proc/cooldown()

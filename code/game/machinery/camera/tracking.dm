@@ -86,7 +86,7 @@
 
 	to_chat(U, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
 
-	INVOKE_ASYNC(src, .proc/do_track, target, U)
+	INVOKE_ASYNC(src, PROC_REF(do_track), target, U)
 
 /mob/living/silicon/ai/proc/do_track(mob/living/target, mob/living/silicon/ai/U)
 	var/cameraticks = 0

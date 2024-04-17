@@ -23,7 +23,7 @@
 				update_icon()
 				if(soundloop)
 					soundloop.start()
-				addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+				addtimer(CALLBACK(src, PROC_REF(trigger_weather)), rand(5,20))
 				return TRUE
 
 /obj/machinery/light/rogue/lanternpost/Initialize()
@@ -83,7 +83,7 @@
 					on = TRUE
 					update()
 					update_icon()
-					addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+					addtimer(CALLBACK(src, PROC_REF(trigger_weather)), rand(5,20))
 					return
 			if(!LR.on && on)
 				if(LR.fuel > 0)
@@ -97,7 +97,7 @@
 				on = TRUE
 				update()
 				update_icon()
-				addtimer(CALLBACK(src, .proc/trigger_weather), rand(5,20))
+				addtimer(CALLBACK(src, PROC_REF(trigger_weather)), rand(5,20))
 			else
 				LR.forceMove(src)
 				torchy = LR

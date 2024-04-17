@@ -47,7 +47,7 @@
 			to_chat(user, "<span class='warning'>[I] is stuck to my hand!</span>")
 			return TRUE
 		to_chat(user, "<span class='info'>I place [I] into [src].</span>")
-		addtimer(CALLBACK(src, .proc/makeWine, fruit), rand(1 MINUTES, 3 MINUTES))
+		addtimer(CALLBACK(src, PROC_REF(makeWine), fruit), rand(1 MINUTES, 3 MINUTES))
 		return TRUE
 	..()
 

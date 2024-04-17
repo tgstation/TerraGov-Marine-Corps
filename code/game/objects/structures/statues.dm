@@ -15,7 +15,7 @@
 /obj/structure/statue/Initialize()
 	. = ..()
 	AddComponent(art_type, impressiveness)
-	addtimer(CALLBACK(src, /datum.proc/AddComponent, /datum/component/beauty, impressiveness *  75), 0)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, AddComponent), /datum/component/beauty, impressiveness *  75), 0)
 
 /obj/structure/statue/attackby(obj/item/W, mob/living/user, params)
 	add_fingerprint(user)

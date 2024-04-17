@@ -67,7 +67,7 @@ the new instance inside the host to be updated to the template's stats.
 	browser = new /datum/browser(src, "disease_menu", "Adaptation Menu", 1000, 770, src)
 
 	freemove_end = world.time + freemove_time
-	freemove_end_timerid = addtimer(CALLBACK(src, .proc/infect_random_patient_zero), freemove_time, TIMER_STOPPABLE)
+	freemove_end_timerid = addtimer(CALLBACK(src, PROC_REF(infect_random_patient_zero)), freemove_time, TIMER_STOPPABLE)
 
 /mob/camera/disease/Destroy()
 	. = ..()
@@ -266,7 +266,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/proc/set_following(mob/living/L)
 	if(following_host)
 		UnregisterSignal(following_host, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/follow_mob)
+	RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(follow_mob))
 	following_host = L
 	follow_mob()
 
@@ -305,7 +305,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/proc/adapt_cooldown()
 	to_chat(src, "<span class='notice'>I have altered your genetic structure. You will be unable to adapt again for [DisplayTimeText(adaptation_cooldown)].</span>")
 	next_adaptation_time = world.time + adaptation_cooldown
-	addtimer(CALLBACK(src, .proc/notify_adapt_ready), adaptation_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(notify_adapt_ready)), adaptation_cooldown)
 
 /mob/camera/disease/proc/notify_adapt_ready()
 	to_chat(src, "<span class='notice'>I are now ready to adapt again.</span>")

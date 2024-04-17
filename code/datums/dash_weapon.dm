@@ -40,7 +40,7 @@
 		spot1.Beam(spot2,beam_effect,time=20)
 		current_charges--
 		holder.update_action_buttons_icon()
-		addtimer(CALLBACK(src, .proc/charge), charge_rate)
+		addtimer(CALLBACK(src, PROC_REF(charge)), charge_rate)
 
 /datum/action/innate/dash/proc/charge()
 	current_charges = CLAMP(current_charges + 1, 0, max_charges)

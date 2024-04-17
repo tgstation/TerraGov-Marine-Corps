@@ -106,7 +106,7 @@
 
 		target.add_overlay(plastic_overlay)
 		to_chat(user, "<span class='notice'>I plant the bomb. Timer counting down from [det_time].</span>")
-		addtimer(CALLBACK(src, .proc/prime), det_time*10)
+		addtimer(CALLBACK(src, PROC_REF(prime)), det_time*10)
 
 /obj/item/grenade/c4/proc/shout_syndicate_crap(mob/M)
 	if(!M)

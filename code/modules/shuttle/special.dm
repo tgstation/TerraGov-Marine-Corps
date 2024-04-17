@@ -94,7 +94,7 @@
 		L.visible_message("<span class='revennotice'>A strange purple glow wraps itself around [L] as [L.p_they()] suddenly fall[L.p_s()] unconscious.</span>",
 			"<span class='revendanger'>[desc]</span>")
 		// Don't let them sit suround unconscious forever
-		addtimer(CALLBACK(src, .proc/sleeper_dreams, L), 100)
+		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 100)
 
 	// Existing sleepers
 	for(var/i in found)
@@ -146,7 +146,7 @@
 /mob/living/simple_animal/drone/snowflake/bardrone/Initialize()
 	. = ..()
 	access_card.access |= ACCESS_CENT_BAR
-	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/check_barstaff_godmode)
+	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(check_barstaff_godmode))
 	check_barstaff_godmode()
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid
@@ -166,7 +166,7 @@
 	access_card.access = C.get_access()
 	access_card.access |= ACCESS_CENT_BAR
 	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
-	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/check_barstaff_godmode)
+	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(check_barstaff_godmode))
 	check_barstaff_godmode()
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid/Destroy()

@@ -42,5 +42,5 @@
 			var/mob/living/buckled_mob = m
 			buckled_mob.electrocute_act(85, src, 1)
 			to_chat(buckled_mob, "<span class='danger'>I feel a deep shock course through your body!</span>")
-			addtimer(CALLBACK(buckled_mob, /mob/living.proc/electrocute_act, 85, src, 1), 1)
+			addtimer(CALLBACK(buckled_mob, TYPE_PROC_REF(/mob/living, electrocute_act), 85, src, 1), 1)
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='hear'>I hear a deep sharp shock!</span>")

@@ -217,11 +217,11 @@
 	var/image/P = W
 	if(istype(P))
 		animate(P,alpha = 0, time=20)
-		addtimer(CALLBACK(src,.proc/kill_weather,P),20)
+		addtimer(CALLBACK(src,PROC_REF(kill_weather),P),20)
 	else //screen obj
 		var/obj/screen/O = W
 		animate(O,alpha = 0, time=10)
-		addtimer(CALLBACK(src,.proc/kill_weather,O),10)
+		addtimer(CALLBACK(src,PROC_REF(kill_weather),O),10)
 
 
 /client/proc/kill_weather(P)

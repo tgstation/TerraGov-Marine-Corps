@@ -80,7 +80,7 @@
 	M.Translate(-288, 0)
 	animate(src, transform = M, time = 90)
 	animate(src, alpha = 255, time = 10, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(src, .proc/FadeOut), 80)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 80)
 	QDEL_IN(src, 90)
 	P.screen += src
 

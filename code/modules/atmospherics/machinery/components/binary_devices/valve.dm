@@ -49,7 +49,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		return
 	update_icon_nopipes(TRUE)
 	switching = TRUE
-	addtimer(CALLBACK(src, .proc/finish_interact), 10)
+	addtimer(CALLBACK(src, PROC_REF(finish_interact)), 10)
 
 /obj/machinery/atmospherics/components/binary/valve/proc/finish_interact()
 	toggle()

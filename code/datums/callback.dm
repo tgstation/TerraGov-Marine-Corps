@@ -1,53 +1,45 @@
 /**
-  *# Callback Datums
-  *A datum that holds a proc to be called on another object, used to track proccalls to other objects
-  *
-  * ## USAGE
-  *
-  * ```
-  * var/datum/callback/C = new(object|null, /proc/type/path|"procstring", arg1, arg2, ... argn)
-  * var/timerid = addtimer(C, time, timertype)
-  * you can also use the compiler define shorthand
-  * var/timerid = addtimer(CALLBACK(object|null, /proc/type/path|procstring, arg1, arg2, ... argn), time, timertype)
-  * ```
-  *
-  * Note: proc strings can only be given for datum proc calls, global procs must be proc paths
-  *
-  * Also proc strings are strongly advised against because they don't compile error if the proc stops existing
-  *
-  * In some cases you can provide a shortform of the procname, see the proc typepath shortcuts documentation below
-  *
-  * ## INVOKING THE CALLBACK
-  *`var/result = C.Invoke(args, to, add)` additional args are added after the ones given when the callback was created
-  *
-  * `var/result = C.InvokeAsync(args, to, add)` Asyncronous - returns . on the first sleep then continues on in the background
-  * after the sleep/block ends, otherwise operates normally.
-  *
-  * ## PROC TYPEPATH SHORTCUTS
-  * (these operate on paths, not types, so to these shortcuts, datum is NOT a parent of atom, etc...)
-  *
-  * ### global proc while in another global proc:
-  * .procname
-  *
-  * `CALLBACK(GLOBAL_PROC, .some_proc_here)`
-  *
-  * ### proc defined on current(src) object (when in a /proc/ and not an override) OR overridden at src or any of it's parents:
-  * .procname
-  *
-  * `CALLBACK(src, .some_proc_here)`
-  *
-  * ### when the above doesn't apply:
-  *.proc/procname
-  *
-  * `CALLBACK(src, .proc/some_proc_here)`
-  *
-  *
-  * proc defined on a parent of a some type
-  *
-  * `/some/type/.proc/some_proc_here`
-  *
-  * Otherwise you must always provide the full typepath of the proc (/type/of/thing/proc/procname)
-  */
+ *# Callback Datums
+ *A datum that holds a proc to be called on another object, used to track proccalls to other objects
+ *
+ * ## USAGE
+ *
+ * ```
+ * var/datum/callback/C = new(object|null, PROC_REF(procname), arg1, arg2, ... argn)
+ * var/timerid = addtimer(C, time, timertype)
+ * you can also use the compiler define shorthand
+ * var/timerid = addtimer(CALLBACK(object|null, PROC_REF(procname), arg1, arg2, ... argn), time, timertype)
+ * ```
+ *
+ * Note: proc strings can only be given for datum proc calls, global procs must be proc paths
+ *
+ * Also proc strings are strongly advised against because they don't compile error if the proc stops existing
+ *
+ * In some cases you can provide a shortform of the procname, see the proc typepath shortcuts documentation below
+ *
+ * ## INVOKING THE CALLBACK
+ *`var/result = C.Invoke(args, to, add)` additional args are added after the ones given when the callback was created
+ *
+ * `var/result = C.InvokeAsync(args, to, add)` Asyncronous - returns . on the first sleep then continues on in the background
+ * after the sleep/block ends, otherwise operates normally.
+ *
+ * ## PROC TYPEPATH SHORTCUTS
+ * (these operate on paths, not types, so to these shortcuts, datum is NOT a parent of atom, etc...)
+ *
+ * ### proc defined on current(src) object OR overridden at src or any of it's parents:
+ * PROC_REF(procname)
+ *
+ * `CALLBACK(src, PROC_REF(some_proc_here))`
+ *
+ * ### global proc
+ * GLOBAL_PROC_REF(procname)
+ *
+ * `CALLBACK(src, GLOBAL_PROC_REF(some_proc_here))`
+ *
+ *
+ * ### proc defined on some type
+ * TYPE_PROC_REF(/some/type/, some_proc_here)
+ */
 /datum/callback
 
 	///The object we will be calling the proc on
