@@ -317,3 +317,13 @@
   TiviPlus:
   - bugfix: Big Red is now an actual desert for map variants
   - rscadd: Adds APC and Transport Crewmen to the game
+2024-04-17:
+  Barnet2:
+  - code_imp: Robot, non-modular jaegar and xenonauten use armor defines
+  - rscdel: Removes the stalemate system
+  Lumipharon:
+  - code_imp: Cleaned up some sword code
+  TiviPlus:
+  - bugfix: Tank treads movement animation fixed
+  XElectricX:
+  - bugfix: Interactive emotes work.
