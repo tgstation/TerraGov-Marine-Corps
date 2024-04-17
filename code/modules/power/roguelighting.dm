@@ -621,10 +621,10 @@
 	var/obj/item/reagent_containers/food/snacks/food = null
 	on = FALSE
 	cookonme = TRUE
-	var/datum/looping_sound/boilloop/boiling
+	var/datum/looping_sound/boilloop/boilloop
 
 /obj/machinery/light/rogue/hearth/Initialize()
-	boiling = new(list(src), FALSE)
+	boilloop = new(list(src), FALSE)
 	. = ..()
 
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
@@ -704,7 +704,7 @@
 				attachment.forceMove(user.loc)
 			attachment = null
 			update_icon()
-			boiling.stop()
+			boilloop.stop()
 	else
 		if(on)
 			var/mob/living/carbon/human/H = user
@@ -740,10 +740,9 @@
 				if(attachment.reagents)
 					attachment.reagents.expose_temperature(400, 0.033)
 					if(attachment.reagents.chem_temp > 374)
-						boiling.start()
-						playsound(src.loc, 'sound/misc/boiling.ogg', 100, FALSE, extrarange = 5)
+						boilloop.start()
 					else
-						boiling.stop()
+						boilloop.stop()
 		update_icon()
 
 
