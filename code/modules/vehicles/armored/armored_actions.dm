@@ -135,7 +135,8 @@
 
 /datum/action/vehicle/sealed/armored/horn
 	name = "Honk Horn"
-	action_icon_state = "mech_zoom_off" //TODO: find a suitable icon
+	action_icon = 'icons/mob/actions/actions_vehicle.dmi'
+	action_icon_state = "car_horn"
 
 /datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
