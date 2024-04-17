@@ -66,7 +66,7 @@
 ///Create an after image
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/movement_fx()
 	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner)
+	new /obj/effect/temp_visual/after_image(get_turf(owner), owner)
 
 ///Unregisters signals after lunge complete
 /datum/action/ability/activable/weapon_skill/sword_lunge/proc/charge_complete()
