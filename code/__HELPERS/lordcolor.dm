@@ -18,7 +18,7 @@ GLOBAL_VAR(lordsecondary)
 
 /mob/proc/lord_color_choice()
 	if(!client)
-		addtimer(CALLBACK(src, .proc/lord_color_choice), 50)
+		addtimer(CALLBACK(src, PROC_REF(lord_color_choice)), 50)
 		return
 	var/list/lordcolors = list(
 "PURPLE"="#865c9c",

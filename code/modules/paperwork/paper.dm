@@ -218,7 +218,7 @@
 		if(!spam_flag)
 			spam_flag = TRUE
 			playsound(loc, 'sound/blank.ogg', 50, TRUE)
-			addtimer(CALLBACK(src, .proc/reset_spamflag), 20)
+			addtimer(CALLBACK(src, PROC_REF(reset_spamflag)), 20)
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user)

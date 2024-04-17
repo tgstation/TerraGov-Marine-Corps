@@ -107,7 +107,7 @@
 	else
 		to_chat(owner, "<span class='warning'>I feel a weird rumble behind my eye sockets...</span>")
 
-	addtimer(CALLBACK(src, .proc/finish_replace_eyes), rand(100, 200))
+	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(100, 200))
 
 /obj/item/organ/heart/gland/heal/proc/finish_replace_eyes()
 	var/eye_type = /obj/item/organ/eyes
@@ -125,7 +125,7 @@
 	else
 		to_chat(owner, "<span class='warning'>I feel a weird tingle in my [parse_zone(body_zone)]... even if you don't have one.</span>")
 
-	addtimer(CALLBACK(src, .proc/finish_replace_limb, body_zone), rand(150, 300))
+	addtimer(CALLBACK(src, PROC_REF(finish_replace_limb), body_zone), rand(150, 300))
 
 /obj/item/organ/heart/gland/heal/proc/finish_replace_limb(body_zone)
 	owner.visible_message("<span class='warning'>With a loud snap, [owner]'s [parse_zone(body_zone)] rapidly grows back from [owner.p_their()] body!</span>",
@@ -155,7 +155,7 @@
 		if(owner.reagents.has_reagent(R.type))
 			keep_going = TRUE
 	if(keep_going)
-		addtimer(CALLBACK(src, .proc/keep_replacing_blood), 30)
+		addtimer(CALLBACK(src, PROC_REF(keep_replacing_blood)), 30)
 
 /obj/item/organ/heart/gland/heal/proc/replace_chest(obj/item/bodypart/chest/chest)
 	if(chest.status == BODYPART_ROBOTIC)

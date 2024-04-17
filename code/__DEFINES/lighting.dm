@@ -117,5 +117,3 @@ GLOBAL_LIST_INIT(em_mask_matrix, EM_MASK_MATRIX)
 
 /// Returns the blue part of a #RRGGBB hex sequence as number
 #define GETBLUEPART(hexa) hex2num(copytext(hexa, 6, 8))
-
-#define TYPE_PROC_REF(TYPE, X) (##TYPE.proc/##X) //BYOND version compatability nonsence that probably dosent work.

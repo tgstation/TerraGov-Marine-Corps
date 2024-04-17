@@ -72,7 +72,7 @@
 //		H.real_name = H.client.prefs.pref_species.random_name(MALE,1) //set_species randomizes name
 	H.cmode_music = 'sound/music/combatbandit.ogg'
 
-	addtimer(CALLBACK(H, /mob/living/carbon/human/.proc/choose_name_popup, "BANDIT"), 5 SECONDS)
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "BANDIT"), 5 SECONDS)
 //	H.job = "Bandit"
 //	H.advjob = pick("Cheesemaker", "Mercenary", "Barbarian", "Ranger", "Rogue")
 	H.equipOutfit(/datum/outfit/job/roguetown/bandit)

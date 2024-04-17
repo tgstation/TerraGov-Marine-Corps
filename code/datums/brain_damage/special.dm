@@ -182,7 +182,7 @@
 /datum/brain_trauma/special/death_whispers/proc/whispering()
 	ADD_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/cease_whispering), rand(50, 300))
+	addtimer(CALLBACK(src, PROC_REF(cease_whispering)), rand(50, 300))
 
 /datum/brain_trauma/special/death_whispers/proc/cease_whispering()
 	REMOVE_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
@@ -226,7 +226,7 @@
 		var/atom/movable/AM = thing
 		SEND_SIGNAL(AM, COMSIG_MOVABLE_SECLUDED_LOCATION)
 	next_crisis = world.time + 600
-	addtimer(CALLBACK(src, .proc/fade_in), duration)
+	addtimer(CALLBACK(src, PROC_REF(fade_in)), duration)
 
 /datum/brain_trauma/special/existential_crisis/proc/fade_in()
 	QDEL_NULL(veil)

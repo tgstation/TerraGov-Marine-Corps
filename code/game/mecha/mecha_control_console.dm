@@ -103,7 +103,7 @@
 	var/obj/mecha/M = in_mecha()
 	if(M)
 		M.emp_act(EMP_HEAVY)
-		addtimer(CALLBACK(src, /obj/item/mecha_parts/mecha_tracking/proc/recharge), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_tracking, recharge)), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		recharging = 1
 
 /obj/item/mecha_parts/mecha_tracking/proc/recharge()

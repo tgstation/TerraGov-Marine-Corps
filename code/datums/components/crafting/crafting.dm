@@ -3,7 +3,7 @@
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/L = parent
 	L.craftingthing = src
-//	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+//	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 /*
 /datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	var/datum/hud/H = user.hud_used
@@ -11,7 +11,7 @@
 	C.icon = H.ui_style
 	H.static_inventory += C
 	CL.screen += C
-	RegisterSignal(C, COMSIG_CLICK, .proc/roguecraft)
+	RegisterSignal(C, COMSIG_CLICK, PROC_REF(roguecraft))
 */
 /datum/component/personal_crafting
 	var/busy

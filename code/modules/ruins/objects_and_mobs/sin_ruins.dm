@@ -24,7 +24,7 @@
 		know it'll be worth it.</span>")
 	icon_state = "slots2"
 	playsound(src, 'sound/blank.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, .proc/determine_victor, user), 50)
+	addtimer(CALLBACK(src, PROC_REF(determine_victor), user), 50)
 
 /obj/structure/cursed_slot_machine/proc/determine_victor(mob/living/user)
 	icon_state = "slots1"
@@ -50,7 +50,7 @@
 
 /obj/structure/cursed_money/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/collapse), 600)
+	addtimer(CALLBACK(src, PROC_REF(collapse)), 600)
 
 /obj/structure/cursed_money/proc/collapse()
 	visible_message("<span class='warning'>[src] falls in on itself, \

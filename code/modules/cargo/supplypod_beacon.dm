@@ -23,7 +23,7 @@
 			launched = TRUE
 			playsound(src,'sound/blank.ogg',50,FALSE)
 			playsound(src,'sound/blank.ogg',50,FALSE)
-			addtimer(CALLBACK(src, .proc/endLaunch), 33)//wait 3.3 seconds (time it takes for supplypod to land), then update icon
+			addtimer(CALLBACK(src, PROC_REF(endLaunch)), 33)//wait 3.3 seconds (time it takes for supplypod to land), then update icon
 		if (SP_UNLINK)
 			linked = FALSE
 			playsound(src,'sound/blank.ogg',50,FALSE)

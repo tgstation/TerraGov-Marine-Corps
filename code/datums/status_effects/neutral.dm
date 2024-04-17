@@ -144,7 +144,7 @@
 /datum/status_effect/bugged/on_apply(mob/living/new_owner, mob/living/tracker)
 	. = ..()
 	if (.)
-		RegisterSignal(new_owner, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+		RegisterSignal(new_owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /datum/status_effect/bugged/on_remove()
 	. = ..()

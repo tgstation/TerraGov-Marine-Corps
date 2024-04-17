@@ -71,8 +71,8 @@
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
 		if(rogstam <= 0)
-			addtimer(CALLBACK(src, .proc/Knockdown, 30), 10)
-		addtimer(CALLBACK(src, .proc/Immobilize, 30), 10)
+			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 10)
+		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 10)
 		if(iscarbon(src))
 			var/mob/living/carbon/C = src
 			if(C.stress >= 30)
@@ -100,7 +100,7 @@
 		var/stuffy = list("ZIZO GRABS MY WEARY HEART!","ARGH! MY HEART BEATS NO MORE!","NO... MY HEART HAS BEAT IT'S LAST!","MY HEART HAS GIVEN UP!","MY HEART BETRAYS ME!","THE METRONOME OF MY LIFE STILLS!")
 		to_chat(src, "<span class='userdanger'>[pick(stuffy)]</span>")
 		emote("breathgasp", forced = TRUE)
-		addtimer(CALLBACK(src, .proc/adjustOxyLoss, 110), 30)
+		addtimer(CALLBACK(src, PROC_REF(adjustOxyLoss), 110), 30)
 
 /mob/living/proc/freak_out()
 	return
@@ -123,7 +123,7 @@
 	else
 		emote("fatigue", forced = TRUE)
 		if(stress > 15)
-			addtimer(CALLBACK(src, /mob/.proc/do_freakout_scream), rand(30,50))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, do_freakout_scream)), rand(30,50))
 	if(hud_used)
 //		var/list/screens = list(hud_used.plane_masters["[OPENSPACE_BACKDROP_PLANE]"],hud_used.plane_masters["[BLACKNESS_PLANE]"],hud_used.plane_masters["[GAME_PLANE_UPPER]"],hud_used.plane_masters["[GAME_PLANE_FOV_HIDDEN]"], hud_used.plane_masters["[FLOOR_PLANE]"], hud_used.plane_masters["[GAME_PLANE]"], hud_used.plane_masters["[LIGHTING_PLANE]"])
 		var/matrix/skew = matrix()

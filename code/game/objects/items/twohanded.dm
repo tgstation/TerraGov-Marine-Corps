@@ -341,10 +341,10 @@
 		impale(user)
 		return
 	if((wielded) && prob(50))
-		INVOKE_ASYNC(src, .proc/jedi_spin, user)
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/proc/jedi_spin(mob/living/user)
-	dance_rotate(user, CALLBACK(user, /mob.proc/dance_flip))
+	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
 /obj/item/twohanded/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, "<span class='warning'>I twirl around a bit before losing your balance and impaling myself on [src].</span>")
@@ -404,7 +404,7 @@
 	playsound(loc,  pick(hitsound), get_clamped_volume(), TRUE, -1)
 	add_fingerprint(user)
 	// Light your candles while spinning around the room
-	INVOKE_ASYNC(src, .proc/jedi_spin, user)
+	INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/green
 	possible_colors = list("green")
@@ -812,7 +812,7 @@
 	. = ..()
 	if(!wielded)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
 	listeningTo = user
 	user.visible_message("<span class='notice'>[user] holds [src] up to [user.p_their()] eyes.</span>", "<span class='notice'>I hold [src] up to your eyes.</span>")
 	item_state = "binoculars_wielded"

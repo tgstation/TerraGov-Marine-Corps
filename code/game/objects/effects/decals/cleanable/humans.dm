@@ -18,7 +18,7 @@
 		return .
 	pixel_x = rand(-5,5)
 	pixel_y = rand(5,5)
-	blood_timer = addtimer(CALLBACK(src, .proc/become_dry), rand(5 MINUTES,8 MINUTES), TIMER_STOPPABLE)
+	blood_timer = addtimer(CALLBACK(src, PROC_REF(become_dry)), rand(5 MINUTES,8 MINUTES), TIMER_STOPPABLE)
 
 
 /obj/effect/decal/cleanable/blood/proc/become_dry()
@@ -89,7 +89,7 @@
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)
 		return .
-	blood_timer = addtimer(CALLBACK(src, .proc/become_dry), rand(5 MINUTES,8 MINUTES), TIMER_STOPPABLE)
+	blood_timer = addtimer(CALLBACK(src, PROC_REF(become_dry)), rand(5 MINUTES,8 MINUTES), TIMER_STOPPABLE)
 
 /obj/effect/decal/cleanable/trail_holder/Destroy()
 	deltimer(blood_timer)

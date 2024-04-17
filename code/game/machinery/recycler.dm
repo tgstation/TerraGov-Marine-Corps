@@ -150,7 +150,7 @@
 	safety_mode = TRUE
 	update_icon()
 	L.forceMove(loc)
-	addtimer(CALLBACK(src, .proc/reboot), SAFETY_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), SAFETY_COOLDOWN)
 
 /obj/machinery/recycler/proc/reboot()
 	playsound(src, 'sound/blank.ogg', 50, FALSE)

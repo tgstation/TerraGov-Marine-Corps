@@ -5,8 +5,8 @@
 	if(!ismovableatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	beauty = beautyamount
-	RegisterSignal(parent, COMSIG_ENTER_AREA, .proc/enter_area)
-	RegisterSignal(parent, COMSIG_EXIT_AREA, .proc/exit_area)
+	RegisterSignal(parent, COMSIG_ENTER_AREA, PROC_REF(enter_area))
+	RegisterSignal(parent, COMSIG_EXIT_AREA, PROC_REF(exit_area))
 	var/area/A = get_area(parent)
 	if(A) 
 		enter_area(null, A)

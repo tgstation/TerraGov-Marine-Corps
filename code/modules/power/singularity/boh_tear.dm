@@ -39,4 +39,4 @@
 	to_chat(user, "<span class='danger'>I don't feel like you are real anymore.</span>")
 	user.dust_animation()
 	user.spawn_dust()
-	addtimer(CALLBACK(src, .proc/consume, user), 5)
+	addtimer(CALLBACK(src, PROC_REF(consume), user), 5)

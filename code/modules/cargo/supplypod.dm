@@ -117,7 +117,7 @@
 
 /obj/structure/closet/supplypod/proc/handleReturningClose(atom/movable/holder, returntobay)
 	opened = FALSE
-	INVOKE_ASYNC(holder, .proc/setClosed) //Use the INVOKE_ASYNC proc to call setClosed() on whatever the holder may be, without giving the atom/movable base class a setClosed() proc definition
+	INVOKE_ASYNC(holder, PROC_REF(setClosed)) //Use the INVOKE_ASYNC proc to call setClosed() on whatever the holder may be, without giving the atom/movable base class a setClosed() proc definition
 	for (var/atom/movable/O in get_turf(holder))
 		if ((ismob(O) && !isliving(O)) || (is_type_in_typecache(O, GLOB.blacklisted_cargo_types) && !isliving(O))) //We dont want to take ghosts with us, and we don't want blacklisted items going, but we allow mobs.
 			continue
@@ -186,11 +186,11 @@
 		var/mob/living/simple_animal/pet/gondola/gondolapod/benis = new(get_turf(src), src)
 		benis.contents |= contents //Move the contents of this supplypod into the gondolapod mob.
 		moveToNullspace()
-		addtimer(CALLBACK(src, .proc/open, benis), openingDelay) //After the openingDelay passes, we use the open proc from this supplyprod while referencing the contents of the "holder", in this case the gondolapod mob
+		addtimer(CALLBACK(src, PROC_REF(open), benis), openingDelay) //After the openingDelay passes, we use the open proc from this supplyprod while referencing the contents of the "holder", in this case the gondolapod mob
 	else if (style == STYLE_SEETHROUGH)
 		open(src)
 	else
-		addtimer(CALLBACK(src, .proc/open, src), openingDelay) //After the openingDelay passes, we use the open proc from this supplypod, while referencing this supplypod's contents
+		addtimer(CALLBACK(src, PROC_REF(open), src), openingDelay) //After the openingDelay passes, we use the open proc from this supplypod, while referencing this supplypod's contents
 
 /obj/structure/closet/supplypod/open(atom/movable/holder, broken = FALSE, forced = FALSE) //The holder var represents an atom whose contents we will be working with
 	if (!holder)
@@ -206,7 +206,7 @@
 			return
 	if (openingSound)
 		playsound(get_turf(holder), openingSound, soundVolume, FALSE, FALSE) //Special admin sound to play
-	INVOKE_ASYNC(holder, .proc/setOpened) //Use the INVOKE_ASYNC proc to call setOpened() on whatever the holder may be, without giving the atom/movable base class a setOpened() proc definition
+	INVOKE_ASYNC(holder, PROC_REF(setOpened)) //Use the INVOKE_ASYNC proc to call setOpened() on whatever the holder may be, without giving the atom/movable base class a setOpened() proc definition
 	if (style == STYLE_SEETHROUGH)
 		update_icon()
 	for (var/atom/movable/O in holder.contents) //Go through the contents of the holder
@@ -219,7 +219,7 @@
 		depart(src)
 	else
 		if(!stay_after_drop) // Departing should be handled manually
-			addtimer(CALLBACK(src, .proc/depart, holder), departureDelay) //Finish up the pod's duties after a certain amount of time
+			addtimer(CALLBACK(src, PROC_REF(depart), holder), departureDelay) //Finish up the pod's duties after a certain amount of time
 
 /obj/structure/closet/supplypod/proc/depart(atom/movable/holder)
 	if (leavingSound)
@@ -322,8 +322,8 @@
 	if (soundStartTime < 0)
 		soundStartTime = 1
 	if (!pod.effectQuiet)
-		addtimer(CALLBACK(src, .proc/playFallingSound), soundStartTime)
-	addtimer(CALLBACK(src, .proc/beginLaunch, pod.effectCircle), pod.landingDelay)
+		addtimer(CALLBACK(src, PROC_REF(playFallingSound)), soundStartTime)
+	addtimer(CALLBACK(src, PROC_REF(beginLaunch), pod.effectCircle), pod.landingDelay)
 
 /obj/effect/DPtarget/proc/playFallingSound()
 	playsound(src, pod.fallingSound, pod.soundVolume, TRUE, 6)
@@ -341,7 +341,7 @@
 	M.Turn(rotation) //Turn the matrix
 	pod.transform = M //Turn the actual pod (Won't be visible until endLaunch() proc tho)
 	animate(fallingPod, pixel_z = 0, pixel_x = -16, time = pod.fallDuration, , easing = LINEAR_EASING) //Make the pod fall! At an angle!
-	addtimer(CALLBACK(src, .proc/endLaunch), pod.fallDuration, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation
+	addtimer(CALLBACK(src, PROC_REF(endLaunch)), pod.fallDuration, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation
 
 /obj/effect/DPtarget/proc/endLaunch()
 	pod.update_icon()

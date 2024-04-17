@@ -362,7 +362,7 @@
 		add_part_set_to_queue(href_list["partset_to_queue"])
 		return update_queue_on_page()
 	if(href_list["process_queue"])
-		INVOKE_ASYNC(src, .proc/do_process_queue)
+		INVOKE_ASYNC(src, PROC_REF(do_process_queue))
 	if(href_list["clear_temp"])
 		temp = null
 	if(href_list["screen"])
@@ -423,7 +423,7 @@
 /obj/machinery/mecha_part_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	var/datum/material/M = id_inserted
 	add_overlay("fab-load-[M.name]")
-	addtimer(CALLBACK(src, /atom/proc/cut_overlay, "fab-load-[M.name]"), 10)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, cut_overlay), "fab-load-[M.name]"), 10)
 	updateUsrDialog()
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/item/W, mob/user, params)

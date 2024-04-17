@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 	if(SSpersistence.initialized)
 		UpdateInfo()
 	else
-		SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateInfo))
+		SSticker.OnRoundstart(CALLBACK(src,PROC_REF(UpdateInfo)))
 
 /obj/item/paper/secretrecipe/proc/UpdateInfo()
 	var/datum/chemical_reaction/recipe = get_chemical_reaction(recipe_id)

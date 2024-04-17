@@ -184,7 +184,7 @@
 	. = ..()
 	spawn(10)
 		after_creation()
-	//addtimer(CALLBACK(src, .proc/after_creation), 10)
+	//addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
 
 /mob/living/carbon/human/species/goblin/handle_combat()
 	if(mode == AI_HUNT)
@@ -402,7 +402,7 @@
 	update_icon()
 	spawn(2 SECONDS)
 		creategob()
-	//addtimer(CALLBACK(src, .proc/creategob), 4 SECONDS)
+	//addtimer(CALLBACK(src, PROC_REF(creategob)), 4 SECONDS)
 
 /obj/structure/gob_portal/Destroy()
 	soundloop.stop()

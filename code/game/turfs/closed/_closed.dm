@@ -92,7 +92,7 @@
 				H.toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
 				playsound(src, "genblunt", 100, TRUE)
 				H.visible_message("<span class='warning'>[H] runs into [src]!</span>", "<span class='warning'>I run into [src]!</span>")
-				addtimer(CALLBACK(H, /mob/living/carbon/human/.proc/Knockdown, 10), 10)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, Knockdown), 10), 10)
 
 /turf/closed/Initialize()
 	. = ..()

@@ -41,7 +41,7 @@
 	if(activate_sound)
 		playsound(user, activate_sound, 100, FALSE, -1)
 	cooldowny = world.time
-	addtimer(CALLBACK(src, .proc/demagicify), activetime)
+	addtimer(CALLBACK(src, PROC_REF(demagicify)), activetime)
 	active = TRUE
 	update_icon()
 	activate(user)

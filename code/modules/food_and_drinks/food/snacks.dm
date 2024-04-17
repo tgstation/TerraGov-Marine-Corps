@@ -104,7 +104,7 @@ All foods are distributed among various categories. Use common sense.
 
 /obj/item/reagent_containers/food/snacks/Initialize()
 	if(rotprocess)
-		SSticker.OnRoundstart(CALLBACK(src, .proc/begin_rotting))
+		SSticker.OnRoundstart(CALLBACK(src, PROC_REF(begin_rotting)))
 	if(cooked_type || fried_type)
 		cooktime = 30 SECONDS
 	..()

@@ -404,14 +404,14 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 ///////////////// VILLAINS
 	for(var/datum/mind/traitor in pre_villains)
 		var/datum/antagonist/new_antag = new /datum/antagonist/villain()
-		addtimer(CALLBACK(traitor, /datum/mind.proc/add_antag_datum, new_antag), rand(10,100))
+		addtimer(CALLBACK(traitor, TYPE_PROC_REF(/datum/mind, add_antag_datum), new_antag), rand(10,100))
 		GLOB.pre_setup_antags -= traitor
 		villains += traitor
 
 ///////////////// WWOLF
 	for(var/datum/mind/werewolf in pre_werewolves)
 		var/datum/antagonist/new_antag = new /datum/antagonist/werewolf()
-		addtimer(CALLBACK(werewolf, /datum/mind.proc/add_antag_datum, new_antag), rand(10,100))
+		addtimer(CALLBACK(werewolf, TYPE_PROC_REF(/datum/mind, add_antag_datum), new_antag), rand(10,100))
 		GLOB.pre_setup_antags -= werewolf
 		werewolves += werewolf
 
@@ -421,13 +421,13 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	for(var/datum/mind/vampire in pre_vampires)
 		if(!vamplordpicked)
 			var/datum/antagonist/new_antag = new /datum/antagonist/vampirelord()
-			addtimer(CALLBACK(vampire, /datum/mind.proc/add_antag_datum, new_antag), rand(10,100))
+			addtimer(CALLBACK(vampire, TYPE_PROC_REF(/datum/mind, add_antag_datum), new_antag), rand(10,100))
 			GLOB.pre_setup_antags -= vampire
 			vampires += vampire
 			vamplordpicked = TRUE
 		else
 			var/datum/antagonist/new_antag = new /datum/antagonist/vampirelord/lesser()
-			addtimer(CALLBACK(vampire, /datum/mind.proc/add_antag_datum, new_antag), rand(10,100))
+			addtimer(CALLBACK(vampire, TYPE_PROC_REF(/datum/mind, add_antag_datum), new_antag), rand(10,100))
 			GLOB.pre_setup_antags -= vampire
 			vampires += vampire
 ///////////////// BANDIT
