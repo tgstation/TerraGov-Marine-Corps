@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - code_imp: "Robot, non-modular jaegar and xenonauten use armor defines"

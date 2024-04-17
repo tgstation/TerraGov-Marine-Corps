@@ -1,4 +1,4 @@
 author: "Lumipharon"
 delete-after: True
 changes:
-  - code_imp: "Cleaned up some sword code"
+  - bugfix: "fixes another order exploit"

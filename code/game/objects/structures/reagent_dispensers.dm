@@ -174,6 +174,7 @@
 	. = ..()
 
 	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
+		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
@@ -181,7 +182,6 @@
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
-	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
