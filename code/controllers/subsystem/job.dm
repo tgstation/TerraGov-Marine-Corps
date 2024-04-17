@@ -507,65 +507,71 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/do_required_jobs()
 	var/amt_picked = 0
-	var/list/require = list("King", "Merchant")
-	for(var/X in require)
-		var/datum/job/job = GetJob(X)
-		if(!job)
-			continue
-		for(var/mob/dead/new_player/player in unassigned)
-			if(is_banned_from(player.ckey, job.title))
-				continue
+	var/require = list()
+	for(var/datum/job/job in occupations)
+		if(job.required)
+			require += job
+	for(var/datum/job/job in require)
+		//attempt 1 - people with enough pq
+		//attempt 2 - anyone
+		for(var/i = job.total_positions, i > 0, i--)
+			for(var/attempt = 1, attempt <= 2, attempt++)
+				for(var/level in level_order)
+					for(var/mob/dead/new_player/player in unassigned)
+						if(player.client.prefs.job_preferences[job.title] != level)
+							continue
 
-			if(QDELETED(player))
-				break
+						if(is_banned_from(player.ckey, job.title))
+							continue
 
-			if(!job.player_old_enough(player.client))
-				continue
+						if(QDELETED(player))
+							break
 
-			if(job.required_playtime_remaining(player.client))
-				continue
+						if(!job.player_old_enough(player.client))
+							continue
 
-			if(player.mind && job.title in player.mind.restricted_roles)
-				continue
+						if(job.required_playtime_remaining(player.client))
+							continue
 
-			if(!(player.client.prefs.pref_species.name in job.allowed_races))
-				continue
-			
-			if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
-				continue
+						if(player.mind && job.title in player.mind.restricted_roles)
+							continue
 
-			if(job.plevel_req > player.client.patreonlevel())
-				continue
+						if(!(player.client.prefs.pref_species.name in job.allowed_races))
+							continue
+						
+						if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
+							continue
 
-			if(get_playerquality(player.ckey) < job.min_pq)
-				continue
+						if(job.plevel_req > player.client.patreonlevel())
+							continue
 
-			if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
-				continue
+						if(get_playerquality(player.ckey) < job.min_pq && attempt == 1)
+							continue
 
-			if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
-				continue
+						if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
+							continue
 
-			if(CONFIG_GET(flag/usewhitelist))
-				if(job.whitelist_req && (!player.client.whitelisted()))
-					continue
+						if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
+							continue
 
-			if(!(player.client.prefs.age in job.allowed_ages))
-				continue
+						if(CONFIG_GET(flag/usewhitelist))
+							if(job.whitelist_req && (!player.client.whitelisted()))
+								continue
 
-			if(!(player.client.prefs.gender in job.allowed_sexes))
-				continue
+						if(!(player.client.prefs.age in job.allowed_ages))
+							continue
 
-			if(!job.special_job_check(player))
-				continue
+						if(!(player.client.prefs.gender in job.allowed_sexes))
+							continue
 
-			// If the player wants that job on this level, then try give it to him.
-			if(player.client.prefs.job_preferences[job.title] == JP_HIGH)
-				// If the job isn't filled
-				if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-					AssignRole(player, job.title)
-					unassigned -= player
-					amt_picked++
+						if(!job.special_job_check(player))
+							continue
+
+						// If the job isn't filled.
+						if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+							AssignRole(player, job.title)
+							unassigned -= player
+							amt_picked++
 	return amt_picked
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
@@ -809,7 +815,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(20)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)

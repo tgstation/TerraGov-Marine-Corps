@@ -10,7 +10,7 @@
 	. = ..()
 	starting_area = get_area(loc)
 
-/mob/camera/aiEye/remote/base_construction/setLoc(var/t)
+/mob/camera/aiEye/remote/base_construction/setLoc(t)
 	var/area/curr_area = get_area(t)
 	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxillary_base))
 		return ..()

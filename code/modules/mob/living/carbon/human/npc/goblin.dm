@@ -108,7 +108,7 @@
 	damage_overlay_type = ""
 	var/raceicon = "goblin"
 
-/datum/species/goblin/regenerate_icons(var/mob/living/carbon/human/H)
+/datum/species/goblin/regenerate_icons(mob/living/carbon/human/H)
 //	H.cut_overlays()
 	H.icon_state = ""
 	if(H.notransform)
@@ -177,14 +177,14 @@
 /mob/living/carbon/human/species/goblin/update_inv_armor()
 	update_wearable()
 
-/datum/species/goblin/update_damage_overlays(var/mob/living/carbon/human/H)
+/datum/species/goblin/update_damage_overlays(mob/living/carbon/human/H)
 	return
 
 /mob/living/carbon/human/species/goblin/Initialize()
 	. = ..()
 	spawn(10)
 		after_creation()
-	//addtimer(CALLBACK(src, .proc/after_creation), 10)
+	//addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
 
 /mob/living/carbon/human/species/goblin/handle_combat()
 	if(mode == AI_HUNT)
@@ -402,7 +402,7 @@
 	update_icon()
 	spawn(2 SECONDS)
 		creategob()
-	//addtimer(CALLBACK(src, .proc/creategob), 4 SECONDS)
+	//addtimer(CALLBACK(src, PROC_REF(creategob)), 4 SECONDS)
 
 /obj/structure/gob_portal/Destroy()
 	soundloop.stop()

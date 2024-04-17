@@ -252,7 +252,7 @@
 		if(user)
 			if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 				used += 10
-/*		if(!owner.stat)
+		if(!owner.stat)
 			if(can_bloody_wound())
 				if(prob(used) || (brute_dam >= max_damage))
 					owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out!</span>"
@@ -261,7 +261,7 @@
 					if(owner.client)
 						winset(owner.client, "outputwindow.output", "max-lines=1")
 						winset(owner.client, "outputwindow.output", "max-lines=100")
-				return FALSE */
+				return FALSE 
 		for(var/datum/wound/fracture/W in wounds)
 			return FALSE
 		if(prob(used) && (brute_dam / max_damage >= 0.9))
@@ -343,9 +343,6 @@
 				owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out!</span>"
 				owner.flash_fullscreen("whiteflash3")
 				owner.Unconscious(600)
-				if(owner.client)
-					winset(owner.client, "outputwindow.output", "max-lines=1")
-					winset(owner.client, "outputwindow.output", "max-lines=100")
 			return FALSE
 
 /obj/item/bodypart/attacked_by(bclass, dam, mob/living/user, zone_precise)

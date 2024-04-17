@@ -8,7 +8,7 @@
 	var/implant_overlay
 	var/syndicate_implant = FALSE //Makes the implant invisible to health analyzers and medical HUDs.
 
-/obj/item/organ/cyberimp/New(var/mob/M = null)
+/obj/item/organ/cyberimp/New(mob/M = null)
 	if(iscarbon(M))
 		src.Insert(M)
 	if(implant_overlay)
@@ -89,7 +89,7 @@
 	stored_items = list()
 
 
-/obj/item/organ/cyberimp/brain/anti_drop/Remove(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/cyberimp/brain/anti_drop/Remove(mob/living/carbon/M, special = 0)
 	if(active)
 		ui_action_click()
 	..()
@@ -115,11 +115,11 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
-	RegisterSignal(owner, signalCache, .proc/on_signal)
+	RegisterSignal(owner, signalCache, PROC_REF(on_signal))
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
 	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
-		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(clear_stuns)), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
 	if(owner || !(organ_flags & ORGAN_FAILING))
@@ -133,7 +133,7 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), 90 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING

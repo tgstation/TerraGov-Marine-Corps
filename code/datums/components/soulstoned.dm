@@ -16,7 +16,7 @@
 	S.health = S.maxHealth
 	S.bruteloss = 0
 
-	RegisterSignal(S, COMSIG_MOVABLE_MOVED, .proc/free_prisoner)
+	RegisterSignal(S, COMSIG_MOVABLE_MOVED, PROC_REF(free_prisoner))
 
 /datum/component/soulstoned/proc/free_prisoner()
 	var/mob/living/simple_animal/S = parent

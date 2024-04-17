@@ -203,7 +203,7 @@
 		var/turf/T = get_turf(src)
 		T.visible_message("<span class='danger'>[src] flares briefly.</span>")
 
-		addtimer(CALLBACK(src, .proc/effect, user, .), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(effect), user, .), 1 SECONDS)
 
 /obj/item/dice/d20/fate/equipped(mob/user, slot)
 	. = ..()
@@ -212,7 +212,7 @@
 		user.dropItemToGround(src)
 
 
-/obj/item/dice/d20/fate/proc/effect(var/mob/living/carbon/human/user,roll)
+/obj/item/dice/d20/fate/proc/effect(mob/living/carbon/human/user,roll)
 	var/turf/T = get_turf(src)
 	switch(roll)
 		if(1)

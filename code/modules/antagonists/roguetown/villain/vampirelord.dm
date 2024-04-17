@@ -4,6 +4,8 @@
 #define VAMP_LEVEL_THREE 15000
 #define VAMP_LEVEL_FOUR 20000
 
+GLOBAL_LIST_EMPTY(vampire_objects)
+
 /datum/antagonist/vampirelord
 	name = "Vampire Lord"
 	roundend_category = "Vampires"
@@ -68,20 +70,20 @@
 		owner.current.verbs |= /mob/living/carbon/human/proc/disguise_button
 		add_objective(/datum/objective/vlordserve)
 		finalize_vampire_lesser()
-		for(var/obj/structure/vampire/bloodpool/mansion in world)
+		for(var/obj/structure/vampire/bloodpool/mansion in GLOB.vampire_objects)
 			mypool = mansion
 		equip_spawn()
 		greet()
-		addtimer(CALLBACK(owner.current, /mob/living/carbon/human/.proc/spawn_pick_class, "VAMPIRE SPAWN"), 5 SECONDS)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, spawn_pick_class), "VAMPIRE SPAWN"), 5 SECONDS)
 	else
 		forge_vampirelord_objectives()
 		finalize_vampire()
 		owner.current.verbs |= /mob/living/carbon/human/proc/demand_submission
 		owner.current.verbs |= /mob/living/carbon/human/proc/punish_spawn
-		for(var/obj/structure/vampire/bloodpool/mansion in world)
+		for(var/obj/structure/vampire/bloodpool/mansion in GLOB.vampire_objects)
 			mypool = mansion
 		equip_lord()
-		addtimer(CALLBACK(owner.current, /mob/living/carbon/human/.proc/choose_name_popup, "VAMPIRE LORD"), 5 SECONDS)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "VAMPIRE LORD"), 5 SECONDS)
 		greet()
 	return ..()
 // OLD AND EDITED
@@ -398,11 +400,11 @@
 			vamplevel = 1
 			batform = new
 			owner.current.AddSpell(batform)
-			for(var/obj/structure/vampire/portalmaker/S in world)
+			for(var/obj/structure/vampire/portalmaker/S in GLOB.vampire_objects)
 				S.unlocked = TRUE
 			for(var/S in MOBSTATS)
 				owner.current.change_stat(S, 2)
-			for(var/obj/structure/vampire/bloodpool/B in world)
+			for(var/obj/structure/vampire/bloodpool/B in GLOB.vampire_objects)
 				B.nextlevel = VAMP_LEVEL_TWO
 			to_chat(owner, "<font color='red'>I am refreshed and have grown stronger. The visage of the bat is once again available to me. I can also once again access my portals.</font>")
 		if(1)
@@ -415,12 +417,12 @@
 			owner.current.AddSpell(gas)
 			for(var/S in MOBSTATS)
 				owner.current.change_stat(S, 2)
-			for(var/obj/structure/vampire/bloodpool/B in world)
+			for(var/obj/structure/vampire/bloodpool/B in GLOB.vampire_objects)
 				B.nextlevel = VAMP_LEVEL_THREE
 			to_chat(owner, "<font color='red'>My power is returning. I can once again access my spells. I have also regained usage of my mist form.</font>")
 		if(2)
 			vamplevel = 3
-			for(var/obj/structure/vampire/necromanticbook/S in world)
+			for(var/obj/structure/vampire/necromanticbook/S in GLOB.vampire_objects)
 				S.unlocked = TRUE
 			owner.current.verbs |= /mob/living/carbon/human/proc/blood_strength
 			owner.current.verbs |= /mob/living/carbon/human/proc/blood_celerity
@@ -428,7 +430,7 @@
 			owner.current.AddSpell(new /obj/effect/proc_holder/spell/targeted/transfix/master)
 			for(var/S in MOBSTATS)
 				owner.current.change_stat(S, 2)
-			for(var/obj/structure/vampire/bloodpool/B in world)
+			for(var/obj/structure/vampire/bloodpool/B in GLOB.vampire_objects)
 				B.nextlevel = VAMP_LEVEL_FOUR
 			to_chat(owner, "<font color='red'>My dominion over others minds and my own body returns to me. I am nearing perfection. The armies of the dead shall now answer my call.</font>")
 		if(3)
@@ -467,7 +469,7 @@
 		if(SSticker.rulermob == H)
 			H.receive_submission(src)
 
-/mob/living/carbon/human/proc/receive_submission(var/mob/living/carbon/human/lord)
+/mob/living/carbon/human/proc/receive_submission(mob/living/carbon/human/lord)
 	if(stat)
 		return
 	switch(alert("Submit and Pledge Allegiance to Lord [lord.name]?",,"Yes","No"))
@@ -492,7 +494,7 @@
 		to_chat(V, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
 	for(var/datum/mind/D in C.deathknights)
 		to_chat(D, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
-	for(var/mob/dead/observer/rogue/arcaneeye/A in world)
+	for(var/mob/dead/observer/rogue/arcaneeye/A in GLOB.mob_list)
 		to_chat(A, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
 
 /mob/living/carbon/human/proc/punish_spawn()
@@ -530,25 +532,25 @@
 /obj/structure/vampire/portal/Crossed(atom/movable/AM)
 	. = ..()
 	if(istype(AM, /mob/living))
-		for(var/obj/effect/landmark/vteleport/dest in world)
+		for(var/obj/effect/landmark/vteleport/dest in GLOB.landmarks_list)
 			playsound(loc, 'sound/misc/portalenter.ogg', 100, FALSE, pressure_affected = FALSE)
 			AM.forceMove(dest.loc)
 			break
 
 /obj/structure/vampire/portal/sending/Crossed(atom/movable/AM)
 	if(istype(AM, /mob/living))
-		for(var/obj/effect/landmark/vteleportsenddest/V in world)
+		for(var/obj/effect/landmark/vteleportsenddest/V in GLOB.landmarks_list)
 			AM.forceMove(V.loc)
 
 /obj/structure/vampire/portal/sending/Destroy()
-	for(var/obj/effect/landmark/vteleportsenddest/V in world)
+	for(var/obj/effect/landmark/vteleportsenddest/V in GLOB.landmarks_list)
 		qdel(V)
-	for(var/obj/structure/vampire/portalmaker/P in world)
+	for(var/obj/structure/vampire/portalmaker/P in GLOB.vampire_objects)
 		P.sending =  FALSE
 	..()
 
 /obj/structure/vampire/portalmaker/proc/create_portal_return(aname,duration)
-	for(var/obj/effect/landmark/vteleportdestination/Vamp in world)
+	for(var/obj/effect/landmark/vteleportdestination/Vamp in GLOB.landmarks_list)
 		if(Vamp.amuletname == aname)
 			var/obj/structure/vampire/portal/P = new(Vamp.loc)
 			P.duration = duration
@@ -558,7 +560,7 @@
 
 /obj/structure/vampire/portalmaker/proc/create_portal(choice,duration)
 	sending = TRUE
-	for(var/obj/effect/landmark/vteleportsending/S in world)
+	for(var/obj/effect/landmark/vteleportsending/S in GLOB.landmarks_list)
 		var/obj/structure/vampire/portal/sending/P = new(S.loc)
 		P.visible_message("<span class='boldnotice'>A sickening tear is heard as a sinister portal emerges.</span>")
 
@@ -571,7 +573,7 @@
 	qdel(src)
 
 /obj/structure/vampire/portal/sending/Destroy()
-	for(var/obj/structure/vampire/portalmaker/PM in world)
+	for(var/obj/structure/vampire/portalmaker/PM in GLOB.vampire_objects)
 		PM.sending = FALSE
 	. = ..()
 
@@ -664,7 +666,7 @@
 	var/inputportal = input(user, "Which type of portal?", "Portal Type") as anything in choices
 	switch(inputportal)
 		if("Return")
-			for(var/obj/item/clothing/neck/roguetown/portalamulet/P in world)
+			for(var/obj/item/clothing/neck/roguetown/portalamulet/P in GLOB.vampire_objects)
 				possibleportals += P
 			var/atom/choice = input(user, "Choose an area to open the portal", "Choices") as null|anything in possibleportals
 			if(!choice)
@@ -686,7 +688,7 @@
 			if(sending)
 				to_chat(user, "A portal is already active!")
 				return
-			for(var/obj/item/clothing/neck/roguetown/portalamulet/P in world)
+			for(var/obj/item/clothing/neck/roguetown/portalamulet/P in GLOB.vampire_objects)
 				sendpossibleportals += P
 			var/atom/choice = input(user, "Choose an area to open the portal to", "Choices") as null|anything in sendpossibleportals
 			if(!choice)
@@ -713,7 +715,7 @@
 		uses -= 1
 		var/obj/effect/landmark/vteleportdestination/Vamp = new(loc)
 		Vamp.amuletname = name
-		for(var/obj/structure/vampire/portalmaker/P in world)
+		for(var/obj/structure/vampire/portalmaker/P in GLOB.vampire_objects)
 			P.create_portal_return(name, 3000)
 		user.playsound_local(get_turf(src), 'sound/misc/portalactivate.ogg', 100, FALSE, pressure_affected = FALSE)
 		if(uses <= 0)
@@ -770,7 +772,7 @@
 							sunstolen = FALSE
 						priority_announce("The Sun is torn from the sky!", "Terrible Omen", 'sound/misc/astratascream.ogg')
 						addomen("sunsteal")
-						for(var/mob/living/carbon/human/W in world)
+						for(var/mob/living/carbon/human/W in GLOB.human_list)
 							var/datum/patrongods/patron = W.client.prefs.selected_patron
 							if(patron.name == "Astrata")
 								if(!W.mind.antag_datums)
@@ -870,7 +872,7 @@
 
 /datum/objective/vampirelord/infiltrate/one/check_completion()
 	var/datum/game_mode/chaosmode/C = SSticker.mode
-	var/list/churchjobs = list("Priest", "Priestess", "Cleric", "Acolyte", "Churchling", "Crusader")
+	var/list/churchjobs = list("Priest", "Priestess", "Cleric", "Acolyte", "Templar", "Churchling", "Crusader")
 	for(var/datum/mind/V in C.vampires)
 		if(V.current.job in churchjobs)
 			return TRUE
@@ -969,10 +971,26 @@
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	var/uses = 3
 
+/obj/item/clothing/neck/roguetown/portalamulet/Initialize()
+	GLOB.vampire_objects |= src
+	. = ..()
+	
+/obj/item/clothing/neck/roguetown/portalamulet/Destroy()
+	GLOB.vampire_objects -= src
+	return ..()
+
 /obj/structure/vampire
 	icon = 'icons/roguetown/topadd/death/vamp-lord.dmi'
 	var/unlocked = FALSE
 	density = TRUE
+
+/obj/structure/vampire/Initialize()
+	GLOB.vampire_objects |= src
+	. = ..()
+	
+/obj/structure/vampire/Destroy()
+	GLOB.vampire_objects -= src
+	return ..()
 
 /obj/structure/vampire/bloodpool
 	name = "Crimson Crucible"
@@ -1159,7 +1177,7 @@
 		to_chat(V, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
 	for(var/datum/mind/D in C.deathknights)
 		to_chat(D, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
-	for(var/mob/dead/observer/rogue/arcaneeye/A in world)
+	for(var/mob/dead/observer/rogue/arcaneeye/A in GLOB.mob_list)
 		to_chat(A, "<span class='boldnotice'>A message from [src.real_name]:[msg]</span>")
 
 /mob/dead/observer/rogue/arcaneeye/proc/eye_up()

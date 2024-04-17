@@ -128,6 +128,18 @@
 	name = "fung-eye"
 	desc = ""
 
+/obj/item/organ/eyes/elf
+	name = "elf eyes"
+	desc = ""
+	see_in_dark = 4
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+
+/obj/item/organ/eyes/halfelf
+	name = "half-elf eyes"
+	desc = ""
+	see_in_dark = 3
+	lighting_alpha = LIGHTING_PLANE_ALPHA_LESSER_NV_TRAIT
+
 ///Robotic
 
 /obj/item/organ/eyes/robotic
@@ -288,7 +300,7 @@
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
-	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, .proc/update_visuals)
+	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_visuals))
 
 /obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()

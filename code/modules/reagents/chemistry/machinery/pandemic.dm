@@ -224,7 +224,7 @@
 			update_icon()
 			var/turf/source_turf = get_turf(src)
 			log_virus("A culture bottle was printed for the virus [A.admin_details()] at [loc_name(source_turf)] by [key_name(usr)]")
-			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 50)
+			addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 50)
 			. = TRUE
 		if("create_vaccine_bottle")
 			if (wait)
@@ -236,7 +236,7 @@
 			B.reagents.add_reagent(/datum/reagent/vaccine, 15, list(id))
 			wait = TRUE
 			update_icon()
-			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 200)
+			addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 200)
 			. = TRUE
 		if("symptom_details")
 			var/picked_symptom_index = text2num(params["picked_symptom"])

@@ -16,16 +16,16 @@
 	SEND_SOUND(user, sound('sound/blank.ogg'))
 	for(var/turf/T in targets)
 		for(var/obj/machinery/door/door in T.contents)
-			INVOKE_ASYNC(src, .proc/open_door, door)
+			INVOKE_ASYNC(src, PROC_REF(open_door), door)
 		for(var/obj/structure/closet/C in T.contents)
-			INVOKE_ASYNC(src, .proc/open_closet, C)
+			INVOKE_ASYNC(src, PROC_REF(open_closet), C)
 
-/obj/effect/proc_holder/spell/aoe_turf/knock/proc/open_door(var/obj/machinery/door/door)
+/obj/effect/proc_holder/spell/aoe_turf/knock/proc/open_door(obj/machinery/door/door)
 	if(istype(door, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/A = door
 		A.locked = FALSE
 	door.open()
 
-/obj/effect/proc_holder/spell/aoe_turf/knock/proc/open_closet(var/obj/structure/closet/C)
+/obj/effect/proc_holder/spell/aoe_turf/knock/proc/open_closet(obj/structure/closet/C)
 	C.locked = FALSE
 	C.open()

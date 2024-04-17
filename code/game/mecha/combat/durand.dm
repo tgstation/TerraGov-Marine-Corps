@@ -17,8 +17,8 @@
 	shield = new/obj/durand_shield
 	shield.chassis = src
 	shield.layer = layer
-	RegisterSignal(src, COMSIG_MECHA_ACTION_ACTIVATE, .proc/relay)
-	RegisterSignal(src, COMSIG_PROJECTILE_PREHIT, .proc/prehit)
+	RegisterSignal(src, COMSIG_MECHA_ACTION_ACTIVATE, PROC_REF(relay))
+	RegisterSignal(src, COMSIG_PROJECTILE_PREHIT, PROC_REF(prehit))
 	. = ..()
 
 /obj/mecha/combat/durand/Destroy()
@@ -45,7 +45,7 @@
 		shield.forceMove(loc)
 		shield.dir = dir
 
-/obj/mecha/combat/durand/forceMove(var/turf/T)
+/obj/mecha/combat/durand/forceMove(turf/T)
 	. = ..()
 	shield.forceMove(T)
 
@@ -72,7 +72,7 @@
 
 /**Checks if defense mode is enabled, and if the attacker is standing in an area covered by the shield.
 Expects a turf. Returns true if the attack should be blocked, false if not.*/
-/obj/mecha/combat/durand/proc/defense_check(var/turf/aloc)
+/obj/mecha/combat/durand/proc/defense_check(turf/aloc)
 	if (!defense_mode || !shield || shield.switching)
 		return FALSE
 	. = FALSE
@@ -144,7 +144,7 @@ own integrity back to max. Shield is automatically dropped if we run out of powe
 
 /obj/durand_shield/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_MECHA_ACTION_ACTIVATE, .proc/activate)
+	RegisterSignal(src, COMSIG_MECHA_ACTION_ACTIVATE, PROC_REF(activate))
 
 /obj/durand_shield/Destroy()
 	if(chassis)

@@ -5,8 +5,8 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	flag = ADVENTURER
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 75
+	spawn_positions = 75
 	allowed_races = list("Humen",
 	"Elf",
 	"Half-Elf",
@@ -15,17 +15,18 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	"Dark Elf",
 	"Aasimar"
 	)
-	tutorial = "Hero of Nothing, Adventurer by trade. Whatever led you to this fate is up to the wind to decide, and youve never fancied yourself for much other than the thrill. Someday your pride is going to catch up to you, and youre going to find out why most men dont end up in the annals of history."
+	tutorial = "Hero of nothing, adventurer by trade. Whatever led you to this fate is up to the wind to decide, and you've never fancied yourself for much other than the thrill. Someday your pride is going to catch up to you, and you're going to find out why most men don't end up in the annals of history."
 
 
 	outfit = null
 	outfit_female = null
 
-	var/isvillager = FALSE
-	var/ispilgrim = FALSE
 	display_order = JDO_ADVENTURER
 	show_in_credits = FALSE
 	min_pq = -4
+	
+	var/isvillager = FALSE
+	var/ispilgrim = FALSE
 
 /datum/job/roguetown/adventurer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
@@ -64,16 +65,14 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 					testing("[A.name] fail9")
 					continue
 
-			if(!isvillager && !ispilgrim) //adventurer
-				if(A.ispilgrim || A.isvillager)
-					continue
-			if(isvillager) //towner
-				if(!A.isvillager)
-					continue
+			if((!isvillager && !ispilgrim) && (A.isvillager || A.ispilgrim)) //adventurer
+				continue
 
-//			if(ispilgrim) //pilgrim
-//				if(A.ispilgrim)
-//					continue
+			if(isvillager && !A.isvillager) //towner
+				continue
+
+			if(ispilgrim && !A.ispilgrim) //pilgrim
+				continue
 
 			if(A.plevel_req > M.client.patreonlevel())
 				testing("[A.name] fail6")

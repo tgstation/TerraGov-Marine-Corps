@@ -26,7 +26,7 @@
 	spawn(10)
 		after_creation()
 
-	addtimer(CALLBACK(src, .proc/after_creation), 10)
+	addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
 
 /mob/living/carbon/human/species/skeleton/after_creation()
 	..()

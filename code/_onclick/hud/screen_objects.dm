@@ -379,7 +379,7 @@
 	var/border1
 	var/border2
 
-/obj/screen/act_intent/rogintent/update_icon(var/list/intentsl,var/list/intentsr, oactive = FALSE)
+/obj/screen/act_intent/rogintent/update_icon(list/intentsl,list/intentsr, oactive = FALSE)
 	..()
 	cut_overlays(TRUE)
 	if(!intentsl || !intentsr)
@@ -500,7 +500,7 @@
 				return
 		user.rog_intent_change(clicked)
 
-/obj/screen/act_intent/rogintent/proc/get_index_at_loc(var/xl, var/yl)
+/obj/screen/act_intent/rogintent/proc/get_index_at_loc(xl, yl)
 /*	if(xl<=64)
 		if(xl<32)
 			if(yl>16)
@@ -770,7 +770,7 @@
 
 /obj/screen/advsetup/New(client/C) //TODO: Make this use INITIALIZE_IMMEDIATE, except its not easy
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_mob), 30)
+	addtimer(CALLBACK(src, PROC_REF(check_mob)), 30)
 
 /obj/screen/advsetup/Destroy()
 	hud.static_inventory -= src

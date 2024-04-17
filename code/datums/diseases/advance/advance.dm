@@ -85,7 +85,7 @@
 			S.End(src)
 	return ..()
 
-/datum/disease/advance/try_infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
 	//see if we are more transmittable than enough diseases to replace them
 	//diseases replaced in this way do not confer immunity
 	var/list/advance_diseases = list()
@@ -93,7 +93,7 @@
 		advance_diseases += P
 	var/replace_num = advance_diseases.len + 1 - DISEASE_LIMIT //amount of diseases that need to be removed to fit this one
 	if(replace_num > 0)
-		sortTim(advance_diseases, /proc/cmp_advdisease_resistance_asc)
+		sortTim(advance_diseases, GLOBAL_PROC_REF(cmp_advdisease_resistance_asc))
 		for(var/i in 1 to replace_num)
 			var/datum/disease/advance/competition = advance_diseases[i]
 			if(totalTransmittable() > competition.totalResistance())
@@ -394,7 +394,7 @@
 */
 
 // Mix a list of advance diseases and return the mixed result.
-/proc/Advance_Mix(var/list/D_list)
+/proc/Advance_Mix(list/D_list)
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
@@ -447,7 +447,7 @@
 	symptoms += SSdisease.list_symptoms.Copy()
 	do
 		if(user)
-			var/symptom = input(user, "Choose a symptom to add ([i] remaining)", "Choose a Symptom") in sortList(symptoms, /proc/cmp_typepaths_asc)
+			var/symptom = input(user, "Choose a symptom to add ([i] remaining)", "Choose a Symptom") in sortList(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc))
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))

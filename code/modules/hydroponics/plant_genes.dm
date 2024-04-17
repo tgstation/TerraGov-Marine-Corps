@@ -35,7 +35,7 @@
 /datum/plant_gene/core/proc/apply_stat(obj/item/seeds/S)
 	return
 
-/datum/plant_gene/core/New(var/i = null)
+/datum/plant_gene/core/New(i = null)
 	..()
 	if(!isnull(i))
 		value = i
@@ -235,7 +235,7 @@
 	if(!istype(G, /obj/item/grown/bananapeel) && (!G.reagents || !G.reagents.has_reagent(/datum/reagent/lube)))
 		stun_len /= 3
 
-	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, .proc/handle_slip, G))
+	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, PROC_REF(handle_slip), G))
 
 /datum/plant_gene/trait/slip/proc/handle_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/M)
 	for(var/datum/plant_gene/trait/T in G.seed.genes)

@@ -136,7 +136,7 @@
 	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
-/obj/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
+/obj/projectile/magic/door/proc/OpenDoor(obj/machinery/door/D)
 	if(istype(D, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/A = D
 		A.locked = FALSE
@@ -312,7 +312,7 @@
 	target.animate_atom_living(firer)
 	..()
 
-/atom/proc/animate_atom_living(var/mob/living/owner = null)
+/atom/proc/animate_atom_living(mob/living/owner = null)
 	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
 		if(istype(src, /obj/structure/statue/petrified))
 			var/obj/structure/statue/petrified/P = src
@@ -438,8 +438,8 @@
 /obj/structure/closet/decay/Initialize()
 	. = ..()
 	if(auto_destroy)
-		addtimer(CALLBACK(src, .proc/bust_open), 5 MINUTES)
-	addtimer(CALLBACK(src, .proc/magicly_lock), 5)
+		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(magicly_lock)), 5)
 
 /obj/structure/closet/decay/proc/magicly_lock()
 	if(!welded)
@@ -453,7 +453,7 @@
 
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 30)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 30)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 30)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -461,12 +461,12 @@
 		if(icon_state == magic_icon) //check if we used the magic icon at all before giving it the lesser magic icon
 			unmagify()
 		else
-			addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 
 /obj/structure/closet/decay/proc/unmagify()
 	icon_state = weakened_icon
 	update_icon()
-	addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 
 /obj/projectile/magic/flying
@@ -582,7 +582,7 @@
 		possession_test(M)
 		return BULLET_ACT_HIT
 
-/obj/projectile/magic/wipe/proc/possession_test(var/mob/living/carbon/M)
+/obj/projectile/magic/wipe/proc/possession_test(mob/living/carbon/M)
 	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = M.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
 	var/poll_message = "Do you want to play as [M.real_name]?"
 	if(M.mind && M.mind.assigned_role)
@@ -706,7 +706,7 @@
 			return BULLET_ACT_BLOCK
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
 
 //still magic related, but a different path
 

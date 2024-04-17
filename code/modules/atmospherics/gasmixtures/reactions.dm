@@ -17,7 +17,7 @@
 				if (!reaction_key || initial(reaction_key.rarity) > initial(req_gas.rarity))
 					reaction_key = req_gas
 		.[reaction_key] += list(reaction)
-		sortTim(., /proc/cmp_gas_reactions, TRUE)
+		sortTim(., GLOBAL_PROC_REF(cmp_gas_reactions), TRUE)
 
 /proc/cmp_gas_reactions(list/datum/gas_reaction/a, list/datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
 	if (!length(a) || !length(b))

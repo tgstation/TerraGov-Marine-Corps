@@ -68,7 +68,7 @@
 /mob/living/simple_animal/slaughter/phasein()
 	. = ..()
 	add_movespeed_modifier(MOVESPEED_ID_SLAUGHTER, update=TRUE, priority=100, multiplicative_slowdown=-1)
-	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, MOVESPEED_ID_SLAUGHTER, TRUE), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), MOVESPEED_ID_SLAUGHTER, TRUE), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 
 //The loot from killing a slaughter demon - can be consumed to allow the user to blood crawl
@@ -179,7 +179,7 @@
 			playsound(T, feast_sound, 50, TRUE, -1)
 			to_chat(M, "<span class='clown'>I leave [src]'s warm embrace,	and feel ready to take on the world.</span>")
 
-/mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
+/mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(mob/living/victim)
 	if(consumed_mobs)
 		// Keep their corpse so rescue is possible
 		consumed_mobs += victim

@@ -16,17 +16,16 @@
 
 	outfit = /datum/outfit/job/roguetown/knight
 	give_bank_account = 22
-	min_pq = -4
+	min_pq = 2
 
 /datum/job/roguetown/knight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-    ..()
-    if(ishuman(L))
-        var/mob/living/carbon/human/H = L
-        var/prev_name = H.name
-        var/prev_real_name = H.real_name
-        H.name = "Sir [prev_name]"
-            H.real_name = "Sir [prev_real_name]"
-
+	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/prev_real_name = H.real_name
+		var/prev_name = H.name
+		H.real_name = "Sir [prev_real_name]"
+		H.name = "Sir [prev_name]"
 
 /datum/outfit/job/roguetown/knight/pre_equip(mob/living/carbon/human/H)
 	..()

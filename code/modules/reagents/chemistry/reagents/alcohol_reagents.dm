@@ -609,7 +609,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = ""
 	shot_glass_icon_state = "toxinsspecialglass"
 
-/datum/reagent/consumable/ethanol/toxins_special/on_mob_life(var/mob/living/M)
+/datum/reagent/consumable/ethanol/toxins_special/on_mob_life(mob/living/M)
 	M.adjust_bodytemperature(15 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL + 20) //310.15 is the normal bodytemp.
 	return ..()
 
@@ -1863,7 +1863,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 	var/minimum_name_percent = 0.35
 	name = ""
-	var/list/names_in_order = sortTim(names, /proc/cmp_numeric_dsc, TRUE)
+	var/list/names_in_order = sortTim(names, GLOBAL_PROC_REF(cmp_numeric_dsc), TRUE)
 	var/named = FALSE
 	for(var/fruit_name in names)
 		if(names[fruit_name] >= minimum_name_percent)

@@ -12,23 +12,23 @@
 
 /datum/outfit/job/roguetown/adventurer/cleric/pre_equip(mob/living/carbon/human/H)
 	..()
-//	var/allowed_patrons = list(GLOB.patronlist["Astrata"], GLOB.patronlist["Dendor"], GLOB.patronlist["Necra"])
 	var/allowed_patrons = list("Astrata", "Dendor", "Necra")
 
 	var/datum/patrongods/ourpatron
 	if(istype(H.PATRON, /datum/patrongods))
 		ourpatron = H.PATRON
 
-	if(!(ourpatron.name in allowed_patrons))
-		var/datum/patrongods/list/possiblegods = GLOB.patronlist
+	if(!ourpatron || !(ourpatron.name in allowed_patrons))
 
-		for(var/datum/patrongods/P in possiblegods)
-			if(!(P.name in allowed_patrons))
-				possiblegods -= P
+		var/list/datum/patrongods/possiblegods = list()
+		for(var/datum/patrongods/P in GLOB.patronlist)
+			if(P.name in allowed_patrons)
+				possiblegods |= P
 
 		ourpatron = pick(possiblegods)
 		H.PATRON = ourpatron
 		to_chat(H, "<span class='warning'> My patron had not endorsed my practices in my younger years. I've since grown acustomed to [H.PATRON].")
+
 	switch(ourpatron.name)
 		if("Astrata")
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
@@ -53,12 +53,12 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 		H.change_stat("strength", 1)
-		H.change_stat("perception", -2)
+		H.change_stat("perception", 1)
 		H.change_stat("intelligence", 2)
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 3)
@@ -66,5 +66,6 @@
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	var/datum/devotion/cleric_holder/C = new /datum/devotion/cleric_holder(H, H.PATRON)
 	C.holder_mob = H
+	C.update_devotion(50)
 	C.grant_spells(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)

@@ -295,12 +295,12 @@
 				glow.update_light()
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(selection.song_beat)
 
 #undef DISCO_INFENO_RANGE
 
-/obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
+/obj/machinery/jukebox/disco/proc/dance(mob/living/M) //Show your moves
 	set waitfor = FALSE
 	switch(rand(0,9))
 		if(0 to 1)
@@ -314,14 +314,14 @@
 
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
-		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
+		dance_rotate(M, CALLBACK(M, TYPE_PROC_REF(/mob, dance_flip)))
 		sleep(20)
 
 /mob/proc/dance_flip()
 	if(dir == WEST)
 		emote("flip")
 
-/obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance3(mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 75)
 		if (!M)
@@ -369,7 +369,7 @@
 	M.lying_fix()
 
 
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(mob/living/M)
 	var/speed = rand(1,3)
 	set waitfor = 0
 	var/time = 30
@@ -381,7 +381,7 @@
 				NS.set_resting(!NS.resting, TRUE)
 		 time--
 
-/obj/machinery/jukebox/disco/proc/dance5(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance5(mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)

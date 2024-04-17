@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if (picked && is_station_level(picked.z))
 			GLOB.teleportlocs[AR.name] = AR
 
-	sortTim(GLOB.teleportlocs, /proc/cmp_text_asc)
+	sortTim(GLOB.teleportlocs, GLOBAL_PROC_REF(cmp_text_asc))
 
 /**
   * Called when an area loads
@@ -345,7 +345,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 				if(D.operating)
 					D.nextstate = opening ? FIREDOOR_OPEN : FIREDOOR_CLOSED
 				else if(!(D.density ^ opening))
-					INVOKE_ASYNC(D, (opening ? /obj/machinery/door/firedoor.proc/open : /obj/machinery/door/firedoor.proc/close))
+					INVOKE_ASYNC(D, (opening ? TYPE_PROC_REF(/obj/machinery/door/firedoor, open) : TYPE_PROC_REF(/obj/machinery/door/firedoor, close)))
 
 /**
   * Generate an firealarm alert for this area
@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/mob/living/silicon/SILICON = i
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
 			//Cancel silicon alert after 1 minute
-			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
+			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,trigger), 600)
 
 /**
   * Trigger the fire alarm visual affects in an area
@@ -635,7 +635,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /client
 	var/musicfading = 0
 
-/mob/living/proc/intro_area(var/area/A)
+/mob/living/proc/intro_area(area/A)
 	if(!mind)
 		return
 	if(A.first_time_text in mind.areas_entered)
@@ -655,9 +655,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	T.maptext_y = 64
 	playsound_local(src, 'sound/misc/area.ogg', 100, FALSE)
 	animate(T, alpha = 255, time = 10, easing = EASE_IN)
-	addtimer(CALLBACK(src, .proc/clear_area_text, T), 35)
+	addtimer(CALLBACK(src, PROC_REF(clear_area_text), T), 35)
 
-/mob/living/proc/clear_area_text(var/obj/screen/A)
+/mob/living/proc/clear_area_text(obj/screen/A)
 	if(!A)
 		return
 	if(!client)
@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			client.screen -= A
 			qdel(A)
 
-/mob/living/proc/clear_time_icon(var/obj/screen/A)
+/mob/living/proc/clear_time_icon(obj/screen/A)
 	if(!A)
 		return
 	if(!client)

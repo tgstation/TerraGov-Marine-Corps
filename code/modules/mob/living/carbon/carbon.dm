@@ -552,7 +552,7 @@
 				mob_timers["puke"] = world.time
 				if(getorgan(/obj/item/organ/stomach))
 					to_chat(src, "<span class='warning'>I'm going to puke...</span>")
-					addtimer(CALLBACK(src, .proc/vomit, 50), rand(8 SECONDS, 15 SECONDS))
+					addtimer(CALLBACK(src, PROC_REF(vomit), 50), rand(8 SECONDS, 15 SECONDS))
 			else
 				if(prob(3))
 					to_chat(src, "<span class='warning'>I feel sick...</span>")
@@ -560,7 +560,7 @@
 			if(getorgan(/obj/item/organ/stomach))
 				mob_timers["puke"] = world.time
 				to_chat(src, "<span class='warning'>I'm going to puke...</span>")
-				addtimer(CALLBACK(src, .proc/vomit, 50), rand(8 SECONDS, 15 SECONDS))
+				addtimer(CALLBACK(src, PROC_REF(vomit), 50), rand(8 SECONDS, 15 SECONDS))
 	add_nausea(-1)
 
 
@@ -1101,7 +1101,7 @@
 			I.extinguish()
 	..()
 
-/mob/living/carbon/fakefire(var/fire_icon = "Generic_mob_burning")
+/mob/living/carbon/fakefire(fire_icon = "Generic_mob_burning")
 	var/mutable_appearance/new_fire_overlay = mutable_appearance('icons/mob/OnFire.dmi', fire_icon, -FIRE_LAYER)
 	new_fire_overlay.appearance_flags = RESET_COLOR
 	overlays_standing[FIRE_LAYER] = new_fire_overlay
@@ -1234,7 +1234,7 @@
 		if(!check_rights(NONE))
 			return
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, /proc/cmp_typepaths_asc)
+		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc))
 		if(!usr)
 			return
 		if(QDELETED(src))
@@ -1256,7 +1256,7 @@
 		if(!check_rights(NONE))
 			return
 		var/list/hallucinations = subtypesof(/datum/hallucination)
-		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, /proc/cmp_typepaths_asc)
+		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, GLOBAL_PROC_REF(cmp_typepaths_asc))
 		if(!usr)
 			return
 		if(QDELETED(src))

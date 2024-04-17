@@ -299,7 +299,7 @@
 			return FALSE
 	return TRUE
 
-/mob/living/carbon/proc/kick_attack_check(var/mob/living/L)
+/mob/living/carbon/proc/kick_attack_check(mob/living/L)
 	if(L == src)
 		return FALSE
 	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
@@ -308,7 +308,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/proc/lying_attack_check(var/mob/living/L, obj/item/I)
+/mob/living/carbon/proc/lying_attack_check(mob/living/L, obj/item/I)
 	if(L == src)
 		return TRUE
 	var/CZ = FALSE
@@ -1484,7 +1484,7 @@
 //Mobs on Fire end
 
 // used by secbot and monkeys Crossed
-/mob/living/proc/knockOver(var/mob/living/carbon/C)
+/mob/living/proc/knockOver(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
 						"[C] dives out of [src]'s way!", \
@@ -1898,7 +1898,7 @@
 		return
 	reset_perspective(ceiling)
 	update_cone_show()
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking) //We stop looking up if we move.
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking)) //We stop looking up if we move.
 
 /mob/living/proc/look_further(turf/T)
 
@@ -1929,7 +1929,7 @@
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message("<span class='info'>[src] looks into the distance.</span>")
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking)
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()
 
 /mob/proc/look_down(turf/T)
@@ -1966,7 +1966,7 @@
 	changeNext_move(CLICK_CD_MELEE)
 	reset_perspective(OS)
 	update_cone_show()
-//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_looking)
+//	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 
 /mob/living/proc/stop_looking()
 //	animate(client, pixel_x = 0, pixel_y = 0, 2, easing = SINE_EASING)

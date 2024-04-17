@@ -494,7 +494,7 @@
 		to_chat(user, "<span class='info'>I light [src] on fire.</span>")
 		add_overlay(GLOB.fire_overlay)
 		if(!isGlass)
-			addtimer(CALLBACK(src, .proc/explode), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(explode)), 5 SECONDS)
 
 /obj/item/reagent_containers/food/drinks/bottle/molotov/proc/explode()
 	if(!active)

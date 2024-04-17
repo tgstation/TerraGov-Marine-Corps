@@ -147,11 +147,11 @@
 				if(foundchaff.len)
 					stop_automated_movement = TRUE
 					Goto(pick(foundchaff),move_to_delay)
-					addtimer(CALLBACK(src, .proc/return_action), 15 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(return_action)), 15 SECONDS)
 			else
 				stop_automated_movement = TRUE
 				Goto(pick(foundnests),move_to_delay)
-				addtimer(CALLBACK(src, .proc/return_action), 15 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(return_action)), 15 SECONDS)
 
 
 /obj/structure/fluff/nest

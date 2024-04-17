@@ -159,9 +159,9 @@
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()
-	.["Dagger"] = CALLBACK(src,.proc/admin_give_dagger)
-	.["Dagger and Metal"] = CALLBACK(src,.proc/admin_give_metal)
-	.["Remove Dagger and Metal"] = CALLBACK(src, .proc/admin_take_all)
+	.["Dagger"] = CALLBACK(src,PROC_REF(admin_give_dagger))
+	.["Dagger and Metal"] = CALLBACK(src,PROC_REF(admin_give_metal))
+	.["Remove Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_take_all))
 
 /datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
 	if(!equip_cultist(metal=FALSE))
@@ -266,7 +266,7 @@
 			if(B.current)
 				SEND_SOUND(B.current, 'sound/blank.ogg')
 				to_chat(B.current, "<span class='cultlarge'>The veil weakens as my cult grows, my eyes begin to glow...</span>")
-				addtimer(CALLBACK(src, .proc/rise, B.current), 200)
+				addtimer(CALLBACK(src, PROC_REF(rise), B.current), 200)
 		cult_risen = TRUE
 
 	if(ratio > CULT_ASCENDENT && !cult_ascendent)
@@ -274,7 +274,7 @@
 			if(B.current)
 				SEND_SOUND(B.current, 'sound/blank.ogg')
 				to_chat(B.current, "<span class='cultlarge'>My cult is ascendent and the red harvest approaches - you cannot hide my true nature for much longer!!</span>")
-				addtimer(CALLBACK(src, .proc/ascend, B.current), 200)
+				addtimer(CALLBACK(src, PROC_REF(ascend), B.current), 200)
 		cult_ascendent = TRUE
 
 

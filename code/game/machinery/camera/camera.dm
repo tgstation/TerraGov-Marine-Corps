@@ -144,7 +144,7 @@
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
 			update_icon()
-			addtimer(CALLBACK(src, .proc/post_emp_reset, emped, network), 90 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(post_emp_reset), emped, network), 90 SECONDS)
 			for(var/i in GLOB.player_list)
 				var/mob/M = i
 				if (M.client.eye == src)
@@ -164,7 +164,7 @@
 	if(can_use())
 		GLOB.cameranet.addCamera(src)
 	emped = 0 //Resets the consecutive EMP count
-	addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
+	addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
 
 /obj/machinery/camera/ex_act(severity, target)
 	if(invuln)
@@ -406,7 +406,7 @@
 	if(status)
 		change_msg = "reactivates"
 		triggerCameraAlarm()
-		addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
+		addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
 	if(displaymessage)
 		if(user)
 			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
@@ -463,14 +463,14 @@
 
 //Return a working camera that can see a given mob
 //or null if none
-/proc/seen_by_camera(var/mob/M)
+/proc/seen_by_camera(mob/M)
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
 			break
 	return null
 
-/proc/near_range_camera(var/mob/M)
+/proc/near_range_camera(mob/M)
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C

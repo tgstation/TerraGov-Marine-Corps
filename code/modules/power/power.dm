@@ -18,7 +18,7 @@
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/update_cable_icons_on_turf, get_turf(src)), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(update_cable_icons_on_turf), get_turf(src)), 3)
 	return ..()
 
 ///////////////////////////////
@@ -78,7 +78,7 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
+/obj/machinery/proc/powered(chan = -1) // defaults to power_channel
 	if(!loc)
 		return FALSE
 	if(!use_power)
@@ -117,7 +117,7 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	if(stat & BROKEN)
 		return
 	if(powered(power_channel))
@@ -213,7 +213,7 @@
 		. += C
 	return .
 
-/proc/update_cable_icons_on_turf(var/turf/T)
+/proc/update_cable_icons_on_turf(turf/T)
 	for(var/obj/structure/cable/C in T.contents)
 		C.update_icon()
 

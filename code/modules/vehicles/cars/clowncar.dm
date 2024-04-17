@@ -27,7 +27,7 @@
 		var/mob/living/carbon/human/H = M
 		if(H.mind && H.mind.assigned_role == "Clown") //Ensures only clowns can drive the car. (Including more at once)
 			add_control_flags(H, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_PERMISSION)
-			RegisterSignal(H, COMSIG_MOB_CLICKON, .proc/FireCannon)
+			RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(FireCannon))
 			M.log_message("has entered [src] as a possible driver", LOG_ATTACK)
 			return
 	add_control_flags(M, VEHICLE_CONTROL_KIDNAPPED)
@@ -125,7 +125,7 @@
 			visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and the clown car turns on its singularity disguise system.</span>")
 			icon = 'icons/obj/singularity.dmi'
 			icon_state = "singularity_s1"
-			addtimer(CALLBACK(src, .proc/ResetIcon), 100)
+			addtimer(CALLBACK(src, PROC_REF(ResetIcon)), 100)
 		if(4)
 			visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and the clown car spews out a cloud of laughing gas.</span>")
 			var/datum/reagents/R = new/datum/reagents(300)
@@ -138,7 +138,7 @@
 		if(5)
 			visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and the clown car starts dropping an oil trail.</span>")
 			droppingoil = TRUE
-			addtimer(CALLBACK(src, .proc/StopDroppingOil), 30)
+			addtimer(CALLBACK(src, PROC_REF(StopDroppingOil)), 30)
 		if(6)
 			visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and the clown car lets out a comedic toot.</span>")
 			playsound(src, 'sound/blank.ogg', 100)
@@ -160,7 +160,7 @@
 		cannonmode = FALSE
 		flick("clowncar_fromfire", src)
 		icon_state = "clowncar"
-		addtimer(CALLBACK(src, .proc/LeaveCannonMode), 20)
+		addtimer(CALLBACK(src, PROC_REF(LeaveCannonMode)), 20)
 		playsound(src, 'sound/blank.ogg', 75)
 		visible_message("<span class='danger'>The [src] starts going back into mobile mode.</span>")
 	else
@@ -168,7 +168,7 @@
 		flick("clowncar_tofire", src)
 		icon_state = "clowncar_fire"
 		visible_message("<span class='danger'>The [src] opens up and reveals a large cannon.</span>")
-		addtimer(CALLBACK(src, .proc/EnterCannonMode), 20)
+		addtimer(CALLBACK(src, PROC_REF(EnterCannonMode)), 20)
 		playsound(src, 'sound/blank.ogg', 75)
 
 

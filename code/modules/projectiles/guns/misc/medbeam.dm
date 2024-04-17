@@ -53,7 +53,7 @@
 	current_target = target
 	active = TRUE
 	current_beam = new(user,current_target,time=6000,beam_icon_state="medbeam",btype=/obj/effect/ebeam/medical)
-	INVOKE_ASYNC(current_beam, /datum/beam.proc/Start)
+	INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
 
@@ -108,10 +108,10 @@
 	qdel(dummy)
 	return 1
 
-/obj/item/gun/medbeam/proc/on_beam_hit(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_hit(mob/living/target)
 	return
 
-/obj/item/gun/medbeam/proc/on_beam_tick(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
 		new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 	target.adjustBruteLoss(-4)
@@ -120,7 +120,7 @@
 	target.adjustOxyLoss(-1)
 	return
 
-/obj/item/gun/medbeam/proc/on_beam_release(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_release(mob/living/target)
 	return
 
 /obj/effect/ebeam/medical

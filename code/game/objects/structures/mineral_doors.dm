@@ -91,7 +91,7 @@
 	isSwitchingStates = FALSE
 
 	if(close_delay != -1)
-		addtimer(CALLBACK(src, .proc/Close), close_delay)
+		addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
 
 /obj/structure/mineral_door/proc/force_closed()
 	isSwitchingStates = TRUE
@@ -162,9 +162,9 @@
 				if(isliving(AM))
 					var/mob/living/M = AM
 					if(M.m_intent == MOVE_INTENT_SNEAK)
-						addtimer(CALLBACK(src, .proc/Close, TRUE), 25)
+						addtimer(CALLBACK(src, PROC_REF(Close), TRUE), 25)
 					else
-						addtimer(CALLBACK(src, .proc/Close, FALSE), 25)
+						addtimer(CALLBACK(src, PROC_REF(Close), FALSE), 25)
 
 /obj/structure/mineral_door/attack_ai(mob/user) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
@@ -246,7 +246,7 @@
 	isSwitchingStates = FALSE
 
 	if(close_delay != -1)
-		addtimer(CALLBACK(src, .proc/Close), close_delay)
+		addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
 
 /obj/structure/mineral_door/proc/Close(silent = FALSE)
 	if(isSwitchingStates || !door_opened)

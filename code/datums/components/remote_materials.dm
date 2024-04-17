@@ -23,12 +23,12 @@ handles linking back and forth.
 	src.category = category
 	src.allow_standalone = allow_standalone
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
-	RegisterSignal(parent, COMSIG_ATOM_MULTITOOL_ACT, .proc/OnMultitool)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ATOM_MULTITOOL_ACT, PROC_REF(OnMultitool))
 
 	var/turf/T = get_turf(parent)
 	if (force_connect || (mapload && is_station_level(T.z)))
-		addtimer(CALLBACK(src, .proc/LateInitialize))
+		addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
 	else if (allow_standalone)
 		_MakeLocal()
 

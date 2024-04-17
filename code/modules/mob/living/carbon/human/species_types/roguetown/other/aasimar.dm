@@ -52,7 +52,7 @@
 
 /datum/species/aasimar/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	C.grant_language(/datum/language/common)
 
 /datum/species/aasimar/after_creation(mob/living/carbon/C)

@@ -4,13 +4,13 @@
 /datum/component/art/Initialize(impress)
 	impressiveness = impress
 	if(isobj(parent))
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_obj_examine)
+		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_obj_examine))
 	else
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_other_examine)
+		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_other_examine))
 	if(isstructure(parent))
-		RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/on_attack_hand)
+		RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
 	if(isitem(parent))
-		RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/apply_moodlet)
+		RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(apply_moodlet))
 
 /datum/component/art/proc/apply_moodlet(mob/M, impress)
 	M.visible_message("<span class='notice'>[M] stops and looks intently at [parent].</span>", \

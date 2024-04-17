@@ -37,7 +37,7 @@
 			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
 				teletarget = com.target
 
-	addtimer(CALLBACK(src, .proc/pop, teletarget), 30)
+	addtimer(CALLBACK(src, PROC_REF(pop), teletarget), 30)
 
 /obj/effect/nettingportal/proc/pop(teletarget)
 	if(teletarget)

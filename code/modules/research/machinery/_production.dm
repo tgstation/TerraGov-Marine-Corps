@@ -96,7 +96,7 @@
 			I.set_custom_materials(matlist.Copy())
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 
-/obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, var/mat)	// now returns how many times the item can be built with the material
+/obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, mat)	// now returns how many times the item can be built with the material
 	if (!materials.mat_container)  // no connected silo
 		return 0
 	var/list/all_materials = being_built.reagents_list + being_built.materials
@@ -160,8 +160,8 @@
 	if(production_animation)
 		flick(production_animation, src)
 	var/timecoeff = D.lathe_time_factor / efficiency_coeff
-	addtimer(CALLBACK(src, .proc/reset_busy), (30 * timecoeff * amount) ** 0.5)
-	addtimer(CALLBACK(src, .proc/do_print, D.build_path, amount, efficient_mats, D.dangerous_construction), (32 * timecoeff * amount) ** 0.8)
+	addtimer(CALLBACK(src, PROC_REF(reset_busy)), (30 * timecoeff * amount) ** 0.5)
+	addtimer(CALLBACK(src, PROC_REF(do_print), D.build_path, amount, efficient_mats, D.dangerous_construction), (32 * timecoeff * amount) ** 0.8)
 	return TRUE
 
 /obj/machinery/rnd/production/proc/search(string)

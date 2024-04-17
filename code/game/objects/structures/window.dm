@@ -65,7 +65,7 @@
 
 /obj/structure/window/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, .proc/can_be_rotated),CALLBACK(src,.proc/after_rotation))
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, PROC_REF(can_be_rotated)),CALLBACK(src,PROC_REF(after_rotation)))
 
 /obj/structure/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -175,13 +175,13 @@
 	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			to_chat(user, "<span class='notice'>I begin to [anchored ? "unscrew the window from":"screw the window to"] the floor...</span>")
-			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
+			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 				setAnchored(!anchored)
 				to_chat(user, "<span class='notice'>I [anchored ? "fasten the window to":"unfasten the window from"] the floor.</span>")
 			return
 		else if(I.tool_behaviour == TOOL_WRENCH && !anchored)
 			to_chat(user, "<span class='notice'>I begin to disassemble [src]...</span>")
-			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				var/obj/item/stack/sheet/G = new glass_type(user.loc, glass_amount)
 				G.add_fingerprint(user)
 				playsound(src, 'sound/blank.ogg', 50, TRUE)
@@ -190,7 +190,7 @@
 			return
 		else if(I.tool_behaviour == TOOL_CROWBAR && reinf && (state == WINDOW_OUT_OF_FRAME) && anchored)
 			to_chat(user, "<span class='notice'>I begin to lever the window into the frame...</span>")
-			if(I.use_tool(src, user, 100, volume = 75, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+			if(I.use_tool(src, user, 100, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = RWINDOW_SECURE
 				to_chat(user, "<span class='notice'>I pry the window into the frame.</span>")
 			return
@@ -378,7 +378,7 @@
 				if(I.use_tool(src, user, 150, volume = 100))
 					to_chat(user, "<span class='notice'>The security bolts are glowing white hot and look ready to be removed.</span>")
 					state = RWINDOW_BOLTS_HEATED
-					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -503,7 +503,7 @@
 				if(I.use_tool(src, user, 180, volume = 100))
 					to_chat(user, "<span class='notice'>The security screws are glowing white hot and look ready to be removed.</span>")
 					state = RWINDOW_BOLTS_HEATED
-					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)

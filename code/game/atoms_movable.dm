@@ -65,7 +65,7 @@
 		if(isobj(A) || ismob(A))
 			if(A.layer > highest.layer)
 				highest = A
-//	INVOKE_ASYNC(src, .proc/SpinAnimation, 5, 2)
+//	INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
 	throw_impact(highest)
 	return TRUE
 

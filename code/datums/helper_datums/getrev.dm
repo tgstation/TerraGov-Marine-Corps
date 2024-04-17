@@ -27,8 +27,8 @@
 
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
-		msg += "Test merge active of PR #[tm.number] commit [tm.pull_request_commit]"
-		SSblackbox.record_feedback("associative", "testmerged_prs", 1, list("number" = "[tm.number]", "commit" = "[tm.pull_request_commit]", "title" = "[tm.title]", "author" = "[tm.author]"))
+		msg += "Test merge active of PR #[tm.number] commit [tm.commit]"
+		SSblackbox.record_feedback("associative", "testmerged_prs", 1, list("number" = "[tm.number]", "commit" = "[tm.commit]", "title" = "[tm.title]", "author" = "[tm.author]"))
 
 	if(commit && commit != originmastercommit)
 		msg += "HEAD: [commit]"
@@ -43,19 +43,16 @@
 	. = header ? "The following pull requests are currently test merged:<br>" : ""
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
-		var/cm = tm.pull_request_commit
-		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext(cm, 1, min(length(cm), 11)))
-		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
-			continue
+		var/cm = tm.head_commit
+		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
+/*
 /client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
-	set desc = ""
-	set hidden = 1
-	if(!holder)
-		return
+	set desc = "Check the current server code revision"
+
 	var/list/msg = list("")
 	// Round ID
 	if(GLOB.round_id)
@@ -124,3 +121,4 @@
 				var/percentage = round(probabilities[ctag] / sum * 100, 0.1)
 				msg += "[ctag] [percentage]%"
 	to_chat(src, msg.Join("<br>"))
+*/

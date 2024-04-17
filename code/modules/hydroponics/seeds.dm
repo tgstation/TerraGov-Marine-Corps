@@ -5,48 +5,74 @@
 /obj/item/seeds
 	name = "seeds"
 	icon = 'icons/obj/hydroponics/seeds.dmi'
-	icon_state = "seed"				// Unknown plant seed - these shouldn't exist in-game.
+	icon_state = "seed" // Unknown plant seed - these shouldn't exist in-game.
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	possible_item_intents = list(/datum/intent/use)
-	var/plantname = "Plants"		// Name of plant when planted.
-	var/obj/item/product						// A type path. The thing that is created when the plant is harvested.
+	/// Name of plant when planted.
+	var/plantname = "Plants"
+	/// A type path. The thing that is created when the plant is harvested.
+	var/obj/item/product
 	var/productdesc
-	var/species = ""				// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
+	/// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
+	var/species = ""
 
-	var/growing_icon = 'icons/obj/hydroponics/growing.dmi' //the file that stores the sprites of the growing plant from this seed.
-	var/icon_grow					// Used to override grow icon (default is "[species]-grow"). You can use one grow icon for multiple closely related plants with it.
-	var/icon_dead					// Used to override dead icon (default is "[species]-dead"). You can use one dead icon for multiple closely related plants with it.
-	var/icon_harvest				// Used to override harvest icon (default is "[species]-harvest"). If null, plant will use [icon_grow][growthstages].
+	///the file that stores the sprites of the growing plant from this seed.
+	var/growing_icon = 'icons/obj/hydroponics/growing.dmi' 
+	/// Used to override grow icon (default is "[species]-grow"). You can use one grow icon for multiple closely related plants with it.
+	var/icon_grow
+	/// Used to override dead icon (default is "[species]-dead"). You can use one dead icon for multiple closely related plants with it.
+	var/icon_dead
+	/// Used to override harvest icon (default is "[species]-harvest"). If null, plant will use [icon_grow][growthstages].
+	var/icon_harvest
 
+	///How much water our plant uses on /process()
 	var/watersucc = 1
+	///How much food our plant uses on /process()
 	var/foodsucc = 1
-	var/growthrate = 1 //0.5, 1.3, etc its multilpeid
+	///0.5, 1.3, etc its multilpeid
+	var/growthrate = 1 
+	///max hp of our plant
 	var/maxphp = 100
+	///Used to update our sprite
 	var/obscura = FALSE
+	///If FALSE, our plant will not be removed when we harvest it
 	var/delonharvest = TRUE
+	///How many times our plant has been harvested
 	var/timesharvested = 0
 
-	var/lifespan = 25				// How long before the plant begins to take damage from age.
-	var/endurance = 15				// Amount of health the plant has.
-	var/maturation = 6				// Used to determine which sprite to switch to when growing.
-	var/production = 6				// Changes the amount of time needed for a plant to become harvestable.
-	var/yield = 3					// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
-	var/potency = 10				// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
-	var/growthstages = 6			// Amount of growth sprites the plant has.
-	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
-	var/list/mutatelist = list()	// The type of plants that this plant can mutate into.
-	var/list/genes = list()			// Plant genes are stored here, see plant_genes.dm for more info.
+	/// How long before the plant begins to take damage from age.
+	var/lifespan = 25
+	/// Amount of health the plant has.
+	var/endurance = 15
+	/// Used to determine which sprite to switch to when growing.
+	var/maturation = 6
+	/// Changes the amount of time needed for a plant to become harvestable.
+	var/production = 6
+	/// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
+	var/yield = 3
+	/// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
+	var/potency = 10
+	/// Amount of growth sprites the plant has.
+	var/growthstages = 6
+	/// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
+	var/rarity = 0
+	/// The type of plants that this plant can mutate into.
+	var/list/mutatelist = list()
+	/// Plant genes are stored here, see plant_genes.dm for more info.
+	var/list/genes = list()
+	/**
+	 * A list of reagents to add to product.
+	 * Format: "reagent_id" = potency multiplier
+	 * Stronger reagents must always come first to avoid being displaced by weaker ones.
+	 * Total amount of any reagent in plant is calculated by formula: 1 + round(potency * multiplier)
+	 */
 	var/list/reagents_add = list()
-	// A list of reagents to add to product.
-	// Format: "reagent_id" = potency multiplier
-	// Stronger reagents must always come first to avoid being displaced by weaker ones.
-	// Total amount of any reagent in plant is calculated by formula: 1 + round(potency * multiplier)
 
-
-
-	var/weed_rate = 20 //If the chance below passes, then this many weeds sprout during growth
-	var/weed_chance = 5 //Percentage chance per tray update to grow weeds
+	///If the chance below passes, then this many weeds sprout during growth
+	var/weed_rate = 20 
+	///Percentage chance per tray update to grow weeds
+	var/weed_chance = 5
 
 /obj/item/seeds/Crossed(mob/living/L)
 	. = ..()
@@ -68,8 +94,8 @@
 		visible_message("<span class='notice'>[user] plants some seeds.</span>")
 		D.planted_crop.name = src.plantname
 		D.planted_crop.myseed = src
-		D.planted_crop.php = maxphp
-		D.planted_crop.mphp = maxphp
+		D.planted_crop.plant_hp = maxphp
+		D.planted_crop.max_plant_hp = maxphp
 		if(!D.can_see_sky())
 			D.planted_crop.seesky = FALSE
 		if(D.muddy)
@@ -230,7 +256,7 @@
 	return result
 
 
-/obj/item/seeds/proc/prepare_result(var/obj/item/T)
+/obj/item/seeds/proc/prepare_result(obj/item/T)
 	if(!T.reagents)
 		CRASH("[T] has no reagents.")
 

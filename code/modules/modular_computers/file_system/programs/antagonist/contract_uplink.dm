@@ -16,7 +16,7 @@
 	var/page = CONTRACT_UPLINK_PAGE_CONTRACTS
 	var/assigned = FALSE
 
-/datum/computer_file/program/contract_uplink/run_program(var/mob/living/user)
+/datum/computer_file/program/contract_uplink/run_program(mob/living/user)
 	. = ..(user)
 
 /datum/computer_file/program/contract_uplink/ui_act(action, params)

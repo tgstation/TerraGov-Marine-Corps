@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(huds, list(
 		hudusers[M] = 1
 		if(next_time_allowed[M] > world.time)
 			if(!queued_to_see[M])
-				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M), next_time_allowed[M] - world.time)
+				addtimer(CALLBACK(src, PROC_REF(show_hud_images_after_cooldown), M), next_time_allowed[M] - world.time)
 				queued_to_see[M] = TRUE
 		else
 			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN

@@ -20,7 +20,7 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/cast(list/targets,mob/user = usr) //magnets, so mostly hardcoded
 	playsound(get_turf(user), 'sound/blank.ogg', 50, TRUE, -1)
 	for(var/mob/living/target in targets)
-		INVOKE_ASYNC(src, .proc/do_jaunt, target)
+		INVOKE_ASYNC(src, PROC_REF(do_jaunt), target)
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/proc/do_jaunt(mob/living/target)
 	target.notransform = 1
@@ -80,7 +80,7 @@
 		AM.forceMove(get_turf(src))
 	return ..()
 
-/obj/effect/dummy/phased_mob/spell_jaunt/relaymove(var/mob/user, direction)
+/obj/effect/dummy/phased_mob/spell_jaunt/relaymove(mob/user, direction)
 	if ((movedelay > world.time) || reappearing || !direction)
 		return
 	var/turf/newLoc = get_step(src,direction)

@@ -141,7 +141,7 @@
 			playsound(src, 'sound/blank.ogg', 70)
 			playsound(src, 'sound/blank.ogg', 50)
 
-			addtimer(CALLBACK(src, .proc/play, user, player_card, chosen_bet_type, chosen_bet_amount, potential_payout), 4) //Animation first
+			addtimer(CALLBACK(src, PROC_REF(play), user, player_card, chosen_bet_type, chosen_bet_amount, potential_payout), 4) //Animation first
 			return TRUE
 		else
 			var/obj/item/card/id/new_card = W
@@ -171,8 +171,8 @@
 	var/rolled_number = rand(0, 36)
 
 	playsound(src, 'sound/blank.ogg', 50)
-	addtimer(CALLBACK(src, .proc/finish_play, player_id, bet_type, bet_amount, payout, rolled_number), 34) //4 deciseconds more so the animation can play
-	addtimer(CALLBACK(src, .proc/finish_play_animation), 30)
+	addtimer(CALLBACK(src, PROC_REF(finish_play), player_id, bet_type, bet_amount, payout, rolled_number), 34) //4 deciseconds more so the animation can play
+	addtimer(CALLBACK(src, PROC_REF(finish_play_animation)), 30)
 
 /obj/machinery/roulette/proc/finish_play_animation()
 	icon_state = "idle"
@@ -244,7 +244,7 @@
 	var/obj/item/cash = new coin_to_drop(drop_loc)
 	playsound(cash, pick(list('sound/blank.ogg')), 40, TRUE)
 
-	addtimer(CALLBACK(src, .proc/drop_coin), 3) //Recursion time
+	addtimer(CALLBACK(src, PROC_REF(drop_coin)), 3) //Recursion time
 
 
 ///Fills a list of coins that should be dropped.
@@ -366,7 +366,7 @@
 		return
 	loc.visible_message("<span class='warning'>\The [src] begins to beep loudly!</span>")
 	used = TRUE
-	addtimer(CALLBACK(src, .proc/launch_payload), 40)
+	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 40)
 
 /obj/item/roulette_wheel_beacon/proc/launch_payload()
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()

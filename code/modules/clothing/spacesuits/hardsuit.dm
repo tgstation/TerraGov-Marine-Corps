@@ -63,7 +63,7 @@
 	else
 		soundloop.start(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(var/msg)
+/obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(msg)
 	var/mob/wearer = loc
 	if(msg && ishuman(wearer))
 		wearer.show_message("[icon2html(src, wearer)]<b><span class='robot'>[msg]</span></b>", MSG_VISUAL)
@@ -652,7 +652,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
 	listeningTo = user
 
 /obj/item/clothing/suit/space/hardsuit/ancient/dropped()

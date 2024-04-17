@@ -61,14 +61,7 @@
 	if (!user.IsAdvancedToolUser())
 		to_chat(usr, "<span class='warning'>I don't have the dexterity to do this!</span>")
 		return
-	var/olddam = turf_integrity
 	..()
-	if(turf_integrity && turf_integrity > 10)
-		if(turf_integrity < olddam)
-			if(prob(50))
-				if(user.Adjacent(src))
-					var/obj/item/natural/stone/S = new(src)
-					S.forceMove(get_turf(user))
 
 /turf/closed/mineral/turf_destruction(damage_flag)
 	gets_drilled(give_exp = FALSE)
@@ -101,7 +94,7 @@
 	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
 		flags = CHANGETURF_DEFER_CHANGE
 	ScrapeAway(null, flags)
-	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(AfterChange)), 1, TIMER_UNIQUE)
 //	playsound(src, 'sound/blank.ogg', 100, TRUE) //beautiful destruction
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
@@ -534,7 +527,7 @@
 	if(defer_change)
 		flags = CHANGETURF_DEFER_CHANGE
 	ScrapeAway(null, flags)
-	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(AfterChange)), 1, TIMER_UNIQUE)
 
 
 /turf/closed/mineral/gibtonite/volcanic
@@ -571,7 +564,7 @@
 	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
 		flags = CHANGETURF_DEFER_CHANGE
 	ScrapeAway(flags=flags)
-	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(AfterChange)), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/blank.ogg', 50, TRUE) //beautiful destruction
 
 /turf/closed/mineral/strong/proc/drop_ores()

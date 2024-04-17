@@ -303,16 +303,16 @@
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_ADMIN)
 	return preview_icon
 
-/datum/admins/proc/makeEmergencyresponseteam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeEmergencyresponseteam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
 		ertemplate = new /datum/ert/centcom_official
 
 	var/list/settings = list(
-		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
+		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, .proc/makeERTTemplateModified), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
 		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
 		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),

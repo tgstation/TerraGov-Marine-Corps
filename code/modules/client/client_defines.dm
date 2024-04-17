@@ -211,20 +211,20 @@
 				screen += PE
 				current_weathers[WE.type] += PE
 
-/client/proc/fade_weather(var/W)
+/client/proc/fade_weather(W)
 	if(!W)
 		return
 	var/image/P = W
 	if(istype(P))
 		animate(P,alpha = 0, time=20)
-		addtimer(CALLBACK(src,.proc/kill_weather,P),20)
+		addtimer(CALLBACK(src,PROC_REF(kill_weather),P),20)
 	else //screen obj
 		var/obj/screen/O = W
 		animate(O,alpha = 0, time=10)
-		addtimer(CALLBACK(src,.proc/kill_weather,O),10)
+		addtimer(CALLBACK(src,PROC_REF(kill_weather),O),10)
 
 
-/client/proc/kill_weather(var/P)
+/client/proc/kill_weather(P)
 	if(!P)
 		return
 	var/image/I = P

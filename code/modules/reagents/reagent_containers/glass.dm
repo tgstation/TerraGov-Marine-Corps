@@ -77,7 +77,7 @@
 					log_combat(user, M, "fed", reagents.log_list())
 				else
 					to_chat(user, "<span class='notice'>I swallow a gulp of [src].</span>")
-				addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
+				addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
 				playsound(M.loc,pick(drinksounds), 100, TRUE)
 				return
 /obj/item/reagent_containers/glass/attack_obj(obj/target, mob/living/user)
@@ -399,7 +399,7 @@
 	. = ..()
 	reagents.flags = initial(reagent_flags)
 
-/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
+/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head
 		var/index = slot_equipment_priority.Find(SLOT_HEAD)
 		slot_equipment_priority.Remove(SLOT_HEAD)

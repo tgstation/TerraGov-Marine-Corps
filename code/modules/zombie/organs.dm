@@ -23,7 +23,7 @@
 	GLOB.zombie_infection_list -= src
 	. = ..()
 
-/obj/item/organ/zombie_infection/Insert(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/zombie_infection/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -65,7 +65,7 @@
 		not even death can stop, you will rise again!</span>")
 	var/revive_time = rand(revive_time_min, revive_time_max)
 	var/flags = TIMER_STOPPABLE
-	timer_id = addtimer(CALLBACK(src, .proc/zombify), revive_time, flags)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(zombify)), revive_time, flags)
 
 /obj/item/organ/zombie_infection/proc/zombify()
 	timer_id = null

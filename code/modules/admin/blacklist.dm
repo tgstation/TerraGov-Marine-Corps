@@ -17,7 +17,7 @@ GLOBAL_PROTECT(blacklist)
 	if(!GLOB.blacklist.len)
 		GLOB.blacklist = null
 
-/proc/check_blacklist(var/ckey)
+/proc/check_blacklist(ckey)
 	if(!GLOB.blacklist)
 		return FALSE
 	if(!GLOB.blacklist.len)
@@ -43,7 +43,7 @@ GLOBAL_PROTECT(nameban)
 	if(!GLOB.nameban.len)
 		GLOB.nameban = null
 
-/proc/check_nameban(var/ckey)
+/proc/check_nameban(ckey)
 	if(!GLOB.nameban)
 		return FALSE
 	. = (ckey in GLOB.nameban)
@@ -68,7 +68,7 @@ GLOBAL_PROTECT(psychokiller)
 	if(!GLOB.psychokiller.len)
 		GLOB.psychokiller = null
 
-/proc/check_psychokiller(var/ckey)
+/proc/check_psychokiller(ckey)
 	if(!GLOB.psychokiller)
 		return FALSE
 	. = (ckey in GLOB.psychokiller)
@@ -93,7 +93,7 @@ GLOBAL_PROTECT(bypassage)
 	if(!GLOB.bypassage.len)
 		GLOB.bypassage = null
 
-/proc/check_bypassage(var/ckey)
+/proc/check_bypassage(ckey)
 	if(!GLOB.bypassage)
 		return FALSE
 	. = (ckey in GLOB.bypassage)

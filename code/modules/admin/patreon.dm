@@ -119,7 +119,7 @@ GLOBAL_VAR(PatreonsLoaded)
 
 	GLOB.PatreonsLoaded = TRUE
 
-/proc/check_patreon_lvl(var/ckey)
+/proc/check_patreon_lvl(ckey)
 	if(!ckey)
 		return
 	for(var/X in GLOB.temporary_donators)

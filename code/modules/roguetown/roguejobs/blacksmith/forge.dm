@@ -16,7 +16,7 @@
 		if(T.hingot)
 			var/tyme = world.time
 			T.hott = tyme
-			addtimer(CALLBACK(T, /obj/item/rogueweapon/tongs.proc/make_unhot, tyme), 100)
+			addtimer(CALLBACK(T, TYPE_PROC_REF(/obj/item/rogueweapon/tongs, make_unhot), tyme), 100)
 			T.update_icon()
 			user.visible_message("<span class='info'>[user] heats the bar.</span>")
 			return

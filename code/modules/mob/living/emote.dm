@@ -319,7 +319,7 @@
 				H.CloseWings()
 			else
 				H.OpenWings()
-			addtimer(CALLBACK(H, open ? /mob/living/carbon/human.proc/OpenWings : /mob/living/carbon/human.proc/CloseWings), wing_time)
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
 
 /datum/emote/living/flap/aflap
 	key = "aflap"
@@ -600,10 +600,6 @@
 
 /datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
 	message_param = initial(message_param) // reset
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
-			message_param = "slaps %t on the ass!"
 	..()
 
 /mob/living/carbon/human/verb/emote_slap()

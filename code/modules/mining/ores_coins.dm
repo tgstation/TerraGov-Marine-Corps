@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		else
 			user.visible_message("<span class='warning'>[user] strikes \the [src], causing a chain reaction!</span>", "<span class='danger'>I strike \the [src], causing a chain reaction.</span>")
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
-		det_timer = addtimer(CALLBACK(src, .proc/detonate, notify_admins), det_time, TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
 /obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
 	if(primed)
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 
-/obj/item/coin/set_custom_materials(var/list/materials, multiplier = 1)
+/obj/item/coin/set_custom_materials(list/materials, multiplier = 1)
 	. = ..()
 	value = 0
 	for(var/i in custom_materials)
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if (!attack_self(user))
 		user.visible_message("<span class='suicide'>[user] couldn't flip \the [src]!</span>")
 		return SHAME
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), 10)//10 = time takes for flip animation
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 10)//10 = time takes for flip animation
 	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/coin/proc/manual_suicide(mob/living/user)

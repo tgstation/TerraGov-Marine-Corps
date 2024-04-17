@@ -459,7 +459,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	Gets all contents of contents and returns them all in a list.
 */
 
-/atom/proc/GetAllContents(var/T)
+/atom/proc/GetAllContents(T)
 	var/list/processing_list = list(src)
 	var/list/assembled = list()
 	if(T)
@@ -582,11 +582,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	for(var/area/A in world)
 		GLOB.sortedAreas.Add(A)
 
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sortedAreas, GLOBAL_PROC_REF(cmp_name_asc))
 
 /area/proc/addSorted()
 	GLOB.sortedAreas.Add(src)
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sortedAreas, GLOBAL_PROC_REF(cmp_name_asc))
 
 //Takes: Area type as a text string from a variable.
 //Returns: Instance for the area in the world.
@@ -999,7 +999,7 @@ B --><-- A
 // eg: center_image(I, 32,32)
 // eg2: center_image(I, 96,96)
 
-/proc/center_image(var/image/I, x_dimension = 0, y_dimension = 0)
+/proc/center_image(image/I, x_dimension = 0, y_dimension = 0)
 	if(!I)
 		return
 
@@ -1156,7 +1156,7 @@ B --><-- A
 
 	return L
 
-/atom/proc/contains(var/atom/A)
+/atom/proc/contains(atom/A)
 	if(!A)
 		return 0
 	for(var/atom/location = A.loc, location, location = location.loc)
@@ -1309,7 +1309,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 
-/proc/weightclass2text(var/w_class)
+/proc/weightclass2text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
 			. = "tiny"
@@ -1505,9 +1505,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
  */
 #define NAMEOF_STATIC(datum, X) (nameof(type::##X))
 
-#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
+#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
-#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
+#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)
 	if(length(list_or_datum))
@@ -1519,8 +1519,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	else
 		D.vars[var_name] = var_value
 
-#define	TRAIT_CALLBACK_ADD(target, trait, source) CALLBACK(GLOBAL_PROC, /proc/___TraitAdd, ##target, ##trait, ##source)
-#define	TRAIT_CALLBACK_REMOVE(target, trait, source) CALLBACK(GLOBAL_PROC, /proc/___TraitRemove, ##target, ##trait, ##source)
+#define	TRAIT_CALLBACK_ADD(target, trait, source) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___TraitAdd), ##target, ##trait, ##source)
+#define	TRAIT_CALLBACK_REMOVE(target, trait, source) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___TraitRemove), ##target, ##trait, ##source)
 
 ///DO NOT USE ___TraitAdd OR ___TraitRemove as a replacement for ADD_TRAIT / REMOVE_TRAIT defines. To be used explicitly for callback.
 /proc/___TraitAdd(target,trait,source)
@@ -1632,7 +1632,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	for(var/i in L)
 		if(condition.Invoke(i))
 			. |= i
-/proc/generate_items_inside(list/items_list,var/where_to)
+/proc/generate_items_inside(list/items_list,where_to)
 	for(var/each_item in items_list)
 		for(var/i in 1 to items_list[each_item])
 			new each_item(where_to)

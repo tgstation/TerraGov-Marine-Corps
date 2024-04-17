@@ -2,7 +2,7 @@
 	. = ..()
 	for(var/obj/item/reagent_containers/I in contents)
 		if(I.reagents && I.spillable)
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_spill, override = TRUE)
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_spill), override = TRUE)
 			break
 
 /obj/item/storage/proc/check_spill()
@@ -26,4 +26,4 @@
 				var/obj/item/storage/I = real_location
 				if(ismob(I.loc))
 					var/mob/M = I.loc
-					I.RegisterSignal(M, COMSIG_MOVABLE_MOVED, /obj/item/storage/.proc/check_spill, override = TRUE)
+					I.RegisterSignal(M, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/obj/item/storage, check_spill), override = TRUE)
