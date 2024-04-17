@@ -321,6 +321,7 @@
 	desc = ""
 	w_class = WEIGHT_CLASS_NORMAL
 	light_range = 4
+	light_color = LIGHT_COLOR_ORANGE
 	force = 10
 	icon = 'icons/roguetown/items/lighting.dmi'
 	icon_state = "torch"
