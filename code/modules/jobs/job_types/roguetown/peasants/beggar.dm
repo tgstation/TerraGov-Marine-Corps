@@ -22,16 +22,17 @@
 	show_in_credits = FALSE
 	can_random = FALSE
 
+/datum/job/roguetown/vagrant/New()
+	. = ..()
+	peopleknowme = list()
+
+/datum/outfit/job/roguetown/vagrant
 	/// Chance to become a wise beggar, if we still have space for more wise beggars
 	var/wise_chance = 10
 	/// Amount of wise beggars spawned as of now
 	var/wise_amount = 0
 	/// Maximum amount of wise beggars that can be spawned
 	var/wise_max = 3
-
-/datum/job/roguetown/vagrant/New()
-	. = ..()
-	peopleknowme = list()
 
 /datum/outfit/job/roguetown/vagrant/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -47,7 +48,6 @@
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
 		r_hand = /obj/item/rogueweapon/mace/woodclub
-		wise_amount++
 		if(H.mind)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, rand(2,5), TRUE)
@@ -60,6 +60,7 @@
 		H.change_stat("endurance", -rand(0, 3))
 		H.real_name = "[H.real_name] the Wise"
 		H.name = "[H.name] the Wise"
+		wise_amount++
 		return
 	if(prob(20))
 		head = /obj/item/clothing/head/roguetown/knitcap
