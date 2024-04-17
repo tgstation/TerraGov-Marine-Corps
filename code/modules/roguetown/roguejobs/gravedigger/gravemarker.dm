@@ -45,29 +45,46 @@
 				to_chat(src, "<span class='rose'>My soul finds peace buried in creation.</span>")
 
 
-/obj/structure/gravemarker/OnCrafted(dir)
+/obj/structure/gravemarker/OnCrafted(dir, user)
 	icon_state = "gravemarker[rand(1,3)]"
 	for(var/obj/structure/closet/dirthole/D in loc)
-		bodysearch(D)
+		bodysearch(D, user)
 		for(var/obj/structure/closet/burial_shroud/B in D)
-			bodysearch(B)
+			bodysearch(B, user)
 	..()
 
-/obj/structure/gravemarker/proc/bodysearch(atom/movable/AM)
+/obj/structure/gravemarker/proc/bodysearch(atom/movable/AM, mob/user)
 	if(!AM)
 		return
 	for(var/mob/living/L in AM)
 		if(L.stat == DEAD)
+			if(ishuman(L) && !HAS_TRAIT(L, TRAIT_BURIED_COIN_GIVEN))
+				var/mob/living/carbon/human/H = L
+				if(istype(H.mouth, /obj/item/roguecoin))
+					var/obj/item/roguecoin/coin = H.mouth
+					if(coin.quantity == 1) // no fucking stuffing their mouth full of a fuck ton of coins
+						for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
+							var/turf/T = get_turf(A)
+							T = locate(T.x + rand(-3, 3), T.y + rand(-3, 3), T.z)
+							new /obj/item/underworld/coin/notracking(T)
+							T.visible_message("<span class='warning'>A coin falls from above.</span>")
+							ADD_TRAIT(H, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
+							if(user?.ckey)
+								adjust_playerquality(0.1, user.ckey)
+							qdel(H.mouth)
+							H.update_inv_mouth()
+							break
 			if(L.mind && L.mind.has_antag_datum(/datum/antagonist/zombie))
 				L.mind.remove_antag_datum(/datum/antagonist/zombie)
 			var/mob/dead/observer/O
 			//We probably went to the underworld
 			if(!L.client)
-				var/client/friendo = GLOB.directory[lowertext(L.mind.key)]
-				if(friendo && istype(friendo.mob, /mob/living/carbon/spirit))
-					var/mob/living/carbon/spirit/lost_soul = friendo.mob
-					lost_soul = L.ghostize(force_respawn = TRUE)
-					qdel(lost_soul)
+				if(L.mind)
+					var/client/friendo = GLOB.directory[lowertext(L.mind.key)]
+					if(friendo && istype(friendo.mob, /mob/living/carbon/spirit))
+						var/mob/living/carbon/spirit/lost_soul = friendo.mob
+						lost_soul = L.ghostize(force_respawn = TRUE)
+						qdel(lost_soul)
 			else
 				O = L.ghostize(force_respawn = TRUE)
 			if(O)

@@ -134,11 +134,13 @@
 		desc = initial(desc)
 		icon_state = "[base_type][heads_tails]"
 		dropshrink = 0.2
+		slot_flags = ITEM_SLOT_MOUTH
 		return
 
 	name = plural_name
 	desc = ""
 	dropshrink = 1
+	slot_flags = null
 	switch(quantity)
 		if(2)
 			dropshrink = 0.2 // this is just like the single coin, gotta shrink it

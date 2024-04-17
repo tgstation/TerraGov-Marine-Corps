@@ -155,26 +155,34 @@ GLOBAL_LIST_EMPTY(underworld_coins)
 	desc = "This is more than just a coin."
 	icon = 'icons/roguetown/underworld/enigma_husks.dmi'
 	icon_state = "soultoken_floor"
+	var/should_track = TRUE
 
 /obj/item/underworld/coin/Initialize()
 	. = ..()
-	GLOB.underworld_coins |= src
+	if(should_track)
+		GLOB.underworld_coins |= src
 
 /obj/item/underworld/coin/Destroy()
-	GLOB.underworld_coins -= src
+	if(should_track)
+		GLOB.underworld_coins -= src
 	coin_upkeep()
 	return ..()
 
 /obj/item/underworld/coin/pickup(mob/user)
 	..()
-	GLOB.underworld_coins -= src
+	if(should_track)
+		GLOB.underworld_coins -= src
 	coin_upkeep()
 	icon_state = "soultoken"
 
 /obj/item/underworld/coin/dropped(mob/user)
 	..()
-	GLOB.underworld_coins |= src
+	if(should_track)
+		GLOB.underworld_coins |= src
 	icon_state = "soultoken_floor"
+
+/obj/item/underworld/coin/notracking
+	should_track = FALSE
 
 /proc/coin_upkeep()
 	if(length(GLOB.underworld_coins) < 3)
