@@ -3,7 +3,6 @@
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Drag yourself onto it at an entrance to get inside."
 	icon = 'icons/obj/armored/3x3/tank.dmi'
 	turret_icon = 'icons/obj/armored/3x3/tank_gun.dmi'
-	secondary_turret_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	damage_icon_path = 'icons/obj/armored/3x3/tank_damage.dmi'
 	icon_state = "tank"
 	hitbox = /obj/hitbox

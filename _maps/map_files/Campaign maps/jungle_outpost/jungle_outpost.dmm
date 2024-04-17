@@ -2675,7 +2675,7 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "nv" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/claymore/mercsword/machete/alt,
+/obj/item/weapon/sword/machete/alt,
 /obj/item/weapon/karambit/fade,
 /turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/outpost/outer/hermit)
