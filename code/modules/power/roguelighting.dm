@@ -227,6 +227,7 @@
 		GLOB.fires_list -= src
 
 /obj/machinery/light/rogue/Destroy()
+	QDEL_NULL(soundloop)	
 	GLOB.fires_list -= src
 	. = ..()
 
@@ -662,6 +663,7 @@
 						return
 				user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
 				addtimer(CALLBACK(pot, TYPE_PROC_REF(/obj/item/reagent_containers/glass/pot, makeSoup), nutrimentamount), rand(1 MINUTES, 3 MINUTES))
+				qdel(W)
 				return
 	. = ..()
 
@@ -750,6 +752,9 @@
 		user.visible_message("<span class='warning'>[user] snuffs [src].</span>")
 		burn_out()
 
+/obj/machinery/light/rogue/hearth/Destroy()
+	QDEL_NULL(boilloop)	
+	. = ..()
 
 /obj/machinery/light/rogue/campfire
 	name = "campfire"
