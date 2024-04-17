@@ -210,15 +210,15 @@ REAGENT SCANNER
 			infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
 			necrotized = TRUE
 
-			if(limb.hidden)
+		if(limb.hidden)
+			unknown_implants++
+		var/implant = FALSE
+		if(length(limb.implants))
+			for(var/obj/item/embedded AS in limb.implants)
+				if(embedded.is_beneficial_implant())
+					continue
 				unknown_implants++
-			var/implant = FALSE
-			if(length(limb.implants))
-				for(var/obj/item/embedded AS in limb.implants)
-					if(embedded.is_beneficial_implant())
-						continue
-					unknown_implants++
-					implant = TRUE
+				implant = TRUE
 
 		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
 			continue
