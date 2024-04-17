@@ -20,6 +20,7 @@
 	display_order = JDO_VILLAGER
 	isvillager = TRUE
 	give_bank_account = TRUE
+
 /*
 /datum/job/roguetown/adventurer/villager/New()
 	. = ..()
