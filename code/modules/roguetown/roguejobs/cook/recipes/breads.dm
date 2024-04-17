@@ -247,16 +247,16 @@
 	bitesize = 3
 	rotprocess = 60 MINUTES
 
-/datum/crafting_recipe/roguetown/cooking/hbun
+/datum/crafting_recipe/roguetown/cooking/honeybun
 	name = "honey bun"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/rogue/bun = 1,
 		/obj/item/reagent_containers/food/snacks/rogue/honey = 1)
-	result = /obj/item/reagent_containers/food/snacks/rogue/honeybun
+	result = /obj/item/reagent_containers/food/snacks/rogue/bun/honey
 	subtype_reqs = FALSE
 	craftdiff = 0
 
-/obj/item/reagent_containers/food/snacks/rogue/honeybun
+/obj/item/reagent_containers/food/snacks/rogue/bun/honey
 	name = "bun of honey"
 	desc = ""
 	icon = 'icons/roguetown/items/food.dmi'
