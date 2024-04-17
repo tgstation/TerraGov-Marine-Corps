@@ -658,12 +658,12 @@
 				if(istype(W, /obj/item/reagent_containers/food/snacks/grown/wheat) || istype(W, /obj/item/reagent_containers/food/snacks/grown/oat) || W.type == /obj/item/reagent_containers/powder/flour)
 					nutrimentamount += 2 //Boiling is a way of cooking grain without baking
 				if(nutrimentamount > 0)
-					if(nutrimentamount + reagents.total_volume > pot.volume)
+					if(nutrimentamount + pot.reagents.total_volume > pot.volume)
 						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
 						return
-				user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
-				addtimer(CALLBACK(pot, TYPE_PROC_REF(/obj/item/reagent_containers/glass/pot, makeSoup), nutrimentamount), rand(1 MINUTES, 3 MINUTES))
-				qdel(W)
+					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
+					addtimer(CALLBACK(pot, TYPE_PROC_REF(/obj/item/reagent_containers/glass/pot, makeSoup), nutrimentamount), rand(1 MINUTES, 3 MINUTES))
+					qdel(W)
 				return
 	. = ..()
 
