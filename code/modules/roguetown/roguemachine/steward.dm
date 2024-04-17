@@ -120,7 +120,7 @@
 					return
 				newtax = CLAMP(newtax, 0, 999)
 				if(newtax < D.withdraw_price)
-					scom_announce("The withdraw for [D.name] was decreased.")
+					scom_announce("The withdraw price for [D.name] was decreased.")
 				D.withdraw_price = newtax
 	if(href_list["givemoney"])
 		var/X = href_list["givemoney"]
