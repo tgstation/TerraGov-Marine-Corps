@@ -37,6 +37,13 @@
 		if(INTENT_GRAB)
 			grabbedby(M)
 		if(INTENT_HARM)
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
+				playsound(loc, 'sound/combat/shove.ogg', 100, TRUE, -1)
+				M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+				visible_message("<span class='warning'>[M]'s punch goes through [name]!</span>", \
+								"<span class='warning'>[M]'s punch goes through you!</span>", "<span class='hear'>I hear the sound of scuffling of the damned!</span>", COMBAT_MESSAGE_RANGE, M)
+				to_chat(M, "<span class='danger'>My punch goes through [name]!</span>")
+				return
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			if (prob(75))
 				visible_message("<span class='danger'>[M] punches [name]!</span>", \
@@ -64,6 +71,12 @@
 								"<span class='danger'>I avoid [M]'s punch!</span>", "<span class='hear'>I hear a swoosh!</span>", COMBAT_MESSAGE_RANGE, M)
 				to_chat(M, "<span class='warning'>My punch misses [name]!</span>")
 		if(INTENT_DISARM)
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
+				playsound(loc, 'sound/combat/shove.ogg', 100, TRUE, -1)
+				M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+				visible_message("<span class='warning'>[M]'s shove goes through [name]!</span>", \
+								"<span class='warning'>[M]'s shove goes through you!</span>", "<span class='hear'>I hear the sound scuffling of the damned!</span>", COMBAT_MESSAGE_RANGE, M)
+				to_chat(M, "<span class='danger'>My shove goes through [name]!</span>")
 			if(!IsUnconscious())
 				M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 				if (prob(25))

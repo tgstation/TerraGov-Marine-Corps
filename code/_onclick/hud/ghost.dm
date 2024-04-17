@@ -42,7 +42,7 @@
 				if(istype(G, /mob/dead/observer/rogue/arcaneeye))
 					return
 				if(alert("Travel with the boatman?", "", "Yes", "No") == "Yes")
-					for(var/obj/effect/landmark/underworld/A in world)
+					for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 						var/mob/living/carbon/spirit/O = new /mob/living/carbon/spirit(A.loc)
 						O.livingname = G.name
 						O.ckey = G.ckey
@@ -56,7 +56,7 @@
 			if(C.skeletons)
 				G.returntolobby()			
 		if(alert("Travel with the boatman?", "", "Yes", "No") == "Yes")
-			for(var/obj/effect/landmark/underworld/A in world)
+			for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 				var/mob/living/carbon/spirit/O = new /mob/living/carbon/spirit(A.loc)
 				O.livingname = G.name
 				O.ckey = G.ckey

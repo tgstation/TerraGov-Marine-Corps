@@ -11,6 +11,7 @@
 	bodyparts = list(/obj/item/bodypart/chest/spirit, /obj/item/bodypart/head/spirit, /obj/item/bodypart/l_arm/spirit,
 					 /obj/item/bodypart/r_arm/spirit, /obj/item/bodypart/r_leg/spirit, /obj/item/bodypart/l_leg/spirit)
 	hud_type = /datum/hud/spirit
+	density = FALSE // ghosts can pass through other mobs
 	var/paid = FALSE
 	var/beingmoved = FALSE
 	var/livingname = null
@@ -54,6 +55,20 @@
 	var/L = new /obj/item/flashlight/lantern/shrunken(src.loc)
 	put_in_hands(L)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
+	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 15 MINUTES)
+
+/mob/living/carbon/spirit/proc/give_patron_toll()
+	if(QDELETED(src) || paid)
+		return
+	for(var/item in held_items)
+		if(istype(item, /obj/item/underworld/coin))
+			return
+	put_in_hands(new /obj/item/underworld/coin/notracking(get_turf(src)))
+	if(PATRON)
+		to_chat(src, "<span class='danger'>Your suffering has not gone unnoticed, [PATRON] has rewarded you with your toll.</span>")
+	else
+		to_chat(src, "<span class='danger'>Your suffering has not gone unnoticed, your patron has rewarded you with your toll.</span>")
+	playsound(src, 'sound/combat/caught.ogg', 80, TRUE, -1)
 
 /mob/living/carbon/spirit/create_internal_organs()
 	internal_organs += new /obj/item/organ/lungs
@@ -127,6 +142,6 @@
 	beingmoved = TRUE
 	to_chat(src, "<B><font size=3 color=red>Your soul is dragged to an infathomably cruel place where it endures severe torment. You've all but given up hope when you feel a presence drag you back to that Forest.</font></B>")
 	playsound(src, 'sound/combat/caught.ogg', 80, TRUE, -1)
-	for(var/obj/effect/landmark/underworld/A in world)
+	for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 		forceMove(A.loc)
 	beingmoved = FALSE

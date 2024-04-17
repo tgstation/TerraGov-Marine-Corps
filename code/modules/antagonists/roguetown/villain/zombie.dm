@@ -83,8 +83,17 @@
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		BP.update_disabled()
-	H.STASTR = rand(12,18)
-	H.STASPD = rand(5,7)
+
+	if(prob(8))
+		H.STASTR = 18
+	else
+		H.STASTR = rand(8,11)
+
+	if(prob(8))
+		H.STASPD = 7
+	else
+		H.STASPD = rand(2,4)
+
 	H.STAINT = 1
 
 
@@ -176,26 +185,29 @@
 
 //This occurs when one zombie infects a living human, going into instadeath from here is kind of shit and confusing
 //We instead just transform at the end
-/mob/living/carbon/human/proc/zombie_infect()
-	if(!mind)
+/mob/living/carbon/human/proc/zombie_infect_attempt()
+	if(prob(7)) // Do you prefer if(prob(93)) return?
+		if(!mind)
+			return
+		if(mind.has_antag_datum(/datum/antagonist/vampirelord))
+			return
+		if(mind.has_antag_datum(/datum/antagonist/zombie))
+			return
+		if(mind.has_antag_datum(/datum/antagonist/werewolf))
+			return
+		var/datum/antagonist/zombie/new_antag = new /datum/antagonist/zombie()
+		mind.add_antag_datum(new_antag)
+		if(stat != DEAD)
+			to_chat(src, "<span class='danger'>I feel horrible... REALLY horrible after that...</span>")
+			if(getToxLoss() >= 75 && blood_volume)
+				mob_timers["puke"] = world.time
+				vomit(1, blood = TRUE)
+			sleep(1 MINUTES) //you get a minute
+			flash_fullscreen("redflash3")
+			to_chat(src, "<span class='danger'>It hurts... Is this really the end for me...</span>")
+			emote("scream") // heres your warning to others bro
+			Knockdown(1)
+			new_antag.wake_zombie(TRUE)
+			//death()
+	else
 		return
-	if(mind.has_antag_datum(/datum/antagonist/vampirelord))
-		return
-	if(mind.has_antag_datum(/datum/antagonist/zombie))
-		return
-	if(mind.has_antag_datum(/datum/antagonist/werewolf))
-		return
-	var/datum/antagonist/zombie/new_antag = new /datum/antagonist/zombie()
-	mind.add_antag_datum(new_antag)
-	if(stat != DEAD)
-		to_chat(src, "<span class='danger'>I feel horrible... REALLY horrible after that...</span>")
-		if(getToxLoss() >= 75 && blood_volume)
-			mob_timers["puke"] = world.time
-			vomit(1, blood = TRUE)
-		sleep(1 MINUTES) //you get a minute
-		flash_fullscreen("redflash3")
-		to_chat(src, "<span class='danger'>It hurts... Is this really the end for me...</span>")
-		emote("scream") // heres your warning to others bro
-		Knockdown(1)
-		new_antag.wake_zombie(TRUE)
-		//death()

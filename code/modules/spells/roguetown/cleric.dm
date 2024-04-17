@@ -177,7 +177,7 @@
 			return FALSE
 		L.adjust_fire_stacks(5)
 		L.IgniteMob()
-		addtimer(CALLBACK(L, /mob/living/proc/ExtinguishMob), 4 SECONDS)
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, ExtinguishMob)), 4 SECONDS)
 		return TRUE
 
 	// Spell interaction with ignitable objects (burn wooden things, light torches up)
@@ -357,12 +357,12 @@
 	var/mob/living/carbon/spirit/capturedsoul = null
 	var/list/souloptions = list()
 	var/list/itemstorestore = list()
-	for(var/mob/living/carbon/spirit/S in world)
+	for(var/mob/living/carbon/spirit/S in GLOB.mob_list)
 		souloptions += S.livingname
 	var/pickedsoul = input(user, "Which soul should I commune with?", "Available Souls") as null|anything in souloptions
 	if(!pickedsoul)
 		return
-	for(var/mob/living/carbon/spirit/P in world)
+	for(var/mob/living/carbon/spirit/P in GLOB.mob_list)
 		if(P.livingname == pickedsoul)
 			to_chat(P, "You feel yourself being pulled out of the underworld.")
 			sleep(20)
@@ -383,7 +383,7 @@
 		spawn(1200)
 			to_chat(user, "The soul returns to the underworld.")
 			to_chat(capturedsoul, "You feel yourself being pulled back to the underworld.")
-			for(var/obj/effect/landmark/underworld/A in world)
+			for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 				capturedsoul.loc = A.loc
 				capturedsoul.invisibility = initial(capturedsoul.invisibility)
 				for(var/I in itemstorestore)

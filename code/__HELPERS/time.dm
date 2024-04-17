@@ -134,12 +134,12 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 		T.maptext_y = -120
 		playsound_local(src, 'sound/misc/newday.ogg', 100, FALSE)
 		animate(T, alpha = 255, time = 10, easing = EASE_IN)
-		addtimer(CALLBACK(src, .proc/clear_area_text, T), 35)
+		addtimer(CALLBACK(src, PROC_REF(clear_area_text), T), 35)
 	var/obj/screen/daynight/D = new()
 	D.alpha = 0
 	client.screen += D
 	animate(D, alpha = 255, time = 20, easing = EASE_IN)
-	addtimer(CALLBACK(src, .proc/clear_time_icon, D), 30)
+	addtimer(CALLBACK(src, PROC_REF(clear_time_icon), D), 30)
 
 /proc/station_time_debug(force_set)
 	if(isnum(force_set))

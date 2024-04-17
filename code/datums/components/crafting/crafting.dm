@@ -3,7 +3,7 @@
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/L = parent
 	L.craftingthing = src
-//	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+//	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 /*
 /datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	var/datum/hud/H = user.hud_used
@@ -11,7 +11,7 @@
 	C.icon = H.ui_style
 	H.static_inventory += C
 	CL.screen += C
-	RegisterSignal(C, COMSIG_CLICK, .proc/roguecraft)
+	RegisterSignal(C, COMSIG_CLICK, PROC_REF(roguecraft))
 */
 /datum/component/personal_crafting
 	var/busy
@@ -144,7 +144,7 @@
 			return FALSE
 	return TRUE
 
-/atom/proc/OnCrafted(dirin)
+/atom/proc/OnCrafted(dirin, user)
 	return
 
 /obj/item/OnCrafted(dirin)
@@ -261,16 +261,16 @@
 						for(var/IT in L)
 							var/atom/movable/I = new IT(T)
 							I.CheckParts(parts, R)
-							I.OnCrafted(user.dir)
+							I.OnCrafted(user.dir, user)
 					else
 						if(ispath(R.result, /turf))
 							var/turf/X = T.PlaceOnTop(R.result)
 							if(X)
-								X.OnCrafted(user.dir)
+								X.OnCrafted(user.dir, user)
 						else
 							var/atom/movable/I = new R.result (T)
 							I.CheckParts(parts, R)
-							I.OnCrafted(user.dir)
+							I.OnCrafted(user.dir, user)
 					user.visible_message("<span class='notice'>[user] [R.verbage] \a [R.name]!</span>", \
 										"<span class='notice'>I [R.verbage] \a [R.name]!</span>")
 					if(user.mind && R.skillcraft)

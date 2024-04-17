@@ -216,7 +216,7 @@
 	target.playsound_local(get_turf(target), 'sound/blank.ogg', 50, 1)
 	user.playsound_local(get_turf(user), 'sound/blank.ogg', 50, 1)
 	target.become_blind(ABYSSAL_GAZE_BLIND)
-	addtimer(CALLBACK(src, .proc/cure_blindness, target), 40)
+	addtimer(CALLBACK(src, PROC_REF(cure_blindness), target), 40)
 	target.adjust_bodytemperature(-200)
 
 /obj/effect/proc_holder/spell/targeted/abyssal_gaze/proc/cure_blindness(mob/target)

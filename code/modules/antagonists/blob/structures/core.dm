@@ -18,7 +18,7 @@
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
 		update_icon()
-	addtimer(CALLBACK(src, .proc/generate_announcement), 1800)
+	addtimer(CALLBACK(src, PROC_REF(generate_announcement)), 1800)
 	. = ..()
 
 /obj/structure/blob/core/proc/generate_announcement()

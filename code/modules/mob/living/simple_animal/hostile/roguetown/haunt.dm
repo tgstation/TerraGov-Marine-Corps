@@ -144,7 +144,7 @@
 		return
 	spawning = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/createhaunt), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(createhaunt)), 4 SECONDS)
 
 /obj/structure/bonepile/Destroy()
 	soundloop.stop()

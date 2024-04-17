@@ -85,7 +85,7 @@
 					drained += 40
 				if(!user.rogfat_add(drained))
 					user.Immobilize(30)
-					addtimer(CALLBACK(user, /mob/living/.proc/Knockdown, 30), 10)
+					addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, Knockdown), 30), 10)
 
 /turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
@@ -360,7 +360,7 @@
 	. = ..()
 	if(isliving(AM))
 		if(!river_processing)
-			river_processing = addtimer(CALLBACK(src, .proc/process_river), 5, TIMER_STOPPABLE)
+			river_processing = addtimer(CALLBACK(src, PROC_REF(process_river)), 5, TIMER_STOPPABLE)
 
 /turf/open/water/river/proc/process_river()
 	river_processing = null

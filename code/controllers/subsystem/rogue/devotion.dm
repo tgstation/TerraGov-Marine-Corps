@@ -14,6 +14,7 @@
 	var/holder_mob = null
 	var/patron = null
 	var/devotion = 0
+	var/max_devotion = 1000
 	var/progression = 0
 	var/level = CLERIC_T0
 
@@ -31,6 +32,10 @@
 /datum/devotion/cleric_holder/proc/update_devotion(dev_amt, prog_amt)
 	var/datum/patrongods/P = patron
 	devotion += dev_amt
+	//Max devotion limit
+	if(devotion > max_devotion)
+		devotion = max_devotion
+		to_chat(holder_mob, "<font color='red'>I have reached the limit of my devotion...</font>")
 	if(!prog_amt) // no point in the rest if it's just an expenditure
 		return
 	progression += prog_amt
@@ -84,6 +89,9 @@
 	visible_message("[src] kneels their head in prayer to the Gods.", "I kneel my head in prayer to [PATRON]")
 	for(var/i in 1 to 20)
 		if(do_after(src, 30))
+			if(C.devotion >= C.max_devotion)
+				to_chat(src, "<font color='red'>I have reached the limit of my devotion...</font>")
+				break
 			C.update_devotion(2, 2)
 			prayersesh += 2
 		else

@@ -182,8 +182,8 @@ field_generator power level display
 	active = FG_OFFLINE
 	CanAtmosPass = ATMOS_PASS_YES
 	air_update_turf(TRUE)
-	INVOKE_ASYNC(src, .proc/cleanup)
-	addtimer(CALLBACK(src, .proc/cool_down), 50)
+	INVOKE_ASYNC(src, PROC_REF(cleanup))
+	addtimer(CALLBACK(src, PROC_REF(cool_down)), 50)
 
 /obj/machinery/field/generator/proc/cool_down()
 	if(active || warming_up <= 0)
@@ -191,11 +191,11 @@ field_generator power level display
 	warming_up--
 	update_icon()
 	if(warming_up > 0)
-		addtimer(CALLBACK(src, .proc/cool_down), 50)
+		addtimer(CALLBACK(src, PROC_REF(cool_down)), 50)
 
 /obj/machinery/field/generator/proc/turn_on()
 	active = FG_CHARGING
-	addtimer(CALLBACK(src, .proc/warm_up), 50)
+	addtimer(CALLBACK(src, PROC_REF(warm_up)), 50)
 
 /obj/machinery/field/generator/proc/warm_up()
 	if(!active)
@@ -205,7 +205,7 @@ field_generator power level display
 	if(warming_up >= 3)
 		start_fields()
 	else
-		addtimer(CALLBACK(src, .proc/warm_up), 50)
+		addtimer(CALLBACK(src, PROC_REF(warm_up)), 50)
 
 /obj/machinery/field/generator/proc/calc_power(set_power_draw)
 	var/power_draw = 2 + fields.len
@@ -260,10 +260,10 @@ field_generator power level display
 	move_resist = INFINITY
 	CanAtmosPass = ATMOS_PASS_NO
 	air_update_turf(TRUE)
-	addtimer(CALLBACK(src, .proc/setup_field, 1), 1)
-	addtimer(CALLBACK(src, .proc/setup_field, 2), 2)
-	addtimer(CALLBACK(src, .proc/setup_field, 4), 3)
-	addtimer(CALLBACK(src, .proc/setup_field, 8), 4)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 1), 1)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 2), 2)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 4), 3)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 8), 4)
 	addtimer(VARSET_CALLBACK(src, active, FG_ONLINE), 5)
 
 /obj/machinery/field/generator/proc/setup_field(NSEW)
@@ -337,7 +337,7 @@ field_generator power level display
 	//This is here to help fight the "hurr durr, release singulo cos nobody will notice before the
 	//singulo eats the evidence". It's not fool-proof but better than nothing.
 	//I want to avoid using global variables.
-	INVOKE_ASYNC(src, .proc/notify_admins)
+	INVOKE_ASYNC(src, PROC_REF(notify_admins))
 
 	move_resist = initial(move_resist)
 

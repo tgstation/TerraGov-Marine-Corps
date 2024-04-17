@@ -172,7 +172,7 @@
 	blind_eyes(1)
 	update_sight()
 	to_chat(src, "<span class='alert'>You've lost power!</span>")
-	addtimer(CALLBACK(src, .proc/start_RestorePowerRoutine), 20)
+	addtimer(CALLBACK(src, PROC_REF(start_RestorePowerRoutine)), 20)
 
 #undef POWER_RESTORATION_OFF
 #undef POWER_RESTORATION_START

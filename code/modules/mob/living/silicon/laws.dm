@@ -9,7 +9,7 @@
 	throw_alert("newlaw", /obj/screen/alert/newlaw)
 	if(announce && last_lawchange_announce != world.time)
 		to_chat(src, "<b>My laws have been changed.</b>")
-		addtimer(CALLBACK(src, .proc/show_laws), 0)
+		addtimer(CALLBACK(src, PROC_REF(show_laws)), 0)
 		last_lawchange_announce = world.time
 
 /mob/living/silicon/proc/set_law_sixsixsix(law, announce = TRUE)

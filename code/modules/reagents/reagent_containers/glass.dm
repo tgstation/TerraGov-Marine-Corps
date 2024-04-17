@@ -77,7 +77,7 @@
 					log_combat(user, M, "fed", reagents.log_list())
 				else
 					to_chat(user, "<span class='notice'>I swallow a gulp of [src].</span>")
-				addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
+				addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
 				playsound(M.loc,pick(drinksounds), 100, TRUE)
 				return
 /obj/item/reagent_containers/glass/attack_obj(obj/target, mob/living/user)

@@ -89,7 +89,7 @@
 	med_hud_set_health()
 	med_hud_set_status()
 	if(!gibbed && !QDELETED(src))
-		addtimer(CALLBACK(src, .proc/med_hud_set_status), (DEFIB_TIME_LIMIT * 10) + 1)
+		addtimer(CALLBACK(src, PROC_REF(med_hud_set_status)), (DEFIB_TIME_LIMIT * 10) + 1)
 	stop_pulling()
 
 	. = ..()
@@ -100,11 +100,11 @@
 		H.layer = SPLASHSCREEN_LAYER+0.1
 		client.screen += H
 //		flick("gameover",H)
-//		addtimer(CALLBACK(H, /obj/screen/gameover/proc/Fade), 29)
+//		addtimer(CALLBACK(H, TYPE_PROC_REF(/obj/screen/gameover, Fade)), 29)
 		H.Fade()
 		mob_timers["lastdied"] = world.time
-		addtimer(CALLBACK(H, /obj/screen/gameover/proc/Fade, TRUE), 100)
-//		addtimer(CALLBACK(client, .proc/ghostize, 1, src), 150)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/obj/screen/gameover, Fade), TRUE), 100)
+//		addtimer(CALLBACK(client, PROC_REF(ghostize), 1, src), 150)
 		add_client_colour(/datum/client_colour/monochrome)
 		client.verbs += /client/proc/descend
 

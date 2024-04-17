@@ -86,7 +86,7 @@
 							c.copy_overlays(copy, TRUE)
 							toner--
 					busy = TRUE
-					addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(reset_busy)), 1.5 SECONDS)
 				else
 					break
 			updateUsrDialog()
@@ -95,7 +95,7 @@
 				if(toner >= 5 && !busy && photocopy)  //Was set to = 0, but if there was say 3 toner left and this ran, you would get -2 which would be weird for ink
 					new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
 					busy = TRUE
-					addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(reset_busy)), 1.5 SECONDS)
 				else
 					break
 		else if(doccopy)
@@ -104,7 +104,7 @@
 					new /obj/item/documents/photocopy(loc, doccopy)
 					toner-= 6 // the sprite shows 6 papers, yes I checked
 					busy = TRUE
-					addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(reset_busy)), 1.5 SECONDS)
 				else
 					break
 			updateUsrDialog()
@@ -172,7 +172,7 @@
 			photo.pixel_y = rand(-10, 10)
 			toner -= 5	 //AI prints color pictures only, thus they can do it more efficiently
 			busy = TRUE
-			addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(reset_busy)), 1.5 SECONDS)
 		updateUsrDialog()
 	else if(href_list["colortoggle"])
 		if(greytoggle == "Greyscale")

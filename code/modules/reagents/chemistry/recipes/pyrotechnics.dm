@@ -104,7 +104,7 @@
 	strengthdiv = 3
 
 /datum/chemical_reaction/reagent_explosion/tatp/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateInfo)) //method used by secret sauce.
+	SSticker.OnRoundstart(CALLBACK(src,PROC_REF(UpdateInfo))) //method used by secret sauce.
 
 /datum/chemical_reaction/reagent_explosion/tatp/proc/UpdateInfo()
 	required_temp = 450 + rand(-49,49)  //this gets loaded only on round start
@@ -124,7 +124,7 @@
 	strengthdiv = 3
 
 /datum/chemical_reaction/reagent_explosion/tatp_explosion/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateInfo))
+	SSticker.OnRoundstart(CALLBACK(src,PROC_REF(UpdateInfo)))
 
 
 /datum/chemical_reaction/reagent_explosion/tatp_explosion/proc/UpdateInfo()
