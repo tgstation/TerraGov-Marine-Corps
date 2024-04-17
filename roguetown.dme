@@ -2100,6 +2100,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\rogue.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\sorceress.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\warrior.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\donator\dwarfwarrior.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\donator\grenzelhoft.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\donator\paladin.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\donator\vaquero.dm"
