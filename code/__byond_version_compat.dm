@@ -1,5 +1,5 @@
 // This file contains defines allowing targeting byond versions newer than the supported
-// TODO: Remove once we move completely over to 515
+// TODO: Remove the 514 versions once we move completely over to 515
 #if DM_VERSION < 515
 // 514 version
 #define PROC_REF(X) (.proc/##X)
