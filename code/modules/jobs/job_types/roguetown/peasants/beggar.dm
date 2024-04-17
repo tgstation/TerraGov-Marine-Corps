@@ -47,12 +47,13 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
-		r_hand = /obj/item/rogueweapon/mace/woodclub
+		r_hand = /obj/item/rogueweapon/woodstaff/wise // dog beating staff
 		if(H.mind)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE) //very good reading he is wise
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, rand(2,5), TRUE) // dog beating staff
 			H.STASTR = rand(1, 20)
 			H.STAINT = rand(5, 20)
 			H.STALUC = rand(1, 20)
@@ -60,21 +61,35 @@
 		H.change_stat("endurance", -rand(0, 3))
 		H.real_name = "[H.real_name] the Wise"
 		H.name = "[H.name] the Wise"
+		H.facial_hairstyle = "Full Beard"
+		H.update_hair()
+		H.age = AGE_OLD
 		wise_amount++
 		return
 	if(prob(20))
 		head = /obj/item/clothing/head/roguetown/knitcap
+	else
+		head = null
 	if(prob(5))
 		beltr = /obj/item/reagent_containers/powder/moondust
+	else
+		beltr = null
 	if(prob(10))
 		beltl = /obj/item/clothing/mask/cigarette/rollie/cannabis
+	else
+		beltl = null
 	if(prob(10))
 		cloak = /obj/item/clothing/cloak/raincloak/brown
+	else
+		cloak = null
 	if(prob(10))
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
+	else
+		gloves = null
 	if(H.gender == FEMALE)
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
 	else
+		armor = null
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
 		if(prob(50))
 			pants = /obj/item/clothing/under/roguetown/tights/vagrant/l
@@ -88,8 +103,12 @@
 		H.STALUC = rand(1, 20)
 	if(prob(5))
 		r_hand = /obj/item/rogueweapon/mace/woodclub
+	else
+		r_hand = null
 	if(prob(5))
 		l_hand = /obj/item/rogueweapon/mace/woodclub
+	else
+		l_hand = null
 	H.change_stat("strength", -1)
 	H.change_stat("intelligence", -4)
 	H.change_stat("constitution", -3)
