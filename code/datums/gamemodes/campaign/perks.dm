@@ -58,7 +58,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/proc/remove_perk(mob/living/carbon/owner)
 	return
 
-///fancy animation
+///Overhead animation to indicate a perk has been unlocked
 /datum/perk/proc/unlock_animation(mob/living/carbon/owner)
 	var/obj/effect/overlay/perk/perk_animation = new
 	owner.vis_contents += perk_animation
