@@ -645,14 +645,23 @@
 					return
 		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/reagent_containers/glass/pot = attachment
-			if(istype(W,/obj/item/reagent_containers/food/snacks)) 
+			if(istype(W, /obj/item/reagent_containers/food/snacks/grown) || W.type == /obj/item/reagent_containers/powder/flour) 
 				if(pot.reagents.chem_temp < 374)
 					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
 					return
-				var/mob/living/carbon/human/H = user
-				if(istype(H))
-					H.visible_message("<span class='info'>[H] places [W] into the pot.</span>")
-				addtimer(CALLBACK(src, PROC_REF(pot.makeSoup), W), rand(1 MINUTES, 3 MINUTES))
+				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+				if(istype(W, /obj/item/reagent_containers/food/snacks))
+					var/obj/item/reagent_containers/food/snacks/snack = W
+					if(istype(snack, /obj/item/reagent_containers/food/snacks/grown) || snack.eat_effect == /datum/status_effect/debuff/uncookedfood)
+						nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable.
+				if(istype(W, /obj/item/reagent_containers/food/snacks/grown/wheat) || istype(W, /obj/item/reagent_containers/food/snacks/grown/oat) || W.type == /obj/item/reagent_containers/powder/flour)
+					nutrimentamount += 2 //Boiling is a way of cooking grain without baking
+				if(nutrimentamount > 0)
+					if(nutrimentamount + reagents.total_volume > pot.volume)
+						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
+						return
+				user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
+				addtimer(CALLBACK(pot, TYPE_PROC_REF(/obj/item/reagent_containers/glass/pot, makeSoup), nutrimentamount), rand(1 MINUTES, 3 MINUTES))
 				return
 	. = ..()
 

@@ -17,16 +17,6 @@
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	slot_flags = null
 
-/obj/item/reagent_containers/glass/pot/proc/makeSoup(obj/item/reagent_containers/food/snacks/souping)
-	var/nutrimentamount = souping.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-	if(nutrimentamount > 0)
-		if(nutrimentamount + reagents.total_volume > pot.volume)
-			to_chat(user, "<span class='warning'>[attachment] is full!</span>")
-			return
-		if(istype(souping, /obj/item/reagent_containers/food/snacks/grown) || souping.eat_effect == /datum/status_effect/debuff/uncookedfood)
-			nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable.
-		reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
-	if(souping.boil_reagent)
-		reagents.add_reagent(souping.boil_reagent, souping.boil_amt)
-	qdel(souping)
+/obj/item/reagent_containers/glass/pot/proc/makeSoup(nutrimentamount)
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
 	playsound(src, "bubbles", 100, TRUE)
