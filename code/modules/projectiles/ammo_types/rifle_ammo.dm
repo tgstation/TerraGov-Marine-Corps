@@ -1,3 +1,4 @@
+
 /*
 //================================================
 					Rifle Ammo
@@ -14,19 +15,30 @@
 	penetration = 5
 	sundering = 0.5
 
+/datum/ammo/bullet/rifle/rubber
+	name = "rifle rubber bullet"
+	damage_type = STAMINA
+	shrapnel_chance = 0
+
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 20
-	penetration = 25
+	damage = 25
+	penetration = 15
 	sundering = 3
 
 /datum/ammo/bullet/rifle/hv
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
-	damage = 20
-	penetration = 20
-	sundering = 1.25
+	damage = 25
+	penetration = 10
+	sundering = 2
+	shell_speed = 4
+
+/datum/ammo/bullet/rifle/hv/rubber
+	name = "high-velocity rifle rubber bullet"
+	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
@@ -34,6 +46,11 @@
 	damage = 30
 	penetration = 10
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/heavy/rubber
+	name = "heavy rifle rubber bullet"
+	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"

@@ -33,13 +33,16 @@
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	damage = 25
+	armor_type = "bullet"
+	damage = 75
 	damage_type = STAMINA
+	shell_speed = 1.8
+	shrapnel_chance = 0.2
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, 3, no_overdose = TRUE)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
@@ -55,9 +58,9 @@
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
 	damage = 20
-	penetration = 12.5
+	penetration = 10
 	shrapnel_chance = 15
-	sundering = 0.5
+	sundering = 1.5
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -66,6 +69,13 @@
 	penetration = 5
 	shrapnel_chance = 25
 	sundering = 2.15
+
+/datum/ammo/bullet/pistol/heavy/ap
+	name = "heavy armor-penetrating pistol bullet"
+	hud_state = "pistol_ap"
+	damage = 30
+	penetration = 10
+	sundering = 2
 
 /datum/ammo/bullet/pistol/superheavy
 	name = "high impact pistol bullet"

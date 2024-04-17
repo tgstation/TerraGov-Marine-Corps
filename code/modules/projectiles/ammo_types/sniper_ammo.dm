@@ -1,3 +1,4 @@
+
 /*
 //================================================
 					Sniper Ammo
@@ -13,7 +14,7 @@
 	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
-	max_range = 40
+	max_range = 50
 	damage = 90
 	penetration = 50
 	sundering = 15
@@ -25,7 +26,6 @@
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER
 	accuracy_var_high = 7
-	max_range = 20
 	damage = 70
 	penetration = 30
 	sundering = 5
