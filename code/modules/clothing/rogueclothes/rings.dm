@@ -62,7 +62,7 @@
 	name = "ring of null magic"
 	icon_state = "ruby"
 	activate_sound = 'sound/magic/antimagic.ogg'
-	cdtime = 90 MINUTES
+	cdtime = 10 MINUTES
 	activetime = 30 SECONDS
 	sellprice = 100
 
