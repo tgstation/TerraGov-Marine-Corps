@@ -143,5 +143,6 @@
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
 		return
 
+	chassis.visible_message("[chassis] honks its horn!")
 	playsound(chassis, 'sound/vehicles/horns/armored_horn.ogg', 70)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_HORN, 15 SECONDS) //To keep people's eardrums intact
