@@ -7,7 +7,7 @@
 	///currently occupied mob - if any
 	var/mob/living/carbon/current_mob
 	///Credits. You buy stuff with it
-	var/currency = 45000
+	var/currency = 450
 	///List of job types based on faction
 	var/list/valid_jobs = list()
 	///Single list of unlocked perks for easy reference
@@ -102,6 +102,7 @@
 		return
 	new_perk.unlock_animation(user)
 	new_perk.apply_perk(user)
+	user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 
 ///Unlocks a loadout item for use
 /datum/individual_stats/proc/unlock_loadout_item(item_type, job_type_or_types, mob/user, cost_override, job_req_override = FALSE)
