@@ -12,8 +12,11 @@
 	sharpness = IS_BLUNT
 	w_class = WEIGHT_CLASS_BULKY
 	amount_per_transfer_from_this = 9 //hard to transfer
-	possible_transfer_amounts = list(9) 
+	possible_transfer_amounts = list(9)
 	volume = 99
+	reagent_flags = OPENCONTAINER|REFILLABLE
+	spillable = TRUE
+	possible_item_intents = list(INTENT_GENERIC, /datum/intent/fill, INTENT_POUR, INTENT_SPLASH)
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	slot_flags = null
 
