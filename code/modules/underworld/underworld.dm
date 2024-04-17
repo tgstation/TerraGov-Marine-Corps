@@ -162,14 +162,18 @@ GLOBAL_LIST_EMPTY(underworld_coins)
 
 /obj/item/underworld/coin/Destroy()
 	GLOB.underworld_coins -= src
+	coin_upkeep()
 	return ..()
 
 /obj/item/underworld/coin/pickup(mob/user)
 	..()
+	GLOB.underworld_coins -= src
+	coin_upkeep()
 	icon_state = "soultoken"
 
 /obj/item/underworld/coin/dropped(mob/user)
 	..()
+	GLOB.underworld_coins |= src
 	icon_state = "soultoken_floor"
 
 /proc/coin_upkeep()
