@@ -47,7 +47,7 @@
 		leaping = 1
 		weather_immunities += "lava"
 		update_icons()
-		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
+		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end)))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0

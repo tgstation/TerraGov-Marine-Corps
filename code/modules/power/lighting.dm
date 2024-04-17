@@ -317,7 +317,7 @@
 //			brightness = 4
 //			if(prob(5))
 //				break_light_tube(1)
-	addtimer(CALLBACK(src, .proc/update, 0), 1)
+	addtimer(CALLBACK(src, PROC_REF(update), 0), 1)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -429,7 +429,7 @@
 		if(!start_only)
 			do_sparks(3, TRUE, src)
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
-		addtimer(CALLBACK(src, .proc/broken_sparks), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
+		addtimer(CALLBACK(src, PROC_REF(broken_sparks)), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 
 /obj/machinery/light/process()
 	if(on)
@@ -730,7 +730,7 @@
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	SHOULD_CALL_PARENT(0)
+	SHOULD_CALL_PARENT(FALSE)
 	var/area/A = get_area(src)
 	seton(A.lightswitch && A.power_light)
 

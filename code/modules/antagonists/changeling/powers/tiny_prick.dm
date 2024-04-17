@@ -150,7 +150,7 @@
 	target.visible_message("<span class='warning'>A grotesque blade forms around [target.name]\'s arm!</span>", "<span class='danger'>My arm twists and mutates, transforming into a horrific monstrosity!</span>", "<span class='hear'>I hear organic matter ripping and tearing!</span>")
 	playsound(target, 'sound/blank.ogg', 30, TRUE)
 
-	addtimer(CALLBACK(src, .proc/remove_fake, target, blade), 600)
+	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 600)
 	return TRUE
 
 /datum/action/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)
@@ -222,7 +222,7 @@
 
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "LSD sting")
-	addtimer(CALLBACK(src, .proc/hallucination_time, target), rand(300,600))
+	addtimer(CALLBACK(src, PROC_REF(hallucination_time), target), rand(300,600))
 	return TRUE
 
 /datum/action/changeling/sting/LSD/proc/hallucination_time(mob/living/carbon/target)

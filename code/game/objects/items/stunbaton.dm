@@ -172,7 +172,7 @@
 	L.adjustStaminaLoss(60)
 
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), L), 2 SECONDS)
 
 	if(user)
 		L.lastattacker = user.real_name

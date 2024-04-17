@@ -120,15 +120,15 @@
 	minimum_distance = 0
 	set_varspeed(0)
 	charging = TRUE
-	addtimer(CALLBACK(src, .proc/reset_charge), 60)
+	addtimer(CALLBACK(src, PROC_REF(reset_charge)), 60)
 	var/mob/living/L = target
 	if(!istype(L) || L.stat != DEAD) //I know, weird syntax, but it just works.
-		addtimer(CALLBACK(src, .proc/throw_thyself), 20)
+		addtimer(CALLBACK(src, PROC_REF(throw_thyself)), 20)
 
 ///This is the proc that actually does the throwing. Charge only adds a timer for this.
 /mob/living/simple_animal/hostile/megafauna/legion/proc/throw_thyself()
 	playsound(src, 'sound/blank.ogg', 50, TRUE)
-	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/blank.ogg', 50 * size, TRUE, 2), INFINITY)
+	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/blank.ogg', 50 * size, TRUE, 2), INFINITY)
 
 ///Deals some extra damage on throw impact.
 /mob/living/simple_animal/hostile/megafauna/legion/throw_impact(mob/living/hit_atom, datum/thrownthing/throwingdatum)
@@ -329,7 +329,7 @@
 
 /obj/structure/legionturret/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/set_up_shot), initial_firing_time)
+	addtimer(CALLBACK(src, PROC_REF(set_up_shot)), initial_firing_time)
 
 ///Handles an extremely basic AI
 /obj/structure/legionturret/proc/set_up_shot()
@@ -353,7 +353,7 @@
 	var/datum/point/vector/V = new(T1.x, T1.y, T1.z, 0, 0, angle)
 	generate_tracer_between_points(V, V.return_vector_after_increments(6), /obj/effect/projectile/tracer/legion/tracer, 0, shot_delay, 0, 0, 0, null)
 	playsound(src, 'sound/blank.ogg', 100, TRUE)
-	addtimer(CALLBACK(src, .proc/fire_beam, angle), shot_delay)
+	addtimer(CALLBACK(src, PROC_REF(fire_beam), angle), shot_delay)
 
 ///Called shot_delay after the turret shot the tracer. Shoots a projectile into the same direction.
 /obj/structure/legionturret/proc/fire_beam(angle)

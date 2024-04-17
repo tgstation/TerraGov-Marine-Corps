@@ -38,13 +38,13 @@
 		icon_state = "cablerelay-off"
 		to_chat(user, "<span class='danger'>Powernet connection lost. Attempting to re-establish. Ensure the relays below this one are connected too.</span>")
 		find_relays()
-		addtimer(CALLBACK(src, .proc/refresh), 20) //Wait a bit so we can find the one below, then get powering
+		addtimer(CALLBACK(src, PROC_REF(refresh)), 20) //Wait a bit so we can find the one below, then get powering
 	return TRUE
 
 /obj/machinery/power/deck_relay/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/find_relays), 30)
-	addtimer(CALLBACK(src, .proc/refresh), 50) //Wait a bit so we can find the one below, then get powering
+	addtimer(CALLBACK(src, PROC_REF(find_relays)), 30)
+	addtimer(CALLBACK(src, PROC_REF(refresh)), 50) //Wait a bit so we can find the one below, then get powering
 
 ///Handles re-acquiring + merging powernets found by find_relays()
 /obj/machinery/power/deck_relay/proc/refresh()

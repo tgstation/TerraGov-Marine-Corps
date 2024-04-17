@@ -503,6 +503,10 @@
 /obj/item/clothing/head/roguetown/wizhat/gen
 	icon_state = "wizardhatgen"
 
+/obj/item/clothing/head/roguetown/wizhat/gen/wise
+	name = "wise hat"
+	desc = "Only the wisest of nimrods wear this."
+
 /obj/item/clothing/head/roguetown/nyle
 	name = "jewel of nyle"
 	icon_state = "nile"

@@ -127,6 +127,6 @@
 	beingmoved = TRUE
 	to_chat(src, "<B><font size=3 color=red>Your soul is dragged to an infathomably cruel place where it endures severe torment. You've all but given up hope when you feel a presence drag you back to that Forest.</font></B>")
 	playsound(src, 'sound/combat/caught.ogg', 80, TRUE, -1)
-	for(var/obj/effect/landmark/underworld/A in world)
+	for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 		forceMove(A.loc)
 	beingmoved = FALSE

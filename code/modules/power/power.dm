@@ -18,7 +18,7 @@
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/update_cable_icons_on_turf, get_turf(src)), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(update_cable_icons_on_turf), get_turf(src)), 3)
 	return ..()
 
 ///////////////////////////////
@@ -117,7 +117,7 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	if(stat & BROKEN)
 		return
 	if(powered(power_channel))

@@ -36,7 +36,7 @@
 	..()
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	belt = /obj/item/storage/belt/rogue/leather
-	neck = /obj/item/clothing/neck/roguetown/psicross/s
+	neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	cloak = /obj/item/clothing/cloak/cape/puritan
@@ -97,7 +97,7 @@
 			to_chat(src, "<span class='warning'>Not ready to speak yet.</span>")
 
 /mob/living/carbon/human/proc/confession_time()
-	var/timerid = addtimer(CALLBACK(src, .proc/confess_sins), 6 SECONDS, TIMER_STOPPABLE)
+	var/timerid = addtimer(CALLBACK(src, PROC_REF(confess_sins)), 6 SECONDS, TIMER_STOPPABLE)
 	var/responsey = alert("Resist torture? (1 TRI)","Yes","No")
 	if(!responsey)
 		responsey = "No"

@@ -62,7 +62,7 @@
 		SStreasury.log_to_steward("-[amt] imported [D.name]")
 		scom_announce("Rockhill imports [D.name] for [amt] mammon.", )
 		D.raise_demand()
-		addtimer(CALLBACK(src, .proc/do_import, D.type), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_import), D.type), 10 SECONDS)
 	if(href_list["export"])
 		var/datum/roguestock/D = locate(href_list["export"]) in SStreasury.stockpile_datums
 		if(!D)
@@ -196,7 +196,7 @@
 	playsound(T, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 	number += 1
 	testing("number2 is [number]")
-	addtimer(CALLBACK(src, .proc/do_import, D.type, number), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_import), D.type, number), 3 SECONDS)
 
 /obj/structure/roguemachine/steward/attack_hand(mob/living/user)
 	. = ..()

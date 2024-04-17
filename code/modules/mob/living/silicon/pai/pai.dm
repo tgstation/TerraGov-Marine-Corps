@@ -119,12 +119,12 @@
 		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
 		aicamera.flash_enabled = TRUE
 
-	addtimer(CALLBACK(src, .proc/pdaconfig), 5)
+	addtimer(CALLBACK(src, PROC_REF(pdaconfig)), 5)
 
 	. = ..()
 
 	emittersemicd = TRUE
-	addtimer(CALLBACK(src, .proc/emittercool), 600)
+	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
 /mob/living/silicon/pai/proc/pdaconfig()
 	//PDA

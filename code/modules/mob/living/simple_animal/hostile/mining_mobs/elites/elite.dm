@@ -150,15 +150,15 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				if(boosted)
 					mychild.playsound_local(get_turf(mychild), 'sound/blank.ogg', 40, 0)
 					to_chat(mychild, "<b>Someone has activated my tumor.  You will be returned to fight shortly, get ready!</b>")
-				addtimer(CALLBACK(src, .proc/return_elite), 30)
-				INVOKE_ASYNC(src, .proc/arena_checks)
+				addtimer(CALLBACK(src, PROC_REF(return_elite)), 30)
+				INVOKE_ASYNC(src, PROC_REF(arena_checks))
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
 				var/mob/dead/observer/elitemind = null
 				visible_message("<span class='boldwarning'>[src] begins to convulse.  Your instincts tell you to step back.</span>")
 				activator = user
 				if(!boosted)
-					addtimer(CALLBACK(src, .proc/spawn_elite), 30)
+					addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 30)
 					return
 				visible_message("<span class='boldwarning'>Something within [src] stirs...</span>")
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a lavaland elite?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, src, POLL_IGNORE_SENTIENCE_POTION)
@@ -167,7 +167,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 					elitemind = pick(candidates)
 					elitemind.playsound_local(get_turf(elitemind), 'sound/blank.ogg', 40, 0)
 					to_chat(elitemind, "<b>I have been chosen to play as a Lavaland Elite.\nIn a few seconds, you will be summoned on Lavaland as a monster to fight my activator, in a fight to the death.\nYour attacks can be switched using the buttons on the top left of the HUD, and used by clicking on targets or tiles similar to a gun.\nWhile the opponent might have an upper hand with  powerful mining equipment and tools, you have great power normally limited by AI mobs.\nIf you want to win, you'll have to use my powers in creative ways to ensure the kill.  It's suggested you try using them all as soon as possible.\nShould you win, you'll receive extra information regarding what to do after.  Good luck!</b>")
-					addtimer(CALLBACK(src, .proc/spawn_elite, elitemind), 100)
+					addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 100)
 				else
 					visible_message("<span class='boldwarning'>The stirring stops, and nothing emerges.  Perhaps try again later.</span>")
 					activity = TUMOR_INACTIVE
@@ -183,7 +183,7 @@ obj/structure/elite_tumor/proc/spawn_elite(var/mob/dead/observer/elitemind)
 		mychild.key = elitemind.key
 		mychild.sentience_act()
 	icon_state = "tumor_popped"
-	INVOKE_ASYNC(src, .proc/arena_checks)
+	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
@@ -230,10 +230,10 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/proc/arena_checks()
 	if(activity != TUMOR_ACTIVE || QDELETED(src))
 		return
-	INVOKE_ASYNC(src, .proc/fighters_check)  //Checks to see if our fighters died.
-	INVOKE_ASYNC(src, .proc/arena_trap)  //Gets another arena trap queued up for when this one runs out.
-	INVOKE_ASYNC(src, .proc/border_check)  //Checks to see if our fighters got out of the arena somehow.
-	addtimer(CALLBACK(src, .proc/arena_checks), 50)
+	INVOKE_ASYNC(src, PROC_REF(fighters_check))  //Checks to see if our fighters died.
+	INVOKE_ASYNC(src, PROC_REF(arena_trap))  //Gets another arena trap queued up for when this one runs out.
+	INVOKE_ASYNC(src, PROC_REF(border_check))  //Checks to see if our fighters got out of the arena somehow.
+	addtimer(CALLBACK(src, PROC_REF(arena_checks)), 50)
 
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(activator != null && activator.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(activator))

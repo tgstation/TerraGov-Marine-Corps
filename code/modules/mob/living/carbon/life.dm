@@ -160,8 +160,8 @@
 						Immobilize(10)
 						emote("painscream")
 						stuttering += 5
-						addtimer(CALLBACK(src, .proc/Stun, 110), 10)
-						addtimer(CALLBACK(src, .proc/Knockdown, 110), 10)
+						addtimer(CALLBACK(src, PROC_REF(Stun), 110), 10)
+						addtimer(CALLBACK(src, PROC_REF(Knockdown), 110), 10)
 						mob_timers["painstun"] = world.time + 160
 					else
 						emote("painmoan")

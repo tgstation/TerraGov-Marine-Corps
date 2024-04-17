@@ -33,7 +33,7 @@
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
-	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(H, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()

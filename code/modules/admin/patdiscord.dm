@@ -34,7 +34,7 @@
 		to_chat(src, "<span class='userdanger'>Registration cancelled.</span>")
 		return
 	to_chat(src, "<span class='userdanger'>Registering [namey], please wait....</span>")
-	addtimer(CALLBACK(src, .proc/discordtimeout), 5 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(discordtimeout)), 5 SECONDS, TIMER_STOPPABLE)
 
 */
 /mob/dead/new_player/proc/discordtimeout()

@@ -31,7 +31,7 @@
 			if(on)
 				var/tyme = world.time
 				T.hott = tyme
-				addtimer(CALLBACK(T, /obj/item/rogueweapon/tongs.proc/make_unhot, tyme), 50)
+				addtimer(CALLBACK(T, TYPE_PROC_REF(/obj/item/rogueweapon/tongs, make_unhot), tyme), 50)
 			T.update_icon()
 			return
 		if(on)

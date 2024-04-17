@@ -228,7 +228,7 @@
 			return FALSE
 
 /obj/item/defibrillator/proc/cooldowncheck(mob/user)
-		addtimer(CALLBACK(src, .proc/finish_charging), cooldown_duration)
+		addtimer(CALLBACK(src, PROC_REF(finish_charging)), cooldown_duration)
 
 /obj/item/defibrillator/proc/finish_charging()
 	if(cell)
@@ -315,7 +315,7 @@
 	. = ..()
 	if(!req_defib)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_range)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 
 /obj/item/twohanded/shockpaddles/Moved()
 	. = ..()

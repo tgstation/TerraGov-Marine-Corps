@@ -34,7 +34,7 @@
 		record_speech(speaker, raw_message, message_language)
 	else
 		if(check_activation(speaker, raw_message))
-			addtimer(CALLBACK(src, .proc/pulse, 0), 10)
+			addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/record_speech(atom/movable/speaker, raw_message, datum/language/message_language)
 	switch(mode)
@@ -52,7 +52,7 @@
 			say("Your voice pattern is saved.", message_language)
 		if(VOICE_SENSOR_MODE)
 			if(length(raw_message))
-				addtimer(CALLBACK(src, .proc/pulse, 0), 10)
+				addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/check_activation(atom/movable/speaker, raw_message)
 	. = FALSE
