@@ -646,17 +646,13 @@
 		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/reagent_containers/glass/pot = attachment
 			if(istype(W,/obj/item/reagent_containers/food/snacks)) 
-				if(attachment.reagents.chem_temp < 374)
-					to_chat(user, "<span class='warning'>[attachment] isn't boiling!</span>")
+				if(pot.reagents.chem_temp < 374)
+					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
 					return
-				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-				if (nutrimentamount > 0)
-					if (nutrimentamount + attachment.reagents.total_volume > pot.volume)
-						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
-						return
-					nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable. TODO: doesn't apply to already cooked items
-					attachment.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
-					qdel(W)
+				var/mob/living/carbon/human/H = user
+				if(istype(H))
+					H.visible_message("<span class='info'>[H] places [W] into the pot.</span>")
+				addtimer(CALLBACK(src, PROC_REF(pot.makeSoup), W), rand(1 MINUTES, 3 MINUTES))
 				return
 	. = ..()
 

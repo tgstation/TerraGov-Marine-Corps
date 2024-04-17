@@ -21,6 +21,8 @@
 	var/distill_amt = 12
 	var/wine_flavor //If NULL, this is automatically set to the fruit's flavor. Determines the flavor of the wine if distill_reagent is NULL.
 	var/wine_power = 10 //Determines the boozepwr of the wine if distill_reagent is NULL.
+	var/boil_reagent
+	var/boil_amt = 12
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/pipe_reagents = list()
 

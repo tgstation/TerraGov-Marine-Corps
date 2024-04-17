@@ -11,12 +11,22 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	sharpness = IS_BLUNT
 	w_class = WEIGHT_CLASS_BULKY
-	amount_per_transfer_from_this = 9
-	possible_transfer_amounts = list(9)
+	amount_per_transfer_from_this = 9 //hard to transfer
+	possible_transfer_amounts = list(9) 
 	volume = 99
-	reagent_flags = OPENCONTAINER|REFILLABLE
-	spillable = TRUE
-	possible_item_intents = list(INTENT_GENERIC, /datum/intent/fill, INTENT_POUR, INTENT_SPLASH)
-	//dropshrink = 0.8
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	slot_flags = null
+
+/obj/item/reagent_containers/glass/pot/proc/makeSoup(obj/item/reagent_containers/food/snacks/souping)
+	var/nutrimentamount = souping.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+	if(nutrimentamount > 0)
+		if(nutrimentamount + reagents.total_volume > pot.volume)
+			to_chat(user, "<span class='warning'>[attachment] is full!</span>")
+			return
+		if(istype(souping, /obj/item/reagent_containers/food/snacks/grown) || souping.eat_effect == /datum/status_effect/debuff/uncookedfood)
+			nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable.
+		reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrimentamount)
+	if(souping.boil_reagent)
+		reagents.add_reagent(souping.boil_reagent, souping.boil_amt)
+	qdel(souping)
+	playsound(src, "bubbles", 100, TRUE)
