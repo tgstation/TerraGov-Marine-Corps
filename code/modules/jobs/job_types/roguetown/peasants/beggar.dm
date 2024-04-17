@@ -61,7 +61,7 @@
 		H.change_stat("endurance", -rand(0, 3))
 		H.real_name = "[H.real_name] the Wise"
 		H.name = "[H.name] the Wise"
-		H.facial_hairstyle = "Full Beard"
+		H.facial_hairstyle = "Knowledge"
 		H.update_hair()
 		H.age = AGE_OLD
 		wise_amount++
