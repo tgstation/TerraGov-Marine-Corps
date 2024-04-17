@@ -70,14 +70,6 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	owner.vis_contents -= perk_animation
 	qdel(perk_animation)
 
-/obj/effect/overlay/perk
-	layer = ABOVE_MOB_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	icon = 'icons/effects/perk_unlock.dmi'
-	icon_state = ""
-	pixel_x = 8
-	pixel_y = 32
-
 /datum/perk/shield_overclock
 	name = "Shield overlock"
 	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of burning out sensitive components after weeks of use instead of months. \
@@ -451,3 +443,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
 	unlock_cost = 800
+
+/obj/effect/overlay/perk
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon = 'icons/effects/perk_unlock.dmi'
+	icon_state = ""
+	pixel_x = 8
+	pixel_y = 32
