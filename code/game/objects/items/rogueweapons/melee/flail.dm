@@ -9,7 +9,7 @@
 	//dropshrink = 0.75
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = ITEM_SLOT_HIP
+	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	associated_skill = /datum/skill/combat/whipsflails
 	smeltresult = /obj/item/ingot/iron
 	parrysound = list('sound/combat/parry/parrygen.ogg')
