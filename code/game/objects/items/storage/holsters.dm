@@ -295,26 +295,26 @@
 	icon_state = "machete_holster"
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester,
+		/obj/item/weapon/sword/machete,
+		/obj/item/weapon/sword/harvester,
 	)
 
 /obj/item/storage/holster/blade/machete/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester,
+		/obj/item/weapon/sword/machete,
+		/obj/item/weapon/sword/harvester,
 	))
 
 /obj/item/storage/holster/blade/machete/full/PopulateContents()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
+	var/obj/item/new_item = new /obj/item/weapon/sword/machete(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
 /obj/item/storage/holster/blade/machete/full_harvester/PopulateContents()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
+	var/obj/item/new_item = new /obj/item/weapon/sword/harvester(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/katana
@@ -324,14 +324,14 @@
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	holsterable_allowed = list(/obj/item/weapon/katana)
+	holsterable_allowed = list(/obj/item/weapon/sword/katana)
 
 /obj/item/storage/holster/blade/katana/full/Initialize(mapload)
 	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/katana))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/sword/katana))
 
 /obj/item/storage/holster/blade/katana/full/PopulateContents()
-	var/obj/item/new_item = new /obj/item/weapon/katana(src)
+	var/obj/item/new_item = new /obj/item/weapon/sword/katana(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/officer
@@ -339,14 +339,14 @@
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
 	equip_slot_flags = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	holsterable_allowed = list(/obj/item/weapon/sword/officersword)
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/claymore/mercsword/machete/officersword))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/sword/officersword))
 
 /obj/item/storage/holster/blade/officer/full/PopulateContents()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
+	var/obj/item/new_item = new /obj/item/weapon/sword/officersword(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
 //guns
