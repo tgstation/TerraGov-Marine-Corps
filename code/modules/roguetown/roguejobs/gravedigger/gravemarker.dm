@@ -58,6 +58,20 @@
 		return
 	for(var/mob/living/L in AM)
 		if(L.stat == DEAD)
+			if(ishuman(L) && !HAS_TRAIT(L, TRAIT_BURIED_COIN_GIVEN))
+				var/mob/living/carbon/human/H = L
+				if(istype(H.mouth, /obj/item/roguecoin))
+					var/obj/item/roguecoin/coin = H.mouth
+					if(coin.quantity == 1) // no fucking stuffing their mouth full of a fuck ton of coins
+						for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
+							var/turf/T = get_turf(A)
+							T = locate(T.x + rand(-3, 3), T.y + rand(-3, 3), T.z)
+							new /obj/item/underworld/coin/notracking(T)
+							T.visible_message("<span class='warning'>A coin falls from above.</span>")
+							ADD_TRAIT(H, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
+							qdel(H.mouth)
+							update_inv_mouth()
+							break
 			if(L.mind && L.mind.has_antag_datum(/datum/antagonist/zombie))
 				L.mind.remove_antag_datum(/datum/antagonist/zombie)
 			var/mob/dead/observer/O
