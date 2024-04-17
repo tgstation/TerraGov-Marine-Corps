@@ -3,6 +3,7 @@
  */
 /obj/structure/ammo_rack //Parent type, only used as a template
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
+	resistance_flags = RESIST_ALL
 	///Determines what subtype of storage is on our item, see datums\storage\subtypes
 	var/storage_type = /datum/storage/tank
 

@@ -1,4 +1,0 @@
-author: "Yttriums"
-delete-after: True
-changes:
-  - balance: "loading magazines from ammo packets now has a 1.5 second delay"
