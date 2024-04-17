@@ -28,7 +28,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/graveyard
-	beltr = /obj/item/storage/belt/rogue/pouch
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backr = /obj/item/rogueweapon/shovel
 	if(H.gender == FEMALE)
 		pants = null
