@@ -45,15 +45,15 @@
 				to_chat(src, "<span class='rose'>My soul finds peace buried in creation.</span>")
 
 
-/obj/structure/gravemarker/OnCrafted(dir)
+/obj/structure/gravemarker/OnCrafted(dir, user)
 	icon_state = "gravemarker[rand(1,3)]"
 	for(var/obj/structure/closet/dirthole/D in loc)
-		bodysearch(D)
+		bodysearch(D, user)
 		for(var/obj/structure/closet/burial_shroud/B in D)
-			bodysearch(B)
+			bodysearch(B, user)
 	..()
 
-/obj/structure/gravemarker/proc/bodysearch(atom/movable/AM)
+/obj/structure/gravemarker/proc/bodysearch(atom/movable/AM, mob/user)
 	if(!AM)
 		return
 	for(var/mob/living/L in AM)
@@ -69,6 +69,8 @@
 							new /obj/item/underworld/coin/notracking(T)
 							T.visible_message("<span class='warning'>A coin falls from above.</span>")
 							ADD_TRAIT(H, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
+							if(user?.ckey)
+								adjust_playerquality(0.1, user.ckey)
 							qdel(H.mouth)
 							H.update_inv_mouth()
 							break
