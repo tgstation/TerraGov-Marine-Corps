@@ -1184,6 +1184,10 @@
 	if(check_arm_grabbed(active_hand_index))
 		to_chat(src, "<span class='warning'>Someone is grabbing my arm!</span>")
 		return
+	
+	if(istype(src, /mob/living/carbon/spirit))
+		to_chat(src, "<span class='warning'>Your hands pass right through \the [what]!</span>")
+		return
 
 	who.visible_message("<span class='warning'>[src] tries to remove [who]'s [what.name].</span>", \
 					"<span class='danger'>[src] tries to remove my [what.name].</span>", null, null, src)
