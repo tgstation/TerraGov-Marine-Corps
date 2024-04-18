@@ -369,7 +369,7 @@
 	var/list/modifiers = params2list(params)
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		if(C != grabbee)
+		if(C != grabbee || C.incapacitated() || C.stat == DEAD)
 			qdel(src)
 			return 1
 		if(modifiers["right"])
