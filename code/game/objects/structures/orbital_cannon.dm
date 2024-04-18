@@ -220,7 +220,7 @@
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
-		channel_override = SSsounds.random_available_channel(), // This way, we can't have it be cut off by other sounds.
+		random_channel = TRUE, // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
