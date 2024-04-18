@@ -197,12 +197,13 @@
 		if(prob(round(max(dam / 4, 1), 1)))
 			if(skeletonized)
 				return FALSE
-			for(var/datum/wound/fracture/W in wounds)
+			if(zone_precise == BODY_ZONE_PRECISE_STOMACH)
 				var/organ_spilled = FALSE
 				var/turf/T = get_turf(owner)
 				owner.add_splatter_floor(T)
 				playsound(owner, 'sound/combat/crit2.ogg', 100, FALSE, 5)
 				owner.emote("paincrit", TRUE)
+				. = list()
 				for(var/X in owner.internal_organs)
 					var/obj/item/organ/O = X
 					var/org_zone = check_zone(O.zone)
@@ -218,7 +219,6 @@
 					. += cavity_item
 					cavity_item = null
 					organ_spilled = TRUE
-
 				if(organ_spilled)
 					shake_camera(owner, 2, 2)
 					owner.death()
