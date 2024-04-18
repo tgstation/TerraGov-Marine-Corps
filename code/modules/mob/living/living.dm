@@ -885,7 +885,6 @@ below 100 is not dizzy
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
 	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
-	//SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, duration, cooldown, cost, height, sound, flags, jump_pass_flags)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
 		duration = arg_list[1]
 		cooldown = arg_list[2]
