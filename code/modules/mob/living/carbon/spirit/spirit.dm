@@ -55,7 +55,7 @@
 	var/L = new /obj/item/flashlight/lantern/shrunken(src.loc)
 	put_in_hands(L)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
-	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 5 MINUTES)
 
 /mob/living/carbon/spirit/proc/give_patron_toll()
 	if(QDELETED(src) || paid)
