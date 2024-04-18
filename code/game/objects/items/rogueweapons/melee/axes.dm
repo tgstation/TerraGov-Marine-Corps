@@ -1,5 +1,5 @@
 /obj/item/rogueweapon/stoneaxe
-	slot_flags = ITEM_SLOT_HIP
+	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	force = 12
 	possible_item_intents = list(/datum/intent/axe/chop/stone)
 	name = "stone axe"
@@ -95,7 +95,6 @@
 	swingdelay = 10
 
 /obj/item/rogueweapon/stoneaxe/battle
-	slot_flags = ITEM_SLOT_HIP
 	force = 33
 	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop)
 	name = "battle axe"
@@ -118,7 +117,6 @@
 	return ..()
 
 /obj/item/rogueweapon/stoneaxe/woodcut
-	slot_flags = ITEM_SLOT_HIP
 	force = 18
 	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop)
 	name = "axe"

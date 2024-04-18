@@ -209,8 +209,7 @@
 							//addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, werewolf_infect)), 3 MINUTES)
 				if(user.mind.has_antag_datum(/datum/antagonist/zombie))
 					if(!src.mind.has_antag_datum(/datum/antagonist/zombie))
-						if(prob(25)) // Delay is handled in zombie_infect anyways
-							H.zombie_infect()
+						H.zombie_infect_attempt()
 							//addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, zombie_infect)), 3 MINUTES)
 
 	var/obj/item/grabbing/bite/B = new()
