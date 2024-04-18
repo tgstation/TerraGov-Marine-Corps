@@ -37,7 +37,17 @@
 /obj/item/implant/jump_mod/proc/handle_jump(mob/living/mover, jump_height, jump_duration)
 	SIGNAL_HANDLER
 	RegisterSignal(mover, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(end_jump))
-	mover.add_movespeed_modifier(type, priority = 1, multiplicative_slowdown = -0.8)
+	// we subtract any slowdown maluses such as armour.
+	//This creates a smoother, more consistant jump regardless of your slowdown
+	var/speed_boost = 1
+	for(var/i in mover.movespeed_modification)
+		if(i == MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED)
+			continue
+		var/list/move_speed_mod = mover.movespeed_modification[i]
+		if(move_speed_mod[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN] < 0)
+			continue
+		speed_boost += move_speed_mod[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]
+	mover.add_movespeed_modifier(type, priority = 1, multiplicative_slowdown = (-speed_boost))
 
 ///speedboost mid jump
 /obj/item/implant/jump_mod/proc/end_jump(mob/living/mover)
