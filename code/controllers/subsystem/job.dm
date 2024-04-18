@@ -212,9 +212,6 @@ SUBSYSTEM_DEF(job)
 			JobDebug("GRJ incompatible with PATREON LEVEL, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 			continue
 
-		if(get_playerquality(player.ckey) < job.min_pq)
-			continue
-
 		if(!(player.client.prefs.age in job.allowed_ages))
 			JobDebug("GRJ incompatible with age, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 			continue
@@ -512,66 +509,62 @@ SUBSYSTEM_DEF(job)
 		if(job.required)
 			require += job
 	for(var/datum/job/job in require)
-		//attempt 1 - people with enough pq
-		//attempt 2 - anyone
-		for(var/i = job.total_positions, i > 0, i--)
-			for(var/attempt = 1, attempt <= 2, attempt++)
-				for(var/level in level_order)
-					for(var/mob/dead/new_player/player in unassigned)
-						if(player.client.prefs.job_preferences[job.title] != level)
-							continue
+		for(var/level in level_order)
+			for(var/mob/dead/new_player/player in unassigned)
+				if(player.client.prefs.job_preferences[job.title] != level)
+					continue
 
-						if(is_banned_from(player.ckey, job.title))
-							continue
+				if(is_banned_from(player.ckey, job.title))
+					continue
 
-						if(QDELETED(player))
-							break
+				if(QDELETED(player))
+					break
 
-						if(!job.player_old_enough(player.client))
-							continue
+				if(!job.player_old_enough(player.client))
+					continue
 
-						if(job.required_playtime_remaining(player.client))
-							continue
+				if(job.required_playtime_remaining(player.client))
+					continue
 
-						if(player.mind && job.title in player.mind.restricted_roles)
-							continue
+				if(player.mind && job.title in player.mind.restricted_roles)
+					continue
 
-						if(!(player.client.prefs.pref_species.name in job.allowed_races))
-							continue
-						
-						if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
-							continue
+				if(!(player.client.prefs.pref_species.name in job.allowed_races))
+					continue
+				
+				if(!(player.client.prefs.selected_patron.name in job.allowed_patrons))
+					continue
 
-						if(job.plevel_req > player.client.patreonlevel())
-							continue
+				if(job.plevel_req > player.client.patreonlevel())
+					continue
 
-						if(get_playerquality(player.ckey) < job.min_pq && attempt == 1)
-							continue
+				if(get_playerquality(player.ckey) < job.min_pq && level != JP_LOW) //since its required people on low can roll for it
+					continue
 
-						if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
-							continue
+				if((player.client.prefs.lastclass == job.title) && (!job.bypass_lastclass))
+					continue
 
-						if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
-							continue
+				if(check_blacklist(player.client.ckey) && !job.bypass_jobban)
+					continue
 
-						if(CONFIG_GET(flag/usewhitelist))
-							if(job.whitelist_req && (!player.client.whitelisted()))
-								continue
+				if(CONFIG_GET(flag/usewhitelist))
+					if(job.whitelist_req && (!player.client.whitelisted()))
+						continue
 
-						if(!(player.client.prefs.age in job.allowed_ages))
-							continue
+				if(!(player.client.prefs.age in job.allowed_ages))
+					continue
 
-						if(!(player.client.prefs.gender in job.allowed_sexes))
-							continue
+				if(!(player.client.prefs.gender in job.allowed_sexes))
+					continue
 
-						if(!job.special_job_check(player))
-							continue
+				if(!job.special_job_check(player))
+					continue
 
-						// If the job isn't filled.
-						if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-							AssignRole(player, job.title)
-							unassigned -= player
-							amt_picked++
+				// We only need 1 person for the required job, the rest can use the normal system
+				if((job.current_positions < 1))
+					AssignRole(player, job.title)
+					unassigned -= player
+					amt_picked++
 	return amt_picked
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
