@@ -4,6 +4,7 @@
 /datum/loadout_item/eyes/empty
 	name = "no eyewear"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -39,7 +40,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/eyes/mesons
-	name = "Optical meson scanner"
+	name = "Meson scanner"
 	desc = "Used to shield the user's eyes from harmful electromagnetic emissions, also used as general safety goggles. \
 	Not adequate as welding protection. Allows the user to see structural information about their surroundings."
 	item_typepath = /obj/item/clothing/glasses/meson

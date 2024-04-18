@@ -252,6 +252,7 @@ ColorTone(rgb, tone)
 		if(4, 8)
 			usealpha = TRUE
 		if(3, 6) //proceed as normal
+			EMPTY_BLOCK_GUARD // why isnt this a normal if hhhh
 		else
 			return
 
@@ -1084,7 +1085,7 @@ ColorTone(rgb, tone)
 		if (isnull(icon_state))
 			icon_state = thing.icon_state
 			//Despite casting to atom, this code path supports mutable appearances, so let's be nice to them
-			if(isnull(icon_state) || (isatom(thing) && thing.flags_atom & HTML_USE_INITAL_ICON_1))
+			if(isnull(icon_state) || (isatom(thing) && thing.atom_flags & HTML_USE_INITAL_ICON_1))
 				icon_state = initial(thing.icon_state)
 				if (isnull(dir))
 					dir = initial(thing.dir)

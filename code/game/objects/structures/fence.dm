@@ -32,6 +32,8 @@
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_PLASTEEL)
@@ -73,46 +75,46 @@
 	else if(cut) //Cut/brokn grilles can't be messed with further than this
 		return
 
-	else if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
+	if(!iswirecutter(I))
+		return
+	user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
+	"<span class='notice'>You start cutting through [src] with [I]")
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		return
 
-		var/mob/living/M = G.grabbed_thing
-		var/state = user.grab_state
-		user.drop_held_item()
-		switch(state)
-			if(GRAB_PASSIVE)
-				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
-				M.apply_damage(7, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(10)
-			if(GRAB_AGGRESSIVE)
-				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
-				if(prob(50))
-					M.Paralyze(2 SECONDS)
-				M.apply_damage(10, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(25)
-			if(GRAB_NECK)
-				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
-				M.Paralyze(10 SECONDS)
-				M.apply_damage(20, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(50)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	user.visible_message(span_notice("[user] cuts through [src] with [I]."),
+	"<span class='notice'>You cut through [src] with [I]")
+	deconstruct(TRUE)
 
-	else if(iswirecutter(I))
-		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
-		"<span class='notice'>You start cutting through [src] with [I]")
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
-			return
+/obj/structure/fence/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
 
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_notice("[user] cuts through [src] with [I]."),
-		"<span class='notice'>You cut through [src] with [I]")
-		deconstruct(TRUE)
-
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	var/state = user.grab_state
+	user.drop_held_item()
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += BASE_OBJ_SLAM_DAMAGE
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += BASE_OBJ_SLAM_DAMAGE * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against \the [src]")
+			if(prob(50))
+				grabbed_mob.Paralyze(2 SECONDS)
+		if(GRAB_NECK)
+			damage += BASE_OBJ_SLAM_DAMAGE * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
+			grabbed_mob.Paralyze(2 SECONDS)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	take_damage(damage * 2, BRUTE, MELEE)
+	return TRUE
 
 /obj/structure/fence/deconstruct(disassembled = TRUE)
 	SHOULD_CALL_PARENT(FALSE)
@@ -137,10 +139,8 @@
 	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 	return ..()
 
-/obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
-	return ..()
+/obj/structure/fence/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/fence/broken
 	chance_to_break = 100

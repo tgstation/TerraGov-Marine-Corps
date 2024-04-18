@@ -7,13 +7,13 @@
 	opacity = TRUE
 	density = TRUE
 
-	max_integrity = 5000
+	max_integrity = 3000
 	max_temperature = 6000
 
 	walltype = "rwall"
 	explosion_block = 4
 
-	soft_armor = list(MELEE = 0, BULLET = 75, LASER = 75, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /turf/closed/wall/r_wall/get_acid_delay()
 	return 10 SECONDS
@@ -84,7 +84,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/closed/wall/r_wall/prison_unmeltable/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/r_wall/prison_unmeltable/fire_act(burn_level)
 	return
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc

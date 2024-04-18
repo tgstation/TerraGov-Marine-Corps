@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
 GLOBAL_LIST_INIT(playable_icons, list(
 	"boiler",
 	"bull",
-	"baneling",
 	"captain",
 	"carrier",
 	"chief_medical",
@@ -233,6 +232,8 @@ GLOBAL_LIST_INIT(campaign_perk_icon_types, list(
 ))
 
 GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
+	"default",
+	"empty",
 	"light_armour_shield",
 	"medium_armour_shield",
 	"heavy_armour_shield",
@@ -259,6 +260,29 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"pistol",
 	"smg",
 	"construction",
+	"tx55",
+	"m25",
+	"m240",
+	"m1911c",
+	"rt3",
+	"88m4",
+	"v11",
+	"t19",
+	"t90",
+	"sg29",
+	"t18",
+	"t12",
+	"alf51b",
+	"tx11",
+	"sshotgun",
+	"tx15",
+	"t160",
+	"t60",
+	"v34",
+	"ak47",
+	"v41",
+	"rpg",
+	"t35",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

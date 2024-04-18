@@ -70,6 +70,8 @@
 /datum/interior/proc/mob_enter(mob/enterer)
 	RegisterSignal(enterer, COMSIG_QDELETING, PROC_REF(handle_occupant_del))
 	RegisterSignal(enterer, COMSIG_EXIT_AREA, PROC_REF(handle_area_leave))
+	for(var/datum/action/minimap/user_map in enterer.actions)
+		user_map.override_locator(container)
 	occupants += enterer
 	//teleporting the mob is on a case-by-case basis
 
@@ -78,6 +80,8 @@
 	UnregisterSignal(leaver, list(COMSIG_QDELETING, COMSIG_EXIT_AREA))
 	occupants -= leaver
 	exit_callback?.Invoke(leaver, src, teleport)
+	for(var/datum/action/minimap/user_map in leaver.actions)
+		user_map.clear_locator_override()
 
 ///called when a mob gets deleted while an occupant
 /datum/interior/proc/handle_occupant_del(mob/source)
@@ -100,3 +104,9 @@
 /area/interior
 	name = "ERROR AREA DO NOT USE"
 	base_lighting_alpha = 128
+
+/turf/closed/interior
+	resistance_flags = RESIST_ALL
+
+/turf/open/interior
+	resistance_flags = RESIST_ALL

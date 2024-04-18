@@ -85,13 +85,15 @@
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	. = ..()
+	if(.)
+		return
 	if(QDELETED(src))
 		return
 
 	var/multiplier = 1
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(W) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
 			if(istype(src, /obj/structure/mineral_door/resin))
 				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
 			else
@@ -168,8 +170,8 @@
 	return ..()
 
 
-/obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
+/obj/structure/mineral_door/transparent/phoron/fire_act(burn_level)
+	if(burn_level > 30)
 		var/turf/T = get_turf(src)
 		T.ignite(25, 25)
 

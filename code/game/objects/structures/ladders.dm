@@ -66,8 +66,8 @@
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
-/obj/structure/ladder/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	return attack_hand(X)
+/obj/structure/ladder/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	return attack_hand(xeno_attacker)
 
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/X)
 	return attack_hand(X)
@@ -210,6 +210,8 @@
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/explosive/grenade))
 		var/obj/item/explosive/grenade/G = I

@@ -82,7 +82,7 @@
 	var/obj/projectile/spine = new /obj/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
 	spine.def_zone = xeno.get_limbzone_target()
-	spine.fire_at(victim, xeno, null, range = 6, speed = 1)
+	spine.fire_at(victim, xeno, xeno, range = 6, speed = 1)
 
 	add_cooldown()
 // ***************************************
@@ -457,27 +457,38 @@
 	add_cooldown()
 
 // ***************************************
-// *********** Orders
+// *********** Unleash puppets
 // ***************************************
-
-/datum/action/ability/xeno_action/puppeteer_orders
-	name = "Give Orders to Puppets"
-	action_icon_state = "orders"
-	desc = "Give orders to your puppets, altering their behaviour."
+/datum/action/ability/xeno_action/puppeteer_unleash
+	name = "Unleash Puppets"
+	action_icon_state = "enrage"
+	desc = "Send out your puppets to attack nearby humans"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,
 	)
 
-/datum/action/ability/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
-	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
-	if(!choice)
-		return
-	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, choice))
+/datum/action/ability/xeno_action/puppeteer_unleash/action_activate(mob/living/victim)
+	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_ATTACK))
 		owner.balloon_alert(owner, "success")
-		switch(choice)
-			if(PUPPET_ATTACK)
-				owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
-			if(PUPPET_RECALL)
-				owner.visible_message(span_warning("[owner] quickly manipulates the psychic strings of the puppets, drawing them near!"))
+		owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
+	else
+		owner.balloon_alert(owner, "fail")
+
+// ***************************************
+// *********** Recall puppets
+// ***************************************
+/datum/action/ability/xeno_action/puppeteer_recall
+	name = "Recall Puppets"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "rally"
+	desc = "Recall your puppets to follow you once more"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALLPUPPETS,
+	)
+
+/datum/action/ability/xeno_action/puppeteer_recall/action_activate(mob/living/victim)
+	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_RECALL))
+		owner.balloon_alert(owner, "success")
+		owner.visible_message(span_warning("[owner] quickly manipulates the psychic strings of the puppets, drawing them near!"))
 	else
 		owner.balloon_alert(owner, "fail")

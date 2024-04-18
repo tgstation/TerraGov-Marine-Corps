@@ -608,6 +608,8 @@
 	. = ..()
 	button.cut_overlay(visual_references[VREF_MUTABLE_EARTH_PILLAR])
 	visual_references[VREF_MUTABLE_EARTH_PILLAR] = null
+	for(var/pillar in active_pillars)
+		UnregisterSignal(pillar, list(COMSIG_QDELETING, COMSIG_XENOABILITY_EARTH_PILLAR_THROW))
 	QDEL_LIST(active_pillars)
 
 /datum/action/ability/activable/xeno/earth_riser/update_button_icon()
@@ -662,7 +664,10 @@
 	if(!target_turf)
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	active_pillars += new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
+	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
+	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
+	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
+	active_pillars += new_pillar
 	update_button_icon()
 	if(enhanced)
 		return
@@ -670,6 +675,20 @@
 		if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
 			continue
 		affected_living.knockback(xeno_owner, EARTH_RISER_KNOCKBACK_DISTANCE, EARTH_RISER_KNOCKBACK_SPEED)
+
+///Handles the cooldown when a pillar is actually thrown
+/datum/action/ability/activable/xeno/earth_riser/proc/pillar_thrown(obj/structure/earth_pillar/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_XENOABILITY_EARTH_PILLAR_THROW)
+	deltimer(cooldown_timer)
+	cooldown_timer = null
+	add_cooldown()
+
+///removes the pillar from active_pillars
+/datum/action/ability/activable/xeno/earth_riser/proc/pillar_destroyed(obj/structure/earth_pillar/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_XENOABILITY_EARTH_PILLAR_THROW))
+	active_pillars -= source
 
 /**
  * Changes the maximum amount of Earth Pillars that can be had.
@@ -920,14 +939,12 @@
 	block_overlay = new(null, src)
 	owner.vis_contents += block_overlay
 	START_PROCESSING(SSprocessing, src)
-	RegisterSignals(owner, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
+	RegisterSignals(owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
 	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
 
-/datum/action/ability/xeno_action/primal_wrath/remove_action(mob/living/L)
-	. = ..()
-	stop_ability()
-
 /datum/action/ability/xeno_action/primal_wrath/process()
+	if(!owner)
+		return PROCESS_KILL
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
@@ -1213,9 +1230,6 @@
 /obj/structure/earth_pillar/Destroy()
 	playsound(loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(loc)
-	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner?.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
-	if(earth_riser_action && (src in earth_riser_action.active_pillars))
-		earth_riser_action.active_pillars -= src
 	xeno_owner = null
 	return ..()
 
@@ -1239,29 +1253,29 @@
 // Attacking an Earth Pillar as a xeno has a few possible interactions, based on intent:
 // - Harm intent will reduce a counter in this structure. When the counter hits zero, the structure is destroyed, meaning it is much easier to break it as a xeno.
 // - Help intent as a Behemoth will trigger an easter egg. Does nothing, just fluff.
-/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+/obj/structure/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/current_turf = get_turf(src)
-	switch(xeno_user.a_intent)
+	switch(xeno_attacker.a_intent)
 		if(INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 			if(attacks_to_destroy <= 1)
-				xeno_user.do_attack_animation(src)
-				xeno_user.balloon_alert(xeno_user, "Destroyed")
+				xeno_attacker.do_attack_animation(src)
+				xeno_attacker.balloon_alert(xeno_attacker, "Destroyed")
 				new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 				qdel(src)
 				return TRUE
 			attacks_to_destroy--
-			xeno_user.do_attack_animation(src)
+			xeno_attacker.do_attack_animation(src)
 			do_jitter_animation(jitter_loops = 1)
 			playsound(src, get_sfx("behemoth_earth_pillar_hit"), 40)
-			xeno_user.balloon_alert(xeno_user, "Attack [attacks_to_destroy] more time(s) to destroy")
+			xeno_attacker.balloon_alert(xeno_attacker, "Attack [attacks_to_destroy] more time(s) to destroy")
 			new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 			return TRUE
 		if(INTENT_HELP)
-			if(isxenobehemoth(xeno_user))
-				xeno_user.do_attack_animation(src)
+			if(isxenobehemoth(xeno_attacker))
+				xeno_attacker.do_attack_animation(src)
 				do_jitter_animation(jitter_loops = 1)
 				playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 30, TRUE)
-				xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+				xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 				span_xenonotice(pick(
 					"We eat away at the stone. It tastes good, as expected of our primary diet.",
 					"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
@@ -1304,16 +1318,15 @@
 /obj/structure/earth_pillar/proc/throw_pillar(atom/target_atom, landslide)
 	if(!isxeno(usr) || !in_range(src, usr) || target_atom == src || warning_flashes < initial(warning_flashes))
 		return
+	SEND_SIGNAL(src, COMSIG_XENOABILITY_EARTH_PILLAR_THROW)
 	var/source_turf = get_turf(src)
 	playsound(source_turf, get_sfx("behemoth_earth_pillar_hit"), 40)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
-	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner?.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
-	earth_riser_action?.add_cooldown()
 	qdel(src)
 	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
 	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
 	new_projectile.generate_bullet(projectile)
-	new_projectile.fire_at(get_turf(target_atom), usr, null, new_projectile.ammo.max_range, loc_override = source_turf)
+	new_projectile.fire_at(get_turf(target_atom), usr, source_turf, new_projectile.ammo.max_range)
 
 /// Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
 /// Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.
@@ -1336,7 +1349,7 @@
 	icon_state = "earth_pillar"
 	ping = null
 	bullet_color = COLOR_LIGHT_ORANGE
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	shell_speed = 1
 	max_range = 10
 	damage_falloff = 0

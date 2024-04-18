@@ -254,7 +254,6 @@
 
 /mob/living/carbon/human/on_revive()
 	. = ..()
-	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
@@ -270,8 +269,9 @@
 	GLOB.dead_xeno_list -= src
 
 /mob/living/proc/revive(admin_revive = FALSE)
-	for(var/i in embedded_objects)
-		var/obj/item/embedded = i
+	for(var/obj/item/embedded AS in embedded_objects)
+		if(embedded.is_beneficial_implant())
+			continue
 		embedded.unembed_ourself()
 
 	// shut down various types of badness

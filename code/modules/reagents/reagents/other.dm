@@ -345,7 +345,6 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "iron"
-	scannable = TRUE
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1)
@@ -654,4 +653,3 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	scannable = TRUE

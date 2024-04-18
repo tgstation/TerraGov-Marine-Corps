@@ -4,7 +4,7 @@
 	desc = "A spiky length of wire."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	singular_name = "length"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
@@ -29,6 +29,8 @@
 
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/stack/rods))
 		return

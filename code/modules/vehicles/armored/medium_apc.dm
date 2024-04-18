@@ -6,9 +6,9 @@
 	turret_icon_state = "apc_turret"
 	damage_icon_path = null
 	interior = null
-	flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY
+	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
+	minimap_icon_state = null
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS
 	max_occupants = 5
-	primary_weapon_type = /obj/item/armored_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
-	secondary_weapon_type = null

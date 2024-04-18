@@ -9,7 +9,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
 		)
 	item_state = "plasticx"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	layer = MOB_LAYER - 0.1
 	var/frequency = 1457
@@ -80,6 +80,8 @@
 
 /obj/item/detpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(ismultitool(I) && armed)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)

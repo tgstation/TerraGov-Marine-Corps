@@ -24,11 +24,11 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
+	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
 		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(resin_silo_proxy_alert))
 
-	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
+	if(SSticker.mode?.round_type_flags & MODE_SILOS_SPAWN_MINIONS)
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
@@ -91,7 +91,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 
-/obj/structure/xeno/silo/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/silo/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 
 	//We took damage, so it's time to start regenerating if we're not already processing
@@ -152,4 +152,4 @@
 ///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))

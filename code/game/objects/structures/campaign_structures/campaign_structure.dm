@@ -27,8 +27,10 @@
 	anchored = TRUE
 	allow_pass_flags = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
-
 	icon = 'icons/obj/structures/campaign_structures.dmi'
+
+	///overhead timer
+	var/obj/effect/countdown/campaign_objective/countdown
 
 /obj/structure/campaign_objective/Initialize(mapload)
 	. = ..()
@@ -55,4 +57,8 @@
 ///Update the minimap blips to show who is controlling this objective
 /obj/structure/campaign_objective/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "campaign_objective"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "campaign_objective", HIGH_FLOAT_LAYER))
+
+///Remaining time for overhead countdown if applicable
+/obj/structure/campaign_objective/proc/get_time_left()
+	return

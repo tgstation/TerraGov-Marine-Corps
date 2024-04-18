@@ -51,12 +51,12 @@
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
 
-/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(isxenobehemoth(xeno_user))
-		xeno_user.do_attack_animation(src)
+	if(isxenobehemoth(xeno_attacker))
+		xeno_attacker.do_attack_animation(src)
 		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
-		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+		xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 		span_xenonotice(pick(
 			"We eat away at the stone. It tastes good, as expected of our primary diet.",
 			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
@@ -111,10 +111,6 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-
-/turf/closed/mineral/smooth/darkfrostwall/cuttable
-	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	name = "tough rock"
@@ -166,6 +162,16 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+//basalt mineral wall
+/turf/closed/mineral/smooth/basalt
+	icon = 'icons/turf/walls/basaltwall.dmi'
+	icon_state = "basaltwall-0"
+	base_icon_state = "basaltwall"
+
+/turf/closed/mineral/smooth/basalt/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
@@ -191,7 +197,7 @@
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			ChangeTurf(/turf/open/ground/grass)
+			ChangeTurf(/turf/open/ground/grass/weedable)
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
@@ -297,9 +303,7 @@
 	icon_state = "Intersection"
 
 /turf/closed/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(I) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
@@ -313,6 +317,8 @@
 
 		//change targetted turf to a new one to simulate deconstruction
 		ChangeTurf(open_turf_type)
+		return
+	return ..()
 
 //Ice Thin Wall
 /turf/closed/ice/thin
@@ -511,8 +517,13 @@
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
+/turf/closed/shuttle/dropship1/aislewindow
+	icon_state = "shuttle_aisle_window"
+	opacity = FALSE
+
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship1/engineone
 	icon_state = "shuttle_interior_backengine"

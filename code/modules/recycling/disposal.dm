@@ -67,6 +67,8 @@
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & BROKEN)
 		return
@@ -115,7 +117,7 @@
 		var/obj/item/storage/bag/trash/T = I
 		to_chat(user, span_notice("You empty the bag into [src]."))
 		for(var/obj/item/O in T.contents)
-			T.remove_from_storage(O, src, user)
+			T.storage_datum.remove_from_storage(O, src, user)
 		T.update_icon()
 		update()
 
@@ -702,6 +704,8 @@
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/turf/T = loc
 	if(T.intact_tile)
@@ -1011,6 +1015,8 @@
 
 /obj/structure/disposalpipe/tagger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1082,6 +1088,8 @@
 
 /obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1304,6 +1312,8 @@
 
 /obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		mode = !mode

@@ -117,6 +117,10 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
 
+/obj/machinery/vending/snack/alamo
+		product_slogans = "" //silent for no spam
+		wrenchable = FALSE
+
 /obj/machinery/vending/cola
 	name = "Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
@@ -137,19 +141,9 @@
 		/obj/item/reagent_containers/food/drinks/cans/cola = -1,
 	)
 
-	prices = list(
-		/obj/item/reagent_containers/food/drinks/cans/souto = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
-	)
-	idle_power_usage = 200
+/obj/machinery/vending/cola/alamo
+		product_slogans = "" //silent for no spam
+		wrenchable = FALSE
 
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
@@ -161,14 +155,14 @@
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 15,
-			/obj/item/storage/pill_bottle/kelotane = 15,
-			/obj/item/storage/pill_bottle/tramadol = 15,
-			/obj/item/storage/pill_bottle/tricordrazine = 15,
-			/obj/item/storage/pill_bottle/dylovene = 15,
-			/obj/item/storage/pill_bottle/inaprovaline = 15,
-			/obj/item/storage/pill_bottle/isotonic = 15,
-			/obj/item/storage/pill_bottle/paracetamol = 6,
+			/obj/item/storage/pill_bottle/bicaridine = -1,
+			/obj/item/storage/pill_bottle/kelotane = -1,
+			/obj/item/storage/pill_bottle/tramadol = -1,
+			/obj/item/storage/pill_bottle/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/dylovene = -1,
+			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
@@ -187,14 +181,14 @@
 			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
 		),
 		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
-			/obj/item/reagent_containers/glass/bottle/kelotane = 6,
-			/obj/item/reagent_containers/glass/bottle/tramadol = 6,
-			/obj/item/reagent_containers/glass/bottle/tricordrazine = 6,
-			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
-			/obj/item/reagent_containers/glass/bottle/paracetamol = 6,
-			/obj/item/reagent_containers/glass/bottle/isotonic = 6,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
+			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
+			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
@@ -536,7 +530,7 @@
 		/obj/item/tool/kitchen/utensil/fork = 6,
 		/obj/item/tool/kitchen/knife = 3,
 		/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
-		/obj/item/clothing/suit/chef/classic = 2,
+		/obj/item/clothing/suit/storage/chef/classic = 2,
 		/obj/item/tool/kitchen/utensil/spoon = 2,
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,

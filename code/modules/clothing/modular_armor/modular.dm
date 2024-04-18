@@ -18,16 +18,16 @@
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/instrument,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/weapon/claymore,
+		/obj/item/weapon/sword,
 		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
@@ -35,7 +35,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/weapon/energy/sword,
 	)
-	flags_equip_slot = ITEM_SLOT_OCLOTHING
+	equip_slot_flags = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
 	unequip_delay_self = 1 SECONDS
@@ -93,6 +93,9 @@
 		/obj/item/armor_module/armor/legs/marine/ranger,
 		/obj/item/armor_module/armor/arms/marine/ranger,
 
+		/obj/item/armor_module/armor/chest/marine/mjolnir,
+		/obj/item/armor_module/armor/legs/marine/mjolnir,
+		/obj/item/armor_module/armor/arms/marine/mjolnir,
 
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -132,7 +135,7 @@
 	var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(!storage_module.show_storage)
 		return standing
-	for(var/obj/item/stored AS in storage_module.storage.contents)
+	for(var/obj/item/stored AS in storage_module.contents)
 		standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	return standing
 
@@ -185,6 +188,24 @@
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_KNEE]] installed."
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
+
+/obj/item/clothing/suit/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/suit/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
 
 /obj/item/clothing/suit/modular/rownin
 	name = "\improper Rownin Skeleton"
@@ -278,12 +299,12 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1
 	greyscale_colors = ARMOR_PALETTE_DESERT
 
-	flags_armor_protection = HEAD
-	flags_armor_features = ARMOR_NO_DECAP
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDE_EXCESS_HAIR
+	armor_protection_flags = HEAD
+	armor_features_flags = ARMOR_NO_DECAP
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDE_EXCESS_HAIR
 	allowed = null
-	flags_equip_slot = ITEM_SLOT_HEAD
+	equip_slot_flags = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
@@ -305,6 +326,7 @@
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/module/night_vision,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 	)
@@ -326,7 +348,7 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
-			for(var/obj/item/stored AS in storage_module.storage.contents)
+			for(var/obj/item/stored AS in storage_module.contents)
 				if(istype(stored, /obj/item/ammo_magazine/handful))
 					standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = stored.icon_state, layer = COLLAR_LAYER)
 				else
@@ -337,11 +359,7 @@
 	standing.pixel_y = visorless_offset_y
 	return standing
 
-/obj/item/clothing/head/modular/on_pocket_insertion()
-	. = ..()
-	update_clothing_icon()
-
-/obj/item/clothing/head/modular/on_pocket_removal()
+/obj/item/clothing/head/modular/update_icon(updates)
 	. = ..()
 	update_clothing_icon()
 
@@ -349,6 +367,16 @@
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
+
+/obj/item/clothing/head/modular/examine(mob/user)
+	. = ..()
+	var/armor_info
+	var/obj/item/clothing/head/modular/wear_modular_suit = src
+	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE])
+		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE]].\n"
+	if(armor_info)
+		. += "	It has the following attachments:"
+		. += armor_info
 
 /** Colorable masks */
 /obj/item/clothing/mask/gas/modular

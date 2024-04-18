@@ -128,6 +128,8 @@
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
@@ -247,7 +249,7 @@
 
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
-	if(!ishuman(user))
+	if(!ishuman(user) && !isobserver(user))
 		return
 	if(!miner_upgrade_type)
 		. += span_info("[src]'s module sockets seem empty, an upgrade could be installed.")
@@ -314,26 +316,26 @@
 	else
 		add_tick += 1
 
-/obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+/obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
 		return
-	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG))
-		X.visible_message(span_notice("[X]'s claws bounce off of [src]'s reinforced plating."),
+	if(miner_upgrade_type == MINER_RESISTANT && !(xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG))
+		xeno_attacker.visible_message(span_notice("[xeno_attacker]'s claws bounce off of [src]'s reinforced plating."),
 		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
-		if(X.do_actions)
-			return balloon_alert(X, "busy")
-		if(!do_after(X, 1.5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		if(xeno_attacker.do_actions)
+			return balloon_alert(xeno_attacker, "busy")
+		if(!do_after(xeno_attacker, 1.5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
-		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		X.visible_message(span_danger("[X] slashes \the [src]!"), \
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 		span_danger("We slash \the [src]!"), null, 5)
 		playsound(loc, "alien_claw_metal", 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()
-		if(miner_status == MINER_DESTROYED && X.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+		if(miner_status == MINER_DESTROYED && xeno_attacker.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
 			personal_statistics.miner_sabotages_performed++
 
 /obj/machinery/miner/proc/set_miner_status()

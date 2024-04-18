@@ -4,6 +4,7 @@
 /datum/loadout_item/gloves/empty
 	name = "no gloves"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -33,7 +34,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/gloves/marine_black_gloves
-	name = "Black combat gloves"
+	name = "Blk combat gloves"
 	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
 	item_typepath = /obj/item/clothing/gloves/marine/black
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
@@ -45,7 +46,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/gloves/white_dress
-	name = "White dress gloves"
+	name = "Dress gloves"
 	desc = "Fancy white gloves to go with your white dress uniform."
 	item_typepath = /obj/item/clothing/gloves/white
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
@@ -53,9 +54,9 @@
 //corpsman
 /datum/loadout_item/gloves/defib_gloves
 	name = "Defib gloves"
-	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
+	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patient No more bulky units!"
 	purchase_cost = 50
-	item_typepath = /obj/item/defibrillator/gloves
+	item_typepath = /obj/item/clothing/gloves/defibrillator
 	jobs_supported = list(SQUAD_CORPSMAN)
 
 //engineer

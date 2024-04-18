@@ -1,7 +1,7 @@
 //FEB 2024 NOTE: some of these are missing loading_sounds, fix it before using these ingame
 //Special ammo magazines for hardpoint modules. Some may not be here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
-	flags_magazine = NONE
+	magazine_flags = NONE
 	///loading sound to play when
 	var/loading_sound
 
@@ -15,14 +15,14 @@
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
-/obj/item/ammo_magazine/tank/ltaap_minigun
-	name = "LTA-AP Minigun Magazine"
-	desc = "A primary armament minigun magazine"
+/obj/item/ammo_magazine/tank/ltaap_chaingun
+	name = "\improper LTA-AP chaingun Magazine"
+	desc = "A primary armament chaingun magazine."
 	caliber = CALIBER_762X51
-	icon_state = "minigunammo"
+	icon_state = "ltaap"
 	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/minigun/ltaap
+	max_rounds = 150
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
 
@@ -45,14 +45,14 @@
 	max_rounds = 5
 
 /obj/item/ammo_magazine/tank/secondary_cupola
-	name = "M56 Cupola Magazine"
+	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
 	caliber = CALIBER_10X28
 	icon_state = "cupolaammo"
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/cupola
-	max_rounds = 50
+	max_rounds = 75
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"

@@ -20,27 +20,25 @@
 	update_icons()
 
 /mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
-		return
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
-	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()
 
@@ -100,7 +98,7 @@
 	wound_overlay.layer = layer + 0.3
 	wound_overlay.icon = src.icon
 	wound_overlay.vis_flags |= VIS_HIDE
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+	if(HAS_TRAIT(src, TRAIT_XENOMORPH_INVISIBLE_BLOOD))
 		wound_overlay.icon_state = "none"
 		return
 	if(health > health_threshold_crit)

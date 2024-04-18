@@ -218,14 +218,16 @@
 	name = "\improper Nanotrasen brand MRE"
 	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
-	can_hold = list(/obj/item/reagent_containers/food/snacks)
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/box/nt_mre/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.set_holdable(list(/obj/item/reagent_containers/food/snacks))
 
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
+
+/obj/item/storage/box/nt_mre/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
@@ -248,11 +250,11 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
 	item_state = "gun_sling"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
 	unequip_delay_self = 1 SECONDS
-	flags_inventory = NOQUICKEQUIP
+	inventory_flags = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
 

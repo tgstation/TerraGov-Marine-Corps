@@ -4,33 +4,24 @@
 	var/obj/structure/gun_breech/breech
 	///secondary gun ammo management
 	var/obj/structure/gun_breech/secondary_breech
-	///driver seat that allows driving
-	var/obj/structure/bed/chair/vehicle_driver_seat/drive_seat
-	//gunner seat that allows weapon control
-	var/obj/structure/bed/chair/vehicle_gunner_seat/gun_seat
 	///door to enter and leave the tank. TODO: make this support multiple doors
 	var/turf/closed/interior/tank/door/door
 
 /datum/interior/armored/Destroy(force, ...)
 	breech = null
 	secondary_breech = null
-	drive_seat = null
-	gun_seat = null
 	door = null
 	return ..()
 
 /datum/interior/armored/mob_enter(mob/enterer)
-	. = ..()
 	if(door)
 		enterer.forceMove(door.get_enter_location())
 		enterer.setDir(EAST)
-		return
+		return ..()
 	to_chat(enterer, span_userdanger("AN ERROR OCCURED PUTTING YOU INTO AN INTERIOR"))
 	stack_trace("a [enterer.type] could not find a door when entering an interior")
 	enterer.forceMove(pick(loaded_turfs))
-
-/turf/closed/interior
-	resistance_flags = RESIST_ALL
+	return ..()
 
 /turf/closed/interior/tank
 	name = "\improper Ares tank interior"
@@ -111,10 +102,6 @@
 ///returns where we want to spit out new enterers
 /turf/closed/interior/tank/door/proc/get_enter_location()
 	return get_step(src, EAST)
-
-
-/turf/open/interior
-	resistance_flags = RESIST_ALL
 
 /turf/open/interior/tank
 	name = "\improper Ares tank interior"

@@ -1,5 +1,5 @@
 /obj/machinery/deployable
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	allow_pass_flags = PASS_AIR
@@ -58,8 +58,8 @@
 	var/obj/item/item = get_internal_item()
 	if(!item)
 		return
-	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
+	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
+		balloon_alert(user, "Cannot disassemble")
 		return
 	operator?.unset_interaction()
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
@@ -77,7 +77,7 @@
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(CHECK_BITFIELD(_internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
@@ -86,7 +86,7 @@
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(!CHECK_BITFIELD(_internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(!CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		return ..()
 	disassemble(user)
 
@@ -99,8 +99,8 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(200, damage_flag = BOMB, effects = TRUE)
+			take_damage(200, armor_type = BOMB, effects = TRUE)
 		if(EXPLODE_LIGHT)
-			take_damage(100, damage_flag = BOMB, effects = TRUE)
+			take_damage(100, armor_type = BOMB, effects = TRUE)
 		if(EXPLODE_WEAK)
-			take_damage(50, damage_flag = BOMB, effects = TRUE)
+			take_damage(50, armor_type = BOMB, effects = TRUE)

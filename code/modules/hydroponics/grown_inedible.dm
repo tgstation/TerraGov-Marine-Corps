@@ -40,7 +40,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "logs"
 	force = 5
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -50,6 +50,8 @@
 
 /obj/item/grown/log/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
@@ -68,7 +70,7 @@
 	icon_state = "sunflower"
 	damtype = BURN
 	force = 0
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
@@ -86,7 +88,7 @@
 	icon_state = "nettle"
 	damtype = BURN
 	force = 15
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
@@ -173,6 +175,8 @@
 
 /obj/item/corncob/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
 		to_chat(user, span_notice("You use [I] to fashion a pipe out of the corn cob!"))

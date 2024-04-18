@@ -36,10 +36,6 @@
 #define DEFILER_TRANSVITOX "Transvitox"
 #define DEFILER_OZELOMELYN "Ozelomelyn"
 
-//Baneling specific reagent define
-#define BANELING_ACID "Sulphuric acid"
-#define BANELING_ACID_ICON "spray_acid"
-
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
 #define TRAP_SMOKE_ACID "acid gas"
@@ -55,7 +51,6 @@
 #define PUPPET_RECALL "recall puppet"
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
 #define PUPPET_ATTACK "seek and attack order"
-#define PUPPET_SCOUT "scouting order"
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
@@ -104,15 +99,6 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/status_effect/stacking/intoxicated,
 		)))
 
-//List of Baneling chemical types available for selection
-GLOBAL_LIST_INIT(baneling_chem_type_list, list(
-		/datum/reagent/toxin/xeno_ozelomelyn,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/acid,
-		))
-
 //List of plant types
 GLOBAL_LIST_INIT(plant_type_list, list(
 		/obj/structure/xeno/plant/heal_fruit,
@@ -142,13 +128,6 @@ GLOBAL_LIST_INIT(resin_special_images_list, list(
 		FIREPROOF_WALL = image('icons/Xeno/actions.dmi', icon_state = FIREPROOF_WALL),
 		HARDY_WALL = image('icons/Xeno/actions.dmi', icon_state = HARDY_WALL)
 ))
-
-//List of puppeteer order images
-GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
-		PUPPET_ATTACK = image('icons/Xeno/actions.dmi', icon_state = "enrage"),
-		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "66"),
-		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
-		))
 
 //List of puppeteer pheromone images
 GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
@@ -216,3 +195,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_CONSTRUCT 8
 
 #define PUPPET_WITHER_RANGE 15
+
+///Number of icon states to show health and plasma on the side UI buttons
+#define XENO_HUD_ICON_BUCKETS 16

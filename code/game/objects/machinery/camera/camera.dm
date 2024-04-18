@@ -93,6 +93,8 @@
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
@@ -164,16 +166,16 @@
 	return TRUE
 
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(obj_integrity <= 0)
-		to_chat(X, span_warning("The camera is already disabled."))
+		to_chat(xeno_attacker, span_warning("The camera is already disabled."))
 		return
 
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_danger("[X] slashes \the [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"))
 	playsound(loc, "alien_claw_metal", 25, 1)
 

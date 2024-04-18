@@ -118,6 +118,7 @@
 		flick(working_state,src)
 
 /obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
+	. = ..()
 	if(AM == beaker)
 		beaker = null
 
@@ -321,6 +322,8 @@
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isreagentcontainer(I))
 		if(beaker)

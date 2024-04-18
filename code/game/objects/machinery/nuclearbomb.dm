@@ -13,10 +13,10 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 20
-	flags_atom = CRITICAL_ATOM
+	atom_flags = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
-	interaction_flags = INTERACT_OBJ_UI
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -103,6 +103,8 @@
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!extended)
 		return
 	if(!istype(I, /obj/item/disk/nuclear))
@@ -119,23 +121,23 @@
 	if(r_auth && g_auth && b_auth)
 		has_auth = TRUE
 
-/obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(!timer_enabled)
-		to_chat(X, span_warning("\The [src] is soundly asleep. We better not disturb it."))
+		to_chat(xeno_attacker, span_warning("\The [src] is soundly asleep. We better not disturb it."))
 		return
 
-	X.visible_message("[X] begins to slash delicately at the nuke",
+	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the nuke",
 	"You start slashing delicately at the nuke.")
-	if(!do_after(X, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
-	X.visible_message("[X] disabled the nuke",
+	xeno_attacker.visible_message("[xeno_attacker] disabled the nuke",
 	"You disabled the nuke.")
 
 	disable()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, X)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, xeno_attacker)
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
 	. = ..()
@@ -350,7 +352,7 @@
 ///Change minimap icon if its on or off
 /obj/machinery/nuclearbomb/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

@@ -42,11 +42,11 @@
 				to_chat(human_user, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+			if((head && (head.inventory_flags & COVERMOUTH)) || (wear_mask && (wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
-			if((human_user.head && (human_user.head.flags_inventory & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.flags_inventory & COVERMOUTH)))
+			if((human_user.head && (human_user.head.inventory_flags & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove your mask!"))
 				return FALSE
 
@@ -122,7 +122,7 @@
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
-				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(3 SECONDS, WEAKEN)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -140,8 +140,6 @@
 		if(INTENT_DISARM)
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-
-			var/target_zone = ran_zone(human_user.zone_selected)
 
 			//Accidental gun discharge
 			if(human_user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
@@ -169,7 +167,7 @@
 			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD
 
 			if (randn <= 25)
-				apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				apply_effect(3 SECONDS, WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[human_user] has pushed [src]!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
@@ -200,7 +198,6 @@
 	if(src == M)
 		if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 			holo_card_color = null
-			update_targeted()
 			visible_message(span_notice("[src] removes the holo card on [p_them()]self."),
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return

@@ -16,7 +16,7 @@
 	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -45,7 +45,7 @@
 	var/obj/projectile/newspit = new (get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -107,15 +107,15 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /// This is so that xenos can remove leash balls
-/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity)

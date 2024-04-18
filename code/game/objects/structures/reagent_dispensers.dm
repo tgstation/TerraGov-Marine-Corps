@@ -143,6 +143,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/assembly_holder))
 		return
@@ -172,6 +174,7 @@
 	. = ..()
 
 	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
+		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
@@ -179,7 +182,6 @@
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
-	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
@@ -191,10 +193,8 @@
 		explosion(loc, light_impact_range = 2, flame_range = 2)
 	qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
-	if(temperature > T0C+500)
-		explode()
-	return ..()
+/obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
+	explode()
 
 /obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
@@ -216,9 +216,6 @@
 
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
-	explode()
-
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"
 	desc = "A red fuel barrel"
@@ -238,13 +235,13 @@
 	exploding = TRUE
 
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 5)
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 4)
 	else
-		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 3)
 
 	qdel(src)

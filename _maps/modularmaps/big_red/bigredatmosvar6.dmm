@@ -387,7 +387,7 @@
 /area/bigredv2/outside/se)
 "zz" = (
 /turf/open/liquid/water/river,
-/area/bigredv2/caves/rock)
+/area/space)
 "zI" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,

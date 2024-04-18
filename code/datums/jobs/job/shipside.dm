@@ -82,9 +82,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
+	head = /obj/item/clothing/head/beret/marine/captain
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
+	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
 /datum/outfit/job/command/captain/robot
 	species = SPECIES_COMBAT_ROBOT
@@ -512,6 +513,157 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 
+#define ASSAULT_CREWMAN_POPLOCK 50
+//tank/arty driver+gunner
+/datum/job/terragov/command/assault_crewman
+	title = ASSAULT_CREWMAN
+	req_admin_notify = TRUE
+	paygrade = "E3"
+	comm_title = "AC"
+	total_positions = 0
+	max_positions = 2
+	skills_type = /datum/skills/assault_crewman
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
+	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
+	outfit = /datum/outfit/job/command/assault_crewman
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	job_points_needed = 35
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Duty</b>: Provide heavy fire support
+	"}
+	minimap_icon = "assault_crew"
+
+/datum/job/terragov/command/assault_crewman/on_pre_setup()
+	if(total_positions)
+		return
+	if(length(GLOB.clients) >= ASSAULT_CREWMAN_POPLOCK)
+		add_job_positions(2) //always 2 there are, a master and an apprentice
+
+/datum/job/terragov/command/assault_crewman/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are an Assault Crewman. You operate the TGMC's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"})
+
+/datum/job/terragov/command/assault_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+
+/datum/outfit/job/command/assault_crewman
+	name = ASSAULT_CREWMAN
+	jobtype = /datum/job/terragov/command/assault_crewman
+
+	id = /obj/item/card/id/dogtag
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/assault_crewman
+	wear_suit = /obj/item/clothing/suit/storage/marine/assault_crewman
+	head = /obj/item/clothing/head/helmet/marine/assault_crewman
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine
+	l_store = /obj/item/pamphlet/tank_loader
+
+#define TRANSPORT_CREWMAN_POPLOCK 30
+//apc/jeep driver
+/datum/job/terragov/command/transport_crewman
+	title = TRANSPORT_CREWMAN
+	req_admin_notify = TRUE
+	paygrade = "E3"
+	comm_title = "TC"
+	total_positions = 0
+	max_positions = 1
+	skills_type = /datum/skills/transport_crewman
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
+	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
+	outfit = /datum/outfit/job/command/transport_crewman
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	job_points_needed = 40
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Duty</b>: Transport and support the frontline troops
+	"}
+	minimap_icon = "transport_crew"
+
+/datum/job/terragov/command/transport_crewman/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are a Transport Crewman. You operate the TGMC's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."})
+
+/datum/job/terragov/command/transport_crewman/on_pre_setup()
+	if(total_positions)
+		return
+	if(length(GLOB.clients) >= TRANSPORT_CREWMAN_POPLOCK)
+		add_job_positions(1)
+
+/datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+
+/datum/outfit/job/command/transport_crewman
+	name = TRANSPORT_CREWMAN
+	jobtype = /datum/job/terragov/command/transport_crewman
+
+	id = /obj/item/card/id/dogtag
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/transport_crewman
+	wear_suit = /obj/item/clothing/suit/storage/marine/transport_crewman
+	head = /obj/item/clothing/head/helmet/marine/transport_crewman
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine
+
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
@@ -741,6 +893,10 @@ A happy ship is a well-functioning ship."})
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
+
+/datum/outfit/job/requisitions/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/supplytablet, SLOT_IN_R_POUCH)
 
 /datum/job/terragov/medical
 	job_category = JOB_CAT_MEDICAL

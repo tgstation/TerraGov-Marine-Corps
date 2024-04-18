@@ -59,9 +59,9 @@
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 
 	// by default, vis_contents is inherited from the turf that was here before
 	vis_contents.Cut()
@@ -130,7 +130,7 @@
 			B.vars[I] = null
 		return QDEL_HINT_IWILLGC
 	visibilityChanged()
-	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	DISABLE_BITFIELD(atom_flags, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
 	QDEL_NULL(current_acid)
@@ -154,7 +154,7 @@
 			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
 				return FALSE //No need for a bump, already procesed.
 			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
-				//Continue. We've plowed through the obstacle.
+				EMPTY_BLOCK_GUARD
 			else
 				mover.Bump(src)
 				return FALSE
@@ -180,7 +180,7 @@
 			return TRUE //We've entered the tile and gotten entangled inside it.
 		if(QDELETED(mover)) //Mover deleted from Cross/CanPass, do not proceed.
 			return FALSE
-		else if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_atom & ON_BORDER) && !(firstbump.flags_atom & ON_BORDER)))
+		else if(!firstbump || ((thing.layer > firstbump.layer || thing.atom_flags & ON_BORDER) && !(firstbump.atom_flags & ON_BORDER)))
 			firstbump = thing
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
@@ -215,7 +215,7 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.flags_atom & INITIALIZED)
+		if(O.atom_flags & INITIALIZED)
 			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact_tile)
 
 
@@ -527,7 +527,7 @@
  */
 /turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
-	if(ourarea.flags_area & DISALLOW_WEEDING)
+	if(ourarea.area_flags & DISALLOW_WEEDING)
 		if(!silent)
 			to_chat(builder, span_warning("We cannot build in this area before the talls are out!"))
 		return FALSE
@@ -567,6 +567,9 @@
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
+			if(istype(O, /obj/structure/bed/chair/dropship/doublewide))
+				has_obstacle = TRUE
+				break
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
@@ -578,7 +581,7 @@
 			has_obstacle = TRUE
 			break
 
-		if(O.density && !(O.flags_atom & ON_BORDER))
+		if(O.density && !(O.atom_flags & ON_BORDER))
 			has_obstacle = TRUE
 			break
 
@@ -677,7 +680,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	var/turf/newT
 	if(flags & CHANGETURF_SKIP) // We haven't been initialized
-		if(flags_atom & INITIALIZED)
+		if(atom_flags & INITIALIZED)
 			stack_trace("CHANGETURF_SKIP was used in a PlaceOnTop call for a turf that's initialized. This is a mistake. [src]([type])")
 		assemble_baseturfs()
 	if(fake_turf_type)
@@ -774,7 +777,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
 	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L && (L.flags_atom & INITIALIZED))
+	if(L && (L.atom_flags & INITIALIZED))
 		qdel(L)
 
 // A proc in case it needs to be recreated or badmins want to change the baseturfs
@@ -882,6 +885,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/contents_explosion(severity)
+	. = ..()
 	for(var/thing in contents)
 		var/atom/movable/thing_in_turf = thing
 		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
@@ -889,25 +893,25 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
 				SSexplosions.highMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.atom_flags & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.highMovAtom[a] += list(src)
 			if(EXPLODE_HEAVY)
 				SSexplosions.medMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.atom_flags & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.medMovAtom[a] += list(src)
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.atom_flags & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.lowMovAtom[a] += list(src)
 			if(EXPLODE_WEAK)
 				SSexplosions.weakMovAtom[thing_in_turf] += list(src)
-				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+				if(thing_in_turf.atom_flags & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.weakMovAtom[a] += list(src)

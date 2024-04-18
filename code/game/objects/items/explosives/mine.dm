@@ -18,7 +18,7 @@ Stepping directly on the mine will also blow it up
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	///Trigger flags for this mine
 	var/target_mode = MINE_LIVING_ONLY
 	/// IFF signal - used to determine friendly units
@@ -58,7 +58,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/fire_act(burn_level)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
@@ -102,6 +102,8 @@ Stepping directly on the mine will also blow it up
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ismultitool(I) || !anchored)
 		return
@@ -163,15 +165,15 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(X.a_intent == INTENT_HELP)
+	if(xeno_attacker.a_intent == INTENT_HELP)
 		return
-	X.visible_message(span_danger("[X] has slashed [src]!"), \
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -271,5 +273,5 @@ Stepping directly on the mine will also blow it up
 		return
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
-/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/anti_tank/fire_act(burn_level)
 	return //its highly exploitable if fire detonates these

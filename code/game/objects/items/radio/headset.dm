@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
@@ -54,6 +54,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)
@@ -170,7 +172,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
-	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
@@ -232,7 +234,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer)
 		if(headset_hud_on && wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
-			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 		wearer = null
@@ -288,7 +289,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			if(!ghost?.can_reenter_corpse)
 				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")

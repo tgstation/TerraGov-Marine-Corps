@@ -46,31 +46,13 @@
 		update_icon()
 		return
 
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
+
 	if(grill_fuel <= 0)
 		to_chat(user, span_warning("No fuel!"))
 		return ..()
-
-	if(isgrabitem(I))
-		var/obj/item/grab/grab_item = I
-		if(!isliving(grab_item.grabbed_thing))
-			return
-		var/mob/living/living_victim = grab_item.grabbed_thing
-		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a better grip to do that!"))
-			return
-		if(user.do_actions)
-			return
-
-		user.visible_message(span_danger("[user] starts to press [living_victim] onto the [src]!"))
-
-		if(!do_after(user, 0.5 SECONDS, NONE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
-			return
-
-		user.visible_message(span_danger("[user] slams [living_victim] onto the [src]!"))
-		living_victim.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
-		playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
-		living_victim.emote("scream")
-		return
 
 	if(I.resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
@@ -78,7 +60,7 @@
 
 	//else if(IS_EDIBLE(I))
 	else if(istype(I, /obj/item/reagent_containers/food))
-		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ITEM_ABSTRACT|DELONDROP)))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ITEM_ABSTRACT|DELONDROP)))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
 			to_chat(user, span_notice("[I] has already been grilled!"))
@@ -97,6 +79,35 @@
 			return
 
 	return ..()
+
+/obj/machinery/grill/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(grill_fuel <= 0)
+		return ..()
+
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(user.a_intent != INTENT_HARM)
+		return
+
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+
+	if(user.do_actions)
+		return
+
+	user.visible_message(span_danger("[user] starts to press [grabbed_mob] onto the [src]!"))
+
+	if(!do_after(user, 0.5 SECONDS, NONE, grabbed_mob, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	user.visible_message(span_danger("[user] slams [grabbed_mob] onto the [src]!"))
+	grabbed_mob.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
+	playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
+	grabbed_mob.emote("scream")
+	return TRUE
 
 /obj/machinery/grill/process(delta_time)
 	..()
@@ -141,7 +152,7 @@
 
 /obj/machinery/grill/deconstruct(disassembled = TRUE)
 	finish_grill()
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc, 5)
 		new /obj/item/stack/rods(loc, 5)
 	..()

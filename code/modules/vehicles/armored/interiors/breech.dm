@@ -70,11 +70,9 @@
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(weapon)
 	weapon.ammo = mag
-	balloon_alert(user, "loaded")
-	if(!is_secondary)
-		user.say("Up!")
-	for(var/mob/occupant AS in owner.occupants)
-		occupant.hud_used.update_ammo_hud(owner, list(
+	user.say(is_secondary ? "Loaded!" : "Up!")
+	for(var/mob/occupant AS in owner.interior.occupants)
+		occupant.hud_used.update_ammo_hud(weapon, list(
 			mag.default_ammo.hud_state,
 			mag.default_ammo.hud_state_empty),
 			mag.current_rounds
@@ -92,13 +90,25 @@
 	return TRUE
 
 ///called every time the firing animation is refreshed, not every actual fire
-/obj/structure/gun_breech/proc/on_main_fire(obj/item/ammo_magazine/old_ammo)
-	return
+/obj/structure/gun_breech/proc/on_main_fire(obj/item/ammo_magazine/owner_ammo)
+	if(owner_ammo.default_ammo.ammo_behavior_flags & AMMO_ENERGY) // todo add puffs of smoke that fly out
+		return
+	if(owner_ammo.max_rounds == 1)
+		return
+	//todo get an animation for bullets flying out
+	var/turf/eject_loc = get_step(src, WEST)
+	var/obj/item/ammo_casing/cartridge/pile = locate(/obj/item/ammo_casing/cartridge) in eject_loc
+	if(!pile)
+		pile = new(eject_loc)
+		return
+	pile.current_casings += 1
+	pile.update_appearance()
 
 ///when we run out of ammo; how do we eject the magazine?
 /obj/structure/gun_breech/proc/do_eject_ammo(obj/item/ammo_magazine/old_ammo)
 	old_ammo.forceMove(get_step(src, WEST))
 	if(old_ammo.max_rounds != 1)
+		//todo make non shell and energy ejection anim?
 		return
 	old_ammo.pixel_x = 20
 	old_ammo.pixel_y = 4

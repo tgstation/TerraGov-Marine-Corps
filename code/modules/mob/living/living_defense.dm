@@ -1,3 +1,53 @@
+/mob/living/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_MOB_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(grab.grabbed_thing == src)
+		return
+	if(user == src)
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	step_towards(grabbed_mob, src)
+	user.drop_held_item()
+	var/state = user.grab_state
+
+	if(state >= GRAB_AGGRESSIVE)
+		var/own_stun_chance = 0
+		var/grabbed_stun_chance = 0
+		if(grabbed_mob.mob_size > mob_size)
+			own_stun_chance = 25
+			grabbed_stun_chance = 10
+		else if(grabbed_mob.mob_size < mob_size)
+			own_stun_chance = 0
+			grabbed_stun_chance = 25
+		else
+			own_stun_chance = 25
+			grabbed_stun_chance = 25
+
+		if(prob(own_stun_chance))
+			Paralyze(1 SECONDS)
+		if(prob(grabbed_stun_chance))
+			grabbed_mob.Paralyze(1 SECONDS)
+
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against [src]")
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	return TRUE
+
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
@@ -21,9 +71,6 @@
 		var/obj/O = AM
 		O.stop_throw()
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
-		if(O.item_fire_stacks)
-			fire_stacks += O.item_fire_stacks
-			IgniteMob()
 
 	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
 	if(ismob(AM.thrower))
@@ -79,12 +126,6 @@
 		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
 		return TRUE
 
-/mob/living/carbon/human/IgniteMob()
-	. = ..()
-	if(on_fire == TRUE)
-		if(!stat && !(species.species_flags & NO_PAIN))
-			emote("scream")
-
 /mob/living/carbon/xenomorph/IgniteMob()
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
@@ -101,7 +142,7 @@
 		G.kill_hugger()
 		dropItemToGround(G)
 
-
+///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()
 	if(!on_fire)
 		return FALSE
@@ -111,20 +152,25 @@
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 
+///Updates fire visuals
 /mob/living/proc/update_fire()
 	return
 
-/mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+///Adjusting the amount of fire_stacks we have on person
+/mob/living/proc/adjust_fire_stacks(add_fire_stacks)
 	if(QDELETED(src))
 		return
-	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
-		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
+		if(status_flags & GODMODE)
+			return
 		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
+		return
+	update_fire()
 
+///Update fire stacks on life tick
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
 		fire_stacks++ //If we've doused ourselves in water to avoid fire, dry off slowly
@@ -134,28 +180,43 @@
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
 
-/mob/living/fire_act()
-	adjust_fire_stacks(rand(1,2))
-	IgniteMob()
+/mob/living/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(stat == DEAD)
+		return FALSE
+	if(status_flags & GODMODE)
+		return TRUE //while godmode will stop the damage, we don't want the process to stop in case godmode is removed
 
-/mob/living/flamer_fire_act(burnlevel)
-	if(!burnlevel)
+	var/lava_damage = 20
+	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
+	if(!CHECK_BITFIELD(pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
+		adjust_fire_stacks(20)
+		IgniteMob()
+	return TRUE
+
+/mob/living/fire_act(burn_level)
+	if(!burn_level)
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
-		return
+		return FALSE
 	if(hard_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
-		return
+		return FALSE
 
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
 	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
-		return
+		return FALSE
 
-	adjust_fire_stacks(burnlevel)
+	. = TRUE
+	adjust_fire_stacks(burn_level)
+	if(on_fire || !fire_stacks)
+		return
 	IgniteMob()
 
+///Try and remove fire from ourselves
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
@@ -195,16 +256,18 @@
 	smoke_contact(S)
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	var/bio_protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	var/acid_protection = max(1 - get_soft_acid_protection(), 0)
+	var/acid_hard_protection = get_hard_acid_protection()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
 		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(15 * protection)
+		adjustFireLoss(15 * bio_protection)
 		to_chat(src, span_danger("It feels as if you've been dumped into an open fire!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		if(prob(25 * protection))
+		if(prob(25 * acid_protection))
 			to_chat(src, span_danger("Your skin feels like it is melting away!"))
-		adjustFireLoss(S.strength * rand(20, 23) * protection)
+		adjustFireLoss(max(S.strength * rand(20, 23) * acid_protection - acid_hard_protection, 0))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
 		if(HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
 			return
@@ -212,10 +275,9 @@
 			var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
 			debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
 		apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
-		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * protection)
+		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
-	return protection
 
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)

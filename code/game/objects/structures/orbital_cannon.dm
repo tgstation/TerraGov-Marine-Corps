@@ -42,6 +42,9 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
+	if(GLOB.marine_main_ship.orbital_cannon == src)
+		GLOB.marine_main_ship.orbital_cannon = null
+	QDEL_NULL(tray)
 	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
@@ -214,15 +217,19 @@
 		fuel_warning = "Warhead fuel level: incorrect.<br>Warhead may be inaccurate."
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-
+	GLOB.round_statistics.obs_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "obs_fired")
 	priority_announce(
-		message = "Get out of danger close!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
+		message = "Evacuate the impact zone immediately!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
 		random_channel = TRUE, // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
+	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
+	for(var/mob/living/screentext_receiver AS in receivers)
+		screentext_receiver.play_screen_text("<span class='maptext' style=font-size:36pt;text-align:center valign='top'><u><b>ORBITAL STRIKE IMMINENT</b></u></span><br>TYPE: [uppertext(tray.warhead.warhead_kind)]", /atom/movable/screen/text/screen_text/command_order)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
@@ -378,7 +385,7 @@
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
+	flame_radius(range_num, target,	burn_intensity = 46, burn_duration = 40, colour = "blue")
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(17, target, 20)
 	warcrime.start()
@@ -398,7 +405,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -433,7 +440,7 @@
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
-	flags_atom = ON_BORDER|CONDUCT
+	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
 /obj/machinery/computer/orbital_cannon_console/Initialize(mapload)
@@ -551,6 +558,12 @@
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
+
+/obj/structure/ship_rail_gun/Destroy()
+	if(GLOB.marine_main_ship.rail_gun == src)
+		GLOB.marine_main_ship.rail_gun = null
+	QDEL_NULL(rail_gun_ammo)
+	return ..()
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
 	if(cannon_busy && !ignore_cooldown)

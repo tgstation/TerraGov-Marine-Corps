@@ -12,8 +12,8 @@
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
-	flags_equip_slot = ITEM_SLOT_BELT
-	flags_item = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags = INTERACT_OBJ_UI
 	var/skilllock = 1
@@ -54,7 +54,7 @@
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
 		to_chat(user, span_notice("You dissolve [pill] from [bottle] in [src]."))
-		bottle.remove_from_storage(pill,null,user)
+		bottle.storage_datum.remove_from_storage(pill,null,user)
 		qdel(pill)
 		return
 
@@ -310,7 +310,7 @@
 /obj/item/reagent_containers/hypospray/advanced/update_overlays()
 	. = ..()
 
-	if(reagents.total_volume)
+	if(reagents?.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)

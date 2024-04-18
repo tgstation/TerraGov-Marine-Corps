@@ -64,6 +64,8 @@
 
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		for(var/datum/reagent/X in I.reagents.reagent_list)
@@ -247,8 +249,8 @@
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to(P,amount_per_pill)
 				if(loaded_pill_bottle)
-					if(length(loaded_pill_bottle.contents) < loaded_pill_bottle.max_storage_space)
-						loaded_pill_bottle.handle_item_insertion(P, TRUE)
+					if(length(loaded_pill_bottle.contents) < loaded_pill_bottle.storage_datum.max_storage_space)
+						loaded_pill_bottle.storage_datum.handle_item_insertion(P, TRUE)
 						updateUsrDialog()
 
 		else if (href_list["createbottle"])
@@ -361,13 +363,13 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.storage_datum.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 	else
 		dat += "<A href='?src=[text_ref(src)];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.storage_datum.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!beaker.reagents.total_volume)

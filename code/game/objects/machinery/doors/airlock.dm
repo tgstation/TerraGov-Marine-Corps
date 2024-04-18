@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 360
-	flags_atom = HTML_USE_INITAL_ICON_1
+	atom_flags = HTML_USE_INITAL_ICON_1
 	obj_flags = CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -273,46 +273,46 @@
 
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	var/turf/cur_loc = X.loc
+	var/turf/cur_loc = xeno_attacker.loc
 	if(isElectrified())
-		if(shock(X, 70))
+		if(shock(xeno_attacker, 70))
 			return
 	if(locked)
-		to_chat(X, span_warning("\The [src] is bolted down tight."))
+		to_chat(xeno_attacker, span_warning("\The [src] is bolted down tight."))
 		return FALSE
 	if(welded)
-		to_chat(X, span_warning("\The [src] is welded shut."))
+		to_chat(xeno_attacker, span_warning("\The [src] is welded shut."))
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		to_chat(X, span_warning("\The [src] is already open!"))
+		to_chat(xeno_attacker, span_warning("\The [src] is already open!"))
 		return FALSE
 
-	if(X.do_actions)
+	if(xeno_attacker.do_actions)
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 
 	if(hasPower())
-		X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
+		xeno_attacker.visible_message(span_warning("\The [xeno_attacker] digs into \the [src] and begins to pry it open."), \
 		span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-		if(!do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
+		if(!do_after(xeno_attacker, 4 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE) && !xeno_attacker.lying_angle)
 			return FALSE
 	if(locked)
-		to_chat(X, span_warning("\The [src] is bolted down tight."))
+		to_chat(xeno_attacker, span_warning("\The [src] is bolted down tight."))
 		return FALSE
 	if(welded)
-		to_chat(X, span_warning("\The [src] is welded shut."))
+		to_chat(xeno_attacker, span_warning("\The [src] is welded shut."))
 		return FALSE
 
 	if(density) //Make sure it's still closed
 		open(TRUE)
-		X.visible_message(span_danger("\The [X] pries \the [src] open."), \
+		xeno_attacker.visible_message(span_danger("\The [xeno_attacker] pries \the [src] open."), \
 			span_danger("We pry \the [src] open."), null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
@@ -351,6 +351,8 @@
 
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/clothing/mask/cigarette) && isElectrified())
 		var/obj/item/clothing/mask/cigarette/L = I

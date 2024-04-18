@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Valhalla xenos can use directional attacks on the puppets they spawn now"

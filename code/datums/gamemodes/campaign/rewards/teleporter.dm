@@ -3,8 +3,9 @@
 	name = "Enable Teleporter Array"
 	desc = "Enables the use of the Teleporter Array for the current or next mission"
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_active"
-	uses = 2
+	uses = 3
 	cost = 5
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
 	already_active_message = "The Teleporter Array is already activated!"
@@ -41,17 +42,18 @@
 //adds more charges
 /datum/campaign_asset/teleporter_charges
 	name = "Teleporter Array charges"
-	desc = "+2 uses of the Teleporter Array"
-	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
+	desc = "+6 uses of the Teleporter Array"
+	detailed_desc = "Central command have allocated the battalion with six additional uses of the Teleporter Array, with two added per use. Its extremely costly to run and demand is high across the conflict zone, so make them count."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_uses"
-	uses = 3
+	uses = 6
 	cost = 6
 
 /datum/campaign_asset/teleporter_charges/activated_effect()
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
-		teleporter.charges ++
+		teleporter.charges += 2
 		to_chat(faction.faction_leader, span_warning("An additional activation of the Teleporter Array is now ready for use."))
 		return
 
@@ -61,6 +63,7 @@
 	desc = "Teleporter Array has been permenantly disabled"
 	detailed_desc = "The Bluespace drive powering all Teleporter Arrays in the conflict zone has been destroyed, rending all Teleporter Arrays inoperable. You'll have to deploy the old fashion way from here on out."
 	asset_flags = ASSET_IMMEDIATE_EFFECT|ASSET_DEBUFF
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_scientist
 	ui_icon = "tele_broken"
 
 /datum/campaign_asset/teleporter_disabled/immediate_effect()

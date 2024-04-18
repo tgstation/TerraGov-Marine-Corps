@@ -13,30 +13,26 @@
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
-	/// Flat-damage-reduction-based armor.
+	///Modifies the AP of incoming attacks
 	var/datum/armor/hard_armor
-
-	var/obj_integrity	//defaults to max_integrity
+	///Object HP
+	var/obj_integrity
+	///Max object HP
 	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior
-	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
-	var/crit_fail = 0
-
-	///throwforce needs to be at least 1 else it causes runtimes with shields
+	///Integrety below this number causes special behavior
+	var/integrity_failure = 0
+	///Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields
 	var/throwforce = 1
-
+	///Object behavior flags
 	var/obj_flags = NONE
-	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
-	var/destroy_sound //Sound this object makes when destroyed.
-
-	var/item_fire_stacks = 0	//How many fire stacks it applies
-
+	///Sound when hit
+	var/hit_sound
+	///Sound this object makes when destroyed
+	var/destroy_sound
+	///ID access where all are required to access this object
 	var/list/req_access = null
+	///ID access where any one is required to access this object
 	var/list/req_one_access = null
-
-	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
-	var/real_explosion_block
-
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
 
@@ -108,7 +104,7 @@
 	. = ..()
 	if(.)
 		return
-	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+	if((atom_flags & ON_BORDER) && !(get_dir(loc, target) & dir))
 		return TRUE
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
@@ -140,7 +136,7 @@
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(atom_flags & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 
 	knownblockers += src
@@ -149,7 +145,7 @@
 ///Signal handler to check if you can move from one low object to another
 /obj/proc/can_climb_over(datum/source, atom/mover)
 	SIGNAL_HANDLER
-	if(!(flags_atom & ON_BORDER) && density)
+	if(!(atom_flags & ON_BORDER) && density)
 		return TRUE
 
 /obj/proc/updateUsrDialog()
@@ -326,6 +322,9 @@
 		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
+	if(user.skills.getRating(SKILL_ENGINEER) > skill_required)
+		repair_amount *= (1+(0.1*(user.skills.getRating(SKILL_ENGINEER) - (skill_required + 1))))
+
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
 	handle_weldingtool_overlay()
@@ -352,4 +351,28 @@
 	balloon_alert_to_viewers("repaired")
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	handle_weldingtool_overlay(TRUE)
+	return TRUE
+
+/obj/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(isxeno(user))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(prob(15))
+		grabbed_mob.Paralyze(2 SECONDS)
+		user.drop_held_item()
+	step_towards(grabbed_mob, src)
+	var/damage = base_damage + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
+	span_danger("You slam [grabbed_mob]'s face against [src]!"))
+	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
+	take_damage(damage, BRUTE, MELEE)
 	return TRUE

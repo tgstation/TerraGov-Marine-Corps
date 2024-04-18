@@ -1,4 +1,3 @@
-
 /obj/vehicle/sealed/armored
 	name = "\improper MT - Shortstreet MK4"
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
@@ -9,17 +8,15 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
-	// placeholder, make skill check or similar later
-	req_access = list(ACCESS_MARINE_MECH)
 	move_delay = 0.7 SECONDS
 	max_integrity = 600
 	light_range = 10
 	///Tank bitflags
-	var/flags_armored = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
+	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
 	///Sound file(s) to play when we drive around
 	var/engine_sound = 'sound/ambience/tank_driving.ogg'
 	///frequency to play the sound with
@@ -35,8 +32,6 @@
 	var/turret_icon_state = "turret"
 	///secondary independently rotating overlay, if we only have a secondary weapon
 	var/image/secondary_weapon_overlay
-	///Icon for the secondary rotating turret, should contain all possible icons. iconstate is fetched from the attached weapon
-	var/secondary_turret_icon
 	///Damage overlay for when the vehicle gets damaged
 	var/atom/movable/vis_obj/tank_damage/damage_overlay
 	///Icon file path for the damage overlay
@@ -46,6 +41,8 @@
 
 	///reference to our interior datum if set, uses the typepath its set to
 	var/datum/interior/armored/interior
+	///Skill required to enter this vehicle
+	var/required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -54,22 +51,32 @@
 	var/obj/item/tank_module/driver_utility_module
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
-	//What kind of primary tank weaponry we start with. Defaults to a tank gun.
-	var/primary_weapon_type = /obj/item/armored_weapon
-	//What kind of secondary tank weaponry we start with. Default minigun as standard.
-	var/secondary_weapon_type = /obj/item/armored_weapon/secondary_weapon
+	///list of weapons we allow to attach
+	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon)
+	///list of mods we allow to attach
+	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	///Minimap flags to use for this vehcile
+	var/minimap_flags = MINIMAP_FLAG_MARINE
+	///minimap iconstate to use for this vehicle
+	var/minimap_icon_state
 	///if true disables stops users from being able to shoot weapons
 	var/weapons_safety = FALSE
 	//Bool for zoom on/off
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
+	/**
+	 * List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
+	 * This will be turned into a typeCache on  initialize
+	*/
+	var/list/easy_load_list
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
 	. = ..()
-	if(flags_armored & ARMORED_HAS_UNDERLAY)
+	if(armored_flags & ARMORED_HAS_UNDERLAY)
 		underlay = new(icon, icon_state + "_underlay", layer = layer-0.1)
 		add_overlay(underlay)
 	if(damage_icon_path)
@@ -77,13 +84,13 @@
 		damage_overlay.icon = damage_icon_path
 		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
-	if(flags_armored & ARMORED_HAS_PRIMARY_WEAPON)
+	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
 		turret_overlay.icon_state = turret_icon_state
 		turret_overlay.setDir(dir)
 		turret_overlay.layer = layer+0.002
-		if(flags_armored & ARMORED_HAS_MAP_VARIANTS)
+		if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
 					turret_overlay.icon_state += "_jungle"
@@ -94,14 +101,7 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
-		if(primary_weapon_type)
-			var/obj/item/armored_weapon/primary = new primary_weapon_type(src)
-			primary.attach(src, TRUE)
-	if(flags_armored & ARMORED_HAS_SECONDARY_WEAPON)
-		if(secondary_weapon_type)
-			var/obj/item/armored_weapon/secondary = new secondary_weapon_type(src)
-			secondary.attach(src, FALSE)
-	if(flags_armored & ARMORED_HAS_MAP_VARIANTS)
+	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
 				icon_state += "_jungle"
@@ -111,28 +111,43 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
+	if(minimap_icon_state)
+		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
-	QDEL_NULL(primary_weapon)
-	QDEL_NULL(secondary_weapon)
-	QDEL_NULL(driver_utility_module)
-	QDEL_NULL(gunner_utility_module)
-	QDEL_NULL(damage_overlay)
-	QDEL_NULL(turret_overlay)
-	QDEL_NULL(interior)
+	if(primary_weapon)
+		QDEL_NULL(primary_weapon)
+	if(secondary_weapon)
+		QDEL_NULL(secondary_weapon)
+	if(driver_utility_module)
+		QDEL_NULL(driver_utility_module)
+	if(gunner_utility_module)
+		QDEL_NULL(gunner_utility_module)
+	if(damage_overlay)
+		QDEL_NULL(damage_overlay)
+	if(turret_overlay)
+		QDEL_NULL(turret_overlay)
+	if(isdatum(interior))
+		QDEL_NULL(interior)
 	underlay = null
 	GLOB.tank_list -= src
 	return ..()
 
 /obj/vehicle/sealed/armored/generate_actions()
-	if(flags_armored & ARMORED_HAS_HEADLIGHTS)
+	if(armored_flags & ARMORED_HAS_HEADLIGHTS)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/armored/toggle_lights, VEHICLE_CONTROL_SETTINGS)
 	if(interior)
 		return
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/eject)
 	if(max_occupants > 1)
 		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
+
+///returns a list of possible locations that this vehicle may be entered from
+/obj/vehicle/sealed/armored/proc/enter_locations(mob/M)
+	// from any adjacent position
+	if(Adjacent(M, src))
+		return list(get_turf(M))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
@@ -176,6 +191,18 @@
 	. += span_notice("There is [isnull(primary_weapon) ? "nothing" : "[primary_weapon]"] in the primary attachment point, [isnull(secondary_weapon) ? "nothing" : "[secondary_weapon]"] installed in the secondary slot, [isnull(driver_utility_module) ? "nothing" : "[driver_utility_module]"] in the driver utility slot and [isnull(gunner_utility_module) ? "nothing" : "[gunner_utility_module]"] in the gunner utility slot.")
 	if(!isxeno(user))
 		. += "<b>It is currently at <u>[PERCENT(obj_integrity / max_integrity)]%</u> integrity.</b>"
+
+/obj/vehicle/sealed/armored/get_mechanics_info()
+	. = ..()
+	var/list/named_paths = list()
+	named_paths += "<b> You can easily load the following items by attacking the vehicle at its entrance or click dragging them </b>"
+	for(var/obj/path AS in easy_load_list)
+		named_paths.Add(initial(path:name))
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry?.mechanics_text)
+		named_paths += general_entry.mechanics_text
+	return jointext(named_paths, "<br>")
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
@@ -236,13 +263,43 @@
 		return
 	mob_exit(leaver, TRUE)
 
+/// call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc
+/obj/vehicle/sealed/armored/proc/try_easy_load(atom/movable/item, mob/living/user)
+	if(!is_type_in_typecache(item.type, easy_load_list))
+		return
+	if(!interior)
+		user.balloon_alert(user, "no interior")
+		return
+	if(!interior.door)
+		user.balloon_alert(user, "no door")
+		return
+	if(!(user.loc in enter_locations(user)))
+		user.balloon_alert(user, "not at entrance")
+		return
+	user.temporarilyRemoveItemFromInventory(item)
+	item.forceMove(interior.door.get_enter_location())
+	user.balloon_alert(user, "item thrown inside")
+
 /obj/vehicle/sealed/armored/mob_try_enter(mob/M)
 	if(isobserver(M))
 		interior?.mob_enter(M)
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
+	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		return FALSE
+	if(!(M.loc in enter_locations(M)))
+		balloon_alert(M, "not at entrance")
+		return FALSE
 	return ..()
+
+/obj/vehicle/sealed/armored/enter_checks(mob/M)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(M.buckled_mobs))
+		balloon_alert(M, "remove riders first")
+		return FALSE
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
 	if(!interior)
@@ -286,6 +343,11 @@
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return ..()
 
+/obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
+	. = ..()
+	if(!is_driver(user) && is_equipment_controller(user))
+		swivel_turret(null, direction)
+
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
@@ -294,7 +356,10 @@
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
 	. = ..()
-	if(interior) // handled by gun breech
+	if(interior?.breech) // handled by gun breech
+		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
 		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary")
@@ -317,7 +382,10 @@
 
 /obj/vehicle/sealed/armored/attack_hand_alternate(mob/living/user)
 	. = ..()
-	if(interior) // handled by gun breech
+	if(interior?.secondary_breech) // handled by gun breech
+		return
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
 		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary")
@@ -342,6 +410,9 @@
 	. = ..()
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
+		if(!(gun.type in permitted_weapons))
+			balloon_alert(user, "cannot attach")
+			return
 		if(!(gun.weapon_slot & MODULE_PRIMARY))
 			balloon_alert(user, "not a primary weapon")
 			return
@@ -351,10 +422,15 @@
 		gun.attach(src, TRUE)
 		return
 	if(istype(I, /obj/item/tank_module))
+		if(!(I.type in permitted_mods))
+			balloon_alert(user, "cannot attach")
+			return
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior?.breech) // if interior handle by gun breech
+		// check for easy loading instead
+		try_easy_load(I, user)
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!primary_weapon)
@@ -372,15 +448,34 @@
 			primary_weapon.ammo = I
 			balloon_alert(user, "primary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(src, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
+				occupant.hud_used.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
 
+/obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
+	// Bypass to parent to handle mobs entering the vehicle.
+	if(dropping == M)
+		return ..()
+	if(!isliving(M))
+		return
+	try_easy_load(dropping, M)
+
+/obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
+	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
+		return ..()
+	try_easy_load(grab.grabbed_thing, user)
+
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
+		if(!(gun.type in permitted_weapons))
+			balloon_alert(user, "cannot attach")
+			return
 		if(!(gun.weapon_slot & MODULE_SECONDARY))
 			balloon_alert(user, "not a secondary weapon")
 			return
@@ -399,7 +494,7 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(!interior) // if interior handle by gun breech
+	if(interior?.secondary_breech) // if interior handle by gun breech
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)
@@ -417,7 +512,7 @@
 			secondary_weapon.ammo = I
 			balloon_alert(user, "secondary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(src, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
+				occupant.hud_used.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
@@ -428,6 +523,9 @@
 
 /obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!primary_weapon)
 		balloon_alert(user, "no primary weapon")
 		return
@@ -441,6 +539,9 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!secondary_weapon)
 		balloon_alert(user, "no secondary weapon")
 		return
@@ -454,6 +555,9 @@
 
 /obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+		balloon_alert(user, "not enough skill")
+		return
 	if(!driver_utility_module)
 		balloon_alert(user, "no driver utility module")
 		return
@@ -478,8 +582,9 @@
 	// todo maybe make tanks also update the mouse icon?
 
 ///Rotates the cannon overlay
-/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A)
-	var/new_weapon_dir = angle_to_cardinal_dir(Get_Angle(src, A))
+/obj/vehicle/sealed/armored/proc/swivel_turret(atom/A, new_weapon_dir)
+	if(!new_weapon_dir)
+		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam

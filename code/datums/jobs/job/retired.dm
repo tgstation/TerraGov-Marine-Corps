@@ -4,7 +4,7 @@
 	paygrade = "MSGT"
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/fo //they're old, they know their stuff
+	skills_type = /datum/skills/veteran //they're old, they know their stuff
 	faction = FACTION_TERRAGOV
 	outfit = /datum/outfit/job/retired
 
@@ -49,7 +49,7 @@
 /datum/job/retired/leader
 	title = "TGMC retired veteran expedition leader"
 	paygrade = "LtCol"
-	skills_type = /datum/skills/captain //The leader gets even more skills
+	skills_type = /datum/skills/veteran_captain //The leader gets even more skills
 	outfit = /datum/outfit/job/retired/leader
 
 /datum/outfit/job/retired/leader
@@ -67,6 +67,11 @@
 /datum/outfit/job/retired/leader/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
+
+	H.amputate_limb(BODY_ZONE_L_LEG)
+	H.amputate_limb(BODY_ZONE_R_LEG)
+	var/obj/vehicle/ridden/wheelchair/weaponized/wheelchair = new(H.drop_location())
+	wheelchair.buckle_mob(H, TRUE)
 
 /datum/job/retired/augmented
 	title = "TGMC augmented veteran"

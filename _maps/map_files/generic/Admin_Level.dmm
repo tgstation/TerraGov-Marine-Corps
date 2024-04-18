@@ -1156,9 +1156,6 @@
 "box" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
-"boB" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "boC" = (
 /turf/closed/mineral/smooth,
 /area/centcom/valhalla/xenocave)
@@ -1169,9 +1166,6 @@
 "bqN" = (
 /obj/machinery/marine_selector/gear/medic/valhalla,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"brs" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "bsX" = (
 /obj/machinery/firealarm{
@@ -1237,9 +1231,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"bAx" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "bAZ" = (
 /obj/structure/noticeboard{
@@ -1652,25 +1643,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/valhalla)
-"cdQ" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/shower{
-	pixel_y = 16
-	},
-/obj/structure/curtain,
-/obj/machinery/door/window{
-	name = "Shower"
-	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
-"ceH" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
 "cfQ" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
@@ -1716,10 +1688,6 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ckK" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "ckN" = (
 /turf/open/floor/tile/vault{
@@ -2013,11 +1981,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"cBF" = (
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "cCa" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -2045,12 +2008,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/black,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"cDn" = (
-/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -2105,9 +2062,6 @@
 /obj/structure/closet/cabinet,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"cGB" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "cHk" = (
 /obj/structure/bed,
@@ -2188,12 +2142,6 @@
 	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
-"cKo" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "cMM" = (
 /obj/structure/mirror{
 	dir = 4;
@@ -2235,9 +2183,6 @@
 "cPP" = (
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall,
-/area/centcom/valhalla)
-"cPT" = (
-/turf/open/floor/grimy,
 /area/centcom/valhalla)
 "cQa" = (
 /obj/effect/ai_node,
@@ -2428,10 +2373,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"dbM" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood,
-/area/centcom/valhalla)
 "dcs" = (
 /obj/structure/mirror{
 	dir = 8;
@@ -2498,12 +2439,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
-"diX" = (
-/obj/item/storage/secure/safe{
-	pixel_y = -6
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "dkn" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -2537,10 +2472,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"dnH" = (
-/obj/machinery/door/airlock/mainship/generic/bathroom,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
 "dnY" = (
 /turf/open/floor/carpet/side,
 /area/centcom/valhalla)
@@ -2549,18 +2480,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"doK" = (
-/obj/structure/mirror{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 12
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
 "doS" = (
 /obj/machinery/door/firedoor,
@@ -2619,6 +2538,13 @@
 	dir = 5
 	},
 /area/tdome/tdomeobserve)
+"drL" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/machinery/chem_master/nopower/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "drS" = (
 /turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
@@ -2644,25 +2570,12 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
-"dtV" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"duo" = (
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
-	},
-/obj/machinery/chem_master/nopower/valhalla,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/exterior)
 "dur" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/button/valhalla/marine_button{
 	link = "xenofar2"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla)
-"dve" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "dwX" = (
 /obj/structure/filingcabinet,
@@ -2676,13 +2589,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/centcom/valhalla)
-"dxV" = (
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"dxX" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "dxY" = (
 /obj/structure/bedsheetbin,
@@ -2819,12 +2725,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"dEO" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "dFm" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -2874,10 +2774,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"dGD" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "dHm" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -2897,24 +2793,15 @@
 	},
 /area/centcom/valhalla)
 "dHM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/item/toy/prize/mauler{
+	pixel_y = 16
 	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 1;
-	pixel_y = 15
+/obj/item/toy/prize/seraph{
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/structure/table/fancywoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = 15
-	},
-/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"dHZ" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "dIg" = (
 /obj/machinery/light_switch{
@@ -2999,14 +2886,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"dJw" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"dLi" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "dMC" = (
 /obj/structure/bed/chair/office/dark{
@@ -3274,10 +3153,6 @@
 /obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"dXp" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood,
-/area/centcom/valhalla)
 "dXq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -3286,12 +3161,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/centcom/valhalla)
-"dYw" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/open/floor/wood,
 /area/centcom/valhalla)
 "dZC" = (
 /obj/effect/ai_node,
@@ -3325,17 +3194,6 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"ebZ" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/apron,
-/obj/item/tool/kitchen/rollingpin,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
-"ecT" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "ecW" = (
 /obj/machinery/door_control/unmeltable{
@@ -3481,10 +3339,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"ete" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "etk" = (
 /obj/structure/table,
 /obj/item/storage/box/pillbottles{
@@ -3531,11 +3385,6 @@
 /obj/item/radio/intercom{
 	name = "Station Intercom"
 	},
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
-"evv" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
 	},
@@ -3661,9 +3510,6 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"eHe" = (
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
 "eIy" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/green{
@@ -3690,9 +3536,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"eMT" = (
-/turf/open/floor/plating/dmg1,
-/area/centcom/valhalla)
 "eNk" = (
 /obj/machinery/computer/med_data{
 	dir = 8
@@ -3711,30 +3554,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"eNS" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/shower{
-	pixel_y = 16
-	},
-/obj/structure/curtain,
-/obj/machinery/door/window{
-	name = "Shower"
-	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
 "eOJ" = (
 /obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ePj" = (
-/turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "ePE" = (
 /obj/structure/bed/stool,
@@ -3758,11 +3583,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/lightred,
-/area/centcom/valhalla)
-"eQI" = (
-/turf/open/floor/carpet/side{
-	dir = 1
-	},
 /area/centcom/valhalla)
 "eRd" = (
 /obj/structure/table,
@@ -3932,9 +3752,6 @@
 "fat" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"fbp" = (
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "fbQ" = (
 /obj/machinery/door/firedoor,
@@ -4121,18 +3938,6 @@
 /obj/machinery/camera/autoname/thunderdome/hidden,
 /turf/open/floor/plating,
 /area/tdome/tdome1)
-"fqV" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "frZ" = (
 /obj/machinery/door/airlock/mainship/marine/general/sl{
 	dir = 3
@@ -4187,15 +3992,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"fvU" = (
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
-"fwP" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "fwS" = (
 /obj/structure/table,
@@ -4274,10 +4070,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"fDX" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "fEt" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
@@ -4309,32 +4101,12 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"fHH" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/obj/machinery/vending/snack/nopower,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"fHO" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "fIC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"fIF" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"fJY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "fKz" = (
 /obj/structure/bedsheetbin,
@@ -4360,10 +4132,6 @@
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
-"fKS" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "fKX" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood/broken,
@@ -4373,10 +4141,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"fLm" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "fLA" = (
 /obj/structure/closet/secure_closet/freezer/meat,
@@ -4477,9 +4241,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor,
 /area/tdome)
-"fPe" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "fPm" = (
 /obj/item/stack/cable_coil,
 /obj/effect/turf_decal/tile/red{
@@ -4514,10 +4275,6 @@
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/effect/spawner/random/clothing/sunglasses,
 /turf/open/floor/grimy,
-/area/centcom/valhalla)
-"fSc" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "fSA" = (
 /obj/structure/bed/chair/office/dark,
@@ -4617,10 +4374,6 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"fZE" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "fZG" = (
 /obj/machinery/newscaster{
 	dir = 4
@@ -4679,10 +4432,6 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ger" = (
-/obj/structure/sign/nosmoking_1,
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "geA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -4860,12 +4609,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla)
-"gnR" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "god" = (
 /turf/open/floor/carpet/side{
 	dir = 9
@@ -4883,15 +4626,6 @@
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
-/area/centcom/valhalla)
-"gpt" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"gqM" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/centcom/valhalla)
 "gri" = (
 /obj/machinery/firealarm{
@@ -4929,9 +4663,6 @@
 	name = "Captain's Quarters Lockdown Shutters"
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"gtc" = (
-/turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "gtN" = (
 /obj/machinery/firealarm{
@@ -5008,14 +4739,6 @@
 /obj/machinery/quick_vendor/beginner,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"gAA" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "gAL" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/lightred,
@@ -5030,9 +4753,6 @@
 /obj/effect/landmark/thunderdome/two,
 /turf/open/floor/plating,
 /area/tdome/tdome2)
-"gCo" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "gCr" = (
 /obj/structure/sign/securearea/firingrange,
 /turf/open/floor/plating,
@@ -5207,13 +4927,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/centcom/valhalla)
-"gKo" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"gKR" = (
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
 "gMd" = (
 /obj/structure/closet/crate,
 /obj/machinery/status_display{
@@ -5292,9 +5005,6 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"gQL" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "gUo" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5341,15 +5051,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"hag" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
@@ -5402,15 +5103,6 @@
 "hdN" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
-"hdP" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"hec" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "heB" = (
 /obj/machinery/button/valhalla/xeno_button{
@@ -5486,9 +5178,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"hiF" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "hjG" = (
 /obj/structure/table/reinforced,
@@ -5623,6 +5312,13 @@
 /area/centcom/valhalla)
 "hrC" = (
 /turf/open/floor/wood/broken,
+/area/centcom/valhalla)
+"htj" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/sign/nosmoking_1,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "htq" = (
 /obj/structure/table/reinforced,
@@ -5879,10 +5575,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"hNt" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "hNU" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -5893,10 +5585,6 @@
 /turf/open/floor/tile/neutral/corner{
 	dir = 8
 	},
-/area/centcom/valhalla)
-"hOc" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "hOK" = (
 /obj/item/radio/intercom{
@@ -5935,27 +5623,11 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"hOX" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "hPu" = (
 /obj/machinery/firealarm,
 /turf/open/floor/tile/neutral/corner{
 	dir = 1
 	},
-/area/centcom/valhalla)
-"hQT" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "hRa" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -5993,9 +5665,6 @@
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"hTv" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "hTO" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -6022,6 +5691,22 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"hWD" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/wizrobe/red,
+/obj/item/clothing/suit/wizrobe/psypurple,
+/obj/item/clothing/suit/wizrobe/magusred,
+/obj/item/clothing/suit/storage/wizrobe/gentlecoat,
+/obj/item/clothing/suit/wizrobe,
+/obj/item/clothing/head/wizard/amp,
+/obj/item/clothing/head/wizard/cap,
+/obj/item/clothing/head/wizard/magus,
+/obj/item/clothing/head/wizard/marisa,
+/obj/item/clothing/head/wizard/red,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
 /area/centcom/valhalla)
 "hXf" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -6104,18 +5789,6 @@
 /obj/item/book/manual/nuclear,
 /obj/item/book/manual/orbital_cannon_manual,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"icr" = (
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
-"ics" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
-"icW" = (
-/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
 "idh" = (
 /obj/machinery/hydroponics,
@@ -6205,19 +5878,6 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/centcom/valhalla)
-"ior" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/security/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "ioO" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red,
@@ -6237,11 +5897,6 @@
 	pixel_x = -5
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ipc" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "ipl" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -6281,14 +5936,6 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"irn" = (
-/obj/structure/sign/doors{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	name = "WARNING: EXTERNAL AIRLOCK"
-	},
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "isj" = (
 /obj/structure/table/reinforced,
@@ -6353,11 +6000,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ivQ" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "iwk" = (
 /obj/machinery/door/firedoor,
@@ -6489,12 +6131,6 @@
 	dir = 6
 	},
 /area/centcom/valhalla)
-"iHu" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "iHX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/turf_decal/tile/pink{
@@ -6544,16 +6180,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla)
-"iKO" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"iKV" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "iMw" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -6581,12 +6207,6 @@
 "iNA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"iPn" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
@@ -6651,10 +6271,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"iVx" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
 "iWr" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -6679,12 +6295,6 @@
 /area/centcom/valhalla)
 "iYS" = (
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"iZc" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"iZD" = (
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "iZT" = (
@@ -6775,10 +6385,6 @@
 /obj/machinery/bot/roomba/valhalla,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
-"jdQ" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "jdS" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -6799,20 +6405,11 @@
 /obj/machinery/door/airlock/prison/horizontal,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"jeH" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "jfk" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/insulated,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jgQ" = (
-/obj/structure/plasticflaps,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "jhC" = (
 /obj/machinery/status_display{
@@ -6830,13 +6427,6 @@
 "jij" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/gibber/nopower,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jiU" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "jkk" = (
@@ -6866,16 +6456,6 @@
 	},
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
-"jlC" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jlF" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "jnb" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4
@@ -6893,19 +6473,6 @@
 	pixel_y = 9
 	},
 /turf/closed/wall,
-/area/centcom/valhalla)
-"jow" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 2
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "joH" = (
 /obj/machinery/door/firedoor{
@@ -7000,14 +6567,6 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"jrN" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
-"jrR" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "jsn" = (
 /obj/machinery/computer/atmoscontrol{
 	dir = 1
@@ -7029,10 +6588,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"jtw" = (
-/obj/structure/girder,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "jtz" = (
@@ -7077,17 +6632,6 @@
 	link = "xenoclose1"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla)
-"jwi" = (
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jxj" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "jxN" = (
 /obj/effect/turf_decal/tile/red,
@@ -7180,10 +6724,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jAQ" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "jBW" = (
 /obj/vehicle/ridden/wheelchair{
@@ -7284,9 +6824,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"jID" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "jJz" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 8
@@ -7297,10 +6834,6 @@
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
 	},
-/area/centcom/valhalla)
-"jJC" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "jKc" = (
 /obj/structure/rack,
@@ -7398,22 +6931,6 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla)
-"jRm" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"jRW" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "jTw" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -7427,10 +6944,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"jTH" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "jUa" = (
 /obj/structure/table/reinforced,
 /obj/machinery/smartfridge/chemistry/nopower,
@@ -7443,10 +6956,6 @@
 	name = "Station Intercom"
 	},
 /turf/open/floor/mainship/sterile,
-/area/centcom/valhalla)
-"jVB" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "jWe" = (
 /obj/machinery/vending/dinnerware,
@@ -7531,16 +7040,9 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"jYh" = (
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "jYG" = (
 /turf/closed/mineral/smooth,
 /area/space)
-"jYM" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "jYN" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/soup/ricepudding,
@@ -7726,10 +7228,6 @@
 	dir = 4
 	},
 /area/centcom/valhalla)
-"kgI" = (
-/obj/structure/sign/vacuum,
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "kgL" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/blood/oil,
@@ -7766,12 +7264,6 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4
 	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"klg" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -7879,10 +7371,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"krz" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "krG" = (
 /obj/effect/turf_decal/tile/gray{
 	dir = 1
@@ -7905,29 +7393,11 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"krR" = (
-/turf/open/floor/freezer,
-/area/centcom/valhalla)
-"ksv" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "ksY" = (
 /obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/freezer,
-/area/centcom/valhalla)
-"kuc" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "kuq" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -7973,15 +7443,6 @@
 	},
 /turf/open/floor/tile/white/hall/full,
 /area/centcom/valhalla)
-"kyR" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/white{
-	dir = 1
-	},
-/turf/open/floor/tile/neutral{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "kyU" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/cable_coil,
@@ -8001,12 +7462,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"kBQ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "kCa" = (
 /obj/machinery/teleport/hub,
 /obj/effect/turf_decal/tile/black{
@@ -8018,9 +7473,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"kCb" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "kCL" = (
 /obj/machinery/vending/snack,
@@ -8039,10 +7491,6 @@
 "kCN" = (
 /obj/structure/bed/stool,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"kDw" = (
-/obj/structure/sign/electricshock,
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "kDS" = (
 /obj/structure/sink{
@@ -8098,16 +7546,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"kGn" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "kGq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -8148,12 +7586,6 @@
 /obj/item/tool/stamp/qm,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"kJK" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "kKa" = (
 /obj/machinery/vending/valhalla_req,
 /obj/structure/window/reinforced{
@@ -8171,16 +7603,6 @@
 	},
 /obj/structure/window,
 /turf/open/floor/grass,
-/area/centcom/valhalla)
-"kLu" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"kLI" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "kME" = (
 /obj/machinery/door/firedoor,
@@ -8214,10 +7636,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"kPi" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "kPj" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/ironsand,
@@ -8260,10 +7678,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"kQR" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "kRr" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -8291,10 +7705,6 @@
 /obj/item/ammo_magazine/revolver/mateba,
 /obj/item/ammo_magazine/revolver/mateba,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"kWn" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "kWX" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -8344,10 +7754,6 @@
 "kYM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"lce" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "lcR" = (
@@ -8409,9 +7815,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
-"lgU" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "lhE" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
@@ -8443,11 +7846,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"ljc" = (
-/turf/open/floor/tile/brown{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "ljt" = (
 /obj/structure/sign/fixedinplace/command{
 	dir = 1;
@@ -8461,31 +7859,6 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla)
-"lkM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/white{
-	dir = 4
-	},
-/turf/open/floor/tile/neutral,
-/area/centcom/valhalla)
-"llp" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"llJ" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "llS" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice,
@@ -8493,10 +7866,6 @@
 	dir = 4
 	},
 /turf/open/floor/marking/bot,
-/area/centcom/valhalla)
-"llU" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "lmc" = (
 /obj/machinery/door/firedoor{
@@ -8590,9 +7959,6 @@
 /obj/structure/closet/secure_closet/bar,
 /turf/open/floor/tile/white,
 /area/tdome/tdomeobserve)
-"loD" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "lpv" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8606,19 +7972,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
-"lqk" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "lqn" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"lqw" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "lri" = (
 /obj/structure/closet/emcloset,
@@ -8728,10 +8087,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"lAU" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "lDM" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -8762,10 +8117,6 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
 /area/space)
-"lEZ" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "lFj" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 3;
@@ -8777,16 +8128,6 @@
 /obj/structure/table,
 /obj/item/storage/donut_box,
 /turf/open/floor/grimy,
-/area/centcom/valhalla)
-"lGH" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"lIl" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 9
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "lIC" = (
 /turf/closed/wall/mainship,
@@ -8836,26 +8177,6 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/flashlight,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"lMh" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"lMJ" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "lMV" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -8935,10 +8256,6 @@
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"lSb" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "lTP" = (
 /obj/structure/table/reinforced,
@@ -9020,10 +8337,6 @@
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"mbn" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "mbs" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -9032,14 +8345,6 @@
 /obj/item/tweezers,
 /obj/item/tweezers,
 /turf/open/floor/mainship/sterile/side,
-/area/centcom/valhalla)
-"mbJ" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla)
-"mbY" = (
-/obj/structure/sign/nosmoking_1,
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "mcf" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -9160,11 +8465,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"mhC" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "mhD" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -9184,19 +8484,6 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"mhM" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 5
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"mhP" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"mid" = (
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
 "mjv" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -9206,14 +8493,6 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"mjw" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"mjI" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
 /area/centcom/valhalla)
 "mln" = (
 /obj/structure/window/reinforced{
@@ -9246,22 +8525,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"mnp" = (
-/obj/item/tank/oxygen/red,
-/obj/structure/dispenser,
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"moJ" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "moR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -9319,18 +8582,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"muO" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"mvm" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"mvn" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
 "mwU" = (
 /obj/structure/bookcase,
 /obj/item/book/manual/supermatter_engine,
@@ -9346,10 +8597,6 @@
 /obj/item/defibrillator/civi,
 /obj/machinery/recharger/nopower,
 /turf/open/floor/mainship/sterile/side,
-/area/centcom/valhalla)
-"mxn" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "mxw" = (
 /obj/machinery/nuclearbomb{
@@ -9399,9 +8646,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"mCH" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "mCI" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -9423,9 +8667,6 @@
 /turf/open/floor/tile/neutral{
 	dir = 1
 	},
-/area/centcom/valhalla)
-"mDO" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "mEa" = (
 /obj/structure/extinguisher_cabinet{
@@ -9459,25 +8700,9 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/centcom/valhalla)
-"mEV" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "mEY" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/centcom/valhalla)
-"mFm" = (
-/obj/structure/sign/electricshock,
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"mFU" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "mGe" = (
 /obj/effect/turf_decal/tile/black{
@@ -9518,12 +8743,6 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"mHP" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "mHX" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -9546,12 +8765,6 @@
 	},
 /turf/open/floor,
 /area/tdome)
-"mJJ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 5
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "mKq" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green{
@@ -9579,16 +8792,6 @@
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"mLC" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mLF" = (
 /obj/structure/table/mainship,
@@ -9618,10 +8821,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla)
-"mNv" = (
-/obj/machinery/marine_selector/clothes/smartgun/valhalla,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "mOd" = (
 /obj/structure/sign/nosmoking_1,
 /obj/machinery/newscaster{
@@ -9642,11 +8841,23 @@
 /turf/closed/wall,
 /area/centcom/valhalla)
 "mPJ" = (
-/obj/machinery/marine_selector/clothes/leader/valhalla,
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 9;
+	pixel_y = 15
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mPT" = (
-/obj/machinery/marine_selector/gear/leader/valhalla,
+/obj/machinery/marine_selector/clothes/leader/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "mQe" = (
@@ -9688,15 +8899,6 @@
 "mSG" = (
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"mSV" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"mTe" = (
-/turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
 "mUA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -9757,12 +8959,6 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla)
-"mXi" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "mXt" = (
 /obj/machinery/computer/teleporter{
 	dir = 8
@@ -9813,17 +9009,10 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"naH" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "naJ" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/airless,
 /area/centcom/valhalla/exterior)
-"nbd" = (
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
 "nbQ" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -9881,17 +9070,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"ndm" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "ndu" = (
 /obj/effect/landmark/thunderdome/two,
 /obj/machinery/camera/autoname/thunderdome/hidden,
 /turf/open/floor/plating,
 /area/tdome/tdome2)
-"ndy" = (
-/turf/open/floor/plating/dmg3,
-/area/centcom/valhalla)
 "ndM" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags{
@@ -9947,13 +9130,6 @@
 /obj/item/explosive/grenade/chem_grenade/antiweed,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"ngU" = (
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"nhm" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "njt" = (
 /obj/structure/table,
 /obj/item/folder,
@@ -9968,12 +9144,6 @@
 "njR" = (
 /obj/structure/sign/safety/high_radiation,
 /turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"njU" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "nkB" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10012,10 +9182,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/centcom/valhalla)
-"nnW" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "noc" = (
 /obj/machinery/newscaster{
 	dir = 4
@@ -10042,10 +9208,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"nrq" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "nsa" = (
 /obj/structure/closet/crate,
@@ -10143,12 +9305,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"ntL" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "num" = (
 /obj/structure/sign/securearea{
 	dir = 1
@@ -10170,12 +9326,6 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"nvO" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "nvQ" = (
 /obj/structure/table/reinforced,
@@ -10202,8 +9352,11 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"nyE" = (
-/turf/closed/wall,
+"nze" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile/side{
+	dir = 6
+	},
 /area/centcom/valhalla)
 "nzE" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -10241,20 +9394,11 @@
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"nBt" = (
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "nCA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"nCB" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "nDm" = (
 /obj/structure/sign/doors{
@@ -10276,9 +9420,6 @@
 	name = "Security Desk"
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"nDI" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "nDL" = (
 /obj/machinery/door/firedoor{
@@ -10312,9 +9453,6 @@
 /obj/item/storage/box/beakers,
 /obj/item/storage/box/pillbottles,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"nFq" = (
-/turf/open/floor/wood,
 /area/centcom/valhalla)
 "nFA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -10373,10 +9511,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"nGT" = (
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "nHk" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4
@@ -10384,12 +9518,6 @@
 /turf/open/floor/tile/neutral/corner{
 	dir = 8
 	},
-/area/centcom/valhalla)
-"nHZ" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/centcom/valhalla)
 "nIR" = (
 /obj/structure/table,
@@ -10421,12 +9549,6 @@
 	name = "\improper Medical Airlock"
 	},
 /turf/open/floor/mainship/sterile,
-/area/centcom/valhalla)
-"nMc" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "nMn" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10530,17 +9652,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"nVv" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
-"nVP" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "nWJ" = (
 /obj/structure/table,
 /obj/item/newspaper,
@@ -10566,22 +9677,11 @@
 	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla)
-"nYA" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"nZy" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "obe" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/centcom/valhalla)
-"obJ" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "obY" = (
 /obj/structure/table,
@@ -10591,10 +9691,6 @@
 	},
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"oce" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "ocf" = (
 /obj/structure/sign/electricshock,
@@ -10622,10 +9718,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"odc" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "odj" = (
 /obj/structure/rack,
@@ -10683,16 +9775,6 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"ofK" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"ogI" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "ogJ" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -10788,9 +9870,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"ojA" = (
-/turf/open/floor/plating/dmg3,
-/area/centcom/valhalla)
 "ojF" = (
 /obj/structure/table,
 /obj/machinery/light_switch{
@@ -10814,9 +9893,6 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"olK" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "omN" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -10875,21 +9951,11 @@
 	dir = 4
 	},
 /area/centcom/valhalla)
-"ots" = (
-/obj/structure/bed/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
 "otD" = (
 /obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
-"otM" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "oul" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
@@ -10930,16 +9996,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"ovg" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "ovl" = (
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/dark,
@@ -10975,9 +10031,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"oCv" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "oCB" = (
 /turf/open/floor/tile/vault{
 	dir = 4
@@ -10988,12 +10041,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"oEt" = (
-/obj/machinery/firealarm{
-	dir = 1
-	},
-/turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla)
 "oFX" = (
 /obj/structure/window/reinforced{
@@ -11014,19 +10061,6 @@
 /turf/open/floor/tile/vault{
 	dir = 1
 	},
-/area/centcom/valhalla)
-"oHV" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"oIv" = (
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "oIG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -11111,10 +10145,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"oOW" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "oPa" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -11184,20 +10214,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"oUp" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"oUq" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "oUK" = (
 /obj/machinery/firealarm,
 /obj/structure/extinguisher_cabinet,
@@ -11206,11 +10222,6 @@
 	dir = 9
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"oVG" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "oVR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11248,11 +10259,6 @@
 "oXf" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"oXu" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "oXK" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/power/smes{
@@ -11261,10 +10267,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"oXS" = (
-/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "oYg" = (
@@ -11362,13 +10364,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"pbm" = (
-/obj/structure/bedsheetbin,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"pcb" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "pcv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -11381,11 +10376,6 @@
 "pdz" = (
 /obj/structure/prop/mainship/pipeprop,
 /turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"pdE" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
 /area/centcom/valhalla)
 "pdK" = (
 /obj/machinery/computer/atmoscontrol{
@@ -11416,9 +10406,6 @@
 /obj/structure/sign/vacuum,
 /turf/open/floor/marking/delivery,
 /area/centcom/valhalla)
-"pfh" = (
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
 "pfu" = (
 /obj/structure/prop/mainship/pipeprop/pump/on{
 	dir = 1;
@@ -11433,12 +10420,6 @@
 	},
 /obj/structure/prop/mainship/pipeprop,
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"pgP" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/centcom/valhalla)
 "pgQ" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -11471,16 +10452,6 @@
 "pio" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
-"pjm" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/centcom/valhalla)
-"pjR" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "pjX" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11516,10 +10487,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla)
-"pnn" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "pon" = (
 /obj/machinery/light_switch{
 	pixel_x = 38;
@@ -11539,9 +10506,6 @@
 /obj/machinery/vending/armor_supply/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"pps" = (
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
 "ppW" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11554,9 +10518,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"pqq" = (
-/turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "pqM" = (
 /obj/machinery/marine_selector/clothes/valhalla,
@@ -11629,13 +10590,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"pwb" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"pww" = (
-/obj/machinery/newscaster,
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
 "pwR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11669,16 +10623,6 @@
 	dir = 8
 	},
 /area/tdome)
-"pBQ" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/obj/machinery/vending/cola/nopower,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"pCQ" = (
-/turf/open/floor/carpet/side{
-	dir = 9
-	},
-/area/centcom/valhalla)
 "pEk" = (
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -11693,12 +10637,6 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/centcom/valhalla)
-"pGk" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "pGN" = (
 /obj/effect/turf_decal/tile/red,
@@ -11778,16 +10716,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"pOy" = (
-/obj/effect/ai_node,
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
-"pOU" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "pPo" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11798,12 +10726,6 @@
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"pQh" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "pSb" = (
 /obj/structure/table,
@@ -11900,9 +10822,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"pYY" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "pZI" = (
 /obj/machinery/door_control/unmeltable{
 	id = "engsm";
@@ -11975,12 +10894,6 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/engine,
 /area/centcom/valhalla)
-"qbM" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "qcq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -12032,6 +10945,12 @@
 	dir = 4
 	},
 /area/centcom/valhalla)
+"qgs" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/storage/apron,
+/obj/item/tool/kitchen/rollingpin,
+/turf/open/floor/mainship/sterile/white,
+/area/centcom/valhalla)
 "qha" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/suit_jacket,
@@ -12077,10 +10996,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"qiO" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "qjg" = (
 /obj/effect/turf_decal/tile/white{
 	dir = 4
@@ -12093,10 +11008,6 @@
 "qkB" = (
 /obj/structure/bookcase,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"qlF" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "qlP" = (
 /obj/machinery/vending/tool/nopower/valhalla,
@@ -12135,13 +11046,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"qmw" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"qnk" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "qnO" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -12189,11 +11093,6 @@
 /obj/structure/device/piano/full,
 /turf/open/floor/wood,
 /area/centcom/valhalla)
-"qrx" = (
-/turf/open/floor/tile/brown{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "qsK" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
@@ -12207,10 +11106,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"quQ" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "qvl" = (
 /obj/structure/table,
@@ -12241,21 +11136,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"qyU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"qyX" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
-"qzu" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
-"qzG" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "qzU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -12273,16 +11153,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"qAn" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "qAy" = (
 /obj/structure/table,
 /obj/structure/reagent_dispensers/beerkeg,
@@ -12327,33 +11197,12 @@
 /obj/item/bedsheet/blue,
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"qCr" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"qCJ" = (
-/obj/machinery/air_alarm{
-	dir = 8
-	},
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "qCX" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"qDL" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
 /area/centcom/valhalla)
 "qDW" = (
 /obj/machinery/vending/snack/nopower,
@@ -12378,10 +11227,6 @@
 	name = "Hop Blast Shutters"
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"qFr" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood,
 /area/centcom/valhalla)
 "qFx" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -12408,9 +11253,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"qFW" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "qGp" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/black,
@@ -12427,10 +11269,6 @@
 	dir = 10
 	},
 /area/centcom/valhalla)
-"qHx" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "qHA" = (
 /obj/machinery/light_switch{
 	pixel_x = -24;
@@ -12438,16 +11276,6 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"qHG" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"qIk" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 6
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
@@ -12477,25 +11305,12 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"qKJ" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "qLa" = (
 /obj/machinery/power/geothermal{
 	corrupted = "fallen_hive"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"qLl" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "qLI" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -12517,16 +11332,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla)
-"qMD" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"qML" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "qMW" = (
 /obj/machinery/computer/arcade{
 	dir = 4
@@ -12541,9 +11346,6 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"qNs" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "qOf" = (
 /obj/structure/prop/mainship/meterprop/random,
@@ -12592,10 +11394,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"qPi" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "qPq" = (
 /obj/effect/turf_decal/tile/black{
 	dir = 8
@@ -12613,10 +11411,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/centcom/valhalla)
-"qQJ" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "qQT" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -12636,10 +11430,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/cafe,
-/area/centcom/valhalla)
-"qRd" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "qRf" = (
 /obj/item/reagent_containers/food/drinks/britcup,
@@ -12728,9 +11518,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"qUU" = (
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
 "qVp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -12752,11 +11539,6 @@
 /obj/item/instrument/guitar,
 /turf/open/floor/tile/vault{
 	dir = 5
-	},
-/area/centcom/valhalla)
-"qWW" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
 	},
 /area/centcom/valhalla)
 "qXz" = (
@@ -12889,18 +11671,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"rgb" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/structure/prop/mainship/doorblocker/external{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "rgf" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -12936,33 +11706,9 @@
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
-"rhB" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "rhC" = (
 /obj/machinery/marine_selector/gear/smartgun/valhalla,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"rib" = (
-/turf/open/floor/tile/brown{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"riU" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 2
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "rjI" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
@@ -12986,13 +11732,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/landmark/itemspawner/cutewitch,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"rnw" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"rnE" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "rnH" = (
 /obj/machinery/door/firedoor,
@@ -13029,18 +11768,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"roF" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/structure/prop/mainship/doorblocker/external{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "roM" = (
 /turf/open/floor/tile/neutral{
@@ -13084,10 +11811,6 @@
 /obj/item/taperecorder,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"rsu" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "rsX" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
@@ -13109,26 +11832,12 @@
 /obj/machinery/smartfridge/chemistry/nopower,
 /turf/open/floor/tile/white,
 /area/centcom/valhalla)
-"rvz" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/security/free_access,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "rvU" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /obj/item/target/alien,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"rvV" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "rwm" = (
 /obj/structure/table,
@@ -13202,12 +11911,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"rzX" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "rAT" = (
 /obj/structure/window{
 	dir = 4
@@ -13244,10 +11947,6 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"rCR" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "rDY" = (
 /obj/structure/table/reinforced,
@@ -13290,17 +11989,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"rIB" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "rJl" = (
 /obj/structure/bed/chair/wood/wings{
@@ -13401,13 +12089,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"rQk" = (
-/obj/item/explosive/grenade/flare/on,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"rQF" = (
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
 "rRM" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -13423,19 +12104,10 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"rSv" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "rSA" = (
 /obj/structure/girder,
 /obj/structure/sign/atmosplaque,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"rSR" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
 /area/centcom/valhalla)
 "rTp" = (
 /obj/effect/turf_decal/tile/black,
@@ -13446,10 +12118,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"rTu" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "rVD" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -13457,15 +12125,6 @@
 	},
 /obj/effect/turf_decal/warning_stripes/synth,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"rVI" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"rVK" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
 /area/centcom/valhalla)
 "rXh" = (
 /obj/structure/barricade/wooden,
@@ -13477,9 +12136,6 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"rXP" = (
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "rYj" = (
 /obj/machinery/firealarm{
@@ -13508,10 +12164,6 @@
 /obj/machinery/air_alarm{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"rYF" = (
-/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "rYK" = (
@@ -13552,13 +12204,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"scd" = (
-/turf/open/floor/wood/broken,
-/area/centcom/valhalla)
-"sch" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
 "scz" = (
 /obj/machinery/light_switch,
 /turf/closed/wall/r_wall/unmeltable,
@@ -13598,11 +12243,6 @@
 	},
 /turf/open/floor/tile/lightred/full,
 /area/centcom/valhalla)
-"shy" = (
-/turf/open/floor/carpet/side{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "sis" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/air_alarm{
@@ -13634,13 +12274,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"sjM" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
-"sjT" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "sjU" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -13664,15 +12297,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
-"skN" = (
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom"
-	},
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "sld" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -13684,10 +12308,6 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"slg" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "slv" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
@@ -13697,9 +12317,6 @@
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark2,
-/area/centcom/valhalla)
-"smd" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "smh" = (
 /obj/effect/turf_decal/sandedge{
@@ -13826,9 +12443,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"spM" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "sqp" = (
 /obj/machinery/chem_dispenser/soda{
 	dir = 4;
@@ -13847,9 +12461,6 @@
 	},
 /turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
-"srV" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "ssd" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -13866,12 +12477,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/exterior)
-"ssX" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
 "sto" = (
 /obj/machinery/status_display/ai{
 	pixel_x = -32
@@ -13896,9 +12501,6 @@
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/air_alarm,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"suW" = (
-/turf/open/floor/grimy,
 /area/centcom/valhalla)
 "svr" = (
 /obj/structure/bed/chair/office/dark{
@@ -13933,9 +12535,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"syo" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "syY" = (
 /obj/machinery/computer/telecomms/monitor{
 	dir = 8
@@ -13955,10 +12554,6 @@
 /obj/structure/prop/mainship/meterprop/random,
 /obj/structure/prop/mainship/pipeprop,
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"szJ" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "sAb" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13993,10 +12588,6 @@
 "sDz" = (
 /obj/structure/prop/mainship/supermatter,
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"sDZ" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "sEd" = (
 /obj/effect/landmark/thunderdome/observe,
@@ -14043,12 +12634,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"sFR" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall,
 /area/centcom/valhalla)
 "sGf" = (
 /obj/structure/table,
@@ -14106,9 +12691,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"sKi" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "sKX" = (
 /obj/machinery/computer/station_alert{
 	dir = 8
@@ -14146,14 +12728,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"sMN" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"sNw" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "sNQ" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -14166,13 +12740,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"sOJ" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/centcom/valhalla)
 "sPt" = (
 /obj/structure/bedsheetbin,
 /obj/machinery/air_alarm{
@@ -14180,11 +12747,6 @@
 	pixel_y = -22
 	},
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"sPV" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
 /area/centcom/valhalla)
 "sQs" = (
 /obj/structure/table,
@@ -14216,11 +12778,6 @@
 /obj/item/clothing/under/liaison_suit/galaxy_blue,
 /obj/item/tool/lighter/random,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"sSb" = (
-/turf/open/floor/tile/brown{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "sSz" = (
 /obj/structure/closet/secure_closet/bar,
@@ -14288,10 +12845,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"sWH" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla)
 "sWR" = (
 /turf/open/floor/tile/escape,
 /area/centcom/valhalla)
@@ -14301,10 +12854,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"sYg" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "sYo" = (
 /turf/open/floor/tile/dark/red2{
@@ -14351,20 +12900,9 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"sZY" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "tbL" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/tile/neutral,
-/area/centcom/valhalla)
-"tbW" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
 /area/centcom/valhalla)
 "tcA" = (
 /obj/structure/window/reinforced{
@@ -14411,13 +12949,6 @@
 /obj/structure/closet/secure_closet/medical_doctor,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/lightred,
-/area/centcom/valhalla)
-"tgW" = (
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
-"tgY" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "thx" = (
 /obj/machinery/computer/security{
@@ -14557,16 +13088,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla)
-"toj" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
-"top" = (
-/obj/structure/sign/nosmoking_1,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "tpj" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -14621,12 +13142,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
-"tsS" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "ttc" = (
 /obj/item/tool/surgery/circular_saw,
 /obj/item/tool/surgery/surgicaldrill{
@@ -14642,10 +13157,6 @@
 /obj/item/tool/surgery/cautery,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla)
-"ttg" = (
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "ttw" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil,
@@ -14660,13 +13171,6 @@
 	},
 /obj/structure/bedsheetbin,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"tuD" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
 /area/centcom/valhalla)
 "tvb" = (
 /obj/effect/landmark/ai_multicam_room,
@@ -14751,10 +13255,6 @@
 /obj/item/clothing/shoes/slippers_worn,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla)
-"tzf" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "tzz" = (
 /obj/structure/closet/wardrobe/black,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -14806,34 +13306,11 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"tBa" = (
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "tCf" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
 /turf/open/floor/carpet/side{
-	dir = 4
-	},
-/area/centcom/valhalla)
-"tCS" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"tDD" = (
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"tDN" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"tDO" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom"
-	},
-/turf/open/floor/tile/neutral/corner{
 	dir = 4
 	},
 /area/centcom/valhalla)
@@ -14902,18 +13379,6 @@
 "tGL" = (
 /turf/open/floor/podhatch/floor,
 /area/tdome)
-"tHw" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"tIS" = (
-/obj/machinery/air_alarm{
-	dir = 4
-	},
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "tJb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -14925,16 +13390,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"tJM" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
-"tKb" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
 /area/centcom/valhalla)
 "tKu" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -14951,10 +13406,6 @@
 	},
 /obj/machinery/biogenerator,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"tMS" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "tNc" = (
 /obj/structure/noticeboard{
@@ -15012,18 +13463,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"tQw" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/structure/prop/mainship/doorblocker/external{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "tRh" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -15047,13 +13486,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"tRV" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/centcom/valhalla)
 "tSq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/fallen,
@@ -15063,9 +13495,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"tSI" = (
-/turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
 "tSZ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15094,18 +13523,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"tVp" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"tVB" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
 "tVS" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility,
@@ -15118,27 +13535,11 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"tWP" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "tXL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
 	},
-/area/centcom/valhalla)
-"tYL" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "tZl" = (
 /obj/machinery/air_alarm{
@@ -15148,26 +13549,6 @@
 /turf/open/floor/tile/neutral{
 	dir = 4
 	},
-/area/centcom/valhalla)
-"tZA" = (
-/obj/effect/ai_node,
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
-"tZJ" = (
-/turf/open/floor/plating/dmg3,
-/area/centcom/valhalla)
-"tZZ" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"uah" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"uai" = (
-/obj/structure/sign/nosmoking_1,
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/centcom/valhalla)
 "uax" = (
 /obj/structure/morgue/crematorium{
@@ -15211,9 +13592,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"uaU" = (
-/turf/open/floor/tile/neutral,
-/area/centcom/valhalla)
 "uaW" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -15248,28 +13626,11 @@
 	dir = 6
 	},
 /area/centcom/valhalla)
-"ucT" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"udp" = (
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "uez" = (
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
-"ufo" = (
-/obj/machinery/newscaster{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "uft" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -15287,10 +13648,6 @@
 /obj/machinery/loadout_vendor/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"ufF" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "ufQ" = (
 /obj/structure/bed/chair/comfy/brown{
 	buildstackamount = 0;
@@ -15300,9 +13657,6 @@
 	dir = 1
 	},
 /turf/open/floor/grimy,
-/area/centcom/valhalla)
-"ugl" = (
-/turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
 "ugp" = (
 /obj/structure/table/reinforced,
@@ -15343,20 +13697,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"uko" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"ukD" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "ukJ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15418,18 +13758,6 @@
 /obj/machinery/door/airlock/mainship/medical/or/free_access{
 	name = "\improper Medical Airlock"
 	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"uqg" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"usm" = (
-/turf/open/floor/wood/broken,
-/area/centcom/valhalla)
-"usE" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "usY" = (
@@ -15496,12 +13824,6 @@
 /obj/effect/landmark/thunderdome/one,
 /turf/open/floor/plating,
 /area/tdome/tdome1)
-"uxN" = (
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"uyh" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "uze" = (
 /obj/structure/closet/wardrobe/mixed,
 /obj/structure/extinguisher_cabinet{
@@ -15527,9 +13849,6 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/centcom/valhalla)
-"uzL" = (
-/turf/open/floor/wood,
 /area/centcom/valhalla)
 "uAf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -15562,22 +13881,12 @@
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
-"uDy" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "uEe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/centcom/valhalla)
-"uEj" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "uEH" = (
 /obj/structure/girder,
@@ -15627,15 +13936,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"uHm" = (
-/turf/open/floor/carpet/side{
-	dir = 1
-	},
-/area/centcom/valhalla)
-"uHB" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "uHR" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -15655,20 +13955,10 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
-"uIP" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "uKg" = (
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
-/area/centcom/valhalla)
-"uKQ" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"uMd" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "uOe" = (
 /obj/machinery/teleport/station,
@@ -15722,10 +14012,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"uRH" = (
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "uRW" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/hotdog,
@@ -15756,9 +14042,6 @@
 /obj/machinery/computer/pod,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"uTg" = (
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "uTH" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15781,6 +14064,10 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"uUY" = (
+/obj/machinery/marine_selector/gear/leader/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "uUZ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -15837,15 +14124,6 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
-"uXC" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 4
-	},
-/area/centcom/valhalla)
-"uXI" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "uYl" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -15863,9 +14141,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"uZp" = (
-/turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "vaS" = (
 /obj/effect/ai_node,
@@ -15917,10 +14192,6 @@
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"vff" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "vgc" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
@@ -15938,11 +14209,6 @@
 	pixel_y = 7
 	},
 /turf/open/floor/tile/lightred,
-/area/centcom/valhalla)
-"vgK" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
 /area/centcom/valhalla)
 "vgS" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15996,16 +14262,6 @@
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
-"vjb" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"vjO" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "vka" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
@@ -16028,14 +14284,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"vlt" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vmi" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "vmJ" = (
 /obj/machinery/computer/atmos_alert{
 	dir = 8
@@ -16048,11 +14296,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vmM" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/tile/lightred,
 /area/centcom/valhalla)
 "vmU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -16077,16 +14320,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"vnN" = (
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"voa" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"voF" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "voO" = (
 /obj/machinery/light_switch{
 	pixel_y = 24
@@ -16127,40 +14360,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
-"vsE" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"vsK" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"vsS" = (
-/turf/open/floor/carpet/side{
-	dir = 6
-	},
-/area/centcom/valhalla)
-"vsV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger/nopower,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "vtf" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -16188,12 +14387,6 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
-"vuv" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/centcom/valhalla)
 "vvm" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -16219,20 +14412,6 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/centcom/valhalla)
-"vxo" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"vxC" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "vyq" = (
 /obj/machinery/door/firedoor,
@@ -16277,10 +14456,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
-/area/centcom/valhalla)
-"vAV" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "vBB" = (
 /obj/effect/landmark/thunderdome/observe,
@@ -16333,9 +14508,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla)
-"vFL" = (
-/turf/open/floor/gcircuit,
-/area/centcom/valhalla)
 "vFU" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -16377,17 +14549,11 @@
 	},
 /turf/open/floor/marking/delivery,
 /area/centcom/valhalla)
-"vGB" = (
-/turf/open/floor/plating/dmg1,
-/area/centcom/valhalla)
 "vGG" = (
 /obj/structure/prop/mainship/pipeprop{
 	dir = 5
 	},
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"vGP" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "vGZ" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -16464,9 +14630,6 @@
 /obj/item/clothing/under/suit_jacket/detective,
 /obj/item/clothing/under/suit_jacket/detective/alt,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"vLH" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "vLP" = (
 /obj/machinery/conveyor{
@@ -16586,9 +14749,6 @@
 	name = "\improper Cargo Door"
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vSy" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "vSS" = (
 /obj/structure/closet/secure_closet/medical3,
@@ -16731,27 +14891,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"vVa" = (
-/obj/effect/turf_decal/tile/pink{
-	dir = 8
-	},
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
-"vVy" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/engineering/free_access,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vVU" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "vVY" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
@@ -16760,31 +14899,6 @@
 "vWm" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"vXl" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"vXr" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/suit/wizrobe/red,
-/obj/item/clothing/suit/wizrobe/psypurple,
-/obj/item/clothing/suit/wizrobe/magusred,
-/obj/item/clothing/suit/wizrobe/gentlecoat,
-/obj/item/clothing/suit/wizrobe,
-/obj/item/clothing/head/wizard/amp,
-/obj/item/clothing/head/wizard/cap,
-/obj/item/clothing/head/wizard/magus,
-/obj/item/clothing/head/wizard/marisa,
-/obj/item/clothing/head/wizard/red,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"vXK" = (
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "vXO" = (
@@ -16832,13 +14946,6 @@
 	pixel_y = 9
 	},
 /turf/closed/wall,
-/area/centcom/valhalla)
-"vZJ" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "vZO" = (
 /obj/item/tank/oxygen/red,
@@ -16906,9 +15013,6 @@
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
-"wcJ" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "wdt" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -16922,12 +15026,6 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"weH" = (
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"wff" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "wfk" = (
 /obj/machinery/door/firedoor{
 	dir = 2
@@ -16991,25 +15089,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"wgK" = (
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
-/obj/item/clothing/glasses/hud/xenohud,
-/obj/item/clothing/glasses/hud/xenohud,
-/turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "wiL" = (
 /obj/structure/bed/chair/office/dark{
@@ -17094,19 +15173,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"wly" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"wlI" = (
-/obj/structure/sign/vacuum,
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "wnL" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral,
@@ -17138,12 +15204,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"wnZ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "woP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -17156,45 +15216,8 @@
 	dir = 9
 	},
 /area/centcom/valhalla)
-"woQ" = (
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
-"woU" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"woV" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"woW" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla)
-"wpm" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"wpn" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"wpP" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
 "wqU" = (
 /obj/effect/landmark/start/job/fallen,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"wqZ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "wrn" = (
@@ -17222,19 +15245,6 @@
 /obj/effect/ai_node,
 /obj/structure/closet/wardrobe/atmospherics_yellow,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"wsD" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"wtb" = (
-/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla)
 "wtu" = (
 /turf/open/floor/marking/delivery,
@@ -17272,37 +15282,11 @@
 /obj/machinery/computer/forensic_scanning,
 /turf/open/floor/tile/dark/red2,
 /area/centcom/valhalla)
-"wuY" = (
-/turf/open/floor/tile/dark/red2,
-/area/centcom/valhalla)
-"wuZ" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"wva" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "wwD" = (
 /obj/structure/lattice,
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/space)
-"wxd" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"wxi" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "wxr" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -17383,9 +15367,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla)
-"wFc" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
 "wFe" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 1
@@ -17416,23 +15397,9 @@
 	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"wGV" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "wHz" = (
 /obj/machinery/marine_selector/clothes/synth/valhalla,
 /turf/open/floor/plating/dmg3,
-/area/centcom/valhalla)
-"wIl" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
 /area/centcom/valhalla)
 "wIw" = (
 /obj/structure/extinguisher_cabinet{
@@ -17477,24 +15444,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"wJG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"wJL" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "wJN" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/tool/stamp/hop,
 /turf/open/floor/wood/broken,
-/area/centcom/valhalla)
-"wKu" = (
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "wLk" = (
 /obj/structure/table/reinforced,
@@ -17539,11 +15494,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"wOu" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "wOD" = (
 /obj/structure/sign/fixedinplace/medical,
 /obj/structure/sign/fixedinplace/engineering{
@@ -17572,12 +15522,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"wPC" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "wQi" = (
 /obj/structure/prop/mainship/propcarp,
 /turf/open/space/basic,
@@ -17590,9 +15534,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"wQm" = (
-/turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla)
 "wQr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17642,31 +15583,12 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/valhalla)
-"wSe" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"wSF" = (
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "wSO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
 /area/tdome)
-"wTe" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "wTz" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
@@ -17714,21 +15636,6 @@
 	},
 /turf/open/floor/tile/neutral,
 /area/centcom/valhalla)
-"wVi" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 8
-	},
-/area/centcom/valhalla)
-"wVl" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "wVM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/yellow,
@@ -17749,9 +15656,6 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/crowbar/red,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"wXk" = (
-/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
 "wXW" = (
 /turf/open/floor/mainship/sterile/side{
@@ -17774,9 +15678,6 @@
 "wZg" = (
 /obj/machinery/vending/weapon/valhalla,
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"wZp" = (
-/turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
 "wZJ" = (
 /obj/structure/sign/botany,
@@ -17803,17 +15704,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"xbj" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"xbI" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "xcd" = (
 /obj/structure/bed,
 /obj/item/disk/nuclear{
@@ -17823,21 +15713,12 @@
 /obj/item/bedsheet/red,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"xco" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "xdq" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
-"xdz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
 "xeQ" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 4
@@ -17846,16 +15727,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"xeT" = (
-/turf/open/floor/tile/neutral,
-/area/centcom/valhalla)
-"xfa" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"xfB" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "xfO" = (
 /obj/structure/sign/securearea{
@@ -17907,17 +15778,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"xgy" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xgK" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"xgQ" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xgS" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -17959,9 +15819,6 @@
 	dir = 8
 	},
 /area/centcom/valhalla)
-"xil" = (
-/turf/open/floor/plating/dmg3,
-/area/centcom/valhalla)
 "xiF" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
@@ -17986,10 +15843,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"xjT" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla)
 "xjX" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -18016,10 +15869,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"xky" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
-/area/centcom/valhalla)
 "xkI" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -18028,12 +15877,6 @@
 	dir = 8
 	},
 /turf/open/floor/wood/broken,
-/area/centcom/valhalla)
-"xlK" = (
-/obj/machinery/air_alarm{
-	dir = 1
-	},
-/turf/open/floor/freezer,
 /area/centcom/valhalla)
 "xlM" = (
 /obj/machinery/conveyor{
@@ -18047,9 +15890,6 @@
 "xmh" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship/tcomms,
-/area/centcom/valhalla)
-"xmq" = (
-/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "xmt" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -18080,23 +15920,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
-"xnt" = (
-/turf/open/floor/tile/neutral{
-	dir = 4
-	},
-/area/centcom/valhalla)
-"xnM" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xom" = (
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
 "xoR" = (
 /turf/open/floor/tile/lightred/full,
-/area/centcom/valhalla)
-"xoW" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "xpm" = (
 /obj/item/target/alien,
@@ -18159,13 +15987,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
-"xtw" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/centcom/valhalla)
 "xtx" = (
 /obj/machinery/hydroponics,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -18176,10 +15997,6 @@
 "xtI" = (
 /turf/open/floor/plating,
 /area/tdome)
-"xux" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "xvP" = (
 /obj/structure/table,
 /obj/item/storage/secure/briefcase,
@@ -18205,9 +16022,6 @@
 	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
-"xyI" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "xzr" = (
 /obj/machinery/hydroponics,
 /obj/item/radio/intercom{
@@ -18218,41 +16032,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"xzt" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"xzG" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/scorched,
-/area/centcom/valhalla)
-"xzU" = (
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xAJ" = (
 /obj/structure/sign/securearea{
 	dir = 1
 	},
 /turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
-"xAL" = (
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"xAT" = (
-/turf/open/floor/grimy,
-/area/centcom/valhalla)
-"xBe" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "xBx" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -18262,30 +16047,10 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
-"xCO" = (
-/obj/structure/plasticflaps,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xDj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/centcom/valhalla)
-"xDl" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"xEy" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
 "xEJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -18313,14 +16078,6 @@
 	id = "atmoslock";
 	name = "Atmos Lockdown Shutters"
 	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xES" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/corner,
-/area/centcom/valhalla)
-"xFa" = (
-/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "xFH" = (
@@ -18373,6 +16130,13 @@
 /obj/structure/grille/smoothing,
 /turf/open/space,
 /area/space)
+"xHy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/marine_selector/clothes/commander/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "xIx" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -18391,28 +16155,6 @@
 /obj/structure/bed/stool,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
-"xJf" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xJg" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"xJj" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
-"xJq" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
-"xJv" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "xKl" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/storage/box/donkpockets,
@@ -18427,14 +16169,6 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
-/area/centcom/valhalla)
-"xKO" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xKR" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "xKU" = (
 /obj/structure/sign/fixedinplace/engineering{
@@ -18481,25 +16215,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"xLY" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"xLZ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dmg2,
-/area/centcom/valhalla)
-"xMI" = (
-/turf/open/floor/tile/neutral{
-	dir = 1
-	},
-/area/centcom/valhalla)
 "xMP" = (
 /obj/structure/table,
 /obj/item/book/manual/barman_recipes,
@@ -18507,14 +16222,6 @@
 /obj/item/reagent_containers/glass/rag,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/tile/dark,
-/area/centcom/valhalla)
-"xNS" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/neutral/full,
-/area/centcom/valhalla)
-"xOi" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "xOF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -18562,10 +16269,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"xPu" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xPv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -18595,15 +16298,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"xQq" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"xQP" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xQU" = (
 /obj/machinery/telecomms/relay,
 /turf/open/floor/gcircuit,
@@ -18620,53 +16314,12 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
-"xSv" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xSK" = (
 /obj/machinery/door/poddoor{
 	id = "engstorage";
 	name = "Engineering Secure Storage Lockdown"
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla)
-"xTa" = (
-/obj/machinery/door/firedoor{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/security/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xTc" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"xTn" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
-"xTw" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
-"xTH" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "xTN" = (
 /obj/structure/table/reinforced,
@@ -18678,48 +16331,15 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"xTR" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/obj/structure/sign/doors{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	name = "WARNING: EXTERNAL AIRLOCK"
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "xTZ" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"xUc" = (
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "xUk" = (
 /obj/machinery/firealarm,
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"xUt" = (
-/turf/open/floor/plating/dmg1,
-/area/centcom/valhalla)
-"xUy" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/shower{
-	pixel_y = 16
-	},
-/obj/structure/curtain,
-/obj/machinery/door/window{
-	name = "Shower"
-	},
-/obj/effect/spawner/random/misc/soap/regularweighted,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/mainship/sterile/white,
-/area/centcom/valhalla)
-"xUS" = (
-/obj/structure/sign/vacuum,
-/turf/closed/wall,
 /area/centcom/valhalla)
 "xUV" = (
 /obj/machinery/firealarm{
@@ -18729,10 +16349,6 @@
 	charge = 5e+006
 	},
 /turf/open/floor/gcircuit,
-/area/centcom/valhalla)
-"xVt" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "xVz" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -18753,15 +16369,6 @@
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
-"xWB" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
-"xWF" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
 "xWH" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -18775,9 +16382,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"xWW" = (
-/turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "xXb" = (
 /obj/effect/turf_decal/tile/black,
@@ -18852,15 +16456,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"xYy" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood,
-/area/centcom/valhalla)
-"xYR" = (
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla)
 "xYZ" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -18898,28 +16493,9 @@
 /obj/item/circuitboard/airlock,
 /turf/open/floor/wood,
 /area/centcom/valhalla)
-"ybm" = (
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ybs" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "ybu" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ybT" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ybY" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "ycL" = (
@@ -18933,17 +16509,11 @@
 	},
 /turf/open/floor/tile/lightred/full,
 /area/centcom/valhalla)
-"ycV" = (
-/turf/closed/wall,
-/area/centcom/valhalla)
 "ydu" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ydT" = (
-/turf/closed/wall,
 /area/centcom/valhalla)
 "yec" = (
 /obj/structure/extinguisher_cabinet{
@@ -18957,12 +16527,6 @@
 /obj/item/tool/crowbar,
 /obj/item/tool/wrench,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"yew" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla)
 "yeH" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -18988,12 +16552,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"yfy" = (
-/obj/structure/sign/securearea{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/centcom/valhalla)
 "yfz" = (
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
@@ -19009,9 +16567,6 @@
 	name = "\improper Medical Airlock"
 	},
 /turf/open/floor/tile/dark2,
-/area/centcom/valhalla)
-"yfE" = (
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "yga" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -19031,9 +16586,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
-"ygB" = (
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla)
 "yhb" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
@@ -19043,9 +16595,6 @@
 	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla)
-"yhA" = (
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla)
 "yhB" = (
 /turf/open/floor/tile/escape{
 	dir = 4
@@ -19054,9 +16603,6 @@
 "yhE" = (
 /obj/machinery/telecomms/allinone,
 /turf/open/floor/gcircuit,
-/area/centcom/valhalla)
-"yhG" = (
-/turf/closed/wall/r_wall,
 /area/centcom/valhalla)
 "yhP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -19142,10 +16688,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"yjA" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "ykJ" = (
 /obj/structure/table,
 /obj/item/toy/dice,
@@ -19176,14 +16718,6 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/centcom/valhalla)
-"ylG" = (
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"ylM" = (
-/obj/machinery/status_display,
-/turf/closed/wall,
 /area/centcom/valhalla)
 
 (1,1,1) = {"
@@ -22148,15 +19682,15 @@ xrI
 xrI
 jYG
 jYG
-hTv
-hTv
-hTv
-hTv
-hTv
-hTv
-hTv
-hTv
-hTv
+box
+box
+box
+box
+box
+box
+box
+box
+box
 jYG
 jYG
 jYG
@@ -22286,7 +19820,7 @@ xrI
 jYG
 jYG
 jYG
-hTv
+box
 nKg
 jWH
 gzS
@@ -22294,15 +19828,15 @@ bCd
 nKg
 fvw
 wZg
-hTv
+box
 jYG
-muO
+box
 njR
-muO
-muO
-muO
-muO
-muO
+box
+box
+box
+box
+box
 aMY
 fWu
 fWu
@@ -22424,7 +19958,7 @@ xrI
 xrI
 jYG
 jYG
-hTv
+box
 foh
 jWH
 pqM
@@ -22432,15 +19966,15 @@ sWX
 foh
 fvw
 eCf
-hTv
+box
 jYG
-muO
+box
 nmD
 nXU
 oCB
 ptt
 qCX
-muO
+box
 sqE
 fmR
 fmR
@@ -22562,7 +20096,7 @@ vQc
 vQc
 jYG
 jYG
-hTv
+box
 lPX
 oNZ
 wkQ
@@ -22570,15 +20104,15 @@ dFm
 wkQ
 mzH
 lPX
-hTv
+box
 fmR
-muO
+box
 nmD
 nXU
 oHc
-pwb
+acu
 qEL
-muO
+box
 ssF
 sTI
 ssF
@@ -22700,7 +20234,7 @@ fmR
 fmR
 fmR
 jYG
-hTv
+box
 nKg
 jWH
 wZg
@@ -22708,27 +20242,27 @@ fvw
 nKg
 fvw
 wZg
-hTv
-hTv
-hTv
-hTv
-hTv
+box
+box
+box
+box
+box
 oHK
-pwb
+acu
 qFF
-rvV
-rnE
-ssX
-rnE
-rnE
-rnE
-rvV
-rvV
-rvV
-rvV
-rvV
-rvV
-rvV
+box
+bka
+fCn
+bka
+bka
+bka
+box
+box
+box
+box
+box
+box
+box
 fmR
 fmR
 fmR
@@ -22838,7 +20372,7 @@ fmR
 fmR
 vQc
 fmR
-hTv
+box
 foh
 jWH
 pqM
@@ -22846,27 +20380,27 @@ xOF
 foh
 fvw
 pqM
-duo
+drL
 uOI
 ble
 etk
-hTv
-oUq
+box
+bSp
 pwR
-oUq
-rvV
+bSp
+box
 sto
 sVb
-suW
-uEj
+ctr
+cXT
 vtZ
-wxi
+bSp
 xmh
 xPe
 yhE
 bcJ
 bWc
-rvV
+box
 fWu
 fmR
 fmR
@@ -22976,35 +20510,35 @@ fWu
 fWu
 fWu
 fWu
-hTv
+box
 bgz
 rBJ
-tVp
+mCI
 lMV
 xgU
 lMV
-tVp
+mCI
 gMl
 gJS
 myT
 noL
-hTv
+box
 oUK
-pGk
+mCI
 qHA
-uEj
+cXT
 suy
 sZE
-suW
-uEj
+ctr
+cXT
 vvm
-wxi
+bSp
 xmt
 mhk
 yhP
 mhk
 sad
-rvV
+box
 fmR
 fmR
 fmR
@@ -23105,44 +20639,44 @@ fmR
 fWu
 fWu
 fmR
-ngU
+cYa
 fmR
 fmR
 fmR
-ics
-lgU
+aEn
+bcm
 fmR
 fmR
 bjQ
-hTv
+box
 bog
-ndm
-ndm
-ndm
-ndm
-ndm
-ndm
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
 gNi
-ndm
+ivs
 cdt
 gCD
-hTv
+box
 oVR
 pJE
-qHG
-riU
-suW
-suW
-suW
+cHJ
+bWt
+ctr
+ctr
+ctr
 uEJ
-vxo
+bve
 wxr
 xmh
 xQU
 yip
 gzl
 ukJ
-rvV
+box
 fmR
 fmR
 fmR
@@ -23255,24 +20789,24 @@ boq
 boq
 wfL
 xVT
-llp
-ndm
-gnR
+jcx
+ivs
+aqy
 gzY
 lEp
 lEp
 lEp
 lEp
-hTv
-hTv
+box
+box
 oXa
 pNT
-qIk
-uEj
+bGv
+cXT
 svr
 tiz
-suW
-uEj
+ctr
+cXT
 vyL
 wxE
 xqi
@@ -23280,7 +20814,7 @@ hXf
 yiC
 hXf
 ygh
-rvV
+box
 fWu
 fmR
 fmR
@@ -23379,46 +20913,46 @@ xrI
 fmR
 fWu
 fmR
-lgU
+bcm
 aMq
 bqF
 aSD
 aMq
 bbR
-icW
+drS
 rvU
 bPK
 jvi
 boq
 boq
 qhT
-sWH
-llp
-ndm
-nZy
+hdk
+jcx
+ivs
+cHJ
 rei
 lEp
 wHz
 dyS
 mLF
-muO
-nYA
+box
+bka
 oXK
-mCH
+boq
 qKb
-rnE
+bka
 syY
 tiF
-suW
-uEj
+ctr
+cXT
 vzV
-wxi
+bSp
 xmh
 xRl
 yiP
 rJG
 bWc
-rvV
+box
 fWu
 fmR
 vQc
@@ -23530,33 +21064,33 @@ dhA
 boq
 boq
 mGD
-sWH
-llp
-ndm
-nZy
+hdk
+jcx
+ivs
+cHJ
 rVD
 lFj
 dAJ
 dBD
 dAJ
-pcb
-nYA
-oXS
+box
+bka
+cXT
 pPo
 qKc
-ssX
-rnE
-ssX
-rnE
-rnE
-rnE
-rvV
-rvV
-rvV
-rvV
-rvV
-rvV
-rvV
+fCn
+bka
+fCn
+bka
+bka
+bka
+box
+box
+box
+box
+box
+box
+box
 fWu
 fmR
 fmR
@@ -23668,16 +21202,16 @@ boq
 dAJ
 boq
 mGD
-sWH
-llp
-tzf
-nZy
+hdk
+jcx
+kqf
+cHJ
 ohu
-hTv
-hTv
-gpt
-hTv
-pcb
+box
+box
+bka
+box
+box
 ylD
 uSc
 pTn
@@ -23689,7 +21223,7 @@ tES
 uSc
 vCR
 wAP
-pcb
+box
 xRJ
 fmR
 xRJ
@@ -23793,29 +21327,29 @@ xrI
 fmR
 fWu
 fmR
-lgU
+bcm
 aLR
 aMq
 aMq
 dlQ
 bbO
 jvi
-rQk
+fdy
 boq
 boq
 xpm
 boq
-wgK
+ghB
 jvR
 rht
 iVt
 wqU
-tWP
+luM
 mEH
-hTv
+box
 hwl
-ndm
-pcb
+ivs
+box
 ody
 oZR
 pTA
@@ -23828,10 +21362,10 @@ uTS
 vDx
 wAY
 xyv
-pcb
-xzt
+box
+box
 xRK
-xzt
+box
 fmR
 bRv
 vQc
@@ -23932,44 +21466,44 @@ fmR
 fWu
 fWu
 fmR
-lgU
+bcm
 aLR
 bKo
 aMq
 bbR
 eFA
 boq
-ngU
-hTv
-hTv
-nCB
-nCB
-hTv
+cYa
+box
+box
+bSp
+bSp
+box
 hYu
-llp
-ndm
+jcx
+ivs
 sJF
 jkk
-hTv
+box
 ijc
-ndm
-pcb
+ivs
+box
 odW
 pac
 pTP
-pcb
+box
 rxk
 rxk
 rxk
-pcb
+box
 uUZ
 pVV
 pVV
 pVV
 xSK
-lIl
+gao
 iEJ
-xzt
+box
 xRJ
 bRv
 fWu
@@ -24078,36 +21612,36 @@ gQk
 eGk
 boq
 fmR
-hTv
+box
 uut
 yeN
 mqB
 knm
 cnE
-llp
+jcx
 tSq
-tWP
+luM
 kQN
-hTv
+box
 hwl
-ndm
-pcb
+ivs
+box
 ofr
 paB
 pTP
-qML
+bFJ
 pVV
 pVV
 pVV
-qML
+bFJ
 uUZ
 vFG
 pVV
 pVV
 xSK
-mJJ
+jTE
 mHB
-xzt
+box
 xRJ
 bRv
 eCH
@@ -24213,39 +21747,39 @@ fWu
 fWu
 fmR
 fmR
-lgU
+bcm
 rXh
 fmR
-hTv
+box
 psp
-llp
-ndm
+jcx
+ivs
 knm
 qlP
-llp
-ndm
+jcx
+ivs
 oYw
 cbS
-hTv
-ndm
-ndm
-pcb
+box
+ivs
+ivs
+box
 ogJ
-pcb
-pcb
+box
+box
 qNh
 rAT
 rAT
 tjg
-pcb
+box
 uVY
 vGG
 pVV
 pVV
-pcb
+box
 lOo
 iKC
-xzt
+box
 naJ
 xRJ
 dVf
@@ -24351,23 +21885,23 @@ fmR
 num
 bRv
 fWu
-ngU
+cYa
 boq
 fmR
-hTv
+box
 uut
-llp
+jcx
 yeN
 iNh
 jaD
 rht
 wqU
-tWP
-hTv
-hTv
-hTv
-hTv
-pcb
+luM
+box
+box
+box
+box
+box
 ogS
 pdz
 pVn
@@ -24375,15 +21909,15 @@ qOf
 rFk
 rFk
 tlz
-pcb
+box
 uYl
 vIT
 wEk
 pVV
-pcb
+box
 nsa
 osZ
-xzt
+box
 naJ
 naJ
 fmR
@@ -24492,20 +22026,20 @@ fWu
 fWu
 fWu
 fWu
-hTv
-hTv
-nCB
-nCB
-hTv
+box
+box
+bSp
+bSp
+box
 tvG
-llp
-ndm
+jcx
+ivs
 bZV
 knm
 ppm
 lYp
 epz
-qML
+bFJ
 ohN
 pec
 pVV
@@ -24513,15 +22047,15 @@ pec
 pVV
 sDz
 pVV
-tHw
+bSp
 vaS
 vJz
-wFc
+acu
 pVV
-pcb
-xzt
-xzt
-xzt
+box
+box
+box
+box
 naJ
 xRJ
 fmR
@@ -24630,20 +22164,20 @@ fmR
 fmR
 fmR
 fWu
-hTv
+box
 bqN
-llp
+jcx
 kIe
 knm
 cHN
-llp
+jcx
 wqU
 kjb
 kmz
-ndm
+ivs
 lYp
 oJr
-pcb
+box
 ojb
 pdz
 pZI
@@ -24651,7 +22185,7 @@ qOm
 rIl
 rIl
 tmx
-pcb
+box
 vcW
 vKE
 wFe
@@ -24659,7 +22193,7 @@ pVV
 mMK
 wIw
 wDv
-xzt
+box
 naJ
 fWu
 dVf
@@ -24768,28 +22302,28 @@ vQc
 vQc
 fmR
 fWu
-hTv
+box
 gds
 yeN
-tzf
+kqf
 knm
 bCY
-llp
-ndm
-jiU
+jcx
+ivs
+jaW
 knm
 dHM
 lYp
 cre
-pcb
+box
 ogJ
-pcb
-pcb
+box
+box
 qOE
 rPe
 rPe
 tnl
-pcb
+box
 uUZ
 vMi
 pVV
@@ -24797,7 +22331,7 @@ pVV
 xTZ
 nvt
 lXm
-xzt
+box
 oSl
 fWu
 bRv
@@ -24808,16 +22342,16 @@ vQc
 lEv
 lEv
 lEv
-hec
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
+box
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 fWu
 fWu
 fWu
@@ -24906,28 +22440,28 @@ vQc
 vQc
 fmR
 fWu
-hTv
+box
 bqN
-llp
-llp
+jcx
+jcx
 khV
 nXQ
-llp
+jcx
 wqU
 jtL
-hTv
-nCB
-nCB
-hTv
-pcb
+knm
+mPJ
+lYp
+xHy
+box
 ojb
 pfu
 qaL
-qML
+bFJ
 pVV
 pVV
 pVV
-qML
+bFJ
 ven
 vOH
 pVV
@@ -24943,19 +22477,19 @@ fmR
 vQc
 vQc
 vQc
-fLm
-fLm
-fLm
-hec
+bSp
+bSp
+bSp
+box
 iCm
 ygo
-xil
-xTw
+dAJ
+ead
 cqb
-jrN
-xTw
+hdN
+ead
 jKc
-ycV
+bcm
 fmR
 fmR
 fmR
@@ -25044,36 +22578,36 @@ vQc
 vQc
 fmR
 fWu
-hTv
-hTv
-nCB
-nCB
-hTv
+box
+box
+bSp
+bSp
+box
 kKa
 fPm
-ndm
-tWP
+ivs
+luM
 knm
-mPJ
-mHP
-oJr
-pcb
+bSp
+bSp
+box
+box
 ojb
 pfu
 qaL
-pcb
+box
 rRU
 sEP
 rRU
-pcb
+box
 vgS
 pVV
 pVV
 pVV
-pcb
-xzt
-xzt
-xzt
+box
+box
+box
+box
 fWu
 bRv
 fWu
@@ -25081,19 +22615,19 @@ fmR
 vQc
 vQc
 vQc
-fLm
+bSp
 xvP
 kTE
-hec
-ycV
-ycV
-ycV
-ovg
-ycV
-ycV
+box
+bcm
+bcm
+bcm
+ncr
+bcm
+bcm
 cqb
 gtX
-ycV
+bcm
 fmR
 fmR
 fmR
@@ -25182,20 +22716,20 @@ vQc
 vQc
 fmR
 fWu
-hTv
-mNv
-llp
+box
+jCQ
+jcx
 rhC
 knm
 sCM
 yeN
 wqU
-tWP
+luM
 knm
-ndm
-mHP
-mPJ
-pcb
+mPT
+hDW
+oJr
+box
 omN
 pgz
 qby
@@ -25219,26 +22753,26 @@ vQc
 iyF
 fmR
 vQc
-fLm
+bSp
 vKP
 vTy
-hec
+box
 fML
 iWM
 pmg
-uxN
+dnm
 yaZ
-ycV
+bcm
 cqb
-hec
+box
 cYa
-ycV
-ycV
-ycV
+bcm
+bcm
+bcm
 cYa
 cYa
-ycV
-ycV
+bcm
+bcm
 fmR
 fmR
 fWu
@@ -25320,20 +22854,20 @@ fmR
 fmR
 fmR
 fWu
-hTv
+box
 oJr
-llp
-tzf
+jcx
+kqf
 knm
 jtp
-llp
-tzf
+jcx
+kqf
 aoa
 frZ
-mHP
-mHP
+ivs
+hDW
 mPT
-pcb
+box
 onp
 qbK
 qbK
@@ -25345,7 +22879,7 @@ qQT
 qQT
 vTB
 wIH
-pcb
+box
 xRJ
 kPj
 kPj
@@ -25357,7 +22891,7 @@ gxS
 fmR
 fmR
 fWu
-fLm
+bSp
 aai
 pFs
 rGn
@@ -25366,17 +22900,17 @@ wQr
 nnk
 xDj
 ttw
-ycV
-qFW
-hec
+bcm
+boq
+box
 edn
-ckK
+bve
 lfg
 hrC
 euF
 sAp
 oAl
-ycV
+bcm
 fmR
 fmR
 fWu
@@ -25458,36 +22992,36 @@ fmR
 fmR
 fWu
 fWu
-hTv
-mNv
-llp
-llp
+box
+jCQ
+jcx
+jcx
 tFi
 aWz
-llp
+jcx
 wqU
-tWP
-bRv
-hTv
-mbY
-hTv
-pcb
-mDO
-mDO
-mDO
-mDO
-mDO
-mDO
-mDO
-nvO
-vjO
-vVy
-vjO
-xzt
-xWB
-xWB
-xWB
-xWB
+htj
+box
+hDW
+hDW
+uUY
+box
+bka
+bka
+bka
+bka
+bka
+bka
+bka
+afj
+cXT
+vFU
+cXT
+box
+box
+box
+box
+box
 naJ
 xRJ
 fWu
@@ -25495,26 +23029,26 @@ fmR
 fmR
 fmR
 fWu
-hec
-hec
-hec
-hec
+box
+box
+box
+box
 jIi
 hqh
 xkI
 aqi
 aIN
-ycV
-qFW
-hec
+bcm
+boq
+box
 qGp
 qVp
 vgc
-uxN
+dnm
 ffn
 ffn
-ipc
-ycV
+ckN
+bcm
 fmR
 fmR
 fWu
@@ -25596,36 +23130,36 @@ fmR
 fmR
 fWu
 fmR
-hTv
+box
 gae
-woV
+box
 fat
-woV
-woV
-woV
+box
+box
+box
 iXv
 jvG
-woV
-woV
+box
+box
 gae
-woV
-woV
-mvn
-mvn
-mvn
+box
+box
+bka
+bka
+bka
 dcS
-xnM
+boq
 ead
-xnM
+boq
 tQh
 vka
-vZJ
+dGm
 wMc
-vjO
+cXT
 xWH
 sJK
 jQD
-xWB
+box
 naJ
 naJ
 fWu
@@ -25633,26 +23167,26 @@ fWu
 fWu
 fWu
 fWu
-hec
+box
 xcd
-qFW
-hec
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
+boq
+box
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 cqb
-hec
+box
 bVr
-ckK
-ipc
+bve
+ckN
 hrC
 tFs
 fyE
-ipc
-ycV
+ckN
+bcm
 fmR
 fmR
 fWu
@@ -25734,61 +23268,61 @@ fmR
 fmR
 fWu
 fmR
-lgU
+bcm
 eAp
-mvn
+bka
 iTP
 oYn
 epO
-lGH
+cXT
 jaW
-jwi
+hMu
 koR
 mYA
 mcN
-lGH
-ecT
-ecT
-ecT
-mvn
+cXT
+ckN
+ckN
+ckN
+bka
 gGv
 ead
-vLH
-vLH
-vLH
-kQR
-vlt
+bka
+bka
+bka
+iYS
+ivs
 wMo
-vjO
+cXT
 xXb
 dTl
 qjg
-xWB
-pcb
+box
+box
 ocC
-pcb
-pcb
-pcb
-pcb
-pcb
-hec
-hec
-hec
-hec
+box
+box
+box
+box
+box
+box
+box
+box
+box
 qed
 dVK
 dii
 eUe
 xjX
-hec
+box
 fuY
-hec
-ycV
-ovg
-ycV
-ycV
+box
+bcm
+ncr
+bcm
+bcm
 hrC
-qFW
+boq
 sYY
 cYa
 fmR
@@ -25874,28 +23408,28 @@ fWu
 fmR
 baD
 eAt
-mvn
+bka
 fUN
-hag
-hag
-ior
+aYI
+aYI
+dGn
 jcb
 jxN
 kqf
 ivs
 mda
-lGH
+cXT
 nwK
 ouT
 nwK
-mvn
+bka
 wsm
 mZM
-vLH
+bka
 tpX
 tQl
-vlt
-vlt
+ivs
+ivs
 wNF
 vGZ
 xXb
@@ -25905,30 +23439,30 @@ lcR
 sDo
 keE
 nUD
-iZD
-iZD
+ivs
+ivs
 ndS
-mDO
+bka
 fTH
-qFW
-qFW
-qUU
+boq
+boq
+dBD
 kYM
 cqb
 kJw
-tgW
-qFW
-qFW
-xTw
-tgW
-qFW
+eFA
+boq
+boq
+ead
+eFA
+boq
 isr
 dyf
-kGn
-uxN
+hlc
+dnm
 qhV
-qFW
-ycV
+boq
+bcm
 fmR
 fmR
 fWu
@@ -26012,61 +23546,61 @@ fmR
 fmR
 dVr
 eAE
-mvn
+bka
 fVz
 iMw
 hCL
-lGH
+cXT
 jcx
 jAd
 kqG
 kYp
 mdp
-lGH
-ecT
-ecT
-ecT
-mvn
-xnM
-ojA
-vLH
+cXT
+ckN
+ckN
+ckN
+bka
+boq
+dAJ
+bka
 tpX
 tRh
 mcf
-weH
+dTl
 wMo
-xBe
+iWr
 xXb
 dTl
 dio
 yeH
 iWr
-hNt
+aIr
 ocH
-tgY
+iYS
 gVx
 hwk
-mDO
-qFW
+bka
+boq
 iQN
-srV
-srV
-srV
-srV
-srV
-srV
-rzX
-srV
-srV
-srV
-rzX
-srV
-xTw
-ycV
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+nvn
+bcm
+bcm
+bcm
+nvn
+bcm
+ead
+bcm
 kCN
 pZK
-ipc
-ycV
+ckN
+bcm
 fmR
 fmR
 fWu
@@ -26142,69 +23676,69 @@ fWu
 fmR
 fmR
 fmR
-ngU
-ngU
+cYa
+cYa
 fmR
-lgU
-ngU
-lgU
+bcm
+cYa
+bcm
 czV
 dsS
 gaN
-mvn
-lGH
-lGH
-mvn
+bka
+cXT
+cXT
+bka
 iXv
 jAF
-mvn
+bka
 lhE
-lGH
-mvn
-lGH
+cXT
+bka
+cXT
 kME
-lGH
-mvn
-nbd
+cXT
+bka
+eFA
 rSA
-vLH
+bka
 trx
 tRy
 vka
 wbh
 wMo
-xCO
+hUt
 xXb
 dTl
 dTl
 yeH
-mDO
+bka
 xUk
-wqZ
+gtX
 hjG
-tgY
+iYS
 kEE
-mDO
-qFW
+bka
+boq
 uEH
-srV
+bcm
 pSb
 cYU
 acu
 kkv
 rsh
 ojF
-srV
+bcm
 voO
 elO
 rKr
-srV
-wXk
-tMS
-qFW
+bcm
+drS
+hhc
+boq
 adx
 jGs
-ycV
+bcm
 fmR
 fmR
 fWu
@@ -26288,13 +23822,13 @@ aMq
 aMq
 aMq
 bbR
-fbp
+boq
 geA
 ade
 hDu
 ioO
 ivu
-jwi
+hMu
 pLH
 lhK
 mdt
@@ -26302,14 +23836,14 @@ mQt
 jXM
 pGN
 luM
-moJ
+hlc
 mZo
 rYw
-pww
+kQB
 qcq
 tSA
 vka
-weH
+dTl
 wPc
 vGZ
 xXb
@@ -26318,30 +23852,30 @@ dTl
 yeH
 xgx
 hXM
-wqZ
+gtX
 qqo
 yiL
 ptA
-mDO
-tgW
+bka
+eFA
 jLk
-srV
+bcm
 xfX
-vjb
-vnN
-qFr
-ivQ
+nCA
+dnm
+bPH
+ckN
 fad
 rhs
 pii
 umc
 bgM
-srV
-tgW
-ycV
-ycV
-ycV
-ycV
+bcm
+eFA
+bcm
+bcm
+bcm
+bcm
 cYa
 fmR
 fmR
@@ -26443,11 +23977,11 @@ lvE
 bIy
 mZM
 ojM
-vLH
+bka
 tvT
 cnL
 rjI
-vlt
+ivs
 wRz
 xEQ
 xXC
@@ -26458,25 +23992,25 @@ rzm
 cgS
 rZp
 xjs
-iZD
+ivs
 lmF
-mDO
-wXk
+bka
+drS
 lOR
-woW
+iNd
 acu
-klg
-vnN
-vnN
+aNP
+dnm
+dnm
 pSb
 aSM
-srV
+bcm
 wae
 eUB
 hGs
-srV
-qFW
-oOW
+bcm
+boq
+cXT
 aqi
 sLz
 nWJ
@@ -26564,7 +24098,7 @@ boq
 dAJ
 boq
 eFA
-fbp
+boq
 ghq
 hdk
 cKm
@@ -26576,14 +24110,14 @@ ivi
 hGj
 ivi
 nAP
-jwi
+hMu
 cJf
-mvn
-nbd
+bka
+eFA
 ojW
-vLH
+bka
 qcP
-weH
+dTl
 rkT
 sID
 tEx
@@ -26595,30 +24129,30 @@ yeH
 xgx
 pon
 wiL
-hdP
+dii
 nsT
 sis
-mDO
+bka
 qbx
 odj
-srV
+bcm
 aBf
 fad
-scd
-vnN
-ivQ
+hrC
+dnm
+ckN
 acu
-qPi
-srV
-srV
-srV
-srV
+cfQ
+bcm
+bcm
+bcm
+bcm
 oCR
-kGn
-uah
-ckK
+hlc
+acu
+bve
 sSN
-ycV
+bcm
 fmR
 fmR
 fmR
@@ -26692,7 +24226,7 @@ fmR
 fWu
 fmR
 fmR
-ngU
+cYa
 aMq
 bbR
 bnV
@@ -26702,7 +24236,7 @@ dfx
 boq
 dXi
 eFA
-fbp
+boq
 ghB
 dur
 hGL
@@ -26716,55 +24250,55 @@ ivs
 kcp
 ivs
 xTN
-mvn
+bka
 ncr
-olK
-vLH
+bcm
+bka
 qdC
 tVS
 vmJ
 sKX
 wTz
-vLH
-xFa
+bka
+cXT
 vFU
 vFU
-xFa
-mDO
+cXT
+bka
 vWm
 ckl
 kdT
 mjv
 gks
-mDO
-ovg
-ycV
-qQJ
+bka
+ncr
+bcm
+hhc
 jAq
 vJN
-vnN
+dnm
 gxI
 pyx
-ivQ
+ckN
 gYp
-srV
+bcm
 dDH
-qFW
+boq
 dUh
 cqb
-oOW
+cXT
 gPw
 gPw
-uah
-ycV
+acu
+bcm
 fmR
 fmR
 fmR
-sKi
-sKi
-uDy
-sKi
-gCo
+bcm
+bcm
+nvn
+bcm
+box
 fmR
 fmR
 fWu
@@ -26838,71 +24372,71 @@ boq
 boq
 boq
 dBm
-ngU
+cYa
 eGk
 gCr
-mvn
-mvn
+bka
+bka
 hJe
 ivu
-nDI
+bcm
 jCQ
 ivu
-nDI
+bcm
 jkS
 jkS
-nDI
+bcm
 kME
-lGH
-mvn
-ygB
+cXT
+bka
+acu
 vOm
 pJi
-vLH
+bka
 sMi
 sMi
 sMi
-vLH
-vLH
+bka
+bka
 wLk
-wOu
-mvm
+eqJ
+cJv
 bVK
 pat
-mDO
+bka
 aVA
 aVA
 aVA
-mDO
-mDO
+bka
+bka
 qTQ
 rPH
-srV
+bcm
 nek
 wAR
-vnN
-vnN
+dnm
+dnm
 gIH
 acu
 vFW
-srV
-qFW
-ycV
-ycV
-ycV
-ycV
+bcm
+boq
+bcm
+bcm
+bcm
+bcm
 jAu
 gIn
 gQv
-ycV
-sKi
-sKi
-sKi
-sKi
+bcm
+bcm
+bcm
+bcm
+bcm
 gCB
 lZp
 cIY
-gCo
+box
 fmR
 fmR
 vQc
@@ -26971,76 +24505,76 @@ fWu
 fWu
 fWu
 fmR
-ngU
-ngU
+cYa
+cYa
 czV
 dgR
-lgU
-ngU
+bcm
+cYa
 boq
 fdA
 ghL
-mvn
+bka
 ufw
 iAc
-nDI
+bcm
 jDO
 iAc
-nDI
-xux
-xux
+bcm
+aIr
+aIr
 nDw
-ecT
+ckN
 lJm
-mvn
-wOu
-wOu
+bka
+eqJ
+eqJ
 pNw
-wOu
-wOu
-wOu
-wOu
-tIS
-wOu
-wOu
-wOu
-vgK
+eqJ
+eqJ
+eqJ
+eqJ
+ieT
+eqJ
+eqJ
+eqJ
+fHt
 xaB
-vgK
-vgK
-vgK
-vgK
-vgK
+fHt
+fHt
+fHt
+fHt
+fHt
 rNY
-wVl
-vgK
-vgK
-gKo
-vjb
-gAA
-vnN
-vnN
+kYE
+fHt
+fHt
+cXT
+nCA
+aNv
+dnm
+dnm
 wIE
-ivQ
+ckN
 tuC
-srV
-qFW
-ycV
+bcm
+boq
+bcm
 oSg
 aFd
-jTH
+iNd
 gDc
 eZa
 gEE
-ycV
-eNS
+bcm
+bZR
 suw
 uID
 eYv
-xAL
-pOy
+dnm
+cQa
 sPt
-gCo
+box
 fmR
 fmR
 vQc
@@ -27110,7 +24644,7 @@ fmR
 fWu
 fmR
 fmR
-hTv
+box
 cGi
 dhA
 dBD
@@ -27118,69 +24652,69 @@ boq
 dAJ
 feK
 gil
-mvn
+bka
 hJY
 iAH
-nDI
+bcm
 jGN
 krJ
-nDI
+bcm
 mdF
-wPC
+mCI
 nFR
 ovc
 daj
-mvn
+bka
 wYt
 orB
-wVl
-sNw
-sNw
-sNw
-sNw
-tJM
-wQm
-wQm
+kYE
+blf
+blf
+blf
+blf
+bSw
+qPB
+qPB
 dWe
 rRM
-wQm
-tJM
+qPB
+bSw
 nRL
-wQm
-wQm
-wQm
-wQm
+qPB
+qPB
+qPB
+qPB
 joH
-sNw
-vgK
+blf
+fHt
 kql
-vnN
-vnN
-vnN
-scd
+dnm
+dnm
+dnm
+hrC
 dJc
 acu
 mwU
-srV
+bcm
 vVY
-kGn
-qFW
-qFW
-kGn
+hlc
+boq
+boq
+hlc
 gDc
 hhR
 gDc
-ycV
-sKi
-ufo
-sKi
-sKi
-xgy
+bcm
+bcm
+fZG
+bcm
+bcm
+cXT
 uGG
 pZY
-gCo
-gCo
-gCo
+box
+box
+box
 vQc
 xrI
 xrI
@@ -27249,76 +24783,76 @@ fWu
 fWu
 fWu
 box
-fPe
-fPe
-fPe
-fPe
-fPe
-fPe
-fPe
-mvn
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bka
 hMr
 iDF
-mvn
+bka
 hMr
 hMr
 ljt
 jkS
 jkS
-mvn
+bka
 vXO
 dap
-mvn
-wOu
-wQm
-sFR
-uIP
-rnw
-rnw
+bka
+eqJ
+qPB
+aEn
+bcm
+cXT
+cXT
 sNQ
 wUC
-rnw
-rnw
-uIP
-uIP
-ceH
-ygB
-qzG
-qzG
-qzG
-qzG
+cXT
+cXT
+bcm
+bcm
+aok
+acu
+bcm
+bcm
+bcm
+bcm
 uOH
-qzG
+bcm
 wYt
-vgK
+fHt
 sFI
-vnN
-scd
-vnN
-qFr
+dnm
+hrC
+dnm
+bPH
 icb
-ivQ
+ckN
 qkB
-srV
-qFW
-ycV
+bcm
+boq
+bcm
 qwh
 rou
-ycV
+bcm
 hiA
 keP
 dSR
-ycV
+bcm
 bGq
-sKi
+bcm
 wlk
 vwb
-xAL
-icr
-icr
+dnm
+ctr
+ctr
 rBN
 rrZ
-gCo
+box
 xrI
 xrI
 xrI
@@ -27400,63 +24934,63 @@ hMu
 hMu
 hMu
 hMu
-llJ
-uRH
-uRH
-uRH
-uRH
-uRH
-wOu
-wOu
+kYE
+hMu
+hMu
+hMu
+hMu
+hMu
+eqJ
+eqJ
 otD
-uIP
+bcm
 twt
 qAB
 roM
-sPV
-tKb
+eqJ
+cJv
 roM
 roM
 rLk
-sFR
-ycV
-ovg
-qzG
+aEn
+bcm
+ncr
+bcm
 nsz
 gma
 gwH
 ipl
-qzG
-wOu
+bcm
+eqJ
 guA
-gKo
+cXT
 nIR
 fad
-vnN
-vnN
-qMD
+dnm
+dnm
+cAS
 acu
-ivQ
-kGn
+ckN
+hlc
 sdV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-ycV
-sKi
-sKi
-sKi
-sKi
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 jZh
 kMK
 dGi
 xqp
 fwS
-gCo
+box
 xrI
 xrI
 xrI
@@ -27526,75 +25060,75 @@ xrI
 xrI
 bSp
 cHk
-dXp
+bPH
 dGn
-dXp
-eHe
-eHe
-eHe
+bPH
+ctr
+ctr
+ctr
 dGn
 hMu
 bSw
-jeH
+blf
 jJz
-jeH
+blf
 vOu
-pOU
+hAb
 cCa
-sNw
-sNw
-pOU
-sNw
-pOU
-oEt
-uIP
+blf
+blf
+hAb
+blf
+hAb
+clB
+bcm
 twY
-sPV
+eqJ
 rsX
-tSI
-tSI
+dTl
+dTl
 vUD
-wSe
+fHt
 jhC
-uIP
-vmM
-qFW
-xky
+bcm
+bHu
+boq
+iNd
 fhh
 bYd
 iHX
 elc
-qKJ
+lOG
 wYt
 hRn
-srV
+bcm
 pSb
 njt
 mYF
 epY
 pYX
-ivQ
+ckN
 hMy
-srV
-qFW
-xTw
-qUU
-qFW
-wXk
-qFW
-qFW
-tgW
+bcm
+boq
+ead
+dBD
+boq
+drS
+boq
+boq
+eFA
 bcQ
-sKi
+bcm
 uax
 uEZ
-sKi
+bcm
 nPV
-icr
+ctr
 kbR
 nRC
 pNS
-gCo
+box
 xrI
 xrI
 xrI
@@ -27665,7 +25199,7 @@ fWu
 box
 cHZ
 dnm
-dGD
+cXT
 dnm
 fRC
 fmy
@@ -27673,66 +25207,66 @@ gle
 bCs
 hMu
 sdt
-wGV
-wGV
-wGV
-wGV
-mEV
-xco
-xco
+bcm
+bcm
+bcm
+bcm
+fZG
+bcm
+bcm
 cXT
 doS
 doS
 cXT
-xco
-uIP
+bcm
+bcm
 txW
 tXL
 rtA
-tSI
-tSI
+dTl
+dTl
 xFH
-xdz
+orB
 slY
-uIP
+bcm
 eQd
 kJw
-kGn
+hlc
 mVh
 nFA
 nAG
 snn
-qzG
-mLC
+bcm
+fbQ
 vtf
-uMd
-rhB
-uMd
-uMd
-uMd
-uMd
-uMd
-jYM
-jYM
-jYM
-sZY
-jYM
-jYM
+bcm
+fZG
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+nvn
+bcm
+bcm
 dNe
 keZ
-lMJ
+ghL
 cYa
 eiB
 rXw
 eYw
-oVG
+ckN
 gIJ
-oVG
+ckN
 eUG
-sKi
-ufo
-sKi
-gCo
+bcm
+fZG
+bcm
+box
 xrI
 xrI
 xrI
@@ -27801,75 +25335,75 @@ fWu
 fWu
 box
 box
-fPe
-dnH
-hOc
-dYw
-eHe
+bcm
+aVk
+hhc
+aLi
+ctr
 foe
 glu
 bCs
 bLW
-wpP
-mxn
+fHt
+hhc
 jNR
 gFm
 hnQ
 mVF
-xco
+bcm
 kdt
 kMP
 lKR
-qbM
+hqk
 nkG
 kdU
-uIP
+bcm
 tzz
 tZl
 vpr
-tbW
-ufF
+blf
+bSw
 vpr
 vpr
 beB
-uIP
+bcm
 uvt
 cqb
-qzG
+bcm
 fKz
 uaJ
 iaa
 axF
-qzG
+bcm
 muI
-vgK
-ete
+fHt
+cXT
 phm
 ndM
 iSQ
 nSa
 wWg
 nSa
-jYM
+bcm
 dDK
 lAd
 aOX
 aqw
-jYM
-jYM
-jYM
-jYM
-jYM
-qFW
-sKi
-sKi
-qyX
-sKi
-qyX
+bcm
+bcm
+bcm
+bcm
+bcm
+boq
+bcm
+bcm
+cfQ
+bcm
+cfQ
 dpe
-sKi
+bcm
 cbG
-qRd
+dyf
 soG
 xrI
 xrI
@@ -27940,75 +25474,75 @@ fmR
 box
 bZR
 cKf
-doK
+dcs
 vhy
 dnm
 eNk
 lKz
 glw
-qmw
-rSR
-iHu
+bka
+eqJ
+cJv
 caI
 fTj
 crv
-wGV
-mEV
-xco
+bcm
+fZG
+bcm
 keh
 yiI
 wrO
 lKY
 nmj
 gzk
-uIP
-uIP
-uIP
-uIP
+bcm
+bcm
+bcm
+bcm
 sZe
-udp
-uIP
-nHZ
-uIP
-uIP
-qFW
-ycV
-qzG
-qzG
-pgP
-qzG
-qzG
-qzG
+qPB
+bcm
+fZG
+bcm
+bcm
+boq
+bcm
+bcm
+bcm
+fZG
+bcm
+bcm
+bcm
 dJj
-vgK
+fHt
 tzB
 ckN
-ucT
+ouT
 ckN
-cDn
+cAS
 aWh
 lda
-sYg
+iNd
 tfU
 wXW
 woP
 bAZ
-jYM
+bcm
 lmv
 ttc
 vzA
-jYM
-qFW
-sKi
-tCS
+bcm
+boq
+bcm
+acu
 uXf
 tNc
-icr
+ctr
 ggF
 qnO
 xGF
 apI
-xJf
+bSp
 xrI
 xrI
 wQi
@@ -28076,77 +25610,77 @@ fmR
 fmR
 fmR
 box
-fPe
+bcm
 fZG
-fPe
-fPe
+bcm
+bcm
 ncr
-qmw
-qmw
-qmw
-qmw
-rSR
-wpP
-wGV
+bka
+bka
+bka
+bka
+eqJ
+fHt
+bcm
 jPv
-krR
+dAC
 hnQ
 meb
-xco
+bcm
 yen
 wVM
 lKY
 jfk
 nsr
 oLe
-uIP
+bcm
 qha
-tZA
+cQa
 rxJ
-tbW
-ufF
+blf
+bSw
 rxJ
-xYy
+bPH
 cxp
-uIP
-qFW
-syo
+bcm
+boq
+bcm
 hOW
 fsd
 tLk
 jby
 pXS
-syo
+bcm
 suC
-vgK
-ete
-wTe
-wTe
-wTe
-wTe
-wTe
+fHt
+cXT
+tVa
+tVa
+tVa
+tVa
+tVa
 cEp
-jYM
+bcm
 vSS
 wXW
 fPS
 xwf
-jYM
+bcm
 jVk
-uaU
+fgD
 ctQ
-jYM
+bcm
 vVY
-kGn
-tCS
+hlc
+acu
 czZ
 aTe
 etV
-iVx
-gCo
-gCo
-gCo
-gCo
+bve
+box
+box
+box
+box
 xrI
 xrI
 xrI
@@ -28213,72 +25747,72 @@ fWu
 fmR
 fmR
 fmR
-boB
+box
 caq
-cKo
+cbG
 drS
-ojA
+dAJ
 ead
-xnM
-fvU
-xnM
-jRW
-rSR
-iHu
-wGV
+boq
+dBD
+boq
+hlc
+eqJ
+cJv
+bcm
 jQy
 ksY
-wGV
-mEV
-xco
+bcm
+fZG
+bcm
 kgL
 uaK
 uYH
 uYH
 qUc
 rYK
-odc
+iNd
 wEP
 qBK
-uIP
-tbW
-udp
-odc
+bcm
+blf
+qPB
+iNd
 xgS
 fKX
-uIP
-qFW
-syo
+bcm
+boq
+bcm
 gPu
 jtz
 lqn
 mLW
-kuc
+bao
 avC
-qlF
+iYS
 bcc
-jYM
+bcm
 cPP
-jYM
-jYM
+bcm
+bcm
 rnH
-jYM
-jYM
-jYM
-xoW
+bcm
+bcm
+bcm
+cXT
 lpv
 lpv
 gmH
-jYM
+bcm
 aWN
 ily
 nEL
-jYM
-tgW
-sKi
+bcm
+eFA
+bcm
 rKv
 pEk
-icr
+ctr
 ajF
 pEk
 bMv
@@ -28351,72 +25885,72 @@ fWu
 fWu
 fWu
 fmR
-brs
-xJq
-xJq
-xJq
-xJq
-xJq
+box
+bka
+bka
+bka
+bka
+bka
 eNF
-fwP
-xJq
+dsS
+bka
 kQB
-rSR
+eqJ
 iJw
-wGV
+bcm
 jRh
 gJX
 hnQ
 ctU
-xco
+bcm
 kis
 cYQ
-pjR
+aIr
 vUi
 nvQ
 ugp
-uIP
-uIP
-uai
-uIP
-tbW
-udp
-uIP
-nHZ
-uIP
-uIP
-qFW
-syo
+bcm
+bcm
+mOd
+bcm
+blf
+qPB
+bcm
+fZG
+bcm
+bcm
+boq
+bcm
 eOJ
 jbp
 eZf
 lXE
 bUK
-vff
-spM
-vgK
-rCR
-rsu
+cXT
+ivs
+fHt
+aok
+hhc
 ujr
 aBB
 oXe
 blB
-xoW
+cXT
 kPK
 leo
 aIr
 aIr
 noI
-rsu
+hhc
 jxS
 dqS
 aIA
-jYM
-tgW
-sKi
+bcm
+eFA
+bcm
 atU
 oYi
-icr
+ctr
 atU
 oYi
 bMv
@@ -28489,52 +26023,52 @@ fmR
 fmR
 fWu
 fmR
-brs
-cdQ
+box
+bZR
 cMM
 dtT
-dtV
+bcm
 ebN
-ePj
-ePj
+acu
+acu
 glT
-xJq
+bka
 hOK
 bUs
-qNs
-qNs
-qNs
-qNs
-mFU
-cGB
-cGB
-xco
+bka
+bka
+bka
+bka
+afj
+bka
+bka
+bcm
 pjX
 qhn
-xco
-ntL
-uIP
+bcm
+fZG
+bcm
 oov
 uaG
 rxJ
-tbW
-ufF
+blf
+bSw
 rxJ
-tZA
+cQa
 tAQ
-uIP
-qFW
-syo
+bcm
+boq
+bcm
 kWX
 eIy
 oun
 jru
 xtx
-qnk
+hhc
 fik
-vgK
-tDN
-jYM
+fHt
+jvA
+bcm
 fTg
 kpH
 pgQ
@@ -28545,16 +26079,16 @@ pFR
 hJN
 plk
 obe
-jYM
-xoW
-xoW
+bcm
+cXT
+cXT
 yfC
-jYM
-qFW
-sKi
+bcm
+boq
+bcm
 vrA
 pIu
-icr
+ctr
 sos
 sdG
 bMv
@@ -28627,57 +26161,57 @@ aoZ
 aqQ
 fWu
 fmR
-brs
+box
 cfQ
 cNG
-gqM
-dtV
-dtV
+fZG
+bcm
+bcm
 ePH
 fyp
 gmE
-xJq
-rSR
-iKO
-fDX
+bka
+eqJ
+aqy
+cXT
 eBr
 kyU
 yjx
 mfj
 mRt
-qNs
-xTw
-xil
-qFW
-tgW
+bka
+ead
+dAJ
+boq
+eFA
 sbe
-odc
+iNd
 mLq
 uby
-uIP
+bcm
 tdj
 ujt
-odc
+iNd
 qBK
 wEP
-uIP
-tgW
-syo
+bcm
+eFA
+bcm
 aKc
 eIy
 jUa
 jru
 xtx
-vff
-ttg
-vgK
-pbm
-jdQ
+cXT
+ehY
+fHt
+fYx
+cfQ
 hLP
 mWa
 mWa
 hrg
-xoW
+cXT
 ulf
 rfF
 rfF
@@ -28687,15 +26221,15 @@ lXt
 kDS
 kDS
 pmW
-jYM
-qFW
-sKi
+bcm
+boq
+bcm
 atU
 mcp
-icr
+ctr
 uKg
 oYi
-gCo
+box
 xrI
 xrI
 xrI
@@ -28765,75 +26299,75 @@ xrI
 biW
 fWu
 bhl
-brs
+box
 cjh
-cPT
+ctr
 dwX
-dHZ
+cXT
 ecW
-eQI
+ctH
 fyz
 gox
-xJq
-rSR
-iKV
+bka
+eqJ
+cHJ
 odp
 fUn
-xWF
-xWF
-xWF
-woU
-qNs
-ovg
-ycV
-ycV
-ycV
-ycV
-uIP
-uIP
-nHZ
-uIP
-uIP
-uIP
-uIP
-nHZ
-uIP
-uIP
+mCI
+mCI
+mCI
+bPs
+bka
+ncr
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+fZG
+bcm
+bcm
+bcm
+bcm
+fZG
+bcm
+bcm
 cqb
-syo
+bcm
 cbs
 eIy
 aWg
 jru
 xtx
-syo
+bcm
 jFg
-vgK
-nyE
-nyE
-xgQ
-pjm
+fHt
+bcm
+bcm
+cXT
+mWa
 mEf
 xEM
-nyE
+bcm
 mlO
 uTH
-wnZ
+bPs
 mEY
 rfF
 lJu
 fgO
 fgO
 qfs
-vxC
+hlc
 soB
-sKi
+bcm
 kIk
 mWF
-icr
+ctr
 obY
 ros
-gCo
+box
 xrI
 xrI
 xrI
@@ -28905,73 +26439,73 @@ xrI
 biW
 bur
 cjO
-cPT
+ctr
 dxp
-dHZ
+cXT
 eff
 eRd
 fzO
 goF
-xJq
+bka
 hPu
-iKV
-fDX
-jRm
+cHJ
+cXT
+gtX
 gQK
-llU
+cYQ
 cAr
 cHJ
-qNs
-xTw
-tgW
-qFW
-qUU
-qFW
-qFW
-xTw
-qFW
-tgW
-tgW
-wXk
-qFW
-xil
-qFW
-jrN
+bka
+ead
+eFA
+boq
+dBD
+boq
+boq
+ead
+boq
+eFA
+eFA
+drS
+boq
+dAJ
+boq
+hdN
 dUh
-syo
+bcm
 lWa
 eIy
 tjb
 tJb
 xtx
-vff
-spM
+cXT
+ivs
 hqk
 hng
 nFd
 vMT
-pjm
-pjm
+mWa
+mWa
 qlV
-xgQ
+cXT
 ulf
 rus
 dFY
-quQ
-lJu
+cYQ
+nze
 kfP
 lRu
 lRu
 tdo
-jYM
-qFW
-sKi
-sKi
-sKi
+bcm
+boq
+bcm
+bcm
+bcm
 bYS
 pZY
-gCo
-gCo
+box
+box
 xrI
 xrI
 xrI
@@ -29044,71 +26578,71 @@ biW
 bur
 coL
 cQa
-dxV
+dnm
 dIU
-dxV
+dnm
 cQa
 aJO
 aJO
 kQB
-rSR
+eqJ
 iMT
 bWt
 jTE
-kBQ
-kBQ
+dii
+dii
 uuR
 heM
-qNs
-qFW
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
-xJj
+bka
+boq
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 pio
-syo
+bcm
 xzr
 eIy
 ngh
 jru
 idh
-syo
-mLC
-mLC
-nyE
+bcm
+fbQ
+fbQ
+bcm
 xsr
 xsr
-pjm
-pjm
+mWa
+mWa
 wge
-nyE
+bcm
 sEC
 ofb
 amL
 rfF
 mwV
-jdQ
+cfQ
 jCc
 jCc
 umP
-jYM
-xil
+bcm
+dAJ
 nkB
 hYZ
-gQL
+bcm
 wnL
-kyR
-xmq
+akp
+box
 xrI
 xrI
 xrI
@@ -29179,27 +26713,27 @@ xrI
 biW
 xrI
 biW
-diX
+cae
 cpX
 cRl
 dxY
-dHZ
+cXT
 efJ
-dxV
-dbM
+dnm
+bPH
 gri
-xJq
-rSR
+bka
+eqJ
 eSl
-fDX
+cXT
 fXm
 kCa
 uOe
 mXt
 tPn
-qNs
-xil
-xJj
+bka
+dAJ
+bcm
 qpJ
 qWl
 sbu
@@ -29207,27 +26741,27 @@ sGf
 qht
 ukb
 aWT
-xJj
+bcm
 xbe
 bSe
 dHm
 dQs
-xJj
-xTw
-kGn
+bcm
+ead
+hlc
 rTp
 mUA
-iZc
+ivs
 jru
-rIB
+bac
 nDL
 ybu
-wKu
+ivs
 ruB
 cRw
 vgF
 kym
-pjm
+mWa
 aHv
 ruB
 ulf
@@ -29239,14 +26773,14 @@ tRG
 tee
 gnF
 hzZ
-rsu
-xTw
+hhc
+ead
 lgF
 pvX
-kGn
+hlc
 aAE
 jIr
-xmq
+box
 xrI
 xrI
 xrI
@@ -29314,52 +26848,52 @@ xHr
 xrI
 sjH
 sjH
-xDl
+box
 aZs
-xDl
-brs
+box
+box
 afj
 cRz
 dzc
-xJq
-xJq
+bka
+bka
 eRZ
 fCK
 grG
-xJq
-hQT
-hQT
-qNs
+bka
+fbQ
+fbQ
+bka
 ocf
-kCb
-qNs
-mFU
-qNs
-qNs
-qFW
-xJj
+box
+bka
+afj
+bka
+bka
+boq
+bcm
 qqX
 nyg
-shy
-shy
-shy
+hbF
+hbF
+hbF
 qHk
 rHu
-xJj
-usm
-vXl
-uzL
+bcm
+hrC
+eff
+dnm
 dbd
-xJj
-xil
-syo
+bcm
+dAJ
+bcm
 kcW
 fgs
 qPa
 mpZ
 iqd
-vff
-tDD
+cXT
+jFg
 dGm
 oPW
 mWL
@@ -29377,14 +26911,14 @@ tRG
 adT
 iaM
 cdI
-jYM
-jrN
+bcm
+hdN
 vZO
 cYa
-gQL
+bcm
 tbL
 sdE
-xmq
+box
 xrI
 xrI
 xrI
@@ -29455,57 +26989,57 @@ awP
 aNj
 bac
 txr
-xTn
-xTn
+fXm
+fXm
 cRJ
-xTn
-xTn
-xTn
-xTn
-xTn
-xTn
+fXm
+fXm
+fXm
+fXm
+fXm
+fXm
 txr
 ehY
-pdE
-xSv
+fHt
+bSp
 biW
 biW
-xSv
+bSp
 bPs
 mSm
-qFW
-xTw
+boq
+ead
 lOG
-usm
-nBt
+hrC
+cuM
 sjq
 sGw
 tCf
 ulL
-uzL
+dnm
 wfk
-uzL
-uzL
+dnm
+dnm
 xiF
 paE
-xJj
-tgW
-syo
+bcm
+eFA
+bcm
 wQw
 cUo
 ahQ
 adc
 fXR
-vff
-jYh
-ybT
+cXT
+ehY
+hqk
 xqa
 hMi
 mtP
 vmU
 xgs
 xPs
-xgQ
+cXT
 wsg
 anC
 xhp
@@ -29515,14 +27049,14 @@ blH
 hRz
 vQf
 eRr
-jYM
+bcm
 iJn
 bhD
 nGE
-gQL
+bcm
 aAE
 mDA
-ybs
+bSp
 biW
 xrI
 xrI
@@ -29588,7 +27122,7 @@ xrI
 biW
 biW
 biW
-xDl
+box
 axw
 aNv
 axz
@@ -29605,15 +27139,15 @@ dqZ
 txr
 ehY
 cJv
-xSv
+bSp
 biW
 biW
-xSv
+bSp
 idL
 mSG
-tgW
+eFA
 kSB
-xJj
+bcm
 qQt
 qQt
 qQt
@@ -29621,46 +27155,46 @@ qQt
 qQt
 qQt
 vps
-xJj
+bcm
 uze
-vXr
-xYR
+hWD
+ckN
 fvd
-oce
-qFW
-syo
+hhc
+boq
+bcm
 dIg
 dMC
 dPO
 tcA
 wZJ
-syo
-tDD
+bcm
+jFg
 vEw
-nyE
+bcm
 dnz
-nyE
+bcm
 dnz
-nyE
+bcm
 dnz
-top
-jYM
-xoW
+cPP
+bcm
+cXT
 vyq
 vyq
 jHN
-jYM
-jYM
+bcm
+bcm
 jCc
 jCc
-jYM
-ycV
-ovg
+bcm
+bcm
+ncr
 dzb
-wva
+cfQ
 kTe
 jMW
-xmq
+box
 biW
 xrI
 xrI
@@ -29731,27 +27265,27 @@ axA
 azA
 bao
 bka
-bAx
-xOi
+bcm
+cXT
 qRQ
-xDl
-xDl
-xDl
-xDl
-xDl
-yfy
-xDl
+box
+box
+box
+box
+box
+xWb
+box
 eqJ
-pdE
+fHt
 xKU
-xSv
-xSv
-wJL
+bSp
+bSp
+bcm
 rCe
-qFW
-sMN
-sMN
-sMN
+boq
+bcm
+bcm
+bcm
 quJ
 qYA
 sjU
@@ -29759,23 +27293,23 @@ sjU
 sjU
 qSs
 vpU
-xJj
-xJj
-xJj
+bcm
+bcm
+bcm
 xYZ
-xJj
-xJj
+bcm
+bcm
 uPN
-syo
+bcm
 lDM
 dMF
 dTC
-syo
+bcm
 tRB
-vff
-wKu
-ybT
-ybT
+cXT
+ivs
+hqk
+hqk
 atR
 nyl
 nyl
@@ -29796,9 +27330,9 @@ hNU
 oih
 fHt
 ssd
-lkM
-xMI
-lEZ
+aAE
+mDA
+bFJ
 biW
 xrI
 xrI
@@ -29872,22 +27406,22 @@ bkL
 bDf
 csz
 wQk
-dJw
+bFJ
 dJt
 bIE
 snB
 oMa
 dhJ
-pYY
+box
 hSv
-yfE
-yfE
+ivs
+ivs
 fYx
 kCL
-wJL
-sMN
-tYL
-sMN
+bcm
+bcm
+ncr
+bcm
 uSd
 plj
 yfz
@@ -29908,35 +27442,35 @@ yfz
 yfz
 yfz
 yfz
-sMN
-sMN
+bcm
+bcm
 wOD
-qiO
-wKu
-wVi
+iYS
+ivs
+fHt
 oir
-ugl
-ugl
-wpn
-ugl
-ugl
-ugl
-ugl
-xMI
-jJC
-xgK
-jJC
+dTl
+dTl
+dio
+dTl
+dTl
+dTl
+dTl
+mDA
+iYS
+ivs
+iYS
 lNM
-xgK
-xgK
-xgK
-xgK
-jJC
+ivs
+ivs
+ivs
+ivs
+iYS
 fHt
 kYE
-xeT
+fgD
 lhY
-vAV
+bSp
 biW
 xrI
 xrI
@@ -30001,10 +27535,10 @@ xrI
 xrI
 apf
 biW
-xDl
+box
 arT
 azA
-xQq
+ckN
 rNK
 wQk
 wQk
@@ -30012,20 +27546,20 @@ ctr
 cTQ
 bls
 nfl
-vFL
-vFL
-vFL
-vFL
-dJw
+gzl
+gzl
+gzl
+gzl
+bFJ
 eqJ
-yfE
-jlC
-pdE
-pdE
-uHB
+ivs
+iNA
+fHt
+fHt
+cXT
 hRa
 cIr
-ksv
+fat
 yfz
 yfz
 oPa
@@ -30047,34 +27581,34 @@ yfz
 xkj
 itA
 yfz
-ksv
+fat
 qUn
-wKu
+ivs
 dot
-wVi
-xfB
+fHt
+cfQ
 qIJ
 rYt
 jhS
 rYt
 hTl
-xfB
-xeT
-xMI
-uyh
-uyh
-rvz
-uqg
-wsD
-uqg
+cfQ
+fgD
+mDA
+bcm
+bcm
+jkS
+cXT
+fbQ
+cXT
 fUc
-uyh
-xgK
+bcm
+ivs
 fHt
-nhm
+bcm
 eST
-xMI
-vAV
+mDA
+bSp
 xrI
 xrI
 xrI
@@ -30142,28 +27676,28 @@ xrI
 xBx
 asl
 rqX
-xQq
-xQq
-xQq
-xQq
+ckN
+ckN
+ckN
+ckN
 god
 wRt
-pYY
+box
 gHI
 egz
 kov
 fdg
-vFL
-pYY
+gzl
+box
 gPF
-xKR
-yfE
-gKR
-pdE
+iYS
+ivs
+dTl
+fHt
 lmc
-mhC
-mSV
-xEy
+eqJ
+cJv
+lmc
 yfz
 yfz
 viZ
@@ -30187,32 +27721,32 @@ xkj
 yfz
 qQY
 vbq
-wKu
-wKu
-wVi
-rYF
+ivs
+ivs
+fHt
+cXT
 qJT
-pCQ
+god
 hbF
 ieI
 ufQ
-nhm
-xeT
-xMI
-mbJ
+bcm
+fgD
+mDA
+iNd
 gzn
 cUs
 rDY
 vxi
 isj
 msP
-nnW
-xgK
+hhc
+ivs
 fHt
-rYF
+cXT
 vUA
 akp
-vAV
+bSp
 xrI
 xrI
 xrI
@@ -30280,7 +27814,7 @@ xrI
 xBx
 ati
 heF
-xQq
+ckN
 cAS
 eKo
 xpE
@@ -30291,17 +27825,17 @@ mxw
 eiq
 gbN
 fHG
-gtc
+acu
 mhD
 nMn
-yfE
-yfE
-jVB
+ivs
+ivs
+cYQ
 fgD
 lmc
-mhP
-mTe
-xEy
+dio
+dTl
+lmc
 yfz
 yfz
 qaI
@@ -30325,32 +27859,32 @@ yfz
 xkj
 qQY
 vbq
-qiO
-wKu
-wKu
-rYF
-xAT
-uHm
+iYS
+ivs
+ivs
+cXT
+ctr
+ctH
 hxf
 dnY
-xAT
-rSv
-xeT
-xMI
-uqg
+ctr
+hhc
+fgD
+mDA
+cXT
 hZN
 bve
-tZZ
+acu
 nCA
 gbi
 aof
 tkB
-jJC
+iYS
 fHt
-rYF
-lkM
-xMI
-vAV
+cXT
+aAE
+mDA
+bSp
 xrI
 xrI
 xrI
@@ -30418,10 +27952,10 @@ xrI
 xBx
 ato
 aAH
-xQq
-xQq
-xQq
-xQq
+ckN
+ckN
+ckN
+ckN
 cuM
 cYO
 scz
@@ -30430,16 +27964,16 @@ bKw
 eSN
 fIC
 dkn
-pYY
+box
 sIO
-yfE
-yfE
-gKR
-wSF
+ivs
+ivs
+dTl
+qPB
 lmc
-mjI
+blf
 jpf
-xEy
+lmc
 yfz
 yfz
 wbL
@@ -30463,32 +27997,32 @@ yfz
 yfz
 qQY
 vbq
-wKu
-wKu
+ivs
+ivs
 qPB
-rYF
+cXT
 qJT
-cBF
+cuM
 qpn
-vsS
+ulL
 vhv
-nhm
-xeT
-xMI
-mbJ
+bcm
+fgD
+mDA
+iNd
 dqB
 iuT
 sYo
 pYe
 ixm
 iFb
-mbJ
-xgK
+iNd
+ivs
 fHt
-rYF
-xeT
+cXT
+fgD
 akp
-vAV
+bSp
 xrI
 xrI
 xrI
@@ -30553,31 +28087,31 @@ xrI
 xrI
 xHr
 biW
-xDl
+box
 aud
 aAJ
-xQq
+ckN
 ukm
-xTn
-xTn
+fXm
+fXm
 cwe
 ctr
 bls
 nfl
-vFL
-vFL
-vFL
+gzl
+gzl
+gzl
 gtN
-pYY
+box
 mfT
-yfE
-wJG
-wSF
-wSF
-uHB
+ivs
+dot
+qPB
+qPB
+cXT
 qzU
 mVG
-ksv
+fat
 yfz
 yfz
 yfz
@@ -30599,34 +28133,34 @@ yfz
 vAP
 yfz
 yfz
-ksv
+fat
 pIc
 nKz
-wKu
+ivs
 qPB
-xfB
+cfQ
 lFG
-ots
+aJO
 fti
-ots
+aJO
 vJv
-xfB
-xeT
-xMI
-vuv
-uyh
-uyh
-uyh
-uqg
-uyh
-uyh
-uyh
-xgK
+cfQ
+fgD
+mDA
+aEn
+bcm
+bcm
+bcm
+cXT
+bcm
+bcm
+bcm
+ivs
 fHt
 iNd
-lkM
-xMI
-vAV
+aAE
+mDA
+bSp
 xrI
 xrI
 xrI
@@ -30694,28 +28228,28 @@ xrI
 xBx
 avp
 aBz
-xQq
+ckN
 bar
 bmt
 bDI
 cwU
 tVa
-dJw
+bFJ
 dPP
 ejA
 eVf
 cAP
 tAV
-pYY
+box
 euI
-yfE
-yfE
+ivs
+ivs
 jvA
 kCM
-wJL
-tYL
+bcm
+ncr
 mXN
-sMN
+bcm
 ovl
 lVi
 xIU
@@ -30737,34 +28271,34 @@ fkc
 fKF
 gry
 nDm
-sMN
+bcm
 vYZ
-wKu
-wKu
-wKu
+ivs
+ivs
+ivs
 atR
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
 ojp
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
-xgK
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
+ivs
 lQk
 iNA
-xgK
-vAV
+ivs
+bSp
 biW
 xrI
 qia
@@ -30835,27 +28369,27 @@ aHO
 azA
 bac
 bka
-bAx
-xOi
+bcm
+cXT
 qRQ
-xDl
-xDl
+box
+box
 elF
-xDl
-xDl
-yfy
-xDl
-evv
-wSF
+box
+box
+xWb
+box
+blf
+qPB
 jnE
-xSv
-xSv
-wJL
-wtb
-rXP
-sMN
-sMN
-xJg
+bSp
+bSp
+bcm
+dBD
+boq
+bcm
+bcm
+bcm
 sVI
 nFB
 oPz
@@ -30864,24 +28398,24 @@ tDV
 ulN
 xIU
 yfz
-slg
-wuZ
+cfQ
+bcm
 yac
 bWn
 sxh
-wuZ
-wuZ
+bcm
+bcm
 mOd
-wuZ
-wuZ
-qCr
-ydT
+bcm
+bcm
+ncr
+bcm
 aok
-tVB
-wKu
+hAb
+ivs
 pYN
 vIB
-vVa
+pzZ
 tSZ
 xXh
 tSZ
@@ -30896,13 +28430,13 @@ wUj
 wUj
 wUj
 wUj
-pQh
+dii
 fhO
 kGq
 eGd
-xgK
-jJC
-vAV
+ivs
+iYS
+bSp
 biW
 xrI
 xrI
@@ -30974,73 +28508,73 @@ aQF
 bac
 txr
 bFh
-xTn
-xTn
+fXm
+fXm
 cRJ
-xTn
+fXm
 elK
-xTn
-xTn
-xTn
+fXm
+fXm
+fXm
 txr
-xTH
-wSF
-xSv
+ifO
+qPB
+bSp
 biW
 biW
-xSv
-xKO
-xWW
-ndy
+bSp
+ead
+eFA
+dAJ
 vUJ
-xJg
-qyU
-xbj
-uZp
-xbj
+bcm
+gbi
+ckN
+acu
+ckN
 tEJ
 sQs
 xIU
 yfz
-uKQ
+cXT
 xIx
 xom
 xoR
 xom
 jWe
-wuZ
+bcm
 vYP
 tls
-wuZ
-sjM
-ydT
-ydT
+bcm
+fxP
+bcm
+bcm
 blf
-wKu
+ivs
 pzZ
-sjT
-vAV
-vAV
-vAV
-vAV
-vAV
-sjT
-wlI
-sjT
+box
+bSp
+bSp
+bSp
+bSp
+bSp
+box
+oWn
+box
 fiO
-vAV
+bSp
 aHF
 maE
-rVI
-rVI
-vAV
+aIr
+aIr
+bSp
 fiO
-sjT
-irn
-sjT
-sjT
-vAV
-vAV
+box
+ekB
+box
+box
+bSp
+bSp
 xrI
 xrI
 xrI
@@ -31121,42 +28655,42 @@ wQk
 cCN
 dqZ
 txr
-xTH
-fHO
-xSv
+ifO
+bSw
+bSp
 biW
 biW
-xSv
+bSp
 bvh
 jpn
-nGT
-rXP
-xJg
+cYa
+boq
+bcm
 bVq
 rbj
-kLI
+cAS
 xMP
 chk
 qTr
 itl
 xkj
 uRy
-xJv
+mGe
 ycL
-ebZ
+qgs
 oIG
 lYl
-slg
+cfQ
 dAC
-xlK
-wuZ
-xUt
-xKO
-ydT
-tDO
-wKu
+ksY
+bcm
+drS
+ead
+bcm
+euI
+ivs
 pzZ
-sjT
+box
 xXc
 xXc
 xXc
@@ -31164,16 +28698,16 @@ biW
 biW
 biW
 biW
-vAV
-oCv
-vAV
-tRV
+bSp
+boq
+bSp
+oFX
 wnS
 dfR
-sOJ
-vAV
-oCv
-vAV
+mEQ
+bSp
+boq
+bSp
 biW
 biW
 biW
@@ -31246,55 +28780,55 @@ biW
 xXc
 sjH
 sjH
-xDl
+box
 baT
-xDl
-vGP
+box
+box
 fCn
-mFm
-yhA
+dzc
+bka
 qET
 bMI
 qET
-yhA
+bka
 gDk
-hiF
+bka
 fbQ
 fbQ
-yhG
-fZE
-kDw
-yhG
-yhG
-yhG
-yhG
-rXP
-xJg
-qzu
-xJg
+bka
+bSp
+gae
+bka
+bka
+bka
+bka
+boq
+bcm
+cfQ
+bcm
 oSc
 sRc
-xJg
-nVv
-ydT
-qCr
-wuZ
+bcm
+fZG
+bcm
+ncr
+bcm
 waP
 xom
 jQw
 xom
-wIl
+bao
 uRy
 dAC
 wBe
-wuZ
-wuZ
-xWW
-ydT
+bcm
+bcm
+eFA
+bcm
 bTq
-wKu
+ivs
 pzZ
-sjT
+box
 xXc
 xXc
 xXc
@@ -31302,16 +28836,16 @@ xrI
 xrI
 xrI
 xrI
-vAV
-roF
-vAV
-vAV
-vAV
-vAV
-vAV
-vAV
-roF
-vAV
+bSp
+oYg
+bSp
+bSp
+bSp
+bSp
+bSp
+bSp
+oYg
+bSp
 xrI
 xrI
 xrI
@@ -31387,52 +28921,52 @@ xXc
 xXc
 xXc
 xXc
-vGP
+box
 cxi
 eFg
-dLi
+cXT
 mGe
-nFq
+dnm
 haq
-yhA
-ylG
+bka
+cYQ
 hkw
 ifO
-kWn
-sDZ
+cHJ
+cXT
 jXn
 kFc
 lmR
 mlv
 xXF
-yhG
-xWW
-nrq
+bka
+eFA
+hhc
 qAy
 hKX
-xbj
+ckN
 sRd
-xJg
+bcm
 qUd
-rXP
-rXP
-wuZ
+boq
+boq
+bcm
 wbj
 xoR
 jau
 xoR
 dyZ
-wuZ
+bcm
 gYE
 dAC
 gbI
-wuZ
-rXP
-qHx
+bcm
+boq
+hhc
 blf
-wKu
+ivs
 pzZ
-sjT
+box
 xXc
 xXc
 xXc
@@ -31525,54 +29059,54 @@ xrI
 xrI
 xXc
 xXc
-vGP
+box
 cxq
 bPH
-lMh
+bWt
 mGe
 bPH
-nFq
+dnm
 pcv
-ylG
-jrR
+cYQ
+cXT
 ifO
-vmi
-jow
+iMT
+bWt
 gao
 oNj
 mCI
 mCI
 mYR
-yhG
-xWW
-xJg
+bka
+eFA
+bcm
 mCY
-xbj
-xbj
+ckN
+ckN
 sRK
-xJg
+bcm
 qVI
-rXP
-ndy
-obJ
+boq
+dAJ
+hhc
 xKl
 xqU
 xoR
 xom
 rdX
-wuZ
+bcm
 jij
 oul
 cCt
-wuZ
-uko
-ydT
+bcm
+cqb
+bcm
 aAN
 fOn
 fOn
-xyI
-xyI
-xyI
+box
+box
+box
 xXc
 xrI
 xrI
@@ -31666,51 +29200,51 @@ xXc
 bFJ
 aBY
 aUT
-dLi
+cXT
 dPZ
-nFq
+dnm
 cmc
 cDG
-ylG
-jrR
+cYQ
+cXT
 ifO
-kWn
-sDZ
-mXi
+cHJ
+cXT
+gtX
 xsU
-lqk
-mnp
-naH
-yhG
-rXP
-xJg
+cYQ
+cAr
+cHJ
+bka
+boq
+bcm
 qBl
 nFD
 oTz
 sSz
-xJg
+bcm
 umq
-xUt
+drS
 mQf
-wuZ
+bcm
 xLH
 ycN
 xom
 sgC
 igK
-wuZ
+bcm
 utM
 dAC
 gbI
-wuZ
-sch
-ydT
+bcm
+pio
+bcm
 hAb
-uTg
+qPB
 pUr
 pUr
 hIR
-fSc
+bSp
 xXc
 xrI
 xrI
@@ -31803,52 +29337,52 @@ xXc
 bmG
 cae
 xLo
-nFq
-dLi
+dnm
+cXT
 dQg
-nFq
+dnm
 wJN
 pcv
-ylG
-jrR
+cYQ
+cXT
 ifO
-kWn
+cHJ
 jpY
-mhM
-tsS
-tsS
-tsS
+jTE
+dii
+dii
+dii
 ncv
-yhG
-xUt
-xJg
-xJg
-xJg
-oUp
-xJg
-xJg
-jtw
-sjM
-rXP
-toj
-wuZ
-wuZ
-ukD
-wuZ
-wuZ
-wuZ
-wuZ
-ukD
-wuZ
-wuZ
-uko
+bka
+drS
+bcm
+bcm
+bcm
+ncr
+bcm
+bcm
+cYa
+fxP
+boq
+aEn
+bcm
+bcm
+ncr
+bcm
+bcm
+bcm
+bcm
+ncr
+bcm
+bcm
+cqb
 ntE
-nVP
+blf
 nsv
-vXK
+ivs
 apm
-uTg
-fSc
+qPB
+bSp
 xXc
 xrI
 xrI
@@ -31938,55 +29472,55 @@ xrI
 xrI
 ohJ
 xXc
-vGP
-vGP
+box
+box
 bcm
 aVk
-krz
+iNd
 uVb
 aLi
 fSA
 wnV
-uXI
+aIr
 dUE
 ifO
-iPn
-sDZ
+eSl
+cXT
 jCt
 rYj
-lqw
+box
 moR
 ndk
-yhG
-xKO
-xWW
-wtb
-ndy
-xKO
-rXP
-xWW
-rXP
-rXP
-xKO
-rXP
-rXP
-xWW
-xKO
-rXP
-ndy
-rXP
-xUt
-xWW
+bka
+ead
+eFA
+dBD
+dAJ
+ead
+boq
+eFA
+boq
+boq
+ead
+boq
+boq
+eFA
+ead
+boq
+dAJ
+boq
+drS
+eFA
 hdN
-uko
-fJY
-ydT
-nVP
+cqb
+dUh
+bcm
+blf
 kKv
-vXK
+ivs
 wRG
-uTg
-fSc
+qPB
+bSp
 xXc
 xrI
 xrI
@@ -32076,55 +29610,55 @@ xrI
 xrI
 ohJ
 fmR
-vGP
-xUy
-yew
+box
+bZR
+cKf
 dcs
 hhc
 dQh
 mGE
 xfO
-yhA
+bka
 gEA
-dve
-uXC
+bcm
+blf
 kEn
-yhG
-yhG
-yhG
-yhG
-njU
-yhG
-yhG
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
+bka
+bka
+bka
+bka
+fCn
+bka
+bka
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 nvn
-ydT
-qCr
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-nVP
+bcm
+ncr
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+blf
 rqo
-vXK
+ivs
 wRG
-uTg
-fSc
+qPB
+bSp
 xXc
 xrI
 xrI
@@ -32214,55 +29748,55 @@ xrI
 xAJ
 apL
 fWu
-vGP
-yhA
-fIF
-yhA
-yhA
-yhA
-yhA
-yhA
-yhA
-kJK
-dve
-uXC
+box
+bka
+afj
+bka
+bka
+bka
+bka
+bka
+bka
+fZG
+bcm
+blf
 iYS
-oIv
+ivs
 jXp
-oHV
+kYE
 lsy
-oXu
-oXu
+fHt
+fHt
 nHk
-oXu
-oXu
+fHt
+fHt
 mKz
-oXu
-skN
-qWW
-qWW
-qWW
-qWW
-qWW
+fHt
+rNY
+fHt
+fHt
+fHt
+fHt
+fHt
 xid
-xLY
-rVK
-rVK
+kYE
+eqJ
+eqJ
 jXT
-rVK
-rVK
+eqJ
+eqJ
 ieT
-rVK
+eqJ
 jnb
-qWW
+fHt
 xKY
-xLY
-rVK
+kYE
+eqJ
 eap
-vXK
+ivs
 vQp
 clB
-xyI
+box
 xXc
 xrI
 xrI
@@ -32352,70 +29886,70 @@ fmR
 fmR
 fmR
 fWu
-smd
+box
 bHj
-lce
-mid
-qLl
-qLl
-qLl
+ead
+dBD
+boq
+boq
+boq
 fxP
-vGB
-qLl
+drS
+boq
 hlc
 fiJ
-oIv
+ivs
 oJp
 oJp
-oHV
+kYE
 wfB
 hTO
 jqT
-woQ
-woQ
-pnn
-qCJ
+qPB
+qPB
+bSw
+nRL
 rex
-woQ
-uTg
-uTg
-uTg
-xES
-uTg
-uTg
-xLY
-nVP
-nVP
-rTu
-nVP
-nVP
+qPB
+qPB
+qPB
+qPB
+bSw
+qPB
+qPB
+kYE
+blf
+blf
+iYS
+blf
+blf
 otn
-nVP
+blf
 hAb
-uTg
-uTg
-xLY
-xES
-uTg
-uTg
-vXK
-xES
-xyI
+qPB
+qPB
+kYE
+bSw
+qPB
+qPB
+ivs
+bSw
+box
 xXc
 xXc
 xrI
 xrI
 xrI
-ybs
+bSp
 oYg
-ybs
-ybs
-ybs
-ybs
-ybs
-ybs
+bSp
+bSp
+bSp
+bSp
+bSp
+bSp
 oYg
-ybs
+bSp
 xrI
 xrI
 xrI
@@ -32490,70 +30024,70 @@ fmR
 fmR
 fmR
 fWu
-smd
+box
 bHu
-pfh
-wcJ
-vSy
-vSy
-vSy
-vSy
-vSy
-vSy
-vSy
+eFA
+box
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
+bcm
 hUt
-xPu
-xPu
-xPu
-ylM
+cXT
+cXT
+cXT
+iNd
 fbQ
 fbQ
-jrR
+cXT
 nPx
-wff
-qAn
-wff
-wff
+bcm
+ncr
+bcm
+bcm
 sld
-wff
-wff
+bcm
+bcm
 umx
-vsE
+tVa
 wla
 xjS
-dxX
+cfQ
 ydu
 fNa
-vXK
-vXK
+ivs
+ivs
 dJb
-dxX
+cfQ
 lri
 eDu
 eDu
 iys
-dxX
+cfQ
 csU
 eDu
 rhu
-vXK
-uTg
-xyI
+ivs
+qPB
+box
 xXc
 biW
 biW
 biW
 biW
-ybs
-xUc
-ybs
+bSp
+boq
+bSp
 uaW
 fPG
 tpj
 mln
-ybs
-xUc
-ybs
+bSp
+boq
+bSp
 biW
 biW
 biW
@@ -32629,73 +30163,73 @@ fmR
 fmR
 fWu
 bmS
-smd
-wxd
-wcJ
+box
+prD
+box
 bfK
 yga
 bWB
 ldw
 hIc
-xPu
+cXT
 hmG
 uHf
 iQT
 jrx
 gaw
-xPu
+cXT
 hvP
 hZa
 jsn
-wff
+bcm
 php
-mbn
-wff
+cqb
+bcm
 nNR
 smw
 sSC
-wff
-wff
-vsK
-wff
-wff
-wff
-wff
-wff
+bcm
+bcm
+pjX
+bcm
+bcm
+bcm
+bcm
+bcm
 aYI
 aYI
-wff
-wff
-wff
-qAn
-xfa
-xyI
-xyI
-xyI
-xyI
-xyI
-ybm
+bcm
+bcm
+bcm
+ncr
+box
+box
+box
+box
+box
+box
+ivs
 fEt
-ybs
-ybs
-ybs
-xmq
-xmq
+bSp
+bSp
+bSp
+box
+box
 ekB
-xmq
-fqV
-ybs
-szJ
+box
+fiO
+bSp
+aIr
 xYu
 xYu
-szJ
-ybs
-fqV
-xmq
+aIr
+bSp
+fiO
+box
 oWn
-xmq
-ybs
-ybs
+box
+bSp
+bSp
 biW
 xrI
 xrI
@@ -32766,7 +30300,7 @@ vQc
 fmR
 fmR
 fWu
-smd
+box
 bLb
 aDS
 dye
@@ -32774,66 +30308,66 @@ uHR
 bzq
 fgt
 eVH
-jlF
+aIr
 vGc
 hmM
 hUy
 sAb
-kLu
+dio
 eSa
 fpP
 lsI
 hZa
-jxj
-wff
+cgS
+bcm
 aHl
-tZJ
-wff
+dAJ
+bcm
 rgf
 smG
 sSZ
-wff
-usE
-xzU
-pqq
-xjT
-xLZ
-yjA
-wff
+bcm
+fTH
+boq
+eFA
+lgF
+pio
+ead
+bcm
 vDN
-voa
-wff
+ivs
+bcm
 rlZ
-pqq
-eMT
-xfa
+eFA
+drS
+box
 biW
 biW
 biW
 biW
-xyI
-ybm
+box
+ivs
 tmc
-wpm
-wpm
-wpm
-wpm
-wpm
-wpm
-wpm
+mCI
+mCI
+mCI
+mCI
+mCI
+mCI
+mCI
 gwf
-wpm
-wpm
-wpm
-wpm
-wpm
-wpm
+mCI
+mCI
+mCI
+mCI
+mCI
+mCI
 gwf
-wpm
-wpm
-dEO
-ybm
-ybs
+mCI
+mCI
+bPs
+ivs
+bSp
 xrI
 xrI
 xrI
@@ -32905,73 +30439,73 @@ fmR
 fmR
 fWu
 bmS
-smd
-rgb
-wcJ
+box
+oYg
+box
 iwx
 dSO
 sAb
-wZp
-fKS
-xPu
+dTl
+cYQ
+cXT
 hnG
 sAb
 sAb
-wZp
+dTl
 pdK
-xPu
+cXT
 hvP
 hZa
-jxj
-wff
+cgS
+bcm
 wiM
-pqq
-wff
-wff
-wff
-wff
-wff
-xzU
-tBa
-wff
-wff
-wff
-xzU
-wff
+eFA
+bcm
+bcm
+bcm
+bcm
+bcm
+boq
+cYa
+bcm
+bcm
+bcm
+boq
+bcm
 qaH
 sWR
-xfa
+box
 xWb
-xfa
+box
 qOB
-xfa
+box
 xrI
 xrI
 xrI
 aoZ
-xyI
-ybm
+box
+ivs
 aqy
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
-xbI
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
+dii
 bGv
-ybm
-ybs
+ivs
+bSp
 xrI
 xrI
 xrI
@@ -33045,13 +30579,13 @@ fWu
 yfo
 yfo
 cxu
-wcJ
+box
 uHR
 dTJ
-wZp
+dTl
 sAb
 xeQ
-ylM
+iNd
 hnR
 eAe
 iRm
@@ -33061,55 +30595,55 @@ mPI
 lsN
 moY
 nez
-lSb
+hhc
 rqp
-yjA
-xzU
-rQF
+ead
+boq
+dBD
 fLJ
-eMT
-pqq
-yjA
-wff
+drS
+eFA
+ead
+bcm
 wll
 uWM
-wff
-xzU
-wff
+bcm
+boq
+bcm
 eTf
-voa
-xTc
+ivs
+box
 biW
 rfV
-xzU
+boq
 rfV
 biW
 xrI
 xrI
 xrI
-ybs
-ybm
-hOX
-ybs
-ybs
-ybs
-xmq
-xmq
+bSp
+ivs
+eSl
+bSp
+bSp
+bSp
+box
+box
 oWn
-xmq
-fqV
-ybs
-fHH
-pBQ
-szJ
-szJ
-ybs
-fqV
-xmq
+box
+fiO
+bSp
+aHF
+maE
+aIr
+aIr
+bSp
+fiO
+box
 ekB
-xmq
-ybs
-ybs
+box
+bSp
+bSp
 xXc
 xrI
 xrI
@@ -33187,63 +30721,63 @@ dye
 iwx
 dSO
 euB
-wZp
+dTl
 fMV
 gEU
 hqq
-jlF
+aIr
 tOL
-wZp
+dTl
 nsc
-xPu
+cXT
 oJp
 iaL
 xhC
-wff
+bcm
 oAm
-mbn
-tBa
+cqb
+cYa
 dtb
 oYh
 wFf
-tBa
-xzU
+cYa
+boq
 xni
 qPq
 xku
-wff
-yjA
-wff
+bcm
+ead
+bcm
 ajh
 sWR
 dWn
-xrI
+xXc
 rfV
-xzU
+boq
 rfV
 xrI
 xrI
 xrI
 xrI
-ybs
-ybm
-qDL
-xmq
+bSp
+ivs
+fHt
+box
 xrI
 biW
 biW
 biW
 biW
-ybs
-xUc
-ybs
+bSp
+boq
+bSp
 oFX
-xtw
-tuD
+wnS
+dfR
 mEQ
-ybs
-xUc
-ybs
+bSp
+boq
+bSp
 biW
 biW
 biW
@@ -33321,67 +30855,67 @@ iDZ
 fmR
 fmR
 sqZ
-wcJ
+box
 uHR
 eAe
 tUI
 eAe
 vUQ
-xPu
+cXT
 htq
 hVs
 tOL
-kLu
+dio
 nsc
 kFd
 oJp
 ihP
-jxj
-xUS
-wff
+cgS
+dgR
+bcm
 prD
-xfa
-xfa
-xfa
-xfa
-xfa
-xfa
-xfa
-wly
+box
+box
+box
+box
+box
+box
+box
+rNK
 veH
 xni
-xzG
-wff
+hdN
+bcm
 vDN
-voa
-xTc
+ivs
+box
 biW
 rfV
-otM
+fxP
 rfV
 biW
 xrI
 xrI
 xXc
-ybs
-ybm
-qDL
-xmq
+bSp
+ivs
+fHt
+box
 xrI
 xrI
 xrI
 xrI
 xrI
-ybs
+bSp
 oYg
-ybs
-ybs
-ybs
-ybs
-ybs
-ybs
+bSp
+bSp
+bSp
+bSp
+bSp
+bSp
 oYg
-ybs
+bSp
 xrI
 xrI
 xrI
@@ -33459,52 +30993,52 @@ iDZ
 iDZ
 fmR
 fmR
-vVU
+bSp
 iwx
-jlF
+aIr
 eys
-jlF
+aIr
 fNM
-kPi
+hhc
 htx
 jzz
 iRE
-ljc
+czk
 kfk
-xPu
-uXI
-ylG
+cXT
+aIr
+cYQ
 yec
-wff
+bcm
 oBm
-yjA
-xfa
+ead
+box
 fmR
 xAJ
 bRv
 fWu
 fWu
-tBa
+cYa
 wtX
 fpi
-wff
-xzU
-wff
-voa
+bcm
+boq
+bcm
+ivs
 mEa
-xTc
-xfa
-xfa
+box
+box
+box
 cnV
-xfa
+box
 xrI
 xrI
 xrI
 biW
-xmq
-ybm
-qDL
-xmq
+box
+ivs
+fHt
+box
 xXc
 xrI
 xrI
@@ -33597,52 +31131,52 @@ xrI
 xrI
 xrI
 iDZ
-wcJ
+box
 uft
 cok
-vSy
+bcm
 cok
 cFb
-wcJ
-vVU
-wcJ
-vVU
-wcJ
-ger
-jID
+box
+bSp
+box
+bSp
+box
+elF
+bcm
 ltq
 vRp
-lAU
-jID
-loD
+cXT
+bcm
+box
 knL
-xfa
+box
 fmR
 sni
 vQc
 fmR
 fmR
-xfa
-wff
-wff
-tBa
-tZJ
-lSb
+box
+bcm
+bcm
+cYa
+dAJ
+hhc
 vDN
-voa
+ivs
 tcF
-wff
+bcm
 soi
-xzU
-xfa
+boq
+box
 biW
 xrI
 xrI
 aoZ
-xmq
-ybm
-qDL
-xmq
+box
+ivs
+fHt
+box
 xXc
 xrI
 xrI
@@ -33735,24 +31269,24 @@ xrI
 xrI
 xrI
 aHM
-vVU
+bSp
 vLP
-jAQ
-ylM
-jAQ
+dyf
+iNd
+dyf
 fOG
-vVU
+bSp
 biW
 biW
 biW
 biW
-loD
+box
 kFx
 jZU
-ogI
+aIr
 jyu
 xPQ
-loD
+box
 yhb
 yhb
 rgM
@@ -33760,27 +31294,27 @@ nXO
 biW
 vQc
 fmR
-xfa
+box
 wtZ
-xzU
-pqq
-yjA
-wff
-voa
+boq
+eFA
+ead
+bcm
+ivs
 sWR
-mjw
-wff
-wff
-qAn
-xfa
+bcm
+bcm
+bcm
+ncr
+box
 biW
 xHr
 xHr
 biW
-xmq
-ybm
-qDL
-xmq
+box
+ivs
+fHt
+box
 xrI
 xrI
 xrI
@@ -33873,24 +31407,24 @@ xrI
 xrI
 xrI
 xrI
-vVU
+bSp
 xlM
-tQw
+oYg
 njM
-tQw
+oYg
 mxM
-vVU
+bSp
 xrI
 xrI
 xrI
 xrI
-xVt
+bSp
 kJx
 xPv
 ilh
 usY
 lDR
-loD
+box
 mOn
 mOn
 nXO
@@ -33899,26 +31433,26 @@ biW
 vQc
 uub
 xWb
-xfa
-wff
-vsK
-wff
-wff
+box
+bcm
+pjX
+bcm
+bcm
 hDt
 qFx
-mjw
+bcm
 xGq
 qDW
 tcJ
-xTc
-xTc
-xTc
-xTc
-xTc
-xTc
-ybm
-qDL
-xmq
+box
+box
+box
+box
+box
+box
+ivs
+fHt
+box
 xrI
 xrI
 xrI
@@ -34022,13 +31556,13 @@ xrI
 xrI
 xrI
 xrI
-loD
+box
 wdt
 ltw
 iqy
 jzI
 nQK
-loD
+box
 vQc
 xrI
 xrI
@@ -34042,21 +31576,21 @@ vlm
 wUB
 yhn
 wUB
-pps
-pps
-pps
+dTl
+dTl
+dTl
 wUB
-pps
+dTl
 wUB
-voa
+ivs
 wUB
-voa
+ivs
 wUB
-voa
+ivs
 wUB
-ybm
-qDL
-xmq
+ivs
+fHt
+box
 xXc
 xrI
 xrI
@@ -34160,13 +31694,13 @@ xrI
 xrI
 xrI
 xrI
-kgI
-loD
-lAU
+bmS
+box
+cXT
 iwk
 dEl
 noc
-loD
+box
 xrI
 xrI
 xrI
@@ -34177,24 +31711,24 @@ uub
 smh
 xPH
 wJk
-xNS
+dio
 yhB
-xnt
+vpr
 dZC
-xnt
+vpr
 yhB
-pps
+dTl
 yhB
-xNS
-voa
-voa
+dio
+ivs
+ivs
 yhB
-voa
+ivs
 yhB
-voa
-ybm
-ofK
-xmq
+ivs
+ivs
+cJv
+box
 xXc
 xrI
 xrI
@@ -34299,40 +31833,40 @@ xrI
 xrI
 xrI
 biW
-xVt
+bSp
 tPH
 iAa
 jAf
-xVt
+bSp
 biW
 biW
 xHr
 xHr
 biW
 biW
-xTc
-xTc
-xQP
-xTc
-mjw
-mjw
-voF
-xnt
-xnt
-xnt
-voF
+box
+box
+bSp
+box
+bcm
+bcm
+cXT
+vpr
+vpr
+vpr
+cXT
 aEn
-mjw
+bcm
 vJn
-xQP
-xTc
-xTc
-xTc
-xTc
-xTc
-xmq
-xmq
-xmq
+bSp
+box
+box
+box
+box
+box
+box
+box
+box
 xXc
 xrI
 xrI
@@ -34437,34 +31971,34 @@ xrI
 xrI
 xrI
 biW
-xVt
+bSp
 lEo
 jWn
 kuq
-xVt
+bSp
 biW
 xrI
 xrI
 xrI
 xrI
 biW
-xTc
+box
 uzv
-vsV
+isj
 thx
-voF
+cXT
 xOY
 qMW
-ybY
-ybY
-ybY
+mCI
+mCI
+mCI
 rgF
 llS
-voF
+cXT
 hCh
-rib
+ilh
 iIb
-xQP
+bSp
 biW
 xHr
 xXc
@@ -34575,34 +32109,34 @@ xrI
 wQi
 xrI
 xrI
-xVt
-xVt
+bSp
+bSp
 ppW
-xVt
-xVt
+bSp
+bSp
 xrI
 xrI
 xrI
 xrI
 xHr
 biW
-xTc
+box
 qYV
 wFb
 wua
 vMa
-voa
+ivs
 xEJ
-pps
-pps
-pps
+dTl
+dTl
+dTl
 xGQ
-voa
+ivs
 aYe
-qrx
+hmM
 xGQ
 oJI
-xTc
+box
 biW
 xrI
 xrI
@@ -34724,23 +32258,23 @@ xrI
 xrI
 xHr
 biW
-xTc
+box
 qZS
 vtm
 wuj
-voF
-voa
+cXT
+ivs
 jys
 jys
 jys
 jys
 jys
-voa
-jgQ
+ivs
+hUt
 kPV
 dWA
 fMM
-xTc
+box
 biW
 xrI
 xrI
@@ -34862,23 +32396,23 @@ xrI
 xrI
 xHr
 biW
-xTc
+box
 rao
 snh
-wuY
-xTa
-nMc
+aof
+dGn
+dii
 xLw
 xLw
 cRR
 xLw
 xLw
-nMc
+dii
 jeD
 sLI
 fLl
 gMd
-xTc
+box
 biW
 xHr
 xrI
@@ -35000,11 +32534,11 @@ xrI
 xrI
 xrI
 biW
-xTc
+box
 uBB
 gUo
 sor
-voF
+cXT
 wtu
 jOC
 jOC
@@ -35012,11 +32546,11 @@ jOC
 jOC
 jOC
 wtu
-voF
-sSb
+cXT
+ltw
 czk
 kxq
-xTc
+box
 biW
 xHr
 xrI
@@ -35138,23 +32672,23 @@ xrI
 xrI
 xHr
 biW
-xTc
-xQP
-xTc
+box
+bSp
+box
 pfd
-xTc
+box
 jTw
-xTc
-xTR
-xQP
-xQP
-xTc
+box
+aZs
+bSp
+bSp
+box
 pfd
-xTc
+box
 pur
-xTc
-xQP
-xTc
+box
+bSp
+box
 biW
 xHr
 xrI
@@ -35278,19 +32812,19 @@ xHr
 biW
 biW
 biW
-xQP
+bSp
 wtu
-xQP
+bSp
 wtu
-xQP
+bSp
 biW
 biW
 biW
-xQP
+bSp
 wtu
-xQP
+bSp
 wtu
-xQP
+bSp
 biW
 biW
 biW
@@ -35416,19 +32950,19 @@ xrI
 xrI
 xrI
 xrI
-xQP
+bSp
 vGv
-xQP
+bSp
 vGv
-xQP
+bSp
 xrI
 xrI
 xrI
-xQP
+bSp
 vGv
-xQP
+bSp
 owf
-xQP
+bSp
 xrI
 xrI
 wQi

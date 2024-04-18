@@ -171,7 +171,7 @@
 
 /obj/effect/landmark/resin_jelly_pod
 	name = "xeno jelly pod landmark"
-	icon = 'icons/Xeno/resinpod.dmi'
+	icon = 'icons/Xeno/resin_pod.dmi'
 	icon_state = "resinpod"
 
 /obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
@@ -271,8 +271,8 @@
 		/obj/item/weapon/gun/revolver/cmb,
 		/obj/item/weapon/gun/revolver/judge,
 		/obj/item/weapon/gun/shotgun/double/derringer,
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/katana/replica,
+		/obj/item/weapon/sword/machete,
+		/obj/item/weapon/sword/katana/replica,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
 		/obj/item/stack/throwing_knife,
@@ -282,7 +282,7 @@
 		/obj/item/weapon/baseballbat/metal,
 		/obj/item/weapon/butterfly,
 		/obj/item/weapon/butterfly/switchblade,
-		/obj/item/weapon/katana/samurai,
+		/obj/item/weapon/sword/katana/samurai,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
@@ -308,11 +308,11 @@
 		/obj/item/weapon/gun/smg/icc_machinepistol/medic,
 		/obj/item/weapon/gun/smg/icc_pdw/standard,
 		/obj/item/weapon/gun/smg/som/veteran,
-		/obj/item/weapon/claymore,
-		/obj/item/weapon/claymore/mercsword,
-		/obj/item/weapon/claymore/mercsword/captain,
-		/obj/item/weapon/claymore/mercsword/commissar_sword,
-		/obj/item/weapon/katana,
+		/obj/item/weapon/sword,
+		/obj/item/weapon/sword/mercsword,
+		/obj/item/weapon/sword/captain,
+		/obj/item/weapon/sword/commissar_sword,
+		/obj/item/weapon/sword/katana,
 		/obj/item/weapon/twohanded/fireaxe,
 		/obj/item/weapon/twohanded/spear,
 		/obj/item/weapon/twohanded/glaive,
@@ -422,7 +422,7 @@
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
-		/obj/item/weapon/gun/tl102/death, // memes
+		/obj/item/weapon/gun/hsg_102/death, // memes
 	)
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
@@ -436,7 +436,7 @@
 /obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor_loyalist"
+	icon_state = "sensor"
 
 /obj/effect/landmark/sensor_tower/Initialize(mapload)
 	..()
@@ -462,104 +462,6 @@
 /obj/effect/landmark/valhalla/marine_spawner_landmark
 	name = "Marine spawner landmark"
 	spawns = "marine"
-
-//Combat patrol spawn in spots
-/obj/effect/landmark/patrol_point
-	name = "Patrol exit point"
-	///ID to link with an associated start point
-	var/id = null
-	///Faction this belongs to for minimap purposes
-	var/faction = FACTION_TERRAGOV
-	///minimap icon state
-	var/minimap_icon = "patrol_1"
-
-/obj/effect/landmark/patrol_point/Initialize(mapload)
-	. = ..()
-	//adds the exit points to the glob, and the start points link to them in lateinit
-	GLOB.patrol_point_list += src
-	if(!(SSticker?.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
-		return
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
-
-/obj/effect/landmark/patrol_point/Destroy()
-	GLOB.patrol_point_list -= src
-	return ..()
-
-/obj/effect/landmark/patrol_point/tgmc_11
-	name = "TGMC exit point 11"
-	id = "TGMC_11"
-
-/obj/effect/landmark/patrol_point/tgmc_12
-	name = "TGMC exit point 12"
-	id = "TGMC_12"
-
-/obj/effect/landmark/patrol_point/tgmc_13
-	name = "TGMC exit point 13"
-	id = "TGMC_13"
-
-/obj/effect/landmark/patrol_point/tgmc_14
-	name = "TGMC exit point 14"
-	id = "TGMC_14"
-
-/obj/effect/landmark/patrol_point/tgmc_21
-	name = "TGMC exit point 21"
-	id = "TGMC_21"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_22
-	name = "TGMC exit point 22"
-	id = "TGMC_22"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_23
-	name = "TGMC exit point 23"
-	id = "TGMC_23"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_24
-	name = "TGMC exit point 24"
-	id = "TGMC_24"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/som
-	faction = FACTION_SOM
-	minimap_icon = "som_patrol_1"
-
-/obj/effect/landmark/patrol_point/som/som_11
-	name = "SOM exit point 11"
-	id = "SOM_11"
-
-/obj/effect/landmark/patrol_point/som/som_12
-	name = "SOM exit point 12"
-	id = "SOM_12"
-
-/obj/effect/landmark/patrol_point/som/som_13
-	name = "SOM exit point 13"
-	id = "SOM_13"
-
-/obj/effect/landmark/patrol_point/som/som_14
-	name = "SOM exit point 14"
-	id = "SOM_14"
-
-/obj/effect/landmark/patrol_point/som/som_21
-	name = "SOM exit point 21"
-	id = "SOM_21"
-	minimap_icon = "som_patrol_2"
-
-/obj/effect/landmark/patrol_point/som/som_22
-	name = "SOM exit point 22"
-	id = "SOM_22"
-	minimap_icon = "som_patrol_2"
-
-/obj/effect/landmark/patrol_point/som/som_23
-	name = "SOM exit point 23"
-	id = "SOM_23"
-	minimap_icon = "som_patrol_2"
-
-/obj/effect/landmark/patrol_point/som/som_24
-	name = "SOM exit point 24"
-	id = "SOM_24"
-	minimap_icon = "som_patrol_2"
 
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"

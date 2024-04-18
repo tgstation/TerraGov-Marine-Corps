@@ -5,8 +5,6 @@
 	icon_state = "ltb_cannon"
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
-	///The turret icon if we equip the weapon in a secondary slot, you should null this if its unequippable as such
-	var/secondary_equipped_icon
 	///Weapon slot this weapon fits in
 	var/weapon_slot = MODULE_PRIMARY
 
@@ -44,7 +42,7 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
-	///how many seconds automatic reloading takes
+	///how many seconds automatic, and manual, reloading takes
 	var/rearm_time = 4 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
@@ -58,7 +56,8 @@
 /obj/item/armored_weapon/Destroy()
 	if(chassis)
 		detach(get_turf(chassis))
-	QDEL_NULL(ammo)
+	if(isdatum(ammo))
+		QDEL_NULL(ammo)
 	QDEL_LIST(ammo_magazine)
 	return ..()
 
@@ -162,12 +161,15 @@
 ///does any effects and changes to the projectile when it is fired
 /obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
+	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
 		projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
-	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()
 		projectile_to_fire.iff_signal = id?.iff_signal
+	if(firer)
+		projectile_to_fire.def_zone = firer.zone_selected
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
@@ -186,15 +188,15 @@
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammo.default_ammo.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
-	var/firing_angle = get_angle_with_scatter(chassis, current_target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, 20, TRUE)
-	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
@@ -258,7 +260,7 @@
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
 			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
 		else
-			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]")
+			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
 	chassis = tank
 	forceMove(tank)
@@ -290,18 +292,35 @@
 
 /obj/item/armored_weapon/secondary_weapon
 	name = "secondary cupola minigun"
-	desc = "A robotically controlled minigun that spws lead. Do not stand in front of it!!"
+	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_PRIMARY|MODULE_SECONDARY
-	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
+	weapon_slot = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	projectile_delay = 2
+	variance = 5
 	rearm_time = 1 SECONDS
+	maximum_magazines = 5
+	hud_state_empty = "rifle_empty"
+
+/obj/item/armored_weapon/ltaap
+	name = "\improper LTA-AP chaingun"
+	desc = "A hefty, large caliber chaingun"
+	icon_state = "ltaap_chaingun"
+	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	windup_delay = 5
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	weapon_slot = MODULE_PRIMARY
+	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	variance = 5
+	projectile_delay = 0.1 SECONDS
+	rearm_time = 3 SECONDS
 	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 

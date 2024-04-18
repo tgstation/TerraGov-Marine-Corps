@@ -7,7 +7,8 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	max_game_time = 10 MINUTES
+	max_game_time = 9 MINUTES
+	game_timer_delay = 90 SECONDS
 	shutter_open_delay = list(
 		MISSION_STARTING_FACTION = 90 SECONDS,
 		MISSION_HOSTILE_FACTION = 0,
@@ -39,6 +40,24 @@
 		Protect the ASAT weapons at all costs. Do not allow them to be destroyed or to fall into enemy hands."
 	starting_faction_additional_rewards = "Additional ICC support, ability to counteract TGMC drop pod usage"
 	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> All targets captured and Terrans in disarray. Pack it up, you've done Mars proud!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> All objectives lost. All remaining forces pull back, we'll get them next time.",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Objectives achieved. Nice work Martians, head to exfil.",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> Pull back all forces, we'll get them next time.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Insufficient targts captured. All forces pull back, we'll get them next time.",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Excellent work marines, we held them off. Regroup and prepare for the counter attack!",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> Damn it, all surviving forces retreat. The operation is a failure.",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Enemy forces routed, outstanding work! The SOM came to the wrong neighbourhood today marines!",
+		),
+	)
 
 	objectives_total = 6
 	min_capture_amount = 5
@@ -54,6 +73,14 @@
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
 	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [objectives_total - min_capture_amount + 1] ASAT systems." : ""]"
+
+/datum/campaign_mission/capture_mission/asat/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "Protect our ASAT systems at all cost! Deactivate any the SOM try and steal."
+		if(FACTION_SOM)
+			message = "Move fast marines. Capture every ASAT system you can, and we'll give the Terrans a taste of their own medicine!"
+	return ..()
 
 /datum/campaign_mission/capture_mission/asat/check_mission_progress()
 	if(outcome)

@@ -305,33 +305,31 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abo" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/exoarmor)
-"abp" = (
 /obj/structure/rack,
 /obj/item/tool/weldingtool,
 /obj/item/tool/weldpack,
 /obj/item/tool/weldpack,
 /obj/item/tool/weldingtool,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
+"abp" = (
+/obj/structure/rack,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/tool/weldingtool,
+/obj/item/tool/weldingtool,
+/obj/item/storage/backpack/marine/engineerpack,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abq" = (
-/obj/structure/rack,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/tool/weldingtool,
-/obj/item/tool/weldingtool,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/clothing/glasses/welding,
-/obj/item/clothing/glasses/welding,
+/obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abr" = (
-/obj/structure/closet/secure_closet/engineering_welding,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abs" = (
@@ -442,6 +440,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/rack,
+/obj/item/stack/sheet/glass/phoronrglass,
+/obj/item/stack/sheet/glass/phoronrglass,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abU" = (
@@ -1514,7 +1515,7 @@
 /area/mainship/command/telecomms)
 "ahm" = (
 /obj/structure/closet/secure_closet/captain,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "ahn" = (
@@ -1769,9 +1770,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aie" = (
-/obj/machinery/bodyscanner{
-	dir = 8
-	},
+/obj/machinery/bodyscanner,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aif" = (
@@ -2264,6 +2263,16 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"ayb" = (
+/obj/structure/cable,
+/obj/machinery/landinglight/alamo{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "azU" = (
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -2325,6 +2334,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"cXg" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "djH" = (
 /obj/vehicle/ridden/powerloader,
 /obj/machinery/landinglight/cas,
@@ -2341,10 +2357,18 @@
 "dwY" = (
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"dLM" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "dPu" = (
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"dTa" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship,
+/area/mainship/medical/lower_medical)
 "dZo" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2439,6 +2463,13 @@
 /area/mainship/squads/general)
 "gOE" = (
 /obj/machinery/light,
+/obj/structure/rack,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "gUp" = (
@@ -2463,11 +2494,24 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"hSf" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
 "ieJ" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"iiS" = (
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
 "ivw" = (
 /obj/machinery/landinglight/alamo{
 	dir = 8
@@ -2494,6 +2538,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"jxZ" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "jPH" = (
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship,
@@ -2523,8 +2574,20 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/rack,
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/stack/sheet/wood/large_stack,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
+"kEg" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "kEy" = (
 /obj/machinery/light{
 	dir = 4
@@ -2538,6 +2601,10 @@
 "kQa" = (
 /obj/machinery/light,
 /obj/structure/dropship_equipment/cas/weapon/bomb_pod,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"kVr" = (
+/obj/machinery/gear/vehicle,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "lcb" = (
@@ -2555,6 +2622,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"leQ" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/glass/large_stack,
+/obj/item/stack/sheet/glass/reinforced,
+/obj/item/stack/sheet/glass/reinforced,
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
 "ljg" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -2592,6 +2667,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"lGu" = (
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "lGz" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/camera/autoname/mainship{
@@ -2604,6 +2683,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"mfs" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "mlP" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/cable,
@@ -2641,6 +2728,14 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "oQb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"oQd" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2708,6 +2803,9 @@
 /obj/machinery/landinglight/tadpole,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"qWN" = (
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
 "rmh" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/alamo{
@@ -2738,6 +2836,10 @@
 "rDw" = (
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
+"rMD" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "rPl" = (
 /obj/machinery/landinglight/tadpole{
 	dir = 8
@@ -2755,12 +2857,23 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"skH" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "soy" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /obj/machinery/landinglight/cas{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"sru" = (
+/obj/structure/table/mainship,
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -2774,6 +2887,25 @@
 /area/mainship/hallways/hangar)
 "sAD" = (
 /obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"sDt" = (
+/obj/docking_port/stationary/supply/vehicle,
+/turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
+"sPD" = (
+/obj/machinery/landinglight/alamo{
+	dir = 8
+	},
+/obj/machinery/landinglight/cas{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 8
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "tae" = (
@@ -2844,6 +2976,13 @@
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"uyq" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "vsI" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
@@ -2883,6 +3022,12 @@
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"wlt" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "wpk" = (
 /obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light{
@@ -2915,6 +3060,12 @@
 /obj/vehicle/unmanned/droid/scout,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/telecomms)
+"xiw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
 "xot" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -3156,16 +3307,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
 aaa
 aaa
 aaa
@@ -3216,16 +3367,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+lGu
+kVr
+wlt
+kEg
+wlt
+wlt
+wlt
+kVr
+bgb
 aaa
 aaa
 aaa
@@ -3276,16 +3427,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dwY
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3336,16 +3487,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dwY
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3396,16 +3547,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+sru
+cXg
+qWN
+qWN
+sDt
+qWN
+qWN
+mfs
+bgb
 aaa
 aaa
 aaa
@@ -3456,16 +3607,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+skH
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3516,16 +3667,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+rMD
+cXg
+qWN
+qWN
+qWN
+qWN
+qWN
+uyq
+bgb
 aaa
 aaa
 aaa
@@ -3576,16 +3727,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bgb
+dLM
+kVr
+jxZ
+jxZ
+jxZ
+jxZ
+jxZ
+kVr
+bgb
 aaa
 aaa
 aaa
@@ -3640,9 +3791,9 @@ bgb
 bgb
 bgb
 bgb
-bgb
-bgb
-bgb
+dwY
+dwY
+dwY
 bgb
 bgb
 bgb
@@ -3699,9 +3850,9 @@ oQb
 dwY
 dwY
 dwY
-dwY
-dwY
 oQb
+dwY
+dwY
 dwY
 dwY
 dwY
@@ -4245,7 +4396,7 @@ rPl
 rPl
 dwY
 dwY
-acI
+oQd
 syF
 syF
 syF
@@ -4256,7 +4407,7 @@ syF
 syF
 syF
 syF
-syF
+ayb
 adG
 syF
 syF
@@ -4816,7 +4967,7 @@ ahy
 ahy
 dZo
 aie
-ahy
+dTa
 ahy
 ajT
 ahg
@@ -4974,7 +5125,7 @@ ecg
 tWe
 ivw
 ivw
-ivw
+sPD
 ivw
 ivw
 adU
@@ -4984,7 +5135,7 @@ ivw
 ivw
 ivw
 ivw
-ivw
+sPD
 ivw
 ivw
 ahh
@@ -5921,9 +6072,9 @@ aaa
 aaa
 aea
 abn
-xTV
-xTV
-xTV
+xiw
+leQ
+hSf
 aea
 acn
 adA
@@ -6043,7 +6194,7 @@ aea
 abo
 xTV
 xTV
-abU
+iiS
 aea
 aco
 acu

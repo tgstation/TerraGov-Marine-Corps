@@ -4,6 +4,7 @@
 /datum/loadout_item/uniform/empty
 	name = "no uniform"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -93,9 +94,6 @@
 	item_typepath = /obj/item/clothing/under/marine/engineer/black_vest
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-	item_whitelist = list(
-		/obj/item/storage/pouch/tools/full = ITEM_SLOT_R_POCKET,
-	)
 
 //FC
 /datum/loadout_item/uniform/field_commander

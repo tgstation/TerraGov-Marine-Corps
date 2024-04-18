@@ -92,12 +92,7 @@
 		else
 			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act(burnlevel)
-	hugger?.kill_hugger()
-	trigger_trap()
-	set_trap_type(null)
-
-/obj/structure/xeno/trap/fire_act()
+/obj/structure/xeno/trap/fire_act(burn_level)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)
@@ -147,31 +142,31 @@
 	hugger = null
 	set_trap_type(null)
 
-/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.a_intent == INTENT_HARM)
+	if(xeno_attacker.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
-		if(!(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
+		if(!(xeno_attacker.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
 		if(!hugger)
-			balloon_alert(X, "It is empty")
+			balloon_alert(xeno_attacker, "It is empty")
 			return
-		X.put_in_active_hand(hugger)
+		xeno_attacker.put_in_active_hand(hugger)
 		hugger.go_active(TRUE)
 		hugger = null
 		set_trap_type(null)
-		balloon_alert(X, "Removed facehugger")
+		balloon_alert(xeno_attacker, "Removed facehugger")
 		return
-	var/datum/action/ability/activable/xeno/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno/corrosive_acid) in X.actions
-	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
-		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
-		if(!boiler_glob.enhance_trap(src, X))
+	var/datum/action/ability/activable/xeno/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno/corrosive_acid) in xeno_attacker.actions
+	if(istype(xeno_attacker.ammo, /datum/ammo/xeno/boiler_gas))
+		var/datum/ammo/xeno/boiler_gas/boiler_glob = xeno_attacker.ammo
+		if(!boiler_glob.enhance_trap(src, xeno_attacker))
 			return
 	else if(acid_action)
-		if(!do_after(X, 2 SECONDS, NONE, src))
+		if(!do_after(xeno_attacker, 2 SECONDS, NONE, src))
 			return
 		switch(acid_action.acid_type)
 			if(/obj/effect/xenomorph/acid/weak)
@@ -182,11 +177,13 @@
 				set_trap_type(TRAP_ACID_STRONG)
 	else
 		return // nothing happened!
-	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
-	balloon_alert(X, "Filled with [trap_type]")
+	playsound(xeno_attacker.loc, 'sound/effects/refill.ogg', 25, 1)
+	balloon_alert(xeno_attacker, "Filled with [trap_type]")
 
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/clothing/mask/facehugger) || !isxeno(user))
 		return

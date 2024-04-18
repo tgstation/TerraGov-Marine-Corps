@@ -56,7 +56,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressured high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
@@ -65,7 +65,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressured high velocity incendiary rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
@@ -74,7 +74,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity impact rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressured high velocity impact rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
@@ -88,9 +88,9 @@
 	name = "\improper generic high-explosive rocket"
 	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = CALIBER_84MM
-	icon_state = "rocket"
+	icon_state = "rocket_he"
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	reload_delay = 60
@@ -238,7 +238,7 @@
 	reload_delay = 30
 
 /obj/item/ammo_magazine/internal/launcher/rocket/oneuse
-	name = "\improper 67mm internal tube"
+	name = "\improper 68mm internal tube"
 	desc = "The internal tube of a one use rpg."
 	caliber = CALIBER_68MM
 	default_ammo = /datum/ammo/rocket/recoilless
@@ -401,40 +401,40 @@
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper MG-100 Vindicator powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your M56."
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine = MAGAZINE_WORN
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
 	current_rounds = 500
 	max_rounds = 500
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
 	icon_state = "s_powerpack"
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
 	icon_state = "powerpackw"
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
 	icon_state = "powerpackp"
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
 	icon_state = "powerpacksg"
-	flags_magazine = MAGAZINE_WORN|MAGAZINE_REFILLABLE
+	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	current_rounds = 1000
 	max_rounds = 1000
 	caliber = CALIBER_10x26_CASELESS
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 //"External magazine" for the wheelchair-mounted minigun
 /obj/item/ammo_magazine/minigun_wheelchair
@@ -442,9 +442,9 @@
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "minigun"
-	flags_atom = CONDUCT
-	flags_magazine = MAGAZINE_REFILLABLE
-	flags_equip_slot = ITEM_SLOT_BACK
+	atom_flags = CONDUCT
+	magazine_flags = MAGAZINE_REFILLABLE
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
 	current_rounds = 1000

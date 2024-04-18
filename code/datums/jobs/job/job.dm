@@ -79,6 +79,8 @@ GLOBAL_PROTECT(exp_specialmap)
 		else
 			outfit = new outfit //Can be improved to reference a singleton.
 
+///called during gamemode pre_setup, use for stuff like roundstart poplock
+/datum/job/proc/on_pre_setup()
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(isnull(L))
@@ -211,7 +213,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
-			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
@@ -227,8 +229,9 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		scaled_job.add_job_points(-jobworth[index])
+		scaled_job.remove_job_points(jobworth[index])
 
+///Adds to job points, adding a new slot if threshold reached
 /datum/job/proc/add_job_points(amount)
 	job_points += amount
 	if(total_positions >= max_positions)
@@ -236,6 +239,17 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(job_points >= job_points_needed )
 		job_points -= job_points_needed
 		add_job_positions(1)
+
+///Removes job points, and if needed, job positions
+/datum/job/proc/remove_job_points(amount)
+	if(job_points_needed == INFINITY || total_positions == -1)
+		return
+	if(job_points >= amount)
+		job_points -= amount
+		return
+	var/job_slots_removed = ROUND_UP((amount - job_points) / job_points_needed)
+	remove_job_positions(job_slots_removed)
+	job_points += (job_slots_removed * job_points_needed) - amount
 
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))

@@ -1,7 +1,7 @@
 /datum/campaign_asset/strategic_reserves
 	name = "Strategic Reserve"
 	desc = "Emergency reserve forces"
-	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when the opponent has initiated a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
@@ -52,7 +52,13 @@
 	for(var/mob/candidate AS in GLOB.player_list)
 		if(candidate.faction != faction.faction)
 			continue
+		if(candidate.stat != DEAD)
+			continue
 		mode.player_death_times -= candidate.ckey
+		deltimer(mode.respawn_timers[candidate.ckey])
+		mode.respawn_timers[candidate.ckey] = null
+		mode.player_respawn(candidate)
+
 		to_chat(candidate, "<span class='warning'>Tactical reserves mobilised. You can now respawn immediately if possible.<spawn>")
 		candidate.playsound_local(null, 'sound/ambience/votestart.ogg', 50)
 

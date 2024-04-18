@@ -5,7 +5,7 @@
 	icon_state = "coatrack0"
 	coverage = 5
 	var/obj/item/clothing/suit/coat
-	var/list/allowed = list(/obj/item/clothing/suit/storage/labcoat, /obj/item/clothing/suit/storage/det_suit, /obj/item/clothing/suit/bomber)
+	var/list/allowed = list(/obj/item/clothing/suit/storage/labcoat, /obj/item/clothing/suit/storage/det_suit, /obj/item/clothing/suit/storage/bomber)
 
 /obj/structure/coatrack/Initialize(mapload)
 	. = ..()
@@ -25,6 +25,8 @@
 
 /obj/structure/coatrack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!(I.type in allowed) || coat)
 		to_chat(user, span_notice("You cannot hang [I] on [src]"))

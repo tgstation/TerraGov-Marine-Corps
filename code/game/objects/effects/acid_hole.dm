@@ -37,11 +37,6 @@
 		holed_wall = null
 	return ..()
 
-
-/obj/effect/acid_hole/fire_act()
-	return
-
-
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
 	. = ..()
 	if(!holed_wall)
@@ -125,6 +120,8 @@
 //Throwing Shiet
 /obj/effect/acid_hole/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/mob_dir = get_dir(user, src)
 	var/crawl_dir = dir & mob_dir

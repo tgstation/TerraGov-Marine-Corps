@@ -133,34 +133,7 @@
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
-		if(isxeno(user))
-			return
-
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/M = G.grabbed_thing
-		if(user.a_intent == INTENT_HARM)
-			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, span_warning("You need a better grip to do that!"))
-				return
-
-			if(prob(15))
-				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
-			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
-			span_danger("You slam [M]'s face against [src]!"))
-			log_combat(user, M, "slammed", "", "against \the [src]")
-			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
-
-		else if(user.grab_state >= GRAB_AGGRESSIVE)
-			M.forceMove(loc)
-			M.Paralyze(10 SECONDS)
-			user.visible_message(span_danger("[user] throws [M] on [src]."),
-			span_danger("You throw [M] on [src]."))
+	if(.)
 		return
 
 	if(user.a_intent != INTENT_HARM)
@@ -174,6 +147,24 @@
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return TRUE
 
+/obj/structure/table/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
+		return
+	if(user.a_intent == INTENT_HARM)
+		return
+	if(user.grab_state < GRAB_AGGRESSIVE)
+		return
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	grabbed_mob.forceMove(loc)
+	grabbed_mob.Paralyze(2 SECONDS)
+	user.visible_message(span_danger("[user] throws [grabbed_mob] on [src]."),
+	span_danger("You throw [grabbed_mob] on [src]."))
+	return TRUE
 
 /obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
@@ -232,7 +223,7 @@
 			if(T.flipped && T.dir == src.dir && !T.unflipping_check(new_dir))
 				return FALSE
 	for(var/obj/structure/S in loc)
-		if((S.flags_atom & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
+		if((S.atom_flags & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
 			return FALSE
 	return TRUE
 
@@ -278,7 +269,7 @@
 		layer = FLY_LAYER
 	flipped = TRUE
 	coverage = 60
-	flags_atom |= ON_BORDER
+	atom_flags |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
 		if(T && !T.flipped)
@@ -298,7 +289,7 @@
 	flipped = FALSE
 	coverage = 10
 	climbable = initial(climbable)
-	flags_atom &= ~ON_BORDER
+	atom_flags &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T?.flipped && T.dir == src.dir)
@@ -534,6 +525,8 @@
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		deconstruct(TRUE)

@@ -3630,7 +3630,7 @@
 	},
 /area/patricks_rest/ground/colonyn)
 "pX" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8;
 	id = "lvbasketball";
 	side = "right"
@@ -6491,10 +6491,6 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
-"Eq" = (
-/obj/effect/landmark/campaign_structure/sensor_tower,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonys)
 "Er" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -9825,7 +9821,7 @@
 	},
 /area/patricks_rest/ground/colonyn)
 "Uk" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4;
 	id = "lvbasketball";
 	side = "left"
@@ -23730,7 +23726,7 @@ Lr
 VG
 VG
 UR
-Eq
+wz
 tz
 Km
 Km

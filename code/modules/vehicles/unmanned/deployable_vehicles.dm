@@ -6,7 +6,7 @@
 	icon_state = "light_uv_folded"
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 0.3
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
 	///The vehicle this deploys into
 	var/deployable_item = /obj/vehicle/unmanned/deployable
 	///The equipped turret
@@ -26,7 +26,7 @@
 	name = "UV-L Iguana"
 	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies. This one is configured to be foldable for portability."
 	///Whether this item can be deployed or undeployed
-	var/flags_item = IS_DEPLOYABLE
+	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/deployable_vehicle/internal_item
 
@@ -59,8 +59,8 @@
 
 ///Dissassembles the device
 /obj/vehicle/unmanned/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "cannot be disassembled")
+	if(CHECK_BITFIELD(internal_item.item_flags, DEPLOYED_NO_PICKUP))
+		balloon_alert(user, "Cannot disassemble")
 		return
 	if(turret_path)
 		internal_item.stored_turret_type = turret_path

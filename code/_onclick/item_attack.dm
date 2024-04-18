@@ -57,8 +57,10 @@
 	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
+	if(isgrabitem(I) && grab_interact(I, user))
+		user.changeNext_move(GRAB_SLAM_DELAY)
+		return TRUE
 	return FALSE
-
 
 /obj/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -74,7 +76,7 @@
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
-	if(flags_item & NOBLUDGEON)
+	if(item_flags & NOBLUDGEON)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(O, used_item = src)
@@ -189,7 +191,7 @@
 	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery
 		return TRUE
 
-	if(flags_item & NOBLUDGEON)
+	if(item_flags & NOBLUDGEON)
 		return FALSE
 
 	if(!force)
@@ -326,7 +328,7 @@
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_ALTERNATE, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
-	if(flags_item & NOBLUDGEON)
+	if(item_flags & NOBLUDGEON)
 		return FALSE
 
 	if(!force)

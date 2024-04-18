@@ -6,7 +6,7 @@
 	coverage = 10
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
@@ -112,7 +112,7 @@
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 

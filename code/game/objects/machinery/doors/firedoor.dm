@@ -48,7 +48,7 @@
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			flags_atom |= INITIALIZED
+			atom_flags |= INITIALIZED
 			return INITIALIZE_HINT_QDEL
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
@@ -117,32 +117,32 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	var/turf/cur_loc = X.loc
+	var/turf/cur_loc = xeno_attacker.loc
 	if(blocked)
-		to_chat(X, span_warning("\The [src] is welded shut."))
+		to_chat(xeno_attacker, span_warning("\The [src] is welded shut."))
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		to_chat(X, span_warning("\The [src] is already open!"))
+		to_chat(xeno_attacker, span_warning("\The [src] is already open!"))
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
+	xeno_attacker.visible_message(span_warning("\The [xeno_attacker] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
 
-	if(do_after(X, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+	if(do_after(xeno_attacker, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		if(blocked)
-			to_chat(X, span_warning("\The [src] is welded shut."))
+			to_chat(xeno_attacker, span_warning("\The [src] is welded shut."))
 			return FALSE
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
-				X.visible_message(span_danger("\The [X] pries \the [src] open."), \
+				xeno_attacker.visible_message(span_danger("\The [xeno_attacker] pries \the [src] open."), \
 				span_danger("We pry \the [src] open."), null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/living/user)
@@ -158,7 +158,7 @@
 
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
-		if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
+		if(A.alarm_state_flags & ALARM_WARNING_FIRE || A.air_doors_activated)
 			alarmed = TRUE
 
 	var/answer = tgui_alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
@@ -194,7 +194,7 @@
 		spawn(50)
 			alarmed = FALSE
 			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
-				if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
+				if(A.alarm_state_flags & ALARM_WARNING_FIRE || A.air_doors_activated)
 					alarmed = TRUE
 			if(alarmed)
 				nextstate = FIREDOOR_CLOSED
@@ -202,6 +202,8 @@
 
 /obj/machinery/door/firedoor/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(operating)
 		return
@@ -326,7 +328,7 @@
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	allow_pass_flags = PASS_GLASS
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)

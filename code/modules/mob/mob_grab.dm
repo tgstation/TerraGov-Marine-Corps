@@ -4,8 +4,8 @@
 	name = "grab"
 	icon_state = "reinforce"
 	icon = 'icons/mob/screen/generic.dmi'
-	flags_atom = NONE
-	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
+	atom_flags = NONE
+	item_flags = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
@@ -74,6 +74,7 @@
 	var/mob/living/victim = pulling
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	setGrabState(grab_state + 1)
+	victim.grab_resist_level -= 1
 	switch(grab_state)
 		if(GRAB_AGGRESSIVE)
 			log_combat(src, victim, "aggressive grabbed")

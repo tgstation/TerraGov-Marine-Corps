@@ -12,7 +12,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
 	///Time between uses
 	var/cooldown_time = 10 SECONDS
@@ -150,6 +150,8 @@
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
