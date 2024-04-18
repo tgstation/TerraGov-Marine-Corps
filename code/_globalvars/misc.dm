@@ -17,6 +17,14 @@ GLOBAL_VAR_INIT(bsa_unlock, FALSE)	//BSA unlocked by head ID swipes
 
 GLOBAL_LIST_EMPTY(player_details)	// ckey -> /datum/player_details
 
+///All currently running polls held as datums
+GLOBAL_LIST_EMPTY(polls)
+GLOBAL_PROTECT(polls)
+
+///All poll option datums of running polls
+GLOBAL_LIST_EMPTY(poll_options)
+GLOBAL_PROTECT(poll_options)
+
 // All religion stuff
 GLOBAL_VAR(religion)
 GLOBAL_VAR(deity)

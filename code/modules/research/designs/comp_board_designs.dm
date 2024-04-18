@@ -276,7 +276,7 @@
 	name = "Computer Design (Library Console)"
 	desc = ""
 	id = "libraryconsole"
-	build_path = /obj/item/circuitboard/computer/libraryconsole
+//	build_path = /obj/item/circuitboard/computer/libraryconsole
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
