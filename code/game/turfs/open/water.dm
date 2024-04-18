@@ -14,10 +14,10 @@
 
 /turf/open/water
 	gender = PLURAL
-	name = ""
+	name = "water"
 	desc = ""
-	icon = null
-	icon_state = ""
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "together"
 	baseturfs = /turf/open/water
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	slowdown = 5
@@ -35,7 +35,7 @@
 	neighborlay_override = "edge"
 	var/water_color = "#6a9295"
 	var/water_reagent = /datum/reagent/water
-	water_level = 2
+	var/water_level = 2
 	var/wash_in = TRUE
 	var/swim_skill = FALSE
 	nomouseover = FALSE
@@ -85,7 +85,7 @@
 					drained += 40
 				if(!user.rogfat_add(drained))
 					user.Immobilize(30)
-					addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, Knockdown), 30), 10)
+					addtimer(CALLBACK(user, /mob/living/.proc/Knockdown, 30), 10)
 
 /turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
@@ -333,7 +333,7 @@
 
 /turf/open/water/river
 	name = "water"
-	icon_state = "rockwd"
+	icon_state = "rivermove"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
 	slowdown = 5
@@ -360,7 +360,7 @@
 	. = ..()
 	if(isliving(AM))
 		if(!river_processing)
-			river_processing = addtimer(CALLBACK(src, PROC_REF(process_river)), 5, TIMER_STOPPABLE)
+			river_processing = addtimer(CALLBACK(src, .proc/process_river), 5, TIMER_STOPPABLE)
 
 /turf/open/water/river/proc/process_river()
 	river_processing = null
