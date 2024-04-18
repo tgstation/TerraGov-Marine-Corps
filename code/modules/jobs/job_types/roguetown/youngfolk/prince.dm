@@ -42,10 +42,12 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.change_stat("perception", 1)
-			H.change_stat("strength", -3)
-			H.change_stat("endurance", -1)
+			H.change_stat("strength", 1)
+			H.change_stat("endurance", -2)
+			H.change_stat("intelligence", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("speed", 1)
+		ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	else
 		beltl = /obj/item/roguekey/manor
 		head = /obj/item/clothing/head/roguetown/hennin
@@ -61,7 +63,8 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
 			H.change_stat("perception", 2)
 			H.change_stat("endurance", -2)
-			H.change_stat("strength", -4)
+			H.change_stat("intelligence", 2)
+			H.change_stat("strength", -1)
 			H.change_stat("constitution", 1)
 			H.change_stat("speed", 2)		
 	ADD_TRAIT(H, RTRAIT_NOBLE, TRAIT_GENERIC)
