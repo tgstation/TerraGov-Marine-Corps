@@ -204,16 +204,24 @@
 				playsound(owner, 'sound/combat/crit2.ogg', 100, FALSE, 5)
 				owner.emote("paincrit", TRUE)
 				. = list()
-				for(var/X in owner.internal_organs)
+				var/obj/item/organ/liver/liver = null
+				var/obj/item/organ/liver/stomach = null
+				for (var/X in owner.internal_organs)
 					var/obj/item/organ/O = X
 					var/org_zone = check_zone(O.zone)
-					if(org_zone != BODY_ZONE_CHEST)
-						continue
-					O.Remove(owner)
-					O.forceMove(T)
-					O.add_mob_blood(owner)
+					if (org_zone == BODY_ZONE_CHEST)
+						if (istype(O, /obj/item/organ/liver))
+							liver = O
+						else if (istype(O, /obj/item/organ/stomach))
+							stomach = O
+				if (liver && stomach)
+					liver.Remove(owner)
+					liver.forceMove(T)
+					liver.add_mob_blood(owner)
+					stomach.Remove(owner)
+					stomach.forceMove(T)
+					stomach.add_mob_blood(owner)
 					organ_spilled = TRUE
-					. += X
 				if(cavity_item)
 					cavity_item.forceMove(T)
 					. += cavity_item
