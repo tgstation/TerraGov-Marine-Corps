@@ -379,6 +379,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			log_admin("[key_name(usr)] re-entered corpse")
 			message_admins("[key_name_admin(usr)] re-entered corpse")
 		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
+		ghost.mind.current.invisibility = 0
+		ghost.mind.current.density = 1
 		ghost.reenter_corpse()
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
@@ -391,6 +393,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		log_admin("[key_name(usr)] admin ghosted.")
 		message_admins("[key_name_admin(usr)] admin ghosted.")
 		var/mob/body = mob
+		body.invisibility = INVISIBILITY_MAXIMUM
+		body.density = 0
 		body.ghostize(1)
 		if(body && !body.key)
 			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
