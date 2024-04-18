@@ -1186,7 +1186,7 @@
 		return
 	
 	if(istype(src, /mob/living/carbon/spirit))
-		to_chat(src, "<span class='warning'>A field of magic surrounds \the [what], preventing you from touching it.</span>")
+		to_chat(src, "<span class='warning'>Your hands pass right through \the [what]!</span>")
 		return
 
 	who.visible_message("<span class='warning'>[src] tries to remove [who]'s [what.name].</span>", \
