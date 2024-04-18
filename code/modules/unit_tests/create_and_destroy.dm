@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 			break
 
 		if(REALTIMEOFDAY > real_start_time + time_needed + 50 MINUTES) //If this gets us gitbanned I'm going to laugh so hard
-			TEST_FAIL("Something has gone horribly wrong, the garbage queue has been processing for well over 30 minutes. What the hell did you do")
+			TEST_FAIL("Something has gone horribly wrong, the garbage queue has been processing for well over 50 minutes. What the hell did you do")
 			break
 
 		//Immediately fire the gc right after
