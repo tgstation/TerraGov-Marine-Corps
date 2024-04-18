@@ -14,10 +14,10 @@
 
 /turf/open/water
 	gender = PLURAL
-	name = ""
+	name = "water"
 	desc = ""
-	icon = null
-	icon_state = ""
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "together"
 	baseturfs = /turf/open/water
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	slowdown = 5
@@ -333,7 +333,7 @@
 
 /turf/open/water/river
 	name = "water"
-	icon_state = "rockwd"
+	icon_state = "rivermove"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
 	slowdown = 5
