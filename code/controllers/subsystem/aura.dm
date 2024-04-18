@@ -55,12 +55,12 @@ SUBSYSTEM_DEF(aura)
 		stage = 1
 
 ///Use this to start a new emitter with the specified stats. Returns the emitter in question, just qdel it to end early.
-/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction, hivenumber)
+/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction, squad, hivenumber)
 	if(!istype(center))
 		return
 	if(!type || !range || !strength || !duration || !faction)
 		return
-	. = new /datum/aura_bearer(center, type, range, strength, duration, faction, hivenumber)
+	. = new /datum/aura_bearer(center, type, range, strength, duration, faction, squad, hivenumber)
 	active_auras += .
 
 ///The thing that actually pushes out auras to nearby mobs.
@@ -83,6 +83,8 @@ SUBSYSTEM_DEF(aura)
 	var/static/list/human_auras = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
 	///Whether we care about humans - at least one relevant aura is enough if we have multiple.
 	var/affects_humans = FALSE
+	///Which squad should this affect? If null, affect all squads.
+	var/datum/squad/squad_affected
 	///List of aura defines that mean we care about xenos
 	var/static/list/xeno_auras = list(AURA_XENO_FRENZY, AURA_XENO_WARDING, AURA_XENO_RECOVERY)
 	///Whether we care about xenos - at least one relevant aura is enough if we have multiple.
@@ -92,13 +94,14 @@ SUBSYSTEM_DEF(aura)
 	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
 	var/suppressed = FALSE
 
-/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_hivenumber)
+/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction, aura_squadaffected, aura_hivenumber)
 	..()
 	emitter = aura_emitter
 	range = aura_range
 	strength = aura_strength
 	duration = aura_duration
 	faction = aura_faction
+	squad_affected = aura_squadaffected
 	hive_number = aura_hivenumber
 	last_tick = world.time
 	if(!islist(aura_names))
@@ -147,7 +150,8 @@ SUBSYSTEM_DEF(aura)
 	var/turf/aura_center = get_turf(emitter)
 	if(!istype(aura_center))
 		return
-	for(var/mob/living/carbon/human/potential_hearer AS in GLOB.humans_by_zlevel["[aura_center.z]"])
+
+	for(var/mob/living/carbon/human/potential_hearer AS in (squad_affected ? squad_affected.marines_list : GLOB.humans_by_zlevel["[aura_center.z]"]))
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		if(potential_hearer.faction != faction)

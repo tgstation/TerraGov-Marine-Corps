@@ -948,7 +948,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	var/aura_strength = skills.getRating(SKILL_LEADERSHIP) - 1
 	var/aura_target = pick_order_target()
-	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction)
+	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction, assigned_squad)
 
 	var/message = ""
 	switch(command_aura)
