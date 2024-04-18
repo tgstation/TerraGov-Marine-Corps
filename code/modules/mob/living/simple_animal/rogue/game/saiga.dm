@@ -31,6 +31,10 @@
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/death()
+	unbuckle_all_mobs()
+	.=..()
+
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga
 	icon = 'icons/roguetown/mob/monster/saiga.dmi'
 	name = "saiga"
@@ -261,6 +265,9 @@
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/death()
+	unbuckle_all_mobs()
+	.=..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/eat_plants()
 	//..()

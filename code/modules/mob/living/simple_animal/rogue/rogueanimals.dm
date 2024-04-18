@@ -68,7 +68,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/death(gibbed)
 	emote("death")
-	..()
+	..(gibbed)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/handle_automated_movement()
 	set waitfor = FALSE
