@@ -8,7 +8,6 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
-#include "_maps\templates\unit_tests.dmm"
 #include "code\_compile_options.dm"
 #include "code\rt.dm"
 #include "code\unit_tests.dm"
