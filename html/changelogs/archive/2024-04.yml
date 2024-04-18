@@ -327,3 +327,13 @@
   - bugfix: Tank treads movement animation fixed
   XElectricX:
   - bugfix: Interactive emotes work.
+2024-04-18:
+  Barnet2:
+  - admin: Adds tactical binocular admin logging, improved fuel tank logging.
+  Lumipharon:
+  - qol: Screaming from fire is a bit less spammy
+  - bugfix: fixes another order exploit
+  - bugfix: fixed various implant bugs
+  - code_imp: Cleaned up various implant related code
+  coldironwarrior:
+  - rscadd: adds category tags to the specialist vendors
