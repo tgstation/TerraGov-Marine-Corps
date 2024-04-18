@@ -378,6 +378,11 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		if(!ghost.can_reenter_corpse)
 			log_admin("[key_name(usr)] re-entered corpse")
 			message_admins("[key_name_admin(usr)] re-entered corpse")
+		var/mob/living/M = ghost.mind.current
+		var/datum/status_effect/incapacitating/sleeping/S = M.IsSleeping()
+		if(S && !M.IsKnockdown() && !M.IsStun() && !M.IsParalyzed()) // Wake them up unless they're asleep for another reason
+			M.remove_status_effect(S)
+			M.set_resting(FALSE, TRUE)
 		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
 		ghost.mind.current.invisibility = 0
 		ghost.mind.current.density = 1
