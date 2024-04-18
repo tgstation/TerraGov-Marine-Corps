@@ -56,6 +56,7 @@
 #include "connect_loc.dm"
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "focus_only_tests.dm"
 #include "implanting.dm"
 #include "item_variant_test.dm"
 #include "keybinding_init.dm"
