@@ -5,15 +5,13 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 2
-
 	allowed_races = list("Humen",
 	"Humen")
 	allowed_sexes = list(MALE)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
-	tutorial = "An elite knight with expert training. You are a Knight with unwavering loyalty to the King and are to protect him at all costs from any threat. Guard the Lord's fancy things. Protect the nobles."
+	tutorial = "A Knight with expert training; Born into petty nobility and raised as a squire from a young age, now you Guard the king as his knight, answer to his commands, and protect his honor. You're wholy dedicated to him, and his safety. Do not fail him."
 	display_order = JDO_KNIGHT
 	whitelist_req = TRUE
-
 	outfit = /datum/outfit/job/roguetown/knight
 	give_bank_account = 22
 	min_pq = 2
