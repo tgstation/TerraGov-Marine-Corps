@@ -229,6 +229,13 @@
 	base_icon_state = "lawtome"
 	bookfile = "law.json"
 
+/obj/item/book/rogue/cooking
+	name = "Tastes Fit For The Lord"
+	desc = ""
+	icon_state ="knowledge0"
+	base_icon_state = "knowledge"
+	bookfile = "cooking.json"
+
 		//no more theif stole the books
 /obj/item/book/rogue/knowledge1
 	name = "Book of Knowledge"

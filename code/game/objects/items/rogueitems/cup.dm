@@ -75,3 +75,22 @@
 /obj/item/reagent_containers/glass/cup/skull
 	name = "skull goblet"
 	icon_state = "skull"
+
+/obj/item/reagent_containers/glass/cup/bowl
+	name = "bowl"
+	desc = ""
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "bowl"
+
+/obj/item/reagent_containers/glass/cup/bowl/on_reagent_change(changetype)
+	..()
+	update_icon()
+
+/obj/item/reagent_containers/glass/cup/bowl/update_icon()
+	cut_overlays()
+	if(reagents && reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance(icon, "fullbowl")
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)
+	else
+		icon_state = "bowl"

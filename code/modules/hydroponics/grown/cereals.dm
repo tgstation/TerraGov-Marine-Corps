@@ -37,6 +37,7 @@
 	can_distill = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/beer
 	distill_amt = 24
+	
 // Oat
 /obj/item/seeds/wheat/oat
 	desc = ""
