@@ -310,6 +310,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Acolyte",
 	"Cleric",
 	"Sheriff",
+	"Templar",
 	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	var/datum/mind/villain = pick_n_take(antag_candidates)
@@ -349,6 +350,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Cleric",
 	"Sheriff",
 	"Court Magician",
+	"Templar",
 	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	antag_candidates = shuffle(antag_candidates)
