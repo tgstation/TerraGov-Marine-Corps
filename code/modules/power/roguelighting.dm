@@ -227,6 +227,7 @@
 		GLOB.fires_list -= src
 
 /obj/machinery/light/rogue/Destroy()
+	QDEL_NULL(soundloop)	
 	GLOB.fires_list -= src
 	. = ..()
 
@@ -527,7 +528,6 @@
 	if(torchy)
 		if(!istype(user) || !Adjacent(user) || !user.put_in_active_hand(torchy))
 			torchy.forceMove(loc)
-		torchy.update_light()
 		torchy = null
 		on = FALSE
 		set_light(0)
@@ -620,12 +620,17 @@
 	var/obj/item/reagent_containers/food/snacks/food = null
 	on = FALSE
 	cookonme = TRUE
+	var/datum/looping_sound/boilloop/boilloop
+
+/obj/machinery/light/rogue/hearth/Initialize()
+	boilloop = new(list(src), FALSE)
+	. = ..()
 
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
 	if(!attachment)
-		if(istype(W, /obj/item/cooking/pan))
-			W.forceMove(src)
+		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/pot))
 			attachment = W
+			W.forceMove(src)
 			update_icon()
 			return
 	else
@@ -638,15 +643,34 @@
 					update_icon()
 					playsound(src.loc, 'sound/misc/frying.ogg', 100, FALSE, extrarange = 5)
 					return
+		else if(istype(attachment, /obj/item/reagent_containers/glass/pot))
+			var/obj/item/reagent_containers/glass/pot = attachment
+			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks) || W.type == /obj/item/reagent_containers/powder/flour) 
+				if(pot.reagents.chem_temp < 374)
+					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
+					return
+				var/nutrimentamount = W.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+				if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks))
+					var/obj/item/reagent_containers/food/snacks/snack = W
+					if(snack.type in subtypesof(/obj/item/reagent_containers/food/snacks/grown) || snack.eat_effect == /datum/status_effect/debuff/uncookedfood)
+						nutrimentamount *= 1.25 //Boiling food makes more nutrients digestable.
+				if(istype(W, /obj/item/reagent_containers/food/snacks/grown/wheat) || istype(W, /obj/item/reagent_containers/food/snacks/grown/oat) || istype(W, /obj/item/reagent_containers/powder/flour))
+					nutrimentamount += 2 //Boiling is a way of cooking grain without baking
+				if(nutrimentamount > 0)
+					if(nutrimentamount + pot.reagents.total_volume > pot.volume)
+						to_chat(user, "<span class='warning'>[attachment] is full!</span>")
+						return
+					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
+					addtimer(CALLBACK(pot, TYPE_PROC_REF(/obj/item/reagent_containers/glass/pot, makeSoup), nutrimentamount), rand(1 MINUTES, 3 MINUTES))
+					qdel(W)
+				return
 	. = ..()
-
-
 
 /obj/machinery/light/rogue/hearth/update_icon()
 	cut_overlays()
 	icon_state = "[base_state][on]"
 	if(attachment)
-		if(attachment.type == /obj/item/cooking/pan)
+		if(istype(attachment, /obj/item/cooking/pan) || istype(attachment, /obj/item/reagent_containers/glass/pot))
 			var/obj/item/I = attachment
 			I.pixel_x = 0
 			I.pixel_y = 0
@@ -663,7 +687,7 @@
 		return
 
 	if(attachment)
-		if(attachment.type == /obj/item/cooking/pan)
+		if(istype(attachment, /obj/item/cooking/pan))
 			if(food)
 				if(!user.put_in_active_hand(food))
 					food.forceMove(user.loc)
@@ -674,6 +698,12 @@
 					attachment.forceMove(user.loc)
 				attachment = null
 				update_icon()
+		if(istype(attachment, /obj/item/reagent_containers/glass/pot))
+			if(!user.put_in_active_hand(attachment))
+				attachment.forceMove(user.loc)
+			attachment = null
+			update_icon()
+			boilloop.stop()
 	else
 		if(on)
 			var/mob/living/carbon/human/H = user
@@ -705,6 +735,13 @@
 					if(C)
 						qdel(food)
 						food = C
+			if(istype(attachment, /obj/item/reagent_containers/glass/pot))
+				if(attachment.reagents)
+					attachment.reagents.expose_temperature(400, 0.033)
+					if(attachment.reagents.chem_temp > 374)
+						boilloop.start()
+					else
+						boilloop.stop()
 		update_icon()
 
 
@@ -713,6 +750,9 @@
 		user.visible_message("<span class='warning'>[user] snuffs [src].</span>")
 		burn_out()
 
+/obj/machinery/light/rogue/hearth/Destroy()
+	QDEL_NULL(boilloop)	
+	. = ..()
 
 /obj/machinery/light/rogue/campfire
 	name = "campfire"

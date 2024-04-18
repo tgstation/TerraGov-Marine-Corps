@@ -43,7 +43,10 @@
 	if(QDELETED(src))
 		return
 
-	if(!light_power || !light_range) // We won't emit light anyways, destroy the light source.
+	if(light_system != STATIC_LIGHT)
+		CRASH("update_light() for [src] with following light_system value: [light_system]")
+
+	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
 		QDEL_NULL(light)
 	else
 		if(!ismovableatom(loc)) // We choose what atom should be the top atom of the light here.
@@ -96,32 +99,49 @@
 	for (thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		L = thing
 		L.source_atom.update_light()
+
 /atom/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("light_range")
-			set_light(l_range=var_value)
+	switch (var_name)
+		if (NAMEOF(src, light_range))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_range = var_value)
+			else
+				set_light_range(var_value)
+			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
-		if("light_power")
-			set_light(l_power=var_value)
+		if (NAMEOF(src, light_power))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_power = var_value)
+			else
+				set_light_power(var_value)
+			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
-		if("light_color")
-			set_light(l_color=var_value)
+		if (NAMEOF(src, light_color))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_color = var_value)
+			else
+				set_light_color(var_value)
+			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
 	return ..()
 
 
-/atom/proc/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _reset_lighting = TRUE)
+/atom/proc/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
 	return
 
-/turf/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _reset_lighting = TRUE)
+
+/turf/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
 	if(!_duration)
 		stack_trace("Lighting FX obj created on a turf without a duration")
-	new /obj/effect/dummy/lighting_obj (src, _color, _range, _power, _duration)
+	new /obj/effect/dummy/lighting_obj (src, _range, _power, _color, _duration)
+
 
 /obj/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _reset_lighting = TRUE)
+	if(!_duration)
+		stack_trace("Lighting FX obj created on a obj without a duration")
 	var/temp_color
 	var/temp_power
 	var/temp_range
@@ -132,9 +152,50 @@
 	set_light(_range, _power, _color)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light), _reset_lighting ? initial(light_range) : temp_range, _reset_lighting ? initial(light_power) : temp_power, _reset_lighting ? initial(light_color) : temp_color), _duration, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-/mob/living/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _reset_lighting = TRUE)
-	mob_light(_color, _range, _power, _duration)
+/mob/living/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
+	mob_light(_range, _power, _color, _duration)
 
-/mob/living/proc/mob_light(_color, _range, _power, _duration)
-	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = new (src, _color, _range, _power, _duration)
+
+/mob/living/proc/mob_light(_range, _power, _color, _duration)
+	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = new (src, _range, _power, _color, _duration)
 	return mob_light_obj
+
+
+/atom/proc/set_light_range(new_range)
+	if(new_range == light_range)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_RANGE, new_range)
+	. = light_range
+	light_range = new_range
+
+
+/atom/proc/set_light_power(new_power)
+	if(new_power == light_power)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_POWER, new_power)
+	. = light_power
+	light_power = new_power
+
+
+/atom/proc/set_light_color(new_color)
+	if(new_color == light_color)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color)
+	. = light_color
+	light_color = new_color
+
+
+/atom/proc/set_light_on(new_value)
+	if(new_value == light_on)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value)
+	. = light_on
+	light_on = new_value
+
+
+/atom/proc/set_light_flags(new_value)
+	if(new_value == light_flags)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_FLAGS, new_value)
+	. = light_flags
+	light_flags = new_value

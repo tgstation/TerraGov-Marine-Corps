@@ -193,7 +193,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	restricted_jobs = list("King",
 	"Queen",
 	"Merchant",
-	"Priest")
+	"Priest",
+	"Knight")
 	var/num_bandits = 0
 	if(num_players() >= 10)
 		num_bandits = CLAMP(round(num_players() / 2), 1, 5)
@@ -223,8 +224,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_aspirants()
-	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Sheriff", "Steward", "Hand")
-	var/list/possible_jobs_helpers = list("Sheriff", "Prince", "Princess", "Hand",  "Steward")
+	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Sheriff", "Steward", "Hand", "Knight")
+	var/list/possible_jobs_helpers = list("Sheriff", "Prince", "Princess", "Hand",  "Steward", "Knight")
 	var/list/rolesneeded = list("Aspirant","Loyalist","Supporter")
 
 	antag_candidates = get_players_for_role(ROLE_ASPIRANT)
@@ -308,7 +309,9 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Veteran",
 	"Acolyte",
 	"Cleric",
-	"Sheriff")
+	"Sheriff",
+	"Templar",
+	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	var/datum/mind/villain = pick_n_take(antag_candidates)
 	if(villain)
@@ -346,7 +349,9 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Acolyte",
 	"Cleric",
 	"Sheriff",
-	"Court Magician")
+	"Court Magician",
+	"Templar",
+	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	antag_candidates = shuffle(antag_candidates)
 	for(var/datum/mind/vampire in antag_candidates)
@@ -373,7 +378,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_werewolves()
-	restricted_jobs = list("Acolyte", "Templar", "Priest","Adventurer","Confessor","Town Guard","Veteran","Castle Guard","Sheriff")
+	restricted_jobs = list("Acolyte", "Templar", "Priest","Adventurer","Confessor","Town Guard","Veteran","Castle Guard","Sheriff","Knight")
 /*	var/num_werewolves = rand(1,3)
 #ifdef TESTSERVER
 	num_werewolves = 100

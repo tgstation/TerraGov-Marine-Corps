@@ -558,7 +558,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			used += used_light + used_equip + used_environ
 		if(STATIC_EQUIP)
 			used += static_equip
-		if(STATIC_LIGHT)
+		if(STATIC_LIGHT_A)
 			used += static_light
 		if(STATIC_ENVIRON)
 			used += static_environ
@@ -576,7 +576,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	switch(powerchannel)
 		if(STATIC_EQUIP)
 			static_equip += value
-		if(STATIC_LIGHT)
+		if(STATIC_LIGHT_A)
 			static_light += value
 		if(STATIC_ENVIRON)
 			static_environ += value

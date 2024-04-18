@@ -1,7 +1,7 @@
 //shield flail or longsword, tief can be this with red cross
 
 /datum/job/roguetown/templar
-	title = "Templar"	
+	title = "Templar"
 	department_flag = CHURCHMEN
 	faction = "Station"
 	tutorial = "Templars are warriors who have forsaken wealth and title in lieu of service to the church, due to either zealotry or a past shame. They guard the church and its priest, while keeping a watchful eye against heresy and nite-creechers. Within troubled dreams, they wonder if the blood they shed makes them holy or stained."
@@ -13,23 +13,23 @@
 	min_pq = 2
 	total_positions = 2
 	spawn_positions = 2
-	spells = list(/obj/effect/proc_holder/spell/invoked/heal/lesser, /obj/effect/proc_holder/spell/targeted/churn, /obj/effect/proc_holder/spell/targeted/burialrite)	
+	spells = list(/obj/effect/proc_holder/spell/invoked/heal/lesser, /obj/effect/proc_holder/spell/targeted/churn, /obj/effect/proc_holder/spell/targeted/burialrite)
 	display_order = JDO_TEMPLAR
 	give_bank_account = TRUE
 
 /datum/outfit/job/roguetown/templar/pre_equip(mob/living/carbon/human/H)
 	..()
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
-	backr = /obj/item/rogueweapon/shield/tower/metal
-	backl = /obj/item/storage/backpack/rogue/satchel
+	backl = /obj/item/rogueweapon/sword/long
+	backr = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/roguekey/church
-	beltr = /obj/item/rogueweapon/sword/long
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/clothing/ring/silver
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	gloves = /obj/item/clothing/gloves/roguetown/chain
@@ -46,7 +46,6 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-		backl = /obj/item/rogueweapon/sword/long
 		H.change_stat("strength", 2)
 		H.change_stat("perception", 2)
 		H.change_stat("intelligence", 2)
