@@ -398,8 +398,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		if(istype(R, /datum/map_template/ruin/lavaland))
 			lava_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/space))
-			space_ruins_templates[R.name] = R
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
