@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed various implant bugs"
-  - code_imp: "Cleaned up various implant related code"
