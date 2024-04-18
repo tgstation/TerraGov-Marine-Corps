@@ -2011,7 +2011,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/item/weapon/claymore/mercsword/captain,
 /obj/machinery/door/window/secure{
 	dir = 8
 	},
@@ -5950,12 +5949,6 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
-"fvc" = (
-/obj/structure/largecrate/supply/explosives/disposable,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "fvh" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -18928,12 +18921,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"rmB" = (
-/obj/structure/largecrate/guns/merc,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "rnp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -23618,12 +23605,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/specialist)
-"vIv" = (
-/obj/structure/largecrate/supply/ammo/sentry,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "vJd" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/corner{
@@ -37175,18 +37156,18 @@ ftV
 kkx
 izo
 izo
-jYD
 izo
 izo
-lMs
+izo
+izo
 izo
 izo
 izo
 xPo
 kkx
-izo
+ori
 qsl
-izo
+lMs
 izo
 izo
 izo
@@ -37418,7 +37399,7 @@ kkx
 izo
 izo
 woS
-ori
+izo
 izo
 izo
 woS
@@ -37426,9 +37407,9 @@ woS
 izo
 xPo
 kkx
+jYD
 izo
-izo
-izo
+gSu
 gSu
 woS
 eRO
@@ -37664,14 +37645,14 @@ izo
 dzM
 woS
 woS
-jFp
+woS
 izo
 xPo
 kkx
 izo
+nEl
 izo
-izo
-woS
+jFp
 dzM
 izo
 izo
@@ -37901,9 +37882,9 @@ urx
 kkx
 eRO
 woS
-qsl
 izo
-vIv
+izo
+woS
 woS
 izo
 woS
@@ -37915,7 +37896,7 @@ izo
 fCs
 izo
 woS
-izo
+qsl
 izo
 izo
 izo
@@ -38390,7 +38371,7 @@ cwf
 dzM
 izo
 izo
-fvc
+woS
 izo
 xPo
 kkx
@@ -38627,10 +38608,10 @@ urx
 kkx
 izo
 izo
-rmB
+woS
 izo
 izo
-qsl
+izo
 woS
 woS
 izo
@@ -38639,7 +38620,7 @@ kkx
 quO
 bwX
 xGL
-izo
+lMs
 cIF
 izo
 izo
@@ -38878,7 +38859,7 @@ izo
 izo
 xPo
 kkx
-izo
+qsl
 fRo
 nEl
 izo

@@ -4639,6 +4639,12 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"KL" = (
+/obj/structure/patrol_point/som_24,
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/groundhq/clf/hallways/aft_hallway{
+	requires_power = 0
+	})
 "KM" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -9630,10 +9636,10 @@ ai
 tY
 aF
 tT
-eI
-Uk
-tT
-tT
+ny
+ny
+KL
+Go
 "}
 (91,1,1) = {"
 tT
@@ -9661,8 +9667,8 @@ gW
 tY
 aF
 tT
-XM
-Zb
+eI
+Uk
 tT
 tT
 "}
@@ -9692,8 +9698,8 @@ gW
 tY
 aF
 tT
-tT
-ig
+XM
+Zb
 tT
 tT
 "}
@@ -9724,7 +9730,7 @@ tY
 aF
 tT
 tT
-tT
+ig
 tT
 tT
 "}
