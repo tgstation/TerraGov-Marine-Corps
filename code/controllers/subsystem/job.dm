@@ -560,8 +560,8 @@ SUBSYSTEM_DEF(job)
 				if(!job.special_job_check(player))
 					continue
 
-				// If the job isn't filled.
-				if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+				// We only need 1 person for the required job, the rest can use the normal system
+				if((job.current_positions < 1))
 					AssignRole(player, job.title)
 					unassigned -= player
 					amt_picked++
