@@ -2529,7 +2529,7 @@
 "chJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "chS" = (
 /obj/structure/table,
@@ -2908,8 +2908,8 @@
 /area/daedalusprison/inside/habitationnorth)
 "cwT" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Nuclear Storage";
-	dir = 1
+	dir = 1;
+	name = "Nuclear Storage"
 	},
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/caves/nukestorage)
@@ -3120,8 +3120,8 @@
 /area/daedalusprison/inside/southclass)
 "cGh" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper Hydroponics Equipment";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics Equipment"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -4295,8 +4295,8 @@
 /area/daedalusprison/inside/habitationsouth)
 "dDz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering"
 	},
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/engineering)
@@ -5161,8 +5161,8 @@
 /area/daedalusprison/inside/gym)
 "emS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "Treatment";
-	dir = 1
+	dir = 1;
+	name = "Treatment"
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical/treatment)
@@ -6227,8 +6227,8 @@
 /area/daedalusprison/inside/habitationnorth)
 "ffj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = "\improper Prison Security Office";
-	dir = 1
+	dir = 1;
+	name = "\improper Prison Security Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8694,7 +8694,7 @@
 /area/daedalusprison/inside/mechanicshop)
 "hoO" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "hoW" = (
 /obj/structure/table/reinforced/weak,
@@ -10622,8 +10622,8 @@
 /area/daedalusprison/inside/medical)
 "iTh" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Colony Warehouse";
-	dir = 1
+	dir = 1;
+	name = "\improper Colony Warehouse"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12425,8 +12425,8 @@
 /area/daedalusprison/inside/centralhalls)
 "kpe" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = "\improper Prison Security Office";
-	dir = 1
+	dir = 1;
+	name = "\improper Prison Security Office"
 	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/security/office)
@@ -12785,8 +12785,8 @@
 /area/daedalusprison/inside/kitchen)
 "kFx" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Colony Bar";
-	dir = 1
+	dir = 1;
+	name = "\improper Colony Bar"
 	},
 /turf/open/floor/wood,
 /area/daedalusprison/inside/bar)
@@ -13521,7 +13521,7 @@
 	},
 /area/daedalusprison/inside/centralhalls)
 "liI" = (
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/rock)
 "lja" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13738,8 +13738,8 @@
 /area/daedalusprison/inside/colonydorms)
 "lrN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15176,8 +15176,8 @@
 /area/daedalusprison/inside/southclass)
 "mBJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "Showers";
-	dir = 1
+	dir = 1;
+	name = "Showers"
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/daedalusprison/inside/prisonshower)
@@ -15313,8 +15313,8 @@
 /area/daedalusprison/inside/medical/treatment)
 "mHn" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Dormitories";
-	dir = 1
+	dir = 1;
+	name = "\improper Dormitories"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -16784,8 +16784,8 @@
 /area/daedalusprison/inside/security/office)
 "nOE" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper Hydroponics Husbandry";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics Husbandry"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -17333,7 +17333,7 @@
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/colonydorms)
 "opr" = (
-/turf/closed/mineral/smooth/darkfrostwall/cuttable,
+/turf/closed/mineral/smooth/darkfrostwall,
 /area/daedalusprison/caves/northwest)
 "opN" = (
 /turf/open/floor/tile/green/greentaupe{
@@ -17459,8 +17459,8 @@
 /area/daedalusprison/inside/medical)
 "ovc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Dormitories Computer Lab";
-	dir = 1
+	dir = 1;
+	name = "\improper Dormitories Computer Lab"
 	},
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/colonydorms)
@@ -18431,8 +18431,8 @@
 /area/daedalusprison/inside/mechanicshop)
 "pcM" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics Storage"
 	},
 /turf/open/floor,
 /area/daedalusprison/inside/hydroponics)
@@ -22863,8 +22863,8 @@
 /area/daedalusprison/inside/centralhalls)
 "sGg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Chapel";
-	dir = 1
+	dir = 1;
+	name = "\improper Chapel"
 	},
 /turf/open/floor/wood,
 /area/daedalusprison/inside/chapel)
@@ -23486,8 +23486,8 @@
 /area/daedalusprison/inside/sportstorage)
 "tcw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Mineral Processing";
-	dir = 1
+	dir = 1;
+	name = "\improper Mineral Processing"
 	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/mining)
@@ -23712,8 +23712,8 @@
 /area/daedalusprison/inside/staffbreakroom)
 "tmj" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Prison Kitchen";
-	dir = 1
+	dir = 1;
+	name = "\improper Prison Kitchen"
 	},
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
@@ -24111,8 +24111,8 @@
 /area/daedalusprison/inside/northmeetingroom)
 "tHF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
-	name = "Interrogation";
-	dir = 1
+	dir = 1;
+	name = "Interrogation"
 	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/security/interrogation)
@@ -25377,8 +25377,8 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
-	name = "Execution";
-	dir = 1
+	dir = 1;
+	name = "Execution"
 	},
 /turf/open/floor/prison/darkred{
 	dir = 8
@@ -26405,7 +26405,10 @@
 /turf/open/floor/tile/red/full,
 /area/daedalusprison/inside/bunker/west)
 "vBE" = (
-/obj/machinery/conveyor/inverted,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoload"
+	},
 /turf/open/floor/prison,
 /area/daedalusprison/inside/mining)
 "vBI" = (
@@ -26946,8 +26949,8 @@
 /area/daedalusprison/inside/hydroponics)
 "vZW" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Prison Kitchen";
-	dir = 1
+	dir = 1;
+	name = "\improper Prison Kitchen"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -27484,8 +27487,8 @@
 /area/daedalusprison/inside/secoffices)
 "wqd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = "\improper Prison Lobby";
-	dir = 1
+	dir = 1;
+	name = "\improper Prison Lobby"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27659,8 +27662,8 @@
 /area/daedalusprison/caves/research)
 "wxc" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Dormitories Kitchen";
-	dir = 1
+	dir = 1;
+	name = "\improper Dormitories Kitchen"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -28924,8 +28927,8 @@
 /area/daedalusprison/inside/southmeetingroom)
 "xxK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Chief Engineer's Office";
-	dir = 1
+	dir = 1;
+	name = "\improper Chief Engineer's Office"
 	},
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/engineering)
@@ -69669,8 +69672,8 @@ gfH
 mVQ
 gfH
 gfH
-mYW
-mYW
+gfH
+gfH
 mYW
 mYW
 mYW
@@ -69882,8 +69885,8 @@ ehP
 gfH
 gfH
 gfH
+gfH
 gju
-mYW
 mYW
 mYW
 wqt
@@ -70095,7 +70098,7 @@ gfH
 gfH
 gfH
 wWU
-mYW
+gfH
 mYW
 mYW
 wqt
@@ -70283,7 +70286,6 @@ gfH
 gfH
 gfH
 tRj
-gfH
 sHQ
 sHQ
 sHQ
@@ -70305,6 +70307,7 @@ sHQ
 sHQ
 sHQ
 sHQ
+gfH
 gfH
 gfH
 gfH
@@ -70495,28 +70498,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+bsT
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+bsT
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-bsT
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-bsT
-sHQ
-sHQ
 gfH
 wWU
 gfH
@@ -70707,28 +70710,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -70919,28 +70922,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -71131,28 +71134,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -71343,7 +71346,6 @@ gfH
 gfH
 gfH
 tRj
-gfH
 sHQ
 sHQ
 sHQ
@@ -71365,6 +71367,7 @@ sHQ
 sHQ
 sHQ
 sHQ
+gfH
 gfH
 gfH
 gfH
@@ -71555,28 +71558,28 @@ gfH
 gfH
 gfH
 mra
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -71767,28 +71770,28 @@ tRj
 tRj
 tRj
 tRj
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -71979,28 +71982,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
 gfH
 pCr
 gfH
@@ -72191,28 +72194,28 @@ gfH
 gfH
 gfH
 tRj
+sHQ
+sHQ
+bsT
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+sHQ
+bsT
+sHQ
+sHQ
 gfH
-sHQ
-sHQ
-bsT
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-sHQ
-bsT
-sHQ
-sHQ
 gfH
 gfH
 gfH
@@ -72403,7 +72406,6 @@ xfe
 gfH
 gfH
 tRj
-gfH
 sHQ
 sHQ
 sHQ
@@ -72425,6 +72427,7 @@ sHQ
 sHQ
 sHQ
 sHQ
+gfH
 gfH
 gfH
 gfH
@@ -72850,8 +72853,8 @@ gfH
 viA
 gfH
 wWU
-gju
 gfH
+gju
 gfH
 mYW
 wqt

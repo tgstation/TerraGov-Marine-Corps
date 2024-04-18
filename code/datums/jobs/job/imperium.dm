@@ -118,7 +118,7 @@
 	belt = /obj/item/storage/holster/belt/mateba/full //Ideally this can be later replaced with a bolter
 	w_uniform = /obj/item/clothing/under/marine/imperial/commissar
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/commissar
-	suit_store = /obj/item/weapon/claymore/mercsword/commissar_sword
+	suit_store = /obj/item/weapon/sword/commissar_sword
 	gloves = /obj/item/clothing/gloves/marine/commissar
 	head = /obj/item/clothing/head/commissar
 	l_store = /obj/item/storage/pouch/medkit/firstaid

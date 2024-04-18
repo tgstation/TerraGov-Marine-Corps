@@ -320,7 +320,7 @@
 /area/whiskey_outpost)
 "br" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "bs" = (
@@ -7053,11 +7053,6 @@
 /area/whiskey_outpost/outside/west)
 "QY" = (
 /obj/structure/barricade/plasteel,
-/turf/open/floor/plating/warning,
-/area/whiskey_outpost/outside/west)
-"Rb" = (
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/west)
 "Rc" = (
@@ -15144,7 +15139,7 @@ Hr
 hm
 hm
 Xh
-Rb
+QX
 Hm
 Qu
 In

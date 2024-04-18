@@ -12,3 +12,11 @@
 /datum/map_template/interior/medium_tank
 	name = "medium tank interior template"
 	filename = "tank"
+
+/datum/map_template/interior/transport
+	name = "transport apc interior template"
+	filename = "apc_transport"
+
+/datum/map_template/interior/medical
+	name = "medical apc interior template"
+	filename = "apc_medical"

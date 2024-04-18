@@ -39,6 +39,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(!should_show())
+		return FALSE
 	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		return FALSE
 
