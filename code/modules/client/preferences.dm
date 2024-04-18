@@ -1160,7 +1160,7 @@ Slots: [job.spawn_positions]</span>
 			var/used_name = "[job.title]"
 			if(gender == FEMALE && job.f_title)
 				used_name = "[job.f_title]"
-			to_chat(user, "<font color='red'>Warning: You have too low PQ to normally roll for [used_name], you may only roll for it if there are no eligible players.</font>")
+			to_chat(user, "<font color='red'>You have too low PQ for [used_name] (Min PQ: [job.min_pq]), you may only set it to low.</font>")
 			jpval = JP_LOW
 
 	SetJobPreferenceLevel(job, jpval)
