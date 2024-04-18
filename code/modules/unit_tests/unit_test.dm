@@ -98,6 +98,9 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	return instance
 
 /proc/RunUnitTest(test_path, list/test_results)
+	if(ispath(test_path, /datum/unit_test/focus_only))
+		return
+
 	var/datum/unit_test/test = new test_path
 
 	GLOB.current_test = test
