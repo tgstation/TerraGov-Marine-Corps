@@ -109,7 +109,7 @@
 		if(user.STAPER > 10)
 			BB.damage = BB.damage * (user.STAPER / 10)
 	cocked = FALSE
-	.=..()
+	..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/update_icon()
 	. = ..()
