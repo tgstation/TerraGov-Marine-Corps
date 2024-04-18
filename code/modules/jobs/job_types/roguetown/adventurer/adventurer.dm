@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 				classamt = 999
 		// Increase available classes for pilgrims
 		if(ispilgrim)
-			classamt = 999
+			classamt = 15
 		if(isvillager)
 			GLOB.billagerspawns |= H
 #ifdef TESTSERVER
