@@ -66,7 +66,7 @@
 	var/original_layer = jumper.layer
 	var/original_pass_flags = jumper.pass_flags
 
-	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED)
+	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, jump_height, jump_duration)
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)

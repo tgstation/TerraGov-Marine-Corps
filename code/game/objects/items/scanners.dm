@@ -213,8 +213,8 @@ REAGENT SCANNER
 				unknown_implants++
 			var/implant = FALSE
 			if(length(limb.implants))
-				for(var/I in limb.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
+				for(var/obj/item/embedded AS in limb.implants)
+					if(embedded.is_beneficial_implant())
 						continue
 					unknown_implants++
 					implant = TRUE

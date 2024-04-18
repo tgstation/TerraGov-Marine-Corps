@@ -128,12 +128,8 @@
 	if(LAZYLEN(buckled_mobs))
 		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
-
-/obj/structure/bed/nest/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
-
-/obj/structure/bed/nest/fire_act()
-	take_damage(50, BURN, FIRE)
+/obj/structure/bed/nest/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

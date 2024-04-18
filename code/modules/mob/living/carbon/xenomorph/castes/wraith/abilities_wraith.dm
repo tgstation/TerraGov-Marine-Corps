@@ -746,7 +746,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
 	if(loc_a)
-		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
+		new /obj/effect/temp_visual/after_image(targeted.loc, targeted)
 
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
@@ -767,5 +767,5 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
-	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
+	new /obj/effect/temp_visual/after_image(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))

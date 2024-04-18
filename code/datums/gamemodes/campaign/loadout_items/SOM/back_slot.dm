@@ -27,9 +27,9 @@
 
 /datum/loadout_item/back/som_flamer_tank/x_fuel
 	name = "X-fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the V-62 incinerator."
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the V-62 incinerator."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 40
+	purchase_cost = 50
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -105,6 +105,6 @@
 	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
 	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)
 	loadout_item_flags = NONE
