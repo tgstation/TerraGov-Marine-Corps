@@ -7,7 +7,7 @@
 
 	var/datum/hud/H = user.hud_used
 	var/atom/movable/screen/craft/craft_button = new()
-	//craft_button.icon = H.ui_style - XANTODO Check if this is needed
+	craft_button.icon = ui_style2icon(user.client.prefs.ui_style)
 	H.static_inventory += craft_button
 	user.client.screen += craft_button
 	RegisterSignal(craft_button, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(component_ui_interact))
