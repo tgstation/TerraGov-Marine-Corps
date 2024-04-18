@@ -385,7 +385,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			M.set_resting(FALSE, TRUE)
 		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
 		ghost.mind.current.invisibility = 0
-		ghost.mind.current.density = 1
+		if(!istype(M, /mob/living/carbon/spirit))
+			ghost.mind.current.density = 1
 		ghost.reenter_corpse()
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
