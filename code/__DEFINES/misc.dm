@@ -23,7 +23,7 @@
 ///How many variations of bullethole patterns there are
 #define BULLETHOLE_STATES 10
 ///Maximum possible bullet holes in a closed turf
-#define BULLETHOLE_MAX 24 
+#define BULLETHOLE_MAX 24
 
 //wet floors
 
@@ -132,6 +132,11 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+
+// possible bitflag return values of intercept_zImpact(atom/movable/AM, levels = 1) calls
+#define FALL_INTERCEPTED (1<<0) //Stops the movable from falling further and crashing on the ground
+#define FALL_NO_MESSAGE (1<<1) //Used to suppress the "[A] falls through [old_turf]" messages where it'd make little sense at all, like going downstairs.
+#define FALL_STOP_INTERCEPTING (1<<2) //Used in situations where halting the whole "intercept" loop would be better, like supermatter dusting (and thus deleting) the atom.
 
 //Actually better performant than reverse_direction()
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )

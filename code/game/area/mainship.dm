@@ -358,7 +358,9 @@
 	icon_state = "officerrnr"
 
 /area/mainship/medical
+	name = "\improper Medical Bay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	icon_state = "medical"
 
 /area/mainship/medical/lower_medical
 	name = "Medical Lower"
@@ -527,6 +529,29 @@
 	icon_state = "cryo"
 	minimap_color = MINIMAP_AREA_LIVING
 
+/area/mainship/patrol_base/som/medical
+	name = "SOM Medical bay"
+	icon_state = "medical"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/mainship/patrol_base/som/equipment_bay
+	name = "SOM Equipment bay"
+	icon_state = "req"
+	minimap_color = MINIMAP_AREA_REQ
+
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+/area/mainship/multiz_debug_area
+	name = "Multi-Z Debugging"
+	icon_state = "req"
+
+/area/mainship/multiz_debug_area/floorone
+	name = "Multi-Z Debugging Floor One"
+
+/area/mainship/multiz_debug_area/floortwo
+	name = "Multi-Z Debugging Floor Two"
+
+/area/mainship/multiz_debug_area/floorthree
+	name = "Multi-Z Debugging Floor Three"

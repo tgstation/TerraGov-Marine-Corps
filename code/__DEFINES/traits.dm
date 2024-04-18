@@ -233,6 +233,8 @@
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
+///Turf trait for when a turf is transparent
+#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
 //structure traits
@@ -259,3 +261,6 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+
+///Pauses campaign mission timer
+#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"

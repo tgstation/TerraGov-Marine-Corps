@@ -669,6 +669,8 @@ GLOBAL_LIST(cable_radial_layer_list)
 	cable_node_3 = new /obj/effect/node/layer3()
 	vis_contents += cable_node_3
 	update_icon()
+	cable_layer ^= CABLE_LAYER_1
+	Connect_cable(TRUE)
 
 /obj/structure/cable/multilayer/Destroy()					// called when a cable is deleted
 	QDEL_NULL(machinery_node)

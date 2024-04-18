@@ -48,6 +48,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
+#define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
+
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -183,7 +185,9 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
 
-#define isstorage(A) (istype(A, /obj/item/storage))
+#define isdatumstorage(A) (istype(A, /datum/storage))
+
+#define isstorageobj(A) (istype(A, /obj/item/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
@@ -270,6 +274,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
+
+#define isimplant(A) (istype(A, /obj/item/implant))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
