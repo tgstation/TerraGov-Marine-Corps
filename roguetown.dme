@@ -11,6 +11,7 @@
 #include "code\__byond_version_compat.dm"
 #include "code\_compile_options.dm"
 #include "code\rt.dm"
+#include "code\unit_tests.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
 #include "code\__DEFINES\_protect.dm"

@@ -34,6 +34,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	blob_allowed = FALSE //Eating up space doesn't count for victory as a blob.
 	flags_1 = CAN_BE_DIRTY_1
 
+/area/misc/testroom
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	name = "Test Room"
+	icon_state = "test_room"
+
 /area/space/nearstation
 	icon_state = "space_near"
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
