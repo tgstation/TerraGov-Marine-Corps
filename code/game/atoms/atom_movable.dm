@@ -216,7 +216,7 @@
 			if(hurt_atom.layer > highest.layer)
 				highest = hurt_atom
 	impact_act(levels)
-	INVOKE_ASYNC(src, .proc/SpinAnimation, 5, 2)
+	INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
 	return TRUE
 
 ///For physical constraints to travelling up/down.
