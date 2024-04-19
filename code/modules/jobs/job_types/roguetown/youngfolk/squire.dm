@@ -43,7 +43,6 @@
 			H.change_stat("strength", 1)
 			H.change_stat("perception", 1)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
 			H.change_stat("speed", 1)
 	if(H.gender == FEMALE)
 		pants = /obj/item/clothing/under/roguetown/tights
@@ -68,7 +67,4 @@
 			H.change_stat("strength", 1)
 			H.change_stat("perception", 1)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
 			H.change_stat("speed", 1)
-	
-	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
