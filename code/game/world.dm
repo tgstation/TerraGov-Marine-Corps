@@ -40,7 +40,7 @@ GLOBAL_VAR(restart_counter)
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
 //	SSdbcore.CheckSchemaVersion()
-//	SSdbcore.SetRoundID()
+	SSdbcore.SetRoundID()
 	var/timestamp = replacetext(time_stamp(), ":", ".")
 
 	GLOB.rogue_round_id = "[pick(GLOB.roundid)][rand(0,9)][rand(0,9)][rand(0,9)]-[timestamp]"
