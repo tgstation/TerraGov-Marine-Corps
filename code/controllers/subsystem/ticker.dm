@@ -179,7 +179,6 @@ SUBSYSTEM_DEF(ticker)
 			create_observers()
 			fire()
 		if(GAME_STATE_PREGAME)
-			bot_update_lobby()
 			//lobby stats for statpanels
 			if(isnull(timeLeft))
 				timeLeft = max(0,start_at - world.time)
@@ -241,8 +240,6 @@ SUBSYSTEM_DEF(ticker)
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-			else
-				bot_update()
 			if(firstvote)
 				if(world.time > round_start_time + time_until_vote)
 					SSvote.initiate_vote("restart", "The Gods")
@@ -255,16 +252,6 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker
 	var/last_bot_update = 0
-
-/datum/controller/subsystem/ticker/proc/bot_update_lobby()
-	if(world.time >= last_bot_update + 15 SECONDS)
-		last_bot_update = world.time
-		do_bot_thing_update("IN LOBBY")
-
-/datum/controller/subsystem/ticker/proc/bot_update()
-	if(world.time >= last_bot_update + 15 SECONDS)
-		last_bot_update = world.time
-		do_bot_thing_update("PLAYING")
 
 /datum/controller/subsystem/ticker/proc/checkreqroles()
 	var/list/readied_jobs = list()
@@ -858,10 +845,7 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<span class='info'>Round logs can be located <a href=\"[gamelogloc]\">at this website!</a></span>")
 
 	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
-#ifndef TESTSERVER
-	if(end_party)
-		do_bot_thing_end(1)
-#endif
+
 	if(end_party)
 		to_chat(world, "<span class='boldannounce'>It's over!</span>")
 		world.Del()

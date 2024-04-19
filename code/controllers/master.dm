@@ -162,52 +162,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		to_chat(world, "<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
 		Initialize(20, TRUE)
 
-
-/proc/do_bot_thing_new(statusr)
-#ifdef TESTSERVER
-	return
-#endif
-	var/playercount = 0
-	for(var/client/C in GLOB.clients)
-		playercount++
-	spawn(-1)
-		world.Export("http://85.214.207.37:1622/server_status/newround?id=[GLOB.rogue_round_id]&players=[playercount]&status=[statusr]&pass=INgToREvitersawnTAmBoTREtInKEScOM")
-
-/proc/do_bot_thing_update(statusr)
-#ifdef TESTSERVER
-	return
-#endif
-	var/playercount = 0
-	for(var/client/C in GLOB.clients)
-		playercount++
-	spawn(-1)
-		world.Export("http://85.214.207.37:1622/server_status/updateround?id=[GLOB.rogue_round_id]&players=[playercount]&status=[statusr]&pass=INgToREvitersawnTAmBoTREtInKEScOM")
-
-
-/proc/do_bot_thing_end(forreal)
-#ifdef TESTSERVER
-	return
-#endif
-	if(forreal)
-		spawn(-1)
-			world.Export("http://85.214.207.37:1622/server_status/shutdown?&pass=INgToREvitersawnTAmBoTREtInKEScOM")
-	else
-		var/statusr = "POST ROUND"
-		var/playercount = 0
-		for(var/client/C in GLOB.clients)
-			playercount++
-		if(playercount)
-			playercount = round(playercount*1.1)
-			playercount = max(playercount, 1)
-		spawn(-1)
-			world.Export("http://85.214.207.37:1622/server_status/updateround?id=[GLOB.rogue_round_id]&players=[playercount]&status=[statusr]&pass=INgToREvitersawnTAmBoTREtInKEScOM")
-
-/proc/do_bot_thing_pq(msg)
-	if(!msg)
-		return
-	spawn(-1)
-		world.Export("http://85.214.207.37:1622/announce?ch=1098690934654369892&t=[msg]")
-
 // Please don't stuff random bullshit here,
 // 	Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
 /datum/controller/master/Initialize(delay, init_sss, tgs_prime)
@@ -232,8 +186,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 //#ifndef TESTSERVER
 //	var/thing_done = FALSE
 //#endif
-
-	do_bot_thing_new("IN LOBBY")
 
 	current_ticklimit = CONFIG_GET(number/tick_limit_mc_init)
 	for (var/datum/controller/subsystem/SS in subsystems)
