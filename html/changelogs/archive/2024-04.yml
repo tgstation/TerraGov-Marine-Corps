@@ -337,3 +337,6 @@
   - code_imp: Cleaned up various implant related code
   coldironwarrior:
   - rscadd: adds category tags to the specialist vendors
+2024-04-19:
+  ivanmixo:
+  - bugfix: Valhalla xenos can use directional attacks on the puppets they spawn now
