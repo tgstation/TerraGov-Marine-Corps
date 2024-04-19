@@ -275,12 +275,12 @@
 	. = ..()
 	var/success = FALSE
 	for(var/obj/structure/closet/crate/coffin/coffin in view(1))
-		success = spirit_peace(coffin, user)
+		success = pacify_coffin(coffin, user)
 		if(success)
 			user.visible_message("My funeral rites have been performed on [coffin]!", "[user] consecrates [coffin]!")
 			return
 	for(var/obj/structure/closet/dirthole/hole in view(1))
-		success = spirit_peace(hole, user)
+		success = pacify_coffin(hole, user)
 		if(success)
 			user.visible_message("My funeral rites have been performed on [hole]!", "[user] consecrates [hole]!")
 			return
