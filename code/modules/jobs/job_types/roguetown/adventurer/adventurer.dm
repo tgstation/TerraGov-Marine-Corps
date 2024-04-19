@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		if(M.client)
 			if(M.client.patreonlevel() >= 1)
 				classamt = 999
+		// Increase available classes for pilgrims
+		if(ispilgrim)
+			classamt = 15
 		if(isvillager)
 			GLOB.billagerspawns |= H
 #ifdef TESTSERVER
