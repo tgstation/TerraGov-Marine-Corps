@@ -152,7 +152,7 @@
 			owner.Slowdown(20)
 			shake_camera(owner, 2, 2)
 			return FALSE
-	if((bclass == BCLASS_CUT || bclass == BCLASS_CHOP) && (zone_precise == BODY_ZONE_PRECISE_STOMACH) && prob(round(max(dam / 4, 1), 1)))
+	if((zone_precise == BODY_ZONE_PRECISE_STOMACH) && (bclass == BCLASS_CUT || bclass == BCLASS_CHOP) && prob(round(max(dam / 4, 1), 1)))
 		if(!can_bloody_wound())
 			return FALSE
 		var/organ_spilled = FALSE
