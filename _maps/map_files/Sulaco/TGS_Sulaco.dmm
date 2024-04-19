@@ -418,7 +418,9 @@
 "aFq" = (
 /obj/machinery/cic_maptable,
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/light/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 6
 	},
@@ -1806,7 +1808,6 @@
 /area/sulaco/marine)
 "bQU" = (
 /obj/structure/cable,
-/obj/structure/stairs/multiz/north,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -10066,7 +10067,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
-/turf/open/floor/glass,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "iWQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -18859,8 +18860,13 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "qzg" = (
-/obj/structure/stairs/multiz/north,
-/turf/open/openspace,
+/obj/machinery/cic_maptable,
+/obj/structure/window/reinforced/toughened,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/prison/red,
 /area/sulaco/bridge)
 "qzv" = (
 /obj/structure/cable,
@@ -23410,13 +23416,6 @@
 "uLb" = (
 /turf/open/floor/prison,
 /area/sulaco/command/eva)
-"uLo" = (
-/obj/machinery/door/poddoor/opened/bridge,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/bridge)
 "uLw" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/prison/red,
@@ -26373,7 +26372,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/glass,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "xsS" = (
 /obj/structure/cable,
@@ -44088,9 +44087,9 @@ dFG
 bTk
 eQi
 eQi
-eQi
-eQi
-eQi
+iAP
+iAP
+iAP
 tFA
 iAP
 iAP
@@ -44190,9 +44189,9 @@ dFG
 dZC
 aZY
 eQi
-ovj
-ovj
-eQi
+iAP
+iAP
+iAP
 tFA
 iAP
 iAP
@@ -44290,11 +44289,11 @@ pCA
 xPP
 dFG
 dFG
-qHS
-uLo
-ovj
 qzg
 eQi
+iAP
+iAP
+iAP
 tFA
 iAP
 iAP
@@ -44394,9 +44393,9 @@ dFG
 wrj
 aFq
 eQi
-ovj
-ovj
-eQi
+iAP
+iAP
+iAP
 tFA
 iAP
 iAP
@@ -44496,9 +44495,9 @@ dFG
 xtC
 idp
 eQi
-ovj
-ovj
-eQi
+iAP
+iAP
+iAP
 tFA
 iAP
 iAP
@@ -44589,11 +44588,11 @@ eQi
 cMu
 cMu
 nKc
-ovj
+dIh
 xsD
 iWy
-ovj
-ovj
+dIh
+dIh
 qlM
 cMu
 cMu
