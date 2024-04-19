@@ -180,6 +180,7 @@
 /*
  * Barcode Scanner
  */
+/*
 /obj/item/barcodescanner
 	name = "barcode scanner"
 	icon = 'icons/obj/library.dmi'
@@ -215,3 +216,4 @@
 	else
 		to_chat(user, "<font color=red>No associated computer found. Only local scans will function properly.</font>")
 	to_chat(user, "\n")
+*/

@@ -191,6 +191,7 @@
 	icon_state = "generic"
 	build_path = /obj/machinery/computer/holodeck
 
+/*
 /obj/item/circuitboard/computer/libraryconsole
 	name = "Library Visitor Console (Computer Board)"
 	build_path = /obj/machinery/computer/libraryconsole
@@ -207,7 +208,7 @@
 			to_chat(user, "<span class='notice'>Access protocols successfully updated.</span>")
 	else
 		return ..()
-
+*/
 /obj/item/circuitboard/computer/monastery_shuttle
 	name = "Monastery Shuttle (Computer Board)"
 	icon_state = "generic"

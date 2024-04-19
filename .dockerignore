@@ -25,6 +25,5 @@ tgstation.lk
 tgstation.dyn.rsc
 libmariadb.dll
 rust_g.dll
-BSQL.dll
 appveyor.yml
 Dockerfile
