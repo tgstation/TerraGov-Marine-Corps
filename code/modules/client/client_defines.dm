@@ -139,9 +139,6 @@
 
 	var/list/open_popups = list()
 
-	var/discord_registration
-	var/discord_name
-
 	var/loop_sound = FALSE
 	var/rain_sound = FALSE
 	var/last_droning_sound

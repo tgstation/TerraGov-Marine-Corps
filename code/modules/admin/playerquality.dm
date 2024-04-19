@@ -81,7 +81,6 @@
 			msg += " - GM: [admin]"
 		if(reason)
 			msg += " - RSN: [reason]"
-		do_bot_thing_pq(msg)
 
 /client/proc/check_pq()
 	set category = "GameMaster"

@@ -284,16 +284,6 @@ GLOBAL_VAR(last_connection)
 #ifdef TESTSERVER
 	return FALSE
 #endif
-	if(!check_whitelist(ckey))
-//		if(text2num(CheckJoinDate(ckey)) > 2021)
-		if(holder)
-			return FALSE
-		else
-			if(!check_bypassage(ckey))
-				var/plevel = patreonlevel()
-				if(plevel < 1 || !plevel)
-					if(!discord_name())
-						return TRUE
 
 #undef STICKYBAN_MAX_MATCHES
 #undef STICKYBAN_MAX_EXISTING_USER_MATCHES

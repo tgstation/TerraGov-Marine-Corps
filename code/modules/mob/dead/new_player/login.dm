@@ -75,10 +75,3 @@
 				usedkey = get_fake_key(usedkey)
 			var/list/thinz = list("takes a seat.", "settles in.", "joins the session", "joins the table.", "becomes a player.")
 			SEND_TEXT(world, "<span class='notice'>[usedkey] [pick(thinz)]</span>")
-/*
-	if(!client.patreonlevel())
-		verbs += /mob/dead/new_player/proc/register_patreon
-
-	if(!client.discord_name())
-		verbs += /mob/dead/new_player/proc/register_discord
-*/
