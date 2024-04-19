@@ -47,7 +47,7 @@
 			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
 			if(repair_percent)
 				repair_percent = repair_percent * I.max_integrity
-				I.obj_integrity = min(obj_integrity+repair_percent, I.max_integrity)
+				I.obj_integrity = min(I.obj_integrity+repair_percent, I.max_integrity)
 				user.visible_message("<span class='info'>[user] repairs [I]!</span>")
 			else
 				user.visible_message("<span class='warning'>[user] damages [I]!</span>")
