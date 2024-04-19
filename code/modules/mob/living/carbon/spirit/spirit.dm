@@ -159,7 +159,7 @@
 	return src
 
 /// Proc that will search inside a given atom for any corpses, and send the associated ghost to the lobby if possible
-/proc/pacify_coffin(atom/movable/coffin, mob/user, deep = TRUE, give_pq = TRUE)
+/proc/pacify_coffin(atom/movable/coffin, mob/user, deep = TRUE, give_pq = 0.2)
 	if(!coffin)
 		return FALSE
 	var/success = FALSE
@@ -178,11 +178,11 @@
 				continue
 			success ||= pacify_coffin(stuffing, user, deep, give_pq = FALSE)
 	if(success && give_pq && user?.ckey)
-		adjust_playerquality(0.25, user.ckey)
+		adjust_playerquality(give_pq, user.ckey)
 	return success
 
 /// Proc that sends the client associated with a given corpse to the lobby, if possible
-/proc/pacify_corpse(mob/living/corpse, mob/user)
+/proc/pacify_corpse(mob/living/corpse, mob/user, coin_pq = 0.2)
 	if(corpse.stat != DEAD)
 		return FALSE
 	if(ishuman(corpse) && !HAS_TRAIT(corpse, TRAIT_BURIED_COIN_GIVEN))
@@ -196,8 +196,8 @@
 					fallen = locate(fallen.x + rand(-3, 3), fallen.y + rand(-3, 3), fallen.z)
 					new /obj/item/underworld/coin/notracking(fallen)
 					fallen.visible_message("<span class='warning'>A coin falls from above!</span>")
-					if(user?.ckey)
-						adjust_playerquality(0.25, user.ckey)
+					if(coin_pq && user?.ckey)
+						adjust_playerquality(coin_pq, user.ckey)
 					qdel(human_corpse.mouth)
 					human_corpse.update_inv_mouth()
 					break
