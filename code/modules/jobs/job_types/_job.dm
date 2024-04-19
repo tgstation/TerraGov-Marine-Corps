@@ -202,6 +202,10 @@
 	if(. == null)
 		return antag_rep
 
+//Proc that returns the final outfit we should equip on someone, can be overriden for special behavior
+/datum/job/proc/get_outfit(mob/living/carbon/human/wearer, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, preference_source = null)
+	return outfit
+
 //Don't override this unless the job transforms into a non-human (Silicons do this for example)
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
@@ -220,8 +224,10 @@
 	if(H.gender == FEMALE)
 		if(outfit_override || outfit_female)
 			H.equipOutfit(outfit_override ? outfit_override : outfit_female, visualsOnly)
-		else if(outfit)
-			H.equipOutfit(outfit, visualsOnly)
+		else
+			var/final_outfit = get_outfit(H, visualsOnly, announce, latejoin, preference_source)
+			if(final_outfit)
+				H.equipOutfit(final_outfit, visualsOnly)
 	else
 		if(outfit_override || outfit)
 			H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)

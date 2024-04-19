@@ -21,24 +21,30 @@
 	display_order = JDO_VAGRANT
 	show_in_credits = FALSE
 	can_random = FALSE
-
-/datum/job/roguetown/vagrant/New()
-	. = ..()
-	peopleknowme = list()
-
-/datum/outfit/job/roguetown/vagrant
 	/// Chance to become a wise beggar, if we still have space for more wise beggars
 	var/wise_chance = 10
 	/// Amount of wise beggars spawned as of now
 	var/wise_amount = 0
 	/// Maximum amount of wise beggars that can be spawned
 	var/wise_max = 3
+	/// Outfit to use when wise beggar triggers
+	var/wise_outfit = /datum/outfit/job/roguetown/vagrant/wise
+
+/datum/job/roguetown/vagrant/New()
+	. = ..()
+	peopleknowme = list()
+
+/datum/job/roguetown/vagrant/get_outfit(mob/living/carbon/human/wearer, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, preference_source = null)
+	if((wise_amount < wise_max) && prob(wise_chance))
+		wise_amount++
+		return wise_outfit
+	return ..()
 
 /datum/outfit/job/roguetown/vagrant/pre_equip(mob/living/carbon/human/H)
 	..()
 	// wise beggar!!!
 	// guaranteed full beggar gear + random stats
-	if((wise_amount < wise_max) && prob(wise_chance))
+	if(is_wise)
 		head = /obj/item/clothing/head/roguetown/wizhat/gen/wise //wise hat
 		beltr = /obj/item/reagent_containers/powder/moondust
 		beltl = /obj/item/clothing/mask/cigarette/rollie/cannabis
@@ -47,7 +53,9 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
+		shoes = /obj/item/clothing/shoes/roguetown/shalal // wise boots
 		r_hand = /obj/item/rogueweapon/woodstaff/wise // dog beating staff
+		l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special // dog butchering knife
 		if(H.mind)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, rand(2,5), TRUE)
@@ -57,14 +65,13 @@
 			H.STASTR = rand(1, 20)
 			H.STAINT = rand(5, 20)
 			H.STALUC = rand(1, 20)
-		H.change_stat("constitution", -rand(0, 3))
-		H.change_stat("endurance", -rand(0, 3))
+		H.change_stat("constitution", -rand(0, 2))
+		H.change_stat("endurance", -rand(0, 2))
 		H.real_name = "[H.real_name] the Wise"
 		H.name = "[H.name] the Wise"
 		H.facial_hairstyle = "Knowledge"
 		H.update_hair()
 		H.age = AGE_OLD
-		wise_amount++
 		return
 	if(prob(20))
 		head = /obj/item/clothing/head/roguetown/knitcap
@@ -116,3 +123,8 @@
 
 /datum/outfit/job/roguetown/vagrant
 	name = "Beggar"
+	var/is_wise = FALSE
+
+/datum/outfit/job/roguetown/vagrant/wise
+	name = "Wise Beggar"
+	is_wise = TRUE
