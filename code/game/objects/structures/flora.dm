@@ -8,6 +8,24 @@
 	if(isclosedturf(loc))
 		return INITIALIZE_HINT_QDEL
 
+/obj/structure/flora/rogueflora
+    icon = 'icons/obj/flora/rogueflora.dmi'
+
+/obj/structure/flora/rogueflora/wormwood
+	icon_state = "worm_wood"
+
+/obj/structure/flora/rogueflora/marigold
+	icon_state = "marigold"
+
+/obj/structure/flora/rogueflora/nettles
+	icon_state = "nettles"
+
+/obj/structure/flora/rogueflora/thistle
+	icon_state = "thistle"
+
+/obj/structure/flora/rogueflora/poppy
+	icon_state = "poppy"
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
