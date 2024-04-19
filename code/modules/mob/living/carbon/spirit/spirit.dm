@@ -158,9 +158,6 @@
 /mob/living/carbon/spirit/get_spirit()
 	return src
 
-/mob/proc/pacifyme(mob/user)
-	return pacify_corpse(src, user)
-
 /// Proc that will search inside a given atom for any corpses, and send the associated ghost to the lobby if possible
 /proc/pacify_coffin(atom/movable/coffin, mob/user, deep = TRUE, give_pq = TRUE)
 	if(!coffin)
