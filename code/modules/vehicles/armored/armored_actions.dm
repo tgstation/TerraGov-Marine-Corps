@@ -132,3 +132,18 @@
 		M.client.view_size.reset_to_default()
 		chassis.zoom_mode = FALSE
 	return ..()
+
+/datum/action/vehicle/sealed/armored/horn
+	name = "Honk Horn"
+	action_icon = 'icons/mob/actions/actions_vehicle.dmi'
+	action_icon_state = "car_horn"
+
+/datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants))
+		return
+	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
+		return
+
+	chassis.visible_message("[chassis] honks its horn!")
+	playsound(chassis, 'sound/vehicles/horns/armored_horn.ogg', 70)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_HORN, 15 SECONDS) //To keep people's eardrums intact
