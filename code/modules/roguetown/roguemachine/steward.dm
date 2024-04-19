@@ -119,6 +119,8 @@
 				if(findtext(num2text(newtax), "."))
 					return
 				newtax = CLAMP(newtax, 0, 999)
+				if(newtax < D.withdraw_price)
+					scom_announce("The withdraw price for [D.name] was decreased.")
 				D.withdraw_price = newtax
 	if(href_list["givemoney"])
 		var/X = href_list["givemoney"]
@@ -240,6 +242,7 @@
 				contents += "[A.desc]<BR>"
 				contents += "Stockpiled Amount: [A.held_items]<BR>"
 				contents += "Bounty Price: <a href='?src=[REF(src)];setbounty=[REF(A)]'>[A.payout_price]</a><BR>"
+				contents += "Withdraw Price: <a href='?src=[REF(src)];setprice=[REF(A)]'>[A.withdraw_price]</a><BR>"
 				contents += "Demand: [A.demand2word()]<BR>"
 				if(A.importexport_amt)
 					contents += "<a href='?src=[REF(src)];import=[REF(A)]'>\[Import [A.importexport_amt] ([A.get_import_price()])\]</a> <a href='?src=[REF(src)];export=[REF(A)]'>\[Export [A.importexport_amt] ([A.get_export_price()])\]</a> <BR>"
