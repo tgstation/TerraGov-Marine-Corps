@@ -133,14 +133,12 @@
 /obj/item/tool/analyzer,
 /obj/item/tool/wrench,
 /obj/structure/cable,
-/obj/machinery/power/apc,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "bk" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "bl" = (
@@ -153,6 +151,7 @@
 "bm" = (
 /obj/machinery/atmospherics/components/binary/valve/on{
 	dir = 4;
+	icon_state = "mvalve_map-2"
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -178,7 +177,6 @@
 /area/mainship/multiz_debug_area/floorone)
 "bt" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/obj/structure/cable,
 /obj/machinery/door/airlock/glass{
 	dir = 2
 	},
@@ -189,10 +187,6 @@
 	pixel_y = 23
 	},
 /obj/structure/closet/jcloset,
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4
-	},
 /turf/open/floor/iron,
 /area/mainship/multiz_debug_area/floorone)
 "bC" = (
@@ -205,7 +199,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/iron,
 /area/mainship/multiz_debug_area/floorone)
 "bF" = (
@@ -216,8 +209,6 @@
 /obj/machinery/air_alarm{
 	pixel_y = 23
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc,
 /obj/structure/closet/secure_closet/captain,
 /turf/open/floor/iron{
 	dir = 8
@@ -287,12 +278,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/iron{
 	dir = 1
-	},
-/area/mainship/multiz_debug_area/floorone)
-"cl" = (
-/obj/structure/cable,
-/turf/open/floor/iron{
-	dir = 8
 	},
 /area/mainship/multiz_debug_area/floorone)
 "cp" = (
@@ -952,13 +937,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
-"rN" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/mainship/multiz_debug_area/floorone)
 "sh" = (
 /turf/open/floor/iron{
 	dir = 1
@@ -967,6 +945,7 @@
 "sw" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8;
+	icon_state = "connector_map-2"
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /turf/open/floor/plating,
@@ -1478,6 +1457,7 @@
 "MK" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4;
+	icon_state = "inje_map-2"
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -2605,7 +2585,7 @@ FW
 ba
 bk
 bt
-rN
+bC
 bN
 bN
 bN
@@ -2660,9 +2640,9 @@ bb
 bl
 TY
 bD
-Hp
-Hp
-Hp
+db
+db
+db
 gY
 Hp
 Hp
@@ -2876,7 +2856,7 @@ Vw
 Vw
 TY
 bG
-cl
+my
 cp
 XK
 cC
@@ -2930,7 +2910,7 @@ Na
 Vw
 Ix
 dN
-Hp
+db
 db
 Ix
 uv
@@ -2984,7 +2964,7 @@ Na
 Vw
 Ix
 dN
-Hp
+db
 db
 TY
 cD
@@ -3038,9 +3018,9 @@ Vw
 Vw
 Ix
 bJ
-Hp
-Hp
-RQ
+db
+db
+Rl
 cD
 db
 db
