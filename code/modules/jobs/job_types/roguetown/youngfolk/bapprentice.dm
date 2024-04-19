@@ -3,8 +3,8 @@
 	flag = APPRENTICE
 	department_flag = YOUNGFOLK
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 4
+	spawn_positions = 4
 
 	allowed_races = list("Humen",
 	"Humen",
