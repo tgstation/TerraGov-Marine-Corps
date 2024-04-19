@@ -190,6 +190,16 @@ GLOBAL_LIST_EMPTY(underworld_coins)
 	if(length(GLOB.underworld_coins) < 3)
 		for(var/obj/effect/landmark/underworldcoin/B in GLOB.landmarks_list)
 			new /obj/item/underworld/coin(B.loc)
+
+/client/verb/debug_coins()
+	set category = "Debug"
+	set desc = ""
+	set name = "Debug Tolls"
+
+	if(!holder)
+		return
+	var/num_tolls = length(GLOB.underworld_coins)
+	to_chat(src, "<font color=red><b>Coins in underworld: [num_tolls]</b></font>")
 	
 
 // why not also some mob stuff too
