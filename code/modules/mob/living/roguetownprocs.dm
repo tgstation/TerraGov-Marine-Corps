@@ -34,7 +34,7 @@
 			chance2hit += 10
 
 	if(user.STAPER > 10)
-		chance2hit += ((20-user.STAPER)*3)
+		chance2hit += ((user.STAPER-10)*3)
 
 	if(user.STAPER < 10)
 		chance2hit -= ((10-user.STAPER)*3)
