@@ -28,6 +28,8 @@
 		H.change_stat("strength", 2)
 		H.change_stat("endurance", 3)
 		H.change_stat("constitution", 2)
+		H.change_stat("perception", 1)
+		H.change_stat("speed", 2)
 	if(H.gender == MALE)
 		pants = /obj/item/clothing/under/roguetown/tights/black
 	else
@@ -47,6 +49,4 @@
 	else
 		beltr = /obj/item/rogueweapon/sword/sabre
 
-	H.change_stat("perception", 1)
-	H.change_stat("speed", 2)
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
