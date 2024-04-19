@@ -594,6 +594,8 @@
 
 #define COMSIG_LIVING_UPDATE_PLANE_BLUR "living_update_plane_blur"
 	#define COMPONENT_CANCEL_BLUR (1<<0)
+///From base of mob/living/set_jump_component()
+#define COMSIG_LIVING_SET_JUMP_COMPONENT "living_set_jump_component"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -730,7 +732,8 @@
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
-#define COMSIG_KB_LIVING_JUMP "keybind_jump"
+#define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
+#define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
 #define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
 #define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
 #define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
