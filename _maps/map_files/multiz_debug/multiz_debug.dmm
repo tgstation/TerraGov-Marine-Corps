@@ -151,7 +151,6 @@
 "bm" = (
 /obj/machinery/atmospherics/components/binary/valve/on{
 	dir = 4;
-	icon_state = "mvalve_map-2"
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -945,7 +944,6 @@
 "sw" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8;
-	icon_state = "connector_map-2"
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /turf/open/floor/plating,
@@ -1457,7 +1455,6 @@
 "MK" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4;
-	icon_state = "inje_map-2"
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
