@@ -215,6 +215,7 @@
 		if(isobj(hurt_atom) || ismob(hurt_atom))
 			if(hurt_atom.layer > highest.layer)
 				highest = hurt_atom
+	impact_act(levels)
 	INVOKE_ASYNC(src, .proc/SpinAnimation, 5, 2)
 	return TRUE
 

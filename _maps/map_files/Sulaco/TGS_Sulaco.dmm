@@ -18860,7 +18860,7 @@
 /area/sulaco/marine)
 "qzg" = (
 /obj/structure/stairs/multiz/north,
-/turf/open/floor/glass,
+/turf/open/openspace,
 /area/sulaco/bridge)
 "qzv" = (
 /obj/structure/cable,
@@ -44088,9 +44088,9 @@ dFG
 bTk
 eQi
 eQi
-iAP
-iAP
-rAs
+eQi
+eQi
+eQi
 tFA
 iAP
 iAP
@@ -44190,8 +44190,8 @@ dFG
 dZC
 aZY
 eQi
-eQi
-eQi
+ovj
+ovj
 eQi
 tFA
 iAP
@@ -45111,7 +45111,7 @@ cMu
 cMu
 cMu
 eQi
-mBh
+eQi
 kzH
 dsu
 dsu
@@ -53752,7 +53752,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+gch
 dsu
 dsu
 kzH
@@ -53854,7 +53854,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 kzH
 kzH
@@ -53956,7 +53956,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 gBV
@@ -54058,7 +54058,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 xRT
@@ -54160,7 +54160,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 uKz
@@ -54262,7 +54262,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 qEo
@@ -54364,7 +54364,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 tfS
@@ -54466,7 +54466,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 gBV
 gBV
@@ -54568,7 +54568,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+rAs
 kzH
 kzH
 kzH
@@ -54670,7 +54670,7 @@ iAP
 iAP
 iAP
 iAP
-iAP
+qlR
 kzH
 kzH
 eUm

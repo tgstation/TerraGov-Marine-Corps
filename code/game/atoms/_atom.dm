@@ -1103,3 +1103,7 @@ directive is properly returned.
 ///Interaction for using a grab on an atom
 /atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
+
+///Effects of falling from another zlevel
+/atom/proc/impact_act(levels)
+	return

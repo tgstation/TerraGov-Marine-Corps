@@ -7,11 +7,9 @@
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
-
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	icon_state = "grey"
-	alpha = 100
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE, PROC_REF(on_atom_created))
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/open/openspace/LateInitialize()
@@ -104,3 +102,13 @@
 				to_chat(user, span_warning("You need one floor tile to build a floor!"))
 		else
 			to_chat(user, span_warning("The plating is going to need some support! Place iron rods first."))
+
+/turf/open/openspace/proc/on_atom_created(datum/source, atom/created_atom)
+	SIGNAL_HANDLER
+	if(ismovable(created_atom))
+		zfall_if_on_turf(created_atom)
+
+/turf/open/openspace/proc/zfall_if_on_turf(atom/movable/movable)
+	if(QDELETED(movable) || movable.loc != src)
+		return
+	zFall(movable)

@@ -149,3 +149,9 @@
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+/obj/structure/stairs/multiz/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(.)
+		return
+	stair_ascend(user)

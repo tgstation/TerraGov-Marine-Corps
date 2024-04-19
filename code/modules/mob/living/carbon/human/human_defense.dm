@@ -341,6 +341,15 @@ Contains most of the procs that are called when a mob is attacked by something
 	spin(30, 1.5)
 	return ..()
 
+/mob/living/carbon/human/impact_act(levels)
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_FLOORED) || levels >= 2)
+		adjustBruteLoss(levels * 30)
+		to_chat("You impact the ground with a thud!")
+	else
+		balloon_alert(src, "You land on your feet...")
+		Stun(2 SECONDS * levels)
+		Paralyze(2 SECONDS * levels)
 
 /mob/living/carbon/human/proc/bloody_hands(mob/living/source, amount = 2)
 	if (istype(gloves))

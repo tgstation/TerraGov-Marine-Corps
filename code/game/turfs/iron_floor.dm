@@ -239,6 +239,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
+	baseturfs = /turf/open/openspace
 
 /turf/open/floor/glass/reinforced
 	name = "reinforced glass floor"
@@ -260,3 +261,13 @@
 	icon = 'icons/turf/floors/reinf_plasma_glass.dmi'
 	icon_state = "reinf_plasma_glass-0"
 	base_icon_state = "reinf_plasma_glass"
+
+/*
+/turf/open/floor/glass/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/floor/glass/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+*/
