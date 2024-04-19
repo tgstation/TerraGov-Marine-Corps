@@ -457,7 +457,7 @@
 /area/mainship/multiz_debug_area/floorthree)
 "dI" = (
 /obj/effect/landmark/start/job/crash/squadleader,
-/turf/open/floor/iron,
+/turf/open/floor/glass/reinforced,
 /area/mainship/multiz_debug_area/floortwo)
 "dL" = (
 /obj/structure/window/framed/colony/reinforced/hull,
@@ -726,6 +726,11 @@
 	dir = 8
 	},
 /area/mainship/multiz_debug_area/floortwo)
+"jp" = (
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/glass/reinforced,
+/area/mainship/multiz_debug_area/floortwo)
 "jq" = (
 /obj/machinery/light{
 	dir = 8
@@ -813,6 +818,9 @@
 "lV" = (
 /turf/open/floor/iron,
 /area/mainship/multiz_debug_area/floorthree)
+"mu" = (
+/turf/open/floor/glass/reinforced,
+/area/mainship/multiz_debug_area/floortwo)
 "my" = (
 /turf/open/floor/iron{
 	dir = 8
@@ -1083,6 +1091,11 @@
 /obj/structure/prop/mainship/railing/corner,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
+"xj" = (
+/obj/effect/landmark/start/job/crash/squadleader,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/glass/reinforced,
+/area/mainship/multiz_debug_area/floortwo)
 "xw" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
@@ -1240,6 +1253,9 @@
 	},
 /turf/open/floor/iron,
 /area/mainship/multiz_debug_area/floorone)
+"DY" = (
+/turf/open/floor/glass/reinforced,
+/area/mainship/multiz_debug_area/floorthree)
 "Eb" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/structure/prop/mainship/railing{
@@ -1316,6 +1332,11 @@
 	},
 /turf/open/floor/iron,
 /area/mainship/multiz_debug_area/floorthree)
+"Iq" = (
+/obj/effect/landmark/start/job/squadengineer,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/glass/reinforced,
+/area/mainship/multiz_debug_area/floortwo)
 "Ix" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
@@ -1665,6 +1686,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floortwo)
+"Vf" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/glass/reinforced,
 /area/mainship/multiz_debug_area/floortwo)
 "Vm" = (
 /obj/structure/cable/multilayer/multiz,
@@ -5504,9 +5530,9 @@ WR
 WR
 WR
 WR
-Oj
-pK
-WR
+Iq
+jp
+mu
 IN
 TH
 ya
@@ -5558,8 +5584,8 @@ WR
 eN
 WR
 WR
-YX
-uc
+Vf
+xj
 dI
 IN
 TH
@@ -5612,9 +5638,9 @@ cw
 ya
 ya
 mZ
-Oj
-pK
-WR
+Iq
+jp
+mu
 IN
 TH
 TH
@@ -5666,9 +5692,9 @@ WR
 WN
 ya
 em
-YX
-uc
-WR
+Vf
+xj
+mu
 IN
 TH
 ya
@@ -5720,9 +5746,9 @@ WR
 WR
 cw
 sh
-Oj
-pK
-WR
+Iq
+jp
+mu
 IN
 TH
 TH
@@ -5774,9 +5800,9 @@ WR
 WR
 WR
 sh
-WR
-WR
-WR
+mu
+mu
+mu
 IN
 TH
 TH
@@ -5828,9 +5854,9 @@ WR
 WR
 WR
 sh
-WR
-WR
-WR
+mu
+mu
+mu
 IN
 TH
 TH
@@ -8472,11 +8498,11 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
+DY
 lV
 lV
 xB
@@ -8526,11 +8552,11 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
+DY
 lV
 lV
 xB
@@ -8580,10 +8606,10 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
 lV
 lV
 lV
@@ -8634,10 +8660,10 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
 lV
 lV
 lV
@@ -8688,10 +8714,10 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
 lV
 lV
 lV
@@ -8742,10 +8768,10 @@ Vz
 CC
 Jt
 lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
 lV
 pf
 eV
@@ -8796,10 +8822,10 @@ dG
 fo
 lV
 lV
-lV
-lV
-lV
-lV
+DY
+DY
+DY
+DY
 lV
 Jg
 lV

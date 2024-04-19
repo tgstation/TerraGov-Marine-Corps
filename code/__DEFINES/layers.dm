@@ -23,7 +23,7 @@
 #define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
 
 #define OPENSPACE_LAYER 18 //Openspace layer over all
-#define OPENSPACE_PLANE -9 //Openspace plane below all turfs
+#define OPENSPACE_PLANE -1 //Openspace plane below all turfs
 #define OPENSPACE_BACKDROP_PLANE -8 //Black square just over openspace plane to guaranteed cover all in openspace turf
 
 #define FLOOR_PLANE -5

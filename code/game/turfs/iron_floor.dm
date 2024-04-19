@@ -262,7 +262,7 @@
 	icon_state = "reinf_plasma_glass-0"
 	base_icon_state = "reinf_plasma_glass"
 
-/*
+
 /turf/open/floor/glass/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
@@ -270,4 +270,5 @@
 /turf/open/floor/glass/LateInitialize()
 	. = ..()
 	AddElement(/datum/element/turf_z_transparency, FALSE)
-*/
+	plane = GAME_PLANE
+	layer = TURF_LAYER

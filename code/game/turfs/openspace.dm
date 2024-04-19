@@ -1,7 +1,7 @@
 /turf/open/openspace
 	name = "open space"
 	desc = "Watch your step!"
-	icon_state = "noop"
+	icon_state = "transparent"
 	baseturfs = /turf/open/openspace
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
@@ -9,6 +9,7 @@
 
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
+	icon_state = "grey"
 	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE, PROC_REF(on_atom_created))
 	return INITIALIZE_HINT_LATELOAD
 
