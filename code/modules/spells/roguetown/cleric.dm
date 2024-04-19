@@ -271,20 +271,20 @@
 	miracle = TRUE
 	devotion_cost = -15
 
-/obj/effect/proc_holder/spell/targeted/burialrite/cast(list/targets,mob/user = usr)
-	for(var/obj/structure/closet/dirthole/H in view(1))
-		if(H.stage != 4)
-			continue
-		if(!H.contents)
-			continue
-		for(var/mob/living/carbon/human/A in H.contents)
-			A.funeral = TRUE
-			if(A.mind && A.mind.has_antag_datum(/datum/antagonist/zombie))
-				A.mind.remove_antag_datum(/datum/antagonist/zombie)
-			user.visible_message("My funeral rites have been performed!", "[user] consecrates the grave!")
-		for(var/obj/structure/closet/crate/coffin/C)
-			for(var/mob/living/carbon/human/B in C.contents)
-				B.funeral = TRUE
+/obj/effect/proc_holder/spell/targeted/burialrite/cast(list/targets, mob/user = usr)
+	. = ..()
+	var/success = FALSE
+	for(var/obj/structure/closet/crate/coffin/coffin in view(1))
+		success = pacify_coffin(coffin, user)
+		if(success)
+			user.visible_message("My funeral rites have been performed on [coffin]!", "[user] consecrates [coffin]!")
+			return
+	for(var/obj/structure/closet/dirthole/hole in view(1))
+		success = pacify_coffin(hole, user)
+		if(success)
+			user.visible_message("My funeral rites have been performed on [hole]!", "[user] consecrates [hole]!")
+			return
+	to_chat(user, "<span class='red'>I failed to perform the rites.</span>")
 
 /obj/effect/proc_holder/spell/targeted/churn
 	name = "Churn Undead"

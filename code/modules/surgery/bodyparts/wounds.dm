@@ -204,23 +204,24 @@
 				playsound(owner, 'sound/combat/crit2.ogg', 100, FALSE, 5)
 				owner.emote("paincrit", TRUE)
 				. = list()
-				var/obj/item/organ/liver/liver = null
-				var/obj/item/organ/liver/stomach = null
-				for (var/X in owner.internal_organs)
-					var/obj/item/organ/O = X
-					var/org_zone = check_zone(O.zone)
-					if (org_zone == BODY_ZONE_CHEST)
-						if (istype(O, /obj/item/organ/liver))
-							liver = O
-						else if (istype(O, /obj/item/organ/stomach))
-							stomach = O
-				if (liver && stomach)
-					liver.Remove(owner)
-					liver.forceMove(T)
-					liver.add_mob_blood(owner)
-					stomach.Remove(owner)
-					stomach.forceMove(T)
-					stomach.add_mob_blood(owner)
+				var/static/list/spillable_slots = list(
+					ORGAN_SLOT_STOMACH = 50,
+					ORGAN_SLOT_LIVER = 50,
+				)
+				var/list/spilled_organs = list()
+				for(var/obj/item/organ/organ as anything in owner.internal_organs)
+					var/org_zone = check_zone(organ.zone)
+					if(org_zone != BODY_ZONE_CHEST)
+						continue
+					if(!(organ.slot in spillable_slots))
+						continue
+					var/spill_prob = spillable_slots[organ.slot]
+					if(prob(spill_prob))
+						spilled_organs += organ
+				for(var/obj/item/organ/spilled as anything in spilled_organs)
+					spilled.Remove(owner)
+					spilled.forceMove(T)
+					spilled.add_mob_blood(owner)
 					organ_spilled = TRUE
 				if(cavity_item)
 					cavity_item.forceMove(T)

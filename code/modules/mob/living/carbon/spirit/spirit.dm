@@ -145,3 +145,82 @@
 	for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 		forceMove(A.loc)
 	beingmoved = FALSE
+
+///Get the underworld spirit associated with this mob (from the mind)
+/mob/proc/get_spirit()
+	var/mind_key = key || mind?.key
+	if(!mind_key)
+		return
+	for(var/mob/living/carbon/spirit/spirit in GLOB.carbon_list)
+		if((spirit.key == mind_key) || (spirit.mind?.key == mind_key))
+			return spirit
+
+/mob/living/carbon/spirit/get_spirit()
+	return src
+
+/// Proc that will search inside a given atom for any corpses, and send the associated ghost to the lobby if possible
+/proc/pacify_coffin(atom/movable/coffin, mob/user, deep = TRUE, give_pq = TRUE)
+	if(!coffin)
+		return FALSE
+	var/success = FALSE
+	if(isliving(coffin))
+		success ||= pacify_corpse(coffin, user)
+	for(var/mob/living/corpse in coffin)
+		success ||= pacify_corpse(corpse, user)
+	for(var/obj/item/bodypart/head/head in coffin)
+		if(!head.brainmob)
+			continue
+		success ||= pacify_corpse(head.brainmob, user)
+	//if this is a deep search, we will also search the contents of the coffin to pacify (EXCEPT MOBS, SINCE WE HANDLED THOSE)
+	if(deep)
+		for(var/atom/movable/stuffing in coffin)
+			if(isliving(stuffing) || istype(stuffing, /obj/item/bodypart/head))
+				continue
+			success ||= pacify_coffin(stuffing, user, deep, give_pq = FALSE)
+	if(success && give_pq && user?.ckey)
+		adjust_playerquality(0.25, user.ckey)
+	return success
+
+/// Proc that sends the client associated with a given corpse to the lobby, if possible
+/proc/pacify_corpse(mob/living/corpse, mob/user)
+	if(corpse.stat != DEAD)
+		return FALSE
+	if(ishuman(corpse) && !HAS_TRAIT(corpse, TRAIT_BURIED_COIN_GIVEN))
+		var/mob/living/carbon/human/human_corpse = corpse
+		if(istype(human_corpse.mouth, /obj/item/roguecoin))
+			var/obj/item/roguecoin/coin = human_corpse.mouth
+			if(coin.quantity >= 1) // stuffing their mouth full of a fuck ton of coins wont do shit
+				ADD_TRAIT(human_corpse, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
+				for(var/obj/effect/landmark/underworld/coin_spawn in GLOB.landmarks_list)
+					var/turf/fallen = get_turf(coin_spawn)
+					fallen = locate(fallen.x + rand(-3, 3), fallen.y + rand(-3, 3), fallen.z)
+					new /obj/item/underworld/coin/notracking(fallen)
+					fallen.visible_message("<span class='warning'>A coin falls from above!</span>")
+					if(user?.ckey)
+						adjust_playerquality(0.25, user.ckey)
+					qdel(human_corpse.mouth)
+					human_corpse.update_inv_mouth()
+					break
+	corpse.mind?.remove_antag_datum(/datum/antagonist/zombie)
+	var/mob/dead/observer/ghost
+	//Try to find a lost ghost if there is no client
+	if(!corpse.client)
+		ghost = corpse.get_ghost()
+		//Try to find underworld spirit, if there is no ghost
+		if(!ghost)
+			var/mob/living/carbon/spirit/spirit = corpse.get_spirit()
+			if(spirit)
+				ghost = spirit.ghostize(force_respawn = TRUE)
+				qdel(spirit)
+	else
+		ghost = corpse.ghostize(force_respawn = TRUE)
+
+	if(ghost)
+		testing("pacify_corpse success ([brainmob.mind?.key || "no key"])")
+		var/user_acknowledgement = user ? user.real_name : "a mysterious force"
+		to_chat(ghost, "<span class='rose'>My soul finds peace buried in creation, thanks to [user_acknowledgement].</span>")
+		ghost.returntolobby(RESPAWNTIME*-1)
+		return TRUE
+
+	testing("pacify_corpse fail ([corpse.mind?.key || "no key"])")
+	return FALSE
