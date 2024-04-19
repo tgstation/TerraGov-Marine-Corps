@@ -332,7 +332,7 @@
 
 
 /turf/open/water/river
-	name = "water"
+	name = "river"
 	icon_state = "rivermove"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
