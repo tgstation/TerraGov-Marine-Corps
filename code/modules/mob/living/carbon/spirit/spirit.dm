@@ -145,3 +145,89 @@
 	for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
 		forceMove(A.loc)
 	beingmoved = FALSE
+
+///Get the underworld spirit associated with this mob (from the mind)
+/mob/proc/get_spirit()
+	if(!mind)
+		return
+	for(var/mob/living/carbon/spirit/spirit in GLOB.carbon_list)
+		if(spirit.key == mind.key)
+			return spirit
+
+/proc/spirit_peace(atom/movable/coffin, mob/user, deep = TRUE)
+	if(!coffin)
+		return
+	var/success = FALSE
+	for(var/mob/living/corpse in coffin)
+		if(corpse.stat != DEAD)
+			continue
+		if(ishuman(corpse) && !HAS_TRAIT(corpse, TRAIT_BURIED_COIN_GIVEN))
+			var/mob/living/carbon/human/human_corpse = corpse
+			if(istype(human_corpse.mouth, /obj/item/roguecoin))
+				var/obj/item/roguecoin/coin = human_corpse.mouth
+				if(coin.quantity >= 1) // stuffing their mouth full of a fuck ton of coins wont do shit
+					ADD_TRAIT(human_corpse, TRAIT_BURIED_COIN_GIVEN, TRAIT_GENERIC)
+					for(var/obj/effect/landmark/underworld/coin_spawn in GLOB.landmarks_list)
+						var/turf/fallen = get_turf(coin_spawn)
+						fallen = locate(fallen.x + rand(-3, 3), fallen.y + rand(-3, 3), fallen.z)
+						new /obj/item/underworld/coin/notracking(fallen)
+						fallen.visible_message("<span class='warning'>A coin falls from above!</span>")
+						if(user?.ckey)
+							adjust_playerquality(0.25, user.ckey)
+						qdel(human_corpse.mouth)
+						human_corpse.update_inv_mouth()
+						break
+		corpse.mind?.remove_antag_datum(/datum/antagonist/zombie)
+		var/mob/dead/observer/ghost
+		//Try to find a lost ghost if there is no client
+		if(!corpse.client)
+			ghost = corpse.get_ghost()
+			//Try to find underworld spirit, if there is no ghost
+			if(!ghost)
+				var/mob/living/carbon/spirit/spirit = corpse.get_spirit()
+				if(spirit)
+					ghost = spirit.ghostize(force_respawn = TRUE)
+					qdel(spirit)
+		else
+			ghost = corpse.ghostize(force_respawn = TRUE)
+		if(ghost)
+			testing("bursuccess ([brainmob.mind?.key || "no key")
+			var/user_acknowledgement = user ? user.real_name : "a mysterious force"
+			to_chat(ghost, "<span class='rose'>My soul finds peace buried in creation, thanks to [user_acknowledgement].</span>")
+			ghost.returntolobby(RESPAWNTIME*-1)
+			success = TRUE
+		else
+			testing("burfail ([corpse.mind?.key || "no key"])")
+	for(var/obj/item/bodypart/head/head in coffin)
+		if(!head.brainmob)
+			continue
+		var/mob/living/brain/brainmob = head.brainmob
+		if(brainmob.stat != DEAD)
+			continue
+		var/mob/dead/observer/ghost
+		//Try to find a lost ghost if there is no client
+		if(!brainmob.client)
+			ghost = brainmob.get_ghost()
+			//Try to find underworld spirit, if there is no lost ghost
+			if(!ghost)
+				var/mob/living/carbon/spirit/lost_soul = brainmob.get_spirit()
+				if(lost_soul)
+					ghost = brainmob.ghostize(force_respawn = TRUE)
+					qdel(lost_soul)
+		else
+			ghost = brainmob.ghostize(force_respawn = TRUE)
+		if(brainmob)
+			testing("headbursuccess ([brainmob.mind?.key || "no key"])")
+			var/user_acknowledgement = user ? user.real_name : "a mysterious force"
+			to_chat(ghost, "<span class='rose'>My soul finds peace buried in creation, thanks to [user_acknowledgement].</span>")
+			ghost.returntolobby(RESPAWNTIME*-1)
+			success = TRUE
+		else
+			testing("headburfail ([brainmob.mind?.key || "no key"])")
+	if(success && user?.ckey)
+		adjust_playerquality(0.25, user.ckey)
+	//if this is a deep search, we will also search the contents of the coffin to do peace
+	if(deep)
+		for(var/atom/movable/stuffing in coffin)
+			success ||= spirit_peace(stuffing, user, deep)
+	return success
