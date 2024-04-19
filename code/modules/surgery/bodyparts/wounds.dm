@@ -261,6 +261,8 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 				used += 10
 		if(!owner.stat)
+			if(owner.dir == turn(get_dir(owner,user), 180))
+				used += 50
 			if(can_bloody_wound())
 				if(prob(used) || (brute_dam >= max_damage))
 					owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out!</span>"
@@ -347,6 +349,8 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 				used += 10
 		if(!owner.stat)
+			if(owner.dir == turn(get_dir(owner,user), 180))
+				used += 30
 			if(prob(used) || (dam >= 30 ))
 				owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out!</span>"
 				owner.flash_fullscreen("whiteflash3")
