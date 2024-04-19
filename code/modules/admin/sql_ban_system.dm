@@ -537,7 +537,7 @@
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
-	var/datum/admin_help/AH = admin_ticket_log(player_ckey, msg)
+	var/datum/admin_help/AH = admin_ticket_log(player_ckey, "[kna] [msg]")
 	var/appeal_url = "No ban appeal url set!"
 	appeal_url = CONFIG_GET(string/banappeals)
 	var/is_admin = FALSE
@@ -594,8 +594,8 @@
 		"}, list(
 			"player_key" = ckey(player_key),
 			"admin_key" = ckey(admin_key),
-			"player_ip" = player_ip,
-			"player_cid" = player_cid,
+			"player_ip" = player_ip || null,
+			"player_cid" = player_cid || null,
 		))
 		if(!query_unban_count_bans.warn_execute())
 			qdel(query_unban_count_bans)
@@ -654,8 +654,8 @@
 		"}, list(
 			"player_key" = ckey(player_key),
 			"admin_key" = ckey(admin_key),
-			"player_ip" = player_ip,
-			"player_cid" = player_cid,
+			"player_ip" = player_ip || null,
+			"player_cid" = player_cid || null,
 			"skip" = bansperpage * page,
 			"take" = bansperpage,
 		))
@@ -839,12 +839,12 @@
 	var/datum/DBQuery/query_edit_ban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")]
 		SET
-			expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
+			expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval]),
 			applies_to_admins = :applies_to_admins,
 			reason = :reason,
 			ckey = :ckey,
 			ip = INET_ATON(:ip),
-			computerid = :ci
+			computerid = :cid,
 			edits = CONCAT(IFNULL(edits,''), :change_message)
 		WHERE [where]
 	"}, arguments)
