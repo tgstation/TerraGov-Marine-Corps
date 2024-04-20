@@ -42,6 +42,7 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		var/list/special_classes = list()
 		var/classamt = 5
 		if(M.client)
+			// For every 5 positive PQ points, grant an extra choice for Adventurer classes
 			var/pq = get_playerquality(M.client.ckey, FALSE)
 			if(pq > 0)
 				classamt += floor(pq / 5)
