@@ -355,7 +355,7 @@
 			qdel(query_add_rank)
 			var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery({"
 				INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
-				VALUES (:time, :round_id, :adminckey, INET_ATON(:admin_ip), 'add rank', :new_rank, 'New rank added: ' + :new_rank)
+				VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'add rank', :new_rank, 'New rank added: ' + :new_rank)
 			"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "new_rank" = new_rank))
 			if(!query_add_rank_log.warn_execute())
 				qdel(query_add_rank_log)
