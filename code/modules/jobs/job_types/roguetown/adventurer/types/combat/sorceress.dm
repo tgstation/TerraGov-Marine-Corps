@@ -18,8 +18,9 @@
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/mage
 	belt = /obj/item/storage/belt/rogue/leather/rope
-	backr = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/reagent_containers/glass/bottle/rogue/manapot
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor	
 	r_hand = /obj/item/rogueweapon/woodstaff
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)

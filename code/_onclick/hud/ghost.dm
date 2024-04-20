@@ -48,6 +48,12 @@
 						O.ckey = G.ckey
 						SSdroning.area_entered(get_area(O), O.client)
 					verbs -= /client/proc/descend
+
+					// Check if the player's job is adventurer and reduce current_positions
+					var/datum/job/adventurer_job = SSjob.GetJob("Adventurer")
+					if(adventurer_job && G.mind && G.mind.assigned_role == "Adventurer")
+						adventurer_job.current_positions = max(0, adventurer_job.current_positions - 1)
+						testing("Current position reduced after travel with boatman")
 				return
 
 //		var/take_triumph = FALSE
