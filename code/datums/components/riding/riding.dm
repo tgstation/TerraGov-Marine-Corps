@@ -49,6 +49,8 @@
 		return COMPONENT_INCOMPATIBLE
 
 	handle_specials()
+	var/atom/movable/movable_parent = parent
+	riding_mob.set_glide_size(movable_parent.glide_size)
 	riding_mob.updating_glide_size = FALSE
 	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
 	vehicle_moved()
@@ -115,8 +117,8 @@
 	var/atom/movable/movable_parent = parent
 	if (isnull(dir))
 		dir = movable_parent.dir
-	for (var/m in movable_parent.buckled_mobs)
-		var/mob/buckled_mob = m
+	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
+	for(var/mob/buckled_mob AS in movable_parent.buckled_mobs)
 		ride_check(buckled_mob)
 	if(QDELETED(src))
 		return // runtimed with piggy's without this, look into this more

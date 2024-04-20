@@ -165,7 +165,7 @@
 /obj/vehicle/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	if(trailer)
-		trailer.Move(old_loc, movement_dir)
+		trailer.Move(old_loc, movement_dir, glide_size)
 
 
 //TGMC ADDED BELOW

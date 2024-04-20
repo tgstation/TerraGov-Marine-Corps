@@ -182,7 +182,7 @@
 /obj/structure/closet/bodybag/Move(NewLoc, direct)
 	if (roller_buckled && roller_buckled.loc != NewLoc) //not updating position
 		if (!roller_buckled.anchored)
-			return roller_buckled.Move(NewLoc, direct)
+			return roller_buckled.Move(NewLoc, direct, glide_size)
 		else
 			return FALSE
 	else

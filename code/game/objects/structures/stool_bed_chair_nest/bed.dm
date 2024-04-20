@@ -115,7 +115,7 @@
 
 /obj/structure/bed/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(!buckled_bodybag || buckled_bodybag.Move(loc, movement_dir))
+	if(!buckled_bodybag || buckled_bodybag.Move(loc, movement_dir, glide_size))
 		return TRUE
 	forceMove(buckled_bodybag.loc)
 	return FALSE
