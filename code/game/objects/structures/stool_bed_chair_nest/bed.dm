@@ -73,6 +73,10 @@
 		if(HAS_TRAIT(unbuckled_target, TRAIT_FLOORED))
 			unbuckled_target.set_lying_angle(pick(90, 270))
 
+/obj/structure/bed/set_glide_size(target = 8)
+	. = ..()
+	buckled_bodybag?.set_glide_size(target)
+
 //Unsafe proc
 /obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
 	if(buckled_bodybag || buckled)
@@ -115,7 +119,7 @@
 
 /obj/structure/bed/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(!buckled_bodybag || buckled_bodybag.Move(loc, movement_dir, glide_size))
+	if(!buckled_bodybag || buckled_bodybag.Move(loc, movement_dir, glide))
 		return TRUE
 	forceMove(buckled_bodybag.loc)
 	return FALSE
