@@ -372,7 +372,7 @@
 		qdel(query_change_rank)
 		var/datum/DBQuery/query_change_rank_log = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
-			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change admin rank', :target, 'Rank of ' + :target + ' changed from ' + :old_rank + ' to ' + :new_rank)
+			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change admin rank', :target, CONCAT('Rank of ', :target, ' changed from ', :old_rank, ' to ', :new_rank))
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "target" = admin_ckey, "old_rank" = old_rank, new_rank = "new_rank"))
 		if(!query_change_rank_log.warn_execute())
 			qdel(query_change_rank_log)
