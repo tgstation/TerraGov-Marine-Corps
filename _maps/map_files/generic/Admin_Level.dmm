@@ -2471,7 +2471,7 @@
 /area/centcom/valhalla)
 "dhU" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
-/turf/open/space/basic,
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "dii" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -19557,7 +19557,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 xrI
 xrI
 xrI
@@ -19832,7 +19832,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
