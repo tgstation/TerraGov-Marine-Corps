@@ -58,27 +58,22 @@
 /datum/anvil_recipe/armor/chaincoif
 	name = "chain coif"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/neck/roguetown/chaincoif,
-						/obj/item/clothing/neck/roguetown/chaincoif)
+	created_item = list(/obj/item/clothing/neck/roguetown/chaincoif)
 
 /datum/anvil_recipe/armor/chainglove
 	name = "chain gauntlets"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/gloves/roguetown/chain,
-						/obj/item/clothing/gloves/roguetown/chain,
-						/obj/item/clothing/gloves/roguetown/chain)
+	created_item = list(/obj/item/clothing/gloves/roguetown/chain)
 
 /datum/anvil_recipe/armor/plateglove
 	name = "plate gauntlets"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/gloves/roguetown/plate,
-						/obj/item/clothing/gloves/roguetown/plate)
+	created_item = list(/obj/item/clothing/gloves/roguetown/plate)
 
 /datum/anvil_recipe/armor/chainleg
 	name = "chain chausses"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/under/roguetown/chainlegs,
-						/obj/item/clothing/under/roguetown/chainlegs)
+	created_item = list(/obj/item/clothing/under/roguetown/chainlegs)
 
 /datum/anvil_recipe/armor/plate
 	name = "half-plate armor (3)"
@@ -106,14 +101,12 @@
 /datum/anvil_recipe/armor/platebracer
 	name = "plate bracers"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/wrists/roguetown/bracers,
-					/obj/item/clothing/wrists/roguetown/bracers)
+	created_item = list(/obj/item/clothing/wrists/roguetown/bracers)
 
 /datum/anvil_recipe/armor/helmetnasal
 	name = "steel helmet"
 	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/head/roguetown/helmet,
-						/obj/item/clothing/head/roguetown/helmet)
+	created_item = list(/obj/item/clothing/head/roguetown/helmet)
 
 /datum/anvil_recipe/armor/bervor
 	name = "steel bervor"

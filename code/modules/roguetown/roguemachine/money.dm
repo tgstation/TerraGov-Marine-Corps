@@ -146,7 +146,7 @@ GLOBAL_VAR(moneymaster)
 			if("BRONZE")
 				zenars = budget
 				type_to_spawn = /obj/item/roguecoin/copper
-		if(zenars <= 1)
+		if(zenars < 1)
 			return
 		var/obj/item/roguecoin/G = new type_to_spawn(T)
 		G.set_quantity(floor(zenars))

@@ -152,45 +152,7 @@
 			owner.Slowdown(20)
 			shake_camera(owner, 2, 2)
 			return FALSE
-	if((zone_precise == BODY_ZONE_PRECISE_STOMACH) && (bclass == BCLASS_CUT || bclass == BCLASS_CHOP) && prob(round(max(dam / 4, 1), 1)))
-		if(!can_bloody_wound())
-			return FALSE
-		var/organ_spilled = FALSE
-		var/turf/T = get_turf(owner)
-		owner.add_splatter_floor(T)
-		playsound(owner, 'sound/combat/crit2.ogg', 100, FALSE, 5)
-		owner.emote("paincrit", TRUE)
-		. = list()
-		var/static/list/spillable_slots = list(
-			ORGAN_SLOT_STOMACH = 50,
-			ORGAN_SLOT_LIVER = 50,
-		)
-		var/list/spilled_organs = list()
-		for(var/obj/item/organ/organ as anything in owner.internal_organs)
-			var/org_zone = check_zone(organ.zone)
-			if(org_zone != BODY_ZONE_CHEST)
-				continue
-			if(!(organ.slot in spillable_slots))
-				continue
-			var/spill_prob = spillable_slots[organ.slot]
-			if(prob(spill_prob))
-				spilled_organs += organ
-		for(var/obj/item/organ/spilled as anything in spilled_organs)
-			spilled.Remove(owner)
-			spilled.forceMove(T)
-			spilled.add_mob_blood(owner)
-			organ_spilled = TRUE
-		if(cavity_item)
-			cavity_item.forceMove(T)
-			. += cavity_item
-			cavity_item = null
-			organ_spilled = TRUE
-		if(organ_spilled)
-			shake_camera(owner, 2, 2)
-			owner.death()
-			owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] spills [owner.p_their()] organs!</span>"
-			return TRUE
-	else if(bclass == BCLASS_CUT || bclass == BCLASS_CHOP || bclass == BCLASS_STAB || bclass == BCLASS_BITE)
+	if(bclass == BCLASS_CUT || bclass == BCLASS_CHOP || bclass == BCLASS_STAB || bclass == BCLASS_BITE)
 		if(!can_bloody_wound())
 			return FALSE
 		if(brute_dam)
@@ -202,6 +164,47 @@
 			else
 				if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 					dam += 30
+		if(zone_precise == BODY_ZONE_PRECISE_STOMACH)
+			if (prob(round(max(dam / 4, 1), 1)))
+				if(!can_bloody_wound())
+					return FALSE
+				var/organ_spilled = FALSE
+				var/turf/T = get_turf(owner)
+				owner.add_splatter_floor(T)
+				playsound(owner, 'sound/combat/crit2.ogg', 100, FALSE, 5)
+				owner.emote("paincrit", TRUE)
+				. = list()
+				var/static/list/spillable_slots = list(
+					ORGAN_SLOT_STOMACH = 100,
+					ORGAN_SLOT_LIVER = 50,
+				)
+				var/list/spilled_organs = list()
+				for(var/obj/item/organ/organ as anything in owner.internal_organs)
+					var/org_zone = check_zone(organ.zone)
+					if(org_zone != BODY_ZONE_CHEST)
+						continue
+					if(!(organ.slot in spillable_slots))
+						continue
+					var/spill_prob = spillable_slots[organ.slot]
+					if(prob(spill_prob))
+						spilled_organs += organ
+				for(var/obj/item/organ/spilled as anything in spilled_organs)
+					spilled.Remove(owner)
+					spilled.forceMove(T)
+					spilled.add_mob_blood(owner)
+					organ_spilled = TRUE
+				if(cavity_item)
+					cavity_item.forceMove(T)
+					. += cavity_item
+					cavity_item = null
+					organ_spilled = TRUE
+				if(organ_spilled)
+					shake_camera(owner, 2, 2)
+					owner.death()
+					owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] spills [owner.p_their()] organs!</span>"
+				if(bclass == BCLASS_CHOP || bclass == BCLASS_STAB)
+					return TRUE
+				return FALSE
 		if(prob(round(max(dam / 3, 1), 1)))
 			var/foundy
 			for(var/datum/wound/artery/A in wounds)

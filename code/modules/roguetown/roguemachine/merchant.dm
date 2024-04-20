@@ -79,9 +79,7 @@
 			if(!E)
 				continue
 			for(var/obj/I in T)
-				if(I.anchored)
-					continue
-				if(!isturf(I.loc))
+				if(I.anchored || !isturf(I.loc) || istype(I, /obj/item/roguecoin))
 					continue
 				var/prize = I.get_real_price() - (I.get_real_price() * SStreasury.queens_tax)
 				if(prize >= 1)
