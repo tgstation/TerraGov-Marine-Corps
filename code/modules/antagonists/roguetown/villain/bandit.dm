@@ -108,14 +108,14 @@
 	switch(loadoutm)
 		if(1)
 			beltr = /obj/item/rogueweapon/sword/iron
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 			beltl = /obj/item/storage/belt/rogue/pouch
 		if(2)
 			beltr = /obj/item/rogueweapon/huntingknife/cleaver
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		if(3)
 			beltr = /obj/item/rogueweapon/flail
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	beltl = /obj/item/quiver/bolts
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
