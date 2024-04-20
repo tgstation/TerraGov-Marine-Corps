@@ -7,4 +7,3 @@
 Glennerbean = Host
 emoats18 = Host
 ChaoticAgent = Host
-Warfan1815 = Host
