@@ -91,6 +91,8 @@
 					continue
 				M.playsound_local(M_turf, null, 100, 1, get_rand_frequency(), falloff = 5, S = far_smith_sound)
 
+		return
+
 	if(hingot && hingot.currecipe && hingot.currecipe.needed_item && istype(W, hingot.currecipe.needed_item))
 		hingot.currecipe.item_added(user)
 		qdel(W)
