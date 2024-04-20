@@ -34,14 +34,13 @@
 	if(prob(proab))
 		moveup = 0
 	progress = min(progress + moveup, 100)
-	if(progress == 100)
-		if(additional_items.len)
-			needed_item = pick(additional_items)
-			var/obj/item/I = new needed_item()
-			needed_item_text = I.name
-			qdel(I)
-			additional_items -= needed_item
-			progress = 0
+	if(progress == 100 && additional_items.len)
+		needed_item = pick(additional_items)
+		var/obj/item/I = new needed_item()
+		needed_item_text = I.name
+		qdel(I)
+		additional_items -= needed_item
+		progress = 0
 	if(!moveup)
 		if(prob(round(proab/2)))
 			user.visible_message("<span class='warning'>[user] spoils the bar!</span>")

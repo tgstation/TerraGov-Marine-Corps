@@ -175,13 +175,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/icon/experimental_onhip = FALSE
 	var/icon/experimental_onback = FALSE
 
-	var/muteinmouth = TRUE //trying to emote or talk with this in our mouth makes us muffled
-	var/spitoutmouth = TRUE //using spit emote spits the item out of our mouth and falls out after some time
+	///trying to emote or talk with this in our mouth makes us muffled
+	var/muteinmouth = TRUE
+	///using spit emote spits the item out of our mouth and falls out after some time
+	var/spitoutmouth = TRUE
 
 	var/has_inspect_verb = FALSE
 
-	var/anvilrepair //this should be a skill path
-	var/sewrepair //this should be true or false
+	///The appropriate skill to repair this obj/item. If null, our object cannot be placed on an anvil to be repaired
+	var/anvilrepair
+	//this should be true or false
+	var/sewrepair
 
 	var/breakpath
 
@@ -192,7 +196,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/list/examine_effects = list()
 
-	var/list/blocksound //played when an item that is equipped blocks a hit
+	///played when an item that is equipped blocks a hit
+	var/list/blocksound 
 
 /obj/item/New()
 	..()

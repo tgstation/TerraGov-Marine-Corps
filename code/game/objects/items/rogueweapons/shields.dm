@@ -25,6 +25,7 @@
 	attacked_sound = "parrywood"
 	max_integrity = 150
 	blade_dulling = DULLING_BASHCHOP
+	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/rogueweapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the projectile", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)

@@ -1,7 +1,7 @@
 
 /obj/item/rogueweapon/hammer
 	force = 21
-	possible_item_intents = list(/datum/intent/mace/strike,/datum/intent/mace/smash)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 	name = "hammer"
 	desc = ""
 	icon_state = "hammer"
@@ -14,9 +14,13 @@
 	associated_skill = /datum/skill/combat/axesmaces
 	smeltresult = /obj/item/ingot/iron
 
-/obj/proc/unbreak()
-	return
+/obj/item/rogueweapon/hammer/attack_obj(obj/attacked_object, mob/living/user)
+	if(!isliving(user) || !user.mind)
+		return
+	var/datum/mind/blacksmith_mind = user.mind
+	var/repair_percent = 0.05 // 5% Repairing per hammer smack
 
+<<<<<<< Updated upstream
 /atom/proc/onanvil()
 	if(!isturf(src.loc))
 		return FALSE
@@ -52,21 +56,40 @@
 			else
 				user.visible_message("<span class='warning'>[user] damages [I]!</span>")
 				I.take_damage(5, BRUTE, "melee")
+=======
+	if(isitem(attacked_object))
+		var/obj/item/attacked_item = attacked_object
+		if(!attacked_item.anvilrepair || !attacked_item.max_integrity)
+>>>>>>> Stashed changes
 			return
-	if(isstructure(O))
-		var/obj/structure/I = O
-		if(I.hammer_repair && I.max_integrity && !I.obj_broken)
-			var/repair_percent = 0.05
-			if(user.mind)
-				if(user.mind.get_skill_level(I.hammer_repair) <= 0)
-					to_chat(user, "<span class='warning'>I don't know how to repair this..</span>")
-					return
-				repair_percent = max(user.mind.get_skill_level(I.hammer_repair) * 0.05, 0.05)
-			repair_percent = repair_percent * I.max_integrity
-			I.obj_integrity = min(obj_integrity+repair_percent, I.max_integrity)
-			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
-			user.visible_message("<span class='info'>[user] repairs [I]!</span>")
+		if(!isturf(attacked_item.loc))
 			return
+
+		if(blacksmith_mind.get_skill_level(attacked_item.anvilrepair) > 0)
+			// People with maximum repairing skill will insta-fix anything in a single swing (3.4 * 6 * 0.05 = 1.02)
+			repair_percent *= 3.4 * blacksmith_mind.get_skill_level(attacked_item.anvilrepair) 
+
+		playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
+		repair_percent *= attacked_item.max_integrity
+		attacked_item.obj_integrity = min(obj_integrity+repair_percent, attacked_item.max_integrity)
+		user.visible_message("<span class='info'>[user] repairs [attacked_item]!</span>")
+		blacksmith_mind.adjust_experience(attacked_item.anvilrepair, repair_percent) //We gain as much exp as we fix
+		return
+
+	if(isstructure(attacked_object))
+		var/obj/structure/attacked_structure = attacked_object
+		if(!attacked_structure.hammer_repair || !attacked_structure.max_integrity)
+			return
+		if(blacksmith_mind.get_skill_level(attacked_structure.hammer_repair) <= 0)
+			to_chat(user, "<span class='warning'>I don't know how to repair this..</span>")
+			return
+		repair_percent *= blacksmith_mind.get_skill_level(attacked_structure.hammer_repair) * attacked_structure.max_integrity
+		attacked_structure.obj_integrity = min(attacked_structure.obj_integrity + repair_percent, attacked_structure.max_integrity)
+		blacksmith_mind.adjust_experience(attacked_structure.hammer_repair, repair_percent) //We gain as much exp as we fix
+		playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
+		user.visible_message("<span class='info'>[user] repairs [attacked_structure]!</span>")
+		return
+
 	..()
 
 /obj/item/rogueweapon/hammer/claw

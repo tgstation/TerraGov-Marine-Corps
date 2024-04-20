@@ -23,6 +23,7 @@
 	throwforce = 12
 	wdefense = 3
 	thrown_bclass = BCLASS_CUT
+	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 
 
@@ -153,12 +154,12 @@
 	name = "dagger"
 	desc = ""
 	icon_state = "idagger"
-	smeltresult = null
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/huntingknife/idagger/steel
 	name = "dagger"
 	icon_state = "sdagger"
-	smeltresult = null
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/special
 	icon_state = "sdaggeralt"
@@ -168,6 +169,7 @@
 	icon_state = "sildagger"
 	smeltresult = null
 	sellprice = 50
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
