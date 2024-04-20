@@ -6,6 +6,7 @@
 	icon_state = "hollow"
 	gender = NEUTER
 	pass_flags = PASSTABLE
+	var/owned_lantern = null
 	mob_biotypes = MOB_SPIRIT|MOB_HUMANOID
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	bodyparts = list(/obj/item/bodypart/chest/spirit, /obj/item/bodypart/head/spirit, /obj/item/bodypart/l_arm/spirit,
@@ -53,9 +54,13 @@
 	create_internal_organs()
 	. = ..()
 	var/L = new /obj/item/flashlight/lantern/shrunken(src.loc)
+	owned_lantern = L
 	put_in_hands(L)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
 	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 15 MINUTES)
+
+/mob/living/carbon/spirit/IgniteMob() // Override so they don't catch on fire.
+	return
 
 /mob/living/carbon/spirit/proc/give_patron_toll()
 	if(QDELETED(src) || paid)
@@ -82,6 +87,8 @@
 	..()
 
 /mob/living/carbon/spirit/Destroy()
+	if(owned_lantern)
+		qdel(owned_lantern)
 	return ..()
 
 /mob/living/carbon/spirit/updatehealth()
