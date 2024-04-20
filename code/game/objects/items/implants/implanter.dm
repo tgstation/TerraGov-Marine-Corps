@@ -92,3 +92,7 @@
 	if(!.)
 		return
 	qdel(src)
+
+/obj/item/implanter/jump_mod
+	name = "fortified ankles implant"
+	imp = /obj/item/implant/jump_mod

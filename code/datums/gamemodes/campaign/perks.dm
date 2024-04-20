@@ -58,6 +58,18 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/proc/remove_perk(mob/living/carbon/owner)
 	return
 
+///Overhead animation to indicate a perk has been unlocked
+/datum/perk/proc/unlock_animation(mob/living/carbon/owner)
+	var/obj/effect/overlay/perk/perk_animation = new
+	owner.vis_contents += perk_animation
+	flick(ui_icon, perk_animation)
+	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 0.9 SECONDS, TIMER_CLIENT_TIME)
+
+///callback for removing the eye from viscontents
+/datum/perk/proc/remove_unlock_animation(mob/living/carbon/owner, obj/effect/overlay/perk/perk_animation)
+	owner.vis_contents -= perk_animation
+	qdel(perk_animation)
+
 /datum/perk/shield_overclock
 	name = "Shield overlock"
 	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of burning out sensitive components after weeks of use instead of months. \
@@ -447,3 +459,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
 	unlock_cost = 800
+
+/obj/effect/overlay/perk
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon = 'icons/effects/perk_unlock.dmi'
+	icon_state = ""
+	pixel_x = 8
+	pixel_y = 32
