@@ -117,7 +117,6 @@
 	var/atom/movable/movable_parent = parent
 	if (isnull(dir))
 		dir = movable_parent.dir
-	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
 	for(var/mob/buckled_mob AS in movable_parent.buckled_mobs)
 		ride_check(buckled_mob)
 	if(QDELETED(src))
@@ -205,9 +204,10 @@
 	return TRUE
 
 /// Every time the driver tries to move, this is called to see if they can actually drive and move the vehicle (via relaymove)
-/datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	SIGNAL_HANDLER
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	movable_parent.set_glide_size(glide_size_override ? glide_size_override : DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
 
 /// Calculates the additional delay to moving
 /datum/component/riding/proc/calculate_additional_delay(mob/living/user)
