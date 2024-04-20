@@ -12,12 +12,14 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/ghost_up,
 	/client/proc/ghost_down,
 	/client/proc/jumptoarea,
-	/client/proc/jumptokey,				
+	/client/proc/jumptokey,
 	/client/proc/jumptomob,
 	/client/proc/returntolobby,
 	/datum/verbs/menu/Admin/verb/playerpanel,
 	/client/proc/check_antagonists,
-	/client/proc/cmd_admin_say			
+	/client/proc/cmd_admin_say,
+	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
+	/client/proc/set_context_menu_enabled,
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -25,8 +27,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	return list(
 	/client/proc/adjusttriumph,
 	/client/proc/end_party,
-	/client/proc/set_context_menu_enabled,
-	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
