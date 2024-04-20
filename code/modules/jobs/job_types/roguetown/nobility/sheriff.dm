@@ -21,6 +21,7 @@
 	..()
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff
+	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	backr = /obj/item/storage/backpack/rogue/satchel
