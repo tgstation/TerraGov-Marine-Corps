@@ -68,86 +68,88 @@
 /obj/structure/closet/dirthole/toggle(mob/living/user)
 	return
 
-/obj/structure/closet/dirthole/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/rogueweapon/shovel))
-		var/obj/item/rogueweapon/shovel/S = W
-		if(user.used_intent.type == /datum/intent/shovelscoop)
-			if(S.heldclod)
-				playsound(loc,'sound/items/empty_shovel.ogg', 100, TRUE)
-				QDEL_NULL(S.heldclod)
-				if(stage == 3) //close grave
-					stage = 4
-					climb_offset = 10
-					locked = TRUE
-					close()
-					var/founds
-					for(var/atom/A in contents)
-						founds = TRUE
-						break
-					if(!founds)
-						stage = 2
-						climb_offset = 0
-						locked = FALSE
-						open()
-					update_icon()
-				else if(stage < 4)
-					stage--
-					climb_offset = 0
-					update_icon()
-					if(stage == 0)
-						qdel(src)
-				S.update_icon()
+/obj/structure/closet/dirthole/attackby(obj/item/attacking_item, mob/user, params)
+	if(!istype(attacking_item, /obj/item/rogueweapon/shovel))
+		return ..()
+	var/obj/item/rogueweapon/shovel/attacking_shovel = attacking_item
+	if(user.used_intent.type != /datum/intent/shovelscoop)
+		return
+
+	if(attacking_shovel.heldclod)
+		playsound(loc,'sound/items/empty_shovel.ogg', 100, TRUE)
+		QDEL_NULL(attacking_shovel.heldclod)
+		if(stage == 3) //close grave
+			stage = 4
+			climb_offset = 10
+			locked = TRUE
+			close()
+			var/founds
+			for(var/atom/A in contents)
+				founds = TRUE
+				break
+			if(!founds)
+				stage = 2
+				climb_offset = 0
+				locked = FALSE
+				open()
+			update_icon()
+		else if(stage < 4)
+			stage--
+			climb_offset = 0
+			update_icon()
+			if(stage == 0)
+				qdel(src)
+		attacking_shovel.update_icon()
+		return
+	else
+		if(stage == 3)
+			var/turf/underT = get_step_multiz(src, DOWN)
+			if(underT && isopenturf(underT) && mastert)
+				attacking_shovel.heldclod = new(attacking_shovel)
+				attacking_shovel.update_icon()
+				playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
+				mastert.ChangeTurf(/turf/open/transparent/openspace)
 				return
-			else
-				if(stage == 3)
-					var/turf/underT = get_step_multiz(src, DOWN)
-					if(underT && isopenturf(underT) && mastert)
-						S.heldclod = new(S)
-						S.update_icon()
-						playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
-						mastert.ChangeTurf(/turf/open/transparent/openspace)
-						return
 //					for(var/D in GLOB.cardinals)
 //						var/turf/T = get_step(mastert, D)
 //						if(T)
 //							if(istype(T, /turf/open/water))
-//								S.heldclod = new(S)
-//								S.update_icon()
+//								attacking_shovel.heldclod = new(attacking_shovel)
+//								attacking_shovel.update_icon()
 //								playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
 //								mastert.ChangeTurf(T.type, flags = CHANGETURF_INHERIT_AIR)
 //								return
-					to_chat(user, "<span class='warning'>I can't dig myself any deeper.</span>")
-					return
-				var/used_str = 10
-				if(iscarbon(user))
-					var/mob/living/carbon/C = user
-					if(C.domhand)
-						used_str = C.get_str_arms(C.used_hand)
-					C.rogfat_add(max(60 - (used_str * 5), 1))
-				if(stage < 3)
-					if(faildirt < 2)
-						if(prob(used_str * 5))
-							stage++
-						else
-							faildirt++
-					else
-						stage++
-				if(stage == 4)
-					stage = 3
-					climb_offset = 0
-					locked = FALSE
-					open()
-					for(var/obj/structure/gravemarker/G in loc)
-						qdel(G)
-						if(isliving(user))
-							var/mob/living/L = user
-							L.apply_status_effect(/datum/status_effect/debuff/cursed)
-				update_icon()
-				S.heldclod = new(S)
-				S.update_icon()
-				playsound(loc,'sound/items/dig_shovel.ogg', 100, TRUE)
-				return
-	..()
+			to_chat(user, "<span class='warning'>I can't dig myself any deeper.</span>")
+			return
+		var/used_str = 10
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			if(C.domhand)
+				used_str = C.get_str_arms(C.used_hand)
+			C.rogfat_add(max(60 - (used_str * 5), 1))
+		if(stage < 3)
+			if(faildirt < 2)
+				if(prob(used_str * 5))
+					stage++
+				else
+					faildirt++
+			else
+				stage++
+		if(stage == 4)
+			stage = 3
+			climb_offset = 0
+			locked = FALSE
+			open()
+			for(var/obj/structure/gravemarker/G in loc)
+				qdel(G)
+				if(isliving(user))
+					var/mob/living/L = user
+					L.apply_status_effect(/datum/status_effect/debuff/cursed)
+		update_icon()
+		attacking_shovel.heldclod = new(attacking_shovel)
+		attacking_shovel.update_icon()
+		playsound(loc,'sound/items/dig_shovel.ogg', 100, TRUE)
+		return
 
 /datum/status_effect/debuff/cursed
 	id = "cursed"
@@ -220,12 +222,10 @@
 	for(var/obj/structure/closet/crate/coffin/C in contents)
 		for(var/mob/living/carbon/human/D in C.contents)
 			D.buried = TRUE
-
-
-
 	opened = FALSE
 //	update_icon()
 	return TRUE
+
 /obj/structure/closet/dirthole/dump_contents()
 	for(var/mob/A in contents)
 		if((!A.stat) && (istype(A, /mob/living/carbon/human)))
