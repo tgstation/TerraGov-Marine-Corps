@@ -20,47 +20,9 @@
 	var/datum/mind/blacksmith_mind = user.mind
 	var/repair_percent = 0.05 // 5% Repairing per hammer smack
 
-<<<<<<< Updated upstream
-/atom/proc/onanvil()
-	if(!isturf(src.loc))
-		return FALSE
-	for(var/obj/machinery/anvil/T in src.loc)
-		return TRUE
-	return FALSE
-
-/obj/structure
-	var/hammer_repair
-
-/obj/item/rogueweapon/hammer/attack_obj(obj/O, mob/living/user)
-	if(isitem(O))
-		var/obj/item/I = O
-		if(I.anvilrepair && I.max_integrity && !I.obj_broken)
-//			if(!I.onanvil())
-//				return ..()
-			if(!isturf(I.loc))
-				return
-			var/repair_percent = 0.05
-			if(user.mind)
-				if(user.mind.get_skill_level(I.anvilrepair) <= 0)
-					if(prob(30))
-						repair_percent = 0.01
-					else
-						repair_percent = 0
-				else
-					repair_percent = max(user.mind.get_skill_level(I.anvilrepair) * 0.03, 0.01)
-			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
-			if(repair_percent)
-				repair_percent = repair_percent * I.max_integrity
-				I.obj_integrity = min(I.obj_integrity+repair_percent, I.max_integrity)
-				user.visible_message("<span class='info'>[user] repairs [I]!</span>")
-			else
-				user.visible_message("<span class='warning'>[user] damages [I]!</span>")
-				I.take_damage(5, BRUTE, "melee")
-=======
 	if(isitem(attacked_object))
 		var/obj/item/attacked_item = attacked_object
 		if(!attacked_item.anvilrepair || !attacked_item.max_integrity)
->>>>>>> Stashed changes
 			return
 		if(!isturf(attacked_item.loc))
 			return

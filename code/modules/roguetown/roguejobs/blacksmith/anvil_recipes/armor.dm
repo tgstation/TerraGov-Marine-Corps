@@ -49,29 +49,6 @@
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 
-<<<<<<< Updated upstream
-/datum/anvil_recipe/armor/chaincoif
-	name = "chain coif"
-	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/neck/roguetown/chaincoif)
-
-/datum/anvil_recipe/armor/chainglove
-	name = "chain gauntlets"
-	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/gloves/roguetown/chain)
-
-/datum/anvil_recipe/armor/plateglove
-	name = "plate gauntlets"
-	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/gloves/roguetown/plate)
-
-/datum/anvil_recipe/armor/chainleg
-	name = "chain chausses"
-	req_bar = /obj/item/ingot/steel
-	created_item = list(/obj/item/clothing/under/roguetown/chainlegs)
-
-=======
->>>>>>> Stashed changes
 /datum/anvil_recipe/armor/plate
 	name = "half-plate armor (+3 steel)"
 	req_bar = /obj/item/ingot/steel
@@ -118,20 +95,12 @@
 /datum/anvil_recipe/armor/platebracer
 	name = "plate bracers"
 	req_bar = /obj/item/ingot/steel
-<<<<<<< Updated upstream
-	created_item = list(/obj/item/clothing/wrists/roguetown/bracers)
-=======
 	created_item = /obj/item/clothing/wrists/roguetown/bracers
->>>>>>> Stashed changes
 
 /datum/anvil_recipe/armor/helmetnasal
 	name = "steel helmet"
 	req_bar = /obj/item/ingot/steel
-<<<<<<< Updated upstream
-	created_item = list(/obj/item/clothing/head/roguetown/helmet)
-=======
 	created_item = /obj/item/clothing/head/roguetown/helmet
->>>>>>> Stashed changes
 
 /datum/anvil_recipe/armor/bervor
 	name = "steel bervor"
