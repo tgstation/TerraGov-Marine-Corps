@@ -15,9 +15,10 @@
 	shoes = /obj/item/clothing/shoes/roguetown/nobleboot
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	armor = /obj/item/clothing/suit/roguetown/armor/heartfelt/hand
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
 	beltl = /obj/item/rogueweapon/sword/decorated
+	beltr /obj/item/rogueweapon/huntingknife
 	backr = /obj/item/storage/backpack/rogue/satchel/heartfelt
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	id = /obj/item/scomstone

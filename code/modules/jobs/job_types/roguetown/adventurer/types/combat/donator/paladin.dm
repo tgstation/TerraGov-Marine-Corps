@@ -39,9 +39,11 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather/hand
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+	beltr = /obj/item/rogueweapon/huntingknife
 	id = /obj/item/clothing/ring/silver
 	cloak = /obj/item/clothing/cloak/tabard/crusader
-	backl = /obj/item/rogueweapon/sword
+	backr = /obj/item/rogueweapon/sword
+	backl = /obj/item/storage/backpack/rogue/satchel
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)

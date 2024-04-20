@@ -20,7 +20,8 @@
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	backl = /obj/item/storage/backpack/rogue/satchel
 	beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor	
+	beltl = /obj/item/rogueweapon/huntingknife
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor	
 	r_hand = /obj/item/rogueweapon/woodstaff
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)

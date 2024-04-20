@@ -42,8 +42,9 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather
-	beltr = /obj/item/rogueweapon/mace
+	beltr = /obj/item/rogueweapon/huntingknife
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+	backr = /obj/item/rogueweapon/mace
 	backl = /obj/item/storage/backpack/rogue/satchel
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 4, TRUE)
