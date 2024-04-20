@@ -18,7 +18,7 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
 	beltl = /obj/item/rogueweapon/sword/decorated
-	beltr /obj/item/rogueweapon/huntingknife
+	beltr = /obj/item/rogueweapon/huntingknife
 	backr = /obj/item/storage/backpack/rogue/satchel/heartfelt
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	id = /obj/item/scomstone
