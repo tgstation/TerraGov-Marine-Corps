@@ -1,6 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Gave the tank and apc the ability to honk a horn"
-  - soundadd: "added sound/vehicles/horns/armored_horn.ogg"
-  - imageadd: "re-added a horn ability icon sprite"

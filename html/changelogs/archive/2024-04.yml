@@ -340,3 +340,11 @@
 2024-04-19:
   ivanmixo:
   - bugfix: Valhalla xenos can use directional attacks on the puppets they spawn now
+2024-04-20:
+  Lumipharon:
+  - rscadd: Added a jump mod implant, currently admin only
+  - qol: 'Campaign: Unlocking a perk players a sound and overhead animation'
+  Wisemonster:
+  - rscadd: Gave the tank and apc the ability to honk a horn
+  - soundadd: added sound/vehicles/horns/armored_horn.ogg
+  - imageadd: re-added a horn ability icon sprite
