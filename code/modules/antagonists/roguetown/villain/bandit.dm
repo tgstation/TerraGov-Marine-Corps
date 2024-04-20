@@ -70,7 +70,7 @@
 		H.set_species(/datum/species/human/northern) //setspecies randomizes body
 		H.after_creation()
 //		H.real_name = H.client.prefs.pref_species.random_name(MALE,1) //set_species randomizes name
-	H.cmode_music = 'sound/music/combat_weird.ogg'
+	H.cmode_music = 'sound/music/combatbandit.ogg'
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "BANDIT"), 5 SECONDS)
 //	H.job = "Bandit"
@@ -118,7 +118,7 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	beltl = /obj/item/quiver/bolts
-	head = /obj/item/clothing/head/roguetown/menacing/bandit
+	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	H.change_stat("strength", 3)
 	H.change_stat("endurance", 2)
 	H.change_stat("constitution", 1)
