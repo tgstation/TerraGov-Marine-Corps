@@ -56,6 +56,7 @@
 #include "connect_loc.dm"
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "focus_only_tests.dm"
 #include "implanting.dm"
 #include "item_variant_test.dm"
 #include "keybinding_init.dm"
@@ -81,5 +82,5 @@
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
 #undef TEST_ASSERT_NOTEQUAL
-//#undef TEST_FOCUS
+//#undef TEST_FOCUS - This define is used by vscode unit test extension to pick specific unit tests to run and appended later so needs to be used out of scope here
 #endif
