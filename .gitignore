@@ -221,3 +221,5 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 !/config/title_screens/images/exclude
 /data/triumphs.sav
 config/admins.txt
+cfg/admin.txt
+config/admins.txt

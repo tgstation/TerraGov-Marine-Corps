@@ -4,7 +4,7 @@
 	department_flag = GARRISON
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 8
+	spawn_positions = 10
 	selection_color = JCOLOR_SOLDIER
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list("Humen",
@@ -76,12 +76,12 @@
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
 /datum/outfit/job/roguetown/guardsman/proc/assign_skills(mob/living/carbon/human/bogger)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
+	bogger.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+	bogger.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	bogger.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
