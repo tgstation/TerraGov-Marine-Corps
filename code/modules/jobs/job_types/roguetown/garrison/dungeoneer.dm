@@ -3,7 +3,7 @@
 	flag = DUNGEONEER
 	department_flag = GARRISON
 	faction = "Station"
-	total_positions = 0
+	total_positions = 1
 	spawn_positions = 1
 
 	allowed_races = list("Humen",
