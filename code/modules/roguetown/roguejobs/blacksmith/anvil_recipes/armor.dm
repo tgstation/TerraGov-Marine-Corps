@@ -2,39 +2,39 @@
 	appro_skill = /datum/skill/craft/armorsmithing
 
 /datum/anvil_recipe/armor/ichainmail
-	name = "2x chainmail"
+	name = "chainmail"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/suit/roguetown/armor/chainmail/iron, /obj/item/clothing/suit/roguetown/armor/chainmail/iron)
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 
 /datum/anvil_recipe/armor/ichaincoif
-	name = "2x chain coif"
+	name = "chain coif"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/neck/roguetown/chaincoif/iron, /obj/item/clothing/neck/roguetown/chaincoif/iron)
+	created_item = /obj/item/clothing/neck/roguetown/chaincoif/iron
 
 /datum/anvil_recipe/armor/gorget
-	name = "2x iron gorget"
+	name = "iron gorget"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/neck/roguetown/gorget, /obj/item/clothing/neck/roguetown/gorget)
+	created_item = /obj/item/clothing/neck/roguetown/gorget
 
 /datum/anvil_recipe/armor/ichainglove
-	name = "2x chain gauntlets"
+	name = "chain gauntlets"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/gloves/roguetown/chain/iron, /obj/item/clothing/gloves/roguetown/chain/iron)
+	created_item = /obj/item/clothing/gloves/roguetown/chain/iron
 
 /datum/anvil_recipe/armor/ichainleg
-	name = "2x chain chausses"
+	name = "chain chausses"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/under/roguetown/chainlegs/iron, /obj/item/clothing/under/roguetown/chainlegs/iron)
+	created_item = /obj/item/clothing/under/roguetown/chainlegs/iron
 
 /datum/anvil_recipe/armor/platemask
-	name = "2x iron mask"
+	name = "iron mask"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/mask/rogue/facemask, /obj/item/clothing/mask/rogue/facemask)
+	created_item = /obj/item/clothing/mask/rogue/facemask
 
 /datum/anvil_recipe/armor/skullcap
-	name = "2x iron skullcap"
+	name = "iron skullcap"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/clothing/head/roguetown/helmet/skullcap, /obj/item/clothing/head/roguetown/helmet/skullcap)
+	created_item = /obj/item/clothing/head/roguetown/helmet/skullcap
 
 // --------- STEEL -----------
 

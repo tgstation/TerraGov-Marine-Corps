@@ -1,17 +1,17 @@
 /datum/anvil_recipe/weapons
 	appro_skill = /datum/skill/craft/weaponsmithing  // inheritance yay !!
 
-/// BASIC WEAPONS 
+/// BASIC WEAPONS
 
 /datum/anvil_recipe/weapons/isword
-	name = "2x iron sword"
+	name = "iron sword"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/rogueweapon/sword/iron, /obj/item/rogueweapon/sword/iron)
+	created_item = /obj/item/rogueweapon/sword/iron
 
 /datum/anvil_recipe/weapons/idagger
-	name = "2x iron dagger"
+	name = "iron dagger"
 	req_bar = /obj/item/ingot/iron
-	created_item = list(/obj/item/rogueweapon/huntingknife/idagger, /obj/item/rogueweapon/huntingknife/idagger)
+	created_item = /obj/item/rogueweapon/huntingknife/idagger
 
 /datum/anvil_recipe/weapons/sdagger
 	name = "steel dagger"
