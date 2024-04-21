@@ -82,7 +82,7 @@
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.xeno_flags ^= XENO_ROUNY
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
 
 
 /datum/admins/proc/hive_status()
