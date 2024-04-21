@@ -82,7 +82,7 @@
 
 /obj/effect/proc_holder/spell/self/bogconvert/cast(list/targets,mob/user = usr)
 	. = ..()
-	var/list/targets = list()
+	var/list/recruitment = list()
 	for(var/mob/living/carbon/human/not_bogged in get_hearers_in_view(3, user))
 		//need a mind
 		if(!not_bogged.mind)
@@ -95,13 +95,13 @@
 		//need to see their damn face
 		if(!not_bogged.get_face_name(null))
 			continue
-		targets[not_bogged.name] = not_bogged
-	if(!length(targets))
+		recruitment[not_bogged.name] = not_bogged
+	if(!length(recruitment))
 		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
 		return
-	var/inputty = input("Select a potential bogman!", "BOGMASTER") as text|null in targets
+	var/inputty = input("Select a potential bogman!", "BOGMASTER") as anything in recruitment
 	if(inputty)
-		var/mob/living/carbon/human/bogman = targets[inputty]
+		var/mob/living/carbon/human/bogman = recruitment[inputty]
 		if(!QDELETED(bogman) && (bogman in get_hearers_in_view(3, user)))
 			INVOKE_ASYNC(src, PROC_REF(convert), bogman, user)
 	else

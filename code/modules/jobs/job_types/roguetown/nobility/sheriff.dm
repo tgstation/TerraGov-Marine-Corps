@@ -66,7 +66,7 @@
 
 /obj/effect/proc_holder/spell/self/guardconvert/cast(list/targets,mob/user = usr)
 	. = ..()
-	var/list/targets = list()
+	var/list/recruitment = list()
 	for(var/mob/living/carbon/human/not_guard in get_hearers_in_view(3, user))
 		//need a mind
 		if(!not_guard.mind)
@@ -79,13 +79,13 @@
 		//need to see their damn face
 		if(!not_guard.get_face_name(null))
 			continue
-		targets[not_guard.name] = not_guard
-	if(!length(targets))
+		recruitment[not_guard.name] = not_guard
+	if(!length(recruitment))
 		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
 		return
-	var/inputty = input("Select a potential guardsman!", "SHERIFF") as text|null in targets
+	var/inputty = input("Select a potential guardsman!", "SHERIFF") as anything in targets
 	if(inputty)
-		var/mob/living/carbon/human/guardsman = targets[inputty]
+		var/mob/living/carbon/human/guardsman = recruitment[inputty]
 		if(!QDELETED(guardsman) && (guardsman in get_hearers_in_view(3, user)))
 			INVOKE_ASYNC(src, PROC_REF(convert), guardsman, user)
 	else
