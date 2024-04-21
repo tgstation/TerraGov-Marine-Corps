@@ -433,15 +433,10 @@
 
 /datum/config_entry/string/chat_announce_new_game
 	config_entry_value = null
-	deprecated_by = /datum/config_entry/string/channel_announce_new_game
 
 
 /datum/config_entry/string/channel_announce_new_game_message
 	default = null
-
-/datum/config_entry/string/channel_announce_new_game
-	default = null
-
 
 /datum/config_entry/flag/debug_admin_hrefs
 
