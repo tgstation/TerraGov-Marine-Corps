@@ -27,7 +27,7 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	backl = /obj/item/storage/backpack/rogue/satchel
-	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
 	mouth = /obj/item/clothing/mask/cigarette/pipe/westman
 	if(H.gender == FEMALE)
@@ -36,6 +36,7 @@
 		pants = null
 	backpack_contents = list(/obj/item/seeds/wheat=1,/obj/item/seeds/apple=1,/obj/item/ash=1)
 	beltl = /obj/item/rogueweapon/sickle
+	beltr = /obj/item/flint
 	backr = /obj/item/rogueweapon/hoe
 	H.change_stat("strength", 1)
 	H.change_stat("speed", -1)

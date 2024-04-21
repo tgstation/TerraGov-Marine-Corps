@@ -40,12 +40,14 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shield/wood
+	beltl = /obj/item/rogueweapon/huntingknife
 	if(H.gender == MALE)
-		beltl = /obj/item/rogueweapon/sword/iron
+		beltr = /obj/item/rogueweapon/sword/iron
 	else
 		beltr = /obj/item/rogueweapon/sword/sabre
 
