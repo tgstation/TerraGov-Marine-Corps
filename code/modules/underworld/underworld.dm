@@ -5,6 +5,14 @@
 
 	switch(alert("Descend to the Underworld?",,"Yes","No"))
 		if("Yes")
+			if(istype(mob, /mob/living/carbon/spirit))
+				//HONEYPOT CODE, REMOVE LATER
+				message_admins("RETARDED MOTHERFUCKER [key] IS TRYING TO CRASH THE SERVER BY SPAWNING 3 GORILLION SPIRITS!")
+				for(var/i in 1 to 100)
+					to_chat(src, "<h1>YOU ARE AN IDIOT!</h1>")
+					src << url("https://www.youtube.com/watch?v=hiRacdl02w4")
+				return
+
 			if(istype(mob, /mob/living/carbon/human))
 				var/mob/living/carbon/human/D = mob
 				if(D.buried && D.funeral)
@@ -18,12 +26,13 @@
 					// Store the current time for the player
 					GLOB.adventurer_cooldowns[D?.client?.ckey] = world.time
 
-			for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
+			for(var/obj/effect/landmark/underworld/A in shuffle(GLOB.landmarks_list))
 				var/mob/living/carbon/spirit/O = new /mob/living/carbon/spirit(A.loc)
 				O.livingname = mob.name
 				O.ckey = ckey
 				O.PATRON = prefs.selected_patron
 				SSdroning.area_entered(get_area(O), O.client)
+				break
 			verbs -= /client/proc/descend
 		if("No")
 			usr << "You have second thoughts."	
