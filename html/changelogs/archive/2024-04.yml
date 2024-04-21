@@ -310,3 +310,56 @@
   - rscadd: Add ghosts can now examine miners
   novaepee:
   - bugfix: fix rogue pixel on mjolnir
+2024-04-16:
+  MLGTASTICa:
+  - bugfix: fixed people being invincible to acid if they wore anything with more
+      than 11 acid protection.
+  TiviPlus:
+  - bugfix: Big Red is now an actual desert for map variants
+  - rscadd: Adds APC and Transport Crewmen to the game
+2024-04-17:
+  Barnet2:
+  - code_imp: Robot, non-modular jaegar and xenonauten use armor defines
+  - rscdel: Removes the stalemate system
+  Lumipharon:
+  - code_imp: Cleaned up some sword code
+  TiviPlus:
+  - bugfix: Tank treads movement animation fixed
+  XElectricX:
+  - bugfix: Interactive emotes work.
+2024-04-18:
+  Barnet2:
+  - admin: Adds tactical binocular admin logging, improved fuel tank logging.
+  Lumipharon:
+  - qol: Screaming from fire is a bit less spammy
+  - bugfix: fixes another order exploit
+  - bugfix: fixed various implant bugs
+  - code_imp: Cleaned up various implant related code
+  coldironwarrior:
+  - rscadd: adds category tags to the specialist vendors
+2024-04-19:
+  ivanmixo:
+  - bugfix: Valhalla xenos can use directional attacks on the puppets they spawn now
+2024-04-20:
+  Lumipharon:
+  - rscadd: Added a jump mod implant, currently admin only
+  - qol: 'Campaign: Unlocking a perk players a sound and overhead animation'
+  Wisemonster:
+  - rscadd: Gave the tank and apc the ability to honk a horn
+  - soundadd: added sound/vehicles/horns/armored_horn.ogg
+  - imageadd: re-added a horn ability icon sprite
+2024-04-21:
+  BraveMole:
+  - rscadd: Bring back banelings as minions
+  Lauwma:
+  - balance: Adds the ar-55 back in leaders vendors.
+  Lumipharon:
+  - imageadd: Updated fire sprites
+  - bugfix: fixed vendors not showing points costs
+  RipGrayson:
+  - bugfix: Fixed area on Big Red causing linter failure.
+  Xander3359:
+  - rscadd: Ports the crafting system from TG
+  coldironwarrior:
+  - bugfix: the FC GHMME now vends the right injector pouch
+  - balance: medical rig belts now can hold soap

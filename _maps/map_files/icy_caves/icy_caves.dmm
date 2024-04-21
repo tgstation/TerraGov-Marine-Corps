@@ -6875,7 +6875,7 @@
 "JC" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
-/obj/item/weapon/katana,
+/obj/item/weapon/sword/katana,
 /obj/item/clothing/head/fedora,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)

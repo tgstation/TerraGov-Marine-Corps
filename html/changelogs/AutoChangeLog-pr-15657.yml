@@ -1,4 +1,0 @@
-author: "MLGTASTICa"
-delete-after: True
-changes:
-  - bugfix: "fixed people being invincible to acid if they wore anything with more than 11 acid protection."

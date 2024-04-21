@@ -15,7 +15,7 @@
 
 	// Both of these variables are mostly unused
 	/// the exact container path required for the reaction to happen
-	var/required_container
+	var/atom/required_container
 	/// an integer required for the reaction to happen
 	var/required_other = 0
 
