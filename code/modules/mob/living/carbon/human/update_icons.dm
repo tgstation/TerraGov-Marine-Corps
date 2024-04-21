@@ -144,20 +144,25 @@ There are several things that need to be remembered:
 			var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[BP.body_zone]_0[BP.burnstate]", -ARM_DAMAGE_LAYER)
 			armdam_overlays += armdam_overlay
 		var/checker = FALSE
-		if(BP.get_bleedrate())
-			checker = TRUE
-			if(BP.bandage)
-				var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[BP.body_zone]_b", -DAMAGE_LAYER)
-				damage_overlay.color = BP.bandage.color
-				damage_overlays += damage_overlay
-				var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[BP.body_zone]_b", -LEG_DAMAGE_LAYER)
-				legdam_overlay.color = BP.bandage.color
-				legdam_overlays += legdam_overlay
-				var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[BP.body_zone]_b", -ARM_DAMAGE_LAYER)
-				armdam_overlay.color = BP.bandage.color
-				armdam_overlays += armdam_overlay
-		for(var/datum/wound/W in BP.wounds)
-			if(!BP.skeletonized)
+		if(!BP.skeletonized)
+			if(BP.get_bleedrate())
+				checker = TRUE
+				if(BP.bandage)
+					var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[BP.body_zone]_b", -DAMAGE_LAYER)
+					damage_overlay.color = BP.bandage.color
+					damage_overlays += damage_overlay
+					var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[BP.body_zone]_b", -LEG_DAMAGE_LAYER)
+					legdam_overlay.color = BP.bandage.color
+					legdam_overlays += legdam_overlay
+					var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[BP.body_zone]_b", -ARM_DAMAGE_LAYER)
+					armdam_overlay.color = BP.bandage.color
+					armdam_overlays += armdam_overlay
+			var/list/wound_overlays_acquired = list()
+			for(var/datum/wound/ouchie in BP.wounds)
+				if(!ouchie.mob_overlay)
+					continue
+				wound_overlays_acquired |= ouchie.mob_overlay
+			for(var/wound_overlay in wound_overlays_acquired)
 				var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[BP.body_zone]_[W.mob_overlay]", -DAMAGE_LAYER)
 				damage_overlays += damage_overlay
 				var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[BP.body_zone]_[W.mob_overlay]", -LEG_DAMAGE_LAYER)
