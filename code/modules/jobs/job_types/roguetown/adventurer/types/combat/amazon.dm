@@ -20,11 +20,12 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
-	belt = /obj/item/storage/belt/rogue/leather/rope
+	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
+	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+	beltl = /obj/item/rogueweapon/huntingknife
 	shoes = /obj/item/clothing/shoes/roguetown/gladiator
-	if(prob(44))
-		backr = /obj/item/storage/backpack/rogue/satchel
+	backl = /obj/item/storage/backpack/rogue/satchel
 	if(prob(23))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather
 	if(prob(23))
@@ -42,8 +43,9 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 	H.change_stat("strength", 2)
 	H.change_stat("intelligence", -3)
-	H.change_stat("perception", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("constitution", 2)
+	H.change_stat("perception", 2)
+	H.change_stat("endurance", 2)
 	H.change_stat("speed", 1)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, RTRAIT_MEDIUMARMOR, TRAIT_GENERIC)

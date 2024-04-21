@@ -69,6 +69,14 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 1
 
+/datum/crafting_recipe/roguetown/sewing/stabard/guard
+	name = "guard surcoat"
+	result = list(/obj/item/clothing/cloak/stabard/guard)
+
+/datum/crafting_recipe/roguetown/sewing/stabard/bog
+	name = "bog surcoat"
+	result = list(/obj/item/clothing/cloak/stabard/bog)
+
 /datum/crafting_recipe/roguetown/sewing/jupon
 	name = "jupon"
 	result = list(/obj/item/clothing/cloak/stabard/surcoat)

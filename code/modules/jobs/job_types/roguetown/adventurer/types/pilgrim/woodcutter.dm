@@ -34,6 +34,8 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut
+	beltl = /obj/item/rogueweapon/huntingknife
+	backpack_contents = list(/obj/item/flint = 1)
 	H.change_stat("strength", 1)
 	H.change_stat("intelligence", -2)
 	H.change_stat("speed", -1)

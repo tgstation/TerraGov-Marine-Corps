@@ -146,6 +146,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Castle Guard"
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/bogmaster
+	name = "Bog Master"
+	icon_state = "arrow"
+
+/obj/effect/landmark/start/bogguardsman
+	name = "Bog Guard"
+	icon_state = "arrow"
+
 /obj/effect/landmark/start/veteran
 	name = "Veteran"
 	icon_state = "arrow"

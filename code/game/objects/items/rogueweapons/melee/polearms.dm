@@ -108,7 +108,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = null
+	slot_flags = ITEM_SLOT_BACK
 	minstr = 8
 	max_blade_int = 100
 	smeltresult = /obj/item/ingot/iron
@@ -151,7 +151,6 @@
 	bigboy = TRUE
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
-	slot_flags = ITEM_SLOT_BACK
 	minstr = 6
 	max_blade_int = 50
 	smeltresult = null
@@ -179,7 +178,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = null
+	slot_flags = ITEM_SLOT_BACK
 	minstr = 9
 	max_blade_int = 200
 	smeltresult = /obj/item/ingot/steel
@@ -225,7 +224,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = null
+	slot_flags = ITEM_SLOT_BACK
 	minstr = 11
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
@@ -270,7 +269,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = null
+	slot_flags = ITEM_SLOT_BACK
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords

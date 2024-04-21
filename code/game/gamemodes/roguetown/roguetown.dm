@@ -197,7 +197,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Knight")
 	var/num_bandits = 0
 	if(num_players() >= 10)
-		num_bandits = CLAMP(round(num_players() / 2), 1, 5)
+		num_bandits = CLAMP(round(num_players() / 2), 5, 8)
 		banditgoal += (num_bandits * rand(200,400))
 #ifdef TESTSERVER
 	num_bandits = 999
@@ -311,6 +311,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Cleric",
 	"Sheriff",
 	"Templar",
+	"Bog Guard",
+	"Bog Master",
 	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	var/datum/mind/villain = pick_n_take(antag_candidates)
@@ -351,6 +353,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Sheriff",
 	"Court Magician",
 	"Templar",
+	"Bog Guard",
+	"Bog Master",
 	"Knight")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	antag_candidates = shuffle(antag_candidates)
@@ -378,7 +382,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_werewolves()
-	restricted_jobs = list("Acolyte", "Templar", "Priest","Adventurer","Confessor","Town Guard","Veteran","Castle Guard","Sheriff","Knight")
+	restricted_jobs = list("Acolyte", "Templar", "Priest","Adventurer","Confessor","Town Guard","Veteran","Castle Guard","Sheriff","Knight","Bog Guard","Bog Master")
 /*	var/num_werewolves = rand(1,3)
 #ifdef TESTSERVER
 	num_werewolves = 100

@@ -269,6 +269,7 @@
 		L.update_inv_cloak()
 
 /obj/item/clothing/cloak/stabard/guard
+	name = "guard tabard"
 	desc = "A tabard with the lord's heraldic colors."
 	color = CLOTHING_RED
 	detail_tag = "_spl"
@@ -325,6 +326,12 @@
 /obj/item/clothing/cloak/stabard/guard/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
+
+/obj/item/clothing/cloak/stabard/bog
+	name = "bogman tabard"
+	desc = "A tabard colored in a sickly, disgusting green."
+	color = CLOTHING_GREEN
+	detail_color = CLOTHING_DARK_GREEN
 
 /obj/item/clothing/cloak/stabard/dungeon
 	color = CLOTHING_BLACK

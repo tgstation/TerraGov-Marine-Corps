@@ -24,7 +24,8 @@
 		belt = /obj/item/storage/belt/rogue/leather/rope
 		backl = /obj/item/fishingrod
 		beltr = /obj/item/cooking/pan
-		beltl = /obj/item/rogueweapon/huntingknife
+		mouth = /obj/item/rogueweapon/huntingknife
+		beltl = /obj/item/flint
 		backpack_contents = list(/obj/item/natural/worms = 2,/obj/item/rogueweapon/shovel/small=1)
 		if(H.mind)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
