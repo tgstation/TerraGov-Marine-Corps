@@ -87,7 +87,7 @@
 	if(prob(8))
 		H.STASTR = 18
 	else
-		H.STASTR = rand(12,16)
+		H.STASTR = rand(12,14)
 
 	if(prob(8))
 		H.STASPD = 7
