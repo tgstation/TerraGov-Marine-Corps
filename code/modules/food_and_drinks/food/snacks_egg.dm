@@ -16,7 +16,7 @@
 	trash = null
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("eggs" = 1)
-	name = "fryegg"
+	name = "fried egg"
 	desc = ""
 	icon_state = "friedegg"
 	foodtype = MEAT

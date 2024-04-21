@@ -20,7 +20,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak/fried
 	eat_effect = null
 	slices_num = 0
-	name = "frysteak"
+	name = "fried steak"
 	icon_state = "friedsteak"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	desc = ""
