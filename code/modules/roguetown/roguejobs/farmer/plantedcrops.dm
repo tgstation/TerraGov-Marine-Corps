@@ -26,7 +26,7 @@
 	///If our plant doesn't have direct access to the sky, it can't grow (nor can weeds)
 	var/seesky = TRUE
 	///PQ gain per crop farmed, should be a very stupidly small amount
-	var/crop_pq = 1/25
+	var/crop_pq = 0.01
 
 /obj/machinery/crop/Crossed(atom/movable/moveable_atom)
 	if(isliving(moveable_atom))
