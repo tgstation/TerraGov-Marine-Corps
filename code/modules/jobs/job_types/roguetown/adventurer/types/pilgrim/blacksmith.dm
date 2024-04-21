@@ -24,11 +24,11 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	cloak = /obj/item/clothing/cloak/apron/brown
-
+	mouth = /obj/item/rogueweapon/huntingknife
 	pants = /obj/item/clothing/under/roguetown/trou
 
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(/obj/item/rogueore/coal=2, /obj/item/rogueore/iron=1)
+	backpack_contents = list(/obj/item/flint = 1, /obj/item/rogueore/coal=1, /obj/item/rogueore/iron=1)
 
 	if(H.gender == MALE)
 

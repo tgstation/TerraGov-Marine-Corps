@@ -18,6 +18,7 @@
 	beltr = /obj/item/rogueweapon/hammer
 	beltl = /obj/item/rogueweapon/tongs
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
+	mouth = /obj/item/rogueweapon/huntingknife
 
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
@@ -25,7 +26,7 @@
 	cloak = /obj/item/clothing/cloak/apron/brown
 
 	backl = /obj/item/storage/backpack/rogue/backpack
-	backpack_contents = list(/obj/item/rogueore/coal=2, /obj/item/rogueore/iron=2, /obj/item/rogueore/silver=1)
+	backpack_contents = list(/obj/item/flint = 1, /obj/item/rogueore/coal=2, /obj/item/rogueore/iron=2, /obj/item/rogueore/silver=1)
 
 	if(H.gender == MALE)
 		

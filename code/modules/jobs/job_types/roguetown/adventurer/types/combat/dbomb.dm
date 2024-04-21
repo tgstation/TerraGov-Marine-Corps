@@ -13,14 +13,16 @@
 	pants = /obj/item/clothing/under/roguetown/trou
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+	beltl = /obj/item/rogueweapon/huntingknife
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(/obj/item/bomb = 1, /obj/item/flint = 1)
 	if(prob(50))
-		beltl = /obj/item/rogueweapon/pick
+		beltr = /obj/item/rogueweapon/pick
 	else
-		beltl = /obj/item/rogueweapon/hammer
+		beltr = /obj/item/rogueweapon/hammer
 	if(prob(50))
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
