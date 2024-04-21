@@ -74,9 +74,12 @@
 	var/list/possible_books = subtypesof(/obj/item/book/rogue/)
 	for(var/b in 1 to amount)
 		var/obj/item/book/rogue/addition = pick(possible_books)
-		if(istype(addition, /obj/item/book/rogue/secret))
+		var/obj/item/book/rogue/newbook = new addition(location)
+		if(istype(newbook, /obj/item/book/rogue/secret))
+			qdel(newbook)
 			continue
-		new addition(location)
+		if(prob(50))
+			newbook.bookfile = "ruined.json"
 
 
 /obj/structure/bookcase/random/fiction

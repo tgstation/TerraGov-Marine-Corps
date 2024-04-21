@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/area/shuttle/supply/buy/shuttle_area in shuttle_areas)
 		for(var/turf/open/floor/T in shuttle_area)
 			general_turfs += T
-			new /obj/item/book/rogue/ledger(pick(general_turfs))
+			new /obj/item/book/rogue/secret/ledger(pick(general_turfs))
 
 /obj/docking_port/mobile/supply/proc/sell()
 	var/msg = ""
