@@ -27,6 +27,8 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	
 	var/isvillager = FALSE
 	var/ispilgrim = FALSE
+	/// Amount of time we hugbox the player (give spawn protection and godmode) for
+	var/hugbox_duration = 20 SECONDS
 
 /datum/job/roguetown/adventurer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
@@ -38,6 +40,7 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		H.Stun(100)
 		if(!H.possibleclass)
 			H.possibleclass = list()
+		H.adv_hugboxing_start(hugbox_duration)
 		var/list/classes = GLOB.adv_classes.Copy()
 		var/list/special_classes = list()
 		var/classamt = 5
@@ -187,3 +190,16 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		invisibility = 0
 		cure_blind("advsetup")
 		return TRUE
+
+/mob/living/carbon/human/proc/adv_hugboxing_start(hugbox_duration = 20 SECONDS)
+	to_chat(src, "<span class='green'>I have [DisplayTimeText(duration)] to select my class and fuck off!</span>")
+	status_flags |= GODMODE
+	ADD_TRAIT(src, TRAIT_PACIFISM, ADVENTURER_HUGBOX_TRAIT)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_end)), hugbox_duration)
+
+/mob/living/carbon/human/proc/adv_hugboxing_end()
+	if(QDELETED(src))
+		return
+	status_flags &= ~GODMODE
+	REMOVE_TRAIT(src, TRAIT_PACIFISM, ADVENTURER_HUGBOX_TRAIT)
+	to_chat(src, "<span class='danger'>My joy is gone! Danger surrounds me.</span>")

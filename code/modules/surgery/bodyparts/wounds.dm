@@ -15,7 +15,7 @@
 	return TRUE
 
 /obj/item/bodypart/proc/add_wound(datum/wound/W, skipcheck = TRUE)
-	if(!W || !owner)
+	if(!W || !owner || (owner.status_flags & GODMODE))
 		return
 /*	for(var/datum/wound/D in wounds)
 		if(istype(D,W) || D.smaller_wound == W)
@@ -365,7 +365,7 @@
 			return FALSE
 
 /obj/item/bodypart/attacked_by(bclass, dam, mob/living/user, zone_precise)
-	if(!owner)
+	if(!owner || (owner.status_flags & GODMODE))
 		return
 	if(!bclass)
 		return
