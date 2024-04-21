@@ -44,13 +44,13 @@
 	switch(randy)
 		if(1 to 2)
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut
-			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
 		if(3 to 4)
 			beltr = /obj/item/rogueweapon/sword/iron
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 		if(5)
 			beltr = /obj/item/rogueweapon/mace/woodclub
-			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
 	//70% chance to be raceswapped to Gronn because slop lore
 	if(ishumannorthern(H) && prob(70))
 		var/list/skin_slop = H.dna.species.get_skin_list()
