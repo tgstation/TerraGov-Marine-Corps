@@ -8,6 +8,7 @@
 	spawn_positions = 1
 	spells = list(/obj/effect/proc_holder/spell/invoked/projectile/fetch)
 	allowed_patrons = list("Noc")
+	allowed_ages = list(AGE_OLD, AGE_MIDDLEAGED)
 
 
 	outfit = /datum/outfit/job/roguetown/archivist
@@ -26,8 +27,10 @@
 		head = /obj/item/clothing/head/roguetown/nightman
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
-	beltl = /obj/item/roguekey/archive
+	beltl = /obj/item/keyring/archivist
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	mask = /obj/item/clothing/mask/rogue/spectacles
+	
 
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)

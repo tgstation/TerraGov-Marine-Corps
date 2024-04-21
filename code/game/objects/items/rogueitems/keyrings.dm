@@ -171,3 +171,5 @@
 /obj/item/keyring/servant
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/garrison)
 
+/obj/item/keyring/archivist
+	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/archive)
