@@ -42,12 +42,6 @@
 				if(istype(G, /mob/dead/observer/rogue/arcaneeye))
 					return
 				if(alert("Travel with the boatman?", "", "Yes", "No") == "Yes")
-					for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
-						var/mob/living/carbon/spirit/O = new /mob/living/carbon/spirit(A.loc)
-						O.livingname = G.name
-						O.ckey = G.ckey
-						SSdroning.area_entered(get_area(O), O.client)
-					verbs -= /client/proc/descend
 
 					// Check if the player's job is adventurer and reduce current_positions
 					var/datum/job/adventurer_job = SSjob.GetJob("Adventurer")
@@ -55,6 +49,14 @@
 						adventurer_job.current_positions = max(0, adventurer_job.current_positions - 1)
 						// Store the current time for the player
 						GLOB.adventurer_cooldowns[G?.ckey] = world.time
+
+					for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
+						var/mob/living/carbon/spirit/O = new /mob/living/carbon/spirit(A.loc)
+						O.livingname = G.name
+						O.ckey = G.ckey
+						SSdroning.area_entered(get_area(O), O.client)
+					verbs -= /client/proc/descend
+
 				return
 
 //		var/take_triumph = FALSE
