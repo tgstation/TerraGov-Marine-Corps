@@ -34,10 +34,6 @@
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	neck = /obj/item/clothing/neck/roguetown/shalal
 	if(H.gender == FEMALE)
-		pants = /obj/item/clothing/under/roguetown/tights/black
-		beltl = /obj/item/rogueweapon/sword/sabre
-		if(prob(50))
-			beltl = /obj/item/rogueweapon/sword/rapier
 		var/acceptable = list("Tomboy", "Bob", "Curly Short")
 		if(!(H.hairstyle in acceptable))
 			H.hairstyle = pick(acceptable)
