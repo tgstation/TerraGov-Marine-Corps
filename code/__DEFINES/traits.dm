@@ -25,6 +25,7 @@
 #define TRAIT_LIMPDICK 				"limp_dick"
 #define TRAIT_SEXPASS				"sexpass"
 #define TRAIT_STEELHEARTED 			"steelhearted" //no bad mood from dismembering or seeing this
+#define TRAIT_IWASREVIVED "iwasrevived"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	RTRAIT_WEBWALK = "I can move freely between webs.",

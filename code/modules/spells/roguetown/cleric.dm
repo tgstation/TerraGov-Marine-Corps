@@ -210,6 +210,8 @@
 	charge_max = 1 MINUTES
 	miracle = TRUE
 	devotion_cost = -100
+	/// Amount of PQ gained for reviving people
+	var/revive_pq = 0.25
 
 /obj/effect/proc_holder/spell/invoked/revive/cast(list/targets, mob/living/user)
 	..()
@@ -235,6 +237,9 @@
 					target.emote("breathgasp")
 					target.Jitter(100)
 					to_chat(target, "<span class='notice'>I awake from the void.</span>")
+					if(!HAS_TRAIT(target, TRAIT_IWASREVIVED) && revive_pq && user?.ckey)
+						adjust_playerquality(revive_pq, user.ckey)
+						ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
 					return TRUE
 			target.visible_message("<span class='warning'>Nothing happens.</span>")
 			return FALSE
