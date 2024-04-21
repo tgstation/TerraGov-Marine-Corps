@@ -271,7 +271,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	if(TgsAvailable())
-		send2chat("Round ending!", "new-round-ping")
+		send2chat("Round ending!", "newround")
 		testing("tgsavailable passed")
 		var/do_hard_reboot
 		// check the hard reboot counter
