@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")
 
 	var/message = "[usr.real_name] has queued orbital change.\nMoving [direction] the gravity well.\nBuckle immediately and prepare for engine ignition in 10 seconds."
-	minor_announce(message, title = "Orbit Change", should_play_sound = FALSE)
+	minor_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
@@ -196,7 +196,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	engine_shudder()
 
 	var/message = "Arriving at new orbital level. Buckle immediately and prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), message, "Orbit Change", FALSE), 290 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(orbit_gets_changed), current_orbit, direction), 3 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
