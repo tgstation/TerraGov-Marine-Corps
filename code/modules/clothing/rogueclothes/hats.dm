@@ -166,6 +166,11 @@
 	name = "hat"
 	icon_state = "bardhat"
 
+/obj/item/clothing/head/roguetown/fancyhat
+	name = "fancy hat"
+	icon_state = "fancy_hat"
+	item_state = "fancyhat"
+
 /obj/item/clothing/head/roguetown/hatfur
 	name = "fur hat"
 	icon_state = "hatfur"
@@ -234,6 +239,8 @@
 	//dropshrink = 0.75
 	dynamic_hair_suffix = null
 
+/obj/item/clothing/head/roguetown/headband/red
+	color = CLOTHING_RED
 
 /obj/item/clothing/head/roguetown/crown/serpcrown
 	name = "crown of rockhill"
@@ -288,12 +295,6 @@
 
 /obj/item/clothing/head/roguetown/headdress/alt
 	icon_state = "headdressalt"
-
-/obj/item/clothing/head/roguetown/headband
-	name = "headband"
-	icon_state = "cloth"
-	color = CLOTHING_RED
-	sellprice = 5
 
 /obj/item/clothing/head/roguetown/nun
 	name = "nun's habit"
