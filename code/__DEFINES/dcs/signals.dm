@@ -1025,6 +1025,7 @@
 #define COMSIG_KB_ATTACKORDER "keybind_attackorder"
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+#define COMSIG_KB_VEHICLEHONK "keybind_vehiclehonk"
 
 //Item toggle keybinds
 #define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
