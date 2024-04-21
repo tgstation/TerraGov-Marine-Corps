@@ -3,7 +3,7 @@
 	flag = KNIGHT
 	department_flag = NOBLEMEN
 	faction = "Station"
-	total_positions = 0
+	total_positions = 2
 	spawn_positions = 2
 	allowed_races = list("Humen",
 	"Humen")
