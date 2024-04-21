@@ -85,7 +85,7 @@
 			continue
 		recruitment[recruit.name] = recruit
 	if(!length(recruitment))
-		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
+		to_chat(user, "<span class='warning'>There are no potential recruits in range.</span>")
 		return
 	var/inputty = input("Select a potential recruit!", "[name]") as anything in targets
 	if(inputty)
