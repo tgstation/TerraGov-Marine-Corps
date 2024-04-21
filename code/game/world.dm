@@ -49,7 +49,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.rogue_round_id = "[pick(GLOB.roundid)][GLOB.round_id]-[timestamp]"
 	SetupLogs()
 	load_poll_data()
-	send2chat("<@&1229725256290144258> New round starting!", "new-round-ping")
+	send2chat("New round starting!", "newround")
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
