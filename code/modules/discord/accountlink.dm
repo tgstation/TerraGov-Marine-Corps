@@ -3,7 +3,7 @@
 	set category = "Special Verbs"
 	set name = "Link Discord Account"
 	set desc = ""
-	set hidden = 1
+	set hidden = 0
 	if(!usr.client.holder)
 		return
 	// Safety checks
