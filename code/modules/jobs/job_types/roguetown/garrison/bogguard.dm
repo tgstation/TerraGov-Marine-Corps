@@ -3,8 +3,8 @@
 	flag = GUARDSMAN
 	department_flag = GARRISON
 	faction = "Station"
-	total_positions = 10
-	spawn_positions = 10
+	total_positions = 6
+	spawn_positions = 6
 	selection_color = JCOLOR_SOLDIER
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list("Humen",
@@ -21,7 +21,7 @@
 	whitelist_req = TRUE
 	outfit = /datum/outfit/job/roguetown/bogguardsman
 	give_bank_account = 16
-	min_pq = -4
+	min_pq = 0
 
 	/// Chance to be spawned as a crossbowman instead
 	var/crossbowman_chance = 35
