@@ -31,7 +31,7 @@
 	cloak = /obj/item/clothing/cloak/cape/guard
 	backpack_contents = list(/obj/item/keyring/sheriff = 1)
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/guardconvert)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
@@ -58,50 +58,88 @@
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	H.verbs |= /mob/proc/haltyell
 
-/obj/effect/proc_holder/spell/self/guardconvert
-	name = "Recruit Guardsmen"
-	desc = "!"
+/obj/effect/proc_holder/spell/self/convertrole
+	name = "Recruit Beggar"
+	desc = "Recruit someone to your cause."
 	antimagic_allowed = TRUE
 	charge_max = 100
+	/// Role given if recruitment is accepted
+	var/new_role = "Beggar"
+	/// Faction shown to the user in the recruitment prompt
+	var/recruitment_faction = "Beggars"
+	/// Message the recruiter gives
+	var/recruitment_message = "Serve the beggars, %RECRUIT!"
+	/// Range to search for potential recruits
+	var/recruitment_range = 3
+	/// Say message when the recruit accepts
+	var/accept_message = "I will serve!"
+	/// Say message when the recruit refuses
+	var/refuse_message = "I refuse."
 
-/obj/effect/proc_holder/spell/self/guardconvert/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/self/convertrole/cast(list/targets,mob/user = usr)
 	. = ..()
 	var/list/recruitment = list()
-	for(var/mob/living/carbon/human/not_guard in get_hearers_in_view(3, user))
-		//need a mind
-		if(!not_guard.mind)
+	for(var/mob/living/carbon/human/recruit in get_hearers_in_view(recruitment_range, user))
+		//not allowed
+		if(!can_convert(recruit))
 			continue
-		//only migrants and peasants
-		if(!(not_guard.job in GLOB.peasant_positions) && \
-			!(not_guard.job in GLOB.serf_positions) && \
-			!(not_guard.job in GLOB.allmig_positions))
-			continue
-		//need to see their damn face
-		if(!not_guard.get_face_name(null))
-			continue
-		recruitment[not_guard.name] = not_guard
+		recruitment[recruit.name] = recruit
 	if(!length(recruitment))
 		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
 		return
-	var/inputty = input("Select a potential guardsman!", "SHERIFF") as anything in targets
+	var/inputty = input("Select a potential recruit!", "[name]") as anything in targets
 	if(inputty)
-		var/mob/living/carbon/human/guardsman = recruitment[inputty]
-		if(!QDELETED(guardsman) && (guardsman in get_hearers_in_view(3, user)))
-			INVOKE_ASYNC(src, PROC_REF(convert), guardsman, user)
+		var/mob/living/carbon/human/recruit = recruitment[inputty]
+		if(!QDELETED(recruit) && (recruit in get_hearers_in_view(recruitment_range, user)))
+			INVOKE_ASYNC(src, PROC_REF(convert), recruit, user)
 		else
 			to_chat(user, "<span class='warning'>Recruitment failed!</span>")
 	else
 		to_chat(user, "<span class='warning'>Recruitment cancelled.</span>")
 
-/obj/effect/proc_holder/spell/self/guardconvert/proc/convert(mob/living/carbon/human/guardsman, mob/living/carbon/human/bogmaster)
-	if(QDELETED(guardsman) || QDELETED(bogmaster))
-		return
-	bogmaster.say("Serve the guard, [guardsman]!", forced = "guardconvert")
-	var/prompt = alert(guardsman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
-	if(QDELETED(guardsman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, guardsman)))
-		return
+/obj/effect/proc_holder/spell/self/convertrole/proc/can_convert(mob/living/carbon/human/recruit)
+	//wtf
+	if(QDELETED(recruit))
+		return FALSE
+	//need a mind
+	if(!recruit.mind)
+		return FALSE
+	//only migrants and peasants
+	if(!(recruit.job in GLOB.peasant_positions) && \
+		!(recruit.job in GLOB.serf_positions) && \
+		!(recruit.job in GLOB.allmig_positions))
+		return FALSE
+	//need to see their damn face
+	if(!recruit.get_face_name(null))
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/convertrole/proc/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	if(QDELETED(recruit) || QDELETED(recruiter))
+		return FALSE
+	recruiter.say(replacetext(recruitment_message, "%RECRUIT", "[recruit]"), forced = "[name]")
+	var/prompt = alert(recruit, "Do you wish to become a [new_role]?", "[recruitment_faction] Recruitment", "Yes", "No")
+	if(QDELETED(recruit) || QDELETED(recruiter) || !(recruiter in get_hearers_in_view(recruitment_range, recruit)))
+		return FALSE
 	if(prompt != "Yes")
-		guardsman.say("I refuse.", forced = "guardconvert")
+		if(refuse_message)
+			recruit.say(refuse_message, forced = "[name]")
+		return FALSE
+	if(accept_message)
+		recruit.say(accept_message, forced = "[name]")
+	recruit.job = new_role
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/convertrole/guard
+	name = "Recruit Guardsmen"
+	new_role = "Town Guard"
+	recruitment_faction = "Town Guard"
+	recruitment_message = "Serve the town guard, %RECRUIT!"
+	accept_message = "FOR THE KING!"
+	refuse_message = "I refuse."
+
+/obj/effect/proc_holder/spell/self/convertrole/guard/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	. = ..()
+	if(!.)
 		return
-	guardsman.say("FOR THE KING!", forced = "guardconvert")
-	guardsman.job = "Town Guard"
+	recruit.verbs |= /mob/proc/haltyell

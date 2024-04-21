@@ -40,6 +40,8 @@
 		id = /obj/item/clothing/ring/active/nomag
 		l_hand = /obj/item/rogueweapon/lordscepter
 		if(H.mind)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/bog)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)

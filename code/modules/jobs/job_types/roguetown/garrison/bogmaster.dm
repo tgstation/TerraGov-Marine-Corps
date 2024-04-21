@@ -51,7 +51,7 @@
 	backl = /obj/item/rogueweapon/shield/tower
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/bogconvert)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/bog)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 5, TRUE)
@@ -74,50 +74,17 @@
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
-/obj/effect/proc_holder/spell/self/bogconvert
+/obj/effect/proc_holder/spell/self/convertrole/bog
 	name = "Recruit Bogmen"
-	desc = "!"
-	antimagic_allowed = TRUE
-	charge_max = 100
+	new_role = "Bog Guard"
+	recruitment_faction = "Bog Guard"
+	recruitment_message = "Serve the bog, %RECRUIT!"
+	accept_message = "FOR THE BOG!"
+	refuse_message = "I refuse."
 
-/obj/effect/proc_holder/spell/self/bogconvert/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/self/convertrole/bog/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
 	. = ..()
-	var/list/recruitment = list()
-	for(var/mob/living/carbon/human/not_bogged in get_hearers_in_view(3, user))
-		//need a mind
-		if(!not_bogged.mind)
-			continue
-		//only migrants and peasants
-		if(!(not_bogged.job in GLOB.peasant_positions) && \
-			!(not_bogged.job in GLOB.serf_positions) && \
-			!(not_bogged.job in GLOB.allmig_positions))
-			continue
-		//need to see their damn face
-		if(!not_bogged.get_face_name(null))
-			continue
-		recruitment[not_bogged.name] = not_bogged
-	if(!length(recruitment))
-		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
+	if(!.)
 		return
-	var/inputty = input("Select a potential bogman!", "BOGMASTER") as anything in recruitment
-	if(inputty)
-		var/mob/living/carbon/human/bogman = recruitment[inputty]
-		if(!QDELETED(bogman) && (bogman in get_hearers_in_view(3, user)))
-			INVOKE_ASYNC(src, PROC_REF(convert), bogman, user)
-		else
-			to_chat(user, "<span class='warning'>Recruitment failed!</span>")
-	else
-		to_chat(user, "<span class='warning'>Recruitment cancelled.</span>")
+	recruit.verbs |= /mob/proc/haltyell
 
-/obj/effect/proc_holder/spell/self/bogconvert/proc/convert(mob/living/carbon/human/bogman, mob/living/carbon/human/bogmaster)
-	if(QDELETED(bogman) || QDELETED(bogmaster))
-		return
-	bogmaster.say("Serve the bog, [bogman]!", forced = "bogconvert")
-	var/prompt = alert(bogman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
-	if(QDELETED(bogman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, bogman)))
-		return
-	if(prompt != "Yes")
-		bogman.say("I refuse.", forced = "bogconvert")
-		return
-	bogman.say("FOR THE BOG!", forced = "bogconvert")
-	bogman.job = "Bog Guard"
