@@ -85,6 +85,9 @@
 			turf_footstep = T.footstep
 	if(!turf_footstep)
 		return
+	//SANITY CHECK, WILL NOT PLAY A SOUND IF THE LIST IS INVALID
+	if(!footstep_sounds[turf_footstep] || (LAZYLEN(footstep_sounds) < 3))
+		return
 	playsound(T, pick(footstep_sounds[turf_footstep][1]), footstep_sounds[turf_footstep][2], FALSE, footstep_sounds[turf_footstep][3] + e_range)
 
 /datum/component/footstep/proc/play_humanstep()
@@ -98,6 +101,9 @@
 	var/list/used_footsteps
 
 	if(H.shoes || feetCover) //are we wearing shoes
+		//SANITY CHECK, WILL NOT PLAY A SOUND IF THE LIST IS INVALID
+		if(!GLOB.footstep[T.footstep] || (LAZYLEN(GLOB.footstep[T.footstep]) < 3))
+			return
 		used_footsteps = GLOB.footstep[T.footstep][1]
 		used_footsteps = used_footsteps.Copy()
 		used_sound = pick_n_take(used_footsteps)
@@ -112,26 +118,18 @@
 			FALSE,
 			GLOB.footstep[T.footstep][3] + e_range)
 	else
-		if(H.dna.species.special_step_sounds)
-			used_footsteps = H.dna.species.special_step_sounds
-			used_footsteps = used_footsteps.Copy()
-			used_sound = pick_n_take(used_footsteps)
-			if(used_sound == last_sound)
-				used_sound = pick(used_footsteps)
-			if(!used_sound)
-				used_sound = last_sound
-			last_sound = used_sound
-			playsound(T, used_sound, 50, FALSE)
-		else
-			used_footsteps = GLOB.barefootstep[T.barefootstep][1]
-			used_footsteps = used_footsteps.Copy()
-			used_sound = pick_n_take(used_footsteps)
-			if(used_sound == last_sound)
-				used_sound = pick(used_footsteps)
-			if(!used_sound)
-				used_sound = last_sound
-			last_sound = used_sound
-			playsound(T, used_sound,
-				GLOB.barefootstep[T.barefootstep][2],
-				TRUE,
-				GLOB.barefootstep[T.barefootstep][3] + e_range)
+		//SANITY CHECK, WILL NOT PLAY A SOUND IF THE LIST IS INVALID
+		if(!GLOB.barefootstep[T.barefootstep] || (LAZYLEN(GLOB.barefootstep[T.barefootstep]) < 3))
+			return
+		used_footsteps = GLOB.barefootstep[T.barefootstep][1]
+		used_footsteps = used_footsteps.Copy()
+		used_sound = pick_n_take(used_footsteps)
+		if(used_sound == last_sound)
+			used_sound = pick(used_footsteps)
+		if(!used_sound)
+			used_sound = last_sound
+		last_sound = used_sound
+		playsound(T, used_sound,
+			GLOB.barefootstep[T.barefootstep][2],
+			TRUE,
+			GLOB.barefootstep[T.barefootstep][3] + e_range)
