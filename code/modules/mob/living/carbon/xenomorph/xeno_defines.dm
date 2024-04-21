@@ -405,6 +405,9 @@
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
 
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
+
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 	var/blunt_stab = FALSE
