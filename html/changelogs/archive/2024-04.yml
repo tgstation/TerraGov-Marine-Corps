@@ -348,3 +348,18 @@
   - rscadd: Gave the tank and apc the ability to honk a horn
   - soundadd: added sound/vehicles/horns/armored_horn.ogg
   - imageadd: re-added a horn ability icon sprite
+2024-04-21:
+  BraveMole:
+  - rscadd: Bring back banelings as minions
+  Lauwma:
+  - balance: Adds the ar-55 back in leaders vendors.
+  Lumipharon:
+  - imageadd: Updated fire sprites
+  - bugfix: fixed vendors not showing points costs
+  RipGrayson:
+  - bugfix: Fixed area on Big Red causing linter failure.
+  Xander3359:
+  - rscadd: Ports the crafting system from TG
+  coldironwarrior:
+  - bugfix: the FC GHMME now vends the right injector pouch
+  - balance: medical rig belts now can hold soap
