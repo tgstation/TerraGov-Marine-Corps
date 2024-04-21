@@ -22,14 +22,15 @@
 
 	if(isitem(attacked_object))
 		var/obj/item/attacked_item = attacked_object
-		if(!attacked_item.anvilrepair || !attacked_item.max_integrity)
+		if(!attacked_item.anvilrepair || !attacked_item.max_integrity || !isturf(attacked_item.loc))
 			return
-		if(!isturf(attacked_item.loc))
+		if(!attacked_item.obj_integrity)
+			user.visible_message("<span class='warning'>[attacked_item] is broken!</span>")
 			return
 
 		if(blacksmith_mind.get_skill_level(attacked_item.anvilrepair) > 0)
 			// People with maximum repairing skill will insta-fix anything in a single swing (3.4 * 6 * 0.05 = 1.02)
-			repair_percent *= 3.4 * blacksmith_mind.get_skill_level(attacked_item.anvilrepair) 
+			repair_percent *= 3.4 * blacksmith_mind.get_skill_level(attacked_item.anvilrepair)
 
 		playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
 		repair_percent *= attacked_item.max_integrity
