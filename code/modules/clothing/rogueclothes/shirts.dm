@@ -123,6 +123,8 @@
 	l_sleeve_status = SLEEVE_TORN
 	body_parts_covered = CHEST|VITALS
 
+/obj/item/clothing/suit/roguetown/shirt/shortshirt/bog
+	color = "#9ac878"
 
 /obj/item/clothing/suit/roguetown/shirt/rags
 	slot_flags = ITEM_SLOT_ARMOR

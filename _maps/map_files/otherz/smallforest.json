@@ -1,0 +1,6 @@
+{
+    "map_name": "smallforest",
+    "map_path": "map_files/otherz",
+    "map_file": "smallforest.dmm",
+	"traits": [{"Up": 1}, {"Up": 1, "Down": -1}, {"Down": -1}]
+}
