@@ -52,6 +52,7 @@
 			S.name = "guard's tabard ([index])"
 
 /datum/outfit/job/roguetown/guardsman
+	name = "Town Guard"
 	/// Whether or not we are a bowman
 	var/is_bowman = FALSE
 
@@ -102,6 +103,7 @@
 	guard.change_stat("speed", 1)
 
 /datum/outfit/job/roguetown/guardsman/bowman
+	name = "Town Bowman Guard"
 	is_bowman = TRUE
 
 /datum/outfit/job/roguetown/guardsman/bowman/assign_skills(mob/living/carbon/human/guard)
