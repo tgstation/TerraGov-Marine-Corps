@@ -12,12 +12,14 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/ghost_up,
 	/client/proc/ghost_down,
 	/client/proc/jumptoarea,
-	/client/proc/jumptokey,				
+	/client/proc/jumptokey,
 	/client/proc/jumptomob,
 	/client/proc/returntolobby,
 	/datum/verbs/menu/Admin/verb/playerpanel,
 	/client/proc/check_antagonists,
-	/client/proc/cmd_admin_say			
+	/client/proc/cmd_admin_say,
+	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
+	/client/proc/set_context_menu_enabled,
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -25,8 +27,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	return list(
 	/client/proc/adjusttriumph,
 	/client/proc/end_party,
-	/client/proc/set_context_menu_enabled,
-	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
@@ -353,16 +353,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Adminverbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/set_context_menu_enabled(Enable as num)
+/client/proc/set_context_menu_enabled()
 	set category = "Admin"
-	set name = "Right-click Menu"
-	if(holder)
-		if(Enable)
-			show_popup_menus = TRUE
-		else
-			show_popup_menus = FALSE
-	else
-		show_popup_menus = FALSE
+	set name = "Toggle Right-Click Menus"
+	if(!holder)
+		return
+	show_popup_menus = !show_popup_menus
+	to_chat(src, show_popup_menus ? "Right click menus are now enabled" : "Right click menus are now disabled")
 
 /client/proc/admin_ghost()
 	set category = "GameMaster"
