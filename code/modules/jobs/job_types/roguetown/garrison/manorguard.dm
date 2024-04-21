@@ -4,7 +4,7 @@
 	department_flag = GARRISON
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 6
+	spawn_positions = 8
 
 	allowed_sexes = list("male", "female")
 	allowed_races = list("Humen",

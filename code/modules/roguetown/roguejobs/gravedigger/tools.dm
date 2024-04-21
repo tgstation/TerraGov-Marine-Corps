@@ -18,6 +18,11 @@
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 50
 
+/obj/item/rogueweapon/shovel/Destroy()
+	if(heldclod)
+		QDEL_NULL(heldclod)
+	return ..()
+
 /obj/item/rogueweapon/shovel/dropped(mob/user)
 	if(heldclod && isturf(loc))
 		heldclod.forceMove(loc)

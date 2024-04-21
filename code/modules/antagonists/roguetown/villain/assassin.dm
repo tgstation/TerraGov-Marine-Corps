@@ -15,11 +15,11 @@
 	owner.special_items["Jack"] = yea
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
-		H.change_stat("speed", 2)
-		H.change_stat("intelligence", 2)
-		H.change_stat("endurance", 1)
+		H.change_stat("speed", 3)
+		H.change_stat("intelligence", 4)
+		H.change_stat("endurance", 3)
 		H.change_stat("constitution", 1)
-		H.cmode_music = 'sound/music/combat_weird.ogg'
+		H.cmode_music = 'sound/music/combatmaniac.ogg'
 		owner.adjust_skillrank(/datum/skill/combat/knives, 6, TRUE)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, RTRAIT_NOSTINK, TRAIT_GENERIC)
