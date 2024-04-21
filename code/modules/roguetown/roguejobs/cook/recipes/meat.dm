@@ -59,7 +59,7 @@
 	result = /obj/item/reagent_containers/food/snacks/fat/salo
 	craftdiff = 0
 	structurecraft = /obj/structure/fluff/dryingrack
-	req_table = TRUE
+	req_table = FALSE
 
 /datum/crafting_recipe/roguetown/cooking/saltfish
 	name = "saltfish"
