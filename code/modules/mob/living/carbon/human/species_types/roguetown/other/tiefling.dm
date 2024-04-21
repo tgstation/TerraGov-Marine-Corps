@@ -97,7 +97,7 @@
 /datum/species/tieberian/get_skin_list()
 	return list(
 	"Castillian" = "cc5757",
-	"Unknown" = "ff0000",
+	"Mysterious" = "ff0000",
 	"Succubus" = "D2042D",
 	"Incubus" = "a23737"
 	)
