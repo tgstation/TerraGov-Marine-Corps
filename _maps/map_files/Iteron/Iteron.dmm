@@ -2494,11 +2494,11 @@
 /obj/item/tool/crowbar/red,
 /obj/item/tool/crowbar/red,
 /obj/item/tool/crowbar/red,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/patrol_base/hanger)
 "HJ" = (

@@ -100,7 +100,9 @@
 		return
 	if(!(user.job.title in new_perk.jobs_supported))
 		return
+	new_perk.unlock_animation(user)
 	new_perk.apply_perk(user)
+	user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 
 ///Unlocks a loadout item for use
 /datum/individual_stats/proc/unlock_loadout_item(item_type, job_type_or_types, mob/user, cost_override, job_req_override = FALSE)

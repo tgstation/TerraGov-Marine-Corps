@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Expanded west side of Valhalla with an assault vehicle area"
+  - rscadd: "Added an Assault Vehicle category to the Valhalla requisition vendor; added tank ammo to said category"

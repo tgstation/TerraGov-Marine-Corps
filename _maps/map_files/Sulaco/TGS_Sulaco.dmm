@@ -7370,7 +7370,7 @@
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
 	},
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /obj/item/ore/diamond,
 /obj/structure/sign/prop1,
 /obj/item/storage/fancy/cigar,
@@ -23243,11 +23243,11 @@
 /obj/item/tool/crowbar/red,
 /obj/item/tool/crowbar/red,
 /obj/item/tool/crowbar/red,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
+/obj/item/weapon/sword/machete,
 /obj/structure/sign/pods,
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/hangar/droppod)

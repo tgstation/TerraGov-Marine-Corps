@@ -211,6 +211,19 @@
 //
 // Single caste, alphabetical order
 //
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"

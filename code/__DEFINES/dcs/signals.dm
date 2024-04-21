@@ -541,6 +541,10 @@
 #define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
 /// from mob/get_status_tab_items(): (list/items)
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
+///From mob/do_after_coefficent()
+#define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
+///From get_zone_with_miss_chance
+#define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -590,6 +594,8 @@
 
 #define COMSIG_LIVING_UPDATE_PLANE_BLUR "living_update_plane_blur"
 	#define COMPONENT_CANCEL_BLUR (1<<0)
+///From base of mob/living/set_jump_component()
+#define COMSIG_LIVING_SET_JUMP_COMPONENT "living_set_jump_component"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -726,7 +732,8 @@
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
-#define COMSIG_KB_LIVING_JUMP "keybind_jump"
+#define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
+#define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
 #define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
 #define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
 #define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
@@ -962,6 +969,9 @@
 #define COMSIG_XENOABILITY_RECALLPUPPETS "xenoability_recallpuppets"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
 
+#define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
+#define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
+
 #define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
 #define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
 #define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
@@ -1015,6 +1025,7 @@
 #define COMSIG_KB_ATTACKORDER "keybind_attackorder"
 #define COMSIG_KB_DEFENDORDER "keybind_defendorder"
 #define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+#define COMSIG_KB_VEHICLEHONK "keybind_vehiclehonk"
 
 //Item toggle keybinds
 #define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
@@ -1023,6 +1034,9 @@
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
+
+//Implant abilities
+#define COMSIG_IMPLANT_ABILITY_SANDEVISTAN "implant_ability_sandevistan"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
