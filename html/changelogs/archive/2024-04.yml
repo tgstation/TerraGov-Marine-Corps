@@ -348,3 +348,6 @@
   - rscadd: Gave the tank and apc the ability to honk a horn
   - soundadd: added sound/vehicles/horns/armored_horn.ogg
   - imageadd: re-added a horn ability icon sprite
+2024-04-21:
+  RipGrayson:
+  - bugfix: Fixed area on Big Red causing linter failure.
