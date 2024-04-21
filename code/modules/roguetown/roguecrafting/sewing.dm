@@ -39,18 +39,23 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/sewing/headband
+	name = "headband"
+	result = list(/obj/item/clothing/head/roguetown/headband)
+	reqs = list(/obj/item/natural/cloth = 1)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/sewing/redheadband
+	name = "red headband"
+	result = list(/obj/item/clothing/head/roguetown/headband)
+	reqs = list(/obj/item/natural/cloth = 1)
+	craftdiff = 0
+
 /* craftdif of 1 */
 
 /datum/crafting_recipe/roguetown/sewing/knitcap
 	name = "knit cap"
 	result = list(/obj/item/clothing/head/roguetown/knitcap)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 1
-
-/datum/crafting_recipe/roguetown/sewing/headband
-	name = "headband"
-	result = list(/obj/item/clothing/head/roguetown/headband)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 1
@@ -93,5 +98,17 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/sewing/fancyhat
+	name = "fancy hat"
+	result = list(/obj/item/clothing/head/roguetown/fancyhat)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 2
 
 
+/datum/crafting_recipe/roguetown/sewing/bardhat
+	name = "bard hat"
+	result = list(/obj/item/clothing/head/roguetown/bardhat)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 2
