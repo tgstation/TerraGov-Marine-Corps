@@ -88,8 +88,8 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
@@ -108,22 +108,22 @@
 	switch(loadoutm)
 		if(1)
 			beltr = /obj/item/rogueweapon/sword/iron
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 			beltl = /obj/item/storage/belt/rogue/pouch
 		if(2)
 			beltr = /obj/item/rogueweapon/huntingknife/cleaver
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		if(3)
 			beltr = /obj/item/rogueweapon/flail
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
-	beltl = /obj/item/quiver/arrows
-	head = /obj/item/clothing/head/roguetown/menacing/bandit
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
+			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
+	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	beltl = /obj/item/quiver/bolts
+	mask = /obj/item/clothing/mask/rogue/facemask/steel
+	H.change_stat("strength", 3)
+	H.change_stat("endurance", 2)
 	H.change_stat("constitution", 1)
 	H.change_stat("speed", 1)
-	H.change_stat("intelligence", -4)
+	H.change_stat("intelligence", -3)
 	var/obj/item/bodypart/B = H.get_bodypart("head")
 	if(B)
 		B.sellprice = rand(66, 123)
