@@ -51,6 +51,7 @@
 	backl = /obj/item/rogueweapon/shield/tower
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/bogconvert)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 5, TRUE)
@@ -72,3 +73,46 @@
 
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
+
+/obj/effect/proc_holder/spell/self/bogconvert
+	name = "Recruit Bogmen"
+	desc = "!"
+	antimagic_allowed = TRUE
+	charge_max = 100
+
+/obj/effect/proc_holder/spell/self/bogconvert/cast(list/targets,mob/user = usr)
+	. = ..()
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/not_bogged in get_hearers_in_view(3, user))
+		//need a mind
+		if(!not_bogged.mind)
+			continue
+		//only migrants and peasants
+		if(!(not_bogged.job in GLOB.peasant_positions) && \
+			!(not_bogged.job in GLOB.serf_positions) && \
+			!(not_bogged.job in GLOB.allmig_positions))
+			continue
+		//need to see their damn face
+		if(!not_bogged.get_face_name(null))
+			continue
+		targets[not_bogged.name] = not_bogged
+	if(!length(targets))
+		to_chat(user, "<span class='warning'>There are no potential recruits nearby.</span>")
+		return
+	var/inputty = input("Select a potential bogman!", "BOGMASTER") as text|null in targets
+	if(inputty)
+		var/mob/living/carbon/human/bogman = targets[inputty]
+		if(!QDELETED(bogman) && (bogman in get_hearers_in_view(3, user)))
+			INVOKE_ASYNC(src, PROC_REF(convert), bogman, user)
+	else
+		to_chat(user, "<span class='warning'>Recruitment cancelled.</span>")
+
+/obj/effect/proc_holder/spell/self/bogconvert/proc/convert(mob/living/carbon/human/bogman, mob/living/carbon/human/bogmaster)
+	if(QDELETED(bogman) || QDELETED(bogmaster))
+		return
+	bogmaster.say("Serve the bog!", forced = "bogconvert")
+	var/prompt = alert(bogman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
+	if(prompt != "Yes" || QDELETED(bogman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, bogman)))
+		return
+	bogman.say("FOR THE BOG!", forced = "bogconvert")
+	bogman.job = "Bog Guard"

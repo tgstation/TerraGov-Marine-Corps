@@ -123,6 +123,7 @@
 
 /datum/outfit/job/roguetown/vagrant
 	name = "Beggar"
+	/// Whether or not we get wise gear and stats
 	var/is_wise = FALSE
 
 /datum/outfit/job/roguetown/vagrant/wise

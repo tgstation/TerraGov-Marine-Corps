@@ -51,6 +51,10 @@
 				index = H.real_name
 			S.name = "guard's tabard ([index])"
 
+/datum/outfit/job/roguetown/guardsman
+	/// Whether or not we are a bowman
+	var/is_bowman = FALSE
+
 /datum/outfit/job/roguetown/guardsman/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -65,6 +69,11 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
+	if(is_bowman)
+		backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+		beltr = /obj/item/quiver/bolts //replaces mace
+	else
+		backl = null
 	if(H.mind)
 		assign_skills(H)
 	if(H.gender == FEMALE)
@@ -75,43 +84,41 @@
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
-/datum/outfit/job/roguetown/guardsman/proc/assign_skills(mob/living/carbon/human/bogger)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	bogger.change_stat("strength", 1)
-	bogger.change_stat("perception", 1)
-	bogger.change_stat("endurance", 1)
-	bogger.change_stat("speed", 1)
+/datum/outfit/job/roguetown/guardsman/proc/assign_skills(mob/living/carbon/human/guard)
+	guard.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+	guard.change_stat("strength", 1)
+	guard.change_stat("perception", 1)
+	guard.change_stat("endurance", 1)
+	guard.change_stat("speed", 1)
 
-/datum/outfit/job/roguetown/guardsman/bowman/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
-	beltr = /obj/item/quiver //replaces sword
+/datum/outfit/job/roguetown/guardsman/bowman
+	is_bowman = TRUE
 
-/datum/outfit/job/roguetown/guardsman/bowman/assign_skills(mob/living/carbon/human/bogger)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	bogger.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	bogger.change_stat("perception", 2)
-	bogger.change_stat("endurance", 1)
-	bogger.change_stat("speed", 2)
+/datum/outfit/job/roguetown/guardsman/bowman/assign_skills(mob/living/carbon/human/guard)
+	guard.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
+	guard.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+	guard.change_stat("perception", 2)
+	guard.change_stat("endurance", 1)
+	guard.change_stat("speed", 2)
 
 /mob/proc/haltyell()
 	set name = "HALT!"
