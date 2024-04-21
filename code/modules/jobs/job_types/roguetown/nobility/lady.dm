@@ -33,6 +33,8 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
 		l_hand = /obj/item/rogueweapon/lordscepter
 		if(H.mind)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/bog)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)

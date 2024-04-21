@@ -51,6 +51,7 @@
 	backl = /obj/item/rogueweapon/shield/tower
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/bog)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 5, TRUE)
@@ -72,3 +73,18 @@
 
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, RTRAIT_HEAVYARMOR, TRAIT_GENERIC)
+
+/obj/effect/proc_holder/spell/self/convertrole/bog
+	name = "Recruit Bogmen"
+	new_role = "Bog Guard"
+	recruitment_faction = "Bog Guard"
+	recruitment_message = "Serve the bog, %RECRUIT!"
+	accept_message = "FOR THE BOG!"
+	refuse_message = "I refuse."
+
+/obj/effect/proc_holder/spell/self/convertrole/bog/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	. = ..()
+	if(!.)
+		return
+	recruit.verbs |= /mob/proc/haltyell
+
