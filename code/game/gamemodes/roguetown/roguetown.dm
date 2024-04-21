@@ -197,7 +197,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampire Lord", "Extended", "
 	"Knight")
 	var/num_bandits = 0
 	if(num_players() >= 10)
-		num_bandits = CLAMP(round(num_players() / 2), 5, 8)
+		num_bandits = CLAMP(round(num_players() / 2), 15, 20)
 		banditgoal += (num_bandits * rand(200,400))
 #ifdef TESTSERVER
 	num_bandits = 999
