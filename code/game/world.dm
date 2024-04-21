@@ -186,34 +186,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
-	var/list/input = params2list(T)
+	TGS_TOPIC //redirect to server tools if necessary
 
-	TGS_TOPIC
-
-	if(!("botpassword" in input))
-		return
-	else
-		if(input["botpassword"] != "MACHINETONGUE")
-			return
-//		if("discord" in input)
-//			register_discord(input["discord"]) //looks for the ckey and registers it
-		if("status" in input)
-			var/list/s = list()
-
-			if(SSticker.current_state <= GAME_STATE_PREGAME)
-				s["inlobby"] = 1
-			else
-				s["inlobby"] = 2
-
-			var/player_count = 0
-			for(var/client/C in GLOB.clients)
-				player_count++
-			s["players"] = player_count
-
-			return list2params(s)
-
-//	TGS_TOPIC	//redirect to server tools if necessary
-/*
 	var/static/list/topic_handlers = TopicHandlers()
 
 	var/list/input = params2list(T)
@@ -230,7 +204,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	handler = new handler()
-	return handler.TryRun(input)*/
+	return handler.TryRun(input)
 
 
 /world/proc/AnnouncePR(announcement, list/payload)
