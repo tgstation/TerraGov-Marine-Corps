@@ -117,7 +117,7 @@
 	if(QDELETED(bogman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, bogman)))
 		return
 	if(prompt != "Yes")
-		guardsman.say("I refuse.", forced = "bogconvert")
+		bogman.say("I refuse.", forced = "bogconvert")
 		return
 	bogman.say("FOR THE BOG!", forced = "bogconvert")
 	bogman.job = "Bog Guard"
