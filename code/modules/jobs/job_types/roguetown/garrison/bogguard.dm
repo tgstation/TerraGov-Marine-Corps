@@ -41,8 +41,8 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	cloak = /obj/item/clothing/cloak/stabard/guard
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/merc
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
-	neck = /obj/item/clothing/neck/roguetown/coif
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	beltl = /obj/item/keyring/guard
 	belt = /obj/item/storage/belt/rogue/leather
