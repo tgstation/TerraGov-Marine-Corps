@@ -577,7 +577,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_x
 				dist_since_sleep++
@@ -588,7 +588,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_y
 				dist_since_sleep++
@@ -603,7 +603,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_y
 				dist_since_sleep++
@@ -614,7 +614,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_x
 				dist_since_sleep++
