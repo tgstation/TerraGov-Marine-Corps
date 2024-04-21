@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(discord)
 		// I would use jointext here, but I dont think you can two-side glue with it, and I would have to strip characters otherwise
 		notifymsg += "<@[id]> " // 22 charaters per notify, 90 notifies per message, so I am not making a failsafe because 90 people arent going to notify at once
 	if(notifymsg)
-		send2chat("[notifymsg]", CONFIG_GET(string/chat_announce_new_game)) // Sends the message to the discord, using same config option as the roundstart notification
+		send2chat(new /datum/tgs_message_content("[notifymsg]"), CONFIG_GET(string/chat_announce_new_game)) // Sends the message to the discord, using same config option as the roundstart notification
 	fdel(notify_file) // Deletes the file
 	return ..()
 	
