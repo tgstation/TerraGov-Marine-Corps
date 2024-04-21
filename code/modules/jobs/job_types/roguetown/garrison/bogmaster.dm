@@ -110,7 +110,7 @@
 /obj/effect/proc_holder/spell/self/bogconvert/proc/convert(mob/living/carbon/human/bogman, mob/living/carbon/human/bogmaster)
 	if(QDELETED(bogman) || QDELETED(bogmaster))
 		return
-	bogmaster.say("Serve the bog!", forced = "bogconvert")
+	bogmaster.say("Serve the bog, [bogman]!", forced = "bogconvert")
 	var/prompt = alert(bogman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
 	if(prompt != "Yes" || QDELETED(bogman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, bogman)))
 		return

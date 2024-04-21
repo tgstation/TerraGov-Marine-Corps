@@ -94,7 +94,7 @@
 /obj/effect/proc_holder/spell/self/guardconvert/proc/convert(mob/living/carbon/human/guardsman, mob/living/carbon/human/bogmaster)
 	if(QDELETED(guardsman) || QDELETED(bogmaster))
 		return
-	bogmaster.say("Serve the king!", forced = "guardconvert")
+	bogmaster.say("Serve the guard, [guardsman]!", forced = "guardconvert")
 	var/prompt = alert(guardsman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
 	if(prompt != "Yes" || QDELETED(guardsman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, guardsman)))
 		return
