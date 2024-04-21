@@ -224,7 +224,7 @@
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
-		random_channel = TRUE, // This way, we can't have it be cut off by other sounds.
+		channel_override = SSsounds.random_available_channel(), // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
 	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)

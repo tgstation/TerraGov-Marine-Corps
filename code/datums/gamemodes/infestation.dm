@@ -302,7 +302,6 @@
 		subtitle = "Good morning, marines.",
 		message = "Cryosleep disengaged by TGMC High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
 		sound = 'sound/AI/ares_online.ogg',
-		random_channel = TRUE,
 		color_override = "red"
 	)
 

@@ -113,14 +113,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
-					priority_announce(
-						type = ANNOUNCEMENT_PRIORITY,
-						title = "Ship Destruction Imminent",
-						message = "Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta),
-						sound = 'sound/misc/airraid.ogg',
-						random_channel = TRUE,
-						color_override = "purple"
-					)
+					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), title = "Ship Destruction Imminent", type = ANNOUNCEMENT_PRIORITY, color_override = "purple")
 				security_level = SEC_LEVEL_DELTA
 				for(var/obj/machinery/door/poddoor/shutters/mainship/D in GLOB.machines)
 					if(D.id == "sd_lockdown")
