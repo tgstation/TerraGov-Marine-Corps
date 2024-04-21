@@ -8,9 +8,6 @@
 			if(istype(mob, /mob/living/carbon/spirit))
 				//HONEYPOT CODE, REMOVE LATER
 				message_admins("RETARDED MOTHERFUCKER [key] IS TRYING TO CRASH THE SERVER BY SPAWNING 3 GORILLION SPIRITS!")
-				for(var/i in 1 to 100)
-					to_chat(src, "<h1>YOU ARE AN IDIOT!</h1>")
-					src << link("https://www.youtube.com/watch?v=hiRacdl02w4")
 				return
 
 			if(istype(mob, /mob/living/carbon/human))
