@@ -88,6 +88,8 @@
 		var/mob/living/carbon/human/guardsman = recruitment[inputty]
 		if(!QDELETED(guardsman) && (guardsman in get_hearers_in_view(3, user)))
 			INVOKE_ASYNC(src, PROC_REF(convert), guardsman, user)
+		else
+			to_chat(user, "<span class='warning'>Recruitment failed!</span>")
 	else
 		to_chat(user, "<span class='warning'>Recruitment cancelled.</span>")
 
@@ -96,7 +98,10 @@
 		return
 	bogmaster.say("Serve the guard, [guardsman]!", forced = "guardconvert")
 	var/prompt = alert(guardsman, "Do you wish to join the Bog Guard?", "Bog Recruitment", "Yes", "No")
-	if(prompt != "Yes" || QDELETED(guardsman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, guardsman)))
+	if(QDELETED(guardsman) || QDELETED(bogmaster) || !(bogmaster in get_hearers_in_view(3, guardsman)))
+		return
+	if(prompt != "Yes")
+		guardsman.say("I refuse.", forced = "guardconvert")
 		return
 	guardsman.say("FOR THE KING!", forced = "guardconvert")
 	guardsman.job = "Town Guard"
