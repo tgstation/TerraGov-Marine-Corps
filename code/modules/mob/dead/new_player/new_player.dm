@@ -341,6 +341,12 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			return "[jobtitle] requires more faith."
 		if(JOB_UNAVAILABLE_LASTCLASS)
 			return "You have played [jobtitle] recently."
+		if(JOB_UNAVAILABLE_ADVENTURER_COOLDOWN)
+			if(usr?.ckey && (usr?.ckey in GLOB.adventurer_cooldowns))
+				var/cooldown_time = GLOB.adventurer_cooldowns[usr.ckey]
+				var/cooldown_duration = 15 MINUTES
+				var/remaining_time = round((cooldown_time + cooldown_duration - world.time) / 10)
+				return "You must wait [remaining_time] seconds before playing as an Adventurer again."
 	return "Error: Unknown job availability."
 
 //used for latejoining
@@ -363,6 +369,15 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		else
 			if(rank == "Death Knight")
 				return JOB_UNAVAILABLE_GENERIC
+
+	// Check if the player is on cooldown for the Adventurer role
+	if(rank == "Adventurer")
+		if(client?.ckey in GLOB.adventurer_cooldowns)
+			var/cooldown_time = GLOB.adventurer_cooldowns[ckey]
+			var/cooldown_duration = 15 MINUTES
+			if(world.time < cooldown_time + cooldown_duration)
+				return JOB_UNAVAILABLE_ADVENTURER_COOLDOWN
+
 	var/datum/job/job = SSjob.GetJob(rank)
 	if(!job)
 		return JOB_UNAVAILABLE_GENERIC
@@ -419,7 +434,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
 	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
-		alert(src, get_job_unavailable_error_message(error, rank))
+		to_chat(src, "<span class='warning'>[get_job_unavailable_error_message(error, rank)]</span>")
 		return FALSE
 
 	if(SSticker.late_join_disabled)
@@ -559,7 +574,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		var/list/available_jobs = list()
 		for(var/job in category)
 			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
+			// Make sure adventurer jobs always appear on list, even if unavailable
+			if(job_datum && (IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE || job_datum.title == "Adventurer"))
 				available_jobs += job
 
 		if (length(available_jobs))
