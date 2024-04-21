@@ -87,7 +87,7 @@
 	if(!length(recruitment))
 		to_chat(user, "<span class='warning'>There are no potential recruits in range.</span>")
 		return
-	var/inputty = input("Select a potential recruit!", "[name]") as anything in targets
+	var/inputty = input("Select a potential recruit!", "[name]") as anything in recruitment
 	if(inputty)
 		var/mob/living/carbon/human/recruit = recruitment[inputty]
 		if(!QDELETED(recruit) && (recruit in get_hearers_in_view(recruitment_range, user)))
