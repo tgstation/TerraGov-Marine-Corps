@@ -9,6 +9,12 @@
 /*
 * Glass sheets
 */
+GLOBAL_LIST_INIT(glass_recipes, list ( \
+	new/datum/stack_recipe("directional window", /obj/structure/window, 1, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("fulltile window", /obj/structure/window/full, 4, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL) \
+))
+
 /obj/item/stack/sheet/glass
 	name = "glass"
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
@@ -19,11 +25,9 @@
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = FALSE
 
-/obj/item/stack/sheet/glass/Initialize(mapload, new_amount)
+/obj/item/stack/sheet/glass/get_main_recipes()
 	. = ..()
-	recipes = list(new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL))
+	. += GLOB.glass_recipes
 
 GLOBAL_LIST_INIT(glass_radial_images, list(
 	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
@@ -46,11 +50,11 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 		if("recipes")
 			return TRUE
 		if("directional window")
-			create_object(user, new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("fulltile window")
-			create_object(user, new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("windoor")
-			create_object(user, new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, check_direction = TRUE, on_solid_ground = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 	return FALSE
 

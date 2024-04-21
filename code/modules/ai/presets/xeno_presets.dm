@@ -4,6 +4,12 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
 
+/mob/living/carbon/xenomorph/baneling/ai
+
+/mob/living/carbon/xenomorph/baneling/ai/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
+
 /mob/living/carbon/xenomorph/crusher/ai
 
 /mob/living/carbon/xenomorph/crusher/ai/Initialize(mapload)

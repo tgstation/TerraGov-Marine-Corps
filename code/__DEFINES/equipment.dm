@@ -35,16 +35,25 @@
 //atom_flags
 
 #define UNUSED_RESERVATION_TURF_1 (1<<0)
-#define AI_BLOCKED (1<<1) //Prevent ai from going onto this turf
-#define NOINTERACT (1<<2)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT (1<<3)		// conducts electricity (metal etc.)
-#define ON_BORDER (1<<4)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY (1<<5)		// Don't want a blood overlay on this one.
-#define DIRLOCK (1<<6)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<7)  	//Whether /atom/Initialize() has already run for the object
+///Prevent ai from going onto this turf
+#define AI_BLOCKED (1<<1)
+/// You can't interact with it, at all. Useful when doing certain animations.
+#define NOINTERACT (1<<2)
+/// conducts electricity (metal etc.)
+#define CONDUCT (1<<3)
+/// 'border object'. item has priority to check when entering or leaving
+#define ON_BORDER (1<<4)
+/// Don't want a blood overlay on this one.
+#define NOBLOODY (1<<5)
+/// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define DIRLOCK (1<<6)
+///Whether /atom/Initialize() has already run for the object
+#define INITIALIZED (1<<7)
 #define NODECONSTRUCT (1<<8)
-#define PREVENT_CLICK_UNDER (1<<9)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<10)		//Use when this shouldn't be obscured by large icons.
+///Prevent clicking things below it on the same turf
+#define PREVENT_CLICK_UNDER (1<<9)
+///Use when this shouldn't be obscured by large icons.
+#define CRITICAL_ATOM (1<<10)
 ///Does not cascade explosions to its contents.
 #define PREVENT_CONTENTS_EXPLOSION (1<<11)
 /// was this spawned by an admin? used for stat tracking stuff.
