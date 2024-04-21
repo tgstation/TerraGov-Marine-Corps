@@ -188,6 +188,8 @@ GLOBAL_VAR(restart_counter)
 /world/Topic(T, addr, master, key)
 	var/list/input = params2list(T)
 
+	TGS_TOPIC
+
 	if(!("botpassword" in input))
 		return
 	else
