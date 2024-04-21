@@ -56,9 +56,9 @@
 		var/list/skin_slop = H.dna.species.get_skin_list()
 		H.skin_tone = skin_slop["Gronn"]
 		H.update_body()
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 1)
+	H.change_stat("strength", 3)
+	H.change_stat("endurance", 2)
+	H.change_stat("constitution", 3)
 	H.change_stat("intelligence", -3)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, RTRAIT_MEDIUMARMOR, TRAIT_GENERIC)
