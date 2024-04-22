@@ -12,7 +12,6 @@
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "b" = (
@@ -27,7 +26,6 @@
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
 	dir = 1
 	},
@@ -44,7 +42,6 @@
 	dir = 1;
 	pixel_x = 23
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/dropship2/rearcorner/tadpole{
 	dir = 1
 	},
@@ -58,7 +55,6 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	pixel_x = -25
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
@@ -69,24 +65,20 @@
 /obj/structure/dropship_piece/singlewindow/tadpole{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "q" = (
 /obj/machinery/vending/nanomed/tadpolemed{
 	pixel_x = 5
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "s" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship/dropship_two,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "v" = (
@@ -97,12 +89,10 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "w" = (
 /obj/machinery/holopad,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "y" = (
@@ -110,14 +100,12 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "A" = (
 /obj/structure/dropship_piece/glassone/tadpole{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "B" = (
@@ -131,7 +119,6 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (
@@ -145,7 +132,6 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
@@ -156,21 +142,18 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "L" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "N" = (
 /obj/structure/dropship_piece/glasstwo/tadpole{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "Q" = (
@@ -181,7 +164,6 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
@@ -192,7 +174,6 @@
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "T" = (
@@ -203,7 +184,6 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "U" = (
@@ -211,16 +191,13 @@
 	dir = 1
 	},
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Y" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 

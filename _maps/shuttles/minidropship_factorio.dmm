@@ -1,6 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
@@ -10,16 +9,13 @@
 /area/template_noop)
 "c" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "e" = (
 /obj/machinery/holopad,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "f" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
@@ -36,15 +32,12 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "l" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "q" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "r" = (
@@ -53,7 +46,6 @@
 	pixel_y = 6
 	},
 /obj/item/storage/toolbox/mechanical,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "t" = (
@@ -63,22 +55,18 @@
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "w" = (
 /obj/machinery/camera/autoname/mainship/dropship_two,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "z" = (
 /obj/machinery/light,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "A" = (
@@ -93,30 +81,24 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "B" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "F" = (
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "J" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "P" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "R" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "S" = (
@@ -126,7 +108,6 @@
 	name = "inner door-control";
 	pixel_x = -25
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "U" = (
@@ -134,14 +115,12 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "V" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "X" = (
@@ -152,7 +131,6 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "Y" = (
@@ -163,12 +141,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
-/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 
