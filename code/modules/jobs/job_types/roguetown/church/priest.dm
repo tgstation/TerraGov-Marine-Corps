@@ -149,13 +149,6 @@
 	refuse_message = "I refuse."
 	charge_max = 200 //templars get cool spells, so higher cooldown
 
-/obj/effect/proc_holder/spell/self/convertrole/templar/can_convert(mob/living/carbon/human/recruit)
-	. = ..()
-	if(!.)
-		return
-	if(!recruit.PATRON || !(recruit.PATRON in ALL_PATRON_NAMES_LIST))
-		return FALSE
-
 /obj/effect/proc_holder/spell/self/convertrole/templar/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
 	. = ..()
 	if(!.)
