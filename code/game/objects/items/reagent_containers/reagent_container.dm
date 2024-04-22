@@ -12,17 +12,12 @@
 	throw_speed = 1
 	throw_range = 5
 	var/init_reagent_flags
-	/// The maximum amount of reagents per transfer that will be moved out of this reagent container.
 	var/amount_per_transfer_from_this = 5
-	/// The different possible amounts of reagent to transfer out of the container
-	var/list/possible_transfer_amounts = list(5,10,15,20,25,30)
-	/// The maximum amount of reagents this container can hold
+	///Used to adjust how many units are transfered/injected in a single click
+	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
 	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
-	/// Reagent flags, a few examples being if the container is open or not, if its transparent, if you can inject stuff in and out of the container, and so on
-	var/reagent_flags
-	/// A list of what initial reagents this container should spawn with
-	var/list/list_reagents = null
+	var/list/list_reagents
 	///Whether we can restock this in a vendor without it having its starting reagents
 	var/free_refills = TRUE
 
