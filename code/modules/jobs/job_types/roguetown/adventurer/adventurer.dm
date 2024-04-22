@@ -1,5 +1,8 @@
 GLOBAL_LIST_EMPTY(billagerspawns)
 
+GLOBAL_VAR_INIT(adventurer_hugbox_duration, 20 SECONDS)
+GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
+
 /datum/job/roguetown/adventurer
 	title = "Adventurer"
 	flag = ADVENTURER
@@ -27,8 +30,6 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 	
 	var/isvillager = FALSE
 	var/ispilgrim = FALSE
-	/// Amount of time we hugbox the player (give spawn protection and godmode) for
-	var/hugbox_duration = 20 SECONDS
 
 /datum/job/roguetown/adventurer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
@@ -40,7 +41,9 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		H.Stun(100)
 		if(!H.possibleclass)
 			H.possibleclass = list()
-		H.adv_hugboxing_start(hugbox_duration)
+		if(GLOB.adventurer_hugbox_duration)
+			///FOR SOME RETARDED FUCKING REASON THIS REFUSED TO WORK WITHOUT A FUCKING TIMER IT JUST FUCKED SHIT UP
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_start)), 1)
 		var/list/classes = GLOB.adv_classes.Copy()
 		var/list/special_classes = list()
 		var/classamt = 5
@@ -191,14 +194,25 @@ GLOBAL_LIST_EMPTY(billagerspawns)
 		cure_blind("advsetup")
 		return TRUE
 
-/mob/living/carbon/human/proc/adv_hugboxing_start(hugbox_duration = 20 SECONDS)
-	to_chat(src, "<span class='green'>I have [DisplayTimeText(duration)] to select my class and fuck off!</span>")
+/mob/living/carbon/human/proc/adv_hugboxing_start()
+	to_chat(src, "<span class='warning'>I will be in danger once I start moving.</span>")
 	status_flags |= GODMODE
 	ADD_TRAIT(src, TRAIT_PACIFISM, ADVENTURER_HUGBOX_TRAIT)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_end)), hugbox_duration)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(adv_hugboxing_moved))
+	//Lies, it goes away even if you don't move after enough time
+	if(GLOB.adventurer_hugbox_duration_still)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_end)), 3 MINUTES)
+
+/mob/living/carbon/human/proc/adv_hugboxing_moved()
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	to_chat(src, "<span class='danger'>I have [DisplayTimeText(GLOB.adventurer_hugbox_duration)] seconds to fuck off!</span>")
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_end)), GLOB.adventurer_hugbox_duration)
 
 /mob/living/carbon/human/proc/adv_hugboxing_end()
 	if(QDELETED(src))
+		return
+	//hugbox already ended
+	if(!(status_flags & GODMODE))
 		return
 	status_flags &= ~GODMODE
 	REMOVE_TRAIT(src, TRAIT_PACIFISM, ADVENTURER_HUGBOX_TRAIT)
