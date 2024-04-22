@@ -102,8 +102,12 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	// you can only miss if your target is standing and not restrained
 	if(!target.buckled && !target.lying_angle)
 		var/miss_chance = 10
-		if (zone in GLOB.base_miss_chance)
+		if(zone in GLOB.base_miss_chance)
 			miss_chance = GLOB.base_miss_chance[zone]
+		var/list/mod_list = list()
+		SEND_SIGNAL(target, MOB_GET_MISS_CHANCE_MOD, mod_list)
+		for(var/num in mod_list)
+			miss_chance += num
 		miss_chance = max(miss_chance + miss_chance_mod, 0)
 		if(prob(miss_chance))
 			if(prob(70))

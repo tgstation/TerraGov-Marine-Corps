@@ -10,6 +10,13 @@
 #define LIGHT_CAN_BE_SHUT (1<<3)
 ///Admin possession yes/no
 #define DANGEROUS_POSSESSION (1<<4)
+///! Does this object prevent things from being built on it?
+#define BLOCKS_CONSTRUCTION (1<<5)
+///! Does this object prevent same-direction things from being built on it?
+#define BLOCKS_CONSTRUCTION_DIR (1<<6)
+///! Can we ignore density when building on this object? (for example, directional windows and grilles)
+#define IGNORE_DENSITY (1<<7)
+
 
 //Fire and Acid stuff, for resistance_flags
 #define INDESTRUCTIBLE (1<<0) //doesn't take damage

@@ -123,6 +123,9 @@
 	var/list/managed_vis_overlays
 	///The list of alternate appearances for this atom
 	var/list/alternate_appearances
+	///var containing our storage, see atom/proc/create_storage()
+	var/datum/storage/storage_datum
+
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -134,6 +137,9 @@ directive is properly returned.
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
+
+	if(storage_datum)
+		QDEL_NULL(storage_datum)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -212,8 +218,38 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+/**
+ * Ensure a list of atoms/reagents exists inside this atom
+ *
+ * Goes throught he list of passed in parts, if they're reagents, adds them to our reagent holder
+ * creating the reagent holder if it exists.
+ *
+ * If the part is a moveable atom and the  previous location of the item was a mob/living,
+ * it calls the inventory handler transferItemToLoc for that mob/living and transfers the part
+ * to this atom
+ *
+ * Otherwise it simply forceMoves the atom into this atom
+ */
+/atom/proc/CheckParts(list/parts_list, datum/crafting_recipe/current_recipe)
+	SEND_SIGNAL(src, COMSIG_ATOM_CHECKPARTS, parts_list, current_recipe)
+	if(!parts_list)
+		return
+	for(var/part in parts_list)
+		if(istype(part, /datum/reagent))
+			if(!reagents)
+				reagents = new()
+			reagents.reagent_list.Add(part)
+		else if(ismovable(part))
+			var/atom/movable/object = part
+			if(isliving(object.loc))
+				var/mob/living/living = object.loc
+				living.transferItemToLoc(object, src)
+			else
+				object.forceMove(src)
+			SEND_SIGNAL(object, COMSIG_ATOM_USED_IN_CRAFT, src)
+	parts_list.Cut()
 
-// Convenience proc for reagents handling.
+/// Convenience proc for reagents handling.
 /atom/proc/is_open_container()
 	return is_refillable() && is_drainable()
 
@@ -245,17 +281,17 @@ directive is properly returned.
 	return TRUE
 
 
-/*
-*	atom/proc/search_contents_for(path,list/filter_path=null)
-* Recursevly searches all atom contens (including contents contents and so on).
-*
-* ARGS: path - search atom contents for atoms of this type
-*	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
-*
-* RETURNS: list of found atoms
-*/
-
-/atom/proc/search_contents_for(path,list/filter_path=null)
+/**
+ * atom/proc/search_contents_for(path,list/filter_path=null)
+ * Recursevly searches all atom contens (including contents contents and so on).
+ *
+ * ARGS:
+ * path - search atom contents for atoms of this type
+ * list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+ *
+ * RETURNS: list of found atoms
+ */
+/atom/proc/search_contents_for(path, list/filter_path = null)
 	var/list/found = list()
 	for(var/atom/A in src)
 		if(istype(A, path))
@@ -419,14 +455,15 @@ directive is properly returned.
 		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
-/atom/proc/fire_act()
+///Effects of fire
+/atom/proc/fire_act(burn_level)
 	return
 
 ///Effects of lava. Return true where we want the lava to keep processing
 /atom/proc/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	fire_act()
+	fire_act(LAVA_BURN_LEVEL)
 	return TRUE
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
@@ -447,16 +484,13 @@ directive is properly returned.
 
 
 /atom/proc/contents_explosion(severity)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_CONTENTS_EX_ACT, severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
-
-
-///Fire effects from a burning turf. Burn level is the base fire damage being received.
-/atom/proc/flamer_fire_act(burnlevel)
-	return
-
 
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
@@ -846,9 +880,13 @@ directive is properly returned.
 // Stacks and storage redefined procs.
 
 /atom/proc/max_stack_merging(obj/item/stack/S)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, ATOM_MAX_STACK_MERGING, S)
 	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, ATOM_RECALCULATE_STORAGE_SPACE)
 	return //Nothing to see here.
 
 // Tool-specific behavior procs. To be overridden in subtypes.
@@ -867,7 +905,7 @@ directive is properly returned.
 
 
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+	return FALSE
 
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
 	return FALSE

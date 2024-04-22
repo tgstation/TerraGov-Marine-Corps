@@ -434,7 +434,7 @@
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/medical_injectors/standard = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
@@ -762,8 +762,6 @@
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/tool/weldingtool/hugetank,
-		/obj/item/lightreplacer,
-		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
@@ -772,6 +770,8 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/cell/high,
+		/obj/item/circuitboard/apc,
 	)
 
 /obj/effect/vendor_bundle/white_dress

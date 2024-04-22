@@ -46,6 +46,8 @@
 		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str)
 			to_chat(user, span_notice("Invalid label."))
+			on = !on
+			icon_state = "labeler[on]"
 			return
 		label = str
 		to_chat(user, span_notice("You set the label text to '[str]'."))

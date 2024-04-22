@@ -198,6 +198,20 @@
 /datum/campaign_mission/proc/load_objective_description()
 	return
 
+///Get a mission specific message for the deploying user if there is one
+/datum/campaign_mission/proc/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(!message) //overridden by specific missions
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Stick together and achieve those objectives marines. Good luck."
+			if(FACTION_SOM)
+				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
+			else
+				return
+
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[text_source]</u></span><br>" + message, portrait_to_use)
+
 ///Generates status tab info for the mission
 /datum/campaign_mission/proc/get_status_tab_items(mob/source, list/items)
 	items += "Mission: [name]"
@@ -330,7 +344,7 @@
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level.z_value)
 			continue
-		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
+		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse?.job?.job_cost)
 			corpse.job.free_job_positions(1)
 
 		qdel(corpse)

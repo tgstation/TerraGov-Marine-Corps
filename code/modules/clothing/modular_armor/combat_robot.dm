@@ -7,7 +7,7 @@
 	icon_state = "chest"
 	item_state = "chest"
 	species_exception = list(/datum/species/robot)
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	soft_armor = MARINE_ARMOR_MEDIUM
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	colorable_colors = ARMOR_PALETTES_LIST
@@ -50,14 +50,14 @@
 /obj/item/clothing/suit/modular/robot/light
 	name = "XR-1-L armor plating"
 	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	soft_armor = MARINE_ARMOR_LIGHT
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	greyscale_config = /datum/greyscale_config/robot/light
 
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "XR-1-H armor plating"
 	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/robot/heavy
 
@@ -85,7 +85,7 @@
 	item_state = "helmet"
 	species_exception = list(/datum/species/robot)
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED

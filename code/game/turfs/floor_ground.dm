@@ -11,7 +11,7 @@
 /turf/open/floor/plating/ground/burnt_states()
 	return icon_state
 
-/turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/plating/ground/fire_act(burn_level)
 	return
 
 /turf/open/floor/plating/ground/dirt
@@ -257,6 +257,9 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
+/turf/open/floor/plating/ground/ice/get_dirt_type()
+	return NO_DIRT
+
 // Colony tiles
 /turf/open/floor/plating/ground/concrete
 	name = "concrete"
@@ -266,6 +269,9 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
 	minimap_color = MINIMAP_AREA_COLONY
+
+/turf/open/floor/plating/ground/concrete/get_dirt_type()
+	return NO_DIRT
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -306,6 +312,9 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
+
+/turf/open/floor/plating/ground/desertdam/asphalt/get_dirt_type()
+	return NO_DIRT
 
 /turf/open/floor/plating/ground/desertdam/asphalt/cement
 	name = "concrete"
@@ -360,7 +369,7 @@
 
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
 	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
-	base_icon_state = "aasphalt-sunbleached"
+	base_icon_state = "asphalt-sunbleached"
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave

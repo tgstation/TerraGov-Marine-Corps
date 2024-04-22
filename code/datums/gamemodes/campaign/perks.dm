@@ -58,6 +58,18 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/proc/remove_perk(mob/living/carbon/owner)
 	return
 
+///Overhead animation to indicate a perk has been unlocked
+/datum/perk/proc/unlock_animation(mob/living/carbon/owner)
+	var/obj/effect/overlay/perk/perk_animation = new
+	owner.vis_contents += perk_animation
+	flick(ui_icon, perk_animation)
+	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 0.9 SECONDS, TIMER_CLIENT_TIME)
+
+///callback for removing the eye from viscontents
+/datum/perk/proc/remove_unlock_animation(mob/living/carbon/owner, obj/effect/overlay/perk/perk_animation)
+	owner.vis_contents -= perk_animation
+	qdel(perk_animation)
+
 /datum/perk/shield_overclock
 	name = "Shield overlock"
 	desc = "Overclocking a shield module beyond manufacturing specifications results in a more powerful shield at that cost of burning out sensitive components after weeks of use instead of months. \
@@ -100,7 +112,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/hp_boost
 	name = "Improved constitution"
-	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +25 max health, +25 pain resistance."
+	desc = "Through disciplined training and hypno indoctrination, your body is able to tolerate higher levels of trauma. +25 max health, +25 pain resistance. \
+	Also unlocks heavier armor for most roles."
 	ui_icon = "health_1"
 	all_jobs = TRUE
 	unlock_cost = 800
@@ -116,6 +129,18 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	. = ..()
 	owner.maxHealth -= health_mod
 
+/datum/perk/trait/hp_boost/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(owner_stats.faction == FACTION_TERRAGOV)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_tyr/universal, /datum/loadout_item/suit_slot/heavy_tyr, SQUAD_MARINE)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
+
+	else if(owner_stats.faction == FACTION_SOM)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr, SOM_SQUAD_MARINE)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr/veteran, SOM_SQUAD_VETERAN)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"
 	desc = "Military grade biological augmentations are used to harden your body against grievous bodily harm. Provides an addition +25 max health and +10 pain resistance."
@@ -124,6 +149,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/trait/hp_boost)
 	traits = list(TRAIT_MEDIUM_PAIN_RESIST)
 	unlock_cost = 1000
+
+/datum/perk/trait/hp_boost/two/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	return
 
 /datum/perk/trait/quiet
 	name = "Light footed"
@@ -431,3 +459,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "stamina_2"
 	prereq_perks = list(/datum/perk/skill_mod/stamina)
 	unlock_cost = 800
+
+/obj/effect/overlay/perk
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon = 'icons/effects/perk_unlock.dmi'
+	icon_state = ""
+	pixel_x = 8
+	pixel_y = 32

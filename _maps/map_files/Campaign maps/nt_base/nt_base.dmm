@@ -474,11 +474,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"ass" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/prison/whitegreenfull2,
-/area/gelida/cavestructuretwo)
 "ast" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -5668,10 +5663,6 @@
 	},
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
-"efd" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/prison,
-/area/gelida/cavestructuretwo)
 "efi" = (
 /turf/closed/shuttle/dropship2/fins{
 	dir = 4
@@ -7824,9 +7815,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "fNo" = (
@@ -9740,11 +9728,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
-"hix" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/east_caves)
 "hjf" = (
 /obj/machinery/light{
 	dir = 1
@@ -10156,6 +10139,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
+"hyA" = (
+/obj/effect/landmark/patrol_point/som/som_24,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/gelida/outdoors/nw_rockies)
 "hze" = (
 /obj/structure/inflatable/wall,
 /turf/open/shuttle/dropship/eight,
@@ -10748,6 +10735,10 @@
 /obj/machinery/light,
 /turf/open/floor/prison,
 /area/gelida/cavestructuretwo)
+"hWx" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/nw_rockies)
 "hWC" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/ai_node,
@@ -15734,6 +15725,10 @@
 	},
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
+"lGa" = (
+/obj/effect/landmark/patrol_point/som/som_22,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/nw_rockies)
 "lHs" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -22166,6 +22161,10 @@
 "qin" = (
 /turf/closed/shuttle/dropship2/finleft,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
+"qja" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves)
 "qje" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/plaincake{
@@ -25213,6 +25212,10 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
+"stm" = (
+/obj/effect/landmark/patrol_point/som/som_23,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/north_west_street)
 "stq" = (
 /obj/machinery/light,
 /turf/open/floor/prison/whitepurple/full{
@@ -30310,10 +30313,6 @@
 "wfV" = (
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
-"wgu" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/prison,
-/area/gelida/cavestructuretwo)
 "wgZ" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -31902,10 +31901,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
-"xuf" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/prison,
-/area/gelida/cavestructuretwo)
 "xuW" = (
 /obj/machinery/computer/intel_computer{
 	pixel_y = 13
@@ -35244,7 +35239,7 @@ cgS
 cgS
 bOD
 wJU
-wJU
+hWx
 xKB
 uew
 uew
@@ -35468,7 +35463,7 @@ wJU
 wJU
 wJU
 wJU
-uew
+stm
 bPy
 iQQ
 kgz
@@ -36351,7 +36346,7 @@ xjB
 rfq
 qHK
 cJC
-wJU
+lGa
 wJU
 dzU
 uxC
@@ -37018,7 +37013,7 @@ cgS
 cgS
 cgS
 cgS
-tWN
+hyA
 wJU
 wJU
 wJU
@@ -37862,11 +37857,11 @@ yiB
 yiB
 xod
 cZX
-xuf
+upW
 cZX
 mSM
 upW
-wgu
+upW
 fTM
 yiB
 yiB
@@ -39420,7 +39415,7 @@ upW
 eWM
 sZZ
 upW
-efd
+upW
 upW
 sWh
 yiB
@@ -39638,7 +39633,7 @@ sWh
 cLZ
 kuB
 dkT
-ass
+awQ
 sWh
 awQ
 awQ
@@ -66743,7 +66738,7 @@ cgS
 vBx
 vBx
 vBx
-vBx
+cLI
 cgS
 cgS
 cgS
@@ -66961,7 +66956,7 @@ vBx
 vBx
 cgS
 cgS
-vBx
+csv
 vBx
 vBx
 vBx
@@ -67838,7 +67833,7 @@ cgS
 cgS
 cgS
 cgS
-cLI
+vBx
 vBx
 vBx
 vBx
@@ -67849,12 +67844,12 @@ vBx
 cgS
 cgS
 vBx
+hgN
 vBx
 vBx
 vBx
 vBx
-vBx
-vBx
+qja
 cgS
 cgS
 cgS
@@ -68278,7 +68273,7 @@ cgS
 cgS
 cgS
 cgS
-csv
+vBx
 uLt
 vBx
 vBx
@@ -68288,7 +68283,7 @@ vBx
 vBx
 qIR
 vBx
-hix
+uLt
 cgS
 cgS
 cgS
@@ -69392,7 +69387,7 @@ vBx
 vBx
 vBx
 vBx
-hgN
+vBx
 cgS
 cgS
 cgS

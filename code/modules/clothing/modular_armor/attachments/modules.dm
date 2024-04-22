@@ -204,7 +204,7 @@
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
+	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
 	icon_state = "mimir_head"
 	item_state = "mimir_head_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
@@ -213,7 +213,7 @@
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
+	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 
 //Explosive defense armor
@@ -464,21 +464,21 @@
 	name = "\improper Light Armor Equalizer"
 	icon_state = "style_light"
 	item_state = "style_light_a"
-	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	soft_armor = MARINE_ARMOR_LIGHT
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/armor_module/module/style/medium_armor
 	name = "\improper Medium Armor Equalizer"
 	icon_state = "style_medium"
 	item_state = "style_medium_a"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	soft_armor = MARINE_ARMOR_MEDIUM
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/armor_module/module/style/heavy_armor
 	name = "\improper Heavy Armor Equalizer"
 	icon_state = "style_heavy"
 	item_state = "style_heavy_a"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /**

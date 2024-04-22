@@ -354,28 +354,32 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		die()
 	return ..()
 
-/obj/item/clothing/mask/cigarette/attack(atom/target, mob/living/user)
-	if(!lit)
-		if(isturf(target))
-			var/turf/T = target
-			if(locate(/obj/flamer_fire) in T.contents)
-				light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
-				return
+/obj/item/clothing/mask/cigarette/attack_obj(obj/target_object, mob/living/user)
+	if(lit)
+		return ..()
+	if(!istype(target_object, /obj/machinery/light))
+		return ..()
+	var/obj/machinery/light/fixture = target_object
+	if(fixture.status != LIGHT_BROKEN || !fixture.has_power())
+		return ..()
+	light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
+	return TRUE
 
-		if(isliving(target) && user.a_intent == INTENT_HELP)
-			var/mob/living/M = target
-			if(M.on_fire)
-				if(user == M)
-					light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))
-				else
-					light(span_notice("[user] lights [user.p_their()] [src] from the burning body of [M], that's stone cold."))
-				return
+/obj/item/clothing/mask/cigarette/attack(mob/living/living_target, mob/living/user)
+	if(lit)
+		return ..()
+	if(!living_target.on_fire)
+		return ..()
+	if(user == living_target)
+		light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))
+	else
+		light(span_notice("[user] lights [user.p_their()] [src] from the burning body of [living_target], that's stone cold."))
+	return TRUE
 
-		if(istype(target, /obj/machinery/light))
-			var/obj/machinery/light/fixture = target
-			if(fixture.is_broken())
-				light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
-				return
+/obj/item/clothing/mask/cigarette/attack_turf(turf/target_turf, mob/living/user)
+	if(!lit && locate(/obj/flamer_fire) in target_turf.contents)
+		light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
+		return TRUE
 	return ..()
 
 /obj/item/clothing/mask/cigarette/proc/die()

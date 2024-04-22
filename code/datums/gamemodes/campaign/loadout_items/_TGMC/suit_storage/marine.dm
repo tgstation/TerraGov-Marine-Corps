@@ -19,7 +19,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
@@ -55,7 +55,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -84,7 +84,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
@@ -119,7 +119,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
@@ -149,7 +149,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/battle_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x265mm, SLOT_IN_BACKPACK)
@@ -173,7 +173,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x25mm, SLOT_IN_BACKPACK)
@@ -197,7 +197,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/alf/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -228,7 +228,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_gpmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -243,7 +243,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/standard_gpmg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -262,7 +262,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_mmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -287,7 +287,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
-	else if(isstorage(wearer.back))
+	else if(isstorageobj(wearer.back))
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -308,7 +308,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_mg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -340,7 +340,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/flamer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -365,7 +365,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
-	else if(isstorage(wearer.back))
+	else if(isstorageobj(wearer.back))
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_ACCESSORY)
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -388,7 +388,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -422,7 +422,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
@@ -446,7 +446,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
@@ -483,7 +483,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
@@ -529,7 +529,7 @@
 /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine, SLOT_L_HAND)
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
@@ -562,7 +562,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_BACKPACK)
@@ -610,7 +610,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -649,7 +649,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/suppressed_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
@@ -687,7 +687,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/mag_gl/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
@@ -727,7 +727,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -760,7 +760,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -794,7 +794,7 @@
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_cannon/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	if(!isstorage(wearer.back))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)

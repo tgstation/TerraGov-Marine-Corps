@@ -119,7 +119,7 @@
 	setDir(SOUTH)
 	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
-/mob/living/carbon/xenomorph/hivemind/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+/mob/living/carbon/xenomorph/hivemind/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
 	return //no jumping, bad hivemind
 
 ///Finish the form changing of the hivemind and give the needed stats
@@ -153,7 +153,7 @@
 	update_action_buttons()
 	handle_weeds_adjacent_removed()
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/hivemind/fire_act(burn_level)
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 

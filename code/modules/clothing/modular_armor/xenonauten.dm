@@ -3,7 +3,7 @@
 /obj/item/clothing/suit/modular/xenonauten
 	name = "\improper Xenonauten-M pattern armored vest"
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	soft_armor = MARINE_ARMOR_MEDIUM
 	icon_state = "chest"
 	item_state = "chest"
 	icon = null
@@ -114,7 +114,7 @@
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	soft_armor = MARINE_ARMOR_LIGHT
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	greyscale_config = /datum/greyscale_config/xenonaut/light
 
@@ -151,7 +151,7 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/xenonaut/heavy
 
@@ -289,7 +289,7 @@
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 
 	item_state_worn = TRUE
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/fire_proof_helmet,
