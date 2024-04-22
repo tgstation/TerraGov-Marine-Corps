@@ -111,6 +111,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	minstr = 8
 	max_blade_int = 100
+	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
 	dropshrink = 0.6
@@ -181,6 +182,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	minstr = 9
 	max_blade_int = 200
+	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
 	dropshrink = 0.6
@@ -204,6 +206,7 @@
 	name = "bardiche"
 	desc = ""
 	icon_state = "bardiche"
+	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 200
 

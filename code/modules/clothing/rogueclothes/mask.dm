@@ -80,7 +80,8 @@
 	block2add = FOV_BEHIND
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	experimental_onhip = TRUE
-
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/mask/rogue/facemask/prisoner/Initialize()
 	. = ..()
@@ -97,6 +98,7 @@
 	name = "steel mask"
 	icon_state = "smask"
 	max_integrity = 200
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/mask/rogue/shepherd
 	name = "halfmask"

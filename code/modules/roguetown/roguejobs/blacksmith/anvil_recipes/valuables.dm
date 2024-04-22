@@ -37,15 +37,11 @@
 						/obj/item/rogueacc/earsilver)*/
 
 /datum/anvil_recipe/valuables/ringg
-	name = "gold rings"
+	name = "3x gold rings"
 	req_bar = /obj/item/ingot/gold
-	created_item = list(/obj/item/clothing/ring/gold,
-						/obj/item/clothing/ring/gold,
-						/obj/item/clothing/ring/gold)
+	created_item = list(/obj/item/clothing/ring/gold, /obj/item/clothing/ring/gold, /obj/item/clothing/ring/gold)
 
 /datum/anvil_recipe/valuables/rings
-	name = "silver rings"
+	name = "3x silver rings"
 	req_bar = /obj/item/ingot/silver
-	created_item = list(/obj/item/clothing/ring/silver,
-						/obj/item/clothing/ring/silver,
-						/obj/item/clothing/ring/silver)
+	created_item = list(/obj/item/clothing/ring/silver, /obj/item/clothing/ring/silver, /obj/item/clothing/ring/silver)

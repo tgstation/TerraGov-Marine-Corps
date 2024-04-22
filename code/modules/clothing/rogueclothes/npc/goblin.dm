@@ -42,3 +42,4 @@
 	allowed_race = list("goblin")
 	body_parts_covered = HEAD|EARS|HAIR|EYES
 	sellprice = 0
+	smeltresult = /obj/item/ingot/iron

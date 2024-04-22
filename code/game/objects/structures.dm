@@ -12,6 +12,7 @@
 	var/climb_offset = 0 //offset up when climbed
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
+	var/hammer_repair
 //	move_resist = MOVE_FORCE_STRONG
 
 /obj/structure/Initialize()
