@@ -86,27 +86,44 @@
 /obj/structure/mineral_door/attackby(obj/item/attacking_item, mob/living/user)
 	. = ..()
 	if(.)
-		return
+		return TRUE
 	if(QDELETED(src))
 		return
 
-	calculate_attackby(attacking_item, user)
+	if(user.a_intent == INTENT_HARM)
+		return
 
-///Handles damage calculation + plasmacutter interaction from attackby
-/obj/structure/mineral_door/proc/calculate_attackby(obj/item/attacking_item, mob/living/user)
-	var/multiplier = 1
-	if(isplasmacutter(attacking_item) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = attacking_item
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
-			if(istype(src, /obj/structure/mineral_door/resin))
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-			else
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
-			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-	if(attacking_item.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
-		multiplier += 1 //generally means we do double damage to resin doors
+	if(obj_flags & CAN_BE_HIT)
+		return attacking_item.attack_obj(src, user)
 
-	take_damage(max(0, attacking_item.force * multiplier - attacking_item.force), attacking_item.damtype, MELEE)
+/obj/structure/mineral_door/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
+	. = ..()
+	if(attacking_item.damtype != BURN)
+		return
+	var/damage_multiplier = take_extra_burn_damage(attacking_item, user, def_zone)
+
+	take_damage(max(0, attacking_item.force * damage_multiplier - attacking_item.force), attacking_item.damtype, MELEE)
+
+///Takes extra damage if our attacking item does burn damage
+/obj/structure/mineral_door/proc/take_extra_burn_damage(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
+	if(!isplasmacutter(attacking_item) || !user.do_actions)
+		return bonus_damage
+
+	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
+	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
+		attacking_pc.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
+	return bonus_damage
+
+/obj/structure/mineral_door/resin/take_extra_burn_damage(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
+	bonus_damage = ..()
+	bonus_damage += 1
+	if(!isplasmacutter(attacking_item) || !user.do_actions)
+		return bonus_damage
+
+	bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
+	return bonus_damage
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)

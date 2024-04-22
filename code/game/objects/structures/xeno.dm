@@ -210,19 +210,6 @@
 		src.balloon_alert(xeno_attacker, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/attackby(obj/item/attacking_item, mob/living/user)
-	. = ..()
-	if(QDELETED(src))
-		return
-
-	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
-		return
-
-	calculate_attackby(attacking_item, user)
-
-	if(obj_flags & CAN_BE_HIT)
-		return attacking_item.attack_obj(src, user)
-
 /obj/structure/mineral_door/resin/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
 
