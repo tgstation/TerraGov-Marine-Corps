@@ -639,10 +639,10 @@
 	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
 	debuff_owner.Paralyze(3 SECONDS)
 	if(stacks > 0)
-		debuff_owner.visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
 		span_notice("You stop, drop, and roll!"), null, 5)
 		return
-	debuff_owner.visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+	debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
 	span_notice("You extinguish yourself."), null, 5)
 	qdel(src)
 

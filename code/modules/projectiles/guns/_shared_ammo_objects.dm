@@ -41,8 +41,19 @@
 
 /obj/fire/update_icon()
 	. = ..()
-	var/light_color = "LIGHT_COLOR_FLAME"
 	var/light_intensity = 3
+	switch(burn_ticks)
+		if(1 to 9)
+			light_intensity = 2
+		if(10 to 25)
+			light_intensity = 4
+		if(25 to INFINITY) //Change the icons and luminosity based on the fire_base's intensity
+			light_intensity = 6
+	set_light_range_power_color(light_intensity, light_power, light_color)
+
+/obj/fire/update_icon_state()
+	. = ..()
+	var/light_color = "LIGHT_COLOR_FLAME"
 	switch(flame_color)
 		if("red")
 			light_color = LIGHT_COLOR_FLAME
@@ -53,14 +64,11 @@
 	switch(burn_ticks)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			light_intensity = 2
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			light_intensity = 4
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire_base's intensity
 			icon_state = "[flame_color]_3"
-			light_intensity = 6
-	set_light_range_power_color(light_intensity, light_power, light_color)
+
 
 ///Sets the fire_base object to the correct colour and fire_base values, and applies the initial effects to any mob on the turf
 /obj/fire/proc/set_fire(burn_ticks, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
