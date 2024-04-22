@@ -297,8 +297,11 @@
 	var/obj/item/item_parent = parent
 	item_parent.update_icon()
 	loaded_reagent = null
-	reagent_select_action.owner.update_inv_r_hand()
-	reagent_select_action.owner.update_inv_l_hand()
+	var/parent_slot = reagent_select_action.owner.get_equipped_slot(parent)
+	if(parent_slot == SLOT_L_HAND)
+		reagent_select_action.owner.update_inv_l_hand()
+	else
+		reagent_select_action.owner.update_inv_r_hand()
 
 	update_selected_reagent(selected_reagent)
 
