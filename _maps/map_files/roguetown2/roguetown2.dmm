@@ -927,7 +927,7 @@
 "vI" = (/obj/structure/bed/rogue/inn/wooldouble,/obj/item/bedsheet/rogue/double_pelt,/turf/open/floor/rogue/woodturned,/area/rogue/indoors/town)
 "vJ" = (/obj/structure/table/wood{icon_state = "tablewood1"; dir = 1},/obj/item/cooking/pan,/obj/item/reagent_containers/powder/flour,/obj/item/reagent_containers/powder/flour,/turf/open/floor/rogue/tile{icon_state = "chess"},/area/rogue/indoors)
 "vL" = (/obj/structure/stairs/stone{icon_state = "stonestairs"; dir = 4},/turf/open/floor/rogue/cobble,/area/rogue/indoors/town/church)
-"vM" = (/obj/structure/gate{gid = "gatemanor2"; redstone_id = "gatemanor3"; name = "Throne Room Gate"},/obj/structure/gate{gid = "gatemanor2"; redstone_id = "gatemanor3"; name = "Throne Room Gate"},/turf/open/floor/rogue/carpet/lord/left,/area/rogue/indoors/town/manor)
+"vM" = (/obj/structure/gate{gid = "gatemanor2"; redstone_id = "gatemanor3"; name = "Throne Room Gate"},/turf/open/floor/rogue/carpet/lord/left,/area/rogue/indoors/town/manor)
 "vN" = (/obj/structure/fluff/walldeco/rpainting/forest{pixel_x = -32},/turf/open/floor/rogue/blocks/stonered/tiny,/area/rogue/indoors/town/manor)
 "vO" = (/obj/machinery/light/rogue/hearth,/turf/open/floor/rogue/woodturned,/area/rogue/indoors/town/manor)
 "vP" = (/turf/closed/wall/mineral/rogue/wooddark/slitted,/area/rogue/outdoors/rtfield)
