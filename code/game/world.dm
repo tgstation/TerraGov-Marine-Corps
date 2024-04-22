@@ -49,7 +49,8 @@ GLOBAL_VAR(restart_counter)
 		GLOB.rogue_round_id = "[pick(GLOB.roundid)][GLOB.round_id]-[timestamp]"
 	SetupLogs()
 	load_poll_data()
-	send2chat("<@&1229725256290144258> New round starting!", "new-round-ping")
+	if(CONFIG_GET(string/channel_announce_new_game_message))
+		send2chat(new /datum/tgs_message_content(CONFIG_GET(string/channel_announce_new_game_message)), CONFIG_GET(string/chat_announce_new_game))
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
@@ -186,32 +187,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
-	var/list/input = params2list(T)
+	TGS_TOPIC //redirect to server tools if necessary
 
-	if(!("botpassword" in input))
-		return
-	else
-		if(input["botpassword"] != "MACHINETONGUE")
-			return
-//		if("discord" in input)
-//			register_discord(input["discord"]) //looks for the ckey and registers it
-		if("status" in input)
-			var/list/s = list()
-
-			if(SSticker.current_state <= GAME_STATE_PREGAME)
-				s["inlobby"] = 1
-			else
-				s["inlobby"] = 2
-
-			var/player_count = 0
-			for(var/client/C in GLOB.clients)
-				player_count++
-			s["players"] = player_count
-
-			return list2params(s)
-
-//	TGS_TOPIC	//redirect to server tools if necessary
-/*
 	var/static/list/topic_handlers = TopicHandlers()
 
 	var/list/input = params2list(T)
@@ -228,7 +205,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	handler = new handler()
-	return handler.TryRun(input)*/
+	return handler.TryRun(input)
 
 
 /world/proc/AnnouncePR(announcement, list/payload)
@@ -295,7 +272,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	if(TgsAvailable())
-		send2chat("Round ending!", "new-round-ping")
+		send2chat(new /datum/tgs_message_content("Round ending!"), CONFIG_GET(string/chat_announce_new_game))
 		testing("tgsavailable passed")
 		var/do_hard_reboot
 		// check the hard reboot counter
