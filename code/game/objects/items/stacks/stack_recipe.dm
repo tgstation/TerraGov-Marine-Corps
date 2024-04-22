@@ -46,7 +46,6 @@
 	res_amount = 1,
 	max_res_amount = 1,
 	time = 0,
-	skill_req = FALSE,
 	one_per_turf = FALSE,
 	on_solid_ground = FALSE,
 	is_fulltile = FALSE,
@@ -57,6 +56,7 @@
 	trait_booster,
 	trait_modifier = 1,
 	category,
+	skill_req = FALSE,
 )
 
 	src.title = title

@@ -31,6 +31,16 @@
 	var/list/structures
 	///Should only one object exist on the same turf?
 	var/one_per_turf = FALSE
+	/// Setting this to true will effectively set check_direction to true.
+	var/is_fulltile = FALSE
+	/// If this atom should run the direction check, for use when building things like directional windows where you can have more than one per turf
+	var/check_direction = FALSE
+	/// If the atom requires a floor below
+	var/on_solid_ground = FALSE
+	/// If the atom checks that there are objects with density in the same turf when being built. TRUE by default
+	var/check_density = TRUE
+	/// Bitflag of additional placement checks required to place. (STACK_CHECK_CARDINALS|STACK_CHECK_ADJACENT|STACK_CHECK_TRAM_FORBIDDEN|STACK_CHECK_TRAM_EXCLUSIVE)
+	var/placement_checks = NONE
 	/// Steps needed to achieve the result
 	var/list/steps
 	/// Whether the result can be crafted with a crafting menu button
@@ -41,6 +51,8 @@
 	var/result_amount
 	/// Whether we should delete the contents of the crafted storage item (Only works with storage items, used for ammo boxes, donut boxes, internals boxes, etc)
 	var/delete_contents = TRUE
+	///whether only people with sufficient construction skill can build this.
+	var/skill_req = FALSE
 
 /datum/crafting_recipe/New()
 	if(!name && result)
@@ -66,6 +78,14 @@
 	src.result_amount = stack_recipe.res_amount
 	src.reqs[material] = stack_recipe.req_amount
 	src.category = stack_recipe.category || CAT_MISC
+
+	src.one_per_turf = stack_recipe.one_per_turf
+	src.is_fulltile = stack_recipe.is_fulltile
+	src.check_direction = stack_recipe.check_direction || is_fulltile
+	src.on_solid_ground = stack_recipe.on_solid_ground
+	src.check_density = stack_recipe.check_density
+	src.placement_checks = stack_recipe.placement_checks
+	src.skill_req = stack_recipe.skill_req
 
 /**
  * Run custom pre-craft checks for this recipe, don't add feedback messages in this because it will spam the client

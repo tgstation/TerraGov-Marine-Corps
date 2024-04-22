@@ -1,3 +1,9 @@
+//stack recipe placement check types
+/// Checks if there is an object of the result type in any of the cardinal directions
+#define STACK_CHECK_CARDINALS (1<<0)
+/// Checks if there is an object of the result type within one tile
+#define STACK_CHECK_ADJACENT (1<<1)
+
 /datum/component/personal_crafting/Initialize()
 	if(ismob(parent))
 		RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(create_mob_button))
@@ -191,42 +197,87 @@
 
 	var/list/contents = get_surroundings(crafter, recipe.blacklist)
 	var/send_feedback = 1
-	if(check_contents(crafter, recipe, contents))
-		if(check_tools(crafter, recipe, contents))
-			if(recipe.one_per_turf)
-				for(var/content in get_turf(crafter))
-					if(istype(content, recipe.result))
-						return ", object already present."
-			//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
-			if(ismob(crafter) && !do_after(crafter, recipe.time, target = crafter))
-				return "."
-			contents = get_surroundings(crafter, recipe.blacklist)
-			if(!check_contents(crafter, recipe, contents))
-				return ", missing component."
-			if(!check_tools(crafter, recipe, contents))
-				return ", missing tool."
-			var/list/parts = del_reqs(recipe, crafter)
-			var/atom/movable/result
-			if(ispath(recipe.result, /obj/item/stack))
-				result = new recipe.result(get_turf(crafter.loc), recipe.result_amount || 1)
-			else
-				result = new recipe.result(get_turf(crafter.loc))
-				if(result.storage_datum && recipe.delete_contents)
-					for(var/obj/item/thing in result)
-						qdel(thing)
-			var/datum/reagents/holder = locate() in parts
-			if(holder) //transfer reagents from ingredients to result
-				if(!ispath(recipe.result,  /obj/item/reagent_containers) && result.reagents)
-					result.reagents.clear_reagents()
-					holder.trans_to(result.reagents, holder.total_volume, no_react = TRUE)
-				parts -= holder
-				qdel(holder)
-			result.CheckParts(parts, recipe)
-			if(send_feedback)
-				SSblackbox.record_feedback("tally", "object_crafted", 1, result.type)
-			return result //Send the item back to whatever called this proc so it can handle whatever it wants to do with the new item
+	var/dest_turf = get_turf(crafter)
+	if(!check_contents(crafter, recipe, contents))
+		return ", missing component."
+
+	if(!check_tools(crafter, recipe, contents))
 		return ", missing tool."
-	return ", missing component."
+
+	if(recipe.one_per_turf)
+		for(var/content in dest_turf)
+			if(istype(content, recipe.result))
+				return ", object already present."
+
+	if(recipe.check_direction)
+		if(!valid_build_direction(dest_turf, crafter.dir, is_fulltile = recipe.is_fulltile))
+			return ", won't fit here!"
+
+	if(recipe.on_solid_ground)
+		if(isclosedturf(dest_turf))
+			return ", cannot be made on a wall!"
+		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
+			return ", must be made on solid ground!"
+
+	if(recipe.check_density)
+		for(var/obj/object in dest_turf)
+			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
+				crafter.balloon_alert(crafter, "something is in the way!")
+				return FALSE
+
+	if(recipe.placement_checks & STACK_CHECK_CARDINALS)
+		var/turf/nearby_turf
+		for(var/direction in GLOB.cardinals)
+			nearby_turf = get_step(dest_turf, direction)
+			if(locate(recipe.result) in nearby_turf)
+				return ", can't be adjacent to another!"
+
+	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
+		if(locate(recipe.result) in range(1, dest_turf))
+			return ", can't be near another!"
+
+	if(ismob(crafter) && recipe.skill_req)
+		var/mob/crafter_mob = crafter
+		var/building_time = recipe.time
+		if(recipe.skill_req && crafter_mob.skills.getRating(SKILL_CONSTRUCTION) < recipe.skill_req)
+			building_time += recipe.time * ( recipe.skill_req - crafter_mob.skills.getRating(SKILL_CONSTRUCTION) ) * 0.5 // +50% time each skill point lacking.
+		if(recipe.skill_req && crafter_mob.skills.getRating(SKILL_CONSTRUCTION) > recipe.skill_req)
+			building_time -= clamp(recipe.time * ( crafter_mob.skills.getRating(SKILL_CONSTRUCTION) - recipe.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+		crafter_mob.balloon_alert_to_viewers("building [recipe.name]")
+		if(!do_after(crafter_mob, building_time, NONE, crafter_mob, (building_time > recipe.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
+			return "."
+	else
+		//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
+		if(ismob(crafter) && !do_after(crafter, recipe.time, target = crafter))
+			return "."
+
+	contents = get_surroundings(crafter, recipe.blacklist)
+	if(!check_contents(crafter, recipe, contents))
+		return ", missing component."
+	if(!check_tools(crafter, recipe, contents))
+		return ", missing tool."
+	var/list/parts = del_reqs(recipe, crafter)
+	var/atom/movable/result
+	if(ispath(recipe.result, /obj/item/stack))
+		result = new recipe.result(get_turf(crafter.loc), recipe.result_amount || 1)
+		result.dir = crafter.dir
+	else
+		result = new recipe.result(get_turf(crafter.loc))
+		result.dir = crafter.dir
+		if(result.storage_datum && recipe.delete_contents)
+			for(var/obj/item/thing in result)
+				qdel(thing)
+	var/datum/reagents/holder = locate() in parts
+	if(holder) //transfer reagents from ingredients to result
+		if(!ispath(recipe.result,  /obj/item/reagent_containers) && result.reagents)
+			result.reagents.clear_reagents()
+			holder.trans_to(result.reagents, holder.total_volume, no_react = TRUE)
+		parts -= holder
+		qdel(holder)
+	result.CheckParts(parts, recipe)
+	if(send_feedback)
+		SSblackbox.record_feedback("tally", "object_crafted", 1, result.type)
+	return result //Send the item back to whatever called this proc so it can handle whatever it wants to do with the new item
 
 /*Del reqs works like this:
 
@@ -620,3 +671,6 @@
 		if(recipe == potential_recipe)
 			return TRUE
 	return FALSE
+
+#undef STACK_CHECK_CARDINALS
+#undef STACK_CHECK_ADJACENT
