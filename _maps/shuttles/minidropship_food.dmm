@@ -3,11 +3,13 @@
 /obj/machinery/griddle,
 /obj/item/reagent_containers/glass/rag,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "c" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship/dropship_two,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "d" = (
@@ -21,6 +23,7 @@
 /obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_half{
 	dir = 8
 	},
@@ -30,9 +33,11 @@
 	dir = 1;
 	pixel_x = 23
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "f" = (
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "l" = (
@@ -41,11 +46,13 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
 /area/shuttle/minidropship)
 "m" = (
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_half{
 	dir = 8
 	},
@@ -63,15 +70,18 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
 /area/shuttle/minidropship)
 "o" = (
 /obj/machinery/holopad,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_half,
 /area/shuttle/minidropship)
 "q" = (
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_corner{
 	dir = 1
 	},
@@ -82,6 +92,7 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/vending/boozeomat,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "v" = (
@@ -92,6 +103,7 @@
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_corner,
 /area/shuttle/minidropship)
 "x" = (
@@ -103,6 +115,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "y" = (
@@ -110,10 +123,10 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
@@ -125,6 +138,7 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
@@ -134,6 +148,7 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "C" = (
@@ -145,13 +160,16 @@
 	dir = 1;
 	max_integrity = 1000
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "D" = (
 /obj/machinery/vending/dinnerware,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured,
 /area/shuttle/minidropship)
 "E" = (
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_corner{
 	dir = 4
 	},
@@ -161,6 +179,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
 	dir = 1
 	},
@@ -189,6 +208,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_corner{
 	dir = 8
 	},
@@ -202,6 +222,7 @@
 /obj/machinery/reagentgrinder{
 	pixel_y = 5
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -212,6 +233,7 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/iron/white/textured_half{
 	dir = 8
 	},
@@ -221,6 +243,7 @@
 	dir = 1
 	},
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
@@ -235,6 +258,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -245,6 +269,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/table/reinforced,
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
@@ -253,6 +278,7 @@
 /obj/structure/dropship_piece/tadpole/rearleft{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "Y" = (
@@ -260,6 +286,7 @@
 	dir = 1;
 	pixel_x = -23
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "Z" = (
@@ -267,6 +294,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/effect/mapping_helpers/area_flag_injector/no_construction,
 /turf/closed/shuttle/dropship2/rearcorner/tadpole{
 	dir = 1
 	},
