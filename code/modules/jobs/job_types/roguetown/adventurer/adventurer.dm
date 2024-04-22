@@ -205,7 +205,7 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 
 /mob/living/carbon/human/proc/adv_hugboxing_moved()
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
-	to_chat(src, "<span class='danger'>I have [DisplayTimeText(GLOB.adventurer_hugbox_duration)] seconds to fuck off!</span>")
+	to_chat(src, "<span class='danger'>I have [DisplayTimeText(GLOB.adventurer_hugbox_duration)] to fuck off!</span>")
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_end)), GLOB.adventurer_hugbox_duration)
 
 /mob/living/carbon/human/proc/adv_hugboxing_end()
