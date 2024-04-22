@@ -1,0 +1,28 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"c" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"d" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"e" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"f" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 8},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"g" = (/turf/closed/wall/mineral/rogue/wooddark,/area/shuttle/arrival)
+"h" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/arrival)
+"i" = (/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/arrival)
+"j" = (/obj/structure/boatbell{pixel_y = 20},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/arrival)
+"k" = (/obj/docking_port/mobile/arrivals{dheight = 3; dir = 1; dwidth = 0; height = 8; width = 3},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/arrival)
+"l" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+"m" = (/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+"n" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+"o" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+"p" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+"q" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/obj/effect/landmark/latejoin,/turf/open/floor/rogue/ruinedwood,/area/shuttle/arrival)
+
+(1,1,1) = {"
+aba
+cde
+fgh
+iji
+kii
+lmn
+opq
+aba
+"}

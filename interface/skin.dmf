@@ -1,0 +1,212 @@
+macro "default"
+
+
+window "mainwindow"
+	elem "mainwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		is-default = true
+		saved-params = "pos;size;is-maximized;titlebar;can-resize;menu"
+		statusbar = false
+		is-maximized = true
+		icon = 'icons\\tg_32.png'
+		macro = "default"
+		menu = "menu"
+	elem "split"
+		type = CHILD
+		pos = 3,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		saved-params = "splitter"
+		left = "mapwindow"
+		right = "infowindow"
+		is-vert = true
+		splitter = 68
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		is-visible = false
+		saved-params = ""
+	elem "tooltip"
+		type = BROWSER
+		pos = 0,0
+		size = 999x999
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		saved-params = ""
+
+window "mapwindow"
+	elem "mapwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-pane = true
+	elem "map"
+		type = MAP
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Arial"
+		font-size = 7
+		is-default = true
+		saved-params = "icon-size;zoom-mode"
+		style = ".center { text-align: center; }\n.maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; }\n.command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; }\n.big { font-size: 8px; }\n.reallybig { font-size: 8px; }\n.extremelybig { font-size: 8px; }\n.greentext { color: #00ff00; font-size: 7px; }\n.redtext { color: #ff0000; font-size: 7px; }\n.clown { color: #ff69bf; font-size: 7px;  font-weight: bold; }\n.his_grace { color: #15d512; }\n.hypnophrase { color: #0d0d0d; font-weight: bold; }\n.yell { font-weight: bold; }\n.italics { font-size: 6px; }"
+
+
+window "infowindow"
+	elem "infowindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		saved-params = "pos;size"
+		is-pane = true
+		outer-size = 656x538
+		inner-size = 640x499
+	elem "info"
+		type = CHILD
+		pos = 0,5
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		saved-params = "splitter"
+		left = "statwindow"
+		right = "outputwindow"
+		is-vert = false
+		splitter = 25
+
+window "outputwindow"
+	elem "outputwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		saved-params = "pos;size"
+		is-pane = true
+	elem "browseroutput"
+		type = BROWSER
+		pos = 0,0
+		size = 635x440
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		is-visible = false
+		is-disabled = true
+		saved-params = ""
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 635x440
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		is-default = true
+		max-lines = 100
+		enable-http-images = true
+	elem "input"
+		type = INPUT
+		pos = 0,445
+		size = 630x25
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-size = 12
+		text-color = #ad9eb4
+		background-color = #000000
+		is-default = true
+		border = sunken
+		saved-params = ""
+		command = "say"
+
+window "statwindow"
+	elem "statwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		text-color = #d6dbd5
+		background-color = #000000
+		saved-params = "pos;size"
+		is-pane = true
+	elem "stat"
+		type = INFO
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Pterra"
+		font-size = 12
+		font-style = "6"
+		text-color = #d6dbd5
+		background-color = #000000
+		is-default = true
+		saved-params = ""
+		highlight-color = #f9bb00
+		tab-text-color = #d6dbd5
+		tab-background-color = #000000
+		tab-font-family = "Blackmoor LET"
+		tab-font-size = 20
+		prefix-color = #f9bb00
+		suffix-color = #d6dbd5
+
+window "popupwindow"
+	elem "popupwindow"
+		type = MAIN
+		pos = 281,150
+		size = 120x120
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		statusbar = false
+		can-resize = false
+		icon = 'icons\\tg_32.png'
+
+window "preferencess_window"
+	elem "preferencess_window"
+		type = MAIN
+		pos = 372,150
+		size = 700x530
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		statusbar = false
+		can-close = false
+		can-resize = false
+		icon = 'icons\\tg_32.png'
+	elem "preferences_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 700x530
+		anchor1 = 0,0
+		anchor2 = 75,100
+		saved-params = ""
+	elem "character_preview_map"
+		type = MAP
+		pos = 260,200
+		size = 140x192
+		anchor1 = 75,0
+		anchor2 = 100,100
+		background-color = #000000
+		right-click = true
+		icon-size = 64
+		zoom-mode = "distort"
+

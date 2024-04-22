@@ -1,0 +1,42 @@
+{
+
+    "french": {
+		"shi": "shee",
+		"thi": "thee",
+		" yes ": " oui ",
+		"no": "non",
+       		 "I'm ": "j' ", 
+   	     	" am ": " suis ", 
+		" a ": " un ",
+        	" and ": " et ", 
+		"the ": "l' ",
+		"I ": "j' ",
+		"with": "weeth",
+		"of ": "de ",
+       		 "bad": "mal", 
+        	"bye": [
+           		 "adieu",
+			"au revoir"
+       		 ], 
+		"cake": "gateau",
+      		  "captain": "capitaine", 
+      		  "cook": "cuisinier", 
+     		   "dad": "papa", 
+     		   "good": "bon", 
+        "hello": [
+            "'allo", 
+            "bonjour",
+			"salut"
+        ], 
+        "mom ": "mama ", 
+        "my ": "mon ", 
+	"shit": "merde",
+        "spaghetti": "macaroni", 
+        "thanks": "merci",  
+        "thank you": "merci",   
+        "what's": "quel est",
+        "who's": "qui est",
+        "wine": "vin"
+		}
+		
+}

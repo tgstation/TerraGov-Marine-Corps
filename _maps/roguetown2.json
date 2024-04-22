@@ -1,0 +1,15 @@
+{
+    "map_name": "Roguetown 2",
+    "map_path": "map_files/roguetown2",
+    "map_file": "roguetown2.dmm",
+	"traits": [{"Up": 1}, {"Up": 1, "Down": -1}, {"Up": 1, "Down": -1}, {"Up": 1, "Down": -1}, {"Down": -1}],
+	"minetype": null,
+	"space_empty_levels": 0,
+	"space_ruin_levels": 0,
+	"shuttles": {
+	    "cargo": "cargo_rogue",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_rogue"
+    }
+}

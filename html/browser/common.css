@@ -1,0 +1,418 @@
+body
+{
+	font-family: Pterra, TrueType;
+	padding: 0;
+	margin: 0;
+	background-color: #000000;
+	font-size: 14px;
+	color: #897472;
+	line-height: 170%;
+}
+
+hr
+{
+	background-color: #000000;
+	height: 2px;
+}
+
+a, button, a:link, a:visited, a:active, .linkOn, .linkOff
+{
+	font-family: Pterra, TrueType;
+	color: #7b5353;
+	text-decoration: none;
+	background: #000000;
+	border: 1px solid #000000;
+	padding: 1px 4px 1px 4px;
+	margin: 0 2px 0 0;
+	cursor:pointer;
+}
+
+a:hover
+{
+	color: #eac0b9;
+	background: #000000;
+	border-color: #000000;
+	text-decoration-line: underline; 
+}
+
+a.white, a.white:link, a.white:visited, a.white:active
+{
+	color: #7b5353;
+	text-decoration: none;
+	background: #000000;
+	border: 1px solid #000000;
+	padding: 1px 4px 1px 4px;
+	margin: 0 2px 0 0;
+	cursor:default;
+}
+
+a.white:hover
+{
+	color: #eac0b9;
+	background: #000000;
+	text-decoration-line: underline; 
+}
+
+.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
+{
+	color: #7b5353;
+	background: #000000;
+	border-color: #7b5353;
+}
+
+.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
+{
+	color: #000000;
+	background: #999999;
+	border-color: #7b5353;
+}
+
+a.icon, .linkOn.icon, .linkOff.icon
+{
+	position: relative;
+	padding: 1px 4px 2px 20px;
+}
+
+a.icon img, .linkOn.icon img
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 18px;
+	height: 18px;
+}
+ul
+{
+	padding: 4px 0 0 10px;
+	margin: 0;
+	list-style-type: none;
+}
+
+li
+{
+	padding: 0 0 2px 0;
+}
+
+img, a img
+{
+	border-style:none;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: Pterra, TrueType;
+	margin: 0;
+	padding: 16px 0 8px 0;
+	color: #ae3636;
+}
+
+h1
+{
+	font-size: 15px;
+}
+
+h2
+{
+	font-size: 14px;
+}
+
+h3
+{
+	font-size: 13px;
+}
+
+h4
+{
+	font-size: 12px;
+}
+
+.uiWrapper
+{
+
+	width: 100%;
+	height: 100%;
+}
+
+.uiTitle
+{
+	font-family: Nosfer, TrueType;
+	clear: both;
+	padding: 6px 8px 6px 8px;
+	border-bottom: 2px solid #161616;
+	background: #000000;
+	color: #ae3636;
+	font-size: 18px;
+}
+
+.uiTitle.icon
+{
+	padding: 6px 8px 6px 42px;
+	background-position: 2px 50%;
+	background-repeat: no-repeat;
+}
+
+.uiContent
+{
+	clear: both;
+	padding: 8px;
+	font-family: Pterra, TrueType;
+}
+
+.good
+{
+	color: #00ff00;
+}
+
+.average
+{
+	color: #d09000;
+}
+
+.bad
+{
+	color: #ff0000;
+}
+
+.highlight
+{
+	color: #7b5353;
+}
+
+.dark
+{
+	color: #000000;
+}
+
+.notice
+{
+	position: relative;
+	background: #000000;
+	color: #ae3636;
+	font-size: 10px;
+	font-style: italic;
+	padding: 2px 4px 0 4px;
+	margin: 4px;
+}
+
+.notice.icon
+{
+	padding: 2px 4px 0 20px;
+}
+
+.notice img
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 16px;
+	height: 16px;
+}
+
+div.notice
+{
+	clear: both;
+}
+
+.statusDisplay
+{
+	background: #000000;
+	color: #ffffff;
+	border: 1px solid #2f1c37;
+	padding: 4px;
+	margin: 3px 0;
+}
+
+.statusLabel
+{
+	width: 138px;
+	float: left;
+	overflow: hidden;
+	color: #f9bb00;
+}
+
+.statusValue
+{
+	float: left;
+}
+
+.block
+{
+	padding: 8px;
+	margin: 10px 4px 4px 4px;
+	border: 1px solid #2f1c37;
+	background-color: #202020;
+}
+
+.block h3
+{
+	padding: 0;
+}
+
+.progressBar
+{
+	width: 240px;
+	height: 14px;
+	border: 1px solid #666666;
+	float: left;
+	margin: 0 5px;
+	overflow: hidden;
+}
+
+.progressFill
+{
+	width: 100%;
+	height: 100%;
+	background: #2f1c37;
+	overflow: hidden;
+}
+
+.progressFill.good
+{
+	color: #ffffff;
+	background: #00ff00;
+}
+
+.progressFill.average
+{
+	color: #ffffff;
+	background: #d09000;
+}
+
+.progressFill.bad
+{
+	color: #ffffff;
+	background: #ff0000;
+}
+
+.progressFill.highlight
+{
+	color: #ffffff;
+	background: #8BA5C4;
+}
+
+.clearBoth
+{
+	clear: both;
+}
+
+.clearLeft
+{
+	clear: left;
+}
+
+.clearRight
+{
+	clear: right;
+}
+
+.line
+{
+	width: 100%;
+	clear: both;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2f1c37;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #ab491b;
+  transition: .4s;
+}
+
+.slider.red:before {
+  background-color: #d6858b;
+}
+
+.slider.locked:before {
+  content: url("padlock.png");
+  background-color: #b4b4b4;
+}
+
+input:checked + .slider {
+  background-color: #2f1c37;
+}
+
+input:checked + .slider.red {
+  background-color: #a92621;
+}
+
+input:checked + .slider.locked {
+  background-color: #707070;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:focus + .slider.red {
+  box-shadow: 0 0 1px #f3212d;
+}
+
+input:focus + .slider.locked {
+  box-shadow: 0 0 1px #979797;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.switch span {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  margin-left: 60px;
+}
+
+ul.sparse {
+	padding-bottom:20px;
+}
+
+.sparse li {
+  margin-top: 2px;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.severity {
+	margin:0px;
+	padding: 1px 8px 1px 8px;
+	border-radius: 25px;
+	border: 1px solid #161616;
+	background: #2f1c37;
+	color: #ffffff;
+}
+
+.severity img {
+    display: inline-block;
+    vertical-align: middle;
+}

@@ -1,0 +1,40 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"c" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/effect/decal/cobbleedge{icon_state = "jagged"},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"d" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/effect/decal/cobbleedge{icon_state = "jagged"},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"e" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"f" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"g" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"h" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 9},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"i" = (/turf/closed/wall/mineral/rogue/wooddark{above_floor = null},/area/shuttle/supply)
+"j" = (/turf/open/floor/rogue/ruinedwood,/area/shuttle/supply/buy)
+"k" = (/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"l" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"m" = (/turf/open/floor/rogue/ruinedwood{icon_state = "weird1"},/area/shuttle/supply/sell)
+"n" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 5},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"o" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 1},/obj/structure/fluff/railing/border,/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"p" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 8},/turf/open/floor/rogue/ruinedwood,/area/shuttle/supply/buy)
+"q" = (/obj/machinery/light/rogue/firebowl/blue,/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"r" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"s" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"t" = (/obj/structure/fluff/railing/border,/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"u" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"v" = (/obj/structure/boatbell{pixel_y = 20},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"w" = (/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"x" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"y" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 8},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 10},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"z" = (/obj/structure/fluff/railing/border,/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"A" = (/obj/structure/fluff/railing/border,/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"B" = (/obj/structure/fluff/railing/border,/obj/structure/fluff/railing/border{icon_state = "border"; dir = 4},/obj/effect/decal/cobbleedge{icon_state = "jagged"; dir = 1},/obj/structure/fluff/railing/border{icon_state = "border"; dir = 6},/turf/open/floor/rogue/ruinedwood{icon_state = "horzw"},/area/shuttle/supply)
+"C" = (/obj/machinery/light/rogue/torchholder{icon_state = "torchwall1"; dir = 4},/turf/open/floor/rogue/ruinedwood{icon_state = "weird1"},/area/shuttle/supply/sell)
+"D" = (/obj/docking_port/mobile/supply{dir = 1; dwidth = 9; height = 4; width = 17},/turf/open/floor/rogue/ruinedwood{icon_state = "vertw"; dir = 1},/area/shuttle/supply)
+"E" = (/obj/structure/fluff/buysign,/turf/open/floor/rogue/ruinedwood,/area/shuttle/supply/buy)
+"F" = (/obj/structure/fluff/sellsign,/turf/open/floor/rogue/ruinedwood{icon_state = "weird1"},/area/shuttle/supply/sell)
+
+(1,1,1) = {"
+aaaabdddkkkdddcea
+afgghjjEjkmFmmkln
+ooookjjjpiCmmmkqr
+asttujjjjvmmmmkwx
+aaaayAAAkDkAAAzBa
+"}

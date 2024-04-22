@@ -1,0 +1,11 @@
+#####################WHITELIST FOR TESTSERVER#####################
+
+eu4ia
+Psydon
+Mnilby
+SpookyPineapple
+Stimusz
+Jajsm
+Hilldric
+Monokrom
+Trieste

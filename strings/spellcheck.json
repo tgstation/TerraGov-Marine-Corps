@@ -1,0 +1,35 @@
+{
+	
+    "spellcheck": {
+		" u ": " you ",
+		" i ": " I ",
+		" im ": " I'm ",
+		" Im ": " I'm ",
+		" i'm ": " I'm ",
+		"Im ": "I'm ",
+		" id ": " I'd ",
+		" Id ": " I'd ",
+		" i'd ": " I'd ",
+		" ive ": " I've ",
+		" i've ": " I've ",
+		" Ive ": " I've ",
+		" i'll ": " I'll ",
+		"isnt ": "isn't ",
+		"Isnt ": "Isn't ",
+		" cant ": " can't ",
+		"Cant ": "Can't ",
+		"dont ": "don't ",
+		"Dont ": "Don't ",
+		"wont ": "won't ",
+		"Wont ": "Won't ",
+		" arent ": " aren't ",
+		"Arent ": "Aren't ",
+		"shouldnt ": "shouldn't ",
+		"Shouldnt ": "Shouldn't ",
+		"youre ": "you're ",
+		"Youre ": "You're ",
+		"theyre": "they're"
+		}
+	
+	
+}
