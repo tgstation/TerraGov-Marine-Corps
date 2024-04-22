@@ -351,3 +351,6 @@
 2024-04-21:
   RipGrayson:
   - bugfix: Fixed area on Big Red causing linter failure.
+2024-04-22:
+  K4rlox:
+  - code_imp: added back is_a_rouny var
