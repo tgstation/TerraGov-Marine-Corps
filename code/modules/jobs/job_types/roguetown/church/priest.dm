@@ -175,13 +175,6 @@
 	accept_message = "FOR PSYDON!"
 	refuse_message = "I refuse."
 
-/obj/effect/proc_holder/spell/self/convertrole/monk/can_convert(mob/living/carbon/human/recruit)
-	. = ..()
-	if(!.)
-		return
-	if(!recruit.PATRON || !(recruit.PATRON in ALL_PATRON_NAMES_LIST))
-		return FALSE
-
 /obj/effect/proc_holder/spell/self/convertrole/monk/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
 	. = ..()
 	if(!.)
