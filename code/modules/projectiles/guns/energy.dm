@@ -863,7 +863,6 @@
 		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
