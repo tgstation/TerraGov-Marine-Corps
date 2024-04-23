@@ -122,7 +122,7 @@
 
 	var/add_delay = mob.cached_multiplicative_slowdown + mob.next_move_slowdown
 	mob.next_move_slowdown = 0
-	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? 2 : 1 ) )) // set it now in case of pulled objects
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) // set it now in case of pulled objects
 	if(old_move_delay + (add_delay * MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
 	else

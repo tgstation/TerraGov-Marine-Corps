@@ -54,7 +54,7 @@
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
 	last_move_diagonal = ISDIAGONALDIR(direction)
-	var/new_delay = (last_move_diagonal ? 2 : 1) * vehicle_move_delay + calculate_additional_delay(user)
+	var/new_delay = (last_move_diagonal ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1) * vehicle_move_delay + calculate_additional_delay(user)
 	glide_size_override = DELAY_TO_GLIDE_SIZE(new_delay)
 	. = ..()
 	handle_ride(user, direction, new_delay)
