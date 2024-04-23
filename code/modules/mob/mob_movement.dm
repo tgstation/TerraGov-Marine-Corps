@@ -65,7 +65,7 @@
 #define MOVEMENT_DELAY_BUFFER 0.75
 #define MOVEMENT_DELAY_BUFFER_DELTA 1.25
 
-/client/Move(n, direct)
+/client/Move(atom/newloc, direction, glide_size_override)
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return FALSE
 	else
@@ -75,14 +75,14 @@
 	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob?.loc)
 		return FALSE
-	if(!n || !direct)
+	if(!newloc || !direction)
 		return FALSE
 	if(mob.notransform)
 		return FALSE	//This is sota the goto stop mobs from moving var
 	if(mob.control_object)
-		return Move_object(direct)
+		return Move_object(direction)
 	if(!isliving(mob))
-		return mob.Move(n, direct)
+		return mob.Move(newloc, direction)
 	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
@@ -90,10 +90,10 @@
 	var/mob/living/L = mob  //Already checked for isliving earlier
 
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
-		return L.remote_control.relaymove(L, direct)
+		return L.remote_control.relaymove(L, direction)
 
 	if(isAI(L))
-		return AIMove(n, direct, L)
+		return AIMove(newloc, direction, L)
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST) & COMSIG_LIVING_RESIST_SUCCESSFUL)
@@ -111,18 +111,18 @@
 			return L.do_move_resist_grab()
 
 	if(L.buckled)
-		return L.buckled.relaymove(L, direct)
+		return L.buckled.relaymove(L, direction)
 
 	if(!L.canmove)
 		return
 
 	if(isobj(L.loc) || ismob(L.loc))//Inside an object, tell it we moved
 		var/atom/O = L.loc
-		return O.relaymove(L, direct)
+		return O.relaymove(L, direction)
 
 	var/add_delay = mob.cached_multiplicative_slowdown + mob.next_move_slowdown
 	mob.next_move_slowdown = 0
-	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) // set it now in case of pulled objects
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direction) && EWCOMPONENT(direction)) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) // set it now in case of pulled objects
 	if(old_move_delay + (add_delay * MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
 	else
@@ -135,16 +135,16 @@
 		if(L.AmountConfused() > 40)
 			newdir = pick(GLOB.alldirs)
 		else if(prob(L.AmountConfused() * 1.5))
-			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
+			newdir = angle2dir(dir2angle(direction) + pick(90, -90))
 		else if(prob(L.AmountConfused() * 3))
-			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
+			newdir = angle2dir(dir2angle(direction) + pick(45, -45))
 		if(newdir)
-			direct = newdir
-			n = get_step(L, direct)
+			direction = newdir
+			newloc = get_step(L, direction)
 
 	. = ..()
 
-	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
+	if((direction & (direction - 1)) && mob.loc == newloc) //moved diagonally successfully
 		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
