@@ -384,9 +384,9 @@
 		return FALSE
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)
-			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, MOB_WALK_MOVE_MOD + CONFIG_GET(number/movedelay/walk_delay))
 		if(MOVE_INTENT_RUN)
-			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, MOB_RUN_MOVE_MOD + CONFIG_GET(number/movedelay/run_delay))
 
 /mob/proc/cadecheck()
 	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))
