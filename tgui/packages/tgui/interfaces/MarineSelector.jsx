@@ -245,6 +245,11 @@ const ItemLine = (props) => {
       buttons={
         <>
           {colorToElement[prod_color]}
+          {prod_cost > 0 && (
+            <Box inline width="75px" mr="6px" ml="6px">
+              {prod_cost} points
+            </Box>
+          )}
           <Button
             disabled={cant_buy || prod_cost > remaining_points}
             onClick={() => act('vend', { vend: prod_index })}

@@ -1545,6 +1545,11 @@
 			/obj/item/implanter/chem/blood = -1,
 			/obj/item/implanter/blade = -1,
 		),
+		"Assault Vehicle" = list(
+			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
+			/obj/item/ammo_magazine/tank/ltaap_chaingun = -1,
+			/obj/item/ammo_magazine/tank/secondary_cupola = -1,
+		),
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req

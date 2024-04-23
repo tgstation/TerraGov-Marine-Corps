@@ -744,8 +744,8 @@ below 100 is not dizzy
 	return D == src || D.Adjacent(src)
 
 /mob/living/onTransitZ(old_z, new_z)
-	. = ..()
 	set_jump_component()
+	return ..()
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
@@ -883,7 +883,17 @@ below 100 is not dizzy
 		get_up()
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
-/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
 		duration *= 2.5 - gravity
@@ -891,14 +901,14 @@ below 100 is not dizzy
 		cost *= gravity * 0.5
 		height *= 2 - gravity
 		if(gravity <= 0.75)
-			pass_flags |= PASS_DEFENSIVE_STRUCTURE
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
 	else if(gravity > 1) //high grav
 		duration *= gravity * 0.5
 		cooldown *= gravity
 		cost *= gravity
 		height *= gravity * 0.5
 
-	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = pass_flags)
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)

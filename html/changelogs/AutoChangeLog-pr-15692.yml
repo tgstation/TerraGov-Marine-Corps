@@ -1,0 +1,4 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - qol: "Game will now tally up how many times people used Sandevistans (as well as how many died to it)."
