@@ -16,7 +16,7 @@
 	/// How long it takes to make
 	var/time = 0
 	///whether only people with sufficient construction skill can build this.
-	var/skill_req = NONE
+	var/skill_req = SKILL_CONSTRUCTION_DEFAULT
 	/// Bitflag of additional placement checks required to place. (STACK_CHECK_CARDINALS|STACK_CHECK_ADJACENT|STACK_CHECK_TRAM_FORBIDDEN|STACK_CHECK_TRAM_EXCLUSIVE)
 	var/placement_checks = NONE
 	/// If TRUE, the created atom will gain custom mat datums
@@ -44,7 +44,7 @@
 	trait_booster,
 	trait_modifier = 1,
 	category,
-	skill_req = FALSE,
+	skill_req = SKILL_CONSTRUCTION_DEFAULT,
 )
 
 	src.title = title

@@ -40,7 +40,7 @@
 	/// Whether we should delete the contents of the crafted storage item (Only works with storage items, used for ammo boxes, donut boxes, internals boxes, etc)
 	var/delete_contents = TRUE
 	///whether only people with sufficient construction skill can build this.
-	var/skill_req = NONE
+	var/skill_req = SKILL_CONSTRUCTION_DEFAULT
 
 	///crafting_flags var to hold bool values
 	var/crafting_flags = CRAFT_CHECK_DENSITY
