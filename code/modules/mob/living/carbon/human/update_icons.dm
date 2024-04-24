@@ -624,13 +624,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_burst()
 	remove_overlay(BURST_LAYER)
-	var/mutable_appearance/standing
-	if(chestburst == CARBON_IS_CHEST_BURSTING)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "burst_stand", -BURST_LAYER)
-	else if(chestburst == CARBON_CHEST_BURSTED)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "bursted_stand", -BURST_LAYER)
-
-	overlays_standing[BURST_LAYER] = standing
+	if(!chestburst)
+		return
+	overlays_standing[BURST_LAYER] = mutable_appearance('icons/Xeno/Effects.dmi', chestburst == CARBON_IS_CHEST_BURSTING ? "burst_stand" : "bursted_stand", -BURST_LAYER)
 	apply_overlay(BURST_LAYER)
 
 /mob/living/carbon/human/update_fire()
