@@ -371,3 +371,12 @@
   novaepee:
   - rscadd: keybind for vehicle honk
   - qol: keybind for vehicle honk
+2024-04-24:
+  SandPoot:
+  - qol: Game will now tally up how many times people used Sandevistans (as well as
+      how many died to it).
+  TiviPlus:
+  - rscadd: Adds contextual tutorials for picking things up, dropping them and swapping
+      hands
+  Xander3359:
+  - code_imp: Organizes reagents folder
