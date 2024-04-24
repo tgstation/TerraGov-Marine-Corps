@@ -9,7 +9,7 @@
 
 	letters_per_update = 2
 	fade_out_delay = 10 SECONDS
-	style_open = "<span class='maptext' style=font-size:24pt;text-align:center;font-family:Verdana valign='top'>"
+	style_open = "<span class='maptext' style=font-size:24pt;text-align:center valign='top'>"
 	style_close = "</span>"
 
 /atom/movable/screen/text/screen_text/command_order/automated
