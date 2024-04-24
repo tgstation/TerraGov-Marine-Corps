@@ -86,15 +86,17 @@
 /obj/structure/mineral_door/attackby(obj/item/attacking_item, mob/living/user)
 	. = ..()
 	if(.)
-		return TRUE
+		return
 	if(QDELETED(src))
 		return
 
 	if(user.a_intent == INTENT_HARM)
 		return
 
-	if(obj_flags & CAN_BE_HIT)
-		return attacking_item.attack_obj(src, user)
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
 
 /obj/structure/mineral_door/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 	. = ..()
@@ -117,12 +119,11 @@
 	return bonus_damage
 
 /obj/structure/mineral_door/resin/take_extra_burn_damage(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
-	bonus_damage = ..()
-	bonus_damage += 1
-	if(!isplasmacutter(attacking_item) || !user.do_actions)
+	. = ..()
+	bonus_damage = .
+	if(bonus_damage <= 1)
 		return bonus_damage
-
-	bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
+	bonus_damage += 1 + PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 	return bonus_damage
 
 /obj/structure/mineral_door/Destroy()

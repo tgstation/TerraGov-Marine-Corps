@@ -70,8 +70,10 @@
 	if(user.a_intent != INTENT_HARM)
 		return
 
-	if(obj_flags & CAN_BE_HIT)
-		return attacking_item.attack_obj(src, user)
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
