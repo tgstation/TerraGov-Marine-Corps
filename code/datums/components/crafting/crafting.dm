@@ -204,22 +204,22 @@
 	if(!check_tools(crafter, recipe, contents))
 		return ", missing tool."
 
-	if(recipe.one_per_turf)
+	if(recipe.crafting_flags & CRAFT_ONE_PER_TURF)
 		for(var/content in dest_turf)
 			if(istype(content, recipe.result))
 				return ", object already present."
 
-	if(recipe.check_direction)
-		if(!valid_build_direction(dest_turf, crafter.dir, is_fulltile = recipe.is_fulltile))
+	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
+		if(!valid_build_direction(dest_turf, crafter.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
 			return ", won't fit here!"
 
-	if(recipe.on_solid_ground)
+	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(isclosedturf(dest_turf))
 			return ", cannot be made on a wall!"
 		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
 			return ", must be made on solid ground!"
 
-	if(recipe.check_density)
+	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
 				crafter.balloon_alert(crafter, "something is in the way!")
@@ -414,7 +414,7 @@
 		qdel(DL)
 
 /datum/component/personal_crafting/proc/is_recipe_available(datum/crafting_recipe/recipe, mob/user)
-	if(!recipe.always_available && !(recipe.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+	if((recipe.crafting_flags & CRAFT_MUST_BE_LEARNED) && !(recipe.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 		return FALSE
 	return TRUE
 

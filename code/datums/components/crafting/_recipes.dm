@@ -23,22 +23,10 @@
 	var/list/chem_catalysts = list()
 	///where it shows up in the crafting UI
 	var/category
-	///Set to FALSE if it needs to be learned first.
-	var/always_available = TRUE
 	///Required machines for the craft, set the assigned value of the typepath to CRAFTING_MACHINERY_CONSUME or CRAFTING_MACHINERY_USE. Lazy associative list: type_path key -> flag value.
 	var/list/machinery
 	///Required structures for the craft, set the assigned value of the typepath to CRAFTING_STRUCTURE_CONSUME or CRAFTING_STRUCTURE_USE. Lazy associative list: type_path key -> flag value.
 	var/list/structures
-	///Should only one object exist on the same turf?
-	var/one_per_turf = FALSE
-	/// Setting this to true will effectively set check_direction to true.
-	var/is_fulltile = FALSE
-	/// If this atom should run the direction check, for use when building things like directional windows where you can have more than one per turf
-	var/check_direction = FALSE
-	/// If the atom requires a floor below
-	var/on_solid_ground = FALSE
-	/// If the atom checks that there are objects with density in the same turf when being built. TRUE by default
-	var/check_density = TRUE
 	/// Bitflag of additional placement checks required to place. (STACK_CHECK_CARDINALS|STACK_CHECK_ADJACENT|STACK_CHECK_TRAM_FORBIDDEN|STACK_CHECK_TRAM_EXCLUSIVE)
 	var/placement_checks = NONE
 	/// Steps needed to achieve the result
@@ -52,7 +40,10 @@
 	/// Whether we should delete the contents of the crafted storage item (Only works with storage items, used for ammo boxes, donut boxes, internals boxes, etc)
 	var/delete_contents = TRUE
 	///whether only people with sufficient construction skill can build this.
-	var/skill_req = FALSE
+	var/skill_req = NONE
+
+	///crafting_flags var to hold bool values
+	var/crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/New()
 	if(!name && result)
@@ -78,12 +69,7 @@
 	src.result_amount = stack_recipe.res_amount
 	src.reqs[material] = stack_recipe.req_amount
 	src.category = stack_recipe.category || CAT_MISC
-
-	src.one_per_turf = stack_recipe.one_per_turf
-	src.is_fulltile = stack_recipe.is_fulltile
-	src.check_direction = stack_recipe.check_direction || is_fulltile
-	src.on_solid_ground = stack_recipe.on_solid_ground
-	src.check_density = stack_recipe.check_density
+	src.crafting_flags = stack_recipe.crafting_flags
 	src.placement_checks = stack_recipe.placement_checks
 	src.skill_req = stack_recipe.skill_req
 
