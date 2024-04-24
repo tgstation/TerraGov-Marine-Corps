@@ -1,12 +1,23 @@
+/*
+	Screen objects
+	Todo: improve/re-implement
+
+	Screen objects are only used for the hud and should not appear anywhere "in-game".
+	They are used with the client/screen list and the screen_loc var.
+	For more information, see the byond documentation on the screen_loc and screen vars.
+*/
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
+	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
+	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
 	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
+	/// A reference to the owner HUD, if any.
+	var/datum/hud/hud
 
 	//Map popups
 	/**
@@ -23,6 +34,15 @@
 	 */
 	var/del_on_map_removal = TRUE
 
+	/**
+	 * If TRUE, clicking the screen element will fall through and perform a default "Click" call
+	 * Obviously this requires your Click override, if any, to call parent on their own.
+	 * This is set to FALSE to default to dissade you from doing this.
+	 * Generally we don't want default Click stuff, which results in bugs like using Telekinesis on a screen element
+	 * or trying to point your gun at your screen.
+	*/
+	var/default_click = FALSE
+
 /atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	if(hud_owner && istype(hud_owner))
@@ -33,6 +53,11 @@
 	hud = null
 	return ..()
 
+/atom/movable/screen/Click(location, control, params)
+	if(atom_flags & INITIALIZED)
+		SEND_SIGNAL(src, COMSIG_SCREEN_ELEMENT_CLICK, location, control, params, usr)
+	if(default_click)
+		return ..()
 
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
@@ -57,6 +82,12 @@
 
 /atom/movable/screen/swap_hand/human
 	icon_state = "swap_1"
+
+/atom/movable/screen/craft
+	name = "crafting menu"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "craft"
+	screen_loc = ui_crafting
 
 /atom/movable/screen/language_menu
 	name = "language menu"

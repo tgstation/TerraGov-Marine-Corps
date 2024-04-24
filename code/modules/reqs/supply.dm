@@ -710,7 +710,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 /datum/supply_ui/vehicles/ui_static_data(mob/user)
 	var/list/data = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
-		var/flags = initial(vehtype.armored_flags)
+		var/flags = vehtype::armored_flags
 
 		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
 			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)
