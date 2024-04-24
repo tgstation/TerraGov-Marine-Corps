@@ -8,9 +8,13 @@
 	screen_loc = "LEFT,TOP-3"
 
 	letters_per_update = 2
-	fade_out_delay = 5 SECONDS
-	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
+	fade_out_delay = 10 SECONDS
+	style_open = "<span class='maptext' style=font-size:24pt;text-align:center;font-family:Verdana valign='top'>"
 	style_close = "</span>"
+
+/atom/movable/screen/text/screen_text/command_order/automated
+	fade_out_delay = 3 SECONDS
+	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
 
 /datum/action/innate/message_squad
 	name = "Send Order"
@@ -60,8 +64,6 @@
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
 	var/faction_string = "Command" // In case it's not a TGMC announcement, rename this with the faction name
 	if(human_owner.assigned_squad)
-		S = sound('sound/misc/notice3.ogg')
-		S.channel = CHANNEL_ANNOUNCEMENTS
 		switch(human_owner.assigned_squad.id)
 			if(ALPHA_SQUAD)
 				override_color = "red"
@@ -72,7 +74,7 @@
 			if(DELTA_SQUAD)
 				override_color = "blue"
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
-			marine.playsound_local(owner, 'sound/effects/sos-morse-code.ogg', 35)
+			marine.playsound_local(marine, 'sound/effects/sos-morse-code.ogg', 35)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, "[human_owner.assigned_squad.color]")
 			to_chat(marine, assemble_alert(
 				title = "Squad [human_owner.assigned_squad.name] Announcement",
