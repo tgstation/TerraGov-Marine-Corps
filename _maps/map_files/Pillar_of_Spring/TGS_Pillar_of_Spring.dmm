@@ -9083,6 +9083,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/ammo_magazine/shotgun/blank,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "lue" = (
