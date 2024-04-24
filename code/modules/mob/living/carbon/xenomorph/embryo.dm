@@ -160,7 +160,7 @@
 	if(victim.chestburst || loc != victim)
 		return
 
-	victim.chestburst = 1
+	victim.chestburst = CARBON_IS_CHEST_BURSTING
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, span_danger("We start bursting out of [victim]'s chest!"))
 
@@ -179,7 +179,7 @@
 		return
 
 	if(loc != victim)
-		victim.chestburst = 0
+		victim.chestburst = CARBON_NO_CHEST_BURST
 		return
 
 	victim.update_burst()
@@ -215,7 +215,7 @@
 		chest.fracture()
 
 
-	victim.chestburst = 2
+	victim.chestburst = CARBON_CHEST_BURSTED
 	victim.update_burst()
 	log_combat(src, null, "chestbursted as a larva.")
 	log_game("[key_name(src)] chestbursted as a larva at [AREACOORD(src)].")
