@@ -1,0 +1,4 @@
+author: "Lauwma"
+delete-after: True
+changes:
+  - rscadd: "AR-55 can now be issued to Field Commanders through their assigned vendor."
