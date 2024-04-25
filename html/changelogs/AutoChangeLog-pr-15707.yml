@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - qol: "Put assault and transport crew spawning in their respective room in Pillar of Spring."
+  - imageadd: "Add image for transport crew landmark."
+  - qol: "Change positions of some signs in PoS."
