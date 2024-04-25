@@ -380,3 +380,15 @@
       hands
   Xander3359:
   - code_imp: Organizes reagents folder
+2024-04-25:
+  Lumipharon:
+  - bugfix: fixed an alamo runtime on non hvx gamemodes
+  - bugfix: fixed a visual offset issue with sentry deployment systems
+  - bugfix: fixed some issues with mobs riding vehicles
+  - bugfix: fixed some visua issues with xeno fire overlays
+  - bugfix: Stray organs will no longer clang loudly
+  Xander3359:
+  - qol: Clicking a magazine with a gun will tactical reload instead of dragging the
+      magazine
+  - qol: Selecting a new vali chem will purge the old loaded reagent and load up the
+      new chem

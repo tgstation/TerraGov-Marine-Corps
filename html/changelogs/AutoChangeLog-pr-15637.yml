@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - qol: "Selecting a new vali chem will purge the old loaded reagent and load up the new chem"
