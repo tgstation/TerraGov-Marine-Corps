@@ -103,7 +103,7 @@
 // ***************************************
 // *********** Parent Ability
 // ***************************************
-#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 0.5
+#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 2
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
