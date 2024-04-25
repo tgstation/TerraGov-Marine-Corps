@@ -473,9 +473,13 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "aGZ" = (
-/obj/structure/sign/pods,
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/droppod)
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "aHp" = (
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
@@ -844,16 +848,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
-"aZM" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "bap" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -1919,7 +1913,6 @@
 /obj/item/target,
 /obj/item/target,
 /obj/item/target,
-/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "cwu" = (
@@ -3670,8 +3663,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "eDg" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/structure/sign/securearea/firingrange{
+	dir = 1
+	},
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -3765,6 +3760,9 @@
 	dir = 4
 	},
 /obj/item/clothing/head/warning_cone,
+/obj/structure/sign/pods{
+	dir = 4
+	},
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar/droppod)
 "eLq" = (
@@ -5221,7 +5219,7 @@
 /obj/structure/cable,
 /obj/machinery/iv_drip,
 /obj/machinery/power/apc/mainship,
-/obj/item/reagent_containers/blood/OPlus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "gpU" = (
@@ -6522,6 +6520,7 @@
 /area/mainship/engineering/ce_room)
 "ifT" = (
 /obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/transport_crewman,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "igh" = (
@@ -6853,13 +6852,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
 "iFw" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/assault_crewman,
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "iFI" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship/floor,
@@ -8635,6 +8631,7 @@
 /area/mainship/hallways/aft_hallway)
 "kVD" = (
 /obj/structure/cable,
+/obj/machinery/power/apc,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "kWc" = (
@@ -10843,6 +10840,9 @@
 /area/mainship/medical/upper_medical)
 "nwt" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
+/obj/structure/sign/securearea/firingrange{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "nwy" = (
@@ -11169,6 +11169,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -11681,7 +11684,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood/OPlus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -12905,10 +12908,8 @@
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/mechpilotquarters)
 "pSX" = (
-/obj/machinery/light/mainship{
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -12941,6 +12942,9 @@
 "pVb" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -14565,8 +14569,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "rWD" = (
-/obj/structure/cable,
 /obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/sign/restroom{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -16351,15 +16357,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
 "uhj" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/cargo/arrow,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "uhP" = (
 /obj/machinery/air_alarm,
@@ -17435,8 +17435,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "vyj" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
+/obj/structure/sign/restroom{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "vyG" = (
@@ -17723,7 +17724,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/structure/sign/securearea/firingrange,
 /obj/item/clothing/head/tgmcberet/red,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
@@ -18039,10 +18039,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "wqZ" = (
-/obj/structure/cable,
-/obj/structure/sign/restroom,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/sign/pods{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
-/area/crew_quarters/toilet)
+/area/mainship/hallways/aft_hallway)
 "wrb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -54918,7 +54922,7 @@ vAn
 vAn
 vAn
 vAn
-wII
+wqZ
 swv
 vAn
 vAn
@@ -55662,11 +55666,11 @@ ozU
 dFt
 xtU
 dii
-iFw
 eFh
+aGZ
 eFh
 kHN
-aZM
+eFh
 nPF
 tyN
 vGQ
@@ -55682,7 +55686,7 @@ sAI
 sAI
 ebu
 dXO
-kVD
+xvv
 cTx
 xvv
 kHT
@@ -55937,7 +55941,7 @@ rbo
 xLu
 fAJ
 fAJ
-wqZ
+ebu
 fAJ
 vyj
 cTx
@@ -56456,7 +56460,7 @@ fAJ
 tlT
 kMo
 tlT
-aGZ
+pdj
 pdj
 pdj
 pdj
@@ -57214,7 +57218,7 @@ vou
 vXQ
 xQB
 wrW
-ifT
+iFw
 mJG
 ifT
 wrW
