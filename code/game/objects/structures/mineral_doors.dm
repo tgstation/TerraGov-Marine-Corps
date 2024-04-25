@@ -102,28 +102,31 @@
 	. = ..()
 	if(attacking_item.damtype != BURN)
 		return
-	var/damage_multiplier = take_extra_burn_damage(attacking_item, user, def_zone)
+	var/damage_multiplier = get_burn_damage_multiplier(attacking_item, user, def_zone)
 
-	take_damage(max(0, attacking_item.force * damage_multiplier - attacking_item.force), attacking_item.damtype, MELEE)
+	take_damage(max(0, attacking_item.force * damage_multiplier), attacking_item.damtype, MELEE)
 
 ///Takes extra damage if our attacking item does burn damage
-/obj/structure/mineral_door/proc/take_extra_burn_damage(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
-	if(!isplasmacutter(attacking_item) || !user.do_actions)
+/obj/structure/mineral_door/proc/get_burn_damage_multiplier(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 0)
+	if(!isplasmacutter(attacking_item))
 		return bonus_damage
 
 	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
 	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
 		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
-		attacking_pc.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 
 	return bonus_damage
 
-/obj/structure/mineral_door/resin/take_extra_burn_damage(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
-	. = ..()
-	bonus_damage = .
-	if(bonus_damage <= 1)
+/obj/structure/mineral_door/resin/get_burn_damage_multiplier(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
+	if(!isplasmacutter(attacking_item))
 		return bonus_damage
-	bonus_damage += 1 + PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
+
+	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
+	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER
+		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
 	return bonus_damage
 
 /obj/structure/mineral_door/Destroy()
