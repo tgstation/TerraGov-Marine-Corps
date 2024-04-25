@@ -712,6 +712,7 @@
 	ceiling = 2
 	})
 "er" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/shuttle/dropship1/aislewindow{
 	dir = 1
 	},
@@ -824,12 +825,6 @@
 "xG" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo{
-	ceiling = 2
-	})
-"xP" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo{
 	ceiling = 2
 	})
@@ -1147,7 +1142,7 @@ km
 aM
 aS
 aS
-xP
+aS
 aS
 aS
 aS
