@@ -13,8 +13,7 @@
 	turret_icon = null
 	pixel_x = -48
 	pixel_y = -40
-	obj_integrity = 2000
-	max_integrity = 2000
+	max_integrity = 600
 	max_occupants = 20 //Clown car? Clown car.
 	move_delay = 0.5 SECONDS
 	easy_load_list = list(
