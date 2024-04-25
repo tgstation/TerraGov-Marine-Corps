@@ -16,6 +16,7 @@
 	obj_integrity = 2000
 	max_integrity = 2000
 	max_occupants = 20 //Clown car? Clown car.
+	ram_damage = 25
 	move_delay = 0.5 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
