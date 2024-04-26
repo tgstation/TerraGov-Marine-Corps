@@ -269,7 +269,7 @@
 	if(isgrabitem(thing_to_load))
 		var/obj/item/grab/grab_item = thing_to_load
 		thing_to_load = grab_item.grabbed_thing
-	if(!is_type_in_typecache(thing_to_load.type, easy_load_list))
+	if(!isliving(thing_to_load) && !is_type_in_typecache(thing_to_load.type, easy_load_list))
 		return
 	if(!interior)
 		user.balloon_alert(user, "no interior")
@@ -281,8 +281,7 @@
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
 		user.balloon_alert(user, "not at entrance")
 		return
-	if(iscarbon(thing_to_load))
-		//thing_to_load.Move(user.loc)
+	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
 		mob_try_enter(thing_to_load, TRUE)
 		return
