@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - qol: "Tank and APC sprites will now more accurately reflect their current integrity values."

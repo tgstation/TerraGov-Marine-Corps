@@ -159,11 +159,11 @@
 	if(!damage_overlay)
 		return
 	switch(PERCENT(obj_integrity / max_integrity))
-		if(0 to 29)
+		if(0 to 20)
 			damage_overlay.icon_state = "damage_veryhigh"
-		if(29 to 59)
+		if(20 to 40)
 			damage_overlay.icon_state = "damage_high"
-		if(59 to 70)
+		if(40 to 70)
 			damage_overlay.icon_state = "damage_medium"
 		if(70 to 90)
 			damage_overlay.icon_state = "damage_small"

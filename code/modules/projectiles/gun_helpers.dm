@@ -39,6 +39,12 @@
 
 	active_attachable.reload(I, user)
 
+//tactical reloads
+/obj/item/weapon/gun/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	if(istype(target, /obj/item/ammo_magazine) || istype(target, /obj/item/cell))
+		tactical_reload(target, user)
+	return ..()
+
 /obj/item/weapon/gun/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
@@ -89,12 +95,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		unwield(user)//Trying to unwield it
 		return
 	wield(user)//Trying to wield it
-
-//tactical reloads
-/obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
-	if(istype(dropping, /obj/item/ammo_magazine) || istype(dropping, /obj/item/cell))
-		tactical_reload(dropping, user)
-	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/new_magazine, mob/living/carbon/human/user)

@@ -363,29 +363,32 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
-	if(current_acid) //handle acid removal
-		if(!ishuman(user)) //gotta have limbs Morty
-			return
-		user.visible_message(span_danger("Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!"),
-		span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
-		playsound(user, "acid_hit", 25)
-		var/mob/living/carbon/human/H = user
-		H.emote("pain")
-		var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
-		var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
-		var/limb_count = null
-		for(var/datum/limb/X in H.limbs)
-			if(limb_count > 4) //All target limbs affected
-				break
-			if(!affected_limbs.Find(X.name) )
-				continue
-			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * randfloat(0.75, 1.25), ACID, def_zone = X.name)))
-				H.UpdateDamageIcon()
-			limb_count++
-		UPDATEHEALTH(H)
-		QDEL_NULL(current_acid)
+	SEND_SIGNAL(user, COMSIG_LIVING_PICKED_UP_ITEM, src)
+	if(!current_acid) //handle acid removal
+		item_flags |= IN_INVENTORY
+		return
+	//i hate cm code please god someone make acid into a component already
+	if(!ishuman(user)) //gotta have limbs Morty
+		return
+	user.visible_message(span_danger("Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!"),
+	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
+	playsound(user, "acid_hit", 25)
+	var/mob/living/carbon/human/H = user
+	H.emote("pain")
+	var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
+	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
+	var/limb_count = null
+	for(var/datum/limb/X in H.limbs)
+		if(limb_count > 4) //All target limbs affected
+			break
+		if(!affected_limbs.Find(X.name) )
+			continue
+		if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * randfloat(0.75, 1.25), ACID, def_zone = X.name)))
+			H.UpdateDamageIcon()
+		limb_count++
+	UPDATEHEALTH(H)
+	QDEL_NULL(current_acid)
 	item_flags |= IN_INVENTORY
-	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
 /obj/item/proc/do_quick_equip(mob/user)
@@ -963,9 +966,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	if(zoom_allow_movement)
-		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
+		RegisterSignal(user, COMSIG_LIVING_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
-		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
 	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
 	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
@@ -973,9 +976,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
 	if(zoom_allow_movement)
-		UnregisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
+		UnregisterSignal(user, list(COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
 	else
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
 
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 

@@ -363,3 +363,43 @@
   coldironwarrior:
   - bugfix: the FC GHMME now vends the right injector pouch
   - balance: medical rig belts now can hold soap
+2024-04-22:
+  Wisemonster:
+  - rscadd: Expanded west side of Valhalla with an assault vehicle area
+  - rscadd: Added an Assault Vehicle category to the Valhalla requisition vendor;
+      added tank ammo to said category
+  novaepee:
+  - rscadd: keybind for vehicle honk
+  - qol: keybind for vehicle honk
+2024-04-24:
+  SandPoot:
+  - qol: Game will now tally up how many times people used Sandevistans (as well as
+      how many died to it).
+  TiviPlus:
+  - rscadd: Adds contextual tutorials for picking things up, dropping them and swapping
+      hands
+  Xander3359:
+  - code_imp: Organizes reagents folder
+2024-04-25:
+  Lumipharon:
+  - bugfix: fixed an alamo runtime on non hvx gamemodes
+  - bugfix: fixed a visual offset issue with sentry deployment systems
+  - bugfix: fixed some issues with mobs riding vehicles
+  - bugfix: fixed some visua issues with xeno fire overlays
+  - bugfix: Stray organs will no longer clang loudly
+  Xander3359:
+  - qol: Clicking a magazine with a gun will tactical reload instead of dragging the
+      magazine
+  - qol: Selecting a new vali chem will purge the old loaded reagent and load up the
+      new chem
+2024-04-26:
+  Lauwma:
+  - rscadd: AR-55 can now be issued to Field Commanders through their assigned vendor.
+  Xander3359:
+  - bugfix: You can now attack resin walls on help intent
+  - bugfix: Fix crafting ignoring construction checks
+  novaepee:
+  - qol: Put assault and transport crew spawning in their respective room in Pillar
+      of Spring.
+  - imageadd: Add image for transport crew landmark.
+  - qol: Change positions of some signs in PoS.
