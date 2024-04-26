@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "Fixes APC having insane ram damage (it now has 25% of previous value)"
