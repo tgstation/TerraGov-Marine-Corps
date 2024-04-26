@@ -757,7 +757,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	deploy_delay = 2 SECONDS
 	mine_features = MINE_STANDARD_FLAGS|MINE_REUSABLE|MINE_ILLEGAL|MINE_VOLATILE_DAMAGE|MINE_VOLATILE_EXPLOSION
 	///Base damage of the radiation pulse, and determines severity of effects; see extra_effects()
-	var/radiation_damage = 20
+	var/radiation_damage = 10
 	///Radius of the radiation field
 	var/radiation_range = 4
 	///How many units of fuel are inside; each unit is 1 pulse
@@ -827,6 +827,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	set_light(light_range, light_power, light_color)
 
 	var/list/exclusion_zone = circle_range(get_turf(src), radiation_range)	//Radiation SHALL NOT pass through walls (too much cope)
+	var/list/turfs_with_victims	//Used later in rad effect creation
 	for(var/mob/living/carbon/radiation_victim in exclusion_zone)
 		if(!check_path(src, radiation_victim, FALSE, TRUE, TRUE, TRUE))	//circle_range() goes through walls, so make sure the target is reachable
 			exclusion_zone -= radiation_victim	//Remove it since it will be iterating again below
@@ -834,18 +835,32 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 		//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
 		radiation_victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(radiation_victim) ? pick(GLOB.human_body_parts) : null, BIO)
-		radiation_victim.adjust_stagger(radiation_damage/5 SECONDS)
-		radiation_victim.adjust_radiation(radiation_damage SECONDS)
+		radiation_victim.adjust_stagger((radiation_damage/5) SECONDS)
+		radiation_victim.adjust_radiation((radiation_damage/5) SECONDS)
+
+		var/turf/turf = get_turf(radiation_victim)	//I don't know if it actually needs to be casted as turf but just in case
+		//Make sure it's not already in the list
+		if(turfs_with_victims.len && turfs_with_victims.Find(turf))
+			continue
+
+		turfs_with_victims += turf
 
 	for(var/turf/irradiated_turf in exclusion_zone)
 		if(!check_path(src, irradiated_turf))
 			continue
 
+		//Find out if someone is on this turf so that the rad effect starts running Process() on creation
+		var/turf_has_victim
+		if(turfs_with_victims.Find(irradiated_turf))
+			turf_has_victim = TRUE
+			turfs_with_victims.Remove(irradiated_turf)	//Reduce the list size for the next iteration
+
+		//Delete any present radiation effect, the new one will replace it
 		for(var/obj/effect/temp_visual/radiation/rad_effect in irradiated_turf.contents)
-			qdel(rad_effect)	//Delete any present radiation effect, the new one will replace it
+			qdel(rad_effect)
 
 		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
-		new /obj/effect/temp_visual/radiation(irradiated_turf, time_between_pulses - 1)
+		new /obj/effect/temp_visual/radiation(irradiated_turf, time_between_pulses - 1, turf_has_victim)
 
 	if(!current_fuel)
 		deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), time_between_pulses - 1, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
@@ -860,11 +875,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/effect/temp_visual/radiation
 	randomdir = FALSE
 	///How much damage each tick does
-	var/radiation_damage = 10
+	var/radiation_damage = 5
 	///Reference to the radiation particle effect
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/obj/effect/temp_visual/radiation/Initialize(mapload, effect_duration)
+/obj/effect/temp_visual/radiation/Initialize(mapload, effect_duration, turf_has_victim)
 	. = ..()
 	//Override the timerid value set on the object; the duration is determined by the radiation mine
 	deltimer(timerid)
@@ -872,6 +887,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	particle_holder = new(src, /particles/radiation)
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 	AddElement(/datum/element/connect_loc, connections)
+	//Begin Process() on init because it's possible someone could just not move and then the radiation functions would never start
+	if(turf_has_victim)
+		START_PROCESSING(SSobj, src)
 
 ///Called when an atom enters the tile this radiation effect is on
 /obj/effect/temp_visual/radiation/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
@@ -889,19 +907,38 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/turf/turf_to_check = get_turf(src)
 	var/list/radiation_victims = turf_to_check.contents.Copy()
 	var/result = FALSE	//For determining if process() should keep going
+
 	if(crosser)
 		radiation_victims.Remove(crosser)	//Remove the crosser from the list, they are already going to take damage
-		//Not as punishing if you are just running through a radiation field
-		crosser.apply_damage(radiation_damage/2, BURN, ishuman(crosser) ? pick(GLOB.human_body_parts) : null, BIO)
-		crosser.adjust_radiation(radiation_damage/5 SECONDS)
-		result = TRUE
+		result = inflict_radiation(crosser, TRUE)
+
+		/*
+		It occurred to me that if someone steps on the same tile as say, someone unconscious already dying from rads,
+		they would take damage twice from the irradiate() called by Process() and then called again when a mob enters the tile
+		So to prevent this unfair double dipping, we will check if this effect is already processing and skip the rest if it is
+		*/
+		if(datum_flags & DF_ISPROCESSING)
+			return result
+
 	for(var/mob/living/victim in radiation_victims)
-		victim.apply_damage(radiation_damage, BURN, ishuman(victim) ? pick(GLOB.human_body_parts) : null, BIO)
-		victim.adjust_radiation(radiation_damage SECONDS)
-		if(isxeno(victim))	//Benos are immune to the radiation status effect so let's just give them a bit of stagger
-			victim.adjust_stagger(radiation_damage/5 SECONDS)
-		result = TRUE
+		result = inflict_radiation(victim) ? TRUE : result	//In case there are multiple mobs on the same tile and one happens to be dead
+
+	//The radiation effect will continue or start Process() if someone alive was on the tile, otherwise cease
 	return result
+
+///Separate proc to consolidate the application of radiation damage and status effects
+/obj/effect/temp_visual/radiation/proc/inflict_radiation(mob/living/victim, crossing)
+	if(victim.stat == DEAD)	//I still protest making the dead invulnerable to spicy air
+		return FALSE
+
+	//Not as punishing if you are just running through a radiation field
+	victim.apply_damage(crossing ? radiation_damage/2 : radiation_damage, BURN, ishuman(victim) ? pick(GLOB.human_body_parts) : null, BIO)
+	victim.adjust_radiation((crossing ? radiation_damage/5 : radiation_damage) SECONDS)
+
+	if(isxeno(victim))	//Benos are immune to the radiation status effect so let's just give them a bit of stagger
+		victim.adjust_stagger(radiation_damage/5 SECONDS)
+
+	return TRUE
 
 //Radiation dust effects
 /particles/radiation
