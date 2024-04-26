@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma
 	name = "generic plasma weapon"
 	icon = 'icons/obj/items/guns/plasma64.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/plasma_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/plasma_right_1.dmi',
 	)

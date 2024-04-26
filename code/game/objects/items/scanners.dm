@@ -19,7 +19,7 @@ REAGENT SCANNER
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
@@ -65,7 +65,7 @@ REAGENT SCANNER
 	name = "\improper HF2 health analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)

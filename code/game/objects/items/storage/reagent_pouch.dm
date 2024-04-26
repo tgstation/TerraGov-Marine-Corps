@@ -5,7 +5,7 @@
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
 	icon = 'icons/Marine/marine-pouches.dmi'
 	icon_state = "r_canister"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)

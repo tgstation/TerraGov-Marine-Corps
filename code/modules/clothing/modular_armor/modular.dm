@@ -16,7 +16,7 @@
 	icon_state = "underarmor"
 	worn_icon_state = "underarmor"
 	item_state_worn = TRUE
-	worn_icon = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 
 	atom_flags = CONDUCT
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -385,7 +385,7 @@
 	breathy = FALSE
 	icon_state = "gas_alt"
 	worn_icon_state = "gas_alt"
-	worn_icon = list(slot_wear_mask_str)
+	worn_icon_list = list(slot_wear_mask_str)
 	item_state_worn = TRUE
 	greyscale_colors = ARMOR_PALETTE_DRAB
 

@@ -5,7 +5,7 @@
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/shotguns.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
@@ -392,7 +392,7 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "mosin"
 	worn_icon_state = "mosin"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
@@ -462,7 +462,7 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "martini"
 	worn_icon_state = "martini"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
@@ -602,7 +602,7 @@
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "leicrepeater"
 	worn_icon_state = "leicrepeater"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)

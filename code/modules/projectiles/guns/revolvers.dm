@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/revolver
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
 	)

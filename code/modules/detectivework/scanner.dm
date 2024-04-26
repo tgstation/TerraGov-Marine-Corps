@@ -5,7 +5,7 @@
 	icon_state = "forensic1"
 	var/list/stored = list()
 	w_class = WEIGHT_CLASS_NORMAL
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)

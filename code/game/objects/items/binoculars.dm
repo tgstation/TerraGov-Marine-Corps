@@ -3,7 +3,7 @@
 	desc = "A pair of binoculars."
 	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
 	)

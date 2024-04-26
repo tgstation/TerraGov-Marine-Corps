@@ -6,7 +6,7 @@
 	icon = 'icons/obj/musician.dmi'
 	interaction_flags = INTERACT_OBJ_UI
 	item_state_worn = TRUE
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/instruments_right.dmi',
 		slot_s_store_str = 'icons/mob/instruments_back.dmi',
@@ -173,7 +173,7 @@
 	name = "gilded bike horn"
 	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
 	icon_state = "bike_horn"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)

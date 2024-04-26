@@ -7,7 +7,7 @@
 	item_map_variant_flags = NONE
 	allowed_uniform_type = /obj/item/clothing/under
 	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',

@@ -3,7 +3,7 @@
 	desc = "A spray bottle, with an unscrewable top."
 	icon = 'icons/obj/items/spray.dmi'
 	icon_state = "cleaner"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/spray_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/spray_right.dmi',
 	)

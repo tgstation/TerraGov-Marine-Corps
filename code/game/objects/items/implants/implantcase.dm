@@ -3,7 +3,7 @@
 	desc = "A case containing an implant."
 	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implantcase-0"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)

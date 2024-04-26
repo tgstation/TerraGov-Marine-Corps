@@ -30,7 +30,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t26"
 	worn_icon_state = "t26"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -218,7 +218,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	worn_icon_state = "m42c"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
@@ -258,7 +258,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	name = "\improper SR-33 Dragunov sniper rifle"
 	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -311,7 +311,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "tx8"
 	worn_icon_state = "tx8"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
@@ -382,7 +382,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "minigun"
 	worn_icon_state = "minigun"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -500,7 +500,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "pepperball"
 	worn_icon_state = "pepperball"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -591,7 +591,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m5"
 	worn_icon_state = "m5"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -662,7 +662,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "sadar"
 	worn_icon_state = "sadar"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 		slot_s_store_str = 'icons/mob/items_suit_slot_64.dmi',
@@ -976,7 +976,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "railgun"
 	worn_icon_state = "railgun"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -1023,7 +1023,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "ml120"
 	worn_icon_state = "ml120"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)

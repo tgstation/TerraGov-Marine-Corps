@@ -4,7 +4,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/explosives_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
 		)

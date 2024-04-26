@@ -4,7 +4,7 @@
 
 /obj/item/weapon/gun/energy
 	icon = 'icons/obj/items/guns/energy.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
 	)
@@ -1155,7 +1155,7 @@
 	worn_icon_state = "caliver"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
@@ -1205,7 +1205,7 @@
 	worn_icon_state = "culverin"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)

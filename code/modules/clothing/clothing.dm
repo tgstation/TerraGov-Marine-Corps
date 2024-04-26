@@ -70,10 +70,10 @@
 	. = ..()
 	if(!greyscale_config)
 		return
-	for(var/key in worn_icon)
+	for(var/key in worn_icon_list)
 		if(key == slot_l_hand_str || key == slot_r_hand_str)
 			continue
-		worn_icon[key] = icon
+		worn_icon_list[key] = icon
 
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
@@ -100,7 +100,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
@@ -131,7 +131,7 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits/suits.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
 	)
@@ -186,7 +186,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/gloves_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/gloves_right.dmi',
 	)
@@ -206,7 +206,7 @@
 	. = ..()
 	if(!greyscale_config)
 		return
-	worn_icon = list(slot_gloves_str = icon)
+	worn_icon_list = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
@@ -245,7 +245,7 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/masks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/masks_right.dmi',
 	)
@@ -271,7 +271,7 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/shoes_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/shoes_right.dmi',
 	)

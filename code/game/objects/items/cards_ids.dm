@@ -15,7 +15,7 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
 	)

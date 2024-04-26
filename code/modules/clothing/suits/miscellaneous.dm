@@ -348,7 +348,7 @@
 	name = "replica armor"
 	desc = "A replica of the armour of choice for colonial militia."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',

@@ -2,7 +2,7 @@
 	name = "disk"
 	icon = 'icons/obj/items/disk.dmi'
 	icon_state = "datadisk0"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
 	)

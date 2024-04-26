@@ -105,7 +105,7 @@
 	name = "Special Operations gasmask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply. Based off an old design of gas masks."
 	icon = 'icons/mob/clothing/mask.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/mask.dmi'
 	)
 	icon_state = "specop"

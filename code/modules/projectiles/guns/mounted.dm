@@ -27,7 +27,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -164,7 +164,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "autocannon"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -365,7 +365,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -416,7 +416,7 @@
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
 	worn_icon_state = "t27"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -483,7 +483,7 @@
 	icon = 'icons/Marine/clf_heavyrifle.dmi'
 	icon_state = "ptrs"
 	worn_icon_state = "ptrs"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
@@ -697,7 +697,7 @@
 	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "kord"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)

@@ -2,7 +2,7 @@
 /// Food.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/food_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/food_right.dmi',
 	)

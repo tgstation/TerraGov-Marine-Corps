@@ -1,5 +1,5 @@
 /obj/item/weapon/twohanded
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/twohanded_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/twohanded_right.dmi',
 	)
@@ -202,7 +202,7 @@
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
 	icon = 'icons/obj/items/weapons64.dmi'
 	icon_state = "som_axe"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/weapon64_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/weapon64_right.dmi',
 	)

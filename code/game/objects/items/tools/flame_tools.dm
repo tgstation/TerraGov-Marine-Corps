@@ -96,7 +96,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "match_unlit"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
 	)
@@ -551,7 +551,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A cheap-as-free lighter."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "lighter-g"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
 	)

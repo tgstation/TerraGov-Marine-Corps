@@ -4,7 +4,7 @@
 
 /obj/item/light_bulb
 	icon = 'icons/obj/lighting.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
 	)

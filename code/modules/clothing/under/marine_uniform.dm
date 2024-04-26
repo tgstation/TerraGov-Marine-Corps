@@ -7,7 +7,7 @@
 	siemens_coefficient = 0.9
 	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpsuit"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -302,7 +302,7 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "guardjumpsuit"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -320,7 +320,7 @@
 
 /obj/item/clothing/under/marine/veteran //none of these are actual used by marines
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -469,7 +469,7 @@
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
@@ -529,7 +529,7 @@
 	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "icc"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -573,7 +573,7 @@
 	desc = "A TGMC turtleneck issued to special operation units"
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "specops_uniform"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)

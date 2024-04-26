@@ -7,7 +7,7 @@
 	singular_name = "sandbag"
 	icon_state = "sandbag_stack"
 	worn_icon_state = "sandbag_stack"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',
 	)
@@ -69,7 +69,7 @@
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
 	worn_icon_state = "sandbag_pile"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',
 	)

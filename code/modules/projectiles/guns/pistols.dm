@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/pistol
 	icon = 'icons/obj/items/guns/pistols.dmi'
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
 	)
@@ -78,7 +78,7 @@
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	worn_icon_state = "tx7"
-	worn_icon = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
 	)
