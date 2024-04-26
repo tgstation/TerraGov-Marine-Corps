@@ -3151,7 +3151,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bMK" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
@@ -5983,7 +5983,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
 "ffd" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -9024,7 +9024,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "iCb" = (
@@ -9226,7 +9226,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "iNo" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
@@ -18921,7 +18921,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "tRD" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "tRM" = (

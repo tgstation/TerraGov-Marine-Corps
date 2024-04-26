@@ -465,7 +465,7 @@
 
 /// Returns the overall SOFT acid protection of a mob.
 /mob/living/proc/get_soft_acid_protection()
-	return soft_armor?.getRating(ACID)
+	return soft_armor?.getRating(ACID)/100
 
 /// Returns the overall HARD acid protection of a mob.
 /mob/living/proc/get_hard_acid_protection()
