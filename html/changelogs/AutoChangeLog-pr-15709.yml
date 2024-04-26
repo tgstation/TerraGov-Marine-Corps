@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Evolution towers give 0.4 maturity per tick instead of 0.8"
