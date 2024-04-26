@@ -20,4 +20,5 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,
+		/mob/living/carbon,
 	)
