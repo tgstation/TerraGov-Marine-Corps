@@ -3,7 +3,7 @@
 	desc = ""
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)

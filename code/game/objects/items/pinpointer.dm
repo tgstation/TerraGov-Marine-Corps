@@ -5,11 +5,11 @@
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
+	worn_icon_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
 	///What we're currently tracking

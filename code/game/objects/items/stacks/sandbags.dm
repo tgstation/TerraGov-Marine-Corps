@@ -6,8 +6,8 @@
 	desc = "Some empty sandbags, best to fill them up with an entrenching tool if you want to use them."
 	singular_name = "sandbag"
 	icon_state = "sandbag_stack"
-	item_state = "sandbag_stack"
-	item_icons = list(
+	worn_icon_state = "sandbag_stack"
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',
 	)
@@ -68,8 +68,8 @@
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
-	item_state = "sandbag_pile"
-	item_icons = list(
+	worn_icon_state = "sandbag_pile"
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',
 	)

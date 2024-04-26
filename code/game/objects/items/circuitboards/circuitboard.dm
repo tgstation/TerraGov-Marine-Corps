@@ -3,11 +3,11 @@
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
+	worn_icon_state = "electronic"
 	atom_flags = CONDUCT
 	var/build_path = null
 

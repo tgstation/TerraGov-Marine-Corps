@@ -3,9 +3,9 @@
 	name = "XR-1 armor plating"
 	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/robot_armor.dmi')
+	worn_icon = list(slot_wear_suit_str = 'icons/mob/modular/robot_armor.dmi')
 	icon_state = "chest"
-	item_state = "chest"
+	worn_icon_state = "chest"
 	species_exception = list(/datum/species/robot)
 	soft_armor = MARINE_ARMOR_MEDIUM
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -77,12 +77,12 @@
 /obj/item/clothing/head/modular/robot
 	name = "XN-1 upper armor plating"
 	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "helmet"
-	item_state = "helmet"
+	worn_icon_state = "helmet"
 	species_exception = list(/datum/species/robot)
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	soft_armor = MARINE_ARMOR_HEAVY

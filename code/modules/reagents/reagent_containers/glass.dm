@@ -8,7 +8,7 @@
 	desc = " "
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
-	item_state = "null"
+	worn_icon_state = "null"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
@@ -133,7 +133,7 @@
 	desc = "A beaker. Can hold up to 60 units."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
-	item_state = "beaker"
+	worn_icon_state = "beaker"
 	attack_speed = 4
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change()
@@ -247,11 +247,11 @@
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
-	item_state = "bucket"
+	worn_icon_state = "bucket"
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)

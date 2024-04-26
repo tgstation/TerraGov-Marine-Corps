@@ -3,7 +3,7 @@
 	desc = "Used for blinding and being an asshole."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
-	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
+	worn_icon_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4

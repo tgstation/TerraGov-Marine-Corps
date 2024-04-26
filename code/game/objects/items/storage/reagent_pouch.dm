@@ -5,11 +5,11 @@
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
 	icon = 'icons/Marine/marine-pouches.dmi'
 	icon_state = "r_canister"
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)
-	item_state = "anesthetic"
+	worn_icon_state = "anesthetic"
 	possible_transfer_amounts = null
 	volume = 1200 //The equivalent of 5 pill bottles worth of BKTT
 	w_class = WEIGHT_CLASS_BULKY

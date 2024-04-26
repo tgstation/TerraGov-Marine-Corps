@@ -6,11 +6,11 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
-	item_icons = list(
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
-	item_state = "backpack"
+	worn_icon_state = "backpack"
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -62,7 +62,7 @@
 	name = "Santa's Gift Bag"
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
-	item_state = "giftbag"
+	worn_icon_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/backpack/santabag
 
@@ -95,7 +95,7 @@
 	name = "industrial backpack"
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "engiepack"
-	item_state = "engiepack"
+	worn_icon_state = "engiepack"
 
 /obj/item/storage/backpack/toxins
 	name = "laboratory backpack"
@@ -140,7 +140,7 @@
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
 	icon_state = "som_satchel"
-	item_state = "som_satchel"
+	worn_icon_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -234,7 +234,7 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
-	item_state = "marinepack"
+	worn_icon_state = "marinepack"
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -244,7 +244,7 @@
 	name = "\improper TGMC corpsman backpack"
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
-	item_state = "marinepackm"
+	worn_icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
 
@@ -330,14 +330,14 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
-	item_state = "marinepackt"
+	worn_icon_state = "marinepackt"
 	storage_type = /datum/storage/backpack/tech
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
-	item_state = "marinesat"
+	worn_icon_state = "marinesat"
 	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/marine/satchel/green
@@ -348,7 +348,7 @@
 	name = "\improper TGMC corpsman satchel"
 	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinesatm"
-	item_state = "marinesatm"
+	worn_icon_state = "marinesatm"
 	storage_type = /datum/storage/backpack/satchel
 	cell = /obj/item/cell/apc
 
@@ -356,7 +356,7 @@
 	name = "\improper TGMC technician satchel"
 	desc = "A heavy-duty satchel carried by some TGMC technicians. Can hold the ST-580 point defense sentry and ammo."
 	icon_state = "marinesatt"
-	item_state = "marinesatt"
+	worn_icon_state = "marinesatt"
 	storage_type = /datum/storage/backpack/satchel/tech
 
 /obj/item/storage/backpack/marine/smock
@@ -371,25 +371,25 @@
 	name = "Officer Cloak"
 	desc = "A dashing cloak as befitting an officer."
 	icon_state = "officer_cloak" //with thanks to Baystation12
-	item_state = "officer_cloak" //with thanks to Baystation12
+	worn_icon_state = "officer_cloak" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak
 	name = "Captain's Cloak"
 	desc = "An opulent cloak detailed with your many accomplishments."
 	icon_state = "commander_cloak" //with thanks to Baystation12
-	item_state = "commander_cloak" //with thanks to Baystation12
+	worn_icon_state = "commander_cloak" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak_red
 	name = "Officer Cloak - Red"
 	desc = "A dashing cloak as befitting an officer, with fancy red trim."
 	icon_state = "officer_cloak_red" //with thanks to Baystation12
-	item_state = "officer_cloak_red" //with thanks to Baystation12
+	worn_icon_state = "officer_cloak_red" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
 	name = "Captain's Cloak - Red"
 	desc = "An opulent cloak detailed with your many accomplishments, with fancy red trim."
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
-	item_state = "commander_cloak_red" //with thanks to Baystation12
+	worn_icon_state = "commander_cloak_red" //with thanks to Baystation12
 
 
 // Scout Cloak
@@ -666,7 +666,7 @@
 	name = "\improper TGMC technician welderpack"
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
-	item_state = "engineerpack"
+	worn_icon_state = "engineerpack"
 	var/max_fuel = 260
 	storage_type = /datum/storage/backpack/satchel
 
@@ -763,7 +763,7 @@
 	name = "mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
-	item_state = "som_lightpack"
+	worn_icon_state = "som_lightpack"
 
 /obj/item/storage/backpack/lightpack/icc
 	name = "\improper Modello/190"

@@ -3,8 +3,8 @@
 	desc = "A box of ammo."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
-	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
-	item_icons = list(
+	worn_icon_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
+	worn_icon = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 		)
@@ -390,7 +390,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
-	item_state = "big_ammo_box"
+	worn_icon_state = "big_ammo_box"
 	equip_slot_flags = ITEM_SLOT_BACK
 	base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
@@ -476,7 +476,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "A large, deployable ammo box."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
-	item_state = "ammoboxslug"
+	worn_icon_state = "ammoboxslug"
 	base_icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -597,14 +597,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
 	icon_state = "ammoboxbuckshot"
-	item_state = "ammoboxbuckshot"
+	worn_icon_state = "ammoboxbuckshot"
 	base_icon_state = "ammoboxbuckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
-	item_state = "ammoboxflechette"
+	worn_icon_state = "ammoboxflechette"
 	base_icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
@@ -612,14 +612,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "big ammo box (14.5mm API)"
 	caliber = CALIBER_14X5
 	icon_state = "ammobox_145"
-	item_state = "ammobox_145"
+	worn_icon_state = "ammobox_145"
 	base_icon_state = "ammobox_145"
 	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
 
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
 	icon_state = "ammoboxtracking"
-	item_state = "ammoboxtracking"
+	worn_icon_state = "ammoboxtracking"
 	base_icon_state = "ammoboxtracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
