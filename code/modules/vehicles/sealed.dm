@@ -61,6 +61,7 @@
 /obj/vehicle/sealed/proc/enter_checks(mob/entering_mob, loc_override = FALSE)
 	return occupant_amount() < max_occupants
 
+///Enters the vehicle
 /obj/vehicle/sealed/proc/mob_enter(mob/M, silent = FALSE)
 	if(!istype(M))
 		return FALSE
@@ -70,9 +71,11 @@
 	add_occupant(M)
 	return TRUE
 
+///Exit checks for the mob before exiting the vehicle
 /obj/vehicle/sealed/proc/mob_try_exit(mob/M, mob/user, silent = FALSE, randomstep = FALSE)
 	mob_exit(M, silent, randomstep)
 
+///Exits the vehicle
 /obj/vehicle/sealed/proc/mob_exit(mob/M, silent = FALSE, randomstep = FALSE)
 	SIGNAL_HANDLER
 	if(!istype(M))
