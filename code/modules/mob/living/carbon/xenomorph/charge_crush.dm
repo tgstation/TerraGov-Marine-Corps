@@ -567,6 +567,10 @@
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL)
 			Paralyze(CHARGE_SPEED(charge_datum) * 0.2 SECONDS)
+		if(CHARGE_BULL_GORE)
+			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
+			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
+			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
