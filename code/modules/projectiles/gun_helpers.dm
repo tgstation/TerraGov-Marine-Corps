@@ -46,7 +46,10 @@
 		if(mag_to_reload.magazine_flags & MAGAZINE_WORN)
 			return ..()
 		tactical_reload(target, user)
-	if(iscell(target))
+	if(islascell(target))
+		var/obj/item/cell/lasgun/cell_to_reload = target
+		if(cell_to_reload.magazine_features_flags & MAGAZINE_WORN)
+			return ..()
 		tactical_reload(target, user)
 	return ..()
 
