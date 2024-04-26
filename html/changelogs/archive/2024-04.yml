@@ -392,3 +392,14 @@
       magazine
   - qol: Selecting a new vali chem will purge the old loaded reagent and load up the
       new chem
+2024-04-26:
+  Lauwma:
+  - rscadd: AR-55 can now be issued to Field Commanders through their assigned vendor.
+  Xander3359:
+  - bugfix: You can now attack resin walls on help intent
+  - bugfix: Fix crafting ignoring construction checks
+  novaepee:
+  - qol: Put assault and transport crew spawning in their respective room in Pillar
+      of Spring.
+  - imageadd: Add image for transport crew landmark.
+  - qol: Change positions of some signs in PoS.
