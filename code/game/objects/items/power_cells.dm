@@ -23,8 +23,6 @@
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	///used to track what set of overlays to use to display charge level
 	var/charge_overlay = "cell"
-	///flags specifically for magazines.
-	var/magazine_flags
 
 /obj/item/cell/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
