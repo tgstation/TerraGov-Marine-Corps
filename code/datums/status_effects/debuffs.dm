@@ -607,7 +607,7 @@
 /datum/status_effect/stacking/melting
 	id = "melting"
 	tick_interval = 1 SECONDS
-	max_stacks = 30
+	max_stacks = 20
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/melting
 	///Owner of the debuff is limited to carbons.
