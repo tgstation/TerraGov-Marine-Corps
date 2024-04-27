@@ -46,7 +46,7 @@
 
 		var/turf/open/T = mystery_turf
 		var/area/area = get_area(mystery_turf)
-		if(T.allow_construction || area.area_flags & !NO_CONSTRUCTION) //No loopholes.
+		if(T.allow_construction && !(area.area_flags & NO_CONSTRUCTION)) //No loopholes.
 			new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
