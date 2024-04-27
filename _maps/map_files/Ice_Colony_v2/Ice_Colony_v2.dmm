@@ -29870,13 +29870,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
-"tcZ" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/structure/handheld_lighting,
-/obj/effect/spawner/random/engineering/engibelt,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "tde" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -38380,7 +38373,7 @@ afd
 sQr
 oiZ
 hOW
-aBi
+aym
 aBi
 aBi
 aBi
@@ -38592,7 +38585,7 @@ afd
 sQr
 oiZ
 hOW
-tcZ
+hOW
 dgJ
 ghP
 uCK
@@ -70710,7 +70703,7 @@ bZR
 bZR
 bZR
 bZR
-uSg
+bZR
 uSg
 xJX
 vdz
