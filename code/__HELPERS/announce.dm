@@ -66,8 +66,9 @@
  * * channel_override - optional, what channel is this sound going to be played on?
  * * color_override - **recommended,** string, use the passed color instead of the default blue (see defines in `__HELPERS/announce.dm`)
  * * receivers - a list of all players to send the message to. defaults to all players, not including those in lobby
+ * * playing_sound - optional, is this playing sound?
  */
-/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', channel_override = CHANNEL_ANNOUNCEMENTS, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
+/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', channel_override = CHANNEL_ANNOUNCEMENTS, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list), playing_sound = TRUE)
 	if(!message)
 		return
 
@@ -110,7 +111,8 @@
 		var/mob/M = i
 		if(!isnewplayer(M))
 			to_chat(M, finalized_announcement)
-			SEND_SOUND(M, s)
+			if(playing_sound)
+				SEND_SOUND(M, s)
 
 
 /proc/print_command_report(papermessage, papertitle = "paper", announcemessage = "A report has been downloaded and printed out at all communications consoles.", announcetitle = "Incoming Classified Message", announce = TRUE)
