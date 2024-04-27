@@ -152,68 +152,8 @@
 	desc = "The visor attachment of the XN-1-H upper armor plating."
 	icon_state = "r_heavy"
 
-
 //Xenonaut
 /obj/item/armor_module/armor/visor/marine/xenonaut
 	name = "\improper Xenonaut heavy visor"
 	desc = "The visor attachment of the Xenonaut heavy helmet"
 	icon_state = "xenonaut"
-
-
-//old jaeger
-/obj/item/armor_module/armor/visor/marine/old
-	name = "\improper Jaeger Pattern Infantry visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Infantry class of helmet."
-	icon_state = "infantry_visor_old"
-
-/obj/item/armor_module/armor/visor/marine/old/skirmisher
-	name = "\improper Jaeger Pattern Skirmisher visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Skirmisher class of helmet."
-	icon_state = "skirmisher_visor_old"
-
-/obj/item/armor_module/armor/visor/marine/old/scout
-	name = "\improper Jaeger Pattern Scout visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Scout class of helmet."
-	icon_state = "scout_visor_old"
-	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
-
-/obj/item/armor_module/armor/visor/marine/old/eva
-	name = "\improper Jaeger Pattern EVA visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."
-	icon_state = "eva_visor_old"
-
-/obj/item/armor_module/armor/visor/marine/old/eva/skull
-	name = "\improper Jaeger Pattern EVA Skull visor"
-	icon_state = "eva_visor_old"
-	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
-	attachments_allowed = list(/obj/item/armor_module/armor/visor_glyph/old)
-	starting_attachments = list(/obj/item/armor_module/armor/visor_glyph/old)
-
-/obj/item/armor_module/armor/visor/marine/old/assault
-	name = "\improper Jaeger Pattern Assault visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Assault class of helmet."
-	icon_state = "assault_visor_old"
-	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
-
-/obj/item/armor_module/armor/visor/marine/old/eod
-	name = "\improper Pattern EOD visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
-	icon_state = "eod_visor_old"
-	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
-
-//Hardsuit Helmet Visors
-/obj/item/armor_module/armor/visor/marine/fourvisor
-	name = "\improper FleckTex Mark V helmet visor"
-	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark V Breacher class of helmet."
-	icon_state = "fourvisor_visor"
-
-/obj/item/armor_module/armor/visor/marine/foureyevisor
-	name = "\improper FleckTex Mark III helmet visor"
-	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark III Marauder class of helmet."
-	icon_state = "foureye_visor"
-
-/obj/item/armor_module/armor/visor/marine/markonevisor
-	name = "\improper FleckTex Mark I helmet visor"
-	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark I Raider class of helmet."
-	icon_state = "markone_visor"
-

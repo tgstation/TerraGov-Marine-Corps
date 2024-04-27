@@ -37,7 +37,6 @@
 		/obj/item/armor_module/storage/uniform/holster/deathsquad,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/cape,
-		/obj/item/armor_module/armor/cape/kama,
 		/obj/item/armor_module/module/pt_belt,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
@@ -72,7 +71,6 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
-		ATTACHMENT_SLOT_KAMA,
 		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
@@ -137,8 +135,6 @@
 		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE]].\n"
 	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT])
 		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]].\n"
-	if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KAMA])
-		armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KAMA]].\n"
 	if(armor_info)
 		. += "	It has the following attachments:"
 		. += armor_info

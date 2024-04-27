@@ -205,8 +205,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
-#define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
-
 #define ishat(A) (istype(A, /obj/item/clothing/head))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))

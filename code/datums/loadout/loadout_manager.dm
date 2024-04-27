@@ -177,37 +177,27 @@
 		if(version < 14)
 			if(ispath(module.item_type, /obj/item/armor_module/armor/cape))
 				module.variant = NORMAL
-				if(module.item_type == /obj/item/armor_module/armor/cape/kama)
-					module.variant = CAPE_KAMA
-				else if(module.item_type != /obj/item/armor_module/armor/cape)
+				if(module.item_type != /obj/item/armor_module/armor/cape)
 					var/datum/item_representation/armor_module/new_cape = new
 					new_cape.item_type = /obj/item/armor_module/armor/cape
 					new_cape.attachments = module.attachments
 					new_cape.colors = module.colors
 					switch(module.item_type)
-						if(/obj/item/armor_module/armor/cape/half)
-							new_cape.variant = CAPE_HALF
 						if(/obj/item/armor_module/armor/cape/scarf)
 							new_cape.variant = CAPE_SCARF
 						if(/obj/item/armor_module/armor/cape/short)
 							new_cape.variant = CAPE_SHORT
-						if(/obj/item/armor_module/armor/cape/short/classic)
-							new_cape.variant = CAPE_SHORT_OLD
 					attachments.Remove(module)
 					attachments.Add(new_cape)
 			if(ispath(module.item_type, /obj/item/armor_module/armor/cape_highlight))
 				module.variant = CAPE_HIGHLIGHT_NONE
-				if(module.item_type == /obj/item/armor_module/armor/cape_highlight/kama)
-					module.variant = CAPE_KAMA
-				else if(module.item_type != /obj/item/armor_module/armor/cape_highlight)
+				if(module.item_type != /obj/item/armor_module/armor/cape_highlight)
 					var/datum/item_representation/armor_module/armor/new_highlight = new
 					new_highlight.item_type = /obj/item/armor_module/armor/cape_highlight
 					new_highlight.attachments = module.attachments
 					new_highlight.colors = module.colors
 					new_highlight.variant = CAPE_HIGHLIGHT_NONE
 					switch(module.item_type)
-						if(/obj/item/armor_module/armor/cape_highlight/half)
-							new_highlight.variant = CAPE_HALF
 						if(/obj/item/armor_module/armor/cape_highlight/scarf)
 							new_highlight.variant = CAPE_SCARF
 					attachments.Remove(module)
@@ -215,10 +205,6 @@
 			if(ispath(module.item_type, /obj/item/armor_module/armor/visor/marine/eva/skull))
 				var/datum/item_representation/armor_module/armor/new_glyph = new
 				new_glyph.item_type = /obj/item/armor_module/armor/visor_glyph
-				module.attachments.Add(new_glyph)
-			if(ispath(module.item_type, /obj/item/armor_module/armor/visor/marine/old/eva/skull))
-				var/datum/item_representation/armor_module/armor/new_glyph = new
-				new_glyph.item_type = /obj/item/armor_module/armor/visor_glyph/old
 				module.attachments.Add(new_glyph)
 		update_attachments(module.attachments, version)
 

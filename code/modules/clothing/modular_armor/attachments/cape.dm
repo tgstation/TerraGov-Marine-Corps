@@ -17,7 +17,6 @@
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight)
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/cape_highlight,
-		/obj/item/armor_module/armor/cape_highlight/kama,
 	)
 	colorable_allowed = PRESET_COLORS_ALLOWED|ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "normal"
@@ -37,127 +36,10 @@
 				"none",
 			),
 		),
-		"striped" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"geist" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"ghille" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"ghille (left)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"ghille (right)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"ghille (alt)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"drifter" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"normal" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(
-				"normal",
-				"normal (alt)",
-				"none",
-			),
-		),
 		"short" = list(
 			HOOD = TRUE,
 			HIGHLIGHT_VARIANTS = list(
 				"short",
-				"none",
-			),
-		),
-		"short (old)" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list("none"),
-		),
-		"shredded" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(
-				"shredded",
-				"none",
-			),
-		),
-		"half" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(
-				"half",
-				"none",
-			),
-		),
-		"full" = list(
-			HOOD = TRUE,
-			HIGHLIGHT_VARIANTS = list(
-				"full",
-				"none",
-			),
-		),
-		"back" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"back",
-				"none",
-			),
-		),
-		"cover" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"cover",
-				"none",
-			),
-		),
-		"cover (alt)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"cover (alt)",
-				"none",
-			),
-		),
-		"shoal" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"shoal",
-				"none",
-			),
-		),
-		"shoal (back)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"shoal (back)",
-				"none",
-			),
-		),
-		"shoal (alt)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"shoal (alt)",
-				"none",
-			),
-		),
-		"rapier (right)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"rapier (right)",
-				"none",
-			),
-		),
-		"rapier (left)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"rapier (left)",
 				"none",
 			),
 		),
@@ -221,37 +103,6 @@
 	highlight.update_greyscale()
 	user.update_inv_w_uniform()
 
-/obj/item/armor_module/armor/cape/kama
-	name = "6E Chameleon kama"
-	desc = "A chromatic kama to improve on the design of the 7E badge, this kama is capable of two colors, for all your fashion needs. Hanged from the belt, it serves to flourish the lower extremities.  \n Interact with facepaint to color. Attaches onto a uniform."
-	slot = ATTACHMENT_SLOT_KAMA
-	attachment_layer = KAMA_LAYER
-	attach_features_flags = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS
-	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
-	greyscale_config = /datum/greyscale_config/cape
-	icon_state_variants = list(
-		"kama" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"kama",
-			),
-		),
-		"kilt" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"kilt",
-			),
-		),
-		"kilt (alt)" = list(
-			HOOD = FALSE,
-			HIGHLIGHT_VARIANTS = list(
-				"kilt",
-			),
-		),
-	)
-	current_variant = "kama"
-
-
 /obj/item/armor_module/armor/cape_highlight
 	name = "Cape Highlight"
 	desc = "A cape to improve on the design of the 7E badge, this cape is capable of six colors, for all your fashion needs. This variation of the cape functions more as a scarf. \n Interact with facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
@@ -286,11 +137,3 @@
 	if(current_variant == "none" && (length(icon_state_variants) == 1))
 		return
 	return ..()
-
-
-
-/obj/item/armor_module/armor/cape_highlight/kama
-	greyscale_config = /datum/greyscale_config/cape_highlight
-	colorable_allowed = PRESET_COLORS_ALLOWED
-	current_variant = "kama"
-	icon_state_variants = list()

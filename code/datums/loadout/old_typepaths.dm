@@ -42,7 +42,6 @@
 /obj/item/armor_module/greyscale/cape/short
 /obj/item/armor_module/greyscale/cape/short/classic
 /obj/item/armor_module/greyscale/cape/scarf
-/obj/item/armor_module/greyscale/cape/kama
 /obj/item/armor_module/greyscale/cape_highlight
 /obj/item/armor_module/greyscale/cape_highlight/half
 /obj/item/armor_module/greyscale/cape_highlight/scarf

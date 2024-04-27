@@ -60,7 +60,6 @@
 #define ATTACHMENT_SLOT_BADGE "badge"
 #define ATTACHMENT_SLOT_CAPE "cape"
 #define ATTACHMENT_SLOT_CAPE_HIGHLIGHT "cape_highlight"
-#define ATTACHMENT_SLOT_KAMA "kama"
 
 #define ATTACHMENT_SLOT_KNEE_SECONDARY_COLOR "knee_secondary_color"
 #define ATTACHMENT_SLOT_ARM_SECONDARY_COLOR "arm_secondary_color"

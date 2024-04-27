@@ -57,46 +57,6 @@
 		ATTACHMENT_SLOT_BELT,
 	)
 	attachments_allowed = list(
-		/obj/item/armor_module/armor/chest/marine,
-		/obj/item/armor_module/armor/legs/marine,
-		/obj/item/armor_module/armor/arms/marine,
-
-		/obj/item/armor_module/armor/chest/marine/skirmisher,
-		/obj/item/armor_module/armor/legs/marine/skirmisher,
-		/obj/item/armor_module/armor/arms/marine/skirmisher,
-
-		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
-		/obj/item/armor_module/armor/legs/marine/scout,
-		/obj/item/armor_module/armor/arms/marine/scout,
-
-		/obj/item/armor_module/armor/chest/marine/skirmisher/trooper,
-		/obj/item/armor_module/armor/legs/marine/trooper,
-		/obj/item/armor_module/armor/arms/marine/trooper,
-
-		/obj/item/armor_module/armor/chest/marine/assault,
-		/obj/item/armor_module/armor/legs/marine/assault,
-		/obj/item/armor_module/armor/arms/marine/assault,
-
-		/obj/item/armor_module/armor/chest/marine/eva,
-		/obj/item/armor_module/armor/legs/marine/eva,
-		/obj/item/armor_module/armor/arms/marine/eva,
-
-		/obj/item/armor_module/armor/chest/marine/assault/eod,
-		/obj/item/armor_module/armor/legs/marine/eod,
-		/obj/item/armor_module/armor/arms/marine/eod,
-
-		/obj/item/armor_module/armor/chest/marine/helljumper,
-		/obj/item/armor_module/armor/legs/marine/helljumper,
-		/obj/item/armor_module/armor/arms/marine/helljumper,
-
-		/obj/item/armor_module/armor/chest/marine/ranger,
-		/obj/item/armor_module/armor/legs/marine/ranger,
-		/obj/item/armor_module/armor/arms/marine/ranger,
-
-		/obj/item/armor_module/armor/chest/marine/mjolnir,
-		/obj/item/armor_module/armor/legs/marine/mjolnir,
-		/obj/item/armor_module/armor/arms/marine/mjolnir,
-
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -250,19 +210,6 @@
 	greyscale_colors = ARMOR_PALETTE_DRAB
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
-
-		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
-		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive,
-		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive,
-
-		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree,
-		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree,
-		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree,
-
-		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone,
-		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone,
-		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone,
-
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
