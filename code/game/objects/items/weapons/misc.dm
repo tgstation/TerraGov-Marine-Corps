@@ -128,7 +128,7 @@
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/cell))
 		return ..()
-	if(!istype(I, /obj/item/cell/lasgun))
+	if(!islascell(I))
 		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
 		return
 	if(I.w_class >= WEIGHT_CLASS_BULKY)
