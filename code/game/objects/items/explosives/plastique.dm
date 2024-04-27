@@ -4,7 +4,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "plastic-explosive"
-	item_state = "plasticx"
+	worn_icon_state = "plasticx"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
 	/// whether the plastic explosive is armed or not

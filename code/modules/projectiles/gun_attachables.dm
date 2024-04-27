@@ -24,7 +24,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "It's an attachment. You should never see this."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = null
-	item_state = null
+	worn_icon_state = null
 
 	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
 	var/pixel_shift_x = 16
@@ -358,7 +358,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "bayonet"
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
 	)
@@ -391,7 +391,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
 	)
@@ -421,7 +421,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper S20 SOM bayonet"
 	desc = "A large knife that is the standard issue combat knife of the SOM. Can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife_som"
-	item_state = "bayonetknife"
+	worn_icon_state = "bayonetknife"
 	force = 30
 
 /obj/item/attachable/extended_barrel

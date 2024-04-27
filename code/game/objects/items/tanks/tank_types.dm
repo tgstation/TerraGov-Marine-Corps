@@ -35,7 +35,7 @@
 	name = "anesthetic tank"
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
-	item_state = "anesthetic"
+	worn_icon_state = "anesthetic"
 	gas_type = GAS_TYPE_N2O
 
 

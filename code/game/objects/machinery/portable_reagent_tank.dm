@@ -121,7 +121,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "dispenser"
 	item_state_worn = TRUE
-	item_state = "reagent_dispenser"
+	worn_icon_state = "reagent_dispenser"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	max_integrity = 200

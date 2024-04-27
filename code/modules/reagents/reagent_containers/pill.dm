@@ -6,7 +6,7 @@
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "pill1"
-	item_state = "pill"
+	worn_icon_state = "pill"
 	possible_transfer_amounts = null
 	amount_per_transfer_from_this = 15
 	init_reagent_flags = AMOUNT_SKILLCHECK

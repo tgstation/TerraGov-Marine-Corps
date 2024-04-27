@@ -62,7 +62,7 @@
 		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK, override_nodrop = TRUE)
 	if(ears)
 		if(visualsOnly)
-			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same item_state as the rest.
+			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same worn_icon_state as the rest.
 		else
 			H.equip_to_slot_or_del(new ears(H), SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)

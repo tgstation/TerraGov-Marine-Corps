@@ -18,9 +18,9 @@
 	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon_state = ""
-	item_state = "gun"
+	worn_icon_state = "gun"
 	item_state_worn = TRUE
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
 	)
@@ -578,17 +578,17 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	var/current_state = item_state
+	var/current_state = worn_icon_state
 	if(gun_features_flags & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
 		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-		item_state = "[initial(icon_state)]_[remaining_rounds][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[initial(icon_state)]_[remaining_rounds][item_flags & WIELDED ? "_w" : ""]"
 	else if(gun_features_flags & GUN_SHOWS_LOADED) //shows loaded or unloaded
-		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[initial(icon_state)]_[rounds ? 100 : 0][item_flags & WIELDED ? "_w" : ""]"
 	else
-		item_state = "[base_gun_icon][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[base_gun_icon][item_flags & WIELDED ? "_w" : ""]"
 		return
 
-	if(current_state != item_state && ishuman(gun_user))
+	if(current_state != worn_icon_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
 			human_user.update_inv_l_hand()

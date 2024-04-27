@@ -3,7 +3,7 @@
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
 	icon = 'icons/obj/items/defibrillator.dmi'
 	icon_state = "defib_full"
-	item_state = "defib"
+	worn_icon_state = "defib"
 	atom_flags = CONDUCT
 	item_flags = NOBLUDGEON
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -336,7 +336,7 @@
 	name = "emergency defibrillator"
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
 	icon_state = "civ_defib_full"
-	item_state = "defib"
+	worn_icon_state = "defib"
 
 /obj/item/defibrillator/internal
 	icon = 'icons/obj/clothing/gloves.dmi' //even though you'll never see this directly, it shows up in the chat panel due to icon2html
@@ -363,7 +363,7 @@
 	name = "advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patient No more bulky units!"
 	icon_state = "defib_out_full"
-	item_state = "defib_gloves"
+	worn_icon_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 	cold_protection_flags = HANDS
 	heat_protection_flags = HANDS
