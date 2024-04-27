@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 	for(var/datum/xeno_caste/typepath AS in typelist)
 		if(initial(typepath.upgrade) == XENO_UPGRADE_BASETYPE)
 			.[typepath] = list()
-			.[typepath][XENO_UPGRADE_BASETYPE] = new typepath // TODO unit test this?
+			.[typepath][XENO_UPGRADE_BASETYPE] = new typepath
 			typelist -= typepath
 
 	for(var/typepath in typelist)
