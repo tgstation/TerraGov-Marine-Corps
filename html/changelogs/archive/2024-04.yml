@@ -403,3 +403,19 @@
       of Spring.
   - imageadd: Add image for transport crew landmark.
   - qol: Change positions of some signs in PoS.
+2024-04-27:
+  Barnet2:
+  - balance: Evolution towers give 0.4 maturity per tick instead of 0.8
+  Lumipharon:
+  - balance: Significantly reduced unintented APC defensive stats
+  - bugfix: fixed some mainly visual issues with vendors
+  TiviPlus:
+  - bugfix: ACs will get loader phamplets correctly
+  - balance: Fixes APC having insane ram damage (it now has 25% of previous value)
+  - bugfix: fixed APC comms cutting out sometimes
+  blackdav123:
+  - qol: Defiler chems once again cycle Neuro-Hemo-Trans-Ozy.
+  - qol: Tank and APC sprites will now more accurately reflect their current integrity
+      values.
+  coldironwarrior:
+  - balance: autoinjector suit storage mod has 12 slots now, up from 10
