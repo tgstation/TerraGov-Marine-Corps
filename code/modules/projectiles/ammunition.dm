@@ -623,6 +623,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	base_icon_state = "ammoboxtracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
+/obj/item/shotgunbox/blank
+	name = "blank ammo box"
+	icon_state = "ammoboxblank"
+	item_state = "ammoboxblank"
+	base_icon_state = "ammoboxblank"
+	ammo_type = /datum/ammo/bullet/shotgun/blank
+
 /obj/item/big_ammo_box/mg
 	name = "big ammo box (10x26mm)"
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
