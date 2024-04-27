@@ -626,7 +626,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/blank
 	name = "blank ammo box"
 	icon_state = "ammoboxblank"
-	worn_icon_state = "ammoboxblank"
+	item_state = "ammoboxblank"
 	base_icon_state = "ammoboxblank"
 	ammo_type = /datum/ammo/bullet/shotgun/blank
 
