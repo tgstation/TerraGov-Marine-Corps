@@ -292,7 +292,7 @@
 	name = "banana"
 	desc = "It's an excellent prop for a comedy."
 	icon_state = "banana"
-	item_state = "banana"
+	worn_icon_state = "banana"
 	filling_color = "#FCF695"
 	trash = /obj/item/bananapeel
 	plantname = "banana"

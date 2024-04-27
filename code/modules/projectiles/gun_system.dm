@@ -18,9 +18,9 @@
 	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon_state = ""
-	item_state = "gun"
+	worn_icon_state = "gun"
 	item_state_worn = TRUE
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_1.dmi',
 	)
@@ -578,17 +578,17 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	var/current_state = item_state
+	var/current_state = worn_icon_state
 	if(gun_features_flags & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
 		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-		item_state = "[initial(icon_state)]_[remaining_rounds][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[initial(icon_state)]_[remaining_rounds][item_flags & WIELDED ? "_w" : ""]"
 	else if(gun_features_flags & GUN_SHOWS_LOADED) //shows loaded or unloaded
-		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[initial(icon_state)]_[rounds ? 100 : 0][item_flags & WIELDED ? "_w" : ""]"
 	else
-		item_state = "[base_gun_icon][item_flags & WIELDED ? "_w" : ""]"
+		worn_icon_state = "[base_gun_icon][item_flags & WIELDED ? "_w" : ""]"
 		return
 
-	if(current_state != item_state && ishuman(gun_user))
+	if(current_state != worn_icon_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
 			human_user.update_inv_l_hand()
@@ -1113,8 +1113,10 @@
 	playsound(user, actual_sound, sound_volume, 1)
 	simulate_recoil(2, Get_Angle(user, M))
 	var/obj/item/weapon/gun/revolver/current_revolver = src
-	log_combat(user, null, "committed suicide with [src].")
-	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
+	var/admin_msg = "committed suicide with [src] (Dmg:[projectile_to_fire.damage], Dmg type: [projectile_to_fire.ammo.damage_type])"
+	log_combat(user, null, admin_msg)
+	if(projectile_to_fire.damage)
+		message_admins("[ADMIN_TPMONTY(user)] " + admin_msg)
 	if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
 		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
@@ -1124,17 +1126,20 @@
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return
 
-	switch(projectile_to_fire.ammo.damage_type)
-		if(STAMINA)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_damage(200, STAMINA)
-		else
-			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
-			user.apply_damage(200, OXY)
-			if(ishuman(user) && user == M)
-				var/mob/living/carbon/human/HM = user
-				HM.set_undefibbable(TRUE) //can't be defibbed back from self inflicted gunshot to head
-			user.death()
+	if(!projectile_to_fire.damage)
+		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
+		return // suicide with a blank?
+
+	if(projectile_to_fire.ammo.damage_type == STAMINA)
+		to_chat(user, span_notice("Ow..."))
+		user.apply_damage(200, STAMINA)
+	else
+		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
+		user.apply_damage(200, OXY)
+		if(ishuman(user) && user == M)
+			var/mob/living/carbon/human/HM = user
+			HM.set_undefibbable(TRUE) //can't be defibbed back from self inflicted gunshot to head
+		user.death()
 
 	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 	last_fired = world.time

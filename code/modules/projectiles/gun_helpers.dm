@@ -41,7 +41,15 @@
 
 //tactical reloads
 /obj/item/weapon/gun/afterattack(atom/target, mob/user, has_proximity, click_parameters)
-	if(istype(target, /obj/item/ammo_magazine) || istype(target, /obj/item/cell))
+	if(isammomagazine(target))
+		var/obj/item/ammo_magazine/mag_to_reload = target
+		if(mag_to_reload.magazine_flags & MAGAZINE_WORN)
+			return ..()
+		tactical_reload(target, user)
+	if(islascell(target))
+		var/obj/item/cell/lasgun/cell_to_reload = target
+		if(cell_to_reload.magazine_features_flags & MAGAZINE_WORN)
+			return ..()
 		tactical_reload(target, user)
 	return ..()
 

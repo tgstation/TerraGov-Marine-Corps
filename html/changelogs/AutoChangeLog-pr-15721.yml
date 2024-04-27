@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Tank and APC can now get out of the Alamo easier on Ice Colony"

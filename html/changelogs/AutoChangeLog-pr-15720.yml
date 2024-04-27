@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Vehicles can now enter and exit the Alamo on Icy Caves"
+  - bugfix: "Fixed a few tiles without areas on Icy Caves"

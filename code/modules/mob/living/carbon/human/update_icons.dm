@@ -58,7 +58,7 @@ There are several things that need to be remembered:
 
 */
 
-#define ITEM_STATE_IF_SET(I) I.item_state ? I.item_state : I.icon_state
+#define ITEM_STATE_IF_SET(I) I.worn_icon_state ? I.worn_icon_state : I.icon_state
 
 
 /mob/living/carbon/human

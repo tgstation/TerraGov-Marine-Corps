@@ -3,11 +3,11 @@
 	desc = "A spray bottle, with an unscrewable top."
 	icon = 'icons/obj/items/spray.dmi'
 	icon_state = "cleaner"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/spray_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/spray_right.dmi',
 	)
-	item_state = "cleaner"
+	worn_icon_state = "cleaner"
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	item_flags = NOBLUDGEON
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -127,7 +127,7 @@
 	name = "pepperspray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
 	icon_state = "pepperspray"
-	item_state = "pepperspray"
+	worn_icon_state = "pepperspray"
 	possible_transfer_amounts = null
 	volume = 40
 	safety = TRUE
@@ -148,7 +148,7 @@
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
-	item_state = "sunflower"
+	worn_icon_state = "sunflower"
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
@@ -159,7 +159,7 @@
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
 	icon_state = "chemsprayer"
-	item_state = "chemsprayer"
+	worn_icon_state = "chemsprayer"
 	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
@@ -208,7 +208,7 @@
 	name = "Plant-B-Gone"
 	desc = "Kills those pesky weeds!"
 	icon_state = "plantbgone"
-	item_state = "plantbgone"
+	worn_icon_state = "plantbgone"
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
