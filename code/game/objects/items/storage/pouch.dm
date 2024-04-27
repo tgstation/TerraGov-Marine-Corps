@@ -553,13 +553,10 @@
 /obj/item/storage/pouch/mine/flash
 	name = "flash mine pouch"
 	fill_type = /obj/item/mine/flash/battery_included
-	fill_number = 5
+	fill_number = 4
 
 /obj/item/storage/pouch/mine/flash/Initialize(mapload)
 	. = ..()
-	//Extra 2 space and 1 slot for the spare battery
-	storage_datum.max_storage_space = 12
-	storage_datum.storage_slots = 6
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/mine, /obj/item/cell))
 	new /obj/item/cell(src)
 
@@ -567,13 +564,10 @@
 /obj/item/storage/pouch/mine/radiation
 	name = "radiation mine pouch"
 	fill_type = /obj/item/mine/radiation/fueled
-	fill_number = 5
+	fill_number = 4
 
 /obj/item/storage/pouch/mine/radiation/Initialize(mapload)
 	. = ..()
-	//Extra 1 and slot for the spare fuel
-	storage_datum.max_storage_space = 11
-	storage_datum.storage_slots = 6
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/mine, /obj/item/stack/sheet/mineral/uranium))
 	new /obj/item/stack/sheet/mineral/uranium/small_stack(src)
 

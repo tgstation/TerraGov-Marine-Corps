@@ -67,11 +67,11 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(I, /obj/item/mine) && stored_amount <= max_amount)
+	if((I.type == /obj/item/mine/claymore) && stored_amount <= max_amount)
 		stored_amount++
 		qdel(I)
 		return
-	if(!istype(I, /obj/item/storage/box/explosive_mines))
+	if(!istype(I, /obj/item/storage/box/explosive_mines/claymore))
 		return
 	for(var/obj/item/mine/content AS in I)
 		if(stored_amount < max_amount)
