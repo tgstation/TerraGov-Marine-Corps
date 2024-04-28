@@ -339,7 +339,7 @@
 	hitscan_effect_icon = "beam_solar"
 	bullet_color = LIGHT_COLOR_YELLOW
 	///number of melting stacks to apply when hitting mobs
-	var/melt_stacks = 1
+	var/melt_stacks = 2
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
