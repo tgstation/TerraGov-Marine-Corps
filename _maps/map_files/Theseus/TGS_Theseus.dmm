@@ -10811,15 +10811,6 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
-"hOA" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 4
-	},
-/obj/machinery/landinglight/alamo{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "hPY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -44164,7 +44155,7 @@ blA
 blA
 blA
 blA
-hOA
+caJ
 fgc
 blA
 hHM
@@ -44419,7 +44410,7 @@ bVJ
 bbo
 jJt
 jJt
-lvI
+jJt
 jJt
 iVz
 gby
