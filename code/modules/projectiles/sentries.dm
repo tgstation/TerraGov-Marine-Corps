@@ -322,8 +322,8 @@
 	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/emp_act(severity)
+	. = ..()
 	machine_stat |= EMPED
-	spark_system.start()
 	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //will need to add something later to be additive or something
 	update_appearance(UPDATE_OVERLAYS)

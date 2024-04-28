@@ -181,6 +181,7 @@
 	s.start()
 
 /obj/item/portable_vendor/emp_act(severity)
+	. = ..()
 	if(broken)
 		return
 	if(prob(100 - (severity * 20)))
