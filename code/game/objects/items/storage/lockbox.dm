@@ -2,7 +2,7 @@
 	name = "lockbox"
 	desc = "A locked box."
 	icon_state = "lockbox+l"
-	item_state = "syringe_kit"
+	worn_icon_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_BULKY
 	req_access = list(ACCESS_MARINE_CAPTAIN)
 	storage_type = /datum/storage/lockbox

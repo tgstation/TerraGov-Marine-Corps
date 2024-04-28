@@ -8,7 +8,7 @@
 	item_flags = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
-	item_state = "nothing"
+	worn_icon_state = "nothing"
 	w_class = WEIGHT_CLASS_HUGE
 	attack_speed = CLICK_CD_GRABBING
 	resistance_flags = RESIST_ALL

@@ -3,7 +3,7 @@
 	name = "\improper M40 FLDP grenade"
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
-	item_state = "flare_grenade"
+	worn_icon_state = "flare_grenade"
 	det_time = 0
 	throwforce = 1
 	dangerous = FALSE
@@ -81,13 +81,13 @@
 /obj/item/explosive/grenade/flare/update_icon_state()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		item_state = "[initial(item_state)]_active"
+		worn_icon_state = "[initial(worn_icon_state)]_active"
 	else if(!fuel)
 		icon_state = "[initial(icon_state)]_empty"
-		item_state = "[initial(item_state)]_empty"
+		worn_icon_state = "[initial(worn_icon_state)]_empty"
 	else
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
+		worn_icon_state = initial(worn_icon_state)
 
 
 ///Shuts the flare off
@@ -123,13 +123,13 @@
 	name = "flare"
 	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
 	icon_state = "flare"
-	item_state = "flare"
+	worn_icon_state = "flare"
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
 	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
 	icon_state = "cas_flare_grenade"
-	item_state = "cas_flare_grenade"
+	worn_icon_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30

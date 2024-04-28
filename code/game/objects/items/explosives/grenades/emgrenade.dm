@@ -2,7 +2,7 @@
 	name = "classic emp grenade"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "emp"
-	item_state = "emp"
+	worn_icon_state = "emp"
 
 
 /obj/item/explosive/grenade/empgrenade/prime()

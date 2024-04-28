@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	desc = "An encryption key for a radio headset."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "cypherkey"
-	item_state = ""
+	worn_icon_state = ""
 	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
 	var/independent = FALSE

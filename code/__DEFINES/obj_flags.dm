@@ -2,7 +2,7 @@
 
 ///If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 #define IN_USE (1<<0)
-///an this be bludgeoned by items?
+///Can this be bludgeoned by items?
 #define CAN_BE_HIT (1<<1)
 ///If non-dense structures can still get hit by projectiles
 #define PROJ_IGNORE_DENSITY (1<<2)
