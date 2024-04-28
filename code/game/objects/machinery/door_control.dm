@@ -21,7 +21,6 @@
 	active_power_usage = 4
 	layer = ABOVE_OBJ_LAYER
 
-
 /obj/machinery/door_control/unmeltable
 	resistance_flags = RESIST_ALL
 
