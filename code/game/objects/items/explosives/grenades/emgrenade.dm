@@ -6,7 +6,6 @@
 
 
 /obj/item/explosive/grenade/empgrenade/prime()
-	..()
-	if(empulse(src, 4, 10))
-		qdel(src)
+	empulse(src, 0, 2, 5)
+	qdel(src)
 
