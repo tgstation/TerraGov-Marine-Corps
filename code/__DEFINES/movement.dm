@@ -1,12 +1,12 @@
 //The minimum for glide_size to be clamped to.
 //If you want more classic style "delay" movement while still retaining the smoothness improvements at higher framerates, set this to 8
-#define MIN_GLIDE_SIZE 0
+#define MIN_GLIDE_SIZE 3
 //The maximum for glide_size to be clamped to.
 //This shouldn't be higher than the icon size, and generally you shouldn't be changing this, but it's here just in case.
 #define MAX_GLIDE_SIZE 32
 
 /// Compensating for time dilation
-GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
+GLOBAL_VAR_INIT(glide_size_multiplier, 1)
 
 ///Broken down, here's what this does:
 /// divides the world icon_size (32) by delay divided by ticklag to get the number of pixels something should be moving each tick.
