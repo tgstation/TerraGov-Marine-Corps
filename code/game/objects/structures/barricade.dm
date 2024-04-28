@@ -603,7 +603,7 @@
 				return TRUE
 
 			var/turf/open/T = mystery_turf
-			var/area/area = get_area(mystery_turf)
+			var/area/area = get_area(T)
 			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return TRUE
@@ -881,8 +881,7 @@
 				return
 
 			var/turf/open/T = mystery_turf
-			var/atom/A
-			var/area/area = get_area(A)
+			var/area/area = get_area(T)
 			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return
