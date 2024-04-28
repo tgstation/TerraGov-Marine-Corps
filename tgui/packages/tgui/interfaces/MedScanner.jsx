@@ -1,7 +1,6 @@
 import { useBackend } from '../backend';
 import {
   Box,
-  Flex,
   Icon,
   LabeledList,
   NoticeBox,
@@ -48,7 +47,7 @@ export const MedScanner = (props) => {
   } = data;
   const chemicals = Object.values(chemicals_lists);
   const limb_data = Object.values(limb_data_lists);
-  let index = 0;
+  let row_transparency = 0;
   const row_bg_color = 'rgba(255, 255, 255, .05)';
   const theme = species === 'robot' ? 'hackerman' : 'default';
   return (
@@ -160,36 +159,37 @@ export const MedScanner = (props) => {
         {limbs_damaged ? (
           <Section title="Limbs Damaged">
             <Stack vertical fill>
-              <Flex width="100%" height="20px">
-                <Flex.Item basis="85px" />
-                <Flex.Item basis="55px" bold color="red">
+              <Stack height="20px">
+                <Stack.Item basis="80px" />
+                <Stack.Item basis="50px" bold color="red">
                   Brute
-                </Flex.Item>
-                <Flex.Item basis="55px" bold color="#ffb833">
+                </Stack.Item>
+                <Stack.Item bold color="#ffb833">
                   Burn
-                </Flex.Item>
-                <Flex.Item grow="1" shrink="1" textAlign="right" nowrap>
+                </Stack.Item>
+                <Stack.Item grow="1" textAlign="right" nowrap>
                   {'{ } = Untreated'}
-                </Flex.Item>
-              </Flex>
+                </Stack.Item>
+              </Stack>
               {limb_data.map((limb) => (
-                <Flex
+                <Stack
                   key={limb.name}
                   width="100%"
-                  minHeight="15px"
                   py="3px"
-                  backgroundColor={index++ % 2 === 0 ? row_bg_color : ''}
+                  backgroundColor={
+                    row_transparency++ % 2 === 0 ? row_bg_color : ''
+                  }
                 >
-                  <Flex.Item basis="85px" shrink="0" bold pl="3px">
+                  <Stack.Item basis="80px" bold pl="3px">
                     {limb.name[0].toUpperCase() + limb.name.slice(1)}
-                  </Flex.Item>
+                  </Stack.Item>
                   {limb.missing ? (
-                    <Flex.Item color={'red'} bold={1}>
+                    <Stack.Item color={'red'} bold={1}>
                       MISSING
-                    </Flex.Item>
+                    </Stack.Item>
                   ) : (
                     <>
-                      <Flex.Item basis="fit-content" shrink="0">
+                      <Stack.Item>
                         <Box
                           inline
                           width="50px"
@@ -200,14 +200,14 @@ export const MedScanner = (props) => {
                         <Box inline width="5px" />
                         <Box
                           inline
-                          width="50px"
+                          width="40px"
                           color={limb.burn > 0 ? '#ffb833' : 'white'}
                         >
                           {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
                         </Box>
                         <Box inline width="5px" />
-                      </Flex.Item>
-                      <Flex.Item shrink="1">
+                      </Stack.Item>
+                      <Stack.Item>
                         {limb.limb_status ? (
                           <Box
                             inline
@@ -255,10 +255,10 @@ export const MedScanner = (props) => {
                             [Implant]
                           </Box>
                         ) : null}
-                      </Flex.Item>
+                      </Stack.Item>
                     </>
                   )}
-                </Flex>
+                </Stack>
               ))}
             </Stack>
           </Section>

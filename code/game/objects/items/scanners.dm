@@ -275,8 +275,8 @@ REAGENT SCANNER
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
-	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // Only show advice for revivable patients
-		if(patient.stat == DEAD)
+	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show any advice if the patient is revivable
+		if(patient.stat == DEAD) // death related advice
 			var/dead_color
 			switch(patient.dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)
@@ -413,7 +413,7 @@ REAGENT SCANNER
 				advice += list(list(
 					"advice" = "Administer a single dose of Isotonic solution.",
 					"icon" = "syringe",
-					"color" = "crimson"
+					"color" = "cyan"
 					))
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
@@ -441,7 +441,7 @@ REAGENT SCANNER
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
 					"icon" = "syringe",
-					"color" = "white"
+					"color" = "grey"
 					))
 				if(chemicals_lists["Tramadol"])
 					if(chemicals_lists["Tramadol"]["amount"] < 3)
