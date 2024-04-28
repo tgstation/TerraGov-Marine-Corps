@@ -259,7 +259,6 @@
 	var/bio_protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
 	var/acid_protection = max(1 - get_soft_acid_protection(), 0)
 	var/acid_hard_protection = get_hard_acid_protection()
-	var/protections = list(bio_protection, acid_protection, acid_hard_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
 		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
@@ -279,7 +278,7 @@
 		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
-	return protections
+	return bio_protection
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
