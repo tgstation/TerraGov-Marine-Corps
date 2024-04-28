@@ -44,10 +44,12 @@
 	REMOVE_TRAIT(M, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
 
 ///Entry checks for the mob before entering the vehicle
-/obj/vehicle/sealed/proc/mob_try_enter(mob/entering_mob, loc_override = FALSE)
+/obj/vehicle/sealed/proc/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if(!istype(entering_mob))
 		return FALSE
-	if(do_after(entering_mob, get_enter_delay(entering_mob), user_display = BUSY_ICON_FRIENDLY, extra_checks = CALLBACK(src, PROC_REF(enter_checks), entering_mob, loc_override)))
+	if(!user)
+		user = entering_mob
+	if(do_after(user, get_enter_delay(entering_mob), target = entering_mob, user_display = BUSY_ICON_FRIENDLY, extra_checks = CALLBACK(src, PROC_REF(enter_checks), entering_mob, loc_override)))
 		mob_enter(entering_mob)
 		return TRUE
 	return FALSE

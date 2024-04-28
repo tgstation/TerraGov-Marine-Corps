@@ -283,13 +283,13 @@
 		return
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
-		mob_try_enter(thing_to_load, TRUE)
+		mob_try_enter(thing_to_load, user, TRUE)
 		return
 	user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 
-/obj/vehicle/sealed/armored/mob_try_enter(mob/entering_mob, loc_override = FALSE)
+/obj/vehicle/sealed/armored/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if(isobserver(entering_mob))
 		interior?.mob_enter(entering_mob)
 		return FALSE
@@ -471,8 +471,6 @@
 	try_easy_load(dropping, M)
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
-	if(!is_type_in_typecache(grab.grabbed_thing.type, easy_load_list))
-		return ..()
 	try_easy_load(grab.grabbed_thing, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
