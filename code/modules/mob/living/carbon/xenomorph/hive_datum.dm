@@ -402,11 +402,11 @@
 		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(xeno_z_changed))
 
-	if(!xenos_by_typepath[X.caste_base_type])
+	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
 
-	xenos_by_typepath[X.caste_base_type] += X
+	xenos_by_typepath[X.xeno_caste.get_base_caste_type()] += X
 	update_tier_limits() //Update our tier limits.
 
 	return TRUE
@@ -511,11 +511,11 @@
 		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
-	if(!xenos_by_typepath[X.caste_base_type])
+	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
 		stack_trace("trying to remove an invalid typepath from hivestatus list")
 		return FALSE
 
-	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
+	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
