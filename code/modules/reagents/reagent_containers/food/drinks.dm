@@ -5,7 +5,7 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/items/drinks.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/drinks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/drinks_right.dmi',
 	)
@@ -106,7 +106,7 @@
 	desc = "You're winner!"
 	name = "golden cup"
 	icon_state = "golden_cup"
-	item_state = "" //nope :(
+	worn_icon_state = "" //nope :(
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14
 	throwforce = 10
@@ -128,7 +128,7 @@
 	name = "Space Milk"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
 
@@ -136,7 +136,7 @@
 	name = "soy milk"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/drink/milk/soymilk = 50)
 
@@ -156,7 +156,7 @@
 	name = "\improper Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
-	item_state = "coffee"
+	worn_icon_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
 	list_reagents = list(/datum/reagent/consumable/drink/tea = 30)
 
@@ -171,7 +171,7 @@
 	name = "\improper Dutch hot coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
-	item_state = "coffee"
+	worn_icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
 	list_reagents = list(/datum/reagent/consumable/drink/hot_coco = 30)
 

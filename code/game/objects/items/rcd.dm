@@ -19,11 +19,11 @@
 	desc = "Highly compressed matter for the RCD."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "rcd"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	item_state = "rcdammo"
+	worn_icon_state = "rcdammo"
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE

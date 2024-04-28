@@ -67,7 +67,7 @@
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
-	item_state = "candlebox5"
+	worn_icon_state = "candlebox5"
 	throwforce = 2
 	equip_slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/tool/candle
@@ -129,7 +129,7 @@
 	desc = "The most popular brand of Space Cigarettes, sponsors of the Space Olympics."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigpacket"
-	item_state = "cigpacket"
+	worn_icon_state = "cigpacket"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -169,7 +169,7 @@
 	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "chempacketbox"
-	item_state = "chempacketbox"
+	worn_icon_state = "chempacketbox"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -204,31 +204,31 @@
 	name = "\improper Nanotrasen Gold packet"
 	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
 	icon_state = "ntpacket"
-	item_state = "ntpacket"
+	worn_icon_state = "ntpacket"
 
 /obj/item/storage/fancy/cigarettes/luckystars
 	name = "\improper Lucky Stars packet"
 	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
 	icon_state = "lspacket"
-	item_state = "lspacket"
+	worn_icon_state = "lspacket"
 
 /obj/item/storage/fancy/cigarettes/kpack
 	name = "\improper Koorlander Gold packet"
 	desc = "Koorlander, Gold: 3% tobacco. 97% other. For when you want to look cool and the risk of a slow horrible death isn't really a factor."
 	icon_state = "kpacket"
-	item_state = "kpacket"
+	worn_icon_state = "kpacket"
 
 /obj/item/storage/fancy/cigarettes/lady_finger
 	name = "\improper ArctiCool Menthols packet"
 	desc = "An entry level brand of cigarettes with a bright blue packaging. For when you want to smell like lozenges and smoke"
 	icon_state = "acpacket"
-	item_state = "acpacket"
+	worn_icon_state = "acpacket"
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
 	icon_state = "cigarcase"
-	item_state = "cigarcase"
+	worn_icon_state = "cigarcase"
 	icon = 'icons/obj/items/cigarettes.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
@@ -279,7 +279,7 @@
 	desc = "A locked box for keeping things away from children."
 	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox0"
-	item_state = "syringe_kit"
+	worn_icon_state = "syringe_kit"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
 /obj/item/storage/lockbox/vials/Initialize(mapload, ...)

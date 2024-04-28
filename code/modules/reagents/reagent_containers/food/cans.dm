@@ -54,7 +54,7 @@
 	name = "can of ale"
 	desc = "Beer's misunderstood cousin."
 	icon_state = "alecan"
-	item_state = "beer"
+	worn_icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=10)
 	list_reagents = list(/datum/reagent/consumable/ethanol/ale = 30)
 
