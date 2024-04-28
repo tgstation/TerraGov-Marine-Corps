@@ -4,6 +4,7 @@
 	desc = "you shouldnt see this"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_words"
+	w_class = WEIGHT_CLASS_TINY
 	var/cqc
 	var/melee_weapons
 	var/firearms

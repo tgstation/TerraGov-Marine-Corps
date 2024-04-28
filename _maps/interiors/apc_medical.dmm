@@ -54,6 +54,7 @@
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "B" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /turf/closed/interior/apc/six,
 /area/interior/apc)
 "C" = (

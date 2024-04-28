@@ -1028,8 +1028,8 @@
 	name = "\improper Surplus Armor Equipment Vendor"
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
-	icon_vend = "surplus-vend"
-	icon_deny = "surplus_armor-deny"
+	icon_vend = "surplus_armor_vend"
+	icon_deny = "surplus_armor_deny"
 	isshared = TRUE
 	wrenchable = FALSE
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
@@ -1182,8 +1182,8 @@
 	name = "\improper Surplus Clothing Vendor"
 	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
-	icon_vend = "surplus-vend"
-	icon_deny = "surplus_clothes-deny"
+	icon_vend = "surplus_clothes_vend"
+	icon_deny = "surplus_clothes_deny"
 	wrenchable = FALSE
 	isshared = TRUE
 	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
@@ -1436,6 +1436,7 @@
 			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
+			/obj/item/ammo_magazine/shotgun/beanbag = -1,
 			/obj/item/weapon/gun/minigun/valhalla = -1,
 			/obj/item/ammo_magazine/minigun_powerpack = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
@@ -1544,6 +1545,11 @@
 			/obj/item/implanter/cloak = -1,
 			/obj/item/implanter/chem/blood = -1,
 			/obj/item/implanter/blade = -1,
+		),
+		"Assault Vehicle" = list(
+			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
+			/obj/item/ammo_magazine/tank/ltaap_chaingun = -1,
+			/obj/item/ammo_magazine/tank/secondary_cupola = -1,
 		),
 	)
 

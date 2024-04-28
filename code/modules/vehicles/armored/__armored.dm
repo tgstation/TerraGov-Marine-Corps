@@ -137,6 +137,7 @@
 /obj/vehicle/sealed/armored/generate_actions()
 	if(armored_flags & ARMORED_HAS_HEADLIGHTS)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/armored/toggle_lights, VEHICLE_CONTROL_SETTINGS)
+	initialize_controller_action_type(/datum/action/vehicle/sealed/armored/horn, VEHICLE_CONTROL_SETTINGS)
 	if(interior)
 		return
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/eject)
@@ -144,10 +145,10 @@
 		initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/swap_seat)
 
 ///returns a list of possible locations that this vehicle may be entered from
-/obj/vehicle/sealed/armored/proc/enter_locations(mob/M)
+/obj/vehicle/sealed/armored/proc/enter_locations(atom/movable/entering_thing)
 	// from any adjacent position
-	if(Adjacent(M, src))
-		return list(get_turf(M))
+	if(Adjacent(entering_thing, src))
+		return list(get_turf(entering_thing))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
@@ -158,11 +159,11 @@
 	if(!damage_overlay)
 		return
 	switch(PERCENT(obj_integrity / max_integrity))
-		if(0 to 29)
+		if(0 to 20)
 			damage_overlay.icon_state = "damage_veryhigh"
-		if(29 to 59)
+		if(20 to 40)
 			damage_overlay.icon_state = "damage_high"
-		if(59 to 70)
+		if(40 to 70)
 			damage_overlay.icon_state = "damage_medium"
 		if(70 to 90)
 			damage_overlay.icon_state = "damage_small"
@@ -264,8 +265,11 @@
 	mob_exit(leaver, TRUE)
 
 /// call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc
-/obj/vehicle/sealed/armored/proc/try_easy_load(atom/movable/item, mob/living/user)
-	if(!is_type_in_typecache(item.type, easy_load_list))
+/obj/vehicle/sealed/armored/proc/try_easy_load(atom/movable/thing_to_load, mob/living/user)
+	if(isgrabitem(thing_to_load))
+		var/obj/item/grab/grab_item = thing_to_load
+		thing_to_load = grab_item.grabbed_thing
+	if(!isliving(thing_to_load) && !is_type_in_typecache(thing_to_load.type, easy_load_list))
 		return
 	if(!interior)
 		user.balloon_alert(user, "no interior")
@@ -273,32 +277,37 @@
 	if(!interior.door)
 		user.balloon_alert(user, "no door")
 		return
-	if(!(user.loc in enter_locations(user)))
+	var/list/enter_locs = enter_locations(user)
+	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
 		user.balloon_alert(user, "not at entrance")
 		return
-	user.temporarilyRemoveItemFromInventory(item)
-	item.forceMove(interior.door.get_enter_location())
+	if(isliving(thing_to_load))
+		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
+		mob_try_enter(thing_to_load, TRUE)
+		return
+	user.temporarilyRemoveItemFromInventory(thing_to_load)
+	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 
-/obj/vehicle/sealed/armored/mob_try_enter(mob/M)
-	if(isobserver(M))
-		interior?.mob_enter(M)
+/obj/vehicle/sealed/armored/mob_try_enter(mob/entering_mob, loc_override = FALSE)
+	if(isobserver(entering_mob))
+		interior?.mob_enter(entering_mob)
 		return FALSE
-	if(!ishuman(M))
+	if(!ishuman(entering_mob))
 		return FALSE
-	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+	if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
-	if(!(M.loc in enter_locations(M)))
-		balloon_alert(M, "not at entrance")
+	if(!loc_override && !(entering_mob.loc in enter_locations(entering_mob)))
+		balloon_alert(entering_mob, "not at entrance")
 		return FALSE
 	return ..()
 
-/obj/vehicle/sealed/armored/enter_checks(mob/M)
+/obj/vehicle/sealed/armored/enter_checks(mob/entering_mob, loc_override = FALSE)
 	. = ..()
 	if(!.)
 		return
-	if(LAZYLEN(M.buckled_mobs))
-		balloon_alert(M, "remove riders first")
+	if(LAZYLEN(entering_mob.buckled_mobs))
+		balloon_alert(entering_mob, "remove riders first")
 		return FALSE
 
 /obj/vehicle/sealed/armored/add_occupant(mob/M, control_flags)
@@ -337,8 +346,8 @@
 		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
-	M.hud_used.remove_ammo_hud(primary_weapon)
-	M.hud_used.remove_ammo_hud(secondary_weapon)
+	M?.hud_used?.remove_ammo_hud(primary_weapon)
+	M?.hud_used?.remove_ammo_hud(secondary_weapon)
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return ..()

@@ -6,7 +6,7 @@
 	desc = "A pair of brown shoes. They seem to have extra grip."
 	name = "brown shoes"
 	icon_state = "brown"
-	item_state = "brown"
+	worn_icon_state = "brown"
 	permeability_coefficient = 0.05
 	inventory_flags = NOSLIPPING
 	var/list/clothing_choices = list()
@@ -86,7 +86,7 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	item_state = "clown"
+	worn_icon_state = "clown"
 	slowdown = SHOES_SLOWDOWN + 1
 
 
@@ -99,14 +99,14 @@
 	name = "jackboots"
 	desc = "Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
-	item_state = "jackboots"
+	worn_icon_state = "jackboots"
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
 	desc = "A pair of boots worn by the followers of Nar-Sie."
 	icon_state = "cult"
-	item_state = "cult"
+	worn_icon_state = "cult"
 	siemens_coefficient = 0.7
 
 	cold_protection_flags = FEET
@@ -123,14 +123,14 @@
 	name = "bunny slippers"
 	desc = "Fluffy!"
 	icon_state = "slippers"
-	item_state = "slippers"
+	worn_icon_state = "slippers"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
-	item_state = "slippers_worn"
+	worn_icon_state = "slippers_worn"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/shoes/laceup
@@ -160,7 +160,7 @@
 	name = "Techpriest boots"
 	desc = "Praise the machine spirit!"
 	icon_state = "tp_boots"
-	item_state = "tp_boots"
+	worn_icon_state = "tp_boots"
 	inventory_flags = NOSLIPPING
 
 

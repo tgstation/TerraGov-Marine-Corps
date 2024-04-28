@@ -2,7 +2,7 @@
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
-	item_state = "claymore"
+	worn_icon_state = "claymore"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 40
@@ -98,21 +98,21 @@
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon_state = "mercsword"
-	item_state = "machete"
+	worn_icon_state = "machete"
 	force = 39
 
 /obj/item/weapon/sword/captain
 	name = "Ceremonial Sword"
 	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"
-	item_state = "machete"
+	worn_icon_state = "machete"
 	force = 55
 
 /obj/item/weapon/sword/machete
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
-	item_state = "machete"
+	worn_icon_state = "machete"
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
@@ -132,7 +132,7 @@
 	name = "officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
-	item_state = "officer_sword"
+	worn_icon_state = "officer_sword"
 	force = 75
 	attack_speed = 11
 	penetration = 15
@@ -145,7 +145,7 @@
 	name = "commissars sword"
 	desc = "The pride of an imperial commissar, held high as they charge into battle."
 	icon_state = "comsword"
-	item_state = "comsword"
+	worn_icon_state = "comsword"
 	force = 80
 	attack_speed = 10
 	w_class = WEIGHT_CLASS_BULKY
@@ -154,7 +154,7 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	item_state = "machete"
+	worn_icon_state = "machete"
 	force = 50
 	throwforce = 10
 

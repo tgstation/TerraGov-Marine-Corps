@@ -2,11 +2,11 @@
 	name = "implanter"
 	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implanter0"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)
-	item_state = "syringe_0"
+	worn_icon_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -92,3 +92,7 @@
 	if(!.)
 		return
 	qdel(src)
+
+/obj/item/implanter/jump_mod
+	name = "fortified ankles implant"
+	imp = /obj/item/implant/jump_mod

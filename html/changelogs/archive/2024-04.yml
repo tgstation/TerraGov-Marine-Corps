@@ -327,3 +327,112 @@
   - bugfix: Tank treads movement animation fixed
   XElectricX:
   - bugfix: Interactive emotes work.
+2024-04-18:
+  Barnet2:
+  - admin: Adds tactical binocular admin logging, improved fuel tank logging.
+  Lumipharon:
+  - qol: Screaming from fire is a bit less spammy
+  - bugfix: fixes another order exploit
+  - bugfix: fixed various implant bugs
+  - code_imp: Cleaned up various implant related code
+  coldironwarrior:
+  - rscadd: adds category tags to the specialist vendors
+2024-04-19:
+  ivanmixo:
+  - bugfix: Valhalla xenos can use directional attacks on the puppets they spawn now
+2024-04-20:
+  Lumipharon:
+  - rscadd: Added a jump mod implant, currently admin only
+  - qol: 'Campaign: Unlocking a perk players a sound and overhead animation'
+  Wisemonster:
+  - rscadd: Gave the tank and apc the ability to honk a horn
+  - soundadd: added sound/vehicles/horns/armored_horn.ogg
+  - imageadd: re-added a horn ability icon sprite
+2024-04-21:
+  BraveMole:
+  - rscadd: Bring back banelings as minions
+  Lauwma:
+  - balance: Adds the ar-55 back in leaders vendors.
+  Lumipharon:
+  - imageadd: Updated fire sprites
+  - bugfix: fixed vendors not showing points costs
+  RipGrayson:
+  - bugfix: Fixed area on Big Red causing linter failure.
+  Xander3359:
+  - rscadd: Ports the crafting system from TG
+  coldironwarrior:
+  - bugfix: the FC GHMME now vends the right injector pouch
+  - balance: medical rig belts now can hold soap
+2024-04-22:
+  Wisemonster:
+  - rscadd: Expanded west side of Valhalla with an assault vehicle area
+  - rscadd: Added an Assault Vehicle category to the Valhalla requisition vendor;
+      added tank ammo to said category
+  novaepee:
+  - rscadd: keybind for vehicle honk
+  - qol: keybind for vehicle honk
+2024-04-24:
+  SandPoot:
+  - qol: Game will now tally up how many times people used Sandevistans (as well as
+      how many died to it).
+  TiviPlus:
+  - rscadd: Adds contextual tutorials for picking things up, dropping them and swapping
+      hands
+  Xander3359:
+  - code_imp: Organizes reagents folder
+2024-04-25:
+  Lumipharon:
+  - bugfix: fixed an alamo runtime on non hvx gamemodes
+  - bugfix: fixed a visual offset issue with sentry deployment systems
+  - bugfix: fixed some issues with mobs riding vehicles
+  - bugfix: fixed some visua issues with xeno fire overlays
+  - bugfix: Stray organs will no longer clang loudly
+  Xander3359:
+  - qol: Clicking a magazine with a gun will tactical reload instead of dragging the
+      magazine
+  - qol: Selecting a new vali chem will purge the old loaded reagent and load up the
+      new chem
+2024-04-26:
+  Lauwma:
+  - rscadd: AR-55 can now be issued to Field Commanders through their assigned vendor.
+  Xander3359:
+  - bugfix: You can now attack resin walls on help intent
+  - bugfix: Fix crafting ignoring construction checks
+  novaepee:
+  - qol: Put assault and transport crew spawning in their respective room in Pillar
+      of Spring.
+  - imageadd: Add image for transport crew landmark.
+  - qol: Change positions of some signs in PoS.
+2024-04-27:
+  Barnet2:
+  - balance: Evolution towers give 0.4 maturity per tick instead of 0.8
+  Lumipharon:
+  - balance: Significantly reduced unintented APC defensive stats
+  - bugfix: fixed some mainly visual issues with vendors
+  TiviPlus:
+  - bugfix: ACs will get loader phamplets correctly
+  - balance: Fixes APC having insane ram damage (it now has 25% of previous value)
+  - bugfix: fixed APC comms cutting out sometimes
+  blackdav123:
+  - qol: Defiler chems once again cycle Neuro-Hemo-Trans-Ozy.
+  - qol: Tank and APC sprites will now more accurately reflect their current integrity
+      values.
+  coldironwarrior:
+  - balance: autoinjector suit storage mod has 12 slots now, up from 10
+2024-04-28:
+  Lumipharon:
+  - bugfix: fixed broken/burnt light tube item sprites
+  - qol: You can click drag or grab click mobs into, or out of multitile vehicles
+  TiviPlus:
+  - rscadd: Adds blank shotgun shells that can be found in the firing range
+  Wisemonster:
+  - bugfix: Removed the Valhalla mech pilot's radio
+  Xander3359:
+  - bugfix: Fix powerpacks double reloading
+  - code_imp: replaces item_state, item_state_slots and item_icons
+  blackdav123:
+  - bugfix: Tank and APC can now get out of the Alamo easier on Ice Colony
+  - bugfix: Vehicles can now enter and exit the Alamo on Icy Caves
+  - bugfix: Fixed a few tiles without areas on Icy Caves
+  yyzsong:
+  - rscadd: Adds beanbag slugs to valhalla

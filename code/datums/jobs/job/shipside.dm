@@ -513,6 +513,9 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 
+/datum/outfit/job/command/mech_pilot/fallen
+	ears = null
+
 #define ASSAULT_CREWMAN_POPLOCK 50
 //tank/arty driver+gunner
 /datum/job/terragov/command/assault_crewman
@@ -1365,7 +1368,7 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)].", "Attention:", TRUE))
 
 
 /datum/job/terragov/silicon/ai/config_check()
