@@ -62,7 +62,7 @@
 		return TRUE
 	return FALSE
 
-/obj/attackby(obj/item/I, mob/user, params)
+/obj/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
@@ -70,8 +70,10 @@
 	if(user.a_intent != INTENT_HARM)
 		return
 
-	if(obj_flags & CAN_BE_HIT)
-		return I.attack_obj(src, user)
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
@@ -83,16 +85,16 @@
 	return O.attacked_by(src, user)
 
 
-/atom/movable/proc/attacked_by(obj/item/I, mob/living/user, def_zone)
+/atom/movable/proc/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 	return FALSE
 
 
-/obj/attacked_by(obj/item/I, mob/living/user, def_zone)
-	user.visible_message(span_warning("[user] hits [src] with [I]!"),
-		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
-	log_combat(user, src, "attacked", I)
-	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
-	take_damage(power, I.damtype, MELEE, blame_mob = user)
+/obj/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
+	user.visible_message(span_warning("[user] hits [src] with [attacking_item]!"),
+		span_warning("You hit [src] with [attacking_item]!"), visible_message_flags = COMBAT_MESSAGE)
+	log_combat(user, src, "attacked", attacking_item)
+	var/power = attacking_item.force + round(attacking_item.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
+	take_damage(power, attacking_item.damtype, MELEE, blame_mob = user)
 	return TRUE
 
 
@@ -119,32 +121,32 @@
 	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
 	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 
-/mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
+/mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
 	var/message_verb = "attacked"
-	if(LAZYLEN(I.attack_verb))
-		message_verb = pick(I.attack_verb)
+	if(LAZYLEN(attacking_item.attack_verb))
+		message_verb = pick(attacking_item.attack_verb)
 	var/message_hit_area
 	if(def_zone)
 		message_hit_area = " in the [def_zone]"
-	var/attack_message = "[src] is [message_verb][message_hit_area] with [I]!"
-	var/attack_message_local = "You're [message_verb][message_hit_area] with [I]!"
+	var/attack_message = "[src] is [message_verb][message_hit_area] with [attacking_item]!"
+	var/attack_message_local = "You're [message_verb][message_hit_area] with [attacking_item]!"
 	if(user in viewers(src, null))
-		attack_message = "[user] [message_verb] [src][message_hit_area] with [I]!"
-		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I]!"
+		attack_message = "[user] [message_verb] [src][message_hit_area] with [attacking_item]!"
+		attack_message_local = "[user] [message_verb] you[message_hit_area] with [attacking_item]!"
 
-	user.do_attack_animation(src, used_item = I)
+	user.do_attack_animation(src, used_item = attacking_item)
 
-	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
+	var/power = attacking_item.force + round(attacking_item.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 
-	switch(I.damtype)
+	switch(attacking_item.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
 				attack_message_local = "[attack_message_local] It burns!"
 		if(STAMINA)
-			apply_damage(power, STAMINA, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
+			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
 
 	visible_message(span_danger("[attack_message]"),
 		span_userdanger("[attack_message_local]"), null, COMBAT_MESSAGE_RANGE)
@@ -152,12 +154,12 @@
 	UPDATEHEALTH(src)
 
 	record_melee_damage(user, power)
-	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
+	log_combat(user, src, "attacked", attacking_item, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(attacking_item.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
-		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
-		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
+		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [attacking_item] in [AREACOORD(T)] (RAW DMG: [power]).")
+		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [attacking_item] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 
 	return TRUE
 

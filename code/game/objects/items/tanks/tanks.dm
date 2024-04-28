@@ -4,7 +4,7 @@
 /obj/item/tank
 	name = "tank"
 	icon = 'icons/obj/items/tank.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)

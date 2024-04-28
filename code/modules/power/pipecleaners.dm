@@ -179,7 +179,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	gender = NEUTER //That's a pipe_cleaner coil sounds better than that's some pipe_cleaner coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "pipecleaner"
-	item_state = "coil"
+	worn_icon_state = "coil"
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/pipe_cleaner_coil // This is here to let its children merge between themselves
@@ -212,7 +212,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/update_icon_state()
 	. = ..()
-	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
+	icon_state = "[initial(worn_icon_state)][amount < 3 ? amount : ""]"
 
 /obj/item/stack/pipe_cleaner_coil/update_name(updates)
 	. = ..()
