@@ -43,8 +43,9 @@
 	. = ..()
 	LAZYINITLIST(candidates)
 
-	for(var/caste_type in directsubtypesof(/datum/xeno_caste))
-		xenos_by_typepath[caste_type] = list()
+	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
+		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)
+			xenos_by_typepath[caste_type] = list()
 
 	for(var/tier in GLOB.xenotiers)
 		xenos_by_tier[tier] = list()

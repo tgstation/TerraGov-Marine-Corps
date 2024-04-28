@@ -585,13 +585,6 @@
 						L[T] = TRUE
 		return L
 
-///takes a path and only returns direct children
-/proc/directsubtypesof(path)
-	. = list()
-	for(var/datum/typepath AS in subtypesof(path))
-		if(initial(typepath.parent_type) == path)
-			. += typepath
-
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type
 /proc/deepCopyList(list/L)
