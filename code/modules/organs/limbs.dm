@@ -145,7 +145,7 @@
 		organ.emp_act(severity)
 	if(!(limb_status & LIMB_ROBOT))	//meatbags do not care about EMP
 		return
-	take_damage_limb(0, (5 - severity) * 6, updating_heal = TRUE)
+	take_damage_limb(0, (5 - severity) * 7, blocked = soft_armor.energy, updating_health = TRUE)
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
