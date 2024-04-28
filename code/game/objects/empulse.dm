@@ -18,7 +18,6 @@
 
 	var/list/turfs_in_range = filled_circle_turfs(epicenter, max_range)
 	for(var/turf/affected_turf AS in turfs_in_range)
-		affected_turf.color = COLOR_ASSEMBLY_ORANGE
 		var/distance = get_dist(epicenter, affected_turf)
 		var/effective_severity
 		if(distance <= devastate_range)
