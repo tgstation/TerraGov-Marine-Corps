@@ -1,0 +1,4 @@
+author: "Lauwma"
+delete-after: True
+changes:
+  - bugfix: "Fixes a typo in loadout.dm that made so AR-55 and GL-54 ammos didn't appear in FC vendor"
