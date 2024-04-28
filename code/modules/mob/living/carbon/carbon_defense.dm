@@ -64,7 +64,8 @@
 
 /mob/living/carbon/smoke_contact(obj/effect/particle_effect/smoke/S)
 	. = ..()
-	var/protection = .
+	var/protections = ..()
+	var/bio_protection = protections[1]
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO) && (internal || has_smoke_protection())) //either inhaled or this.
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_NEURO_LIGHT))
 			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
