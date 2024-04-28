@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - code_imp: "replaces item_state, item_state_slots and item_icons"

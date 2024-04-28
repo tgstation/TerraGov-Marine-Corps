@@ -419,3 +419,20 @@
       values.
   coldironwarrior:
   - balance: autoinjector suit storage mod has 12 slots now, up from 10
+2024-04-28:
+  Lumipharon:
+  - bugfix: fixed broken/burnt light tube item sprites
+  - qol: You can click drag or grab click mobs into, or out of multitile vehicles
+  TiviPlus:
+  - rscadd: Adds blank shotgun shells that can be found in the firing range
+  Wisemonster:
+  - bugfix: Removed the Valhalla mech pilot's radio
+  Xander3359:
+  - bugfix: Fix powerpacks double reloading
+  - code_imp: replaces item_state, item_state_slots and item_icons
+  blackdav123:
+  - bugfix: Tank and APC can now get out of the Alamo easier on Ice Colony
+  - bugfix: Vehicles can now enter and exit the Alamo on Icy Caves
+  - bugfix: Fixed a few tiles without areas on Icy Caves
+  yyzsong:
+  - rscadd: Adds beanbag slugs to valhalla
