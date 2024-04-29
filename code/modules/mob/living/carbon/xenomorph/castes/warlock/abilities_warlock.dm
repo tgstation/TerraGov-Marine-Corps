@@ -405,7 +405,10 @@
 				carbon_victim.add_slowdown(6)
 			else if(isvehicle(victim))
 				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
+				var/dam_mult = 1.5 //multitile vehicles can be hit multiple times
+				if(ismecha(veh_victim))
+					dam_mult = 5
+				veh_victim.take_damage(xeno_owner.xeno_caste.crush_strength * dam_mult, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
