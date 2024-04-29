@@ -185,8 +185,7 @@
 	if(!charges_used)
 		return
 
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke
-	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 
