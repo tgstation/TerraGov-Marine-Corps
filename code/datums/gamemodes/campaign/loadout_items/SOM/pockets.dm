@@ -30,6 +30,14 @@
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
+/datum/loadout_item/r_pocket/som_emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/emp
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
 /datum/loadout_item/r_pocket/war_crime_grenades
 	name = "Warcrime nades"
 	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
@@ -135,6 +143,14 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
+/datum/loadout_item/l_pocket/som_emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/emp
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/war_crime_grenades
 	name = "Warcrime nades"
