@@ -26129,6 +26129,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "nRI" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -33639,6 +33640,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "xFG" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/garage/three)
 "xFY" = (
