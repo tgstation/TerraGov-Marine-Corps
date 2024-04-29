@@ -187,7 +187,7 @@
 
 /obj/item/cell/emp_act(severity)
 	. = ..()
-	charge = max(charge - (1000 / severity), 0)
+	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
 
 /obj/item/cell/ex_act(severity)
 
