@@ -191,10 +191,6 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
-	// *** Warlock Abilities ***
-	///The integrity of psychic shields made by the xeno
-	var/shield_strength = 350
-
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0

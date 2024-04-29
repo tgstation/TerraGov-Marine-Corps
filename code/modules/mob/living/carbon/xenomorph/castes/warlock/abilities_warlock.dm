@@ -182,7 +182,7 @@
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
 	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
-	max_integrity = 350
+	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
@@ -195,7 +195,6 @@
 		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
-	max_integrity = owner.xeno_caste.shield_strength
 	obj_integrity = max_integrity
 	if(dir & (EAST|WEST))
 		bound_height = 96
