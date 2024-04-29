@@ -139,6 +139,7 @@
 
 /obj/vehicle/sealed/mecha/emp_act(severity)
 	. = ..()
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
 	if(get_charge())
 		use_power((cell.charge/3)/(severity*2))
 	take_damage(400 / severity, BURN, ENERGY)
