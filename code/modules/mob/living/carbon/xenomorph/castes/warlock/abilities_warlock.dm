@@ -405,7 +405,7 @@
 				carbon_victim.add_slowdown(6)
 			else if(isvehicle(victim))
 				var/obj/vehicle/veh_victim = victim
-				var/dam_mult = 1.5 //multitile vehicles can be hit multiple times
+				var/dam_mult = 1.5
 				if(ismecha(veh_victim))
 					dam_mult = 5
 				veh_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
