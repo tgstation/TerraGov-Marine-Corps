@@ -804,8 +804,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/pitch = 0
 			if(proj.ammo.ammo_behavior_flags & AMMO_SOUND_PITCH)
 				pitch = 55000
-			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
-
+			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, TRUE, frequency = pitch)
 	return FALSE
 
 
