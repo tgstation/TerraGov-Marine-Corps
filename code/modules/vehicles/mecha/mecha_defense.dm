@@ -140,8 +140,7 @@
 /obj/vehicle/sealed/mecha/emp_act(severity)
 	. = ..()
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
-	if(get_charge())
-		use_power((cell.charge/3)/(severity*2))
+	use_power((cell.maxcharge * 0.2) / (severity))
 	take_damage(400 / severity, BURN, ENERGY)
 
 	for(var/mob/living/living_occupant AS in occupants)
@@ -154,6 +153,8 @@
 		return
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
+	mecha_flags |= MECHA_EMPED
+	update_appearance(UPDATE_OVERLAYS)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
