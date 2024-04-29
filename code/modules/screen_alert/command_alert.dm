@@ -62,7 +62,6 @@
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
-	var/faction_string = "Command" // In case it's not a TGMC announcement, rename this with the faction name
 	if(human_owner.assigned_squad)
 		switch(human_owner.assigned_squad.id)
 			if(ALPHA_SQUAD)
@@ -88,13 +87,6 @@
 		S = sound('sound/misc/notice2.ogg')
 		S.channel = CHANNEL_ANNOUNCEMENTS
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
-			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			if(human_owner.faction != FACTION_TERRAGOV)
-				faction_string = "[human_owner.faction] Command"
-			to_chat(faction_receiver, assemble_alert(
-				title = "[faction_string] Announcement",
-				subtitle = "Sent by [human_owner.real_name]",
-			))
 			var/faction_title = GLOB.faction_to_acronym[human_owner.faction] ? GLOB.faction_to_acronym[human_owner.faction] + " Command" : "Unknown Faction" + " Command"
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(faction_title)] ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(faction_receiver, assemble_alert(

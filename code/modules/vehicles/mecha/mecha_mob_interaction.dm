@@ -1,4 +1,4 @@
-/obj/vehicle/sealed/mecha/mob_try_enter(mob/entering_mob, loc_override = FALSE)
+/obj/vehicle/sealed/mecha/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if(!ishuman(entering_mob)) // no silicons or drones in mechas.
 		return
 	log_message("[entering_mob] tried to move into [src].", LOG_MECHA)
