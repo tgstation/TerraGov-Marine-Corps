@@ -1,7 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Dropship Takeoff Alarm is fully implemented"
-  - bugfix: "Automatic dropship departure announcement no longer has sound"
-  - bugfix: "Delta alert plays the air raid siren"
-  - bugfix: "Send Orders behaves normally now"

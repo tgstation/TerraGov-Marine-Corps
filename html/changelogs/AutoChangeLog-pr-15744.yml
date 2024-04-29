@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed some edge cases where xenos couldn't do certain things when spawned by admins"
+  - refactor: "rewrote some code pertaining to xenos to be on castes instead of the actual mob"

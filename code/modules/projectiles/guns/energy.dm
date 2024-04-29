@@ -943,7 +943,7 @@
 /datum/lasrifle/energy_mg_mode/standard/melting
 	rounds_per_shot = 18
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the machine laser's charge mode to melting."
 	radial_icon_state = "laser_heat"

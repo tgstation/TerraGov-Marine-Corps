@@ -45,7 +45,7 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
-	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	playsound(src, get_sfx("slam"), 40)
 	return TRUE
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
@@ -90,7 +90,7 @@
 
 /mob/living/turf_collision(turf/T, speed)
 	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
-	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	playsound(src, get_sfx("slam"), 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
@@ -278,6 +278,7 @@
 		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
+	return bio_protection
 
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)

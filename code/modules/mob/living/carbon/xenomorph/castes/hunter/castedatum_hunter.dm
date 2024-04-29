@@ -32,7 +32,7 @@
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/runner
+	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -96,6 +96,7 @@
 	upgrade_name = ""
 	caste_desc = "A fast, powerful creature. It has some kind of machinery attached to its head."
 	caste_type_path = /mob/living/carbon/xenomorph/hunter/weapon_x
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage = 26
