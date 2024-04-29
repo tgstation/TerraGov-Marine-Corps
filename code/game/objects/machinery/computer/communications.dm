@@ -97,7 +97,6 @@
 				to_chat(usr, span_warning("You need to swipe your ID."))
 
 		if("announce")
-			var/mob/living/carbon/human/sender = usr
 			if(authenticated == 2)
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					to_chat(usr, span_warning("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
@@ -119,6 +118,7 @@
 					to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 					return FALSE
 
+				var/mob/living/carbon/human/sender = usr
 				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(0) ? sender.get_paygrade(0) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
