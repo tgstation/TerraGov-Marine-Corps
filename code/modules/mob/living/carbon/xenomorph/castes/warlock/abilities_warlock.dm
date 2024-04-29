@@ -260,6 +260,8 @@
 // ***************************************
 // *********** psychic crush
 // ***************************************
+
+#define PSY_CRUSH_DAMAGE 50
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
@@ -399,8 +401,8 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 			else if(isvehicle(victim))
@@ -408,7 +410,7 @@
 				var/dam_mult = 1.5 //multitile vehicles can be hit multiple times
 				if(ismecha(veh_victim))
 					dam_mult = 5
-				veh_victim.take_damage(xeno_owner.xeno_caste.crush_strength * dam_mult, BRUTE, BOMB)
+				veh_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -488,6 +490,8 @@
 /obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
+
+#undef PSY_CRUSH_DAMAGE
 
 // ***************************************
 // *********** Psyblast
