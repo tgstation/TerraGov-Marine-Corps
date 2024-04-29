@@ -195,7 +195,6 @@
 		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
-	obj_integrity = max_integrity
 	if(dir & (EAST|WEST))
 		bound_height = 96
 		bound_y = -32
