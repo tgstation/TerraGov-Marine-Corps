@@ -1094,13 +1094,14 @@
 
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
+	icon = 'icons/obj/vehicles/64x64.dmi'
 	layer = ABOVE_MOB_PROP_LAYER
+	density = TRUE
+
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
-	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "van"
-	density = TRUE
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
@@ -1116,12 +1117,13 @@
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 
+/obj/structure/prop/vehicle/van/destructible/wreck
+	icon_state = "van_wrecked"
+
 /obj/structure/prop/vehicle/truck
 	name = "truck"
 	desc = "An old truck, seems to be broken down."
-	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "truck"
-	density = TRUE
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
@@ -1131,6 +1133,12 @@
 	max_integrity = 150
 	resistance_flags = XENO_DAMAGEABLE
 
+/obj/structure/prop/vehicle/truck/destructible/damaged
+	icon_state = "truck_damaged"
+
+/obj/structure/prop/vehicle/truck/destructible/snow
+	icon_state = "truck_snow"
+
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
 
@@ -1138,12 +1146,13 @@
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 
+/obj/structure/prop/vehicle/truck/truckcargo/destructible/snow
+	icon_state = "truck_cargo_snow"
+
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
-	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crane"
-	density = TRUE
 	coverage = 80
 	bound_height = 64
 	bound_width = 64
@@ -1152,6 +1161,15 @@
 /obj/structure/prop/vehicle/crane/destructible
 	max_integrity = 300
 	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/vehicle/crane/destructible/damaged
+	icon_state = "crane_damaged"
+
+/obj/structure/prop/vehicle/crane/destructible/wreck
+	icon_state = "crane_wreck"
+
+/obj/structure/prop/vehicle/crane/destructible/snow
+	icon_state = "crane_snow"
 
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
@@ -1163,9 +1181,7 @@
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
 	desc = "An old crawler, seems to be broken down."
-	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crawler"
-	density = TRUE
 	coverage = 80
 	bound_height = 32
 	bound_width = 64
@@ -1191,12 +1207,76 @@
 /obj/structure/prop/vehicle/crawler/crawler_cargo
 	icon_state = "crawler_cargo"
 
+/obj/structure/prop/vehicle/big_truck
+	name = "military truck"
+	desc = "A military truck, made for transporting equipment or personnel in bulk."
+	icon = 'icons/obj/vehicles/large_truck.dmi'
+	icon_state = "truck"
+	coverage = 80
+	bound_height = 128
+	bound_width = 128
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/vehicle/big_truck/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+
+/obj/structure/prop/vehicle/big_truck/setDir(dir)
+	. = ..()
+	if(dir & (NORTH|SOUTH))
+		bound_height = 96
+		bound_width = 32
+		bound_x = 0
+		bound_y = -32
+		pixel_x = -32
+		pixel_y = -32
+	else
+		bound_height = 32
+		bound_width = 96
+		bound_x = -32
+		bound_y = 0
+		pixel_x = -32
+		pixel_y = -22
+
+/obj/structure/prop/vehicle/big_truck/flat
+	icon_state = "truck_flat"
+
+/obj/structure/prop/vehicle/big_truck/enclosed
+	icon_state = "truck_enclosed"
+
+/obj/structure/prop/vehicle/big_truck/wrecked
+	icon_state = "truck_wrecked"
+
+/obj/structure/prop/vehicle/big_truck/flat_wrecked
+	icon_state = "truck_flat_wrecked"
+
+/obj/structure/prop/vehicle/big_truck/enclosed_wrecked
+	icon_state = "truck_enclosed_wrecked"
+
+/obj/structure/prop/vehicle/big_truck/tread
+	icon_state = "truck_flat"
+
+/obj/structure/prop/vehicle/big_truck/flat_tread
+	icon_state = "truck_flat"
+
+/obj/structure/prop/vehicle/big_truck/enclosed_tread
+	icon_state = "truck_enclosed"
+
+/obj/structure/prop/vehicle/big_truck/wrecked_tread
+	icon_state = "truck_wrecked"
+
+/obj/structure/prop/vehicle/big_truck/flat_wrecked_tread
+	icon_state = "truck_flat_wrecked"
+
+/obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread
+	icon_state = "truck_enclosed_wrecked"
+
+
 /obj/structure/prop/vehicle/tank
 	name = "Decommissioned TAV - Rhino"
 	desc = "A decomissioned tank, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/Marine/tank_propns.dmi'
 	icon_state = "tank_complete"
-	density = TRUE
 	coverage = 80
 	bound_height = 128
 	bound_width = 128
@@ -1487,7 +1567,6 @@
 	desc = "A decomissioned APC, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/Marine/apc_prop.dmi'
 	icon_state = "apc_base"
-	density = TRUE
 	coverage = 70
 	bound_height = 128
 	bound_width = 128
@@ -1786,7 +1865,6 @@
 	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
 	icon = 'icons/Marine/mech_prop.dmi'
 	icon_state = "som_mech"
-	density = TRUE
 	coverage = 70
 	bound_width = 32
 	pixel_x = -15
