@@ -278,6 +278,7 @@
 		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
+	return bio_protection
 
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
