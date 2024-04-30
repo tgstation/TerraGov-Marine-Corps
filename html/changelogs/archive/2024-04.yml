@@ -450,3 +450,21 @@
   - bugfix: Send Orders behaves normally now
   Wisemonster:
   - rscadd: Added periscopes to the interior of APCs
+2024-04-30:
+  Barnet2:
+  - balance: Xeno spit toxin transfer amount reduced by half when staggered
+  - balance: Tank cannon now gibs non-xeno mobs again
+  - soundadd: Ports CM slam sound effects
+  Passe2142:
+  - bugfix: fixes gas masks giving full immunity to chemical gasses.
+  TiviPlus:
+  - bugfix: fixed some edge cases where xenos couldn't do certain things when spawned
+      by admins
+  - refactor: rewrote some code pertaining to xenos to be on castes instead of the
+      actual mob
+  Wisemonster:
+  - qol: Door control buttons now layer over objects and the tad's walls.
+  blackdav123:
+  - rscadd: Preweeded Icy Caves.
+  - bugfix: Fixed a big red modular south of ETA lab with a wrong area.
+  - balance: Melting laser MG firerate reduced to .45
