@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Acid wells, acid turrets and heal fruit have opaque acid smoke again"
