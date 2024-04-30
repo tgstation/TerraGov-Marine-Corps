@@ -168,7 +168,7 @@
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. \
 	The AR-21 is an less common rifle in the TGMC, attempting to bridge the gap between lighter, lower calibre rifles and heavier rifles like the BR-64. \
 	Its compromises between the two groups means it fails to particularly outshine any of them, but never the less is a respective and flexible rifle."
-	ui_icon = "ballistic"
+	ui_icon = "t21"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 
 /datum/loadout_item/suit_store/main_gun/marine/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
