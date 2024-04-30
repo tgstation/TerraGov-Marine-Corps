@@ -35,7 +35,7 @@
 	)
 
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 
