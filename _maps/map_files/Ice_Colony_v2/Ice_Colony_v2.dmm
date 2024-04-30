@@ -4882,6 +4882,10 @@
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/storage)
+"aDT" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/three)
 "aDU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19160,6 +19164,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
+"dYF" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/garage/three)
 "dZs" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -19557,6 +19567,7 @@
 "eKl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/three)
 "eMg" = (
@@ -19603,6 +19614,10 @@
 "ePo" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"eRo" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/exterior/surface/valley/southwest)
 "eRB" = (
 /obj/structure/rack,
 /turf/open/floor/plating,
@@ -21370,9 +21385,6 @@
 	},
 /turf/open/floor/tile/dark/blue2/corner,
 /area/ice_colony/surface/command)
-"hpQ" = (
-/turf/open/floor/plating/icefloor,
-/area/ice_colony/surface/garage/three)
 "hqb" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/stamp,
@@ -21412,6 +21424,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
+"hsc" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/garage/three)
 "hsk" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -21557,6 +21577,16 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/west)
+"hBG" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "garage_ice_3";
+	name = "\improper Garage Shutters"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/garage/three)
 "hBW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -22291,6 +22321,14 @@
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
+"iLQ" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/garage/three)
 "iLY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -23129,11 +23167,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hangar)
 "jTs" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/plating/icefloor,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
 /area/ice_colony/surface/garage/three)
 "jTT" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -23677,6 +23717,9 @@
 /area/ice_colony/underground/hallway/north_west/garbledradio)
 "kBM" = (
 /obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/three)
 "kCa" = (
@@ -23937,6 +23980,15 @@
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
+"kZx" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 9
+	},
+/area/ice_colony/surface/garage/three)
 "kZK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -24397,6 +24449,14 @@
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/beta)
+"lHM" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/three)
 "lHU" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/misc/plushie,
@@ -25130,10 +25190,10 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "mDQ" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tool,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 8
+	},
 /area/ice_colony/surface/garage/three)
 "mEG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -25493,11 +25553,10 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "ncW" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1;
-	name = "\improper Underground Maintenance"
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
 	},
-/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/garage/three)
 "ncZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -25972,10 +26031,10 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "nIe" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
 	},
-/turf/open/floor/plating/icefloor,
+/turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/three)
 "nIv" = (
 /obj/structure/disposalpipe/segment{
@@ -26248,6 +26307,16 @@
 	dir = 4
 	},
 /area/ice_colony/underground/requesition)
+"nYl" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "garage_ice_3";
+	name = "\improper Garage Shutters"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/ice_colony/surface/garage/three)
 "nYr" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -26663,6 +26732,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
+"oDF" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/three)
 "oEd" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -27087,10 +27160,9 @@
 	},
 /area/ice_colony/surface/garage/one)
 "pjd" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2,
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/three)
 "pjg" = (
 /obj/effect/landmark/weed_node,
@@ -27265,6 +27337,14 @@
 	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
+"pAD" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/ice_colony/surface/garage/three)
 "pAH" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -28120,6 +28200,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
+"qLu" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/garage/three)
 "qLw" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark2,
@@ -30563,10 +30649,14 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "tLn" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/door_control{
+	id = "garage_ice_3";
+	name = "garage shutter control";
+	dir = 8
+	},
 /turf/open/floor/tile/dark/brown2{
-	dir = 6
+	dir = 4
 	},
 /area/ice_colony/surface/garage/three)
 "tLO" = (
@@ -30646,9 +30736,6 @@
 /area/ice_colony/surface/bar/bar)
 "tQd" = (
 /obj/machinery/light,
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/engibelt,
-/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/three)
 "tQj" = (
@@ -30880,16 +30967,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
-"uki" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1;
-	name = "\improper Underground Maintenance"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
-/area/ice_colony/surface/garage/three)
 "ukn" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -31008,6 +31085,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west/garbledradio)
+"upK" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "garage_ice_3";
+	name = "\improper Garage Shutters"
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/three)
 "uqz" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/west)
@@ -32395,6 +32480,15 @@
 	dir = 4
 	},
 /area/ice_colony/underground/medical/lobby/garbledradio)
+"wlg" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/surface/garage/three)
 "wmv" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -33639,9 +33733,12 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "xFG" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/icefloor,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
 /area/ice_colony/surface/garage/three)
 "xFY" = (
 /obj/effect/ai_node,
@@ -33850,6 +33947,13 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves)
+"xVv" = (
+/obj/machinery/door_control{
+	id = "garage_ice_3";
+	name = "garage shutter control"
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/surface/garage/three)
 "xVK" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
@@ -47843,7 +47947,7 @@ bre
 qxY
 uku
 uku
-lIn
+gUB
 cEE
 kBM
 uku
@@ -48055,9 +48159,9 @@ vlr
 vlr
 uku
 qDw
-ghc
+kZx
 opE
-kBM
+xWA
 uku
 qFy
 qFy
@@ -48271,13 +48375,13 @@ cEE
 gUB
 tQd
 uku
-qFy
-qFy
-qFy
-qFy
-uSg
+uku
+uku
+uku
+uku
+uku
 hKV
-eAl
+vCr
 eAl
 bVW
 eAl
@@ -48482,14 +48586,14 @@ gms
 opE
 gUB
 mDQ
-uku
-uku
-uku
-qFy
-qFy
-uSg
+hBG
+iLQ
+hsc
+qLu
+dYF
+hBG
+iLQ
 vCr
-eAl
 eAl
 uIV
 eAl
@@ -48689,18 +48793,18 @@ aLu
 aLu
 uku
 qDw
-cEE
+wlg
 pNZ
 gUB
 gUB
 pjd
-uku
+upK
 nIe
-uku
-uku
-uku
-hKV
-iKn
+gUB
+gUB
+aDT
+upK
+lHM
 eAl
 eAl
 bVW
@@ -48906,14 +49010,14 @@ lIn
 gUB
 sXw
 tLn
-uki
+nYl
 jTs
 xFG
-hpQ
+jlX
 ncW
+nYl
+pAD
 vCr
-jYK
-hKV
 eAl
 bVW
 eAl
@@ -49123,8 +49227,8 @@ uku
 uku
 uku
 uku
-hKV
-vCr
+uku
+xVv
 hKV
 eAl
 bVW
@@ -49321,13 +49425,13 @@ vlr
 vlr
 aUO
 aVv
-aVv
+eRo
 rRX
 mYF
 gUB
+oDF
 gUB
-gUB
-gUB
+lIn
 eKl
 uku
 qFy
@@ -49548,7 +49652,7 @@ qFy
 qFy
 qFy
 vCr
-eAl
+vCr
 eAl
 eAl
 uIV
