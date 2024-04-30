@@ -997,3 +997,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
 	return
+
+/datum/game_mode/proc/get_map_color_variant()
+	return SSmapping.configs[GROUND_MAP].armor_style

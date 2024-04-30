@@ -218,7 +218,7 @@
 	item_flags = SYNTH_RESTRICTED
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
-	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
@@ -230,7 +230,7 @@
 	resistance_flags = UNACIDABLE
 	item_flags = SYNTH_RESTRICTED
 	anti_hug = 4
-	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"

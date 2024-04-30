@@ -58,6 +58,9 @@
 		var/datum/faction_stats/selected_faction = stat_list[i]
 		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
+/datum/game_mode/hvh/campaign/get_map_color_variant()
+	return current_mission?.map_armor_color
+
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
 	if(!respawnee?.client)
 		return
