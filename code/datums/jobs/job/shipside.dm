@@ -802,7 +802,6 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
-		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "PO3"
 		if(601 to 1500) // 10hrs
 			new_human.wear_id.paygrade = "PO2"
