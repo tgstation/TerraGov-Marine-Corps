@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				INVOKE_ASYNC(src, PROC_REF(do_refill), attacking_item, user)
 				return
 	if(!can_be_inserted(attacking_item, user))
-		if(!opened) //this would close the open storage otherwise
+		if(user.s_active != src) //this would close the open storage otherwise
 			open(user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
