@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Added a new wall type for use in Magmoor"
+  - bugfix: "Fixed a few mapping errors with Magmoor"
