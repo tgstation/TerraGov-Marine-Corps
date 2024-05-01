@@ -1179,17 +1179,37 @@
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"
 
+/obj/structure/prop/vehicle/crawler/crawler_blue/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crawler/crawler_red
 	icon_state = "crawler_crate_r"
+
+/obj/structure/prop/vehicle/crawler/crawler_red/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler/crawler_green
 	icon_state = "crawler_crate_g"
 
+/obj/structure/prop/vehicle/crawler/crawler_green/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crawler/crawler_fuel
 	icon_state = "crawler_fuel"
 
+/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crawler/crawler_cargo
 	icon_state = "crawler_cargo"
+
+/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/tank
 	name = "Decommissioned TAV - Rhino"
