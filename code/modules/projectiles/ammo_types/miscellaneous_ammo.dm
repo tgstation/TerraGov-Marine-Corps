@@ -248,9 +248,9 @@
 /datum/ammo/bullet/claymore_shrapnel
 	name = "claymore shrapnel"
 	icon_state = "flechette"
-	damage = 20
+	damage = 12
 	penetration = 15
-	sundering = 10	//Low pen to not insta kill armored humans, but high sunder to leave heavily armored benos shredded
+	sundering = 1	//Low pen to not insta kill armored humans, but high sunder to leave heavily armored benos shredded
 	damage_falloff = 0
 	shell_speed = 1
 	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/additional
@@ -267,9 +267,9 @@
 
 /datum/ammo/bullet/claymore_shrapnel/nail
 	name = "nail"
-	damage = 15
+	damage = 5
 	penetration = 5
-	sundering = 5
+	sundering = 0.5
 	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/nail/additional
 	bonus_projectiles_amount = 40
 	bonus_projectiles_scatter = 10

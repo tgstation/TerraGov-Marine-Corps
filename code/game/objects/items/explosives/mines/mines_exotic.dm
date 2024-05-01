@@ -5,6 +5,7 @@
 	icon_state = "radiation"
 	detonation_message = "clicks, emitting a low hum."
 	range = 2
+	angle = 360
 	duration = -1
 	disarm_delay = 5 SECONDS
 	undeploy_delay = 4 SECONDS	//You turn it off veeeery carefully
@@ -59,7 +60,6 @@
 	. = ..()
 
 /obj/item/mine/radiation/disarm()
-	//if(pulse_timer)
 	deltimer(pulse_timer)
 	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range and update
 	update_light()
@@ -80,40 +80,31 @@
 	light_range = radiation_range * 1.5
 	set_light(light_range, light_power, light_color)
 
-	var/list/exclusion_zone = circle_range(get_turf(src), radiation_range)	//Radiation SHALL NOT pass through walls (too much cope)
-	var/list/turfs_with_victims = list()	//Used later in rad effect creation
-	for(var/mob/living/carbon/radiation_victim in exclusion_zone)
-		if(!check_path(src, radiation_victim, FALSE, TRUE, TRUE, TRUE))	//circle_range() goes through walls, so make sure the target is reachable
-			exclusion_zone -= radiation_victim	//Remove it since it will be iterating again below
-			continue
-
-		//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
-		radiation_victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(radiation_victim) ? pick(GLOB.human_body_parts) : null, BIO)
-		radiation_victim.adjust_stagger((radiation_damage/5) SECONDS)
-		radiation_victim.adjust_radiation((radiation_damage/5) SECONDS)
-
-		var/turf/turf = get_turf(radiation_victim)	//I don't know if it actually needs to be casted as turf but just in case
-		//Make sure it's not already in the list
-		if(turfs_with_victims.len && turfs_with_victims.Find(turf))
-			continue
-
-		turfs_with_victims += turf
-
+	//Radiation SHALL NOT pass through walls (too much cope)
+	var/list/exclusion_zone = generate_true_cone(get_turf(src), radiation_range, cone_width = angle, projectile = TRUE, air_pass = TRUE)
 	for(var/turf/irradiated_turf in exclusion_zone)
-		if(!check_path(src, irradiated_turf, FALSE, TRUE, TRUE, TRUE))
-			continue
+		//If someone is on this turf so that the rad effect starts running Process() on creation
+		var/turf_has_victim = FALSE
+		for(var/atom in irradiated_turf.contents)
+			//Delete any present radiation effect, the new one will replace it
+			if(istype(atom, /obj/effect/temp_visual/radiation))
+				qdel(atom)
+				continue
 
-		//Find out if someone is on this turf so that the rad effect starts running Process() on creation
-		var/turf_has_victim
-		if(turfs_with_victims.Find(irradiated_turf))
+			if(!iscarbon(atom))
+				continue
+
+			var/mob/living/carbon/radiation_victim = atom
+			if(radiation_victim.stat == DEAD)
+				continue
+
+			//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
+			radiation_victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(radiation_victim) ? pick(GLOB.human_body_parts) : null, BIO)
+			radiation_victim.adjust_stagger((radiation_damage/5) SECONDS)
+			radiation_victim.adjust_radiation((radiation_damage/5) SECONDS)
 			turf_has_victim = TRUE
-			turfs_with_victims.Remove(irradiated_turf)	//Reduce the list size for the next iteration
 
-		//Delete any present radiation effect, the new one will replace it
-		for(var/obj/effect/temp_visual/radiation/rad_effect in irradiated_turf.contents)
-			qdel(rad_effect)
-
-		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
+		//Delete them before the next pulse otherwise they will be iterated over in the for loops, which is unnecessary
 		new /obj/effect/temp_visual/radiation(irradiated_turf, time_between_pulses - 1, turf_has_victim)
 
 	if(!current_fuel)
@@ -216,6 +207,7 @@
 	desc = "Delivers high voltage arcs of lightning at nearby conductive targets. Can be recharged."
 	icon_state = "tesla"
 	range = 3
+	angle = 360
 	duration = -1
 	disarm_delay = 4 SECONDS
 	undeploy_delay = 5 SECONDS
@@ -272,16 +264,18 @@
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
 	var/target
 	var/target_is_living = FALSE	//Probably better to keep track of a boolean than repeating isliving() more than once
-	var/list/nearby_objects = shuffle(circle_range(src, range))
-	nearby_objects -= src	//Prevent the mine from committing suicide
+	var/list/turf/turfs_in_range = shuffle(generate_true_cone(get_turf(src), range, cone_width = angle, projectile = TRUE))	//Get a list of turfs in range
+	var/list/possible_targets = list()	//List to hold the actual objects in range
+	for(var/turf/turf in turfs_in_range)	//Iterate through the turfs in range to find objects for the mine to target
+		for(var/atom in turf.contents)
+			possible_targets += atom
+
+	possible_targets -= src	//Prevent the mine from committing suicide
+	possible_targets = shuffle(possible_targets)
 
 	//What the lightning bolts should hit: living mobs and conductive objects (items/structures/etc); it should NOT hit turfs, invisible objects, or effects
 	//This loop will keep iterating until it finds a valid target, then it will break
-	for(var/atom in nearby_objects)
-		if(!check_path(src, atom))	//circle_range() goes through walls, so make sure the target is reachable
-			nearby_objects -= atom	//Remove it in case it needs to iterate again later
-			continue
-
+	for(var/atom in possible_targets)
 		//Mob checks
 		if(isliving(atom))
 			target_is_living = TRUE
@@ -319,7 +313,7 @@
 	//In the rare event of no valid target, just grab a turf and zap it for the cool effect and to signal it is active
 	//Was considering it not doing anything but then you could exploit it by triggering and having it be active indefinitely
 	else
-		for(var/turf/turf in nearby_objects)
+		for(var/turf in turfs_in_range)
 			target = turf
 			break
 

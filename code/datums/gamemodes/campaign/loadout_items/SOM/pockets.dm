@@ -52,7 +52,7 @@
 	desc = "A pouch carrying radioactive mines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/mine/radiation
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER)
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/r_pocket/som_shotgun
 	name = "Buckshot shells"
@@ -165,7 +165,7 @@
 	desc = "A pouch carrying radioactive mines."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/mine/radiation
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER)
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/l_pocket/som_shotgun
 	name = "Flechette shells"
