@@ -46,8 +46,6 @@
 	var/datum/action/ability/activable/selected_ability
 	///carbon overlay layers
 	var/list/overlays_standing[TOTAL_LAYERS]
-	///chestburst state
-	var/chestburst = CARBON_NO_CHEST_BURST
 
 /mob/living/carbon/proc/transfer_identity(mob/living/carbon/destination)
 	if(!istype(destination))

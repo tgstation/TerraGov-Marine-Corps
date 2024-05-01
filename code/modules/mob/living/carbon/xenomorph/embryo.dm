@@ -156,7 +156,7 @@
 	stage = 6
 
 
-/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/human/victim)
 	if(victim.chestburst || loc != victim)
 		return
 
@@ -174,7 +174,7 @@
 	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
-/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/human/victim)
 	if(QDELETED(victim))
 		return
 
@@ -197,22 +197,20 @@
 	if(AE)
 		qdel(AE)
 
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
-		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
-			O = H.internal_organs_by_name[i]
+	victim.apply_damage(200, BRUTE, victim.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
+	var/datum/internal_organ/O
+	for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
+		O = victim.internal_organs_by_name[i]
 
-			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
-				H.internal_organs_by_name -= i
-				H.internal_organs -= O
-			else
-				O.take_damage(O.min_bruised_damage, TRUE)
+		if(!victim.mind && !victim.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+			victim.internal_organs_by_name -= i
+			victim.internal_organs -= O
+		else
+			O.take_damage(O.min_bruised_damage, TRUE)
 
-		var/datum/limb/chest = H.get_limb("chest")
-		new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
-		chest.fracture()
+	var/datum/limb/chest = victim.get_limb("chest")
+	new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
+	chest.fracture()
 
 
 	victim.chestburst = CARBON_CHEST_BURSTED
