@@ -9,7 +9,7 @@
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical)
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
-	minimap_icon_state = null
+	minimap_icon_state = "apc"
 	turret_icon = null
 	pixel_x = -48
 	pixel_y = -40
