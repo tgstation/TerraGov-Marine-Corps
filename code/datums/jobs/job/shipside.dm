@@ -602,15 +602,13 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	gloves = /obj/item/clothing/gloves/marine
 	l_store = /obj/item/pamphlet/tank_loader
 
-#define TRANSPORT_CREWMAN_POPLOCK 30
 //apc/jeep driver
 /datum/job/terragov/command/transport_crewman
 	title = TRANSPORT_CREWMAN
 	req_admin_notify = TRUE
 	paygrade = "E3"
 	comm_title = "TC"
-	total_positions = 0
-	max_positions = 1
+	total_positions = 1
 	skills_type = /datum/skills/transport_crewman
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
@@ -619,7 +617,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 40
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -636,12 +633,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 /datum/job/terragov/command/transport_crewman/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a Transport Crewman. You operate the TGMC's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."})
-
-/datum/job/terragov/command/transport_crewman/on_pre_setup()
-	if(total_positions)
-		return
-	if(length(GLOB.clients) >= TRANSPORT_CREWMAN_POPLOCK)
-		add_job_positions(1)
 
 /datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
