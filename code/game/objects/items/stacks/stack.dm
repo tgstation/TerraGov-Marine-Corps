@@ -117,7 +117,7 @@
 	if(.)
 		return
 
-	if(!recipes)
+	if(!recipes || recipes?.len <= 1)
 		return
 
 	if(QDELETED(src) || get_amount() <= 0)
@@ -255,6 +255,12 @@
 		builder.balloon_alert(builder, "not enough material!")
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
+
+	if(isopenturf(dest_turf))
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			builder.balloon_alert(builder, "cant build here!")
+			return FALSE
 
 	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
 		builder.balloon_alert(builder, "already one here!")

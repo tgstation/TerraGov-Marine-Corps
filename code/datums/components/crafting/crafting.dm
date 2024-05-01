@@ -198,6 +198,12 @@
 	var/list/contents = get_surroundings(crafter, recipe.blacklist)
 	var/send_feedback = 1
 	var/dest_turf = get_turf(crafter)
+
+	if(isopenturf(dest_turf))
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			return ", cant build here."
+
 	if(!check_contents(crafter, recipe, contents))
 		return ", missing component."
 
@@ -219,7 +225,7 @@
 		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
 			return ", must be made on solid ground!"
 
-	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
+	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
 				crafter.balloon_alert(crafter, "something is in the way!")
