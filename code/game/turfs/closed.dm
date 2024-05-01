@@ -172,6 +172,20 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+//new wall for lava maps
+/turf/closed/mineral/smooth/lavawall
+	icon = 'icons/turf/walls/lava_wall.dmi'
+	icon_state = "lava_wall-0"
+	walltype = "lava_wall"
+	base_icon_state = "lava_wall"
+
+/turf/closed/mineral/smooth/lavawall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+/turf/closed/mineral/smooth/lavawall/outdoor
+	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
