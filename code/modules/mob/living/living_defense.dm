@@ -45,7 +45,7 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 	return TRUE
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
