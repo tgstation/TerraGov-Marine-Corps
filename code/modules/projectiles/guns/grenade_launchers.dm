@@ -64,7 +64,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/bullet/laser,
 		/obj/item/explosive/grenade/bullet/hefa,
-		/obj/item/explosive/grenade/emp
+		/obj/item/explosive/grenade/emp,
 	)
 	reciever_flags = NONE
 
@@ -189,7 +189,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
 		/obj/item/explosive/grenade/flashbang/stun,
-		/obj/item/explosive/grenade/emp
+		/obj/item/explosive/grenade/emp,
 	)
 
 	wield_delay_mod = 0.2 SECONDS
