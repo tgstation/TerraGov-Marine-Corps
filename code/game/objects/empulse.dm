@@ -26,10 +26,9 @@
 			effective_severity = EMP_HEAVY
 		else if(distance <= light_range)
 			effective_severity = EMP_LIGHT
-		else if(distance <= weak_range)
-			effective_severity = EMP_WEAK
 		else
-			continue //how
+			effective_severity = EMP_WEAK
+
 		for(var/atom/affected_atom AS in affected_turf)
 			affected_atom.emp_act(effective_severity)
 
