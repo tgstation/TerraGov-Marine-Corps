@@ -84,6 +84,7 @@
 				implant_owner.adjustFireLoss(2)
 		if(5.1 SECONDS to INFINITY)//no infinite abuse
 			to_chat(implant_owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
+			GLOB.round_statistics.sandevistan_gibs++
 			implant_owner.gib()
 			return
 
@@ -111,6 +112,7 @@
 		implant_owner.adjust_mob_scatter(scatter_mod)
 		implant_owner.adjust_mob_accuracy(accuracy_mod)
 		START_PROCESSING(SSfastprocess, src)
+		GLOB.round_statistics.sandevistan_uses++
 	else
 		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70)
 		implant_owner.next_move_modifier += action_modifier

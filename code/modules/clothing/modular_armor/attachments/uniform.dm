@@ -90,4 +90,4 @@
 	name = "shoulder holster"
 	desc = "A handgun holster. Made of expensive leather."
 	icon_state = "holster"
-	item_state = "holster_low"
+	worn_icon_state = "holster_low"

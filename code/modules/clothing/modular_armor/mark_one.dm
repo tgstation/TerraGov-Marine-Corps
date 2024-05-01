@@ -3,8 +3,8 @@
 	name = "Jaeger Mk.I Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "helmet"
-	item_state = "helmet"
-	item_icons = list(
+	worn_icon_state = "helmet"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)

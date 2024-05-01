@@ -522,5 +522,5 @@
 			user.drop_held_item()
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	playsound(src, get_sfx("slam"), 40)
 	return TRUE
