@@ -10,7 +10,6 @@
 
 	if(log)
 		log_game("EMP with size ([devastate_range], [heavy_range], [light_range], [weak_range]) in area [AREACOORD(epicenter.loc)].")
-		message_admins("EMP with size ([devastate_range], [heavy_range], [light_range], [weak_range]) in area [ADMIN_VERBOSEJMP(epicenter.loc)].")
 
 	playsound(epicenter, 'sound/effects/EMPulse.ogg', 50, FALSE, max_range * 2)
 	if(heavy_range || devastate_range)
