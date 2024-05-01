@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "APC has minimap icon; locate APC in minimap"
