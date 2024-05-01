@@ -43,7 +43,7 @@
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 60
-	crest_toss_distance = 6
+	crest_toss_distance = 5
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

@@ -6,7 +6,7 @@
 	action_icon_state = "stomp"
 	desc = "Knocks all adjacent targets away and down."
 	ability_cost = 100
-	cooldown_duration = 20 SECONDS
+	cooldown_duration = 16 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
@@ -61,12 +61,15 @@
 // ***************************************
 // *********** Cresttoss
 // ***************************************
+#define CRUSHER_IMPACT_DAMAGE_MULTIPLIER 1
+#define CRUSHER_DISPLACE_KNOCKDOWN 0.8 SECONDS
+
 /datum/action/ability/activable/xeno/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_cost = 75
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 14 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
@@ -97,8 +100,8 @@
 	X.face_atom(A) //Face towards the target so we don't look silly
 	var/facing
 	var/toss_distance = X.xeno_caste.crest_toss_distance
-	var/turf/throw_origin = get_turf(X)
-	var/turf/target_turf = throw_origin //throw distance is measured from the xeno itself
+	var/turf/throw_origin = get_turf(A)
+	var/turf/target_turf = throw_origin //throw distance is measured from the target
 	var/big_mob_message
 
 	if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
@@ -138,14 +141,72 @@
 
 	//Handle the damage
 	if(!X.issamexenohive(A) && isliving(A)) //Friendly xenos don't take damage.
-		var/damage = toss_distance * 6
+		var/damage = toss_distance * 7
 		var/mob/living/L = A
 		L.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
 		shake_camera(L, 2, 2)
 		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-
+		RegisterSignal(A, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 	add_cooldown()
 	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob, update_icons)), 3)
+
+/// Handles anything that would happen when a target is thrown into an atom using an ability.
+/datum/action/ability/activable/xeno/cresttoss/proc/thrown_into(datum/source, atom/hit_atom, impact_speed)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	var/mob/living/living_target = source
+	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "scream")
+	living_target.Knockdown(CRUSHER_DISPLACE_KNOCKDOWN)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	new /obj/effect/temp_visual/crusher/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
+	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
+	var/thrown_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) - (impact_speed * 5)) * CRUSHER_IMPACT_DAMAGE_MULTIPLIER
+	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+	if(isliving(hit_atom))
+		var/mob/living/hit_living = hit_atom
+		if(hit_living.issamexenohive(xeno_owner))
+			return
+		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
+		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+		hit_living.Knockdown(CRUSHER_DISPLACE_KNOCKDOWN)
+		step_away(hit_living, living_target, 1, 1)
+	if(isobj(hit_atom))
+		var/obj/hit_object = hit_atom
+		if(istype(hit_object, /obj/structure/xeno))
+			return
+		hit_object.take_damage(thrown_damage, BRUTE, MELEE)
+	if(iswallturf(hit_atom))
+		var/turf/closed/wall/hit_wall = hit_atom
+		if(!(hit_wall.resistance_flags & INDESTRUCTIBLE))
+			hit_wall.take_damage(thrown_damage, BRUTE, MELEE)
+
+
+/obj/effect/temp_visual/crusher/impact
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "throw_impact"
+	duration = 3.5
+	layer = ABOVE_ALL_MOB_LAYER
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/crusher/impact/Initialize(mapload, direction)
+	. = ..()
+	animate(src, alpha = 0, time = duration - 1.5)
+	// directions refuse to work naturally so i improvised, suck it byond
+	direction = closest_cardinal_dir(direction)
+	switch(direction)
+		if(NORTH)
+			icon_state = "[initial(icon_state)]_n"
+			pixel_y -= 20
+		if(SOUTH)
+			icon_state = "[initial(icon_state)]_s"
+			pixel_y += 20
+		if(WEST)
+			icon_state = "[initial(icon_state)]_w"
+			pixel_x += 20
+		if(EAST)
+			icon_state = "[initial(icon_state)]_e"
+			pixel_x -= 20
 
 /datum/action/ability/activable/xeno/cresttoss/ai_should_start_consider()
 	return TRUE
