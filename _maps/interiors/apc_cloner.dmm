@@ -12,6 +12,7 @@
 "c" = (
 /obj/machinery/computer/cloning_console/vats{
 	dir = 2;
+	layer = 2.99;
 	pixel_x = 8
 	},
 /turf/open/interior/apc/nine,
@@ -48,7 +49,7 @@
 /turf/open/interior/apc/eight,
 /area/interior/apc)
 "t" = (
-/obj/machinery/cloning/vats{
+/obj/machinery/cloning/vats/apc/south{
 	pixel_y = -16
 	},
 /turf/closed/interior/apc/two,
@@ -63,8 +64,14 @@
 "D" = (
 /turf/open/interior/apc/fifteen,
 /area/interior/apc)
+"F" = (
+/obj/machinery/quick_vendor/beginner{
+	pixel_x = 28
+	},
+/turf/closed/interior/apc/thirteen,
+/area/interior/apc)
 "H" = (
-/obj/machinery/cloning/vats{
+/obj/machinery/cloning/vats/apc/south{
 	pixel_y = -16
 	},
 /turf/closed/interior/apc/four,
@@ -82,7 +89,7 @@
 /turf/closed/interior/apc/twentyfour,
 /area/interior/apc)
 "R" = (
-/obj/machinery/cloning/vats{
+/obj/machinery/cloning/vats/apc{
 	dir = 1;
 	pixel_y = 16
 	},
@@ -99,7 +106,7 @@
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
 "U" = (
-/obj/machinery/cloning/vats{
+/obj/machinery/cloning/vats/apc/south{
 	pixel_y = -16
 	},
 /turf/closed/interior/apc/three,
@@ -124,7 +131,7 @@
 (1,1,1) = {"
 Y
 C
-p
+F
 p
 a
 "}

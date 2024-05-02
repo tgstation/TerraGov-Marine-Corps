@@ -277,3 +277,13 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 	linked_console.radio.talk_into(src, "<b>New clone: [occupant] has been grown in [src] at: [get_area(src)]. Please move the fresh clone to a squad using the squad distribution console.</b>", RADIO_CHANNEL_COMMAND)
 	occupant = null
 	update_icon()
+
+/obj/machinery/cloning/vats/apc
+	grow_timer = 8 MINUTES
+	pixel_y = 16
+	dir = NORTH
+
+/obj/machinery/cloning/vats/apc/south
+	pixel_y = -16
+	dir = SOUTH
+	layer = BELOW_OBJ_LAYER
