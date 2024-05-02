@@ -14370,10 +14370,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/northeast)
-"kaC" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/magmoor/medical/chemistry)
 "kaF" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -21004,11 +21000,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/rnd)
-"oRO" = (
-/obj/structure/window_frame/colony/reinforced,
-/obj/item/shard,
-/turf/open/floor/plating,
-/area/magmoor/medical/chemistry)
 "oRP" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
@@ -64691,8 +64682,8 @@ aXa
 dSo
 lUh
 lUh
-kaC
-kaC
+lUh
+lUh
 lUh
 lUh
 lUh
@@ -65155,7 +65146,7 @@ lGa
 lTp
 oGw
 dSo
-kaC
+lUh
 rKG
 lmZ
 bbG
@@ -65388,7 +65379,7 @@ wUY
 trh
 oGw
 dSo
-oRO
+lUh
 sBF
 ihH
 kAT
@@ -65621,7 +65612,7 @@ dXE
 cXr
 oGw
 dSo
-kaC
+lUh
 jlm
 xZH
 eHt
