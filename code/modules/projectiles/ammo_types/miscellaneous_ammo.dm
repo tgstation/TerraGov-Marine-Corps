@@ -248,13 +248,13 @@
 /datum/ammo/bullet/claymore_shrapnel
 	name = "claymore shrapnel"
 	icon_state = "flechette"
-	damage = 12
+	damage = 17
 	penetration = 15
 	sundering = 1	//Low pen to not insta kill armored humans, but high sunder to leave heavily armored benos shredded
 	damage_falloff = 0
 	shell_speed = 1
 	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/additional
-	bonus_projectiles_amount = 20
+	bonus_projectiles_amount = 10
 	bonus_projectiles_scatter = 5
 	shrapnel_chance = 80
 	accuracy = 100	//It's entirely based on scatter, no need to add RNG accuracy

@@ -628,3 +628,16 @@ then, for every time you included a field, increment fields. */
 	I signed on as an MP to uphold the principles of our government. We should be accountable to the law, even during times of war - and the rights of humankind are not up for debate. We took the company researcher into custody on account of multiple, heinous violations of these principles.
 	I suppose our sponsors disagree. So be it. I am making this record so that their voices are heard, even in some small way; we have brought the men who did these things to justice, for a time, but that time is nearly up.
 	Just because they are our enemy does not mean they should suff-"}
+
+/obj/item/paper/ied_assembly_kit_instructions
+	name = "BYOND IED Construction Manual"
+	info = {"How to Build Your Own Nifty Ordnance:<BR>
+	To start, grab a proximity sensor and attach it to a metal pipe. If the proximity sensor is not attaching, use a screwdriver to enable attachment mode on the sensor.<BR><BR>
+
+	The following can be done in any order:<BR>
+	- Add wiring to the assembly, and then connect them properly using wirecutters<BR>
+	- Use a screwdriver to secure the assembly<BR>
+	- Add bullets for gunpowder; shotgun shells and larger calibers provide more gunpowder<BR>
+	- Add metal rods<BR><BR>
+
+	Make sure to place your IED with great care, as nearly anything (including junk on the floor) can set them off! Good luck!"}

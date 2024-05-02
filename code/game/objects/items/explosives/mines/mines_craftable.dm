@@ -1,3 +1,9 @@
+//Flags for craftable IED
+#define IED_SECURED (1<<0)
+#define IED_WIRED (1<<1)
+#define IED_CONNECTED (1<<2)
+#define IED_FINISHED IED_SECURED|IED_WIRED|IED_CONNECTED
+
 /* Improvised explosives - You craft them */
 /obj/item/mine/ied
 	name = "pipe mine"

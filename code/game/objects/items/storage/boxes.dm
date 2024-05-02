@@ -417,12 +417,15 @@
 
 /obj/item/storage/box/ied_assembly_kit/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.max_storage_space = 30
-	storage_datum.storage_slots = 12
+	var/obj/item/paper/paper = new /obj/item/paper/ied_assembly_kit_instructions(src)
+	//Using :: to get the w_class of the types without having to actually spawn them
+	storage_datum.max_storage_space = (/obj/item/pipe::w_class * spawn_number) + (/obj/item/assembly/prox_sensor::w_class * spawn_number) + paper.w_class
+	storage_datum.storage_slots = (spawn_number * 2) + 1
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/pipe,
 		/obj/item/assembly/prox_sensor,
+		/obj/item/paper,
 	))
 	//Spawn an equal number of proximity sensors
 	for(var/i in 1 to spawn_number)

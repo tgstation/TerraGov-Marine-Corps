@@ -10,7 +10,7 @@
 	disarm_delay = 1 SECONDS
 	undeploy_delay = 2 SECONDS
 	deploy_delay = 2 SECONDS
-	light_explosion_range = 2
+	weak_explosion_range = 2
 	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel
 	shrapnel_range = 5
 	mine_features = MINE_STANDARD_FLAGS|MINE_DIRECTIONAL

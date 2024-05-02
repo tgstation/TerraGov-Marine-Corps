@@ -40,12 +40,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 ///For mines that detonate when hit by EMPs
 #define MINE_VOLATILE_EMP (1<<12)
 
-//Flags for craftable IED
-#define IED_SECURED (1<<0)
-#define IED_WIRED (1<<1)
-#define IED_CONNECTED (1<<2)
-#define IED_FINISHED IED_SECURED|IED_WIRED|IED_CONNECTED
-
 /obj/item/mine
 	name = "not a real mine"
 	desc = "Dummy object. Otherwise changing stats on the parent item would cause chaos/tedium every time."
@@ -148,6 +142,17 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	. += range ? "Has a detection range of [span_bold("[range]")] tile[range > 1 ? "s" : ""]." : "Only detonated if stepped on."
 	if(buffer_range)
 		. += "Cannot be triggered within [span_bold("[buffer_range]")] tile[buffer_range > 1 ? "s" : ""] of itself."
+	var/list/volatility = list()
+	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_DAMAGE))
+		volatility += "physical damage"
+	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_FIRE))
+		volatility += "fire"
+	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_EXPLOSION))
+		volatility += "explosions"
+	if(CHECK_BITFIELD(mine_features, MINE_VOLATILE_EMP))
+		volatility += "EMPs"
+	if(volatility.len)
+		. += "Will detonate from: [span_bold(english_list(volatility, final_comma_text = ","))]."
 	if(CHECK_BITFIELD(mine_features, MINE_CUSTOM_RANGE))
 		. += "[span_bold("Alt Click")] to change the detection range."
 	if(!CHECK_BITFIELD(mine_features, MINE_DISCERN_LIVING))
