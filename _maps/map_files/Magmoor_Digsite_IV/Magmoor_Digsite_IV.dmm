@@ -3317,6 +3317,9 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"cmO" = (
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "cna" = (
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -3613,6 +3616,15 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/side,
 /area/magmoor/command/conference)
+"cvp" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "cvs" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -4367,6 +4379,13 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
+/area/magmoor/compound/north)
+"dck" = (
+/obj/machinery/door_control{
+	id = "engi_garage";
+	name = "Engineering Garage"
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/north)
 "dcn" = (
 /obj/machinery/vending/coffee,
@@ -9913,14 +9932,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
-"gVu" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/magmoor/engi/garage)
 "gWk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -13194,7 +13205,10 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/garage)
 "jto" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -16524,9 +16538,6 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "lMP" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/magmoor/engi/garage)
@@ -23902,13 +23913,6 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
-"rgO" = (
-/obj/effect/ai_node,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/engi/garage)
 "rhG" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -24106,9 +24110,6 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "rpH" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -28371,6 +28372,10 @@
 	dir = 4
 	},
 /area/magmoor/compound)
+"urn" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "urs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -33808,6 +33813,10 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
+"ydX" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "yej" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
@@ -48559,7 +48568,7 @@ xyy
 ctB
 sLM
 ibS
-ibS
+urn
 dcL
 ibS
 lMP
@@ -49028,7 +49037,7 @@ lCx
 ibS
 glt
 ibS
-gVu
+lMP
 wOh
 kGc
 gNd
@@ -49258,12 +49267,12 @@ ctB
 ctB
 vZv
 hWc
-ibS
+cvp
 rpH
 aSB
 ctB
 ctB
-lqI
+dck
 lqI
 lqI
 lqI
@@ -49491,8 +49500,8 @@ xyy
 ctB
 ibS
 ibS
-ibS
 vxQ
+ydX
 qsN
 ctB
 pDq
@@ -49724,8 +49733,8 @@ ymj
 ctB
 ctB
 kWk
-ibS
 vxQ
+cmO
 rtB
 ctB
 ctB
@@ -49958,7 +49967,7 @@ ymj
 eJo
 ibS
 jtk
-rgO
+lAV
 uaN
 lAV
 eJo
