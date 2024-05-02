@@ -34,6 +34,7 @@
 /area/interior/apc)
 "m" = (
 /obj/structure/gun_breech/secondary,
+/obj/machinery/gibber/apc,
 /turf/open/interior/apc/twentytwo,
 /area/interior/apc)
 "n" = (
