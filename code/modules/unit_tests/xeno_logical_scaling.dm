@@ -1,13 +1,12 @@
 /datum/unit_test/xeno_logical_scaling/Run()
 	var/list/by_xeno = list()
-	for(var/i in subtypesof(/datum/xeno_caste))
-		var/datum/xeno_caste/caste = i
+	for(var/datum/xeno_caste/caste AS in subtypesof(/datum/xeno_caste))
 		var/typepath = initial(caste.caste_type_path)
 		var/upgrade = initial(caste.upgrade)
 		if(isnull(typepath))
 			Fail("[i] has a null caste_type_path")
 			continue
-		if(upgrade == "basetype")
+		if(upgrade == XENO_UPGRADE_BASETYPE)
 			continue
 		if(isnull(upgrade))
 			Fail("[i] has a null upgrade")

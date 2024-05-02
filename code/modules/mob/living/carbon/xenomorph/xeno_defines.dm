@@ -245,6 +245,21 @@
 		current_type = initial(current_type.parent_type)
 	return current_type
 
+///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
+/datum/xeno_caste/proc/get_strain_options()
+	var/datum/xeno_caste/root_type = type
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = initial(root_type.parent_type)
+	var/list/candidates = typesof(root_type)
+	. = list()
+	for(var/datum/xeno_caste/typepath AS in candidates)
+		if(initial(typepath.upgrade) != XENO_UPGRADE_BASETYPE)
+			continue
+		if(initial(typepath.caste_flags) & CASTE_EXCLUDE_STRAINS)
+			continue
+		. += typepath
+	. -= get_base_caste_type()
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
