@@ -149,9 +149,6 @@
 	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
 
-#undef MOVEMENT_DELAY_BUFFER
-#undef MOVEMENT_DELAY_BUFFER_DELTA
-
 ///Process_Spacemove
 ///Called by /client/Move()
 ///For moving in space
