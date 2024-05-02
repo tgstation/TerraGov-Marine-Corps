@@ -191,14 +191,6 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
-	// *** Warlock Abilities ***
-	///The integrity of psychic shields made by the xeno
-	var/shield_strength = 350
-	///The strength of psychic crush's effects
-	var/crush_strength = 35
-	///The strength of psychic blast's  AOE effects
-	var/blast_strength = 25
-
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
