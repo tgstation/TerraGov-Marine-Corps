@@ -68,7 +68,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(!linked_machine)
 		// Try to find the machine nearby
-		linked_machine = locate() in orange(1, src)
+		linked_machine = locate() in get_step(src, REVERSE_DIR(dir))
 		if(!linked_machine)
 			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Connection not available'.</span>")
 			return TRUE
