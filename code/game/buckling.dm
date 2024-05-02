@@ -88,7 +88,7 @@
 	if(buckle_lying != -1)
 		REMOVE_TRAIT(buckled_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckled_mob.clear_alert("buckled")
-	buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.total_multiplicative_slowdown()))
+	buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.cached_multiplicative_slowdown))
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 
 	UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
