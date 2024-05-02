@@ -1,6 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Added NO_CONSTRUCTION flag to use for areas and a mapping helper for said flag."
-  - rscdel: "Removed cades from current tadpole models"
-  - balance: "Tadpoles can no longer have cades or razorwire built on them"
