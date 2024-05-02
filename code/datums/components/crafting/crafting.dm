@@ -199,7 +199,7 @@
 	var/send_feedback = 1
 	var/dest_turf = get_turf(crafter)
 
-	if(isopenturf(dest_turf))
+	if(isopenturf(dest_turf) && !(recipe.crafting_flags & CRAFT_CHECK_DENSITY))
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
 			return ", cant build here."

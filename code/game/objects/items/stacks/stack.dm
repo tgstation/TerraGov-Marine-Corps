@@ -256,7 +256,7 @@
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
 
-	if(isopenturf(dest_turf))
+	if(isopenturf(dest_turf) && !(recipe.crafting_flags & CRAFT_CHECK_DENSITY))
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
 			builder.balloon_alert(builder, "cant build here!")
