@@ -301,12 +301,12 @@ export const MedScanner = (props) => {
               </LabeledList.Item>
               <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
             </LabeledList>
+            {internal_bleeding ? (
+              <NoticeBox color={'red'} mt={'8px'} mb={'0px'} warning>
+                Internal Bleeding Detected!
+              </NoticeBox>
+            ) : null}
           </Section>
-        ) : null}
-        {internal_bleeding ? (
-          <NoticeBox color={'red'} warning>
-            Internal Bleeding Detected!
-          </NoticeBox>
         ) : null}
         {infection ? <NoticeBox warning>{infection}</NoticeBox> : null}
         {implants ? (
