@@ -162,7 +162,7 @@ REAGENT SCANNER
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
 
-		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getOxyLoss() + patient.getCloneLoss() <= 225,
+		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getCloneLoss() <= 215, // around the revive threshold for people with corpsman level skills
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
@@ -275,8 +275,8 @@ REAGENT SCANNER
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
-	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show any advice if the patient is revivable
-		if(patient.stat == DEAD) // death related advice
+	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient can be revived
+		if(patient.stat == DEAD) // death advice
 			var/dead_color
 			switch(patient.dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)
@@ -303,7 +303,7 @@ REAGENT SCANNER
 					"icon" = "bolt",
 					"color" = "yellow"
 					))
-		if(issynth(patient) || isrobot(patient))
+		if(issynth(patient) || isrobot(patient)) // robotic damage advice
 			if(patient.getBruteLoss() > 0)
 				advice += list(list(
 					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
@@ -316,7 +316,7 @@ REAGENT SCANNER
 					"icon" = "plug",
 					"color" = "orange"
 					))
-		else
+		else // organic damage advice
 			if(patient.getBruteLoss() > 20)
 				advice += list(list(
 					"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
@@ -341,7 +341,7 @@ REAGENT SCANNER
 				"icon" = "window-close",
 				"color" = "red"
 				))
-		if(!issynth(patient) && !isrobot(patient)) // Advice that's only relevant to humans
+		if(!issynth(patient) && !isrobot(patient)) // human advice, includes chems
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
@@ -437,7 +437,7 @@ REAGENT SCANNER
 			if(patient.traumatic_shock > 50)
 				has_pain = TRUE
 
-			if(has_pain && !chemicals_lists["Paracetamol"])
+			if(has_pain && !chemicals_lists["Paracetamol"] && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
 					"icon" = "syringe",
@@ -467,7 +467,7 @@ REAGENT SCANNER
 		data["advice"] = null
 
 	var/ssd = null
-	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
+	if(patient.has_brain() && patient.stat != DEAD)
 		if(!patient.key)
 			ssd = "No soul detected." // Catatonic- NPC, or ghosted
 		else if(!patient.client)

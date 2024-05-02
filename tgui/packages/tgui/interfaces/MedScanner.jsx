@@ -51,8 +51,8 @@ export const MedScanner = (props) => {
   const row_bg_color = 'rgba(255, 255, 255, .05)';
   const theme = species === 'robot' ? 'hackerman' : 'default';
   return (
-    <Window width={500} height={650} theme={theme}>
-      <Window.Content>
+    <Window width={515} height={625} theme={theme}>
+      <Window.Content scrollable>
         <Section title={'Patient: ' + patient}>
           {hugged ? (
             <NoticeBox danger>
@@ -301,12 +301,12 @@ export const MedScanner = (props) => {
               </LabeledList.Item>
               <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
             </LabeledList>
-            {internal_bleeding ? (
-              <NoticeBox color={'red'} warning>
-                Internal Bleeding Detected!
-              </NoticeBox>
-            ) : null}
           </Section>
+        ) : null}
+        {internal_bleeding ? (
+          <NoticeBox color={'red'} warning>
+            Internal Bleeding Detected!
+          </NoticeBox>
         ) : null}
         {infection ? <NoticeBox warning>{infection}</NoticeBox> : null}
         {implants ? (
@@ -315,7 +315,7 @@ export const MedScanner = (props) => {
           </NoticeBox>
         ) : null}
         {advice ? (
-          <Section title="Medication Advice">
+          <Section title="Treatment Advice">
             <Stack vertical>
               {advice.map((advice) => (
                 <Stack.Item key={advice.advice}>
