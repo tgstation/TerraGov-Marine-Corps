@@ -1316,7 +1316,7 @@
 			return FALSE
 		var/reload_delay = get_magazine_reload_delay(new_mag)
 		if(reload_delay > 0 && user && !force)
-			reload_delay -= reload_delay * 0.25 * min(gun_user.skills.getRating(gun_skill_category), 2)
+			reload_delay -= reload_delay * 0.25 * min(user.skills.getRating(gun_skill_category), 2)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
 			if(!do_after(user, reload_delay, NONE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
