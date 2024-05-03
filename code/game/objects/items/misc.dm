@@ -31,7 +31,7 @@
 	desc = "A peel from a banana."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "banana_peel"
-	item_state = "banana_peel"
+	worn_icon_state = "banana_peel"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 20
@@ -44,21 +44,21 @@
 	name = "gift"
 	desc = "A wrapped item."
 	icon = 'icons/obj/items/items.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	icon_state = "gift3"
 	var/size = 3
 	var/obj/item/gift = null
-	item_state = "gift"
+	worn_icon_state = "gift"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/staff
 	name = "wizards staff"
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)
@@ -129,5 +129,5 @@
 	desc = "A small hematite-beaded silver rosary"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rosary"
-	item_state = "rosary"
+	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY

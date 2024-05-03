@@ -11,7 +11,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	throwforce = 4
-	item_state = "pickaxe"
+	worn_icon_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
@@ -28,14 +28,14 @@
 /obj/item/tool/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
-	item_state = "spickaxe"
+	worn_icon_state = "spickaxe"
 	digspeed = 30
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
-	item_state = "drill"
+	worn_icon_state = "drill"
 	digspeed = 30
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
@@ -43,7 +43,7 @@
 /obj/item/tool/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 20 //faster than drill, but cannot dig
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
@@ -51,21 +51,21 @@
 /obj/item/tool/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
-	item_state = "gpickaxe"
+	worn_icon_state = "gpickaxe"
 	digspeed = 20
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
-	item_state = "dpickaxe"
+	worn_icon_state = "dpickaxe"
 	digspeed = 10
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
 /obj/item/tool/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 5 //Digs through walls, girders, and can dig up sand
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
@@ -73,7 +73,7 @@
 /obj/item/tool/pickaxe/borgdrill
 	name = "cyborg mining drill"
 	icon_state = "diamonddrill"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 15
 	desc = ""
 	drill_verb = "drilling"
@@ -84,7 +84,7 @@
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
-	item_state = "plasmacutter"
+	worn_icon_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 70

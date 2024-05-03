@@ -77,10 +77,10 @@
 	. = ..()
 	if(!greyscale_config)
 		return
-	for(var/key in item_icons)
+	for(var/key in worn_icon_list)
 		if(key == slot_l_hand_str || key == slot_r_hand_str)
 			continue
-		item_icons[key] = icon
+		worn_icon_list[key] = icon
 
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
@@ -107,7 +107,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
@@ -125,7 +125,7 @@
 	name = "earmuffs"
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
-	item_state = "earmuffs"
+	worn_icon_state = "earmuffs"
 	equip_slot_flags = ITEM_SLOT_EARS
 
 /obj/item/clothing/ears/earmuffs/green
@@ -138,7 +138,7 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits/suits.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
 	)
@@ -193,7 +193,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/gloves_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/gloves_right.dmi',
 	)
@@ -213,7 +213,7 @@
 	. = ..()
 	if(!greyscale_config)
 		return
-	item_icons = list(slot_gloves_str = icon)
+	worn_icon_list = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
@@ -252,7 +252,7 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/masks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/masks_right.dmi',
 	)
@@ -278,7 +278,7 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/shoes_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/shoes_right.dmi',
 	)

@@ -54,6 +54,7 @@
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "B" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /turf/closed/interior/apc/six,
 /area/interior/apc)
 "C" = (
@@ -107,6 +108,13 @@
 "Y" = (
 /turf/closed/interior/apc/one,
 /area/interior/apc)
+"Z" = (
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/obj/structure/periscope/apc,
+/turf/open/interior/apc/twentynine,
+/area/interior/apc)
 
 (1,1,1) = {"
 Y
@@ -147,7 +155,7 @@ l
 H
 t
 D
-O
+Z
 l
 "}
 (7,1,1) = {"

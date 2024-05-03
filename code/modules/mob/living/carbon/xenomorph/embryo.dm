@@ -185,6 +185,7 @@
 		return
 
 	if(loc != victim)
+		victim.chestburst = CARBON_NO_CHEST_BURST
 		return
 
 

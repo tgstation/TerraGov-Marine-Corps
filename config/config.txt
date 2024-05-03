@@ -251,3 +251,8 @@ log_looc
 log_say
 allow_vote_restart
 allow_vote_groundmap
+
+## If enabled, then when the database is disabled, all players will get tutorials.
+## This is primarily useful for developing tutorials. If you have a proper DB setup, you
+## don't need (or want) this.
+#GIVE_TUTORIALS_WITHOUT_DB

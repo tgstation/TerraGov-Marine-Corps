@@ -5,7 +5,7 @@
 	desc = "Can hold various things."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
-	item_state = "utility"
+	worn_icon_state = "utility"
 	item_state_worn = TRUE
 	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
@@ -29,7 +29,7 @@
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
 	icon_state = "championbelt"
-	item_state = "champion"
+	worn_icon_state = "champion"
 	storage_type = /datum/storage/belt/champion
 
 /*============================//MARINE BELTS\\==================================
@@ -39,7 +39,7 @@
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
 	icon_state = "utilitybelt"
-	item_state = "utility"
+	worn_icon_state = "utility"
 	storage_type = /datum/storage/belt/utility
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -64,14 +64,14 @@
 	name = "\improper M276 pattern light medical rig"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This lightweight configuration is often used for bulk carrying of medical supplies by marines."
 	icon_state = "medicalbelt_small"
-	item_state = "medicbag"
+	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/medical_small
 
 /obj/item/storage/belt/lifesaver
 	name = "\improper M276 pattern lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	icon_state = "medicalbag"
-	item_state = "medicbag"
+	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/lifesaver
 
 /obj/item/storage/belt/lifesaver/full/Initialize(mapload)  //The belt, with all it's magic inside!
@@ -150,14 +150,14 @@
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
 	icon_state = "medicbag_upp"
-	item_state = "medicbag_upp"
+	worn_icon_state = "medicbag_upp"
 
 
 /obj/item/storage/belt/lifesaver/som
 	name = "\improper S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	icon_state = "medicbag_som"
-	item_state = "medicbag_som"
+	worn_icon_state = "medicbag_som"
 
 /obj/item/storage/belt/lifesaver/som/ert/PopulateContents()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -209,7 +209,7 @@
 	name = "\improper Modelle/129 lifesaver bag"
 	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to respond to traumatic injury in combat."
 	icon_state = "medicbag_icc"
-	item_state = "medicbag_icc"
+	worn_icon_state = "medicbag_icc"
 
 /obj/item/storage/belt/lifesaver/icc/ert/PopulateContents()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -238,7 +238,7 @@
 	name = "\improper M276 pattern medical storage rig"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
 	icon_state = "medicalbelt"
-	item_state = "medical"
+	worn_icon_state = "medical"
 	storage_type = /datum/storage/belt/rig
 
 /obj/item/storage/belt/rig/medical/Initialize(mapload)  //The belt, with all it's magic inside!
@@ -283,7 +283,7 @@
 	name = "\improper M276 pattern hypospray belt"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers. You could probably fit a syringe case too."
 	icon_state = "hypospraybelt"
-	item_state = "medicbag"
+	worn_icon_state = "medicbag"
 	storage_type = /datum/storage/belt/hypospraybelt
 
 /obj/item/storage/belt/hypospraybelt/full/Initialize(mapload)  //The belt, with all it's magic inside!
@@ -334,21 +334,21 @@
 	name = "\improper M276 pattern security rig"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This configuration is commonly seen among NTC Military Police and peacekeepers, though it can hold some light munitions."
 	icon_state = "securitybelt"
-	item_state = "security"//Could likely use a better one.
+	worn_icon_state = "security"//Could likely use a better one.
 	storage_type = /datum/storage/belt/security
 
 /obj/item/storage/belt/security/tactical
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "swatbelt"
-	item_state = "swatbelt"
+	worn_icon_state = "swatbelt"
 	storage_type = /datum/storage/belt/security/tactical
 
 /obj/item/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
-	item_state = "marinebelt"
+	worn_icon_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/belt/marine
 
@@ -476,7 +476,7 @@
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
-	item_state = "upp_belt"
+	worn_icon_state = "upp_belt"
 
 //version full of type 71 mags
 /obj/item/storage/belt/marine/upp/full/PopulateContents()
@@ -491,7 +491,7 @@
 	name = "\improper S18 ammo belt"
 	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
 	icon_state = "som_belt"
-	item_state = "som_belt"
+	worn_icon_state = "som_belt"
 
 /obj/item/storage/belt/marine/som/som_rifle/PopulateContents()
 	new /obj/item/ammo_magazine/rifle/som(src)
@@ -574,14 +574,14 @@
 	name = "\improper strange ammo belt"
 	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
 	icon_state = "swatbelt"
-	item_state = "swatbelt"
+	worn_icon_state = "swatbelt"
 	storage_type = /datum/storage/belt/marine/sectoid
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
 	icon_state = "shotgunbelt"
-	item_state = "shotgunbelt"
+	worn_icon_state = "shotgunbelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/belt/shotgun
 
@@ -781,7 +781,7 @@
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is specially designed with six holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
-	item_state="knifebelt"
+	worn_icon_state="knifebelt"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/belt/knifepouch
 
@@ -797,7 +797,7 @@
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the NTC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt"
-	item_state="grenadebelt"
+	worn_icon_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/belt/grenade
 
@@ -854,20 +854,20 @@
 	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "sparepouch"
-	item_state = "sparepouch"
+	worn_icon_state = "sparepouch"
 	storage_type = /datum/storage/belt/sparepouch
 
 /obj/item/storage/belt/sparepouch/som
 	name = "standard utility pouch"
 	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
 	icon_state = "sparepouch_som"
-	item_state = "som_belt"
+	worn_icon_state = "som_belt"
 
 /obj/item/storage/belt/protein_pack
 	name = "\improper protein pack load rig"
 	desc = "A storage belt designed to hold mass amounts of protein packs for those particuarly hungry marines."
 	icon_state = "p_belt"
-	item_state = "shotgunbelt"
+	worn_icon_state = "shotgunbelt"
 	storage_type = /datum/storage/belt/protein_pack
 
 /obj/item/storage/belt/protein_pack/PopulateContents()

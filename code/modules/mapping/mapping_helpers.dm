@@ -260,6 +260,8 @@
 /obj/effect/mapping_helpers/area_flag_injector/near_fob
 	flag_type = NEAR_FOB
 
+/obj/effect/mapping_helpers/area_flag_injector/no_construction
+	flag_type = NO_CONSTRUCTION
 
 /obj/effect/mapping_helpers/simple_pipes
 	name = "Simple Pipes"

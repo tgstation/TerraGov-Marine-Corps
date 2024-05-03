@@ -27,7 +27,7 @@
 	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag0"
-	item_state = "trashbag"
+	worn_icon_state = "trashbag"
 
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/bag/trash
@@ -53,7 +53,7 @@
 	desc = "It's a very flimsy, very noisy alternative to a bag."
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "plasticbag"
-	item_state = "plasticbag"
+	worn_icon_state = "plasticbag"
 
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/bag/plasticbag

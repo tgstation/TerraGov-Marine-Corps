@@ -5,9 +5,9 @@
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = MARINE_ARMOR_MEDIUM
 	icon_state = "chest"
-	item_state = "chest"
+	worn_icon_state = "chest"
 	icon = null
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
@@ -265,7 +265,7 @@
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
 	icon_state = "ballistic_vest"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
 	)
 	equip_delay_self = 2 SECONDS
@@ -355,7 +355,7 @@
 /obj/item/clothing/head/modular/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
 	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
-	item_state = "helm"
+	worn_icon_state = "helm"
 	greyscale_config = /datum/greyscale_config/xenonaut/helm/heavy
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut, /obj/item/armor_module/storage/helmet)
 	attachments_allowed = list(

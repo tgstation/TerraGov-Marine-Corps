@@ -137,6 +137,6 @@
 	name = "SP-13 pistol"
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
 	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
-	ui_icon = "pistol"
+	ui_icon = "sp13"
 	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	jobs_supported = list(CAPTAIN)

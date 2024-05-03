@@ -17,11 +17,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
-	item_state = "headset"
+	worn_icon_state = "headset"
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine radio headset"
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
-	item_state = "headset"
+	worn_icon_state = "headset"
 	frequency = FREQ_COMMON
 	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE

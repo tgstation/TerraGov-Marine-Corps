@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/defender
-	caste_base_type = /mob/living/carbon/xenomorph/defender
+	caste_base_type = /datum/xeno_caste/defender
 	name = "Defender"
 	desc = "An alien with an armored head crest."
 	icon = 'icons/Xeno/castes/defender.dmi'

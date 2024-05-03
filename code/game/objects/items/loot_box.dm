@@ -3,7 +3,7 @@
 	desc = "A box of loot, what could be inside?"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
-	item_state = "lootbox"
+	worn_icon_state = "lootbox"
 	///list of the lowest probability drops
 	var/list/legendary_list
 	///list of rare propability drops
@@ -410,7 +410,7 @@
 	desc = "A box of gear sent over by the NTC on request, nobody knows what's in it. You just know it'll probably be good."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
-	item_state = "lootbox"
+	worn_icon_state = "lootbox"
 
 	legendary_list = list(
 		/obj/item/storage/box/crate/loot/m25e_pack,

@@ -4,7 +4,7 @@
 /obj/item/clothing/head/helmet/space
 	name = "Space helmet"
 	icon = 'icons/obj/clothing/headwear/space_suit_helmets.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/space_suit_helmets.dmi')
+	worn_icon_list = list(slot_head_str = 'icons/mob/clothing/headwear/space_suit_helmets.dmi')
 	icon_state = "space_helm"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	permeability_coefficient = 0.01
@@ -21,7 +21,7 @@
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
 	icon = 'icons/obj/clothing/suits/space_suits.dmi'
-	item_icons = list(slot_wear_suit_str = 'icons/mob/clothing/suits/space_suits.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/clothing/suits/space_suits.dmi')
 	icon_state = "space"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01

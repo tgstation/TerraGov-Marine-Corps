@@ -1,5 +1,5 @@
 /obj/item/restraints
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/security_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/security_right.dmi',
 	)

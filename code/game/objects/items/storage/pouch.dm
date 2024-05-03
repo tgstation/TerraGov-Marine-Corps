@@ -980,7 +980,7 @@
 	name = "\improper protein pack pouch"
 	desc = "A storage pouch designed to hold a moderate amount of protein packs."
 	icon_state = "p_pouch"
-	item_state = "survival"
+	worn_icon_state = "survival"
 	fill_type = /obj/item/reagent_containers/food/snacks/protein_pack
 	fill_number = 10
 
