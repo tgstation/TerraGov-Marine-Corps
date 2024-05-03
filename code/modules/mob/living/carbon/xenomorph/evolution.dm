@@ -303,23 +303,6 @@
 		balloon_alert(src, "We need a empty tile to evolve")
 		return FALSE
 
-	if(istype(new_mob_type, /mob/living/carbon/xenomorph/queen))
-		switch(hivenumber) // because it causes issues otherwise
-			if(XENO_HIVE_CORRUPTED)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted
-			if(XENO_HIVE_ALPHA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Alpha
-			if(XENO_HIVE_BETA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Beta
-			if(XENO_HIVE_ZETA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Zeta
-			if(XENO_HIVE_ADMEME)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/admeme
-			if(XENO_HIVE_FALLEN)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
-			if(XENO_HIVE_FORSAKEN)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Forsaken
-
 	if(!regression)
 		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)
 			balloon_alert(src, "The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die")

@@ -44,7 +44,7 @@
 	name = "Operative sneaking boots"
 	desc = "An expensive specially-padded pair-of boots that eliminate footsteps, issued to Senior Operatives of NTC."
 	icon_state = "marine"
-	item_state = "marine"
+	worn_icon_state = "marine"
 	armor_protection_flags = FEET
 	cold_protection_flags = FEET
 	heat_protection_flags = FEET

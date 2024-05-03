@@ -26,8 +26,8 @@
 	throw_range = 5
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
-	item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
-	item_icons = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
+	worn_item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
+	worn_icon_list = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS

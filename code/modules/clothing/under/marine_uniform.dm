@@ -31,7 +31,7 @@
 	siemens_coefficient = 0.9
 	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpskirt"
-	item_icons = list(
+	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -57,7 +57,7 @@
 	name = "\improper 8E Chameleon NTC jumpskirt"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with facepaint! Comes in skirt's now."
 	icon_state = "hyperscale_marine_jumpskirt"
-	item_state = "hyperscale_marine_jumpskirt"
+	worn_icon_state = "hyperscale_marine_jumpskirt"
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = ARMOR_PALETTES_LIST
@@ -102,7 +102,7 @@
 	name = "\improper NTC Alpha skirtleneck"
 	desc = "A standard issued NTC turtleneck colored red- OH COME ON"
 	icon_state = "alpha_merc_skirt"
-	item_icons = list(
+	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -112,7 +112,7 @@
 	name = "\improper NTC Delta skirtleneck"
 	desc = "A standard issued NTC turtleneck colored blue- OH COME ON"
 	icon_state = "delta_merc_skirt"
-	item_icons = list(
+	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -122,7 +122,7 @@
 	name = "\improper NTC Charlie skirtleneck"
 	desc = "A standard issued NTC turtleneck colored purple- OH COME ON"
 	icon_state = "charlie_merc_skirt"
-	item_icons = list(
+	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -132,7 +132,7 @@
 	name = "\improper NTC Bravo skirtleneck"
 	desc = "A standard issued NTC turtleneck colored yellow- OH COME ON"
 	icon_state = "bravo_merc_skirt"
-	item_icons = list(
+	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',

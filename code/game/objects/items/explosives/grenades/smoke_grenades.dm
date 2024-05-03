@@ -52,7 +52,7 @@
 	name = "\improper NT-1 Knock-out smoke grenade"
 	desc = "A non-lethal smoke grenade containing anesthetic agents to knock people out."
 	icon_state = "grenade_smoke_som"
-	item_state = "grenade_smoke_som"
+	worn_icon_state = "grenade_smoke_som"
 	hud_state = "grenade_smoke_som"
 	det_time = 4 SECONDS
 	dangerous = TRUE
@@ -63,7 +63,7 @@
 	name = "\improper NT-2 Aphrotoxin gas grenade"
 	desc = "A gas grenade containing a strong aphrodisiac synthesized from xenomorphs, causes intense lust, weakness on legs and stumbling around."
 	icon_state = "grenade_aphro"
-	item_state = "grenade_aphro"
+	worn_icon_state = "grenade_aphro"
 	hud_state = "grenade_aphro"
 	det_time = 4 SECONDS
 	dangerous = TRUE

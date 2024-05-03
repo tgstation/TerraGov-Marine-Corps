@@ -45,10 +45,6 @@
 #define BANELING_ACID "Sulphuric acid"
 #define BANELING_ACID_ICON "spray_acid"
 
-//Baneling specific reagent define
-#define BANELING_ACID "Sulphuric acid"
-#define BANELING_ACID_ICON "spray_acid"
-
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
 #define TRAP_SMOKE_APHRO "aphrotoxin gas"

@@ -184,11 +184,6 @@
 	if(QDELETED(victim))
 		return
 
-	if(loc != victim)
-		victim.chestburst = CARBON_NO_CHEST_BURST
-		return
-
-
 	if(istype(victim.loc, /obj/vehicle/sealed))
 		var/obj/vehicle/sealed/armored/veh = victim.loc
 		forceMove(veh.exit_location(src))
@@ -212,7 +207,6 @@
 
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
-	victim.chestburst = 0
 	if(ismonkey(victim))
 		victim.apply_damage(25, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
 		victim.adjustCloneLoss(25)

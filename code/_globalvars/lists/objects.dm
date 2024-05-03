@@ -39,6 +39,7 @@ GLOBAL_LIST_EMPTY(ship_alarms)
 GLOBAL_LIST_EMPTY(intel_computers)
 GLOBAL_LIST_EMPTY(nuke_disk_generators)
 ///list of all /obj/machinery/nuclearbomb
+GLOBAL_LIST_EMPTY(miner_list)
 GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
