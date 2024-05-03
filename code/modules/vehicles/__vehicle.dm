@@ -107,6 +107,7 @@
 	if(!istype(M) || is_occupant(M))
 		return FALSE
 
+	RegisterSignal(M, COMSIG_QDELETING, PROC_REF(remove_occupant))
 	LAZYSET(occupants, M, NONE)
 	add_control_flags(M, control_flags)
 	after_add_occupant(M)
