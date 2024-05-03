@@ -178,7 +178,7 @@
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	if(!polled_coords)
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		choosing = FALSE
 		return
 	var/turf/chosen_turf = locate(polled_coords[1], polled_coords[2], teleporter.targetted_zlevel)
