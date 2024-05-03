@@ -321,9 +321,9 @@
 
 ///Sentry wants to scream for help.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_alert(alert_code, mob/mob)
-	if(!internal_item)
-		return
 	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(!gun)
+		return
 	if(!alert_code || !CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(gun.turret_flags, TURRET_ON))
 		return
 
