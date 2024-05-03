@@ -194,7 +194,7 @@
 	if(choosing)
 		var/obj/structure/teleporter_array/teleporter = target
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(teleporter.targetted_zlevel, GLOB.faction_to_minimap_flag[owner.faction])
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
 	return ..()
