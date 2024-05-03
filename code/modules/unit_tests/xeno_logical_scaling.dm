@@ -4,12 +4,12 @@
 		var/typepath = initial(caste.caste_type_path)
 		var/upgrade = initial(caste.upgrade)
 		if(isnull(typepath))
-			Fail("[i] has a null caste_type_path")
+			Fail("[caste] has a null caste_type_path")
 			continue
 		if(upgrade == XENO_UPGRADE_BASETYPE)
 			continue
 		if(isnull(upgrade))
-			Fail("[i] has a null upgrade")
+			Fail("[caste] has a null upgrade")
 			continue
 		if(!("[typepath]" in by_xeno))
 			by_xeno["[typepath]"] = list()
