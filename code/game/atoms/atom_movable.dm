@@ -1092,7 +1092,6 @@
 
 	for(var/mob/buckled_mob AS in buckled_mobs)
 		buckled_mob.set_glide_size(target)
-	pulling?.set_glide_size(target)
 
 /atom/movable/proc/reset_glide_size()
 	if(glide_modifier_flags)
