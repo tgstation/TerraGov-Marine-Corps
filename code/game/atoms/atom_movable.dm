@@ -491,6 +491,8 @@
 /atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	if(QDELETED(src))
 		return
+	if(QDELETED(hit_atom))
+		return
 	if(!isturf(loc))
 		return
 	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
