@@ -256,12 +256,6 @@
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
 
-	if(isopenturf(dest_turf) && !(recipe.crafting_flags & CRAFT_CHECK_DENSITY))
-		var/turf/open/open_turf = dest_turf
-		if(!open_turf.allow_construction)
-			builder.balloon_alert(builder, "cant build here!")
-			return FALSE
-
 	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
 		builder.balloon_alert(builder, "already one here!")
 		return FALSE
@@ -272,12 +266,17 @@
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
-		if(isclosedturf(dest_turf))
+		if(!isopenturf(dest_turf))
 			builder.balloon_alert(builder, "cannot be made on a wall!")
 			return FALSE
 
 		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
 			builder.balloon_alert(builder, "must be made on solid ground!")
+			return FALSE
+
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			builder.balloon_alert(builder, "cant build here!")
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
