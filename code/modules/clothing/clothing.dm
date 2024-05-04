@@ -209,12 +209,12 @@
 	worn_icon_list = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
+	. = ..()
 	if(cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
 			cell.charge = 0
-	return ..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)

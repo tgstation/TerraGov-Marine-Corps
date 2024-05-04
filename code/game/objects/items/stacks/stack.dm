@@ -279,6 +279,11 @@
 			builder.balloon_alert(builder, "cant build here!")
 			return FALSE
 
+		var/area/area = get_area(dest_turf)
+		if(area.area_flags & NO_CONSTRUCTION)
+			builder.balloon_alert(builder, "cannot be made in this area!")
+			return FALSE
+
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)

@@ -37,7 +37,7 @@
 	desc = "Equipped with a motion sensor. The SG-85 is a monstrous IFF minigun, able to unleash an incredible torrent of bullets with a tremendous capacity thanks to its back mounted ammo supply. \
 	With excellent armor penetration and minimal falloff, the SG-85 is a supreme support weapon, able to effective apply damage at any range, causing hideous amounts of shrapnel to anyone it doesn't kill."
 	req_desc = "Requires a powerback for power and ammo. It uses 10x26mm caseless ammunition"
-	ui_icon = "smartgun"
+	ui_icon = "minigun_sg"
 	item_typepath = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	item_whitelist = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun = ITEM_SLOT_BACK)
 

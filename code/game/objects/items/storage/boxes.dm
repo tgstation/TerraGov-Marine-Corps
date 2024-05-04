@@ -115,7 +115,7 @@
 	name = "box of emp grenades"
 	desc = "A box with 5 emp grenades."
 	icon_state = "flashbang"
-	spawn_type = /obj/item/explosive/grenade/empgrenade
+	spawn_type = /obj/item/explosive/grenade/emp
 	spawn_number = 5
 
 /obj/item/storage/box/rxglasses

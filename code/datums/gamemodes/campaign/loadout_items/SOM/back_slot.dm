@@ -52,7 +52,7 @@
 	desc = "Equipped with a mag harness, bayonet and undebarrel flashlight. The V-51 is the main shotgun utilised by the Sons of Mars. \
 	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
 	Uses 12 gauge shells."
-	ui_icon = "shotgun"
+	ui_icon = "v51"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)

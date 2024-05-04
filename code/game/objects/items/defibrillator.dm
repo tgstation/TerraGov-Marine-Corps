@@ -301,7 +301,7 @@
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 35, 0)
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
-	H.chestburst = 0 //reset our chestburst state
+	H.chestburst = CARBON_NO_CHEST_BURST
 	H.regenerate_icons()
 	H.reload_fullscreens()
 	H.flash_act()

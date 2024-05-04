@@ -229,6 +229,10 @@
 				crafter.balloon_alert(crafter, "something is in the way!")
 				return FALSE
 
+	var/area/area = get_area(dest_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
+		return ", can't build here"
+
 	if(recipe.placement_checks & STACK_CHECK_CARDINALS)
 		var/turf/nearby_turf
 		for(var/direction in GLOB.cardinals)

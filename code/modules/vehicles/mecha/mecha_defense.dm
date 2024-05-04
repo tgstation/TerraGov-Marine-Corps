@@ -139,14 +139,23 @@
 
 /obj/vehicle/sealed/mecha/emp_act(severity)
 	. = ..()
-	if(get_charge())
-		use_power((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, ENERGY, 1)
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	use_power((cell.maxcharge * 0.2) / (severity))
+	take_damage(400 / severity, BURN, ENERGY)
+
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger((6 - severity) SECONDS)
+
 	log_message("EMP detected", LOG_MECHA, color="red")
 
+	var/disable_time = (4 - severity) SECONDS
+	if(!disable_time)
+		return
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	mecha_flags |= MECHA_EMPED
+	update_appearance(UPDATE_OVERLAYS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 

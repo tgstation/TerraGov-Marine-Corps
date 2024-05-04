@@ -45,17 +45,17 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 	return TRUE
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
+	. = ..()
 	var/list/L = GetAllContents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
-	..()
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)

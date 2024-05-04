@@ -311,6 +311,11 @@
 	icon_state = get_mecha_occupancy_state()
 	return ..()
 
+/obj/vehicle/sealed/mecha/update_overlays()
+	. = ..()
+	if(mecha_flags & MECHA_EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+
 /obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	for(var/mob/living/future_pancake in loc)
@@ -396,7 +401,9 @@
 	return TRUE
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
+	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
+	update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/mob_occupant AS in occupants)
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
