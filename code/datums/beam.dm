@@ -179,3 +179,14 @@
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
 		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")
+
+/// executes a BFG zap. just damages xenos in an AOE from the source
+/proc/bfg_beam(atom/source, zap_range, damage, armor_pierce, list/blacklistmobs)
+	for(var/mob/living/target in oview(zap_range, source))
+		if(target.stat == DEAD)
+			continue
+		if(target in blacklistmobs)
+			continue
+		source.beam(target, icon_state="bfg", time = 3, maxdistance = zap_range + 2)
+		target.apply_damage(damage, BURN, 50, penetration=armor_pierce)
+		log_attack("[target] was zapped by [source]")

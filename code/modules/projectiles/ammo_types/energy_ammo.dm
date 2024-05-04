@@ -72,6 +72,28 @@
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
+#define BFG_SOUND_DELAY_SECONDS 1
+/datum/ammo/energy/bfg
+	name = "bfg glob"
+	icon_state = "bfg_ball"
+	hud_state = "electrothermal"
+	hud_state_empty = "electrothermal_empty"
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS
+	shell_speed = 0.1
+	damage = 150
+	penetration = 50
+	bullet_color = COLOR_PALE_GREEN_GRAY
+
+/datum/ammo/energy/bfg/ammo_process(obj/projectile/proj, damage)
+	bfg_beam(proj, 3, damage, penetration)
+
+	//handling for BFG sound. yes it's kinda wierd to use distance traveled and probably will break at high lag
+	//but this is super snowflake and I don't wanna bother something like making looping sounds attachable to projectiles today
+	//feel free to do it though as a TODO?
+	var/sound_delay_time = BFG_SOUND_DELAY_SECONDS/proj.projectile_speed
+	if(proj.distance_travelled % sound_delay_time)
+		playsound(proj, 'sound/weapons/guns/misc/bfg_fly.ogg', 30, FALSE)
+
 /datum/ammo/energy/lasburster
 	name = "lasburster bolt"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN

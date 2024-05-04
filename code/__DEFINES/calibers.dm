@@ -86,3 +86,5 @@
 
 ///Unmanned vehicles
 #define CALIBER_11X35 "11x35mm"
+
+#define CALIBER_ANTIMATTER "antimatter" //BFG

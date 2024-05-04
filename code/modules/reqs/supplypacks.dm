@@ -835,21 +835,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_shells
-	name = "LTB tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
-
-/datum/supply_packs/weapons/ltaap_rounds
-	name = "LTAAP tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
-	cost = 10
-
-/datum/supply_packs/weapons/cupola_rounds
-	name = "Cupola tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
-	cost = 10
-
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
@@ -2076,6 +2061,31 @@ VEHICLES
 	contains = list(/obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser)
 	cost = 50
 	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/ltb_shells
+	name = "LTB tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/vehicles/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
+/datum/supply_packs/vehicles/bfg_cannon
+	name = "Tank-mounted BFG 9500"
+	contains = list(/obj/item/armored_weapon/bfg)
+	cost = 1600
+
+/datum/supply_packs/vehicles/bfg_rounds
+	name = "BFG tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/bfg)
+	cost = 200
 
 /*******************************************************************************
 FACTORY

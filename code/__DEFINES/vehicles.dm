@@ -58,3 +58,5 @@
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
+
+#define ARMORED_WEAPON_NO_VENDOR (1<<0)

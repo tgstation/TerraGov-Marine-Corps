@@ -46,6 +46,8 @@
 	var/rearm_time = 4 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
+	///behavior flags
+	var/armored_weapon_flags = NONE
 
 /obj/item/armored_weapon/Initialize(mapload)
 	. = ..()
@@ -325,7 +327,7 @@
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon
-	name = "MKV-7 utility payload launcher"
+	name = "\improper MKV-7 utility payload launcher"
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon"
 	fire_sound = 'sound/weapons/guns/fire/tank_smokelauncher.ogg'
@@ -336,3 +338,16 @@
 	)
 	projectile_delay = 0.7 SECONDS
 	hud_state_empty = "grenade_empty"
+
+/obj/item/armored_weapon/bfg
+	name = "\improper BFG 9500"
+	desc = "A crackling energy weapon, a slightly scaled up model of the classic BFG 9000. Point at people who killed your rabbit."
+	icon_state = "bfg"
+	fire_sound = 'sound/weapons/guns/fire/tank_bfg.ogg'
+	armored_weapon_flags = ARMORED_WEAPON_NO_VENDOR
+	ammo = /obj/item/ammo_magazine/tank/bfg
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/tank/bfg,
+	)
+	projectile_delay = 8 SECONDS
+	hud_state_empty = "electrothermal_empty"

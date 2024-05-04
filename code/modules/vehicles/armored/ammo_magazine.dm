@@ -82,3 +82,12 @@
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
+
+/obj/item/ammo_magazine/tank/bfg
+	name = "\improper BFG antimatter container"
+	desc = "An antimatter containment chamber containing antimatter for a BFG glob. Do not open at threat of exploding."
+	icon_state = "bfg"
+	caliber = CALIBER_ANTIMATTER
+	default_ammo = /datum/ammo/energy/bfg
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
