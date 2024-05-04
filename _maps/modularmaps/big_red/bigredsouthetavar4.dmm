@@ -1,12 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "ab" = (
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ac" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -14,23 +11,20 @@
 "ad" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ae" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"af" = (
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ag" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ah" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
@@ -41,15 +35,15 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aj" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ak" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "al" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -57,17 +51,17 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "am" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "an" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/tile/dark/yellow2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ao" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -78,30 +72,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"ap" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/obj/effect/turf_decal/sandedge{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
-"aq" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
-"ar" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
-"as" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "at" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/effect/ai_node,
@@ -111,11 +82,11 @@
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "av" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aw" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/oil,
@@ -127,13 +98,10 @@
 /obj/item/storage/holster/belt/pistol/m4a3/full,
 /obj/item/storage/holster/belt/pistol/m4a3/officer,
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
-"ay" = (
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "az" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aA" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
@@ -141,11 +109,7 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
-"aC" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/sandedge{
@@ -154,35 +118,16 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"aE" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aF" = (
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
-"aG" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
-"aH" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aI" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "aJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
-"aK" = (
-/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/caves/south)
 "aL" = (
 /turf/open/floor/tile/dark/yellow2/corner,
@@ -194,16 +139,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"aN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -216,29 +152,10 @@
 /obj/structure/table,
 /obj/item/storage/holster/belt/pistol,
 /turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aR" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"aS" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
-"aT" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/south)
-"aU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/item/storage/holster/belt/pistol/m4a3/full,
-/obj/item/storage/holster/belt/pistol/m4a3/officer,
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
-"aV" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "aW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -250,89 +167,34 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"aX" = (
-/obj/machinery/light,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/caves/south)
-"aY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aZ" = (
 /obj/structure/table,
 /obj/machinery/computer/security,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
-"iV" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
-"oN" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
-"rE" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/tile/dark/yellow2/corner,
-/area/bigredv2/caves/south)
-"xc" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"xQ" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "JO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"Rf" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/r_wall,
+"KO" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 8
+	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"TA" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
-"TK" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2/corner,
-/area/bigredv2/caves/south)
-"Xm" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 
 (1,1,1) = {"
 aR
 JO
-ay
+aR
 aj
-aN
-aY
+aD
+aW
 aj
 av
 aI
@@ -341,7 +203,7 @@ ah
 (2,1,1) = {"
 aR
 JO
-ay
+aR
 aZ
 aM
 ab
@@ -352,35 +214,35 @@ ah
 "}
 (3,1,1) = {"
 aR
-oN
-ay
+aP
+aR
 aQ
 aF
-aH
+aB
 au
 av
 aI
 ah
 "}
 (4,1,1) = {"
-xc
-rE
-aK
+at
+an
+aL
 ab
-TA
+ag
 ab
-ay
+aR
 av
 aI
 ah
 "}
 (5,1,1) = {"
 aL
-rE
-TK
-aC
-aC
-aC
+an
+ak
+ad
+ad
+ad
 ax
 av
 aI
@@ -389,7 +251,7 @@ ah
 (6,1,1) = {"
 aR
 JO
-ay
+aR
 ae
 ab
 ab
@@ -401,11 +263,11 @@ ah
 (7,1,1) = {"
 aR
 JO
-ay
+aR
 ae
 ab
 ab
-ay
+aR
 az
 aI
 ah
@@ -413,9 +275,9 @@ ah
 (8,1,1) = {"
 aR
 JO
-ay
-ab
-iV
+aR
+KO
+am
 ab
 ab
 az
@@ -425,11 +287,11 @@ ah
 (9,1,1) = {"
 aR
 JO
-ay
-ay
-Xm
-ap
-ay
+aR
+aR
+al
+ao
+aR
 az
 aI
 ah
@@ -438,7 +300,7 @@ ah
 aR
 JO
 aI
-aE
+aA
 aA
 aA
 aA
@@ -464,8 +326,8 @@ JO
 aI
 aA
 ac
-aV
-aV
+aJ
+aJ
 aA
 aI
 ah
@@ -496,23 +358,23 @@ ah
 "}
 (15,1,1) = {"
 aR
-xQ
+aO
 aA
 aA
 aA
 aA
 aA
-aV
+aJ
 aI
 ah
 "}
 (16,1,1) = {"
 aR
-xQ
+aO
 aA
 aA
 aA
-aV
+aJ
 aA
 aA
 aI
@@ -520,7 +382,7 @@ ah
 "}
 (17,1,1) = {"
 aR
-xQ
+aO
 aA
 aA
 aA
@@ -568,7 +430,7 @@ ah
 "}
 (21,1,1) = {"
 aR
-xQ
+aO
 aA
 aA
 aA
@@ -580,18 +442,18 @@ ah
 "}
 (22,1,1) = {"
 aR
-xQ
+aO
 aA
 aA
 aA
-aV
+aJ
 aA
 aI
 aI
 ah
 "}
 (23,1,1) = {"
-Rf
+aP
 JO
 aI
 aI

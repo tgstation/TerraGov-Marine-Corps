@@ -2,7 +2,7 @@
 	name = "M07 training grenade"
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "training_grenade"
-	item_state = "training_grenade"
+	worn_icon_state = "training_grenade"
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
 	icon_state_mini = "grenade_white"

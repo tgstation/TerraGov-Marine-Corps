@@ -29,7 +29,7 @@
 	name = "\improper AR-18 Kauser carbine"
 	desc = "The Keckler and Hoch AR-18 carbine is one of the standard rifles used by the Nine Tailed Fox. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon_state = "t18"
-	item_state = "t18"
+	worn_icon_state = "t18"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_ar18.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -117,7 +117,7 @@
 	name = "\improper AR-12 K&H assault rifle"
 	desc = "The Keckler and Hoch AR-12 assault rifle used to be the Nine Tailed Fox standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
-	item_state = "t12"
+	worn_icon_state = "t12"
 	fire_sound = "gun_ar12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -196,8 +196,8 @@
 	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "t37"
-	item_state = "t37"
-	item_icons = list(
+	worn_icon_state = "t37"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -275,9 +275,9 @@
 	name = "\improper BR-64 SCA battle rifle"
 	desc = "The San Cristo Arms BR-64 is the Nine Tailed Fox main battle rifle. It is known for its consistent ability to perform well at most ranges, and medium range stopping power with bursts. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
-	item_state = "t64"
+	worn_icon_state = "t64"
 	icon = 'icons/obj/items/guns/marksman64.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -352,7 +352,7 @@
 	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "m412"
-	item_state = "m412"
+	worn_icon_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = 'sound/weapons/guns/fire/M412.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -419,7 +419,7 @@
 	name = "\improper PR-412E battle rifle"
 	desc = "An \"Elite\" modification of the PR-412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated barrel charger, with a red skull stenciled on the body for some reason."
 	icon_state = "m412e"
-	item_state = "m412e"
+	worn_icon_state = "m412e"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/ap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -468,8 +468,8 @@
 	desc = "A strange failed electronically fired rifle, a rather unknown weapon of its time. It caused a surge in the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition. Has a irremoveable grenade launcher."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "m41a"
-	item_state = "m41a"
-	item_icons = list(
+	worn_icon_state = "m41a"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -533,7 +533,7 @@
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "ak47"
-	item_state = "ak47"
+	worn_icon_state = "ak47"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 40 //codex
@@ -602,7 +602,7 @@
 	name = "\improper MPi-KM assault rifle"
 	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. Sometimes better known as an 'AK', it chambers 7.62x39mm."
 	icon_state = "ak47_black"
-	item_state = "ak47_black"
+	worn_icon_state = "ak47_black"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/black
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -648,8 +648,8 @@
 	desc = "A cheap and robust machinegun, sometimes better known as an 'RPD'. Chambers 7.62x39mm. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "rpd"
-	item_state = "rpd"
-	item_icons = list(
+	worn_icon_state = "rpd"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -714,8 +714,8 @@
 	desc = "A cheap and robust machine gun seen commonly in the fringes of the bubble. Fires high caliber rounds to accommodate for its sluggish rate of fire, it is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x39mm AP rounds."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "dp27"
-	item_state = "dp27"
-	item_icons = list(
+	worn_icon_state = "dp27"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -760,7 +760,7 @@
 	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability. It is incredibly good at rapid burst fire, but must be paced correctly."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "m16a4"
-	item_state = "m16a4"
+	worn_icon_state = "m16a4"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
@@ -831,7 +831,7 @@
 	desc = "A light, versatile fast firing assault rifle with a 24 round magazine and short range scope, chambered to fire the 5.56x45mm NATO cartridge within a short amount of time."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "famas"
-	item_state = "famas"
+	worn_icon_state = "famas"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_556X45 //codex
 	max_shells = 24 //codex
@@ -888,8 +888,8 @@
 	desc = "The Kauser MG-42 is the NTC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 
 	icon_state = "t42"
-	item_state = "t42"
-	item_icons = list(
+	worn_icon_state = "t42"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
@@ -968,9 +968,9 @@
 	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "t60"
-	item_state = "t60"
+	worn_icon_state = "t60"
 	fire_animation = "t60_fire"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
@@ -1041,9 +1041,9 @@
 	desc = "A large weapon capable of laying down supressing fire, based on the PR-412 pulse rifle platform. Effective in burst fire. Uses 10x24mm caseless ammunition."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "m412l1"
-	item_state = "m412l1"
+	worn_icon_state = "m412l1"
 	fire_animation = "m412l1_fire"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -1113,7 +1113,7 @@
 	desc = "The primary rifle of the USL pirates, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "type71"
-	item_state = "type71"
+	worn_icon_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_762X39 //codex
 	max_shells = 42 //codex
@@ -1202,7 +1202,7 @@
 	name = "\improper Type 73 'Commando' pulse carbine"
 	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen outside of elite units."
 	icon_state = "type71"
-	item_state = "type71"
+	worn_icon_state = "type71"
 	wield_delay = 0.2 SECONDS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
@@ -1223,9 +1223,9 @@
 	name = "\improper Zauer SH-15 automatic shotgun"
 	desc = "The Zauer SH-15 Automatic Assault Shotgun, this is a Archercorp variant. Another iteration of the ZX series of firearms though it has been since regulated as part of the NTC arsenal, hence the SH designation. It took over the various shotgun models as the semi-automatic shotgun provided to the NTC. It is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
-	item_state = "tx15"
+	worn_icon_state = "tx15"
 	icon = 'icons/obj/items/guns/shotguns.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
@@ -1289,9 +1289,9 @@
 	name = "\improper SG-29 Raummetall-KT smart machine gun"
 	desc = "The Raummetall-KT SG-29 is the NTC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
-	item_state = "sg29"
+	worn_icon_state = "sg29"
 	icon = 'icons/obj/items/guns/machineguns.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -1353,8 +1353,8 @@
 	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "sg62"
-	item_state = "sg62"
-	item_icons = list(
+	worn_icon_state = "sg62"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
@@ -1438,8 +1438,8 @@
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
 	icon = 'icons/obj/items/guns/energy.dmi'
 	icon_state = "alien_rifle"
-	item_state = "alien_rifle"
-	item_icons = list(
+	worn_icon_state = "alien_rifle"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
 	)
@@ -1492,8 +1492,8 @@
 	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF, though careful aim allows fire support from behind. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "tl127"
-	item_state = "tl127"
-	item_icons = list(
+	worn_icon_state = "tl127"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -1565,7 +1565,7 @@
 	name = "\improper SR-81 Kauser-KT automatic sniper rifle"
 	desc = "The Kauser-KT SR-81 is the Nine Tailed Fox's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It is notable for its high rate of fire for its class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
-	item_state = "t81"
+	worn_icon_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -1612,7 +1612,7 @@
 	name = "\improper AR-11 K&H combat rifle"
 	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the NTC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
-	item_state = "tx11"
+	worn_icon_state = "tx11"
 	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.85 SECONDS
@@ -1675,8 +1675,8 @@
 	desc = "The Kauser AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25mm round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "t21"
-	item_state = "t21"
-	item_icons = list(
+	worn_icon_state = "t21"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
@@ -1751,8 +1751,8 @@
 	desc = "The Kauser ALF-51B is an unoffical modification of a ALF-51, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon = 'icons/obj/items/guns/machineguns.dmi'
 	icon_state = "alf51b"
-	item_state = "alf51b"
-	item_icons = list(
+	worn_icon_state = "alf51b"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -1814,7 +1814,7 @@
 	desc = "A certified classic, this reproduction design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for its class, but suffers in capacity. This version of it chambers 7.62x39mm."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "mkh98"
-	item_state = "mkh98"
+	worn_icon_state = "mkh98"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 30 //codex
@@ -1856,8 +1856,8 @@
 	desc = "A magazine fed, semi-automatic grenade launcher designed to shoot airbursting smart grenades. Requires a T49 scope for precision aiming."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "tx54"
-	item_state = "tx54" ///todo
-	item_icons = list(
+	worn_icon_state = "tx54" ///todo
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -1936,7 +1936,7 @@
 	name = "\improper AR-55 assault rifle"
 	desc = "Officially designated an Objective Individual Combat Weapon, the AR-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
 	icon_state = "tx55"
-	item_state = "tx55"
+	worn_icon_state = "tx55"
 	fire_sound = "gun_ar12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -2014,10 +2014,10 @@
 	desc = "The Carlford-1 is a remastered classic made by Carlford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications. Other than that, it is a faithful recreation with the trademark ping sound and all. Uses .30-06 enbloc clips."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "garand"
-	item_state = "garand"
+	worn_icon_state = "garand"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -2077,7 +2077,7 @@
 	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless, the V-31 continues to see common use due to its comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
 	icon_state = "v31"
 	icon = 'icons/obj/items/guns/rifles64.dmi'
-	item_state = "v31"
+	worn_icon_state = "v31"
 	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -2183,7 +2183,7 @@
 	desc = "An old but robust weapon that saw extensive use in the Martian uprising. A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. It is chambered in 7.62x39mm."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "v34"
-	item_state = "v34"
+	worn_icon_state = "v34"
 	caliber = CALIBER_762X39
 	muzzleflash_iconstate = "muzzle_flash"
 	max_shells = 30
@@ -2231,7 +2231,7 @@
 /obj/item/weapon/gun/rifle/som_carbine/black
 	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. It is chambered in 7.62x39mm."
 	icon_state = "v34_black"
-	item_state = "v34_black"
+	worn_icon_state = "v34_black"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
 	attachable_allowed = list(
 		/obj/item/attachable/foldable/som_carbine,
@@ -2255,9 +2255,9 @@
 	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited. Takes 10x26mm Caseless."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "v41"
-	item_state = "v41"
+	worn_icon_state = "v41"
 	fire_animation = "v41_fire"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
@@ -2323,8 +2323,8 @@
 	desc = "The L-11 is a venerable and battle-tested rifle used by the ICCAF. Although rather heavy, long and unwieldy compared to most ICCAF rifles, which focus on getting up close and personal, it easily makes up with excellent long-range potential when compared to most of its peers, mostly seen in use by reserve troops who expect to fight at distance, rather than up close. Uses 10x27mm magazines."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "l11"
-	item_state = "l11"
-	item_icons = list(
+	worn_icon_state = "l11"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -2396,8 +2396,8 @@
 	desc = "The L-15 battlecarbine is the standard rifle of the ICCAF, boasting a high caliber round and a menacing profile, it presents an excellent CQC firearm. However it struggles at range due to high dropoff from the short barrel, units that use it say that you need to close the gap at any cost to see the true efficacy of this weapon. Uses 10x25mm caseless ammunition."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "l15"
-	item_state = "l15"
-	item_icons = list(
+	worn_icon_state = "l15"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/rifles_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/rifles_right_64.dmi',
 	)
@@ -2468,8 +2468,8 @@
 	desc = "The ML-12 confrontation rifle is an absolute beast of a weapon used by the ICCAF. Featuring a high caliber round in a short package, it will absolutely shred enemy targets at close quarters, a operator must mind the incredible recoil while making followup shots, however. Uses 10x28mm caseless ammunition."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "ml12"
-	item_state = "ml12"
-	item_icons = list(
+	worn_icon_state = "ml12"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
@@ -2535,8 +2535,8 @@
 	desc = "The ML-41 Automatic Shotgun is used by the ICCAF in fast paced boarding assaults, fielding a wide variety of ammo for all situations. Takes 16-round 12 gauge drums."
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "ml41"
-	item_state = "ml41"
-	item_icons = list(
+	worn_icon_state = "ml41"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
@@ -2592,7 +2592,7 @@
 	desc = "An aged, reliable but outdated bullpup rifle used by ICCAF reserve personnel it is best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "l88"
-	item_state = "l88"
+	worn_icon_state = "l88"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
@@ -2633,7 +2633,7 @@
 	name = "\improper L&S EM-88 assault carbine"
 	desc = "An aged, reliable, but outdated bullpup rifle usually seen within ICC space due to being surplused long ago, some of these surplus models sometimes find themselves within NTC space via underhanded means. It's best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
 	icon_state = "l88_export"
-	item_state = "l88_export"
+	worn_icon_state = "l88_export"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
 
 //-------------------------------------------------------
@@ -2644,9 +2644,9 @@
 	desc = "The ML-41 is an incredibly lightweight machinegun used by ICCAF forces, being incredibly light for its class allows it to be used in rapid manuevers, at the cost of damage at range and generally high scatter. It uses 10x26mm boxes."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "minimi"
-	item_state = "minimi"
+	worn_icon_state = "minimi"
 	fire_animation = "minimi_fire"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)

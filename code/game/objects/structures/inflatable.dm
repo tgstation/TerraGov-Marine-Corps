@@ -208,7 +208,7 @@
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
-	item_state = "syringe_kit"
+	worn_icon_state = "syringe_kit"
 
 /obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
 	. = ..()

@@ -89,6 +89,7 @@
 		/obj/item/defibrillator,
 		/obj/item/roller,
 		/obj/item/tool/research,
+		/obj/item/tool/soap,
 	))
 
 /datum/storage/belt/hypospraybelt

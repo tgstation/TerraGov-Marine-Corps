@@ -12,7 +12,7 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
@@ -51,7 +51,7 @@
 	name = "alien lens"
 	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
 	icon_state = "alien_lens"
-	item_state = "alien_lens"
+	worn_icon_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	item_flags = DELONDROP
@@ -76,7 +76,7 @@
 	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56sunglasses"
-	item_state = "m56sunglasses"
+	worn_icon_state = "m56sunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
 	darkness_view = 5
 	toggleable = TRUE
@@ -88,7 +88,7 @@
 	name = "\improper Optical imager ballistic goggles"
 	desc = "Standard issue NTC goggles. This pair has been fitted with an internal optical imaging scanner."
 	icon_state = "optgoggles"
-	item_state = "optgoggles"
+	worn_icon_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
 	darkness_view = 2
 	toggleable = TRUE

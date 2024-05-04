@@ -83,6 +83,22 @@
 
 	X.record_war_crime()
 
+/datum/action/ability/xeno_action/baneling_explode/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/xeno_action/baneling_explode/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > 1)
+		return FALSE
+	if(!line_of_sight(owner, target))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	X.selected_reagent = GLOB.baneling_chem_type_list[rand(1,length(GLOB.baneling_chem_type_list))]
+	return TRUE
+
 // ***************************************
 // *********** Reagent Selection
 // ***************************************

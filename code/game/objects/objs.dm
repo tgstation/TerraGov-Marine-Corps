@@ -4,6 +4,10 @@
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
 
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_preview
+	var/icon_state_preview
+
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
 	///damage type to deal when this obj is attacking something

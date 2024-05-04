@@ -20061,6 +20061,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
+"qym" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor,
+/area/lv624/lazarus/console)
 "qyn" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -76738,7 +76743,7 @@ uty
 wEk
 wEk
 wEk
-wEk
+qym
 wEk
 wEk
 uty
@@ -76791,7 +76796,7 @@ rac
 nFU
 nFU
 nFU
-nFU
+qym
 nFU
 nFU
 rac

@@ -9,13 +9,14 @@
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical)
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
-	minimap_icon_state = null
+	minimap_icon_state = "apc"
 	turret_icon = null
 	pixel_x = -48
 	pixel_y = -40
-	obj_integrity = 2000
-	max_integrity = 2000
+	max_integrity = 600
+	soft_armor = list(MELEE = 40, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
 	max_occupants = 20 //Clown car? Clown car.
+	ram_damage = 25
 	move_delay = 0.5 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,

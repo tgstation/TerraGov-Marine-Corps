@@ -460,7 +460,7 @@
 					if (display_foot_right)
 						msg += "[span_warning("[t_He] [t_has] blood pooling around [t_his] <b>right boot!</b>")]\n"
 
-	if(chestburst == 2)
+	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
 			msg += "[span_xenowarning("A larva was born from [t_him]!")]\n"
 
@@ -492,7 +492,7 @@
 
 	if(hasHUD(user,"medical"))
 		var/cardcolor = holo_card_color
-		if(!cardcolor) 
+		if(!cardcolor)
 			cardcolor = "none"
 		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 

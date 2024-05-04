@@ -13093,6 +13093,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/ammo_magazine/shotgun/blank,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "ghD" = (

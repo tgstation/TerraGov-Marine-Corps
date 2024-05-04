@@ -16,7 +16,7 @@
 	desc = "It has some sort of a tube at the end of its tail."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
-	item_state = "facehugger"
+	worn_icon_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	resistance_flags = NONE
 	inventory_flags = COVEREYES|COVERMOUTH
@@ -26,8 +26,8 @@
 	throw_range = 5
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
-	item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
-	item_icons = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
+	worn_item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
+	worn_icon_list = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS

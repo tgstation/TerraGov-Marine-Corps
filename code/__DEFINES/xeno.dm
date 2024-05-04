@@ -93,11 +93,12 @@ GLOBAL_LIST_INIT(pheromone_images_list, list(
 
 //List of Defiler toxin types available for selection
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
-		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_aphrotoxin,
+		/datum/reagent/toxin/xeno_ozelomelyn,
 		))
 
 //List of toxins improving defile's damage
@@ -173,6 +174,7 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/mantis/ai,
 	/mob/living/carbon/xenomorph/scorpion/ai,
 	/mob/living/carbon/xenomorph/nymph/ai,
+	/mob/living/carbon/xenomorph/baneling/ai,
 ))
 
 ///Heals a xeno, respecting different types of damage

@@ -2,7 +2,7 @@
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
-	item_state = "baton"
+	worn_icon_state = "baton"
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	sharp = 0
@@ -196,7 +196,7 @@
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"
-	item_state = "prod"
+	worn_icon_state = "prod"
 	force = 3
 	throwforce = 5
 	stunforce = 0
@@ -211,7 +211,7 @@
 	name = "electrified prodder"
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
-	item_state = "baton"
+	worn_icon_state = "baton"
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 12
 	throwforce = 7

@@ -15,6 +15,7 @@
 /turf/closed/interior/apc/twentyfour,
 /area/interior/apc)
 "g" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /turf/closed/interior/apc/six,
 /area/interior/apc)
 "j" = (
@@ -22,6 +23,13 @@
 /area/interior/apc)
 "l" = (
 /turf/closed/interior/apc/five,
+/area/interior/apc)
+"m" = (
+/obj/structure/periscope/apc,
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/turf/open/interior/apc/nine,
 /area/interior/apc)
 "n" = (
 /obj/structure/bed/chair/dropship/doublewide/left,
@@ -38,6 +46,13 @@
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/interior/apc/nine,
+/area/interior/apc)
+"s" = (
+/obj/structure/periscope/apc,
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/turf/open/interior/apc/twentynine,
 /area/interior/apc)
 "u" = (
 /obj/structure/gun_breech/secondary,
@@ -129,9 +144,9 @@ x
 "}
 (6,1,1) = {"
 b
-r
+m
 T
-J
+s
 x
 "}
 (7,1,1) = {"

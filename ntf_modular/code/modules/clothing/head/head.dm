@@ -2,7 +2,7 @@
 	name = "\improper armored Mothellian helmet"
 	desc = "A sturdy mothellian's helmet."
 	icon = 'ntf_modular/icons/mob/clothing/headwear/ert_headwear.dmi'
-	item_icons = list(
+	worn_icon_list =list(
 		slot_head_str = 'ntf_modular/icons/mob/clothing/headwear/ert_headwear.dmi')
 
 /obj/item/clothing/head/frelancer/mothellian/base

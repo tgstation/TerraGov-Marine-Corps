@@ -28,16 +28,13 @@
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
 	var/aoe_range = 2
+	///AOE damage amount
+	var/aoe_damage = 45
 
 /datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	var/aoe_damage = 25
-	if(isxeno(P.firer))
-		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
-		aoe_damage = xeno_firer.xeno_caste.blast_strength
-
 	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
@@ -50,11 +47,14 @@
 					staggerstun(living_victim, P, 10, slowdown = 1)
 			else if(isobj(target))
 				var/obj/obj_victim = target
+				var/dam_mult = 1
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
 					continue
 				if(isbarricade(target))
 					continue
-				obj_victim.take_damage(aoe_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
+				if(isarmoredvehicle(target))
+					dam_mult -= 0.5
+				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
 			if(target.anchored)
 				continue
 

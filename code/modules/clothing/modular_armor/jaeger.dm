@@ -6,7 +6,7 @@
 	desc = "A Infantry-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = MARINE_ARMOR_MEDIUM
 	icon_state = "chest"
-	item_state = "chest"
+	worn_icon_state = "chest"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
@@ -107,12 +107,12 @@
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "helmet"
-	item_state = "helmet"
+	worn_icon_state = "helmet"
 	icon_override = null
 	soft_armor = MARINE_ARMOR_HEAVY
 

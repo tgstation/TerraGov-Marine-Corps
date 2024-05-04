@@ -24,6 +24,13 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
+GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
+	/turf/open/space,
+	/turf/open/liquid/lava,
+	/turf/open/liquid/water,
+	/turf/open/space
+	)))
+
 #define isopenturf(A) (istype(A, /turf/open))
 
 #define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
@@ -232,6 +239,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define iscell(I) (istype(I, /obj/item/cell))
 
+#define islascell(I) (istype(I, /obj/item/cell/lasgun))
+
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
 
 #define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
@@ -273,6 +282,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
+
+#define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
 

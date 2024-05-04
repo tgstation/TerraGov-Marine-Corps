@@ -191,16 +191,34 @@
 	switch(paygrade)
 		if("C")
 			. = size ? "" : "Civilian"
-		if("CD")
-			. = size ? "Dr." : "Doctor"
+		if("MS")
+			. = size ? "MS" : "Medical Student"
+		if("JR")
+			. = size ? "JR" : "Junior Resident"
+		if("SR")
+			. = size ? "SR" : "Senior Resident"
+		if("GP")
+			. = size ? "GP" : "General Practitioner"
+		if("AP")
+			. = size ? "AP" : "Attending Physician"
+		if("SP")
+			. = size ? "SP" : "Senior Physician"
+		if("HP")
+			. = size ? "HP" : "Head Physician"
+		if("MSPVR")
+			. = size ? "MSPVR" : "Medical Supervisor"
+		if("MDR")
+			. = size ? "MDR" : "Medical Director"
+		if("RSRA")
+			. = size ? "RSRA" : "Research Assistant"
+		if("RSR")
+			. = size ? "RSR" : "Researcher"
+		if("LECT")
+			. = size ? "LECT" : "Lecturer"
+		if("APROF")
+			. = size ? "APROF" : "Associate Professor"
 		if("PROF")
-			. = size ? "Prof." : "Professor"
-		if("RES")
-			. = size ? "RES" : "Medical Resident"
-		if("MD")
-			. = size ? "MD" : "Medical Doctor"
-		if("CHO")
-			. = size ? "CHO" : "Chief Health Officer"
+			. = size ? "PROF" : "Professor"
 		if("CMO")
 			. = size ? "CMO" : "Chief Medical Officer"
 		if("CMN")
@@ -297,6 +315,8 @@
 			. = size ? "CPO" : "Chief Petty Officer"
 		if("CEO")
 			. = size ? "CEO " : "Chief Executive Officer"
+		if("SCPO")
+			. = size ? "SCPO" : "Senior Chief Petty Officer"
 		if("MO4")
 			. = size ? "MAJ" : "Major"
 		if("MO5")
@@ -428,9 +448,9 @@
 		if("VM")
 			. = size ? "VAT" : "VatGrown Marine"
 		if("Mk.V")
-			. = size ? "Mk.III" : "Mark V"
+			. = size ? "Mk.V" : "Mark V"
 		if("Mk.IV")
-			. = size ? "Mk.III" : "Mark IV"
+			. = size ? "Mk.IV" : "Mark IV"
 		if("Mk.III")
 			. = size ? "Mk.III" : "Mark III"
 		if("Mk.II")

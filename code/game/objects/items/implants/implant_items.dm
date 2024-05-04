@@ -66,7 +66,7 @@
 	name = "mantis arm blade"
 	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
 	icon_state = "armblade"
-	item_state = "armblade"
+	worn_icon_state = "armblade"
 	force = 75
 	attack_speed = 8
 	equip_slot_flags = NONE

@@ -678,6 +678,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BANELING_CHARGE_RESPAWN_TIME 30 SECONDS
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so
 #define BANELING_SMOKE_DURATION 4
+#define BANELING_SMOKE_RANGE 4
 
 //Sentinel defines
 #define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
@@ -856,3 +857,8 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define BASE_WALL_SLAM_DAMAGE 15
 ///Default damage for slamming a mob against another mob
 #define BASE_MOB_SLAM_DAMAGE 8
+
+//chest burst defines
+#define CARBON_NO_CHEST_BURST 0
+#define CARBON_IS_CHEST_BURSTING 1
+#define CARBON_CHEST_BURSTED 2

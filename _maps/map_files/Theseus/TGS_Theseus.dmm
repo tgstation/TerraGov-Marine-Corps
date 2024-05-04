@@ -20173,6 +20173,7 @@
 "xcs" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/regular,
+/obj/item/shotgunbox/blank,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},

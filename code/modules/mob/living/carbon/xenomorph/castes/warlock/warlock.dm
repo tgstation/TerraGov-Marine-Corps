@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/warlock
-	caste_base_type = /mob/living/carbon/xenomorph/warlock
+	caste_base_type = /datum/xeno_caste/warlock
 	name = "Warlock"
 	desc = "A large, physically frail creature. It hovers in the air and seems to buzz with psychic power."
 	icon = 'icons/Xeno/castes/warlock.dmi'
