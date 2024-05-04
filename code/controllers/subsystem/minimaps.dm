@@ -380,6 +380,8 @@ SUBSYSTEM_DEF(minimaps)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
 	var/list/mob/choices_by_mob
+	///should get_coords_from_click stop waiting for an input?
+	var/stop_polling = FALSE
 
 /atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
 	. = ..()
@@ -391,21 +393,25 @@ SUBSYSTEM_DEF(minimaps)
 
 /atom/movable/screen/minimap/Destroy()
 	SSminimaps.hashed_minimaps -= src
+	stop_polling = TRUE
 	return ..()
 
 /**
  * lets the user get coordinates by clicking the actual map
  * Returns a list(x_coord, y_coord)
- * note: sleeps until the user makes a choice or they disconnect
+ * note: sleeps until the user makes a choice, stop_polling is set to TRUE or they disconnect
  */
 /atom/movable/screen/minimap/proc/get_coords_from_click(mob/user)
 	//lord forgive my shitcode
-	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_click))
-	while(!choices_by_mob[user] && user.client)
+	var/signal_by_type = isobserver(user) ? COMSIG_OBSERVER_CLICKON : COMSIG_MOB_CLICKON
+	RegisterSignal(user, signal_by_type, PROC_REF(on_click))
+	while(!(choices_by_mob[user] || stop_polling) && user.client)
 		stoplag(1)
-	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+	UnregisterSignal(user, signal_by_type)
 	. = choices_by_mob[user]
 	choices_by_mob -= user
+	// I have an extra layer of shitcode for you
+	stop_polling = FALSE
 
 /**
  * Handles fetching the targetted coordinates when the mob tries to click on this map
@@ -492,23 +498,36 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/action_activate()
 	. = ..()
 	if(!map)
-		return
+		return FALSE
+
+	return toggle_minimap()
+
+/// Toggles the minimap, has a variable to force on or off (most likely only going to be used to close it)
+/datum/action/minimap/proc/toggle_minimap(force_state)
+	// No force state? Invert the current state
+	if(isnull(force_state))
+		force_state = !minimap_displayed
+	// You want to set it to the already active state? Do nothing.
+	if(force_state == minimap_displayed)
+		return FALSE
+	// Proceed with normal operation
 	if(!locator_override && ismovableatom(owner.loc))
 		override_locator(owner.loc)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
-	if(minimap_displayed)
-		owner.client.screen -= map
-		owner.client.screen -= locator
-		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
-	else
+	if(force_state)
 		if(locate(/atom/movable/screen/minimap) in owner.client.screen) //This seems like the most effective way to do this without some wacky code
 			to_chat(owner, span_warning("You already have a minimap open!"))
-			return
+			return FALSE
 		owner.client.screen += map
 		owner.client.screen += locator
 		locator.update(tracking)
 		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
-	minimap_displayed = !minimap_displayed
+	else
+		owner.client.screen -= map
+		owner.client.screen -= locator
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+	minimap_displayed = force_state
+	return TRUE
 
 ///Overrides the minimap locator to a given atom
 /datum/action/minimap/proc/override_locator(atom/movable/to_track)
@@ -656,5 +675,22 @@ SUBSYSTEM_DEF(minimaps)
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_ALL // What's the point of making `MINIMAP_FLAG_ALL` if `ALL` exists? Unless this runtimes for some reason.
 	marker_flags = NONE
+
+/datum/action/minimap/observer/action_activate()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(minimap_displayed)
+		var/list/clicked_coords = map.get_coords_from_click(owner)
+		var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
+		if(!clicked_turf)
+			return FALSE
+		// Taken directly from observer/DblClickOn
+		owner.abstract_move(clicked_turf)
+		owner.update_parallax_contents()
+		// Close minimap
+		toggle_minimap(FALSE)
+	else
+		map.stop_polling = TRUE
