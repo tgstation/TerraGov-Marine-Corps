@@ -24,7 +24,7 @@
 	return ..()
 
 /turf/closed/interior/tank
-	name = "\improper Ares tank interior"
+	name = "\improper Banteng tank interior"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 
 /turf/closed/interior/tank/one
@@ -114,7 +114,7 @@
 	return get_step(src, EAST)
 
 /turf/open/interior/tank
-	name = "\improper Ares tank interior"
+	name = "\improper Banteng tank interior"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 
 /turf/open/interior/tank/eight
