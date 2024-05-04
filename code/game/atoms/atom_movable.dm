@@ -478,6 +478,8 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	var/hit_successful
 	var/old_throw_source = throw_source
+	if(QDELETED(hit_atom))
+		return FALSE
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
