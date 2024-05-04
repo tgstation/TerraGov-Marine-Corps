@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - imageadd: "Tweaked the timing on perk unlock animations"
