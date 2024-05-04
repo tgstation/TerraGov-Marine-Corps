@@ -7,6 +7,7 @@
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
+	allow_construction = FALSE
 	///Multiplier on any slowdown applied to a mob moving through this turf
 	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit

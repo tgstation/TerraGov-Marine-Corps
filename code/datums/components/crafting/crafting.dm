@@ -217,8 +217,6 @@
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(!isopenturf(dest_turf))
 			return ", cannot be made on a wall!"
-		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
-			return ", must be made on solid ground!"
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
 			return ", cannot build in this area."
