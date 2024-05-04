@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscadd: "Full ranks show up in command annoucements"
-  - rscadd: "Instead of faction title, the job of the person sending the command shows up"

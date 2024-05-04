@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added EMP nades to campaign"
+  - balance: "Various changes to EMP effects"
+  - code_imp: "updated EMP code"

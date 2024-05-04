@@ -63,7 +63,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	var/obj/effect/overlay/perk/perk_animation = new
 	owner.vis_contents += perk_animation
 	flick(ui_icon, perk_animation)
-	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 0.9 SECONDS, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 1.8 SECONDS, TIMER_CLIENT_TIME)
 
 ///callback for removing the eye from viscontents
 /datum/perk/proc/remove_unlock_animation(mob/living/carbon/owner, obj/effect/overlay/perk/perk_animation)

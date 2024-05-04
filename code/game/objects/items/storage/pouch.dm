@@ -505,6 +505,15 @@
 	new /obj/item/explosive/grenade/bullet/laser(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 
+/obj/item/storage/pouch/grenade/emp/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
@@ -537,6 +546,15 @@
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
+
+/obj/item/storage/pouch/grenade/som/emp/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
+	new /obj/item/explosive/grenade/emp(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"

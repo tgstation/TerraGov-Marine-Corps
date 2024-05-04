@@ -1254,22 +1254,22 @@
 	icon_state = "truck_enclosed_wrecked"
 
 /obj/structure/prop/vehicle/big_truck/tread
-	icon_state = "truck_flat"
+	icon_state = "truck_treads"
 
 /obj/structure/prop/vehicle/big_truck/flat_tread
-	icon_state = "truck_flat"
+	icon_state = "truck_flat_treads"
 
 /obj/structure/prop/vehicle/big_truck/enclosed_tread
-	icon_state = "truck_enclosed"
+	icon_state = "truck_enclosed_treads"
 
 /obj/structure/prop/vehicle/big_truck/wrecked_tread
-	icon_state = "truck_wrecked"
+	icon_state = "truck_treads_wrecked"
 
 /obj/structure/prop/vehicle/big_truck/flat_wrecked_tread
-	icon_state = "truck_flat_wrecked"
+	icon_state = "truck_flat_treads_wrecked"
 
 /obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread
-	icon_state = "truck_enclosed_wrecked"
+	icon_state = "truck_enclosed_treads_wrecked"
 
 
 /obj/structure/prop/vehicle/tank
