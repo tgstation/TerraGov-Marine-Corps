@@ -29,3 +29,9 @@
   - balance: Increased QB points on Gelida to 1900.
   novaepee:
   - rscadd: APC has minimap icon; locate APC in minimap
+2024-05-04:
+  Lumipharon:
+  - code_imp: Removed some dead code
+  - bugfix: fixed opening storage by clicking with another item, properly
+  blackdav123:
+  - bugfix: Treaded trucks now use the correct sprites.
