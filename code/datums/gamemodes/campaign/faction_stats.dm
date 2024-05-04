@@ -270,13 +270,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Deletes a faction member and preps them for respawn
 /datum/faction_stats/proc/respawn_member(mob/living/carbon/human/faction_member)
 	var/mob/dead/observer/ghost = faction_member.ghostize()
-		if(faction_member.job.job_cost) //We don't refund ally roles
-			faction_member.job.add_job_positions(1)
-		qdel(faction_member)
-		if(!ghost) //if they ghosted already
-			return
-		var/datum/game_mode/mode = SSticker.mode
-		mode.player_respawn(ghost) //auto open the respawn screen
+	if(faction_member.job.job_cost) //We don't refund ally roles
+		faction_member.job.add_job_positions(1)
+	qdel(faction_member)
+	if(!ghost) //if they ghosted already
+		return
+	var/datum/game_mode/mode = SSticker.mode
+	mode.player_respawn(ghost) //auto open the respawn screen
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
