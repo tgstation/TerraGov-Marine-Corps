@@ -252,7 +252,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		var/datum/individual_stats/player_stats = individual_stat_list[i]
 		player_stats.give_funds(amount)
 
-///Returns all faction members back to base after the mission is completed
+///Returns faction members back to spawn or prepares them for respawn if deployed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
 		if((human_mob.z && human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client) //why is byond so cursed that being inside something makes you z = 0
@@ -263,10 +263,16 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			human_mob.Stun(1 SECONDS) //so you don't accidentally shoot your team etc
 			continue
 
-		var/mob/dead/observer/ghost = human_mob.ghostize()
-		if(human_mob.job.job_cost) //We don't refund ally roles
-			human_mob.job.add_job_positions(1)
-		qdel(human_mob)
+		INVOKE_ASYNC(src, PROC_REF(respawn_member), human_mob)
+		//Async as there are many runtimes relating to qdeling a human mob without a client that are breaking the whole proc chain leading to many people being stranded and screwing the game
+		//Asyncing them separately means we isolate it to a specific person which is easier to fix in game and out, since I can only fix these issues as they surface
+
+///Deletes a faction member and preps them for respawn
+/datum/faction_stats/proc/respawn_member(mob/living/carbon/human/faction_member)
+	var/mob/dead/observer/ghost = faction_member.ghostize()
+		if(faction_member.job.job_cost) //We don't refund ally roles
+			faction_member.job.add_job_positions(1)
+		qdel(faction_member)
 		if(!ghost) //if they ghosted already
 			return
 		var/datum/game_mode/mode = SSticker.mode
