@@ -93,11 +93,9 @@
 
 
 /obj/machinery/cell_charger/emp_act(severity)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
+	. = ..()
 	if(charging)
 		charging.emp_act(severity)
-	..(severity)
 
 
 /obj/machinery/cell_charger/process()
