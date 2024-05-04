@@ -30,42 +30,42 @@
 				name = "Ale glass"
 				desc = "A freezing pint of delicious Ale"
 				center_of_mass = list("x"=16, "y"=8)
-			if(/datum/reagent/consumable/drink/milk)
+			if(/datum/reagent/consumable/milk)
 				icon_state = "glass_white"
 				name = "Glass of milk"
 				desc = "White and nutritious goodness!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/milk/cream)
+			if(/datum/reagent/consumable/cream)
 				icon_state = "glass_white"
 				name = "Glass of cream"
 				desc = "Ewwww..."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/hot_coco)
+			if(/datum/reagent/consumable/hot_coco)
 				icon_state = "chocolateglass"
 				name = "Glass of chocolate"
 				desc = "Tasty"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/lemonjuice)
+			if(/datum/reagent/consumable/lemonjuice)
 				icon_state = "lemonglass"
 				name = "Glass of lemonjuice"
 				desc = "Sour..."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/space_cola)
+			if(/datum/reagent/consumable/space_cola)
 				icon_state = "glass_brown"
 				name = "Glass of Space Cola"
 				desc = "A glass of refreshing Space Cola"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/nuka_cola)
+			if(/datum/reagent/consumable/nuka_cola)
 				icon_state = "nuka_colaglass"
 				name = "Nuka Cola"
 				desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland"
 				center_of_mass = list("x"=16, "y"=6)
-			if(/datum/reagent/consumable/drink/orangejuice)
+			if(/datum/reagent/consumable/orangejuice)
 				icon_state = "glass_orange"
 				name = "Glass of Orange juice"
 				desc = "Vitamins! Yay!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/tomatojuice)
+			if(/datum/reagent/consumable/tomatojuice)
 				icon_state = "glass_red"
 				name = "Glass of Tomato juice"
 				desc = "Are you sure this is tomato juice?"
@@ -75,7 +75,7 @@
 				name = "Glass of Tomato juice"
 				desc = "Are you sure this is tomato juice?"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/limejuice)
+			if(/datum/reagent/consumable/limejuice)
 				icon_state = "glass_green"
 				name = "Glass of Lime juice"
 				desc = "A glass of sweet-sour lime juice."
@@ -180,7 +180,7 @@
 				name = "Vodka martini"
 				desc ="A bastardisation of the classic martini. Still great."
 				center_of_mass = list("x"=17, "y"=8)
-			if(/datum/reagent/consumable/drink/gargle_blaster)
+			if(/datum/reagent/consumable/ethanol/gargle_blaster)
 				icon_state = "gargleblasterglass"
 				name = "Pan-Galactic Gargle Blaster"
 				desc = "Does... does this mean that Arthur and Ford are on the station? Oh joy."
@@ -204,7 +204,7 @@
 				name = "Beepsky Smash"
 				desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
 				center_of_mass = list("x"=18, "y"=10)
-			if(/datum/reagent/consumable/drink/doctor_delight)
+			if(/datum/reagent/consumable/doctor_delight)
 				icon_state = "doctorsdelightglass"
 				name = "Doctor's Delight"
 				desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
@@ -229,7 +229,7 @@
 				name = "B-52"
 				desc = "Kahlua, Irish Cream, and congac. You will get bombed."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/atomicbomb)
+			if(/datum/reagent/consumable/atomicbomb)
 				icon_state = "atomicbombglass"
 				name = "Atomic Bomb"
 				desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
@@ -289,12 +289,12 @@
 				name = "Whiskey Soda"
 				desc = "Ultimate refreshment."
 				center_of_mass = list("x"=16, "y"=9)
-			if(/datum/reagent/consumable/drink/cold/tonic)
+			if(/datum/reagent/consumable/tonic)
 				icon_state = "glass_clear"
 				name = "Glass of Tonic Water"
 				desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/sodawater)
+			if(/datum/reagent/consumable/sodawater)
 				icon_state = "glass_clear"
 				name = "Glass of Soda Water"
 				desc = "Soda water. Why not make a scotch and soda?"
@@ -304,7 +304,7 @@
 				name = "Glass of Water"
 				desc = "The father of all refreshments."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/spacemountainwind)
+			if(/datum/reagent/consumable/spacemountainwind)
 				icon_state = "Space_mountain_wind_glass"
 				name = "Glass of Space Mountain Wind"
 				desc = "Space Mountain Wind. As you know, there are no mountains in space, only wind."
@@ -314,12 +314,12 @@
 				name = "Glass of Thirteen Loko"
 				desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/dr_gibb)
+			if(/datum/reagent/consumable/dr_gibb)
 				icon_state = "dr_gibb_glass"
 				name = "Glass of Dr. Gibb"
 				desc = "Dr. Gibb. Not as dangerous as the name might imply."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/space_up)
+			if(/datum/reagent/consumable/space_up)
 				icon_state = "space-up_glass"
 				name = "Glass of Space-up"
 				desc = "Space-up. It helps keep your cool."
@@ -329,27 +329,27 @@
 				name = "Moonshine"
 				desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/milk/soymilk)
+			if(/datum/reagent/consumable/soymilk)
 				icon_state = "glass_white"
 				name = "Glass of soy milk"
 				desc = "White and nutritious soy goodness!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/berryjuice)
+			if(/datum/reagent/consumable/berryjuice)
 				icon_state = "berryjuice"
 				name = "Glass of berry juice"
 				desc = "Berry juice. Or maybe its jam. Who cares?"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/poisonberryjuice)
+			if(/datum/reagent/consumable/poisonberryjuice)
 				icon_state = "poisonberryjuice"
 				name = "Glass of poison berry juice"
 				desc = "A glass of deadly juice."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/carrotjuice)
+			if(/datum/reagent/consumable/carrotjuice)
 				icon_state = "carrotjuice"
 				name = "Glass of  carrot juice"
 				desc = "It is just like a carrot but without crunching."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/banana)
+			if(/datum/reagent/consumable/banana)
 				icon_state = "banana"
 				name = "Glass of banana juice"
 				desc = "The raw essence of a banana. HONK"
@@ -429,12 +429,12 @@
 				name = "Grog"
 				desc = "A fine and cepa drink for Space."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/coffee/soy_latte)
+			if(/datum/reagent/consumable/coffee/soy_latte)
 				icon_state = "soy_latte"
 				name = "Soy Latte"
 				desc = "A nice and refrshing beverage while you are reading."
 				center_of_mass = list("x"=15, "y"=9)
-			if(/datum/reagent/consumable/drink/coffee/cafe_latte)
+			if(/datum/reagent/consumable/coffee/cafe_latte)
 				icon_state = "cafe_latte"
 				name = "Cafe Latte"
 				desc = "A nice, strong and refreshing beverage while you are reading."
@@ -449,12 +449,12 @@
 				name = "Amasec"
 				desc = "Always handy before COMBAT!!!"
 				center_of_mass = list("x"=16, "y"=9)
-			if(/datum/reagent/consumable/drink/neurotoxin)
+			if(/datum/reagent/consumable/ethanol/neurotoxin)
 				icon_state = "neurotoxinglass"
 				name = "Neurotoxin"
 				desc = "A drink that is guaranteed to knock you silly."
 				center_of_mass = list("x"=16, "y"=8)
-			if(/datum/reagent/consumable/drink/hippies_delight)
+			if(/datum/reagent/consumable/ethanol/hippies_delight)
 				icon_state = "hippiesdelightglass"
 				name = "Hippie's Delight"
 				desc = "A drink enjoyed by people during the 1960's."
@@ -469,7 +469,7 @@
 				name = "Silencer"
 				desc = "A drink from mime Heaven."
 				center_of_mass = list("x"=16, "y"=9)
-			if(/datum/reagent/consumable/drink/nothing)
+			if(/datum/reagent/consumable/nothing)
 				icon_state = "nothing"
 				name = "Nothing"
 				desc = "Absolutely nothing."
@@ -504,17 +504,17 @@
 				name = "Driest Martini"
 				desc = "Only for the experienced. You think you see sand floating in the glass."
 				center_of_mass = list("x"=17, "y"=8)
-			if(/datum/reagent/consumable/drink/cold/ice)
+			if(/datum/reagent/consumable/ice)
 				icon_state = "iceglass"
 				name = "Glass of ice"
 				desc = "Generally, you're supposed to put something else in there too..."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/coffee/icecoffee)
+			if(/datum/reagent/consumable/coffee/icecoffee)
 				icon_state = "icedcoffeeglass"
 				name = "Iced Coffee"
 				desc = "A drink to perk you up and refresh you!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/coffee)
+			if(/datum/reagent/consumable/coffee)
 				icon_state = "glass_brown"
 				name = "Glass of coffee"
 				desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
@@ -529,47 +529,47 @@
 				name = "Glass of welder fuel"
 				desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/brownstar)
+			if(/datum/reagent/consumable/brownstar)
 				icon_state = "brownstar"
 				name = "Brown Star"
 				desc = "It's not what it sounds like..."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/grapejuice)
+			if(/datum/reagent/consumable/grapejuice)
 				icon_state = "grapejuice"
 				name = "Glass of grape juice"
 				desc = "It's grrrrrape!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/grapesoda)
+			if(/datum/reagent/consumable/grapesoda)
 				icon_state = "grapesoda"
 				name = "Can of Grape Soda"
 				desc = "Looks like a delicious drank!"
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/tea/icetea)
+			if(/datum/reagent/consumable/tea/icetea)
 				icon_state = "icedteaglass"
 				name = "Iced Tea"
 				desc = "No relation to a certain rap artist/ actor."
 				center_of_mass = list("x"=15, "y"=10)
-			if(/datum/reagent/consumable/drink/grenadine)
+			if(/datum/reagent/consumable/grenadine)
 				icon_state = "grenadineglass"
 				name = "Glass of grenadine syrup"
 				desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 				center_of_mass = list("x"=17, "y"=6)
-			if(/datum/reagent/consumable/drink/cold/milkshake)
+			if(/datum/reagent/consumable/milkshake)
 				icon_state = "milkshake"
 				name = "Milkshake"
 				desc = "Glorious brainfreezing mixture."
 				center_of_mass = list("x"=16, "y"=7)
-			if(/datum/reagent/consumable/drink/cold/lemonade)
+			if(/datum/reagent/consumable/lemonade)
 				icon_state = "lemonadeglass"
 				name = "Lemonade"
 				desc = "Oh the nostalgia..."
 				center_of_mass = list("x"=16, "y"=10)
-			if(/datum/reagent/consumable/drink/cold/kiraspecial)
+			if(/datum/reagent/consumable/kiraspecial)
 				icon_state = "kiraspecial"
 				name = "Kira Special"
 				desc = "Long live the guy who everyone had mistaken for a girl. Baka!"
 				center_of_mass = list("x"=16, "y"=12)
-			if(/datum/reagent/consumable/drink/cold/rewriter)
+			if(/datum/reagent/consumable/rewriter)
 				icon_state = "rewriter"
 				name = "Rewriter"
 				desc = "The secret of the sanctuary of the Libarian..."
@@ -620,7 +620,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/soda
 	name = "soda glass"
 	desc = "A drinking glass for soda."
-	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater = 50)
+	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
 	. = ..()
@@ -629,7 +629,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/cola
 	name = "cola glass"
 	desc = "A drinking glass for cola."
-	list_reagents = list(/datum/reagent/consumable/drink/cold/space_cola = 50)
+	list_reagents = list(/datum/reagent/consumable/space_cola = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
 	. = ..()

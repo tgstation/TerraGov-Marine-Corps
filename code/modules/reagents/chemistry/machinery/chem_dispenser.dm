@@ -414,23 +414,23 @@
 	req_one_access = list()
 	dispensable_reagents = list(
 		/datum/reagent/water,
-		/datum/reagent/consumable/drink/milk,
-		/datum/reagent/consumable/drink/cold/ice,
-		/datum/reagent/consumable/drink/coffee,
-		/datum/reagent/consumable/drink/milk/cream,
-		/datum/reagent/consumable/drink/tea,
-		/datum/reagent/consumable/drink/tea/icetea,
-		/datum/reagent/consumable/drink/cold/space_cola,
-		/datum/reagent/consumable/drink/cold/spacemountainwind,
-		/datum/reagent/consumable/drink/cold/dr_gibb,
-		/datum/reagent/consumable/drink/cold/space_up,
-		/datum/reagent/consumable/drink/cold/tonic,
-		/datum/reagent/consumable/drink/cold/sodawater,
-		/datum/reagent/consumable/drink/cold/lemon_lime,
+		/datum/reagent/consumable/milk,
+		/datum/reagent/consumable/ice,
+		/datum/reagent/consumable/coffee,
+		/datum/reagent/consumable/cream,
+		/datum/reagent/consumable/tea,
+		/datum/reagent/consumable/tea/icetea,
+		/datum/reagent/consumable/space_cola,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/tonic,
+		/datum/reagent/consumable/sodawater,
+		/datum/reagent/consumable/lemon_lime,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/drink/orangejuice,
-		/datum/reagent/consumable/drink/lemonjuice,
-		/datum/reagent/consumable/drink/watermelonjuice,
+		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/lemonjuice,
+		/datum/reagent/consumable/watermelonjuice,
 	)
 
 	emagged_message = list(
@@ -439,7 +439,7 @@
 	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
-		/datum/reagent/consumable/drink/grapesoda,
+		/datum/reagent/consumable/grapesoda,
 	)
 	needs_medical_training = FALSE
 
@@ -470,13 +470,13 @@
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list(
-		/datum/reagent/consumable/drink/cold/lemon_lime,
+		/datum/reagent/consumable/lemon_lime,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/drink/orangejuice,
-		/datum/reagent/consumable/drink/limejuice,
-		/datum/reagent/consumable/drink/tomatojuice,
-		/datum/reagent/consumable/drink/cold/sodawater,
-		/datum/reagent/consumable/drink/cold/tonic,
+		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/limejuice,
+		/datum/reagent/consumable/tomatojuice,
+		/datum/reagent/consumable/sodawater,
+		/datum/reagent/consumable/tonic,
 		/datum/reagent/consumable/ethanol/beer,
 		/datum/reagent/consumable/ethanol/kahlua,
 		/datum/reagent/consumable/ethanol/whiskey,
@@ -499,8 +499,8 @@
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/goldschlager,
 		/datum/reagent/consumable/ethanol/patron,
-		/datum/reagent/consumable/drink/watermelonjuice,
-		/datum/reagent/consumable/drink/berryjuice,
+		/datum/reagent/consumable/watermelonjuice,
+		/datum/reagent/consumable/berryjuice,
 	)
 	needs_medical_training = FALSE
 

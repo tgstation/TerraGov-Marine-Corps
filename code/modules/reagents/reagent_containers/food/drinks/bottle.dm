@@ -141,7 +141,7 @@
 	desc = "A bottle filled with nothing"
 	icon_state = "bottleofnothing"
 	center_of_mass = list("x"=17, "y"=5)
-	list_reagents = list(/datum/reagent/consumable/drink/nothing = 100)
+	list_reagents = list(/datum/reagent/consumable/nothing = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
@@ -225,7 +225,7 @@
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	icon_state = "grenadine"
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list(/datum/reagent/consumable/drink/grenadine = 100)
+	list_reagents = list(/datum/reagent/consumable/grenadine = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
@@ -243,7 +243,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=7)
 	isGlass = 0
-	list_reagents = list(/datum/reagent/consumable/drink/orangejuice = 100)
+	list_reagents = list(/datum/reagent/consumable/orangejuice = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -252,7 +252,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list(/datum/reagent/consumable/drink/milk/cream = 100)
+	list_reagents = list(/datum/reagent/consumable/cream = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "Tomato Juice"
@@ -261,7 +261,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list(/datum/reagent/consumable/drink/tomatojuice = 100)
+	list_reagents = list(/datum/reagent/consumable/tomatojuice = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
 	name = "Lime Juice"
@@ -270,4 +270,4 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list(/datum/reagent/consumable/drink/limejuice = 100)
+	list_reagents = list(/datum/reagent/consumable/limejuice = 100)

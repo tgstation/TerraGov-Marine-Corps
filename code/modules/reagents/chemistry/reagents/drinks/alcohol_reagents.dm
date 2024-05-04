@@ -846,6 +846,35 @@
 	color = "#9cc8b4" // rgb: 156,200,180
 	boozepwr = 0 //custom drunk effect
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
+	adj_dizzy = 6
+	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
+
+/datum/reagent/consumable/ethanol/gargle_blaster/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(15 to 45)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
+			L.jitter(2)
+		if(46 to 65)
+			L.AdjustConfused(4 SECONDS)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
+			L.jitter(3)
+		if(66 to 199)
+			L.set_drugginess(50)
+			if(prob(10))
+				L.vomit()
+			L.jitter(4)
+			if(prob(5))
+				L.Sleeping(16 SECONDS)
+		if(200 to INFINITY)
+			L.set_drugginess(50)
+			L.AdjustConfused(4 SECONDS)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
+			L.adjustToxLoss(2)
+			L.jitter(5)
+			if(prob(10))
+				L.vomit()
+			L.Sleeping(6 SECONDS)
+	return ..()
 
 /datum/reagent/consumable/ethanol/neurotoxin
 	name = "Neurotoxin"
@@ -853,7 +882,25 @@
 	color = "#2E2E61" // rgb: 46, 46, 97
 	boozepwr = 50
 	taste_description = "a numbing sensation"
-	custom_metabolism = 1 * FOOD_METABOLISM
+	adj_dizzy = 6
+	trait_flags = BRADYCARDICS
+
+/datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/L, metabolism)
+	L.Paralyze(6 SECONDS)
+	switch(current_cycle)
+		if(15 to 35)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
+		if(36 to 55)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
+			L.AdjustConfused(4 SECONDS)
+		if(56 to 200)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
+			L.AdjustConfused(4 SECONDS)
+			L.set_drugginess(30)
+		if(201 to INFINITY)
+			L.set_drugginess(30)
+			L.adjustToxLoss(2)
+	return ..()
 
 /datum/reagent/consumable/ethanol/hippies_delight
 	name = "Hippie's Delight"
@@ -861,8 +908,37 @@
 	color = "#b16e8b" // rgb: 177,110,139
 	nutriment_factor = 0
 	boozepwr = 0 //custom drunk effect
-	custom_metabolism = 0.2 * FOOD_METABOLISM
 	taste_description = "giving peace a chance"
+
+/datum/reagent/consumable/ethanol/hippies_delight/on_mob_life(mob/living/L, metabolism)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, only_if_higher = TRUE)
+	switch(current_cycle)
+		if(1 to 5)
+			L.dizzy(10)
+			L.set_drugginess(30)
+			if(prob(10))
+				L.emote(pick("twitch","giggle"))
+		if(6 to 10)
+			L.dizzy(20)
+			L.jitter(20)
+			L.set_drugginess(45)
+			if(prob(20))
+				L.emote(pick("twitch","giggle"))
+		if(11 to 200)
+			L.dizzy(40)
+			L.jitter(40)
+			L.set_drugginess(60)
+			if(prob(30))
+				L.emote(pick("twitch","giggle"))
+		if(201 to INFINITY)
+			L.adjust_timed_status_effect(1 SECONDS, /datum/status_effect/speech/stutter)
+			L.jitter(60)
+			L.dizzy(60)
+			L.set_drugginess(75)
+			if(prob(40))
+				L.emote(pick("twitch","giggle"))
+			L.adjustToxLoss(0.6)
+	return ..()
 
 /datum/reagent/consumable/ethanol/eggnog
 	name = "Eggnog"

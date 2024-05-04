@@ -130,7 +130,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
+	list_reagents = list(/datum/reagent/consumable/milk = 50)
 
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "soy milk"
@@ -138,19 +138,19 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	list_reagents = list(/datum/reagent/consumable/drink/milk/soymilk = 50)
+	list_reagents = list(/datum/reagent/consumable/soymilk = 50)
 
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "\improper Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	list_reagents = list(/datum/reagent/consumable/drink/coffee = 30)
+	list_reagents = list(/datum/reagent/consumable/coffee = 30)
 
 /obj/item/reagent_containers/food/drinks/coffee/cafe_latte
 	name = "\improper Cafe Latte"
 	desc = "The beverage you're about to enjoy is hot."
-	list_reagents = list(/datum/reagent/consumable/drink/coffee/cafe_latte = 30)
+	list_reagents = list(/datum/reagent/consumable/coffee/cafe_latte = 30)
 
 /obj/item/reagent_containers/food/drinks/tea
 	name = "\improper Duke Purple Tea"
@@ -158,14 +158,14 @@
 	icon_state = "teacup"
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
-	list_reagents = list(/datum/reagent/consumable/drink/tea = 30)
+	list_reagents = list(/datum/reagent/consumable/tea = 30)
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	list_reagents = list(/datum/reagent/consumable/drink/cold/ice = 30)
+	list_reagents = list(/datum/reagent/consumable/ice = 30)
 
 /obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "\improper Dutch hot coco"
@@ -173,7 +173,7 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	list_reagents = list(/datum/reagent/consumable/drink/hot_coco = 30)
+	list_reagents = list(/datum/reagent/consumable/hot_coco = 30)
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
@@ -250,4 +250,4 @@
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
-	list_reagents = list(/datum/reagent/consumable/drink/tea = 30)
+	list_reagents = list(/datum/reagent/consumable/tea = 30)
