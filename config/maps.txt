@@ -78,7 +78,11 @@ map slumbridge
   minplayers 35
 endmap
 
-
 map daedalusprison
 	minplayers 50
+endmap
+
+map riptide
+minplayers 30
+maxplayers 70
 endmap
