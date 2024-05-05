@@ -125,8 +125,20 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet = ITEM_SLOT_SUITSTORE)
 
+/datum/loadout_item/suit_slot/som_heavy_tyr/medic
+	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica/general
+	jobs_supported = list(SOM_SQUAD_CORPSMAN)
+	loadout_item_flags = null
+	item_whitelist = null
+
+/datum/loadout_item/suit_slot/som_heavy_tyr/engineer
+	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica/engineer
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	loadout_item_flags = null
+	item_whitelist = null
+
 /datum/loadout_item/suit_slot/som_heavy_tyr/universal
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = null
 	item_whitelist = null
 

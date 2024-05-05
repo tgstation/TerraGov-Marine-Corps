@@ -179,10 +179,16 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/engineering,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier //Literally grenades

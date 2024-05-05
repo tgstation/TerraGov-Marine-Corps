@@ -137,8 +137,20 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
 
+/datum/loadout_item/suit_slot/heavy_tyr/medic
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman
+	jobs_supported = list(SQUAD_CORPSMAN)
+	loadout_item_flags = null
+	item_whitelist = null
+
+/datum/loadout_item/suit_slot/heavy_tyr/engineer
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
+	jobs_supported = list(SQUAD_ENGINEER)
+	loadout_item_flags = null
+	item_whitelist = null
+
 /datum/loadout_item/suit_slot/heavy_tyr/universal
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = NONE
 	item_whitelist = null
 
