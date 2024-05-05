@@ -1190,15 +1190,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
-"aRV" = (
-/obj/structure/stairs/seamless{
-	dir = 8
-	},
-/obj/structure/stairs/seamless{
-	dir = 8
-	},
-/turf/open/ground,
-/area/riptide/inside/engineering/bridge)
 "aSa" = (
 /obj/structure/platform/trench{
 	dir = 8
@@ -54559,7 +54550,7 @@ wHl
 bJm
 bJm
 tSD
-aRV
+tSD
 tSD
 tSD
 tSD
