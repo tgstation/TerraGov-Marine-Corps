@@ -281,6 +281,9 @@
 			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return FALSE
 
+	if(regression && tier == XENO_TIER_FOUR && length(hive.xenos_by_tier[XENO_TIER_FOUR]) == 1) //Evolving xeno is the only hive leader.
+		to_chat(src, span_warning("We cannot regress right now, our hive would collapse!"))
+		return FALSE
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
 		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste.display_name)]")
