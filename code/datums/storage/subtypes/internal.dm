@@ -340,8 +340,8 @@
 	))
 
 /datum/storage/internal/injector
-	max_storage_space = 10
-	storage_slots = 10
+	max_storage_space = 12
+	storage_slots = 12
 	max_w_class = WEIGHT_CLASS_TINY
 
 /datum/storage/internal/injector/New(atom/parent)

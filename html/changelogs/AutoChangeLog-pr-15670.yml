@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - admin: "Adds tactical binocular admin logging, improved fuel tank logging."

@@ -15,7 +15,7 @@
 	name = "Laser carbine"
 	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The TerraGov laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
 	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all TGMC laser weaponry."
-	ui_icon = "lasergun"
+	ui_icon = "tec"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -42,7 +42,7 @@
 	desc = "Equipped with amag harness, bayonet and miniflamer. The Terra Experimental laser rifle, is a powerful and flexible weapon thanks to a variety of firemodes. \
 	Has good mobility and excellent falloff, although lacks the power offered by weapons with an underbarrel grenade launcher.\
 	Uses TE power cells that are shared across all TGMC laser weaponry."
-	ui_icon = "lasergun"
+	ui_icon = "ter"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
 
 /datum/loadout_item/suit_store/main_gun/corpsman/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -94,7 +94,7 @@
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. \
 	The AR-21 is an less common rifle in the TGMC, attempting to bridge the gap between lighter, lower calibre rifles and heavier rifles like the BR-64. \
 	Its compromises between the two groups means it fails to particularly outshine any of them, but never the less is a respective and flexible rifle."
-	ui_icon = "ballistic"
+	ui_icon = "t21"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 
 /datum/loadout_item/suit_store/main_gun/corpsman/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

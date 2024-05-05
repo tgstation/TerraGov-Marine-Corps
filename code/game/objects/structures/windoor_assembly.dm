@@ -17,6 +17,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	allow_pass_flags = PASS_GLASS|PASS_AIR
 	atom_flags = ON_BORDER
 

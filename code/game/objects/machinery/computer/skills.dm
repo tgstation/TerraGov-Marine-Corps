@@ -319,8 +319,7 @@ What a mess.*/
 
 /obj/machinery/computer/skills/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
+		return ..()
 
 	for(var/datum/data/record/R in GLOB.datacore.security)
 		if(prob(10/severity))
@@ -344,4 +343,4 @@ What a mess.*/
 			qdel(R)
 			continue
 
-	..(severity)
+	return ..()

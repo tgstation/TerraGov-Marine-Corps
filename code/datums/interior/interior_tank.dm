@@ -24,7 +24,7 @@
 	return ..()
 
 /turf/closed/interior/tank
-	name = "\improper Ares tank interior"
+	name = "\improper Banteng tank interior"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 
 /turf/closed/interior/tank/one
@@ -99,12 +99,22 @@
 	. = ..()
 	owner.interior.mob_leave(user)
 
+/turf/closed/interior/tank/door/MouseDrop_T(atom/movable/dropping, mob/M)
+	if(!ismob(dropping))
+		return ..()
+	owner.interior.mob_leave(dropping)
+
+/turf/closed/interior/tank/door/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
+	if(!ismob(grab.grabbed_thing))
+		return ..()
+	owner.interior.mob_leave(grab.grabbed_thing)
+
 ///returns where we want to spit out new enterers
 /turf/closed/interior/tank/door/proc/get_enter_location()
 	return get_step(src, EAST)
 
 /turf/open/interior/tank
-	name = "\improper Ares tank interior"
+	name = "\improper Banteng tank interior"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 
 /turf/open/interior/tank/eight

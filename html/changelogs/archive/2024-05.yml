@@ -1,0 +1,56 @@
+2024-05-01:
+  ivanmixo:
+  - balance: Acid wells, acid turrets and heal fruit have opaque acid smoke again
+2024-05-02:
+  Barnet2:
+  - spellcheck: New shipside role rank structure
+  - bugfix: Fixes missing alamo consoles on Lawanka and Daedalus
+  - rscadd: Full ranks show up in command annoucements
+  - rscadd: Instead of faction title, the job of the person sending the command shows
+      up
+  Lumipharon:
+  - imageadd: added some new vehicle props
+  - bugfix: fixed the mob on mob impact sound
+  - imageadd: added more campaign loadout icons for guns
+  - code_imp: cleaned up some misc code
+  - balance: Reduced AOE damage of psyblast/psycrush against multitile vehicles
+  - bugfix: fixed an exploit with closets
+  RipGrayson:
+  - rscadd: Added a new wall type for use in Magmoor
+  - bugfix: Fixed a few mapping errors with Magmoor
+  Wisemonster:
+  - rscadd: Added NO_CONSTRUCTION flag to use for areas and a mapping helper for said
+      flag.
+  - rscdel: Removed cades from current tadpole models
+  - balance: Tadpoles can no longer have cades or razorwire built on them
+  - balance: Transport Crewmen no longer requires a minimum pop.
+  blackdav123:
+  - rscadd: Added a garage in the southwest valley of Ice Colony.
+  - balance: Increased QB points on Gelida to 1900.
+  novaepee:
+  - rscadd: APC has minimap icon; locate APC in minimap
+2024-05-04:
+  Lumipharon:
+  - code_imp: Removed some dead code
+  - bugfix: fixed opening storage by clicking with another item, properly
+  blackdav123:
+  - bugfix: Treaded trucks now use the correct sprites.
+2024-05-05:
+  Lumipharon:
+  - rscadd: Added EMP nades to campaign
+  - balance: Various changes to EMP effects
+  - code_imp: updated EMP code
+  - imageadd: Tweaked the timing on perk unlock animations
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: Map variant for colours updates with each mission'
+  TiviPlus:
+  - soundadd: Decreases bullet ping sound range
+  Xander3359:
+  - bugfix: It's no longer possible to cade on alamo
+  - bugfix: Stacks with 1 recipe craft will no longer pull up the crafting menu
+  blackdav123:
+  - bugfix: Fixed a few areas on Gelida IV.
+  tyeagg:
+  - imageadd: new tank module sprites
+  - imageadd: new tank weapon sprites
+  - imageadd: new tank sprite

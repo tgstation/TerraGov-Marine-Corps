@@ -1437,7 +1437,7 @@
 "aZC" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "aZZ" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -1880,7 +1880,7 @@
 /area/magmoor/compound/south)
 "bmP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "bnr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2013,7 +2013,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "brJ" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/landing)
 "brR" = (
 /obj/machinery/door/window/right{
@@ -2526,7 +2526,7 @@
 "bKz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "bKR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2835,7 +2835,7 @@
 /area/magmoor/medical/storage)
 "bUi" = (
 /obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/north)
 "bUz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -10279,7 +10279,7 @@
 /area/magmoor/cave/north)
 "hpN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "hqe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11769,7 +11769,7 @@
 /area/magmoor/engi/power)
 "iwd" = (
 /obj/effect/ai_node,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "iwt" = (
 /turf/open/floor/mainship/purple,
@@ -12158,7 +12158,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "iLH" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "iLW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14521,7 +14521,7 @@
 /area/magmoor/compound/southwest)
 "ksR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/storage/testroom)
 "ksX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -14830,7 +14830,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "kDI" = (
 /turf/open/floor/mainship/green{
@@ -15481,7 +15481,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "lbB" = (
 /obj/structure/rack,
@@ -15804,7 +15804,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
 "lng" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/north)
 "lnT" = (
 /obj/machinery/light,
@@ -17046,7 +17046,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "miS" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/engi/power)
 "mjE" = (
 /obj/structure/largecrate/chick,
@@ -17539,7 +17539,7 @@
 /area/magmoor/medical/treatment)
 "mFF" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "mFV" = (
 /obj/structure/bed/chair/office/dark{
@@ -18253,7 +18253,7 @@
 /area/magmoor/command/conference)
 "nfy" = (
 /obj/structure/cable,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "nfY" = (
 /turf/open/floor/carpet/side{
@@ -18262,7 +18262,7 @@
 /area/magmoor/civilian/mosque)
 "ngh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "ngw" = (
 /obj/structure/xenoautopsy/tank/escaped,
@@ -19148,7 +19148,7 @@
 	},
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "nUm" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -21628,7 +21628,7 @@
 	},
 /area/magmoor/engi/thermal)
 "pDq" = (
-/turf/closed/mineral/smooth/outdoor,
+/turf/closed/mineral/smooth/lavawall/outdoor,
 /area/magmoor/cave/rock)
 "pDs" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -24108,7 +24108,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
 "rxl" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "rxx" = (
 /obj/machinery/door/airlock/mainship/command{
@@ -26399,7 +26399,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "thG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -27613,7 +27613,7 @@
 	},
 /area/magmoor/command/commandroom)
 "ube" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/storage/testroom)
 "ubo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -29688,7 +29688,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "vAK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -30117,7 +30117,7 @@
 /turf/open/lavaland/basalt/cave/autosmooth,
 /area/magmoor/cave/north)
 "vRf" = (
-/obj/item/toy/plush/rouny,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "vRg" = (
@@ -30139,7 +30139,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "vRG" = (
 /obj/structure/cargo_container/ch_green,
@@ -32270,7 +32270,7 @@
 /area/magmoor/landing)
 "xnL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "xou" = (
 /obj/structure/bed/chair/sofa,

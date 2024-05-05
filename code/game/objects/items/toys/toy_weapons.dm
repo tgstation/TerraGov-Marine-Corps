@@ -13,7 +13,7 @@
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
-	item_state = "gun"
+	worn_icon_state = "gun"
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -81,7 +81,7 @@
 	name = "foam dart crossbow"
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
 	icon_state = "foamcrossbow"
-	item_state = "crossbow"
+	worn_icon_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/bullets = 5
@@ -190,7 +190,7 @@
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "sword0"
-	item_state = "sword0"
+	worn_icon_state = "sword0"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
@@ -200,13 +200,13 @@
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 		src.icon_state = "swordblue"
-		src.item_state = "swordblue"
+		src.worn_icon_state = "swordblue"
 		src.w_class = WEIGHT_CLASS_BULKY
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 		playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 		src.icon_state = "sword0"
-		src.item_state = "sword0"
+		src.worn_icon_state = "sword0"
 		src.w_class = WEIGHT_CLASS_SMALL
 
 	if(istype(user,/mob/living/carbon/human))

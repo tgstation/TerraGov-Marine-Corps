@@ -8,11 +8,11 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "paper"
+	worn_icon_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
 	throw_speed = 1
@@ -390,7 +390,7 @@ then, for every time you included a field, increment fields. */
 
 /obj/item/paper/flag
 	icon_state = "flag_neutral"
-	item_state = "paper"
+	worn_icon_state = "paper"
 	anchored = TRUE
 
 /obj/item/paper/jobs
@@ -401,7 +401,7 @@ then, for every time you included a field, increment fields. */
 	name = "photo"
 	icon_state = "photo"
 	var/photo_id = 0
-	item_state = "paper"
+	worn_icon_state = "paper"
 
 /obj/item/paper/sop
 	name = "paper- 'Standard Operating Procedure'"

@@ -12,7 +12,7 @@
 
 /obj/item/tool/kitchen
 	icon = 'icons/obj/items/kitchen_tools.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/kitchen_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/kitchen_right.dmi',
 	)
