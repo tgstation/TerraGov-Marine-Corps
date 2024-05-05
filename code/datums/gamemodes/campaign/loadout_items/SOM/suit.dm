@@ -126,7 +126,7 @@
 	item_whitelist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/medic
-	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica/general
+	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica/medic
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 	loadout_item_flags = null
 	item_whitelist = null
