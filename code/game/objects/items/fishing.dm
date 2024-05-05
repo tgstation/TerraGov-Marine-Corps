@@ -2,7 +2,7 @@
 	name = "fishing prop"
 	icon = 'icons/obj/items/fishing.dmi'
 	icon_state = "worm"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 		)
@@ -65,11 +65,11 @@
 	name = "fishing rod"
 	desc = "You can fish with this."
 	icon_state = "fishing_rod"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi',
 	)
-	item_state = "rod"
+	worn_icon_state = "rod"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 8
