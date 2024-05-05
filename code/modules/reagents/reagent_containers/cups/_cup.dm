@@ -6,7 +6,7 @@
 	init_reagent_flags = OPENCONTAINER
 	resistance_flags = UNACIDABLE
 	icon_state = "bottle"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/drinks_lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/drinks_righthand.dmi',
 	)
@@ -50,9 +50,9 @@
 	reagents.trans_to(target_mob, gulp_size)
 	playsound(target_mob.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 
-/obj/item/reagent_containers/cup/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/reagent_containers/cup/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
-	if(!proximity_flag)
+	if(!has_proximity)
 		return ..()
 
 	if(!check_allowed_items(target, target_self = TRUE))
@@ -87,7 +87,7 @@
 		target.update_appearance()
 
 /obj/item/reagent_containers/cup/afterattack_alternate(atom/target, mob/user, has_proximity, click_parameters)
-	if((!proximity_flag) || !check_allowed_items(target, target_self = TRUE))
+	if((!has_proximity) || !check_allowed_items(target, target_self = TRUE))
 		return FALSE
 
 	if(!target.is_drainable()) //A dispenser. Transfer FROM it TO us.
@@ -107,29 +107,8 @@
 	target.update_appearance()
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
-	var/hotness = attacking_item.get_temperature()
-	if(hotness && reagents)
-		reagents.expose_temperature(hotness)
-		to_chat(user, span_notice("You heat [name] with [attacking_item]!"))
-		return TRUE
-
-	//Cooling method
-	if(istype(attacking_item, /obj/item/extinguisher))
-		var/obj/item/extinguisher/extinguisher = attacking_item
-		if(extinguisher.safety)
-			return TRUE
-		if (extinguisher.reagents.total_volume < 1)
-			to_chat(user, span_warning("\The [extinguisher] is empty!"))
-			return TRUE
-		var/cooling = (0 - reagents.chem_temp) * extinguisher.cooling_power * 2
-		reagents.expose_temperature(cooling)
-		to_chat(user, span_notice("You cool the [name] with the [attacking_item]!"))
-		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
-		extinguisher.reagents.remove_all(1)
-		return TRUE
-
-	if(istype(attacking_item, /obj/item/food/egg)) //breaking eggs
-		var/obj/item/food/egg/attacking_egg = attacking_item
+	if(istype(attacking_item, /obj/item/reagent_containers/food/snacks/egg)) //breaking eggs // TG FOOD PORT -> Turn this into real eggs
+		var/obj/item/reagent_containers/food/snacks/egg/attacking_egg = attacking_item
 		if(!reagents)
 			return TRUE
 		if(reagents.holder_full())
@@ -152,6 +131,7 @@
 /obj/item/reagent_containers/cup/proc/on_cup_reset()
 	drink_type = NONE
 
+/*
 /obj/item/reagent_containers/cup/beaker
 	name = "beaker"
 	desc = "A beaker. It can hold up to 50 units."
@@ -221,6 +201,7 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
+*/ // XANTODO Turn beakers into cups ? Maybe TG sprites ?
 
 /obj/item/reagent_containers/cup/bucket
 	name = "bucket"

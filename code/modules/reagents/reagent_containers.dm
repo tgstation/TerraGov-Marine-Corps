@@ -11,15 +11,36 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 5
-	var/init_reagent_flags
+	/// The maximum amount of reagents per transfer that will be moved out of this reagent container.
 	var/amount_per_transfer_from_this = 5
-	///Used to adjust how many units are transfered/injected in a single click
-	var/possible_transfer_amounts = list(5,10,15,25,30)
+	/// The different possible amounts of reagent to transfer out of the container
+	var/list/possible_transfer_amounts = list(5,10,15,25,30)
+	/// The maximum amount of reagents this container can hold
 	var/volume = 30
-	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
+	///List of reagent flags to add, passed to create_reagents()
+	var/init_reagent_flags
+	///Can liquify/grind pills without needing fluid to dissolve.
+	var/liquifier = FALSE
+	///List of reagents to add
 	var/list/list_reagents
 	///Whether we can restock this in a vendor without it having its starting reagents
 	var/free_refills = TRUE
+
+	/**
+	 * The different thresholds at which the reagent fill overlay will change. See medical/reagent_fillings.dmi.
+	 *
+	 * Should be a list of integers which correspond to a reagent unit threshold.
+	 * If null, no automatic fill overlays are generated.
+	 *
+	 * For example, list(0) will mean it will gain a the overlay with any reagents present. This overlay is "overlayname0".
+	 * list(0, 10) whill have two overlay options, for 0-10 units ("overlayname0") and 10+ units ("overlayname10").
+	 */
+	var/list/fill_icon_thresholds = null
+	/// The optional custom name for the reagent fill icon_state prefix
+	/// If not set, uses the current icon state.
+	var/fill_icon_state = null
+	/// The icon file to take fill icon appearances from
+	var/fill_icon = 'icons/obj/reagents/reagent_fillings.dmi'
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
