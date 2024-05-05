@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added more cover for xenos on the 2nd disks of Magmoor."
+  - bugfix: "Fixed a few missing pipes on Magmoor."
