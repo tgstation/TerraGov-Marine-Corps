@@ -697,3 +697,12 @@
 	name = "reinforced orbital insertion safety window"
 	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
 	max_integrity = 600 // 25 hunter slashes
+
+/obj/structure/window/framed/kutjevo
+	name = "window"
+	icon = 'icons/obj/smooth_objects/col_window.dmi'
+	icon_state = "col_window-0"
+	base_icon_state = "col_window"
+	window_frame = /obj/structure/window_frame/colony
+
+/obj/structure/window/framed/kutjevo/reinforced/hull

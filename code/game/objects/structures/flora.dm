@@ -246,6 +246,9 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
+/obj/structure/flora/grass/tallgrass/autosmooth/desert
+	color = "#ffbd72"
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
