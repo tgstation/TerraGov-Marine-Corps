@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - soundadd: "Decreases bullet ping sound range"

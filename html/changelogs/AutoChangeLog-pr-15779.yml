@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "It's no longer possible to cade on alamo"
-  - bugfix: "Stacks with 1 recipe craft will no longer pull up the crafting menu"
