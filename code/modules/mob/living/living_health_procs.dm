@@ -367,7 +367,7 @@
 	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
 	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	dead_ticks = 0
-	chestburst = 0
+	chestburst = CARBON_NO_CHEST_BURST
 	update_body()
 	update_hair()
 	return ..()

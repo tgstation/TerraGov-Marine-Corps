@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/baneling
-	caste_base_type = /mob/living/carbon/xenomorph/baneling
+	caste_base_type = /datum/xeno_caste/baneling
 	name = "Baneling"
 	desc = "An oozy, squishy alien that can roll in agile speeds, storing various dangerous chemicals in its sac..."
 	icon = 'icons/Xeno/castes/baneling.dmi'

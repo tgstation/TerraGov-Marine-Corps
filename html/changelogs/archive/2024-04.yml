@@ -403,3 +403,68 @@
       of Spring.
   - imageadd: Add image for transport crew landmark.
   - qol: Change positions of some signs in PoS.
+2024-04-27:
+  Barnet2:
+  - balance: Evolution towers give 0.4 maturity per tick instead of 0.8
+  Lumipharon:
+  - balance: Significantly reduced unintented APC defensive stats
+  - bugfix: fixed some mainly visual issues with vendors
+  TiviPlus:
+  - bugfix: ACs will get loader phamplets correctly
+  - balance: Fixes APC having insane ram damage (it now has 25% of previous value)
+  - bugfix: fixed APC comms cutting out sometimes
+  blackdav123:
+  - qol: Defiler chems once again cycle Neuro-Hemo-Trans-Ozy.
+  - qol: Tank and APC sprites will now more accurately reflect their current integrity
+      values.
+  coldironwarrior:
+  - balance: autoinjector suit storage mod has 12 slots now, up from 10
+2024-04-28:
+  Lumipharon:
+  - bugfix: fixed broken/burnt light tube item sprites
+  - qol: You can click drag or grab click mobs into, or out of multitile vehicles
+  TiviPlus:
+  - rscadd: Adds blank shotgun shells that can be found in the firing range
+  Wisemonster:
+  - bugfix: Removed the Valhalla mech pilot's radio
+  Xander3359:
+  - bugfix: Fix powerpacks double reloading
+  - code_imp: replaces item_state, item_state_slots and item_icons
+  blackdav123:
+  - bugfix: Tank and APC can now get out of the Alamo easier on Ice Colony
+  - bugfix: Vehicles can now enter and exit the Alamo on Icy Caves
+  - bugfix: Fixed a few tiles without areas on Icy Caves
+  yyzsong:
+  - rscadd: Adds beanbag slugs to valhalla
+2024-04-29:
+  Lauwma:
+  - bugfix: Fixes a typo in loadout.dm that made so AR-55 and GL-54 ammos didn't appear
+      in FC vendor
+  Lumipharon:
+  - bugfix: quick equip storing will no longer close your active storage
+  - bugfix: Putting corpses into vehicles actually works now
+  Neocloudy:
+  - bugfix: Dropship Takeoff Alarm is fully implemented
+  - bugfix: Automatic dropship departure announcement no longer has sound
+  - bugfix: Delta alert plays the air raid siren
+  - bugfix: Send Orders behaves normally now
+  Wisemonster:
+  - rscadd: Added periscopes to the interior of APCs
+2024-04-30:
+  Barnet2:
+  - balance: Xeno spit toxin transfer amount reduced by half when staggered
+  - balance: Tank cannon now gibs non-xeno mobs again
+  - soundadd: Ports CM slam sound effects
+  Passe2142:
+  - bugfix: fixes gas masks giving full immunity to chemical gasses.
+  TiviPlus:
+  - bugfix: fixed some edge cases where xenos couldn't do certain things when spawned
+      by admins
+  - refactor: rewrote some code pertaining to xenos to be on castes instead of the
+      actual mob
+  Wisemonster:
+  - qol: Door control buttons now layer over objects and the tad's walls.
+  blackdav123:
+  - rscadd: Preweeded Icy Caves.
+  - bugfix: Fixed a big red modular south of ETA lab with a wrong area.
+  - balance: Melting laser MG firerate reduced to .45

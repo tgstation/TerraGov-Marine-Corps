@@ -14304,6 +14304,7 @@
 /obj/item/target/syndicate,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/item/shotgunbox/blank,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -26578,9 +26579,9 @@
 	dir = 1
 	},
 /obj/machinery/door_control/mainship/ammo{
+	dir = 4;
 	id = "ammo1";
-	name = "Dropship Armament Storage";
-	dir = 4
+	name = "Dropship Armament Storage"
 	},
 /turf/open/floor/mainship/black{
 	dir = 8

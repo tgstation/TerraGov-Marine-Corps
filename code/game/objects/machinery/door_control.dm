@@ -19,6 +19,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
+	layer = ABOVE_OBJ_LAYER
 
 /obj/machinery/door_control/unmeltable
 	resistance_flags = RESIST_ALL
