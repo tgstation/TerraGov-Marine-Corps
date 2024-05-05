@@ -93,6 +93,15 @@
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
+/obj/item/clothing/suit/storage/marine/pilot
+	name = "\improper PAS-50 pattern pilot armor"
+	desc = "A light piece of armor used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot_chest"
+	worn_icon_state = "pilot_chest"
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = 0.25
+	item_map_variant_flags = NONE
+
 /obj/item/clothing/suit/storage/marine/mech_pilot
 	name = "\improper PAS-13 pattern mech pilot armor"
 	desc = "A somewhat sparsely armored but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. While the suit is a bit more encumbering to wear with the mech pilot uniform, it offers the them a degree of protection that they otherwise do not enjoy outside their mech."
