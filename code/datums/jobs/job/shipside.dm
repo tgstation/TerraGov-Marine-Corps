@@ -365,7 +365,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
+	wear_suit = /obj/item/clothing/suit/storage/marine/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	glasses = /obj/item/clothing/glasses/welding/superior
