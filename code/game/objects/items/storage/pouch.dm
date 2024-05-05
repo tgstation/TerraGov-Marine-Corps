@@ -416,7 +416,7 @@
 	. = ..()
 	storage_datum.sprite_slots = 2
 	storage_datum.storage_slots = 4
-	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
+	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/mine,
