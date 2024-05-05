@@ -184,7 +184,7 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
-	burn_ticks = 5
+	burn_ticks = 3
 
 /// affecting mobs
 /obj/fire/melting_fire/affect_mob(mob/living/carbon/target)

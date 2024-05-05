@@ -53,7 +53,7 @@
 ///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
 /datum/action/ability/activable/xeno/charge/fire_charge/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE
-	if(living_target.stat || isxeno(living_target)) //we leap past xenos
+	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) //we leap past xenos
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
@@ -173,6 +173,8 @@
 
 /// called when attacking a mob
 /obj/effect/xenomorph/firenado/proc/mob_act(mob/living/carbon/human/target)
+	if(target.status_flags & GODMODE)
+		return
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
 		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
@@ -336,7 +338,7 @@
 		for(var/victim in target)
 			if(ishuman(victim))
 				var/mob/living/carbon/human/human_victim = victim
-				if(human_victim.stat == DEAD)
+				if(human_victim.stat == DEAD || human_victim.status_flags & GODMODE)
 					continue
 				var/damage = PYROGEN_HEATRAY_HIT_DAMAGE
 				var/datum/status_effect/stacking/melting_fire/debuff = human_victim.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
