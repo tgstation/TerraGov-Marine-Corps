@@ -1,5 +1,10 @@
 
 //////////////////////////soda_cans//
+//These are in their own group to be used as IED's in /obj/item/grenade/ghettobomb.dm
+/// How much fizziness is added to the can of soda by throwing it, in percentage points
+#define SODA_FIZZINESS_THROWN 15
+/// How much fizziness is added to the can of soda by shaking it, in percentage points
+#define SODA_FIZZINESS_SHAKE 5
 
 /obj/item/reagent_containers/cup/soda_cans
 	name = "soda can"
@@ -20,62 +25,18 @@
 	new T(loc)
 	return INITIALIZE_HINT_QDEL
 
-/obj/item/reagent_containers/cup/soda_cans/suicide_act(mob/living/carbon/human/H)
-	if(!reagents.total_volume)
-		H.visible_message(span_warning("[H] is trying to take a big sip from [src]... The can is empty!"))
-		return SHAME
-	if(!is_drainable())
-		open_soda()
-		sleep(1 SECONDS)
-	H.visible_message(span_suicide("[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!"))
-	playsound(H,'sound/items/drink.ogg', 80, TRUE)
-	reagents.trans_to(H, src.reagents.total_volume, transferred_by = H) //a big sip
-	sleep(0.5 SECONDS)
-	H.say(pick(
-		"Now, Outbomb Cuban Pete, THAT was a game.",
-		"All these new fangled arcade games are too slow. I prefer the classics.",
-		"They don't make 'em like Orion Trail anymore.",
-		"You know what they say. Worst day of spess carp fishing is better than the best day at work.",
-		"They don't make 'em like good old-fashioned singularity engines anymore.",
-	))
-	if(H.age >= 30)
-		H.Stun(50)
-		sleep(5 SECONDS)
-		playsound(H,'sound/items/drink.ogg', 80, TRUE)
-		H.say(pick(
-			"Another day, another dollar.",
-			"I wonder if I should hold?",
-			"Diversifying is for young'ns.",
-			"Yeap, times were good back then.",
-		))
-		return MANUAL_SUICIDE_NONLETHAL
-	sleep(2 SECONDS) //dramatic pause
-	return TOXLOSS
-
-/obj/item/reagent_containers/cup/soda_cans/attack(mob/M, mob/living/user)
-	if(iscarbon(M) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
-		if(M == user)
+/obj/item/reagent_containers/cup/soda_cans/attack(mob/target_mob, mob/living/user)
+	if(iscarbon(target_mob) && !reagents.total_volume && (user.a_intent == INTENT_HARM) && user.zone_selected == BODY_ZONE_HEAD)
+		if(target_mob == user)
 			user.visible_message(span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"), span_notice("You crush the can of [src] on your forehead."))
 		else
-			user.visible_message(span_warning("[user] crushes the can of [src] on [M]'s forehead!"), span_notice("You crush the can of [src] on [M]'s forehead."))
-		playsound(M,'sound/weapons/pierce.ogg', rand(10,50), TRUE)
-		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(M.loc)
+			user.visible_message(span_warning("[user] crushes the can of [src] on [target_mob]'s forehead!"), span_notice("You crush the can of [src] on [target_mob]'s forehead."))
+		playsound(target_mob,'sound/weapons/pierce.ogg', rand(10,50), TRUE)
+		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target_mob.loc)
 		crushed_can.icon_state = icon_state
 		qdel(src)
 		return TRUE
 	return ..()
-
-/obj/item/reagent_containers/cup/soda_cans/bullet_act(obj/projectile/P)
-	. = ..()
-	if(QDELETED(src))
-		return
-	if(P.damage > 0 && P.damage_type == BRUTE)
-		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(src.loc)
-		crushed_can.icon_state = icon_state
-		var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
-		crushed_can.throw_at(throw_target, rand(1,2), 7)
-		qdel(src)
-		return
 
 /obj/item/reagent_containers/cup/soda_cans/proc/open_soda(mob/user)
 	if(prob(fizziness))
@@ -84,8 +45,8 @@
 		return
 
 	to_chat(user, "You pull back the tab of [src] with a satisfying pop.") //Ahhhhhhhh
-	reagents.flags |= OPENCONTAINER
-	playsound(src, SFX_CAN_OPEN, 50, TRUE)
+	reagents.reagent_flags |= OPENCONTAINER
+	playsound(src, "can_open", 50, TRUE)
 	throwforce = 0
 
 /**
@@ -99,22 +60,14 @@
 	if(!target)
 		return
 
-	if(ismob(target))
-		var/mob/living/target_mob = target
-		target_mob.add_mood_event("soda_spill", /datum/mood_event/soda_spill, src)
-		for(var/mob/living/iter_mob in view(src, 7))
-			if(iter_mob != target)
-				iter_mob.add_mood_event("observed_soda_spill", /datum/mood_event/observed_soda_spill, target, src)
-
 	playsound(src, 'sound/effects/can_pop.ogg', 80, TRUE)
 	if(!hide_message)
 		visible_message(span_danger("[src] spills over, fizzing its contents all over [target]!"))
-	reagents.flags |= OPENCONTAINER
-	reagents.expose(target, TOUCH)
+	reagents.reagent_flags |= OPENCONTAINER
 	reagents.clear_reagents()
 	throwforce = 0
 
-/obj/item/reagent_containers/cup/soda_cans/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/reagent_containers/cup/soda_cans/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
 	if(. || !reagents.total_volume) // if it was caught, already opened, or has nothing in it
 		return
@@ -136,7 +89,7 @@
 		return
 	return ..()
 
-/obj/item/reagent_containers/cup/soda_cans/attack_self_secondary(mob/user)
+/obj/item/reagent_containers/cup/soda_cans/attack_self_alternate(mob/living/user)
 	if(!is_drainable())
 		playsound(src, 'sound/effects/can_shake.ogg', 50, TRUE)
 		user.visible_message(span_danger("[user] shakes [src]!"), span_danger("You shake up [src]!"), vision_distance=2)
@@ -144,7 +97,7 @@
 		return
 	return ..()
 
-/obj/item/reagent_containers/cup/soda_cans/examine_more(mob/user)
+/obj/item/reagent_containers/cup/soda_cans/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src))
 		return
@@ -243,14 +196,6 @@
 	list_reagents = list(/datum/reagent/consumable/shamblers = 30)
 	drink_type = SUGAR | JUNKFOOD
 
-/obj/item/reagent_containers/cup/soda_cans/shamblers/eldritch
-	name = "Shambler's juice Eldritch Energy!"
-	desc = "~J'I'CE!~"
-	icon_state = "shamblerseldritch"
-	volume = 40
-	list_reagents = list(/datum/reagent/consumable/shamblers = 30, /datum/reagent/eldritch = 5)
-	drink_type = SUGAR | JUNKFOOD
-
 /obj/item/reagent_containers/cup/soda_cans/wellcheers
 	name = "Wellcheers Juice"
 	desc = "A strange purple drink, smelling of saltwater. Somewhere in the distance, you hear seagulls."
@@ -269,7 +214,6 @@
 	name = "Monkey Energy"
 	desc = "Unleash the ape!"
 	icon_state = "monkey_energy"
-	inhand_icon_state = "monkey_energy"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/monkey_energy = 50)
 	drink_type = SUGAR | JUNKFOOD

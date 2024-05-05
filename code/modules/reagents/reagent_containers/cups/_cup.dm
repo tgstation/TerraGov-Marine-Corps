@@ -27,9 +27,6 @@
 		. += span_notice("It is [LOWER_TEXT(english_list(types))].")
 
 /obj/item/reagent_containers/cup/attack(mob/living/target_mob, mob/living/user, obj/target)
-	if(!canconsume(target_mob, user))
-		return
-
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty!"))
 		return
@@ -46,33 +43,17 @@
 			return // The drink might be empty after the delay, such as by spam-feeding
 		target_mob.visible_message(span_danger("[user] feeds [target_mob] something from [src]."), \
 					span_userdanger("[user] feeds you something from [src]."))
-		log_combat(user, target_mob, "fed", reagents.get_reagent_log_string())
 	else
 		to_chat(user, span_notice("You swallow a gulp of [src]."))
 
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
-	var/fraction = min(gulp_size/reagents.total_volume, 1)
-	reagents.trans_to(target_mob, gulp_size, transferred_by = user, methods = INGEST)
+	reagents.trans_to(target_mob, gulp_size)
 	playsound(target_mob.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
-	if(!iscarbon(target_mob))
-		return
-	var/mob/living/carbon/carbon_drinker = target_mob
-	var/list/diseases = carbon_drinker.get_static_viruses()
-	if(!LAZYLEN(diseases))
-		return
-	var/list/datum/disease/diseases_to_add = list()
-	for(var/datum/disease/malady as anything in diseases)
-		if(malady.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
-			diseases_to_add += malady
-	if(LAZYLEN(diseases_to_add))
-		AddComponent(/datum/component/infective, diseases_to_add)
 
 /obj/item/reagent_containers/cup/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!proximity_flag)
-		return
-
-	. |= AFTERATTACK_PROCESSED_ITEM
+		return ..()
 
 	if(!check_allowed_items(target, target_self = TRUE))
 		return
@@ -86,7 +67,7 @@
 			to_chat(user, span_warning("[target] is full."))
 			return
 
-		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
+		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
 		target.update_appearance()
@@ -100,29 +81,30 @@
 			to_chat(user, span_warning("[src] is full."))
 			return
 
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 		target.update_appearance()
 
-/obj/item/reagent_containers/cup/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/reagent_containers/cup/afterattack_alternate(atom/target, mob/user, has_proximity, click_parameters)
 	if((!proximity_flag) || !check_allowed_items(target, target_self = TRUE))
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return FALSE
 
-	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
-		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] is empty!"))
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(!target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		return FALSE
 
-		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(!target.reagents.total_volume)
+		to_chat(user, span_warning("[target] is empty!"))
+		return FALSE
 
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
-		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
+	if(reagents.holder_full())
+		to_chat(user, span_warning("[src] is full."))
+		return FALSE
+
+	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
+	to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	target.update_appearance()
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
 	var/hotness = attacking_item.get_temperature()
@@ -154,7 +136,7 @@
 			to_chat(user, span_notice("[src] is full."))
 		else
 			to_chat(user, span_notice("You break [attacking_egg] in [src]."))
-			attacking_egg.reagents.trans_to(src, attacking_egg.reagents.total_volume, transferred_by = user)
+			attacking_egg.reagents.trans_to(src, attacking_egg.reagents.total_volume)
 			qdel(attacking_egg)
 		return TRUE
 
@@ -291,7 +273,7 @@
 		if(reagents.total_volume < 1)
 			user.balloon_alert(user, "empty!")
 		else
-			reagents.trans_to(O, 5, transferred_by = user)
+			reagents.trans_to(O, 5)
 			user.balloon_alert(user, "doused [O]")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return
@@ -311,11 +293,11 @@
 			to_chat(user, span_userdanger("[src]'s contents spill all over you!"))
 			reagents.expose(user, TOUCH)
 			reagents.clear_reagents()
-		reagents.flags = NONE
+		reagents.reagent_flags = NONE
 
 /obj/item/reagent_containers/cup/bucket/dropped(mob/user)
 	. = ..()
-	reagents.flags = initial(init_reagent_flags)
+	reagents.reagent_flags = initial(init_reagent_flags)
 
 /obj/item/reagent_containers/cup/bucket/equip_to_best_slot(mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head

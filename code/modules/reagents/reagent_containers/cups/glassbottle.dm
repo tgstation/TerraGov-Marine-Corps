@@ -642,7 +642,7 @@
 				continue
 			stunt_witness.add_mood_event("sabrage_witness", /datum/mood_event/sabrage_witness)
 
-	reagents.flags |= OPENCONTAINER
+	reagents.reagent_flags |= OPENCONTAINER
 	playsound(src, 'sound/items/champagne_pop.ogg', 70, TRUE)
 	update_appearance()
 	make_froth(offset_x = 0, offset_y = sabraged ? 13 : 15, intensity = froth_severity) //the y offset for sabraged is lower because the bottle's lip is smashed
