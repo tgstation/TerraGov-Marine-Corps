@@ -1,0 +1,6 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - balance: "significantly less river to orion outpost"
+  - balance: "vehicles destructible in orion outpost"
+  - balance: "more cover to orion outpost"
