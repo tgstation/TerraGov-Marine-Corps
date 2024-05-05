@@ -60,7 +60,7 @@
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/shotgun/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
