@@ -8,86 +8,21 @@
 	icon_state = "glass_empty"
 	possible_transfer_amounts = list(5,10,15,20,25,30,50)
 	resistance_flags = NONE
-
 	isGlass = TRUE
 
-
-/obj/item/reagent_containers/cup/glass/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum, do_splash = TRUE)
+/obj/item/reagent_containers/cup/glass/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
-	if(!.) //if the bottle wasn't caught
-		var/mob/thrower = throwingdatum?.get_thrower()
-		smash(hit_atom, thrower, TRUE)
+	smash(hit_atom, TRUE)
 
-/obj/item/reagent_containers/cup/glass/proc/smash(atom/target, mob/thrower, ranged = FALSE, break_top = FALSE)
+/obj/item/reagent_containers/cup/glass/proc/smash(atom/target, ranged = FALSE, break_top = FALSE)
 	if(!isGlass)
 		return
 	if(QDELING(src) || !target) //Invalid loc
-		return
-	if(bartender_check(target) && ranged)
 		return
 	var/obj/item/broken_bottle/B = new (loc)
 	B.mimic_broken(src, target, break_top)
 	qdel(src)
 	target.Bumped(B)
-
-/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
-	. = ..()
-	if(QDELETED(src))
-		return
-	if(P.damage > 0 && P.damage_type == BRUTE)
-		var/atom/T = get_turf(src)
-		smash(T)
-
-
-/obj/item/reagent_containers/cup/glass/trophy
-	name = "pewter cup"
-	desc = "Everyone gets a trophy."
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "pewter_cup"
-	w_class = WEIGHT_CLASS_TINY
-	force = 1
-	throwforce = 1
-	amount_per_transfer_from_this = 5
-	has_variable_transfer_amount = FALSE
-	volume = 5
-	obj_flags = CONDUCTS_ELECTRICITY
-	resistance_flags = FIRE_PROOF
-	isGlass = FALSE
-
-/obj/item/reagent_containers/cup/glass/trophy/gold_cup
-	name = "gold cup"
-	desc = "You're winner!"
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "golden_cup"
-	inhand_icon_state = "golden_cup"
-	w_class = WEIGHT_CLASS_BULKY
-	force = 14
-	throwforce = 10
-	amount_per_transfer_from_this = 20
-	volume = 150
-
-/obj/item/reagent_containers/cup/glass/trophy/silver_cup
-	name = "silver cup"
-	desc = "Best loser!"
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "silver_cup"
-	w_class = WEIGHT_CLASS_NORMAL
-	force = 10
-	throwforce = 8
-	amount_per_transfer_from_this = 15
-	volume = 100
-
-
-/obj/item/reagent_containers/cup/glass/trophy/bronze_cup
-	name = "bronze cup"
-	desc = "At least you ranked!"
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "bronze_cup"
-	w_class = WEIGHT_CLASS_SMALL
-	force = 5
-	throwforce = 4
-	amount_per_transfer_from_this = 10
-	volume = 25
 
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly
@@ -101,7 +36,6 @@
 	icon_state = "coffee"
 	base_icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
-	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	drink_type = BREAKFAST
 	var/lid_open = 0
@@ -118,7 +52,7 @@
 /obj/item/reagent_containers/cup/glass/coffee/click_alt(mob/user)
 	lid_open = !lid_open
 	update_icon_state()
-	return CLICK_ACTION_SUCCESS
+	return
 
 /obj/item/reagent_containers/cup/glass/coffee/update_icon_state()
 	if(lid_open)
@@ -145,7 +79,6 @@
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "tea_empty"
 	base_icon_state = "tea"
-	inhand_icon_state = "coffee"
 
 /obj/item/reagent_containers/cup/glass/mug/update_icon_state()
 	icon_state = "[base_icon_state][reagents.total_volume ? null : "_empty"]"
@@ -163,7 +96,6 @@
 	icon_state = "tea"
 	list_reagents = list(/datum/reagent/consumable/hot_coco = 15, /datum/reagent/consumable/sugar = 5)
 	drink_type = SUGAR
-	resistance_flags = FREEZE_PROOF
 
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen
 	name = "\improper Nanotrasen mug"
@@ -198,7 +130,6 @@
 	desc = "A bottle of water filled at an old Earth bottling facility."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "smallbottle"
-	inhand_icon_state = null
 	list_reagents = list(/datum/reagent/water = 49.5, /datum/reagent/fluorine = 0.5)//see desc, don't think about it too hard
 	volume = 50
 	amount_per_transfer_from_this = 10
@@ -233,23 +164,18 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/click_alt(mob/user)
 	if(cap_lost)
 		to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
-		return CLICK_ACTION_BLOCKING
+		return
 
-	var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
-	if(cap_on || fumbled)
+	if(cap_on)
 		cap_on = FALSE
 		animate(src, transform = null, time = 2, loop = 0)
-		if(fumbled)
-			to_chat(user, span_warning("You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?"))
-			cap_lost = TRUE
-		else
-			to_chat(user, span_notice("You remove the cap from [src]."))
-			playsound(loc, 'sound/effects/can_open1.ogg', 50, TRUE)
+		to_chat(user, span_notice("You remove the cap from [src]."))
+		playsound(loc, 'sound/effects/can_open1.ogg', 50, TRUE)
 	else
 		cap_on = TRUE
 		to_chat(user, span_notice("You put the cap on [src]."))
 	update_appearance()
-	return CLICK_ACTION_SUCCESS
+	return
 
 /obj/item/reagent_containers/cup/glass/waterbottle/is_refillable()
 	if(cap_on)
@@ -402,93 +328,6 @@
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
 // itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 // icon states.
-
-
-/obj/item/reagent_containers/cup/glass/shaker
-	name = "shaker"
-	desc = "A metal shaker to mix drinks in."
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "shaker"
-	amount_per_transfer_from_this = 10
-	volume = 100
-	isGlass = FALSE
-	interaction_flags_click = NEED_HANDS|FORBID_TELEKINESIS_REACH
-	/// Whether or not poured drinks should use custom names and descriptions
-	var/using_custom_drinks = FALSE
-	/// Name custom drinks will have
-	var/custom_drink_name = "Custom drink"
-	/// Description custom drinks will have
-	var/custom_drink_desc = "Mixed by your favourite bartender!"
-
-/obj/item/reagent_containers/cup/glass/shaker/Initialize(mapload)
-	. = ..()
-	register_context()
-	if(prob(10))
-		name = "\improper Nanotrasen 20th Anniversary Shaker"
-		desc += " It has an emblazoned Nanotrasen logo on it."
-		icon_state = "shaker_n"
-
-/obj/item/reagent_containers/cup/glass/shaker/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[using_custom_drinks ? "Disable" : "Enable"] custom drinks"
-	return CONTEXTUAL_SCREENTIP_SET
-
-/obj/item/reagent_containers/cup/glass/shaker/examine(mob/user)
-	. = ..()
-	. += span_notice("Alt-click to [using_custom_drinks ? "disable" : "enable"] custom drink naming")
-	if(using_custom_drinks)
-		. += span_notice("Drinks poured from this shaker will have the following name: [custom_drink_name]")
-		. += span_notice("Drinks poured from this shaker will have the following description: [custom_drink_desc]")
-
-/obj/item/reagent_containers/cup/glass/shaker/click_alt(mob/user)
-	if(using_custom_drinks)
-		using_custom_drinks = FALSE
-		disable_custom_drinks()
-		balloon_alert(user, "custom drinks disabled")
-		return CLICK_ACTION_BLOCKING
-
-	var/new_name = reject_bad_text(tgui_input_text(user, "Drink name", "Set drink name", custom_drink_name, 45, FALSE), 64)
-	if(!new_name)
-		balloon_alert(user, "invalid drink name!")
-		using_custom_drinks = FALSE
-		return CLICK_ACTION_BLOCKING
-
-	if(!user.can_perform_action(src, NEED_HANDS|FORBID_TELEKINESIS_REACH))
-		return CLICK_ACTION_BLOCKING
-
-	var/new_desc = reject_bad_text(tgui_input_text(user, "Drink description", "Set drink description", custom_drink_desc, 64, TRUE), 128)
-	if(!new_desc)
-		balloon_alert(user, "invalid drink description!")
-		using_custom_drinks = FALSE
-		return CLICK_ACTION_BLOCKING
-
-	if(!user.can_perform_action(src, NEED_HANDS|FORBID_TELEKINESIS_REACH))
-		return CLICK_ACTION_BLOCKING
-
-	using_custom_drinks = TRUE
-	custom_drink_name = new_name
-	custom_drink_desc = new_desc
-
-	enable_custom_drinks()
-	balloon_alert(user, "now pouring custom drinks")
-	return CLICK_ACTION_SUCCESS
-
-/obj/item/reagent_containers/cup/glass/shaker/proc/enable_custom_drinks()
-	RegisterSignal(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, PROC_REF(handle_transfer))
-
-/obj/item/reagent_containers/cup/glass/shaker/proc/disable_custom_drinks()
-	UnregisterSignal(src, COMSIG_REAGENTS_CUP_TRANSFER_TO)
-
-/obj/item/reagent_containers/cup/glass/shaker/proc/handle_transfer(atom/origin, atom/target)
-	SIGNAL_HANDLER
-	// Should only work on drinking/shot glasses
-	if(!istype(target, /obj/item/reagent_containers/cup/glass/drinkingglass))
-		return
-
-	var/obj/item/reagent_containers/cup/glass/drinkingglass/target_glass = target
-	target_glass.name = custom_drink_name
-	target_glass.desc = custom_drink_desc
-	ADD_TRAIT(target_glass, TRAIT_WAS_RENAMED, SHAKER_LABEL_TRAIT)
 
 /obj/item/reagent_containers/cup/glass/flask
 	name = "flask"
