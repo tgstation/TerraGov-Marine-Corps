@@ -289,3 +289,13 @@
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
+//I INSERT THE SHELLS IN AN UNKNOWN ORDER
+/datum/ammo/bullet/shotgun/blank
+	name = "shotgun blank shell"
+	handful_icon_state = "shotgun blank shell"
+	icon_state = "shotgun_blank"
+	hud_state = "shotgun_buckshot" // don't fix this: this is so you can do buckshot roulette
+	shell_speed = 0
+	max_range = -1
+	damage = 0

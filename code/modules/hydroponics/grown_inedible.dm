@@ -168,7 +168,7 @@
 	desc = "A reminder of meals gone by."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
-	item_state = "corncob"
+	worn_icon_state = "corncob"
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20

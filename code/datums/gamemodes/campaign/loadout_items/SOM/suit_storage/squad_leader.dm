@@ -28,7 +28,7 @@
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
 	Uses 10x25mm caseless ammunition and 10 gauge micro grenades."
-	ui_icon = "ballistic"
+	ui_icon = "v31"
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -53,7 +53,7 @@
 	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
 	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "smg"
+	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -78,7 +78,7 @@
 	Has excellent mobility and handling and is best used at close range. \
 	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
 	Uses volkite power cells, shared with the VX-33."
-	ui_icon = "volkite"
+	ui_icon = "vx32"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
 /datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -101,7 +101,7 @@
 	Has middling mobility and handling, it is a long range rifle analogue, able to project strong damage even at long ranges. \
 	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
 	Uses volkite power cells, shared with the VX-32, and can also be linked to a volkite powerpack."
-	ui_icon = "volkite"
+	ui_icon = "vx33"
 	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 

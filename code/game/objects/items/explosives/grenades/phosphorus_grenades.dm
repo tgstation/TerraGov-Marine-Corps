@@ -2,7 +2,7 @@
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon_state = "grenade_phos"
-	item_state = "grenade_phos"
+	worn_icon_state = "grenade_phos"
 	det_time = 2 SECONDS
 	hud_state = "grenade_hide"
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
@@ -34,5 +34,5 @@
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
-	item_state = "grenade_upp_wp"
+	worn_icon_state = "grenade_upp_wp"
 	arm_sound = 'sound/weapons/armbombpin_1.ogg'

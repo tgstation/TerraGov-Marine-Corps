@@ -46,7 +46,7 @@
 	desc = "Equipped with a red dot sight, bayonet and miniflamer. The Terra Experimental laser rifle, is a powerful and flexible weapon thanks to a variety of firemodes. \
 	Has good mobility and excellent falloff, although lacks the power offered by weapons with an underbarrel grenade launcher.\
 	Uses TE power cells that are shared across all TGMC laser weaponry."
-	ui_icon = "lasergun"
+	ui_icon = "ter"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -148,7 +148,7 @@
 	name = "BR-64"
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. \
 	The BR-64 is considered a 'light' marksmen rifle, with good stopping power it can apply effective damage at any range, while still having respectible handling and mobility. Uses 10x26.5smm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "t64"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_br/standard
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/battle_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

@@ -58,6 +58,9 @@
 		var/datum/faction_stats/selected_faction = stat_list[i]
 		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
+/datum/game_mode/hvh/campaign/get_map_color_variant()
+	return current_mission?.map_armor_color
+
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
 	if(!respawnee?.client)
 		return
@@ -167,6 +170,8 @@
 
 ///Actually swaps the player to the other team, unless balance has been restored
 /datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction)
+	if(!user.client)
+		return
 	if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
 		return
 	var/list/current_ratio = autobalance_check(1)

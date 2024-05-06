@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/ravager
-	caste_base_type = /mob/living/carbon/xenomorph/ravager
+	caste_base_type = /datum/xeno_caste/ravager
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/castes/ravager.dmi'

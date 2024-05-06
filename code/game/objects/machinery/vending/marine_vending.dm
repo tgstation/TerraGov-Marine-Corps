@@ -1355,6 +1355,7 @@
 			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
+			/obj/item/ammo_magazine/shotgun/beanbag = -1,
 			/obj/item/weapon/gun/minigun/valhalla = -1,
 			/obj/item/ammo_magazine/minigun_powerpack = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,

@@ -117,19 +117,18 @@
 	name = "secure briefcase"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
-	item_state = "sec-case"
+	worn_icon_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
 	force = 8
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/storage/secure/briefcase/Initialize(mapload)
-	. = ..()
+/obj/item/storage/secure/briefcase/PopulateContents()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
 

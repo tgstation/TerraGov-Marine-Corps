@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/pistol
 	icon = 'icons/obj/items/guns/pistols.dmi'
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
 	)
@@ -53,7 +53,7 @@
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
 	icon_state = "tp14"
-	item_state = "tp14"
+	worn_icon_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
@@ -77,8 +77,8 @@
 	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
-	item_state = "tx7"
-	item_icons = list(
+	worn_icon_state = "tx7"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/energy_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
 	)
@@ -145,7 +145,7 @@
 	name = "\improper Guardsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"
 	icon_state = "tx7w"
-	item_state = "tx7"
+	worn_icon_state = "tx7"
 
 //-------------------------------------------------------
 //RT-3 pistol
@@ -154,7 +154,7 @@
 	name = "\improper RT-3 target pistol"
 	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines."
 	icon_state = "rt3"
-	item_state = "rt3"
+	worn_icon_state = "rt3"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
@@ -179,7 +179,7 @@
 	name = "\improper P-23 service pistol"
 	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
 	icon_state = "tp23"
-	item_state = "tp23"
+	worn_icon_state = "tp23"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
@@ -227,7 +227,7 @@
 	name = "\improper P-1911 service pistol"
 	desc = "A P-1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
-	item_state = "m1911"
+	worn_icon_state = "m1911"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 10 //codex
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
@@ -268,7 +268,7 @@
 	name = "\improper P-22 pistol"
 	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
 	icon_state = "g22"
-	item_state = "g22"
+	worn_icon_state = "g22"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
@@ -289,7 +289,7 @@
 	name = "\improper P-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "g22"
-	item_state = "g22"
+	worn_icon_state = "g22"
 	caliber = CALIBER_9X19_TRANQUILIZER //codex
 	max_shells = 12 //codex
 	default_ammo_type = /obj/item/ammo_magazine/pistol/g22tranq
@@ -312,7 +312,7 @@
 	name = "\improper Desert Eagle pistol"
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower\"</i>."
 	icon_state = "deagle"
-	item_state = "deagle"
+	worn_icon_state = "deagle"
 	caliber = CALIBER_50AE //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 7 //codex
@@ -353,7 +353,7 @@
 	name = "\improper Desert Eagle custom pistol"
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
 	icon_state = "g_deagle"
-	item_state = "g_deagle"
+	worn_icon_state = "g_deagle"
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
@@ -361,7 +361,7 @@
 	name = "\improper Korovin PK-9 pistol"
 	desc = "An updated variant of an old handgun design, Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
 	icon_state = "pk9"
-	item_state = "pk9"
+	worn_icon_state = "pk9"
 	caliber = CALIBER_22LR //codex
 	max_shells = 12 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg' // Never heard in-game sadly.
@@ -404,7 +404,7 @@
 	name = "holdout pistol"
 	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
 	icon_state = "holdout"
-	item_state = "holdout"
+	worn_icon_state = "holdout"
 	caliber = CALIBER_22LR //codex
 	max_shells = 5 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
@@ -434,7 +434,7 @@
 	name = "\improper P-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
 	icon_state = "tp17"
-	item_state = "tp17"
+	worn_icon_state = "tp17"
 	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
@@ -467,7 +467,7 @@
 	name = "\improper Highpower automag"
 	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
-	item_state = "highpower"
+	worn_icon_state = "highpower"
 	caliber = CALIBER_50AE //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/guns/fire/hp.ogg'
@@ -497,7 +497,7 @@
 	name = "\improper MK88 Mod 4 combat pistol"
 	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
-	item_state = "88m4"
+	worn_icon_state = "88m4"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_88mod4.ogg'
@@ -548,7 +548,7 @@
 	name = "\improper VP78 combat pistol"
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
 	icon_state = "vp78"
-	item_state = "vp78"
+	worn_icon_state = "vp78"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_large.ogg'
@@ -578,7 +578,7 @@
 	name = "\improper V-11 pistol"
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
 	icon_state = "v11"
-	item_state = "v11"
+	worn_icon_state = "v11"
 	caliber = CALIBER_9X19
 	max_shells = 18
 	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
@@ -634,7 +634,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper Auto-9 pistol"
 	desc = "An advanced, select-fire machine pistol capable of three round burst. Last seen cleaning up the mean streets of Detroit."
 	icon_state = "auto9"
-	item_state = "auto9"
+	worn_icon_state = "auto9"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 50 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
@@ -656,7 +656,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper PL-5B2 duty pistol"
 	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
 	icon_state = "pl5"
-	item_state = "pl5"
+	worn_icon_state = "pl5"
 	icon = 'icons/obj/items/guns/pistols64.dmi'
 	caliber = CALIBER_45ACP //codex
 	max_shells = 18 //codex
@@ -682,7 +682,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper CHIMP70 pistol"
 	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
-	item_state = "c70"
+	worn_icon_state = "c70"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
@@ -748,7 +748,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
 	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "sp13"
-	item_state = "sp13"
+	worn_icon_state = "sp13"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound

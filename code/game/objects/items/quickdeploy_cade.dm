@@ -44,7 +44,8 @@
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
-	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		balloon_alert(user, "Can't build here")
 		return FALSE
 

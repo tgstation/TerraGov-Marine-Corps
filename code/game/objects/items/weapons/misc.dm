@@ -2,7 +2,7 @@
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
-	item_state = "chain"
+	worn_icon_state = "chain"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
@@ -19,7 +19,7 @@
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
-	item_state = "cane"
+	worn_icon_state = "cane"
 	atom_flags = CONDUCT
 	force = 5
 	throwforce = 7
@@ -35,7 +35,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	item_state = "broken_beer"
+	worn_icon_state = "broken_beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
@@ -49,7 +49,7 @@
 	name = "powerfist"
 	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and click with an empty off-hand or right click to pop out the cell."
 	icon_state = "powerfist"
-	item_state = "powerfist"
+	worn_icon_state = "powerfist"
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	attack_verb = list("smashed", "rammed", "power-fisted")

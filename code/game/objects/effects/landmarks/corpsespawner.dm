@@ -75,7 +75,7 @@
 			victim.internal_organs_by_name -= "lungs"
 			victim.internal_organs -= heart
 			victim.internal_organs -= lungs
-			victim.chestburst = 2
+			victim.chestburst = CARBON_CHEST_BURSTED
 			victim.update_burst()
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/spitter
-	caste_base_type = /mob/living/carbon/xenomorph/spitter
+	caste_base_type = /datum/xeno_caste/spitter
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
 	icon = 'icons/Xeno/castes/spitter.dmi'
