@@ -7,6 +7,7 @@
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
@@ -126,6 +127,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SANDSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_DESERT
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_victory()
 	winning_faction = starting_faction

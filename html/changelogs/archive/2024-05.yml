@@ -35,3 +35,31 @@
   - bugfix: fixed opening storage by clicking with another item, properly
   blackdav123:
   - bugfix: Treaded trucks now use the correct sprites.
+2024-05-05:
+  Lumipharon:
+  - rscadd: Added EMP nades to campaign
+  - balance: Various changes to EMP effects
+  - code_imp: updated EMP code
+  - imageadd: Tweaked the timing on perk unlock animations
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: Map variant for colours updates with each mission'
+  TiviPlus:
+  - soundadd: Decreases bullet ping sound range
+  Xander3359:
+  - bugfix: It's no longer possible to cade on alamo
+  - bugfix: Stacks with 1 recipe craft will no longer pull up the crafting menu
+  blackdav123:
+  - bugfix: Fixed a few areas on Gelida IV.
+  tyeagg:
+  - imageadd: new tank module sprites
+  - imageadd: new tank weapon sprites
+  - imageadd: new tank sprite
+2024-05-06:
+  blackdav123:
+  - bugfix: Tad can now land on lavaland tilesets.
+  - rscadd: Added more cover for xenos on the 2nd disks of Magmoor.
+  - bugfix: Fixed a few missing pipes on Magmoor.
+  tyeagg:
+  - balance: significantly less river to orion outpost
+  - balance: vehicles destructible in orion outpost
+  - balance: more cover to orion outpost
