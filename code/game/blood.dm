@@ -91,7 +91,7 @@
 
 /atom/proc/clean_blood()
 	blood_color = null
-	return 1
+	return TRUE
 
 /obj/item/clean_blood()
 	. = ..()
