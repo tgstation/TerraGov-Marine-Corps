@@ -462,20 +462,20 @@
 
 ///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
 /datum/reagents/proc/del_reagent(type_to_remove)
-	var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
-	if(!reagent_to_remove)
-		return FALSE
-	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
-	var/atom/holder_atom = get_holder()
-	if(isliving(holder_atom))
-		var/mob/living/L = holder_atom
-		reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
-	reagent_list -= reagent_to_remove
-	qdel(reagent_to_remove)
-	update_total()
-	holder_atom?.on_reagent_change(DEL_REAGENT)
-	return TRUE
-
+	//var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
+	for(var/datum/reagent/reagent_to_remove AS in reagent_list)
+		if(reagent_to_remove.type != type_to_remove)
+			continue
+		SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+		var/atom/holder_atom = get_holder()
+		if(isliving(holder_atom))
+			var/mob/living/L = holder_atom
+			reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
+		reagent_list -= reagent_to_remove
+		qdel(reagent_to_remove)
+		update_total()
+		holder_atom?.on_reagent_change(DEL_REAGENT)
+		return TRUE
 
 /datum/reagents/proc/update_total()
 	var/list/cached_reagents = reagent_list
@@ -579,11 +579,11 @@
 	specific_heat += D.specific_heat * (amount / new_total)
 	thermal_energy += D.specific_heat * amount * reagtemp
 	chem_temp = thermal_energy / (specific_heat * new_total)
-	////
 
 	//add the reagent to the existing if it exists
-	var/datum/reagent/existing_reagent = locate(reagent) in cached_reagents
-	if(existing_reagent)
+	for(var/datum/reagent/existing_reagent AS in cached_reagents)
+		if(existing_reagent.type != reagent)
+			continue
 		existing_reagent.volume += amount
 		update_total()
 		if(cached_atom)
