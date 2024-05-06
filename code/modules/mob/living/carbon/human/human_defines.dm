@@ -197,17 +197,16 @@
 /mob/living/carbon/human/proc/resuscitate()
 	updatehealth() // so they don't die instantly
 	if(stat == DEAD && can_be_revived())
-		set_stat(UNCONSCIOUS)
-		chestburst = 0 // reset this so we don't have someone walk around with a hole in their chest (lol)
-		regenerate_icons()
-		reload_fullscreens()
-		flash_act()
-		apply_effect(10, EYE_BLUR)
-		apply_effect(20 SECONDS, PARALYZE)
-		handle_regular_hud_updates()
-		updatehealth() // do this one more time for extra cleanup
-		REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-		dead_ticks = 0 // reset DNR timer
+		H.emote("gasp")
+		H.chestburst = CARBON_NO_CHEST_BURST
+		H.regenerate_icons()
+		H.reload_fullscreens()
+		H.flash_act()
+		H.apply_effect(10, EYE_BLUR)
+		H.apply_effect(20 SECONDS, PARALYZE)
+		H.handle_regular_hud_updates()
+		H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+		H.dead_ticks = 0 //We reset the DNR time
 
 ///Checks brute/fire damage, heart status, having a head, death ticks and client for defibrillation
 /mob/living/carbon/human/proc/check_defib()

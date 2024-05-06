@@ -208,7 +208,7 @@
 		to_chat(user, span_warning("You stop setting up the paddles on [H]'s chest."))
 		return
 
-	// Do this now, order doesn't really matter (we check the rest of revive parameters in a moment)
+	//Do the defibrillation effects now. We're checking revive parameters in a moment.
 	sparks.start()
 	H.visible_message(span_warning("[H]'s body convulses a bit."))
 	playsound(src, 'sound/items/defib_release.ogg', 25, FALSE)
@@ -221,7 +221,8 @@
 	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 	if(H.wear_suit && H.wear_suit.atom_flags & CONDUCT)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured, operation aborted. Remove suit or armor and try again."))
+		playsound(src, 'sound/items/defib_failed.ogg', 40, FALSE)
 		return
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
@@ -233,7 +234,7 @@
 		return
 
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
 	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
@@ -315,16 +316,6 @@
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
 	H.resuscitate() // time for a smoke
-	H.emote("gasp")
-	H.chestburst = CARBON_NO_CHEST_BURST
-	H.regenerate_icons()
-	H.reload_fullscreens()
-	H.flash_act()
-	H.apply_effect(10, EYE_BLUR)
-	H.apply_effect(20 SECONDS, PARALYZE)
-	H.handle_regular_hud_updates()
-	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
-	H.dead_ticks = 0 //We reset the DNR time
 
 	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
 	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
