@@ -135,7 +135,7 @@
 		update_inv_gloves()
 
 	if(shoes)
-		if(shoes.clean_blood)
+		if(shoes.clean_blood())
 			update_inv_shoes()
 	else
 		feet_blood_color = null
