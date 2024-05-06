@@ -462,7 +462,6 @@
 
 ///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
 /datum/reagents/proc/del_reagent(type_to_remove)
-	//var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
 	for(var/datum/reagent/reagent_to_remove AS in reagent_list)
 		if(reagent_to_remove.type != type_to_remove)
 			continue
