@@ -21,6 +21,7 @@
 
 	greyscale_config = /datum/greyscale_config/style_hat
 	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = SECONDARY_COLORS
 
 	visorless_offset_y = 0
 
@@ -118,7 +119,8 @@
 	inv_hide_flags = HIDEALLHAIR|HIDEEARS
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	greyscale_config = /datum/greyscale_config/style_hat
-
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = SECONDARY_COLORS
 
 /obj/item/clothing/mask/gas/modular/coofmask
 	name = "combat face cloth covering"
