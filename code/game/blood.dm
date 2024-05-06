@@ -84,11 +84,7 @@
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
 
-
-
-
-
-
+///Removes blood from our atom
 /atom/proc/clean_blood()
 	blood_color = null
 	return TRUE
@@ -104,8 +100,32 @@
 	. = ..()
 	transfer_blood = 0
 
-/mob/living/carbon/human/clean_blood(clean_feet)
+/mob/clean_blood()
+	. = ..()
+	if(r_hand)
+		r_hand.clean_blood()
+	if(l_hand)
+		l_hand.clean_blood()
+	if(wear_mask)
+		if(wear_mask.clean_blood())
+			update_inv_wear_mask()
+
+/mob/living/carbon/human/clean_blood()
+	. = ..()
 	germ_level = 0
+
+	if(head)
+		if(head.clean_blood())
+			update_inv_head()
+
+	if(wear_suit)
+		if(wear_suit.clean_blood())
+			update_inv_wear_suit()
+
+	if(w_uniform)
+		if(w_uniform.clean_blood())
+			update_inv_w_uniform()
+
 	if(gloves)
 		if(gloves.clean_blood())
 			update_inv_gloves()
@@ -114,10 +134,14 @@
 		bloody_hands = 0
 		update_inv_gloves()
 
-	if(clean_feet && !shoes)
+	if(shoes)
+		if(shoes.clean_blood)
+			update_inv_shoes()
+	else
 		feet_blood_color = null
 		update_inv_shoes()
-		return TRUE
+
+	return TRUE
 
 ///Washes the blood and such off a mob
 /mob/living/proc/clean_mob()
