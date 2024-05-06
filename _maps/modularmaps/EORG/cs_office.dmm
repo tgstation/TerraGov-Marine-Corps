@@ -2131,8 +2131,8 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
-/obj/item/clothing/suit/chef,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/suit/storage/chef,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "Xo" = (
@@ -2260,7 +2260,7 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ZD" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/deathmatch)
 "ZF" = (
 /obj/structure/table,

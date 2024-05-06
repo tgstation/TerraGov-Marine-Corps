@@ -3,13 +3,13 @@
 	desc = "Dance my monkeys! DANCE!!!"
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "electropack0"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/security_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/security_right.dmi',
 	)
-	item_state = "electropack"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
+	worn_icon_state = "electropack"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 
 

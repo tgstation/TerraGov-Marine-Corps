@@ -111,10 +111,6 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-
-/turf/closed/mineral/smooth/darkfrostwall/cuttable
-	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	name = "tough rock"
@@ -166,6 +162,30 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+//basalt mineral wall
+/turf/closed/mineral/smooth/basalt
+	icon = 'icons/turf/walls/basaltwall.dmi'
+	icon_state = "basaltwall-0"
+	base_icon_state = "basaltwall"
+
+/turf/closed/mineral/smooth/basalt/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+//new wall for lava maps
+/turf/closed/mineral/smooth/lavawall
+	icon = 'icons/turf/walls/lava_wall.dmi'
+	icon_state = "lava_wall-0"
+	walltype = "lava_wall"
+	base_icon_state = "lava_wall"
+
+/turf/closed/mineral/smooth/lavawall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+/turf/closed/mineral/smooth/lavawall/outdoor
+	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
@@ -191,7 +211,7 @@
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			ChangeTurf(/turf/open/ground/grass)
+			ChangeTurf(/turf/open/ground/grass/weedable)
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
@@ -297,7 +317,7 @@
 	icon_state = "Intersection"
 
 /turf/closed/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(I) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))

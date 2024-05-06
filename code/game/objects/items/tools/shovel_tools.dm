@@ -5,9 +5,9 @@
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "shovel"
-	item_state = "shovel"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "shovel"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 8
 	throwforce = 4
 	w_class = WEIGHT_CLASS_NORMAL
@@ -55,57 +55,58 @@
 				new /obj/item/stack/snow(T, dirt_amt)
 		dirt_amt = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tool/shovel/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(folded)
 		return
-
 	if(user.do_actions)
 		return
+	if(!isturf(target))
+		return
 
-	if(isturf(target))
-		if(!dirt_amt)
-			var/turf/T = target
-			var/turfdirt = T.get_dirt_type()
-			if(turfdirt)
-				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/floor/plating/ground/snow/ST = T
-					if(!ST.slayer)
-						return
-				balloon_alert(user, "Starts digging")
-				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, shovelspeed, NONE, T, BUSY_ICON_BUILD))
-					return
-				var/transf_amt = dirt_amt_per_dig
-				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/floor/plating/ground/snow/ST = T
-					if(!ST.slayer)
-						return
-					ST.slayer -= 1
-					ST.update_appearance()
-					ST.update_sides()
-					balloon_alert(user, "Digs up snow")
-				else
-					balloon_alert(user, "Digs up dirt")
-				dirt_amt = transf_amt
-				dirt_type = turfdirt
-				update_icon()
+	var/turf/target_turf = target
 
-		else
-			var/turf/T = target
-			balloon_alert(user, "Dumps the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
-			playsound(user.loc, "rustle", 30, 1, 6)
-			if(dirt_type == DIRT_TYPE_SNOW)
-				var/obj/item/stack/snow/S = locate() in T
-				if(S && (S.amount + dirt_amt < S.max_amount))
-					S.amount += dirt_amt
-				else
-					new /obj/item/stack/snow(T, dirt_amt)
-			dirt_amt = 0
-			update_icon()
+	if(dirt_amt)
+		balloon_alert(user, "Dumps the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
+		playsound(user.loc, "rustle", 30, 1, 6)
+		if(dirt_type == DIRT_TYPE_SNOW)
+			var/obj/item/stack/snow/S = locate() in target_turf
+			if(S && (S.amount + dirt_amt < S.max_amount))
+				S.amount += dirt_amt
+			else
+				new /obj/item/stack/snow(target_turf, dirt_amt)
+		dirt_amt = 0
+		update_appearance(UPDATE_ICON)
+		return
+
+	var/turfdirt = target_turf.get_dirt_type()
+	if(!turfdirt)
+		return
+	if(turfdirt == DIRT_TYPE_SNOW)
+		var/turf/open/floor/plating/ground/snow/ST = target_turf
+		if(!ST.slayer)
+			return
+	balloon_alert(user, "Starts digging")
+	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
+	if(!do_after(user, shovelspeed, NONE, target_turf, BUSY_ICON_BUILD))
+		return
+	var/transf_amt = dirt_amt_per_dig
+	if(turfdirt == DIRT_TYPE_SNOW)
+		var/turf/open/floor/plating/ground/snow/ST = target_turf
+		if(!ST.slayer)
+			return
+		ST.slayer -= 1
+		ST.update_appearance()
+		ST.update_sides()
+		balloon_alert(user, "Digs up snow")
+	else
+		balloon_alert(user, "Digs up dirt")
+	dirt_amt = transf_amt
+	dirt_type = turfdirt
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tool/shovel/spade
 	name = "spade"
@@ -132,7 +133,7 @@
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "etool_c"
-	item_state = "etool_c"
+	worn_icon_state = "etool_c"
 	force = 2
 	throwforce = 2
 	hitsound = "sound/weapons/shovel.ogg"
@@ -145,13 +146,13 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(!folded && !sharp)
 		icon_state = "etool"
-		item_state = "etool"
+		worn_icon_state = "etool"
 	else if(sharp)
 		icon_state = "etool_s"
-		item_state = "etool"
+		worn_icon_state = "etool"
 	else
 		icon_state = "etool_c"
-		item_state = "etool_c"
+		worn_icon_state = "etool_c"
 	return ..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)

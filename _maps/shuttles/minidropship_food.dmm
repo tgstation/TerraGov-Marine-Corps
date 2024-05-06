@@ -18,7 +18,7 @@
 	pixel_x = 25;
 	pixel_y = 8
 	},
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /turf/open/floor/iron/white/textured_half{
@@ -110,7 +110,6 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},

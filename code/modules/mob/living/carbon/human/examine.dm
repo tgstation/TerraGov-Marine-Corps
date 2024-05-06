@@ -11,19 +11,19 @@
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
-		skipgloves = wear_suit.flags_inv_hide & HIDEGLOVES
-		skipsuitstorage = wear_suit.flags_inv_hide & HIDESUITSTORAGE
-		skipjumpsuit = wear_suit.flags_inv_hide & HIDEJUMPSUIT
-		skipshoes = wear_suit.flags_inv_hide & HIDESHOES
+		skipgloves = wear_suit.inv_hide_flags & HIDEGLOVES
+		skipsuitstorage = wear_suit.inv_hide_flags & HIDESUITSTORAGE
+		skipjumpsuit = wear_suit.inv_hide_flags & HIDEJUMPSUIT
+		skipshoes = wear_suit.inv_hide_flags & HIDESHOES
 
 	if(head)
-		skipmask = head.flags_inv_hide & HIDEMASK
-		skipeyes = head.flags_inv_hide & HIDEEYES
-		skipears = head.flags_inv_hide & HIDEEARS
-		skipface = head.flags_inv_hide & HIDEFACE
+		skipmask = head.inv_hide_flags & HIDEMASK
+		skipeyes = head.inv_hide_flags & HIDEEYES
+		skipears = head.inv_hide_flags & HIDEEARS
+		skipface = head.inv_hide_flags & HIDEFACE
 
 	if(wear_mask)
-		skipface |= wear_mask.flags_inv_hide & HIDEFACE
+		skipface |= wear_mask.inv_hide_flags & HIDEFACE
 
 	var/t_He = p_they(TRUE) //capitalised for use at the start of each line.
 	var/t_he = p_they()
@@ -223,8 +223,7 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			if(species.is_sentient)
-				msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
+			msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
@@ -461,7 +460,7 @@
 					if (display_foot_right)
 						msg += "[span_warning("[t_He] [t_has] blood pooling around [t_his] <b>right boot!</b>")]\n"
 
-	if(chestburst == 2)
+	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
 			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
 		else
@@ -495,8 +494,9 @@
 
 	if(hasHUD(user,"medical"))
 		var/cardcolor = holo_card_color
-		if(!cardcolor) cardcolor = "none"
-		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
+		if(!cardcolor)
+			cardcolor = "none"
+		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -506,9 +506,9 @@
 				break
 		if(!isnull(N))
 			if(!(N.fields["last_scan_time"]))
-				msg += "[span_deptradio("No scan report on record")]\n"
+				msg += "[span_deptradio("No body scan report on record")]\n"
 			else
-				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a>")]\n"
+				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user

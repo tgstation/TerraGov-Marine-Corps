@@ -33,7 +33,7 @@
 	ADD_TRAIT(src, TRAIT_REGRESSING, TRAIT_REGRESSING)
 	GLOB.evo_panel.ui_interact(src)
 
-///Creates a list of possible evolution options for a caste based on their tier.
+///Creates a list of possible /datum/xeno_caste options for a caste based on their tier.
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
@@ -54,7 +54,7 @@
 				else
 					return
 			if(XENO_TIER_ONE)
-				return list(/mob/living/carbon/xenomorph/larva)
+				return list(/datum/xeno_caste/larva)
 			if(XENO_TIER_TWO)
 				return GLOB.xeno_types_tier_one
 			if(XENO_TIER_THREE)
@@ -64,51 +64,46 @@
 			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
 				return GLOB.xeno_types_tier_one
 		if(XENO_TIER_ONE)
-			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
+			return GLOB.xeno_types_tier_two + GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_TWO)
-			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
+			return GLOB.xeno_types_tier_three + GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_THREE)
-			return GLOB.xeno_types_tier_four + /mob/living/carbon/xenomorph/hivemind
+			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
 				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
 
 
 ///Handles the evolution or devolution of the xenomorph
-/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
+/mob/living/carbon/xenomorph/proc/do_evolve(datum/xeno_caste/caste_type, regression = FALSE)
 	if(!generic_evolution_checks())
 		return
 
-	if(caste_type == /mob/living/carbon/xenomorph/hivemind && tgui_alert(src, "You are about to evolve into a hivemind, which places its core on the tile you're on when evolving. This core cannot be moved and you cannot regress. Are you sure you would like to place your core here?", "Evolving to hivemind", list("Yes", "No"), FALSE) != "Yes")
+	if(caste_type == /datum/xeno_caste/hivemind && tgui_alert(src, "You are about to evolve into a hivemind, which places its core on the tile you're on when evolving. This core cannot be moved and you cannot regress. Are you sure you would like to place your core here?", "Evolving to hivemind", list("Yes", "No"), FALSE) != "Yes")
 		return
 
-	var/new_mob_type
-	var/castepick
-	if(caste_type)
-		new_mob_type = caste_type
-		castepick = forced_caste_name
-	else
+	var/new_mob_type = initial(caste_type.caste_type_path)
+	if(!new_mob_type)
 		var/list/castes_to_pick = list()
 		for(var/type in get_evolution_options())
-			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-			castes_to_pick += Z.caste_name
-		castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
+			var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+			castes_to_pick += new_caste.caste_name
+		var/castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
 		if(!castepick) //Changed my mind
 			return
 
 		for(var/type in get_evolution_options())
 			var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			if(castepick == XC.caste_name)
-				new_mob_type = type
+				new_mob_type = XC.caste_type_path
 				break
 
 	if(!new_mob_type)
 		CRASH("[src] tried to evolve but failed to find a new_mob_type")
 
-	if(!caste_evolution_checks(new_mob_type, castepick, regression))
+	if(!caste_evolution_checks(caste_type, regression))
 		return
 
-	to_chat(src, span_xenonotice("It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span>"))
 	visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
@@ -117,11 +112,14 @@
 		balloon_alert(src, span_warning("We must hold still while evolving."))
 		return
 
-	if(!generic_evolution_checks() || !caste_evolution_checks(new_mob_type, castepick, regression))
-		return
+	if(!generic_evolution_checks() || !caste_evolution_checks(caste_type, regression))
+		return // TODO these should be on extra_checks in the todo
 
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		GLOB.key_to_time_of_caste_swap[key] = world.time
+
+	if(xeno_flags & XENO_ZOOMED)
+		zoom_out()
 
 	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 	finish_evolve(new_mob_type)
@@ -264,16 +262,16 @@
 	return TRUE
 
 ///Check if the xeno can currently evolve into a specific caste
-/mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_mob_type, castepick, regression = FALSE)
-	if(!regression && !(new_mob_type in get_evolution_options()))
+/mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_caste_type, regression = FALSE)
+	if(!regression && !(new_caste_type in get_evolution_options()))
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
-	var/datum/xeno_caste/new_caste_type = GLOB.xeno_caste_datums[new_mob_type][XENO_UPGRADE_BASETYPE]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE] // tivi todo make so evo takes the strict caste datums
 	// Initial can access uninitialized vars, which is why it's used here.
-	var/new_caste_flags = new_caste_type.caste_flags
+	var/new_caste_flags = new_caste.caste_flags
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			balloon_alert(src, "You are jobbanned from xenomorph leader roles")
@@ -283,65 +281,46 @@
 			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return FALSE
 
-	var/min_xenos = new_caste_type.evolve_min_xenos
+	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
-		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste_type.display_name)]")
+		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste.display_name)]")
 		return FALSE
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, "Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!")
 		return FALSE
 	// Check if there is a death timer for this caste
-	if(new_caste_type.death_evolution_delay)
-		var/death_timer = hive.caste_death_timers[new_caste_type.caste_type_path]
+	if(new_caste.death_evolution_delay)
+		var/death_timer = hive.caste_death_timers[new_caste]
 		if(death_timer)
-			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste_type.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
+			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
-	var/maximum_active_caste = new_caste_type.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_mob_type]))
-		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
+	var/maximum_active_caste = new_caste.maximum_active_caste
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_caste_type]))
+		to_chat(src, span_warning("There is already a [initial(new_caste.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
 		balloon_alert(src, "We need a empty tile to evolve")
 		return FALSE
 
-	if(istype(new_mob_type, /mob/living/carbon/xenomorph/queen))
-		switch(hivenumber) // because it causes issues otherwise
-			if(XENO_HIVE_CORRUPTED)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted
-			if(XENO_HIVE_ALPHA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Alpha
-			if(XENO_HIVE_BETA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Beta
-			if(XENO_HIVE_ZETA)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Zeta
-			if(XENO_HIVE_ADMEME)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/admeme
-			if(XENO_HIVE_FALLEN)
-				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
-
 	if(!regression)
-		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)
+		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)
 			balloon_alert(src, "The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die")
 			return FALSE
-		if(new_caste_type.tier == XENO_TIER_THREE && no_room_tier_three)
+		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
 			return FALSE
-		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
-		if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_mob_type != /mob/living/carbon/xenomorph/drone)
+		var/potential_queens = length(hive.xenos_by_typepath[/datum/xeno_caste/larva]) + length(hive.xenos_by_typepath[/datum/xeno_caste/drone])
+		if(SSticker.mode?.round_type_flags & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
+			if(isxenolarva(src) && new_caste_type != /datum/xeno_caste/drone)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
 				return FALSE
-			else if(isxenodrone(src) && new_mob_type != /mob/living/carbon/xenomorph/shrike)
+			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
 				return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE
-
-	if(isnull(new_mob_type))
-		CRASH("[src] tried to evolve but their castepick was null")
-
 	return TRUE
 
 ///Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.

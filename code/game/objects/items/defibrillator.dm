@@ -5,11 +5,11 @@
 	name = "emergency defibrillator"
 	desc = "A handheld emergency defibrillator, used to resuscitate patients."
 	icon = 'icons/obj/items/defibrillator.dmi'
-	icon_state = "defib"
-	item_state = "defib"
-	flags_atom = CONDUCT
-	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	icon_state = "defib_full"
+	worn_icon_state = "defib"
+	atom_flags = CONDUCT
+	item_flags = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 6
 	w_class = WEIGHT_CLASS_NORMAL
@@ -175,10 +175,17 @@
 	if(!ready)
 		to_chat(user, span_warning("Take the paddles out to continue."))
 		return
-	if(H.stat == DEAD && H.wear_suit && H.wear_suit.flags_atom & CONDUCT) // Dead, chest obscured
+	if(H.stat == DEAD && H.wear_suit && H.wear_suit.atom_flags & CONDUCT) // Dead, chest obscured
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured, operation aborted. Remove suit or armor and try again."))
 		playsound(src, 'sound/items/defib_failed.ogg', 40, FALSE)
 		return
+
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
+		return
+
+	if((H.wear_suit && H.wear_suit.atom_flags & CONDUCT))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 	if(H.stat != DEAD) // They aren't even dead
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
 		playsound(src, 'sound/items/defib_failed.ogg', 40, FALSE)
@@ -207,9 +214,52 @@
 	playsound(src, 'sound/items/defib_release.ogg', 25, FALSE)
 	dcell.use(charge_cost)
 	update_icon()
-	H.updatehealth()
+	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
+	user.visible_message(span_notice("[user] shocks [H] with the paddles."),
+	span_notice("You shock [H] with the paddles."))
+	H.visible_message(span_danger("[H]'s body convulses a bit."))
+	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
-	//at this point, the defibrillator is healing damage
+	if(H.wear_suit && H.wear_suit.atom_flags & CONDUCT)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
+		return
+
+	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
+	if(!issynth(H) && !isrobot(H) && heart && prob(25))
+		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
+
+	if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) || H.suiciding)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
+		return
+
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
+		return
+
+	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
+		var/datum/limb/head/braincase = H.get_limb("head")
+		if(braincase.limb_status & LIMB_DESTROYED)
+			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
+			return
+
+	if(!H.client) //Either client disconnected after being dragged in, ghosted, or this mob isn't a player (but that is caught way earlier).
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))
+
+	if(!H.mind) //Check if their ghost still exists if they aren't in their body.
+		G = H.get_ghost(TRUE)
+		if(istype(G))
+			user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again."))
+			return
+		//No mind and no associated ghost exists. This one is DNR.
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
+		return
+
+	if(!H.client) //No client, but has a mind. This means the player was in their body, but potentially disconnected.
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
+		return
+
+	//At this point, the defibrillator is ready to work
 	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
 		H.setOxyLoss(0)
 		H.updatehealth()
@@ -266,6 +316,15 @@
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
 	H.resuscitate() // time for a smoke
 	H.emote("gasp")
+	H.chestburst = CARBON_NO_CHEST_BURST
+	H.regenerate_icons()
+	H.reload_fullscreens()
+	H.flash_act()
+	H.apply_effect(10, EYE_BLUR)
+	H.apply_effect(20 SECONDS, PARALYZE)
+	H.handle_regular_hud_updates()
+	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+	H.dead_ticks = 0 //We reset the DNR time
 
 	//Checks if our "patient" is wearing a camera. Then it turns it on if it's off.
 	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
@@ -286,10 +345,10 @@
 	notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
 
 /obj/item/defibrillator/civi
-	name = "civilian defibrillator"
-	desc = "A handheld emergency defibrillator, used to resuscitate patients. Appears to be a civilian model."
-	icon_state = "civ_defib"
-	item_state = "defib"
+	name = "emergency defibrillator"
+	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
+	icon_state = "civ_defib_full"
+	worn_icon_state = "defib"
 
 /obj/item/defibrillator/internal
 	icon = 'icons/obj/clothing/gloves.dmi' //even though you'll never see this directly, it shows up in the chat panel due to icon2html
@@ -316,10 +375,10 @@
 	name = "advanced medical combat gloves"
 	desc = "Advanced medical gauntlets with small electrodes to resuscitate patients without a bulky unit."
 	icon_state = "defib_out_full"
-	item_state = "defib_gloves"
+	worn_icon_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
-	flags_cold_protection = HANDS
-	flags_heat_protection = HANDS
+	cold_protection_flags = HANDS
+	heat_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	///The internal defib item

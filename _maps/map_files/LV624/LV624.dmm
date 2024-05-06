@@ -3151,7 +3151,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bMK" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
@@ -5983,7 +5983,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
 "ffd" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -7225,7 +7225,7 @@
 /area/lv624/ground/river1)
 "gxL" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -9024,7 +9024,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "iCb" = (
@@ -9226,7 +9226,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "iNo" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
@@ -11451,7 +11451,7 @@
 /area/lv624/lazarus/engineering)
 "lmd" = (
 /obj/structure/table,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "lmI" = (
@@ -16680,7 +16680,7 @@
 /area/lv624/ground/jungle9)
 "ruj" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron/overalls,
+/obj/item/clothing/suit/storage/apron/overalls,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -16850,7 +16850,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -17807,7 +17807,7 @@
 "sDZ" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
@@ -18921,7 +18921,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "tRD" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "tRM" = (

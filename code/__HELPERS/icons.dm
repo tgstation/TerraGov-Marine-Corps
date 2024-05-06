@@ -252,6 +252,7 @@ ColorTone(rgb, tone)
 		if(4, 8)
 			usealpha = TRUE
 		if(3, 6) //proceed as normal
+			EMPTY_BLOCK_GUARD // why isnt this a normal if hhhh
 		else
 			return
 
@@ -1084,7 +1085,7 @@ ColorTone(rgb, tone)
 		if (isnull(icon_state))
 			icon_state = thing.icon_state
 			//Despite casting to atom, this code path supports mutable appearances, so let's be nice to them
-			if(isnull(icon_state) || (isatom(thing) && thing.flags_atom & HTML_USE_INITAL_ICON_1))
+			if(isnull(icon_state) || (isatom(thing) && thing.atom_flags & HTML_USE_INITAL_ICON_1))
 				icon_state = initial(thing.icon_state)
 				if (isnull(dir))
 					dir = initial(thing.dir)
@@ -1278,3 +1279,26 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	image_to_center.pixel_y = y_offset
 
 	return image_to_center
+
+///Checks if the given iconstate exists in the given file, caching the result. Setting scream to TRUE will print a stack trace ONCE.
+/proc/icon_exists(file, state, scream)
+	var/static/list/icon_states_cache = list()
+	if(icon_states_cache[file]?[state])
+		return TRUE
+
+	if(icon_states_cache[file]?[state] == FALSE)
+		return FALSE
+
+	var/list/states = icon_states(file)
+
+	if(!icon_states_cache[file])
+		icon_states_cache[file] = list()
+
+	if(state in states)
+		icon_states_cache[file][state] = TRUE
+		return TRUE
+	else
+		icon_states_cache[file][state] = FALSE
+		if(scream)
+			stack_trace("Icon Lookup for state: [state] in file [file] failed.")
+		return FALSE

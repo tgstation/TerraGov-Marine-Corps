@@ -21,15 +21,6 @@
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE))
-		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/xenomorph/larva/L = user
-		L.initiate_burst(src)
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)
 		return
@@ -202,12 +193,12 @@
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
+	if((item_flags & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
 
-/mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
+/mob/living/carbon/fire_act(burn_level)
 	. = ..()
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
@@ -340,14 +331,14 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
-			lighting_alpha = initial(species.lighting_alpha)
+			lighting_alpha = species.lighting_alpha
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye

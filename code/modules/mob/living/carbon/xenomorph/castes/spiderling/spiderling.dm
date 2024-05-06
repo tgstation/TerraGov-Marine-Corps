@@ -5,7 +5,7 @@
 #define SPIDERLING_NORMAL "spiderling_normal"
 
 /mob/living/carbon/xenomorph/spiderling
-	caste_base_type = /mob/living/carbon/xenomorph/spiderling
+	caste_base_type = /datum/xeno_caste/spiderling
 	name = "Spiderling"
 	desc = "A widow spawn, it chitters angrily without any sense of self-preservation, only to obey the widow's will."
 	icon = 'icons/Xeno/Effects.dmi'

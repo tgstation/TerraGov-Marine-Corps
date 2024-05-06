@@ -1,5 +1,5 @@
 /obj/vehicle/sealed
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
 	var/headlights_toggle = FALSE
@@ -43,12 +43,14 @@
 	. = ..()
 	REMOVE_TRAIT(M, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
 
-
-/obj/vehicle/sealed/proc/mob_try_enter(mob/M)
-	if(!istype(M))
+///Entry checks for the mob before entering the vehicle
+/obj/vehicle/sealed/proc/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
+	if(!istype(entering_mob))
 		return FALSE
-	if(do_after(M, get_enter_delay(M), NONE, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
-		mob_enter(M)
+	if(!user)
+		user = entering_mob
+	if(do_after(user, get_enter_delay(entering_mob), target = entering_mob, user_display = BUSY_ICON_FRIENDLY, extra_checks = CALLBACK(src, PROC_REF(enter_checks), entering_mob, loc_override)))
+		mob_enter(entering_mob)
 		return TRUE
 	return FALSE
 
@@ -58,9 +60,10 @@
 	return enter_delay
 
 ///Extra checks to perform during the do_after to enter the vehicle
-/obj/vehicle/sealed/proc/enter_checks(mob/M)
+/obj/vehicle/sealed/proc/enter_checks(mob/entering_mob, loc_override = FALSE)
 	return occupant_amount() < max_occupants
 
+///Enters the vehicle
 /obj/vehicle/sealed/proc/mob_enter(mob/M, silent = FALSE)
 	if(!istype(M))
 		return FALSE
@@ -70,9 +73,11 @@
 	add_occupant(M)
 	return TRUE
 
+///Exit checks for the mob before exiting the vehicle
 /obj/vehicle/sealed/proc/mob_try_exit(mob/M, mob/user, silent = FALSE, randomstep = FALSE)
 	mob_exit(M, silent, randomstep)
 
+///Exits the vehicle
 /obj/vehicle/sealed/proc/mob_exit(mob/M, silent = FALSE, randomstep = FALSE)
 	SIGNAL_HANDLER
 	if(!istype(M))

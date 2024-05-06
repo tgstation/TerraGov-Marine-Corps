@@ -230,7 +230,7 @@ const ObservableTooltip = (props: { item: Observable }) => {
       </NoticeBox>
       <LabeledList>
         {!!full_name && (
-          <LabeledList.Item label="full_name">{full_name}</LabeledList.Item>
+          <LabeledList.Item label="Full Name">{full_name}</LabeledList.Item>
         )}
         {!!caste && <LabeledList.Item label="Caste">{caste}</LabeledList.Item>}
         {!!job && <LabeledList.Item label="Job">{job}</LabeledList.Item>}

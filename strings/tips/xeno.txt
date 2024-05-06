@@ -58,8 +58,8 @@ As a warlock, your offensive abilities can be cast through glass. Give laser-usi
 As a boiler, primordial hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
-As a drone, hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.
-As a drone, hivelord, Hivemind, Shrike, and the Queen, be clever with your walling. Try to allow for as much fluid movement as possible.
+As a drone, Hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.
+As a drone, Hivelord, Hivemind, Shrike, and the Queen, be clever with your walling. Try to allow for as much fluid movement as possible.
 As a shrike, queen, or king, hijacking the alamo will kill every xeno that you leave groundside, as well as destroying every structure and resetting your psy count. However, dead xenos will be refunded as burrowed larva. Call burrowed after a hijack!
 Sticky resin can act as the path for your maze to be built around.
 The Hivemind is very skilled at flanking marines. Wait for them to push, and wall them off from behind!

@@ -2,11 +2,11 @@
 	name = "marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
-	item_state = "marine"
-	flags_armor_protection = FEET
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
-	flags_inventory = NOQUICKEQUIP|NOSLIPPING
+	worn_icon_state = "marine"
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -33,7 +33,7 @@
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	for(var/atom/item_in_pocket AS in armor_storage.storage.contents)
+	for(var/atom/item_in_pocket AS in armor_storage.contents)
 		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
 			icon_state += "-knife"
 
@@ -43,7 +43,7 @@
 /obj/item/clothing/shoes/marine/brown
 	name = "brown marine combat boots"
 	icon_state = "marine_brown"
-	item_state = "marine_brown"
+	worn_icon_state = "marine_brown"
 
 /obj/item/clothing/shoes/marine/brown/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
@@ -59,7 +59,7 @@
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
 	soft_armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
-	flags_inventory = NOSLIPPING
+	inventory_flags = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marinechief/captain
@@ -81,28 +81,28 @@
 	name = "polished shoes"
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
-	item_state = "jackboots"
-	flags_armor_protection = FEET
+	worn_icon_state = "jackboots"
+	armor_protection_flags = FEET
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
-	flags_inventory = NOSLIPPING
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marine/deathsquad
 	name = "\improper PMC commando boots"
 	desc = "A pair of heavily armored, acid-resistant boots."
 	icon_state = "commando_boots"
-	item_state = "commando_boots"
+	worn_icon_state = "commando_boots"
 	permeability_coefficient = 0.01
-	flags_armor_protection = FEET
+	armor_protection_flags = FEET
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
 	siemens_coefficient = 0.2
 	resistance_flags = UNACIDABLE
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
@@ -120,7 +120,7 @@
 	name = "\improper S11 combat shoes"
 	desc = "Shoes with origins dating back to the old mining colonies. These were made for more than just walking."
 	icon_state = "som"
-	item_state = "som"
+	worn_icon_state = "som"
 
 /obj/item/clothing/shoes/marine/som/knife
 	starting_attachments = list(/obj/item/armor_module/storage/boot/som_knife)
@@ -130,9 +130,9 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
-	flags_inventory = NOSLIPPING
+	inventory_flags = NOSLIPPING
 
 /obj/item/clothing/shoes/sectoid/Initialize(mapload)
 	. = ..()
@@ -142,13 +142,13 @@
 	name = "sturdy western boots"
 	desc = "As sturdy as they are old fashioned these will keep your ankles from snake bites on any planet. These cannot store anything, but has extra fashion with those unneeded spurs on their heels."
 	icon_state = "cboots"
-	item_state = "cboots"
+	worn_icon_state = "cboots"
 
 /obj/item/clothing/shoes/marine/clf
 	name = "\improper frontier boots"
 	desc = "A pair of well worn boots, commonly seen on most outer colonies."
 	icon_state = "boots"
-	item_state = "boots"
+	worn_icon_state = "boots"
 
 /obj/item/clothing/shoes/marine/clf/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)

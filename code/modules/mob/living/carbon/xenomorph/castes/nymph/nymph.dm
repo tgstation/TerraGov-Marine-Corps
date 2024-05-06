@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/nymph
-	caste_base_type = /mob/living/carbon/xenomorph/nymph
+	caste_base_type = /datum/xeno_caste/nymph
 	name = "Nymph"
 	desc = "An ant-looking creature."
 	icon = 'icons/Xeno/castes/nymph.dmi'

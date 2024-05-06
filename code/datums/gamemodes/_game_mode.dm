@@ -17,8 +17,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/job_points_needed_by_job_type = list()
 
 	var/round_time_fog
-	var/flags_round_type = NONE
-	var/flags_xeno_abilities = NONE
+	var/round_type_flags = NONE
+	var/xeno_abilities_flags = NONE
 
 	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
 	var/allow_persistence_save = TRUE
@@ -102,6 +102,12 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	for(var/datum/job/job AS in valid_job_types)
+		job = SSjob.GetJobType(job)
+		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
+			continue
+		job.on_pre_setup()
+
 	return TRUE
 
 /datum/game_mode/proc/setup()
@@ -110,7 +116,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	create_characters()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 
@@ -122,7 +128,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 ///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
-	if(flags_round_type & MODE_FORCE_CUSTOMSQUAD_UI)
+	if(round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED), deploy_time_lock)
 
 	if(!SSdbcore.Connect())
@@ -265,11 +271,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/setup_blockers()
 	set waitfor = FALSE
 
-	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
+	if(round_type_flags & MODE_LATE_OPENING_SHUTTER_TIMER)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
-	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
+	if(round_type_flags & MODE_XENO_SPAWN_PROTECT)
 		var/turf/T
 		while(length(GLOB.xeno_spawn_protection_locations))
 			T = GLOB.xeno_spawn_protection_locations[length(GLOB.xeno_spawn_protection_locations)]
@@ -388,6 +394,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
 	if(GLOB.round_statistics.rocket_shells_fired)
 		parts += "[GLOB.round_statistics.rocket_shells_fired] rocket artillery shells were fired."
+	if(GLOB.round_statistics.obs_fired)
+		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
 	if(SSevacuation.human_escaped)
@@ -471,6 +479,15 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
+
+	if(GLOB.round_statistics.sandevistan_uses)
+		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
+		if(GLOB.round_statistics.sandevistan_gibs)
+			sandevistan_text += ", of which [GLOB.round_statistics.sandevistan_gibs] resulted in a gib!"
+		else
+			sandevistan_text += ", and nobody was gibbed by it!"
+		parts += sandevistan_text
+
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += ""  // make it special from other stats above
 		parts += "Requisitions produced: "
@@ -957,7 +974,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
-	if(!(flags_round_type & MODE_INFESTATION))
+	if(!(round_type_flags & MODE_INFESTATION))
 		return
 	var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
 	if (larva_position) // If non-zero, we're in queue
@@ -980,3 +997,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
 	return
+
+///Returns the armor color variant applicable for this mode
+/datum/game_mode/proc/get_map_color_variant()
+	return SSmapping.configs[GROUND_MAP].armor_style

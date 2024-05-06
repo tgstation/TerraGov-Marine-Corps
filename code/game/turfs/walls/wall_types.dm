@@ -221,7 +221,7 @@
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/closed/wall/sulaco/unmeltable/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/sulaco/unmeltable/fire_act(burn_level)
 	return
 
 /turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
@@ -238,11 +238,11 @@
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
 
-/turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/indestructible/fire_act(burn_level)
 	return
 
 /turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
+	if(isplasmacutter(I)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		to_chat(user, span_warning("[P] can't cut through this!"))
 	return

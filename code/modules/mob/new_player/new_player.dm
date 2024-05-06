@@ -167,7 +167,7 @@
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
 	if(href_list["showpoll"])
-		handle_playeR_DBRANKSing()
+		handle_playeR_POLLSing()
 		return
 
 	if(href_list["viewpoll"])
@@ -189,7 +189,7 @@
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/forced_faction
-	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+	if(SSticker.mode.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
 		if(faction in SSticker.mode.get_joinable_factions(FALSE))
 			forced_faction = faction
 		else
@@ -445,7 +445,7 @@
 		to_chat(src, span_warning("The round is either not ready, or has already finished."))
 		return
 
-	if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
+	if(SSticker.mode.round_type_flags & MODE_NO_LATEJOIN)
 		to_chat(src, span_warning("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
 		return
 

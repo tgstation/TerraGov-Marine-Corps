@@ -36,8 +36,8 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-/obj/alien/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/alien/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/alien/ex_act(severity)
 	switch(severity)
@@ -123,7 +123,7 @@
 		return FALSE
 
 	if(xeno_attacker.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
+		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
@@ -199,7 +199,7 @@
 	if(xeno_attacker.a_intent != INTENT_HARM)
 		try_toggle_state(xeno_attacker)
 		return TRUE
-	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		qdel(src)
 		return TRUE
@@ -210,8 +210,8 @@
 		src.balloon_alert(xeno_attacker, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/structure/mineral_door/resin/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/ex_act(severity)
 	switch(severity)
@@ -223,9 +223,6 @@
 			take_damage((rand(50, 60)), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(30, BRUTE, BOMB)
-
-/turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
@@ -281,8 +278,8 @@
 /obj/item/resin_jelly
 	name = "resin jelly"
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
-	icon = 'icons/unused/Marine_Research.dmi'
-	icon_state = "biomass"
+	icon = 'icons/Xeno/xeno_materials.dmi'
+	icon_state = "resin_jelly"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	var/immune_time = 15 SECONDS
 	///Holder to ensure only one user per resin jelly.

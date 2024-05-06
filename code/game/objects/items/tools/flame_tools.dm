@@ -25,7 +25,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "a candle"
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle1"
-	item_state = "candle1"
+	worn_icon_state = "candle1"
 	w_class = WEIGHT_CLASS_TINY
 	light_system = MOVABLE_LIGHT
 	light_range = 2
@@ -96,7 +96,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "match_unlit"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
 	)
@@ -143,7 +143,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	burnt = TRUE
 	damtype = BRUTE
 	icon_state = "match_burnt"
-	item_state = "cigoff"
+	worn_icon_state = "cigoff"
 	set_light_on(FALSE)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
@@ -158,9 +158,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A roll of tobacco and nicotine."
 	icon_state = "cigoff"
 	throw_speed = 0.5
-	item_state = "cigoff"
+	worn_icon_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 	light_range = 0.1
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
@@ -302,7 +302,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
-	item_state = icon_on
+	worn_icon_state = icon_on
 	if(flavor_text)
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
@@ -354,28 +354,32 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		die()
 	return ..()
 
-/obj/item/clothing/mask/cigarette/attack(atom/target, mob/living/user)
-	if(!lit)
-		if(isturf(target))
-			var/turf/T = target
-			if(locate(/obj/flamer_fire) in T.contents)
-				light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
-				return
+/obj/item/clothing/mask/cigarette/attack_obj(obj/target_object, mob/living/user)
+	if(lit)
+		return ..()
+	if(!istype(target_object, /obj/machinery/light))
+		return ..()
+	var/obj/machinery/light/fixture = target_object
+	if(fixture.status != LIGHT_BROKEN || !fixture.has_power())
+		return ..()
+	light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
+	return TRUE
 
-		if(isliving(target) && user.a_intent == INTENT_HELP)
-			var/mob/living/M = target
-			if(M.on_fire)
-				if(user == M)
-					light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))
-				else
-					light(span_notice("[user] lights [user.p_their()] [src] from the burning body of [M], that's stone cold."))
-				return
+/obj/item/clothing/mask/cigarette/attack(mob/living/living_target, mob/living/user)
+	if(lit)
+		return ..()
+	if(!living_target.on_fire)
+		return ..()
+	if(user == living_target)
+		light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))
+	else
+		light(span_notice("[user] lights [user.p_their()] [src] from the burning body of [living_target], that's stone cold."))
+	return TRUE
 
-		if(istype(target, /obj/machinery/light))
-			var/obj/machinery/light/fixture = target
-			if(fixture.is_broken())
-				light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
-				return
+/obj/item/clothing/mask/cigarette/attack_turf(turf/target_turf, mob/living/user)
+	if(!lit && locate(/obj/flamer_fire) in target_turf.contents)
+		light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
+		return TRUE
 	return ..()
 
 /obj/item/clothing/mask/cigarette/proc/die()
@@ -392,7 +396,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "Neurokiller cigarette"
 	desc = "A new type of cigarette, made to fend off toxic gasses, might still tire you."
 	icon_state = "anticigoff"
-	item_state = "anticigoff"
+	worn_icon_state = "anticigoff"
 	icon_on = "anticigon"
 	smoketime = 30
 	chem_volume = 60
@@ -403,7 +407,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "Red Comrade"
 	desc = "A bright red cigarette with what appears to be russian branding on it. The words \"RUSSIAN RED\", however are unmistakable."
 	icon_state = "rrcigoff"
-	item_state = "rrcigoff"
+	worn_icon_state = "rrcigoff"
 	icon_on = "rrcigon"
 	smoketime = 10
 	transquantity = 1
@@ -413,7 +417,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "strawberry flavored cigarette"
 	desc = "Red tipped. Has got a single word stamped on the side: \"(BICARIDINE)\"."
 	icon_state = "bicacigoff"
-	item_state = "bicacigoff"
+	worn_icon_state = "bicacigoff"
 	icon_on = "bicacigon"
 	smoketime = 30
 	transquantity = 5 // one of each for the whole duration
@@ -423,7 +427,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "lemon flavored cigarette"
 	desc = "Yellow tipped. has got a single word stamped on the side: \"(KELOTANE)\"."
 	icon_state = "kelocigoff"
-	item_state = "kelocigoff"
+	worn_icon_state = "kelocigoff"
 	icon_on = "kelocigon"
 	smoketime = 30
 	transquantity = 5 // one of each for the whole duration
@@ -433,7 +437,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "poppy flavored cigarette"
 	desc = "TerraGov opioid alternative, diluted in water to skirt the 2112 Opioid Control act."
 	icon_state = "tramcigoff"
-	item_state = "tramcigoff"
+	worn_icon_state = "tramcigoff"
 	icon_on = "tramcigon"
 	smoketime = 15  //so half a minute
 	chem_volume = 60
@@ -451,7 +455,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigaroff"
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
-	item_state = "cigaroff"
+	worn_icon_state = "cigaroff"
 	smoketime = 1500
 	chem_volume = 40
 	list_reagents = list(/datum/reagent/nicotine = 10)
@@ -478,7 +482,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "smoking pipe"
 	desc = "A pipe, for smoking. Probably made of meershaum or something."
 	icon_state = "pipeoff"
-	item_state = "pipeoff"
+	worn_icon_state = "pipeoff"
 	icon_on = "pipeon"  //Note - these are in masks.dmi
 	icon_off = "pipeoff"
 	smoketime = 400
@@ -495,7 +499,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			lit = FALSE
 			turn_light(null, FALSE)
 			icon_state = icon_off
-			item_state = icon_off
+			worn_icon_state = icon_off
 			M.update_inv_wear_mask(0)
 		STOP_PROCESSING(SSobj, src)
 		return
@@ -507,7 +511,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = FALSE
 		turn_light(user, FALSE)
 		icon_state = icon_off
-		item_state = icon_off
+		worn_icon_state = icon_off
 		STOP_PROCESSING(SSobj, src)
 		return
 	if(smoketime <= 0)
@@ -519,7 +523,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "corn cob pipe"
 	desc = "A nicotine delivery system popularized by folksy backwoodsmen, kept popular in the modern age and beyond by space hipsters."
 	icon_state = "cobpipeoff"
-	item_state = "cobpipeoff"
+	worn_icon_state = "cobpipeoff"
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
 
@@ -527,7 +531,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "curved corn cob pipe"
 	desc = "Usually seen smoked by generals, or mindless bloodlusted commandos... but with style!"
 	icon_state = "curvedcoboff"
-	item_state = "curvedcoboff"
+	worn_icon_state = "curvedcoboff"
 	icon_on = "curvedcobon"  //Note - these are in masks.dmi
 	icon_off = "curvedcoboff"
 
@@ -535,7 +539,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "Europan bone pipe"
 	desc = "A smoking pipe made out of the bones of the Europan bone whale."
 	icon_state = "bonepipeoff"
-	item_state = "bonepipeoff"
+	worn_icon_state = "bonepipeoff"
 	icon_on = "bonepipeon"  //Note - these are in masks.dmi
 	icon_off = "bonepipeoff"
 
@@ -547,11 +551,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A cheap-as-free lighter."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "lighter-g"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
 	)
-	item_state = "lighter-g"
+	worn_icon_state = "lighter-g"
 	var/icon_on = "lighter-g-on"
 	var/icon_off = "lighter-g"
 	var/clr = "g"
@@ -561,15 +565,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_color = LIGHT_COLOR_FIRE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("burnt", "singed")
 
 /obj/item/tool/lighter/zippo
 	name = "\improper Zippo lighter"
 	desc = "The zippo."
 	icon_state = "zippo"
-	item_state = "zippo"
+	worn_icon_state = "zippo"
 	icon_on = "zippoon"
 	icon_off = "zippo"
 
@@ -585,7 +589,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!heat)
 			heat = 1500
 			icon_state = icon_on
-			item_state = icon_on
+			worn_icon_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				user.visible_message(span_rose("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."))
 				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
@@ -610,7 +614,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(heat)
 		heat = 0
 		icon_state = icon_off
-		item_state = icon_off
+		worn_icon_state = icon_off
 		if(!silent)
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")

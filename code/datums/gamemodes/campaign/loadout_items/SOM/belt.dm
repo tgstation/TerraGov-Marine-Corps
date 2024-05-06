@@ -13,7 +13,7 @@
 	)
 
 /datum/loadout_item/belt/som_sparepouch
-	name = "standard utility pouch"
+	name = "Utility pouch"
 	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
 	item_typepath = /obj/item/storage/belt/sparepouch/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
@@ -31,7 +31,7 @@
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/belt/som_grenades
-	name = "S16 grenade rig"
+	name = "Grenade rig"
 	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/belt/grenade/som
@@ -52,10 +52,10 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_BELT)
 
 /datum/loadout_item/belt/som_burst_pistol
-	name = "V-11 extended"
+	name = "V-11e"
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. \
 	Typically chambered in 9mm armor piercing rounds. This one is configures for burstfire, and loaded with extended mags."
-	ui_icon = "pistol"
+	ui_icon = "v11"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 
@@ -73,7 +73,7 @@
 	name = "Sawn-off shotgun"
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential. Extremely powerful at close range, but is very difficult to handle."
 	req_desc = "Requires a VX-42 culverin or VX-33 caliver with powerpack."
-	ui_icon = "shotgun"
+	ui_icon = "sshotgun"
 	item_typepath = /obj/item/weapon/gun/shotgun/double/sawn
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(
@@ -102,7 +102,7 @@
 	name = "VX-12 Serpenta"
 	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	Comes in a holster that fits on your waist or armor."
-	ui_icon = "pistol"
+	ui_icon = "vx12"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -112,7 +112,7 @@
 	name = "VX-12c Serpenta"
 	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	This particular weapon appears to be a custom model with improved performance. Comes in a fancy holster that fits on your waist or armor."
-	ui_icon = "pistol"
+	ui_icon = "vx12"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE

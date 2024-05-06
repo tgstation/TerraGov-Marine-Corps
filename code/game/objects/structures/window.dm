@@ -7,7 +7,8 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|DIRLOCK
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
+	atom_flags = ON_BORDER|DIRLOCK
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
@@ -31,7 +32,7 @@
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -95,7 +96,7 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
+	if(!(atom_flags & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
@@ -161,7 +162,7 @@
 	if(.)
 		return
 
-	if(I.flags_item & NOBLUDGEON)
+	if(I.item_flags & NOBLUDGEON)
 		return
 
 	else if(isscrewdriver(I) && deconstructable)
@@ -265,10 +266,9 @@
 		else
 			icon_state = "[basestate][junction]"
 
-/obj/structure/window/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, FIRE)
-	return ..()
+/obj/structure/window/fire_act(burn_level)
+	if(burn_level > 25)
+		take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
 	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
@@ -283,10 +283,9 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
 
-/obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, FIRE)
-	return ..()
+/obj/structure/window/phoronbasic/fire_act(burn_level)
+	if(burn_level > 30)
+		take_damage(burn_level * 0.5, BURN, FIRE)
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced phoron window"
@@ -299,7 +298,7 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 4
 
-/obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
+/obj/structure/window/phoronreinforced/fire_act(burn_level)
 	return
 
 /obj/structure/window/reinforced
@@ -387,7 +386,7 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
-	flags_atom = NONE
+	atom_flags = NONE
 
 /obj/structure/window/shuttle/update_icon_state()
 	return
@@ -398,7 +397,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NONE //This is not a border object; it takes up the entire tile.
+	atom_flags = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(

@@ -1,3 +1,9 @@
+//stack recipe placement check types
+/// Checks if there is an object of the result type in any of the cardinal directions
+#define STACK_CHECK_CARDINALS (1<<0)
+/// Checks if there is an object of the result type within one tile
+#define STACK_CHECK_ADJACENT (1<<1)
+
 /* Stack type objects!
 * Contains:
 * 		Stacks
@@ -29,6 +35,7 @@
 		new type(loc, max_amount)
 	if(!merge_type)
 		merge_type = type
+	recipes = get_main_recipes().Copy()
 	update_weight()
 	update_icon()
 	var/static/list/connections = list(
@@ -36,6 +43,12 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+///Use this proc to assign the appropriate global list to our var/recipes
+/obj/item/stack/proc/get_main_recipes()
+	RETURN_TYPE(/list)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return list() //empty list
 
 /obj/item/stack/proc/update_weight()
 	var/percent = round((amount * 100) / max_amount)
@@ -104,7 +117,7 @@
 	if(.)
 		return
 
-	if(!recipes)
+	if(!recipes || recipes?.len <= 1)
 		return
 
 	if(QDELETED(src) || get_amount() <= 0)
@@ -237,48 +250,55 @@
 	if(istype(O, /obj/structure))
 		user.record_structures_built()
 
-/obj/item/stack/proc/building_checks(mob/user, datum/stack_recipe/R, multiplier)
-	if (get_amount() < R.req_amount*multiplier)
-		if (R.req_amount*multiplier>1)
-			to_chat(user, span_warning("You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"))
-		else
-			to_chat(user, span_warning("You haven't got enough [src] to build \the [R.title]!"))
+/obj/item/stack/proc/building_checks(mob/builder, datum/stack_recipe/recipe, multiplier)
+	if (get_amount() < recipe.req_amount * multiplier)
+		builder.balloon_alert(builder, "not enough material!")
 		return FALSE
-	var/turf/T = get_turf(user)
+	var/turf/dest_turf = get_turf(builder)
 
-	switch(R.max_per_turf)
-		if(STACK_RECIPE_ONE_PER_TILE)
-			if(locate(R.result_type) in T)
-				to_chat(user, span_warning("There is another [R.title] here!"))
-				return FALSE
-		if(STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE)
-			for(var/obj/thing in T)
-				if(!istype(thing, R.result_type))
-					continue
-				if(thing.dir != user.dir)
-					continue
-				to_chat(user, span_warning("You can't build \the [R.title] on top of another!"))
-				return FALSE
-	if(R.on_floor)
-		if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
-			to_chat(user, span_warning("\The [R.title] must be constructed on the floor!"))
+	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
+		builder.balloon_alert(builder, "already one here!")
+		return FALSE
+
+	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
+		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
+			builder.balloon_alert(builder, "won't fit here!")
 			return FALSE
-		for(var/obj/AM in T)
-			if(istype(AM,/obj/structure/grille))
-				continue
-			if(istype(AM,/obj/structure/table))
-				continue
-			if(!AM.density)
-				continue
-			if(AM.flags_atom & ON_BORDER && AM.dir != user.dir)
-				if(istype(AM, /obj/structure/window))
-					var/obj/structure/window/W = AM
-					if(!W.is_full_window())
-						continue
-				else
-					continue
-			to_chat(user, span_warning("There is a [AM.name] right where you want to place \the [R.title], blocking the construction."))
+
+	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
+		if(!isopenturf(dest_turf))
+			builder.balloon_alert(builder, "cannot be made on a wall!")
 			return FALSE
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			builder.balloon_alert(builder, "cant build here!")
+			return FALSE
+
+	var/area/area = get_area(dest_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
+		builder.balloon_alert(builder, "cannot be made in this area!")
+		return FALSE
+
+	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
+		for(var/obj/object in dest_turf)
+			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
+				builder.balloon_alert(builder, "something is in the way!")
+				return FALSE
+
+	if(recipe.placement_checks & STACK_CHECK_CARDINALS)
+		var/turf/nearby_turf
+		for(var/direction in GLOB.cardinals)
+			nearby_turf = get_step(dest_turf, direction)
+			if(locate(recipe.result_type) in nearby_turf)
+				to_chat(builder, span_warning("\The [recipe.title] must not be built directly adjacent to another!"))
+				builder.balloon_alert(builder, "can't be adjacent to another!")
+				return FALSE
+
+	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
+		if(locate(recipe.result_type) in range(1, dest_turf))
+			builder.balloon_alert(builder, "can't be near another!")
+			return FALSE
+
 	return TRUE
 
 
@@ -379,41 +399,5 @@
 /obj/item/stack/proc/select_radial(mob/user)
 	return TRUE
 
-/*
-* Recipe datum
-*/
-/datum/stack_recipe
-	var/title = "ERROR"
-	var/result_type
-	var/req_amount = 1
-	var/res_amount = 1
-	var/max_res_amount = 1
-	var/time = 0
-	var/max_per_turf = STACK_RECIPE_INFINITE_PER_TILE
-	var/on_floor = FALSE
-	var/skill_req = FALSE //whether only people with sufficient construction skill can build this.
-
-
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, max_per_turf = STACK_RECIPE_INFINITE_PER_TILE, on_floor = FALSE, skill_req = FALSE)
-	src.title = title
-	src.result_type = result_type
-	src.req_amount = req_amount
-	src.res_amount = res_amount
-	src.max_res_amount = max_res_amount
-	src.time = time
-	src.max_per_turf = max_per_turf
-	src.on_floor = on_floor
-	src.skill_req = skill_req
-
-/*
-* Recipe list datum
-*/
-/datum/stack_recipe_list
-	var/title = "ERROR"
-	var/list/recipes
-	var/req_amount = 1
-
-/datum/stack_recipe_list/New(title, recipes, req_amount = 1)
-	src.title = title
-	src.recipes = recipes
-	src.req_amount = req_amount
+#undef STACK_CHECK_CARDINALS
+#undef STACK_CHECK_ADJACENT

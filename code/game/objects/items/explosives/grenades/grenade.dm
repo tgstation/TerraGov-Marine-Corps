@@ -4,15 +4,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
 	)
-	item_state = "grenade"
+	worn_icon_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	icon_state_mini = "grenade_red"
 	///if launched from a UGL/grenade launcher
@@ -96,52 +96,9 @@
 	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
-/obj/item/explosive/grenade/flamer_fire_act(burnlevel)
+/obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
-
-/obj/item/explosive/grenade/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	walk(src, null, null)
-	return
 
 ///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()
 	det_time = min(10, det_time)
-
-////RAD GRENADE - TOTALLY RAD MAN
-
-/obj/item/explosive/grenade/rad
-	name = "\improper V-40 rad grenade"
-	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
-	icon_state = "grenade_rad" //placeholder
-	item_state = "grenade_rad" //placeholder
-	icon_state_mini = "grenade_red" //placeholder
-	det_time = 40 //default
-	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
-	hud_state = "grenade_he" //placeholder
-	///The range for the grenade's full effect
-	var/inner_range = 4
-	///The range range for the grenade's weak effect
-	var/outer_range = 7
-	///The potency of the grenade
-	var/rad_strength = 16
-
-/obj/item/explosive/grenade/rad/prime()
-	var/turf/impact_turf = get_turf(src)
-
-	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
-	for(var/mob/living/victim in hearers(outer_range, src))
-		var/strength
-		var/sound_level
-		if(get_dist(victim, impact_turf) <= inner_range)
-			strength = rad_strength
-			sound_level = 3
-		else
-			strength = rad_strength * 0.6
-			sound_level = 2
-
-		strength = victim.modify_by_armor(strength, BIO, 25)
-		victim.apply_radiation(strength, sound_level)
-	qdel(src)

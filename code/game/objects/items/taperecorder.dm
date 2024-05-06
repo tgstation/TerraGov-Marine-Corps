@@ -3,7 +3,7 @@
 	name = "universal recorder"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorderidle"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/recording = 0
@@ -13,7 +13,7 @@
 	var/list/storedinfo = list()
 	var/list/timestamp = list()
 	var/canprint = 1
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20

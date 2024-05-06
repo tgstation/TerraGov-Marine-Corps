@@ -35,9 +35,9 @@
 
 /mob/oranges_ear/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_atom |= INITIALIZED
+	atom_flags |= INITIALIZED
 	return INITIALIZE_HINT_NORMAL
 
 /mob/oranges_ear/Destroy(force)

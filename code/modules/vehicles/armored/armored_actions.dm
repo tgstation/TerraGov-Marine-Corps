@@ -92,18 +92,18 @@
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
-	if(!(chassis.flags_armored & ARMORED_HAS_HEADLIGHTS))
+	if(!(chassis.armored_flags & ARMORED_HAS_HEADLIGHTS))
 		chassis.balloon_alert(owner, "the vehicle's lights are broken!")
 		return
-	chassis.flags_armored ^= ARMORED_LIGHTS_ON
-	if(chassis.flags_armored & ARMORED_LIGHTS_ON)
+	chassis.armored_flags ^= ARMORED_LIGHTS_ON
+	if(chassis.armored_flags & ARMORED_LIGHTS_ON)
 		action_icon_state = "mech_lights_on"
 	else
 		action_icon_state = "mech_lights_off"
-	chassis.set_light_on(chassis.flags_armored & ARMORED_LIGHTS_ON)
-	chassis.balloon_alert(owner, "toggled lights [chassis.flags_armored & ARMORED_LIGHTS_ON ? "on":"off"]")
+	chassis.set_light_on(chassis.armored_flags & ARMORED_LIGHTS_ON)
+	chassis.balloon_alert(owner, "toggled lights [chassis.armored_flags & ARMORED_LIGHTS_ON ? "on":"off"]")
 	playsound(chassis,'sound/mecha/brass_skewer.ogg', 40, TRUE)
-	chassis.log_message("Toggled lights [(chassis.flags_armored & ARMORED_LIGHTS_ON)?"on":"off"].", LOG_MECHA)
+	chassis.log_message("Toggled lights [(chassis.armored_flags & ARMORED_LIGHTS_ON)?"on":"off"].", LOG_MECHA)
 	update_button_icon()
 
 /datum/action/vehicle/sealed/armored/zoom
@@ -132,3 +132,21 @@
 		M.client.view_size.reset_to_default()
 		chassis.zoom_mode = FALSE
 	return ..()
+
+/datum/action/vehicle/sealed/armored/horn
+	name = "Honk Horn"
+	action_icon = 'icons/mob/actions/actions_vehicle.dmi'
+	action_icon_state = "car_horn"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VEHICLEHONK,
+	)
+
+/datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants))
+		return
+	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
+		return
+
+	chassis.visible_message("[chassis] honks its horn!")
+	playsound(chassis, 'sound/vehicles/horns/armored_horn.ogg', 70)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_HORN, 15 SECONDS) //To keep people's eardrums intact

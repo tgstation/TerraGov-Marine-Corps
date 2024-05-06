@@ -3,7 +3,7 @@
 /obj/structure/xeno/acidwell
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
-	icon = 'icons/Xeno/acid_pool.dmi'
+	icon = 'icons/Xeno/acid_well.dmi'
 	icon_state = "well"
 	density = FALSE
 	opacity = FALSE
@@ -51,7 +51,7 @@
 			to_chat(creator, span_xenoannounce("You sense your acid well at [A.name] has been destroyed!") )
 
 	if(damage_amount || damage_flag) //Spawn the gas only if we actually get destroyed by damage
-		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+		var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
 		A.set_up(clamp(CEILING(charges*0.5, 1),0,3),src) //smoke scales with charges
 		A.start()
 	return ..()
@@ -77,10 +77,7 @@
 	. += mutable_appearance(icon, "[charges]", alpha = src.alpha)
 	. += emissive_appearance(icon, "[charges]", alpha = src.alpha)
 
-/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
-	acid_well_fire_interaction()
-
-/obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
+/obj/structure/xeno/acidwell/fire_act(burn_level)
 	acid_well_fire_interaction()
 
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
@@ -92,7 +89,7 @@
 	charges--
 	update_icon()
 	var/turf/T = get_turf(src)
-	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke = new(T) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(T) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 
@@ -188,8 +185,7 @@
 	if(!charges_used)
 		return
 
-	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
-	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 

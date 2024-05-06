@@ -1,39 +1,37 @@
 //The base setup for HvH gamemodes, not for actual use
 /datum/game_mode/hvh
 	name = "HvH base mode"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 3 MINUTES
-	flags_xeno_abilities = ABILITY_CRASH
+	xeno_abilities_flags = ABILITY_CRASH
 	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
-		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/engineer = 8,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
 	job_points_needed_by_job_type = list(
-		/datum/job/som/squad/veteran = 5, //Every 5 non vets join, a new vet slot opens
+		/datum/job/terragov/squad/smartgunner = 5,
+		/datum/job/som/squad/veteran = 5,
 	)
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
+
+/datum/game_mode/hvh/setup()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, PROC_REF(deploy_point_activated))
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
 	for(var/z_num in SSmapping.areas_in_z)
 		set_z_lighting(z_num)
-
-/datum/game_mode/hvh/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
-	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
 //sets TGMC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()
@@ -178,5 +176,22 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
 	message_admins("Bioscan - SOM: [num_som] active SOM personnel[som_location ? " .Location:[som_location]":""]")
+
+///Messages a mob when they deploy groundside. only called if the specific gamemode register for the signal
+/datum/game_mode/hvh/proc/deploy_point_activated(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	var/message = get_deploy_point_message(user)
+	if(!message)
+		return
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, GLOB.faction_to_portrait[user.faction])
+
+///Returns a message to play to a mob when they deploy into the AO
+/datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			. = "Stick together and achieve those objectives marines. Good luck."
+		if(FACTION_SOM)
+			. = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
 
 #undef BIOSCAN_DELTA

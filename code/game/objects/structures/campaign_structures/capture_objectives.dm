@@ -15,8 +15,6 @@
 	var/capturing_faction
 	///Timer holder for the current capture/decapture timer
 	var/capture_timer
-	///overhead timer
-	var/obj/effect/countdown/campaign_objective/countdown
 
 /obj/structure/campaign_objective/capture_objective/Initialize(mapload)
 	. = ..()
@@ -128,8 +126,7 @@
 		personal_statistics.mission_objective_captured ++
 	update_icon()
 
-///Returns time left on the nuke in seconds
-/obj/structure/campaign_objective/capture_objective/proc/get_time_left()
+/obj/structure/campaign_objective/capture_objective/get_time_left()
 	return capture_timer ? round(timeleft(capture_timer) MILLISECONDS) : null
 
 //sensor tower
@@ -139,7 +136,7 @@
 	icon_state = "sensor"
 	mission_types = list(
 		/datum/campaign_mission/tdm,
-		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/orion,
 		/datum/campaign_mission/tdm/first_mission,
 		/datum/campaign_mission/tdm/mech_wars,
 		/datum/campaign_mission/tdm/mech_wars/som,

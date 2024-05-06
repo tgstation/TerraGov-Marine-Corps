@@ -24,7 +24,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
-	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -311,6 +311,11 @@
 	icon_state = get_mecha_occupancy_state()
 	return ..()
 
+/obj/vehicle/sealed/mecha/update_overlays()
+	. = ..()
+	if(mecha_flags & MECHA_EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+
 /obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	for(var/mob/living/future_pancake in loc)
@@ -379,6 +384,7 @@
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_lights, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_view_stats, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/strafe, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/reload, VEHICLE_CONTROL_EQUIPMENT)
 
 /obj/vehicle/sealed/mecha/proc/get_mecha_occupancy_state()
 	if((mecha_flags & SILICON_PILOT) && silicon_icon_state)
@@ -395,7 +401,9 @@
 	return TRUE
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
+	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
+	update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/mob_occupant AS in occupants)
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))

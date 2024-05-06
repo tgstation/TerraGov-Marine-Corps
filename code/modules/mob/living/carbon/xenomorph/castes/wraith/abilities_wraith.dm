@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
 		return TRUE
 	for(var/atom/blocker AS in T)
-		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
 		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
 			return TRUE
@@ -493,7 +493,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
 		return FALSE
 	var/area/area = get_area(owner)
-	if(area.flags_area & MARINE_BASE)
+	if(area.area_flags & MARINE_BASE)
 		if(!silent)
 			to_chat(owner, span_xenowarning("You cannot portal here!"))
 		return FALSE
@@ -746,7 +746,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
 	if(loc_a)
-		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
+		new /obj/effect/temp_visual/after_image(targeted.loc, targeted)
 
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
@@ -767,5 +767,5 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
-	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
+	new /obj/effect/temp_visual/after_image(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))

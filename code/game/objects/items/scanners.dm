@@ -16,14 +16,14 @@ REAGENT SCANNER
 	icon = 'icons/obj/device.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
+	worn_icon_state = "electronic"
 
 
 /obj/item/t_scanner/attack_self(mob/user)
@@ -65,14 +65,14 @@ REAGENT SCANNER
 	name = "\improper HF2 health analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)
-	item_state = "healthanalyzer"
+	worn_icon_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
@@ -213,8 +213,8 @@ REAGENT SCANNER
 				unknown_implants++
 			var/implant = FALSE
 			if(length(limb.implants))
-				for(var/I in limb.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
+				for(var/obj/item/embedded AS in limb.implants)
+					if(embedded.is_beneficial_implant())
 						continue
 					unknown_implants++
 					implant = TRUE
@@ -281,19 +281,19 @@ REAGENT SCANNER
 	name = "\improper HF2 Medical Gloves"
 	desc = "Advanced medical gloves, these include a built-in analyzer to quickly scan patients."
 	icon_state = "medscan_gloves"
-	item_state = "medscan_gloves"
-	flags_equip_slot = ITEM_SLOT_GLOVES
+	worn_icon_state = "medscan_gloves"
+	equip_slot_flags = ITEM_SLOT_GLOVES
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	item_state_worn = TRUE
 	siemens_coefficient = 0.50
 	blood_sprite_state = "bloodyhands"
-	flags_armor_protection = HANDS
-	flags_equip_slot = ITEM_SLOT_GLOVES
+	armor_protection_flags = HANDS
+	equip_slot_flags = ITEM_SLOT_GLOVES
 	attack_verb = "scans"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
-	flags_cold_protection = HANDS
-	flags_heat_protection = HANDS
+	cold_protection_flags = HANDS
+	heat_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -344,10 +344,10 @@ REAGENT SCANNER
 	name = "analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -394,10 +394,10 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "spectrometer"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -445,10 +445,10 @@ REAGENT SCANNER
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20

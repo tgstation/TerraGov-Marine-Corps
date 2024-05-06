@@ -1732,9 +1732,6 @@
 /obj/item/stack/sheet/metal,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
 	},
@@ -11272,7 +11269,7 @@
 /area/lawankaoutpost/colony/mining)
 "jpj" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
 "jpt" = (
@@ -12500,14 +12497,6 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lawankaoutpost/colony/robotics)
-"kyc" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/tile/dark,
-/area/lawankaoutpost/colony/operations_storage)
 "kyf" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
@@ -20072,6 +20061,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
+"qym" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor,
+/area/lv624/lazarus/console)
 "qyn" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -22858,7 +22852,7 @@
 /area/lawankaoutpost/colony/medbay)
 "sMr" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron,
+/obj/item/clothing/suit/storage/apron,
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
 "sMJ" = (
@@ -62363,7 +62357,7 @@ oay
 mXv
 hQO
 hQO
-kyc
+hQO
 usj
 pMi
 wgw
@@ -76749,7 +76743,7 @@ uty
 wEk
 wEk
 wEk
-wEk
+qym
 wEk
 wEk
 uty
@@ -76802,7 +76796,7 @@ rac
 nFU
 nFU
 nFU
-nFU
+qym
 nFU
 nFU
 rac

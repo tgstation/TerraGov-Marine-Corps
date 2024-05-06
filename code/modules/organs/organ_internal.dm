@@ -50,7 +50,7 @@
 	owner = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
-	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
+	if(SSticker.mode?.round_type_flags & MODE_NO_PERMANENT_WOUNDS)
 		return
 	if(amount <= 0)
 		heal_organ_damage(-amount)
@@ -86,31 +86,10 @@
 	set_organ_status()
 
 /datum/internal_organ/proc/emp_act(severity)
-	switch(robotic)
-		if(0)
-			return
-		if(1)
-			switch (severity)
-				if (1.0)
-					take_damage(20,0)
-					return
-				if (2.0)
-					take_damage(7,0)
-					return
-				if(3.0)
-					take_damage(3,0)
-					return
-		if(2)
-			switch (severity)
-				if (1.0)
-					take_damage(40,0)
-					return
-				if (2.0)
-					take_damage(15,0)
-					return
-				if(3.0)
-					take_damage(10,0)
-					return
+	if(!robotic)
+		return
+	take_damage((5 - severity) * 5 * robotic)
+
 
 /datum/internal_organ/proc/mechanize() //Being used to make robutt hearts, etc
 	if(robotic_type)

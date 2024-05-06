@@ -4,12 +4,12 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/explosives_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
 		)
-	item_state = "plasticx"
-	flags_item = NOBLUDGEON
+	worn_icon_state = "plasticx"
+	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	layer = MOB_LAYER - 0.1
 	var/frequency = 1457

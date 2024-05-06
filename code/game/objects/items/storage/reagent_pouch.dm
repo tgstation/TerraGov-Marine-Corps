@@ -5,11 +5,11 @@
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
 	icon = 'icons/Marine/marine-pouches.dmi'
 	icon_state = "r_canister"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)
-	item_state = "anesthetic"
+	worn_icon_state = "anesthetic"
 	possible_transfer_amounts = null
 	volume = 1200 //The equivalent of 5 pill bottles worth of BKTT
 	w_class = WEIGHT_CLASS_BULKY
@@ -46,15 +46,10 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_BULKY
-	allow_drawing_method = TRUE
 	icon_state = "reagent_pouch"
 	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
 	You can Alt-Click to remove the canister in order to refill it."
-	can_hold = list(/obj/item/reagent_containers/hypospray)
-	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
-	flags_item = NOBLUDGEON
-	draw_mode = TRUE
+	item_flags = NOBLUDGEON
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()
@@ -64,6 +59,12 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)
 	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
+	storage_datum.allow_drawing_method = TRUE
+	//cant_hold_list to prevent chat spam when you try to put the container in
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray), cant_hold_list = list(/obj/item/reagent_containers/glass/reagent_canister))
+	storage_datum.draw_mode = TRUE
+
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
 	new /obj/item/reagent_containers/hypospray/autoinjector/r_pouch(src)
 	for(var/datum/reagent/chem_type AS in chemicals_to_fill)

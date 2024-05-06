@@ -16,7 +16,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
-		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
+		if(istype(C) && (C.armor_protection_flags & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
@@ -24,7 +24,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
 		var/datum/limb/limb_to_check = i
-		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+		if(!(limb_to_check.body_part & armor_item.armor_protection_flags))
 			continue
 		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
@@ -37,7 +37,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/remove_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
 		var/datum/limb/limb_to_check = i
-		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+		if(!(limb_to_check.body_part & armor_item.armor_protection_flags))
 			continue
 		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
@@ -54,31 +54,24 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(!bp)	continue
 		if(bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.flags_armor_protection & HEAD)
+			if(C.armor_protection_flags & HEAD)
 				return 1
 	return 0
 
 
 /mob/living/carbon/human/emp_act(severity)
-	for(var/obj/O in src)
-		if(!O)	continue
-		O.emp_act(severity)
+	. = ..()
 	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_DESTROYED)	continue
 		O.emp_act(severity)
-		for(var/datum/internal_organ/I in O.internal_organs)
-			if(I.robotic == 0)	continue
-			I.emp_act(severity)
-	..()
 
 /mob/living/carbon/human/has_smoke_protection()
-	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+	if(istype(wear_mask) && wear_mask.inventory_flags & BLOCKGASEFFECT)
 		return TRUE
-	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
+	if(istype(glasses) && glasses.inventory_flags & BLOCKGASEFFECT)
 		return TRUE
 	if(head && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CH = head
-		if(CH.flags_inventory & BLOCKGASEFFECT)
+		if(CH.inventory_flags & BLOCKGASEFFECT)
 			return TRUE
 	return ..()
 
@@ -320,6 +313,22 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	return TRUE
 
+/mob/living/carbon/human/IgniteMob()
+	. = ..()
+	if(!.)
+		return
+	if(!stat && !(species.species_flags & NO_PAIN))
+		emote("scream")
+
+/mob/living/carbon/human/fire_act(burn_level)
+	. = ..()
+	if(!.)
+		return
+	if(stat || (species.species_flags & NO_PAIN))
+		return
+	if(prob(75))
+		return
+	emote("scream")
 
 /mob/living/carbon/human/resist_fire(datum/source)
 	spin(30, 1.5)
@@ -403,7 +412,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
-	chestburst = 2
+	chestburst = CARBON_CHEST_BURSTED
 	update_burst()
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)

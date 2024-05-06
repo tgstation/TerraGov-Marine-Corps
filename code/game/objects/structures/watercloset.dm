@@ -298,7 +298,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
-	item_state = "rubberducky"
+	worn_icon_state = "rubberducky"
 
 
 
@@ -383,7 +383,7 @@
 		L.Paralyze(20 SECONDS)
 		L.visible_message(span_danger("[L] was stunned by [L.p_their()] wet [I]!"))
 
-	if(I.flags_item & ITEM_ABSTRACT)
+	if(I.item_flags & ITEM_ABSTRACT)
 		return
 
 	var/turf/location = user.loc
