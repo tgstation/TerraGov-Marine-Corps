@@ -1111,23 +1111,12 @@
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/clothing/under/marine = -1,
-			/obj/item/clothing/under/marine/hyperscale = -1,
 			/obj/item/clothing/under/marine/camo = -1,
 			/obj/item/clothing/under/marine/camo/desert = -1,
 			/obj/item/clothing/under/marine/camo/snow = -1,
-			/obj/item/clothing/under/marine/orion_fatigue = -1,
-			/obj/item/clothing/under/marine/red_fatigue = -1,
-			/obj/item/clothing/under/marine/lv_fatigue = -1,
-			/obj/item/clothing/under/marine/striped = -1,
-			/obj/item/clothing/under/marine/jaeger = -1,
-			/obj/item/clothing/under/marine/squad/neck/delta = -1,
-			/obj/item/clothing/under/marine/squad/neck/charile = -1,
-			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
-			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/gloves/marine/black = -1,
 			/obj/item/clothing/gloves/marine/fingerless = -1,
-			/obj/item/clothing/gloves/marine/hyperscale = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
@@ -1245,7 +1234,6 @@
 			/obj/item/clothing/head/servicecampaignhat = -1,
 			/obj/item/clothing/head/serviceushanka = -1,
 			/obj/item/clothing/head/servicecap = -1,
-			/obj/item/clothing/under/marine/black_suit = -1,
 		),
 		"Surplus Headwear" = list(
 			/obj/item/clothing/head/slouch = -1,
@@ -1315,7 +1303,6 @@
 		/obj/item/clothing/under/marine/service = -1,
 		/obj/item/clothing/head/garrisoncap = -1,
 		/obj/item/clothing/head/servicecap = -1,
-		/obj/item/clothing/under/marine/black_suit = -1,
 	)
 
 /obj/machinery/vending/dress_supply/valhalla
