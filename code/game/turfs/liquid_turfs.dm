@@ -159,7 +159,7 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
 
-turf/open/liquid/water/river/desertdam/clean/shallow/dirty
+/turf/open/liquid/water/river/desertdam/clean/shallow/dirty
 	icon_state = "shallow_water_dirty"
 
 //shallow water transition to deep
