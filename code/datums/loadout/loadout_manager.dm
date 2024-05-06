@@ -216,7 +216,7 @@
 			loadout.empty_slot(slot_head_str)
 		if(loadout.version < 8)
 			if("[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/corpsman" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/standard")
-				helmet.item_type = /obj/item/clothing/head/modular/m10x
+				helmet.item_type = /obj/item/clothing/head/modular/marine
 		if(loadout.version < 10)
 			helmet.colors = initial(helmet.item_type.greyscale_colors)
 			for(var/datum/item_representation/armor_module/module AS in helmet.attachments)
@@ -257,8 +257,8 @@
 		if(loadout.version < 7)
 			loadout.empty_slot(slot_wear_suit_str)
 		if(loadout.version < 8)
-			if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
-				armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+			if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x" || "[armor.item_type]" == "/obj/item/clothing/suit/modular/xenonauten")
+				armor.item_type = /obj/item/clothing/suit/modular/jaeger
 		if(loadout.version < 10)
 			for(var/datum/item_representation/armor_module/module AS in armor.attachments)
 				if(!istype(module, /datum/item_representation/armor_module))
@@ -320,6 +320,8 @@
 		message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
 	if(loadout.version < 13)
 		message_to_send += "<br>Due to hyperscaling armor, any colorable armor have had their colors set to default. (Version 11 to 13)"
+	if(loadout.version < 15)
+		message_to_send += "<br>Due to removal of several armor types and palletes, any armor and color removed have been set to MK2 Jaeger defaults. (Version 13 to 15)"
 	loadout.version = CURRENT_LOADOUT_VERSION
 	message_to_send += "<br>This loadout is now on version [loadout.version]"
 	to_chat(ui.user, span_warning(message_to_send))

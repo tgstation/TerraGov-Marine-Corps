@@ -63,43 +63,6 @@
 	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
 	greyscale_flags = HYPERSCALE_ALLOW_GREYSCALE
 
-/*
-	JAEGER - MK1
-*/
-
-/datum/greyscale_config/armor_mk1
-	icon_file = 'icons/mob/modular/mark_one/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/armor_mk1.json'
-
-/datum/greyscale_config/armor_mk1/eod
-	icon_file = 'icons/mob/modular/mark_one/eod.dmi'
-
-/datum/greyscale_config/armor_mk1/eva
-	icon_file = 'icons/mob/modular/mark_one/eva.dmi'
-
-/datum/greyscale_config/armor_mk1/helljumper
-	icon_file = 'icons/mob/modular/mark_one/helljumper.dmi'
-
-/datum/greyscale_config/armor_mk1/infantry
-	icon_file = 'icons/mob/modular/mark_one/infantry.dmi'
-
-/datum/greyscale_config/armor_mk1/infantry/old
-	prefix = "open_"
-/datum/greyscale_config/armor_mk1/ranger
-	icon_file = 'icons/mob/modular/mark_one/ranger.dmi'
-
-/datum/greyscale_config/armor_mk1/trooper
-	icon_file = 'icons/mob/modular/mark_one/trooper.dmi'
-
-/datum/greyscale_config/armor_mk1/scout
-	icon_file = 'icons/mob/modular/mark_one/scout.dmi'
-
-/datum/greyscale_config/armor_mk1/skirmisher
-	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
-
-/datum/greyscale_config/armor_mk1/mjolnir
-	icon_file = 'icons/mob/modular/mark_one/mjolnir.dmi'
-
 //Hardsuits
 
 /datum/greyscale_config/hardsuit_variant
@@ -156,27 +119,6 @@
 /datum/greyscale_config/armor_mk2/mjolnir_open
 	icon_file = 'icons/mob/modular/mark_two/mjolnir_open.dmi'
 
-/datum/greyscale_config/xenonaut
-	icon_file = 'icons/mob/modular/xenonauten.dmi'
-	json_config = 'code/datums/greyscale/json_configs/xenonaut.json'
-	prefix = "med_"
-
-/datum/greyscale_config/xenonaut/light
-	prefix = "light_"
-
-/datum/greyscale_config/xenonaut/heavy
-	prefix = "heavy_"
-
-/datum/greyscale_config/xenonaut/pilot
-	prefix = "pilot_"
-
-/datum/greyscale_config/xenonaut/helm
-	json_config = 'code/datums/greyscale/json_configs/xenonaut_helm.json'
-	prefix = ""
-
-/datum/greyscale_config/xenonaut/helm/heavy
-	prefix = "heavy_"
-
 /datum/greyscale_config/robot
 	icon_file = 'icons/mob/modular/robot_armor.dmi'
 	json_config = 'code/datums/greyscale/json_configs/robot_armor.json'
@@ -196,13 +138,6 @@
 
 /datum/greyscale_config/style_hat/badge
 	json_config = 'code/datums/greyscale/json_configs/stylehats_greyscale.json'
-
-/datum/greyscale_config/duster
-	icon_file = 'icons/mob/modular/style_mob.dmi'
-	json_config = 'code/datums/greyscale/json_configs/duster.json'
-
-/datum/greyscale_config/duster/leather_jacket
-	json_config = 'code/datums/greyscale/json_configs/leather_jacket.json'
 
 /*
  * COLORABLE UNIFORM

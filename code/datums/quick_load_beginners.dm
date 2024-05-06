@@ -9,10 +9,10 @@
 
 	w_uniform = /obj/item/clothing/under/marine
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	wear_suit = /obj/item/clothing/suit/modular/jaeger
 	gloves = /obj/item/clothing/gloves/marine/black
 	mask = /obj/item/clothing/mask/bandanna
-	head = /obj/item/clothing/head/modular/m10x
+	head = /obj/item/clothing/head/modular/marine
 	r_store = /obj/item/storage/pouch/medkit/firstaid
 	l_store = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -30,8 +30,8 @@
 	Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. \
 	Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
-	head = /obj/item/clothing/head/modular/m10x/hod
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/hodgrenades
+	head = /obj/item/clothing/head/modular/marine/hod
 	w_uniform = /obj/item/clothing/under/marine/holster
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 	l_hand = /obj/item/paper/tutorial/beginner_rifleman
@@ -69,8 +69,8 @@
 	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached. \
 	Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_onegeneral
-	head = /obj/item/clothing/head/modular/m10x/tyr
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/heavy/tyr_onegeneral
+	head = /obj/item/clothing/head/modular/marine/gungnir/hod
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	back = /obj/item/storage/backpack/marine/standard
 	belt = /obj/item/storage/belt/sparepouch
@@ -108,7 +108,7 @@
 	desc = "Quality over quantity. Equipped with the DMR-37, an accurate long-range designated marksman rifle with a scope attached. \
 	While subpar in close quarters, the precision of the DMR is unmatched, exceeding at taking out threats from afar."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightmedical
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/lightmedical
 	head = /obj/item/clothing/head/modular/style/boonie
 	w_uniform = /obj/item/clothing/under/marine/holster
 	belt = /obj/item/belt_harness/marine
@@ -151,10 +151,10 @@
 	An absolute monster at short to mid range, the shotgun will do heavy damage to any target hit, as well as stunning them briefly, staggering them, and knocking them back."
 
 	w_uniform = /obj/item/clothing/under/marine/holster
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/lightgeneral
 	suit_store = /obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
 	belt = /obj/item/storage/belt/shotgun
-	head = /obj/item/clothing/head/modular/m10x/freyr
+	head = /obj/item/clothing/head/modular/marine/freyr
 	gloves = /obj/item/clothing/gloves/marine/fingerless
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	l_hand = /obj/item/paper/tutorial/beginner_shotgunner
@@ -200,7 +200,7 @@
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
 	glasses = /obj/item/clothing/glasses/sunglasses/fake/big
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/lightgeneral
 	head = /obj/item/clothing/head/modular/style/cap
 	mask = /obj/item/clothing/mask/gas/modular/skimask
 	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
@@ -244,11 +244,11 @@
 	Wields the AR-11, a powerful yet innacurate assault rifle with high magazine size and an equipped tactical sensor that detects enemies through smoke and walls. \
 	Wears Mimir combat armor, rendering the user immune to the dangerous toxic gas possessed by many xenomorphs."
 
-	head = /obj/item/clothing/head/modular/m10x/mimir
+	head = /obj/item/clothing/head/modular/marine/mimir
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	back = /obj/item/storage/backpack/marine/standard
 	w_uniform = /obj/item/clothing/under/marine/black_vest
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimir
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/mimir
 	mask = /obj/item/clothing/mask/rebreather/scarf
 	belt = /obj/item/belt_harness/marine
 	l_hand = /obj/item/paper/tutorial/beginner_hazmat
@@ -279,7 +279,7 @@
 	Equipped with the AR-18, a lightweight carbine with a rapid-fire burst mode. Designed for maximum mobility, soldiers are able to rush in, assault the enemy, and retreat before they can respond."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/beginner
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/lightgeneral
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	head = /obj/item/clothing/head/modular/style/beret
 	glasses = /obj/item/clothing/glasses/mgoggles
@@ -315,14 +315,14 @@
 	Uses the GL-70, a six shot semi-automatic grenade launcher, loaded with HEDP high explosive grenades. \
 	Boasts unmatched power, though heavy caution is advised to avoid harming friendlies."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/heavy/grenadier
 	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
 	l_store = /obj/item/storage/pouch/grenade
 	r_store = /obj/item/storage/pouch/grenade
 	belt = /obj/item/storage/belt/grenade
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
-	head = /obj/item/clothing/head/modular/m10x/hod
+	head = /obj/item/clothing/head/modular/marine/gungnir/hod
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 
@@ -408,9 +408,9 @@
 	desc = "Born to build. Equipped with a metric ton of metal, you can be certain that a lack of barricades is not a possibility with you around."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_lmg/beginner
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/heavy/mimirengi
 	mask = /obj/item/clothing/mask/gas/tactical
-	head = /obj/item/clothing/head/modular/m10x/mimir
+	head = /obj/item/clothing/head/modular/marine/gungnir/mimir
 	back = /obj/item/storage/backpack/marine/radiopack
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/welding/superior
@@ -438,9 +438,9 @@
 	desc = "For those who truly love to watch the world burn. Equipped with a laser carbine and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/engineer
 	mask = /obj/item/clothing/mask/gas/tactical/coif
-	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	head = /obj/item/clothing/head/modular/marine/superiorwelding
 	back = /obj/item/storage/holster/backholster/flamer
 	glasses = /obj/item/clothing/glasses/meson
 	l_hand = /obj/item/paper/tutorial/flamer
@@ -470,9 +470,9 @@
 	desc = "For the open-air enjoyers. Equipped with a plasma cutter, you will be able to cut down all types of walls and obstacles that dare exist within your vicinity."
 
 	suit_store = /obj/item/tool/pickaxe/plasmacutter
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/engineer
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	head = /obj/item/clothing/head/modular/marine/superiorwelding
 	back = /obj/item/storage/backpack/marine/engineerpack
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/meson
@@ -512,10 +512,10 @@
 	Wields the bolt action Leicaster Repeater, and is equipped with a large variety of medicine for keeping the entire corps topped up and in the fight."
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/mimirinjector
 	gloves = /obj/item/clothing/gloves/defibrillator
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/m10x/mimir
+	head = /obj/item/clothing/head/modular/marine/mimir
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
@@ -566,10 +566,10 @@
 	Wields the pump action SH-35 shotgun, and is equipped with a belt full of hyposprays for rapidly treating patients in bad condition."
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/light/lightmedical
 	gloves = /obj/item/healthanalyzer/gloves
 	mask = /obj/item/clothing/mask/gas/modular/coofmask
-	head = /obj/item/clothing/head/modular/m10x/antenna
+	head = /obj/item/clothing/head/modular/marine/antenna
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
@@ -614,9 +614,9 @@
 
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	shoes = /obj/item/clothing/shoes/marine
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	wear_suit = /obj/item/clothing/suit/modular/jaeger/lightgeneral
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/m10x/antenna
+	head = /obj/item/clothing/head/modular/marine/antenna
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 

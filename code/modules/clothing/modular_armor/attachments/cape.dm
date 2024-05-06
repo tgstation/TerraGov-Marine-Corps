@@ -4,7 +4,7 @@
 /obj/item/armor_module/armor/cape
 	name = "6E Chameleon cape"
 	desc = "A chromatic cape to improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It also is equipped with thermal insulators so it will double as a blanket. \n Interact with facepaint to color and change variant. Attaches onto a uniform. Activate it to toggle the hood."
-	icon_state = "cape"
+	icon_state = "cape_short"
 	slot = ATTACHMENT_SLOT_CAPE
 	attachment_layer = CAPE_LAYER
 	prefered_slot = SLOT_W_UNIFORM

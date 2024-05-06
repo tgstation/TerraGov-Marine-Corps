@@ -168,7 +168,7 @@
 	new /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	new /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	new /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle
-	new /obj/item/clothing/suit/modular/xenonauten
-	new /obj/item/clothing/suit/modular/xenonauten
+	new /obj/item/clothing/suit/modular/jaeger
+	new /obj/item/clothing/suit/modular/jaeger
 
 

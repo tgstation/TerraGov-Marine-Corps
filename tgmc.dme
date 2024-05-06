@@ -1430,7 +1430,6 @@
 #include "code\modules\clothing\modular_armor\modular.dm"
 #include "code\modules\clothing\modular_armor\som.dm"
 #include "code\modules\clothing\modular_armor\style_line.dm"
-#include "code\modules\clothing\modular_armor\xenonauten.dm"
 #include "code\modules\clothing\modular_armor\attachments\badges.dm"
 #include "code\modules\clothing\modular_armor\attachments\cape.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"

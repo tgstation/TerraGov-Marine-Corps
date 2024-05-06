@@ -8,6 +8,7 @@
 /obj/item/clothing/head/modular/marine/m10x/tech
 /obj/item/clothing/head/modular/marine/m10x/corpsman
 /obj/item/clothing/head/modular/marine/m10x/standard
+/obj/item/clothing/head/modular/marine/m10x
 
 /obj/item/clothing/head/helmet/marine/robot
 /obj/item/clothing/head/helmet/marine/robot/light

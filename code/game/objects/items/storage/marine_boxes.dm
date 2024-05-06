@@ -118,8 +118,8 @@
 	storage_datum.max_storage_space = 0
 
 /obj/item/storage/box/crate/m42c_system/PopulateContents()
-	new /obj/item/clothing/suit/modular/xenonauten/light(src)
-	new /obj/item/clothing/head/modular/m10x(src)
+	new /obj/item/clothing/suit/modular/jaeger(src)
+	new /obj/item/clothing/head/modular/marine(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
@@ -145,8 +145,8 @@
 	storage_datum.max_storage_space = 0
 
 /obj/item/storage/box/crate/m42c_system_Jungle/PopulateContents()
-	new /obj/item/clothing/suit/modular/xenonauten/light(src)
-	new /obj/item/clothing/head/modular/m10x(src)
+	new /obj/item/clothing/suit/modular/jaeger(src)
+	new /obj/item/clothing/head/modular/marine(src)
 	new /obj/item/clothing/glasses/m42_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)

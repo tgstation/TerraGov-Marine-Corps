@@ -710,7 +710,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
-		/obj/item/clothing/head/modular/m10x/leader = 1,
+		/obj/item/clothing/head/modular/marine/leader = 1,
 	)
 ))
 

@@ -523,8 +523,7 @@ then, for every time you included a field, increment fields. */
 	name = "Marine manual"
 	info = {"Up to date as of December 27th '22.<BR>
 	<BR>
-	Armors fall into three categories: Light, Medium, and Heavy. Other than that, all differences are purely cosmetic. Light Scout Jaeger is identical to Light Skirmisher Jaeger, which is identical to Xenonauten-L. Additionally, for Jaeger armors, only the chestplace differs in armor provided for the three aforementioned categories; arm and leg plates all offer the same level of protection, so you're free to change them based on aesthetics. Just don't forget to actually put one on.<BR>
-	Xenonauten armor is much simpler to handle than Jaeger armor given the former is one single item, whereas Jaeger armor is the base exoskeleton and the additional combination of plates which can be swapped and painted to one's liking. If you're starting out, just grab Xenonauten armor to avoid headaches. Both Xenonauten and Jaeger fit a storage option and a module.<BR>
+	Armors fall into three categories: Light, Medium, and Heavy. Other than that, all differences are purely cosmetic. Light Scout Jaeger is identical to Light Skirmisher Jaeger.<BR>
 	<BR>
 	Weapon damage has three attributes: Damage, penetration, and sunder. The way damage is calculated is by taking said value and multiplying it by the amount of armor the xenomorph has, IE a xeno with 40 bullet armor will receive only 60% of the advertised damage. Penetration is the amount of armor that will be reduced from the xeno before the aforementioned calculation. Sunder is the amount of armor that will be "stripped" from the xeno that it will then have to heal, so consecutive shots will chip away at armor. You can test all guns and spawn xenomorphs to try them on if you are a ghost/observer, by going to the Ghost tab and clicking "Join Valhalla".<BR>
 	<BR>

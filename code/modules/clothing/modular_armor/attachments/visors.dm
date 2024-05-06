@@ -151,9 +151,3 @@
 	name = "\improper XN-1-H upper armor plating visor"
 	desc = "The visor attachment of the XN-1-H upper armor plating."
 	icon_state = "r_heavy"
-
-//Xenonaut
-/obj/item/armor_module/armor/visor/marine/xenonaut
-	name = "\improper Xenonaut heavy visor"
-	desc = "The visor attachment of the Xenonaut heavy helmet"
-	icon_state = "xenonaut"

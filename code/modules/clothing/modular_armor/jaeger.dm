@@ -39,11 +39,77 @@
 
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = SECONDARY_COLORS
 	greyscale_colors = ARMOR_PALETTE_DRAB
 
 
 	allowed_uniform_type = /obj/item/clothing/under
+
+/obj/item/clothing/suit/modular/jaeger/hodgrenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/lightgeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/mimir
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/mimirinjector
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/injector,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/shield
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/valk
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/jaeger/eva
 	name = "\improper Jaeger EVA medium exoskeleton"
@@ -68,6 +134,36 @@
 	soft_armor = MARINE_ARMOR_LIGHT
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	greyscale_config = /datum/greyscale_config/armor_mk2/scout
+
+/obj/item/clothing/suit/modular/jaeger/light/shield
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/light/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/light/shield_overclocked/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/light/shield_overclocked/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/light/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
 
 /obj/item/clothing/suit/modular/jaeger/light/skirmisher
 	name = "\improper Jaeger Skirmisher light exoskeleton"
@@ -97,6 +193,60 @@
 	desc = "A EOD-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a high amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	greyscale_config = /datum/greyscale_config/armor_mk2/eod
 
+/obj/item/clothing/suit/modular/jaeger/heavy/mimirengi
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/leader
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/tyr_onegeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/tyr_one
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/tyr_two
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/grenadier //Literally grenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/surt
+	starting_attachments = list(
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/shield
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/jaeger/heavy/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/medical,
+	)
+
 //jaeger hats
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
@@ -112,7 +262,7 @@
 
 	greyscale_colors = ARMOR_PALETTE_DRAB
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = SECONDARY_COLORS
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 
 
@@ -150,6 +300,35 @@
 
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
+/obj/item/clothing/head/modular/marine/hod
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/hod_head)
+
+/obj/item/clothing/head/modular/marine/freyr
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/artemis)
+
+/obj/item/clothing/head/modular/marine/antenna
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/antenna)
+
+/obj/item/clothing/head/modular/marine/welding
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/marine/superiorwelding
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/superior)
+
+/obj/item/clothing/head/modular/marine/mimir
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
+
+/obj/item/clothing/head/modular/marine/tyr
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/marine/surt
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/fire_proof_helmet)
+
+/obj/item/clothing/head/modular/marine/leader
+	name = "\improper Jaeger Pattern Infantry leader Helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
@@ -177,6 +356,21 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Gungnir markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/gugnir
+
+/obj/item/clothing/head/modular/marine/gungnir/hod
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/hod_head)
+
+/obj/item/clothing/head/modular/marine/gungnir/antenna
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/antenna)
+
+/obj/item/clothing/head/modular/marine/gungnir/mimir
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
+
+/obj/item/clothing/head/modular/marine/gungnir/tyr
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/marine/gungnir/surt
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/fire_proof_helmet)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"

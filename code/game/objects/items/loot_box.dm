@@ -235,8 +235,8 @@
 
 /obj/effect/supply_drop/armor_upgrades/Initialize(mapload)
 	. = ..()
-	new /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two(loc)
-	new /obj/item/clothing/head/modular/m10x/tyr(loc)
+	new /obj/item/clothing/suit/modular/jaeger/heavy/tyr_two(loc)
+	new /obj/item/clothing/head/modular/marine/tyr(loc)
 	new /obj/item/weapon/shield/riot/marine(loc)
 	return INITIALIZE_HINT_QDEL
 

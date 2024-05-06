@@ -213,8 +213,8 @@
 	uses = 2
 	cost = 4
 	equipment_to_spawn = list(
-		/obj/item/clothing/head/modular/m10x/tyr,
-		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two,
+		/obj/item/clothing/head/modular/marine/tyr,
+		/obj/item/clothing/suit/modular/jaeger/heavy/tyr_two,
 	)
 
 /datum/campaign_asset/equipment/shields_tgmc
