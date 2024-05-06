@@ -28,7 +28,7 @@
 /area/kutjevo/interior
 	name = "Kutjevo - Interior"
 	icon_state = "int"
-	requires_power = 1
+	requires_power = FALSE
 
 /area/kutjevo/interior/oob
 	name = "Kutjevo -  Out Of Bounds"
@@ -55,6 +55,7 @@
 /area/kutjevo/exterior/spring
 	name = "Kutjevo - Southern Spring"
 	icon_state = "lz_river"
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/kutjevo/exterior/scrubland
 	name = "Kutjevo - Scrubland"
@@ -209,7 +210,7 @@
 
 /area/kutjevo/interior/construction
 	name = "Kutjevo - Abandoned Construction Interior"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "construction_int"
 
 /area/kutjevo/interior/foremans_office
@@ -235,6 +236,7 @@
 	name = "Kutjevo - Central Colony Caves"
 	icon_state = "colony_caves_0"
 	minimap_color = MINIMAP_AREA_CAVES
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/interior/colony_central/mine_elevator
 	name = "Kutjevo - Central Colony Elevator"
@@ -262,6 +264,6 @@
 
 /area/kutjevo/interior/colony_South/power2
 	name = "Kutjevo - South Colony Treatment Plant"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "colony_caves_3"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
