@@ -129,6 +129,8 @@
 	name = "tiny rock pile"
 	desc = "A pile of tiny pebbles..."
 	icon_state = "tinyrock_3"
+	density = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/rock/tinyrock/Initialize(mapload)
 	. = ..()
