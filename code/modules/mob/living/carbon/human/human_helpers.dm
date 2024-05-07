@@ -273,6 +273,5 @@
 	var/actual_healing_level //leftover snowflake from defibrillators healing 8 for untrained/novice
 	if(user_skill < SKILL_MEDICAL_PRACTICED)
 		actual_healing_level = 8
-	testing(actual_healing_level)
 	if(health + getOxyLoss() + actual_healing_level ? actual_healing_level : (DEFIBRILLATOR_HEALING_TIMES_SKILL(user_skill)) >= get_death_threshold())
 		return TRUE
