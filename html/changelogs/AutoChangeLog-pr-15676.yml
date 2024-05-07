@@ -1,4 +1,0 @@
-author: "antropod"
-delete-after: True
-changes:
-  - rscadd: "Stacks of newly crafted items merge to existing stacks in user hands"
