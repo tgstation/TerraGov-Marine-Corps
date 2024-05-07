@@ -462,19 +462,19 @@
 
 ///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
 /datum/reagents/proc/del_reagent(type_to_remove)
-	for(var/datum/reagent/reagent_to_remove AS in reagent_list)
-		if(reagent_to_remove.type != type_to_remove)
-			continue
-		SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
-		var/atom/holder_atom = get_holder()
-		if(isliving(holder_atom))
-			var/mob/living/L = holder_atom
-			reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
-		reagent_list -= reagent_to_remove
-		qdel(reagent_to_remove)
-		update_total()
-		holder_atom?.on_reagent_change(DEL_REAGENT)
-		return TRUE
+	var/datum/reagent/reagent_to_remove = get_reagent(type_to_remove)
+	if(!reagent_to_remove)
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	var/atom/holder_atom = get_holder()
+	if(isliving(holder_atom))
+		var/mob/living/living_holder = holder_atom
+		reagent_to_remove.on_mob_delete(living_holder, living_holder.get_reagent_tags())
+	reagent_list -= reagent_to_remove
+	qdel(reagent_to_remove)
+	update_total()
+	holder_atom?.on_reagent_change(DEL_REAGENT)
+	return TRUE
 
 /datum/reagents/proc/update_total()
 	var/list/cached_reagents = reagent_list
@@ -580,9 +580,8 @@
 	chem_temp = thermal_energy / (specific_heat * new_total)
 
 	//add the reagent to the existing if it exists
-	for(var/datum/reagent/existing_reagent AS in cached_reagents)
-		if(existing_reagent.type != reagent)
-			continue
+	var/datum/reagent/existing_reagent = get_reagent(reagent)
+	if(existing_reagent)
 		existing_reagent.volume += amount
 		update_total()
 		if(cached_atom)
@@ -665,19 +664,19 @@
 	return 0
 
 
+///Returns a regent if it is in this datum
 /datum/reagents/proc/get_reagent(reagent_id)
-	for(var/X in reagent_list)
-		var/datum/reagent/R = X
-		if(R.type == reagent_id)
-			return R
+	for(var/datum/reagent/reagent AS in reagent_list)
+		if(reagent.type == reagent_id)
+			return reagent
 
 
+///Returns a list of all reagents in this datum
 /datum/reagents/proc/get_reagents()
 	var/list/names = list()
 	var/list/cached_reagents = reagent_list
-	for(var/reagent in cached_reagents)
-		var/datum/reagent/R = reagent
-		names += R.name
+	for(var/datum/reagent/reagent AS in cached_reagents)
+		names += reagent.name
 
 	return jointext(names, ",")
 
