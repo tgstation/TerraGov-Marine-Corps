@@ -194,8 +194,9 @@
 
 	return ..()
 
-/obj/item/reagent_containers/cup/glass/waterbottle/afterattack(obj/target, mob/living/user, proximity)
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/reagent_containers/cup/glass/waterbottle/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	if(!has_proximity)
+		return FALSE
 
 	if(cap_on && (target.is_refillable() || target.is_drainable() || (reagents.total_volume && user.a_intent != INTENT_HARM)))
 		to_chat(user, span_warning("You must remove the cap before you can do that!"))
