@@ -1,6 +1,6 @@
-///The base healing number for a defibrillator. Kept global to be used by human helpers.
+///The base healing number for a defibrillator. Kept global to be used by `check_revive()`.
 #define DEFIBRILLATOR_BASE_HEALING_VALUE 8
-///The formula for healing with a defibrillator. Kept global to be used by human helpers.
+///The formula for healing with a defibrillator. Kept global to be used by `check_revive()`.
 #define DEFIBRILLATOR_HEALING_TIMES_SKILL(skill_input) (DEFIBRILLATOR_BASE_HEALING_VALUE * skill_input * 0.5)
 
 /obj/item/defibrillator
