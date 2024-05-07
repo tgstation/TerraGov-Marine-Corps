@@ -24,6 +24,8 @@
 	var/flame_color = "red"
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
 	var/burn_level = 10
+	/// How many burn ticks we lose per process
+	var/burn_decay = 1
 
 /obj/fire/Initialize(mapload, burn_ticks, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
@@ -129,7 +131,7 @@
 		qdel(src)
 		return
 
-	burn_ticks--
+	burn_ticks -= burn_decay
 	if(burn_ticks <= 0)
 		qdel(src)
 		return PROCESS_KILL
@@ -184,7 +186,8 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
-	burn_ticks = 3
+	burn_ticks = 30
+	burn_decay = 10
 
 /// affecting mobs
 /obj/fire/melting_fire/affect_mob(mob/living/carbon/target)
