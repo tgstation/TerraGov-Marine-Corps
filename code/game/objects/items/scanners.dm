@@ -162,7 +162,7 @@ REAGENT SCANNER
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
 
-		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getCloneLoss() <= 215, // around the revive threshold for people with corpsman level skills
+		"revivable" = patient.check_revive(user.skills.getRating(SKILL_MEDICAL)),
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
