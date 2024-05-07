@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/gorger
-	caste_base_type = /mob/living/carbon/xenomorph/gorger
+	caste_base_type = /datum/xeno_caste/gorger
 	name = "Gorger"
 	desc = "A large, powerfully muscled xeno with seemingly more vitality than others."
 	icon = 'icons/Xeno/castes/gorger.dmi'

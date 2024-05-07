@@ -1576,7 +1576,7 @@
 	desc = "A delicious lollipop."
 	icon = 'icons/obj/items/lollipop.dmi'
 	icon_state = "lollipop_stick"
-	item_state = "lollipop_stick"
+	worn_icon_state = "lollipop_stick"
 	equip_slot_flags = ITEM_SLOT_MASK
 	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)

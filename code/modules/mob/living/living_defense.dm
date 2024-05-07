@@ -52,10 +52,10 @@
 	return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
+	. = ..()
 	var/list/L = GetAllContents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
-	..()
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
@@ -90,7 +90,7 @@
 
 /mob/living/turf_collision(turf/T, speed)
 	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
-	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	playsound(src, get_sfx("slam"), 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
@@ -281,6 +281,7 @@
 		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
+	return bio_protection
 
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)

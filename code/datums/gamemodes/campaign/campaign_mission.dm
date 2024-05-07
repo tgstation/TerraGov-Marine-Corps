@@ -13,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///Camo color associated with this map
+	var/map_armor_color = MAP_ARMOR_STYLE_DEFAULT
 	///The actual z-level the mission is played on
 	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions

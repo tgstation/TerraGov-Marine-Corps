@@ -3,7 +3,7 @@
 	name = "universal recorder"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorderidle"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/recording = 0

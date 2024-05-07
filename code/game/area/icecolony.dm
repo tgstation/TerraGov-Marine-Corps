@@ -371,6 +371,9 @@
 	name = "Garage Eastern Unit"
 	icon_state = "garage_two"
 
+/area/ice_colony/surface/garage/three
+	name = "Southwest Colony Garage"
+
 /area/ice_colony/surface/garage/repair
 	name = "Garage Repair Station"
 	icon_state = "engine"

@@ -14,9 +14,9 @@
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
-	item_state = "underarmor"
+	worn_icon_state = "underarmor"
 	item_state_worn = TRUE
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 
 	atom_flags = CONDUCT
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -211,7 +211,7 @@
 	name = "\improper Rownin Skeleton"
 	desc = "A light armor, if you can even call it that, for marines that want to have agility in exchange for protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	icon_state = "rownin_skeleton"
-	item_state = "rownin_skeleton"
+	worn_icon_state = "rownin_skeleton"
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -243,11 +243,11 @@
 	name = "FleckTex WY-01 modular exoskeleton"
 	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon_state = "exoskeleton"
-	item_state = "exoskeleton"
+	worn_icon_state = "exoskeleton"
 	greyscale_config = /datum/greyscale_config/exoskeleton
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
 
@@ -293,11 +293,11 @@
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon_state = "helm"
-	item_state = "helm"
+	worn_icon_state = "helm"
 	item_state_worn = TRUE
 
 	greyscale_config = /datum/greyscale_config/armor_mk1
-	greyscale_colors = ARMOR_PALETTE_DESERT
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	armor_protection_flags = HEAD
 	armor_features_flags = ARMOR_NO_DECAP
@@ -384,10 +384,10 @@
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	breathy = FALSE
 	icon_state = "gas_alt"
-	item_state = "gas_alt"
-	item_icons = list(slot_wear_mask_str)
+	worn_icon_state = "gas_alt"
+	worn_icon_list = list(slot_wear_mask_str)
 	item_state_worn = TRUE
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED

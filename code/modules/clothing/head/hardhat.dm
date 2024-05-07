@@ -2,7 +2,7 @@
 	name = "hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
-	item_state = "hardhat0_yellow"
+	worn_icon_state = "hardhat0_yellow"
 	soft_armor = list(MELEE = 30, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, FIRE = 10, ACID = 10)
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
@@ -47,7 +47,7 @@
 /obj/item/clothing/head/hardhat/update_icon_state()
 	. = ..()
 	icon_state = "hardhat[light_on]_[hardhat_color]"
-	item_state = "hardhat[light_on]_[hardhat_color]"
+	worn_icon_state = "hardhat[light_on]_[hardhat_color]"
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

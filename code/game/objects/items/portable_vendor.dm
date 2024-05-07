@@ -7,7 +7,7 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
@@ -181,9 +181,10 @@
 	s.start()
 
 /obj/item/portable_vendor/emp_act(severity)
-	if (broken)
+	. = ..()
+	if(broken)
 		return
-	if (prob(40*severity))
+	if(prob(100 - (severity * 20)))
 		malfunction()
 
 /obj/item/portable_vendor/ex_act(severity)

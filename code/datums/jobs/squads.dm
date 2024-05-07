@@ -283,8 +283,7 @@
 		CRASH("attempted to remove squad leader from squad [name] while not having one set")
 
 	SSdirection.clear_leader(tracking_id)
-	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
-	SSdirection.stop_tracking(TRACKING_ID_SOM_COMMANDER, squad_leader)
+	SSdirection.stop_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
@@ -354,11 +353,18 @@
 		return
 
 	var/header = "AUTOMATED CIC NOTICE:"
+	var/sound = "sound/misc/notice3.ogg"
+	var/message_color = "#a9a9a9"
+	var/message_type = /atom/movable/screen/text/screen_text/command_order/automated
 	if(sender)
 		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
+		sound = "sound/machinery/dotprinter.ogg"
+		message_color = color
+		message_type = /atom/movable/screen/text/screen_text/command_order
 
 	for(var/mob/living/marine AS in marines_list)
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
+		marine.playsound_local(marine, sound, 35)
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))

@@ -6,7 +6,7 @@
 	name = "Hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages."
 	icon = 'icons/obj/items/syringe.dmi'
-	item_state = "hypo"
+	worn_icon_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
@@ -499,7 +499,7 @@
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
 	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
-	item_state = "hypomed"
+	worn_icon_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"
 	volume = 120
