@@ -59,11 +59,13 @@
 	walltype = "chigusa"
 	base_icon_state = "chigusa"
 
-/turf/closed/wall/kutjevo/colony/reinforced
+
+//Kutjevo
 
 /turf/closed/wall/r_wall/kutjevo
-
-/turf/closed/wall/r_wall/kutjevo/colony
+	icon = 'icons/turf/walls/kutjevo_rwall.dmi'
+	icon_state = "kutjevo_rwall-0"
+	base_icon_state = "kutjevo_rwall"
 
 //Prison
 

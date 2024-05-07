@@ -700,9 +700,30 @@
 
 /obj/structure/window/framed/kutjevo
 	name = "window"
-	icon = 'icons/obj/smooth_objects/col_window.dmi'
-	icon_state = "col_window-0"
-	base_icon_state = "col_window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_blue.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	window_frame = /obj/structure/window_frame/colony
+
+/obj/structure/window/framed/kutjevo/orange
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange.dmi'
+
+/obj/structure/window/framed/kutjevo/reinforced
+	name = "window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_blue_reinforced.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	window_frame = /obj/structure/window_frame/colony
+
+/obj/structure/window/framed/kutjevo/reinforced/orange
+	name = "window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
 	window_frame = /obj/structure/window_frame/colony
 
 /obj/structure/window/framed/kutjevo/reinforced/hull
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	resistance_flags = RESIST_ALL
