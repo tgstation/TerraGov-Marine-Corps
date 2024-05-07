@@ -1048,6 +1048,8 @@
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine = -1,
+			/obj/item/clothing/head/modular/marine/open = -1,
+			/obj/item/clothing/head/modular/marine/mjolnir_open = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,
 			/obj/item/clothing/head/modular/marine/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/helljumper = -1,

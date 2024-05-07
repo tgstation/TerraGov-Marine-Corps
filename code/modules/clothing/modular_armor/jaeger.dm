@@ -300,6 +300,12 @@
 
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
+/obj/item/clothing/head/modular/marine/open
+	name = "Jaeger Pattern Infantry Open Helmet"
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	visorless_offset_y = 0
+	greyscale_config = /datum/greyscale_config/armor_mk2/infantry/open
+
 /obj/item/clothing/head/modular/marine/hod
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/hod_head)
 
