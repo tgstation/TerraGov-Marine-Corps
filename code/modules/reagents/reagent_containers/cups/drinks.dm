@@ -49,7 +49,8 @@
 	. += span_notice("Alt-click to toggle cup lid.")
 	return
 
-/obj/item/reagent_containers/cup/glass/coffee/click_alt(mob/user)
+/obj/item/reagent_containers/cup/glass/coffee/AltClick(mob/user)
+	. = ..()
 	lid_open = !lid_open
 	update_icon_state()
 	return
@@ -67,11 +68,6 @@
 	icon_state = "icecup"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
 	isGlass = FALSE
-
-/obj/item/reagent_containers/cup/glass/ice/prison
-	name = "dirty ice cup"
-	desc = "Either Nanotrasen's water supply is contaminated, or this machine actually vends lemon, chocolate, and cherry snow cones."
-	list_reagents = list(/datum/reagent/consumable/ice = 25, /datum/reagent/consumable/liquidgibs = 5)
 
 /obj/item/reagent_containers/cup/glass/mug // parent type is literally just so empty mug sprites are a thing
 	name = "mug"
@@ -161,7 +157,8 @@
 	else
 		. += span_notice("The cap has been taken off. Alt-click to put a cap on.")
 
-/obj/item/reagent_containers/cup/glass/waterbottle/click_alt(mob/user)
+/obj/item/reagent_containers/cup/glass/waterbottle/AltClick(mob/user)
+	. = ..()
 	if(cap_lost)
 		to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
 		return
@@ -200,7 +197,7 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/afterattack(obj/target, mob/living/user, proximity)
 	. |= AFTERATTACK_PROCESSED_ITEM
 
-	if(cap_on && (target.is_refillable() || target.is_drainable() || (reagents.total_volume && !user.combat_mode)))
+	if(cap_on && (target.is_refillable() || target.is_drainable() || (reagents.total_volume && user.a_intent != INTENT_HARM)))
 		to_chat(user, span_warning("You must remove the cap before you can do that!"))
 		return
 
@@ -213,17 +210,14 @@
 	return . | ..()
 
 // heehoo bottle flipping
-/obj/item/reagent_containers/cup/glass/waterbottle/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/reagent_containers/cup/glass/waterbottle/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
 	if(QDELETED(src))
 		return
 	if(!cap_on || !reagents.total_volume)
 		return
 	if(prob(flip_chance)) // landed upright
-		src.visible_message(span_notice("[src] lands upright!"))
-		var/mob/living/thrower = throwingdatum?.get_thrower()
-		if(thrower)
-			thrower.add_mood_event("bottle_flip", /datum/mood_event/bottle_flip)
+		visible_message(span_notice("[src] lands upright!"))
 	else // landed on it's side
 		animate(src, transform = matrix(prob(50)? 90 : -90, MATRIX_ROTATE), time = 3, loop = 0)
 
@@ -293,8 +287,6 @@
 	)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton/smash(atom/target, mob/thrower, ranged = FALSE)
-	if(bartender_check(target) && ranged)
-		return
 	SplashReagents(target, ranged, override_spillable = TRUE)
 	var/obj/item/broken_bottle/bottle_shard = new (loc)
 	bottle_shard.mimic_broken(src, target)

@@ -5,7 +5,6 @@
 	desc = "A small bottle."
 	icon_state = "bottle"
 	fill_icon_state = "bottle"
-	inhand_icon_state = "atoxinbottle"
 	worn_icon_state = "bottle"
 	possible_transfer_amounts = list(5, 10, 15, 25, 50)
 	volume = 50
@@ -512,7 +511,8 @@
 
 	return TRUE
 
-/obj/item/reagent_containers/cup/bottle/syrup_bottle/click_alt(mob/user)
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/AltClick(mob/user)
+	. = ..()
 	cap_on = !cap_on
 	if(!cap_on)
 		icon_state = "syrup_open"
@@ -521,7 +521,7 @@
 		icon_state = "syrup"
 		balloon_alert(user, "put pump cap on")
 	update_icon_state()
-	return CLICK_ACTION_SUCCESS
+	return
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/proc/rename(mob/user, obj/item/writing_instrument)
 	if(!user.can_write(writing_instrument))
