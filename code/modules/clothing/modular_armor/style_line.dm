@@ -21,7 +21,7 @@
 
 	greyscale_config = /datum/greyscale_config/style_hat
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = SECONDARY_COLORS
+	colorable_colors = ARMOR_PALETTES_LIST
 
 	visorless_offset_y = 0
 
