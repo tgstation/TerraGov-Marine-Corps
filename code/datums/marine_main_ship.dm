@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 	if(level <= SEC_LEVEL_BLUE)
 		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
-			alarmplayer.deltalarm.stop(alarmplayer)
+			alarmplayer.loopingsound.stop(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			if(istype(light, /obj/machinery/light/mainship/small))
 				light.base_icon_state = "bulb"
@@ -49,9 +49,9 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 	else
 		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
 			if(level != SEC_LEVEL_DELTA)
-				alarmplayer.deltalarm.stop(alarmplayer)
+				alarmplayer.loopingsound.stop(alarmplayer)
 			else
-				alarmplayer.deltalarm.start(alarmplayer)
+				alarmplayer.loopingsound.start(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			if(istype(light, /obj/machinery/light/mainship/small))
 				light.base_icon_state = "bulb_red"

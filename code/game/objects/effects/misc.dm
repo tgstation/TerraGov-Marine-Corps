@@ -45,18 +45,42 @@
 	opacity = FALSE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/datum/looping_sound/alarm_loop/deltalarm
+	var/datum/looping_sound/loopingsound
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
-	deltalarm = new(null, FALSE)
-	GLOB.ship_alarms += src
+	loopingsound = new(null, FALSE)
 	icon_state = ""
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()
-	QDEL_NULL(deltalarm)
+	QDEL_NULL(loopingsound)
+
+/obj/effect/soundplayer/deltaplayer
+	loopingsound = /datum/looping_sound/alarm_loop
+
+/obj/effect/soundplayer/deltaplayer/Initialize(mapload)
+	. = ..()
+	GLOB.ship_alarms += src
+
+/obj/effect/soundplayer/deltaplayer/Destroy()
+	. = ..()
 	GLOB.ship_alarms -= src
+
+/obj/effect/soundplayer/riverplayer
+	loopingsound = /datum/looping_sound/river_loop
+
+/obj/effect/soundplayer/windplayer
+	loopingsound = /datum/looping_sound/wind_loop
+
+/obj/effect/soundplayer/dripplayer
+	loopingsound = /datum/looping_sound/drip_loop
+
+/obj/effect/soundplayer/lowwindplayer
+	loopingsound = /datum/looping_sound/low_wind_loop
+
+/obj/effect/soundplayer/waterreservoirplayer
+	loopingsound = /datum/looping_sound/water_res_loop
 
 /obj/effect/forcefield
 	anchored = TRUE

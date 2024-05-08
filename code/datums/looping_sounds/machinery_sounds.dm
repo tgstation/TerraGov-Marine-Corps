@@ -17,6 +17,36 @@
 	volume = 50
 	range = 20
 
+/datum/looping_sound/river_loop
+	mid_sounds = list('sound/effects/stream.ogg')
+	mid_length = 14
+	volume = 30
+	range = 10
+
+/datum/looping_sound/wind_loop
+	mid_sounds = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
+	mid_length = 30
+	volume = 40
+	range = 15
+
+/datum/looping_sound/water_res_loop
+	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1, 'sound/effects/wave4.ogg' = 1)
+	mid_length = 4
+	volume = 40
+	range = 7
+
+/datum/looping_sound/drip_loop
+	mid_sounds = list('sound/effects/driploop.ogg' = 1)
+	mid_length = 20
+	volume = 30
+	range = 11
+
+/datum/looping_sound/low_wind_loop
+	mid_sounds = list('sound/ambience/windambient.ogg' = 1)
+	mid_length = 18
+	volume = 25
+	range = 7
+
 /datum/looping_sound/radio
 	mid_sounds = list('sound/effects/radio_chatter/radio1.ogg' = 1, 'sound/effects/radio_chatter/radio2.ogg' = 1, 'sound/effects/radio_chatter/radio3.ogg' = 1, 'sound/effects/radio_chatter/radio4.ogg' = 1, 'sound/effects/radio_chatter/radio5.ogg' = 1, 'sound/effects/radio_chatter/radio6.ogg' = 1, 'sound/effects/radio_chatter/radio7.ogg' = 1, 'sound/effects/radio_chatter/radio8.ogg' = 1)
 	mid_length = 35 SECONDS
