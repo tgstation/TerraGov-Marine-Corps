@@ -68,3 +68,8 @@
   - code_imp: Implement more uses of PopulateContents()
   antropod:
   - rscadd: Stacks of newly crafted items merge to existing stacks in user hands
+2024-05-08:
+  DeltaFire15:
+  - bugfix: Shrike can evolve to other tier fours again.
+  Lumipharon:
+  - bugfix: fixed an exploit with reagents
