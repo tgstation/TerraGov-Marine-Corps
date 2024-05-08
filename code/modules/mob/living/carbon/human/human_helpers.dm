@@ -262,16 +262,3 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
 	GLOB.squad_selector.interact(src)
-
-///Proc for checking if a human can be revived based on damage and if the human doesn't have TRAIT_UNDEFIBBABLE.
-///Returns TRUE if they're defibbable and their health is above their death threshold.
-/mob/living/carbon/human/proc/check_revive(user_skill = SKILL_MEDICAL_UNTRAINED)
-	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
-		return FALSE
-	if(HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB))
-		return TRUE
-	var/actual_healing_level //leftover snowflake from defibrillators healing 8 for untrained/novice
-	if(user_skill < SKILL_MEDICAL_PRACTICED)
-		actual_healing_level = 8
-	if(health + getOxyLoss() + actual_healing_level ? actual_healing_level : (DEFIBRILLATOR_HEALING_TIMES_SKILL(user_skill)) >= get_death_threshold())
-		return TRUE

@@ -162,8 +162,6 @@ REAGENT SCANNER
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
 
-		"revivable" = patient.check_revive(user.skills.getRating(SKILL_MEDICAL)),
-
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
@@ -272,10 +270,23 @@ REAGENT SCANNER
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
+	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
+		data["revivable_string"] = "Permanently deceased" // revivable_string is the actual information. "too much damage" etc.
+		data["revivable_boolean"] = FALSE // revivable_boolean is simply the TRUE/FALSE data entry used by tgui to color the revivable box
+	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+		data["revivable_string"] = "Ready to reboot"
+		data["revivable_boolean"] = TRUE
+	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+		data["revivable_string"] = "Ready to defibrillate"
+		data["revivable_boolean"] = TRUE
+	else
+		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
+		data["revivable_boolean"] = FALSE
+
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
-	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient can be revived
+	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
 		if(patient.stat == DEAD) // death advice
 			var/dead_color
 			switch(patient.dead_ticks)

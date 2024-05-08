@@ -24,7 +24,8 @@ export const MedScanner = (props) => {
     oxy,
     clone,
 
-    revivable,
+    revivable_boolean,
+    revivable_string,
     has_chemicals,
     has_unknown_chemicals,
     chemicals_lists,
@@ -73,8 +74,8 @@ export const MedScanner = (props) => {
             </LabeledList.Item>
             {dead ? (
               <LabeledList.Item label="Revivable">
-                <Box color={revivable ? 'green' : 'red'} bold={1}>
-                  {revivable ? 'TRUE' : 'False'}
+                <Box color={revivable_boolean ? 'yellow' : 'red'} bold={1}>
+                  {revivable_string}
                 </Box>
               </LabeledList.Item>
             ) : null}

@@ -1,7 +1,7 @@
-///The base healing number for a defibrillator. Kept global to be used by `check_revive()`.
+///The base healing number for a defibrillator. Needs to be global for `DEFIBRILLATOR_HEALING_TIMES_SKILL` to work outside of this file.
 #define DEFIBRILLATOR_BASE_HEALING_VALUE 8
-///The formula for healing with a defibrillator. Kept global to be used by `check_revive()`.
-#define DEFIBRILLATOR_HEALING_TIMES_SKILL(skill_input) (DEFIBRILLATOR_BASE_HEALING_VALUE * skill_input * 0.5)
+///The formula for healing with a defibrillator. If `skill_input` in this macro is less than `SKILL_MEDICAL_PRACTICED`, this will be 8.
+#define DEFIBRILLATOR_HEALING_TIMES_SKILL(skill_input) (skill_input < SKILL_MEDICAL_PRACTICED ? 8 : DEFIBRILLATOR_BASE_HEALING_VALUE * skill_input * 0.5)
 
 /obj/item/defibrillator
 	name = "emergency defibrillator"
@@ -178,8 +178,8 @@
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * medical_skill) // 3 seconds with medical medical_skill, 5 without
 		if(!do_after(user, fumbling_time, NONE, H, BUSY_ICON_UNSKILLED))
 			return
-	else // for ye whom may venture here: if you kill this "else", kill the special snowflake bit in check_revive()
-		defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
+
+	defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
 
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
