@@ -6538,7 +6538,7 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aJM" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/maintenance/lower_maint2)
 "aJQ" = (
@@ -9341,7 +9341,7 @@
 	},
 /area/sulaco/mechpilotquarters)
 "blH" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/shuttle/distress/arrive_1)
 "bmG" = (
@@ -9514,7 +9514,7 @@
 	},
 /area/sulaco/engineering)
 "bCN" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/space/basic,
 /area/space)
 "bEF" = (
@@ -11338,7 +11338,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "dWq" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/showers)
 "dWI" = (
@@ -11512,7 +11512,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/banish_space,
 /area/space)
 "eho" = (
@@ -11887,7 +11887,7 @@
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "eEh" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/office)
 "eEB" = (
@@ -13298,7 +13298,7 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "gxf" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
 "gyj" = (
@@ -13375,7 +13375,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "gEN" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/shuttle/distress/arrive_2)
 "gGh" = (
@@ -13806,7 +13806,7 @@
 	},
 /area/sulaco/bridge)
 "heV" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/quarters)
 "hff" = (
@@ -14076,7 +14076,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "htQ" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/morgue)
 "hvu" = (
@@ -14417,7 +14417,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "hOe" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/telecomms)
 "hOC" = (
@@ -14662,7 +14662,7 @@
 	},
 /area/sulaco/research)
 "ifF" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria/kitchen)
 "ifW" = (
@@ -15242,7 +15242,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "iMF" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "iNa" = (
@@ -18329,7 +18329,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "mCc" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/evac)
 "mCg" = (
@@ -19646,7 +19646,7 @@
 	},
 /area/sulaco/medbay/chemistry)
 "oqu" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/firingrange)
 "oqA" = (
@@ -20414,7 +20414,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "pkL" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/shipboard/weapon_room)
 "plb" = (
@@ -21019,7 +21019,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "pXf" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/firingrange)
 "pXn" = (
@@ -21374,7 +21374,7 @@
 /area/sulaco/maintenance/lower_maint3)
 "qzZ" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine/chapel)
 "qAU" = (
@@ -21470,7 +21470,7 @@
 /area/sulaco/hangar)
 "qHb" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hangar/storage)
 "qHe" = (
@@ -22898,7 +22898,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "sqa" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar/droppod)
 "sqc" = (
@@ -23650,7 +23650,7 @@
 	},
 /area/space)
 "tjE" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/atmos)
 "tjS" = (
@@ -24259,7 +24259,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tXi" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/briefing)
 "tXW" = (
@@ -25019,7 +25019,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
 "uZM" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/command/ai)
 "vax" = (
@@ -25173,7 +25173,7 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "vjm" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/mainship/command/self_destruct)
 "vjr" = (
@@ -26982,7 +26982,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "xHm" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar)
 "xHE" = (
