@@ -1,0 +1,7 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "new armor for pilot"
+  - imageadd: "new pilot armor"
+  - imageadd: "new pilot uniform"
+  - imageadd: "new pilot helmet"
