@@ -308,7 +308,7 @@ REAGENT SCANNER
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(patient.health >= patient.health_threshold_dead - 25 || isrobot(patient))
+			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold() || isrobot(patient))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"icon" = "bolt",
