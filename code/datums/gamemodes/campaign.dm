@@ -322,10 +322,11 @@
 		return
 
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
-		if(stat_list[job_datum.faction].active_attrition_points < job_datum.job_cost)
+		var/active_attrition = stat_list[job_datum.faction].active_attrition_points
+		if(active_attrition < job_datum.job_cost)
 			to_chat(usr, "<span class='warning'>Unable to spawn. Insufficient attrition.<spawn>")
 			return
-		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
+		active_attrition -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
 
