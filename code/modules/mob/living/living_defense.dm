@@ -90,7 +90,7 @@
 
 /mob/living/turf_collision(turf/T, speed)
 	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, SFX_SLAM, 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)

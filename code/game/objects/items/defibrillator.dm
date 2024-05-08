@@ -104,7 +104,7 @@
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
-	playsound(get_turf(src), "sparks", 25, TRUE, 4)
+	playsound(get_turf(src), SFX_SPARKS, 25, TRUE, 4)
 	if(ready)
 		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
 	else
