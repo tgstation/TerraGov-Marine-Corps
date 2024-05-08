@@ -226,7 +226,7 @@
 /area/riptide/inside/medical
 	name = "Medical Foyer"
 	icon_state = "medbay"
-	minimap_color = MINIMAP_AREA_CELL_MED
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/riptide/inside/medical/surgery
 	name = "Surgery"
