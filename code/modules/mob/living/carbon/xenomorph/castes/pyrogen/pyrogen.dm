@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/pyrogen
-	caste_base_type = /mob/living/carbon/xenomorph/pyrogen
+	caste_base_type = /datum/xeno_caste/pyrogen
 	name = "Pyrogen"
 	desc = "A skittish alien, it burns with fury."
 	icon = 'icons/Xeno/castes/pyrogen.dmi'
