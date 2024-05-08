@@ -84,5 +84,4 @@ endmap
 
 map riptide
 minplayers 40
-maxplayers 60
 endmap
