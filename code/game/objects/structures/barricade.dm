@@ -7,6 +7,7 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	atom_flags = ON_BORDER
+	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
@@ -602,7 +603,8 @@
 				return TRUE
 
 			var/turf/open/T = mystery_turf
-			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+			var/area/area = get_area(T)
+			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return TRUE
 
@@ -879,7 +881,8 @@
 				return
 
 			var/turf/open/T = mystery_turf
-			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+			var/area/area = get_area(T)
+			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return
 

@@ -2,7 +2,7 @@
 	name = "bible"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/books_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/books_right.dmi',
 	)

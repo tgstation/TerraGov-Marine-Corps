@@ -25,7 +25,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/puppeteer)
+	deevolves_to = /datum/xeno_caste/puppeteer
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

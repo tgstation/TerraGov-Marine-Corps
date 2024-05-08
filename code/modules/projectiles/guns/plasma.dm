@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma
 	name = "generic plasma weapon"
 	icon = 'icons/obj/items/guns/plasma64.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/plasma_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/plasma_right_1.dmi',
 	)
@@ -25,7 +25,7 @@
 	name = "\improper PL-38 plasma rifle"
 	desc = "The PL-38 Plasma Rifle is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, it is a versatile weapon if you mind the rather cheap cooling systems. It has a normal beam mode similar to a rifle, a hipower mode that easily pierces through soft targets, and a blast mode that will easily melt through the armor of anything hit by it."
 	icon_state = "plasma_rifle"
-	item_state = "plasma_rifle"
+	worn_icon_state = "plasma_rifle"
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_med.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'
 	reload_sound = 'sound/weapons/guns/interact/plasma_reload_2.ogg'
@@ -119,7 +119,7 @@
 	name = "\improper PL-96 plasma cannon"
 	desc = "The PL-96 Plasma Cannon is an experimental addition to the TerraGov Marine Corps arsenal, rumored to be the child of some back door contract deals, is an absolutely incredibly devastating weapon to behold... if you mind the incredibly poor cooling mechanisms and unwieldiness of the whole package. It has a normal beam mode similar to a machinegun, a fire glob mode that leaves devastating flames in the aftermath, and a Charge mode nicknamed the 'Femur breaker' due to its incredible armor shattering potiential upon hitting a target."
 	icon_state = "plasma_cannon"
-	item_state = "plasma_cannon"
+	worn_icon_state = "plasma_cannon"
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 
@@ -195,7 +195,7 @@
 	name = "\improper PL-51 plasma SMG"
 	desc = "The PL-51 Plasma SMG, ."
 	icon_state = "plasma_smg"
-	item_state = "plasma_smg"
+	worn_icon_state = "plasma_smg"
 	gun_skill_category = SKILL_SMGS
 	fire_sound = 'sound/weapons/guns/fire/plasma_fire_fast.ogg'
 	unload_sound = 'sound/weapons/guns/interact/plasma_unload_3.ogg'

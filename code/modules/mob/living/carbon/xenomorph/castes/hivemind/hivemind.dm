@@ -1,7 +1,7 @@
 #define TIME_TO_TRANSFORM 1 SECONDS
 
 /mob/living/carbon/xenomorph/hivemind
-	caste_base_type = /mob/living/carbon/xenomorph/hivemind
+	caste_base_type =/datum/xeno_caste/hivemind
 	name = "Hivemind"
 	real_name = "Hivemind"
 	desc = "A glorious singular entity."

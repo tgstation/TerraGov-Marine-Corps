@@ -9,11 +9,11 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/items/syringe.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)
-	item_state = "syringe_0"
+	worn_icon_state = "syringe_0"
 	icon_state = "0"
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
@@ -193,7 +193,7 @@
 
 	var/rounded_vol = round(reagents.total_volume,5)
 	icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
+	worn_icon_state = "syringe_[rounded_vol]"
 
 /obj/item/reagent_containers/syringe/update_overlays()
 	. = ..()

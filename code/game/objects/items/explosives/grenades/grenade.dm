@@ -4,11 +4,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
 	)
-	item_state = "grenade"
+	worn_icon_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
 	atom_flags = CONDUCT
@@ -98,13 +98,6 @@
 
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
-
-/obj/item/explosive/grenade/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	walk(src, null, null)
-	return
 
 ///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()

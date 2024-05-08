@@ -32,3 +32,7 @@
 	REMOVE_TRAIT(source, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	source.client.view_size.reset_to_default()
 	source.update_sight()
+
+/obj/structure/periscope/apc
+	name = "apc periscope"
+

@@ -14,6 +14,8 @@
 	var/obj/vehicle/sealed/armored/owner
 	///Bool whether this module is a driver module or not
 	var/is_driver_module = TRUE
+	///Bool whether this module is visually attached to the hull or not
+	var/attached_to_hull = FALSE
 
 ///Called to apply modules to a vehicle
 /obj/item/tank_module/proc/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
@@ -30,7 +32,7 @@
 		vehicle.driver_utility_module = src
 	else
 		vehicle.gunner_utility_module = src
-	if(!vehicle.turret_overlay)
+	if(!vehicle.turret_overlay || attached_to_hull)
 		overlay = image(vehicle.icon, null, icon_state)
 		vehicle.add_overlay(overlay)
 	else
@@ -64,6 +66,7 @@
 	name = "overdrive module"
 	desc = "A module that enhances the speed of armored combat vehicles by increasing fuel efficiency."
 	icon_state = "overdrive"
+	attached_to_hull = TRUE
 
 /obj/item/tank_module/overdrive/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
 	. = ..()

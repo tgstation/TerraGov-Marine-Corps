@@ -191,14 +191,6 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
-	// *** Warlock Abilities ***
-	///The integrity of psychic shields made by the xeno
-	var/shield_strength = 350
-	///The strength of psychic crush's effects
-	var/crush_strength = 35
-	///The strength of psychic blast's  AOE effects
-	var/blast_strength = 25
-
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
@@ -246,6 +238,13 @@
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
+///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
+/datum/xeno_caste/proc/get_base_caste_type()
+	var/datum/xeno_caste/current_type = type
+	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
+		current_type = initial(current_type.parent_type)
+	return current_type
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -291,6 +290,7 @@
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste
+	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
 	var/language = "Xenomorph"
 	///Plasma currently stored
