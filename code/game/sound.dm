@@ -36,14 +36,16 @@
 		1.0, 10.0, 10.0, 255, \
 	)
 
-/**Proc used to play a sound.
+/**
+ * Proc used to play a sound.
+ *
  * Arguments:
- * source: what played the sound.
- * soundin: the .ogg to use.
- * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
- * vary: to make the frequency var of the sound vary (mostly unused).
- * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
- * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
+ * * source: what played the sound.
+ * * soundin: the .ogg to use.
+ * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
+ * * vary: to make the frequency var of the sound vary (mostly unused).
+ * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
+ * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0)
@@ -81,17 +83,17 @@ A good representation is: 'byond applies a volume reduction to the sound every X
  * Plays a sound locally
  *
  * Arguments:
- * turf_source - The turf our sound originates from
- * soundin - the .ogg or SFX of our sound
- * vol - Changes the volume of our sound, relevant when measuring falloff
- * vary - to make the frequency var of the sound vary (mostly unused).
- * frequency - Optional: if vary is set, this is how much we vary by (or a random amount if not given any value)
- * falloff - Optional: Calculates falloff if not passed a value
- * is_global - if false, sets our environment to SOUND_ENVIRONMENT_ROOM
- * channel - Optional: Picks a random available channel if not set
- * sound_to_use - Optional: Will default to soundin
- * distance_multiplier - Affects x and z hearing
- * sound_reciever - Defaults to src, the thing that is hearing this sound
+ * * turf_source - The turf our sound originates from
+ * * soundin - the .ogg or SFX of our sound
+ * * vol - Changes the volume of our sound, relevant when measuring falloff
+ * * vary - to make the frequency var of the sound vary (mostly unused).
+ * * frequency - Optional: if vary is set, this is how much we vary by (or a random amount if not given any value)
+ * * falloff - Optional: Calculates falloff if not passed a value
+ * * is_global - if false, sets our environment to SOUND_ENVIRONMENT_ROOM
+ * * channel - Optional: Picks a random available channel if not set
+ * * sound_to_use - Optional: Will default to soundin
+ * * distance_multiplier - Affects x and z hearing
+ * * sound_reciever - Defaults to src, the thing that is hearing this sound
  */
 /mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
 	if(!sound_reciever)
@@ -182,7 +184,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
-// The pick() proc has a built-in chance that can be added to any option by adding ,X; to the end of an option, where X is the % chance it will play.
+///Used to convert a SFX define into a .ogg so we can add some variance to sounds. If soundin is already a .ogg, we simply return it
 /proc/get_sfx(soundin)
 	if(!istext(soundin))
 		return soundin
