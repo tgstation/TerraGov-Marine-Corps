@@ -16,6 +16,14 @@
 	bound_width = 64
 	bound_height = 64
 
+/obj/structure/kutjevo_sign
+	name = "Kutjevo Sign"
+	desc = "A large sign that reads 'Kutjevo pop-', the rest of it is obscured by claw marks."
+	icon = 'icons/obj/landing_signs.dmi'
+	icon_state = "kut_sign"
+	bound_width = 64
+	bound_height = 64
+
 /obj/structure/prison_sign
 	name = "UA Prison Docking Sign"
 	desc = "A large sign that reads 'UA Prison Docking -', the rest of it is obscured by claw marks."

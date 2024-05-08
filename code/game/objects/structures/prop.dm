@@ -2258,11 +2258,15 @@
 		Shipyard work more attractive to young adults than office work? More and more young adults are flocking to shipyard and space related work as they want an escape from the monotony and rat race of the office world, here we are at New Malay Shipyards with Austin Li a 20 year old who gave up his managerial position for shipyard work 'I wanted to just escape from the boredom, feel challenged and accomplished from the work i do and i found that in shipyard work, it's a tough job and the pay is not as good but nothing beats the view from up here and the feeling of freedom from zero g, atleast thats my perspective. Sorry i gotta get to my EVA mech now, work calls."
 
 /obj/structure/prop/coagulation_arm
-	name = "broken security camera"
-	desc = "It's used to monitor rooms."
+	name = "coagulation arm"
+	desc = "An axel with four sides, made to spin to help filter the water."
 	icon = 'icons/obj/structures/coagulation_arm.dmi'
 	icon_state = "arm"
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	bound_height = 96
+	bound_width = 96
+	max_integrity = 1000
 
 /obj/structure/prop/filtration_exit
 	name = "Waste Exit Pipe"
@@ -2273,6 +2277,7 @@
 	bound_height = 96
 	bound_width = 96
 	density = TRUE
+	resistance_flags = RESIST_ALL
 
 
 #undef VENDOR_BROKEN

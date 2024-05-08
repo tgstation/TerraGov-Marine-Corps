@@ -97,6 +97,7 @@
 	color = "#c7bdbd"
 	bound_height = 64
 	bound_width = 64
+	max_integrity = 1200
 
 /obj/structure/rock/basalt/large_boulder/altone
 	icon_state = "boulder_2"
@@ -131,6 +132,7 @@
 	icon_state = "tinyrock_3"
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	max_integrity = 100
 
 /obj/structure/rock/tinyrock/Initialize(mapload)
 	. = ..()
