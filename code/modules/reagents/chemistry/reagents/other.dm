@@ -440,8 +440,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/decal/cleanable))
-		qdel(O)
 	. = ..()
 	O.wash()
 
