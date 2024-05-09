@@ -91,3 +91,39 @@
 		if(reagents.get_reagent_amount(reagent_to_check) != list_reagents[reagent_to_check])
 			return FALSE
 	return TRUE
+
+/obj/item/reagent_containers/create_reagents(max_vol, flags)
+	. = ..()
+	RegisterSignal(reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(on_reagent_add))
+	RegisterSignal(reagents, COMSIG_REAGENT_DELETING, PROC_REF(on_reagents_del))
+
+/obj/item/reagent_containers/proc/on_reagents_del(datum/reagents/reagents)
+	SIGNAL_HANDLER
+	UnregisterSignal(reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+	return NONE
+
+/// Updates the icon of the container when the reagents change. Eats signal args
+/obj/item/reagent_containers/proc/on_reagent_add(datum/reagents/holder, ...)
+	SIGNAL_HANDLER
+	update_appearance()
+	return NONE
+
+/obj/item/reagent_containers/update_overlays()
+	. = ..()
+	if(!fill_icon_thresholds)
+		return
+	if(!reagents.total_volume)
+		return
+
+	var/fill_name = fill_icon_state ? fill_icon_state : icon_state
+	var/mutable_appearance/filling = mutable_appearance(fill_icon, "[fill_name][fill_icon_thresholds[1]]")
+
+	var/percent = round((reagents.total_volume / volume) * 100)
+	for(var/i in 1 to fill_icon_thresholds.len)
+		var/threshold = fill_icon_thresholds[i]
+		var/threshold_end = (i == fill_icon_thresholds.len) ? INFINITY : fill_icon_thresholds[i+1]
+		if(threshold <= percent && percent < threshold_end)
+			filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
+
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
