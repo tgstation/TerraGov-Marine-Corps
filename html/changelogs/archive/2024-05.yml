@@ -73,3 +73,17 @@
   - bugfix: Shrike can evolve to other tier fours again.
   Lumipharon:
   - bugfix: fixed an exploit with reagents
+2024-05-09:
+  Barnet2:
+  - bugfix: Fixed transport crewman and assault crewman orbit menu icons.
+  Lumipharon:
+  - code_imp: Removed some redundant proc calls in pref UI
+  - bugfix: 'Campaign: Fixed loadout issues'
+  blackdav123:
+  - bugfix: Acid pools and gargoyles now appear on the minimap.
+  - balance: Acid pools no longer break when their weeds are broken
+  tyeagg:
+  - rscadd: new armor for pilot
+  - imageadd: new pilot armor
+  - imageadd: new pilot uniform
+  - imageadd: new pilot helmet
