@@ -103,7 +103,7 @@
 	///BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/foldable = null
 	///sound played when used. null for no sound.
-	var/use_sound = "rustle"
+	var/use_sound = SFX_RUSTLE
 	///Has it been opened before?
 	var/opened = FALSE
 	///list of mobs currently seeing the storage's contents

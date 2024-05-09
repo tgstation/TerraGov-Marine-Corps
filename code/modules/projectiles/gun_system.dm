@@ -1890,7 +1890,7 @@
 		if(!istype(lit_flashlight))
 			continue
 		lit_flashlight.turn_light(null, FALSE)
-	playsound(loc, "alien_claw_metal", 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	hit_sound = 'sound/effects/Glasshit.ogg'
-	destroy_sound = "shatter"
+	destroy_sound = SFX_SHATTER
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE

@@ -51,7 +51,7 @@
 
 	balloon_alert_to_viewers("primes grenade")
 	if(initial(dangerous) && ishumanbasic(user))
-		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
+		var/nade_sound = user.gender == FEMALE ? SFX_FEMALE_FRAGOUT : SFX_MALE_FRAGOUT
 
 		for(var/mob/living/carbon/human/H in hearers(6,user))
 			H.playsound_local(user, nade_sound, 35)

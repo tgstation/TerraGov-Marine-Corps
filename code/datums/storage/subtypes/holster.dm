@@ -125,7 +125,7 @@
 	storage_slots = 28
 	max_storage_space = 28
 	refill_types = list(/obj/item/storage/box/m94)
-	refill_sound = "rustle"
+	refill_sound = SFX_RUSTLE
 
 /datum/storage/holster/flarepouch/New(atom/parent)
 	. = ..()

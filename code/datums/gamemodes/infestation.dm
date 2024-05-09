@@ -102,7 +102,7 @@
 	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
 	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
 
-	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	var/sound/S = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
 		for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 			var/mob/M = i
