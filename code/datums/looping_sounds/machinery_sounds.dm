@@ -30,15 +30,15 @@
 	range = 15
 
 /datum/looping_sound/water_res_loop
-	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1, 'sound/effects/wave4.ogg' = 1)
+	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1)
 	mid_length = 13
 	volume = 28
 	range = 7
 
 /datum/looping_sound/drip_loop
-	mid_sounds = list('sound/effects/driploop.ogg' = 1)
-	mid_length = 20
-	volume = 30
+	mid_sounds = list('sound/effects/drip1.ogg' = 1, 'sound/effects/drip2.ogg' = 1, 'sound/effects/drip3.ogg' = 1, 'sound/effects/drip4.ogg' = 1, 'sound/effects/drip5.ogg' = 1)
+	mid_length = 4
+	volume = 25
 	range = 7
 
 /datum/looping_sound/low_wind_loop
