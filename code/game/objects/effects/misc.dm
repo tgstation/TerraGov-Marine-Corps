@@ -53,7 +53,7 @@
 	loopingsound = new(null, FALSE)
 	icon_state = ""
 	if(startsactive)
-		loopingsound.start
+		loopingsound.start(src)
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()

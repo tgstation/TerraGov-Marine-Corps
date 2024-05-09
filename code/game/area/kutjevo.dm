@@ -33,7 +33,7 @@
 /area/kutjevo/interior/oob
 	name = "Kutjevo -  Out Of Bounds"
 	icon_state = "oob"
-	CEILING = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/kutjevo/interior/oob/dev_room
 	name = "Kutjevo - Credits Room"
