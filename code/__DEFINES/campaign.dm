@@ -20,6 +20,12 @@
 #define CAMPAIGN_LOSS_BONUS 0.15
 ///Max losing bonus
 #define CAMPAIGN_MAX_LOSS_BONUS 0.45
+///Limited loadout items can be multiplied by up to this mult, based on pop
+#define CAMPAIGN_LOADOUT_MULT_MAX 3
+///Pop floor to for base loadout amount
+#define CAMPAIGN_LOADOUT_POP_MIN 40
+///Pop required to reach max loadout mult
+#define CAMPAIGN_LOADOUT_POP_MAX 100
 
 //mission defines
 ///Mission has not been loaded
