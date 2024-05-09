@@ -3845,10 +3845,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
 /area/slumbridge/inside/sombase/hangar)
-"cRr" = (
-/obj/structure/window/framed/prison/reinforced,
-/turf/open/liquid/lava/autosmoothing,
-/area/slumbridge/inside/prison/outerringnorth)
 "cSc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tracks/wheels/bloody,
@@ -41723,8 +41719,8 @@ tWE
 asu
 asu
 asu
-cRr
-cRr
+iAS
+iAS
 asu
 asu
 gZN
