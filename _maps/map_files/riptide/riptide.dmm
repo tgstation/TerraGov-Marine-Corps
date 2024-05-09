@@ -1422,6 +1422,14 @@
 /obj/item/toy/katana,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
+"bbu" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "CavePrisonDoor";
+	name = "Door Shutters"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/pmc/prison)
 "bbA" = (
 /obj/structure/cable,
 /obj/structure/barricade/wooden,
@@ -16656,7 +16664,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/outside/northjungle)
 "lSR" = (
-/obj/machinery/door/poddoor/two_tile_hor/secure,
+/obj/machinery/door/poddoor/two_tile_hor{
+	id = "CavePrisonDoor"
+	},
 /turf/open/floor/prison,
 /area/riptide/caves/pmc/prison)
 "lSV" = (
@@ -19635,7 +19645,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central)
 "nXJ" = (
-/obj/machinery/door/poddoor/two_tile_ver,
+/obj/machinery/door/poddoor/two_tile_ver{
+	id = "CavePrisonDoorNorth"
+	},
 /turf/open/floor/prison,
 /area/riptide/caves/pmc/prison)
 "nXN" = (
@@ -28148,6 +28160,14 @@
 	},
 /turf/open/shuttle/dropship/floor/alt,
 /area/riptide/caves/tram)
+"tHQ" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "CavePrisonDoorNorth";
+	name = "Door Shutters"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/pmc/prison)
 "tIj" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/plating,
@@ -62098,7 +62118,7 @@ sTP
 kRU
 xin
 sFZ
-xin
+tHQ
 kRU
 sTP
 sTP
@@ -65146,7 +65166,7 @@ qvM
 nhV
 xin
 xin
-xin
+bbu
 kRU
 kRU
 kRU
