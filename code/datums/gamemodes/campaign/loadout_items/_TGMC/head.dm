@@ -61,9 +61,9 @@
 	item_typepath = /obj/item/clothing/head/modular/marine/tyr
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING,
-		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman = ITEM_SLOT_OCLOTHING,
-		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/jaeger/heavy/tyr_two = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/jaeger/heavy/tyr_two/corpsman = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/jaeger/heavy/tyr_two/engineer = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/helmet/tyr/smartgunner
