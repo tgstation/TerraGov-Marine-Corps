@@ -138,7 +138,7 @@
 	item_whitelist = null
 
 /datum/loadout_item/suit_slot/heavy_tyr/medic
-	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman
+	item_typepath = /obj/item/clothing/suit/modular/jaeger/heavy/tyr_two/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = null
 	item_whitelist = null
@@ -148,7 +148,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_tyr/engineer
-	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
+	item_typepath = /obj/item/clothing/suit/modular/jaeger/heavy/tyr_two/engineer
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = null
 	item_whitelist = null
