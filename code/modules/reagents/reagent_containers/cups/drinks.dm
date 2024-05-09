@@ -288,7 +288,30 @@
 	)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton/smash(atom/target, mob/thrower, ranged = FALSE)
-	SplashReagents(target, ranged, override_spillable = TRUE)
+	//XANTODO Temporary copypaste this was initially SplashReagents()
+	if(thrower.a_intent == INTENT_HARM)
+		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
+			to_chat(thrower, span_warning("An airtight seal prevents you from splashing the solution!"))
+			return
+
+		if(ismob(target) && target.reagents && reagents.total_volume)
+			to_chat(thrower, span_notice("You splash the solution onto [target]."))
+			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+
+			var/mob/living/M = target
+			var/list/injected = list()
+			for(var/datum/reagent/R in src.reagents.reagent_list)
+				injected += R.name
+			var/contained = english_list(injected)
+			log_combat(thrower, M, "splashed", src, "Reagents: [contained]")
+			record_reagent_consumption(reagents.total_volume, injected, thrower, M)
+
+			visible_message(span_warning("[target] has been splashed with something by [thrower]!"))
+			reagents.reaction(target, TOUCH)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
+			return
+	//XANTODO Temporary copypaste
+
 	var/obj/item/broken_bottle/bottle_shard = new (loc)
 	bottle_shard.mimic_broken(src, target)
 	qdel(src)
@@ -299,7 +322,6 @@
 	desc = "A cheap, mass produced style of cup, typically used at parties. They never seem to come out red, for some reason..."
 	icon = 'icons/obj/drinks/colo.dmi'
 	icon_state = "colocup"
-	inhand_icon_state = "colocup"
 	possible_transfer_amounts = list(5, 10, 15, 20)
 	volume = 20
 	amount_per_transfer_from_this = 5

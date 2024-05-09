@@ -27,7 +27,6 @@
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
 	throwforce = 15
-	demolition_mod = 0.25
 	inhand_icon_state = "beer" //Generic held-item sprite until unique ones are made.
 	var/broken_inhand_icon_state = "broken_beer"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -35,14 +34,7 @@
 	drink_type = ALCOHOL
 	///Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
 	var/bottle_knockdown_duration = BOTTLE_KNOCKDOWN_DEFAULT_DURATION
-	tool_behaviour = TOOL_ROLLINGPIN // Used to knock out the Chef.
 	toolspeed = 1.3 //it's a little awkward to use, but it's a cylinder alright.
-
-/obj/item/reagent_containers/cup/glass/bottle/Initialize(mapload, vol)
-	. = ..()
-	AddComponent(/datum/component/slapcrafting,\
-		slapcraft_recipes = list(/datum/crafting_recipe/molotov)\
-	)
 
 /obj/item/reagent_containers/cup/glass/bottle/small
 	name = "small glass bottle"
@@ -51,9 +43,30 @@
 	volume = 50
 
 /obj/item/reagent_containers/cup/glass/bottle/smash(mob/living/target, mob/thrower, ranged = FALSE, break_top)
-	if(bartender_check(target) && ranged)
-		return
-	SplashReagents(target, ranged, override_spillable = TRUE)
+	//XANTODO Temporary copypaste this was initially SplashReagents(target, ranged, override_spillable = TRUE)
+	if(thrower.a_intent == INTENT_HARM)
+		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
+			to_chat(thrower, span_warning("An airtight seal prevents you from splashing the solution!"))
+			return
+
+		if(ismob(target) && target.reagents && reagents.total_volume)
+			to_chat(thrower, span_notice("You splash the solution onto [target]."))
+			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+
+			var/mob/living/M = target
+			var/list/injected = list()
+			for(var/datum/reagent/R in src.reagents.reagent_list)
+				injected += R.name
+			var/contained = english_list(injected)
+			log_combat(thrower, M, "splashed", src, "Reagents: [contained]")
+			record_reagent_consumption(reagents.total_volume, injected, thrower, M)
+
+			visible_message(span_warning("[target] has been splashed with something by [thrower]!"))
+			reagents.reaction(target, TOUCH)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
+			return
+	//XANTODO Temporary copypaste
+
 	var/obj/item/broken_bottle/B = new(drop_location())
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
@@ -169,7 +182,6 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	demolition_mod = 0.25
 	w_class = WEIGHT_CLASS_TINY
 	inhand_icon_state = "broken_beer"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -182,14 +194,6 @@
 	var/static/icon/broken_outline = icon('icons/obj/drinks/drink_effects.dmi', "broken")
 	///The mask image for mimicking a broken-off neck of the bottle
 	var/static/icon/flipped_broken_outline = icon('icons/obj/drinks/drink_effects.dmi', "broken-flipped")
-
-/obj/item/broken_bottle/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/caltrop, min_damage = force)
-	AddComponent(/datum/component/butchering, \
-		speed = 20 SECONDS, \
-		effectiveness = 55, \
-	)
 
 /// Mimics the appearance and properties of the passed in bottle.
 /// Takes the broken bottle to mimic, and the thing the bottle was broken agaisnt as args
