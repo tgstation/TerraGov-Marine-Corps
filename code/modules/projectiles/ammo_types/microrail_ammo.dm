@@ -22,7 +22,7 @@
 	var/bonus_projectile_speed = 3
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
+	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, get_turf(proj), 1)
 	smoke.start()
@@ -103,10 +103,10 @@
 	name = "bomblet"
 	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
-	sound_hit 	 = "ballistic_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_BALLISTIC_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 	shell_speed = 2
 	damage = 5
 	accuracy = -60 //stop you from just emptying all the bomblets into one guys face for big damage
@@ -126,7 +126,7 @@
 
 ///handles the actual bomblet detonation
 /datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
-	playsound(T, sound(get_sfx("explosion_micro")), 30, falloff = 5)
+	playsound(T, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
@@ -166,10 +166,10 @@
 	name = "micro smoke canister"
 	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	sound_hit 	 = "ballistic_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_BALLISTIC_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 	shell_speed = 2
 	damage = 5
 	shrapnel_chance = 0

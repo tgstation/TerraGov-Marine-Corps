@@ -76,9 +76,9 @@
 	name = "alloy spike"
 	ping = "ping_s"
 	icon_state = "MSpearFlight"
-	sound_hit 	 = "alloy_hit"
-	sound_armor	 = "alloy_armor"
-	sound_bounce = "alloy_bounce"
+	sound_hit = SFX_ALLOY_HIT
+	sound_armor = SFX_ALLOY_ARMOR
+	sound_bounce = SFX_ALLOY_BOUNCE
 	armor_type = BULLET
 	accuracy = 20
 	accurate_range = 15

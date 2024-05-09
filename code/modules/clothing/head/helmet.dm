@@ -234,19 +234,14 @@
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
-	icon_state = "helmetp2"
+	desc = "The M30 tactical helmet has a visor displaying the pilot tactical data. It is used by pilots in the TGN."
+	icon_state = "pilot_helmet"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	inventory_flags = BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDETOPHAIR
 	marine_helmet_flags = NONE
 	item_map_variant_flags = null
-
-/obj/item/clothing/head/helmet/marine/pilot/green
-	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in green."
-	icon_state = "helmetp"
 
 /obj/item/clothing/head/helmet/marine/mech_pilot
 	name = "\improper M12C pattern neurolink helmet"

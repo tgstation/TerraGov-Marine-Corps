@@ -16,6 +16,7 @@
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(gargoyle_alarm))
 	add_overlay(emissive_appearance(icon, "[icon_state]_emissive"))
 	INVOKE_ASYNC(src, PROC_REF(set_name), creator)
+	update_minimap_icon()
 
 /obj/structure/xeno/resin_gargoyle/proc/set_name(mob/living/carbon/xenomorph/creator)
 	name = initial(name) + " (" + tgui_input_text(creator, "Add a gargoyle name", "Naming") + ")"
@@ -59,4 +60,4 @@
 ///resets minimap icon for the gargoyle
 /obj/structure/xeno/resin_gargoyle/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_alarm" : ""]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
