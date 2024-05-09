@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Acid pools and gargoyles now appear on the minimap."
+  - balance: "Acid pools no longer break when their weeds are broken"
