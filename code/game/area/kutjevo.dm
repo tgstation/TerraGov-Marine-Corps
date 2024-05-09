@@ -209,6 +209,12 @@
 	ceiling = CEILING_METAL
 	icon_state = "power"
 
+/area/kutjevo/interior/filtration
+	name = "Kutjevo - Hydroelectric Dam Filtration"
+	ceiling = CEILING_METAL
+	icon_state = "power"
+	minimap_color = MINIMAP_AREA_ENGI
+
 /area/kutjevo/interior/construction
 	name = "Kutjevo - Abandoned Construction Interior"
 	ceiling = CEILING_UNDERGROUND_METAL

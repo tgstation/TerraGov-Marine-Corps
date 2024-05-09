@@ -46,11 +46,14 @@
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/loopingsound
+	var/startsactive = TRUE
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
 	loopingsound = new(null, FALSE)
 	icon_state = ""
+	if(startsactive)
+		loopingsound.start
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()
@@ -58,6 +61,7 @@
 
 /obj/effect/soundplayer/deltaplayer
 	loopingsound = /datum/looping_sound/alarm_loop
+	startsactive = FALSE
 
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
