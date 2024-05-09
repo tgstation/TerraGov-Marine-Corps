@@ -3,7 +3,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	resistance_flags = UNACIDABLE
 	icon_state = "bottle"
 	worn_icon_list = list(
@@ -188,7 +188,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without \
 		reactions. Can hold up to 50 units."
 	icon_state = "beakernoreact"
-	init_reagent_flags = OPENCONTAINER | NO_REACT
+	reagent_flags = OPENCONTAINER | NO_REACT
 	volume = 50
 	amount_per_transfer_from_this = 10
 

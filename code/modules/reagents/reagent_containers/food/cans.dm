@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/drinks/cans
 	name = "soda can"
-	init_reagent_flags = NONE
+	reagent_flags = NONE
 	var/canopened = FALSE
 
 /obj/item/reagent_containers/food/drinks/cans/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)

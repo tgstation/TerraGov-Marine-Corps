@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
 
@@ -196,7 +196,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
 	volume = 60
-	init_reagent_flags = OPENCONTAINER|NO_REACT
+	reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/glass/beaker/bluespace

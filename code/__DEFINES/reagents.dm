@@ -2,7 +2,7 @@
 #define LIQUID 2
 #define GAS 3
 
-// reagent_flags defines ---- also used by init_reagent_flags which is for the containers
+// reagent_flags defines
 /// Makes it possible to add reagents through droppers and syringes
 #define INJECTABLE (1<<0)
 /// Makes it possible to remove reagents through syringes

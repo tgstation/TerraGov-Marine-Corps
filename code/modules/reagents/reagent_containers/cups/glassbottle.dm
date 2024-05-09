@@ -21,16 +21,17 @@
 	desc = "This blank bottle is unyieldingly anonymous, offering no clues to its contents."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "glassbottle"
-	worn_icon_state = "bottle"
+	worn_icon_state = "beer" //Generic held-item sprite until unique ones are made.
 	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 	amount_per_transfer_from_this = 10
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
 	throwforce = 15
-	inhand_icon_state = "beer" //Generic held-item sprite until unique ones are made.
-	var/broken_inhand_icon_state = "broken_beer"
-	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
+	var/broken_worn_icon_state = "broken_beer"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/drinks_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/drinks_righthand.dmi'
+		)
 	drink_type = ALCOHOL
 	///Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
 	var/bottle_knockdown_duration = BOTTLE_KNOCKDOWN_DEFAULT_DURATION
@@ -71,11 +72,12 @@
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
 	B.mimic_broken(src, target, break_top)
-	B.inhand_icon_state = broken_inhand_icon_state
+	B.worn_icon_state = broken_worn_icon_state
 
 	qdel(src)
 	target.Bumped(B)
 
+/* XANTODO probably delete this
 /obj/item/reagent_containers/cup/glass/bottle/try_splash(mob/living/user, atom/target)
 
 	if(!target || !isliving(target))
@@ -138,6 +140,7 @@
 	smash(target, user)
 
 	return TRUE
+*/
 
 /*
  * Proc to make the bottle spill some of its contents out in a froth geyser of varying intensity/height
@@ -183,13 +186,13 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	inhand_icon_state = "broken_beer"
-	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
+	worn_icon_state = "broken_beer"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/drinks_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/drinks_righthand.dmi',
+		)
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("stabs", "slashes", "attacks")
-	attack_verb_simple = list("stab", "slash", "attack")
-	sharpness = SHARP_EDGED
+	attack_verb = list("stabs", "slashes", "attacks")
 	///The mask image for mimicking a broken-off bottom of the bottle
 	var/static/icon/broken_outline = icon('icons/obj/drinks/drink_effects.dmi', "broken")
 	///The mask image for mimicking a broken-off neck of the bottle
@@ -218,7 +221,6 @@
 			target.Bumped(stab_with)
 		playsound(src, SFX_SHATTER, 70, TRUE)
 	name = "broken [to_mimic.name]"
-	to_mimic.transfer_fingerprints_to(src)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer
 	name = "space beer"
@@ -244,7 +246,6 @@
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
 	drink_type = SUGAR | JUNKFOOD
-	custom_premium_price = PAYCHECK_CREW * 2
 
 /obj/item/reagent_containers/cup/glass/bottle/ale
 	name = "Magm-Ale"
@@ -324,15 +325,10 @@
 	desc = "A flask of the chaplain's holy water."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "holyflask"
-	inhand_icon_state = "holyflask"
-	broken_inhand_icon_state = "broken_holyflask"
+	worn_icon_state = "holyflask"
+	broken_worn_icon_state = "broken_holyflask"
 	list_reagents = list(/datum/reagent/water/holywater = 100)
 	drink_type = NONE
-
-/obj/item/reagent_containers/cup/glass/bottle/holywater/hell
-	desc = "A flask of holy water...it's been sitting in the Necropolis a while though."
-	icon_state = "unholyflask"
-	list_reagents = list(/datum/reagent/hellwater = 100)
 
 /obj/item/reagent_containers/cup/glass/bottle/vermouth
 	name = "Goldeneye vermouth"
@@ -366,39 +362,9 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 100)
 	drink_type = FRUIT | ALCOHOL
 
-/obj/item/reagent_containers/cup/glass/bottle/wine/add_initial_reagents()
-	. = ..()
-	var/wine_info = generate_vintage()
-	var/datum/reagent/consumable/ethanol/wine/located_wine = locate() in reagents.reagent_list
-	if(located_wine)
-		LAZYSET(located_wine.data, "vintage", wine_info)
-
-/obj/item/reagent_containers/cup/glass/bottle/wine/proc/generate_vintage()
-	return "[CURRENT_STATION_YEAR] Nanotrasen Light Red"
-
 /obj/item/reagent_containers/cup/glass/bottle/wine/unlabeled
 	name = "unlabeled wine bottle"
 	desc = "There's no label on this wine bottle."
-
-/obj/item/reagent_containers/cup/glass/bottle/wine/unlabeled/generate_vintage()
-	var/year = rand(CURRENT_STATION_YEAR - 50, CURRENT_STATION_YEAR)
-	var/type = pick(
-		"Bold Red",
-		"Dessert",
-		"Dry White",
-		"Light Red",
-		"Medium Red",
-		"Rich White",
-		"Rose",
-		"Sparkling",
-		"Sweet White",
-	)
-	var/origin = pick(
-		"Local",
-		"Nanotrasen",
-		"Syndicate",
-	)
-	return "[year] [origin] [type]"
 
 /obj/item/reagent_containers/cup/glass/bottle/absinthe
 	name = "Extra-strong absinthe"
@@ -414,8 +380,7 @@
 	// There was a large fight in the coderbus about a player reference
 	// in absinthe. Ergo, this is why the name generation is now so
 	// complicated. Judge us kindly.
-	var/shortname = pick_weight(
-		list("T&T" = 1, "A&A" = 1, "Generic" = 1))
+	var/shortname = pick("T&T", "A&A", "Generic")
 	var/fullname
 	switch(shortname)
 		if("T&T")
@@ -552,7 +517,7 @@
 	desc = "Finely sourced from only the most pretentious French vineyards."
 	icon_state = "champagne_bottle"
 	base_icon_state = "champagne_bottle"
-	init_reagent_flags = TRANSPARENT
+	reagent_flags = TRANSPARENT
 	list_reagents = list(/datum/reagent/consumable/ethanol/champagne = 100)
 	///Used for sabrage; increases the chance of success per 1 force of the attacking sharp item
 	var/sabrage_success_percentile = 5
@@ -567,131 +532,27 @@
 	if(do_after(user, 1 SECONDS, src))
 		return pop_cork(user, sabrage = FALSE, froth_severity = pick(0, 1))
 
-/obj/item/reagent_containers/cup/glass/bottle/champagne/attackby(obj/item/attacking_item, mob/living/user, params)
-	. = ..()
-
-	if(attacking_item.sharpness != SHARP_EDGED)
-		return
-
-	if(attacking_item != user.get_active_held_item()) //no TK allowed
-		to_chat(user, span_userdanger("Such a feat is beyond your skills of telekinesis!"))
-		return
-
-	if(attacking_item.force < 5)
-		balloon_alert(user, "not strong enough!")
-		return
-
-	playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
-	balloon_alert(user, "preparing to swing...")
-	if(!do_after(user, 2 SECONDS, src)) //takes longer because you are supposed to take the foil off the bottle first
-		return
-
-	//The bonus to success chance that the user gets for being a command role
-	var/obj/item/organ/internal/liver/liver = user.get_organ_slot(ORGAN_SLOT_LIVER)
-	var/command_bonus = (!isnull(liver) && HAS_TRAIT(liver, TRAIT_ROYAL_METABOLISM)) ? 20 : 0
-
-	//The bonus to success chance that the user gets for having a sabrage skillchip installed/otherwise having the trait through other means
-	var/skillchip_bonus = HAS_TRAIT(user, TRAIT_SABRAGE_PRO) ? 35 : 0
-	//calculate success chance. example: captain's sabre - 15 force = 75% chance
-	var/sabrage_chance = (attacking_item.force * sabrage_success_percentile) + command_bonus + skillchip_bonus
-
-	if(prob(sabrage_chance))
-		///Severity of the resulting froth to pass to make_froth()
-		var/severity_to_pass
-		if(sabrage_chance > 100)
-			severity_to_pass = 0
-		else
-			switch(sabrage_chance) //the less likely we were to succeed, the more of the drink will end up wasted in froth
-				if(1 to 33)
-					severity_to_pass = 3
-				if(34 to 66)
-					severity_to_pass = 2
-				if(67 to 99)
-					severity_to_pass = 1
-		return pop_cork(user, sabrage = TRUE, froth_severity = severity_to_pass)
-	else //you dun goofed
-		user.visible_message(
-			span_danger("[user] fumbles the sabrage and cuts [src] in half, spilling it over themselves!"),
-			span_danger("You fail your stunt and cut [src] in half, spilling it over you!"),
-			)
-		user.add_mood_event("sabrage_fail", /datum/mood_event/sabrage_fail)
-		return smash(target = user, ranged = FALSE, break_top = TRUE)
-
 /obj/item/reagent_containers/cup/glass/bottle/champagne/update_icon_state()
 	. = ..()
-	if(spillable)
-		if(sabraged)
-			icon_state = "[base_icon_state]_sabrage"
-		else
-			icon_state = "[base_icon_state]_popped"
+	if(reagent_flags & OPENCONTAINER)
+		icon_state = "[base_icon_state]_popped"
 	else
 		icon_state = base_icon_state
 
 /obj/item/reagent_containers/cup/glass/bottle/champagne/proc/pop_cork(mob/living/user, sabrage, froth_severity)
-	if(!sabrage)
-		user.visible_message(
-			span_danger("[user] loosens the cork of [src], causing it to pop out of the bottle with great force."),
-			span_nicegreen("You elegantly loosen the cork of [src], causing it to pop out of the bottle with great force."),
-			)
-	else
-		sabraged = TRUE
-		user.visible_message(
-			span_danger("[user] cleanly slices off the cork of [src], causing it to fly off the bottle with great force."),
-			span_nicegreen("You elegantly slice the cork off of [src], causing it to fly off the bottle with great force."),
-			)
-		for(var/mob/living/carbon/stunt_witness in view(7, user))
-			stunt_witness.clear_mood_event("sabrage_success")
-			if(stunt_witness == user)
-				stunt_witness.add_mood_event("sabrage_success", /datum/mood_event/sabrage_success)
-				continue
-			stunt_witness.add_mood_event("sabrage_witness", /datum/mood_event/sabrage_witness)
-
+	user.visible_message(
+		span_danger("[user] loosens the cork of [src], causing it to pop out of the bottle with great force."),
+		span_nicegreen("You elegantly loosen the cork of [src], causing it to pop out of the bottle with great force."),
+		)
 	reagents.reagent_flags |= OPENCONTAINER
 	playsound(src, 'sound/items/champagne_pop.ogg', 70, TRUE)
 	update_appearance()
 	make_froth(offset_x = 0, offset_y = sabraged ? 13 : 15, intensity = froth_severity) //the y offset for sabraged is lower because the bottle's lip is smashed
-	///Type of cork to fire away
-	var/obj/projectile/bullet/cork_to_fire = sabraged ? /obj/projectile/bullet/champagne_cork/sabrage : /obj/projectile/bullet/champagne_cork
-	///Our resulting cork projectile
-	var/obj/projectile/bullet/champagne_cork/popped_cork = new cork_to_fire (drop_location())
-	popped_cork.firer = user
-	popped_cork.fired_from = src
-	popped_cork.fire(dir2angle(user.dir) + rand(-30, 30))
-
-/obj/projectile/bullet/champagne_cork
-	name = "champagne cork"
-	icon = 'icons/obj/drinks/drink_effects.dmi'
-	icon_state = "champagne_cork"
-	hitsound = 'sound/weapons/genhit.ogg'
-	damage = 10
-	sharpness = NONE
-	impact_effect_type = null
-	ricochets_max = 3
-	ricochet_chance = 70
-	ricochet_decay_damage = 1
-	ricochet_incidence_leeway = 0
-	range = 7
-	knockdown = 2 SECONDS
-	var/drop_type = /obj/item/trash/champagne_cork
-
-/obj/projectile/bullet/champagne_cork/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/projectile_drop, drop_type)
-
-/obj/projectile/bullet/champagne_cork/sabrage
-	icon_state = "champagne_cork_sabrage"
-	damage = 12
-	ricochets_max = 2 //bit heavier
-	range = 6
-	drop_type = /obj/item/trash/champagne_cork/sabrage
 
 /obj/item/trash/champagne_cork
 	name = "champagne cork"
 	icon = 'icons/obj/drinks/drink_effects.dmi'
 	icon_state = "champagne_cork"
-
-/obj/item/trash/champagne_cork/sabrage
-	icon_state = "champagne_cork_sabrage"
 
 /obj/item/reagent_containers/cup/glass/bottle/blazaam
 	name = "Ginbad's Blazaam"
@@ -753,7 +614,7 @@
 /obj/item/reagent_containers/cup/glass/bottle/pruno
 	name = "pruno mix"
 	desc = "A trash bag filled with fruit, sugar, yeast, and water, pulped together into a pungent slurry to be fermented in an enclosed space, traditionally the toilet. Security would love to confiscate this, one of the many things wrong with them."
-	icon = 'icons/obj/service/janitor.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag"
 	list_reagents = list(/datum/reagent/consumable/prunomix = 50)
 	var/fermentation_time = 30 SECONDS /// time it takes to ferment
@@ -792,17 +653,11 @@
 	fermentation_time_remaining = null
 	fermentation_timer = null
 	reagents.remove_reagent(/datum/reagent/consumable/prunomix, 50)
-	if(prob(10))
-		reagents.add_reagent(/datum/reagent/toxin/bad_food, 15) // closest thing we have to botulism
-		reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 35)
-	else
-		reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 50)
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 50)
 	name = "bag of pruno"
 	desc = "Fermented prison wine made from fruit, sugar, and despair. You probably shouldn't drink this around Security."
 	icon_state = "trashbag1" // pruno releases air as it ferments, we don't want to simulate this in atmos, but we can make it look like it did
 	for (var/mob/living/M in view(2, get_turf(src))) // letting people and/or narcs know when the pruno is done
-		if(HAS_TRAIT(M, TRAIT_ANOSMIA))
-			to_chat(M, span_info("A pungent smell emanates from [src], like fruit puking out its guts."))
 		playsound(get_turf(src), 'sound/effects/bubbles2.ogg', 25, TRUE)
 
 /**
@@ -811,9 +666,11 @@
  * Meant to be a subtype for use in Molotovs
  */
 /obj/item/reagent_containers/cup/glass/bottle/juice
-	inhand_icon_state = "carton"
-	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
+	worn_icon_state = "carton"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/drinks_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/drinks_righthand.dmi',
+		)
 	isGlass = FALSE
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice

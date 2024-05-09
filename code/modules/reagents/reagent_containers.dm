@@ -17,8 +17,8 @@
 	var/list/possible_transfer_amounts = list(5,10,15,25,30)
 	/// The maximum amount of reagents this container can hold
 	var/volume = 30
-	///List of reagent flags to add, passed to create_reagents()
-	var/init_reagent_flags
+	/// Reagent flags, a few examples being if the container is open or not, if its transparent, if you can inject stuff in and out of the container, and so on
+	var/reagent_flags
 	///Can liquify/grind pills without needing fluid to dissolve.
 	var/liquifier = FALSE
 	///List of reagents to add
@@ -44,7 +44,7 @@
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
-	create_reagents(volume, init_reagent_flags, list_reagents)
+	create_reagents(volume, reagent_flags, list_reagents)
 	if(!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
