@@ -117,7 +117,7 @@
 	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
 	worn_icon_state = "t12"
-	fire_sound = "gun_ar12"
+	fire_sound = SFX_GUN_AR12
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -467,7 +467,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
-	fire_sound = "gun_pulse"
+	fire_sound = SFX_GUN_PULSE
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -711,7 +711,7 @@
 	)
 	max_shells = 47 //codex
 	caliber = CALIBER_762X39 //codex
-	fire_sound = "svd_fire"
+	fire_sound = SFX_SVD_FIRE
 	dry_fire_sound = 'sound/weapons/guns/fire/dpm.ogg'
 	unload_sound = 'sound/weapons/guns/interact/dpm_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/dpm_reload.ogg'
@@ -1287,7 +1287,7 @@
 	force = 30
 	aim_slowdown = 0.95
 	wield_delay = 1.5 SECONDS
-	fire_sound = "gun_smartgun"
+	fire_sound = SFX_GUN_SMARTGUN
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1921,7 +1921,7 @@
 	desc = "Officially designated an Objective Individual Combat Weapon, the AR-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
 	icon_state = "tx55"
 	worn_icon_state = "tx55"
-	fire_sound = "gun_ar12"
+	fire_sound = SFX_GUN_AR12
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -2315,7 +2315,7 @@
 	inhand_y_dimension = 32
 
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "fal_fire"
+	fire_sound = SFX_FAL_FIRE
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/fal_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/fal_reload.ogg'

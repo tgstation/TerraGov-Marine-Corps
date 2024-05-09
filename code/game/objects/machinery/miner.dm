@@ -331,7 +331,7 @@
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 		span_danger("We slash \the [src]!"), null, 5)
-		playsound(loc, "alien_claw_metal", 25, TRUE)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()
 		if(miner_status == MINER_DESTROYED && xeno_attacker.client)

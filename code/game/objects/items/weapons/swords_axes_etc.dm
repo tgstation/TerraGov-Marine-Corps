@@ -88,7 +88,7 @@
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if(..())
-			//playsound(src.loc, "swing_hit", 25, 1, 6)
+			//playsound(loc, SFX_SWING_HIT, 25, 1, 6)
 			return
 	else
 		return ..()

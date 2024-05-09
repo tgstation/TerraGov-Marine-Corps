@@ -112,7 +112,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced
+/datum/loadout_item/suit_store/main_gun/som_medic/smg/enhanced
 	name = "V-21+"
 	desc = "Equipped with a mag harness, recoil compensator and vertical grip. The V-21 is the principal submachinegun used by the Sons of Mars, with a variable rate of fire. \
 	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \

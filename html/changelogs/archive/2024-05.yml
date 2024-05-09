@@ -54,3 +54,36 @@
   - imageadd: new tank module sprites
   - imageadd: new tank weapon sprites
   - imageadd: new tank sprite
+2024-05-06:
+  blackdav123:
+  - bugfix: Tad can now land on lavaland tilesets.
+  - rscadd: Added more cover for xenos on the 2nd disks of Magmoor.
+  - bugfix: Fixed a few missing pipes on Magmoor.
+  tyeagg:
+  - balance: significantly less river to orion outpost
+  - balance: vehicles destructible in orion outpost
+  - balance: more cover to orion outpost
+2024-05-07:
+  Xander3359:
+  - code_imp: Implement more uses of PopulateContents()
+  antropod:
+  - rscadd: Stacks of newly crafted items merge to existing stacks in user hands
+2024-05-08:
+  DeltaFire15:
+  - bugfix: Shrike can evolve to other tier fours again.
+  Lumipharon:
+  - bugfix: fixed an exploit with reagents
+2024-05-09:
+  Barnet2:
+  - bugfix: Fixed transport crewman and assault crewman orbit menu icons.
+  Lumipharon:
+  - code_imp: Removed some redundant proc calls in pref UI
+  - bugfix: 'Campaign: Fixed loadout issues'
+  blackdav123:
+  - bugfix: Acid pools and gargoyles now appear on the minimap.
+  - balance: Acid pools no longer break when their weeds are broken
+  tyeagg:
+  - rscadd: new armor for pilot
+  - imageadd: new pilot armor
+  - imageadd: new pilot uniform
+  - imageadd: new pilot helmet
