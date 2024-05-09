@@ -553,10 +553,12 @@ SUBSYSTEM_DEF(minimaps)
 ///CLears the locator override in case the override target is deleted
 /datum/action/minimap/proc/clear_locator_override()
 	SIGNAL_HANDLER
+	if(!locator_override)
+		return
 	UnregisterSignal(locator_override, list(COMSIG_QDELETING, COMSIG_ATOM_EXITED))
 	if(owner)
 		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
-		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 		var/turf/owner_turf = get_turf(owner)
 		if(owner_turf.z != locator_override.z)
 			on_owner_z_change(owner, locator_override.z, owner_turf.z)
