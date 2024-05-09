@@ -1404,7 +1404,7 @@
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 10
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 1.8
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
