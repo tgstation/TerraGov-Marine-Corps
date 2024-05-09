@@ -504,11 +504,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/riptide/inside/warehouse)
-"asE" = (
-/obj/structure/fence,
-/obj/structure/platform/nondense,
-/turf/open/floor/plating/ground/desertdam/asphalt/open,
-/area/riptide/inside/engineering/bridge)
 "asI" = (
 /obj/structure/platform_decoration/adobe_deco{
 	dir = 8
@@ -7693,10 +7688,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale,
 /area/riptide/caves/pmc/warehouse)
-"fxQ" = (
-/obj/effect/forcefield/dense0forguns,
-/turf/closed/mineral/smooth/outdoor,
-/area/riptide/caves/sea)
 "fxX" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 8
@@ -16358,12 +16349,6 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/riptide/outside/westbeach)
-"lJy" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/riptide/inside/engineering/bridge)
 "lJQ" = (
 /obj/structure/toilet,
 /obj/structure/window/reinforced/tinted{
@@ -21276,6 +21261,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set3")
+	},
 /turf/open/floor/wood/fancy,
 /area/riptide/inside/luxurybar)
 "pgk" = (
@@ -24669,6 +24657,12 @@
 	dir = 10
 	},
 /area/riptide/caves/piratecove)
+"rps" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/riptide/inside/engineering/bridge)
 "rpS" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -25554,7 +25548,7 @@
 	dir = 1
 	},
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set3")
+	set_associations = list("set2")
 	},
 /turf/open/floor/plating/scorched,
 /area/riptide/caves/pmc/warehouse)
@@ -28154,12 +28148,6 @@
 	},
 /turf/open/shuttle/dropship/floor/alt,
 /area/riptide/caves/tram)
-"tHQ" = (
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set2")
-	},
-/turf/open/floor/mainship/tcomms,
-/area/riptide/caves/pmc/rnd)
 "tIj" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/plating,
@@ -29778,6 +29766,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/riptide/outside/northislands)
+"uPS" = (
+/obj/effect/forcefield/dense0forguns,
+/turf/closed/mineral/smooth/outdoor,
+/area/riptide/caves/rock)
 "uQg" = (
 /turf/closed/wall,
 /area/riptide/caves/north)
@@ -32722,6 +32714,15 @@
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
+"wXY" = (
+/obj/effect/forcefield/dense0forguns,
+/turf/closed/mineral/smooth/outdoor,
+/area/riptide/caves/sea)
+"wYy" = (
+/obj/structure/fence,
+/obj/structure/platform/nondense,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/riptide/inside/engineering/bridge)
 "wYD" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
@@ -33699,10 +33700,6 @@
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
-"xGx" = (
-/obj/effect/forcefield/dense0forguns,
-/turf/closed/mineral/smooth/outdoor,
-/area/riptide/caves/rock)
 "xGC" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -36918,7 +36915,7 @@ tyY
 fwT
 fwT
 tyY
-xGx
+uPS
 bfg
 bfg
 sEG
@@ -37097,7 +37094,7 @@ fwT
 fps
 fwT
 sul
-xGx
+uPS
 sTP
 bfg
 bfg
@@ -37119,7 +37116,7 @@ tyY
 tyY
 tyY
 tyY
-xGx
+uPS
 sTP
 sTP
 sTP
@@ -37265,10 +37262,10 @@ rBR
 epC
 wFf
 tyY
-xGx
-xGx
-xGx
-xGx
+uPS
+uPS
+uPS
+uPS
 fNW
 fwT
 bDN
@@ -37276,7 +37273,7 @@ fwT
 fwT
 uig
 tyY
-xGx
+uPS
 sTP
 sEG
 bfg
@@ -37300,9 +37297,9 @@ tyY
 tyY
 tyY
 tyY
-xGx
-xGx
-xGx
+uPS
+uPS
+uPS
 sTP
 bfg
 bfg
@@ -37444,8 +37441,8 @@ bqZ
 rBR
 qiF
 tyY
-xGx
-xGx
+uPS
+uPS
 tyY
 tyY
 tyY
@@ -37481,8 +37478,8 @@ tyY
 tyY
 tyY
 tyY
-xGx
-xGx
+uPS
+uPS
 tyY
 tyY
 tyY
@@ -37639,7 +37636,7 @@ bfg
 bfg
 sTP
 sTP
-xGx
+uPS
 tyY
 tyY
 tyY
@@ -37844,7 +37841,7 @@ wsl
 eCH
 tyY
 tyY
-fxQ
+wXY
 elM
 bfg
 bfg
@@ -38023,7 +38020,7 @@ hxI
 vXw
 tyY
 tyY
-fxQ
+wXY
 elM
 elM
 elM
@@ -38202,8 +38199,8 @@ gxv
 uSA
 eCH
 tyY
-fxQ
-fxQ
+wXY
+wXY
 elM
 elM
 bfg
@@ -38382,8 +38379,8 @@ hxI
 vXw
 tyY
 tyY
-fxQ
-fxQ
+wXY
+wXY
 elM
 elM
 "}
@@ -38562,7 +38559,7 @@ uSA
 eCH
 tyY
 tyY
-fxQ
+wXY
 elM
 elM
 "}
@@ -38741,7 +38738,7 @@ hxI
 uSA
 eCH
 tyY
-fxQ
+wXY
 elM
 elM
 "}
@@ -38920,7 +38917,7 @@ qzz
 hxI
 vXw
 tyY
-fxQ
+wXY
 elM
 elM
 "}
@@ -39099,7 +39096,7 @@ bQo
 gxv
 vXw
 tyY
-fxQ
+wXY
 elM
 bfg
 "}
@@ -39278,7 +39275,7 @@ bQo
 gxv
 vXw
 tyY
-fxQ
+wXY
 elM
 bfg
 "}
@@ -39457,7 +39454,7 @@ bQo
 gxv
 vXw
 tyY
-fxQ
+wXY
 bfg
 bfg
 "}
@@ -39788,8 +39785,8 @@ rBR
 qiF
 tyY
 tyY
-xGx
-xGx
+uPS
+uPS
 tyY
 tyY
 mqQ
@@ -39966,10 +39963,10 @@ rBR
 rBR
 qiF
 tyY
-xGx
-xGx
-xGx
-xGx
+uPS
+uPS
+uPS
+uPS
 tyY
 mqQ
 mce
@@ -40145,8 +40142,8 @@ rBR
 rBR
 qiF
 tyY
-xGx
-xGx
+uPS
+uPS
 tyY
 tyY
 tyY
@@ -53598,7 +53595,7 @@ tyY
 tyY
 tyY
 tyY
-xGx
+uPS
 sTP
 bfg
 "}
@@ -53817,7 +53814,7 @@ sLs
 eJX
 eJX
 usd
-asE
+wYy
 bFX
 aCu
 jMo
@@ -53996,7 +53993,7 @@ tmy
 eJX
 eJX
 usd
-asE
+wYy
 bFX
 aCu
 mLs
@@ -57755,7 +57752,7 @@ vAR
 yaW
 yaW
 pNl
-asE
+wYy
 yjn
 tJV
 fQG
@@ -58113,7 +58110,7 @@ bsa
 eJX
 eJX
 qCx
-asE
+wYy
 yjn
 niu
 llq
@@ -59008,7 +59005,7 @@ mdX
 gQz
 hkd
 usd
-lJy
+rps
 bJm
 wJG
 xKn
@@ -62318,7 +62315,7 @@ kJe
 scx
 kpQ
 oll
-tHQ
+uUC
 vtJ
 hkC
 uUC
