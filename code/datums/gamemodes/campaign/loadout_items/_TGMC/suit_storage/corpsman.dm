@@ -1,16 +1,6 @@
 /datum/loadout_item/suit_store/main_gun/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
 
-/datum/loadout_item/suit_store/main_gun/corpsman/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	if(loadout.l_store == /obj/item/storage/pouch/magazine/large)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-	if(loadout.r_store == /obj/item/storage/pouch/magazine/large)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-
 /datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine
 	name = "Laser carbine"
 	desc = "Equipped with a red dot sight and underbarrel grenade launcher. The TerraGov laser carbine is the high tech equivilent to the AR-18, with extremely good mobility and handling, and powerful medium range damage. \
