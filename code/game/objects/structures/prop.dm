@@ -2182,17 +2182,46 @@
 	desc = "A water filter specifically designed to separate micro-organisms, such as viruses and bacteria, from water."
 	icon = 'icons/obj/structures/pipe_multiple.dmi'
 	icon_state = "solo_tank_water"
+	density = TRUE
+
+/obj/machinery/filtration_pipes/water/update_overlays()
+	. = ..()
+	var/image/disinfection_top_overlay = new(src.icon, "tank_water_top")
+	disinfection_top_overlay.pixel_y += 31
+	disinfection_top_overlay.layer = ABOVE_ALL_MOB_LAYER
+	. += disinfection_top_overlay
 
 /obj/machinery/filtration_pipes/empty
 	icon_state = "solo_tank_empty"
 
+/obj/machinery/filtration_pipes/empty/update_overlays()
+	. = ..()
+	var/image/disinfection_top_overlay = new(src.icon, "tank_water_empty")
+	disinfection_top_overlay.pixel_y += 31
+	disinfection_top_overlay.layer = ABOVE_ALL_MOB_LAYER
+	. += disinfection_top_overlay
+
 /obj/machinery/filtration_pipes/waste
 	icon_state = "solo_tank_waste"
+
+/obj/machinery/filtration_pipes/waste/update_overlays()
+	. = ..()
+	var/image/disinfection_top_overlay = new(src.icon, "tank_waste_top")
+	disinfection_top_overlay.pixel_y += 31
+	disinfection_top_overlay.layer = ABOVE_ALL_MOB_LAYER
+	. += disinfection_top_overlay
 
 /obj/machinery/filtration_pipes/multiple
 	icon_state = "disinfection"
 	bound_width = 96
 	bound_height = 64
+
+/obj/machinery/filtration_pipes/multiple/update_overlays()
+	. = ..()
+	var/image/disinfection_top_overlay = new(src.icon, "disinfectiontop")
+	disinfection_top_overlay.pixel_y += 63
+	disinfection_top_overlay.layer = ABOVE_ALL_MOB_LAYER
+	. += disinfection_top_overlay
 
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"

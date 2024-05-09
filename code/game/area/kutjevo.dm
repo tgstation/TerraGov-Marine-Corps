@@ -62,6 +62,12 @@
 	name = "Kutjevo - Scrubland"
 	icon_state = "scrubland"
 
+/area/kutjevo/exterior/scrubland/north
+	name = "Kutjevo - Scrubland North"
+
+/area/kutjevo/exterior/scrubland/south
+	name = "Kutjevo - Scrubland South"
+
 /area/kutjevo/exterior/stonyfields
 	name = "Kutjevo - Stony Fields"
 	icon_state = "stone_fields"

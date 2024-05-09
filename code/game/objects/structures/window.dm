@@ -703,7 +703,7 @@
 	icon = 'icons/obj/smooth_objects/kutjevo_window_blue.dmi'
 	icon_state = "chigusa_wall-0"
 	base_icon_state = "chigusa_wall"
-	window_frame = /obj/structure/window_frame/colony
+	window_frame = /obj/structure/window_frame/kutjevo
 
 /obj/structure/window/framed/kutjevo/orange
 	icon = 'icons/obj/smooth_objects/kutjevo_window_orange.dmi'
@@ -713,14 +713,14 @@
 	icon = 'icons/obj/smooth_objects/kutjevo_window_blue_reinforced.dmi'
 	icon_state = "window-reinforced"
 	base_icon_state = "chigusa_wall"
-	window_frame = /obj/structure/window_frame/colony
+	window_frame = /obj/structure/window_frame/kutjevo
 
 /obj/structure/window/framed/kutjevo/reinforced/orange
 	name = "window"
 	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'
 	icon_state = "window-reinforced"
 	base_icon_state = "chigusa_wall"
-	window_frame = /obj/structure/window_frame/colony
+	window_frame = /obj/structure/window_frame/kutjevo
 
 /obj/structure/window/framed/kutjevo/reinforced/hull
 	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'

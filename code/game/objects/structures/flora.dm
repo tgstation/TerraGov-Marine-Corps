@@ -248,6 +248,7 @@
 
 /obj/structure/flora/grass/tallgrass/autosmooth/desert
 	color = "#ffbd72"
+	layer = BUSH_LAYER
 
 //bushes
 /obj/structure/flora/bush

@@ -46,22 +46,18 @@
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/loopingsound
-	var/startsactive = TRUE
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
 	loopingsound = new(null, FALSE)
 	icon_state = ""
-	if(startsactive)
-		loopingsound.start(src)
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()
 	QDEL_NULL(loopingsound)
 
 /obj/effect/soundplayer/deltaplayer
-	loopingsound = /datum/looping_sound/alarm_loop
-	startsactive = FALSE
+	var/datum/looping_sound/alarm_loop/deltaloop
 
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
@@ -72,19 +68,45 @@
 	GLOB.ship_alarms -= src
 
 /obj/effect/soundplayer/riverplayer
-	loopingsound = /datum/looping_sound/river_loop
+	var/datum/looping_sound/river_loop/riverloop
+
+/obj/effect/soundplayer/riverplayer/Initialize(mapload)
+	. = ..()
+	riverloop = new(null, FALSE)
+	riverloop.start(src)
 
 /obj/effect/soundplayer/windplayer
-	loopingsound = /datum/looping_sound/wind_loop
+	var/datum/looping_sound/wind_loop/windloop
+
+/obj/effect/soundplayer/windplayer/Initialize(mapload)
+	. = ..()
+	windloop = new(null, FALSE)
+	windloop.start(src)
 
 /obj/effect/soundplayer/dripplayer
-	loopingsound = /datum/looping_sound/drip_loop
+	var/datum/looping_sound/drip_loop/driploop
+
+/obj/effect/soundplayer/dripplayer/Initialize(mapload)
+	. = ..()
+	driploop = new(null, FALSE)
+	driploop.start(src)
 
 /obj/effect/soundplayer/lowwindplayer
-	loopingsound = /datum/looping_sound/low_wind_loop
+	var/datum/looping_sound/low_wind_loop/lowwindloop
+
+/obj/effect/soundplayer/lowwindplayer/Initialize(mapload)
+	. = ..()
+	lowwindloop = new(null, FALSE)
+	lowwindloop.start(src)
 
 /obj/effect/soundplayer/waterreservoirplayer
-	loopingsound = /datum/looping_sound/water_res_loop
+	var/datum/looping_sound/water_res_loop/waterresloop
+
+/obj/effect/soundplayer/waterreservoirplayer/Initialize(mapload)
+	. = ..()
+	waterresloop = new(null, FALSE)
+	waterresloop.start(src)
+
 
 /obj/effect/forcefield
 	anchored = TRUE

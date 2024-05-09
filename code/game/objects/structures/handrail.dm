@@ -9,8 +9,8 @@
 	destroyed_stack_amount = 1
 	can_wire = FALSE
 	coverage = 10
-	var/reinforced = FALSE //Reinforced to be a cade or not
-	var/can_be_reinforced = TRUE //can we even reinforce this handrail or not?
+	can_change_dmg_state = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/barricade/handrail/update_icon_state()
 	. = ..()
@@ -32,24 +32,30 @@
 
 /obj/structure/barricade/handrail/type_b
 	icon_state = "handrail_b_0"
+	barricade_type = "handrail_b_0"
 
 /obj/structure/barricade/handrail/strata
 	icon_state = "handrail_strata"
+	barricade_type = "handrail_strata"
 
 /obj/structure/barricade/handrail/medical
 	icon_state = "handrail_med"
+	barricade_type = "handrail_med"
 
 /obj/structure/barricade/handrail/kutjevo
 	icon_state = "hr_kutjevo"
+	barricade_type = "hr_kutjevo"
 
 /obj/structure/barricade/handrail/wire
 	icon_state = "wire_rail"
+	barricade_type = "wire_rail"
 
 /obj/structure/barricade/handrail/sandstone
 	name = "sandstone handrail"
 	icon_state = "hr_sandstone"
-	can_be_reinforced = FALSE
+	barricade_type = "hr_sandstone"
 	stack_type = /obj/item/stack/sheet/mineral/sandstone
 
 /obj/structure/barricade/handrail/sandstone/b
 	icon_state = "hr_sandstone_b"
+	barricade_type = "hr_sandstone_b"
