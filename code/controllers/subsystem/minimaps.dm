@@ -507,10 +507,8 @@ SUBSYSTEM_DEF(minimaps)
 	// No force state? Invert the current state
 	if(isnull(force_state))
 		force_state = !minimap_displayed
-	// You want to set it to the already active state? Do nothing.
 	if(force_state == minimap_displayed)
 		return FALSE
-	// Proceed with normal operation
 	if(!locator_override && ismovableatom(owner.loc))
 		override_locator(owner.loc)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
@@ -675,22 +673,22 @@ SUBSYSTEM_DEF(minimaps)
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_ALL // What's the point of making `MINIMAP_FLAG_ALL` if `ALL` exists? Unless this runtimes for some reason.
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE
 
 /datum/action/minimap/observer/action_activate()
 	. = ..()
 	if(!.)
-		return FALSE
-	if(minimap_displayed)
-		var/list/clicked_coords = map.get_coords_from_click(owner)
-		var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
-		if(!clicked_turf)
-			return FALSE
-		// Taken directly from observer/DblClickOn
-		owner.abstract_move(clicked_turf)
-		owner.update_parallax_contents()
-		// Close minimap
-		toggle_minimap(FALSE)
-	else
+		return
+	if(!minimap_displayed)
 		map.stop_polling = TRUE
+		return
+	var/list/clicked_coords = map.get_coords_from_click(owner)
+	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
+	if(!clicked_turf)
+		return
+	// Taken directly from observer/DblClickOn
+	owner.abstract_move(clicked_turf)
+	owner.update_parallax_contents()
+	// Close minimap
+	toggle_minimap(FALSE)
