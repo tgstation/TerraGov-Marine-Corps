@@ -2892,12 +2892,12 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/north)
 "dSC" = (
-/obj/structure/stairs/seamless{
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/complex_border/med_rec)
+/turf/open/floor/mainship/research/containment/floor1,
+/area/kutjevo/exterior/Northwest_Colony)
 "dSQ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -3559,8 +3559,8 @@
 /area/kutjevo/interior/colony_South/power2)
 "eHq" = (
 /obj/structure/cable,
-/turf/open/floor/kutjevo/tan,
-/area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
+/turf/open/floor/kutjevo/plate,
+/area/kutjevo/exterior/Northwest_Colony)
 "eHX" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/telecomm/lz1_south)
@@ -15538,10 +15538,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/med/operating)
-"uny" = (
-/obj/structure/cable,
-/turf/open/floor/kutjevo/tan/multi_tiles,
-/area/kutjevo/interior/colony_South/power2)
 "unV" = (
 /obj/structure/rock/basalt/large_boulder/altone,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -20276,8 +20272,8 @@ huR
 xBm
 sWF
 bQk
-eHq
-eHq
+pIV
+pIV
 gRF
 opQ
 opQ
@@ -24597,10 +24593,10 @@ dht
 xAr
 wvg
 dht
-dht
-dht
-dht
-lRy
+dSC
+lYq
+lYq
+eHq
 soL
 soL
 soL
@@ -24767,7 +24763,7 @@ jnV
 jnV
 dht
 aUF
-xBm
+moa
 soL
 soL
 soL
@@ -24934,7 +24930,7 @@ pHR
 jnV
 jnV
 eWx
-xBm
+moa
 sVF
 soL
 soL
@@ -25101,7 +25097,7 @@ cWc
 hst
 jnV
 jnV
-xBm
+moa
 sVF
 fYF
 soL
@@ -41162,7 +41158,7 @@ hVi
 kaq
 rgQ
 tVo
-dSC
+tVo
 kOo
 dzV
 dzV
@@ -43863,7 +43859,7 @@ klE
 lFq
 qGx
 beo
-uny
+xKn
 lyG
 qGx
 lFq
@@ -44029,8 +44025,8 @@ nVH
 klE
 klE
 fOL
-uny
-uny
+xKn
+xKn
 mLw
 qGx
 oGw
@@ -45193,11 +45189,11 @@ mTs
 eBN
 dob
 oAU
-uny
-uny
-uny
 xKn
-uny
+xKn
+xKn
+xKn
+xKn
 hPD
 gWF
 mLw

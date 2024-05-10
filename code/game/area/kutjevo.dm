@@ -23,17 +23,18 @@
 	name = "Kutjevo - Exterior"
 	ceiling = CEILING_NONE
 	icon_state = "ext"
-
+	always_unpowered = TRUE
 
 /area/kutjevo/interior
 	name = "Kutjevo - Interior"
 	icon_state = "int"
-	requires_power = FALSE
+	always_unpowered = FALSE
 
 /area/kutjevo/interior/oob
 	name = "Kutjevo -  Out Of Bounds"
 	icon_state = "oob"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	always_unpowered = TRUE
 
 /area/kutjevo/interior/oob/dev_room
 	name = "Kutjevo - Credits Room"
@@ -78,6 +79,7 @@
 /area/kutjevo/exterior/Northwest_Colony
 	name = "Kutjevo - Northwest Colony Grounds"
 	icon_state = "rf_dunes"
+	always_unpowered = FALSE
 
 /area/kutjevo/exterior/runoff_dunes
 	name = "Kutjevo - Runoff Dunes"
@@ -249,7 +251,7 @@
 	name = "Kutjevo - Colony Building Interior"
 	icon_state = "colony_int"
 
-/area/kutjevo/interior/colony_central
+/area/kutjevo/exterior/colony_central
 	name = "Kutjevo - Central Colony Caves"
 	icon_state = "colony_caves_0"
 	minimap_color = MINIMAP_AREA_CAVES
@@ -261,31 +263,31 @@
 	icon_state = "colony_caves_0"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/interior/colony_north
+/area/kutjevo/exterior/colony_north
 	name = "Kutjevo - North Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_1"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/interior/colony_S_East
+/area/kutjevo/exterior/colony_S_East
 	name = "Kutjevo - North East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/interior/colony_N_East
+/area/kutjevo/exterior/interior/colony_N_East
 	name = "Kutjevo - South East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/interior/colony_South
+/area/kutjevo/exterior/colony_South
 	name = "Kutjevo - South Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_3"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/interior/colony_South/power2
+/area/kutjevo/exterior/colony_South/power2
 	name = "Kutjevo - South Colony Treatment Plant"
 	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "colony_caves_3"
