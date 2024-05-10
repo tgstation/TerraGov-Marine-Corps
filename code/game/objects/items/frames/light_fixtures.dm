@@ -5,12 +5,14 @@
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
 
 /obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, sheets_refunded)
@@ -31,7 +33,7 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = user.dir
 	var/constrloc = user.loc
-	if(!do_after(user, 30, TRUE, on_wall, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, NONE, on_wall, BUSY_ICON_BUILD))
 		return
 
 	var/obj/machinery/light/newlight

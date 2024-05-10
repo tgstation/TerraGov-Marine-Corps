@@ -186,7 +186,7 @@
 	name = "Engineering"
 	icon_state = "engine"
 	minimap_color = MINIMAP_AREA_ENGI
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_OBSTRUCTED
 
 /area/lawankaoutpost/colony/chapel
 	name = "Chapel"
@@ -210,11 +210,11 @@
 /area/lawankaoutpost/colony/landingzoneone
 	name = "Landing Zone One"
 	icon_state = "landingzone1"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/lawankaoutpost/colony/landingzonetwo
 	name = "Landing Zone Two"
 	icon_state = "landingzone2"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ

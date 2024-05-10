@@ -155,24 +155,6 @@
 			"icon_state": "cover_2"
 		}
 	],
-	"cape_overlord": [
-		{
-			"type": "hyperscale",
-			"icon_state": "overlord"
-		}
-	],
-	"cape_overlord (alt 1)": [
-		{
-			"type": "hyperscale",
-			"icon_state": "overlord_2"
-		}
-	],
-	"cape_overlord (alt 2)": [
-		{
-			"type": "hyperscale",
-			"icon_state": "overlord_3"
-		}
-	],
 	"cape_shoal": [
 		{
 			"type": "hyperscale",
@@ -183,12 +165,6 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "shoal_back"
-		}
-	],
-	"cape_star": [
-		{
-			"type": "hyperscale",
-			"icon_state": "star"
 		}
 	],
 	"cape_shoal (alt)": [
@@ -207,12 +183,6 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "rapier_left"
-		}
-	],
-	"cape_jacket": [
-		{
-			"type": "hyperscale",
-			"icon_state": "jacket"
 		}
 	],
 	"cape_kama": [

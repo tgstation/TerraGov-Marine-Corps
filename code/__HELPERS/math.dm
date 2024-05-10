@@ -49,7 +49,7 @@
 	for(var/obj/stuff_in_turf in to_turf)
 		if(!stuff_in_turf.opacity)
 			continue
-		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+		if(!CHECK_BITFIELD(stuff_in_turf.atom_flags, ON_BORDER))
 			return FALSE
 		if(ISDIAGONALDIR(stuff_in_turf.dir))
 			return FALSE
@@ -124,5 +124,9 @@
 					return FALSE
 	return TRUE
 
+/// Returns the manhattan distance between two atoms. Returns INFINITY if either are not on a turf, for BYOND get_dist() parity.
+/proc/get_dist_manhattan(atom/A, atom/B)
+	if(!A.z || !B.z)
+		return INFINITY
 
-
+	return abs(A.x - B.x) + abs(A.y - B.y) + abs(A.z - B.z)

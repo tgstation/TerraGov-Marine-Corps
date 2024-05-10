@@ -5,6 +5,14 @@
 	desc = "A packet containing some kind of ammo."
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
+	fill_delay = 1.5 SECONDS
+
+/obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(current_rounds <= 0)
+		balloon_alert(user, "Empty")
+		return
+	create_handful(user)
 
 /obj/item/ammo_magazine/packet/p10x24mm
 	name = "box of 10x24mm"
@@ -88,9 +96,18 @@
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/smart_targetrifle
+	name = "box of 10x27mm HV"
+	desc = "A box containing 200 rounds of 10x27mm smart rounds."
+	icon_state = "box_smarttargetrifle"
+	default_ammo = /datum/ammo/bullet/smarttargetrifle
+	caliber = CALIBER_10x27_CASELESS
+	current_rounds = 200
+	max_rounds = 200
+
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
-	desc = "A box containing 150 rounds of A19 overpressuered high velocity."
+	desc = "A box containing 150 rounds of A19 overpressured high velocity."
 	icon_state = "box_tx8"
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	caliber = CALIBER_10X28_CASELESS
@@ -151,7 +168,7 @@
 	max_rounds = 42
 
 /obj/item/ammo_magazine/packet/acp
-	name = "packet of .45 ACP"
+	name = "packet of pistol .45 ACP"
 	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	w_class = WEIGHT_CLASS_SMALL

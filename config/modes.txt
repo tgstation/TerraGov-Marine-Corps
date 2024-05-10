@@ -23,3 +23,7 @@ endmode
 mode Sensor Capture
 	requiredplayers 2
 endmode
+
+mode Campaign
+	requiredplayers 2
+endmode

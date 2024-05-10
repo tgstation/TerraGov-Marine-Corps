@@ -1,7 +1,7 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/surgery_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/surgery_right.dmi',
 	)
@@ -11,14 +11,14 @@
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/surgery/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "pinched")
 
@@ -26,7 +26,7 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
@@ -35,7 +35,7 @@
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 15
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("drilled")
@@ -48,7 +48,7 @@
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 10
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
@@ -88,7 +88,7 @@
 	desc = "For heavy duty cutting."
 	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 15
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9

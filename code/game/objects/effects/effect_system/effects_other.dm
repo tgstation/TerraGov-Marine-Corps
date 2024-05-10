@@ -9,15 +9,16 @@
 	amount = amt
 	explosion_message = message
 	if(isturf(loca))
-		location = loca
+		location = WEAKREF(loca)
 	else
-		location = get_turf(loca)
+		location = WEAKREF(get_turf(loca))
 
 	flashing_factor = flash_fact
 
 /datum/effect_system/reagents_explosion/start()
+	var/turf/_location = location?.resolve()
 	if(explosion_message)
-		location.visible_message(span_danger("The solution violently explodes!"), \
+		_location.visible_message(span_danger("The solution violently explodes!"), \
 								span_hear("You hear an explosion!"))
 
-	dyn_explosion(location, amount, flashing_factor)
+	dyn_explosion(_location, amount, flashing_factor)

@@ -45,7 +45,8 @@
 			return
 
 		var/turf/open/T = mystery_turf
-		if(T.allow_construction) //No loopholes.
+		var/area/area = get_area(mystery_turf)
+		if(T.allow_construction && !(area.area_flags & NO_CONSTRUCTION)) //No loopholes.
 			new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
@@ -101,8 +102,8 @@
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
+/obj/effect/particle_effect/foam/fire_act(burn_level)
+	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(min(burn_level * 3, 100)))
 		kill_foam()
 
 /obj/effect/particle_effect/foam/can_slip()
@@ -132,9 +133,9 @@
 
 /datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime = 75)
 	if(isturf(location))
-		src.location = location
+		src.location = WEAKREF(location)
 	else
-		src.location = get_turf(location)
+		src.location = WEAKREF(get_turf(location))
 
 	src.spread_amount = round(sqrt(spread_amount / 3), 1)
 	carry.copy_to(carrying_reagents, carry.total_volume)
@@ -143,7 +144,7 @@
 /datum/effect_system/foam_spread/start()
 	if(spread_amount < 0)
 		return
-	var/obj/effect/particle_effect/foam/F = new(location)
+	var/obj/effect/particle_effect/foam/F = new(location.resolve())
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
@@ -173,6 +174,6 @@
 		SMOOTH_GROUP_FOAM_WALL,
 	)
 
-/obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
-	take_damage(10, BURN, FIRE)
+/obj/structure/foamedmetal/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 

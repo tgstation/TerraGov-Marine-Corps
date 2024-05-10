@@ -2,6 +2,9 @@
     "map_name": "Delta Station",
     "map_path": "map_files/deltastation",
     "map_file": "deltastation.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
     "announce_text": "The ship's comms array detected an emergency evacuation signal from a Delta class research station owned by a private corporation. The message indicated that the station had collided with a large asteroid and was overrun with hostile lifeforms. As part of peacekeeping operations the ship is nearing the station to begin clearing operations. TGMC, get equipped and prepare for boarding action!",
     "armor": "prison"
 }

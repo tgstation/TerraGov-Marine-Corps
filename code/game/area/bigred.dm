@@ -77,6 +77,7 @@
 	name = "Underground robotics lab"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	always_unpowered = FALSE
 
 /area/bigredv2/caves/secomplex
 	name = "Underground research complex"
@@ -248,11 +249,14 @@
 	outside = FALSE
 
 /area/bigredv2/outside/engineering
-	name = "Engineering Complex"
+	name = "West Engineering Complex"
 	icon_state = "engine"
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 	outside = FALSE
+
+/area/bigredv2/outside/engineering/east
+	name = "East Engineering Complex"
 
 /area/bigredv2/outside/storage
 	name = "Storage"

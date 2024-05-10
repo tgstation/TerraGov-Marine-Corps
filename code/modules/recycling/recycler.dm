@@ -6,8 +6,11 @@
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	//Pointing west because that's the only sprite we got
+	dir = NORTH
 
-/obj/machinery/recycler/update_icon()
+/obj/machinery/recycler/update_icon_state()
+	. = ..()
 	icon_state = "grinder-o[(machine_stat & (BROKEN|NOPOWER)) ? "0":"1"]"
 
 /obj/machinery/recycler/Bumped(atom/movable/AM)
@@ -24,7 +27,7 @@
 	if(istype(I, /obj/item/storage))
 		var/obj/item/storage/S = I
 		for(var/obj/item/X in S.contents)
-			S.remove_from_storage(X, loc)
+			S.storage_datum.remove_from_storage(X, loc)
 			recycle(X)
 
 	qdel(I)

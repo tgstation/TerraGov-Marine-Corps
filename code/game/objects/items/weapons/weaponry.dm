@@ -5,7 +5,7 @@
 	name = "banhammer"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
@@ -19,8 +19,8 @@
 	name = "null rod"
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon_state = "nullrod"
-	item_state = "nullrod"
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "nullrod"
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	throw_speed = 1
 	throw_range = 4
@@ -37,7 +37,7 @@
 	edge = 0
 	desc = "Tharr she blows!"
 	icon_state = "harpoon"
-	item_state = "harpoon"
+	worn_icon_state = "harpoon"
 	force = 20
 	throwforce = 15
 	w_class = WEIGHT_CLASS_NORMAL
@@ -47,7 +47,7 @@
 	name = "\improper wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
 	icon_state = "woodbat"
-	item_state = "woodbat"
+	worn_icon_state = "woodbat"
 	sharp = 0
 	edge = 0
 	w_class = WEIGHT_CLASS_NORMAL
@@ -63,7 +63,7 @@
 	name = "\improper metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
-	item_state = "metalbat"
+	worn_icon_state = "metalbat"
 	force = 25
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -71,7 +71,7 @@
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
 	icon_state = "butterflyknife"
-	item_state = null
+	worn_icon_state = null
 	hitsound = null
 	w_class = WEIGHT_CLASS_TINY
 	force = 8
@@ -117,8 +117,8 @@
 	name = "wired rod"
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
-	item_state = "rods"
-	flags_atom = CONDUCT
+	worn_icon_state = "rods"
+	atom_flags = CONDUCT
 	force = 8
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
@@ -127,6 +127,8 @@
 
 /obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/shard))
 		var/obj/item/weapon/twohanded/spear/S = new
@@ -135,13 +137,4 @@
 		to_chat(user, span_notice("You fasten the glass shard to the top of the rod with the cable."))
 		qdel(I)
 		qdel(src)
-
-	else if(iswirecutter(I))
-		var/obj/item/weapon/baton/cattleprod/P = new
-
-		user.put_in_hands(P)
-		to_chat(user, span_notice("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
-		qdel(I)
-		qdel(src)
-
-	update_icon(user)
+		update_icon()

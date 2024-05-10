@@ -1,0 +1,424 @@
+2023-10-01:
+  Barnet2:
+  - bugfix: Queen and King ranks should work now
+  Blundir:
+  - rscadd: acid on walls now has unique set of sprites
+  - bugfix: fixed acid rendering over everything
+  RipGrayson:
+  - balance: The SOM base tables on Slumbridge now produced metal when deconstructed.
+  ivanmixo:
+  - bugfix: Fixed admin wall deletions
+  vvvv-vvvv:
+  - bugfix: Fix drawing on minimap tablets
+  - bugfix: Fix mantis ravage keybind not working when not selected
+  - bugfix: Fix missing empty sprite for 5.56mm ammo box
+2023-10-02:
+  ivanmixo:
+  - bugfix: Fixed an issue with quick laser swap
+2023-10-03:
+  Blundir:
+  - imagedel: deletes many unused sprites
+  - refactor: relocated numerous sprites into their own files
+  Lewdcifer:
+  - rscdel: X-Ray Laser Rifle no longer accepts the T-47 rail scope.
+  - balance: X-Ray Laser Rifle shots are no longer incendiary. Instead, they now inflict
+      five stacks of the Microwaved debuff.
+  - balance: X-Ray Laser Rifle penetration increased from 5 to 10.
+  - balance: X-Ray Laser Rifle's standard firing mode ammo usage reduced, basically
+      amounting to a maximum of 50 shots (from 40).
+  RipGrayson:
+  - balance: All ground maps use the regular spawning random gun spawning system instead
+      of the ancient tier based system that could spawn overpowered guns.
+  Wisemonster:
+  - spellcheck: Changed Crest Toss' description to mention it's effects while on harm
+      intent.
+  vvvv-vvvv:
+  - admin: Fixed statpanel showing Toggle Tadpole Restrictions in a different tab
+2023-10-04:
+  Barnet2:
+  - balance: Moved Lawanka Outpost's nuke closer to the cave entrance.
+  - balance: Most of Lawanka Outpost's buildings are now normal walls and windows
+      instead of reinforced.
+  - balance: Made most of Lawanka Outpost's cave walls indestructible, outside layer
+      still destructible
+  - code_imp: Named LV cave walls to "tough rock" for better player clarity
+  efzapa:
+  - bugfix: MG-27 Box Magazine description now quotes correct ammo count
+2023-10-06:
+  Lewdcifer:
+  - bugfix: TE-X piercing mode no longer inflicts Microwaved due to a code oopsie.
+  Lumipharon:
+  - rscdel: Stunprods are no longer craftable
+  Pariah919:
+  - rscadd: Added new L-88 Rifle to ICC, and its export variant the L&S EM-88 to Req.
+  Wisemonster:
+  - spellcheck: Added a description to the "lay egg" ability
+  mc-oofert:
+  - rscadd: T2 Puppeteer xeno, Puppet, Puppeteer abilities, Puppet abilities
+  yyzsong:
+  - rscdel: SLs can no longer buy the AR-55 or its ammo
+2023-10-08:
+  Pariah919:
+  - qol: EF-88/L-88 added to Valhalla
+  - bugfix: EF-88 mags now fit inside EF-88 rifles.
+  Wisemonster:
+  - spellcheck: Changed the smart pistol bundle's name in the smart gunner vendor
+      to clarify that it comes with smart goggles.
+  Xander3359:
+  - balance: Freelancers have better loadouts slightly.
+  vvvv-vvvv:
+  - bugfix: Fix some missing stack singular names
+  - admin: Add Debug Controller verb
+  yyzsong:
+  - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
+  - bugfix: removes a duplicate item from the valhalla medical vendor
+2023-10-09:
+  Barnet2:
+  - bugfix: Lawanka tcomms work now
+  - spellcheck: Xeno ranks now go hatchling > young > mature > elder > ancient
+  Xander3359:
+  - admin: CTRL+Shift click self to spawn as a human
+  - balance: Gorger no longer gets slowdown from weeds
+  dopamiin:
+  - balance: the Judge now has a much longer fire delay, but its standard rounds are
+      more powerful.
+2023-10-10:
+  Barnet2:
+  - balance: Big Red's Marshall disk spawn is now removed from all modulars.
+  Helg2:
+  - qol: Holsters of some ert now have sidearm in the first slot instead of magazine
+      so you're able to pull it out instantly.
+  - bugfix: Gentleman's Coat now doesn't hide clothes beneath it.
+  - bugfix: X now acts as a No when you try to return to your body while remain in
+      the larva queue.
+  - bugfix: Warrior's lunge early returns now don't show numbers.
+  - bugfix: Powder Monkey's belt is now full instead of being almost full.
+  Pariah919:
+  - rscadd: Added new CLF heavy roles, and two new guns for it, which are the PTR
+      anti tank rifle and the DP 'RP' machine gun.
+  Xander3359:
+  - rscadd: Vending machines restock items near it (instead of only on the same tile)
+      when you click "restock"
+2023-10-11:
+  ClosetedSkeletonGH:
+  - balance: adjusts the amount of supply points xeno castes give
+  Helg2:
+  - qol: There is now a balloon alert popping up when you try to grab something as
+      warrior in agility mode.
+  - bugfix: boiler now can't root while resting.
+  Lumipharon:
+  - rscadd: More progress to the Campaign gamemode
+  - balance: You can no longer throw bump mechs or other high resist objects
+  - balance: Drop pods are more resistant to projectile damage
+  - imageadd: Updated tac bino sprites (previous pr)
+  - imageadd: New sprites and animations for drop pods
+  - bugfix: Fixed the minimap not working when you move inside another object
+  - bugfix: Fixed some various minor bugs/runtimes
+  - bugfix: Attached weapons will now properly update accuracy when wielded
+  - rscadd: 'HvH: SG62 loadout added'
+  RipGrayson:
+  - refactor: Genericized some Roomba code so future contributors can more easily
+      add new utility bot types.
+  - rscadd: Added a new version of cleanbots that only cleans blood and trash.
+  - rscadd: Added cleanbots to all shipside medbays.
+  Xander3359:
+  - admin: Port "Select Equipment" from TG
+  hyper2snyper:
+  - rscadd: Hyperscales T12, T18, T81, T42, T21, T35, TP14, TP23, TP44, TX11, TX15
+  - rscadd: Hyperscales the agrip and vgrip.
+  novaepee, Fitz:
+  - rscadd: new armor called Dashe for marines to use; find it in the Style line tab
+      in surplus armor vendor
+  tyeagg:
+  - rscadd: news tv to patrol base
+2023-10-12:
+  Lewdcifer:
+  - balance: 'TE-X Ray Rifle: standard mode shots are incendiary again, and no longer
+      inflict Microwaved.'
+  - balance: 'TE-X Ray Rifle: standard mode penetration reduced from 10 to 5.'
+  - balance: 'TE-X Ray Rifle: standard mode fire rate decreased from 0.25s to 0.5s.'
+  Lumipharon:
+  - qol: Timers on campaign objectives are now visible above the objective
+  Xander3359:
+  - spellcheck: Dexaline -> Dexalin. three doses -> 3 doses
+  - code_imp: un-hardcodes possible_transfer_amounts
+  - qol: Pill packets can be put back in the marinemed
+  aarrisu:
+  - rscdel: radio pouch
+  yyzsong:
+  - rscadd: Adds the two new ICC guns to valhalla
+2023-10-13:
+  Barnet2:
+  - rscdel: Prison Station is now only voteable on HvH gamemodes.
+  DeltaFire15:
+  - code_imp: Removes an evil operator
+  - bugfix: Xeno neurotoxin now has one less edge case.
+  Lewdcifer:
+  - rscadd: Runners now have a new HUD element that indicates Evasion's remaining
+      duration. This updates in real time and is visible to all xenos.
+  - rscadd: Added Auto-Evasion. Right click or alternate use of Evasion toggles this
+      on and off. While Auto-Evasion is active, it will automatically try to use Evasion
+      again if you get the cooldown reset bonus.
+  - rscdel: Removed Toggle Savage. It has been merged with Pounce as its right click
+      / alternate use, otherwise retaining its usual functionality.
+  - qol: Using Evasion again while it is active will extend its current duration instead
+      of flipping the bird at you and making you wait until Evasion is over.
+  - balance: Pounce will now go through xenos.
+  - refactor: Minor code changes to Pounce. Moved it to Hunter's and gave Runner its
+      own child ability with Toggle Savage.
+  - code_imp: Minor code changes to Evasion that remove unnecessary code and account
+      for other changes.
+  - code_imp: Finishes deprecating a hardcore var that wasn't used anywhere.
+  - bugfix: Fixed a bug where using Pounce interrupted Evasion if it was active.
+  - imageadd: Evasion counter sprites. They suck. Please sprite something better,
+      I beg you.
+  - imageadd: Small indicators on ability icons for visual feedback.
+  - spellcheck: Runner's caste description changed ever so slightly to look and sound
+      better.
+  Lumipharon:
+  - balance: Breaching axe attack speed reduced to 15 from 11
+  - bugfix: You can no longer store other drop pods in supply pods
+  - bugfix: You can no longer fit endless mechs into a single clowncar mech pod
+  - balance: FC's sword has a strap and bumpslash
+  - balance: FC's sword has slightly improved attack speed and AP
+  - balance: 'HvH: TGMC guardian and SG loadouts have Tyr 2 instead of Tyr 1'
+  - code_imp: Some code improvements to campaign asset code
+  - imageadd: added more campaign assset icons
+  - qol: Campaign firesupport binos show current mode uses and cooldown remaining
+      if applicable
+  - imageadd: added a proper sprite for the teleport blocker in campaign
+  - bugfix: fixed an issue with map tables when their target z-level changes
+  Xander3359:
+  - bugfix: you can no longer make C4 instant
+  hyper2snyper:
+  - rscadd: Hyperscales T90, T37, TL127, T60, TX7, TER, TEC, TEP, TEM, TES, SG29
+2023-10-14:
+  Lumipharon:
+  - qol: A 1 second stun is applied when returning to base after a campaign mission
+      ends
+  Xander3359:
+  - code_imp: Replaced all instances of <Grid> with <Stack> and deletes Grid from
+      the codebase
+  vvvv-vvvv:
+  - qol: Gas masks now muffle your voice with TTS.
+2023-10-15:
+  Lumipharon:
+  - rscadd: Mechs will now crush human sized mobs underfoot
+  - bugfix: The smartgun asset in campaign now has targeting rifle ammo
+  - balance: Strategic reserve asset in campaign now reduces the respawn timer for
+      that team to 30sec for the duration of the mission
+  - code_imp: campaign status screen uses static data
+  Vincent983:
+  - bugfix: sticky weed and resting weed node examines made accurate
+  coldironwarrior:
+  - balance: sg62 bullets now have a max range of 40, equivalent to other marksman
+      guns
+  vvvv-vvvv:
+  - bugfix: Fix a missing trailing space before pod dchat announcement
+  - spellcheck: Spellchecked some bot messages
+2023-10-16:
+  Lumipharon:
+  - balance: Explosions will now temporarily reduce the opacity of dense smoke caught
+      in the radius.
+  Waselon:
+  - rscadd: Added fade in type fullscreen overlay on xeno spawn and evolution
+  hyper2snyper:
+  - bugfix: Fixes the Lasguns becoming invisible when attaching to a powerpack.
+2023-10-17:
+  Barnet2:
+  - balance: Puppeteer's max puppets reduced to 3
+  Lewdcifer:
+  - balance: Sawn off shotgun must now be wielded to fire.
+  - bugfix: Certain "VV" buttons that weren't working before are now fixed.
+  Lumipharon:
+  - qol: Some general campaign UI improvements
+  - bugfix: fixed a BSOD on the campaign UI if no missions were available
+  - rscadd: Added some background info for the SOM in the lobby menu
+  - imageadd: updated some missing or old sprites for SOM powerpacks and blinkdrives
+  - rscadd: Added support roles for Campaign
+  - rscadd: Command roles can purchase and activate campaign assets, and set attrition
+  Pariah919:
+  - balance: Synths deal less damage on melee now.
+  - rscadd: Rotational heavy weapons system, the tab itself ingame is called 'Operational
+      Weapons' which rotates every 24 hours between bins like seasonals, TAT and RR
+      have been moved to here and the 3 other bins contain objects like Flak, Thermo,
+      and DRPGs.
+  coldironwarrior:
+  - balance: hiveminds now have the queen's version of psychic cure
+2023-10-18:
+  Lumipharon:
+  - code_imp: Updated some maptable code
+  Waselon:
+  - balance: Ravagers in Endure are no longer slowed down by vali tramadol attack
+2023-10-19:
+  Barnet2:
+  - bugfix: Puppeteer now has the proper evolution threshold
+  - bugfix: Autobalance will now care about the ratio of alive xenos to burrowed xenos
+      when giving out stat buffs
+  Lewdcifer:
+  - rscadd: Cement protein bar. Mmm... cement...
+  Lumipharon:
+  - bugfix: SOM officers are properly in job preferences
+  - code_imp: Reorganised some campaign asset code
+  - bugfix: Instant effect assets correctly reapply if obtained multiple times
+  Xander3359:
+  - qol: You can now change your default draw order in prefs.
+  aarrisu:
+  - rscadd: berrybar berrybar pouch
+  - imageadd: berry bar berry bar wrapper berry bar pouch
+  hyper2snyper:
+  - bugfix: Fixes lasguns becoming invisible after changing modes.
+2023-10-21:
+  DeltaFire15:
+  - bugfix: The cloning vat console now actually checks around itself for clone vats
+      to link to.
+  Lumipharon:
+  - bugfix: fixed a couple of freelancer ert loadouts having the wrong headset
+  - rscadd: Added concrete barricades for campaign
+  Pariah919:
+  - rscadd: Added a non-tad variant of the mounted heavy laser.
+  Wisemonster:
+  - spellcheck: Replaced the "TGMC" in the loadout pref headwear names to "surplus".
+      Actually hats in the loadout pref unchanged.
+  Xander3359:
+  - rscadd: New brick in req
+  coldironwarrior:
+  - rscadd: gives hiveminds psychic whisper
+  vilereaver41:
+  - qol: Sentrys now start in sentry crates
+  - rscadd: rear attach & machinegun nest with powersuits present.
+  - qol: tidy up some useless junk that clutters around.
+  - qol: fuel tank now has its own spot instead of always getting pushed around.
+  - balance: big-bury now has an extra Auto-Doc and marine med
+  - qol: big-bury has an extra fusion reactor and power storage unit due to power
+      drain issues
+  - rscadd: emergency interior pod-locks that lead to cockpit for a bit more realism.
+      bigbury only
+2023-10-23:
+  Alfalfa523:
+  - rscadd: Ability to attach the KTLD sight to sunglasses
+  - rscadd: KTLD sunglasses w/ new sprite
+  DeltaFire15:
+  - bugfix: Fixes some oversights in CAS code, some of which are ancient.
+  Helg2:
+  - bugfix: You can now gain metal from ship tables without transforming them. They
+      also won't transform upon construction now.
+  - bugfix: Table frames no longer will teleport to nowhere upon using wood/rods on
+      them.
+  Lumipharon:
+  - bugfix: Objects will no longer bounce at impossible angles when hitting solid
+      turfs or objects
+  RipGrayson:
+  - rscadd: Gnomes can sometimes have a spark of magic in them and move around when
+      not being watched.
+  Xander3359:
+  - rscadd: ghost runechat
+  Xander3359 efzapa:
+  - rscadd: Adds a protein-bar belt + pouch option.
+  vvvv-vvvv:
+  - bugfix: Fixed prefs bluescreening when invalid gear is saved
+  - bugfix: Fix boiler being able to ventcrawl
+  - bugfix: Fix x8 DRPG crate containing only one DRPG
+  yyzsong:
+  - rscadd: SLs may buy megaphones from their vendor
+2023-10-24:
+  Luxyboo:
+  - rscadd: 'Take out bullets from packets and boxes now with right click.
+
+      :cl:'
+  Waselon:
+  - qol: Baneling can now watch other xenos while in pod
+  - bugfix: Evolution overlay runtime error fix
+2023-10-25:
+  Lewdcifer:
+  - rscadd: (Re-)added a rouny plushie to Pillar of Spring. It is located in CIC storage.
+  - rscadd: Added a rouny plushie to Sulaco. It's in the telecomms room.
+  - rscadd: Added a rouny plushie to Arachne. It's in the hidden hydroponics room,
+      far northwest in maintenance.
+2023-10-26:
+  Blundir:
+  - rscdel: bandana no longer hides facial hair
+  DeltaFire15:
+  - code_imp: Nuke disk generator candidates now support sets for mapping, which allows
+      more control over which disk groups appear aswell as how common they are. Look
+      at this PR if you need to know how.
+  - code_imp: Nuke disk generators can also be forced to always appear for specific
+      sets.
+  Lumipharon:
+  - rscadd: Computers are now emissive
+  - rscadd: Added emissive effects for various som mob sprites
+  - rscadd: Lights and emissives for apcs, fire alarms, air alarms and intercoms
+  - bugfix: fixed a minor visual issue with throwing huggers
+  - balance: Molotovs now have a high chance to explode on impact
+  Pariah919:
+  - balance: Buffed the knife gun.
+  - bugfix: You can't infinitely dupe flak guns in seasonal, they now spawn in a crate
+      like TAT for consistency.
+  - bugfix: Heavy laser is now the deployable variant in req for the deployable version.
+  ZeWaka:
+  - bugfix: Xenos can no longer spit onto space turfs
+2023-10-27:
+  Lewdcifer:
+  - bugfix: Fixed an issue where headwear with an emissive visor would display when
+      in hand, but not when worn.
+2023-10-28:
+  Aporhtonoma:
+  - balance: razor wires cost 8 iron rods 2 barbed to make
+  - bugfix: fixes infinite barbed duplication
+  ClosetedSkeletonGH:
+  - balance: Removes barrel charger from MG-27
+  Lewdcifer:
+  - balance: Alkysine now slightly heals ear damage.
+  Lumipharon:
+  - bugfix: fixed map table interaction checks always passing
+  - bugfix: You can no longer jump while stunned or buckled
+  - bugfix: You can no longer attack with a strapped weapon while stunned
+  - code_imp: Some more campaign backend work added
+  - bugfix: fixed SOM overwatch minimap showing marines instead of SOM
+  - bugfix: The SOM cic eye is now correctly flagged to SOM huds
+  - balance: Reduced brick damage somewhat
+  - bugfix: fixed a rare defender bug
+  Waselon:
+  - bugfix: baneling now can overwatch xenos if died from normal death
+2023-10-29:
+  Dallas:
+  - soundadd: Ported meowsynth and spaceman synthesizer sounds from TG
+  Lumipharon:
+  - bugfix: Sentry IFF flags are correctly checked when IFF projectile try to hit
+      them
+  - rscadd: Vendors are emissive
+  - bugfix: fixed a camera issue in campaign
+  Pariah919:
+  - rscadd: FK-88, a deployable direct fire support weapon that fires 15cm high explosive
+      shells, replaces the RR-15.
+  - rscdel: Tad heavy RR has been replaced by the ISG-15 HISG.
+  Xander3359:
+  - balance: improves imialk hypo
+2023-10-30:
+  Lewdcifer:
+  - rscadd: Adds the Behemoth, a new tier 3 caste.
+  Lumipharon:
+  - rscadd: SOM has their own camera net
+  - bugfix: Crest toss now throws the correct distance diagonally
+  - balance: Crest toss is from the xeno's turf, so some tosses will be possible that
+      were not previously
+  TiviPlus:
+  - rscadd: Added custom squads;
+  - rscadd: SLs may now create their own squads using a terminal in/near their prep,
+      and marines can join said squads using the squad selection consoles near preps
+  - admin: admins can now delete squads
+2023-10-31:
+  Wisemonster:
+  - spellcheck: Updated the description of the radio backpack to clarify it's access
+      to a supply request console.
+  Xander3359:
+  - spellcheck: tricordrazine > tricordazine
+  - spellcheck: pill packets are no longer capitalized (they looked weird)
+  dopamiin0:
+  - rscadd: Added a new ceiling type, obstructed, that blocks tadpole and droppods
+      but not other things caves ordinarily block.
+  - balance: Engineering on Lawanka Outpost now has an obstructed ceiling, instead
+      of being caves.
+  novaepee:
+  - rscadd: hyperscale gloves; its name is 8E Chameleon TGMC combat gloves, and you
+      can find it in the standard tab in surplus clothing vendor

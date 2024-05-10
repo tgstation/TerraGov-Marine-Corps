@@ -2,9 +2,9 @@
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
 	name = "captain's gloves"
 	icon_state = "captain"
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/swat
@@ -14,9 +14,9 @@
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
@@ -25,9 +25,9 @@
 	icon_state = "black"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/ruggedgloves
@@ -36,9 +36,9 @@
 	icon_state = "black"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
@@ -83,7 +83,7 @@
 /obj/item/clothing/gloves/heldgloves/unequipped(mob/unequipper, slot)
 	. = ..()
 	remove_gloves(unequipper)
-	DISABLE_BITFIELD(flags_item, NODROP)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //We use alt-click to activate/deactive the gloves in-hand
 /obj/item/clothing/gloves/heldgloves/AltClick(mob/user)
@@ -92,12 +92,12 @@
 		return
 
 	if(remove_gloves(user))
-		DISABLE_BITFIELD(flags_item, NODROP)
+		REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 		return
 
 	user.drop_all_held_items() //Gloves require free hands
 	if(create_gloves(user))
-		ENABLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
+		ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT) //Make sure the gloves aren't able to be taken off
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
@@ -123,7 +123,10 @@
 
 /obj/item/weapon/heldglove
 	name = "glove"
-	flags_item = NODROP
+
+/obj/item/weapon/heldglove/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //Boxing gloves
 /obj/item/clothing/gloves/heldgloves/boxing

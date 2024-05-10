@@ -19,6 +19,8 @@
 //attaching papers!!
 /obj/structure/noticeboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper))
 		if(notices >= 5)
@@ -39,7 +41,7 @@
 
 	var/dat
 	for(var/obj/item/paper/P in src)
-		dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> <A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A> <A href='?src=[text_ref(src)];write=[text_ref(P)]'>Write</A> <A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A><BR>"
 
 	var/datum/browser/popup = new(user, "noticeboard", "<div align='center'>Noticeboard</div>")
 	popup.set_content(dat)

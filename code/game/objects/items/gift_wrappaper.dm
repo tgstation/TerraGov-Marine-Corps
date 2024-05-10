@@ -3,7 +3,7 @@
 	desc = "Presents!"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
-	item_state = "gift1"
+	worn_icon_state = "gift1"
 
 	var/list/gift_types = list(
 		/obj/item/storage/wallet,
@@ -68,7 +68,7 @@
 	desc = "One, standard issue TGMC Present"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
-	item_state = "gift1"
+	worn_icon_state = "gift1"
 
 	var/fancy_chance = 0
 	var/fancy_type = 0
@@ -115,7 +115,7 @@
 			gift_type = pick(
 			/obj/item/weapon/gun/revolver/mateba,
 			/obj/item/weapon/gun/pistol/heavy,
-			/obj/item/weapon/claymore,
+			/obj/item/weapon/sword,
 			/obj/item/weapon/energy/sword/green,
 			/obj/item/weapon/energy/sword/red,
 			/obj/item/attachable/heavy_barrel,
@@ -130,7 +130,7 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
-	flags_gun_features = NONE
+	gun_features_flags = NONE
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
@@ -142,7 +142,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas
-	flags_gun_features = NONE
+	gun_features_flags = NONE
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
@@ -157,6 +157,8 @@
 
 /obj/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!iswirecutter(I))
 		to_chat(user, span_notice("You need wirecutters for that."))
@@ -177,13 +179,15 @@
 /obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20
 
 
 /obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/a_used = 2 ** (w_class - 1)
 

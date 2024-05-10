@@ -112,9 +112,14 @@
 		/obj/item/reagent_containers/food/snacks/enrg_bar = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
+
+/obj/machinery/vending/snack/alamo
+		product_slogans = "" //silent for no spam
+		wrenchable = FALSE
 
 /obj/machinery/vending/cola
 	name = "Souto Softdrinks"
@@ -136,19 +141,9 @@
 		/obj/item/reagent_containers/food/drinks/cans/cola = -1,
 	)
 
-	prices = list(
-		/obj/item/reagent_containers/food/drinks/cans/souto = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
-	)
-	idle_power_usage = 200
+/obj/machinery/vending/cola/alamo
+		product_slogans = "" //silent for no spam
+		wrenchable = FALSE
 
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
@@ -160,21 +155,20 @@
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 15,
-			/obj/item/storage/pill_bottle/kelotane = 15,
-			/obj/item/storage/pill_bottle/tramadol = 15,
-			/obj/item/storage/pill_bottle/tricordrazine = 15,
-			/obj/item/storage/pill_bottle/dylovene = 15,
-			/obj/item/storage/pill_bottle/inaprovaline = 15,
-			/obj/item/storage/pill_bottle/isotonic = 15,
-			/obj/item/storage/pill_bottle/paracetamol = 6,
+			/obj/item/storage/pill_bottle/bicaridine = -1,
+			/obj/item/storage/pill_bottle/kelotane = -1,
+			/obj/item/storage/pill_bottle/tramadol = -1,
+			/obj/item/storage/pill_bottle/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/dylovene = -1,
+			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
 			/obj/item/storage/pill_bottle/imidazoline = 6,
 			/obj/item/storage/pill_bottle/quickclot = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
-			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
@@ -187,11 +181,14 @@
 			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
 		),
 		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
-			/obj/item/reagent_containers/glass/bottle/kelotane = 6,
-			/obj/item/reagent_containers/glass/bottle/tramadol = 6,
-			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
+			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
+			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
@@ -200,9 +197,11 @@
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/dropper = -1,
 			/obj/item/storage/reagent_tank = 5,
 			/obj/item/storage/reagent_tank/bicaridine = 1,
 			/obj/item/storage/reagent_tank/kelotane = 1,
@@ -211,7 +210,7 @@
 			/obj/item/storage/reagent_tank/bktt = 1,
 		),
 		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/xeno_analyzer = 2,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
@@ -246,8 +245,11 @@
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
 			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
 			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
+			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
@@ -256,7 +258,6 @@
 			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/lemoline = -1,
 			/obj/item/reagent_containers/glass/bottle/nanoblood = -1,
-			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -287,12 +288,25 @@
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/spray/surgery = -1,
+			/obj/item/tool/soap = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
+			/obj/item/roller = -1,
+		),
+		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
+			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
-			/obj/item/clothing/glasses/hud/health = -1,
-			/obj/item/roller = -1,
+			/obj/item/reagent_containers/dropper = -1,
+			/obj/item/storage/reagent_tank = -1,
+			/obj/item/storage/reagent_tank/bicaridine = -1,
+			/obj/item/storage/reagent_tank/kelotane = -1,
+			/obj/item/storage/reagent_tank/tramadol = -1,
+			/obj/item/storage/reagent_tank/tricordrazine = -1,
+			/obj/item/storage/reagent_tank/bktt = -1,
 		),
 		"Valhalla" = list(
 			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
@@ -300,6 +314,8 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/glass/bottle/toxin = -1,
+			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
+			/obj/item/alien_embryo = -1,
 		),
 	)
 
@@ -359,6 +375,7 @@
 /obj/machinery/vending/nanomed/tadpolemed
 	name = "Flight surgeon medical equipment dispenser"
 	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
+	layer = ABOVE_OBJ_LAYER
 	products = list(
 		"Autoinjectors" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,
@@ -391,9 +408,6 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
 			/obj/item/healthanalyzer = 1,
 			/obj/item/stack/medical/splint = 1,
-		),
-		"EMERGENCY USE!" = list(
-			/obj/item/storage/pill_bottle/russian_red = 1,
 		),
 	)
 
@@ -516,7 +530,7 @@
 		/obj/item/tool/kitchen/utensil/fork = 6,
 		/obj/item/tool/kitchen/knife = 3,
 		/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
-		/obj/item/clothing/suit/chef/classic = 2,
+		/obj/item/clothing/suit/storage/chef/classic = 2,
 		/obj/item/tool/kitchen/utensil/spoon = 2,
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,

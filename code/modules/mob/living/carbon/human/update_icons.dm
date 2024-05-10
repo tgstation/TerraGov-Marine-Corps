@@ -52,18 +52,16 @@ There are several things that need to be remembered:
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
 																			...eyes were merged into update_body)
-		update_targeted() // Updates the target overlay when someone points a gun at you
 
 >	If you need to update all overlays you can use regenerate_icons(). it works exactly like update_clothing used to.
 
 
 */
 
-#define ITEM_STATE_IF_SET(I) I.item_state ? I.item_state : I.icon_state
+#define ITEM_STATE_IF_SET(I) I.worn_icon_state ? I.worn_icon_state : I.icon_state
 
 
 /mob/living/carbon/human
-	var/list/overlays_standing[TOTAL_LAYERS]
 	var/list/underlays_standing[TOTAL_UNDERLAYS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
 
@@ -285,8 +283,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(lip_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
-			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
+		if(makeup_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[makeup_style]_s"), ICON_OVERLAY)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
@@ -310,13 +308,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	//masks and helmets can obscure our hair.
-	if((head?.flags_inv_hide & HIDEALLHAIR) || (wear_mask?.flags_inv_hide & HIDEALLHAIR))
+	if((head?.inv_hide_flags & HIDEALLHAIR) || (wear_mask?.inv_hide_flags & HIDEALLHAIR))
 		return
 
 	//base icons
 	var/icon/face_standing = new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style && !(wear_suit?.flags_inv_hide & HIDELOWHAIR) && !(wear_mask?.flags_inv_hide & HIDELOWHAIR))
+	if(f_style && !(wear_suit?.inv_hide_flags & HIDELOWHAIR) && !(wear_mask?.inv_hide_flags & HIDELOWHAIR))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style?.species_allowed && (species.name in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -328,7 +326,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head?.flags_inv_hide & HIDETOPHAIR))
+	if(h_style && !(head?.inv_hide_flags & HIDETOPHAIR))
 		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -347,7 +345,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	var/mutable_appearance/hair_final = mutable_appearance(face_standing, layer =-HAIR_LAYER)
 
-	if(head?.flags_inv_hide & HIDE_EXCESS_HAIR)
+	if(head?.inv_hide_flags & HIDE_EXCESS_HAIR)
 		var/image/mask = image('icons/mob/human_face.dmi', null, "Jeager_Mask")
 		mask.render_target = "*[REF(src)]"
 		hair_final.overlays += mask
@@ -355,20 +353,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	overlays_standing[HAIR_LAYER] = hair_final
 	apply_overlay(HAIR_LAYER)
-
-//Call when target overlay should be added/removed
-/mob/living/carbon/human/update_targeted()
-	remove_overlay(TARGETED_LAYER)
-	var/image/I
-	if(holo_card_color)
-		if(I)
-			I.overlays += image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]")
-		else
-			I = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]", "layer" =-TARGETED_LAYER)
-	if(I)
-		overlays_standing[TARGETED_LAYER] = I
-	apply_overlay(TARGETED_LAYER)
-
 
 /* --------------------------------------- */
 //For legacy support.
@@ -408,7 +392,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		w_uniform.screen_loc = ui_iclothing
 		client.screen += w_uniform
 
-	if(wear_suit?.flags_inv_hide & HIDEJUMPSUIT)
+	if(wear_suit?.inv_hide_flags & HIDEJUMPSUIT)
 		return
 
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(species_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/clothing/uniforms/uniform_0.dmi', default_layer = UNIFORM_LAYER)
@@ -484,7 +468,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_ear.screen_loc = ui_wear_ear
 		client.screen += wear_ear
-	if((head?.flags_inv_hide & HIDEEARS) || (wear_mask?.flags_inv_hide & HIDEEARS))
+	if((head?.inv_hide_flags & HIDEEARS) || (wear_mask?.inv_hide_flags & HIDEEARS))
 		return
 
 	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(species_type = species.name, slot_name = slot_ear_str, default_icon = 'icons/mob/clothing/ears.dmi', default_layer = EARS_LAYER)
@@ -496,7 +480,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 			shoes.screen_loc = ui_shoes
 			client.screen += shoes
-	if(wear_suit?.flags_inv_hide & HIDESHOES)
+	if(wear_suit?.inv_hide_flags & HIDESHOES)
 		return
 
 	if(shoes)
@@ -580,7 +564,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(!wear_mask)
 		return
 
-	if(head?.flags_inv_hide & HIDEMASK)
+	if(head?.inv_hide_flags & HIDEMASK)
 		return
 
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
@@ -621,7 +605,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += r_hand
 		r_hand.screen_loc = ui_rhand
 
-	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_1.dmi', default_layer = R_HAND_LAYER)
+	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/inhands/items/items_right.dmi', default_layer = R_HAND_LAYER)
 
 	apply_overlay(R_HAND_LAYER)
 
@@ -635,61 +619,19 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += l_hand
 		l_hand.screen_loc = ui_lhand
 
-	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_1.dmi', default_layer = L_HAND_LAYER)
+	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/inhands/items/items_left.dmi', default_layer = L_HAND_LAYER)
 	apply_overlay(L_HAND_LAYER)
-
-
-// Used mostly for creating head items
-/mob/living/carbon/human/proc/generate_head_icon()
-//gender no longer matters for the mouth, although there should probably be seperate base head icons.
-//	var/g = "m"
-//	if (gender == FEMALE)	g = "f"
-
-	//base icons
-	var/icon/face_lying = new /icon('icons/mob/human_face.dmi',"bald_l")
-
-	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
-		if(facial_hair_style)
-			var/icon/facial_l = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_l")
-			facial_l.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
-			face_lying.Blend(facial_l, ICON_OVERLAY)
-
-	if(h_style)
-		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
-		if(hair_style)
-			var/icon/hair_l = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_l")
-			hair_l.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			face_lying.Blend(hair_l, ICON_OVERLAY)
-
-	//Eyes
-	// Note: These used to be in update_face(), and the fact they're here will make it difficult to create a disembodied head
-	var/icon/eyes_l = new/icon('icons/mob/human_face.dmi', "eyes_l")
-	eyes_l.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
-	face_lying.Blend(eyes_l, ICON_OVERLAY)
-
-	if(lip_style)
-		face_lying.Blend(new/icon('icons/mob/human_face.dmi', "lips_[lip_style]_l"), ICON_OVERLAY)
-
-	var/image/face_lying_image = new /image(icon = face_lying)
-	return face_lying_image
 
 /mob/living/carbon/human/update_burst()
 	remove_overlay(BURST_LAYER)
-	var/mutable_appearance/standing
-	if(chestburst == 1)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "burst_stand", -BURST_LAYER)
-	else if(chestburst == 2)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "bursted_stand", -BURST_LAYER)
-
-	overlays_standing[BURST_LAYER] = standing
+	if(!chestburst)
+		return
+	overlays_standing[BURST_LAYER] = mutable_appearance('icons/Xeno/Effects.dmi', chestburst == CARBON_IS_CHEST_BURSTING ? "burst_stand" : "bursted_stand", -BURST_LAYER)
 	apply_overlay(BURST_LAYER)
 
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)
-	if(on_fire)
-		switch(fire_stacks)
-			if(1 to 14)	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
-			if(15 to 20) overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_medium", -FIRE_LAYER)
-
-		apply_overlay(FIRE_LAYER)
+	if(!on_fire)
+		return
+	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', fire_stacks < 15 ? "Standing_weak" : "Standing_medium", -FIRE_LAYER)
+	apply_overlay(FIRE_LAYER)

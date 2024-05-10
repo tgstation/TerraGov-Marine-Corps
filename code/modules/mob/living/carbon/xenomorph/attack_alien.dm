@@ -35,7 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	return TRUE
+	return !(status_flags & INCORPOREAL)
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -47,7 +47,7 @@
 	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
-		affecting = get_limb(ran_zone(X.zone_selected, 70))
+		affecting = get_limb(ran_zone(X.zone_selected, XENO_DEFAULT_ACCURACY - X.xeno_caste.accuracy_malus))
 	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
@@ -81,7 +81,7 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	var/armor_pen
+	var/armor_pen = X.xeno_caste.melee_ap
 	for(var/i in armor_mod)
 		armor_pen += i
 
@@ -93,7 +93,7 @@
 			span_danger("Our slash is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
 
-	var/attack_sound = "alien_claw_flesh"
+	var/attack_sound = SFX_ALIEN_CLAW_FLESH
 	var/attack_message1 = span_danger("\The [X] slashes [src]!")
 	var/attack_message2 = span_danger("We slash [src]!")
 	var/log = "slashed"
@@ -118,7 +118,9 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	record_melee_damage(X, damage)
+	var/damage_done = apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod)
 
 	return TRUE
 
@@ -134,7 +136,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, "alien_claw_metal", 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 
@@ -148,7 +150,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, "alien_claw_metal", 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
 
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -164,15 +166,15 @@
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
-			if(cam_headset.camera.status)
+			if(cam_headset?.camera?.status)
 				cam_headset.camera.toggle_cam(null, FALSE)
-				playsound(loc, "alien_claw_metal", 25, 1)
+				playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
 		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
-			playsound(loc, "alien_claw_metal", 25, 1)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
 			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))
@@ -187,27 +189,30 @@
 		return FALSE
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
-/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/mob/living/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (X.fortify)
+	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging)
 		return FALSE
 
-	switch(X.a_intent)
+	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier)
+
+	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
-				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
+				xeno_attacker.visible_message(span_danger("[xeno_attacker] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
-			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
+
+			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE
 
 		if(INTENT_GRAB)
-			return attack_alien_grab(X)
+			return attack_alien_grab(xeno_attacker)
 
 		if(INTENT_HARM, INTENT_DISARM)
-			return attack_alien_harm(X)
+			return attack_alien_harm(xeno_attacker)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

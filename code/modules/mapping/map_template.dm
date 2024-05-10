@@ -49,11 +49,11 @@
 	SSatoms.InitializeAtoms(atoms)
 	SSmachines.setup_template_powernets(cables)
 
-/datum/map_template/proc/load_new_z()
+/datum/map_template/proc/load_new_z(minimap = TRUE, list/traits = list(ZTRAIT_AWAY = TRUE))
 	var/x = round((world.maxx - width)/2)
 	var/y = round((world.maxy - height)/2)
 
-	var/datum/space_level/level = SSmapping.add_new_zlevel(name, list(ZTRAIT_AWAY = TRUE))
+	var/datum/space_level/level = SSmapping.add_new_zlevel(name, traits)
 	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE)
 	var/list/bounds = parsed.bounds
 	if(!bounds)
@@ -63,6 +63,14 @@
 
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
+	SSmodularmapping.load_modular_maps() //must be run after initTemplateBounds so markers have an actual loc
+	SSweather.load_late_z(level.z_value)
+	SSair.setup_atmos_machinery()
+	SSair.setup_pipenets()
+	SSlighting.create_lighting_objects_for_z(level.z_value)
+	smooth_zlevel(level.z_value)
+	if(minimap)
+		SSminimaps.load_new_z(null, level)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 
 	return level
@@ -104,6 +112,6 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(file, name)
+/proc/load_new_z_level(file, name, minimap = TRUE, list/traits = list())
 	var/datum/map_template/template = new(file, name)
-	template.load_new_z()
+	return template.load_new_z(minimap, traits)

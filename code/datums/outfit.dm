@@ -4,7 +4,7 @@
 	var/w_uniform = null
 	var/wear_suit = null
 	var/toggle_helmet = TRUE
-	var/back = null
+	var/back = null // Set to FALSE if your outfit needs nothing in back slot at all
 	var/belt = null
 	var/gloves = null
 	var/shoes = null
@@ -62,7 +62,7 @@
 		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK, override_nodrop = TRUE)
 	if(ears)
 		if(visualsOnly)
-			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same item_state as the rest.
+			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same worn_icon_state as the rest.
 		else
 			H.equip_to_slot_or_del(new ears(H), SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)
@@ -125,7 +125,6 @@
 	.["shoes"] = shoes
 	.["head"] = head
 	.["mask"] = mask
-	.["neck"] = neck
 	.["ears"] = ears
 	.["glasses"] = glasses
 	.["id"] = id
@@ -140,6 +139,32 @@
 	.["implants"] = implants
 	.["accessory"] = accessory
 
+/// Copy most vars from another outfit to this one
+/datum/outfit/proc/copy_from(datum/outfit/target)
+	name = target.name
+	w_uniform = target.w_uniform
+	wear_suit = target.wear_suit
+	toggle_helmet = target.toggle_helmet
+	back = target.back
+	belt = target.belt
+	gloves = target.gloves
+	shoes = target.shoes
+	head = target.head
+	mask = target.mask
+	ears = target.ears
+	glasses = target.glasses
+	id = target.id
+	l_store = target.l_store
+	r_store = target.r_store
+	suit_store = target.suit_store
+	r_hand = target.r_hand
+	l_hand = target.l_hand
+	internals_slot = target.internals_slot
+	backpack_contents = target.backpack_contents
+	box = target.box
+	implants = target.implants
+	accessory = target.accessory
+	return TRUE
 
 /datum/outfit/proc/save_to_file()
 	var/stored_data = get_json_data()
@@ -216,3 +241,19 @@
 	id = human_mob.wear_id?.type
 	l_store = human_mob.l_store?.type
 	r_store = human_mob.r_store?.type
+
+/datum/outfit/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_TO_OUTFIT_EDITOR, "Outfit Editor")
+
+/datum/outfit/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_TO_OUTFIT_EDITOR])
+		if(!check_rights(NONE))
+			return
+		usr.client.open_outfit_editor(src)

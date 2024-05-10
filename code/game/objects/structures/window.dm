@@ -7,12 +7,15 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|DIRLOCK
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
+	atom_flags = ON_BORDER|DIRLOCK
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block = 0
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -29,7 +32,7 @@
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -72,11 +75,28 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(15, 35), BRUTE, BOMB)
 
+/obj/structure/window/hitby(atom/movable/AM, speed = 5)
+	var/throw_damage = speed
+	var/mob/living/thrown_mob
+	if(isobj(AM))
+		var/obj/thrown_obj = AM
+		throw_damage = thrown_obj.throwforce
+	else if(isliving(AM))
+		thrown_mob = AM
+		throw_damage *= thrown_mob.mob_size * 8
+	take_damage(throw_damage)
+	if(obj_integrity > 0) //we only stop if we don't break the window
+		AM.stop_throw()
+		. = TRUE
+	if(thrown_mob)
+		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
+
+
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
+	if(!(atom_flags & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
@@ -108,43 +128,41 @@
 		span_notice("You hear a knocking sound."))
 		windowknock_cooldown = world.time + 100
 
+/obj/structure/window/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!isliving(grab.grabbed_thing))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	var/state = user.grab_state
+	user.drop_held_item()
+	step_towards(grabbed_mob, src)
+	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	switch(state)
+		if(GRAB_PASSIVE)
+			damage += base_damage
+			grabbed_mob.visible_message(span_warning("[user] slams [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
+		if(GRAB_AGGRESSIVE)
+			damage += base_damage * 1.5
+			grabbed_mob.visible_message(span_danger("[user] bashes [grabbed_mob] against \the [src]!"))
+			log_combat(user, grabbed_mob, "bashed", "", "against \the [src]")
+			if(prob(50))
+				grabbed_mob.Paralyze(2 SECONDS)
+		if(GRAB_NECK)
+			damage += base_damage * 2
+			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
+			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
+			grabbed_mob.Paralyze(2 SECONDS)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	take_damage(damage * 2, BRUTE, MELEE)
+	return TRUE
+
 /obj/structure/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/M = G.grabbed_thing
-		var/state = user.grab_state
-		user.drop_held_item()
-		switch(state)
-			if(GRAB_PASSIVE)
-				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
-				log_combat(user, M, "slammed", "", "against \the [src]")
-				M.apply_damage(7, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(10, BRUTE, MELEE)
-			if(GRAB_AGGRESSIVE)
-				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
-				log_combat(user, M, "bashed", "", "against \the [src]")
-				if(prob(50))
-					M.Paralyze(2 SECONDS)
-				M.apply_damage(10, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(25, BRUTE, MELEE)
-			if(GRAB_NECK)
-				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
-				log_combat(user, M, "crushed", "", "against \the [src]")
-				M.Paralyze(10 SECONDS)
-				M.apply_damage(20, blocked = MELEE)
-				UPDATEHEALTH(M)
-				take_damage(50, BRUTE, MELEE)
-
-	else if(I.flags_item & NOBLUDGEON)
+	if(I.item_flags & NOBLUDGEON)
 		return
 
 	else if(isscrewdriver(I) && deconstructable)
@@ -178,7 +196,7 @@
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 		else
-			new /obj/item/stack/sheet/glass(loc, 2)
+			new /obj/item/stack/sheet/glass/glass(loc, 2)
 	else
 		new shardtype(loc)
 		if(is_full_window())
@@ -228,9 +246,8 @@
 			INVOKE_NEXT_TICK(W, TYPE_PROC_REF(/atom/movable, update_icon))
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
-	//this way it will only update full-tile ones
+/obj/structure/window/update_icon_state()
+	. = ..()
 	if(!src)
 		return
 	if(!is_full_window())
@@ -249,10 +266,9 @@
 		else
 			icon_state = "[basestate][junction]"
 
-/obj/structure/window/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, FIRE)
-	return ..()
+/obj/structure/window/fire_act(burn_level)
+	if(burn_level > 25)
+		take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
 	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
@@ -267,10 +283,9 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
 
-/obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, FIRE)
-	return ..()
+/obj/structure/window/phoronbasic/fire_act(burn_level)
+	if(burn_level > 30)
+		take_damage(burn_level * 0.5, BURN, FIRE)
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced phoron window"
@@ -283,7 +298,7 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 4
 
-/obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
+/obj/structure/window/phoronreinforced/fire_act(burn_level)
 	return
 
 /obj/structure/window/reinforced
@@ -371,9 +386,9 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
-	flags_atom = NONE
+	atom_flags = NONE
 
-/obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
+/obj/structure/window/shuttle/update_icon_state()
 	return
 
 //Framed windows
@@ -382,7 +397,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NONE //This is not a border object; it takes up the entire tile.
+	atom_flags = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
@@ -404,11 +419,10 @@
 
 /obj/structure/window/framed/update_icon()
 	QUEUE_SMOOTH(src)
+	return ..()
 
-
-
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)

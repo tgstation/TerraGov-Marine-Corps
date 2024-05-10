@@ -50,6 +50,7 @@
 	icon_state = "black"
 
 /obj/machinery/portable_atmospherics/canister/update_icon_state()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[icon_state]-1"
 
@@ -91,7 +92,7 @@
 
 
 /obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		if(!(machine_stat & BROKEN))
 			disconnect()
 			machine_stat |= BROKEN

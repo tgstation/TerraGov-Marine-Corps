@@ -30,7 +30,7 @@
 
 /datum/static_lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
-	save_master(new_turf, turn(diagonal, 180))
+	save_master(new_turf, REVERSE_DIR(diagonal))
 
 	var/vertical = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
@@ -171,6 +171,5 @@
 	if(master_NW)
 		master_NW.lighting_corner_SE = null
 		master_NW.lighting_corners_initialised = FALSE
-	if(needs_update)
-		SSlighting.corners_queue -= src
+	SSlighting.corners_queue -= src
 	return ..()

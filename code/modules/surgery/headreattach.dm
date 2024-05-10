@@ -40,6 +40,7 @@
 	span_notice("You peel back tattered flesh where [target]'s head used to be with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 1
+	return ..()
 
 /datum/surgery_step/head/peel/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -73,6 +74,7 @@
 	span_notice("You have finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 2
+	return ..()
 
 /datum/surgery_step/head/shape/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -105,6 +107,7 @@
 	span_notice("You have finished stapling [target]'s neck into place with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 3
+	return ..()
 
 /datum/surgery_step/head/suture/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -140,6 +143,7 @@
 	affected.limb_replacement_stage = 0
 	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
+	return ..()
 
 /datum/surgery_step/head/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -191,6 +195,7 @@
 	//Deal with the head item properly
 	user.temporarilyRemoveItemFromInventory(B)
 	qdel(B)
+	return ..()
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging connectors on [target]'s neck!"), \

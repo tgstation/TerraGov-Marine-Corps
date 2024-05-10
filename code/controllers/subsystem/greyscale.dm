@@ -16,14 +16,6 @@ SUBSYSTEM_DEF(greyscale)
 
 	return SS_INIT_SUCCESS
 
-///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor
-/datum/controller/subsystem/greyscale/proc/cache_list(list/colors, config)
-	for(var/key in colors)
-		if(islist(colors[key]))
-			cache_list(colors[key], config)
-			continue
-		GetColoredIconByType(config, colors[key])
-
 /datum/controller/subsystem/greyscale/proc/RefreshConfigsFromFile()
 	for(var/i in configurations)
 		configurations[i].Refresh(TRUE)

@@ -470,6 +470,11 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"dt" = (
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/wood,
+/area/deathmatch)
 "dH" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/plain,
@@ -2127,7 +2132,7 @@ ad
 ad
 ad
 ad
-ad
+dt
 aN
 ad
 ad

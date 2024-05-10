@@ -32,8 +32,8 @@
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, PROC_REF(modify_burst_shots_to_fire))
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, PROC_REF(modify_burstfire_shot_delay))
 	RegisterSignal(parent, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, PROC_REF(modify_autoburstfire_shot_delay))
-	RegisterSignals(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE, COMSIG_MECH_FIRE), PROC_REF(initiate_shot))
-	RegisterSignals(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE, COMSIG_MECH_STOP_FIRE), PROC_REF(stop_firing))
+	RegisterSignals(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE, COMSIG_MECH_FIRE, COMSIG_ARMORED_FIRE), PROC_REF(initiate_shot))
+	RegisterSignals(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE, COMSIG_MECH_STOP_FIRE, COMSIG_ARMORED_STOP_FIRE), PROC_REF(stop_firing))
 
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
@@ -45,9 +45,9 @@
 	callback_fire = _callback_fire
 
 /datum/component/automatedfire/autofire/Destroy(force, silent)
-	QDEL_NULL(callback_fire)
-	QDEL_NULL(callback_reset_fire)
-	QDEL_NULL(callback_bursting)
+	callback_fire = null
+	callback_reset_fire = null
+	callback_bursting = null
 	return ..()
 
 ///Setter for fire mode

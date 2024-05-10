@@ -7,6 +7,7 @@
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
+	allow_construction = FALSE
 	///Multiplier on any slowdown applied to a mob moving through this turf
 	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit
@@ -144,7 +145,7 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 
 /turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return
+	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
 
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
@@ -193,9 +194,6 @@
 	icon_state = "shallow_water_cave_waterway_edge"
 
 // LAVA
-
-#define LAVA_TILE_BURN_DAMAGE 20
-
 /turf/open/liquid/lava
 	name = "lava"
 	icon = 'icons/turf/lava.dmi'
@@ -214,7 +212,7 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -232,45 +230,24 @@
 	if(!burn_stuff())
 		STOP_PROCESSING(SSobj, src)
 
+///Handles burning turf contents or an entering AM. Returns true to keep processing
 /turf/open/liquid/lava/proc/burn_stuff(AM)
-	. = FALSE
-
-	var/thing_to_check = src
-	if (AM)
-		thing_to_check = list(AM)
-	for(var/thing in thing_to_check)
-		if(ismecha(thing))
-			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(rand(40, 120), BURN, FIRE)
+	var/thing_to_check = AM ? list(AM) : src
+	for(var/atom/thing AS in thing_to_check)
+		if(thing.lava_act())
 			. = TRUE
-
-		else if(isobj(thing))
-			var/obj/O = thing
-			O.fire_act(10000, 1000)
-
-		else if (isliving(thing))
-			var/mob/living/L = thing
-
-			if(L.stat == DEAD)
-				continue
-
-			if(!L.on_fire || L.getFireLoss() <= 200)
-				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
-				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
-				if(!CHECK_BITFIELD(L.pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
-					L.adjust_fire_stacks(20)
-					L.IgniteMob()
-				. = TRUE
 
 /turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
 		if(H)
 			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
-		if(!do_after(user, 5 SECONDS, FALSE))
+		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
 			to_chat(user, span_warning("It takes time to construct a catwalk!"))
 			return
 		if(R.use(4))
@@ -279,7 +256,7 @@
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
+				current_turf.atom_flags &= ~AI_BLOCKED
 		else
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return

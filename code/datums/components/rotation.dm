@@ -95,9 +95,9 @@
 	return ..()
 
 /datum/component/simple_rotation/Destroy()
-	QDEL_NULL(can_user_rotate)
-	QDEL_NULL(can_be_rotated)
-	QDEL_NULL(after_rotation)
+	can_user_rotate = null
+	can_be_rotated = null
+	after_rotation = null
 	return ..()
 
 
@@ -106,10 +106,10 @@
 	return ..()
 
 
-/datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user)
+/datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(rotation_flags & ROTATION_ALTCLICK)
-		. += span_notice("Alt-click to rotate it clockwise.")
+		examine_list += span_notice("Alt-click to rotate it clockwise.")
 
 
 /datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)

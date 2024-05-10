@@ -41,8 +41,9 @@
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
 
-/obj/machinery/smartfridge/update_icon()
-	if( !(machine_stat & NOPOWER) )
+/obj/machinery/smartfridge/update_icon_state()
+	. = ..()
+	if(!(machine_stat & NOPOWER))
 		icon_state = icon_on
 	else
 		icon_state = icon_off
@@ -53,6 +54,8 @@
 
 /obj/machinery/smartfridge/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
@@ -98,7 +101,7 @@
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 
-			P.remove_from_storage(G, src, user)
+			P.storage_datum.remove_from_storage(G, src, user)
 			item_quants[strip_improper(G.name)]++
 			plants_loaded++
 
@@ -152,6 +155,7 @@
 
 
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
+	. = ..()
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/ui_act(action, list/params)

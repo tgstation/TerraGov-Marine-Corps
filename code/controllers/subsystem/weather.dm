@@ -51,6 +51,19 @@ SUBSYSTEM_DEF(weather)
 				eligible_zlevels["[z]"][W] = probability
 	return SS_INIT_SUCCESS
 
+///Loads weather for a particular z-level, used for late loading
+/datum/controller/subsystem/weather/proc/load_late_z(z_level)
+	for(var/V in subtypesof(/datum/weather))
+		var/datum/weather/W = V
+		var/probability = initial(W.probability)
+		var/target_trait = initial(W.target_trait)
+
+		if(!probability)
+			continue
+		if(z_level in SSmapping.levels_by_trait(target_trait))
+			LAZYINITLIST(eligible_zlevels["[z_level]"])
+			eligible_zlevels["[z_level]"][W] = probability
+
 /datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type, z_levels)
 	if(istext(weather_datum_type))
 		for(var/V in subtypesof(/datum/weather))

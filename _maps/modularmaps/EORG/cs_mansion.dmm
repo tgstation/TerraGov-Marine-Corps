@@ -266,7 +266,7 @@
 "og" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ol" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -353,11 +353,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "rk" = (
 /obj/structure/largecrate/random/barrel/yellow,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "rE" = (
 /obj/structure/flora/ausbushes/pointybush,
@@ -392,8 +392,8 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -469,7 +469,7 @@
 /area/deathmatch)
 "vV" = (
 /obj/structure/window/framed/wood,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "wb" = (
 /obj/machinery/floodlight/landing/hq,
@@ -484,7 +484,7 @@
 "wv" = (
 /obj/structure/window/framed/wood,
 /obj/structure/platform,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "wz" = (
 /turf/closed/wall/mainship/outer,
@@ -548,7 +548,7 @@
 /area/deathmatch)
 "yR" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "yT" = (
 /obj/structure/largecrate/guns/merc,
@@ -598,14 +598,14 @@
 /area/deathmatch)
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "AC" = (
 /obj/structure/largecrate/random/case,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Ba" = (
 /obj/effect/turf_decal/riverdecal/edge,
@@ -653,6 +653,13 @@
 "CI" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/wood,
+/area/deathmatch)
+"CK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "CV" = (
 /obj/structure/platform{
@@ -719,11 +726,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Gc" = (
 /obj/structure/largecrate/random/case/small,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Gl" = (
 /turf/open/floor/grass,
@@ -742,7 +749,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Gs" = (
 /obj/effect/decal/cleanable/dirt,
@@ -929,18 +936,25 @@
 "Oh" = (
 /turf/open/floor/grime,
 /area/deathmatch)
+"Oj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "Op" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Ox" = (
 /obj/structure/window/framed/wood,
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "OC" = (
 /obj/structure/largecrate/random/barrel/yellow,
@@ -951,7 +965,7 @@
 /area/deathmatch)
 "Pu" = (
 /obj/structure/largecrate/guns/merc,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "PE" = (
 /obj/structure/bed/chair/comfy/black{
@@ -1074,7 +1088,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "UK" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1086,8 +1100,8 @@
 "Vm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -1126,7 +1140,7 @@
 /area/deathmatch)
 "Wk" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Ws" = (
 /obj/effect/landmark/deathmatch,
@@ -1205,7 +1219,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Ze" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ZD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1704,7 +1718,7 @@ wz
 (11,1,1) = {"
 wz
 Ay
-Ay
+CK
 wz
 Gl
 Gl
@@ -1786,7 +1800,7 @@ BK
 Wk
 yM
 Ay
-Ay
+CK
 Db
 Gl
 Gl
@@ -2157,7 +2171,7 @@ Gl
 Gl
 jU
 tm
-Ay
+Oj
 Vm
 tN
 Gl

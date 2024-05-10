@@ -102,7 +102,7 @@
 	if(!rig)
 		return
 	user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 	user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]."))
 	rig.forceMove(get_turf(user))
@@ -134,7 +134,7 @@
 		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
+	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
 	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
 	explode()
@@ -143,6 +143,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/assembly_holder))
 		return
@@ -151,7 +153,7 @@
 		return
 
 	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_HOSTILE) || rig)
 		return
 
 	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
@@ -172,6 +174,7 @@
 	. = ..()
 
 	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
+		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
@@ -179,7 +182,6 @@
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
-	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
 	if(exploding)
 		return
 	exploding = TRUE
@@ -191,10 +193,8 @@
 		explosion(loc, light_impact_range = 2, flame_range = 2)
 	qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
-	if(temperature > T0C+500)
-		explode()
-	return ..()
+/obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
+	explode()
 
 /obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
@@ -216,9 +216,6 @@
 
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
-	explode()
-
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"
 	desc = "A red fuel barrel"
@@ -232,19 +229,19 @@
 	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
 
 /obj/structure/reagent_dispensers/fueltank/xfuel/explode()
-	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
+	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
 
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 5)
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 4)
 	else
-		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
+		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
 		explosion(loc, light_impact_range = 3)
 
 	qdel(src)

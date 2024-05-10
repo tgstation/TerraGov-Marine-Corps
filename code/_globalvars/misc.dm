@@ -39,5 +39,11 @@ GLOBAL_PROTECT(key_to_time_of_role_death)
 GLOBAL_LIST_EMPTY(key_to_time_of_death)
 GLOBAL_PROTECT(key_to_time_of_death)
 
+GLOBAL_LIST_EMPTY(key_to_time_of_xeno_death)
+GLOBAL_PROTECT(key_to_time_of_xeno_death)
+
+GLOBAL_LIST_EMPTY(key_to_time_of_caste_swap)
+GLOBAL_PROTECT(key_to_time_of_caste_swap)
+
 ///List of ssd living mobs
 GLOBAL_LIST_EMPTY(ssd_living_mobs)

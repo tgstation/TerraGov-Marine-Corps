@@ -11,6 +11,23 @@
 /obj/effect/turf_decal/grassdecal/center
 	icon_state = "grassdecal_center"
 
+/obj/effect/turf_decal/grassdecal/autosmooth
+	mouse_opacity = MOUSE_OPACITY_ICON
+	icon = 'icons/obj/flora/smooth/grass_decal.dmi'
+	icon_state = "jungle-border-icon"
+	base_icon_state = "jungle-border"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	canSmoothWith = list(
+		SMOOTH_GROUP_JUNGLE_FLOOR,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 /obj/effect/turf_decal/lvsanddecal
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "lvsanddecal_edge"

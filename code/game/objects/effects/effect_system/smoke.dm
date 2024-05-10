@@ -11,19 +11,26 @@
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
 	var/amount = 3
+	///Duration in 2 second ticks
 	var/lifetime = 5
 	///time in decisecond for a smoke to spread one tile.
 	var/expansion_speed = 1
+	///Special effect traits
 	var/smoke_traits = NONE
-	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
-	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
-	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
+	///Smoke effect strength mult
+	var/strength = 1
+	///Effect strength mult against bio protection
+	var/bio_protection = 1
+	///for associated chemical smoke
+	var/datum/effect_system/smoke_spread/cloud
+	///Fraction used for chem touch effects
 	var/fraction = 0.2
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
 	///The original source of the smoke. Used for smoke spread checks
-	var/origin
+	var/atom/movable/origin
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -54,28 +61,16 @@
 	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
-		INVOKE_ASYNC(src, PROC_REF(fade_out))
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
 	STOP_PROCESSING(SSobj, src)
+	origin = null
 	if(cloud)
 		LAZYREMOVE(cloud.smokes, src)
 		if(cloud.single_use && !LAZYLEN(cloud.smokes))
 			qdel(cloud)
 	return ..()
-
-/obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
-	if(alpha == 0) //Handle already transparent case
-		return
-	if(frames == 0)
-		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
-	var/step = alpha / frames
-	for(var/i in 1 to frames)
-		alpha -= step
-		if(alpha < 160)
-			set_opacity(FALSE) //if we were blocking view, we aren't now because we're fading out
-		stoplag()
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
@@ -84,6 +79,17 @@
 		return FALSE
 	apply_smoke_effect(get_turf(src))
 	return TRUE
+
+/obj/effect/particle_effect/smoke/ex_act(severity)
+	if(lifetime <= 3)
+		qdel(src)
+		return
+
+	opacity = FALSE
+	alpha = 0
+	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
+	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
+
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -189,8 +195,11 @@
 /////////////////////////////////////////////
 
 /datum/effect_system/smoke_spread
+	///Smoke range
 	var/range = 3
+	///Type of smoke
 	var/smoke_type = /obj/effect/particle_effect/smoke
+	///Smoke duration in 2 sec ticks
 	var/lifetime
 	var/list/smokes
 	var/list/smoked_mobs
@@ -212,17 +221,19 @@
 
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
 	if(isturf(loca))
-		location = loca
+		location = WEAKREF(loca)
 	else
-		location = get_turf(loca)
+		location = WEAKREF(get_turf(loca))
 	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(!QDELETED(holder))
-		location = get_turf(holder)
-	new smoke_type(location, range, lifetime)
+	var/atom/_holder = get_holder()
+	var/turf/_location = location?.resolve()
+	if(!QDELETED(_holder))
+		_location = get_turf(_holder)
+	new smoke_type(_location, range, lifetime)
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -274,6 +285,23 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
+/obj/effect/particle_effect/smoke/plasmaloss/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
+
+//////////////////////////////////////
+// ANTIGAS SMOKE
+////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/antigas
+	alpha = 65
+	opacity = FALSE
+	color = "#1b1b1b"
+	smoke_traits = SMOKE_PURGER
+
 //////////////////////////////////////
 // FLASHBANG SMOKE
 ////////////////////////////////////
@@ -293,6 +321,13 @@
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
+/obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
+
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -309,40 +344,50 @@
 		return
 	if(S.smoke_traits & SMOKE_PLASMALOSS)
 		lifetime -= 2
+	if(S.smoke_traits & SMOKE_PURGER)
+		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 6
+	alpha = 120
+	opacity = FALSE
 	color = "#86B028" //Mostly green?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
+
+//Used for smokebomb nades.
+/obj/effect/particle_effect/smoke/xeno/burn/opaque
+	alpha = 255
+	opacity = TRUE
 
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
-	alpha = 60
-	opacity = FALSE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
+	alpha = 120
+	opacity = FALSE
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
+	alpha = 255
+	opacity = TRUE
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
-	alpha = 60
-	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
+	alpha = 60
+	opacity = FALSE
 	color = "#00B22C"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	color = "#0287A1"
@@ -387,18 +432,26 @@
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
 
+/datum/effect_system/smoke_spread/antigas
+	smoke_type = /obj/effect/particle_effect/smoke/antigas
+
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
 	var/strength = 1
 
 /datum/effect_system/smoke_spread/xeno/start()
-	if(QDELETED(location) && !QDELETED(holder))
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
+	var/atom/_holder = get_holder()
+	var/turf/_location = location?.resolve()
+	if(QDELETED(_location) && !QDELETED(_holder))
+		location = WEAKREF(get_turf(get_holder()))
+	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(_location, range, lifetime, src)
 	S.strength = strength
 
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
+
+/datum/effect_system/smoke_spread/xeno/acid/opaque
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/opaque
 
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
@@ -439,7 +492,8 @@
 	return ..()
 
 /datum/effect_system/smoke_spread/chem
-	var/obj/chemholder
+	///The holder for this reagent
+	var/atom/movable/chemholder
 	smoke_type = /obj/effect/particle_effect/smoke/chem
 
 /datum/effect_system/smoke_spread/chem/New()
@@ -447,11 +501,15 @@
 	chemholder = new()
 	chemholder.create_reagents(500)
 
+/datum/effect_system/smoke_spread/chem/Destroy()
+	QDEL_NULL(chemholder)
+	return ..()
+
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry, radius = 1, loca, smoke_time, silent = FALSE)
 	if(isturf(loca))
-		location = loca
+		location = WEAKREF(loca)
 	else
-		location = get_turf(loca)
+		location = WEAKREF(get_turf(loca))
 	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
@@ -465,14 +523,17 @@
 		if(contained)
 			contained = "\[[contained]\]"
 
-		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained].")
-		log_game("A chemical smoke reaction has taken place in ([AREACOORD(location)])[contained].")
+		var/turf/_location = location?.resolve()
+		if(_location)
+			message_admins("Smoke: ([ADMIN_VERBOSEJMP(_location)])[contained].")
+			log_game("A chemical smoke reaction has taken place in ([AREACOORD(_location)])[contained].")
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	if(QDELETED(location) && !QDELETED(holder))
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
+	var/turf/_location = location?.resolve()
+	if(QDELETED(_location) && !QDELETED(holder))
+		location = WEAKREF(get_turf(holder))
+	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location?.resolve(), range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
 		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)

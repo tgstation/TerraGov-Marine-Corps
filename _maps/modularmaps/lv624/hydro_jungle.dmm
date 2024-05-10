@@ -549,8 +549,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/secure{

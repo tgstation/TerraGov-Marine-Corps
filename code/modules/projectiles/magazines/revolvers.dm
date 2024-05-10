@@ -5,7 +5,7 @@
 	name = "\improper R-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	caliber = CALIBER_44
 	icon_state = "m44"
 	icon_state_mini = "mag_revolver_bronze"
@@ -30,7 +30,7 @@
 	name = "\improper R-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/tp44
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	caliber = CALIBER_44
 	icon_state = "tp44"
 	icon_state_mini = "mag_revolver"
@@ -73,7 +73,7 @@
 /obj/item/ammo_magazine/revolver/judge
 	name = "\improper Judge speed loader (.45L)"
 	desc = "A revolver speed loader for the Judge, these rounds have a high velocity propellant, leading to next to no scatter and falloff."
-	default_ammo = /datum/ammo/bullet/revolver/marksman
+	default_ammo = /datum/ammo/bullet/revolver/judge
 	caliber = CALIBER_45L
 	max_rounds = 5
 	icon_state = "m_m44"

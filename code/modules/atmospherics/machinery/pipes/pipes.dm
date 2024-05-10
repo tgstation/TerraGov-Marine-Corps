@@ -3,7 +3,7 @@
 	plane = FLOOR_PLANE
 	use_power = NO_POWER_USE
 	can_unwrench = FALSE
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 	var/datum/pipeline/parent = null
 
 	buckle_lying = -1
@@ -42,6 +42,8 @@
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/pipe_meter))
 		var/obj/item/pipe_meter/meter = I
 		user.dropItemToGround(meter)

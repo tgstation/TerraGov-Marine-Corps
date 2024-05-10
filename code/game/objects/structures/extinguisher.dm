@@ -30,6 +30,8 @@
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/extinguisher))
 		if(has_extinguisher || !opened)
@@ -58,12 +60,14 @@
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/update_icon()
-	overlays.Cut()
+/obj/structure/extinguisher_cabinet/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][opened]"
 
+/obj/structure/extinguisher_cabinet/update_overlays()
+	. = ..()
 	if(opened && has_extinguisher)
-		overlays += "extinguishero_[has_extinguisher.sprite_name]"
+		. += "extinguishero_[has_extinguisher.sprite_name]"
 
 /obj/structure/extinguisher_cabinet/mini
 	starter_extinguisher = /obj/item/tool/extinguisher/mini

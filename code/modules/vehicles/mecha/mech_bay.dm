@@ -74,7 +74,9 @@
 	name = "mech bay power control console"
 	desc = "Displays the status of mechs connected to the recharge station."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "recharge_comp"
+	icon_state = "computer"
+	screen_overlay = "recharge_comp"
+	broken_icon = "computer_yellow_broken"
 	light_color = LIGHT_COLOR_PINK
 	///Ref to charge port fwe are viewing data for, cyclical reference
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
@@ -115,7 +117,7 @@
 
 	if(!recharging_mech)
 		return data
-	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name,)
+	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name)
 
 	if(QDELETED(recharging_mech.cell))
 		return data
@@ -145,13 +147,10 @@
 		recharge_port = null
 
 /obj/machinery/computer/mech_bay_power_console/update_overlays()
-	. = ..()
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-	var/obj/vehicle/sealed/mecha/recharging_mech = recharge_port?.recharging_mech_ref?.resolve()
+	screen_overlay = initial(screen_overlay)
 
-	if(!recharging_mech?.cell)
-		return
-	if(recharging_mech.cell.charge >= recharging_mech.cell.maxcharge)
-		return
-	. += "recharge_comp_on"
+	var/obj/vehicle/sealed/mecha/recharging_mech = recharge_port?.recharging_mech_ref?.resolve()
+	if(recharging_mech?.cell && recharging_mech.cell.charge >= recharging_mech.cell.maxcharge)
+		screen_overlay = "[screen_overlay]_on"
+
+	return ..()

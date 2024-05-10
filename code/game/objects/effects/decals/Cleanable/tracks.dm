@@ -116,9 +116,8 @@
 	if(updated)
 		update_icon()
 
-/obj/effect/decal/cleanable/blood/tracks/update_icon()
-	overlays.Cut()
-	color = "#FFFFFF"
+/obj/effect/decal/cleanable/blood/tracks/update_overlays()
+	. = ..()
 	var/truedir=0
 
 	// Update ONLY the overlays that have changed.
@@ -131,14 +130,14 @@
 			truedir=truedir>>4
 
 		if(track.overlay)
-			track.overlay=null
+			track.overlay=null //todo, not handling track overlays properly. fuck this shitcode.
 		var/image/I = image(icon, icon_state=state, dir=num2dir(truedir))
 		I.color = track.basecolor
 
 		track.fresh=0
 		track.overlay=I
 		stack[stack_idx]=track
-		overlays += I
+		. += I
 	updatedtracks=0 // Clear our memory of updated tracks.
 
 /obj/effect/decal/cleanable/blood/tracks/footprints

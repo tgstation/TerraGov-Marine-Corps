@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/warlock
-	caste_base_type = /mob/living/carbon/xenomorph/warlock
+	caste_base_type = /datum/xeno_caste/warlock
 	name = "Warlock"
 	desc = "A large, physically frail creature. It hovers in the air and seems to buzz with psychic power."
 	icon = 'icons/Xeno/castes/warlock.dmi'
@@ -16,7 +16,7 @@
 	old_x = -16
 	drag_delay = 3
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pass_flags = PASS_LOW_STRUCTURE
 
 /mob/living/carbon/xenomorph/warlock/Initialize(mapload)

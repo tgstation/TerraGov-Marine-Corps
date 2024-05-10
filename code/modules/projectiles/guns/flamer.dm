@@ -5,15 +5,20 @@
 /obj/item/weapon/gun/flamer
 	name = "flamer"
 	desc = "flame go froosh"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
-	fire_sound = "gun_flamethrower"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	fire_sound = SFX_GUN_FLAMETHROWER
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	muzzle_flash = null
 	aim_slowdown = 1.75
+	wield_delay = 0.4 SECONDS
 	general_codex_key = "flame weapons"
 	attachable_allowed = list( //give it some flexibility.
 		/obj/item/attachable/flashlight,
@@ -23,7 +28,6 @@
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/wide/red,
-		/obj/item/attachable/shoulder_mount,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
@@ -34,7 +38,7 @@
 		ATTACHMENT_SLOT_FLAMER_NOZZLE,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
@@ -51,6 +55,9 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -64,7 +71,7 @@
 	///Gun based modifier for burn time. Percentage based.
 	var/burn_time_mod = 1
 	///Bitfield flags for flamer specific traits.
-	var/flags_flamer_features = NONE
+	var/flamer_features_flags = NONE
 	///Overlay icon state of the pilot light.
 	var/lit_overlay_icon_state = "+lit"
 	///Pixel offset on the X axis for the pilot light overlay.
@@ -111,29 +118,36 @@
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) == !light) //!s so we can check equivalence on truthy, rather than true, values
+	if(!CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT) == !light) //!s so we can check equivalence on truthy, rather than true, values
 		return
 	if(light)
-		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+		ENABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
+		turn_light(null, TRUE)
 	else
-		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
-	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
+		DISABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
+		turn_light(null, FALSE)
+	playsound(src, CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
-
-	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+	if(CHECK_BITFIELD(flamer_features_flags, FLAMER_NO_LIT_OVERLAY))
 		return
 
 	update_icon()
 
 /obj/item/weapon/gun/flamer/update_overlays()
 	. = ..()
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)|| CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+	if(!CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)|| CHECK_BITFIELD(flamer_features_flags, FLAMER_NO_LIT_OVERLAY))
 		return
 
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
 	. += lit_overlay
+
+/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -227,7 +241,7 @@
 	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flamer_features_flags, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
@@ -276,21 +290,22 @@
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
-	item_state = "m240"
+	worn_icon_state = "m240"
 
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
 	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "v62"
-	item_state = "v62"
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	worn_icon_state = "v62"
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
 	lit_overlay_icon_state = "v62_lit"
 	lit_overlay_offset_x = 0
@@ -300,9 +315,15 @@
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/large/som,
+		/obj/item/ammo_magazine/flamer_tank/large/X/som,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+
+/obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
@@ -329,14 +350,21 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner
+	starting_attachment_types = list(
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/stock/t84stock,
+	)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrower"
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
-	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	flamer_features_flags = FLAMER_NO_LIT_OVERLAY
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
@@ -363,7 +391,7 @@
 	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
-	flags_attach_features = NONE
+	attach_features_flags = NONE
 
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
@@ -371,8 +399,8 @@
 	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
-	item_state = "tl84"
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
+	worn_icon_state = "tl84"
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
@@ -403,7 +431,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
@@ -443,7 +471,8 @@
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
-		update_icon(1, 0)
+		update_appearance()
+		update_sides()
 	return ..()
 
 
@@ -486,7 +515,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
-	light_color = LIGHT_COLOR_LAVA
 	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/firelevel = 12
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
@@ -497,6 +525,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	updateicon()
 
 	START_PROCESSING(SSobj, src)
 
@@ -513,7 +542,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 ///Effects applied to a mob that crosses a burning turf
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
 	if(istype(M))
-		M.flamer_fire_act(burnlevel)
+		M.fire_act(burnlevel)
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -546,19 +575,19 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		return
 
 	for(var/mob/living/C in get_turf(src))
-		C.flamer_fire_act(fire_stacks)
+		C.fire_act(fire_stacks)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_color = "LIGHT_COLOR_FLAME"
 	var/light_intensity = 3
 	switch(flame_color)
 		if("red")
-			light_color = LIGHT_COLOR_LAVA
+			light_color = LIGHT_COLOR_FLAME
 		if("blue")
-			light_color = LIGHT_COLOR_CYAN
+			light_color = LIGHT_COLOR_BLUE_FLAME
 		if("green")
-			light_color = LIGHT_COLOR_GREEN
+			light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
@@ -584,7 +613,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel)
+	T.fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -593,7 +622,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel)
+		A.fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
@@ -620,8 +649,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
-	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flamer_features_flags = FLAMER_NO_LIT_OVERLAY
 
 	flame_max_wall_pen = 1 //Actually means we'll hit one wall and then stop
 	flame_max_wall_pen_wide = 1

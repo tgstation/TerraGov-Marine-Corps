@@ -179,6 +179,7 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	PostSetup()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMEMODE_LOADED)
 	return TRUE
 
 
@@ -311,7 +312,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	if(!delay)
-		delay = CONFIG_GET(number/round_end_countdown) * 10
+		delay = CONFIG_GET(number/mission_end_countdown) * 10
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)

@@ -149,10 +149,16 @@
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate)
+/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate, existing_ticks)
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
+	ticks += existing_ticks
+	if(!acid_t)
+		return INITIALIZE_HINT_QDEL
+	layer = acid_t.layer
+	if(iswallturf(acid_t))
+		icon_state = icon_state += "_wall"
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
@@ -169,7 +175,7 @@
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
-		playsound(src, "acid_hit", 25)
+		playsound(src, SFX_ACID_HIT, 25)
 
 		if(istype(acid_t, /turf))
 			if(iswallturf(acid_t))

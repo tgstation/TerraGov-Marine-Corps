@@ -1,0 +1,5 @@
+author: "chizzy376"
+delete-after: True
+changes:
+  - bugfix: "Slumbridge's SOM hangar is open again"
+  - bugfix: "Slumbridge lava prison no longer has a hole in the western reception"

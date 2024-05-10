@@ -17,6 +17,10 @@
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
 #define OMNIDIRECTIONAL_ATTACKS (1<<10)
+///Do you need mech skill to pilot this mech
+#define MECHA_SKILL_LOCKED (1<<11)
+///Is currently suffering from an EMP
+#define MECHA_EMPED (1<<12)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
@@ -95,6 +99,8 @@
 ///degree of cone in front of which mech is allowed to fire at
 #define MECH_FIRE_CONE_ALLOWED 120
 
+///degree of cone in front of which armored vehicles are allowed to fire at
+#define ARMORED_FIRE_CONE_ALLOWED 110
 /**
  * greyscale mech shenanigans
  */

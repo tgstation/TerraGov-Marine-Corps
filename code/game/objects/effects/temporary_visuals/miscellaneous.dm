@@ -105,23 +105,31 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	duration = 0.5 SECONDS
 
 
-/obj/effect/temp_visual/xenomorph/afterimage
+/obj/effect/temp_visual/after_image
 	name = "afterimage"
-	layer = MOB_LAYER
+	layer = BELOW_MOB_LAYER
 	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
 	density = FALSE
 	opacity = FALSE
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
+	randomdir = FALSE
+	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
-/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+/obj/effect/temp_visual/after_image/Initialize(mapload, atom/owner, _duration = 0.5 SECONDS)
 	. = ..()
-	appearance = owner.appearance
-	setDir(owner.dir)
-	alpha = initial(alpha)
-	layer = initial(layer)
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/mutable_appearance/after_image = new()
+	after_image.appearance = owner.appearance
+	after_image.render_target = null
+	after_image.density = initial(density)
+	after_image.alpha = initial(alpha)
+	after_image.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	after_image.setDir(owner.dir)
+	after_image.pixel_x = owner.pixel_x
+	after_image.pixel_y = owner.pixel_y
+	appearance = after_image
+	duration = _duration
+	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/ob_impact
 	name = "ob impact animation"
@@ -167,7 +175,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 	var/marker_flags = GLOB.faction_to_minimap_flag[faction]
 	if(marker_flags)
-		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on))
+		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, VERY_HIGH_FLOAT_LAYER))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
@@ -269,6 +277,20 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 	set_light(2, 2, LIGHT_COLOR_DARK_BLUE)
 
+/obj/effect/temp_visual/teleporter_array
+	icon = 'icons/effects/light_overlays/light_320.dmi'
+	icon_state = "light"
+	plane = GRAVITY_PULSE_PLANE
+	duration = 15
+
+/obj/effect/temp_visual/teleporter_array/Initialize(mapload)
+	. = ..()
+	var/image/I = image(icon, src, icon_state, 10, pixel_x = -144, pixel_y = -144)
+	overlays += I //we use an overlay so the icon and light source are both in the correct location
+	icon_state = null
+	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
+	set_light(9, 9, LIGHT_COLOR_DARK_BLUE)
+
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'
 	icon_state = "shockwave"
@@ -279,7 +301,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/shockwave/Initialize(mapload, radius)
 	. = ..()
 	deltimer(timerid)
-	timerid = QDEL_IN(src, 0.5 * radius)
+	timerid = QDEL_IN_STOPPABLE(src, 0.5 * radius)
 	transform = matrix().Scale(32 / 1024, 32 / 1024)
 	animate(src, time = 1/2 * radius, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5))
 

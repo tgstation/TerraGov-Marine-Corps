@@ -29,10 +29,11 @@ GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtype
 GLOBAL_LIST_EMPTY(alive_living_list)		//all alive /mob/living, including clientless.
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
 GLOBAL_LIST_EMPTY(ai_list)
+GLOBAL_LIST_EMPTY(silicon_mobs) //all silicon mobs
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
-GLOBAL_LIST_EMPTY(humans_by_zlevel)			//z level /list/list of alive humans
+GLOBAL_LIST_EMPTY_TYPED(humans_by_zlevel, /list/mob/living/carbon/human)			//z level /list/list of alive humans
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
@@ -48,131 +49,76 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 
 /proc/init_xeno_caste_list()
 	. = list()
-	for(var/X in subtypesof(/datum/xeno_caste))
-		var/datum/xeno_caste/C = new X
-		if(!(C.caste_type_path in .))
-			.[C.caste_type_path] = list()
-		.[C.caste_type_path][C.upgrade] = C
+	var/list/typelist = subtypesof(/datum/xeno_caste)
+	for(var/datum/xeno_caste/typepath AS in typelist)
+		if(initial(typepath.upgrade) == XENO_UPGRADE_BASETYPE)
+			.[typepath] = list()
+			.[typepath][XENO_UPGRADE_BASETYPE] = new typepath
+			typelist -= typepath
+
+	for(var/typepath in typelist)
+		var/datum/xeno_caste/caste = new typepath
+		.[caste.get_base_caste_type()][caste.upgrade] = caste
 
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,
-	/mob/living/carbon/xenomorph/runner/mature,
-	/mob/living/carbon/xenomorph/runner/elder,
-	/mob/living/carbon/xenomorph/runner/ancient,
 	/mob/living/carbon/xenomorph/runner/primordial,
 	/mob/living/carbon/xenomorph/drone,
-	/mob/living/carbon/xenomorph/drone/mature,
-	/mob/living/carbon/xenomorph/drone/elder,
-	/mob/living/carbon/xenomorph/drone/ancient,
 	/mob/living/carbon/xenomorph/drone/primordial,
 	/mob/living/carbon/xenomorph/sentinel,
-	/mob/living/carbon/xenomorph/sentinel/mature,
-	/mob/living/carbon/xenomorph/sentinel/elder,
-	/mob/living/carbon/xenomorph/sentinel/ancient,
 	/mob/living/carbon/xenomorph/sentinel/primordial,
 	/mob/living/carbon/xenomorph/defender,
-	/mob/living/carbon/xenomorph/defender/mature,
-	/mob/living/carbon/xenomorph/defender/elder,
-	/mob/living/carbon/xenomorph/defender/ancient,
 	/mob/living/carbon/xenomorph/defender/primordial,
 	/mob/living/carbon/xenomorph/gorger,
-	/mob/living/carbon/xenomorph/gorger/mature,
-	/mob/living/carbon/xenomorph/gorger/elder,
-	/mob/living/carbon/xenomorph/gorger/ancient,
 	/mob/living/carbon/xenomorph/gorger/primordial,
 	/mob/living/carbon/xenomorph/hunter,
-	/mob/living/carbon/xenomorph/hunter/mature,
-	/mob/living/carbon/xenomorph/hunter/elder,
-	/mob/living/carbon/xenomorph/hunter/ancient,
 	/mob/living/carbon/xenomorph/hunter/primordial,
 	/mob/living/carbon/xenomorph/warrior,
-	/mob/living/carbon/xenomorph/warrior/mature,
-	/mob/living/carbon/xenomorph/warrior/elder,
-	/mob/living/carbon/xenomorph/warrior/ancient,
 	/mob/living/carbon/xenomorph/warrior/primordial,
 	/mob/living/carbon/xenomorph/spitter,
-	/mob/living/carbon/xenomorph/spitter/mature,
-	/mob/living/carbon/xenomorph/spitter/elder,
-	/mob/living/carbon/xenomorph/spitter/ancient,
 	/mob/living/carbon/xenomorph/spitter/primordial,
 	/mob/living/carbon/xenomorph/hivelord,
-	/mob/living/carbon/xenomorph/hivelord/mature,
-	/mob/living/carbon/xenomorph/hivelord/elder,
-	/mob/living/carbon/xenomorph/hivelord/ancient,
 	/mob/living/carbon/xenomorph/hivelord/primordial,
 	/mob/living/carbon/xenomorph/carrier,
-	/mob/living/carbon/xenomorph/carrier/mature,
-	/mob/living/carbon/xenomorph/carrier/elder,
-	/mob/living/carbon/xenomorph/carrier/ancient,
 	/mob/living/carbon/xenomorph/carrier/primordial,
 	/mob/living/carbon/xenomorph/bull,
-	/mob/living/carbon/xenomorph/bull/mature,
-	/mob/living/carbon/xenomorph/bull/elder,
-	/mob/living/carbon/xenomorph/bull/ancient,
 	/mob/living/carbon/xenomorph/bull/primordial,
 	/mob/living/carbon/xenomorph/queen,
-	/mob/living/carbon/xenomorph/queen/mature,
-	/mob/living/carbon/xenomorph/queen/elder,
-	/mob/living/carbon/xenomorph/queen/ancient,
 	/mob/living/carbon/xenomorph/queen/primordial,
 	/mob/living/carbon/xenomorph/king,
-	/mob/living/carbon/xenomorph/king/mature,
-	/mob/living/carbon/xenomorph/king/elder,
-	/mob/living/carbon/xenomorph/king/ancient,
 	/mob/living/carbon/xenomorph/king/primordial,
 	/mob/living/carbon/xenomorph/wraith,
-	/mob/living/carbon/xenomorph/wraith/mature,
-	/mob/living/carbon/xenomorph/wraith/elder,
-	/mob/living/carbon/xenomorph/wraith/ancient,
 	/mob/living/carbon/xenomorph/wraith/primordial,
 	/mob/living/carbon/xenomorph/ravager,
-	/mob/living/carbon/xenomorph/ravager/mature,
-	/mob/living/carbon/xenomorph/ravager/elder,
-	/mob/living/carbon/xenomorph/ravager/ancient,
 	/mob/living/carbon/xenomorph/ravager/primordial,
 	/mob/living/carbon/xenomorph/praetorian,
-	/mob/living/carbon/xenomorph/praetorian/mature,
-	/mob/living/carbon/xenomorph/praetorian/elder,
-	/mob/living/carbon/xenomorph/praetorian/ancient,
 	/mob/living/carbon/xenomorph/praetorian/primordial,
 	/mob/living/carbon/xenomorph/boiler,
-	/mob/living/carbon/xenomorph/boiler/mature,
-	/mob/living/carbon/xenomorph/boiler/elder,
-	/mob/living/carbon/xenomorph/boiler/ancient,
 	/mob/living/carbon/xenomorph/boiler/primordial,
 	/mob/living/carbon/xenomorph/defiler,
-	/mob/living/carbon/xenomorph/defiler/mature,
-	/mob/living/carbon/xenomorph/defiler/elder,
-	/mob/living/carbon/xenomorph/defiler/ancient,
 	/mob/living/carbon/xenomorph/defiler/primordial,
 	/mob/living/carbon/xenomorph/crusher,
-	/mob/living/carbon/xenomorph/crusher/mature,
-	/mob/living/carbon/xenomorph/crusher/elder,
-	/mob/living/carbon/xenomorph/crusher/ancient,
 	/mob/living/carbon/xenomorph/crusher/primordial,
 	/mob/living/carbon/xenomorph/widow,
-	/mob/living/carbon/xenomorph/widow/mature,
-	/mob/living/carbon/xenomorph/widow/elder,
-	/mob/living/carbon/xenomorph/widow/ancient,
 	/mob/living/carbon/xenomorph/widow/primordial,
 	/mob/living/carbon/xenomorph/shrike,
-	/mob/living/carbon/xenomorph/shrike/mature,
-	/mob/living/carbon/xenomorph/shrike/elder,
-	/mob/living/carbon/xenomorph/shrike/ancient,
 	/mob/living/carbon/xenomorph/shrike/primordial,
 	/mob/living/carbon/xenomorph/warlock,
-	/mob/living/carbon/xenomorph/warlock/mature,
-	/mob/living/carbon/xenomorph/warlock/elder,
-	/mob/living/carbon/xenomorph/warlock/ancient,
 	/mob/living/carbon/xenomorph/warlock/primordial,
+	/mob/living/carbon/xenomorph/puppeteer,
+	/mob/living/carbon/xenomorph/puppeteer/primordial,
+	/mob/living/carbon/xenomorph/behemoth,
+	/mob/living/carbon/xenomorph/behemoth/primordial,
 	/mob/living/carbon/xenomorph/beetle,
 	/mob/living/carbon/xenomorph/mantis,
 	/mob/living/carbon/xenomorph/scorpion,
 	/mob/living/carbon/xenomorph/spiderling,
+	/mob/living/carbon/xenomorph/baneling,
 	))
-GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender))
-GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/wraith))
-GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/widow, /mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
+GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
+GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/wraith, /datum/xeno_caste/puppeteer))
+GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
+GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king))
 
 GLOBAL_LIST_INIT_TYPED(hive_datums, /datum/hive_status, init_hive_datum_list()) // init by make_datum_references_lists()
 
@@ -194,6 +140,8 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 	var/list/per_tier_counter = list()
 	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+		if(caste.caste_flags & CASTE_HIDE_IN_STATUS)
+			continue
 		var/type_path = initial(caste.caste_type_path)
 
 		GLOB.hive_ui_caste_index[type_path] = length(.) //Starts from 0.
@@ -235,3 +183,16 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 	for(var/i in GLOB.mob_list)
 		var/mob/M = i
 		M.update_config_movespeed()
+
+///The actions given to all humans on init
+GLOBAL_LIST_INIT(human_init_actions, list(
+	/datum/action/skill/toggle_orders,
+	/datum/action/skill/issue_order/move,
+	/datum/action/skill/issue_order/hold,
+	/datum/action/skill/issue_order/focus,
+	/datum/action/innate/order/attack_order/personal,
+	/datum/action/innate/order/defend_order/personal,
+	/datum/action/innate/order/retreat_order/personal,
+	/datum/action/innate/order/rally_order/personal,
+	/datum/action/innate/message_squad,
+))

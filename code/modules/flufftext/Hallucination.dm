@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
+	if(!target)
+		return INITIALIZE_HINT_QDEL
 	target = T
 	current_image = GetImage()
 	if(target.client)
@@ -112,21 +114,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(target.client)
 			target.client.images |= current_image
 
-/obj/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
-	icon_state = new_state
-	if(new_icon)
-		icon = new_icon
-	else
-		icon = initial(icon)
-	px = new_px
-	py = new_py
-	Show()
-
 /obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
 	Show()
 
 /obj/effect/hallucination/simple/Destroy()
-	if(target.client)
+	if(target?.client)
 		target.client.images.Remove(current_image)
 	active = FALSE
 	return ..()
@@ -142,6 +134,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "Mature Runner ([rand(100, 999)])"
 
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!.)
+		return
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))
@@ -160,7 +155,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			break
 	if(pump)
 		xeno = new(pump.loc, target)
-		playsound(src, get_sfx("alien_ventpass"), 35, 1)
+		playsound(src, SFX_ALIEN_VENTPASS, 35, 1)
 		sleep(1 SECONDS)
 		xeno.throw_at(target, 7, 1, xeno, FALSE, TRUE)
 		sleep(1 SECONDS)
@@ -169,7 +164,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		to_chat(target, span_notice("[xeno.name] begins climbing into the ventilation system..."))
 		sleep(1.5 SECONDS)
 		to_chat(target, span_notice("[xeno.name] scrambles into the ventilation ducts!"))
-		playsound(src, get_sfx("alien_ventpass"), 35, 1)
+		playsound(src, SFX_ALIEN_VENTPASS, 35, 1)
 		qdel(xeno)
 	qdel(src)
 
@@ -185,10 +180,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("xeno")
 			var/hits = 0
 			for(var/i in 1 to rand(5, 10))
-				target.playsound_local(source, get_sfx("alien_claw_flesh"), 25, TRUE)
+				target.playsound_local(source, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 				if(hits >= 4 && prob(70))
-					target.playsound_local(source, get_sfx(pick("male_scream", "female_scream")), 35, TRUE)
+					target.playsound_local(source, get_sfx(pick(SFX_MALE_SCREAM, SFX_FEMALE_SCREAM)), 35, TRUE)
 					break
 	qdel(src)
 
@@ -285,17 +280,17 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.playsound_local(source,'sound/effects/grillehit.ogg', 35, TRUE)
 				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 		if("apc sparks")
-			target.playsound_local(source, get_sfx("sparks"), 35, TRUE)
+			target.playsound_local(source, SFX_SPARKS, 35, TRUE)
 		if("hugged")
 			target.playsound_local(source, 'sound/effects/alien_egg_move.ogg', 35, TRUE)
 			sleep(1 SECONDS)
 			target.playsound_local(source, get_sfx("[pick("male", "female")]_hugged"), 35, TRUE)
 		if("weed placed")
-			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+			target.playsound_local(source, SFX_ALIEN_RESIN_BUILD, 35, TRUE)
 		if("gunshots")
-			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+			target.playsound_local(source, SFX_ALIEN_RESIN_BUILD, 35, TRUE)
 			for(var/i in 1 to rand(5, 10))
-				target.playsound_local(source, get_sfx("ballistic_hit"), 35, TRUE)
+				target.playsound_local(source, SFX_BALLISTIC_HIT, 35, TRUE)
 				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 
 	qdel(src)

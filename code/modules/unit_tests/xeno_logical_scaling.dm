@@ -40,5 +40,5 @@
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
 				if(caste.vars[stat] > lesser_test_vars[stat])
-					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [caste.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_NORMAL] has [caste.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
 				lesser_test_vars[stat] = caste.vars[stat]

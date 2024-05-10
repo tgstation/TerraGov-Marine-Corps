@@ -68,19 +68,19 @@
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
 
 
-/obj/machinery/power/smes/batteryrack/update_icon()
-	overlays.Cut()
+/obj/machinery/power/smes/batteryrack/update_overlays()
+	. = ..()
 	if(machine_stat & BROKEN)
 		return
 
-	if (outputting)
-		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
+	if(outputting)
+		. += image('icons/obj/power.dmi', "gsmes_outputting")
 	if(inputting)
-		overlays += image('icons/obj/power.dmi', "gsmes_charging")
+		. += image('icons/obj/power.dmi', "gsmes_charging")
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		overlays += image('icons/obj/power.dmi', "gsmes_og[clevel]")
+		. += image('icons/obj/power.dmi', "gsmes_og[clevel]")
 
 
 
@@ -90,6 +90,8 @@
 
 /obj/machinery/power/smes/batteryrack/attackby(obj/item/I, mob/user, params) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	. = ..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
+	if(.)
+		return
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
@@ -108,8 +110,6 @@
 		M.state = 2
 		M.icon_state = "box_1"
 		for(var/obj/O in component_parts)
-			if(O.reliability != 100 && crit_fail)
-				O.crit_fail = TRUE
 			O.forceMove(loc)
 		qdel(src)
 
@@ -147,20 +147,21 @@
 
 
 /obj/machinery/power/smes/batteryrack/makeshift/update_icon()
-	overlays.Cut()
-	if(machine_stat & BROKEN)	return
+	. = ..()
+	if(machine_stat & BROKEN)
+		return
 
-	if (outputting)
-		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
+	if(outputting)
+		. += image('icons/obj/power.dmi', "gsmes_outputting")
 	if(inputting)
-		overlays += image('icons/obj/power.dmi', "gsmes_charging")
-	if (overcharge_percent > 100)
-		overlays += image('icons/obj/power.dmi', "gsmes_overcharge")
+		. += image('icons/obj/power.dmi', "gsmes_charging")
+	if(overcharge_percent > 100)
+		. += image('icons/obj/power.dmi', "gsmes_overcharge")
 	else
 		var/clevel = chargedisplay()
 		if(clevel>0)
-			overlays += image('icons/obj/power.dmi', "gsmes_og[clevel]")
-	return
+			. += image('icons/obj/power.dmi', "gsmes_og[clevel]")
+
 
 //This mess of if-elses and magic numbers handles what happens if the engies don't pay attention and let it eat too much charge
 //What happens depends on how much capacity has the ghetto smes and how much it is overcharged.

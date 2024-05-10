@@ -3,8 +3,8 @@
 	name = "dropship picker"
 	desc = "A computer that lets you choose the model of the tadpole.."
 	density = TRUE
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "computer_generic"
+	icon_state = "computer"
+	screen_overlay = "computer_generic"
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -62,6 +62,8 @@
 		"_big" = 'icons/ui_icons/dropshippicker/_big.png',
 		"_food" = 'icons/ui_icons/dropshippicker/_food.png',
 		"_factorio" = 'icons/ui_icons/dropshippicker/_factorio.png',
+		"_combat_tad" = 'icons/ui_icons/dropshippicker/_combat_tad.png',
+		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 	)
 

@@ -16,15 +16,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
-	item_state = "headset"
+	worn_icon_state = "headset"
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
@@ -54,6 +54,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)
@@ -129,6 +131,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+	/// only headsets autoupdate squads cuz im lazy and dont want to redo this proc
+	if(keyslot?.custom_squad_factions || keyslot2?.custom_squad_factions)
+		for(var/key in GLOB.custom_squad_radio_freqs)
+			var/datum/squad/custom_squad = GLOB.custom_squad_radio_freqs[key]
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_TERRAGOV)
+				continue
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && custom_squad.faction == FACTION_SOM)
+				continue
+			channels[custom_squad.name] = TRUE
+			secure_radio_connections[custom_squad.name] = add_radio(src, custom_squad.radio_freq)
+
 /obj/item/radio/headset/AltClick(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
@@ -157,9 +170,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine radio headset"
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
-	item_state = "headset"
+	worn_icon_state = "headset"
 	frequency = FREQ_COMMON
-	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
@@ -173,11 +186,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/radio/headset/mainship/LateInitialize()
-	. = ..()
-	camera = new /obj/machinery/camera/headset(src)
+	if(faction == FACTION_SOM)
+		camera = new /obj/machinery/camera/headset/som(src)
+	else
+		camera = new /obj/machinery/camera/headset(src)
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
@@ -199,7 +211,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
 	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
-	user.ex_act(EXPLODE_LIGHT)
+	if(wearer)
+		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
@@ -221,7 +234,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer)
 		if(headset_hud_on && wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
-			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 		wearer = null
@@ -272,12 +284,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 			SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 			return
-		if(!wearer.client)
-			var/mob/dead/observer/ghost = wearer.get_ghost()
+		if(!wearer.mind)
+			var/mob/dead/observer/ghost = wearer.get_ghost(TRUE)
 			if(!ghost?.can_reenter_corpse)
 				SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "undefibbable"))
 				return
-		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
+		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable", ABOVE_FLOAT_LAYER))
 		return
 	if(wearer.assigned_squad)
 		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")
@@ -304,7 +316,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer.hud_used.SL_locator.alpha = 128
 		if(wearer.assigned_squad.squad_leader == wearer)
 			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
-			SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
+			SSdirection.start_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, wearer)
 		else
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
@@ -322,7 +334,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
-		SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
+		SSdirection.stop_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, wearer)
 	else
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
@@ -361,9 +373,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 
 	var/dat = {"
-	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	<b><A href='?src=[text_ref(src)];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
 	<BR>
-	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<b><A href='?src=[text_ref(src)];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "radio")
@@ -421,7 +433,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 /obj/item/radio/headset/mainship/mcom/som
-	frequency = RADIO_CHANNEL_SOM
+	frequency = FREQ_SOM
 	keyslot = /obj/item/encryptionkey/mcom/som
 	faction = FACTION_SOM
 	minimap_type = /datum/action/minimap/som
@@ -435,7 +447,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
-		icon_state = "headset_marine_[lowertext(squad.name)]"
+		icon_state = "headset_marine_greyscale"
+		var/image/coloring = image(icon, icon_state="headset_marine_overlay")
+		coloring.color = squad.color
+		add_overlay(coloring)
 		var/dat = "marine [lowertext(squad.name)]"
 		frequency = squad.radio_freq
 		if(ispath(rank, /datum/job/terragov/squad/leader))
@@ -634,6 +649,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\improper Echo Task Force headset"
 	keyslot = /obj/item/encryptionkey/echo
 
+/obj/item/radio/headset/distress/retired
+	name = "retirement home headset"
+	keyslot = /obj/item/encryptionkey/retired
+	frequency = FREQ_RETIRED
+
 //SOM headsets
 
 /obj/item/radio/headset/mainship/som
@@ -662,12 +682,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = dat + " radio headset"
 	return ..()
 
+/obj/item/radio/headset/mainship/som/command
+	name = "SOM command radio headset"
+	icon_state = "com_headset_alt"
+	keyslot = /obj/item/encryptionkey/mcom/som
+	use_command = TRUE
+	command = TRUE
 
 /obj/item/radio/headset/mainship/som/zulu
 	name = "SOM zulu radio headset"
 	icon_state = "headset_marine_zulu"
 	frequency = FREQ_ZULU
-	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/som/zulu/LateInitialize()
 	. = ..()
@@ -691,7 +716,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "SOM yankee radio headset"
 	icon_state = "headset_marine_yankee"
 	frequency = FREQ_YANKEE
-	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/som/yankee/LateInitialize()
 	. = ..()
@@ -715,7 +739,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "SOM xray radio headset"
 	icon_state = "headset_marine_xray"
 	frequency = FREQ_XRAY
-	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/som/xray/LateInitialize()
 	. = ..()
@@ -739,7 +762,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "SOM whiskey radio headset"
 	icon_state = "headset_marine_whiskey"
 	frequency = FREQ_WHISKEY
-	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/som/whiskey/LateInitialize()
 	. = ..()

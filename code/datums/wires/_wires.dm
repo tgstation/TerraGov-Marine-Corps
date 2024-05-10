@@ -127,7 +127,7 @@
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the wiring."),
 			span_notice("You fumble around figuring out the wiring."))
-			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), NONE, holder, BUSY_ICON_UNSKILLED))
 				return
 
 	if(is_cut(wire))
@@ -159,7 +159,7 @@
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
 			span_notice("You fumble around figuring out the wiring."))
-			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), NONE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
 				return
 
 	on_pulse(wire, user)

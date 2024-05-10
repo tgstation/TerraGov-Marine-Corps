@@ -12,6 +12,8 @@
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(issilicon(user))
 		return
@@ -131,38 +133,37 @@
 
 /obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
-		..(severity)
-		return
+		return ..()
 
 	if(istype(charging, /obj/item/weapon/baton))
 		var/obj/item/weapon/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
-	..(severity)
+	return ..()
 
-/obj/machinery/recharger/update_icon()
-	overlays = list()
+/obj/machinery/recharger/update_overlays()
+	. = ..()
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
-	else if(!charging)
-		overlays += "recharger-power"
+	if(!charging)
+		. += "recharger-power"
 		return
 
 	if(percent_charge_complete < 25)
-		overlays += "recharger-10"
+		. += "recharger-10"
 	else if(percent_charge_complete >= 25 && percent_charge_complete < 50)
-		overlays += "recharger-25"
+		. += "recharger-25"
 	else if(percent_charge_complete >= 50 && percent_charge_complete < 75)
-		overlays += "recharger-50"
+		. += "recharger-50"
 	else if(percent_charge_complete >= 75 && percent_charge_complete < 100)
-		overlays += "recharger-75"
+		. += "recharger-75"
 	else if(percent_charge_complete >= 100)
-		overlays += "recharger-100"
+		. += "recharger-100"
 
 	if(istype(charging, /obj/item/weapon/gun/energy/taser))
-		overlays += "recharger-taser"
+		. += "recharger-taser"
 	else if(istype(charging, /obj/item/weapon/baton))
-		overlays += "recharger-baton"
+		. += "recharger-baton"
 
 /obj/machinery/recharger/nopower
 	use_power = NO_POWER_USE

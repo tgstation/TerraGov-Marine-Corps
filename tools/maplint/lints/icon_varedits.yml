@@ -1,0 +1,4 @@
+"*":
+  banned_variables:
+  - icon
+  - icon_state

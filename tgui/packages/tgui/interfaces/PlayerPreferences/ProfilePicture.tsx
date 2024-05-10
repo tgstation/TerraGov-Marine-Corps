@@ -1,8 +1,8 @@
 import { useBackend } from '../../backend';
 import { ByondUi } from '../../components';
 
-export const ProfilePicture = (props, context) => {
-  const { data } = useBackend<ProfilePictureData>(context);
+export const ProfilePicture = (props) => {
+  const { data } = useBackend<ProfilePictureData>();
   const { mapRef } = data;
   return (
     <ByondUi

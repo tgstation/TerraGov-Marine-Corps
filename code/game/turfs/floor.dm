@@ -3,6 +3,8 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	baseturfs = /turf/open/floor/plating
+	///Number of icon state variation this turf has
+	var/icon_variants = 1
 	///If the turf has been physically damaged
 	var/broken = FALSE
 	///If the turf has been damaged by fire
@@ -20,6 +22,10 @@
 	///turf dry timer
 	var/drytimer_id
 
+/turf/open/floor/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /turf/open/floor/ex_act(severity)
 	if(hull_floor)
 		return ..()
@@ -36,7 +42,7 @@
 				break_tile()
 	return ..()
 
-/turf/open/floor/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/fire_act(burn_level)
 	if(hull_floor)
 		return
 	if(!burnt && prob(5))
@@ -59,14 +65,20 @@
 	W.update_icon() //maybe not needed
 	return W
 
-/turf/open/floor/update_icon()
+/turf/open/floor/update_icon_state()
 	. = ..()
 	if(broken)
 		icon_state = broken_states()
 	else if(burnt)
 		icon_state = burnt_states()
 	else
-		icon_state = initial(icon_state)
+		icon_state = normal_states()
+
+///Returns an undamaged icon state for this turf
+/turf/open/floor/proc/normal_states()
+	if(icon_variants < 2)
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 ///Returns a list of icon_states to show this turf is broken
 /turf/open/floor/proc/broken_states()
@@ -103,7 +115,7 @@
 		return TRUE
 	. = ..()
 	if(.)
-		return .
+		return
 	if(floor_tile && istype(object, /obj/item/stack/tile))
 		try_replace_tile(object, user, params)
 		return TRUE

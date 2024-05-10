@@ -17,6 +17,7 @@
 	///do we have bits of decoration to add to the walls?
 	var/decorated_wall = TRUE
 
+/* this completely breaks hull walls in HvH, will fix in a separate pr because wall overlays are horribly shitcode
 /turf/closed/wall/mainship/smooth_icon()
 	. = ..()
 	cut_overlays()
@@ -29,6 +30,9 @@
 			return
 		if(r1 == 9 || r1 == 10)
 			add_overlay("[r2]")
+*/
+
+//turf/closed/wall/mainship/update_icon()
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -217,7 +221,7 @@
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/closed/wall/sulaco/unmeltable/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/sulaco/unmeltable/fire_act(burn_level)
 	return
 
 /turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
@@ -234,11 +238,11 @@
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
 
-/turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
+/turf/closed/wall/indestructible/fire_act(burn_level)
 	return
 
 /turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
+	if(isplasmacutter(I)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
@@ -268,7 +272,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,34)]"
+		icon_state = "title_painting[rand(0,35)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

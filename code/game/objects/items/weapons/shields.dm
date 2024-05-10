@@ -1,6 +1,6 @@
 /obj/item/weapon/shield
 	name = "shield"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/shields_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
 	)
@@ -10,7 +10,7 @@
 	set_shield()
 
 /obj/item/weapon/shield/proc/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
 	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
@@ -19,8 +19,8 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
-	flags_item = IMPEDE_JETPACK
-	flags_equip_slot = ITEM_SLOT_BACK
+	item_flags = IMPEDE_JETPACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
 	throw_speed = 1
@@ -53,6 +53,8 @@
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
@@ -65,13 +67,13 @@
 
 		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2)
+		repair_damage(max_integrity * 0.2, user)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
@@ -91,7 +93,7 @@
 	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 30)
@@ -104,6 +106,7 @@
 	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
+	. = ..()
 	if(obj_integrity <= integrity_failure)
 		icon_state = initial(icon_state) + "_broken"
 	else
@@ -137,13 +140,13 @@
 	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "folding_shield"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
 	integrity_failure = 50
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
 	slowdown = 0.3
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/metal/deployable
 	///Time to deploy
@@ -158,14 +161,14 @@
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
-	flags_atom = CONDUCT|NOBLOODY
+	atom_flags = CONDUCT|NOBLOODY
 	force = 3
 	throwforce = 5
 	throw_speed = 1
@@ -173,6 +176,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
+
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)

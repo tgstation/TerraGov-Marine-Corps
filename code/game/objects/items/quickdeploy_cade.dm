@@ -13,7 +13,7 @@
 
 /obj/item/quikdeploy/attack_self(mob/user)
 	balloon_alert_to_viewers("Starts to deploy barricade")
-	if(!do_after(usr, delay, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(usr, delay, NONE, src, BUSY_ICON_BUILD))
 		to_chat(user, "<span class='warning'>You decide against deploying something here.")
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
@@ -44,14 +44,15 @@
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
-	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		balloon_alert(user, "Can't build here")
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
-		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+		if(!(thing.atom_flags & ON_BORDER)) //dense and non-directional, end
 			balloon_alert(user, "No space")
 			return FALSE
 		if(thing.dir != user.dir)

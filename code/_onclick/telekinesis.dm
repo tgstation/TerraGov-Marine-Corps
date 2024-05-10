@@ -84,7 +84,7 @@ Redefine as needed.
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'
 	icon_state = "2"
-	flags_item = NOBLUDGEON | ITEM_ABSTRACT | DELONDROP
+	item_flags = NOBLUDGEON | ITEM_ABSTRACT | DELONDROP
 	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
@@ -206,16 +206,15 @@ Redefine as needed.
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(focus))
 
-
-/obj/item/tk_grab/update_icon()
-	cut_overlays()
+/obj/item/tk_grab/update_overlays()
+	. = ..()
 	if(!focus)
 		return
 	var/old_layer = focus.layer
 	var/old_plane = focus.plane
 	focus.layer = layer+0.01
 	focus.plane = ABOVE_HUD_PLANE
-	add_overlay(focus) //this is kind of ick, but it's better than using icon()
+	. += focus
 	focus.layer = old_layer
 	focus.plane = old_plane
 

@@ -16,6 +16,12 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
+/proc/cmp_list_numeric_asc(list/a, list/b, sortkey)
+	return cmp_numeric_asc(a[sortkey], b[sortkey])
+
+/proc/cmp_list_numeric_dsc(list/a, list/b, sortkey)
+	return cmp_numeric_dsc(a[sortkey], b[sortkey])
+
 /proc/cmp_list_asc(list/a, list/b, sortkey)
 	return sorttext(b[sortkey], a[sortkey])
 
@@ -94,3 +100,19 @@
 
 /proc/cmp_typepaths_asc(A, B)
 	return sorttext("[B]","[A]")
+
+/**
+ * Sorts crafting recipe requirements before the crafting recipe is inserted into GLOB.crafting_recipes
+ *
+ * Prioritises [/datum/reagent] to ensure reagent requirements are always processed first when crafting.
+ * This prevents any reagent_containers from being consumed before the reagents they contain, which can
+ * lead to runtimes and item duplication when it happens.
+ */
+/proc/cmp_crafting_req_priority(A, B)
+	var/lhs
+	var/rhs
+
+	lhs = ispath(A, /datum/reagent) ? 0 : 1
+	rhs = ispath(B, /datum/reagent) ? 0 : 1
+
+	return lhs - rhs

@@ -142,6 +142,12 @@
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
 
+/datum/map_template/shuttle/minidropship/mobile_bar
+	suffix = "_mobile_bar"
+	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
+	display_name =	"Tadpole Mobile-Bar Model"
+	admin_enable = FALSE
+
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix = "_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
@@ -174,6 +180,10 @@
 /datum/map_template/shuttle/supply
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
+
+/datum/map_template/shuttle/supply/vehicle
+	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
+	name = SHUTTLE_VEHICLE_SUPPLY
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY

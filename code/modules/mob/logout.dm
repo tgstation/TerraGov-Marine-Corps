@@ -1,5 +1,7 @@
 /mob/Logout()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGOUT, src)
+	if (canon_client)
+		SEND_SIGNAL(canon_client, COMSIG_CLIENT_MOB_LOGOUT, src)
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 	SStgui.on_logout(src)
 	unset_machine()
@@ -11,9 +13,5 @@
 	log_message("[key_name(src)] has left mob [src]([type]).", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
-	if(client)
-		for(var/foo in client.player_details.post_logout_callbacks)
-			var/datum/callback/CB = foo
-			CB.Invoke()
-		clear_important_client_contents(client)
+	become_uncliented()
 	return ..()

@@ -56,7 +56,7 @@
 		span_notice("You start removing [master]'s wiring and terminal."))
 
 	playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
-	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(master && !master.can_terminal_dismantle())

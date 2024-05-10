@@ -11,7 +11,7 @@
 /turf/open/floor/plating/ground/burnt_states()
 	return icon_state
 
-/turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/plating/ground/fire_act(burn_level)
 	return
 
 /turf/open/floor/plating/ground/dirt
@@ -21,34 +21,40 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
+	icon_variants = 4
+
+/turf/open/floor/plating/ground/dirt/normal_states()
+	if((icon_variants < 2) || !prob(6))
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/floor/plating/ground/dirt/dug
+	icon_variants = 1
 	icon_state = "desert_dug"
 
 /turf/open/floor/plating/ground/dirt/typezero
-	icon_state = "desert0"
+	icon_variants = 1
+	icon_state = "desert_1"
 
 /turf/open/floor/plating/ground/dirt/typeone
-	icon_state = "desert1"
+	icon_variants = 1
+	icon_state = "desert_2"
 
 /turf/open/floor/plating/ground/dirt/typetwo
-	icon_state = "desert2"
+	icon_variants = 1
+	icon_state = "desert_3"
 
 /turf/open/floor/plating/ground/dirt/typethree
-	icon_state = "desert3"
+	icon_variants = 1
+	icon_state = "desert_4"
 
-/turf/open/floor/plating/ground/dirt/Initialize(mapload)
-	. = ..()
-	if(rand(0,15) == 0)
-		icon_state = "desert[pick("0","1","2","3")]"
-
-/turf/open/floor/plating/ground/dirt/desert
+/turf/open/floor/plating/ground/dirt_desert
 	name = "desert"
-	icon_state = "desert5"
-
-/turf/open/floor/plating/ground/dirt/desert/Initialize(mapload)
-	. = ..()
-	icon_state = "desert[pick("5","6")]"
+	icon_state = "desert_alt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
+	icon_variants = 2
 
 /turf/open/floor/plating/ground/dirtgrassborder
 	name = "grass"
@@ -64,9 +70,26 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2
 	icon_state = "grassdirt_corner2"
 
+/turf/open/floor/plating/ground/dirt_alt
+	name = "dirt"
+	icon = 'icons/turf/dirt.dmi'
+	icon_state = "gyellow"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_DIRT
+
+/turf/open/floor/plating/ground/dirt_alt/random/Initialize(mapload)
+	. = ..()
+	dir = pick(GLOB.alldirs)
+
 /turf/open/floor/plating/ground/dirt2
 	name = "dirt"
 	icon_state = "dirt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirtgrassborder2
 	name = "grass"
@@ -75,12 +98,29 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
 	icon_state = "grassdirt2_corner"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2
 	icon_state = "grassdirt2_corner2"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth //jungle to dirt
+	icon = 'icons/turf/floors/jungle-dirt-border.dmi'
+	icon_state = "jungle-border-icon"
+	base_icon_state = "jungle-border"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	canSmoothWith = list(
+		SMOOTH_GROUP_JUNGLE_FLOOR,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
 
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth
 	icon = 'icons/turf/floors/jungle-border.dmi'
@@ -107,20 +147,7 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
-
-/turf/open/ground/grass/weedable
-	name = "soft grass"
-
-/turf/open/ground/grasspatch
-	name = "grass"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "grass1"
-	shoefootstep = FOOTSTEP_GRASS
-	barefootstep = FOOTSTEP_GRASS
-	mediumxenofootstep = FOOTSTEP_GRASS
-
-/turf/open/ground/grasspatch/grassyellow
-	color = "#ffb682"
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
@@ -129,18 +156,23 @@
 	icon_state = "grass3"
 
 /turf/open/ground/grass/grassalt
-	icon_state = "dgrass0"
-
-/turf/open/ground/grass/grassalt/Initialize(mapload)
-	. = ..()
-	icon_state = "dgrass[pick("0","1","2","3","4")]"
+	icon_state = "dgrass"
+	icon_variants = 5
 
 /turf/open/ground/grass/grassalt/tall
-	icon_state = "fullgrass0"
+	icon_state = "fullgrass"
+	icon_variants = 5
 
-/turf/open/ground/grass/grassalt/tall/Initialize(mapload)
-	. = ..()
-	icon_state = "fullgrass[pick("0","1","2","3","4")]"
+/turf/open/ground/grass/weedable
+	name = "soft grass"
+
+/turf/open/ground/grass/weedable/patch
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass"
+	icon_variants = 3
+
+/turf/open/ground/grass/weedable/patch/grassyellow
+	color = "#ffb682"
 
 // Big Red
 
@@ -155,6 +187,7 @@
 /turf/open/floor/plating/ground/mars/random/cave
 	name = "cave"
 	icon_state = "mars_cave"
+	smoothing_groups = list(SMOOTH_GROUP_SAND)
 
 /turf/open/floor/plating/ground/mars/random/cave/darker
 	color = "#948a7c"
@@ -205,10 +238,7 @@
 /turf/open/floor/plating/ground/mars/alt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars1"
-
-/turf/open/floor/plating/ground/mars/alt/Initialize(mapload)
-	. = ..()
-	icon_state = "mars[pick("1","2","3","4","5")]"
+	icon_variants = 5
 
 //Ice Colony grounds
 
@@ -227,6 +257,9 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
+/turf/open/floor/plating/ground/ice/get_dirt_type()
+	return NO_DIRT
+
 // Colony tiles
 /turf/open/floor/plating/ground/concrete
 	name = "concrete"
@@ -236,6 +269,9 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
 	minimap_color = MINIMAP_AREA_COLONY
+
+/turf/open/floor/plating/ground/concrete/get_dirt_type()
+	return NO_DIRT
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -261,15 +297,11 @@
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
-	icon_state = "desert0"
+	icon_state = "desert"
 	mediumxenofootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
-
-/turf/open/floor/plating/ground/desertdam/desert/Initialize(mapload)
-	. = ..()
-	icon_state = "desert[pick("0","1","2","3","4","5","6","7")]"
-
+	icon_variants = 8
 
 //asphalt road
 /turf/open/floor/plating/ground/desertdam/asphalt
@@ -280,6 +312,9 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
+
+/turf/open/floor/plating/ground/desertdam/asphalt/get_dirt_type()
+	return NO_DIRT
 
 /turf/open/floor/plating/ground/desertdam/asphalt/cement
 	name = "concrete"
@@ -321,6 +356,20 @@
 	name = "asphalt"
 	icon_state = "cement_threeside"
 
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth
+	name = "concrete"
+	icon = 'icons/turf/floors/asphalt-regular.dmi'
+	icon_state = "asphalt-icon"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_ASPHALT,
+	)
+	base_icon_state = "asphalt-regular"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
+	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
+	base_icon_state = "asphalt-sunbleached"
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
@@ -348,11 +397,8 @@
 //inner cave floor
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	name = "cave"
-	icon_state = "inner_cave_full0"
-
-/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize(mapload)
-	. = ..()
-	icon_state = "inner_cave_full[pick("0","1")]"
+	icon_state = "inner_cave_full"
+	icon_variants = 2
 
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave/corners
 	name = "cave"
@@ -370,11 +416,7 @@
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
-	var/icon_variants = 3
-
-/turf/open/floor/plating/ground/drought/Initialize(mapload)
-	. = ..()
-	icon_state = "[initial(icon_state)]_[pick(1, icon_variants)]"
+	icon_variants = 3
 
 /turf/open/floor/plating/ground/drought/alt
 	icon_state = "desert_alt"
@@ -394,3 +436,20 @@
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
+
+///These are entirely for decoration purposes, do not make them functional, it will cause salt.
+/turf/open/floor/chasm
+	name = "chasm"
+	desc = "Watch your step."
+	icon = 'icons/turf/floors/chasms.dmi'
+	icon_state = "chasms-0"
+	base_icon_state = "chasms"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_CHASM)
+	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
+	density = TRUE //keep people from stepping on it
+
+/turf/open/floor/chasm/junglechasm
+	icon = 'icons/turf/floors/junglechasm.dmi'
+	icon_state = "junglechasm-0"
+	base_icon_state = "junglechasm"

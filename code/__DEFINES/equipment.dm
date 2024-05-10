@@ -22,6 +22,8 @@
 #define PASS_AIR (1<<9)
 ///Mobs can walk freely between turfs with walkover flagged objects
 #define PASS_WALKOVER (1<<10)
+///when jumping, mobs can pass onto tanks
+#define PASS_TANK (1<<11)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
@@ -30,70 +32,109 @@
 
 
 
-//flags_atom
+//atom_flags
 
-#define NOINTERACT (1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT (1<<1)		// conducts electricity (metal etc.)
-#define ON_BORDER (1<<2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY (1<<3)		// Don't want a blood overlay on this one.
-#define DIRLOCK (1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<5)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT (1<<6)
-#define PREVENT_CLICK_UNDER (1<<7)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<8)		//Use when this shouldn't be obscured by large icons.
+#define UNUSED_RESERVATION_TURF_1 (1<<0)
+///Prevent ai from going onto this turf
+#define AI_BLOCKED (1<<1)
+/// You can't interact with it, at all. Useful when doing certain animations.
+#define NOINTERACT (1<<2)
+/// conducts electricity (metal etc.)
+#define CONDUCT (1<<3)
+/// 'border object'. item has priority to check when entering or leaving
+#define ON_BORDER (1<<4)
+/// Don't want a blood overlay on this one.
+#define NOBLOODY (1<<5)
+/// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define DIRLOCK (1<<6)
+///Whether /atom/Initialize() has already run for the object
+#define INITIALIZED (1<<7)
+#define NODECONSTRUCT (1<<8)
+///Prevent clicking things below it on the same turf
+#define PREVENT_CLICK_UNDER (1<<9)
+///Use when this shouldn't be obscured by large icons.
+#define CRITICAL_ATOM (1<<10)
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION (1<<9)
+#define PREVENT_CONTENTS_EXPLOSION (1<<11)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED (1<<10)
+#define ADMIN_SPAWNED (1<<12)
 /// Can this atom be bumped attack
-#define BUMP_ATTACKABLE (1<<11)
+#define BUMP_ATTACKABLE (1<<13)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
-#define SHUTTLE_IMMUNE (1<<12)
+#define SHUTTLE_IMMUNE (1<<14)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<13)
-
-//turf-only flags
-#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
-#define UNUSED_RESERVATION_TURF_1 (1<<1)
-/// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1 (1<<2)
+#define HTML_USE_INITAL_ICON_1 (1<<15)
 
 //==========================================================================================
 
-//flags_barrier
-#define HANDLE_BARRIER_CHANCE 1
-#define HANDLE_BARRIER_BLOCK 2
+//barrier_flags
+#define HANDLE_BARRIER_CHANCE (1<<0)
+#define HANDLE_BARRIER_BLOCK (1<<1)
 
 
-//bitflags that were previously under flags_atom, these only apply to items.
-//clothing specific stuff uses flags_inventory.
-//flags_item
-#define NODROP (1<<0)	// Cannot be dropped/unequipped at all, only deleted.
-#define NOBLUDGEON (1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define DELONDROP (1<<2)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED (1<<3)	// The item is twohanded.
-#define WIELDED (1<<4)	// The item is wielded with both hands.
-#define ITEM_ABSTRACT (1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
-#define DOES_NOT_NEED_HANDS (1<<6)	//Dont need hands to use it
-#define SYNTH_RESTRICTED (1<<7)	//Prevents synths from wearing items with this flag
-#define IMPEDE_JETPACK (1<<8)  //Reduce the range of jetpack
-#define CAN_BUMP_ATTACK (1<<9)	 //Item triggers bump attack
-#define IS_DEPLOYABLE (1<<10) //Item can be deployed into a machine
-#define DEPLOY_ON_INITIALIZE (1<<11)
-#define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
-#define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
-#define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
-#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
+//bitflags that were previously under atom_flags, these only apply to items.
+//clothing specific stuff uses inventory_flags.
+//item_flags
+/// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOBLUDGEON (1<<0)
+/// Deletes on drop instead of falling on the floor.
+#define DELONDROP (1<<1)
+/// The item is twohanded.
+#define TWOHANDED (1<<2)
+/// The item is wielded with both hands.
+#define WIELDED (1<<3)
+///The item is abstract (grab, powerloader_clamp, etc)
+#define ITEM_ABSTRACT (1<<4)
+///Dont need hands to use it
+#define DOES_NOT_NEED_HANDS (1<<5)
+///Prevents synths from wearing items with this flag
+#define SYNTH_RESTRICTED (1<<6)
+///Reduce the range of jetpack
+#define IMPEDE_JETPACK (1<<7)
+///Item triggers bump attack
+#define CAN_BUMP_ATTACK (1<<8)
+///Item can be deployed into a machine
+#define IS_DEPLOYABLE (1<<9)
+///Item deploys on initialize
+#define DEPLOY_ON_INITIALIZE (1<<10)
+///If this is on an item, said item is currently deployed
+#define IS_DEPLOYED (1<<11)
+///Disables deployed item pickup
+#define DEPLOYED_NO_PICKUP  (1<<12)
+///Disables deployed item rotation abilities to rotate.
+#define DEPLOYED_NO_ROTATE  (1<<13)
+///Disables deployed item rotation if anchored.
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<14)
+///If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15)
+///Disables firing deployable if it is not anchored.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<16)
+///If the item is properly wielded. Used for guns
+#define FULLY_WIELDED (1<<17)
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<19)
+#define HAS_UNDERLAY (1<<18)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<19)
+///This item is used for autobalance calculations or excluded, such as valhalla items
+#define AUTOBALANCE_CHECK (1<<20)
+///This item is in any storage
+#define IN_STORAGE (1<<21)
+
+
+//storage_flags
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
+
+//id_flags
+///If you can get buy a loadout
+#define CAN_BUY_LOADOUT (1<<0)
+///If you have used the GHMME
+#define USED_GHMME (1<<1)
 
 //==========================================================================================
 
-//flags_inv_hide
-//Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
+//inv_hide_flags
+//Bit flags for the inv_hide_flags variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 
 #define HIDEGLOVES (1<<0)
 #define HIDESUITSTORAGE (1<<1)
@@ -111,7 +152,7 @@
 
 //==========================================================================================
 
-//flags_inventory
+//inventory_flags
 
 //SHOES ONLY===========================================================================================
 #define NOSLIPPING (1<<0) 	//prevents from slipping on wet floors, in space etc
@@ -147,7 +188,7 @@
 
 
 //===========================================================================================
-//Marine armor only, use for flags_armor_features.
+//Marine armor only, use for armor_features_flags.
 #define ARMOR_SQUAD_OVERLAY (1<<0)
 #define ARMOR_LAMP_OVERLAY (1<<1)
 #define ARMOR_LAMP_ON (1<<2)
@@ -157,7 +198,7 @@
 //===========================================================================================
 
 //===========================================================================================
-//Marine helmet only, use for flags_marine_helmet.
+//Marine helmet only, use for marine_helmet_flags.
 #define HELMET_SQUAD_OVERLAY (1<<0)
 #define HELMET_GARB_OVERLAY (1<<1)
 #define HELMET_STORE_GARB (1<<2)
@@ -165,7 +206,7 @@
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS - These determine to which slot an item can be equipped to
-//flags_equip_slot
+//equip_slot_flags
 #define ITEM_SLOT_OCLOTHING (1<<0) //outer clothing, so armor, vests, etc
 #define ITEM_SLOT_ICLOTHING (1<<1) //inner clothing, so jumpsuits/uniforms, etc
 #define ITEM_SLOT_GLOVES (1<<2) //gloves, any type of gloves
@@ -182,6 +223,29 @@
 	#define ITEM_SLOT_POCKET (ITEM_SLOT_R_POCKET|ITEM_SLOT_L_POCKET) //a combo of the above
 #define ITEM_SLOT_SUITSTORE (1<<13) //the suit storage slot
 #define ITEM_SLOT_HANDCUFF (1<<14) //the slot for handcuffs
+#define ITEM_SLOT_L_HAND (1<<15) //left hand
+#define ITEM_SLOT_R_HAND (1<<16) //right hand
+
+///Inventory slot bits to plain english strings
+GLOBAL_LIST_INIT(inventory_slots_to_string, list(
+	"[ITEM_SLOT_OCLOTHING]" = "Suit",
+	"[ITEM_SLOT_ICLOTHING]" = "Uniform",
+	"[ITEM_SLOT_GLOVES]" = "Gloves",
+	"[ITEM_SLOT_EYES]" = "Eyes",
+	"[ITEM_SLOT_EARS]" = "Ears",
+	"[ITEM_SLOT_MASK]" = "Mask",
+	"[ITEM_SLOT_HEAD]" = "Head",
+	"[ITEM_SLOT_FEET]" = "Feet",
+	"[ITEM_SLOT_ID]" = "ID",
+	"[ITEM_SLOT_BELT]" = "Belt",
+	"[ITEM_SLOT_BACK]" = "Back",
+	"[ITEM_SLOT_R_POCKET]" = "R pocket",
+	"[ITEM_SLOT_L_POCKET]" = "L pocket",
+	"[ITEM_SLOT_SUITSTORE]" = "Suit storage",
+	"[ITEM_SLOT_HANDCUFF]" = "Handcuffs",
+	"[ITEM_SLOT_L_HAND]" = "Left hand",
+	"[ITEM_SLOT_R_HAND]" = "Right hand",
+))
 
 //=================================================
 
@@ -286,6 +350,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)
@@ -326,6 +392,10 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = SLOT_S_STORE
 		if(ITEM_SLOT_HANDCUFF)
 			. = SLOT_HANDCUFFED
+		if(ITEM_SLOT_L_HAND)
+			. = SLOT_L_HAND
+		if(ITEM_SLOT_R_HAND)
+			. = SLOT_R_HAND
 
 //=================================================
 // bitflags for clothing parts
@@ -351,7 +421,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 //=================================================
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
-// Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()
+// Used with human/proc/get_heat_protection_flags() and human/proc/get_cold_protection_flags()
 // The values here should add up to 1.
 // Hands and feet have 2.5%, arms and legs 7.5%, each of the torso parts has 15% and the head has 30%
 #define THERMAL_PROTECTION_HEAD 0.3
@@ -426,6 +496,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
@@ -535,8 +606,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_HEAD
 		if("Left Pocket")
 			return SLOT_L_STORE
+		if("Left Pocket Inside")
+			return SLOT_IN_L_POUCH
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Right Pocket Inside")
+			return SLOT_IN_R_POUCH
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt Inside")
@@ -547,6 +622,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		if("Active Storage")
+			return SLOT_IN_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
@@ -568,8 +645,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Helmet"
 		if(SLOT_L_STORE)
 			return "Left Pocket"
+		if(SLOT_IN_L_POUCH)
+			return "Left Pocket Inside"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_R_POUCH)
+			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_HOLSTER)
@@ -578,3 +659,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
+		if(SLOT_IN_STORAGE)
+			return "Active Storage"
+

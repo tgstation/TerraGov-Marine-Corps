@@ -1,3 +1,7 @@
+#define MINE_LIVING_ONLY (1<<0)
+#define MINE_VEHICLE_ONLY (1<<1)
+#define MINE_LIVING_OR_VEHICLE MINE_LIVING_ONLY|MINE_VEHICLE_ONLY
+
 /**
 Mines
 
@@ -14,8 +18,9 @@ Stepping directly on the mine will also blow it up
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	flags_atom = CONDUCT
-
+	atom_flags = CONDUCT
+	///Trigger flags for this mine
+	var/target_mode = MINE_LIVING_ONLY
 	/// IFF signal - used to determine friendly units
 	var/iff_signal = NONE
 	/// If the mine has been triggered
@@ -37,11 +42,12 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/explosive/mine/update_icon()
+/obj/item/explosive/mine/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
 /// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)
-/obj/item/explosive/mine/ex_act()
+/obj/item/explosive/mine/ex_act(severity)
 	. = ..()
 	if(!QDELETED(src))
 		INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -52,7 +58,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/fire_act(burn_level)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
@@ -68,7 +74,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -76,6 +82,7 @@ Stepping directly on the mine will also blow it up
 	span_notice("You finish deploying [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy_mine(user, id?.iff_signal)
+	user.record_traps_created()
 
 ///this proc is used to deploy a mine
 /obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
@@ -95,6 +102,8 @@ Stepping directly on the mine will also blow it up
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!ismultitool(I) || !anchored)
 		return
@@ -102,7 +111,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -125,17 +134,30 @@ Stepping directly on the mine will also blow it up
 		return
 	trip_mine(A)
 
-/obj/item/explosive/mine/proc/trip_mine(mob/living/L)
+/obj/item/explosive/mine/proc/trip_mine(atom/movable/victim)
 	if(!armed || triggered)
 		return FALSE
-	if((L.status_flags & INCORPOREAL))
+	var/mob/living/living_victim
+	if((target_mode & MINE_LIVING_ONLY) && isliving(victim))
+		living_victim = victim
+	else if((target_mode & MINE_VEHICLE_ONLY) && isvehicle(victim))
+		var/obj/vehicle/vehicle_victim = victim
+		if(!length(vehicle_victim.occupants))
+			return FALSE
+		living_victim = vehicle_victim.occupants[1]
+
+	if(!living_victim)
 		return FALSE
-	var/obj/item/card/id/id = L.get_idcard()
+	if((living_victim.status_flags & INCORPOREAL))
+		return FALSE
+	if(living_victim.stat == DEAD)
+		return FALSE
+	var/obj/item/card/id/id = living_victim.get_idcard()
 	if(id?.iff_signal & iff_signal)
 		return FALSE
 
-	L.visible_message(span_danger("[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it."), \
-	span_danger("[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it."), \
+	living_victim.visible_message(span_danger("[icon2html(src, viewers(living_victim))] \The [src] clicks as [victim] moves in front of it."), \
+	span_danger("[icon2html(src, viewers(living_victim))] \The [src] clicks as you move in front of it."), \
 	span_danger("You hear a click."))
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
@@ -143,15 +165,15 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(X.a_intent == INTENT_HELP)
+	if(xeno_attacker.a_intent == INTENT_HELP)
 		return
-	X.visible_message(span_danger("[X] has slashed [src]!"), \
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
@@ -201,15 +223,55 @@ Stepping directly on the mine will also blow it up
 	if(linked_mine.triggered) //Mine is already set to go off
 		return
 
-	if(linked_mine && isliving(AM))
-		var/mob/living/unlucky_person = AM
-		// Don't trigger for dead people
-		if(unlucky_person.stat == DEAD)
-			return
-		linked_mine.trip_mine(AM)
+	if(!isliving(AM) && !(isvehicle(AM)))
+		return
+	linked_mine.trip_mine(AM)
 
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
+
+/obj/item/explosive/mine/anti_tank
+	name = "\improper M92 Valiant anti-tank mine"
+	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
+	icon_state = "m92"
+	target_mode = MINE_VEHICLE_ONLY
+
+/obj/item/explosive/mine/anti_tank/update_icon(updates=ALL)
+	. = ..()
+	alpha = armed ? 50 : 255
+
+/obj/item/explosive/mine/anti_tank/trigger_explosion()
+	if(triggered)
+		return
+	triggered = TRUE
+	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
+	QDEL_NULL(tripwire)
+	qdel(src)
+
+/obj/item/explosive/mine/anti_tank/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+			return
+		if(EXPLODE_HEAVY)
+			take_damage(rand(100, 250), BRUTE, BOMB, 0)
+			if(prob(25))
+				return
+		if(EXPLODE_LIGHT)
+			take_damage(rand(10, 90), BRUTE, BOMB, 0)
+			if(prob(50))
+				return
+		if(EXPLODE_WEAK)
+			take_damage(rand(5, 45), BRUTE, BOMB, 0)
+			return //not strong enough to detonate
+	if(QDELETED(src))
+		return
+	if(!armed)
+		return
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
+
+/obj/item/explosive/mine/anti_tank/fire_act(burn_level)
+	return //its highly exploitable if fire detonates these

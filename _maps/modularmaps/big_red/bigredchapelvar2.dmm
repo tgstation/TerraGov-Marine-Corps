@@ -101,8 +101,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/six{
-	dir = 4;
-	
+	dir = 4
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -151,8 +150,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/six{
-	dir = 4;
-	
+	dir = 4
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -310,8 +308,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -355,8 +352,7 @@
 /area/bigredv2/outside/chapel)
 "VS" = (
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -373,8 +369,7 @@
 /area/bigredv2/outside/chapel)
 "XR" = (
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/tile/chapel{
 	dir = 1

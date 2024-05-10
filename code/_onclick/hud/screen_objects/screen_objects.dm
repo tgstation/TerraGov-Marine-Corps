@@ -1,12 +1,23 @@
+/*
+	Screen objects
+	Todo: improve/re-implement
+
+	Screen objects are only used for the hud and should not appear anywhere "in-game".
+	They are used with the client/screen list and the screen_loc var.
+	For more information, see the byond documentation on the screen_loc and screen vars.
+*/
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
+	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
+	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
 	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
+	/// A reference to the owner HUD, if any.
+	var/datum/hud/hud
 
 	//Map popups
 	/**
@@ -23,11 +34,30 @@
 	 */
 	var/del_on_map_removal = TRUE
 
+	/**
+	 * If TRUE, clicking the screen element will fall through and perform a default "Click" call
+	 * Obviously this requires your Click override, if any, to call parent on their own.
+	 * This is set to FALSE to default to dissade you from doing this.
+	 * Generally we don't want default Click stuff, which results in bugs like using Telekinesis on a screen element
+	 * or trying to point your gun at your screen.
+	*/
+	var/default_click = FALSE
+
+/atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	if(hud_owner && istype(hud_owner))
+		hud = hud_owner
+
 /atom/movable/screen/Destroy()
 	master = null
 	hud = null
 	return ..()
 
+/atom/movable/screen/Click(location, control, params)
+	if(atom_flags & INITIALIZED)
+		SEND_SIGNAL(src, COMSIG_SCREEN_ELEMENT_CLICK, location, control, params, usr)
+	if(default_click)
+		return ..()
 
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
@@ -52,6 +82,12 @@
 
 /atom/movable/screen/swap_hand/human
 	icon_state = "swap_1"
+
+/atom/movable/screen/craft
+	name = "crafting menu"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "craft"
+	screen_loc = ui_crafting
 
 /atom/movable/screen/language_menu
 	name = "language menu"
@@ -80,13 +116,10 @@
 	if(isobserver(usr) || usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return TRUE
-
 	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
 	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
 	if(item_in_slot)
-		return item_in_slot.Click()
+		return item_in_slot.Click(location, control, params)
 
 	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()
@@ -94,15 +127,20 @@
 		return TRUE
 
 /atom/movable/screen/inventory/hand
+	///The tag used by this hand, used for activate_hand()
+	var/hand_tag = ""
+
+/atom/movable/screen/inventory/hand/left
 	name = "l_hand"
 	icon_state = "hand_l"
 	screen_loc = ui_lhand
-	var/hand_tag = "l"
+	hand_tag = "l"
 
-/atom/movable/screen/inventory/hand/update_icon(active = FALSE)
-	cut_overlays()
-	if(active)
-		add_overlay("hand_active")
+/atom/movable/screen/inventory/hand/left/update_overlays()
+	. = ..()
+	if(!hud?.mymob?.hand)
+		return
+	. += "hand_active"
 
 /atom/movable/screen/inventory/hand/Click(location, control, params)
 	. = ..()
@@ -116,6 +154,12 @@
 	screen_loc = ui_rhand
 	hand_tag = "r"
 
+/atom/movable/screen/inventory/hand/right/update_overlays()
+	. = ..()
+	if(!hud?.mymob || hud.mymob.hand)
+		return
+	. += "hand_active"
+
 /atom/movable/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
@@ -124,9 +168,8 @@
 
 
 /atom/movable/screen/close/Click()
-	if(istype(master, /obj/item/storage))
-		var/obj/item/storage/S = master
-		S.close(usr)
+	var/datum/storage/storage = master
+	storage.hide_from(usr)
 	return TRUE
 
 
@@ -168,11 +211,12 @@
 	usr.toggle_move_intent()
 
 
-/atom/movable/screen/mov_intent/update_icon(mob/user)
-	if(!user)
+/atom/movable/screen/mov_intent/update_icon_state()
+	. = ..()
+	if(!hud?.mymob)
 		return
 
-	switch(user.m_intent)
+	switch(hud.mymob.m_intent)
 		if(MOVE_INTENT_RUN)
 			icon_state = "running"
 		if(MOVE_INTENT_WALK)
@@ -191,12 +235,13 @@
 	if(!isliving(usr))
 		return
 	var/mob/living/L = usr
-	L.lay_down()
+	L.toggle_resting()
 
-/atom/movable/screen/rest/update_icon(mob/mymob)
-	if(!isliving(mymob))
+/atom/movable/screen/rest/update_icon_state()
+	. = ..()
+	if(!isliving(hud?.mymob))
 		return
-	var/mob/living/L = mymob
+	var/mob/living/L = hud?.mymob
 	icon_state = "act_rest[L.resting ? "0" : ""]"
 
 /atom/movable/screen/pull
@@ -212,10 +257,11 @@
 	usr.stop_pulling()
 
 
-/atom/movable/screen/pull/update_icon(mob/user)
-	if(!user)
+/atom/movable/screen/pull/update_icon_state()
+	. = ..()
+	if(!hud?.mymob)
 		return
-	if(user.pulling)
+	if(hud.mymob.pulling)
 		icon_state = "pull"
 	else
 		icon_state = "pull0"
@@ -241,6 +287,34 @@
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 
+/atom/movable/screen/storage/Click(location, control, params)
+	if(usr.incapacitated(TRUE))
+		return
+
+	var/list/modifiers = params2list(params)
+
+	if(!master)
+		return
+
+	var/datum/storage/current_storage_datum = master
+	var/obj/item/item_in_hand = usr.get_active_held_item()
+	if(item_in_hand)
+		current_storage_datum.parent.attackby(item_in_hand, usr)
+		return
+
+	// Taking something out of the storage screen (including clicking on item border overlay)
+	var/list/screen_loc_params = splittext(modifiers["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
+
+	for(var/i = 1 to length(current_storage_datum.click_border_start))
+		if(current_storage_datum.click_border_start[i] > click_x || click_x > current_storage_datum.click_border_end[i])
+			continue
+		if(length(current_storage_datum.parent.contents) < i)
+			continue
+		item_in_hand = current_storage_datum.parent.contents[i]
+		item_in_hand.attack_hand(usr)
+		return
 
 /atom/movable/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
@@ -250,7 +324,9 @@
 	var/total_w = 0
 	for(var/obj/item/I in S)
 		total_w += I.w_class
-	var/fullness = round(10 * max(length(S.contents) / S.storage_slots, total_w / S.max_storage_space))
+	var/storage_slot_fullness = S.storage_datum.storage_slots ? (length(S.contents) / S.storage_datum.storage_slots) : 0
+	var/slotless_fullness = S.storage_datum.max_storage_space ? (total_w / S.storage_datum.max_storage_space) : 0
+	var/fullness = round(10 * max(storage_slot_fullness, slotless_fullness))
 	switch(fullness)
 		if(10)
 			color = "#ff0000"
@@ -258,7 +334,6 @@
 			color = "#ffa500"
 		else
 			color = null
-
 
 /atom/movable/screen/throw_catch
 	name = "throw/catch"
@@ -285,9 +360,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 	if (!choice)
 		return TRUE
@@ -301,9 +376,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 
 	if(hovering == choice)
@@ -370,26 +445,23 @@
 							return BODY_ZONE_PRECISE_EYES
 				return BODY_ZONE_HEAD
 
-/atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+/atom/movable/screen/zone_sel/proc/set_selected_zone(choice = BODY_ZONE_CHEST, mob/user)
 	if(isobserver(user))
 		return
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(user)
+		user.zone_selected = selecting
+	update_icon()
 	return TRUE
 
-/atom/movable/screen/zone_sel/update_icon(mob/user)
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/mob/screen/zone_sel.dmi', "[z_prefix][selecting]"))
-	user.zone_selected = selecting
+/atom/movable/screen/zone_sel/update_overlays()
+	. = ..()
+	. += mutable_appearance('icons/mob/screen/zone_sel.dmi', "[z_prefix][selecting]")
 
 /atom/movable/screen/zone_sel/alien
 	icon = 'icons/mob/screen/alien.dmi'
 	z_prefix = "ay_"
-
-/atom/movable/screen/zone_sel/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
 
 /atom/movable/screen/healths
 	name = "health"
@@ -401,17 +473,27 @@
 	icon = 'icons/mob/screen/alien.dmi'
 	screen_loc = ui_alien_health
 
-/atom/movable/screen/healths/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-	screen_loc = ui_borg_health
-
-
 /atom/movable/screen/stamina_hud
 	icon = 'icons/mob/screen/health.dmi'
 	name = "stamina"
-	icon_state = "staminaloss0"
+	icon_state = "stamloss-14"
 	screen_loc = UI_STAMINA
 	mouse_opacity = MOUSE_OPACITY_ICON
+
+/atom/movable/screen/stamina_hud/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/mymob_human = hud.mymob
+	if(mymob_human.stat == DEAD)
+		icon_state = "stamloss200"
+		return
+	var/relative_stamloss = mymob_human.getStaminaLoss()
+	if(relative_stamloss < 0 && mymob_human.max_stamina)
+		relative_stamloss = round(((relative_stamloss * 14) / mymob_human.max_stamina), 1)
+	else
+		relative_stamloss = round(((relative_stamloss * 7) / (mymob_human.maxHealth * 2)), 1)
+	icon_state = "stamloss[relative_stamloss]"
 
 /atom/movable/screen/stamina_hud/Click(location, control, params)
 	if(!isliving(usr))
@@ -426,7 +508,7 @@
 /atom/movable/screen/component_button
 	var/atom/movable/screen/parent
 
-/atom/movable/screen/component_button/Initialize(mapload, atom/movable/screen/parent)
+/atom/movable/screen/component_button/Initialize(mapload, datum/hud/hud_owner, atom/movable/screen/parent)
 	. = ..()
 	src.parent = parent
 
@@ -506,18 +588,139 @@
 	icon_state = "temp0"
 	screen_loc = ui_temp
 
+/atom/movable/screen/bodytemp/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	if(!human_mymob.species)
+		switch(human_mymob.bodytemperature) //310.055 optimal body temp
+			if(370 to INFINITY)
+				icon_state = "temp4"
+			if(350 to 370)
+				icon_state = "temp3"
+			if(335 to 350)
+				icon_state = "temp2"
+			if(320 to 335)
+				icon_state = "temp1"
+			if(300 to 320)
+				icon_state = "temp0"
+			if(295 to 300)
+				icon_state = "temp-1"
+			if(280 to 295)
+				icon_state = "temp-2"
+			if(260 to 280)
+				icon_state = "temp-3"
+			else
+				icon_state = "temp-4"
+		return
+
+	var/temp_step
+	if(human_mymob.bodytemperature >= human_mymob.species.body_temperature)
+		temp_step = (human_mymob.species.heat_level_1 - human_mymob.species.body_temperature) / 4
+
+		if(human_mymob.bodytemperature >= human_mymob.species.heat_level_1)
+			icon_state = "temp4"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 3)
+			icon_state = "temp3"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 2)
+			icon_state = "temp2"
+		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 1)
+			icon_state = "temp1"
+		else
+			icon_state = "temp0"
+		return
+
+	if(human_mymob.bodytemperature < human_mymob.species.body_temperature)
+		temp_step = (human_mymob.species.body_temperature - human_mymob.species.cold_level_1)/4
+
+		if(human_mymob.bodytemperature <= human_mymob.species.cold_level_1)
+			icon_state = "temp-4"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 3)
+			icon_state = "temp-3"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 2)
+			icon_state = "temp-2"
+		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 1)
+			icon_state = "temp-1"
+		else
+			icon_state = "temp0"
 
 /atom/movable/screen/oxygen
 	name = "oxygen"
 	icon_state = "oxy0"
 	screen_loc = ui_oxygen
 
+/atom/movable/screen/oxygen/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	if(human_mymob.hal_screwyhud == 3 || human_mymob.oxygen_alert)
+		icon_state = "oxy1"
+	else
+		icon_state = "oxy0"
+
+/atom/movable/screen/toxin
+	name = "toxin"
+	icon_state = "tox0"
+	screen_loc = ui_toxin
+
+/atom/movable/screen/toxin/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	if(human_mymob.hal_screwyhud == 4)
+		icon_state = "tox1"
+	else
+		icon_state = "tox0"
+
+/atom/movable/screen/pressure
+	name = "pressure"
+	icon_state = "pressure0"
+	screen_loc = ui_pressure
+
+/atom/movable/screen/pressure/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	icon_state = "pressure[human_mymob.pressure_alert]"
+
+/atom/movable/screen/nutrition
+	name = "nutrition"
+	icon_state = "nutrition1"
+	screen_loc = ui_nutrition
+
+/atom/movable/screen/nutrition/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	switch(human_mymob.nutrition)
+		if(NUTRITION_OVERFED to INFINITY)
+			icon_state = "nutrition0"
+		if(NUTRITION_HUNGRY to NUTRITION_OVERFED) //Not-hungry.
+			icon_state = "nutrition1" //Empty icon.
+		if(NUTRITION_STARVING to NUTRITION_HUNGRY)
+			icon_state = "nutrition3"
+		else
+			icon_state = "nutrition4"
 
 /atom/movable/screen/fire
-	name = "fire"
+	name = "body temperature"
 	icon_state = "fire0"
 	screen_loc = ui_fire
 
+/atom/movable/screen/fire/update_icon_state()
+	. = ..()
+	if(!ishuman(hud?.mymob))
+		return
+	var/mob/living/carbon/human/human_mymob = hud.mymob
+	if(human_mymob.fire_alert)
+		icon_state = "fire[human_mymob.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
+	else
+		icon_state = "fire0"
 
 /atom/movable/screen/toggle_inv
 	name = "toggle"
@@ -555,7 +758,7 @@
 	///List of possible screen locs
 	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3, ui_ammo4)
 
-/atom/movable/screen/ammo/Initialize(mapload)
+/atom/movable/screen/ammo/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	flash_holder = new
 	flash_holder.icon_state = "frame"
@@ -573,7 +776,7 @@
 /atom/movable/screen/ammo/proc/add_hud(mob/living/user, datum/ammo_owner)
 	if(isnull(ammo_owner))
 		CRASH("/atom/movable/screen/ammo/proc/add_hud() has been called from [src] without the required param of ammo_owner")
-	user?.client.screen += src
+	user?.client?.screen += src
 
 ///wrapper to removing this ammo hud from the users screen
 /atom/movable/screen/ammo/proc/remove_hud(mob/living/user)
@@ -627,7 +830,7 @@
 	///The target which the arrow points to
 	var/atom/target
 	///The duration of the effect
-	var/duration
+	var/duration = 1
 	///holder for the deletation timer
 	var/del_timer
 
@@ -651,7 +854,7 @@
 	deltimer(del_timer)
 	qdel(src)
 
-/atom/movable/screen/arrow/Initialize(mapload) //Self-deletes
+/atom/movable/screen/arrow/Initialize(mapload, datum/hud/hud_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	del_timer = addtimer(CALLBACK(src, PROC_REF(kill_arrow)), duration, TIMER_STOPPABLE)

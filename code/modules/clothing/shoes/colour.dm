@@ -3,9 +3,9 @@
 	icon_state = "black"
 	desc = "A pair of black shoes."
 
-	flags_cold_protection = FEET
+	cold_protection_flags = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = FEET
+	heat_protection_flags = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/brown
@@ -81,7 +81,7 @@
 	remove_cuffs(user)
 
 /obj/item/clothing/shoes/orange/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/restraints/handcuffs))
 		attach_cuffs(I, user)
+		return
+	return ..()

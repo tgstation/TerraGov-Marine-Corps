@@ -20,8 +20,17 @@
 /turf/open/floor/mainship/plate/outline
 	icon_state = "test_floor5"
 
+/turf/open/floor/mainship/hexagon
+	icon_state = "hexagon"
+
 /turf/open/floor/mainship/cargo
 	icon_state = "cargo"
+
+/turf/open/floor/mainship/yellow_cargo
+	icon_state = "yellow_cargo"
+
+/turf/open/floor/mainship/yellow_cargo/arrow
+	icon_state = "yellow_cargo_arrow"
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
@@ -169,7 +178,7 @@
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/mainship/empty/fire_act(burn_level)
 	return
 
 /turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
@@ -321,21 +330,22 @@
 /turf/open/floor/wood/broken_states()
 	if(!damaged_states)
 		return icon_state
-	return "[icon_state]_damaged_[rand(1, damaged_states)]"
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
 
 /turf/open/floor/wood/burnt_states()
 	if(!damaged_states)
 		return icon_state
-	return "[icon_state]_[rand(1, damaged_states)]"
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
 
-//todo: replaced in a later pr
 /turf/open/floor/wood/broken
-	icon_state = "wood-broken1"
 	burnt = TRUE
 
 /turf/open/floor/wood/fancy
 	icon_state = "wood_fancy"
 	damaged_states = 6
+
+/turf/open/floor/wood/fancy/damaged
+	burnt = TRUE
 
 /turf/open/floor/wood/darker
 	icon_state = "wood_darker"
@@ -391,36 +401,23 @@
 /turf/open/floor/wood/variable
 	icon_state = "wood_common"
 	damaged_states = 6
-	var/icon_variants = 3
 
-/turf/open/floor/wood/variable/Initialize(mapload)
-	. = ..()
-	icon_state = "[icon_state]_[rand(1, icon_variants)]"
+/turf/open/floor/wood/variable/damaged
+	burnt = TRUE
 
 /turf/open/floor/wood/variable/wide
 	icon_state = "wood_wide"
 	damaged_states = 6
 
+/turf/open/floor/wood/variable/wide/damaged
+	burnt = TRUE
+
 /turf/open/floor/wood/variable/mosaic
 	icon_state = "wood_mosaic"
 	damaged_states = 6
 
-/turf/open/floor/wood/variable/damaged
-	icon_state = "wood_common_damaged"
-	icon_variants = 6
-
-/turf/open/floor/wood/variable/damaged/standard
-	icon_state = "wood_damaged"
-	icon_variants = 7
-
-/turf/open/floor/wood/variable/damaged/wide
-	icon_state = "wood_wide_damaged"
-
-/turf/open/floor/wood/variable/damaged/fancy
-	icon_state = "wood_fancy_damaged"
-
-/turf/open/floor/wood/variable/damaged/mosaic
-	icon_state = "wood_mosaic_damaged"
+/turf/open/floor/wood/variable/mosaic/damaged
+	burnt = TRUE
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
@@ -456,13 +453,15 @@
 	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
 		return
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		user.visible_message(span_notice("[user] starts removing [src]'s protective cover."),
 		span_notice("You start removing [src]'s protective cover."))
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		new /obj/item/stack/rods(src, 2)
@@ -537,21 +536,20 @@
 
 /turf/open/floor/grass
 	name = "Grass patch"
-	icon_state = "grass1"
+	icon_state = "grass"
 	floor_tile = /obj/item/stack/tile/grass
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
+	icon_variants = 4
 
 
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()
-	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
 
 /turf/open/floor/grass/LateInitialize()
-	update_icon()
 	for(var/direction in GLOB.cardinals)
 		if(!istype(get_step(src,direction), /turf/open/floor))
 			continue
@@ -916,6 +914,46 @@
 
 /turf/open/floor/carpet/side
 	icon_state = "carpetside"
+
+/turf/open/floor/carpet/blue
+	icon = 'icons/turf/floors/carpet_blue.dmi'
+	base_icon_state = "carpet_blue"
+	icon_state = "carpet_blue-0"
+
+/turf/open/floor/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	base_icon_state = "carpet_black"
+	icon_state = "carpet_black-0"
+
+/turf/open/floor/carpet/green
+	icon = 'icons/turf/floors/carpet_green.dmi'
+	base_icon_state = "carpet_green"
+	icon_state = "carpet_green-0"
+
+/turf/open/floor/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	base_icon_state = "carpet_orange"
+	icon_state = "carpet_orange-0"
+
+/turf/open/floor/carpet/purple
+	icon = 'icons/turf/floors/carpet_purple.dmi'
+	base_icon_state = "carpet_purple"
+	icon_state = "carpet_purple-0"
+
+/turf/open/floor/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	base_icon_state = "carpet_red"
+	icon_state = "carpet_red-0"
+
+/turf/open/floor/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	base_icon_state = "carpet_cyan"
+	icon_state = "carpet_cyan-0"
+
+/turf/open/floor/carpet/royalblack
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	base_icon_state = "carpet_royalblack"
+	icon_state = "carpet_royalblack-0"
 
 // Start Prison tiles
 

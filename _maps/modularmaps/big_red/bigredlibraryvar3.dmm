@@ -2,7 +2,7 @@
 "ag" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "aV" = (
@@ -25,7 +25,7 @@
 /area/bigredv2/outside/library)
 "cM" = (
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "de" = (
@@ -57,13 +57,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/paper,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "eI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/outside/library)
 "eV" = (
@@ -105,7 +105,7 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/outside/library)
 "ke" = (
@@ -145,7 +145,7 @@
 /area/bigredv2/outside/library)
 "nb" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/library)
 "nr" = (
@@ -157,7 +157,7 @@
 /area/bigredv2/outside/library)
 "nL" = (
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/bigredv2/outside/library)
 "qw" = (
@@ -199,13 +199,13 @@
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "up" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/bigredv2/outside/library)
 "uy" = (
@@ -226,8 +226,7 @@
 /area/bigredv2/outside/library)
 "ve" = (
 /obj/effect/spawner/random/misc/trash,
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "vN" = (
 /obj/machinery/light{
@@ -249,6 +248,10 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"wI" = (
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "xB" = (
@@ -286,13 +289,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "CH" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "CM" = (
@@ -300,8 +303,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "Ey" = (
 /turf/open/floor/wood,
@@ -334,13 +336,13 @@
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "Gj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "HS" = (
@@ -356,7 +358,7 @@
 /obj/item/toy/dice/d20,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "Kh" = (
@@ -365,12 +367,11 @@
 /area/bigredv2/outside/library)
 "Mt" = (
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/bigredv2/outside/library)
 "MR" = (
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "Nb" = (
 /obj/structure/table/woodentable,
@@ -387,7 +388,7 @@
 "PL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/library)
 "Qv" = (
@@ -430,7 +431,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "Tc" = (
@@ -440,7 +441,7 @@
 "Tr" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/library)
 "Tw" = (
@@ -479,8 +480,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "WZ" = (
 /obj/structure/bed/chair/wood/normal{
@@ -543,7 +543,7 @@ jK
 jK
 uy
 Ey
-uy
+Ey
 qw
 nr
 Ey
@@ -563,7 +563,7 @@ VX
 jK
 uy
 Ey
-uy
+Ey
 AA
 uy
 St
@@ -581,7 +581,7 @@ VX
 "}
 (4,1,1) = {"
 jK
-uy
+wI
 HS
 NF
 Qv

@@ -5,13 +5,13 @@
 
 /obj/item/tool/pickaxe
 	name = "pickaxe"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	throwforce = 4
-	item_state = "pickaxe"
+	worn_icon_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
@@ -28,14 +28,14 @@
 /obj/item/tool/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
-	item_state = "spickaxe"
+	worn_icon_state = "spickaxe"
 	digspeed = 30
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
-	item_state = "drill"
+	worn_icon_state = "drill"
 	digspeed = 30
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
@@ -43,7 +43,7 @@
 /obj/item/tool/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 20 //faster than drill, but cannot dig
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
@@ -51,21 +51,21 @@
 /obj/item/tool/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
-	item_state = "gpickaxe"
+	worn_icon_state = "gpickaxe"
 	digspeed = 20
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
-	item_state = "dpickaxe"
+	worn_icon_state = "dpickaxe"
 	digspeed = 10
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
 /obj/item/tool/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 5 //Digs through walls, girders, and can dig up sand
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
@@ -73,7 +73,7 @@
 /obj/item/tool/pickaxe/borgdrill
 	name = "cyborg mining drill"
 	icon_state = "diamonddrill"
-	item_state = "jackhammer"
+	worn_icon_state = "jackhammer"
 	digspeed = 15
 	desc = ""
 	drill_verb = "drilling"
@@ -81,14 +81,15 @@
 
 /obj/item/tool/pickaxe/plasmacutter
 	name = "plasma cutter"
+	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
-	item_state = "plasmacutter"
+	worn_icon_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
-	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
 	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
@@ -165,7 +166,6 @@
 		spark_system.attach(source)
 		spark_system.start(source)
 	if(!no_string)
-		balloon_alert(user, "Cutting...")
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
@@ -184,8 +184,6 @@
 	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
-	else
-		balloon_alert(user, "Cuts apart")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -279,7 +277,7 @@
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)
 			fizzle_message(user)
@@ -289,7 +287,8 @@
 		if(!ST.slayer)
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
-		ST.update_icon(1,0)
+		ST.update_appearance()
+		ST.update_sides()
 		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 
@@ -302,7 +301,7 @@
 	if(!start_cut(user, O.name, O))
 		return TRUE
 
-	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
+	if(!do_after(user, calc_delay(user), NONE, O, BUSY_ICON_HOSTILE))
 		return TRUE
 
 	cut_apart(user, O.name, O)

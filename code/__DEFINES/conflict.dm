@@ -4,11 +4,11 @@
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_CLICK_ABILITY 6
 #define CLICK_CD_MELEE 8
+#define CLICK_CD_THROWING 4
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_RESIST 10
 #define CLICK_CD_LONG 20
-#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -37,33 +37,45 @@
 #define INTENT_NUMBER_HARM 3
 
 //Ammo defines for gun/projectile related things.
-//flags_ammo_behavior
-#define AMMO_EXPLOSIVE (1<<0) //Ammo will impact a targeted open turf instead of continuing past it
+//ammo_behavior_flags
+
+///Ammo will impact a targeted open turf instead of continuing past it
+#define AMMO_TARGET_TURF (1<<0)
+///Xeno type projectile
 #define AMMO_XENO (1<<1)
-#define AMMO_XENO_TOX (1<<2) //Unused value.
-#define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
-#define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades
-#define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades
-#define AMMO_INCENDIARY (1<<6) //Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
-#define AMMO_SKIPS_ALIENS (1<<7)
-#define AMMO_IS_SILENCED (1<<8) //Unused right now.
-#define AMMO_IGNORE_ARMOR (1<<9) //Projectile direct damage will ignore both hard and soft armor
-#define AMMO_IGNORE_RESIST (1<<10) //Unused.
-#define AMMO_BALLISTIC (1<<11) //Generates blood splatters on mob hit
-#define AMMO_SUNDERING (1<<12)
-#define AMMO_SPECIAL_PROCESS (1<<13)
-#define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
-#define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
-#define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
-#define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
-#define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
-#define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
-#define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
-#define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
-#define AMMO_SOUND_PITCH (1<<22) //If the projectile ricochet and miss sound is pitched up
+///poor accuracy against humans
+#define AMMO_UNWIELDY (1<<2)
+///Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
+#define AMMO_ENERGY (1<<3)
+///Ammo is more likely to continue past cover such as cades
+#define AMMO_SNIPER (1<<4)
+///Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
+#define AMMO_INCENDIARY (1<<5)
+///Ammo type entirely ignores xenos
+#define AMMO_SKIPS_ALIENS (1<<6)
+///Generates blood splatters on mob hit
+#define AMMO_BALLISTIC (1<<7)
+///Ammo processes while traveling
+#define AMMO_SPECIAL_PROCESS (1<<8)
+///Used to identify flamethrower projectiles and similar projectiles
+#define AMMO_FLAME (1<<9)
+///Used to identify ammo that have intrinsec IFF properties
+#define AMMO_IFF (1<<10)
+///If the projectile from this ammo is hitscan
+#define AMMO_HITSCAN (1<<11)
+///If the projectile does something with on_leave_turf()
+#define AMMO_LEAVE_TURF (1<<12)
+///If the projectile passes through walls causing damage to them
+#define AMMO_PASS_THROUGH_TURF (1<<13)
+///If the projectile passes through mobs and objects causing damage to them
+#define AMMO_PASS_THROUGH_MOVABLE (1<<14)
+///If the projectile passes through mobs only causing damage to them
+#define AMMO_PASS_THROUGH_MOB (1<<15)
+///If the projectile ricochet and miss sound is pitched up
+#define AMMO_SOUND_PITCH (1<<16)
 
 //Gun defines for gun related thing. More in the projectile folder.
-//flags_gun_features
+//gun_features_flags
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_UNUSUAL_DESIGN (1<<1)
 #define GUN_AMMO_COUNTER (1<<2)
@@ -80,6 +92,7 @@
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
 #define GUN_SHOWS_AMMO_REMAINING (1<<14) //Whether the mob sprite reflects the ammo level
 #define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
+#define GUN_SMOKE_PARTICLES (1<<16) //Whether the gun has smoke particles
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -113,7 +126,7 @@
 #define AUTOFIRE_CONTINUE (1<<0)
 #define AUTOFIRE_SUCCESS (1<<1)
 
-//Ammo magazine defines, for flags_magazine
+//Ammo magazine defines, for magazine_flags
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)
@@ -122,12 +135,16 @@
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
-#define SLOWDOWN_ARMOR_VERY_LIGHT 0.20
-#define SLOWDOWN_ARMOR_LIGHT 0.3
+#define SLOWDOWN_ARMOR_VERY_LIGHT 0.15
+#define SLOWDOWN_ARMOR_LIGHT 0.2
 #define SLOWDOWN_ARMOR_MEDIUM 0.5
 #define SLOWDOWN_ARMOR_HEAVY 0.7
 #define SLOWDOWN_ARMOR_VERY_HEAVY 1
 
+//Marine armor defines
+#define MARINE_ARMOR_LIGHT list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+#define MARINE_ARMOR_MEDIUM list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+#define MARINE_ARMOR_HEAVY list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 //=================================================
 
@@ -138,6 +155,7 @@
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
+#define SNIPER_LASER_SLOWDOWN_STACKS 3 // Slowdown applied on hit vs the aimed target.
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
@@ -170,6 +188,7 @@
 #define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
 #define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
 #define SMOKE_XENO_TOXIC (1<<21) //deals damage to anyone inside it and inflicts the intoxicated debuff, dealing damage over time
+#define SMOKE_PURGER (1<<22) // This smoke removes any smoke has this in its effects_cycle, that removes certain types of smokes.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)
@@ -207,14 +226,11 @@
 
 #define MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT 2 SECONDS
 
-//Xeno Overlays Indexes//////////
-#define X_LASER_LAYER 9
-#define X_WOUND_LAYER 8
-#define X_HEAD_LAYER 7
-#define X_SUIT_LAYER 6
-#define X_L_HAND_LAYER 5
-#define X_R_HAND_LAYER 4
-#define X_TARGETED_LAYER 3
-#define X_FIRE_LAYER 1
-#define X_TOTAL_LAYERS 9
 /////////////////////////////////
+
+//Cave comms defines
+#define CAVE_NO_INTERFERENCE 0 //! No impact on comms.
+#define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on incoming.
+#define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
+
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.

@@ -1,7 +1,9 @@
 /obj/machinery/computer/camera
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
-	icon_state = "cameras"
+	icon_state = "computer_small"
+	screen_overlay = "cameras"
+	broken_icon = "computer_small_red_broken"
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_RED
 
@@ -118,7 +120,7 @@
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/C = cameras[c_tag]
 		active_camera = C
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		// Show static if can't use the camera
 		if(!active_camera?.can_use())

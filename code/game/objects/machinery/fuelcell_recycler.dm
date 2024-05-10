@@ -15,6 +15,8 @@
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/fuel_cell))
 		if(!cell_left)
 			if(user.transferItemToLoc(I, src))
@@ -85,18 +87,22 @@
 
 		update_icon()
 
-/obj/machinery/fuelcell_recycler/update_icon()
-	src.overlays.Cut()
-
+/obj/machinery/fuelcell_recycler/update_icon_state()
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "recycler0"
+	else
+		icon_state = "recycler"
+
+/obj/machinery/fuelcell_recycler/update_overlays()
+	. = ..()
+
+	if(machine_stat & (BROKEN|NOPOWER))
 		if(cell_left != null)
 			src.overlays += "recycler-left-cell"
 		if(cell_right != null)
 			src.overlays += "recycler-right-cell"
 		return
-	else
-		icon_state = "recycler"
 
 	var/overlay_builder = "recycler-"
 	if(cell_left == null && cell_right == null)
@@ -107,8 +113,8 @@
 		else
 			overlay_builder += "left-charging"
 
-		src.overlays += overlay_builder
-		src.overlays += "recycler-left-cell"
+		. += overlay_builder
+		. += "recycler-left-cell"
 		return
 	else if(cell_left == null)
 		if(cell_right.is_regenerated())
@@ -116,8 +122,8 @@
 		else
 			overlay_builder += "right-charging"
 
-		src.overlays += overlay_builder
-		src.overlays += "recycler-right-cell"
+		. += overlay_builder
+		. += "recycler-right-cell"
 		return
 	else // both left and right cells are there
 		if(cell_left.is_regenerated())
@@ -130,7 +136,6 @@
 		else
 			overlay_builder += "-right-charging"
 
-		src.overlays += overlay_builder
-		src.overlays += "recycler-left-cell"
-		src.overlays += "recycler-right-cell"
-		return
+		. += overlay_builder
+		. += "recycler-left-cell"
+		. += "recycler-right-cell"

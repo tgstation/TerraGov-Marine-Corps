@@ -2,10 +2,10 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
-/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
+/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary //honestly probably not, TODO fixme
 	for(var/turf/T in locs)
-		for(var/obj/vehicle/multitile/M in T)
-			if(M) return FALSE
+		for(var/obj/hitbox/hit in T)
+			return FALSE
 
 	return ..()
 
@@ -133,12 +133,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor.dmi'
-	opacity = FALSE
-	glass = FALSE
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass
 	name = "\improper Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor_glass.dmi'
+	opacity = FALSE
 	glass = TRUE
 
 //PREP DOORS
@@ -314,8 +313,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
-	opacity = FALSE
-	glass = FALSE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass

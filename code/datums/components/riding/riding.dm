@@ -207,6 +207,10 @@
 	SIGNAL_HANDLER
 	return
 
+/// Calculates the additional delay to moving
+/datum/component/riding/proc/calculate_additional_delay(mob/living/user)
+	return 0
+
 /// So we can check all occupants when we bump a door to see if anyone has access
 /datum/component/riding/proc/vehicle_bump(atom/movable/movable_parent, obj/machinery/door/possible_bumped_door)
 	SIGNAL_HANDLER

@@ -42,7 +42,7 @@
 		return
 	var/mob/living/carbon/human/human = carbon_mob
 	var/datum/limb/limb = human.get_limb(parent_limb)
-	LAZYDISTINCTADD(limb.internal_organs, src)
+	LAZYOR(limb.internal_organs, src)
 
 ///Signal handler to prevent hard del
 /datum/internal_organ/proc/clean_owner()
@@ -50,7 +50,7 @@
 	owner = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
-	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
+	if(SSticker.mode?.round_type_flags & MODE_NO_PERMANENT_WOUNDS)
 		return
 	if(amount <= 0)
 		heal_organ_damage(-amount)
@@ -86,31 +86,10 @@
 	set_organ_status()
 
 /datum/internal_organ/proc/emp_act(severity)
-	switch(robotic)
-		if(0)
-			return
-		if(1)
-			switch (severity)
-				if (1.0)
-					take_damage(20,0)
-					return
-				if (2.0)
-					take_damage(7,0)
-					return
-				if(3.0)
-					take_damage(3,0)
-					return
-		if(2)
-			switch (severity)
-				if (1.0)
-					take_damage(40,0)
-					return
-				if (2.0)
-					take_damage(15,0)
-					return
-				if(3.0)
-					take_damage(10,0)
-					return
+	if(!robotic)
+		return
+	take_damage((5 - severity) * 5 * robotic)
+
 
 /datum/internal_organ/proc/mechanize() //Being used to make robutt hearts, etc
 	if(robotic_type)
@@ -256,11 +235,14 @@
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
+	if(!carbon_mob)
+		return
 	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(owner_added_reagent))
 	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, PROC_REF(owner_removed_reagent))
 
 /datum/internal_organ/kidneys/clean_owner()
-	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+	if(owner?.reagents)
+		UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
 	return ..()
 
 ///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.

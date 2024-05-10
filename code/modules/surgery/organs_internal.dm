@@ -56,6 +56,7 @@
 	affected.createwound(CUT, rand(0,20), 1)
 	target.updatehealth()
 	affected.update_wounds()
+	return ..()
 
 
 //////////////////////////////////////////////////////////////////
@@ -100,6 +101,7 @@
 			span_notice("You treat damage to [target]'s [I.name] with surgical membrane.") )
 			I.heal_organ_damage(I.damage)
 			target.balloon_alert_to_viewers("Success")
+	return ..()
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
@@ -154,6 +156,7 @@
 			span_notice("You repair [target]'s [I.name] with [tool].") )
 			I.damage = 0
 	target.balloon_alert_to_viewers("Success")
+	return ..()
 
 /datum/surgery_step/internal/fix_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, gumming up the mechanisms inside of [target]'s [affected.display_name] with \the [tool]!"), \

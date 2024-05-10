@@ -90,6 +90,17 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.toggle_camera_light()
 
+/atom/movable/screen/ai/supply_interface
+	name = "Supply Interface"
+	icon_state = "pda"
+
+/atom/movable/screen/ai/supply_interface/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.supply_interface()
+
 
 /atom/movable/screen/ai/multicam
 	name = "Multicamera Mode"
@@ -102,7 +113,6 @@
 		return
 	var/mob/living/silicon/ai/AI = usr
 	AI.toggle_multicam()
-
 
 /atom/movable/screen/ai/add_multicam
 	name = "New Camera"
@@ -122,47 +132,52 @@
 	var/atom/movable/screen/using
 
 //AI core
-	using = new /atom/movable/screen/ai/aicore()
+	using = new /atom/movable/screen/ai/aicore(null, src)
 	using.screen_loc = ui_ai_core
 	static_inventory += using
 
 //Camera list
-	using = new /atom/movable/screen/ai/camera_list()
+	using = new /atom/movable/screen/ai/camera_list(null, src)
 	using.screen_loc = ui_ai_camera_list
 	static_inventory += using
 
 //Track
-	using = new /atom/movable/screen/ai/camera_track()
+	using = new /atom/movable/screen/ai/camera_track(null, src)
 	using.screen_loc = ui_ai_track_with_camera
 	static_inventory += using
 
 //VOX
-	using = new /atom/movable/screen/ai/announcement()
+	using = new /atom/movable/screen/ai/announcement(null, src)
 	using.screen_loc = ui_ai_announcement
 	static_inventory += using
 
 //VOX Help
-	using = new /atom/movable/screen/ai/announcement_help()
+	using = new /atom/movable/screen/ai/announcement_help(null, src)
 	using.screen_loc = ui_ai_announcement_help
 	static_inventory += using
 
 //Camera light
-	using = new /atom/movable/screen/ai/camera_light()
+	using = new /atom/movable/screen/ai/camera_light(null, src)
 	using.screen_loc = ui_ai_camera_light
 	static_inventory += using
 
+//Supply Interface
+	using = new /atom/movable/screen/ai/supply_interface(null, src)
+	using.screen_loc = ui_ai_supply
+	static_inventory += using
+
 //Multicamera mode
-	using = new /atom/movable/screen/ai/multicam()
+	using = new /atom/movable/screen/ai/multicam(null, src)
 	using.screen_loc = ui_ai_multicam
 	static_inventory += using
 
 //Add multicamera camera
-	using = new /atom/movable/screen/ai/add_multicam()
+	using = new /atom/movable/screen/ai/add_multicam(null, src)
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using
 
 //bioscan
-	using = new /atom/movable/screen/ai/bioscan()
+	using = new /atom/movable/screen/ai/bioscan(null, src)
 	using.screen_loc = ui_ai_bioscan
 	static_inventory += using
 

@@ -10,7 +10,8 @@
 	var/state = 1
 
 
-/obj/machinery/constructable_frame/proc/update_desc()
+/obj/machinery/constructable_frame/update_desc(updates)
+	. = ..()
 	var/D
 	if(req_components)
 		D = "Requires "
@@ -32,10 +33,6 @@
 
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/living/user, params)
-	if(I.crit_fail)
-		to_chat(user, span_warning("This part is faulty, you cannot add this to the machine!"))
-		return
-
 	switch(state)
 		if(1)
 			if(iscablecoil(I))
@@ -47,7 +44,7 @@
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				user.visible_message(span_notice("[user] starts adding cables to [src]."),
 				span_notice("You start adding cables to [src]."))
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
 					return
 
 				if(!C.use(5))

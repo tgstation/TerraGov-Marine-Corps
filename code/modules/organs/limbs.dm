@@ -141,17 +141,11 @@
 ****************************************************/
 
 /datum/limb/proc/emp_act(severity)
+	for(var/datum/internal_organ/organ AS in internal_organs)
+		organ.emp_act(severity)
 	if(!(limb_status & LIMB_ROBOT))	//meatbags do not care about EMP
 		return
-	var/probability = 30
-	var/damage = 15
-	if(severity == 2)
-		probability = 1
-		damage = 3
-	if(prob(probability))
-		droplimb()
-	else
-		take_damage_limb(damage, 0, TRUE, TRUE)
+	take_damage_limb(0, (5 - severity) * 7, blocked = soft_armor.energy, updating_health = TRUE)
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
@@ -194,7 +188,7 @@
 
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + brute
-	if(brute > 15 && local_damage > 30 && prob(brute*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
+	if(brute > 15 && local_damage > 30 && prob(brute*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.round_type_flags & MODE_NO_PERMANENT_WOUNDS))
 		new /datum/wound/internal_bleeding(min(brute - 15, 15), src)
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
@@ -269,7 +263,7 @@
 			owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
-	if(body_part == HEAD && worn_helmet && (worn_helmet.flags_armor_features & ARMOR_NO_DECAP)) //Early return if the body part is a head but target is wearing decap-protecting headgear.
+	if(body_part == HEAD && worn_helmet && (worn_helmet.armor_features_flags & ARMOR_NO_DECAP)) //Early return if the body part is a head but target is wearing decap-protecting headgear.
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
@@ -552,51 +546,51 @@ Note that amputating the affected organ does in fact remove the infection from t
 		remove_limb_flags(LIMB_BLEEDING)
 
 
-/datum/limb/proc/set_limb_flags(flags_to_set)
-	if(flags_to_set == limb_status)
+/datum/limb/proc/set_limb_flags(to_set_flags)
+	if(to_set_flags == limb_status)
 		return
 	. = limb_status
-	var/flags_to_change = . & ~flags_to_set //Flags to remove
-	if(flags_to_change)
-		remove_limb_flags(flags_to_change)
-	flags_to_change = flags_to_set & ~(flags_to_set & .) //Flags to add
-	if(flags_to_change)
-		add_limb_flags(flags_to_change)
+	var/to_change_flags = . & ~to_set_flags //Flags to remove
+	if(to_change_flags)
+		remove_limb_flags(to_change_flags)
+	to_change_flags = to_set_flags & ~(to_set_flags & .) //Flags to add
+	if(to_change_flags)
+		add_limb_flags(to_change_flags)
 
 
-/datum/limb/proc/remove_limb_flags(flags_to_remove)
-	if(!(limb_status & flags_to_remove))
+/datum/limb/proc/remove_limb_flags(to_remove_flags)
+	if(!(limb_status & to_remove_flags))
 		return //Nothing old to remove.
 	. = limb_status
-	limb_status &= ~flags_to_remove
-	var/changed_flags = . & flags_to_remove
+	limb_status &= ~to_remove_flags
+	var/changed_flags = . & to_remove_flags
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
 
-/datum/limb/proc/add_limb_flags(flags_to_add)
-	if(flags_to_add == (limb_status & flags_to_add))
+/datum/limb/proc/add_limb_flags(to_add_flags)
+	if(to_add_flags == (limb_status & to_add_flags))
 		return //Nothing new to add.
 	. = limb_status
-	limb_status |= flags_to_add
-	var/changed_flags = ~(. & flags_to_add) & flags_to_add
+	limb_status |= to_add_flags
+	var/changed_flags = ~(. & to_add_flags) & to_add_flags
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_DESTROYED)
 
 
-/datum/limb/foot/remove_limb_flags(flags_to_remove)
+/datum/limb/foot/remove_limb_flags(to_remove_flags)
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = . & flags_to_remove
+	var/changed_flags = . & to_remove_flags
 	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
-/datum/limb/foot/add_limb_flags(flags_to_add)
+/datum/limb/foot/add_limb_flags(to_add_flags)
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_add) & flags_to_add
+	var/changed_flags = ~(. & to_add_flags) & to_add_flags
 	if((changed_flags & LIMB_DESTROYED) && !owner.has_legs())
 		ADD_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
@@ -661,6 +655,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		L.droplimb(0,delete_limb)
 		return limb_name
 	return null
+
+///Amputates the limb in the specified limb zone
+/mob/living/carbon/human/proc/amputate_limb(limb_zone)
+	var/datum/limb/limb_to_drop = get_limb(limb_zone)
+	limb_to_drop?.droplimb(TRUE, TRUE)
 
 //Handles dismemberment
 /datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
@@ -914,23 +913,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 // todo this proc sucks lmao just redo it from scratch
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
-	if (!c_hand)
+	if(!c_hand)
 		return
 
 	if(!is_usable())
-		owner.dropItemToGround(c_hand)
-		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
-		return
-	if(is_broken())
-		if(prob(15))
-			owner.dropItemToGround(c_hand)
-			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what [owner.p_they()] [owner.p_were()] holding in their [hand_name]!")
-			return
-	if(is_malfunctioning())
-		if(prob(20))
-			owner.dropItemToGround(c_hand)
-			owner.emote("me", 1, "drops what they were holding, [owner.p_their()] [hand_name] malfunctioning!")
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+	else if(is_broken() && prob(15))
+		if(owner.dropItemToGround(c_hand))
+			var/emote_scream = owner.species?.species_flags & NO_PAIN ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+			owner.emote("me", 1, "[emote_scream]drops what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name]!")
+	else if(is_malfunctioning() && prob(20))
+		if(owner.dropItemToGround(c_hand))
+			owner.emote("me", 1, "drops what [owner.p_they()] [owner.p_were()] holding, [owner.p_their()] [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 ///applies a splint stack to this limb. should probably be more generic but #notit
@@ -952,7 +947,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	target.balloon_alert_to_viewers("Splinting [display_name]...")
 
-	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
+	if(!do_after(user, delay, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
 		return FALSE
 
 	target.balloon_alert_to_viewers("Splinted [display_name]")

@@ -4,10 +4,7 @@
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
-	if(stat == DEAD)
-		return ..()
-	return ..() //Just a different standard deathmessage
-
+	return ..() //we're just changing the death message
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
@@ -18,10 +15,15 @@
 	QDEL_NULL(leader_current_aura)
 
 	hive?.on_xeno_death(src)
-	hive.update_tier_limits() //Update our tier limits.
+	hive?.update_tier_limits() //Update our tier limits.
 
-	if(is_zoomed)
+	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
+
+	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set
+		switch(tier)
+			if(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE) //minions and tier fours have no respawn timer
+				GLOB.key_to_time_of_xeno_death[key] = world.time
 
 	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
@@ -34,6 +36,7 @@
 		if(hud_used.alien_plasma_display)
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 	update_icons()
+	hud_set_plasma()
 
 	death_cry()
 
@@ -45,22 +48,22 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
 	switch (upgrade)
-		if(XENO_UPGRADE_TWO)
+		if(XENO_UPGRADE_NORMAL)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.elder_T2--
+					SSmonitor.stats.normal_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.elder_T3--
+					SSmonitor.stats.normal_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_T4--
-		if(XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR)
+					SSmonitor.stats.normal_T4--
+		if(XENO_UPGRADE_PRIMO)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.ancient_T2--
+					SSmonitor.stats.primo_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.ancient_T3--
+					SSmonitor.stats.primo_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_T4--
+					SSmonitor.stats.primo_T4--
 
 	eject_victim()
 

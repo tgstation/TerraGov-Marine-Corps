@@ -4,7 +4,7 @@
 	desc = "A spiky length of wire."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	singular_name = "length"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
@@ -29,6 +29,8 @@
 
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/stack/rods))
 		return
@@ -37,9 +39,12 @@
 	if(R.amount < 8)
 		to_chat(user, span_warning("You need [8 - R.amount] more [R] to make a razor wire obstacle!"))
 		return
+	if(amount < 2)
+		to_chat(user, span_warning("You need at least [2 - amount] more [src] to make razorwire obstacles!"))
+		return
 
 	R.use(8)
-	use(1)
+	use(2)
 
 	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
@@ -54,6 +59,7 @@
 	throwforce = 10
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
+	singular_name = "bundle"
 	max_amount = 10
 	merge_type = /obj/item/stack/razorwire
 
@@ -85,7 +91,8 @@
 		to_chat(user, span_warning("There is insufficient room to deploy [src]!"))
 		return
 
-	if(!target.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(!target.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		to_chat(user, span_warning("We can't build here!"))
 		return
 
@@ -95,7 +102,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER)) //Higher skill lowers the delay.
 		delay_assembly -= 0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER) * 2
 
-	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
+	if(do_after(user, delay_assembly, NONE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
 		user.visible_message(span_notice("[user] assembles a [M]."),
@@ -103,3 +110,4 @@
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 		M.update_icon()
 		use(1)
+	user.record_structures_built()

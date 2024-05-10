@@ -58,6 +58,8 @@
 
 /obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/reagent_containers/glass/beaker))
 		var/obj/item/reagent_containers/glass/beaker/B = I
 		if(B.reagents.has_reagent(/datum/reagent/medicine/biomass, 30))
@@ -83,6 +85,7 @@
 	. += "It has [stored_matter] matter and [stored_metal] metal left."
 
 /obj/machinery/bioprinter/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "bioprinter_off"
 		return

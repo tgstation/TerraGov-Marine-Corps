@@ -3,10 +3,10 @@
 	name = "Jaeger Mk.I Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "helmet"
-	item_state = "helmet"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	worn_icon_state = "helmet"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 
 	attachments_allowed = list(
@@ -20,6 +20,7 @@
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/module/night_vision,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/visor/marine/old,
@@ -29,11 +30,12 @@
 		/obj/item/armor_module/armor/visor/marine/old/eva/skull,
 		/obj/item/armor_module/armor/visor/marine/old/eod,
 		/obj/item/armor_module/armor/visor/marine/old/assault,
+		/obj/item/armor_module/armor/visor/marine/mjolnir,
 		/obj/item/armor_module/module/fire_proof_helmet,
 	)
 
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 
@@ -77,6 +79,12 @@
 
 /obj/item/clothing/head/modular/marine/old/eod
 	name = "Jaeger Mk.I Pattern EOD Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings."
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/old/eod, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/eod
+
+/obj/item/clothing/head/modular/marine/old/mjolnir
+	name = "Jaeger Mk.I Pattern Mjolnir Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Mjolnir markings."
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/mjolnir, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/mjolnir

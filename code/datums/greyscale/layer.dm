@@ -97,40 +97,35 @@
 	. = ..()
 	var/icon_state = json_data["icon_state"]
 	if(prefix && !json_data["ignore_prefix"])
-		icon_state = prefix+icon_state
+		icon_state = prefix + icon_state
 	if(!(icon_state in icon_states(icon_file)))
-		CRASH("Configured icon state \[[icon_state]\] was not found in [icon_file]. Double check your json configuration.")
+		CRASH("Configured icon state \"[icon_state]\" was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 	icon.GrayScale()
-	for(var/dir in list(SOUTH, NORTH, EAST, WEST, NORTHWEST, NORTHEAST, SOUTHWEST, SOUTHEAST))
-		for(var/x=0 to (icon.Width()-1))
-			for(var/y=0 to (icon.Height()-1))
-				var/pixel = icon.GetPixel(x,y, dir=dir)
-				if(!pixel || (pixel in icon_file_colors))
+	var/w = icon.Width()
+	var/h = icon.Height()
+	for(var/dir in GLOB.alldirs)
+		for(var/x = 1 to w)
+			for(var/y = 1 to h)
+				var/pixel = icon.GetPixel(x, y, dir = dir)
+				if(isnull(pixel))
 					continue
-				var/rgb_val = ReadRGB(pixel)[1]
-				if(!length(icon_file_colors))
-					icon_file_colors.Add(pixel)
-					continue
-				for(var/i=1 to length(icon_file_colors))
-					var/rgb_val_2 = ReadRGB(icon_file_colors[i])[1]
-					if(rgb_val_2 < rgb_val)
-						continue
-					icon_file_colors.Insert(i, pixel)
-					break
+				pixel = copytext(pixel, 1, 8) // "#RRGGBB", no alpha
 				if(pixel in icon_file_colors)
 					continue
-				icon_file_colors.Add(pixel)
+				icon_file_colors[pixel] = rgb2num(pixel)
+	// sort ascending by red
+	sortTim(icon_file_colors, cmp = /proc/cmp_list_numeric_asc, associative = TRUE, sortkey = 1)
 
 /datum/greyscale_layer/hyperscale/InternalGenerate(list/colors, list/render_steps, datum/greyscale_config/parent)
 	var/icon/new_icon = icon(icon)
-	if((length(icon_file_colors) > length(colors) && !CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE)))
-		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
-	if(CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE) && (length(colors) == 1))
+	if(CHECK_BITFIELD(parent.greyscale_flags, HYPERSCALE_ALLOW_GREYSCALE) && length(colors) == 1)
 		new_icon.Blend(colors[1], ICON_MULTIPLY)
 		return new_icon
+	if(length(icon_file_colors) > length(colors))
+		CRASH("[src] set to Hyperscale, expected [length(icon_file_colors)], got [length(colors)].")
 
-	for(var/i=1 to length(icon_file_colors))
-		new_icon.SwapColor(icon_file_colors[i], colors[i])
-
+	for(var/icon_file_color in icon_file_colors)
+		var/i = icon_file_colors.Find(icon_file_color)
+		new_icon.SwapColor(icon_file_color, colors[i])
 	return new_icon

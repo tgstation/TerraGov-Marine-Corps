@@ -106,7 +106,7 @@
 /obj/item/trash/c_tube
 	name = "cardboard tube"
 	desc = "A tube... of cardboard."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "c_tube"
 	throwforce = 1
 	throw_speed = 4
@@ -148,10 +148,15 @@
 	desc = "An empty box from a chunk bar. Significantly less heavy."
 	icon_state = "chunk_trash"
 
-/obj/item/trash/barcardine
-	name = "barcardine bar wrapper"
-	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
+/obj/item/trash/barcaridine
+	name = "barcaridine bar wrapper"
+	desc = "An empty wrapper from a barcaridine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
 	icon_state = "barcardine_trash"
+
+/obj/item/trash/berrybar
+	name = "berry bar wrapper"
+	desc = "An empty wrapper from a berry bar. You notice the inside has several medical labels and ingredients but You're not sure if you care or not about that."
+	icon_state = "berrybar_trash"
 
 /obj/item/trash/mre
 	name = "\improper crumbled TGMC MRE"

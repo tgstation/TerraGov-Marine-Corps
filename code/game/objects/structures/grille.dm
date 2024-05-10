@@ -7,7 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 10
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	allow_pass_flags = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
@@ -113,7 +113,7 @@
 
 		to_chat(user, span_notice("You start placing the window."))
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		for(var/obj/structure/window/W in loc)
@@ -129,10 +129,10 @@
 		to_chat(user, span_notice("You place the [WD] on [src]."))
 		WD.update_icon()
 
-/obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
-	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, FIRE)
-	return ..()
+/obj/structure/grille/fire_act(burn_level)
+	if(obj_integrity <= integrity_failure)
+		return
+	take_damage(1, BURN, FIRE)
 
 
 

@@ -6,6 +6,7 @@
 
 	if(!msg)
 		return
+	mob.log_talk(msg, LOG_PRAYER)
 
 	if(usr.client.prefs.muted & MUTE_PRAY)
 		to_chat(usr, span_warning("You cannot pray (muted)."))
@@ -39,8 +40,6 @@
 		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
-
-	log_prayer(msg)
 
 
 /proc/tgmc_message(text, mob/sender)

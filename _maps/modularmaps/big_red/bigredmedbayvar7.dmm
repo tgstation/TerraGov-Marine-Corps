@@ -141,7 +141,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "en" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "er" = (
@@ -161,7 +161,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "eD" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "eM" = (
@@ -215,7 +215,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "gH" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -688,7 +688,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/medical)
 "vX" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -737,7 +737,7 @@
 	},
 /area/bigredv2/outside/medical)
 "xJ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -952,7 +952,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "Cj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -1349,7 +1349,7 @@
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/medical)
 "Ob" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -1427,7 +1427,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/medical)
 "Rw" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6

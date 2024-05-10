@@ -105,7 +105,7 @@
 	name = "Random melee weapons spawner"
 	icon_state = "random_melee"
 	loot = list(
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/weapon/baseballbat,
@@ -115,6 +115,18 @@
 		/obj/item/tool/kitchen/knife,
 		/obj/item/tool/kitchen/knife/butcher,
 		/obj/item/weapon/twohanded/fireaxe,
+	)
+
+/obj/effect/spawner/random/weaponry/shiv
+	name = "Random shiv spawner"
+	icon_state = "random_shiv"
+	spawn_loot_chance = 5
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/tool/kitchen/knife/shiv = 80,
+		/obj/item/tool/kitchen/knife/shiv/plasma = 12,
+		/obj/item/tool/kitchen/knife/shiv/titanium = 5,
+		/obj/item/tool/kitchen/knife/shiv/plastitanium = 3,
 	)
 
 ///BALLISTIC WEAPON AMMO///
@@ -233,6 +245,7 @@
 	)
 /obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour
 	icon_state = "random_grenade_multiple_four"
+	spawn_random_offset = TRUE
 	spawn_loot_chance = 75
 	spawn_loot_count = 4
 

@@ -1,0 +1,12 @@
+help: "Please replace it with the proper spawner."
+/obj/alien/weeds/node:
+  banned: TRUE
+
+/turf/closed/wall/resin:
+  banned: TRUE
+
+/obj/structure/mineral_door/resin:
+  banned: TRUE
+
+/obj/structure/xeno/xeno_turret:
+  banned: TRUE

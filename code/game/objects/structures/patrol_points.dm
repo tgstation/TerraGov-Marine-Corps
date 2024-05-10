@@ -1,8 +1,8 @@
 /obj/structure/patrol_point
 	name = "Patrol start point"
-	desc = "A one way ticket to the combat zone."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "patrolpoint"
+	desc = "A one way ticket to the combat zone. Shift click to deploy when inside a mech."
+	icon = 'icons/effects/campaign_effects.dmi'
+	icon_state = "patrol_point_1"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
@@ -39,71 +39,92 @@
 		return
 	if(user.incapacitated() || !Adjacent(user) || user.lying_angle || user.buckled || user.anchored)
 		return
+
+	activate_point(user, user)
+
+/obj/structure/patrol_point/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
+	if(!Adjacent(user))
+		return
+	activate_point(user, mecha_clicker)
+
+///Handles sending someone and/or something through the patrol_point
+/obj/structure/patrol_point/proc/activate_point(mob/living/user, atom/movable/thing_to_move)
+	if(!thing_to_move)
+		return
 	if(!linked_point)
 		create_link()
 		if(!linked_point)
 			//Link your stuff bro. There may be a better way to do this, but the way modular map insert works, linking does not properly happen during initialisation
-			to_chat(user, span_warning("This doesn't seem to go anywhere."))
+			if(user)
+				to_chat(user, span_warning("This doesn't seem to go anywhere."))
 			return
-	user.visible_message(span_notice("[user] goes through the [src]."),
-	span_notice("You walk through the [src]."))
-	user.trainteleport(linked_point.loc)
-	add_spawn_protection(user)
-	new /atom/movable/effect/rappel_rope(linked_point.loc)
-	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	var/message
-	if(issensorcapturegamemode(SSticker.mode))
-		if(user.faction == FACTION_TERRAGOV)
-			message = "Reactivate all sensor towers, good luck team."
-		else
-			message = "Prevent reactivation of the sensor towers, glory to Mars!"
-	else if(user.faction == FACTION_TERRAGOV)
-		message = "Eliminate all hostile forces in the ao, good luck team."
-	else
-		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
 
-	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
-	else
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
-	update_icon()
+	thing_to_move.visible_message(span_notice("[thing_to_move] goes through the [src]."), user ? span_notice("You go through the [src].") : null)
+	linked_point.do_deployment(thing_to_move, user)
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
-	if(. || !linked_point)
+	if(.)
 		return
+	if(!linked_point)
+		create_link()
+		if(!linked_point)
+			to_chat(user, span_warning("This doesn't seem to go anywhere."))
+			return
+	user.forceMove(linked_point.loc)
 
-	user.forceMove(get_turf(linked_point))
+/obj/structure/patrol_point/tgmc_11
+	id = "TGMC_11"
 
-///Temporarily applies godmode to prevent spawn camping
-/obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
-	user.status_flags |= GODMODE
-	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
+/obj/structure/patrol_point/tgmc_12
+	id = "TGMC_12"
 
-///Removes spawn protection godmode
-/obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
-	user.status_flags &= ~GODMODE
+/obj/structure/patrol_point/tgmc_13
+	id = "TGMC_13"
 
-/atom/movable/effect/rappel_rope
-	name = "rope"
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "rope"
-	layer = ABOVE_MOB_LAYER
-	anchored = TRUE
-	resistance_flags = RESIST_ALL
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/structure/patrol_point/tgmc_14
+	id = "TGMC_14"
 
-/atom/movable/effect/rappel_rope/Initialize(mapload)
-	. = ..()
-	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
-	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
-	balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
-	ropeanimation()
+/obj/structure/patrol_point/tgmc_21
+	id = "TGMC_21"
+	icon_state = "patrol_point_2"
 
-/atom/movable/effect/rappel_rope/proc/ropeanimation()
-	flick("rope_deploy", src)
-	addtimer(CALLBACK(src, PROC_REF(ropeanimation_stop)), 2 SECONDS)
+/obj/structure/patrol_point/tgmc_22
+	id = "TGMC_22"
+	icon_state = "patrol_point_2"
 
-/atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
-	flick("rope_up", src)
-	QDEL_IN(src, 5)
+/obj/structure/patrol_point/tgmc_23
+	id = "TGMC_23"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/tgmc_24
+	id = "TGMC_24"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/som_11
+	id = "SOM_11"
+
+/obj/structure/patrol_point/som_12
+	id = "SOM_12"
+
+/obj/structure/patrol_point/som_13
+	id = "SOM_13"
+
+/obj/structure/patrol_point/som_14
+	id = "SOM_14"
+
+/obj/structure/patrol_point/som_21
+	id = "SOM_21"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/som_22
+	id = "SOM_22"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/som_23
+	id = "SOM_23"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/som_24
+	id = "SOM_24"
+	icon_state = "patrol_point_2"

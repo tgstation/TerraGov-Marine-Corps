@@ -5,7 +5,7 @@
 	Clicking on a floor without any tiles will reinforce the floor.  You can make reinforced glass by combining rods and normal glass sheets."
 
 /datum/codex_entry/glass
-	associated_paths = list(/obj/item/stack/sheet/glass)
+	associated_paths = list(/obj/item/stack/sheet/glass/glass)
 	mechanics_text = "Use in your hand to build a window.  Can be upgraded to reinforced glass by adding metal rods, which are made from metal sheets."
 
 /datum/codex_entry/glass_reinf

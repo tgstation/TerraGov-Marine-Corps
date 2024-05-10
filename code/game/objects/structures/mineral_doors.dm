@@ -19,9 +19,15 @@
 	var/material_type
 
 /obj/structure/mineral_door/Initialize(mapload)
-	. = ..()
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
+	/*
+	We are calling parent later because if we toggle state, the opacity changes only to change to
+	non opaque after the parent procs do their thing, this is an issue because this changes the
+	directional opacity of the turf below to be opaque from all sides, which screws with
+	line of sight because the turf below the door is considered opaque, when it shouldn't be.
+	*/
+	return ..()
 
 /obj/structure/mineral_door/Bumped(atom/user)
 	. = ..()
@@ -69,31 +75,59 @@
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-open"
 	else
 		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]"
 
 
-/obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
+/obj/structure/mineral_door/attackby(obj/item/attacking_item, mob/living/user)
 	. = ..()
+	if(.)
+		return
 	if(QDELETED(src))
 		return
 
-	var/multiplier = 1
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			if(istype(src, /obj/structure/mineral_door/resin))
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-			else
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
-			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
-		multiplier += 1 //generally means we do double damage to resin doors
+	if(user.a_intent == INTENT_HARM)
+		return
 
-	take_damage(max(0, W.force * multiplier - W.force), W.damtype, MELEE)
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
+
+/obj/structure/mineral_door/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
+	. = ..()
+	if(attacking_item.damtype != BURN)
+		return
+	var/damage_multiplier = get_burn_damage_multiplier(attacking_item, user, def_zone)
+
+	take_damage(max(0, attacking_item.force * damage_multiplier), attacking_item.damtype, MELEE)
+
+///Takes extra damage if our attacking item does burn damage
+/obj/structure/mineral_door/proc/get_burn_damage_multiplier(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 0)
+	if(!isplasmacutter(attacking_item))
+		return bonus_damage
+
+	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
+	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
+		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
+	return bonus_damage
+
+/obj/structure/mineral_door/resin/get_burn_damage_multiplier(obj/item/attacking_item, mob/living/user, def_zone, bonus_damage = 1)
+	if(!isplasmacutter(attacking_item))
+		return bonus_damage
+
+	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
+	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
+		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER
+		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
+	return bonus_damage
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)
@@ -111,24 +145,28 @@
 	name = "silver door"
 	material_type = /obj/item/stack/sheet/mineral/silver
 	base_icon_state = "silver"
+	icon_state = "silver"
 	max_integrity = 500
 
 /obj/structure/mineral_door/gold
 	name = "gold door"
 	material_type = /obj/item/stack/sheet/mineral/gold
 	base_icon_state = "gold"
+	icon_state = "gold"
 	max_integrity = 250
 
 /obj/structure/mineral_door/uranium
 	name = "uranium door"
 	material_type = /obj/item/stack/sheet/mineral/uranium
 	base_icon_state = "uranium"
+	icon_state = "uranium"
 	max_integrity = 500
 
 /obj/structure/mineral_door/sandstone
 	name = "sandstone door"
 	material_type = /obj/item/stack/sheet/mineral/sandstone
 	base_icon_state = "sandstone"
+	icon_state = "sandstone"
 	max_integrity = 100
 
 /obj/structure/mineral_door/transparent
@@ -144,11 +182,12 @@
 	name = "phoron door"
 	material_type = /obj/item/stack/sheet/mineral/phoron
 	base_icon_state = "phoron"
+	icon_state = "phoron"
 	max_integrity = 250
 
-/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/weldingtool))
-		var/obj/item/tool/weldingtool/WT = W
+/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/attacking_item as obj, mob/user as mob)
+	if(istype(attacking_item, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = attacking_item
 		if(WT.remove_fuel(0, user))
 			var/turf/T = get_turf(src)
 			T.ignite(25, 25)
@@ -156,8 +195,8 @@
 	return ..()
 
 
-/obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
+/obj/structure/mineral_door/transparent/phoron/fire_act(burn_level)
+	if(burn_level > 30)
 		var/turf/T = get_turf(src)
 		T.ignite(25, 25)
 
@@ -166,6 +205,7 @@
 	name = "diamond door"
 	material_type = /obj/item/stack/sheet/mineral/diamond
 	base_icon_state = "diamond"
+	icon_state = "diamond"
 	max_integrity = 1000
 
 
@@ -173,6 +213,7 @@
 	name = "wooden door"
 	material_type = /obj/item/stack/sheet/wood
 	base_icon_state = "wood"
+	icon_state = "wood"
 	trigger_sound = 'sound/effects/doorcreaky.ogg'
 	max_integrity = 100
 

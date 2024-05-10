@@ -28,7 +28,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
 	density = TRUE
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	max_integrity = 15000 //important that what the marines are shooting at doesn't break, we don't make it invulnerable because we still need to plasma cutter it sometimes
 	soft_armor = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 120, BIO = 100, FIRE = 100, ACID = 0)
 	///ungas need to actually hit this
@@ -36,11 +36,13 @@
 
 /obj/structure/target_stake/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/target))
 		return
 	var/obj/item/target/targetcushion = I
 	to_chat(user, "You start fitting the target onto the stake.")
-	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	if(istype(targetcushion, /obj/item/target/default))
 		new /obj/structure/target_stake/occupied(loc)
@@ -64,7 +66,7 @@
 /obj/structure/target_stake/occupied/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/obj/item/tool/weldingtool/usedwelder = I
-	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	if(usedwelder.remove_fuel(2, user))
 		overlays.Cut()
@@ -82,7 +84,7 @@
 
 /obj/structure/target_stake/occupied/attack_hand(mob/living/user)
 	to_chat(user, "You start removing the target from the stake.")
-	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	///create new target stake to create the illusion of a new one
 	new /obj/structure/target_stake(loc)

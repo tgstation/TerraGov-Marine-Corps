@@ -3,7 +3,7 @@
 
 /datum/job/terragov/radio_help_message(mob/M)
 	. = ..()
-	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
+	if(istype(SSticker.mode, /datum/game_mode/hvh/combat_patrol))
 		if(issensorcapturegamemode(SSticker.mode))
 			to_chat(M, span_highdanger("Your platoon has orders to attack sensor towers in the AO and reactivate them in order to alert other TerraGov forces in the sector about the invasion. High Command considers the successful reactivation of the sensor towers a major victory"))
 		else
@@ -16,7 +16,7 @@
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
 		if("Combat Robot")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				switch(prefs?.robot_type)
 					if("Basic")
 						return /mob/living/carbon/human/species/robot

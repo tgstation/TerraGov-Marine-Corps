@@ -216,7 +216,6 @@
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Library Backroom"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Ey" = (
@@ -397,11 +396,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ZP" = (
-/obj/structure/bookcase{
-	density = 0
-	},
-/obj/item/book/manual/robotics_cyborgs,
-/obj/item/book/manual/security_space_law,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 
@@ -429,7 +424,7 @@ yy
 yy
 AY
 AJ
-ZP
+AJ
 EI
 OB
 AJ
@@ -449,7 +444,7 @@ QC
 yy
 eF
 AJ
-qr
+AJ
 EI
 PW
 AJ
@@ -467,7 +462,7 @@ QC
 "}
 (4,1,1) = {"
 yy
-Nh
+ZP
 AJ
 aA
 vg

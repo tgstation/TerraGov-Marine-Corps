@@ -2,7 +2,8 @@
 	name = "Operating Computer"
 	anchored = TRUE
 	density = TRUE
-	icon_state = "operating"
+	icon_state = "computer_small"
+	screen_overlay = "operating"
 	circuit = /obj/item/circuitboard/computer/operating
 	var/mob/living/carbon/human/victim = null
 	var/obj/machinery/optable/table = null
@@ -29,7 +30,7 @@
 <BR>
 <B>Name:</B> [src.victim.real_name]<BR>
 <B>Age:</B> [src.victim.age]<BR>
-<B>Blood Type:</B> [src.victim.b_type]<BR>
+<B>Blood Type:</B> [src.victim.blood_type]<BR>
 <BR>
 <B>Health:</B> [src.victim.health]<BR>
 <B>Brute Damage:</B> [src.victim.getBruteLoss()]<BR>

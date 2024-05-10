@@ -29,12 +29,18 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/department_head = list()
 
 	var/faction = FACTION_NEUTRAL
-
+	///The total number of positions for this job
 	var/total_positions = 0
+	///How many positions of this job currently occupied
 	var/current_positions = 0
-	var/max_positions = INFINITY //How many positions can be dynamically assigned.
-	var/job_points = 0 //Points assigned dynamically to open new positions.
+	///How many positions can be dynamically assigned
+	var/max_positions = INFINITY
+	///Points assigned dynamically to open new positions
+	var/job_points = 0
+	///How many points needed to open up a new slot
 	var/job_points_needed = INFINITY
+	///how many job slots, if any this takes up per job
+	var/job_cost = 1
 
 	var/supervisors = ""
 	var/selection_color = "#ffffff"
@@ -73,6 +79,8 @@ GLOBAL_PROTECT(exp_specialmap)
 		else
 			outfit = new outfit //Can be improved to reference a singleton.
 
+///called during gamemode pre_setup, use for stuff like roundstart poplock
+/datum/job/proc/on_pre_setup()
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(isnull(L))
@@ -155,15 +163,13 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
-[span_role_body("|______________________|")]
-[span_role_header("You are \an [title]!")]
-[span_role_body("As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
-[span_role_body("|______________________|")]
+[span_role_header("You are the [title].")]
+[span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
+		to_chat(M, "<span class='role_body'>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</span>")
 	if(req_admin_notify)
-		to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		to_chat(M, "<span class='role_body'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
 
 /datum/outfit/job
 	var/jobtype
@@ -178,10 +184,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
-	var/datum/job/job = SSjob.GetJobType(jobtype)
-	if(!job)
-		job = H.job
-
+	var/datum/job/job = H.job ? H.job : SSjob.GetJobType(jobtype)
 	var/obj/item/card/id/id = H.wear_id
 	if(istype(id))
 		id.access = job.get_access()
@@ -210,7 +213,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
-			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
@@ -221,13 +224,14 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)
 		CRASH("free_job_positions() called with amount: [amount]")
-	current_positions -= amount
+	current_positions = max(current_positions - amount, 0)
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		scaled_job.add_job_points(-jobworth[index])
+		scaled_job.remove_job_points(jobworth[index])
 
+///Adds to job points, adding a new slot if threshold reached
 /datum/job/proc/add_job_points(amount)
 	job_points += amount
 	if(total_positions >= max_positions)
@@ -236,15 +240,25 @@ GLOBAL_PROTECT(exp_specialmap)
 		job_points -= job_points_needed
 		add_job_positions(1)
 
+///Removes job points, and if needed, job positions
+/datum/job/proc/remove_job_points(amount)
+	if(job_points_needed == INFINITY || total_positions == -1)
+		return
+	if(job_points >= amount)
+		job_points -= amount
+		return
+	var/job_slots_removed = ROUND_UP((amount - job_points) / job_points_needed)
+	remove_job_positions(job_slots_removed)
+	job_points += (job_slots_removed * job_points_needed) - amount
+
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
-		CRASH("add_job_positions called for a non-joinable job")
+		return
 	if(total_positions == -1)
-		CRASH("add_job_positions called with [amount] amount for a job set to overflow")
+		return TRUE
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
-	log_debug("[amount] positions were added to [src]. It has [total_positions] positions and [current_positions] were taken")
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
@@ -277,11 +291,12 @@ GLOBAL_PROTECT(exp_specialmap)
 // Spawning mobs.
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
-	skills = getSkillsType(job.return_skills_type(player?.prefs))
+	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
+	SEND_GLOBAL_SIGNAL(COMSIG_LIVING_JOB_SET, src)
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
@@ -289,14 +304,24 @@ GLOBAL_PROTECT(exp_specialmap)
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
-		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
-		var/obj/item/card/id/id_card = new id_type(src)
-		if(wear_id)
-			if(!admin_action)
-				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
-			QDEL_NULL(wear_id)
-		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
-		job.outfit.handle_id(src)
+		if(job.outfit.id)
+			var/obj/item/card/id/id_card = new job.outfit.id
+			if(wear_id)
+				if(!admin_action)
+					stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
+				QDEL_NULL(wear_id)
+			equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
+
+		if(player && isnull(job.outfit.back) && player.prefs.backpack > BACK_NOTHING)
+			var/obj/item/storage/backpack/new_backpack
+			switch(player.prefs.backpack)
+				if(BACK_BACKPACK)
+					new_backpack = new /obj/item/storage/backpack/marine(src)
+				if(BACK_SATCHEL)
+					new_backpack = new /obj/item/storage/backpack/marine/satchel(src)
+			equip_to_slot_or_del(new_backpack, SLOT_BACK)
+
+		job.outfit.handle_id(src, player)
 
 		equip_role_outfit(job)
 

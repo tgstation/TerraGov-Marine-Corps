@@ -22,7 +22,7 @@
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/energy/plasma_pistol
-	flags_magazine = NONE
+	magazine_flags = NONE
 	icon_state_mini = "mag_tx7"
 
 //-------------------------------------------------------
@@ -263,3 +263,12 @@
 	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol/ap
+
+//-------------------------------------------------------
+// knife
+/obj/item/ammo_magazine/pistol/knife
+	name = "\improper ballistic knife head (Blade)"
+	default_ammo = /datum/ammo/bullet/pistol
+	caliber = CALIBER_ALIEN
+	icon_state = "knife"
+	max_rounds = 1

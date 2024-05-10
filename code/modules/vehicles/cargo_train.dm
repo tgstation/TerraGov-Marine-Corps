@@ -55,6 +55,8 @@
 
 /obj/vehicle/train/cargo/engine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/key/cargo_train))
 		if(key)
@@ -65,7 +67,8 @@
 		verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
 
 
-/obj/vehicle/train/cargo/update_icon()
+/obj/vehicle/train/cargo/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else

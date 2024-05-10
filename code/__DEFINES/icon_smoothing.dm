@@ -70,6 +70,7 @@
 #define SMOOTH_GROUP_BASALT S_TURF(38)
 #define SMOOTH_GROUP_RIVER S_TURF(39)
 #define SMOOTH_GROUP_ICE_WALL S_TURF(40)
+#define SMOOTH_GROUP_SAND S_TURF(41)
 
 #define MAX_S_TURF SMOOTH_GROUP_ICE_WALL //Always match this value with the one above it.
 
@@ -138,3 +139,5 @@
 #define SMOOTH_GROUP_XENO_STRUCTURES S_OBJ(69) //Resin structures.
 
 #define SMOOTH_GROUP_FOAM_WALL S_OBJ(70) //foam walls.
+#define SMOOTH_GROUP_TALL_GRASS S_OBJ(71) //tall grass
+#define SMOOTH_GROUP_GRASS_DECAL S_OBJ(72) //grass decal

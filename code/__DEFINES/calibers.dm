@@ -52,6 +52,7 @@
 // --- Snipers ---
 #define CALIBER_86X70 "8.6x70mm"
 #define CALIBER_10X99 "10x99mm"
+#define CALIBER_14X5 "14x5mm"
 #define CALIBER_762X54 "7.62x54mm Rimmed" //SVD and mosin
 #define CALIBER_557 ".557/440" //Martini Henry
 #define CALIBER_RAILGUN "rail projectile"
@@ -63,7 +64,7 @@
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
 #define CALIBER_37MM "37mm"
-#define CALIBER_75MM "75mm" //Heavy Recoilless Rifle
+#define CALIBER_15CM "155mm" //Heavy Infantry Support Gun
 
 #define CALIBER_ROCKETARRAY "rocket array"
 #define CALIBER_ROCKETTOY "toy rocket"

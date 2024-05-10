@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
+	atom_flags = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
 	///0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 	var/see_override = 0
 	///Badminnery resize
@@ -47,7 +47,7 @@
 	/// How fast does a mob regen its stamina. Shouldn't go below 0.
 	var/stamina_regen_multiplier = 1
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
-	var/list/stamina_regen_modifiers
+	var/list/stamina_regen_modifiers = list()
 	var/is_dizzy = FALSE
 	var/druggy = 0
 
@@ -82,8 +82,6 @@
 	var/on_fire
 	///Tracks how many stacks of fire we have on, max is
 	var/fire_stacks = 0
-	///0: normal, 1: bursting, 2: bursted.
-	var/chestburst = 0
 	///more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 	var/metabolism_efficiency = 1
 
@@ -92,9 +90,9 @@
 	///a list of all status effects the mob has
 	var/list/status_effects
 	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
-	var/list/received_auras
+	var/list/received_auras = list()
 	///List of strings for auras this mob is currently emitting via ssAura
-	var/list/emitted_auras
+	var/list/emitted_auras = list()
 	///lazy list
 	var/list/stun_absorption
 
@@ -124,7 +122,10 @@
 	var/grab_resist_level = 0
 	var/datum/job/job
 	var/comm_title = ""
-	///how much blood the mob has
+	/**
+	 * How much blood the mob has.
+	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
+	 */
 	var/blood_volume = 0
 	///Multiplier.
 	var/heart_multi = 1
@@ -143,3 +144,12 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
+
+	///The world.time of when this mob was last lying down
+	var/last_rested = 0
+	///The world.time of when this mob became unconscious
+	var/last_unconscious = 0
+	///The world.time of when this mob entered a stasis bag
+	var/time_entered_stasis = 0
+	///The world.time of when this mob entered a cryo tube
+	var/time_entered_cryo = 0

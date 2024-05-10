@@ -4,6 +4,10 @@
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
 
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_preview
+	var/icon_state_preview
+
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
 	///damage type to deal when this obj is attacking something
@@ -13,30 +17,26 @@
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
-	/// Flat-damage-reduction-based armor.
+	///Modifies the AP of incoming attacks
 	var/datum/armor/hard_armor
-
-	var/obj_integrity	//defaults to max_integrity
+	///Object HP
+	var/obj_integrity
+	///Max object HP
 	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior
-	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
-	var/crit_fail = 0
-
-	///throwforce needs to be at least 1 else it causes runtimes with shields
+	///Integrety below this number causes special behavior
+	var/integrity_failure = 0
+	///Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields
 	var/throwforce = 1
-
+	///Object behavior flags
 	var/obj_flags = NONE
-	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
-	var/destroy_sound //Sound this object makes when destroyed.
-
-	var/item_fire_stacks = 0	//How many fire stacks it applies
-
+	///Sound when hit
+	var/hit_sound
+	///Sound this object makes when destroyed
+	var/destroy_sound
+	///ID access where all are required to access this object
 	var/list/req_access = null
+	///ID access where any one is required to access this object
 	var/list/req_one_access = null
-
-	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
-	var/real_explosion_block
-
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
 
@@ -98,11 +98,17 @@
 		return 4 SECONDS
 	return ..()
 
+/obj/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/obj/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
 /obj/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return
-	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+	if((atom_flags & ON_BORDER) && !(get_dir(loc, target) & dir))
 		return TRUE
 	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
@@ -118,7 +124,7 @@
 		return FALSE
 	if((allow_pass_flags & PASS_MOB))
 		return TRUE
-	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH, mover))
 		return TRUE
 
 ///Handles extra checks for things trying to exit this objects turf
@@ -134,16 +140,16 @@
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(atom_flags & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
 
 ///Signal handler to check if you can move from one low object to another
-/obj/proc/can_climb_over(datum/source)
+/obj/proc/can_climb_over(datum/source, atom/mover)
 	SIGNAL_HANDLER
-	if(!(flags_atom & ON_BORDER) && density)
+	if(!(atom_flags & ON_BORDER) && density)
 		return TRUE
 
 /obj/proc/updateUsrDialog()
@@ -224,6 +230,62 @@
 			return TRUE
 	return ..()
 
+/obj/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
+	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
+
+/obj/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_OSAY])
+		if(check_rights(R_FUN, FALSE))
+			usr.client.object_say(src)
+
+	if(href_list[VV_HK_MASS_DEL_TYPE])
+		if(!check_rights(R_DEBUG|R_SERVER))
+			return
+		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+		if(action_type == "Cancel" || !action_type)
+			return
+
+		if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+			return
+
+		if(tgui_alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+			return
+
+		var/O_type = type
+		switch(action_type)
+			if("Strict type")
+				var/i = 0
+				for(var/obj/Obj in world)
+					if(Obj.type == O_type)
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
+			if("Type and subtypes")
+				var/i = 0
+				for(var/obj/Obj in world)
+					if(istype(Obj,O_type))
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
+
 ///Called to return an internally stored item, currently for the deployable element
 /obj/proc/get_internal_item()
 	return
@@ -261,8 +323,11 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
+
+	if(user.skills.getRating(SKILL_ENGINEER) > skill_required)
+		repair_amount *= (1+(0.1*(user.skills.getRating(SKILL_ENGINEER) - (skill_required + 1))))
 
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
@@ -270,7 +335,7 @@
 	while(obj_integrity < max_integrity)
 		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 		welder.eyecheck(user)
-		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
 			balloon_alert(user, "interrupted!")
 			return TRUE
@@ -284,10 +349,34 @@
 			handle_weldingtool_overlay(TRUE)
 			return TRUE
 
-		repair_damage(repair_amount)
+		repair_damage(repair_amount, user)
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	handle_weldingtool_overlay(TRUE)
+	return TRUE
+
+/obj/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(isxeno(user))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(prob(15))
+		grabbed_mob.Paralyze(2 SECONDS)
+		user.drop_held_item()
+	step_towards(grabbed_mob, src)
+	var/damage = base_damage + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
+	span_danger("You slam [grabbed_mob]'s face against [src]!"))
+	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
+	take_damage(damage, BRUTE, MELEE)
 	return TRUE

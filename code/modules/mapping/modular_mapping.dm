@@ -401,76 +401,6 @@
 	template_width = 18
 	template_height = 9
 
-/datum/map_template/modular/bigred/lz1one
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar1.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1two
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar2.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1three
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar3.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1four
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar4.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1five
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar5.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1six
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar6.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1seven
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar7.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz1eight
-	name = "Big red landing zone one"
-	mappath = "_maps/modularmaps/big_red/bigredlzvar8.dmm"
-	modular_id = "brlz1"
-	template_width = 85
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz2one
-	name = "Big red landing zone two"
-	mappath = "_maps/modularmaps/big_red/bigredlz2var1.dmm"
-	modular_id = "brlz2"
-	template_width = 43
-	template_height = 38
-
-/datum/map_template/modular/bigred/lz2two
-	name = "Big red landing zone two"
-	mappath = "_maps/modularmaps/big_red/bigredlz2var2.dmm"
-	modular_id = "brlz2"
-	template_width = 43
-	template_height = 38
-
 /datum/map_template/modular/bigred/medbayone
 	name = "Big red medbay"
 	mappath = "_maps/modularmaps/big_red/bigredmedbayvar1.dmm"
@@ -537,13 +467,6 @@
 /datum/map_template/modular/bigred/officethree
 	name = "Big red office"
 	mappath = "_maps/modularmaps/big_red/bigredofficevar3.dmm"
-	modular_id = "broffice"
-	template_width = 28
-	template_height = 23
-
-/datum/map_template/modular/bigred/officefour
-	name = "Big red office"
-	mappath = "_maps/modularmaps/big_red/bigredofficevar4.dmm"
 	modular_id = "broffice"
 	template_width = 28
 	template_height = 23
@@ -668,7 +591,7 @@
 	template_height = 24
 
 /datum/map_template/modular/bigred/medbaypassageone
-	name = "Big red nedbay passage"
+	name = "Big red medbaypassage"
 	mappath = "_maps/modularmaps/big_red/bigredmedbaypassagevar1.dmm"
 	modular_id = "brmedbaypassage"
 	template_width = 6
@@ -1132,14 +1055,14 @@
 	mappath = "_maps/modularmaps/big_red/barracks.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/bigred/operations
 	name = "Big red administration"
 	mappath = "_maps/modularmaps/big_red/operation.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/oscaroutposttopone
 	name = "Oscar outpost map top half"
@@ -1278,3 +1201,122 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+
+/datum/map_template/modular/jungle_outpost/westtowerone
+	name = "Western Dome"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowertwo
+	name = "Western Bar Dome"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowerthree
+	name = "Western Bungalow"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower3.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowerfour
+	name = "Western Pond"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower4.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesone
+	name = "South Crates"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates1.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratestwo
+	name = "South Office"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates2.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesthree
+	name = "South Crates "
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates3.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesfour
+	name = "South Garage"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates4.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/hydroponicsone
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro1.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicstwo
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro2.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicsthree
+	name = "Hydroponics Shack"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro3.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/medicalone
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay1.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicaltwo
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay2.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicalthree
+	name = "Outdoor Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay3.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/engineeringone
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi1.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringtwo
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi2.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringthree
+	name = "Outdoor Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi3.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21

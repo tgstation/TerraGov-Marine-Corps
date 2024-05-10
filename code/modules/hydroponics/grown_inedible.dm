@@ -13,24 +13,25 @@
 
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
-	//Handle some post-spawn var stuff.
-	spawn(1)
-		// Fill the object up with the appropriate reagents.
-		if(!isnull(plantname))
-			var/datum/seed/S = GLOB.seed_types[plantname]
-			if(!S || !S.chems)
-				return
+/obj/item/grown/LateInitialize()
+	. = ..()
+	// Fill the object up with the appropriate reagents.
+	if(isnull(plantname))
+		return
+	var/datum/seed/S = GLOB.seed_types[plantname]
+	if(!S || !S.chems)
+		return
 
-			potency = S.potency
+	potency = S.potency
 
-			for(var/rid in S.chems)
-				var/list/reagent_data = S.chems[rid]
-				var/rtotal = reagent_data[1]
-				if(length(reagent_data) > 1 && potency > 0)
-					rtotal += round(potency/reagent_data[2])
-				reagents.add_reagent(rid,max(1,rtotal))
+	for(var/rid in S.chems)
+		var/list/reagent_data = S.chems[rid]
+		var/rtotal = reagent_data[1]
+		if(length(reagent_data) > 1 && potency > 0)
+			rtotal += round(potency/reagent_data[2])
+		reagents.add_reagent(rid,max(1,rtotal))
 
 /obj/item/grown/log
 	name = "towercap"
@@ -39,7 +40,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "logs"
 	force = 5
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -49,6 +50,8 @@
 
 /obj/item/grown/log/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
@@ -67,7 +70,7 @@
 	icon_state = "sunflower"
 	damtype = BURN
 	force = 0
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
@@ -85,7 +88,7 @@
 	icon_state = "nettle"
 	damtype = BURN
 	force = 15
-	flags_atom = NONE
+	atom_flags = NONE
 	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
@@ -165,13 +168,15 @@
 	desc = "A reminder of meals gone by."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
-	item_state = "corncob"
+	worn_icon_state = "corncob"
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
 
 /obj/item/corncob/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
 		to_chat(user, span_notice("You use [I] to fashion a pipe out of the corn cob!"))

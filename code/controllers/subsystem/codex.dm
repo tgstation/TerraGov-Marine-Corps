@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(codex)
 /datum/controller/subsystem/codex/proc/get_codex_entry(datum/codex_entry/entry)
 	if(!initialized)
 		return
-	var/searching = "\ref[entry]"
+	var/searching = text_ref(entry)
 	if(isatom(entry))
 		var/atom/entity = entry
 		if(entity.get_specific_codex_entry())

@@ -26,7 +26,7 @@
 	if(wield_delay_mod)
 		traits += "Wield delay modifier: [wield_delay_mod] seconds<br>"
 
-	if(flags_magazine & MAGAZINE_WORN)
+	if(magazine_flags & MAGAZINE_WORN)
 		traits += "This magazine is worn instead of inserted into a gun.<br>"
 
 	traits += "<U>Basic statistics for ammunition in this magazine are as follows</U>:<br>"
@@ -56,16 +56,16 @@
 	if(default_ammo.max_range)
 		traits += "Maximum range: [default_ammo.max_range]<br>"
 
-	if(default_ammo.flags_ammo_behavior & AMMO_INCENDIARY)
+	if(default_ammo.ammo_behavior_flags & AMMO_INCENDIARY)
 		traits += "Secondary effect: Set target on fire<br>"
 
-	if(default_ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-		traits += "Secondary effect: Explosive<br>"
+	if(default_ammo.ammo_behavior_flags & AMMO_TARGET_TURF)
+		traits += "Secondary effect: Targets turfs<br>"
 
-	if(default_ammo.flags_ammo_behavior & AMMO_SPECIAL_PROCESS)
+	if(default_ammo.ammo_behavior_flags & AMMO_SPECIAL_PROCESS)
 		traits += "Secondary effect: Hits nearby targets in-flight<br>"
 
-	if(default_ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+	if(default_ammo.ammo_behavior_flags & AMMO_LEAVE_TURF)
 		traits += "Secondary effect: Affects tiles travelled through<br>"
 
 	if(default_ammo.accuracy)
@@ -112,7 +112,7 @@
 	. += "20mm dense smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a dense smokescreen.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/tangle/get_additional_codex_info()
-	. += "20mm tanglefoor smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen of plasma draining Tanglefoot gas.<br>"
+	. += "20mm tanglefoot smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen of plasma draining Tanglefoot gas.<br>"
 
 /obj/item/ammo_magazine/rifle/tx54/razor/get_additional_codex_info()
 	. += "20mm razorburn grenades release a number of piercing sub munitions when they detonate. Submunitions release razorburn foam on turfs crossed, creating areas of razorwire after a short delay.<br>"

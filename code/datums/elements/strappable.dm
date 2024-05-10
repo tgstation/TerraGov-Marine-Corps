@@ -13,7 +13,14 @@
 /datum/element/strappable/proc/on_alt_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/item_source = source
-	if(!item_source.can_interact(user) || !ishuman(user) || !(user.l_hand == source || user.r_hand == source))
+	if(!item_source.can_interact(user) \
+		|| !ishuman(user) \
+		|| !(user.l_hand == source || user.r_hand == source))
 		return
-	TOGGLE_BITFIELD(item_source.flags_item, NODROP)
-	item_source.balloon_alert(user, "[CHECK_BITFIELD(item_source.flags_item, NODROP) ? "Tightened" : "Loosened"] strap.")
+	var/strapped = HAS_TRAIT_FROM(item_source, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+	if(!strapped)
+		ADD_TRAIT(item_source, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+		item_source.balloon_alert(user, "Tightened strap")
+	else
+		REMOVE_TRAIT(item_source, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
+		item_source.balloon_alert(user, "Loosened strap")

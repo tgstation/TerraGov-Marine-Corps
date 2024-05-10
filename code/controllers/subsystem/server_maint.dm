@@ -17,6 +17,8 @@ SUBSYSTEM_DEF(server_maint)
 
 
 /datum/controller/subsystem/server_maint/Initialize()
+	if (fexists("tmp/"))
+		fdel("tmp/")
 	if(CONFIG_GET(flag/hub))
 		world.update_hub_visibility(TRUE)
 	return SS_INIT_SUCCESS
@@ -63,7 +65,7 @@ SUBSYSTEM_DEF(server_maint)
 				cleanup_ticker++
 			if(30)
 				var/found = FALSE
-				for(var/zlevel in SSmobs.dead_players_by_zlevel)
+				for(var/list/zlevel AS in SSmobs.dead_players_by_zlevel)
 					if(listclearnulls(zlevel))
 						found = TRUE
 				if(found)
@@ -105,6 +107,8 @@ SUBSYSTEM_DEF(server_maint)
 
 
 /datum/controller/subsystem/server_maint/Shutdown()
+	if (fexists("tmp/"))
+		fdel("tmp/")
 	var/server = CONFIG_GET(string/server)
 	for(var/thing in GLOB.clients)
 		if(!thing)

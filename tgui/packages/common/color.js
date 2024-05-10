@@ -31,7 +31,7 @@ Color.fromHex = (hex) =>
   new Color(
     parseInt(hex.substr(1, 2), 16),
     parseInt(hex.substr(3, 2), 16),
-    parseInt(hex.substr(5, 2), 16)
+    parseInt(hex.substr(5, 2), 16),
   );
 
 /**
@@ -42,7 +42,7 @@ Color.lerp = (c1, c2, n) =>
     (c2.r - c1.r) * n + c1.r,
     (c2.g - c1.g) * n + c1.g,
     (c2.b - c1.b) * n + c1.b,
-    (c2.a - c1.a) * n + c1.a
+    (c2.a - c1.a) * n + c1.a,
   );
 
 /**

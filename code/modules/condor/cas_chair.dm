@@ -70,7 +70,7 @@
 			owner.state = PLANE_STATE_ACTIVATED
 			return
 
-		if(PLANE_STATE_PREPARED | PLANE_STATE_FLYING)
+		if(PLANE_STATE_PREPARED, PLANE_STATE_FLYING)
 			to_chat(user, span_warning("The plane is in-flight!"))
 			return
 
@@ -84,7 +84,7 @@
 				return
 
 			to_chat(user, span_notice("You start climbing into the cockpit..."))
-			if(!do_after(user, 2 SECONDS, TRUE, src))
+			if(!do_after(user, 2 SECONDS, NONE, src))
 				return
 
 			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
@@ -135,7 +135,7 @@
 			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
 			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
-		if(!do_after(occupant, 2 SECONDS, TRUE, src))
+		if(!do_after(occupant, 2 SECONDS, NONE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
 	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)
@@ -144,15 +144,15 @@
 	occupant.forceMove(get_step(loc, WEST))
 	occupant = null
 
-/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	eject_user(TRUE)
@@ -192,6 +192,11 @@
 				owner.turn_on_engines()
 			if(PLANE_STATE_PREPARED)
 				owner.turn_off_engines()
+	if(action == "eject")
+		if(owner.state != PLANE_STATE_ACTIVATED)
+			return
+		resisted_against()
+		ui.close()
 
 	if(owner.state == PLANE_STATE_ACTIVATED)
 		return
@@ -199,19 +204,21 @@
 	switch(action)
 		if("launch")
 			if(!cas_usable)
-				to_chat(usr, "<span class='warning'>Combat has not yet initiated, CAS unavailable.")
+				to_chat(usr, span_warning("Combat has not yet initiated, CAS unavailable."))
 				return
 			if(owner.state == PLANE_STATE_FLYING || owner.mode != SHUTTLE_IDLE)
 				return
-			if(owner.fuel_left <= LOW_FUEL_THRESHOLD)
-				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
+			if(owner.fuel_left <= LOW_FUEL_TAKEOFF_THRESHOLD)
+				to_chat(usr, span_warning("Unable to launch, low fuel."))
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
+			owner.currently_returning = FALSE
 		if("land")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
 			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
+			owner.currently_returning = TRUE
 		if("deploy")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
@@ -219,9 +226,6 @@
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
 			owner.active_weapon = owner.equipments[selection]
-		if("deselect")
-			owner.active_weapon = null
-			. = TRUE
 		if("cycle_attackdir")
 			if(params["newdir"] == null)
 				owner.attackdir = turn(owner.attackdir, 90)

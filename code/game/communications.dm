@@ -156,12 +156,16 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 
 /datum/radio_frequency
 	var/frequency as num
-	var/list/list/obj/devices = list()
+	var/list/obj/devices = list()
 
 
 /datum/radio_frequency/New(freq)
 	frequency = freq
 
+/datum/radio_frequency/Destroy(force, ...)
+	if(length(devices))
+		devices.Cut()
+	return ..()
 
 //If range > 0, only post to devices on the same z_level and within range
 //Use range = -1, to restrain to the same z_level without limiting range
