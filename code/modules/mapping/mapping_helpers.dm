@@ -1,6 +1,6 @@
 //Landmarks and other helpers which speed up the mapping process and reduce the number of unique instances/subtypes of items/turf/ect
 
-
+mapload
 
 /obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
 	name = "baseturf editor"
@@ -683,3 +683,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
 	*/
+
+/obj/effect/mapping_helpers/nucleardetspotadd
+	name = "nuclear detonation spot helper"
+	// icon_state = "detspot"
+	var/obj/machinery/nuclearbomb/nukespots
+	var/obj/machinery/nuclearbomb/nukespotsnames
+
+/obj/effect/mapping_helpers/nucleardetspotadd/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	nukespots += get_area(src)
+	nukespotsnames += get_area_name(src)

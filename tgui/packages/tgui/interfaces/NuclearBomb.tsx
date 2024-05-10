@@ -12,6 +12,7 @@ import { Window } from '../layouts';
 
 type NuclearBombData = {
   status: string;
+  nukespotsnames: string;
   time: number;
   time_left: number;
   timer_enabled: boolean;
@@ -47,6 +48,7 @@ const NuclearBombContent = (props) => {
     red,
     green,
     blue,
+    nukespotsnames,
   } = data;
   return (
     <>
@@ -136,6 +138,11 @@ const NuclearBombContent = (props) => {
           </LabeledList>
         </Section>
       ) : null}
+      <Section title={'Available detonation spots'}>
+        <Box width="100%">
+          <NoticeBox>{nukespotsnames}</NoticeBox>
+        </Box>
+      </Section>
       <Section title={'Input area'}>
         <LabeledList.Item label="Red Auth. Disk">
           <Button

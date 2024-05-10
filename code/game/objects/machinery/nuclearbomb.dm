@@ -32,6 +32,10 @@
 	var/safety = TRUE
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE
+	/// List of available nuke detonation spots i.e. (list(area1,area2,area3)), in area-paths (nukespots) as determined by currently loaded map's nukedetspot maphelper
+	var/list/nukespots
+	/// List of available nuke detonation spots i.e. (list(area1,area2,area3)), in clear-text (nukespots) as determined by currently loaded map's nukedetspot maphelper
+	var/list/nukespotsnames
 	use_power = NO_POWER_USE
 	var/obj/effect/countdown/nuclearbomb/countdown
 
@@ -57,6 +61,9 @@
 
 ///Enables nuke timer
 /obj/machinery/nuclearbomb/proc/enable()
+	if(get_area(src) == !nukespots)
+		visible_message(span_warning("Warning! This thermonuclear device needs to be armed at one of the adequate detonation sites available."))
+		return
 	GLOB.active_nuke_list += src
 	countdown.start()
 	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
@@ -198,6 +205,7 @@
 	data["red"] = r_auth
 	data["green"] = g_auth
 	data["blue"] = b_auth
+	data["nukespotsnames"] = nukespotsnames
 
 	var/safe_text = (safety) ? "Safe" : "Engaged"
 	var/status = "Unknown"
