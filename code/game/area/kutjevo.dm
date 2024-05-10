@@ -275,7 +275,7 @@
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/exterior/interior/colony_N_East
+/area/kutjevo/exterior/colony_N_East
 	name = "Kutjevo - South East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
