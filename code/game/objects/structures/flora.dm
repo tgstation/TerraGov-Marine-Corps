@@ -549,7 +549,6 @@
 	desc = "Some tall, spikey looking cactus."
 	icon_state = "tall_cactus"
 	icon_variants = 3
-	density = TRUE
 
 /obj/structure/flora/drought/short_cactus
 	name = "cactus"
