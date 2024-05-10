@@ -8389,11 +8389,6 @@
 "lkC" = (
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/complex/med/auto_doc)
-"lkP" = (
-/turf/open/floor/rivergrate,
-/area/kutjevo/interior/power/comms{
-	name = "LZ2: NW Colony Landing Zone"
-	})
 "llg" = (
 /obj/structure/rock/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -26042,8 +26037,8 @@ mIf
 tlN
 tlN
 scu
-lkP
-wqD
+tXm
+veh
 adX
 tlN
 mIf
@@ -26375,7 +26370,7 @@ vXd
 vXd
 dUy
 mZE
-lkP
+tXm
 esi
 tXm
 mZE
@@ -26543,7 +26538,7 @@ vXd
 dUy
 mZE
 tXm
-wCV
+uch
 tXm
 lac
 tlN
