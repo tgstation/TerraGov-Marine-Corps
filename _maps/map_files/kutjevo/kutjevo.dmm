@@ -1108,7 +1108,7 @@
 /area/kutjevo/exterior/Northwest_Colony)
 "bEp" = (
 /obj/machinery/vending/nanomed{
-	pixel_y = sss
+	pixel_y = 1
 	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
