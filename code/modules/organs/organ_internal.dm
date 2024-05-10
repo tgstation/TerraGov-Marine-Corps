@@ -237,12 +237,12 @@
 	. = ..()
 	if(!carbon_mob)
 		return
-	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(owner_added_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENTS_NEW_REAGENT, PROC_REF(owner_added_reagent))
 	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, PROC_REF(owner_removed_reagent))
 
 /datum/internal_organ/kidneys/clean_owner()
 	if(owner?.reagents)
-		UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+		UnregisterSignal(owner.reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENT_DELETING))
 	return ..()
 
 ///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.
