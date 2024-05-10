@@ -1,0 +1,4 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - qol: "Observers can now click on their minimap to jump around."
