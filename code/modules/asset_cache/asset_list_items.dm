@@ -75,7 +75,7 @@
 	name = "chat"
 
 /datum/asset/spritesheet/chat/create_spritesheets()
-	InsertAll("emoji", 'icons/misc/emoji.dmi')
+	InsertAll("emoji", EMOJI_SET)
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
 	// catch languages which are pulling icons from another file

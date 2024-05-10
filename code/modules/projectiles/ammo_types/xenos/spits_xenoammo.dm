@@ -218,8 +218,8 @@
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "xeno_acid"
-	sound_hit 	 = "acid_hit"
-	sound_bounce = "acid_bounce"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 50

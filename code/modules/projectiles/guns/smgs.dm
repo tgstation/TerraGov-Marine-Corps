@@ -600,7 +600,7 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/icc_machinepistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol, /obj/item/ammo_magazine/smg/icc_machinepistol/hp)
-	fire_sound = "mp38_fire"
+	fire_sound = SFX_MP38_FIRE
 	unload_sound = 'sound/weapons/guns/interact/mp38_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp38_reload.ogg'
 
