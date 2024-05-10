@@ -87,3 +87,9 @@
   - imageadd: new pilot armor
   - imageadd: new pilot uniform
   - imageadd: new pilot helmet
+2024-05-10:
+  Lumipharon:
+  - bugfix: fixed an issue with minimap code and z-levels after entering vehicles
+  Xander3359:
+  - code_imp: adds proc/wash() to clean stuff
+  - code_imp: Playing a sound uses SFX defines

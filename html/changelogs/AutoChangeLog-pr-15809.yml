@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - code_imp: "adds proc/wash() to clean stuff"
