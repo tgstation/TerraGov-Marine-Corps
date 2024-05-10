@@ -50,10 +50,6 @@
 	. = ..()
 	icon_state = ""
 
-/obj/effect/soundplayer/Destroy()
-	. = ..()
-	QDEL_NULL(loopingsound)
-
 /obj/effect/soundplayer/deltaplayer
 	var/datum/looping_sound/alarm_loop/deltaloop
 
