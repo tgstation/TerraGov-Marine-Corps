@@ -3,63 +3,9 @@
 	icon_state = "off"
 	anchored = TRUE
 
-/obj/structure/sign/double/barsign/Initialize(mapload)
-	. = ..()
-	ChangeSign(pick(
-	"pinkflamingo",
-	"magmasea",
-	"limbo",
-	"rustyaxe",
-	"armokbar",
-	"brokendrum",
-	"meadbay",
-	"thedamnwall",
-	"thecavern",
-	"cindikate",
-	"theorchard",
-	"thesaucyclown",
-	"theclownshead",
-	"whiskeyimplant",
-	"carpecarp",
-	"robustroadhouse",
-	"theredshirt",
-	"maltesefalcon",
-	"thebark",
-	"theharmbaton",
-	"thesingulo",
-	"thedrunkcarp",
-	"scotchservinwillys",
-	"officerbeersky",
-	"thecavern",
-	"theouterspess",
-	"slipperyshots",
-	"thegreytide",
-	"honkednloaded",
-	"thenest",
-	"thecoderbus",
-	"theadminbus",
-	"oldcockinn",
-	"thewretchedhive",
-	"robustacafe",
-	"emergencyrumparty",
-	"combocafe",
-	"vladssaladbar",
-	"theshaken",
-	"thealenath",
-	"alohasnackbar",
-	"thenet",
-	"maidcafe",
-	"thelightbulb",
-	"thesyndicat",
-	"error"))
-
 /obj/structure/sign/double/barsign/carp
 	name = "The Drunk Carp"
 	desc = "The Drunk Carp, Bar and Grill"
-	icon_state = "thedrunkcarp"
-
-/obj/structure/sign/double/barsign/carp/Initialize(mapload)
-	. = ..()
 	icon_state = "thedrunkcarp"
 
 /obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user, params)
