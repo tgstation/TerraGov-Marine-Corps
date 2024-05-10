@@ -775,6 +775,7 @@
 	density = TRUE
 	var/side = ""
 	var/id = ""
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/hoop/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
