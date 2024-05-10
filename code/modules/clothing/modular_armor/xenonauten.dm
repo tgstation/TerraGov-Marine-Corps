@@ -5,9 +5,9 @@
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = MARINE_ARMOR_MEDIUM
 	icon_state = "chest"
-	item_state = "chest"
+	worn_icon_state = "chest"
 	icon = null
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
@@ -41,7 +41,7 @@
 	greyscale_config = /datum/greyscale_config/xenonaut
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	allowed_uniform_type = /obj/item/clothing/under
 
@@ -185,6 +185,18 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier //Literally grenades
 	starting_attachments = list(
 		/obj/item/armor_module/module/ballistic_armor,
@@ -248,7 +260,7 @@
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
 	icon_state = "ballistic_vest"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi'
 	)
 	equip_delay_self = 2 SECONDS
@@ -310,7 +322,7 @@
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	greyscale_config = /datum/greyscale_config/xenonaut/helm
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	visorless_offset_y = 0
 
@@ -341,7 +353,7 @@
 /obj/item/clothing/head/modular/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
 	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
-	item_state = "helm"
+	worn_icon_state = "helm"
 	greyscale_config = /datum/greyscale_config/xenonaut/helm/heavy
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/xenonaut, /obj/item/armor_module/storage/helmet)
 	attachments_allowed = list(

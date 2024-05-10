@@ -10,8 +10,8 @@
 	anchored = TRUE
 	max_integrity = 5
 
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -51,7 +51,7 @@
 			to_chat(creator, span_xenoannounce("You sense your acid well at [A.name] has been destroyed!") )
 
 	if(damage_amount || damage_flag) //Spawn the gas only if we actually get destroyed by damage
-		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+		var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
 		A.set_up(clamp(CEILING(charges*0.5, 1),0,3),src) //smoke scales with charges
 		A.start()
 	return ..()
@@ -89,7 +89,7 @@
 	charges--
 	update_icon()
 	var/turf/T = get_turf(src)
-	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke = new(T) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(T) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 
@@ -107,7 +107,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, "alien_resin_break", 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 		deconstruct(TRUE, xeno_attacker)
 		return
 
@@ -185,8 +185,7 @@
 	if(!charges_used)
 		return
 
-	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
-	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 

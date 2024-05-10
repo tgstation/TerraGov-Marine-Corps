@@ -88,12 +88,11 @@
 
 
 /obj/machinery/flasher/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
 	if ((disable) || (last_flash && world.time < last_flash + 150))

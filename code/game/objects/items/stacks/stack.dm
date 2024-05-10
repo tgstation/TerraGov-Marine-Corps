@@ -117,7 +117,7 @@
 	if(.)
 		return
 
-	if(!recipes)
+	if(!recipes || recipes?.len <= 1)
 		return
 
 	if(QDELETED(src) || get_amount() <= 0)
@@ -235,6 +235,10 @@
 		O.color = color
 	use(R.req_amount * multiplier)
 
+	if(isitemstack(O))
+		var/obj/item/stack/stack = O
+		stack.merge_with_stack_in_hands(user)
+
 	if(QDELETED(O))
 		return //It's a stack and has already been merged
 
@@ -256,25 +260,30 @@
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
 
-	if(recipe.one_per_turf && (locate(recipe.result_type) in dest_turf))
+	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
 		builder.balloon_alert(builder, "already one here!")
 		return FALSE
 
-	if(recipe.check_direction)
-		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = recipe.is_fulltile))
+	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
+		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
 			builder.balloon_alert(builder, "won't fit here!")
 			return FALSE
 
-	if(recipe.on_solid_ground)
-		if(isclosedturf(dest_turf))
+	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
+		if(!isopenturf(dest_turf))
 			builder.balloon_alert(builder, "cannot be made on a wall!")
 			return FALSE
-
-		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
-			builder.balloon_alert(builder, "must be made on solid ground!")
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			builder.balloon_alert(builder, "cant build here!")
 			return FALSE
 
-	if(recipe.check_density)
+	var/area/area = get_area(dest_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
+		builder.balloon_alert(builder, "cannot be made in this area!")
+		return FALSE
+
+	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
 				builder.balloon_alert(builder, "something is in the way!")
@@ -393,6 +402,21 @@
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
 	return TRUE
+
+/**
+	Merges stack into the one that user is currently holding in their left or right hand.
+	Returns TRUE if the stack was merged, FALSE otherwise.
+*/
+/obj/item/stack/proc/merge_with_stack_in_hands(mob/user)
+	var/obj/item/stack/stack_in_hands = null
+	if(istype(user.l_hand, merge_type))
+		stack_in_hands = user.l_hand
+	else if(istype(user.r_hand, merge_type))
+		stack_in_hands = user.r_hand
+	if(stack_in_hands && merge(stack_in_hands))
+		return TRUE
+	return FALSE
+
 
 #undef STACK_CHECK_CARDINALS
 #undef STACK_CHECK_ADJACENT

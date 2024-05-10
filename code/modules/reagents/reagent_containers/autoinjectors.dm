@@ -2,7 +2,7 @@
 	name = "generic autoinjector"
 	desc = "An autoinjector containing... table salt? <i>\"For any client assistance, please contact the coderbus\" is written on the back.</i>"
 	icon_state = "autoinjector"
-	item_state = "hypo"
+	worn_icon_state = "hypo"
 	w_class = WEIGHT_CLASS_TINY
 	skilllock = 0
 	init_reagent_flags = DRAWABLE

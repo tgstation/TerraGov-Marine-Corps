@@ -2,7 +2,7 @@
 	name = "cargo cap"
 	desc = "It's a baseball hat in a tasteless yellow color."
 	icon_state = "cargosoft"
-	item_state = "cargosoft"
+	worn_icon_state = "cargosoft"
 	inventory_flags = COVEREYES
 	var/cap_color = "cargo"
 	var/flipped = 0

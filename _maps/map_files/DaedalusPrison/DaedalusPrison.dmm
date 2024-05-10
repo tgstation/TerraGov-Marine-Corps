@@ -987,6 +987,11 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/southmeetingroom)
+"aOv" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/mainship,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/lazarus/console)
 "aOR" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/air_alarm{
@@ -73255,7 +73260,7 @@ gfH
 mYW
 gfH
 gfH
-gfH
+aOv
 gfH
 gfH
 gfH

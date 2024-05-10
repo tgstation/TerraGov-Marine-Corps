@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/runner
-	caste_base_type = /mob/living/carbon/xenomorph/runner
+	caste_base_type = /datum/xeno_caste/runner
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon = 'icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something

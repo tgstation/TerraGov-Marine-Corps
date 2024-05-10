@@ -36,6 +36,9 @@
 ///Gamemode has successfully loaded
 #define COMSIG_GLOB_GAMEMODE_LOADED "!gamemode_loaded"
 
+/// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
+#define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
+
 #define COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED "!player_roundstart_spawned"
 #define COMSIG_GLOB_PLAYER_LATE_SPAWNED "!player_late_spawned"
 
@@ -204,6 +207,10 @@
 #define COMSIG_ATOM_ATTACKBY_ALTERNATE "atom_attackby_alternate" //from base of atom/attackby_alternate(): (/obj/item, /mob/living)
 	#define COMPONENT_NO_AFTERATTACK (1<<0)						//Return this in response if you don't want afterattack to be called
 
+///Called on an object to "clean it", such as removing blood decals/overlays, etc. The clean types bitfield is sent with it. Return TRUE if any cleaning was necessary and thus performed.
+#define COMSIG_COMPONENT_CLEAN_ACT "clean_act"
+	///Returned by cleanable components when they are cleaned.
+	#define COMPONENT_CLEANED (1<<0)
 ///from base of atom/max_stack_merging(): (obj/item/stack/S)
 #define ATOM_MAX_STACK_MERGING "atom_max_stack_merging"
 ///from base of atom/recalculate_storage_space(): ()
@@ -541,6 +548,8 @@
 #define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
 /// from mob/get_status_tab_items(): (list/items)
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
+/// from mob/proc/dropItemToGround()
+#define COMSIG_MOB_DROPPING_ITEM "mob_dropping_item"
 ///From mob/do_after_coefficent()
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
 ///From get_zone_with_miss_chance
@@ -597,8 +606,11 @@
 ///From base of mob/living/set_jump_component()
 #define COMSIG_LIVING_SET_JUMP_COMPONENT "living_set_jump_component"
 
+#define COMSIG_LIVING_SWAPPED_HANDS "living_swapped_hands"
+/// From /obj/item/proc/pickup(): (/obj/item/picked_up_item)
+#define COMSIG_LIVING_PICKED_UP_ITEM "living_picked_up_item"
+
 //mob/living/carbon signals
-#define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
 // /mob/living/carbon/human signals

@@ -120,7 +120,7 @@
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/C = cameras[c_tag]
 		active_camera = C
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		// Show static if can't use the camera
 		if(!active_camera?.can_use())

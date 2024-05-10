@@ -443,8 +443,7 @@
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
-/obj/item/storage/pouch/explosive/antigas/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/explosive/antigas/PopulateContents()
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
@@ -496,14 +495,17 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/grenade/standard/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/grenade/standard/PopulateContents()
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade/bullet/laser(src)
 	new /obj/item/explosive/grenade/bullet/laser(src)
 	new /obj/item/explosive/grenade/incendiary(src)
+
+/obj/item/storage/pouch/grenade/emp
+	fill_type = /obj/item/explosive/grenade/emp
+	fill_number = 6
 
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
@@ -529,14 +531,17 @@
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 
-/obj/item/storage/pouch/grenade/som/standard/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/grenade/som/standard/PopulateContents()
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
+
+/obj/item/storage/pouch/grenade/som/emp
+	fill_type = /obj/item/explosive/grenade/emp
+	fill_number = 6
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -962,7 +967,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, TRUE, 6)
+			playsound(user.loc, SFX_RUSTLE, 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 
@@ -980,7 +985,7 @@
 	name = "\improper protein pack pouch"
 	desc = "A storage pouch designed to hold a moderate amount of protein packs."
 	icon_state = "p_pouch"
-	item_state = "survival"
+	worn_icon_state = "survival"
 	fill_type = /obj/item/reagent_containers/food/snacks/protein_pack
 	fill_number = 10
 

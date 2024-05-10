@@ -7,7 +7,7 @@
 /obj/item/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
 	volume = 100
-	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
+	worn_icon_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash(mob/living/target as mob, mob/living/user as mob)
@@ -25,7 +25,7 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 
-	playsound(src, "shatter", 25, 1)
+	playsound(src, SFX_SHATTER, 25, 1)
 	user.put_in_active_hand(B)
 
 	qdel(src)
@@ -240,7 +240,7 @@
 	name = "Orange Juice"
 	desc = "Full of vitamins and deliciousness!"
 	icon_state = "orangejuice"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=7)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/orangejuice = 100)
@@ -249,7 +249,7 @@
 	name = "Milk Cream"
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
 	icon_state = "cream"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/milk/cream = 100)
@@ -258,7 +258,7 @@
 	name = "Tomato Juice"
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
 	icon_state = "tomatojuice"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/tomatojuice = 100)
@@ -267,7 +267,7 @@
 	name = "Lime Juice"
 	desc = "Sweet-sour goodness."
 	icon_state = "limejuice"
-	item_state = "carton"
+	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/limejuice = 100)

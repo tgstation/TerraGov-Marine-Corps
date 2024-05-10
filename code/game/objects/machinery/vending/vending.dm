@@ -568,55 +568,59 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-/obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
+/obj/machinery/vending/proc/vend(datum/vending_product/product, mob/user)
+	if(!vend_ready)
+		return
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
 		flick(icon_deny, src)
 		return
 
-	if(R.category == CAT_HIDDEN && !extended_inventory)
+	if(product.category == CAT_HIDDEN && !extended_inventory)
 		return
 
-	vend_ready = 0 //One thing at a time!!
-	R.amount--
+	vend_ready = FALSE //One thing at a time!!
 
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-	var/obj/item/new_item = release_item(R, vend_delay)
+	start_release_item(product, vend_delay, user)
 
-	if(istype(new_item))
-		new_item.on_vend(user, faction, fill_container = TRUE)
-	vend_ready = 1
-
-/obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
+///Tries to vend the item
+/obj/machinery/vending/proc/start_release_item(datum/vending_product/product, delay_vending = 0, mob/user)
+	if(powered(power_channel))
+		use_power(active_power_usage)
+	else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery
+		machine_current_charge -= min(machine_current_charge, active_power_usage)
+	else
+		return
+	if(icon_vend)
+		flick(icon_vend, src)
 	if(delay_vending)
-		if(powered(power_channel))
-			use_power(active_power_usage)	//actuators and stuff
-			if (icon_vend)
-				flick(icon_vend, src) //Show the vending animation if needed
-			sleep(delay_vending)
-		else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery.
-			machine_current_charge -= min(machine_current_charge, active_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, span_warning("DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge]."))
-			if (icon_vend)
-				flick(icon_vend,src) //Show the vending animation if needed
-			sleep(delay_vending)
-		else
-			return
-	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
-	if(vending_sound)
-		playsound(src, vending_sound, 25, 0)
-	else
-		playsound(src, "vending", 25, 0)
-	if(ispath(R.product_path,/obj/item/weapon/gun))
-		return new R.product_path(get_turf(src), 1)
-	else
-		return new R.product_path(get_turf(src))
+		addtimer(CALLBACK(src, PROC_REF(release_item), product, user), delay_vending)
+		return
+	return release_item(product, user)
 
+///Vends the item
+/obj/machinery/vending/proc/release_item(datum/vending_product/product, mob/user)
+	SSblackbox.record_feedback("tally", "vendored", 1, product.product_name)
+	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
+	playsound(src, vending_sound ? vending_sound : SFX_VENDING, 25, 0)
+	var/obj/item/new_item
+	if(ispath(product.product_path,/obj/item/weapon/gun))
+		new_item = new product.product_path(get_turf(src), 1)
+	else
+		new_item = new product.product_path(get_turf(src))
+
+	. = new_item
+	product.amount--
+	vend_ready = TRUE
+
+	if(!user || !istype(new_item))
+		return
+	new_item.on_vend(user, faction, fill_container = TRUE)
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
 	. = ..()
@@ -854,8 +858,8 @@
 			continue
 
 		while(R.amount>0)
-			release_item(R, 0)
-			R.amount--
+			if(!start_release_item(R, 0))
+				break
 		break
 
 	machine_stat |= BROKEN
@@ -875,8 +879,7 @@
 		if (!dump_path)
 			continue
 
-		R.amount--
-		throw_item = release_item(R, 0)
+		throw_item = start_release_item(R, 0)
 		break
 	if (!throw_item)
 		return FALSE

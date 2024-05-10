@@ -425,7 +425,7 @@
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
 	var/camera = tgui_input_list(owner, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
-	playsound(src, "terminal_type", 25, 0)
+	playsound(src, SFX_TERMINAL_TYPE, 25, 0)
 
 	if(!C)
 		playsound(origin, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)

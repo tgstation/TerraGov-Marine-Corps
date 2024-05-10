@@ -59,6 +59,14 @@
 	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
+/datum/loadout_item/r_pocket/emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/emp
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
 /datum/loadout_item/r_pocket/shotgun
 	name = "Buckshot shells"
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
@@ -172,6 +180,14 @@
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/grenade/standard
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+
+/datum/loadout_item/l_pocket/emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/emp
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/l_pocket/shotgun
 	name = "Flechette shells"

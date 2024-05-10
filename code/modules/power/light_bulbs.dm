@@ -4,7 +4,7 @@
 
 /obj/item/light_bulb
 	icon = 'icons/obj/lighting.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
 	)
@@ -32,7 +32,7 @@
 	desc = "A replacement light tube."
 	icon_state = "ltube"
 	base_icon_state = "ltube"
-	item_state = "c_tube"
+	worn_icon_state = "c_tube"
 	brightness = 8
 
 /obj/item/light_bulb/tube/large

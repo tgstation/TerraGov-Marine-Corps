@@ -53,7 +53,7 @@
 		icon_state = initial(icon_state) + "_full"
 	else
 		icon_state = initial(icon_state)
-	item_state = icon_state
+	worn_icon_state = icon_state
 
 /obj/item/storage/holster/update_icon()
 	. = ..()
@@ -91,7 +91,7 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)

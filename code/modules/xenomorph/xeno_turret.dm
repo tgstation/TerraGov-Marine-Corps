@@ -58,7 +58,7 @@
 
 /obj/structure/xeno/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
-		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
+		var/datum/effect_system/smoke_spread/xeno/acid/opaque/smoke = new(get_turf(src))
 		smoke.set_up(1, get_turf(src))
 		smoke.start()
 	return ..()
@@ -136,7 +136,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 ///Signal handler for hard del of hostile
 /obj/structure/xeno/xeno_turret/proc/unset_hostile()

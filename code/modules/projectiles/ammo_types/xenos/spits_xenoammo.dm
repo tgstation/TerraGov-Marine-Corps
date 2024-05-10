@@ -58,6 +58,11 @@
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/carbon_victim, obj/projectile/proj)
 	drop_neuro_smoke(get_turf(carbon_victim))
 
+	if(isxeno(proj.firer))
+		var/mob/living/carbon/xenomorph/xeno = proj.firer
+		if(xeno.IsStaggered())
+			reagent_transfer_amount *= STAGGER_DAMAGE_MULTIPLIER
+
 	if(!istype(carbon_victim) || carbon_victim.stat == DEAD || carbon_victim.issamexenohive(proj.firer) )
 		return
 
@@ -213,8 +218,8 @@
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "xeno_acid"
-	sound_hit 	 = "acid_hit"
-	sound_bounce = "acid_bounce"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 50

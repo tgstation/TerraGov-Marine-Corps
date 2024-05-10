@@ -338,16 +338,15 @@
 
 
 /obj/machinery/sleeper/emp_act(severity)
+	. = ..()
 	if(filtering)
 		toggle_filter()
 	if(stasis)
 		toggle_stasis()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(occupant)
 		go_out()
-	..()
 
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant)

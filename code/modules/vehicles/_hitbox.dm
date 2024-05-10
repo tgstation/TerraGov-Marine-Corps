@@ -102,14 +102,14 @@
 	qdel(src, TRUE)
 
 ///when the owner moves, let's move with them!
-/obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction)
+/obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction, forced, list/turf/old_locs)
 	SIGNAL_HANDLER
 	//direction is null here, so we improvise
 	direction = get_dir(oldloc, mover)
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	for(var/mob/living/tank_desant AS in tank_desants)
-		step(tank_desant, direction, root.step_size)
+		tank_desant.forceMove(get_step(tank_desant, direction))
 		if(isxeno(tank_desant) || move_dist > 1)
 			continue
 		if(move_dist > 1)

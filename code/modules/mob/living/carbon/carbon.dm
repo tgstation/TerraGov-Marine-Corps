@@ -21,15 +21,6 @@
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE))
-		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/xenomorph/larva/L = user
-		L.initiate_burst(src)
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)
 		return
@@ -39,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, "sparks", 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning(" [src] was shocked by the [source]!"), \

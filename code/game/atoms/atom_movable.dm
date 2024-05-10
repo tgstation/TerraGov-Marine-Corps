@@ -373,12 +373,12 @@
 
 
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, locs)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
 	if(client_mobs_in_contents)
 		update_parallax_contents()
 
 	if(pulledby)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, locs)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
 	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
 		light.source_atom.update_light()
@@ -422,6 +422,9 @@
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
 	var/atom/oldloc = loc
+	var/list/old_locs
+	if(length(locs) > 1)
+		old_locs = locs
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
@@ -459,7 +462,7 @@
 			if(old_area)
 				old_area.Exited(src, NONE)
 
-	Moved(oldloc, NONE, TRUE)
+	Moved(oldloc, NONE, TRUE, old_locs)
 
 /atom/movable/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -481,6 +484,8 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	var/hit_successful
 	var/old_throw_source = throw_source
+	if(QDELETED(hit_atom))
+		return FALSE
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
@@ -491,6 +496,8 @@
 ///Bounces the AM off hit_atom
 /atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	if(QDELETED(src))
+		return
+	if(QDELETED(hit_atom))
 		return
 	if(!isturf(loc))
 		return

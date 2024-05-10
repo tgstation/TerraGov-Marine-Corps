@@ -102,7 +102,7 @@
 	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
 	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
 
-	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	var/sound/S = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
 		for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 			var/mob/M = i
@@ -301,6 +301,7 @@
 		title = "High Command Update",
 		subtitle = "Good morning, marines.",
 		message = "Cryosleep disengaged by TGMC High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
+		sound = 'sound/AI/ares_online.ogg',
 		color_override = "red"
 	)
 

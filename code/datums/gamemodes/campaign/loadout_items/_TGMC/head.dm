@@ -60,14 +60,34 @@
 	ui_icon = "tyr"
 	item_typepath = /obj/item/clothing/head/modular/m10x/tyr
 	jobs_supported = list(SQUAD_MARINE)
-	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/helmet/tyr/smartgunner
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
+/datum/loadout_item/helmet/tyr/corpsman
+	jobs_supported = list(SQUAD_CORPSMAN)
+	loadout_item_flags = NONE
+
+/datum/loadout_item/helmet/tyr/corpsman/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
+
+/datum/loadout_item/helmet/tyr/engineer
+	jobs_supported = list(SQUAD_ENGINEER)
+	loadout_item_flags = NONE
+
+/datum/loadout_item/helmet/tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
 /datum/loadout_item/helmet/tyr/universal
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/white_dress

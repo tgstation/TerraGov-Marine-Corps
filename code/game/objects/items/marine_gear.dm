@@ -249,7 +249,7 @@
 	desc = "A leather sling with a clip to attach something. Should keep you from losing your weapon, hopefully."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
-	item_state = "gun_sling"
+	worn_icon_state = "gun_sling"
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	equip_delay_self = 2 SECONDS
@@ -325,7 +325,7 @@
 	name = "\improper M45 pattern belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	icon_state = "heavy_harness"
-	item_state = "heavy_harness"
+	worn_icon_state = "heavy_harness"
 
 /obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
