@@ -126,6 +126,7 @@
 /area/kutjevo/exterior/telecomm
 	name = "Kutjevo - Communications Relay"
 	icon_state = "ass_line"
+	always_unpowered = FALSE
 
 /area/kutjevo/exterior/telecomm/lz1_north
 	name = "Kutjevo - North LZ1 Communications Relay"
@@ -232,6 +233,8 @@
 	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "construction_int"
 
+/area/kutjevo/interior/construction/two
+
 /area/kutjevo/interior/foremans_office
 	name = "Kutjevo - Foreman's Office"
 	ceiling = CEILING_METAL
@@ -287,7 +290,7 @@
 	icon_state = "colony_caves_3"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
 
-/area/kutjevo/exterior/colony_South/power2
+/area/kutjevo/interior/colony_South/power2
 	name = "Kutjevo - South Colony Treatment Plant"
 	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "colony_caves_3"
