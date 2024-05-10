@@ -3376,8 +3376,8 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "atj" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/mainship/hexagon,
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/plating/platebotc,
 /area/mainship/living/tankerbunks)
 "atk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -9723,7 +9723,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull/gray,
-/area/mainship/living/tankerbunks)
+/area/sulaco/hangar/storage)
 "bPL" = (
 /obj/machinery/light/mainship/small{
 	dir = 8
@@ -9758,6 +9758,10 @@
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/red,
 /area/sulaco/command/eva)
+"bSh" = (
+/obj/machinery/gear/vehicle,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "bSG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
@@ -10480,6 +10484,10 @@
 "cPc" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/shuttle/distress/arrive_2)
+"cPJ" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "cPT" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/glasses/hud/health,
@@ -11402,11 +11410,14 @@
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "ebF" = (
+/obj/structure/mirror{
+	dir = 8
+	},
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/misc/cigarettes,
-/obj/effect/spawner/random/misc/soap,
-/obj/machinery/camera/autoname{
-	dir = 1
+/obj/item/paper,
+/obj/effect/spawner/random/misc/clipboard,
+/obj/machinery/light/mainship{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
@@ -11809,11 +11820,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "eBa" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor/mainship/hexagon,
+/obj/machinery/vending/weapon,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "eBK" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12271,8 +12279,10 @@
 	},
 /area/sulaco/medbay)
 "fba" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
 "fbS" = (
 /obj/machinery/firealarm{
@@ -12306,7 +12316,12 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cryosleep)
 "fdV" = (
-/obj/machinery/loadout_vendor,
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/misc/soap,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "fel" = (
@@ -12334,7 +12349,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
 "ffg" = (
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "fgg" = (
@@ -12636,7 +12651,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull/gray,
-/area/mainship/living/tankerbunks)
+/area/sulaco/hangar/storage)
 "fBA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -13224,14 +13239,8 @@
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
 "gpt" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "vehicle_elevator_railing"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/gear/vehicle,
-/turf/open/floor/mainship/hexagon,
+/obj/machinery/loadout_vendor,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "gpO" = (
 /obj/machinery/light/mainship{
@@ -13433,10 +13442,12 @@
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "gHp" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+/obj/effect/landmark/start/job/transport_crewman,
+/obj/structure/bed/bunkbed,
+/obj/machinery/light/mainship{
+	dir = 8
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "gHU" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13585,8 +13596,10 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gRZ" = (
-/obj/structure/bed/chair/wood/wings,
-/obj/effect/ai_node,
+/obj/structure/table/woodentable,
+/obj/item/paper,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/misc/cigar,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "gSo" = (
@@ -14144,6 +14157,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/machinery/gear/vehicle,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "hAO" = (
@@ -14285,16 +14299,10 @@
 	},
 /area/sulaco/medbay/storage)
 "hGh" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "vehicle_elevator_railing"
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/turf/open/floor/mainship/hexagon,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "hGE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -15087,6 +15095,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"iEg" = (
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "iEv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -15449,12 +15464,6 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
-"iWf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "iWz" = (
 /obj/machinery/firealarm,
 /obj/vehicle/ridden/powerloader,
@@ -15560,7 +15569,9 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "jcm" = (
-/obj/effect/spawner/random/misc/plant,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 10
+	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "jdD" = (
@@ -16332,10 +16343,11 @@
 	},
 /area/space)
 "jYm" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 10
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
 	},
-/turf/open/floor/wood,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
 "jYs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -17455,11 +17467,8 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lwZ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "lxu" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -17592,13 +17601,6 @@
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
-"lEb" = (
-/obj/structure/table/woodentable,
-/obj/item/paper,
-/obj/effect/spawner/random/misc/cigarettes,
-/obj/effect/spawner/random/misc/cigar,
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "lEm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -18207,6 +18209,14 @@
 /obj/item/portable_vendor/corporate,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"msd" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "msL" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19138,6 +19148,12 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"nGb" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "nGd" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /turf/open/floor/mainship/hexagon,
@@ -21523,9 +21539,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "qHb" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/effect/soundplayer,
-/turf/open/floor/plating/platebotc,
+/turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/storage)
 "qHe" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -21969,6 +21984,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/engineering)
+"rkc" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "rkt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -22286,7 +22305,7 @@
 "rCY" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship_hull/gray,
-/area/mainship/living/tankerbunks)
+/area/sulaco/hangar/storage)
 "rDx" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
@@ -22526,15 +22545,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "rQp" = (
-/obj/structure/mirror{
-	dir = 8
-	},
-/obj/structure/table/woodentable,
-/obj/item/paper,
-/obj/effect/spawner/random/misc/clipboard,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "rSe" = (
@@ -22630,8 +22641,8 @@
 	},
 /area/sulaco/research)
 "saI" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/open/floor/plating/platebotc,
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "saZ" = (
 /obj/structure/bed/chair/nometal,
@@ -22764,11 +22775,11 @@
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "sfh" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
+/obj/machinery/gear/vehicle,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "sft" = (
@@ -23198,8 +23209,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "sDv" = (
-/obj/machinery/tank_part_fabricator,
-/turf/open/floor/mainship/hexagon,
+/obj/structure/bed/chair/wood/wings,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "sDU" = (
 /obj/machinery/cryopod/right,
@@ -23360,10 +23372,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "sNp" = (
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/effect/spawner/random/misc/hand_labeler,
-/turf/open/floor/wood,
+/obj/structure/window/framed/mainship/gray/toughened,
+/turf/open/floor/plating/platebotc,
 /area/mainship/living/tankerbunks)
 "sNK" = (
 /obj/machinery/light/mainship,
@@ -23545,11 +23555,7 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "sXB" = (
-/obj/effect/landmark/start/job/transport_crewman,
-/obj/structure/bed/bunkbed,
-/obj/machinery/light/mainship{
-	dir = 8
-	},
+/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "sZo" = (
@@ -23788,6 +23794,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/gear/vehicle,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "tmj" = (
@@ -24388,7 +24395,9 @@
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "ucf" = (
-/obj/machinery/vending/uniform_supply,
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/effect/spawner/random/misc/hand_labeler,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "udt" = (
@@ -24755,8 +24764,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/cargo/office)
 "uyv" = (
-/obj/structure/window/framed/mainship/gray/toughened,
-/turf/open/floor/plating/platebotc,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "uyz" = (
 /turf/open/floor/prison/sterilewhite,
@@ -24785,10 +24796,10 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
 "uAA" = (
-/obj/structure/bed/chair/wood/wings{
-	dir = 4
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "uAS" = (
 /obj/effect/decal/cleanable/dirt,
@@ -24973,8 +24984,8 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "uNx" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/wood,
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/mainship/hexagon,
 /area/mainship/living/tankerbunks)
 "uNQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -27286,6 +27297,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
+"xQR" = (
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "xSZ" = (
 /turf/open/floor/prison/red,
 /area/sulaco/firingrange)
@@ -69211,7 +69226,6 @@ nzi
 bFa
 bFa
 bFa
-bFa
 ema
 xzr
 xzr
@@ -69219,15 +69233,16 @@ xzr
 xzr
 xzr
 xzr
-eBa
+uAA
+uoJ
 alR
 uoJ
 nGd
 uoJ
-uoJ
+xQR
 xzr
 xzr
-xzr
+bYM
 iZD
 aUS
 iZD
@@ -69467,24 +69482,24 @@ aaa
 tZr
 vDU
 vDU
-vDU
 mDu
 ema
 dbk
 mEj
-sXB
-mEj
-fba
 gHp
+mEj
+sXB
+fba
 uoJ
-lFo
+bSh
+qRM
 qRM
 qRM
 beR
 lFo
 hAn
-sDv
-xzr
+uoJ
+bYM
 qpD
 mCT
 pWS
@@ -69724,15 +69739,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
+atj
 saI
-uNx
 mEj
 mEj
+sDv
 gRZ
-lEb
-uyv
+sNp
+uoJ
 qwj
 xiF
 xiF
@@ -69741,7 +69756,7 @@ xiF
 xiF
 oEr
 uoJ
-xzr
+bYM
 aeL
 qTF
 pMx
@@ -69981,15 +69996,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
-saI
-ffg
+atj
+eBa
 mEj
 mEj
 mEj
+ucf
 sNp
-uyv
+uoJ
 xLQ
 xiF
 xiF
@@ -69998,7 +70013,7 @@ xiF
 xiF
 sKu
 ebs
-xzr
+bYM
 jYO
 wTC
 jJa
@@ -70238,15 +70253,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
-saI
-ucf
+atj
+ffg
 mEj
-uAA
+hGh
 mEj
-iWf
 uyv
+sNp
+uoJ
 qwj
 xiF
 xiF
@@ -70495,9 +70510,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ema
+gpt
 fdV
 ebF
 rQp
@@ -70511,7 +70526,7 @@ xiF
 xiF
 xiF
 gGS
-atj
+uoJ
 rCY
 tkV
 gRI
@@ -70752,7 +70767,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ema
 ema
@@ -70761,6 +70775,7 @@ ema
 ema
 ema
 ema
+uNx
 uiA
 xiF
 xiF
@@ -71009,7 +71024,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
 tZr
 vDU
 vDU
@@ -71018,15 +71032,16 @@ vDU
 vDU
 mDu
 ema
+uoJ
 sfh
-gpt
+xIb
 uJa
 xIb
-hGh
-gpt
+xIb
+xIb
 tlP
 vDm
-xzr
+bYM
 pWS
 hlB
 jYO
@@ -71272,18 +71287,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 ema
-ema
-ema
-ema
-ema
-ema
-saI
-saI
-ema
-ema
+cPJ
+msd
+nGb
+uoJ
+iEg
+nGb
+uoJ
+alR
+rkc
+kOr
 aeL
 bWI
 dQF
@@ -71529,17 +71544,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-tZr
-vDU
-vDU
-vDU
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+nzi
+ema
+ema
+ema
+ema
+ema
+ema
+ema
+atj
+atj
+ema
 qHb
 aWo
 dpg
@@ -71786,12 +71801,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 tZr
+vDU
+vDU
+vDU
+vDU
+mDu
 mDu
 mDu
 mDu
@@ -72048,8 +72063,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-nzi
+tZr
+mDu
 mDu
 mDu
 mDu
