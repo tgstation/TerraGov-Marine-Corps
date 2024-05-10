@@ -24,6 +24,7 @@
 	icon_state = "kut_sign"
 	bound_width = 64
 	bound_height = 32
+	density = TRUE
 
 /obj/structure/kutjevo_sign/Initialize(mapload)
 	. = ..()

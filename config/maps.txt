@@ -83,5 +83,5 @@ map daedalusprison
 endmap
 
 map kutjevo
-	minplayers 45
+	minplayers 35
 endmap

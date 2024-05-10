@@ -60,13 +60,7 @@
 
 /obj/structure/sign/double/barsign/carp/Initialize(mapload)
 	. = ..()
-	ChangeSign("thedrunkcarp")
-
-/obj/structure/sign/double/barsign/proc/ChangeSign(Text)
-		src.icon_state = "[Text]"
-		//on = 0
-		//brightness_on = 4 //uncomment these when the lighting fixes get in
-		return
+	icon_state = "thedrunkcarp"
 
 /obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user, params)
 	. = ..()

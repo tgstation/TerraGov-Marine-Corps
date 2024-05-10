@@ -48,10 +48,12 @@
 /area/kutjevo/exterior/lz_dunes
 	name = "Kutjevo - Landing Zone Dunes"
 	icon_state = "lz_dunes"
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/lz_river
 	name = "Kutjevo - Power Station River"
 	icon_state = "lz_river"
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/spring
 	name = "Kutjevo - Southern Spring"
@@ -71,6 +73,7 @@
 /area/kutjevo/exterior/stonyfields
 	name = "Kutjevo - Stony Fields"
 	icon_state = "stone_fields"
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/Northwest_Colony
 	name = "Kutjevo - Northwest Colony Grounds"
@@ -79,6 +82,7 @@
 /area/kutjevo/exterior/runoff_dunes
 	name = "Kutjevo - Runoff Dunes"
 	icon_state = "rf_dunes"
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/runoff_river
 	name = "Kutjevo - Runoff River"
@@ -206,7 +210,7 @@
 //Out buildings + foremans
 /area/kutjevo/interior/power
 	name = "Kutjevo - Hydroelectric Dam Substation"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_UNDERGROUND
 	icon_state = "power"
 	minimap_color = MINIMAP_AREA_ENGI
 

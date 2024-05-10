@@ -248,7 +248,10 @@
 
 /obj/structure/flora/grass/tallgrass/autosmooth/desert
 	color = "#ffbd72"
-	layer = BUSH_LAYER
+
+/obj/structure/flora/grass/tallgrass/autosmooth/desert/Initialize(mapload)
+	. = ..()
+	layer = BUSH_LAYER //do this here instead of on type so it doesn't layer over things in map editor
 
 //bushes
 /obj/structure/flora/bush
