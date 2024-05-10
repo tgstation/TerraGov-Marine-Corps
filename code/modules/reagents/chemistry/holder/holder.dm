@@ -476,7 +476,7 @@
 	var/datum/reagent/reagent_to_remove = get_reagent(type_to_remove)
 	if(!reagent_to_remove)
 		return FALSE
-	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	SEND_SIGNAL(src, COMSIG_REAGENTS_DEL_REAGENT, type_to_remove)
 	var/atom/holder_atom = get_holder()
 	if(isliving(holder_atom))
 		var/mob/living/living_holder = holder_atom
