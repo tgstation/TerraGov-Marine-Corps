@@ -1422,14 +1422,6 @@
 /obj/item/toy/katana,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
-"bbu" = (
-/obj/machinery/door_control{
-	dir = 1;
-	id = "CavePrisonDoor";
-	name = "Door Shutters"
-	},
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/pmc/prison)
 "bbA" = (
 /obj/structure/cable,
 /obj/structure/barricade/wooden,
@@ -2967,10 +2959,14 @@
 "cfq" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
+	max_integrity = 25;
+	name = "weakened wooden barricade";
 	pixel_y = 16
 	},
 /obj/structure/barricade/wooden{
-	dir = 8
+	dir = 8;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -3533,11 +3529,13 @@
 /turf/open/floor/tile/dark,
 /area/riptide/inside/medical/offices)
 "czd" = (
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/structure/barricade/wooden{
 	dir = 1;
+	max_integrity = 25;
+	name = "weakened wooden barricade";
 	pixel_y = 16
 	},
-/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "czj" = (
@@ -3651,10 +3649,14 @@
 "cCG" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
+	max_integrity = 25;
+	name = "weakened wooden barricade";
 	pixel_y = 16
 	},
 /obj/structure/barricade/wooden{
-	dir = 4
+	dir = 4;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -5515,6 +5517,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/dmg1,
 /area/riptide/caves/central/garbledradio)
+"dUn" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "CavePrisonDoor";
+	name = "Door Shutters"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/pmc/prison)
 "dUq" = (
 /obj/structure/flora/ausbushes/fernybush{
 	pixel_x = -3
@@ -6093,7 +6103,9 @@
 /obj/item/clothing/under/pirate,
 /obj/item/clothing/suit/pirate,
 /obj/structure/barricade/wooden{
-	dir = 4
+	dir = 4;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -7266,10 +7278,12 @@
 /area/riptide/inside/beachmotel)
 "fgT" = (
 /obj/effect/decal/cleanable/generic,
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/barricade/wooden{
+	dir = 8;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "fgV" = (
@@ -7630,6 +7644,9 @@
 	dir = 1
 	},
 /area/riptide/outside/southislands)
+"fuU" = (
+/turf/closed/gm,
+/area/riptide/outside/volcano)
 "fuY" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/platform/adobe,
@@ -11672,6 +11689,7 @@
 /area/riptide/outside/southjungle)
 "ism" = (
 /obj/structure/table/black,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/mainship/sandtemple,
 /area/riptide/caves/pmc/warehouse)
 "isx" = (
@@ -11717,7 +11735,9 @@
 /area/riptide/outside/river)
 "ius" = (
 /obj/structure/barricade/wooden{
-	dir = 8
+	dir = 8;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -12419,6 +12439,7 @@
 "iWC" = (
 /obj/item/ammo_casing/bullet,
 /obj/item/weapon/gun/hsg_102/hsg_nest,
+/obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
 "iWG" = (
@@ -15113,10 +15134,12 @@
 	},
 /area/riptide/caves/syndicatemining)
 "kRA" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/barricade/wooden{
+	dir = 8;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "kRU" = (
@@ -15794,6 +15817,7 @@
 /area/riptide/outside/beachlzone)
 "lmL" = (
 /obj/structure/table/black,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/plating/scorched,
 /area/riptide/caves/pmc/warehouse)
 "lmT" = (
@@ -15965,6 +15989,18 @@
 /obj/structure/mine_structure/wooden/support_wall/t_bar/above,
 /turf/open/floor/wood,
 /area/riptide/caves/north2)
+"ltX" = (
+/obj/structure/table/black,
+/obj/item/ammo_magazine/rifle{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/obj/item/ammo_magazine/rifle{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/sandtemple,
+/area/riptide/caves/pmc/warehouse)
 "lud" = (
 /obj/structure/rock/basalt/alt,
 /turf/open/liquid/water/river,
@@ -16340,7 +16376,9 @@
 "lIH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden{
-	dir = 4
+	dir = 4;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -18541,6 +18579,10 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/riptide/inside/engineering/bridge)
+"nld" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/prison,
+/area/riptide/inside/syndicatecheckpoint)
 "nlK" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -20062,9 +20104,14 @@
 /area/riptide/caves/pmc/toxins)
 "ooV" = (
 /obj/structure/barricade/wooden{
-	dir = 8
+	dir = 8;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden{
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "ooZ" = (
@@ -20808,7 +20855,9 @@
 /area/riptide/caves/pmc/warehouse)
 "oPg" = (
 /obj/structure/barricade/wooden{
-	dir = 4
+	dir = 4;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -22336,7 +22385,10 @@
 /turf/open/ground,
 /area/riptide/outside/westbeach)
 "pQp" = (
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden{
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "pQC" = (
@@ -22583,7 +22635,10 @@
 /area/riptide/outside/westjungle)
 "pYO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden{
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "pYS" = (
@@ -22606,9 +22661,14 @@
 "pYX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden{
-	dir = 4
+	dir = 4;
+	max_integrity = 25;
+	name = "weakened wooden barricade"
 	},
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden{
+	max_integrity = 25;
+	name = "weakened wooden barricade"
+	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "pZc" = (
@@ -26918,6 +26978,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/riptide/caves/tram)
+"sOK" = (
+/obj/structure/girder,
+/turf/open/floor/prison,
+/area/riptide/inside/syndicatecheckpoint)
 "sPd" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -8;
@@ -30243,6 +30307,19 @@
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
 /area/riptide/inside/southtower)
+"vgs" = (
+/obj/structure/table/black,
+/obj/item/ammo_magazine/rifle/incendiary{
+	pixel_x = 12;
+	pixel_y = 4
+	},
+/obj/item/ammo_magazine/rifle/incendiary{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/ammo_magazine/rifle/incendiary,
+/turf/open/floor/mainship/sandtemple,
+/area/riptide/caves/pmc/warehouse)
 "vgU" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/outside/northjungle)
@@ -53169,8 +53246,8 @@ mSy
 kOZ
 kOZ
 kOZ
-kOZ
-kOZ
+mSy
+mSy
 lfd
 lfd
 eqq
@@ -53348,8 +53425,8 @@ kED
 kED
 kOZ
 kOZ
-kOZ
-kOZ
+mSy
+eqc
 lfd
 ifo
 cGB
@@ -53708,7 +53785,7 @@ vrA
 eqc
 mSy
 mSy
-lfd
+sOK
 bVl
 wQE
 aHO
@@ -54065,9 +54142,9 @@ xCu
 kOZ
 kOZ
 kOZ
-kOZ
+mSy
 lfd
-lfd
+nld
 lfd
 lfd
 lfd
@@ -54243,7 +54320,7 @@ xCu
 xCu
 xCu
 xCu
-xCu
+kOZ
 kOZ
 mSy
 mSy
@@ -54422,9 +54499,9 @@ kOZ
 kOZ
 xCu
 xCu
-xCu
 kOZ
 kOZ
+mSy
 eqc
 mSy
 gFm
@@ -54602,10 +54679,10 @@ kOZ
 kOZ
 xCu
 xCu
-xCu
 kOZ
 mSy
-eBk
+mSy
+oPN
 oPN
 kOZ
 kOZ
@@ -54962,7 +55039,7 @@ fTj
 kOZ
 kOZ
 kOZ
-oPN
+fuU
 guS
 gFm
 kOZ
@@ -64606,12 +64683,12 @@ sTP
 uFp
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
@@ -64821,7 +64898,7 @@ rZz
 oww
 dVY
 tcg
-ism
+vgs
 wcB
 itG
 rEY
@@ -64971,7 +65048,7 @@ xeC
 duN
 duN
 hpw
-gqq
+jBi
 jBi
 gqq
 gqq
@@ -65166,7 +65243,7 @@ qvM
 nhV
 xin
 xin
-bbu
+dUn
 kRU
 kRU
 kRU
@@ -65508,7 +65585,7 @@ sFX
 sFX
 jBi
 hpw
-gqq
+jBi
 jBi
 gqq
 wFs
@@ -65537,7 +65614,7 @@ tcg
 gDz
 pBx
 tcg
-ism
+ltX
 voY
 sjR
 ksS
@@ -66046,7 +66123,7 @@ gqq
 gqq
 gqq
 jBi
-gqq
+jBi
 ncD
 tro
 oSH
@@ -66225,7 +66302,7 @@ duN
 bbm
 duN
 duN
-gqq
+duN
 gqq
 iCp
 ykn
@@ -66394,12 +66471,12 @@ uFp
 duN
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
@@ -66750,17 +66827,17 @@ sTP
 uFp
 gqq
 jBi
-gqq
+jBi
 gqq
 jHS
 gqq
-gqq
+jBi
 jBi
 jpU
 jHS
 gqq
 jBi
-gqq
+jBi
 gqq
 gqq
 oUT
@@ -67110,12 +67187,12 @@ duN
 duN
 pbH
 duN
-gqq
+xeC
 bbm
 duN
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
@@ -67645,17 +67722,17 @@ nyr
 hpw
 ncD
 jBi
-gqq
+jBi
 gqq
 jHS
 gqq
-gqq
+jBi
 jBi
 bHs
 jHS
 gqq
 kMO
-gqq
+jBi
 gqq
 gqq
 ncD
@@ -68010,7 +68087,7 @@ duN
 duN
 duN
 duN
-gqq
+xeC
 duN
 duN
 duN
