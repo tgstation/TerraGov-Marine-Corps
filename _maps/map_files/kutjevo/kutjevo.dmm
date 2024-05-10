@@ -611,7 +611,6 @@
 /area/kutjevo/interior/colony_north)
 "aWH" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/research/containment/floor2,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -2894,9 +2893,6 @@
 /area/kutjevo/exterior/scrubland/north)
 "dSC" = (
 /obj/structure/stairs/seamless{
-	dir = 1
-	},
-/obj/structure/stairs/seamless{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -4426,7 +4422,6 @@
 /area/kutjevo/exterior/scrubland/south)
 "fOL" = (
 /obj/structure/largecrate/random,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/colony_South/power2)
@@ -8103,10 +8098,6 @@
 	dir = 4
 	},
 /obj/structure/stairs/seamless{
-	dir = 1;
-	pixel_y = 18
-	},
-/obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/floor/plating/kutjevo,
@@ -11061,10 +11052,6 @@
 /area/kutjevo/interior/complex/botany)
 "oAU" = (
 /obj/structure/stairs/seamless{
-	dir = 1;
-	pixel_y = 18
-	},
-/obj/structure/stairs/seamless{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -12023,7 +12010,6 @@
 	},
 /area/kutjevo/exterior/runoff_bridge)
 "pIV" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
@@ -15255,7 +15241,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/complex_border/med_rec)
 "tWv" = (
@@ -17498,16 +17483,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/complex/Northwest_Flight_Control)
-"wDm" = (
-/obj/structure/stairs/seamless{
-	dir = 1;
-	pixel_y = 18
-	},
-/obj/structure/stairs/seamless{
-	dir = 1
-	},
-/turf/open/floor/plating/kutjevo,
-/area/kutjevo/interior/colony_South/power2)
 "wDT" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/security{
@@ -18324,7 +18299,6 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/med/auto_doc)
 "xKn" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/colony_South/power2)
@@ -45385,7 +45359,7 @@ csE
 mJY
 rob
 oZE
-wDm
+oMS
 srk
 mLw
 mLw
