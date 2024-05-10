@@ -4694,13 +4694,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
-"dto" = (
-/obj/structure/table/fancywoodentable,
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1")
-	},
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "dtA" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/drought,
@@ -7644,9 +7637,6 @@
 	dir = 1
 	},
 /area/riptide/outside/southislands)
-"fuU" = (
-/turf/closed/gm,
-/area/riptide/outside/volcano)
 "fuY" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/platform/adobe,
@@ -14580,6 +14570,10 @@
 	},
 /turf/open/floor/grayscale,
 /area/riptide/caves/pmc/warehouse)
+"kyl" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/prison,
+/area/riptide/inside/syndicatecheckpoint)
 "kyt" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 3;
@@ -16010,6 +16004,9 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/riptide/inside/warehouse)
+"luS" = (
+/turf/closed/gm,
+/area/riptide/outside/volcano)
 "luV" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -18579,10 +18576,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/riptide/inside/engineering/bridge)
-"nld" = (
-/obj/structure/girder/displaced,
-/turf/open/floor/prison,
-/area/riptide/inside/syndicatecheckpoint)
 "nlK" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -20162,6 +20155,10 @@
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/iron/dark,
 /area/riptide/caves/pmc/warehouse)
+"opY" = (
+/obj/structure/girder,
+/turf/open/floor/prison,
+/area/riptide/inside/syndicatecheckpoint)
 "oqe" = (
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
@@ -26978,10 +26975,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/riptide/caves/tram)
-"sOK" = (
-/obj/structure/girder,
-/turf/open/floor/prison,
-/area/riptide/inside/syndicatecheckpoint)
 "sPd" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -8;
@@ -33912,19 +33905,8 @@
 	dir = 1
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control/old/unmeltable{
-	id = "NorthBaseSomArmory";
-	name = "Armory Shutters"
-	},
-/obj/machinery/door_control/old/unmeltable{
-	id = "NorthBaseSomHangar";
-	name = "Hangar Shutters";
-	pixel_x = -10
-	},
-/obj/machinery/door_control/old/unmeltable{
-	id = "NorthEngiShielding";
-	name = "Radiation Shielding";
-	pixel_x = 10
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1")
 	},
 /turf/open/floor/mainship/sandtemple,
 /area/riptide/inside/syndicatehead)
@@ -49086,7 +49068,7 @@ aCu
 tPI
 tPI
 tPI
-dto
+yaQ
 hff
 gct
 adC
@@ -53785,7 +53767,7 @@ vrA
 eqc
 mSy
 mSy
-sOK
+opY
 bVl
 wQE
 aHO
@@ -54144,7 +54126,7 @@ kOZ
 kOZ
 mSy
 lfd
-nld
+kyl
 lfd
 lfd
 lfd
@@ -55039,7 +55021,7 @@ fTj
 kOZ
 kOZ
 kOZ
-fuU
+luS
 guS
 gFm
 kOZ
