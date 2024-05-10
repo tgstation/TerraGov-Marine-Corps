@@ -45,11 +45,9 @@
 	opacity = FALSE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/datum/looping_sound/loopingsound
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
-	loopingsound = new(null, FALSE)
 	icon_state = ""
 
 /obj/effect/soundplayer/Destroy()
@@ -66,6 +64,7 @@
 /obj/effect/soundplayer/deltaplayer/Destroy()
 	. = ..()
 	GLOB.ship_alarms -= src
+	QDEL_NULL(deltaloop)
 
 /obj/effect/soundplayer/riverplayer
 	var/datum/looping_sound/river_loop/riverloop
@@ -75,6 +74,10 @@
 	riverloop = new(null, FALSE)
 	riverloop.start(src)
 
+/obj/effect/soundplayer/riverplayer/Destroy()
+	. = ..()
+	QDEL_NULL(riverloop)
+
 /obj/effect/soundplayer/windplayer
 	var/datum/looping_sound/wind_loop/windloop
 
@@ -82,6 +85,10 @@
 	. = ..()
 	windloop = new(null, FALSE)
 	windloop.start(src)
+
+/obj/effect/soundplayer/windplayer/Destroy()
+	. = ..()
+	QDEL_NULL(windloop)
 
 /obj/effect/soundplayer/dripplayer
 	var/datum/looping_sound/drip_loop/driploop
@@ -91,6 +98,10 @@
 	driploop = new(null, FALSE)
 	driploop.start(src)
 
+/obj/effect/soundplayer/dripplayer/Destroy()
+	. = ..()
+	QDEL_NULL(driploop)
+
 /obj/effect/soundplayer/lowwindplayer
 	var/datum/looping_sound/low_wind_loop/lowwindloop
 
@@ -98,6 +109,10 @@
 	. = ..()
 	lowwindloop = new(null, FALSE)
 	lowwindloop.start(src)
+
+/obj/effect/soundplayer/lowwindplayer/Destroy()
+	. = ..()
+	QDEL_NULL(lowwindloop)
 
 /obj/effect/soundplayer/waterreservoirplayer
 	var/datum/looping_sound/water_res_loop/waterresloop
@@ -107,6 +122,9 @@
 	waterresloop = new(null, FALSE)
 	waterresloop.start(src)
 
+/obj/effect/soundplayer/waterreservoirplayer/Destroy()
+	. = ..()
+	QDEL_NULL(waterresloop)
 
 /obj/effect/forcefield
 	anchored = TRUE
