@@ -17828,6 +17828,9 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "lTe" = (
