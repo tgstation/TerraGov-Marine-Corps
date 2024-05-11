@@ -3,17 +3,6 @@
 
 ///////////////// Booze & Bottles ///////////////////
 
-/datum/crafting_recipe/lizardwine
-	name = "Lizard Wine"
-	time = 40
-	reqs = list(
-		/obj/item/organ/external/tail/lizard = 1,
-		/datum/reagent/consumable/ethanol = 100
-	)
-	blacklist = list(/obj/item/organ/external/tail/lizard/fake)
-	result = /obj/item/reagent_containers/cup/glass/bottle/lizardwine
-	category = CAT_DRINK
-
 /datum/crafting_recipe/moonshinejug
 	name = "Moonshine Jug"
 	time = 30
@@ -22,17 +11,6 @@
 		/datum/reagent/consumable/ethanol/moonshine = 100
 	)
 	result = /obj/item/reagent_containers/cup/glass/bottle/moonshine
-	category = CAT_DRINK
-
-/datum/crafting_recipe/hoochbottle
-	name = "Hooch Bottle"
-	time = 30
-	reqs = list(
-		/obj/item/reagent_containers/cup/glass/bottle = 1,
-		/obj/item/storage/box/papersack = 1,
-		/datum/reagent/consumable/ethanol/hooch = 100
-	)
-	result = /obj/item/reagent_containers/cup/glass/bottle/hooch
 	category = CAT_DRINK
 
 /datum/crafting_recipe/blazaambottle
@@ -115,35 +93,3 @@
 	time = 10
 	reqs = list(/obj/item/stack/sheet/cardboard = 1)
 	category = CAT_CONTAINERS
-
-/datum/crafting_recipe/candycornliquor
-	name = "candy corn liquor"
-	result = /obj/item/reagent_containers/cup/glass/bottle/candycornliquor
-	time = 30
-	reqs = list(/datum/reagent/consumable/ethanol/whiskey = 100,
-		/obj/item/food/candy_corn = 1,
-		/obj/item/reagent_containers/cup/glass/bottle = 1
-	)
-	category = CAT_DRINK
-
-/datum/crafting_recipe/kong
-	name = "Kong"
-	result = /obj/item/reagent_containers/cup/glass/bottle/kong
-	time = 30
-	reqs = list(/datum/reagent/consumable/ethanol/whiskey = 100,
-		/obj/item/food/monkeycube = 1,
-		/obj/item/reagent_containers/cup/glass/bottle = 1
-	)
-	category = CAT_DRINK
-
-/datum/crafting_recipe/pruno
-	name = "pruno mix"
-	result = /obj/item/reagent_containers/cup/glass/bottle/pruno
-	time = 30
-	reqs = list(/obj/item/storage/bag/trash = 1,
-		/obj/item/food/breadslice/moldy = 1,
-		/obj/item/food/grown = 4,
-		/obj/item/food/candy_corn = 2,
-		/datum/reagent/water = 15
-	)
-	category = CAT_DRINK

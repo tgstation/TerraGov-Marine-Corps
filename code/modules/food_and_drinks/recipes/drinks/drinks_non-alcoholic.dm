@@ -6,10 +6,6 @@
 	results = list(/datum/reagent/consumable/icecoffee = 4)
 	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee = 3)
 
-/datum/chemical_reaction/drink/hoticecoffee
-	results = list(/datum/reagent/consumable/hot_ice_coffee = 3)
-	required_reagents = list(/datum/reagent/toxin/hot_ice = 1, /datum/reagent/consumable/coffee = 2)
-
 /datum/chemical_reaction/drink/nuka_cola
 	results = list(/datum/reagent/consumable/nuka_cola = 6)
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/consumable/space_cola = 6)
@@ -29,10 +25,6 @@
 /datum/chemical_reaction/drink/cherryshake
 	results = list(/datum/reagent/consumable/cherryshake = 3)
 	required_reagents = list(/datum/reagent/consumable/cherryjelly = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/cream = 1)
-
-/datum/chemical_reaction/drink/bluecherryshake
-	results = list(/datum/reagent/consumable/bluecherryshake = 3)
-	required_reagents = list(/datum/reagent/consumable/bluecherryjelly = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/cream = 1)
 
 /datum/chemical_reaction/drink/vanillashake
 	results = list(/datum/reagent/consumable/vanillashake = 3)
@@ -97,21 +89,9 @@
 	required_reagents = list(/datum/reagent/consumable/milk/chocolate_milk = 1, /datum/reagent/consumable/milk = 2)
 	required_temp = 320
 
-/datum/chemical_reaction/drink/coffee
-	results = list(/datum/reagent/consumable/coffee = 5)
-	required_reagents = list(/datum/reagent/toxin/coffeepowder = 1, /datum/reagent/water = 5)
-
-/datum/chemical_reaction/drink/tea
-	results = list(/datum/reagent/consumable/tea = 5)
-	required_reagents = list(/datum/reagent/toxin/teapowder = 1, /datum/reagent/water = 5)
-
 /datum/chemical_reaction/drink/cream_soda
 	results = list(/datum/reagent/consumable/cream_soda = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/sodawater = 2, /datum/reagent/consumable/vanilla = 1)
-
-/datum/chemical_reaction/drink/red_queen
-	results = list(/datum/reagent/consumable/red_queen = 10)
-	required_reagents = list(/datum/reagent/consumable/tea = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
 
 /datum/chemical_reaction/drink/toechtauese_syrup
 	results = list(/datum/reagent/consumable/toechtauese_syrup = 10)
@@ -132,10 +112,6 @@
 /datum/chemical_reaction/drink/cinderella
 	results = list(/datum/reagent/consumable/cinderella = 50)
 	required_reagents = list(/datum/reagent/consumable/pineapplejuice = 10, /datum/reagent/consumable/orangejuice = 10, /datum/reagent/consumable/lemonjuice = 5, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/sol_dry = 20, /datum/reagent/consumable/ethanol/bitters = 2)
-
-/datum/chemical_reaction/drink/italian_coco
-	results = list(/datum/reagent/consumable/italian_coco = 10)
-	required_reagents = list(/datum/reagent/consumable/hot_coco  = 5, /datum/reagent/consumable/corn_starch = 1, /datum/reagent/consumable/whipped_cream = 4)
 
 /datum/chemical_reaction/drink/strawberry_banana
 	results = list(/datum/reagent/consumable/strawberry_banana = 3)
@@ -164,10 +140,6 @@
 /datum/chemical_reaction/drink/cucumberlemonade
 	results = list(/datum/reagent/consumable/cucumberlemonade = 5)
 	required_reagents = list(/datum/reagent/consumable/lemon_lime = 3, /datum/reagent/consumable/cucumberjuice = 2, /datum/reagent/consumable/ice = 1)
-
-/datum/chemical_reaction/drink/mississippi_queen
-	results = list(/datum/reagent/consumable/mississippi_queen = 50)
-	required_reagents = list(/datum/reagent/consumable/tomatojuice = 15, /datum/reagent/consumable/mayonnaise = 10, /datum/reagent/consumable/soysauce = 5, /datum/reagent/consumable/vinegar = 2, /datum/reagent/consumable/capsaicin = 10, /datum/reagent/consumable/coco = 2)
 
 /datum/chemical_reaction/drink/t_letter
 	results = list(/datum/reagent/consumable/t_letter = 2)
