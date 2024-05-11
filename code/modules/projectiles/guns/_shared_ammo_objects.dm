@@ -55,7 +55,6 @@
 
 /obj/fire/update_icon_state()
 	. = ..()
-	var/light_color = "LIGHT_COLOR_FLAME"
 	switch(flame_color)
 		if("red")
 			light_color = LIGHT_COLOR_FLAME
