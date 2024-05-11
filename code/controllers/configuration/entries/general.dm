@@ -439,3 +439,17 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/save_spritesheets
 	default = FALSE
+
+//Default directory for lobby art
+/datum/config_entry/string/lobby_art_directory
+	config_entry_value = "icons/lobby art/"
+
+//How long the lobby art is displayed for in seconds
+/datum/config_entry/number/lobby_art_duration
+	config_entry_value = 30
+	integer = FALSE
+
+//How long the transition between lobby art images is in seconds
+/datum/config_entry/number/lobby_art_fade_duration
+	config_entry_value = 5
+	integer = FALSE

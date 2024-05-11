@@ -88,6 +88,8 @@
 	LoadPolicy()
 	LoadChatFilter()
 
+	GLOB.lobby_art_files = flist(CONFIG_GET(string/lobby_art_directory))	//I guess load this in here with the rest of the config stuff
+
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 

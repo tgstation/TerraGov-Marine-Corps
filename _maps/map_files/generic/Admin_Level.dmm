@@ -1685,9 +1685,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "cjh" = (
-/obj/structure/displaycase{
-	req_access = null
-	},
+/obj/structure/displaycase,
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
 "cjO" = (
@@ -8146,7 +8144,8 @@
 /turf/open/floor,
 /area/tdome)
 "lAb" = (
-/turf/closed/wall/indestructible/splashscreen,
+/obj/effect/lobby_art,
+/turf/closed/wall/indestructible,
 /area/start)
 "lAd" = (
 /obj/structure/table/reinforced,
@@ -9277,9 +9276,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "noI" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
+/obj/machinery/sleeper,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "noL" = (
