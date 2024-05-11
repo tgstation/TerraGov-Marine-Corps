@@ -141,7 +141,7 @@ const NuclearBombContent = (props) => {
       ) : null}
       <Section title={'Designated detonation sites'}>
         <Box width="100%">
-          <NoticeBox color='blue'>
+          <NoticeBox color="blue">
             <Stack vertical>
               {nuke_activation_sites.map((nuke_activation_sites) => (
                 <Stack.Item key={nuke_activation_sites}>
