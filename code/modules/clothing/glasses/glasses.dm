@@ -570,9 +570,9 @@
 
 /obj/item/clothing/glasses/vsd/nvg
 	name = "\improper CM-12 night vision goggles"
-	desc = "V.S.D's standard issue night vision goggles! Came with a battery, thanks to the beloved of V.S.D, you will no longer have to switch the battery out! Might cause burning, they also combust when you take them off."
+	desc = "V.S.D's standard issue night vision goggles! Came with a battery, thanks to the beloved hackers of V.S.D, you will no longer have to switch the battery out! Might cause burning, they also combust when you take them off."
 	icon = 'icons/mob/clothing/eyes.dmi'
-	icon_state = "vsd_nvg_on"
+	icon_state = "vsd_nvg"
 	deactive_state = "vsd_nvg_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
 	worn_item_state_slots = list()
@@ -596,7 +596,7 @@
 	///How loud the looping sound should be
 	var/looping_sound_volume = 25
 
-/obj/item/clothing/glasses/night_vision/Initialize(mapload)
+/obj/item/clothing/glasses/vsd/nvg/Initialize(mapload)
 	. = ..()
 	//Start with a charged battery
 	battery = new /obj/item/cell/night_vision_battery(src)
@@ -604,7 +604,7 @@
 	active_sound.volume = looping_sound_volume
 	update_worn_state()
 
-/obj/item/clothing/glasses/night_vision/examine(mob/user)
+/obj/item/clothing/glasses/vsd/nvg/examine(mob/user)
 	. = ..()
 	. += span_notice("This model drains [active_energy_cost] energy when active.")
 	. += battery_status()
@@ -616,16 +616,16 @@
 		return span_notice("Battery: [battery.charge]/[battery.maxcharge]")
 	return span_warning("No battery installed!")
 
-/obj/item/clothing/glasses/night_vision/attack_hand(mob/living/user)
+/obj/item/clothing/glasses/vsd/nvg/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src && eject_battery(user))
 		return
 	return ..()
 
-/obj/item/clothing/glasses/night_vision/AltClick(mob/user)
+/obj/item/clothing/glasses/vsd/nvg/AltClick(mob/user)
 	if(!eject_battery(user))
 		return ..()
 
-/obj/item/clothing/glasses/night_vision/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/glasses/vsd/nvg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	insert_battery(I, user)
 
@@ -661,7 +661,7 @@
 
 	return TRUE
 
-/obj/item/clothing/glasses/night_vision/activate(mob/user)
+/obj/item/clothing/glasses/vsd/nvg/activate(mob/user)
 	if(active)
 		STOP_PROCESSING(SSobj, src)
 		active_sound.stop(src)
@@ -676,7 +676,7 @@
 	update_worn_state(!active)	//The active var has not been toggled yet, so pass the opposite value
 	return ..()
 
-/obj/item/clothing/glasses/night_vision/process()
+/obj/item/clothing/glasses/vsd/nvg/process()
 	if(!battery?.use(active_energy_cost))
 		if(ismob(loc))	//If it's deactivated while being worn, pass on the reference to activate() so that the user's sight is updated
 			activate(loc)
@@ -688,15 +688,15 @@
 /obj/item/clothing/glasses/vsd/nvg/proc/update_worn_state(state = active)
 	worn_item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
 
-/obj/item/clothing/glasses/night_vision/unequipped(mob/unequipper, slot)
+/obj/item/clothing/glasses/vsd/nvg/unequipped(mob/unequipper, slot)
 	. = ..()
 	if(active)
 		activate(unequipper)
 
-/obj/item/clothing/glasses/night_vision/Destroy()
+/obj/item/clothing/glasses/vsd/nvg/Destroy()
 	QDEL_NULL(active_sound)
 	return ..()
 
 //So that the toggle button is only given when in the eyes slot
-/obj/item/clothing/glasses/night_vision/item_action_slot_check(mob/user, slot)
+/obj/item/clothing/glasses/vsd/nvg/item_action_slot_check(mob/user, slot)
 	return CHECK_BITFIELD(slot, ITEM_SLOT_EYES)
