@@ -108,6 +108,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"MARINE_BASE" = MARINE_BASE,
 		"ALWAYS_RADIO" = ALWAYS_RADIO,
 		"NO_CONSTRUCTION" = NO_CONSTRUCTION,
+		"NUKE_AREA" = NUKE_AREA,
 	),
 	"obj_flags" = list(
 		"IN_USE" = IN_USE,

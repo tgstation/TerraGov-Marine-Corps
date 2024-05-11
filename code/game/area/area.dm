@@ -87,10 +87,14 @@
 
 	if(!static_lighting)
 		blend_mode = BLEND_MULTIPLY
-
 	reg_in_areas_in_z()
 
 	update_base_lighting()
+
+	if(area_flags & NUKE_AREA) // This adds the area to the list of areas displayed on the nuke detonation site UI
+		if(src in GLOB.nuke_activation_sites) // To prevent duplicate entries into the list
+			return
+		GLOB.nuke_activation_sites += get_area_name(src)
 
 	return INITIALIZE_HINT_LATELOAD
 

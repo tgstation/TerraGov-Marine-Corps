@@ -32,10 +32,6 @@
 	var/safety = TRUE
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE
-	/// List of available nuke detonation spots i.e. (list(area1,area2,area3)), in area-paths (nukespots) as determined by currently loaded map's nukedetspot maphelper
-	var/list/nukespots
-	/// List of available nuke detonation spots i.e. (list(area1,area2,area3)), in clear-text (nukespots) as determined by currently loaded map's nukedetspot maphelper
-	var/list/nukespotsnames
 	use_power = NO_POWER_USE
 	var/obj/effect/countdown/nuclearbomb/countdown
 
@@ -61,9 +57,6 @@
 
 ///Enables nuke timer
 /obj/machinery/nuclearbomb/proc/enable()
-	if(get_area(src) == !nukespots)
-		visible_message(span_warning("Warning! This thermonuclear device needs to be armed at one of the adequate detonation sites available."))
-		return
 	GLOB.active_nuke_list += src
 	countdown.start()
 	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
@@ -205,8 +198,7 @@
 	data["red"] = r_auth
 	data["green"] = g_auth
 	data["blue"] = b_auth
-	data["nukespotsnames"] = nukespotsnames
-
+	data["nuke_activation_sites"] = GLOB.nuke_activation_sites
 	var/safe_text = (safety) ? "Safe" : "Engaged"
 	var/status = "Unknown"
 
@@ -257,6 +249,7 @@
 
 ///Toggles the timer on or off
 /obj/machinery/nuclearbomb/proc/toggle_timer(mob/user)
+	var/area/area = get_area(src)
 	if(exploded)
 		return
 	if(safety)
@@ -265,7 +258,9 @@
 	if(!anchored)
 		balloon_alert(user, "anchors not set")
 		return
-
+	if(!(area.area_flags & NUKE_AREA)) // if area we're activating in does not have the area flag NUKE_AREA, return.
+		balloon_alert(user, "Warning! This thermonuclear device needs to be armed at one of the designated detonation sites.")
+		return
 	if(!timer_enabled)
 		enable()
 		balloon_alert(user, "timer started")

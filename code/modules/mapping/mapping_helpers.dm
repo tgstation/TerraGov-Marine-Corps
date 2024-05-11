@@ -683,17 +683,3 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
 	*/
-
-/obj/effect/mapping_helpers/nucleardetspotadd
-	name = "nuclear detonation spot helper"
-	// icon_state = "detspot"
-	var/obj/machinery/nuclearbomb/nukespots
-	var/obj/machinery/nuclearbomb/nukespotsnames
-
-/obj/effect/mapping_helpers/nucleardetspotadd/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_world("### MAP WARNING, [src] spawned outside of mapload!")
-		return
-	nukespots += get_area(src)
-	nukespotsnames += get_area_name(src)
