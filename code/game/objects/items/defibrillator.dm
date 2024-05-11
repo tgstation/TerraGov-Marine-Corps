@@ -1,8 +1,3 @@
-///The base healing number for a defibrillator. Needs to be global for `DEFIBRILLATOR_HEALING_TIMES_SKILL` to work outside of this file.
-#define DEFIBRILLATOR_BASE_HEALING_VALUE 8
-///The formula for healing with a defibrillator. If `skill_input` in this macro is less than `SKILL_MEDICAL_PRACTICED`, this will be 8.
-#define DEFIBRILLATOR_HEALING_TIMES_SKILL(skill_input) (skill_input < SKILL_MEDICAL_PRACTICED ? 8 : DEFIBRILLATOR_BASE_HEALING_VALUE * skill_input * 0.5)
-
 /obj/item/defibrillator
 	name = "emergency defibrillator"
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
@@ -19,7 +14,7 @@
 	var/ready = FALSE
 	///wether readying is needed
 	var/ready_needed = TRUE
-	///The base healing number. This is multiplied using DEFIBRILLATOR_HEALING_TIMES_SKILL, but only if the patient has a higher medical skill than SKILL_MEDICAL_NOVICE
+	///The base healing number. This will be multiplied using DEFIBRILLATOR_HEALING_TIMES_SKILL.
 	var/damage_threshold = DEFIBRILLATOR_BASE_HEALING_VALUE
 	var/charge_cost = 66 //How much energy is used.
 	var/obj/item/cell/dcell = null
