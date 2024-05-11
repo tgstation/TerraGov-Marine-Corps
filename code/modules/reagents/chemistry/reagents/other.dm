@@ -443,48 +443,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/decal/cleanable))
-		qdel(O)
-	else if(O)
-		O.clean_blood()
+	. = ..()
+	O.wash()
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
+	. = ..()
 	if(volume >= 1)
-		T.clean_blood()
-		for(var/obj/effect/decal/cleanable/C in T.contents)
-			reaction_obj(C, volume)
-			qdel(C)
+		T.wash()
 
 /datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.r_hand)
-			C.r_hand.clean_blood()
-		if(C.l_hand)
-			C.l_hand.clean_blood()
-		if(C.wear_mask)
-			if(C.wear_mask.clean_blood())
-				C.update_inv_wear_mask(0)
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			if(H.head)
-				if(H.head.clean_blood())
-					H.update_inv_head(0)
-			if(H.wear_suit)
-				if(H.wear_suit.clean_blood())
-					H.update_inv_wear_suit(0)
-			else if(H.w_uniform)
-				if(H.w_uniform.clean_blood())
-					H.update_inv_w_uniform(0)
-			if(H.shoes)
-				H.clean_blood(FALSE)
-				if(H.shoes.clean_blood())
-					H.update_inv_shoes(0)
-			else
-				H.clean_blood(TRUE)
-			return
-	L.clean_blood()
+	L.wash()
 
 /datum/reagent/space_cleaner/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)

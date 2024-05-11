@@ -370,7 +370,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		return
 	user.visible_message(span_danger("Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!"),
 	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
-	playsound(user, "acid_hit", 25)
+	playsound(user, SFX_ACID_HIT, 25)
 	var/mob/living/carbon/human/H = user
 	H.emote("pain")
 	var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.

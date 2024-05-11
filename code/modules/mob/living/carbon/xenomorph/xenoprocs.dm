@@ -475,7 +475,7 @@
 	to_chat(C, span_danger("You feel a tiny prick."))
 	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-	playsound(C, "alien_drool", 15, TRUE)
+	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
 	do
 		face_atom(C)
 		if(IsStaggered())

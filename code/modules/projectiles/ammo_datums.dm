@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, "incendiary_explosion", 40)
+		playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -343,10 +343,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "default bullet"
 	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	sound_hit 	 = "ballistic_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_BALLISTIC_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 	point_blank_range = 2
 	accurate_range_min = 0
 	shell_speed = 3

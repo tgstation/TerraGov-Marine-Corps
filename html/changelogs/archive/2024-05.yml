@@ -68,3 +68,38 @@
   - code_imp: Implement more uses of PopulateContents()
   antropod:
   - rscadd: Stacks of newly crafted items merge to existing stacks in user hands
+2024-05-08:
+  DeltaFire15:
+  - bugfix: Shrike can evolve to other tier fours again.
+  Lumipharon:
+  - bugfix: fixed an exploit with reagents
+2024-05-09:
+  Barnet2:
+  - bugfix: Fixed transport crewman and assault crewman orbit menu icons.
+  Lumipharon:
+  - code_imp: Removed some redundant proc calls in pref UI
+  - bugfix: 'Campaign: Fixed loadout issues'
+  blackdav123:
+  - bugfix: Acid pools and gargoyles now appear on the minimap.
+  - balance: Acid pools no longer break when their weeds are broken
+  tyeagg:
+  - rscadd: new armor for pilot
+  - imageadd: new pilot armor
+  - imageadd: new pilot uniform
+  - imageadd: new pilot helmet
+2024-05-10:
+  Lumipharon:
+  - bugfix: fixed an issue with minimap code and z-levels after entering vehicles
+  Xander3359:
+  - code_imp: adds proc/wash() to clean stuff
+  - code_imp: Playing a sound uses SFX defines
+2024-05-11:
+  Lumipharon:
+  - qol: Improved messaging around end of mission/game for campaign
+  SandPoot:
+  - qol: Observers can now click on their minimap to jump around.
+  Xander3359:
+  - bugfix: Roomba no longer curses your storage if it sends it to cryo
+  chizzy376:
+  - bugfix: Slumbridge's SOM hangar is open again
+  - bugfix: Slumbridge lava prison no longer has a hole in the western reception
