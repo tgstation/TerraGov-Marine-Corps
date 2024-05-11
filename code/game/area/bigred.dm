@@ -156,6 +156,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_SEC
+	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/medical
 	name = "Hospital"
@@ -177,6 +178,7 @@
 	minimap_color = MINIMAP_AREA_ENGI
 	ceiling = CEILING_METAL
 	outside = FALSE
+	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/virology
 	name = "Virology Lab"
@@ -198,6 +200,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/chapel
 	name = "Chapel"
@@ -219,6 +222,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/library
 	name = "Library"

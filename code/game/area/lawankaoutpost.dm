@@ -115,6 +115,7 @@
 	name = "Cargo"
 	icon_state = "quart"
 	minimap_color = MINIMAP_AREA_REQ
+	area_flags = NUKE_AREA
 
 /area/lawankaoutpost/colony/mining
 	name = "Mineral Processing"
@@ -145,6 +146,7 @@
 	name = "Dormitories Recreation"
 	icon_state = "showroom"
 	minimap_color = MINIMAP_AREA_ESCAPE
+	area_flags = NUKE_AREA
 
 /area/lawankaoutpost/colony/bar
 	name = "Bar"
@@ -161,6 +163,7 @@
 	icon_state = "hallC1"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_COMMAND
+	area_flags = NUKE_AREA
 
 /area/lawankaoutpost/colony/operations_kitchen
 	name = "Operations Kitchen"
@@ -202,6 +205,7 @@
 	name = "Hydroponics"
 	icon_state = "hydro"
 	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = NUKE_AREA
 
 /area/lawankaoutpost/colony/cabin
 	name = "South Cabin"

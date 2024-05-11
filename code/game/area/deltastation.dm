@@ -67,6 +67,7 @@
 /area/deltastation/maintenance/department/medical/morgue
 	name = "Morgue Maintenance"
 	icon_state = "morgue_maint"
+	area_flags = NUKE_AREA
 
 /area/deltastation/maintenance/department/science
 	name = "Science Maintenance"
@@ -588,6 +589,7 @@
 /area/deltastation/service/library
 	name = "\improper Library"
 	icon_state = "library"
+	area_flags = NUKE_AREA
 
 /area/deltastation/service/library/lounge
 	name = "\improper Library Lounge"
@@ -1129,6 +1131,7 @@
 
 /area/deltastation/security/checkpoint/medical/medsci
 	name = "Security Post - Medsci"
+	area_flags = NUKE_AREA
 
 /area/deltastation/security/checkpoint/science
 	name = "Security Post - Science"
@@ -1332,6 +1335,7 @@
 /area/deltastation/tcommsat/server
 	name = "\improper Telecomms Server Room"
 	icon_state = "tcomsatcham"
+	area_flags = NUKE_AREA
 
 /area/deltastation/tcommsat/server/upper
 	name = "\improper Upper Telecomms Server Room"

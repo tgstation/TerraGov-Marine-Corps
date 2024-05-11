@@ -46,6 +46,7 @@
 	icon_state="brig"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_SEC
+	area_flags = NUKE_AREA
 
 /area/outpost/cargo/engineering
 	name = "Cargo Engineering"
@@ -242,6 +243,7 @@
 	ceiling = CEILING_GLASS
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_MEDBAY
+	area_flags = NUKE_AREA
 
 /area/outpost/medbay/security
 	name="Medbay Security Outpost"
@@ -274,7 +276,7 @@
 	ceiling = CEILING_GLASS
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
-
+	area_flags = NUKE_AREA
 
 // Brig
 
@@ -294,6 +296,7 @@
 	name = "Brig Gear Room"
 	icon_state="brig"
 	ceiling = CEILING_METAL
+	area_flags = NUKE_AREA
 
 /area/outpost/brig/armoury
 	name = "Armoury"

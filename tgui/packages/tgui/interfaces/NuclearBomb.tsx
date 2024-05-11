@@ -7,12 +7,13 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
+  Stack,
 } from '../components';
 import { Window } from '../layouts';
 
 type NuclearBombData = {
   status: string;
-  nukespotsnames: string;
+  nuke_activation_sites: any;
   time: number;
   time_left: number;
   timer_enabled: boolean;
@@ -27,7 +28,7 @@ type NuclearBombData = {
 export const NuclearBomb = (props) => {
   const { data } = useBackend<NuclearBombData>();
   return (
-    <Window width={450} height={450}>
+    <Window width={450} height={580}>
       <Window.Content scrollable>
         <NuclearBombContent />
       </Window.Content>
@@ -48,7 +49,7 @@ const NuclearBombContent = (props) => {
     red,
     green,
     blue,
-    nukespotsnames,
+    nuke_activation_sites,
   } = data;
   return (
     <>
@@ -138,9 +139,20 @@ const NuclearBombContent = (props) => {
           </LabeledList>
         </Section>
       ) : null}
-      <Section title={'Available detonation spots'}>
+      <Section title={'Designated detonation sites'}>
         <Box width="100%">
-          <NoticeBox>{nukespotsnames}</NoticeBox>
+          <NoticeBox color='blue'>
+            <Stack vertical>
+              {nuke_activation_sites.map((nuke_activation_sites) => (
+                <Stack.Item key={nuke_activation_sites}>
+                  <Box inline>
+                    <Box inline width={'8px'} p={'8px'} />
+                    {nuke_activation_sites}
+                  </Box>
+                </Stack.Item>
+              ))}
+            </Stack>
+          </NoticeBox>
         </Box>
       </Section>
       <Section title={'Input area'}>

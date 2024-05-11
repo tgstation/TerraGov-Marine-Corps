@@ -171,11 +171,13 @@
 	name = "Canteen"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = NUKE_AREA
 
 /area/orion_outpost/surface/building/barracks
 	name = "Barracks"
 	icon_state = "crew_quarters"
 	minimap_color = MINIMAP_AREA_LIVING
+	area_flags = NUKE_AREA
 
 /area/orion_outpost/surface/building/prep
 	name = "Preperations"
@@ -186,6 +188,7 @@
 	name = "Command"
 	icon_state = "bluenew"
 	minimap_color = MINIMAP_AREA_COMMAND
+	area_flags = NUKE_AREA
 
 /area/orion_outpost/surface/building/engineering
 	name = "Engineering"
@@ -205,6 +208,7 @@
 	name = "Medbay"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	area_flags = NUKE_AREA
 
 /area/orion_outpost/surface/building/dorms
 	name = "Dormitory"
