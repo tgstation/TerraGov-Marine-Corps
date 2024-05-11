@@ -86,6 +86,30 @@
 	. = ..()
 	QDEL_NULL(windloop)
 
+/obj/effect/soundplayer/humplayer
+	var/datum/looping_sound/indoor_hum_loop/humloop
+
+/obj/effect/soundplayer/humplayer/Initialize(mapload)
+	. = ..()
+	humloop = new(null, FALSE)
+	humloop.start(src)
+
+/obj/effect/soundplayer/humplayer/Destroy()
+	. = ..()
+	QDEL_NULL(humloop)
+
+/obj/effect/soundplayer/humplayer_low_range
+	var/datum/looping_sound/indoor_hum_loop/lowrange/humloop
+
+/obj/effect/soundplayer/humplayer_low_range/Initialize(mapload)
+	. = ..()
+	humloop = new(null, FALSE)
+	humloop.start(src)
+
+/obj/effect/soundplayer/humplayer_low_range/Destroy()
+	. = ..()
+	QDEL_NULL(humloop)
+
 /obj/effect/soundplayer/dripplayer
 	var/datum/looping_sound/drip_loop/driploop
 

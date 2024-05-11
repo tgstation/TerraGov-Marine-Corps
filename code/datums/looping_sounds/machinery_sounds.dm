@@ -47,6 +47,15 @@
 	volume = 28
 	range = 7
 
+/datum/looping_sound/indoor_hum_loop
+	mid_sounds = list('sound/ambience/ambienthum.ogg' = 1)
+	mid_length = 1
+	volume = 25
+	range = 8
+
+/datum/looping_sound/indoor_hum_loop/lowrange
+	range = 4
+
 /datum/looping_sound/radio
 	mid_sounds = list('sound/effects/radio_chatter/radio1.ogg' = 1, 'sound/effects/radio_chatter/radio2.ogg' = 1, 'sound/effects/radio_chatter/radio3.ogg' = 1, 'sound/effects/radio_chatter/radio4.ogg' = 1, 'sound/effects/radio_chatter/radio5.ogg' = 1, 'sound/effects/radio_chatter/radio6.ogg' = 1, 'sound/effects/radio_chatter/radio7.ogg' = 1, 'sound/effects/radio_chatter/radio8.ogg' = 1)
 	mid_length = 35 SECONDS
