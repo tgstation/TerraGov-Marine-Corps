@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /// Bonus damage for directly hitting someone
 #define PYROGEN_FIREBALL_DIRECT_DAMAGE 30
 /// Damage in a 3x3 AOE when we hit anything
-#define PYROGEN_FIREBALL_AOE_DAMAGE 30
+#define PYROGEN_FIREBALL_AOE_DAMAGE 20
 /// Fire stacks on FIREBALL burst in the 3x3 AOE
 #define PYROGEN_FIREBALL_MELTING_STACKS 2
 /// How many turfs can our fireball move
@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /// How many  tornadoes we unleash when using the firestorm
 #define PYROGEN_FIRESTORM_TORNADE_COUNT 3
 /// Damage on fire tornado hit
-#define PYROGEN_TORNADE_HIT_DAMAGE 50
+#define PYROGEN_TORNADE_HIT_DAMAGE 15
 /// melting fire stacks on fire tornado hit
 #define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
 /// damage on direct hit with the heatray

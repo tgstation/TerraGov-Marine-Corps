@@ -81,7 +81,6 @@
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
 	)
@@ -198,9 +197,10 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		var/obj/object = target
-		object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
-		qdel(src)
+		if(!istype(target, /obj/structure/mineral_door/resin))
+			var/obj/object = target
+			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
+			qdel(src)
 	else if(ismob(target))
 		mob_act(target)
 		qdel(src)

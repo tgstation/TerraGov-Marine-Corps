@@ -145,6 +145,8 @@
 			affect_obj(thing)
 			continue
 
+	update_appearance(UPDATE_ICON)
+
 /////////////////////////////
 //      FLAMER FIRE        //
 /////////////////////////////
@@ -173,7 +175,6 @@
 
 /obj/fire/flamer/process()
 	. = ..()
-	update_appearance(UPDATE_ICON)
 	burn_level -= 2
 
 ///////////////////////////////
@@ -186,8 +187,8 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
-	burn_ticks = 30
-	burn_decay = 10
+	burn_ticks = 36
+	burn_decay = 9
 
 /// affecting mobs
 /obj/fire/melting_fire/affect_mob(mob/living/carbon/target)
