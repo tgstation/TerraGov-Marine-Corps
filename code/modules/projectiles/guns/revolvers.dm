@@ -394,3 +394,65 @@
 
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1.1
+
+//Say hello to burst action revolvers and mag fed
+//-------------------------------------------------------
+
+/obj/item/weapon/gun/revolver/magfed //fake ass cowboy
+	name = "mag revolver"
+	desc = "you should not be seeing this."
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	load_method = MAGAZINE //codex
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	default_ammo_type = /obj/item/ammo_magazine/pistol/xm104
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xm104)
+
+//XM104 the burst incend revolver and "mag fed" revolver
+
+/obj/item/weapon/gun/revolver/magfed/xm104
+	name = "\improper XM104 'Divider' Revolver"
+	desc = "Intertech's one of a kind revolver. Fires custom incendiary .357 rounds, has firemode switch of single action and burst fire. Kicks like a fucking mule. You remember High Command saying: 'Don't let this get into enemy hands'."
+	icon = 'icons/obj/items/guns/pistols64.dmi'
+	icon_state = "xm104"
+	item_state = "xm104"
+	fire_animation = "xm104_fire"
+	caliber = CALIBER_357 //codex
+	max_chamber_items = 6 //codex
+	default_ammo_type = /obj/item/ammo_magazine/pistol/xm104
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xm104)
+	force = 8
+	actions_types = null
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19, "rail_x" = 16, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
+	windup_delay = 0.5 SECONDS
+	aim_slowdown = 0.1
+	burst_amount = 3
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
+	fire_delay = 0.75 SECONDS
+	akimbo_additional_delay = 0.6
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 5
+	scatter = 2
+	recoil = 4
+	recoil_unwielded = 3
+
+/obj/item/weapon/gun/revolver/magfed/xm104/gunslinger
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+	)

@@ -750,3 +750,104 @@
 	icon_state = "specops_vest_leader"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 40, ENERGY = 35, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+
+//===========================V.S.D================================
+
+/obj/item/clothing/suit/storage/marine/vsd/larmor
+	name = "Crasher multi-threat light ballistic armor"
+	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	icon_state = "vsd_main_larmor"
+	item_state = "vsd_main_larmor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	heat_protection_flags =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 20, ENERGY = 15, BOMB = 30, BIO = 10, FIRE = 25, ACID = 30)
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/vsd/larmor/desert
+	name = "Crasher multi-threat light ballistic armor"
+	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	icon_state = "vsd_main_larmor_d"
+	item_state = "vsd_main_larmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/larmor/secondary
+	name = "Crasher multi-threat light ballistic armor"
+	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	icon_state = "vsd_secondary_larmor"
+	item_state = "vsd_secondary_larmor"
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor
+	name = "Crasher multi-threat medium-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	armor_features_flags = NONE
+	icon_state = "vsd_marmor"
+	item_state = "vsd_marmor"
+	soft_armor = list(MELEE = 40, BULLET = 70, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/desert
+	name = "Crasher multi-threat medium-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	icon_state = "vsd_marmor_d"
+	item_state = "vsd_marmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/upp
+	name = "Crasher multi-threat medium-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	icon_state = "vsd_marmor_upp"
+	item_state = "vsd_marmor_upp"
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's leader set of armor, rarely given to the grunts. Protects the user from most bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor_features_flags = NONE
+	icon_state = "vsd_harmor"
+	item_state = "vsd_harmor"
+	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor/upp
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's leader set of armor, rarely given to the grunts. Protects the user from most bullet calibers."
+	icon_state = "vsd_harmor_upp"
+	item_state = "vsd_harmor_upp"
+
+/obj/item/clothing/suit/storage/marine/vsd/juggernaut
+	name = "Crasher multi-threat 'Juggernaut' set ballistic armor"
+	desc = "The Vyacheslav Security Detail's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	armor_features_flags = NONE
+	icon_state = "vsd_juggernaut_one"
+	item_state = "vsd_juggernaut_one"
+	soft_armor = list(MELEE = 50, BULLET = 90, LASER = 20, ENERGY = 15, BOMB = 50, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/eod
+	name = "Crasher multi-threat 'Syndicate' set ballistic armor"
+	desc = "The Vyacheslav Security Detail's syndicate given set. Protects the user from almost all bullet calibers. A sticker on the inside reads 'EXPERIMENTAL: courtesy of the Syndicate'."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	armor_features_flags = NONE
+	icon_state = "vsd_juggernaut_two"
+	item_state = "vsd_juggernaut_two"
+	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 25, ACID = 30)

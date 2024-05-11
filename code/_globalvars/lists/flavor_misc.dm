@@ -152,6 +152,7 @@ GLOBAL_LIST_INIT(campaign_asset_icon_types, list(
 	"icc",
 	"pmc",
 	"combat_robots",
+	"vsd",
 	"logistics_buff",
 	"logistics_malus",
 	"bluespace_logistics",

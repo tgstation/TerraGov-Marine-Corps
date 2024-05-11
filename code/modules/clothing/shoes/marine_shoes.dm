@@ -150,6 +150,12 @@
 	icon_state = "boots"
 	item_state = "boots"
 
+/obj/item/clothing/shoes/marine/vsd
+	name = "\improper combat boots"
+	desc = "V.S.D's standard issue combat boots"
+	icon_state = "boots"
+	item_state = "boots"
+
 /obj/item/clothing/shoes/marine/clf/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 

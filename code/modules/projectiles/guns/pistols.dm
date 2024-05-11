@@ -623,6 +623,46 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lace,
 	)
+//-------------------------------------------------------
+//C96 based on P96
+
+/obj/item/weapon/gun/pistol/c96
+	name = "\improper C96 pistol"
+	desc = "A 'riot control' weapon used by the protectors of colonies. Now adopted by the V.S.D, it is the standard side arm for all members. Firing armor piercing 9x19mm parabellum with a capacity of 15 rounds."
+	icon_state = "c96"
+	item_state = "c96"
+	caliber = CALIBER_9X19
+	max_shells = 15
+	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/c96
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/c96)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 11, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.0
+	accuracy_mult_unwielded = 0.75
+	recoil = -2
+	aim_slowdown = 0.1
+	scatter = -1
+	scatter_unwielded = 4
+
+/obj/item/weapon/gun/pistol/c96/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
 
 //-------------------------------------------------------
 /*

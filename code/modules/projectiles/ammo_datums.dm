@@ -594,6 +594,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	reflect(T, proj, 10)
 
+/datum/ammo/bullet/revolver/xm104
+	name = "incendiary revolver bullet"
+	hud_state = "revolver_impact"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	handful_amount = 6
+	damage = 45
+	penetration = 25
+	sundering = 3
+
 /*
 //================================================
 					SMG Ammo
@@ -682,6 +691,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 27.5
 	penetration = 10
 	sundering = 1
+
+/datum/ammo/bullet/smg/apheavy
+	name = "heavy armor-piercing submachinegun bullet"
+	damage = 23.5
+	penetration = 30
+	sundering = 3
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -2473,6 +2488,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 75
 	penetration = 15
 	sundering = 25
+
+/datum/ammo/rocket/recoilless/chemical/vsd
+	name = "high velocity chemical shell"
+	icon_state = "recoilless_rifle_cloak"
+	hud_state = "shell_cloak"
+	smoketype = /datum/effect_system/smoke_spread/vyacheslav
 
 /datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 0, 2)
