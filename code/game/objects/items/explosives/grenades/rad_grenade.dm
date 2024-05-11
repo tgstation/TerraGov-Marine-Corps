@@ -2,7 +2,7 @@
 	name = "\improper V-40 rad grenade"
 	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
 	icon_state = "grenade_rad"
-	item_state = "grenade_rad"
+	worn_icon_state = "grenade_rad"
 	icon_state_mini = "grenade_red"
 	hud_state = "grenade_he"
 	///The range for the grenade's full effect

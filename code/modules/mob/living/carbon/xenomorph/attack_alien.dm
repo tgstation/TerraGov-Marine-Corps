@@ -93,7 +93,7 @@
 			span_danger("Our slash is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
 
-	var/attack_sound = "alien_claw_flesh"
+	var/attack_sound = SFX_ALIEN_CLAW_FLESH
 	var/attack_message1 = span_danger("\The [X] slashes [src]!")
 	var/attack_message2 = span_danger("We slash [src]!")
 	var/log = "slashed"
@@ -136,7 +136,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, "alien_claw_metal", 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 
@@ -150,7 +150,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, "alien_claw_metal", 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
 
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -168,13 +168,13 @@
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
 			if(cam_headset?.camera?.status)
 				cam_headset.camera.toggle_cam(null, FALSE)
-				playsound(loc, "alien_claw_metal", 25, 1)
+				playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
 		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
-			playsound(loc, "alien_claw_metal", 25, 1)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
 			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))

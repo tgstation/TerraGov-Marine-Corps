@@ -1,11 +1,12 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-/*!
- * TODO SPLIT THIS FILE GODDAM
- */
-
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
+/**
+ * # The base ammo datum
+ *
+ * This datum is the base for absolutely every ammo type in the game.
+*/
 /datum/ammo
 	var/name = "generic bullet"
 	var/icon = 'icons/obj/items/projectiles.dmi'
@@ -205,7 +206,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, "incendiary_explosion", 40)
+		playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -342,10 +343,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "default bullet"
 	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	sound_hit 	 = "ballistic_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_BALLISTIC_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 	point_blank_range = 2
 	accurate_range_min = 0
 	shell_speed = 3
@@ -353,6 +354,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	barricade_clear_distance = 2
+<<<<<<< HEAD
 
 /*
 //================================================
@@ -4607,3 +4609,5 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/grenade_container/ags_grenade/tanglefoot
 	hud_state = "grenade_drain"
 	nade_type = /obj/item/explosive/grenade/smokebomb/drain/agls
+=======
+>>>>>>> b79a130737797aa354f890cb7aed3d942e563681

@@ -5,7 +5,7 @@
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "shovel"
-	item_state = "shovel"
+	worn_icon_state = "shovel"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 8
@@ -71,7 +71,7 @@
 
 	if(dirt_amt)
 		balloon_alert(user, "Dumps the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
-		playsound(user.loc, "rustle", 30, 1, 6)
+		playsound(user.loc, SFX_RUSTLE, 30, 1, 6)
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/obj/item/stack/snow/S = locate() in target_turf
 			if(S && (S.amount + dirt_amt < S.max_amount))
@@ -133,7 +133,7 @@
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "etool_c"
-	item_state = "etool_c"
+	worn_icon_state = "etool_c"
 	force = 2
 	throwforce = 2
 	hitsound = "sound/weapons/shovel.ogg"
@@ -146,13 +146,13 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(!folded && !sharp)
 		icon_state = "etool"
-		item_state = "etool"
+		worn_icon_state = "etool"
 	else if(sharp)
 		icon_state = "etool_s"
-		item_state = "etool"
+		worn_icon_state = "etool"
 	else
 		icon_state = "etool_c"
-		item_state = "etool_c"
+		worn_icon_state = "etool_c"
 	return ..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)

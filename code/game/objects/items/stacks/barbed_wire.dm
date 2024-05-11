@@ -91,7 +91,8 @@
 		to_chat(user, span_warning("There is insufficient room to deploy [src]!"))
 		return
 
-	if(!target.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(!target.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		to_chat(user, span_warning("We can't build here!"))
 		return
 

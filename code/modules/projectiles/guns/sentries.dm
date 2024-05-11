@@ -36,20 +36,9 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
+	storage_type = /datum/storage/box/crate/sentry
 
-/obj/item/storage/box/crate/sentry/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/crate/sentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
@@ -101,7 +90,7 @@
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take normal volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -227,14 +216,16 @@
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
 	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/ammo_magazine/minisentry,
-	)
 
 /obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/weapon/gun/sentry/mini,
+		/obj/item/ammo_magazine/minisentry,
+	))
+
+/obj/item/storage/box/crate/minisentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)
@@ -330,20 +321,24 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/sniper_sentry,
-		/obj/item/ammo_magazine/sentry/sniper,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/sniper_sentry,
-		/obj/item/ammo_magazine/sentry/sniper,
-	)
 
 /obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
 	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_sniper/PopulateContents()
 	new /obj/item/weapon/gun/sentry/sniper_sentry(src)
 	new /obj/item/ammo_magazine/sentry/sniper(src)
 
@@ -378,20 +373,24 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/shotgun_sentry,
-		/obj/item/ammo_magazine/sentry/shotgun,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/shotgun_sentry,
-		/obj/item/ammo_magazine/sentry/shotgun,
-	)
 
 /obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
 	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_shotgun/PopulateContents()
 	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
 	new /obj/item/ammo_magazine/sentry/shotgun(src)
 
@@ -426,20 +425,23 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/flamer_sentry,
-		/obj/item/ammo_magazine/sentry/flamer,
-	)
 
 /obj/item/storage/box/crate/sentry_flamer/Initialize(mapload)
 	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_flamer/PopulateContents()
 	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
 	new /obj/item/ammo_magazine/sentry/flamer(src)
-

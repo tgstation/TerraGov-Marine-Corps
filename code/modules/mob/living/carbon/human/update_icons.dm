@@ -58,7 +58,7 @@ There are several things that need to be remembered:
 
 */
 
-#define ITEM_STATE_IF_SET(I) I.item_state ? I.item_state : I.icon_state
+#define ITEM_STATE_IF_SET(I) I.worn_icon_state ? I.worn_icon_state : I.icon_state
 
 
 /mob/living/carbon/human
@@ -622,58 +622,16 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/inhands/items/items_left.dmi', default_layer = L_HAND_LAYER)
 	apply_overlay(L_HAND_LAYER)
 
-
-// Used mostly for creating head items
-/mob/living/carbon/human/proc/generate_head_icon()
-//gender no longer matters for the mouth, although there should probably be seperate base head icons.
-//	var/g = "m"
-//	if (gender == FEMALE)	g = "f"
-
-	//base icons
-	var/icon/face_lying = new /icon('icons/mob/human_face.dmi',"bald_l")
-
-	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
-		if(facial_hair_style)
-			var/icon/facial_l = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_l")
-			facial_l.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
-			face_lying.Blend(facial_l, ICON_OVERLAY)
-
-	if(h_style)
-		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
-		if(hair_style)
-			var/icon/hair_l = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_l")
-			hair_l.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			face_lying.Blend(hair_l, ICON_OVERLAY)
-
-	//Eyes
-	// Note: These used to be in update_face(), and the fact they're here will make it difficult to create a disembodied head
-	var/icon/eyes_l = new/icon('icons/mob/human_face.dmi', "eyes_l")
-	eyes_l.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
-	face_lying.Blend(eyes_l, ICON_OVERLAY)
-
-	if(makeup_style)
-		face_lying.Blend(new/icon('icons/mob/human_face.dmi', "lips_[makeup_style]_l"), ICON_OVERLAY)
-
-	var/image/face_lying_image = new /image(icon = face_lying)
-	return face_lying_image
-
 /mob/living/carbon/human/update_burst()
 	remove_overlay(BURST_LAYER)
-	var/mutable_appearance/standing
-	if(chestburst == 1)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "burst_stand", -BURST_LAYER)
-	else if(chestburst == 2)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "bursted_stand", -BURST_LAYER)
-
-	overlays_standing[BURST_LAYER] = standing
+	if(!chestburst)
+		return
+	overlays_standing[BURST_LAYER] = mutable_appearance('icons/Xeno/Effects.dmi', chestburst == CARBON_IS_CHEST_BURSTING ? "burst_stand" : "bursted_stand", -BURST_LAYER)
 	apply_overlay(BURST_LAYER)
 
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)
-	if(on_fire)
-		switch(fire_stacks)
-			if(1 to 14)	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
-			if(15 to 20) overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_medium", -FIRE_LAYER)
-
-		apply_overlay(FIRE_LAYER)
+	if(!on_fire)
+		return
+	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', fire_stacks < 15 ? "Standing_weak" : "Standing_medium", -FIRE_LAYER)
+	apply_overlay(FIRE_LAYER)

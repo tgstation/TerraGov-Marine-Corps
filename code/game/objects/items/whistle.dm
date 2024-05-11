@@ -57,7 +57,7 @@
 	desc = "Used by obese officers to save their breath for running."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "voice"
-	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
+	worn_icon_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = WEIGHT_CLASS_TINY
 	atom_flags = CONDUCT
 	var/spamcheck = FALSE

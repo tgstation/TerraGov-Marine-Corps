@@ -3,11 +3,11 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "paper"
+	worn_icon_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 2
 	throw_speed = 1
@@ -144,7 +144,7 @@
 			else if(page == amount)
 				return
 			page++
-			playsound(src.loc, "pageturn", 15, 1)
+			playsound(loc, SFX_PAGE_TURN, 15, 1)
 		if(href_list["prev_page"])
 			if(page == 1)
 				return
@@ -153,7 +153,7 @@
 			else if(page == amount)
 				screen = 1
 			page--
-			playsound(src.loc, "pageturn", 15, 1)
+			playsound(loc, SFX_PAGE_TURN, 15, 1)
 		if(href_list["remove"])
 			var/obj/item/W = contents[page]
 			usr.put_in_hands(W)

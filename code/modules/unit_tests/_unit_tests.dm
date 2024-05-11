@@ -56,6 +56,7 @@
 #include "connect_loc.dm"
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "focus_only_tests.dm"
 #include "implanting.dm"
 #include "item_variant_test.dm"
 #include "keybinding_init.dm"
@@ -67,7 +68,9 @@
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
+#include "tutorial_sanity.dm"
 #include "unit_test.dm"
+#include "verify_emoji_names.dm"
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
@@ -81,5 +84,5 @@
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
 #undef TEST_ASSERT_NOTEQUAL
-//#undef TEST_FOCUS
+//#undef TEST_FOCUS - This define is used by vscode unit test extension to pick specific unit tests to run and appended later so needs to be used out of scope here
 #endif

@@ -92,6 +92,18 @@
 	icon_state = "trooper_visor"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
+/obj/item/armor_module/armor/visor/marine/mjolnir
+	name = "\improper Jaeger Pattern Mjolnir visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
+	icon_state = "mjolnir_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+/obj/item/armor_module/armor/visor/marine/mjolnir_open
+	name = "\improper Jaeger Pattern Open Mjolnir visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
+	icon_state = "mjolnir_open_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."

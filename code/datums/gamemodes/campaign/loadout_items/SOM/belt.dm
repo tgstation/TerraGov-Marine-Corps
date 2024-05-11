@@ -102,7 +102,7 @@
 	name = "VX-12 Serpenta"
 	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	Comes in a holster that fits on your waist or armor."
-	ui_icon = "pistol"
+	ui_icon = "vx12"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
@@ -112,7 +112,7 @@
 	name = "VX-12c Serpenta"
 	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	This particular weapon appears to be a custom model with improved performance. Comes in a fancy holster that fits on your waist or armor."
-	ui_icon = "pistol"
+	ui_icon = "vx12"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
