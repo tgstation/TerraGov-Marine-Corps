@@ -1,5 +1,6 @@
 /mob/new_player
 	invisibility = INVISIBILITY_ABSTRACT
+	sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
