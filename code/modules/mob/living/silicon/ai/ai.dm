@@ -13,7 +13,7 @@
 	density = TRUE
 	canmove = FALSE
 	status_flags = CANSTUN|CANKNOCKOUT
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	hud_type = /datum/hud/ai
 	buckle_flags = NONE
 	has_unlimited_silicon_privilege = TRUE

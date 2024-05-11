@@ -25,7 +25,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
-	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
+	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS|SEE_SELF
 	see_in_dark = 8
 	move_on_shuttle = TRUE
 

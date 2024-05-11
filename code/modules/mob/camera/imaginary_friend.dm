@@ -7,7 +7,7 @@
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	stat = DEAD // Keep hearing ghosts and other IFs
 	invisibility = INVISIBILITY_MAXIMUM
-	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
+	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS|SEE_SELF
 	see_in_dark = 8
 	move_on_shuttle = TRUE
 
