@@ -142,6 +142,17 @@
 
 	return master
 
+/// Removes all reagents
+/datum/reagents/proc/clear_reagents()
+	var/list/cached_reagents = reagent_list
+
+	//setting volume to 0 will allow update_total() to clean it up
+	for(var/datum/reagent/reagent as anything in cached_reagents)
+		reagent.volume = 0
+	update_total()
+
+	SEND_SIGNAL(src, COMSIG_REAGENTS_CLEAR_REAGENTS)
+
 /**
  * Transfer some stuff from this holder to a target object
  *
@@ -465,7 +476,7 @@
 	var/datum/reagent/reagent_to_remove = get_reagent(type_to_remove)
 	if(!reagent_to_remove)
 		return FALSE
-	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	SEND_SIGNAL(src, COMSIG_REAGENTS_DEL_REAGENT, type_to_remove)
 	var/atom/holder_atom = get_holder()
 	if(isliving(holder_atom))
 		var/mob/living/living_holder = holder_atom
@@ -487,16 +498,6 @@
 			total_volume += R.volume
 
 	return 0
-
-
-/datum/reagents/proc/clear_reagents()
-	var/list/cached_reagents = reagent_list
-	for(var/reagent in cached_reagents)
-		var/datum/reagent/R = reagent
-		del_reagent(R.type)
-	return 0
-
-
 
 /datum/reagents/proc/reaction(atom/A, method=TOUCH, volume_modifier=1, show_message = 1)
 	var/react_type
@@ -549,9 +550,12 @@
 	if(!isnum(amount) || !amount || amount <= 0)
 		return FALSE
 
-	var/datum/reagent/D = GLOB.chemical_reagents_list[reagent]
-	if(!D)
+	var/datum/reagent/glob_reagent = GLOB.chemical_reagents_list[reagent]
+	if(!glob_reagent)
 		stack_trace("[get_holder()] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
+		return FALSE
+
+	if(SEND_SIGNAL(src, COMSIG_REAGENTS_PRE_ADD_REAGENT, reagent, amount, reagtemp, data, no_react) & COMPONENT_CANCEL_REAGENT_ADD)
 		return FALSE
 
 	update_total()
@@ -559,7 +563,7 @@
 	if(cached_total + amount > maximum_volume)
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 		if(no_overdose)
-			var/overdose = D.overdose_threshold
+			var/overdose = glob_reagent.overdose_threshold
 			amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
 		if(amount<=0)
 			return FALSE
@@ -575,8 +579,8 @@
 		var/datum/reagent/R = i
 		specific_heat += R.specific_heat * (R.volume / new_total)
 		thermal_energy += R.specific_heat * R.volume * cached_temp
-	specific_heat += D.specific_heat * (amount / new_total)
-	thermal_energy += D.specific_heat * amount * reagtemp
+	specific_heat += glob_reagent.specific_heat * (amount / new_total)
+	thermal_energy += glob_reagent.specific_heat * amount * reagtemp
 	chem_temp = thermal_energy / (specific_heat * new_total)
 
 	//add the reagent to the existing if it exists
@@ -587,26 +591,27 @@
 		if(cached_atom)
 			cached_atom.on_reagent_change(ADD_REAGENT)
 		existing_reagent.on_merge(data, amount)
+		SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, existing_reagent, amount)
 		if(!no_react)
 			handle_reactions()
 		return TRUE
 
 	//otherwise make a new one
-	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
-	var/datum/reagent/R = new D.type(data)
-	cached_reagents += R
-	R.holder = src
-	R.volume = amount
+	var/datum/reagent/new_reagent = new glob_reagent.type(data)
+	cached_reagents += new_reagent
+	new_reagent.holder = src
+	new_reagent.volume = amount
 	if(data)
-		R.data = data
-		R.on_new(data)
+		new_reagent.data = data
+		new_reagent.on_new(data)
 
 	if(isliving(cached_atom))
 		var/mob/living/L = cached_atom
-		R.on_mob_add(cached_atom, L.get_reagent_tags()) //Must occur before it could possibly run on_mob_delete
+		new_reagent.on_mob_add(cached_atom, L.get_reagent_tags()) //Must occur before it could possibly run on_mob_delete
 	update_total()
 	if(cached_atom)
 		cached_atom.on_reagent_change(ADD_REAGENT)
+	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, new_reagent, amount)
 	if(!no_react)
 		handle_reactions()
 	return TRUE
@@ -627,14 +632,14 @@
 	var/list/cached_reagents = reagent_list
 	var/atom/cached_holder_atom = get_holder()
 
-	for(var/A in cached_reagents)
-		var/datum/reagent/R = A
-		if(R.type == reagent)
+	for(var/datum/reagent/cached_reagent as anything in cached_reagents)
+		if(cached_reagent.type == reagent)
 			//clamp the removal amount to be between current reagent amount
 			//and zero, to prevent removing more than the holder has stored
-			amount = clamp(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
-			R.volume -= amount
+			amount = clamp(amount, 0, cached_reagent.volume) //P.S. Change it with the define when the other PR is merged.
+			cached_reagent.volume -= amount
 			update_total()
+			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, QDELING(cached_reagent) ? reagent : cached_reagent, amount)
 			cached_holder_atom?.on_reagent_change(REM_REAGENT)
 			return TRUE
 
