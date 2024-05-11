@@ -575,7 +575,7 @@
 	icon_state = "vsd_nvg_on"
 	deactive_state = "vsd_nvg_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
-	item_state_slots = list()
+	worn_item_state_slots = list()
 	tint = COLOR_GREEN
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -686,7 +686,7 @@
 
 ///Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed
 /obj/item/clothing/glasses/vsd/nvg/proc/update_worn_state(state = active)
-	item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
+	worn_item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
 
 /obj/item/clothing/glasses/night_vision/unequipped(mob/unequipper, slot)
 	. = ..()

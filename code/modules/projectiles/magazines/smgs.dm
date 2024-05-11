@@ -226,7 +226,7 @@
 /obj/item/ammo_magazine/smg/c17
 	name = "\improper C17 drum mag (.45 ACP)"
 	desc = "An Armor-Piercing .45 ACP caseless submachinegun magazine."
-	default_ammo = /datum/ammo/bullet/smg/apheavy
+	default_ammo = /datum/ammo/bullet/smg/heavyap
 	caliber = CALIBER_45ACP
 	icon_state = "ppsh_ext"
 	max_rounds = 55

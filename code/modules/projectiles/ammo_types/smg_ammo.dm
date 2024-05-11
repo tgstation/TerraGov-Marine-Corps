@@ -86,3 +86,9 @@
 	damage = 27.5
 	penetration = 10
 	sundering = 1
+
+/datum/ammo/bullet/smg/heavyap
+	name = "heavy submachinegun bullet"
+	damage = 27.5
+	penetration = 30
+	sundering = 1

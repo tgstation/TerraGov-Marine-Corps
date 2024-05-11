@@ -718,7 +718,6 @@
 	desc = "The C17 PDW, made by Crash Core for civilian use. Fires Armor Piercing .45 ACP in a 55 round drum mag, somewhat good accuracy and firerate. Meant to contain prison riots, this has more kills than arrests."
 	icon = 'icons/obj/items/guns/submachineguns.dmi'
 	icon_state = "c17"
-	item_state = "c17"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 55 //codex
 	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'

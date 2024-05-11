@@ -277,7 +277,7 @@
 /obj/item/ammo_magazine/pistol/xm104
 	name = "\improper XM104 cylinder (.357)"
 	desc = "XM104 cylinder loaded with custom .357 incendiary rounds."
-	default_ammo = /datum/ammo/bullet/revolver/xm104
+	default_ammo = /datum/ammo/bullet/revolver/heavy/incen/vsd
 	max_rounds = 6
 	caliber = CALIBER_357
 	icon_state = "xm104"

@@ -373,7 +373,7 @@
 	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
 	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
 	icon_state = "c153_chemical"
-	default_ammo = /datum/ammo/rocket/recoilless/chemical/vsd
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
 	bonus_overlay = "c153_chemical"
 
 // railgun

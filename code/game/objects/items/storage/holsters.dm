@@ -704,17 +704,7 @@
 	name = "\improper Type 41 pistol holster rig"
 	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
 	icon_state = "korovin_holster"
-<<<<<<< HEAD
-	can_hold = list(
-		/obj/item/weapon/gun/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99t,
-		/obj/item/weapon/gun/revolver/magfed/xm104,
-		/obj/item/ammo_magazine/pistol/xm104,
-	)
-=======
 	storage_type = /datum/storage/holster/belt/korovin
->>>>>>> b79a130737797aa354f890cb7aed3d942e563681
 
 /obj/item/storage/holster/belt/korovin/standard/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99(src)

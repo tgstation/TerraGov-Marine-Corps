@@ -193,6 +193,8 @@
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99t,
+		/obj/item/weapon/gun/revolver/magfed/xm104,
+		/obj/item/ammo_magazine/pistol/xm104,
 	))
 
 /datum/storage/holster/belt/ts34
