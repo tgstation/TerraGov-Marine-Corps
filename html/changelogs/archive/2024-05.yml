@@ -103,3 +103,9 @@
   chizzy376:
   - bugfix: Slumbridge's SOM hangar is open again
   - bugfix: Slumbridge lava prison no longer has a hole in the western reception
+2024-05-12:
+  Xander3359:
+  - code_imp: Adds a couple reagent signals
+  blackdav123:
+  - qol: Xenos can now slash basketball hoops.
+  - qol: Dense plants can now be slashed.
