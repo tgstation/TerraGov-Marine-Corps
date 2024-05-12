@@ -22,6 +22,7 @@
 	mid_length = 14
 	volume = 30
 	range = 10
+	falloff = 2
 
 /datum/looping_sound/wind_loop
 	mid_sounds = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
@@ -50,7 +51,7 @@
 /datum/looping_sound/indoor_hum_loop
 	mid_sounds = list('sound/ambience/ambienthum.ogg' = 1)
 	mid_length = 1
-	volume = 25
+	volume = 15
 	range = 8
 
 /datum/looping_sound/indoor_hum_loop/lowrange
