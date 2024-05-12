@@ -208,6 +208,7 @@
 
 /area/prison/maintenance/residential/ne
 	name = "Northeast Civilian Residences Maintenance"
+	area_flags = NUKE_AREA
 
 /area/prison/maintenance/residential/sw
 	name = "Southwest Civilian Residences Maintenance"

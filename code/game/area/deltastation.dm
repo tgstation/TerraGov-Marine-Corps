@@ -644,6 +644,7 @@
 /area/deltastation/service/chapel/funeral
 	name = "\improper Chapel Funeral Room"
 	icon_state = "chapelfuneral"
+	area_flags = NUKE_AREA
 
 /area/deltastation/service/lawoffice
 	name = "\improper Law Office"
