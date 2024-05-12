@@ -980,7 +980,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	max_shells = 3 //codex
+	max_shells = 1 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
