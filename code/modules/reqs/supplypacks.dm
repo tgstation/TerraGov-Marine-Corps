@@ -1675,6 +1675,11 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 3
 
+/datum/supply_packs/imports/m41a2/ammo
+	name = "PR-412 Pulse Rifle Incendiary Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/incendiary)
+	cost = 8
+
 /datum/supply_packs/imports/m412l1
 	name = "PR-412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
