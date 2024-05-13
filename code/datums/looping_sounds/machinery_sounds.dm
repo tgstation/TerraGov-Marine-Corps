@@ -23,6 +23,7 @@
 	volume = 30
 	range = 10
 	falloff = 2
+	ambient_sound = TRUE
 
 /datum/looping_sound/wind_loop
 	mid_sounds = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
