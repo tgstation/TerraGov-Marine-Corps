@@ -25,7 +25,7 @@
 			A.overload_lighting()
 			A.set_broken()
 		for(var/obj/effect/soundplayer/deltaplayer/alarmplayer AS in GLOB.ship_alarms)
-			alarmplayer.deltaloop.stop(alarmplayer)	//quiet the delta klaxon alarms
+			alarmplayer.loop_sound.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs

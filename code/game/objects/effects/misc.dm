@@ -45,13 +45,29 @@
 	opacity = FALSE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	///The sound we want to loop
+	var/datum/looping_sound/loop_sound
+	///The typepath of our looping sound datum
+	var/sound_type
+	///Do we start immediately
+	var/start_on_init = TRUE
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
+	if(!sound_type)
+		return INITIALIZE_HINT_QDEL
 	icon_state = ""
+	loop_sound = new sound_type(null, FALSE)
+	if(start_on_init)
+		loop_sound.start(src)
+
+/obj/effect/soundplayer/Destroy()
+	. = ..()
+	QDEL_NULL(loop_sound)
 
 /obj/effect/soundplayer/deltaplayer
-	var/datum/looping_sound/alarm_loop/deltaloop
+	sound_type = /datum/looping_sound/alarm_loop
+	start_on_init = FALSE
 
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
@@ -60,91 +76,27 @@
 /obj/effect/soundplayer/deltaplayer/Destroy()
 	. = ..()
 	GLOB.ship_alarms -= src
-	QDEL_NULL(deltaloop)
 
 /obj/effect/soundplayer/riverplayer
-	var/datum/looping_sound/river_loop/riverloop
-
-/obj/effect/soundplayer/riverplayer/Initialize(mapload)
-	. = ..()
-	riverloop = new(null, FALSE)
-	riverloop.start(src)
-
-/obj/effect/soundplayer/riverplayer/Destroy()
-	. = ..()
-	QDEL_NULL(riverloop)
+	sound_type = /datum/looping_sound/river_loop
 
 /obj/effect/soundplayer/windplayer
-	var/datum/looping_sound/wind_loop/windloop
-
-/obj/effect/soundplayer/windplayer/Initialize(mapload)
-	. = ..()
-	windloop = new(null, FALSE)
-	windloop.start(src)
-
-/obj/effect/soundplayer/windplayer/Destroy()
-	. = ..()
-	QDEL_NULL(windloop)
+	sound_type = /datum/looping_sound/wind_loop
 
 /obj/effect/soundplayer/humplayer
-	var/datum/looping_sound/indoor_hum_loop/humloop
-
-/obj/effect/soundplayer/humplayer/Initialize(mapload)
-	. = ..()
-	humloop = new(null, FALSE)
-	humloop.start(src)
-
-/obj/effect/soundplayer/humplayer/Destroy()
-	. = ..()
-	QDEL_NULL(humloop)
+	sound_type = /datum/looping_sound/indoor_hum_loop
 
 /obj/effect/soundplayer/humplayer_low_range
-	var/datum/looping_sound/indoor_hum_loop/lowrange/humloop
-
-/obj/effect/soundplayer/humplayer_low_range/Initialize(mapload)
-	. = ..()
-	humloop = new(null, FALSE)
-	humloop.start(src)
-
-/obj/effect/soundplayer/humplayer_low_range/Destroy()
-	. = ..()
-	QDEL_NULL(humloop)
+	sound_type = /datum/looping_sound/indoor_hum_loop/lowrange
 
 /obj/effect/soundplayer/dripplayer
-	var/datum/looping_sound/drip_loop/driploop
-
-/obj/effect/soundplayer/dripplayer/Initialize(mapload)
-	. = ..()
-	driploop = new(null, FALSE)
-	driploop.start(src)
-
-/obj/effect/soundplayer/dripplayer/Destroy()
-	. = ..()
-	QDEL_NULL(driploop)
+	sound_type = /datum/looping_sound/drip_loop
 
 /obj/effect/soundplayer/lowwindplayer
-	var/datum/looping_sound/low_wind_loop/lowwindloop
-
-/obj/effect/soundplayer/lowwindplayer/Initialize(mapload)
-	. = ..()
-	lowwindloop = new(null, FALSE)
-	lowwindloop.start(src)
-
-/obj/effect/soundplayer/lowwindplayer/Destroy()
-	. = ..()
-	QDEL_NULL(lowwindloop)
+	sound_type = /datum/looping_sound/low_wind_loop
 
 /obj/effect/soundplayer/waterreservoirplayer
-	var/datum/looping_sound/water_res_loop/waterresloop
-
-/obj/effect/soundplayer/waterreservoirplayer/Initialize(mapload)
-	. = ..()
-	waterresloop = new(null, FALSE)
-	waterresloop.start(src)
-
-/obj/effect/soundplayer/waterreservoirplayer/Destroy()
-	. = ..()
-	QDEL_NULL(waterresloop)
+	sound_type = /datum/looping_sound/water_res_loop
 
 /obj/effect/forcefield
 	anchored = TRUE
