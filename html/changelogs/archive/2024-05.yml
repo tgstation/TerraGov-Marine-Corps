@@ -109,3 +109,6 @@
   blackdav123:
   - qol: Xenos can now slash basketball hoops.
   - qol: Dense plants can now be slashed.
+2024-05-13:
+  Xander3359:
+  - code_imp: removes clean_mob() in favor of clean_blood()
