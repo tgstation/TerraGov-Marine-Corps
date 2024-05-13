@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Reduced the damage multiplier of behemoth's abilities against vehicles from 10 to 1.8"
