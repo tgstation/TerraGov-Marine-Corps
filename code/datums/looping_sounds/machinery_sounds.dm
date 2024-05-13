@@ -18,10 +18,14 @@
 	range = 20
 
 /datum/looping_sound/river_loop
-	mid_sounds = list('sound/effects/stream.ogg')
-	mid_length = 14
-	volume = 30
-	range = 10
+	mid_sounds = list(
+		'sound/ambience/river/stream_1.ogg' = 1,
+		'sound/ambience/river/stream_2.ogg' = 1,
+		'sound/ambience/river/stream_3.ogg' = 1,
+	)
+	mid_length = 2.5 SECONDS
+	volume = 25
+	range = 14
 	falloff = 2
 	ambient_sound = TRUE
 
