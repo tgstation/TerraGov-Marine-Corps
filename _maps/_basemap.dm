@@ -25,7 +25,6 @@
 		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
 		#include "map_files\slumbridge\slumbridge.dmm"
 		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"
-		#include "map_files\\kutjevo\kutjevo.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
