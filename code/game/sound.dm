@@ -65,7 +65,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
 		if(!M.client && !istype(M, /mob/camera/aiEye))
 			continue
-		if(ambient_sound && !(M.client.prefs.toggles_sound & SOUND_AMBIENCE))
+		if(ambient_sound && !(M.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
 			continue
 		var/turf/T = get_turf(M)
 		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
