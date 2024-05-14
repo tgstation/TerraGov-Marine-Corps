@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: Fixed an issue with attrition going into the negatives, allowing for more respawns than intended, and breaking allied spawns"

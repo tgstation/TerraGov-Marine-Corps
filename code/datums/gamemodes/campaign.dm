@@ -70,7 +70,7 @@
 
 	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
 	if((player_death_times[respawnee.ckey] + respawn_delay) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+		to_chat(respawnee, span_warning("Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining."))
 		return
 
 	attempt_attrition_respawn(respawnee)
@@ -110,11 +110,59 @@
 			message_admins("Round finished: [round_finished]")
 			return TRUE
 
-/datum/game_mode/hvh/campaign/declare_completion() //todo: update fluff message
+/datum/game_mode/hvh/campaign/declare_completion()
 	. = ..()
-	to_chat(world, span_round_header("|[round_finished]|"))
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on Palmaria."))
+
+/datum/game_mode/hvh/campaign/end_round_fluff()
+	to_chat(world, span_round_header("Campaign concluded"))
+	to_chat(world, span_round_header("|[round_finished]|"))
+
+	switch(round_finished)
+		if(MODE_COMBAT_PATROL_SOM_MINOR)
+			to_chat(world, span_round_body("Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
+			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."))
+		if(MODE_COMBAT_PATROL_MARINE_MINOR)
+			to_chat(world, span_round_body("TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
+			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."))
+
+	var/sound/som_track
+	var/sound/tgmc_track
+	var/sound/ghost_track
+	switch(round_finished)
+		if(MODE_COMBAT_PATROL_SOM_MAJOR)
+			som_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			tgmc_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
+			ghost_track = som_track
+		if(MODE_COMBAT_PATROL_MARINE_MAJOR)
+			som_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
+			tgmc_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			ghost_track = tgmc_track
+		if(MODE_COMBAT_PATROL_SOM_MINOR)
+			som_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			tgmc_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
+			ghost_track = som_track
+		if(MODE_COMBAT_PATROL_MARINE_MINOR)
+			som_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
+			tgmc_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			ghost_track = tgmc_track
+		if(MODE_COMBAT_PATROL_DRAW)
+			som_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
+			tgmc_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
+			ghost_track = tgmc_track
+
+	som_track = sound(som_track, channel = CHANNEL_CINEMATIC)
+	tgmc_track = sound(tgmc_track, channel = CHANNEL_CINEMATIC)
+	ghost_track = sound(ghost_track, channel = CHANNEL_CINEMATIC)
+
+	for(var/mob/mob AS in GLOB.player_list)
+		switch(mob.faction)
+			if(FACTION_SOM)
+				SEND_SOUND(mob, som_track)
+			if(FACTION_TERRAGOV)
+				SEND_SOUND(mob, tgmc_track)
+			else
+				SEND_SOUND(mob, ghost_track)
 
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
@@ -309,20 +357,24 @@
 ///Actually respawns the player, if still able
 /datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
 	if(!ready_candidate.IsJobAvailable(job_datum, TRUE))
-		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		to_chat(usr, span_warning("Selected job is not available."))
 		return
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		to_chat(usr,span_warning("The round is either not ready, or has already finished!"))
 		return
 	if(!GLOB.enter_allowed)
-		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		to_chat(usr, span_warning("Spawning currently disabled, please observe."))
 		return
 	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
-		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		to_chat(usr, span_warning("Failed to assign selected role."))
 		return
 
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
-		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
+		var/active_attrition = stat_list[job_datum.faction].active_attrition_points
+		if(active_attrition < job_datum.job_cost)
+			to_chat(usr, span_warning("Unable to spawn. Insufficient attrition."))
+			return
+		active_attrition -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
 

@@ -773,6 +773,7 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/side = ""
 	var/id = ""
 

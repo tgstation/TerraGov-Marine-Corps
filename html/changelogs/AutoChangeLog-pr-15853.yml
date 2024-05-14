@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Jerrycans correctly show how much fuel is inside of it when examined."
