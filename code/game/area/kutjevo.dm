@@ -276,40 +276,40 @@
 	icon_state = "colony_caves_0"
 	minimap_color = MINIMAP_AREA_CAVES
 	ceiling = CEILING_UNDERGROUND
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 
 /area/kutjevo/interior/colony_central/mine_elevator
 	name = "Kutjevo - Central Colony Elevator"
 	icon_state = "colony_caves_0"
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/kutjevo/exterior/colony_north
 	name = "Kutjevo - North Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_1"
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_S_East
 	name = "Kutjevo - North East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_N_East
 	name = "Kutjevo - South East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_South
 	name = "Kutjevo - South Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_3"
-	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/interior/colony_South/power2

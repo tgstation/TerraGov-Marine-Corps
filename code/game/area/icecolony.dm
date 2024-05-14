@@ -13,6 +13,7 @@
 	name = "Ice Colony"
 	icon_state = "ice_colony"
 	icon_state = "cliff_blocked"
+	ambience = list('sound/ambience/ambi_snow.ogg')
 
 /*
 *  ----------------
@@ -28,7 +29,7 @@
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
-	ambience = list('sound/ambience/ambispace.ogg')
+	ambience = list('sound/ambience/ambi_snow.ogg' = 1, 'sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
 	temperature = ICE_COLONY_TEMPERATURE
 	minimap_color = MINIMAP_AREA_COLONY
 
