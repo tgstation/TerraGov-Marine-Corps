@@ -8702,7 +8702,7 @@
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/structure/nuke_disk_candidate,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/med)
 "lxN" = (
@@ -14519,7 +14519,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "sLG" = (
-/obj/machinery/computer/intel_computer,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/kutjevo/colors/red,
 /area/kutjevo/interior/complex/med/pano)
 "sLM" = (
