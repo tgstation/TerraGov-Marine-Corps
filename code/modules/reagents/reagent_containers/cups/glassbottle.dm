@@ -611,55 +611,6 @@
 	icon_state = "coconut_rum_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/coconut_rum = 100)
 
-/obj/item/reagent_containers/cup/glass/bottle/pruno
-	name = "pruno mix"
-	desc = "A trash bag filled with fruit, sugar, yeast, and water, pulped together into a pungent slurry to be fermented in an enclosed space, traditionally the toilet. Security would love to confiscate this, one of the many things wrong with them."
-	icon = 'icons/obj/janitor.dmi'
-	icon_state = "trashbag"
-	list_reagents = list(/datum/reagent/consumable/prunomix = 50)
-	var/fermentation_time = 30 SECONDS /// time it takes to ferment
-	var/fermentation_time_remaining /// for partial fermentation
-	var/fermentation_timer /// store the timer id of fermentation
-
-/obj/item/reagent_containers/cup/glass/bottle/pruno/Initialize(mapload)
-	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_fermentation))
-
-/obj/item/reagent_containers/cup/glass/bottle/pruno/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
-	return ..()
-
-// Checks to see if the pruno can ferment, i.e. is it inside a structure (e.g. toilet), or a machine (e.g. washer)?
-// TODO: make it so the washer spills reagents if a reagent container is in there, for now, you can wash pruno
-
-/obj/item/reagent_containers/cup/glass/bottle/pruno/proc/check_fermentation()
-	SIGNAL_HANDLER
-	if (!(ismachinery(loc) || isstructure(loc)))
-		if(fermentation_timer)
-			fermentation_time_remaining = timeleft(fermentation_timer)
-			deltimer(fermentation_timer)
-			fermentation_timer = null
-		return
-	if(fermentation_timer)
-		return
-	if(!fermentation_time_remaining)
-		fermentation_time_remaining = fermentation_time
-	fermentation_timer = addtimer(CALLBACK(src, PROC_REF(do_fermentation)), fermentation_time_remaining, TIMER_UNIQUE|TIMER_STOPPABLE)
-	fermentation_time_remaining = null
-
-// actually ferment
-
-/obj/item/reagent_containers/cup/glass/bottle/pruno/proc/do_fermentation()
-	fermentation_time_remaining = null
-	fermentation_timer = null
-	reagents.remove_reagent(/datum/reagent/consumable/prunomix, 50)
-	reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 50)
-	name = "bag of pruno"
-	desc = "Fermented prison wine made from fruit, sugar, and despair. You probably shouldn't drink this around Security."
-	icon_state = "trashbag1" // pruno releases air as it ferments, we don't want to simulate this in atmos, but we can make it look like it did
-	for (var/mob/living/M in view(2, get_turf(src))) // letting people and/or narcs know when the pruno is done
-		playsound(get_turf(src), 'sound/effects/bubbles2.ogg', 25, TRUE)
-
 /**
  * Cartons
  * Subtype of glass that don't break, and share a common carton hand state.
