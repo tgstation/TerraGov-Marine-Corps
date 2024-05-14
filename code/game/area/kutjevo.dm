@@ -99,6 +99,7 @@
 /area/kutjevo/exterior/runoff_bridge
 	name = "Kutjevo - Runoff Bridge"
 	icon_state = "rf_bridge"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/overlook
 	name = "Kutjevo - Runoff River Overlook"
@@ -244,6 +245,7 @@
 	name = "Kutjevo - Abandoned Construction Interior"
 	ceiling = CEILING_UNDERGROUND_METAL
 	icon_state = "construction_int"
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/interior/construction/two
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
