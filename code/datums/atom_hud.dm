@@ -143,9 +143,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 
 ///Sets up the click_catcher for the client
 /mob/proc/add_click_catcher()
-	if(!client)
-		return
-	client.apply_clickcatcher()
+	client?.apply_clickcatcher()
 
 /mob/new_player/add_click_catcher()
 	return
