@@ -13,7 +13,7 @@
 	)
 	atom_flags = CONDUCT
 	force = 8
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
@@ -181,9 +181,10 @@
 	s.start()
 
 /obj/item/portable_vendor/emp_act(severity)
-	if (broken)
+	. = ..()
+	if(broken)
 		return
-	if (prob(40*severity))
+	if(prob(100 - (severity * 20)))
 		malfunction()
 
 /obj/item/portable_vendor/ex_act(severity)

@@ -72,5 +72,11 @@
 #define EXPLODE_LIGHT 3
 #define EXPLODE_WEAK 4
 
+#define EMP_NONE 0
+#define EMP_DEVASTATE 1
+#define EMP_HEAVY 2
+#define EMP_LIGHT 3
+#define EMP_WEAK 4
+
 ///Xenomorph accuracy
 #define XENO_DEFAULT_ACCURACY 70

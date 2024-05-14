@@ -107,6 +107,8 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"medical",
 	"pilot",
 	"transportofficer",
+	"transport_crew",
+	"assault_crew",
 	"praetorian",
 	"private",
 	"puppeteer",

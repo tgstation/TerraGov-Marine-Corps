@@ -13,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///Camo color associated with this map
+	var/map_armor_color = MAP_ARMOR_STYLE_DEFAULT
 	///The actual z-level the mission is played on
 	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
@@ -367,10 +369,11 @@
 	map_text_broadcast(hostile_faction, intro_message[MISSION_HOSTILE_FACTION], op_name_hostile)
 
 ///Outro when the mission is finished
-/datum/campaign_mission/proc/play_outro() //todo: make generic
-	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
+/datum/campaign_mission/proc/play_outro()
 	log_game("[outcome]\nMission: [name]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
+
+	to_chat(world, span_round_header("[name] completed"))
+	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
 	map_text_broadcast(hostile_faction, outro_message[outcome][MISSION_HOSTILE_FACTION], op_name_hostile)

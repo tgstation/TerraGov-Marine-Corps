@@ -74,10 +74,9 @@
 
 /obj/structure/closet/secure_closet/pilot_officer/PopulateContents()
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
-	new /obj/item/clothing/head/helmet/marine/pilot/green(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
-	new /obj/item/clothing/suit/modular/xenonauten/pilot(src)
+	new /obj/item/clothing/suit/storage/marine/pilot(src)
 	new /obj/item/storage/holster/m25/full(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/gloves/insulated(src)

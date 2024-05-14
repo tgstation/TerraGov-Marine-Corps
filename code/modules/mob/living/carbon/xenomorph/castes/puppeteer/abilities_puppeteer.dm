@@ -40,7 +40,7 @@
 	owner_xeno.face_atom(target_human)
 	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
 	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] flays and rips skin and flesh from [target_human]!"))
-	playsound(target_human, "alien_claw_flesh", 25, TRUE)
+	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 	target_human.emote("scream")
 	owner_xeno.emote("roar")
 	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15)
@@ -454,7 +454,7 @@
 	victim.balloon_alert(owner, "[choice]")
 	victim.apply_status_effect(effect_path, xeno)
 	victim.med_hud_set_status()
-	playsound(get_turf(xeno), "alien_drool", 25)
+	playsound(get_turf(xeno), SFX_ALIEN_DROOL, 25)
 	add_cooldown()
 
 // ***************************************

@@ -186,10 +186,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity)
-	charge -= 1000 / severity
-	if (charge < 0)
-		charge = 0
-	return ..()
+	. = ..()
+	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
 
 /obj/item/cell/ex_act(severity)
 

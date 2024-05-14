@@ -271,7 +271,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	worn_icon_state = "svd"
 	max_shells = 10 //codex
 	caliber = CALIBER_762X54 //codex
-	fire_sound = "svd_fire"
+	fire_sound = SFX_SVD_FIRE
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
@@ -509,7 +509,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 70 //codex
 	caliber = CALIBER_PEPPERBALL
-	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
+	fire_sound = SFX_GUN_FB12 // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
@@ -941,7 +941,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list()
 	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
-	fire_sound = "rpg_fire"
+	fire_sound = SFX_RPG_FIRE
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
@@ -984,7 +984,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list()
 	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
-	fire_sound = "rpg_fire"
+	fire_sound = SFX_RPG_FIRE
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 

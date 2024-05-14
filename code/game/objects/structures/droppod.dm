@@ -570,7 +570,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	if(!polled_coords)
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		choosing = FALSE
 		return
 	owner.client?.screen -= map

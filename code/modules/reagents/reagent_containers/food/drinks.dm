@@ -196,6 +196,16 @@
 	else
 		icon_state = "water_cup_e"
 
+/obj/item/reagent_containers/food/drinks/coconutmilk
+	name = "coconut drink"
+	desc = "It's an opened coconut with a straw stuck inside. Tasty and nutritious goodness!"
+	icon_state = "coconut_drink_2"
+	center_of_mass = list("x"=16, "y"=9)
+	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
+
+/obj/item/reagent_containers/food/drinks/coconutmilk/green
+	desc = "It's an opened coconut with a straw stuck inside. This one even has an umbrella, fancy."
+	icon_state = "coconut_drink_1"
 
 //////////////////////////drinkingglass and shaker//
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink

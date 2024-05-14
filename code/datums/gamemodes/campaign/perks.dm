@@ -63,7 +63,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	var/obj/effect/overlay/perk/perk_animation = new
 	owner.vis_contents += perk_animation
 	flick(ui_icon, perk_animation)
-	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 0.9 SECONDS, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 1.8 SECONDS, TIMER_CLIENT_TIME)
 
 ///callback for removing the eye from viscontents
 /datum/perk/proc/remove_unlock_animation(mob/living/carbon/owner, obj/effect/overlay/perk/perk_animation)
@@ -132,14 +132,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/hp_boost/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(owner_stats.faction == FACTION_NTC)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_tyr/universal, /datum/loadout_item/suit_slot/heavy_tyr, SQUAD_MARINE)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
-
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/medic, list(SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/corpsman, list(SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/engineer, list(SQUAD_ENGINEER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/engineer, list(SQUAD_ENGINEER), owner)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr, SOM_SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr/veteran, SOM_SQUAD_VETERAN)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/universal, list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/medic, list(SOM_SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/medic, list(SOM_SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/engineer, list(SOM_SQUAD_ENGINEER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/engineer, list(SOM_SQUAD_ENGINEER), owner)
 
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"

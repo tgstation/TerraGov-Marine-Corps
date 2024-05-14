@@ -94,8 +94,8 @@
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
 	//tgmc addition start
-	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
-	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
 	//tgmc addition end
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)

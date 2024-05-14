@@ -10,8 +10,8 @@
 	anchored = TRUE
 	max_integrity = 5
 
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -107,7 +107,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, "alien_resin_break", 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 		deconstruct(TRUE, xeno_attacker)
 		return
 

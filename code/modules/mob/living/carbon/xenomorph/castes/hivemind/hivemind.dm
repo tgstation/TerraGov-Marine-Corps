@@ -336,7 +336,7 @@
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))
 		return ..()
-	our_parent.playsound_local(our_parent, get_sfx("alien_help"), 30, TRUE)
+	our_parent.playsound_local(our_parent, SFX_ALIEN_HELP, 30, TRUE)
 	to_chat(our_parent, span_xenohighdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
 	GLOB.key_to_time_of_role_death[our_parent.key] = world.time

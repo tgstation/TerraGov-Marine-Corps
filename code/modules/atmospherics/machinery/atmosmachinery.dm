@@ -271,7 +271,7 @@
 	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
 	span_notice("You climb out of [src].</span>"))
 	if(!silent_crawl)
-		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+		playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)

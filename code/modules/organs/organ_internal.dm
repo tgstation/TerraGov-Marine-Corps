@@ -86,31 +86,10 @@
 	set_organ_status()
 
 /datum/internal_organ/proc/emp_act(severity)
-	switch(robotic)
-		if(0)
-			return
-		if(1)
-			switch (severity)
-				if (1.0)
-					take_damage(20,0)
-					return
-				if (2.0)
-					take_damage(7,0)
-					return
-				if(3.0)
-					take_damage(3,0)
-					return
-		if(2)
-			switch (severity)
-				if (1.0)
-					take_damage(40,0)
-					return
-				if (2.0)
-					take_damage(15,0)
-					return
-				if(3.0)
-					take_damage(10,0)
-					return
+	if(!robotic)
+		return
+	take_damage((5 - severity) * 5 * robotic)
+
 
 /datum/internal_organ/proc/mechanize() //Being used to make robutt hearts, etc
 	if(robotic_type)
@@ -258,12 +237,12 @@
 	. = ..()
 	if(!carbon_mob)
 		return
-	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(owner_added_reagent))
-	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, PROC_REF(owner_removed_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENTS_NEW_REAGENT, PROC_REF(owner_added_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENTS_DEL_REAGENT, PROC_REF(owner_removed_reagent))
 
 /datum/internal_organ/kidneys/clean_owner()
 	if(owner?.reagents)
-		UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+		UnregisterSignal(owner.reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_DEL_REAGENT))
 	return ..()
 
 ///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.

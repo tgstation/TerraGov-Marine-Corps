@@ -54,7 +54,7 @@
 		if(prob(L.modify_by_armor(100, ACID)))
 			L.adjustFireLoss(7)
 			to_chat(L, span_danger("You feel the acid rain melting you away!"))
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
@@ -75,7 +75,7 @@
 	repeatable = TRUE
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 		if(prob(20))
