@@ -454,7 +454,7 @@
 	icon_state = "junglechasm-0"
 	base_icon_state = "junglechasm"
 
-/turf/open/floor/rivergrate
+/turf/open/floor/plating/rivergrate
 	name = "grate"
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "shallow_grate"

@@ -161,7 +161,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/complex_border/med_rec)
 "anF" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/scrubland/north)
 "aoh" = (
 /obj/structure/platform_decoration/rockcliff_deco/orange{
@@ -590,8 +590,8 @@
 /area/kutjevo/exterior/complex_border/med_rec)
 "aRu" = (
 /obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/colony_N_East)
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/colony_central/mine_elevator)
 "aRB" = (
 /obj/item/fuel_cell,
 /obj/structure/rack,
@@ -1362,7 +1362,7 @@
 "bSZ" = (
 /obj/effect/spawner/random/engineering/cable,
 /obj/effect/ai_node,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/filtration)
 "bTt" = (
 /obj/structure/bed/chair{
@@ -1896,7 +1896,7 @@
 /turf/open/floor/kutjevo/colors/cyan/edge,
 /area/kutjevo/interior/complex/med/auto_doc)
 "cCa" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/colony_north)
 "cDf" = (
 /turf/open/floor/kutjevo/tan/grey_edge,
@@ -3375,7 +3375,7 @@
 /area/kutjevo/interior/complex/botany)
 "esi" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "etk" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow/dirty,
@@ -3419,7 +3419,7 @@
 /area/kutjevo/interior/colony_South/power2)
 "evn" = (
 /obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/filtration)
 "evr" = (
 /obj/structure/cable,
@@ -5351,7 +5351,7 @@
 	dir = 1
 	},
 /obj/structure/platform/metalplatform,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/complex/med/operating)
 "gUf" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
@@ -5585,7 +5585,7 @@
 /area/kutjevo/exterior/colony_north)
 "hkY" = (
 /obj/effect/spawner/random/weaponry/gun/sidearms,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "hma" = (
 /turf/open/floor/kutjevo/tan,
@@ -5915,7 +5915,7 @@
 "hIg" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/effect/ai_node,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "hIp" = (
 /obj/machinery/power/apc/drained{
@@ -7201,7 +7201,7 @@
 	dir = 4
 	},
 /obj/structure/platform/metalplatform,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/complex/med/operating)
 "jvS" = (
 /obj/structure/cable,
@@ -7524,7 +7524,7 @@
 /area/kutjevo/exterior/colony_central)
 "jYE" = (
 /obj/effect/ai_node,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/colony_central)
 "jZq" = (
 /obj/structure/cable,
@@ -8145,7 +8145,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "kKc" = (
 /obj/effect/decal/cleanable/blood,
@@ -8339,7 +8339,7 @@
 /area/kutjevo/interior/oob)
 "kVN" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "kVX" = (
 /obj/machinery/light,
@@ -10159,7 +10159,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "nmU" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/filtration)
 "nnf" = (
 /obj/structure/rock/tinyrock,
@@ -10658,7 +10658,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/runoff_bridge)
 "nPf" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/colony_South/power2)
 "nPl" = (
 /obj/structure/platform/rockcliff/orange{
@@ -10821,7 +10821,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction/two)
 "nXr" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/construction)
 "nXC" = (
 /obj/machinery/power/apc/drained{
@@ -11291,7 +11291,7 @@
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
 "oGw" = (
 /obj/machinery/light,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/colony_South/power2)
 "oIb" = (
 /obj/structure/stairs/seamless,
@@ -13306,7 +13306,7 @@
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 8
 	},
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/colony_central)
 "rkO" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -14187,7 +14187,7 @@
 	dir = 8
 	},
 /obj/structure/platform/metalplatform,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/complex/med/operating)
 "soQ" = (
 /obj/structure/table/mainship,
@@ -14681,7 +14681,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/complex_border/med_rec)
 "sUs" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/colony_central)
 "sUC" = (
 /obj/effect/forcefield,
@@ -14702,7 +14702,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth,
 /area/kutjevo/exterior/scrubland/north)
 "sVx" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/complex/botany)
 "sVy" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
@@ -14710,7 +14710,7 @@
 /area/kutjevo/interior/complex/med)
 "sVC" = (
 /obj/structure/barricade/handrail/kutjevo,
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/complex/botany)
 "sVD" = (
 /obj/machinery/light,
@@ -15495,7 +15495,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
 "tXm" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/power/comms)
 "tXr" = (
 /obj/effect/landmark/weed_node,
@@ -16311,7 +16311,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/exterior/runoff_bridge)
 "uRm" = (
-/turf/open/floor/rivergrate,
+/turf/open/floor/plating/rivergrate,
 /area/kutjevo/exterior/scrubland/south)
 "uRJ" = (
 /obj/structure/lattice,
@@ -52971,7 +52971,7 @@ dxF
 cyc
 sSw
 pGc
-pGc
+aRu
 kPa
 oIv
 cVf
@@ -57632,7 +57632,7 @@ wTr
 wTr
 iEK
 xRY
-aRu
+xRY
 xRY
 sNZ
 avw
