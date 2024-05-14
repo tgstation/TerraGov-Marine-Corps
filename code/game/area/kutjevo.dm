@@ -54,16 +54,17 @@
 /area/kutjevo/exterior/lz_river
 	name = "Kutjevo - Power Station River"
 	icon_state = "lz_river"
-	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/spring
 	name = "Kutjevo - Southern Spring"
 	icon_state = "lz_river"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/scrubland
 	name = "Kutjevo - Scrubland"
 	icon_state = "scrubland"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/scrubland/north
 	name = "Kutjevo - Scrubland North"
@@ -74,21 +75,23 @@
 /area/kutjevo/exterior/stonyfields
 	name = "Kutjevo - Stony Fields"
 	icon_state = "stone_fields"
-	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/Northwest_Colony
 	name = "Kutjevo - Northwest Colony Grounds"
 	icon_state = "rf_dunes"
 	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/runoff_dunes
 	name = "Kutjevo - Runoff Dunes"
 	icon_state = "rf_dunes"
-	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/runoff_river
 	name = "Kutjevo - Runoff River"
 	icon_state = "rf_river"
+	minimap_color = MINIMAP_WATER
 
 /area/kutjevo/exterior/runoff_bridge
 	name = "Kutjevo - Runoff Bridge"
@@ -105,10 +108,12 @@
 /area/kutjevo/exterior/construction
 	name = "Kutjevo - Abandoned Construction"
 	icon_state = "construction"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/complex_border
 	name = "Kutjevo Complex - Exterior"
 	icon_state = "kutjevo"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/exterior/complex_border/botany_medical_cave
 	name = "Kutjevo Complex - Botany - Medical Cave"
@@ -160,6 +165,7 @@
 /area/kutjevo/interior/complex/botany/east_tech
 	name = "Kutjevo Complex - Powerplant Access Hall"
 	icon_state = "botany1"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/kutjevo/interior/complex/botany/locks
 	name = "Kutjevo Complex - Botany Stormlocks"
@@ -221,6 +227,7 @@
 	name = "Kutjevo - Hydroelectric Dam Comms Relay"
 	ceiling = CEILING_METAL
 	icon_state = "power"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/kutjevo/interior/filtration
 	name = "Kutjevo - Hydroelectric Dam Filtration"
@@ -234,6 +241,8 @@
 	icon_state = "construction_int"
 
 /area/kutjevo/interior/construction/two
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/kutjevo/interior/foremans_office
 	name = "Kutjevo - Foreman's Office"
@@ -265,30 +274,35 @@
 	name = "Kutjevo - Central Colony Elevator"
 	icon_state = "colony_caves_0"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/kutjevo/exterior/colony_north
 	name = "Kutjevo - North Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_1"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_S_East
 	name = "Kutjevo - North East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_N_East
 	name = "Kutjevo - South East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/colony_South
 	name = "Kutjevo - South Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_3"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/interior/colony_South/power2
 	name = "Kutjevo - South Colony Treatment Plant"
