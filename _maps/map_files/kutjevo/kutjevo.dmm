@@ -12,6 +12,20 @@
 "aaY" = (
 /turf/open/floor/kutjevo/plate,
 /area/kutjevo/exterior/colony_South)
+"abp" = (
+/obj/effect/turf_decal/warning_stripes/coagulation{
+	dir = 1
+	},
+/obj/structure/platform/metalplatform,
+/obj/structure/platform/metalplatform{
+	bound_height = 32;
+	dir = 8
+	},
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt,
+/area/kutjevo/interior/power)
 "abS" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/reinforced/prison,
@@ -342,7 +356,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "ayB" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen,
 /turf/open/floor/kutjevo/grey/plate,
@@ -3310,7 +3324,7 @@
 "epd" = (
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "epe" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/lattice,
@@ -3356,9 +3370,9 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
 "erX" = (
-/obj/structure/rock/basalt/alt4,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/obj/structure/rock/tinyrock,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
+/area/kutjevo/interior/complex/botany)
 "esi" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/rivergrate,
@@ -4814,6 +4828,16 @@
 /obj/structure/cable,
 /turf/open/floor/kutjevo/tiles,
 /area/kutjevo/interior/complex/med/auto_doc)
+"gkC" = (
+/obj/structure/platform/metalplatform{
+	bound_height = 32;
+	dir = 8
+	},
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/kutjevo,
+/area/kutjevo/interior/power)
 "gkU" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -5333,6 +5357,10 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction/two)
+"gUG" = (
+/obj/structure/prop/filtration_exit,
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth,
+/area/kutjevo/interior/power)
 "gUQ" = (
 /obj/structure/platform/metalplatform{
 	dir = 8
@@ -5387,7 +5415,7 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "gXP" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
@@ -5733,7 +5761,7 @@
 /obj/structure/xeno/tunnel,
 /obj/structure/rock/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany/east)
 "hwO" = (
 /obj/machinery/light{
 	dir = 1
@@ -6993,9 +7021,8 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "jmY" = (
-/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany/east)
 "jng" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
@@ -7759,7 +7786,7 @@
 "knP" = (
 /obj/structure/platform_decoration/metalplatform_deco,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/exterior/scrubland/south)
 "koF" = (
 /obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/kutjevo/colors/orange,
@@ -7790,9 +7817,9 @@
 /turf/open/liquid/water/river/deep,
 /area/kutjevo/interior/oob)
 "kqp" = (
-/obj/structure/rock/basalt/alt5,
+/obj/structure/rock/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany/east)
 "kqA" = (
 /obj/structure/platform/metalplatform,
 /obj/machinery/smartfridge/chemistry,
@@ -9502,7 +9529,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "mvf" = (
 /obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -10077,10 +10104,11 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/exterior/construction)
 "niB" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany/east)
 "njY" = (
 /obj/structure/platform_decoration/rockcliff_deco/orange{
 	dir = 4
@@ -13170,7 +13198,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/exterior/runoff_dunes)
 "res" = (
 /obj/structure/barricade/metal/deployable{
 	dir = 4
@@ -13550,7 +13578,7 @@
 "rEz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "rEC" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/cable,
@@ -14482,7 +14510,7 @@
 "sKG" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "sKN" = (
 /obj/structure/platform_decoration/metalplatform_deco,
 /obj/machinery/vending/medical,
@@ -15262,7 +15290,7 @@
 "tFH" = (
 /obj/item/toy/beach_ball,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/runoff_river)
+/area/kutjevo/interior/complex/botany)
 "tFK" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
@@ -26470,8 +26498,8 @@ wIG
 mcA
 rwj
 uZT
-uZT
-uZT
+cGD
+cGD
 fdF
 eJi
 vGx
@@ -26637,8 +26665,8 @@ wIG
 mcA
 pyp
 pyp
-pyp
-wdw
+gkC
+abp
 vBd
 eJi
 vFc
@@ -26804,8 +26832,8 @@ eFB
 tEj
 rwj
 qVZ
-qVZ
-viv
+cGD
+gUG
 tuW
 eJi
 vGx
@@ -31759,10 +31787,10 @@ sXo
 grx
 ybY
 dxF
-dic
-dic
-dic
-dic
+vXd
+vXd
+vXd
+vXd
 knP
 wWq
 plf
@@ -32251,10 +32279,10 @@ dxF
 dxF
 dxF
 vXd
-sAN
-dic
-dic
-dic
+pom
+vXd
+vXd
+vXd
 dxF
 dxF
 dxF
@@ -32564,25 +32592,25 @@ dxF
 dxF
 dxF
 dxF
-dic
-dic
-dic
-dic
+bnK
+bnK
+bnK
+bnK
 dxF
 dxF
 dxF
-dic
-dic
-dic
-dic
-dic
-dic
-dic
-dic
-dic
-dic
-dic
-dic
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
+vXd
 vXd
 xTq
 xTq
@@ -32731,14 +32759,14 @@ jkR
 jkR
 dxF
 dxF
-dic
-dic
+bnK
+bnK
 xTq
 xTq
 xTq
 xTq
-dic
-dic
+vXd
+vXd
 xTq
 xTq
 xTq
@@ -32782,8 +32810,8 @@ wrd
 xTq
 uYx
 xTq
-dic
-tKY
+cTz
+ePx
 dxF
 dxF
 dxF
@@ -32949,8 +32977,8 @@ qzB
 xTq
 xTq
 xTq
-dic
-sbX
+cTz
+hii
 dxF
 dxF
 dxF
@@ -33095,10 +33123,10 @@ xTq
 xTq
 xTq
 xTq
-dic
-dic
-dic
-dic
+egZ
+egZ
+egZ
+egZ
 mtS
 mbS
 plf
@@ -33116,8 +33144,8 @@ xTq
 qzB
 xTq
 xTq
-rEz
-dic
+onM
+cTz
 rei
 dxF
 dxF
@@ -33257,11 +33285,11 @@ xTq
 ydh
 xTq
 xTq
-dic
-dic
-dic
-dic
-dic
+egZ
+egZ
+egZ
+egZ
+egZ
 mbS
 lHs
 qhw
@@ -33284,8 +33312,8 @@ qzB
 qzB
 xTq
 xTq
-dic
-sbX
+cTz
+hii
 dxF
 dxF
 dxF
@@ -33400,7 +33428,7 @@ jkR
 jkR
 jkR
 jkR
-dic
+egZ
 xTq
 xTq
 xTq
@@ -33451,9 +33479,9 @@ xTq
 qzB
 xTq
 xTq
-dic
-dic
-sbX
+cTz
+cTz
+hii
 dxF
 dxF
 dxF
@@ -33567,8 +33595,8 @@ lhY
 uHP
 uHP
 lZz
-dic
-dic
+egZ
+egZ
 xTq
 xTq
 xTq
@@ -33577,12 +33605,12 @@ xTq
 xTq
 xTq
 xTq
-dic
+egZ
 tFH
-dic
-dic
+egZ
+egZ
 sKG
-dic
+egZ
 sKG
 epd
 dxF
@@ -33619,8 +33647,8 @@ qzB
 qzB
 xTq
 xTq
-rEz
-dic
+onM
+cTz
 dxF
 dxF
 dxF
@@ -33734,24 +33762,24 @@ iYo
 uDV
 iYo
 lZz
-dic
+egZ
 rEz
-dic
-dic
-dic
-dic
-dic
-dic
+egZ
+egZ
+egZ
+egZ
+egZ
+egZ
 rEz
-dic
+egZ
 axN
-dic
+egZ
 axN
-dic
-jmY
+egZ
+dfm
 rEz
-dic
-sbX
+egZ
+eSP
 eSP
 eXm
 eXm
@@ -33786,8 +33814,8 @@ xTq
 qzB
 xTq
 xTq
-dic
-niB
+cTz
+tIo
 dxF
 dxF
 vea
@@ -33901,21 +33929,21 @@ iYo
 iYo
 iYo
 lZz
-jmY
-tKY
-tKY
-dic
-dic
-dic
-dic
-jmY
-dic
-dic
-dic
+dfm
+bds
+bds
+egZ
+egZ
+egZ
+egZ
+dfm
+egZ
+egZ
+egZ
 gXH
-dic
-dic
-dic
+egZ
+egZ
+egZ
 eSP
 fUo
 dfm
@@ -33954,7 +33982,7 @@ xTq
 xTq
 xTq
 xTq
-dic
+xJg
 vea
 vea
 vea
@@ -34068,16 +34096,16 @@ uHP
 lNA
 uHP
 lZz
-dic
-tKY
-uze
-sbX
-tKY
-tKY
-dic
-dic
-dic
-tKY
+egZ
+bds
+erX
+eSP
+bds
+bds
+egZ
+egZ
+egZ
+bds
 dxF
 dxF
 dxF
@@ -34121,7 +34149,7 @@ qzB
 qzB
 sCw
 xTq
-dic
+xJg
 xIo
 xJg
 cDx
@@ -34241,9 +34269,9 @@ dxF
 dxF
 dxF
 dxF
-sbX
-dic
-dic
+eSP
+egZ
+egZ
 dxF
 dxF
 dxF
@@ -34288,7 +34316,7 @@ qzB
 qzB
 xTq
 xTq
-rEz
+lUL
 xJg
 xJg
 xJg
@@ -34455,8 +34483,8 @@ xTq
 qzB
 xTq
 xTq
-dic
-dic
+xJg
+xJg
 xJg
 xue
 xJg
@@ -34623,7 +34651,7 @@ xTq
 qzB
 xzd
 xTq
-dic
+xJg
 xJg
 xJg
 xJg
@@ -35126,7 +35154,7 @@ qzB
 qzB
 xTq
 xTq
-dic
+xJg
 vea
 vea
 xJg
@@ -35293,7 +35321,7 @@ qzB
 qzB
 xTq
 xTq
-dic
+xJg
 vea
 vcP
 xJg
@@ -35460,7 +35488,7 @@ qzB
 qzB
 xTq
 xTq
-dic
+xJg
 xJg
 xJg
 xJg
@@ -35627,7 +35655,7 @@ qzB
 xTq
 xTq
 xTq
-dic
+xJg
 xJg
 vea
 xJg
@@ -35794,7 +35822,7 @@ xTq
 xTq
 xTq
 xTq
-dic
+xJg
 ile
 vea
 xJg
@@ -35961,7 +35989,7 @@ qzB
 xTq
 xTq
 xTq
-dic
+xJg
 ile
 aiH
 xJg
@@ -36127,8 +36155,8 @@ qzB
 qzB
 xTq
 xTq
-kqp
-tKY
+okV
+vea
 vea
 vea
 dxF
@@ -36294,8 +36322,8 @@ qzB
 qzB
 xTq
 xTq
-dic
-tKY
+xJg
+vea
 vea
 cDx
 dxF
@@ -36461,8 +36489,8 @@ qzB
 xTq
 xTq
 xTq
-dic
-tKY
+xJg
+vea
 vea
 xJg
 dxF
@@ -36626,10 +36654,10 @@ phI
 wEh
 xTq
 wrd
-sbX
-erX
-tKY
-tKY
+cDx
+xIo
+vea
+vea
 vea
 gPf
 xJg
@@ -36793,10 +36821,10 @@ xaB
 jnY
 xTq
 xTq
-dic
-jmY
-tKY
-tKY
+xJg
+xue
+vea
+vea
 aiH
 xJg
 xJg
@@ -36959,11 +36987,11 @@ cxk
 xaB
 wEh
 xTq
-rEz
-dic
-dic
-tKY
-tKY
+lUL
+xJg
+xJg
+vea
+vea
 vea
 vea
 vea
@@ -37128,9 +37156,9 @@ jnY
 xTq
 xTq
 xTq
-dic
-dic
-tKY
+xJg
+xJg
+vea
 vea
 vea
 mfK
@@ -37295,9 +37323,9 @@ wEh
 xTq
 xTq
 xTq
-dic
-dic
-tKY
+xJg
+xJg
+vea
 vea
 vea
 vea
@@ -37463,8 +37491,8 @@ xTq
 xTq
 xTq
 xTq
-dic
-dic
+xJg
+xJg
 aiH
 vea
 vea
@@ -37631,7 +37659,7 @@ qzB
 xTq
 xTq
 xTq
-dic
+xJg
 vea
 vea
 vea
@@ -37798,7 +37826,7 @@ qzB
 qzB
 xTq
 xTq
-dic
+xJg
 vea
 vcP
 xJg
@@ -37965,7 +37993,7 @@ qzB
 qzB
 xTq
 xTq
-dic
+xJg
 vea
 vea
 xJg
@@ -38132,7 +38160,7 @@ qzB
 qzB
 xTq
 xTq
-kqp
+okV
 vea
 vea
 xue
@@ -38788,7 +38816,7 @@ lzX
 nKh
 wtH
 hwF
-mtS
+niB
 xTq
 jnY
 xTq
@@ -38954,8 +38982,8 @@ vHL
 gtV
 eeg
 wtH
-dic
-dic
+jmY
+jmY
 xTq
 xzd
 xTq
@@ -39121,8 +39149,8 @@ nKh
 gtV
 nKh
 ftF
-sbX
-dic
+kqp
+jmY
 xTq
 wrd
 xTq
@@ -39288,8 +39316,8 @@ suC
 coX
 xkk
 ftF
-dic
-sbX
+jmY
+kqp
 ydh
 xTq
 xTq
@@ -43430,10 +43458,10 @@ gCg
 gCg
 gUf
 gUf
-rSw
+xWK
 jFm
-aDt
-rSw
+hsH
+xWK
 gCg
 map
 xmY
@@ -43598,9 +43626,9 @@ xWK
 pQQ
 xRE
 cuu
-lDS
-rSw
-lDS
+tFN
+xWK
+tFN
 xWK
 gCg
 xoM
@@ -43767,7 +43795,7 @@ xRE
 oIq
 xRE
 xRE
-lDS
+tFN
 xWK
 gCg
 xoM
