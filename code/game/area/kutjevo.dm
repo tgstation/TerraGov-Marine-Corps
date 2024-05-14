@@ -258,6 +258,7 @@
 	name = "Kutjevo - Power Plant"
 	ceiling = CEILING_METAL
 	icon_state = "power_2"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/kutjevo/interior/colony
 	name = "Kutjevo - Colony Building Interior"
