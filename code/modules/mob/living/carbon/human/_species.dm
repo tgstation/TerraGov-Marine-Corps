@@ -364,7 +364,7 @@
 	///Extra empty hand attack damage
 	var/damage = 0
 	///Sound that plays when you land a punch
-	var/attack_sound = "punch"
+	var/attack_sound = SFX_PUNCH
 	///Sound that plays when you miss a punch
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	///Calls the old attack_alien() behavior on objects/mobs when on harm intent

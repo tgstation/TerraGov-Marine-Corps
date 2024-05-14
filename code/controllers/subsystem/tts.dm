@@ -125,15 +125,10 @@ SUBSYSTEM_DEF(tts)
 		if(get_dist(listening_mob, turf_source) <= range)
 			listening_mob.playsound_local(
 				turf_source,
+				soundin = audio_to_use,
 				vol = sound_volume,
-//				falloff_exponent = SOUND_FALLOFF_EXPONENT,
 				channel = channel,
-//				pressure_affected = TRUE,
-				S = audio_to_use,
-//				max_distance = SOUND_RANGE,
-//				falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE,
 				distance_multiplier = 1,
-//				use_reverb = TRUE
 			)
 
 // Need to wait for all HTTP requests to complete here because of a rustg crash bug that causes crashes when dd restarts whilst HTTP requests are ongoing.

@@ -254,7 +254,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(silence_mod)
 			ADD_TRAIT(master_gun, TRAIT_GUN_SILENCED, GUN_TRAIT)
 			master_gun.muzzle_flash = null
-			master_gun.fire_sound = "gun_silenced"
+			master_gun.fire_sound = SFX_GUN_SILENCED
 	else
 		master_gun.accuracy_mult				-= accuracy_mod
 		master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod

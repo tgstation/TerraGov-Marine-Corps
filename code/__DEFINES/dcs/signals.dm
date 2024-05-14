@@ -207,6 +207,10 @@
 #define COMSIG_ATOM_ATTACKBY_ALTERNATE "atom_attackby_alternate" //from base of atom/attackby_alternate(): (/obj/item, /mob/living)
 	#define COMPONENT_NO_AFTERATTACK (1<<0)						//Return this in response if you don't want afterattack to be called
 
+///Called on an object to "clean it", such as removing blood decals/overlays, etc. The clean types bitfield is sent with it. Return TRUE if any cleaning was necessary and thus performed.
+#define COMSIG_COMPONENT_CLEAN_ACT "clean_act"
+	///Returned by cleanable components when they are cleaned.
+	#define COMPONENT_CLEANED (1<<0)
 ///from base of atom/max_stack_merging(): (obj/item/stack/S)
 #define ATOM_MAX_STACK_MERGING "atom_max_stack_merging"
 ///from base of atom/recalculate_storage_space(): ()
@@ -407,9 +411,6 @@
 #define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
 #define COMSIG_ITEM_VARIANT_CHANGE "item_variant_change"			// called in color_item : (mob/user, variant)
-
-#define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (reagent_path, amount); it is sent when a reagent gets added for the first time to a holder
-#define COMSIG_REAGENT_DELETING "reagent_deleting"					//from /datum/reagents/del_reagent(): (reagent_path) When a reagent is entirely removed from its holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)

@@ -35,3 +35,86 @@
   - bugfix: fixed opening storage by clicking with another item, properly
   blackdav123:
   - bugfix: Treaded trucks now use the correct sprites.
+2024-05-05:
+  Lumipharon:
+  - rscadd: Added EMP nades to campaign
+  - balance: Various changes to EMP effects
+  - code_imp: updated EMP code
+  - imageadd: Tweaked the timing on perk unlock animations
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: Map variant for colours updates with each mission'
+  TiviPlus:
+  - soundadd: Decreases bullet ping sound range
+  Xander3359:
+  - bugfix: It's no longer possible to cade on alamo
+  - bugfix: Stacks with 1 recipe craft will no longer pull up the crafting menu
+  blackdav123:
+  - bugfix: Fixed a few areas on Gelida IV.
+  tyeagg:
+  - imageadd: new tank module sprites
+  - imageadd: new tank weapon sprites
+  - imageadd: new tank sprite
+2024-05-06:
+  blackdav123:
+  - bugfix: Tad can now land on lavaland tilesets.
+  - rscadd: Added more cover for xenos on the 2nd disks of Magmoor.
+  - bugfix: Fixed a few missing pipes on Magmoor.
+  tyeagg:
+  - balance: significantly less river to orion outpost
+  - balance: vehicles destructible in orion outpost
+  - balance: more cover to orion outpost
+2024-05-07:
+  Xander3359:
+  - code_imp: Implement more uses of PopulateContents()
+  antropod:
+  - rscadd: Stacks of newly crafted items merge to existing stacks in user hands
+2024-05-08:
+  DeltaFire15:
+  - bugfix: Shrike can evolve to other tier fours again.
+  Lumipharon:
+  - bugfix: fixed an exploit with reagents
+2024-05-09:
+  Barnet2:
+  - bugfix: Fixed transport crewman and assault crewman orbit menu icons.
+  Lumipharon:
+  - code_imp: Removed some redundant proc calls in pref UI
+  - bugfix: 'Campaign: Fixed loadout issues'
+  blackdav123:
+  - bugfix: Acid pools and gargoyles now appear on the minimap.
+  - balance: Acid pools no longer break when their weeds are broken
+  tyeagg:
+  - rscadd: new armor for pilot
+  - imageadd: new pilot armor
+  - imageadd: new pilot uniform
+  - imageadd: new pilot helmet
+2024-05-10:
+  Lumipharon:
+  - bugfix: fixed an issue with minimap code and z-levels after entering vehicles
+  Xander3359:
+  - code_imp: adds proc/wash() to clean stuff
+  - code_imp: Playing a sound uses SFX defines
+2024-05-11:
+  Lumipharon:
+  - qol: Improved messaging around end of mission/game for campaign
+  SandPoot:
+  - qol: Observers can now click on their minimap to jump around.
+  Xander3359:
+  - bugfix: Roomba no longer curses your storage if it sends it to cryo
+  chizzy376:
+  - bugfix: Slumbridge's SOM hangar is open again
+  - bugfix: Slumbridge lava prison no longer has a hole in the western reception
+2024-05-12:
+  Xander3359:
+  - code_imp: Adds a couple reagent signals
+  blackdav123:
+  - qol: Xenos can now slash basketball hoops.
+  - qol: Dense plants can now be slashed.
+2024-05-13:
+  Xander3359:
+  - code_imp: removes clean_mob() in favor of clean_blood()
+2024-05-14:
+  Wisemonster:
+  - balance: Reduced the damage multiplier of behemoth's abilities against vehicles
+      from 10 to 1.8
+  Xander3359:
+  - bugfix: fix some broken playsound_local (notably nades and TTS)

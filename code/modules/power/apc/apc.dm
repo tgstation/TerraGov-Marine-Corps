@@ -535,6 +535,7 @@
 
 
 /obj/machinery/power/apc/emp_act(severity)
+	. = ..()
 	if(cell)
 		cell.emp_act(severity)
 	lighting = 0
@@ -543,8 +544,6 @@
 	update_icon()
 	update()
 	addtimer(CALLBACK(src, PROC_REF(reset), APC_RESET_EMP), 60 SECONDS)
-	return ..()
-
 
 /obj/machinery/power/apc/ex_act(severity)
 	switch(severity)

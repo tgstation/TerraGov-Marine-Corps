@@ -20,7 +20,7 @@
 	. = ..()
 	if(.)
 		return
-	playsound(get_turf(loc), "rustle", 15, 1, 6)
+	playsound(get_turf(loc), SFX_RUSTLE, 15, 1, 6)
 	toggle()
 
 /obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)

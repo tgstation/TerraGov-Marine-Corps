@@ -41,7 +41,7 @@
 	greyscale_config = /datum/greyscale_config/xenonaut
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	allowed_uniform_type = /obj/item/clothing/under
 
@@ -185,6 +185,18 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/corpsman
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier //Literally grenades
 	starting_attachments = list(
 		/obj/item/armor_module/module/ballistic_armor,
@@ -310,7 +322,7 @@
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	greyscale_config = /datum/greyscale_config/xenonaut/helm
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	visorless_offset_y = 0
 
