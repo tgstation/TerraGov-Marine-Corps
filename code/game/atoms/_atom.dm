@@ -731,8 +731,7 @@ directive is properly returned.
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
-	if(blood_color)
-		clean_blood()
+	if(clean_blood())
 		return TRUE
 	return FALSE
 
