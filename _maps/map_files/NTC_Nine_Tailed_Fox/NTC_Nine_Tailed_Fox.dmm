@@ -2383,9 +2383,6 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship{
 	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
 	},
-/obj/machinery/button/door/open_only/landing_zone{
-	req_one_access = list(40)
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "cab" = (
