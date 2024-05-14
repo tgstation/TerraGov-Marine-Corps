@@ -2412,12 +2412,6 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/complex/Northwest_Dorms)
-"dfZ" = (
-/obj/effect/spawner/random/engineering/metal,
-/turf/open/floor/kutjevo/tan/multi_tiles{
-	dir = 1
-	},
-/area/kutjevo/interior/power/comms)
 "dga" = (
 /obj/item/storage/belt/marine,
 /turf/open/floor/kutjevo/tan/multi_tiles{
@@ -13045,13 +13039,11 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "qQp" = (
-/obj/item/frame/rack,
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/kutjevo/tan/multi_tiles{
+	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/kutjevo/tan/multi_tiles,
-/area/kutjevo/interior/complex/botany/east_tech)
+/area/kutjevo/interior/power/comms)
 "qQU" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/kutjevo/colors/green,
@@ -25954,7 +25946,7 @@ sHv
 xYR
 ufW
 kMP
-dfZ
+qQp
 kMP
 pmu
 naK
@@ -40136,7 +40128,7 @@ tFe
 oQc
 nUV
 gEl
-qQp
+mxT
 mxT
 rRl
 jKN
