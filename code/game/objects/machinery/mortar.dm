@@ -379,7 +379,7 @@
 	var/firing_spread = max_offset + spread
 	if(firing_spread > max_spread)
 		firing_spread = max_spread
-	var/list/turf_list = list()
+	var/list/turf_list = RANGE_TURFS(firing_spread, target)
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
 	var/amount_to_fire = fire_amount
@@ -387,8 +387,6 @@
 		amount_to_fire = length(chamber_items)
 	if(amount_to_fire > length(chamber_items))
 		amount_to_fire = length(chamber_items)
-	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
-		turf_list += spread_turf
 	//Probably easier to declare and update a counter than it is to keep accessing a client and datum multiple times
 	var/shells_fired = 0
 	var/war_crimes_counter = 0

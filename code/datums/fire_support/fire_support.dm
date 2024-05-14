@@ -77,9 +77,7 @@
 
 ///Selects the final target turf(s) and calls impact procs
 /datum/fire_support/proc/select_target(turf/target_turf)
-	var/list/turf_list = list()
-	for(var/turf/spread_turf in RANGE_TURFS(scatter_range, target_turf))
-		turf_list += spread_turf
+	var/list/turf_list = RANGE_TURFS(scatter_range, target_turf)
 	for(var/i = 1 to impact_quantity)
 		var/turf/impact_turf = pick(turf_list)
 		addtimer(CALLBACK(src, PROC_REF(do_impact), impact_turf), 0.15 SECONDS * i)
