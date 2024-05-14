@@ -199,7 +199,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/declare_completion()
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	end_round_fluff()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
 	if(time_between_round)
@@ -209,9 +209,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		SSpersistence.CollectData()
 	display_report()
 	addtimer(CALLBACK(src, PROC_REF(end_of_round_deathmatch)), ROUNDEND_EORG_DELAY)
-	//end_of_round_deathmatch()
 	return TRUE
 
+///End of round messaging
+/datum/game_mode/proc/end_round_fluff()
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 /datum/game_mode/proc/display_roundstart_logout_report()
 	var/msg = "<hr>[span_notice("<b>Roundstart logout report</b>")]<br>"
@@ -997,3 +999,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
 	return
+
+///Returns the armor color variant applicable for this mode
+/datum/game_mode/proc/get_map_color_variant()
+	return SSmapping.configs[GROUND_MAP].armor_style

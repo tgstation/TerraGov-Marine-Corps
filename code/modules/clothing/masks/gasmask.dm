@@ -33,7 +33,7 @@
 			var/mob/HM = M
 			if(HM?.client?.prefs?.toggles_sound & SOUND_GAS_MASK)
 				continue
-			HM.playsound_local(user, "gasbreath", 20, 1)
+			HM.playsound_local(user, SFX_GASBREATH, 20, 1)
 			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
 /obj/item/clothing/mask/gas/tactical

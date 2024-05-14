@@ -144,6 +144,18 @@
 		/obj/item/armor_module/storage/medical/som,
 	)
 
+/obj/item/clothing/suit/modular/som/heavy/lorica/medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/storage/general/som,
+	)
+
+/obj/item/clothing/suit/modular/som/heavy/lorica/engineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/storage/engineering/som,
+	)
+
 /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	starting_attachments = list(
 		/obj/item/armor_module/module/mimir_environment_protection/som,

@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	succeed_activate()
 
-	playsound(T, "alien_resin_build", 25)
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	owner.record_traps_created()

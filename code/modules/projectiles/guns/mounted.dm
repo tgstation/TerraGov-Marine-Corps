@@ -168,7 +168,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
-	fire_sound = "ac_fire"
+	fire_sound = SFX_AC_FIRE
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/auto_cannon

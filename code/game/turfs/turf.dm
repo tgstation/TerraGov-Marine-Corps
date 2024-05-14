@@ -929,7 +929,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return
 
 ///cleans any cleanable decals from the turf
-/turf/proc/clean_turf()
+/turf/wash()
+	. = ..()
 	for(var/obj/effect/decal/cleanable/filth in src)
 		qdel(filth) //dirty, filthy floor
 
