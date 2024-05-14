@@ -46,15 +46,17 @@
 /area/kutjevo/exterior/lz_pad
 	name = "Kutjevo Auxilliary Landing Zone"
 	icon_state = "lz_pad"
+	minimap_color = MINIMAP_BLACK
 
 /area/kutjevo/exterior/lz_dunes
 	name = "Kutjevo - Landing Zone Dunes"
 	icon_state = "lz_dunes"
-	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/kutjevo/exterior/lz_river
 	name = "Kutjevo - Power Station River"
 	icon_state = "lz_river"
+	minimap_color = MINIMAP_WATER
 
 /area/kutjevo/exterior/spring
 	name = "Kutjevo - Southern Spring"

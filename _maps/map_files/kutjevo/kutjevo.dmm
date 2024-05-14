@@ -2403,7 +2403,7 @@
 /area/kutjevo/interior/complex/med/cells)
 "dfa" = (
 /turf/closed/wall/r_wall/kutjevo,
-/area/kutjevo/exterior/lz_river)
+/area/kutjevo/exterior/lz_dunes)
 "dfm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -3819,7 +3819,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/lz_river)
+/area/kutjevo/exterior/lz_dunes)
 "eRN" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -3942,7 +3942,7 @@
 "fcB" = (
 /obj/structure/flora/ausbushes/yellowbush,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/lz_river)
+/area/kutjevo/exterior/runoff_dunes)
 "fcJ" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -6420,10 +6420,6 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor/kutjevo/colors/red/tile,
 /area/kutjevo/interior/complex/botany)
-"iww" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/lz_river)
 "iwD" = (
 /obj/structure/platform/metalplatform{
 	dir = 4
@@ -10030,7 +10026,7 @@
 /area/kutjevo/interior/filtration)
 "naK" = (
 /turf/open/floor/kutjevo/tan,
-/area/kutjevo/exterior/lz_river)
+/area/kutjevo/exterior/lz_dunes)
 "nbp" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -10046,10 +10042,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
-"nbY" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/lz_river)
 "ndw" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 8
@@ -17721,7 +17713,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/lz_river)
+/area/kutjevo/exterior/lz_dunes)
 "wCd" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -18245,10 +18237,6 @@
 /obj/structure/cable,
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/complex/botany)
-"xoh" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/kutjevo/exterior/lz_river)
 "xoq" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -24123,8 +24111,8 @@ hLy
 boR
 bHA
 pmu
-qzd
-qzd
+prJ
+prJ
 prJ
 prJ
 wGH
@@ -24290,8 +24278,8 @@ bne
 kMP
 kMP
 pmu
-qzd
-ubV
+prJ
+wGH
 wGH
 vei
 adl
@@ -24457,8 +24445,8 @@ kMP
 sHv
 ufW
 pmu
-qzd
-ubV
+prJ
+wGH
 wGH
 wGH
 prJ
@@ -24624,8 +24612,8 @@ boR
 cRV
 bHA
 pmu
-qzd
-ubV
+prJ
+wGH
 txp
 prJ
 prJ
@@ -25626,11 +25614,11 @@ boR
 boR
 eYN
 pmu
-ubV
-ubV
-ubV
+wGH
+wGH
+wGH
 naK
-ubV
+wGH
 wGH
 dxF
 dxF
@@ -25795,9 +25783,9 @@ kMP
 pmu
 naK
 naK
-qzd
-qzd
-qzd
+prJ
+prJ
+prJ
 prJ
 prJ
 dxF
@@ -25961,11 +25949,11 @@ kMP
 kMP
 pmu
 naK
-qzd
-nbY
-qzd
-qzd
-qzd
+prJ
+nbT
+prJ
+prJ
+prJ
 prJ
 prJ
 dxF
@@ -26127,12 +26115,12 @@ boR
 rMR
 bHA
 pmu
-qzd
-qzd
-qzd
-qzd
-ubV
-ubV
+prJ
+prJ
+prJ
+prJ
+wGH
+wGH
 qzd
 prJ
 dxF
@@ -26296,11 +26284,11 @@ mIf
 tlN
 dfa
 wBt
-ubV
-ubV
-ubV
-xoh
-iww
+wGH
+wGH
+wGH
+sDT
+txp
 wGH
 wGH
 txp
@@ -27471,12 +27459,12 @@ vVC
 dxF
 dxF
 cTz
-ubV
-ubV
-ubV
-ubV
-ubV
-ubV
+cTz
+cTz
+cTz
+cTz
+cTz
+cTz
 fcB
 xpk
 xpk
@@ -27638,14 +27626,14 @@ cTz
 cTz
 ePx
 ePx
-ubV
-ubV
-iww
-ubV
-ubV
-ubV
+cTz
+cTz
+bIg
+cTz
+cTz
+cTz
 dxF
-ubV
+cTz
 cTz
 cTz
 xpk
