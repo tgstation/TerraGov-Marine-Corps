@@ -201,7 +201,7 @@
 	desc = "It's an opened coconut with a straw stuck inside. Tasty and nutritious goodness!"
 	icon_state = "coconut_drink_2"
 	center_of_mass = list("x"=16, "y"=9)
-	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
+	list_reagents = list(/datum/reagent/consumable/milk = 50)
 
 /obj/item/reagent_containers/food/drinks/coconutmilk/green
 	desc = "It's an opened coconut with a straw stuck inside. This one even has an umbrella, fancy."
