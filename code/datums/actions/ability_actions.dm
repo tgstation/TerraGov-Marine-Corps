@@ -104,7 +104,7 @@
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
 
-	if(!(to_check_flags & ABILITY_USE_DENSEDOOR)
+	if(!(to_check_flags & ABILITY_USE_DENSEDOOR))
 		var/current_turf = get_turf(carbon_owner)
 		if(isdoormachinery(current_turf) && current_turf.density)
 			if(!silent)
