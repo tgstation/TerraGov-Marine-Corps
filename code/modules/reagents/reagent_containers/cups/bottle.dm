@@ -3,9 +3,9 @@
 /obj/item/reagent_containers/cup/bottle
 	name = "bottle"
 	desc = "A small bottle."
-	icon_state = "bottle"
-	fill_icon_state = "bottle"
-	worn_icon_state = "bottle"
+	icon_state = "bottle-1"
+	fill_icon_state = "bottle-1"
+	worn_icon_state = "bottle-1"
 	possible_transfer_amounts = list(5, 10, 15, 25, 50)
 	volume = 50
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
@@ -13,7 +13,7 @@
 /obj/item/reagent_containers/cup/bottle/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
-		icon_state = "bottle"
+		icon_state = "bottle-1"
 	update_appearance()
 
 /obj/item/reagent_containers/cup/bottle/toxin
