@@ -246,8 +246,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define ismachinery(A) (istype(A, /obj/machinery))
 
-#define isdoormachinery(A) (istype(A, /obj/machinery/door))
-
 #define ispowermachinery(A) (istype(A, /obj/machinery/power))
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
