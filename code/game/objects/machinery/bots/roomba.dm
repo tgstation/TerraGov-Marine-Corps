@@ -50,7 +50,7 @@
 
 	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
-		if(sucker.anchored)
+		if(sucker.anchored || istype(sucker, /obj/item/ammo_magazine))
 			continue
 		sucked_one = TRUE
 
