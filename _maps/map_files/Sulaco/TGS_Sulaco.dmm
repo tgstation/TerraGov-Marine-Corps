@@ -21542,7 +21542,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "qHb" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/storage)
 "qHe" = (
