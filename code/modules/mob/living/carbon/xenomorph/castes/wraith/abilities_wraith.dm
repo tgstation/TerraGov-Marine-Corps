@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Recall"
 	action_icon_state = "Recall"
 	desc = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_CLOSEDTURF|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
+	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_CLOSEDTURF|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_DENSEDOOR //So we can recall ourselves from nether Brazil
 	cooldown_duration = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,

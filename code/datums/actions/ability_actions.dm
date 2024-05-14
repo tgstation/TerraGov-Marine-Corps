@@ -104,6 +104,14 @@
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
 
+	if(!(to_check_flags & ABILITY_USE_DENSEDOOR)
+		var/current_turf = get_turf(carbon_owner))
+		if(isdoormachinery(current_turf) && current_turf.density)
+			if(!silent)
+				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+				to_chat(owner, span_warning("We can't do this while in a dense door!"))
+			return FALSE
+
 	return TRUE
 
 /datum/action/ability/fail_activate()
