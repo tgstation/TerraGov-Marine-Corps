@@ -1472,9 +1472,9 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/filtration)
 "cgb" = (
-/obj/machinery/miner/damaged,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/scrubland/north)
+/area/kutjevo/exterior/telecomm/lz2_north)
 "cgl" = (
 /obj/structure/platform/rockcliff/orange{
 	dir = 1
@@ -10612,7 +10612,6 @@
 /area/kutjevo/exterior/Northwest_Colony)
 "nMb" = (
 /obj/structure/rock/tinyrock,
-/obj/effect/ai_node,
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/telecomm/lz2_north)
@@ -18942,6 +18941,7 @@
 /area/kutjevo/exterior/colony_north)
 "ylf" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/kutjevo/plate,
 /area/kutjevo/exterior/telecomm/lz2_north)
 "ylh" = (
@@ -29341,7 +29341,7 @@ dxF
 dxF
 dxF
 slP
-slP
+cgb
 slP
 tZW
 lTG
@@ -29557,7 +29557,7 @@ eRq
 bnK
 hLi
 lBm
-cgb
+lBm
 lBm
 lBm
 eoc
