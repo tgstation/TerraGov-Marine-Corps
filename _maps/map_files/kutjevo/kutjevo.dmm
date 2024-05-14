@@ -701,9 +701,9 @@
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/med/operating)
 "bbc" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/carpet,
-/area/kutjevo/interior/colony_South/power2)
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/kutjevo/tan/multi_tiles,
+/area/kutjevo/interior/power/comms)
 "bbq" = (
 /obj/item/stack/sheet/wood,
 /obj/effect/landmark/xeno_resin_door,
@@ -2412,6 +2412,12 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/complex/Northwest_Dorms)
+"dfZ" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/kutjevo/tan/multi_tiles{
+	dir = 1
+	},
+/area/kutjevo/interior/power/comms)
 "dga" = (
 /obj/item/storage/belt/marine,
 /turf/open/floor/kutjevo/tan/multi_tiles{
@@ -2580,7 +2586,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
 "dtV" = (
-/obj/machinery/biogenerator,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/complex/botany/east_tech)
 "due" = (
@@ -12632,9 +12638,12 @@
 	},
 /area/kutjevo/interior/complex/botany)
 "qqm" = (
-/obj/structure/window/framed/kutjevo,
-/turf/open/floor/mainship/research/containment/floor1,
-/area/kutjevo/interior/filtration)
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/kutjevo/tan,
+/area/kutjevo/interior/complex/botany/east_tech)
 "qqM" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/trash,
@@ -24124,7 +24133,7 @@ eEg
 hix
 xWg
 vhQ
-hcz
+pMg
 slD
 peV
 dUu
@@ -24295,13 +24304,13 @@ hcz
 cmv
 gPW
 gPW
-sZn
-sZn
-sZn
 gPW
-sZn
-sZn
-sZn
+gPW
+gPW
+gPW
+gPW
+gPW
+gPW
 gPW
 gPW
 feG
@@ -25624,10 +25633,10 @@ dxF
 dxF
 gPW
 gPW
-qqm
-qqm
-qqm
-qqm
+gPW
+gPW
+gPW
+gPW
 gPW
 gPW
 prJ
@@ -25936,7 +25945,7 @@ fqA
 nJY
 wiH
 veh
-veh
+bbc
 kMP
 eTy
 qGQ
@@ -25945,7 +25954,7 @@ sHv
 xYR
 ufW
 kMP
-kMP
+dfZ
 kMP
 pmu
 naK
@@ -40465,7 +40474,7 @@ fbt
 nbu
 nbu
 nbu
-nbu
+qqm
 efJ
 hUy
 hUy
@@ -44635,7 +44644,7 @@ qGx
 lFq
 ukd
 xay
-bbc
+xay
 dBO
 xay
 tTi
