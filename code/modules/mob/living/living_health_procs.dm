@@ -320,6 +320,7 @@
 	handle_regular_hud_updates()
 	reload_fullscreens()
 	hud_used?.show_hud(hud_used.hud_version)
+	add_click_catcher()
 
 	SSmobs.start_processing(src)
 	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
