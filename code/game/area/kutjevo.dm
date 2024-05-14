@@ -18,6 +18,7 @@
 	name = "Kutjevo - Dropship Normandy Landing Zone"
 	icon_state = "shuttle2"
 	icon = 'icons/turf/area_kutjevo.dmi'
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/kutjevo/exterior
 	name = "Kutjevo - Exterior"
@@ -204,11 +205,13 @@
 	name = "Kutjevo Complex - Northwest Colony Dorms"
 	icon_state = "Colony_int"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/kutjevo/interior/complex/Northwest_Flight_Control
 	name =  "Kutjevo Complex - Northwest Flight Control Room"
 	icon_state = "Colony_int"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint
 	name = "Kutjevo Complex - Northwest Security Checkpoint"
