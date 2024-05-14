@@ -2692,6 +2692,7 @@
 	desc = "The Syndicates main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "l26"
+	worn_icon_state = "l26"
 	fire_animation = "l26_fire"
 	caliber = CALIBER_556X45 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -2755,6 +2756,7 @@
 	desc = "Crash Core's first ever rifle. With designs reminiscent of the Sauer series, this gun is the perfect choice for CQC. Chambered in 10x27mm. Packs a kick to anyone standing infront of you. "
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c550"
+	worn_icon_state = "c550"
 	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'

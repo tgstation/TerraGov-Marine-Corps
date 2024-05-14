@@ -630,6 +630,7 @@
 	name = "\improper C96 pistol"
 	desc = "A 'riot control' weapon used by the protectors of colonies. Now adopted by the V.S.D, it is the standard side arm for all members. Firing armor piercing 9x19mm parabellum with a capacity of 15 rounds."
 	icon_state = "c96"
+	worn_icon_state = "c96"
 	caliber = CALIBER_9X19
 	max_shells = 15
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'

@@ -898,6 +898,7 @@
 	desc = "A fourteen-round pump action shotgun. A sight to behold. Fires 12 gauge shotgun rounds, it's fourteen-round capacity makes it smooth when clearing rooms. A label on the side says: 'ONLY FOR CQC!!'."
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	icon_state = "l12"
+	worn_icon_state = "l12"
 	cock_animation = "l12_pump"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
