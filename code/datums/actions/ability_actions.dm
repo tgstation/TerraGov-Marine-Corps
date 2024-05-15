@@ -106,11 +106,12 @@
 				to_chat(owner, span_warning("We can't do this while in a solid object!"))
 			return FALSE
 		for(var/obj/turf_object in current_turf.contents)
-			if(turf_object.density && turf_object.opacity)
-				if(!silent)
-					//Same as above.
-					to_chat(owner, span_warning("We can't do this while in a solid object!"))
-				return FALSE
+			if(!turf_object.density || !turf_object.opacity)
+				continue
+			if(!silent)
+				//Same as above.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
 
 	return TRUE
 
