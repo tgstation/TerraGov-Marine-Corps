@@ -1,6 +1,7 @@
 import { useBackend } from '../backend';
 import {
   Box,
+  Button,
   Icon,
   LabeledList,
   NoticeBox,
@@ -56,11 +57,19 @@ export const MedScanner = (props) => {
   return (
     <Window width={515} height={625} theme={theme}>
       <Window.Content scrollable>
-        <Box color="grey">
-          <Icon name="info" m={1} />
-          Hover over anything in this window to see additional information.
-        </Box>
-        <Section title={'Patient: ' + patient}>
+        <Section
+          title={'Patient: ' + patient}
+          buttons={
+            <Button
+              icon="info"
+              tooltip="Most elements of this window have a tooltip for additional information. Hover your mouse over something for clarification!"
+              color="transparent"
+              mt={theme === 'hackerman' ? '-5px' : '0px'}
+            >
+              Tooltips - hover for info
+            </Button>
+          }
+        >
           {hugged ? (
             <NoticeBox danger>
               Patient has been implanted with an alien embryo!
@@ -249,9 +258,11 @@ export const MedScanner = (props) => {
                       <Stack.Item>
                         <Tooltip
                           content={
-                            limb.bandaged
-                              ? 'Treated wounds will slowly heal on their own, or can be healed faster with chemicals.'
-                              : 'Untreated physical trauma. Can be bandaged with gauze or advanced trauma kits.'
+                            species === 'robot'
+                              ? 'Limb denting. Can be welded with a blowtorch or nanopaste.'
+                              : limb.bandaged
+                                ? 'Treated wounds will slowly heal on their own, or can be healed faster with chemicals.'
+                                : 'Untreated physical trauma. Can be bandaged with gauze or advanced trauma kits.'
                           }
                         >
                           <Box
@@ -267,9 +278,11 @@ export const MedScanner = (props) => {
                         <Box inline width="5px" />
                         <Tooltip
                           content={
-                            limb.salved
-                              ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
-                              : 'Unsalved burns. Can be salved with ointment or advanced burn kits.'
+                            species === 'robot'
+                              ? 'Wire scorching. Can be repaired with a cable coil or nanopaste.'
+                              : limb.bandaged
+                                ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
+                                : 'Unsalved burns. Can be salved with ointment or advanced burn kits.'
                           }
                         >
                           <Box
