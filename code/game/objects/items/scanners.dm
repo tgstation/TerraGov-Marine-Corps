@@ -403,7 +403,7 @@ REAGENT SCANNER
 			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
-					"tooltip" = "Significant physical trauma detected. Bicaridine reduces brute damage",
+					"tooltip" = "Significant physical trauma detected. Bicaridine reduces brute damage.",
 					"icon" = "syringe",
 					"color" = "red"
 					))
