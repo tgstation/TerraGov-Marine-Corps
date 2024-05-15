@@ -235,6 +235,10 @@
 		O.color = color
 	use(R.req_amount * multiplier)
 
+	if(isitemstack(O))
+		var/obj/item/stack/stack = O
+		stack.merge_with_stack_in_hands(user)
+
 	if(QDELETED(O))
 		return //It's a stack and has already been merged
 
@@ -398,6 +402,21 @@
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
 	return TRUE
+
+/**
+	Merges stack into the one that user is currently holding in their left or right hand.
+	Returns TRUE if the stack was merged, FALSE otherwise.
+*/
+/obj/item/stack/proc/merge_with_stack_in_hands(mob/user)
+	var/obj/item/stack/stack_in_hands = null
+	if(istype(user.l_hand, merge_type))
+		stack_in_hands = user.l_hand
+	else if(istype(user.r_hand, merge_type))
+		stack_in_hands = user.r_hand
+	if(stack_in_hands && merge(stack_in_hands))
+		return TRUE
+	return FALSE
+
 
 #undef STACK_CHECK_CARDINALS
 #undef STACK_CHECK_ADJACENT

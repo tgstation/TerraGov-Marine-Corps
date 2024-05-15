@@ -609,7 +609,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, TRUE, 6)
+			playsound(user.loc, SFX_RUSTLE, 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 

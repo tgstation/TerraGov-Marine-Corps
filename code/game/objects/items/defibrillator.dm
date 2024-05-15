@@ -14,7 +14,8 @@
 	var/ready = FALSE
 	///wether readying is needed
 	var/ready_needed = TRUE
-	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
+	///The base healing number. This will be multiplied using DEFIBRILLATOR_HEALING_TIMES_SKILL.
+	var/damage_threshold = DEFIBRILLATOR_BASE_HEALING_VALUE
 	var/charge_cost = 66 //How much energy is used.
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks
@@ -104,7 +105,7 @@
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
-	playsound(get_turf(src), "sparks", 25, TRUE, 4)
+	playsound(get_turf(src), SFX_SPARKS, 25, TRUE, 4)
 	if(ready)
 		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
 	else
@@ -165,15 +166,15 @@
 	var/defib_heal_amt = damage_threshold
 
 	//job knowledge requirement
-	var/skill = user.skills.getRating(SKILL_MEDICAL)
-	if(skill < SKILL_MEDICAL_PRACTICED)
+	var/medical_skill = user.skills.getRating(SKILL_MEDICAL)
+	if(medical_skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
+		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * medical_skill) // 3 seconds with medical medical_skill, 5 without
 		if(!do_after(user, fumbling_time, NONE, H, BUSY_ICON_UNSKILLED))
 			return
-	else
-		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+
+	defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
 
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
