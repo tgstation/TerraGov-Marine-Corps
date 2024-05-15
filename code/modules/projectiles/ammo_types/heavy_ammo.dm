@@ -97,10 +97,13 @@
 	penetration = 100
 	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
-	on_pierce_multiplier = 0.85
+	on_pierce_multiplier = 0.75
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+
+/datum/ammo/bullet/railgun/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 3
 
 /datum/ammo/bullet/railgun/hvap
 	name = "high velocity railgun slug"
