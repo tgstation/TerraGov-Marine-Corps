@@ -18,7 +18,7 @@
 	///How much we drink at once, shot glasses drink more.
 	var/gulp_size = 5
 	///Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it.
-	var/isGlass = FALSE
+	var/can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/examine(mob/user)
 	. = ..()
@@ -130,78 +130,6 @@
 /// Callback for [datum/component/takes_reagent_appearance] to reset to no foodtypes
 /obj/item/reagent_containers/cup/proc/on_cup_reset()
 	drink_type = NONE
-
-/*
-/obj/item/reagent_containers/cup/beaker
-	name = "beaker"
-	desc = "A beaker. It can hold up to 50 units."
-	icon = 'icons/obj/medical/chemical.dmi'
-	icon_state = "beaker"
-	inhand_icon_state = "beaker"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	worn_icon_state = "beaker"
-	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
-
-/obj/item/reagent_containers/cup/beaker/Initialize(mapload)
-	. = ..()
-	update_appearance()
-
-/obj/item/reagent_containers/cup/beaker/get_part_rating()
-	return reagents.maximum_volume
-
-/obj/item/reagent_containers/cup/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
-	icon = 'icons/obj/medical/chemical.dmi'
-	icon_state = "vapour"
-
-/obj/item/reagent_containers/cup/beaker/large
-	name = "large beaker"
-	desc = "A large beaker. Can hold up to 100 units."
-	icon_state = "beakerlarge"
-	volume = 100
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
-	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
-
-/obj/item/reagent_containers/cup/beaker/plastic
-	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 120 units."
-	icon_state = "beakerwhite"
-	volume = 120
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
-	fill_icon_thresholds = list(0, 1, 10, 20, 40, 60, 80, 100)
-
-/obj/item/reagent_containers/cup/beaker/meta
-	name = "metamaterial beaker"
-	desc = "A large beaker. Can hold up to 180 units."
-	icon_state = "beakergold"
-	volume = 180
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,60,120,180)
-	fill_icon_thresholds = list(0, 1, 10, 25, 35, 50, 60, 80, 100)
-
-/obj/item/reagent_containers/cup/beaker/noreact
-	name = "cryostasis beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 50 units."
-	icon_state = "beakernoreact"
-	reagent_flags = OPENCONTAINER | NO_REACT
-	volume = 50
-	amount_per_transfer_from_this = 10
-
-/obj/item/reagent_containers/cup/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology \
-		and Element Cuban combined with the Compound Pete. Can hold up to \
-		300 units."
-	icon_state = "beakerbluespace"
-	volume = 300
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
-*/ // XANTODO Turn beakers into cups ? Maybe TG sprites ?
 
 //Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
 /obj/item/reagent_containers/cup/coffeepot

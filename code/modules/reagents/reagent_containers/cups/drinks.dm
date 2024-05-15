@@ -8,14 +8,14 @@
 	icon_state = "glass_empty"
 	possible_transfer_amounts = list(5,10,15,20,25,30,50)
 	resistance_flags = NONE
-	isGlass = TRUE
+	can_shatter = TRUE
 
 /obj/item/reagent_containers/cup/glass/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
 	smash(hit_atom, TRUE)
 
 /obj/item/reagent_containers/cup/glass/proc/smash(atom/target, ranged = FALSE, break_top = FALSE)
-	if(!isGlass)
+	if(!can_shatter)
 		return
 	if(QDELING(src) || !target) //Invalid loc
 		return
@@ -36,9 +36,9 @@
 	icon_state = "coffee"
 	base_icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
-	isGlass = FALSE
+	can_shatter = FALSE
 	drink_type = BREAKFAST
-	var/lid_open = 0
+	var/lid_open = FALSE
 
 /obj/item/reagent_containers/cup/glass/coffee/no_lid
 	icon_state = "coffee_empty"
@@ -47,27 +47,25 @@
 /obj/item/reagent_containers/cup/glass/coffee/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to toggle cup lid.")
-	return
 
 /obj/item/reagent_containers/cup/glass/coffee/AltClick(mob/user)
 	. = ..()
 	lid_open = !lid_open
 	update_icon_state()
-	return
 
 /obj/item/reagent_containers/cup/glass/coffee/update_icon_state()
+	. = ..()
 	if(lid_open)
 		icon_state = reagents.total_volume ? "[base_icon_state]_full" : "[base_icon_state]_empty"
 	else
 		icon_state = base_icon_state
-	return ..()
 
 /obj/item/reagent_containers/cup/glass/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "icecup"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
-	isGlass = FALSE
+	can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/glass/mug // parent type is literally just so empty mug sprites are a thing
 	name = "mug"
@@ -107,7 +105,7 @@
 	base_icon_state = "coffee_cup"
 	possible_transfer_amounts = list(10)
 	volume = 30
-	isGlass = FALSE
+	can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/glass/coffee_cup/update_icon_state()
 	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
@@ -119,7 +117,7 @@
 	icon_state = "ramen"
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/salt = 3)
 	drink_type = GRAIN
-	isGlass = FALSE
+	can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/glass/waterbottle
 	name = "bottle of water"
@@ -130,7 +128,7 @@
 	volume = 50
 	amount_per_transfer_from_this = 10
 	fill_icon_thresholds = list(0, 10, 25, 50, 75, 80, 90)
-	isGlass = FALSE
+	can_shatter = FALSE
 	// The 2 bottles have separate cap overlay icons because if the bottle falls over while bottle flipping the cap stays fucked on the moved overlay
 	var/cap_icon = 'icons/obj/drinks/drink_effects.dmi'
 	var/cap_icon_state = "bottle_cap_small"
@@ -141,7 +139,7 @@
 
 /obj/item/reagent_containers/cup/glass/waterbottle/Initialize(mapload)
 	cap_overlay = mutable_appearance(cap_icon, cap_icon_state)
-	. = ..()
+	return ..()
 
 /obj/item/reagent_containers/cup/glass/waterbottle/update_overlays()
 	. = ..()
@@ -172,7 +170,6 @@
 		cap_on = TRUE
 		to_chat(user, span_notice("You put the cap on [src]."))
 	update_appearance()
-	return
 
 /obj/item/reagent_containers/cup/glass/waterbottle/is_refillable()
 	if(cap_on)
@@ -208,7 +205,7 @@
 			to_chat(user, span_warning("[other_bottle] has a cap firmly twisted on!"))
 			return
 
-	return . | ..()
+	return ..()
 
 // heehoo bottle flipping
 /obj/item/reagent_containers/cup/glass/waterbottle/throw_impact(atom/hit_atom, speed, bounce)
@@ -264,7 +261,7 @@
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = list(10)
 	volume = 10
-	isGlass = FALSE
+	can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/glass/sillycup/update_icon_state()
 	icon_state = reagents.total_volume ? "water_cup" : "water_cup_e"
@@ -288,30 +285,7 @@
 	)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton/smash(atom/target, mob/thrower, ranged = FALSE)
-	//XANTODO Temporary copypaste this was initially SplashReagents()
-	if(thrower.a_intent == INTENT_HARM)
-		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
-			to_chat(thrower, span_warning("An airtight seal prevents you from splashing the solution!"))
-			return
-
-		if(ismob(target) && target.reagents && reagents.total_volume)
-			to_chat(thrower, span_notice("You splash the solution onto [target]."))
-			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
-
-			var/mob/living/M = target
-			var/list/injected = list()
-			for(var/datum/reagent/R in src.reagents.reagent_list)
-				injected += R.name
-			var/contained = english_list(injected)
-			log_combat(thrower, M, "splashed", src, "Reagents: [contained]")
-			record_reagent_consumption(reagents.total_volume, injected, thrower, M)
-
-			visible_message(span_warning("[target] has been splashed with something by [thrower]!"))
-			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
-			return
-	//XANTODO Temporary copypaste
-
+	try_splash(thrower, target)
 	var/obj/item/broken_bottle/bottle_shard = new (loc)
 	bottle_shard.mimic_broken(src, target)
 	qdel(src)
@@ -325,7 +299,7 @@
 	possible_transfer_amounts = list(5, 10, 15, 20)
 	volume = 20
 	amount_per_transfer_from_this = 5
-	isGlass = FALSE
+	can_shatter = FALSE
 	/// Allows the lean sprite to display upon crafting
 	var/random_sprite = TRUE
 
@@ -350,7 +324,7 @@
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "flask"
 	volume = 60
-	isGlass = FALSE
+	can_shatter = FALSE
 
 /obj/item/reagent_containers/cup/glass/flask/gold
 	name = "captain's flask"

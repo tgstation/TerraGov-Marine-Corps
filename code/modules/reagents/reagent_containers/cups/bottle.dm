@@ -180,7 +180,6 @@
 	. = ..()
 	. += span_notice("Alt-click to toggle the pump cap.")
 	. += span_notice("Use a pen on it to rename it.")
-	return
 
 //when you attack the syrup bottle with a container it refills it
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/attackby(obj/item/attacking_item, mob/user, params)
@@ -219,7 +218,6 @@
 		icon_state = "syrup"
 		balloon_alert(user, "put pump cap on")
 	update_icon_state()
-	return
 
 //types of syrups
 
@@ -246,7 +244,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	worn_icon_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
+	var/can_shatter = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash(mob/living/target as mob, mob/living/user as mob)
 
@@ -273,9 +271,8 @@
 	if(!target)
 		return
 
-	if(user.a_intent != INTENT_HARM || !isGlass)
+	if(user.a_intent != INTENT_HARM || !can_shatter)
 		return ..()
-
 
 	force = 15 //Smashing bottles over someoen's head hurts.
 
@@ -480,7 +477,7 @@
 	icon_state = "orangejuice"
 	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=7)
-	isGlass = 0
+	can_shatter = 0
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
@@ -489,7 +486,7 @@
 	icon_state = "cream"
 	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	can_shatter = 0
 	list_reagents = list(/datum/reagent/consumable/cream = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
@@ -498,7 +495,7 @@
 	icon_state = "tomatojuice"
 	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	can_shatter = 0
 	list_reagents = list(/datum/reagent/consumable/tomatojuice = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
@@ -507,7 +504,7 @@
 	icon_state = "limejuice"
 	worn_icon_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	can_shatter = 0
 	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
 
 
