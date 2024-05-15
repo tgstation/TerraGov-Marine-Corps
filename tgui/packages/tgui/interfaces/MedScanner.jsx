@@ -325,7 +325,7 @@ export const MedScanner = (props) => {
                           </Tooltip>
                         ) : null}
                         {limb.bleeding ? (
-                          <Tooltip content="This limb is bleeding. Treated with gauze or an advanced trauma kit. If this warning doesn't clear, it may be a limb with internal bleeding.">
+                          <Tooltip content="This limb is bleeding. Treated with gauze or an advanced trauma kit.">
                             <Box inline color={'red'} bold={1}>
                               [Bleeding]
                             </Box>
@@ -346,7 +346,7 @@ export const MedScanner = (props) => {
                           </Tooltip>
                         ) : null}
                         {limb.necrotized ? (
-                          <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur. Treated by surgery.">
+                          <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery.">
                             <Box inline color={'brown'} bold={1}>
                               [Necrotizing]
                             </Box>
