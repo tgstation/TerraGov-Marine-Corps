@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Retired ERT spawns less often, but can now walk (minus the leader)"
