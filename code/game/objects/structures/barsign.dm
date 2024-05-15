@@ -7,3 +7,7 @@
 	name = "The Drunk Carp"
 	desc = "The Drunk Carp, Bar and Grill"
 	icon_state = "thedrunkcarp"
+
+/obj/structure/sign/double/barsign/Initialize(mapload)
+	. = ..()
+	icon = 'icons/obj/structures/barsigns.dmi'
