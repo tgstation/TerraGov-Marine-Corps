@@ -103,3 +103,42 @@
   chizzy376:
   - bugfix: Slumbridge's SOM hangar is open again
   - bugfix: Slumbridge lava prison no longer has a hole in the western reception
+2024-05-12:
+  Xander3359:
+  - code_imp: Adds a couple reagent signals
+  blackdav123:
+  - qol: Xenos can now slash basketball hoops.
+  - qol: Dense plants can now be slashed.
+2024-05-13:
+  Xander3359:
+  - code_imp: removes clean_mob() in favor of clean_blood()
+2024-05-14:
+  Wisemonster:
+  - balance: Reduced the damage multiplier of behemoth's abilities against vehicles
+      from 10 to 1.8
+  Xander3359:
+  - bugfix: fix some broken playsound_local (notably nades and TTS)
+2024-05-15:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an issue with attrition going into the negatives, allowing
+      for more respawns than intended, and breaking allied spawns'
+  - balance: 'Campaign: SL''s can activate the Rapid Reserves asset'
+  - bugfix: fixed a couple of issues around building resin walls on the alamo
+  - bugfix: 'Campaign: Fixed a couple minior corpsman loadout issues'
+  Neocloudy:
+  - rscadd: Reworked the style of the Limbs Damaged section of the health analyzer.
+  - rscadd: Health analyzers now have a section for relevant information such as treatment
+      advice when scanning people again.
+  - rscadd: Information includes death/revival information, healing information, chemical
+      advice, etc.
+  - rscadd: The theme of a health analyzer will switch to green when working with
+      a synthetic or combat robot.
+  - qol: Robotic/Biotic limbs are shown in Damaged Limbs.
+  - qol: Revivable status now includes information such as too much damage, etc.
+  - qol: Toxin and Oxyloss will be hidden when working with a synthetic or combat
+      robot.
+  Runian:
+  - bugfix: Jerrycans correctly show how much fuel is inside of it when examined.
+  chizzy376:
+  - rscadd: added a new map, Meridian Riptide.
+  - rscadd: Adds a proper room for AC and TC in Sulaco.
