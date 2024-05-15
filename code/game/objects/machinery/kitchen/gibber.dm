@@ -201,7 +201,7 @@
 
 	for(var/obj/item/meatslab AS in meatlist)
 		var/biomass_amount = 0
-		biomass_amount += floor(meatslab.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 0.5)
+		biomass_amount += 1 + floor(meatslab.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 0.5)
 		meatlist -= meatslab
 		meat_produced --
 		internal_beaker.reagents.add_reagent(/datum/reagent/medicine/biomass, biomass_amount)
