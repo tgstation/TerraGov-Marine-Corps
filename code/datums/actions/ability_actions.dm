@@ -105,8 +105,8 @@
 				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 				to_chat(owner, span_warning("We can't do this while in a solid object!"))
 			return FALSE
-		for(var/obj/machinery/door/found_door in current_turf.contents)
-			if(found_door.density)
+		for(var/obj/turf_object in current_turf.contents)
+			if(turf_object.density && turf_object.opacity)
 				if(!silent)
 					//Same as above.
 					to_chat(owner, span_warning("We can't do this while in a solid object!"))
