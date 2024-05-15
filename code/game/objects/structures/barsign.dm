@@ -5,6 +5,7 @@
 
 /obj/structure/sign/double/barsign/Initialize(mapload)
 	. = ..()
+	icon = 'icons/obj/structures/barsigns.dmi'
 	ChangeSign(pick(
 	"pinkflamingo",
 	"magmasea",
