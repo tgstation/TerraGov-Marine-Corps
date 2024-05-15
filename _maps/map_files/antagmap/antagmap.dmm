@@ -2420,6 +2420,13 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"tP" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/synthetic/som,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/som/squads/req{
+	name = "SOM Requisitions"
+	})
 "tR" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -3873,6 +3880,15 @@
 	outside = 0;
 	name = "SOM Security"
 	})
+"EA" = (
+/obj/structure/cable,
+/obj/machinery/marine_selector/clothes/synth{
+	vendor_role = /datum/job/som/silicon/synthetic/som
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/canora_desert/surface/building/som_engineering{
+	outside = 0
+	})
 "EC" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/airlock,
@@ -4573,6 +4589,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"JY" = (
+/obj/machinery/shower{
+	pixel_y = 16
+	},
+/obj/effect/turf_decal/siding/wideplating_new/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/synthetic/clf,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/clf/hallways/bathroom)
 "Kc" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
@@ -6039,6 +6065,9 @@
 	name = "SOM Prisoner Contaiment"
 	})
 "TL" = (
+/obj/machinery/marine_selector/clothes/synth{
+	vendor_role = /datum/job/clf/silicon/synthetic/clf
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -7666,7 +7695,7 @@ CN
 CN
 py
 oy
-qu
+tP
 en
 Xj
 Wa
@@ -8258,7 +8287,7 @@ zf
 lz
 mV
 Qx
-mV
+EA
 mE
 Ft
 Tm
@@ -8652,7 +8681,7 @@ tT
 (59,1,1) = {"
 tT
 JC
-Hx
+JY
 BT
 mr
 VD

@@ -30,7 +30,7 @@
 	icon_state = "mod_lamp"
 	worn_icon_state = "mod_lamp_a"
 	slowdown = 0
-	light_mod = 4 /// The boost to armor shoulder light
+	light_mod = 6 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
 
 /**

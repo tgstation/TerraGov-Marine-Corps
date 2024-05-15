@@ -445,7 +445,7 @@
 			/obj/item/clothing/head/modular/som/bio = -1,
 			/obj/item/clothing/head/modular/som/hades = 3,
 			/obj/item/clothing/head/modular/som/engineer = -1,
-			/obj/item/clothing/head/modular/som/lorica = -1,
+			/obj/item/clothing/head/modular/som/lorica = 3,
 			/obj/item/clothing/suit/modular/som/light = -1,
 			/obj/item/clothing/suit/modular/som = -1,
 			/obj/item/clothing/suit/modular/som/heavy = -1,
