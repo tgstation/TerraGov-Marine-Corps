@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "AI can now use Ctrl Click on weeded tiles to get coordinates"

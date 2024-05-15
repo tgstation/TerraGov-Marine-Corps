@@ -1201,7 +1201,7 @@
 			/obj/item/clothing/under/marine/striped = -1,
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/under/marine/squad/neck/delta = -1,
-			/obj/item/clothing/under/marine/squad/neck/charile = -1,
+			/obj/item/clothing/under/marine/squad/neck/charlie = -1,
 			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,

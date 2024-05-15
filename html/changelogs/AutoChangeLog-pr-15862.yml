@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - balance: "AI can now be dragged when unanchored, but is more vulnerable to getting flung around by explosions than before."

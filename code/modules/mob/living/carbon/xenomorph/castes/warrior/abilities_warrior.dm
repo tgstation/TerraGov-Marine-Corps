@@ -716,16 +716,18 @@
 
 /datum/action/ability/activable/xeno/warrior/punch/flurry/do_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/mob/living/living_target = A
 	var/jab_damage = round((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_JAB_DAMAGE_MULTIPLIER)
-	if(!living_target.punch_act(xeno_owner, jab_damage, FALSE))
+	if(!A.punch_act(xeno_owner, jab_damage, FALSE))
 		return fail_activate()
 	current_charges--
 	succeed_activate()
 	add_cooldown()
-	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(!empower_action?.check_empower(living_target))
+	if(!isliving(A))
 		return
+	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
+	if(!empower_action?.check_empower(A))
+		return
+	var/mob/living/living_target = A
 	living_target.adjust_blindness(WARRIOR_JAB_BLIND)
 	living_target.adjust_blurriness(WARRIOR_JAB_BLUR)
 	living_target.apply_status_effect(STATUS_EFFECT_CONFUSED, WARRIOR_JAB_CONFUSION_DURATION)
