@@ -413,33 +413,34 @@
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
 	req_one_access = list()
 	dispensable_reagents = list(
-		/datum/reagent/water,
-		/datum/reagent/consumable/milk,
-		/datum/reagent/consumable/ice,
 		/datum/reagent/consumable/coffee,
-		/datum/reagent/consumable/cream,
-		/datum/reagent/consumable/tea,
-		/datum/reagent/consumable/tea/icetea,
 		/datum/reagent/consumable/space_cola,
-		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/cream,
 		/datum/reagent/consumable/dr_gibb,
-		/datum/reagent/consumable/space_up,
-		/datum/reagent/consumable/tonic,
-		/datum/reagent/consumable/sodawater,
-		/datum/reagent/consumable/lemon_lime,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/grenadine,
+		/datum/reagent/consumable/ice,
+		/datum/reagent/consumable/tea/icetea,
 		/datum/reagent/consumable/lemonjuice,
-		/datum/reagent/consumable/watermelonjuice,
-	)
-
-	emagged_message = list(
-		"You change the mode from 'McNano' to 'Pizza King'.",
-		"You change the mode from 'Pizza King' to 'McNano'.",
-	)
-	emagged_reagents = list(
+		/datum/reagent/consumable/lemon_lime,
+		/datum/reagent/consumable/limejuice,
+		/datum/reagent/consumable/melon_soda,
+		/datum/reagent/consumable/menthol,
+		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/pwr_game,
+		/datum/reagent/consumable/shamblers,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/sodawater,
+		/datum/reagent/consumable/sol_dry,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/tea,
+		/datum/reagent/consumable/tomatojuice,
+		/datum/reagent/consumable/tonic,
+		/datum/reagent/water,
 		/datum/reagent/consumable/ethanol/thirteenloko,
-		/datum/reagent/consumable/grapesoda,
+		/datum/reagent/consumable/ethanol/whiskey_cola,
+		/datum/reagent/toxin/mindbreaker,
 	)
 	needs_medical_training = FALSE
 
@@ -470,37 +471,35 @@
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list(
-		/datum/reagent/consumable/lemon_lime,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/orangejuice,
-		/datum/reagent/consumable/limejuice,
-		/datum/reagent/consumable/tomatojuice,
-		/datum/reagent/consumable/sodawater,
-		/datum/reagent/consumable/tonic,
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/consumable/ethanol/kahlua,
-		/datum/reagent/consumable/ethanol/whiskey,
-		/datum/reagent/consumable/ethanol/sake,
-		/datum/reagent/consumable/ethanol/wine,
-		/datum/reagent/consumable/ethanol/vodka,
-		/datum/reagent/consumable/ethanol/gin,
-		/datum/reagent/consumable/ethanol/rum,
-		/datum/reagent/consumable/ethanol/tequila,
-		/datum/reagent/consumable/ethanol/vermouth,
-		/datum/reagent/consumable/ethanol/cognac,
+		/datum/reagent/consumable/ethanol/absinthe,
 		/datum/reagent/consumable/ethanol/ale,
-		/datum/reagent/consumable/ethanol/mead,
-	)
-
-	emagged_message = list(
-		"You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.",
-		"You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.",
-	)
-	emagged_reagents = list(
-		/datum/reagent/consumable/ethanol/goldschlager,
-		/datum/reagent/consumable/ethanol/patron,
-		/datum/reagent/consumable/watermelonjuice,
-		/datum/reagent/consumable/berryjuice,
+		/datum/reagent/consumable/ethanol/applejack,
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/coconut_rum,
+		/datum/reagent/consumable/ethanol/cognac,
+		/datum/reagent/consumable/ethanol/creme_de_cacao,
+		/datum/reagent/consumable/ethanol/creme_de_coconut,
+		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/curacao,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/hcider,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/beer/maltliquor,
+		/datum/reagent/consumable/ethanol/navy_rum,
+		/datum/reagent/consumable/ethanol/rice_beer,
+		/datum/reagent/consumable/ethanol/rum,
+		/datum/reagent/consumable/ethanol/sake,
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/wine,
+		/datum/reagent/consumable/ethanol/yuyake,
+		/datum/reagent/consumable/ethanol,
+		/datum/reagent/iron,
+		/datum/reagent/consumable/ethanol/atomicbomb,
+		/datum/reagent/consumable/ethanol/fernet
 	)
 	needs_medical_training = FALSE
 
