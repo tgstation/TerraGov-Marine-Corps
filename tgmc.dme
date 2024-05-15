@@ -2055,8 +2055,6 @@
 #include "code\modules\reagents\reagent_containers\food\sandwich.dm"
 #include "code\modules\reagents\reagent_containers\food\snacks.dm"
 #include "code\modules\reagents\reagent_containers\food\soupsalad.dm"
-#include "code\modules\reagents\reagent_containers\food\drinks\bottle.dm"
-#include "code\modules\reagents\reagent_containers\food\drinks\drinkingglass.dm"
 #include "code\modules\reagents\reagent_containers\food\snacks\grown.dm"
 #include "code\modules\reagents\reagent_containers\glass\bottle.dm"
 #include "code\modules\recycling\conveyor2.dm"
