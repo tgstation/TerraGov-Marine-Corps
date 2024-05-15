@@ -321,14 +321,14 @@
 			primary_icons = list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			primary_icons = list(primary_weapon.hud_state_empty, primary_weapon.hud_state_empty)
-		M.hud_used.add_ammo_hud(primary_weapon, primary_icons, primary_weapon.ammo.current_rounds)
+		M?.hud_used?.add_ammo_hud(primary_weapon, primary_icons, primary_weapon.ammo.current_rounds)
 	if(secondary_weapon)
 		var/list/secondary_icons
 		if(secondary_weapon.ammo)
 			secondary_icons = list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
-		M.hud_used.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon.ammo.current_rounds)
+		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon.ammo.current_rounds)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -457,7 +457,7 @@
 			primary_weapon.ammo = I
 			balloon_alert(user, "primary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
+				occupant?.hud_used?.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
 		else
 			primary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
@@ -519,7 +519,7 @@
 			secondary_weapon.ammo = I
 			balloon_alert(user, "secondary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
+				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
