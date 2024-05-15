@@ -362,7 +362,7 @@ export const MedScanner = (props) => {
           </Section>
         ) : null}
         {damaged_organs.length ? (
-          <Section title="Organs">
+          <Section title="Organs Damaged">
             <LabeledList>
               {damaged_organs.map((organ) => (
                 <LabeledList.Item
