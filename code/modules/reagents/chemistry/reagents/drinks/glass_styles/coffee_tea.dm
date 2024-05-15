@@ -34,14 +34,14 @@
 	icon_state = "icedteaglass"
 
 /datum/glass_style/drinking_glass/soy_latte
-	required_drink_type = /datum/reagent/consumable/soy_latte
+	required_drink_type = /datum/reagent/consumable/coffee/soy_latte
 	name = "soy latte"
 	desc = "A nice and refreshing beverage while you're reading."
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "soy_latte"
 
 /datum/glass_style/drinking_glass/cafe_latte
-	required_drink_type = /datum/reagent/consumable/cafe_latte
+	required_drink_type = /datum/reagent/consumable/coffee/cafe_latte
 	name = "cafe latte"
 	desc = "A nice, strong and refreshing beverage while you're reading."
 	icon = 'icons/obj/drinks/coffee.dmi'

@@ -405,17 +405,29 @@
 	adj_temp = - 7
 	targ_temp = BODYTEMP_NORMAL - 15
 
-/datum/reagent/consumable/soy_latte
+/datum/reagent/consumable/coffee/soy_latte
 	name = "Soy Latte"
 	description = "A nice and tasty beverage while you are reading your hippie books."
 	color = "#cc6404" // rgb: 204,100,4
 	taste_description = "creamy coffee"
+	adj_sleepy = 0
+	adj_temp = 5
 
-/datum/reagent/consumable/cafe_latte
+/datum/reagent/consumable/coffee/soy_latte/on_mob_life(mob/living/L, metabolism)
+	L.heal_limb_damage(0.2)
+	return ..()
+
+/datum/reagent/consumable/coffee/cafe_latte
 	name = "Cafe Latte"
 	description = "A nice, strong and tasty beverage while you are reading."
 	color = "#cc6404" // rgb: 204,100,4
 	taste_description = "bitter cream"
+	adj_sleepy = 0
+	adj_temp = 5
+
+/datum/reagent/consumable/coffee/cafe_latte/on_mob_life(mob/living/L, metabolism)
+	L.heal_limb_damage(0.2)
+	return ..()
 
 /datum/reagent/consumable/doctor_delight
 	name = "The Doctor's Delight"
@@ -814,30 +826,6 @@
 	taste_description = "bitter coldness"
 	adj_temp = 5
 	targ_temp = BODYTEMP_NORMAL - 5
-
-/datum/reagent/consumable/coffee/soy_latte
-	name = "Soy Latte"
-	description = "A nice and tasty beverage while you are reading your hippie books."
-	color = "#664300" // rgb: 102, 67, 0
-	taste_description = "creamy coffee"
-	adj_sleepy = 0
-	adj_temp = 5
-
-/datum/reagent/consumable/coffee/soy_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
-
-/datum/reagent/consumable/coffee/cafe_latte
-	name = "Cafe Latte"
-	description = "A nice, strong and tasty beverage while you are reading."
-	color = "#664300" // rgb: 102, 67, 0
-	taste_description = "bitter cream"
-	adj_sleepy = 0
-	adj_temp = 5
-
-/datum/reagent/consumable/coffee/cafe_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
 
 /datum/reagent/consumable/tea/icetea
 	name = "Iced Tea"
