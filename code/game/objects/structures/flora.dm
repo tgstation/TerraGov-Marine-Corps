@@ -373,7 +373,8 @@
 	icon_state = "grassybush"
 
 /obj/structure/flora/ausbushes/yellowbush
-	icon_state = "yellowbush_3"
+	icon_state = "yellowbush"
+	icon_variants = 5
 
 /obj/structure/flora/ausbushes/fernybush
 	icon_state = "fernybush"
