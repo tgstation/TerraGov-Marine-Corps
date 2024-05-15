@@ -174,7 +174,7 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	organ_id = ORGAN_LIVER
-	damage_effects = "Bruised or broken livers cause very minor amounts of toxin damage and occasional vomiting. Additionally, when a bruised or broken liver filters toxins, it causes toxin damage."
+	damage_effects = "Damaged livers slowly increase toxin damage instead of healing it, take damage when processing toxins, become less effective at processing toxins, and deal toxin damage when processing toxins."
 	///lower value, higher resistance.
 	var/alcohol_tolerance = 0.005
 	///How fast we clean out toxins/toxloss. Adjusts based on organ damage.
