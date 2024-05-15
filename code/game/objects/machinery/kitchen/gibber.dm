@@ -201,7 +201,7 @@
 
 	for(var/obj/item/meatslab AS in meatlist)
 		var/biomass_amount = 0
-		biomass_amount += 5 + floor(meatslab.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 0.5)
+		biomass_amount += floor(meatslab.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 0.5)
 		meatlist -= meatslab
 		meat_produced --
 		internal_beaker.reagents.add_reagent(/datum/reagent/medicine/biomass, biomass_amount)
@@ -236,3 +236,9 @@
 	if(user && Adjacent(user) && !issiliconoradminghost(user))
 		user.put_in_hands(internal_beaker)
 	internal_beaker = null
+
+/obj/machinery/gibber/apc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(HAS_TRAIT(grab.grabbed_thing, TRAIT_MAPSPAWNED))
+		balloon_alert(user, "bad meat")
+		return FALSE
+	return ..()
