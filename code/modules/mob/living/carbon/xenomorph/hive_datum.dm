@@ -691,6 +691,8 @@
 // ***************************************
 // *********** Xeno death
 // ***************************************
+
+///Handles any effects when a xeno dies
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/dead_xeno)
 	remove_from_lists(dead_xeno)
 	dead_xenos += dead_xeno
@@ -705,6 +707,7 @@
 	if(!caste_death_timers[base_caste])
 		caste_death_timers[base_caste] = addtimer(CALLBACK(src, PROC_REF(end_caste_death_timer), base_caste), base_caste.death_evolution_delay , TIMER_STOPPABLE)
 
+///Handles effects if a xeno is revived
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
 	add_to_lists(X)
