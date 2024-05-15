@@ -191,7 +191,7 @@
 	. += bullethole_overlay
 
 ///Applies damage to the wall
-/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, armour_penetration = 0)
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
@@ -522,5 +522,5 @@
 			user.drop_held_item()
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
+	playsound(src, SFX_SLAM, 40)
 	return TRUE

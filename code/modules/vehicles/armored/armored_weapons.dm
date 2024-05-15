@@ -5,8 +5,6 @@
 	icon_state = "ltb_cannon"
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
-	///The turret icon if we equip the weapon in a secondary slot, you should null this if its unequippable as such
-	var/secondary_equipped_icon
 	///Weapon slot this weapon fits in
 	var/weapon_slot = MODULE_PRIMARY
 
@@ -58,7 +56,8 @@
 /obj/item/armored_weapon/Destroy()
 	if(chassis)
 		detach(get_turf(chassis))
-	QDEL_NULL(ammo)
+	if(isdatum(ammo))
+		QDEL_NULL(ammo)
 	QDEL_LIST(ammo_magazine)
 	return ..()
 
@@ -170,10 +169,12 @@
 	var/mob/living/living_firer = firer
 	if(living_firer.IsStaggered())
 		projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
-	if((projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF) && ishuman(firer))
+	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()
 		projectile_to_fire.iff_signal = id?.iff_signal
+	if(firer)
+		projectile_to_fire.def_zone = firer.zone_selected
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
@@ -192,7 +193,7 @@
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammo.default_ammo.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
 
@@ -264,7 +265,7 @@
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
 			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
 		else
-			tank.secondary_weapon_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.dir]")
+			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
 	chassis = tank
 	forceMove(tank)
@@ -302,7 +303,6 @@
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	weapon_slot = MODULE_SECONDARY
-	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -320,11 +320,10 @@
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	weapon_slot = MODULE_PRIMARY
-	secondary_equipped_icon = 'icons/obj/armored/3x3/tank_secondary_gun.dmi'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	variance = 15
+	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 3 SECONDS
 	maximum_magazines = 5

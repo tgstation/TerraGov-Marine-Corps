@@ -44,14 +44,15 @@
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
-	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		balloon_alert(user, "Can't build here")
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
-		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+		if(!(thing.atom_flags & ON_BORDER)) //dense and non-directional, end
 			balloon_alert(user, "No space")
 			return FALSE
 		if(thing.dir != user.dir)

@@ -2,9 +2,9 @@
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
-	item_state = "chain"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "chain"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
@@ -19,8 +19,8 @@
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
-	item_state = "cane"
-	flags_atom = CONDUCT
+	worn_icon_state = "cane"
+	atom_flags = CONDUCT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
@@ -35,7 +35,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	item_state = "broken_beer"
+	worn_icon_state = "broken_beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
@@ -49,8 +49,8 @@
 	name = "powerfist"
 	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and click with an empty off-hand or right click to pop out the cell."
 	icon_state = "powerfist"
-	item_state = "powerfist"
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "powerfist"
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	attack_verb = list("smashed", "rammed", "power-fisted")
 	var/obj/item/cell/cell
@@ -128,7 +128,7 @@
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/cell))
 		return ..()
-	if(!istype(I, /obj/item/cell/lasgun))
+	if(!islascell(I))
 		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
 		return
 	if(I.w_class >= WEIGHT_CLASS_BULKY)
@@ -188,5 +188,5 @@
 	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 	singular_name = "stone"
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM

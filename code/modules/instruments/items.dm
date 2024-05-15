@@ -6,7 +6,7 @@
 	icon = 'icons/obj/musician.dmi'
 	interaction_flags = INTERACT_OBJ_UI
 	item_state_worn = TRUE
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/instruments_right.dmi',
 		slot_s_store_str = 'icons/mob/instruments_back.dmi',
@@ -52,21 +52,21 @@
 	name = "space violin"
 	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
 	icon_state = "violin"
-	item_state = "violin"
-	hitsound = "swing_hit"
+	worn_icon_state = "violin"
+	hitsound = SFX_SWING_HIT
 	allowed_instrument_ids = "violin"
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
 	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
 	icon_state = "golden_violin"
-	item_state = "golden_violin"
+	worn_icon_state = "golden_violin"
 
 /obj/item/instrument/piano_synth
 	name = "synthesizer"
 	desc = "An advanced electronic synthesizer that can be used as various instruments."
 	icon_state = "synth"
-	item_state = "synth"
+	worn_icon_state = "synth"
 	allowed_instrument_ids = "piano"
 
 /obj/item/instrument/piano_synth/Initialize(mapload)
@@ -77,7 +77,7 @@
 	name = "banjo"
 	desc = "A drum with a neck and strings."
 	icon_state = "banjo"
-	item_state = "banjo"
+	worn_icon_state = "banjo"
 	attack_verb = list("scruggs-styles", "hum-diggitys", "shin-digs", "clawhammers")
 	hitsound = 'sound/weapons/banjoslap.ogg'
 	allowed_instrument_ids = "banjo"
@@ -86,7 +86,7 @@
 	name = "guitar"
 	desc = "It's made of wood and has bronze strings."
 	icon_state = "guitar"
-	item_state = "guitar"
+	worn_icon_state = "guitar"
 	attack_verb = list("serenades", "crashes", "smashes")
 	hitsound = 'sound/weapons/stringsmash.ogg'
 	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
@@ -95,7 +95,7 @@
 	name = "electric guitar"
 	desc = "Makes all your shredding needs possible."
 	icon_state = "eguitar"
-	item_state = "eguitar"
+	worn_icon_state = "eguitar"
 	force = 12
 	attack_verb = list("shreds", "crashes", "smashes")
 	hitsound = 'sound/weapons/stringsmash.ogg'
@@ -105,28 +105,28 @@
 	name = "glockenspiel"
 	desc = "Smooth metal bars perfect for any marching band."
 	icon_state = "glockenspiel"
-	item_state = "glockenspiel"
+	worn_icon_state = "glockenspiel"
 	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 
 /obj/item/instrument/accordion
 	name = "accordion"
 	desc = "Monkey not included."
 	icon_state = "accordion"
-	item_state = "accordion"
+	worn_icon_state = "accordion"
 	allowed_instrument_ids = list("crack", "crtango", "accordion")
 
 /obj/item/instrument/trumpet
 	name = "trumpet"
 	desc = "To announce the arrival of the king!"
 	icon_state = "trumpet"
-	item_state = "trumpet"
+	worn_icon_state = "trumpet"
 	allowed_instrument_ids = "crtrumpet"
 
 /obj/item/instrument/saxophone
 	name = "saxophone"
 	desc = "This soothing sound will be sure to leave your audience in tears."
 	icon_state = "saxophone"
-	item_state = "saxophone"
+	worn_icon_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
 
 
@@ -134,7 +134,7 @@
 	name = "trombone"
 	desc = "How can any pool table ever hope to compete?"
 	icon_state = "trombone"
-	item_state = "trombone"
+	worn_icon_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 
 /obj/item/instrument/recorder
@@ -142,16 +142,16 @@
 	desc = "Just like in school, playing ability and all."
 	force = 5
 	icon_state = "recorder"
-	item_state = "recorder"
+	worn_icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
 	desc = "For when you get a bad case of the space blues."
 	icon_state = "harmonica"
-	item_state = "harmonica"
+	worn_icon_state = "harmonica"
 	allowed_instrument_ids = list("crharmony", "harmonica")
-	flags_equip_slot = ITEM_SLOT_MASK
+	equip_slot_flags = ITEM_SLOT_MASK
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
@@ -173,7 +173,7 @@
 	name = "gilded bike horn"
 	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
 	icon_state = "bike_horn"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)

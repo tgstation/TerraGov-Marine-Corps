@@ -11,7 +11,6 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
@@ -217,33 +216,33 @@
 
 /**
  * This is a SAFE proc. Use this instead of equip_to_splot()!
- * set del_on_fail to have it delete W if it fails to equip
+ * set del_on_fail to have it delete item_to_equip if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
-	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
+/mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
+	if(!istype(item_to_equip) || QDELETED(item_to_equip)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
-	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
+	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
-			qdel(W)
+			qdel(item_to_equip)
 			return FALSE
 		if(warning)
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
-	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [W]")
+	if(item_to_equip.equip_delay_self && !ignore_delay)
+		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
+			to_chat(src, "You stop putting on \the [item_to_equip]")
 			return FALSE
-		equip_to_slot(W, slot) //This proc should not ever fail.
+		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
-			W.unwield(src)
+		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+			item_to_equip.unwield(src)
 		return TRUE
 	else
-		equip_to_slot(W, slot) //This proc should not ever fail.
+		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
-			W.unwield(src)
+		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+			item_to_equip.unwield(src)
 		return TRUE
 
 /**
@@ -299,11 +298,20 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+	//Sends quick equip signal, if our signal is not handled/blocked we continue to the normal behaviour
+	var/return_value = SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src)
+	switch(return_value)
+		if(COMSIG_QUICK_EQUIP_HANDLED)
+			return TRUE
+		if(COMSIG_QUICK_EQUIP_BLOCKED)
+			return FALSE
+
 	//calls on the item to return a suitable item to be equipped
+	//Realistically only would get called on an item that has no storage/storage didnt fail signal
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
-	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+	if(CHECK_BITFIELD(found.inventory_flags, NOQUICKEQUIP))
 		return FALSE
 	temporarilyRemoveItemFromInventory(found)
 	put_in_hands(found)

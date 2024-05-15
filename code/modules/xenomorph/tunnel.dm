@@ -131,7 +131,9 @@ TUNNEL
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)
-	M.client.screen -= map
+	M?.client?.screen -= map
+	if(!polled_coords)
+		return
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 
 	///We find the tunnel, looking within 10 tiles of where the user clicked, excluding src

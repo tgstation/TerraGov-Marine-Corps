@@ -44,6 +44,7 @@
 
 
 /obj/structure/closet/crate/secure/emp_act(severity)
+	. = ..()
 	for(var/obj/O in src)
 		O.emp_act(severity)
 	if(!broken && !opened  && prob(50/severity))
@@ -62,8 +63,6 @@
 		else
 			req_access = list()
 			req_access += pick(ALL_ACCESS)
-	..()
-
 
 //------------------------------------
 //			Secure Crates

@@ -91,7 +91,7 @@
 
 ///called every time the firing animation is refreshed, not every actual fire
 /obj/structure/gun_breech/proc/on_main_fire(obj/item/ammo_magazine/owner_ammo)
-	if(owner_ammo.default_ammo.flags_ammo_behavior & AMMO_ENERGY) // todo add puffs of smoke that fly out
+	if(owner_ammo.default_ammo.ammo_behavior_flags & AMMO_ENERGY) // todo add puffs of smoke that fly out
 		return
 	if(owner_ammo.max_rounds == 1)
 		return

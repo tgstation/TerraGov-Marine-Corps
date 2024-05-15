@@ -117,7 +117,7 @@
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 	airlock.locked = TRUE
 	var/turf/current_turf = get_turf(airlock)
-	current_turf.flags_atom |= AI_BLOCKED
+	current_turf.atom_flags |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/airlock/abandoned
 	name = "airlock abandoned helper"
@@ -135,7 +135,7 @@
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 	airlock.abandoned = TRUE
 	var/turf/current_turf = get_turf(airlock)
-	current_turf.flags_atom |= AI_BLOCKED
+	current_turf.atom_flags |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/airlock/welded
 	name = "airlock welded helper"
@@ -153,7 +153,7 @@
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
 	airlock.welded = TRUE
 	var/turf/current_turf = get_turf(airlock)
-	current_turf.flags_atom |= AI_BLOCKED
+	current_turf.atom_flags |= AI_BLOCKED
 
 /obj/effect/mapping_helpers/broken_apc
 	name = "broken apc helper"
@@ -243,7 +243,7 @@
 /obj/effect/mapping_helpers/area_flag_injector/Initialize(mapload)
 	. = ..()
 	var/area/area = get_area(src)
-	area.flags_area |= flag_type
+	area.area_flags |= flag_type
 
 /obj/effect/mapping_helpers/area_flag_injector/marine_base
 	flag_type = MARINE_BASE
@@ -260,6 +260,8 @@
 /obj/effect/mapping_helpers/area_flag_injector/near_fob
 	flag_type = NEAR_FOB
 
+/obj/effect/mapping_helpers/area_flag_injector/no_construction
+	flag_type = NO_CONSTRUCTION
 
 /obj/effect/mapping_helpers/simple_pipes
 	name = "Simple Pipes"

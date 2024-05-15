@@ -170,7 +170,9 @@
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
-		user.client.screen -= map
+		user?.client?.screen -= map
+		if(!polled_coords)
+			return
 		starting_point = locate(polled_coords[1], polled_coords[2], 2)
 
 	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
@@ -265,7 +267,7 @@
 	if(A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(source, span_warning("That target is too deep underground!"))
 		return
-	if(A.flags_area & OB_CAS_IMMUNE)
+	if(A.area_flags & OB_CAS_IMMUNE)
 		to_chat(source, span_warning("Our payload won't reach this target!"))
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)

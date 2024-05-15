@@ -29,7 +29,7 @@
 	mob_parent.changeNext_move(original_xeno.xeno_caste.attack_delay)
 	if(ismob(attacked))
 		mob_parent.do_attack_animation(attacked, ATTACK_EFFECT_REDSLASH)
-		playsound(mob_parent.loc, "alien_claw_flesh", 25, 1)
+		playsound(mob_parent.loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
 		return
 	mob_parent.do_attack_animation(attacked, ATTACK_EFFECT_CLAW)
 
@@ -50,6 +50,7 @@
 	appearance = original_mob.appearance
 	desc = original_mob.desc
 	name = original_mob.name
+	render_target = null
 	RegisterSignals(original_mob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(destroy_illusion))
 	QDEL_IN(src, life_time)
 

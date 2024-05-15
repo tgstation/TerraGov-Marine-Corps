@@ -2,8 +2,8 @@
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
-	item_state = "baton"
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "baton"
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 15
 	sharp = 0
 	edge = 0
@@ -119,7 +119,7 @@
 	if(bcell?.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
-		playsound(loc, "sparks", 25, 1, 6)
+		playsound(loc, SFX_SPARKS, 25, 1, 6)
 		update_icon()
 	else
 		status = 0
@@ -187,23 +187,23 @@
 	return 1
 
 /obj/item/weapon/baton/emp_act(severity)
+	. = ..()
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
-	..()
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"
-	item_state = "prod"
+	worn_icon_state = "prod"
 	force = 3
 	throwforce = 5
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
 	attack_verb = list("poked")
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	has_user_lock = FALSE
 
 
@@ -211,8 +211,8 @@
 	name = "electrified prodder"
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
-	item_state = "baton"
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "baton"
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 12
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
@@ -237,7 +237,7 @@
 	if(charges > 0)
 		status = !status
 		to_chat(user, span_notice("\The [src] is now [status ? "on" : "off"]."))
-		playsound(loc, "sparks", 15, 1)
+		playsound(loc, SFX_SPARKS, 15, 1)
 		update_icon()
 	else
 		status = 0
@@ -268,11 +268,11 @@
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
-	switch(severity)
-		if(1)
-			charges = 0
-		if(2)
-			charges = max(0, charges - 5)
+	. = ..()
+	if(severity == EMP_DEVASTATE)
+		charges = 0
+	else
+		charges = max(0, charges - (6 - severity))
 	if(charges < 1)
 		status = 0
 		update_icon()

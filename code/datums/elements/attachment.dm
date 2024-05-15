@@ -5,7 +5,7 @@
 	var/list/attachment_data
 
 //on_attach, on_detach, on_activate and can_attach are all proc paths that get turned into callbacks when they are called.
-/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, mob_overlay_icon, mob_pixel_shift_x, mob_pixel_shift_y, attachment_layer, extra_vars)
+/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, mob_overlay_icon, mob_pixel_shift_x, mob_pixel_shift_y, attachment_layer, extra_vars)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
@@ -20,7 +20,7 @@
 			CAN_ATTACH = can_attach, //Callback that is called on attach to determine by the attachment whether or not it can attach to the item.
 			PIXEL_SHIFT_X = pixel_shift_x, //Pixel shift on X Axis for the attachments overlay.
 			PIXEL_SHIFT_Y = pixel_shift_y, //Pixel shift on Y Axis for the attachments overlay.
-			FLAGS_ATTACH_FEATURES = flags_attach_features, //Flags for how the attachment functions.
+			FLAGS_ATTACH_FEATURES = attach_features_flags, //Flags for how the attachment functions.
 			ATTACH_DELAY = attach_delay, //Delay for attaching.
 			DETACH_DELAY = detach_delay, //Delay for detaching.
 			ATTACH_SKILL = attach_skill, //Skill used in attaching and detaching. Can be null. If user does not meet the skill requirement the attach delay and detach delay is doubled.

@@ -14524,7 +14524,7 @@
 /area/prison/command/secretary_office)
 "aTP" = (
 /obj/structure/rack,
-/obj/item/weapon/katana/replica,
+/obj/item/weapon/sword/katana/replica,
 /turf/open/floor/wood,
 /area/prison/command/office)
 "aTQ" = (

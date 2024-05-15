@@ -42,11 +42,11 @@
 				to_chat(human_user, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+			if((head && (head.inventory_flags & COVERMOUTH)) || (wear_mask && (wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
-			if((human_user.head && (human_user.head.flags_inventory & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.flags_inventory & COVERMOUTH)))
+			if((human_user.head && (human_user.head.inventory_flags & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove your mask!"))
 				return FALSE
 
@@ -198,7 +198,6 @@
 	if(src == M)
 		if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 			holo_card_color = null
-			update_targeted()
 			visible_message(span_notice("[src] removes the holo card on [p_them()]self."),
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return

@@ -12,7 +12,7 @@
 	///The faction this belongs to
 	var/faction = FACTION_SOM
 	///How many times this can be used
-	var/charges = 1
+	var/charges = 3
 	///The target turf for teleportation
 	var/turf/target_turf
 	///The Z-level that the teleporter can teleport to
@@ -178,7 +178,7 @@
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	if(!polled_coords)
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		choosing = FALSE
 		return
 	var/turf/chosen_turf = locate(polled_coords[1], polled_coords[2], teleporter.targetted_zlevel)
@@ -194,7 +194,7 @@
 	if(choosing)
 		var/obj/structure/teleporter_array/teleporter = target
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(teleporter.targetted_zlevel, GLOB.faction_to_minimap_flag[owner.faction])
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
 	return ..()

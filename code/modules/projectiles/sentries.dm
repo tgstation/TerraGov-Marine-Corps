@@ -89,6 +89,11 @@
 		return
 	icon_state += "_f"
 
+/obj/machinery/deployable/mounted/sentry/update_overlays()
+	. = ..()
+	if(machine_stat & EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+
 /obj/machinery/deployable/mounted/sentry/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(camera)
@@ -302,7 +307,7 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(damage_amount <= 0)
 		return
 	if(prob(10))
@@ -316,14 +321,27 @@
 	sentry_alert(SENTRY_ALERT_DAMAGE)
 	update_icon()
 
+/obj/machinery/deployable/mounted/sentry/emp_act(severity)
+	. = ..()
+	machine_stat |= EMPED
+	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //will need to add something later to be additive or something
+	update_appearance(UPDATE_OVERLAYS)
+
+///Lifts EMP effects
+/obj/machinery/deployable/mounted/sentry/proc/remove_emp()
+	machine_stat &= ~EMPED
+	update_appearance(UPDATE_OVERLAYS)
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+
 //----------------------------------------------------------------------------
 // Sentry Functions
 
 ///Sentry wants to scream for help.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_alert(alert_code, mob/mob)
-	if(!internal_item)
-		return
 	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(!gun)
+		return
 	if(!alert_code || !CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(gun.turret_flags, TURRET_ON))
 		return
 
@@ -355,7 +373,7 @@
 
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
-	if(!scan())
+	if((machine_stat & EMPED) || !scan())
 		var/obj/item/weapon/gun/gun = get_internal_item()
 		gun?.stop_fire()
 		firing = FALSE
@@ -396,7 +414,7 @@
 		return
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
-	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
@@ -468,7 +486,7 @@
 				continue
 			if(ismob(AM))
 				continue
-			if(!(AM.allow_pass_flags & (gun.ammo_datum_type::flags_ammo_behavior & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE) && !(AM.type in ignored_terrains))) //todo:accurately populate ignored_terrains
+			if(!(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE) && !(AM.type in ignored_terrains))) //todo:accurately populate ignored_terrains
 				return FALSE
 
 	return TRUE
@@ -540,7 +558,7 @@
 	var/obj/item/item = get_internal_item()
 	if(!item)
 		return
-	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
 		balloon_alert(user, "Cannot disassemble")
 		return
 	if(!match_iff(user)) //You can't steal other faction's turrets
@@ -558,7 +576,7 @@
 		set_on(TRUE)
 		return
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+	DISABLE_BITFIELD(attached_item.item_flags, IS_DEPLOYED)
 
 	attached_item.reset()
 	user.unset_interaction()

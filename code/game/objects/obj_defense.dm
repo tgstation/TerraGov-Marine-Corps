@@ -1,4 +1,4 @@
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
 	if(!damage_amount)
@@ -66,10 +66,14 @@
 			take_damage(rand(5, 45), BRUTE, BOMB, 0)
 
 /obj/lava_act()
-	take_damage(25, BURN, FIRE)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(!take_damage(50, BURN, FIRE))
+		return FALSE
 	if(QDELETED(src))
-		return
-	fire_act()
+		return FALSE
+	fire_act(LAVA_BURN_LEVEL)
+	return TRUE
 
 /obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()
@@ -132,7 +136,7 @@
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"),
 		span_danger("We slash [src]!"))
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		playsound(loc, "alien_claw_metal", 25)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
 	attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration)
 	return TRUE
 

@@ -1,12 +1,23 @@
+/*
+	Screen objects
+	Todo: improve/re-implement
+
+	Screen objects are only used for the hud and should not appear anywhere "in-game".
+	They are used with the client/screen list and the screen_loc var.
+	For more information, see the byond documentation on the screen_loc and screen vars.
+*/
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
+	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
+	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
 	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
+	/// A reference to the owner HUD, if any.
+	var/datum/hud/hud
 
 	//Map popups
 	/**
@@ -23,6 +34,15 @@
 	 */
 	var/del_on_map_removal = TRUE
 
+	/**
+	 * If TRUE, clicking the screen element will fall through and perform a default "Click" call
+	 * Obviously this requires your Click override, if any, to call parent on their own.
+	 * This is set to FALSE to default to dissade you from doing this.
+	 * Generally we don't want default Click stuff, which results in bugs like using Telekinesis on a screen element
+	 * or trying to point your gun at your screen.
+	*/
+	var/default_click = FALSE
+
 /atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	if(hud_owner && istype(hud_owner))
@@ -33,6 +53,11 @@
 	hud = null
 	return ..()
 
+/atom/movable/screen/Click(location, control, params)
+	if(atom_flags & INITIALIZED)
+		SEND_SIGNAL(src, COMSIG_SCREEN_ELEMENT_CLICK, location, control, params, usr)
+	if(default_click)
+		return ..()
 
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
@@ -57,6 +82,12 @@
 
 /atom/movable/screen/swap_hand/human
 	icon_state = "swap_1"
+
+/atom/movable/screen/craft
+	name = "crafting menu"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "craft"
+	screen_loc = ui_crafting
 
 /atom/movable/screen/language_menu
 	name = "language menu"
@@ -137,9 +168,8 @@
 
 
 /atom/movable/screen/close/Click()
-	if(istype(master, /obj/item/storage))
-		var/obj/item/storage/S = master
-		S.close(usr)
+	var/datum/storage/storage = master
+	storage.hide_from(usr)
 	return TRUE
 
 
@@ -257,6 +287,34 @@
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 
+/atom/movable/screen/storage/Click(location, control, params)
+	if(usr.incapacitated(TRUE))
+		return
+
+	var/list/modifiers = params2list(params)
+
+	if(!master)
+		return
+
+	var/datum/storage/current_storage_datum = master
+	var/obj/item/item_in_hand = usr.get_active_held_item()
+	if(item_in_hand)
+		current_storage_datum.parent.attackby(item_in_hand, usr)
+		return
+
+	// Taking something out of the storage screen (including clicking on item border overlay)
+	var/list/screen_loc_params = splittext(modifiers["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
+
+	for(var/i = 1 to length(current_storage_datum.click_border_start))
+		if(current_storage_datum.click_border_start[i] > click_x || click_x > current_storage_datum.click_border_end[i])
+			continue
+		if(length(current_storage_datum.parent.contents) < i)
+			continue
+		item_in_hand = current_storage_datum.parent.contents[i]
+		item_in_hand.attack_hand(usr)
+		return
 
 /atom/movable/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
@@ -266,7 +324,9 @@
 	var/total_w = 0
 	for(var/obj/item/I in S)
 		total_w += I.w_class
-	var/fullness = round(10 * max(length(S.contents) / S.storage_slots, total_w / S.max_storage_space))
+	var/storage_slot_fullness = S.storage_datum.storage_slots ? (length(S.contents) / S.storage_datum.storage_slots) : 0
+	var/slotless_fullness = S.storage_datum.max_storage_space ? (total_w / S.storage_datum.max_storage_space) : 0
+	var/fullness = round(10 * max(storage_slot_fullness, slotless_fullness))
 	switch(fullness)
 		if(10)
 			color = "#ff0000"
@@ -274,7 +334,6 @@
 			color = "#ffa500"
 		else
 			color = null
-
 
 /atom/movable/screen/throw_catch
 	name = "throw/catch"
@@ -301,9 +360,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 	if (!choice)
 		return TRUE
@@ -317,9 +376,9 @@
 	if(isobserver(usr))
 		return
 
-	var/list/PL = params2list(params)
-	var/icon_x = text2num(PL["icon-x"])
-	var/icon_y = text2num(PL["icon-y"])
+	var/list/modifiers = params2list(params)
+	var/icon_x = text2num(modifiers["icon-x"])
+	var/icon_y = text2num(modifiers["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 
 	if(hovering == choice)

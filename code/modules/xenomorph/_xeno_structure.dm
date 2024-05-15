@@ -1,5 +1,5 @@
 /obj/structure/xeno
-	hit_sound = "alien_resin_break"
+	hit_sound = SFX_ALIEN_RESIN_BREAK
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 	///Bitflags specific to xeno structures
@@ -41,11 +41,8 @@
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
-/obj/structure/xeno/flamer_fire_act(burnlevel)
-	take_damage(burnlevel / 3, BURN, FIRE)
-
-/obj/structure/xeno/fire_act()
-	take_damage(10, BURN, FIRE)
+/obj/structure/xeno/fire_act(burn_level)
+	take_damage(burn_level / 3, BURN, FIRE)
 
 /// Destroy the xeno structure when the weed it was on is destroyed
 /obj/structure/xeno/proc/weed_removed()
@@ -59,5 +56,5 @@
 		return
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	balloon_alert_to_viewers("\The [xeno_attacker] tears down \the [src]!", "We tear down \the [src].")
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity) // Ensure its destroyed

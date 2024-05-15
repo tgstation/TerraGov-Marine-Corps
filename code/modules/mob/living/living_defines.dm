@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
+	atom_flags = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
 	///0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 	var/see_override = 0
 	///Badminnery resize
@@ -82,8 +82,6 @@
 	var/on_fire
 	///Tracks how many stacks of fire we have on, max is
 	var/fire_stacks = 0
-	///0: normal, 1: bursting, 2: bursted.
-	var/chestburst = 0
 	///more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 	var/metabolism_efficiency = 1
 
@@ -125,7 +123,7 @@
 	var/datum/job/job
 	var/comm_title = ""
 	/**
-	 * How much blood the mob has. 
+	 * How much blood the mob has.
 	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
 	 */
 	var/blood_volume = 0

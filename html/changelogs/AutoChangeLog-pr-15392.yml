@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Add a button for the AI to open the req console directly"

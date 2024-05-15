@@ -99,7 +99,7 @@
 	ADD_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT) // yea this is meh but IN_USE and interact code are a mess rn and too buggy so less sidestep it
 	update_icon()
 	user.setDir(SOUTH)
-	user.flags_atom |= DIRLOCK
+	user.atom_flags |= DIRLOCK
 	ADD_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	user.forceMove(loc)
 	var/bragmessage = pick("pushing it to the limit","going into overdrive","burning with determination","rising up to the challenge", "getting strong now","getting ripped")
@@ -112,7 +112,7 @@
 	creak_loop.stop(src)
 	playsound(user, 'sound/machines/click.ogg', 60, TRUE)
 	REMOVE_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT)
-	user.flags_atom &= ~DIRLOCK
+	user.atom_flags &= ~DIRLOCK
 	REMOVE_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	update_icon()
 	if(user.faction)

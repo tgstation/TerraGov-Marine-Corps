@@ -16,11 +16,8 @@
 	coverage = 85
 	density = TRUE
 
-/obj/structure/mine_structure/wooden/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, "fire")
-
-/obj/structure/mine_structure/wooden/fire_act()
-	take_damage(25, BURN, "fire")
+/obj/structure/mine_structure/wooden/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/mine_structure/wooden/support_wall
 	name = "wooden support"

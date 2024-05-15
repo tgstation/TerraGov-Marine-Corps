@@ -7,6 +7,7 @@
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
+	allow_construction = FALSE
 	///Multiplier on any slowdown applied to a mob moving through this turf
 	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit
@@ -94,7 +95,7 @@
 		return
 
 	var/mob/living/carbon/carbon_mob = arrived
-	carbon_mob.clean_mob()
+	carbon_mob.wash()
 
 	if(carbon_mob.on_fire)
 		carbon_mob.ExtinguishMob()
@@ -211,7 +212,7 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -233,7 +234,7 @@
 /turf/open/liquid/lava/proc/burn_stuff(AM)
 	var/thing_to_check = AM ? list(AM) : src
 	for(var/atom/thing AS in thing_to_check)
-		if(!thing.lava_act())
+		if(thing.lava_act())
 			. = TRUE
 
 /turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
@@ -255,7 +256,7 @@
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
+				current_turf.atom_flags &= ~AI_BLOCKED
 		else
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return

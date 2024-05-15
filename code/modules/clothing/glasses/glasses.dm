@@ -2,7 +2,7 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/glasses_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/glasses_right.dmi',
 	)
@@ -10,9 +10,9 @@
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE
-	flags_inventory = COVEREYES
-	flags_equip_slot = ITEM_SLOT_EYES
-	flags_armor_protection = EYES
+	inventory_flags = COVEREYES
+	equip_slot_flags = ITEM_SLOT_EYES
+	armor_protection_flags = EYES
 	var/deactive_state = "degoggles"
 	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
@@ -76,14 +76,14 @@
 	name = "science goggles"
 	desc = "The goggles do nothing! Can be used as safety googles."
 	icon_state = "purple"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
 	desc = "Yarr."
 	icon_state = "eyepatch"
-	item_state = "eyepatch"
-	flags_armor_protection = NONE
+	worn_icon_state = "eyepatch"
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -110,13 +110,13 @@
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
 	vision_flags = SEE_OBJS
@@ -125,7 +125,7 @@
 	name = "\improper regulation prescription glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
 	icon_state = "glasses"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/attackby(obj/item/I, mob/user, params)
@@ -146,29 +146,29 @@
 	name = "prescription glasses"
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
-	item_state = "hipster_glasses"
+	worn_icon_state = "hipster_glasses"
 
 /obj/item/clothing/glasses/threedglasses
 	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
 	name = "3D glasses"
 	icon_state = "3d"
-	item_state = "3d"
-	flags_armor_protection = NONE
+	worn_icon_state = "3d"
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
-	item_state = "gglasses"
-	flags_armor_protection = NONE
+	worn_icon_state = "gglasses"
+	armor_protection_flags = NONE
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
-	item_state = "mgoggles"
+	worn_icon_state = "mgoggles"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
-	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
+	equip_slot_flags = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 	goggles = TRUE
 	w_class = WEIGHT_CLASS_TINY
 
@@ -230,10 +230,10 @@
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	icon_state = "welding-g"
-	item_state = "welding-g"
+	worn_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_inventory = COVEREYES
-	flags_inv_hide = HIDEEYES
+	inventory_flags = COVEREYES
+	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
@@ -253,30 +253,32 @@
 /obj/item/clothing/glasses/welding/activate(mob/user)
 	. = ..()
 	if(active)
-		flip_up()
+		flip_down(user)
 	else
-		flip_down()
+		flip_up(user)
 
-	//I imagine some signals use it so letting it still call it
+	//This sends a signal that toggles the tint component's effects
 	toggle_item_state(user)
 
 ///Toggle the welding goggles on
-/obj/item/clothing/glasses/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	DISABLE_BITFIELD(flags_armor_protection, EYES)
+/obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
+	DISABLE_BITFIELD(inventory_flags, COVEREYES)
+	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
-	to_chat(usr, "You push [src] up out of your face.")
+	if(user)
+		to_chat(user, "You push [src] up out of your face.")
 
 ///Toggle the welding goggles off
-/obj/item/clothing/glasses/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-	ENABLE_BITFIELD(flags_armor_protection, EYES)
+/obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
+	ENABLE_BITFIELD(inventory_flags, COVEREYES)
+	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
+	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
-	to_chat(usr, "You flip [src] down to protect your eyes.")
+	if(user)
+		to_chat(user, "You flip [src] down to protect your eyes.")
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
@@ -290,7 +292,7 @@
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
-	item_state = "rwelding-g"
+	worn_icon_state = "rwelding-g"
 
 /obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
@@ -302,7 +304,7 @@
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	name = "sunglasses"
 	icon_state = "sun"
-	item_state = "sunglasses"
+	worn_icon_state = "sunglasses"
 	eye_protection = 1
 
 /obj/item/clothing/glasses/sunglasses/Initialize(mapload)
@@ -314,7 +316,7 @@
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
-	item_state = "blindfold"
+	worn_icon_state = "blindfold"
 	eye_protection = 2
 
 /obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
@@ -328,7 +330,7 @@
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
-	item_state = "bigsunglasses"
+	worn_icon_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/big/prescription
 	name = "prescription sunglasses"
@@ -371,7 +373,7 @@
 /obj/item/clothing/glasses/sunglasses/fake/big
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
-	item_state = "bigsunglasses"
+	worn_icon_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
 	name = "prescription sunglasses"
@@ -387,7 +389,7 @@
 	name = "Security HUD Sight"
 	desc = "A standard eyepiece, but modified to display security information to the user visually. This makes it commonplace among military police, though other models exist."
 	icon_state = "securityhud"
-	item_state = "securityhud"
+	worn_icon_state = "securityhud"
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
@@ -413,13 +415,13 @@
 	name = "aviator sunglasses"
 	desc = "A pair of aviator sunglasses."
 	icon_state = "aviator"
-	item_state = "aviator"
+	worn_icon_state = "aviator"
 
 /obj/item/clothing/glasses/sunglasses/aviator/yellow
 	name = "aviator sunglasses"
 	desc = "A pair of aviator sunglasses. Comes with yellow lens."
 	icon_state = "aviator_yellow"
-	item_state = "aviator_yellow"
+	worn_icon_state = "aviator_yellow"
 
 /obj/item/clothing/glasses/night_vision
 	name = "\improper BE-47 night vision goggles"
@@ -427,7 +429,7 @@
 	icon_state = "night_vision"
 	deactive_state = "night_vision_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
-	item_state_slots = list()
+	worn_item_state_slots = list()
 	tint = COLOR_RED
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -537,7 +539,7 @@
 
 ///Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed
 /obj/item/clothing/glasses/night_vision/proc/update_worn_state(state = active)
-	item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
+	worn_item_state_slots[slot_glasses_str] = initial(icon_state) + (state ? "" : "_off")
 
 /obj/item/clothing/glasses/night_vision/unequipped(mob/unequipper, slot)
 	. = ..()

@@ -5,7 +5,6 @@
 	name = "cloak implant"
 	desc = "A top of the line nanotrasen implant, designed for infiltration."
 	icon_state = "gripper"
-	flags_implant = GRANT_ACTIVATION_ACTION
 	cooldown_time = 0
 	var/deactivation_timer
 

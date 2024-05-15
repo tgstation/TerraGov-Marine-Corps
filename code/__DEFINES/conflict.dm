@@ -37,7 +37,7 @@
 #define INTENT_NUMBER_HARM 3
 
 //Ammo defines for gun/projectile related things.
-//flags_ammo_behavior
+//ammo_behavior_flags
 
 ///Ammo will impact a targeted open turf instead of continuing past it
 #define AMMO_TARGET_TURF (1<<0)
@@ -75,7 +75,7 @@
 #define AMMO_SOUND_PITCH (1<<16)
 
 //Gun defines for gun related thing. More in the projectile folder.
-//flags_gun_features
+//gun_features_flags
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_UNUSUAL_DESIGN (1<<1)
 #define GUN_AMMO_COUNTER (1<<2)
@@ -126,7 +126,7 @@
 #define AUTOFIRE_CONTINUE (1<<0)
 #define AUTOFIRE_SUCCESS (1<<1)
 
-//Ammo magazine defines, for flags_magazine
+//Ammo magazine defines, for magazine_flags
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)
@@ -141,6 +141,10 @@
 #define SLOWDOWN_ARMOR_HEAVY 0.7
 #define SLOWDOWN_ARMOR_VERY_HEAVY 1
 
+//Marine armor defines
+#define MARINE_ARMOR_LIGHT list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+#define MARINE_ARMOR_MEDIUM list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+#define MARINE_ARMOR_HEAVY list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 //=================================================
 

@@ -5,7 +5,7 @@
 	name = "optical meson scanner"
 	desc = "Used to shield the user's eyes from harmful electromagnetic emissions, also used as general safety goggles. Not adequate as welding protection."
 	icon_state = "meson"
-	item_state = "meson"
+	worn_icon_state = "meson"
 	deactive_state = "degoggles_meson"
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list(
@@ -29,9 +29,9 @@
 	name = "\improper Optical meson ballistic goggles"
 	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical meson scanner."
 	icon_state = "enggoggles"
-	item_state = "enggoggles"
+	worn_icon_state = "enggoggles"
 	deactive_state = "degoggles_enggoggles"
-	flags_equip_slot = ITEM_SLOT_EYES
+	equip_slot_flags = ITEM_SLOT_EYES
 	goggles = TRUE
 
 /obj/item/clothing/glasses/meson/enggoggles/prescription
@@ -58,6 +58,6 @@
 	name = "\improper Meson sunglasses"
 	desc = "A pair of designer sunglasses. This pair has been fitted with an optical meson scanner."
 	icon_state = "mesonsunglasses"
-	item_state = "mesonsunglasses"
+	worn_icon_state = "mesonsunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
 	prescription = TRUE

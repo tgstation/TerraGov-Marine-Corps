@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/boiler
-	caste_base_type = /mob/living/carbon/xenomorph/boiler
+	caste_base_type = /datum/xeno_caste/boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/castes/boiler.dmi'

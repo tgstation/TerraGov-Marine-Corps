@@ -16,15 +16,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
-	item_state = "headset"
+	worn_icon_state = "headset"
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = ITEM_SLOT_EARS
+	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
 
 
@@ -170,9 +170,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine radio headset"
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
-	item_state = "headset"
+	worn_icon_state = "headset"
 	frequency = FREQ_COMMON
-	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
