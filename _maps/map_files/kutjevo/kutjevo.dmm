@@ -1196,6 +1196,12 @@
 /obj/item/flash,
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
+"btO" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/kutjevo/multi_tiles{
+	dir = 4
+	},
+/area/kutjevo/exterior/runoff_bridge)
 "buo" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -1355,10 +1361,6 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/botany)
-"bFf" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/plating/rivergrate,
-/area/kutjevo/interior/power/comms)
 "bFh" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -1419,12 +1421,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
-"bIT" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/kutjevo/multi_tiles{
-	dir = 4
-	},
-/area/kutjevo/exterior/runoff_bridge)
 "bJc" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -1632,11 +1628,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/complex/botany/east_tech)
-"bSU" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/corpsespawner/security,
-/turf/open/floor/kutjevo/tan/multi_tiles,
-/area/kutjevo/interior/complex/botany/east)
 "bSV" = (
 /obj/structure/platform/metalplatform{
 	bound_height = 32;
@@ -3746,6 +3737,10 @@
 /obj/machinery/filtration_pipes/multiple,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
+"eai" = (
+/obj/effect/landmark/corpsespawner/miner/burst,
+/turf/open/floor/kutjevo/tan,
+/area/kutjevo/interior/complex/botany)
 "eav" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -4188,6 +4183,10 @@
 "evZ" = (
 /turf/open/floor/mainship/research/containment/floor2,
 /area/kutjevo/interior/power)
+"ewj" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/kutjevo/colors/green/tile,
+/area/kutjevo/interior/complex/botany)
 "ewk" = (
 /obj/structure/cable,
 /turf/open/floor/kutjevo/colors/green/tile,
@@ -4636,6 +4635,10 @@
 	name = "\improper Kutjevo Dam Storm Shutters"
 	},
 /turf/open/floor/mainship/research/containment/floor2,
+/area/kutjevo/interior/power)
+"eQL" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "eQQ" = (
 /obj/machinery/floodlight/colony,
@@ -5471,6 +5474,10 @@
 	},
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
+"fKZ" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno/body,
+/turf/open/floor/kutjevo/colors/green,
+/area/kutjevo/interior/complex/botany)
 "fLE" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 8
@@ -5880,6 +5887,11 @@
 /obj/structure/prop/mainship/gelida/powerccable,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/colony_central/mine_elevator)
+"giA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/kutjevo/tan/multi_tiles,
+/area/kutjevo/interior/complex/botany/east)
 "giI" = (
 /obj/structure/rock/tinyrock,
 /obj/effect/ai_node,
@@ -6592,10 +6604,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/filtration)
-"gWd" = (
-/obj/effect/landmark/corpsespawner/miner/burst,
-/turf/open/floor/kutjevo/tan,
-/area/kutjevo/interior/complex/botany)
 "gWo" = (
 /obj/effect/forcefield,
 /obj/structure/prop/coagulation_arm,
@@ -7340,6 +7348,11 @@
 /obj/structure/window/framed/kutjevo/reinforced,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/exterior/construction)
+"hPt" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/kutjevo/tan/multi_tiles,
+/area/kutjevo/interior/power/comms)
 "hPx" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -7699,6 +7712,11 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/filtration)
+"inp" = (
+/obj/effect/soundplayer/lowwindplayer,
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
+/area/kutjevo/exterior/complex_border/med_rec)
 "inB" = (
 /obj/structure/platform/rockcliff/orange{
 	dir = 8
@@ -7747,10 +7765,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction)
-"irQ" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/power)
 "isd" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/kutjevo/multi_tiles{
@@ -8703,6 +8717,11 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/construction/two)
+"juk" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/kutjevo/tan/multi_tiles,
+/area/kutjevo/interior/filtration)
 "juz" = (
 /obj/structure/rack,
 /turf/open/floor/kutjevo/colors/purple,
@@ -9887,10 +9906,6 @@
 /obj/structure/rock/basalt/alt4,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
-"kJE" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno/body,
-/turf/open/floor/kutjevo/colors/green,
-/area/kutjevo/interior/complex/botany)
 "kKb" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -12153,6 +12168,10 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/kutjevo/exterior/Northwest_Colony)
+"mUx" = (
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/kutjevo/tan,
+/area/kutjevo/interior/construction)
 "mVA" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/kutjevo/tan/multi_tiles{
@@ -12674,6 +12693,10 @@
 "nAy" = (
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/complex/med/locks)
+"nAJ" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
+/area/kutjevo/exterior/complex_border/med_rec)
 "nAO" = (
 /obj/machinery/light{
 	dir = 8
@@ -12806,13 +12829,6 @@
 	},
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/colony_central/mine_elevator)
-"nHr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/corpsespawner/colonist/regular,
-/turf/open/floor/kutjevo/multi_tiles,
-/area/kutjevo/interior/power)
 "nHA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable,
@@ -12871,6 +12887,10 @@
 "nJa" = (
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
+"nJc" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/plating/rivergrate,
+/area/kutjevo/interior/power/comms)
 "nJj" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -13008,11 +13028,6 @@
 "nOH" = (
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/runoff_bridge)
-"nOT" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/corpsespawner/colonist,
-/turf/open/floor/kutjevo/tan/multi_tiles,
-/area/kutjevo/interior/filtration)
 "nPf" = (
 /turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/colony_South/power2)
@@ -14105,6 +14120,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
+"oYc" = (
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/kutjevo/colors/purple/edge{
+	dir = 1
+	},
+/area/kutjevo/interior/construction)
 "oYQ" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/folder/blue,
@@ -14163,16 +14184,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/power/comms)
-"paZ" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/turf/open/floor/kutjevo/colors/green/tile,
-/area/kutjevo/interior/complex/botany)
-"pbc" = (
-/obj/effect/landmark/corpsespawner/security,
-/turf/open/floor/kutjevo/colors/purple/edge{
-	dir = 1
-	},
-/area/kutjevo/interior/construction)
 "pbP" = (
 /obj/machinery/light,
 /turf/open/floor/kutjevo/tan/alt_inner_edge{
@@ -14553,10 +14564,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
-"prW" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/complex_border/med_rec)
 "psu" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/kutjevo/colors/green,
@@ -15383,10 +15390,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/filtration)
-"qol" = (
-/obj/effect/landmark/corpsespawner/security/regular,
-/turf/open/floor/kutjevo/colors/red,
-/area/kutjevo/interior/complex/botany)
 "qoG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -17618,10 +17621,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/power/comms)
-"sIp" = (
-/obj/effect/landmark/corpsespawner/security,
-/turf/open/floor/kutjevo/tan,
-/area/kutjevo/interior/construction)
 "sIr" = (
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 1;
@@ -17819,11 +17818,6 @@
 /obj/structure/rack,
 /turf/open/floor/kutjevo/colors/cyan,
 /area/kutjevo/interior/complex/med/auto_doc)
-"sTe" = (
-/obj/effect/soundplayer/lowwindplayer,
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
-/area/kutjevo/exterior/complex_border/med_rec)
 "sTr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18953,6 +18947,10 @@
 	dir = 6
 	},
 /area/kutjevo/interior/filtration)
+"ubf" = (
+/obj/effect/landmark/corpsespawner/security/regular,
+/turf/open/floor/kutjevo/colors/red,
+/area/kutjevo/interior/complex/botany)
 "ubm" = (
 /obj/machinery/light{
 	dir = 8
@@ -21087,6 +21085,13 @@
 /obj/structure/platform/metalplatform,
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt,
 /area/kutjevo/interior/power)
+"wec" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/power)
 "weD" = (
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -21717,11 +21722,6 @@
 /obj/structure/rack,
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/construction/two)
-"wPA" = (
-/obj/structure/cable,
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/kutjevo/tan/multi_tiles,
-/area/kutjevo/interior/power/comms)
 "wPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -25214,7 +25214,7 @@ wgz
 ult
 dWi
 tnI
-nOT
+juk
 eEg
 cEV
 gPW
@@ -28862,7 +28862,7 @@ tlN
 hix
 fVP
 ntl
-wPA
+hPt
 ntl
 myQ
 giM
@@ -29410,7 +29410,7 @@ lUg
 kwR
 wIG
 wIG
-irQ
+eQL
 wIG
 wIG
 hWX
@@ -30697,7 +30697,7 @@ vXd
 vXd
 vcY
 ify
-bFf
+nJc
 esi
 tXm
 mZE
@@ -32584,7 +32584,7 @@ nnU
 ftY
 iLE
 loI
-nHr
+wec
 cvV
 pBV
 hbK
@@ -38042,7 +38042,7 @@ vDS
 vDS
 vDS
 vDS
-gWd
+eai
 iFO
 vDS
 qhw
@@ -38214,7 +38214,7 @@ rNG
 uhV
 qhw
 vbk
-paZ
+ewj
 tKY
 uze
 dic
@@ -39218,7 +39218,7 @@ oqd
 sFJ
 wnw
 lry
-bIT
+btO
 nOH
 wwg
 ceZ
@@ -39550,7 +39550,7 @@ scY
 lAn
 lfm
 scY
-kJE
+fKZ
 amL
 sZz
 flp
@@ -40217,7 +40217,7 @@ ycN
 cpj
 tRp
 pSs
-qol
+ubf
 tRp
 brL
 scY
@@ -42208,7 +42208,7 @@ dMk
 mWr
 mWr
 oOl
-bSU
+giA
 oOl
 gHU
 jnS
@@ -43678,7 +43678,7 @@ rno
 gld
 smo
 uAz
-prW
+nAJ
 rES
 aAg
 nUJ
@@ -44498,7 +44498,7 @@ dNo
 bMa
 alo
 bDC
-sIp
+mUx
 dKO
 hma
 hma
@@ -44998,7 +44998,7 @@ xyF
 iEJ
 mJY
 kFF
-pbc
+oYc
 hma
 igx
 ssj
@@ -45010,7 +45010,7 @@ twn
 aRh
 anE
 gld
-sTe
+inp
 gld
 ufs
 msK
