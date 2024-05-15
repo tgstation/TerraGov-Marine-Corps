@@ -294,8 +294,6 @@ REAGENT SCANNER
 	else
 		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
 		data["revivable_boolean"] = FALSE
-	#undef SYNTHETIC_REVIVE
-	//ORGANIC_REVIVE isn't undefined yet so we can use it in advice.
 
 	// ADVICE
 	var/list/advice = list()
@@ -313,18 +311,21 @@ REAGENT SCANNER
 			if(!issynth(patient)) // synthetics don't expire
 				advice += list(list(
 					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+					"tooltip" = "This is how long until the patient is permanently unrevivable. Stasis bags pause this timer.",
 					"icon" = "clock",
 					"color" = dead_color
 					))
 			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
 				advice += list(list(
 					"advice" = "Remove patient's suit or armor.",
+					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(ORGANIC_REVIVE || isrobot(patient))
+			if(ORGANIC_REVIVE || isrobot(patient) || issynth(patient) && SYNTHETIC_REVIVE)
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
+					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
 					"icon" = "bolt",
 					"color" = "yellow"
 					))
@@ -332,12 +333,14 @@ REAGENT SCANNER
 			if(patient.getBruteLoss() > 0)
 				advice += list(list(
 					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
+					"tooltip" = "Only a blowtorch or nanopaste can heal scorched robotic limbs. Other sources, such as chemicals, will not work.",
 					"icon" = "tools",
 					"color" = "red"
 					))
 			if(patient.getFireLoss() > 0)
 				advice += list(list(
 					"advice" = "Use a cable coil or nanopaste to repair the scorched areas.",
+					"tooltip" = "Only cable coils or nanopaste can heal scorched robotic limbs. Other sources, such as chemicals, will not work.",
 					"icon" = "plug",
 					"color" = "orange"
 					))
@@ -345,24 +348,28 @@ REAGENT SCANNER
 			if(patient.getBruteLoss() > 20)
 				advice += list(list(
 					"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
+					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Patients may also self-administer gauze on bleeding wounds, allowing them to slowly heal on their own.",
 					"icon" = "band-aid",
 					"color" = "green"
 					))
 			if(patient.getFireLoss() > 20)
 				advice += list(list(
 					"advice" = "Use burn kits or sutures to repair the burned areas.",
+					"tooltip" = "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Patients may also self-administer ointment on bleeding wounds, allowing them to slowly heal on their own.",
 					"icon" = "band-aid",
 					"color" = "orange"
 					))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
 				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
+				"tooltip" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Integrity damage" : "Cellular damage"] is sustained from psychic draining, special chemicals and special weapons. It can only be healed through the aforementioned methods.",
 				"icon" = "dna",
 				"color" = "teal"
 				))
 		if(unknown_implants)
 			advice += list(list(
 				"advice" = "Remove embedded objects with tweezers.",
+				"tooltip" = "There are one or more embedded objects detected in the patient. While moving with these implants inside, they will randomly sustain Brute damage. Make sure to take some time in between removing large amounts of implants to avoid a fracture.",
 				"icon" = "window-close",
 				"color" = "red"
 				))
@@ -370,18 +377,21 @@ REAGENT SCANNER
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
+					"tooltip" = "The patient has been implanted with an alien embryo! Left untreated, it will burst out of their chest. Surgical intervention is strongly advised.",
 					"icon" = "exclamation",
 					"color" = "red"
 					))
 			if(internal_bleeding)
 				advice += list(list(
 					"advice" = "Internal bleeding detected. Cryo treatment advised.",
+					"tooltip" = "Alongside cryogenic treatment, Quick Clot Plus can remove internal bleeding, or normal Quick Clot reduces its symptoms.",
 					"icon" = "tint",
 					"color" = "crimson"
 					))
 			if(infection_message)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"tooltip" = "There are one or more infections detected. If left untreated, they may worsen into Necrosis and require surgery.",
 					"icon" = "biohazard",
 					"color" = "olive"
 					))
@@ -393,6 +403,7 @@ REAGENT SCANNER
 			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
+					"tooltip" = "Significant physical trauma detected. Bicaridine reduces brute damage",
 					"icon" = "syringe",
 					"color" = "red"
 					))
@@ -404,6 +415,7 @@ REAGENT SCANNER
 			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of kelotane to reduce burns.",
+					"tooltip" = "Significant tissue burns detected. Kelotane reduces burn damage.",
 					"icon" = "syringe",
 					"color" = "yellow"
 					))
@@ -415,6 +427,7 @@ REAGENT SCANNER
 			if(patient.getToxLoss() > 15)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dylovene.",
+					"tooltip" = "Significant blood toxins detected. Dylovene will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
 					"icon" = "syringe",
 					"color" = "green"
 					))
@@ -425,7 +438,8 @@ REAGENT SCANNER
 					advice += temp_advice
 			if(patient.getOxyLoss() > 30)
 				temp_advice = list(list(
-					"advice" = "Administer a single dose of dexalin plus.",
+					"advice" = "Administer a single dose of dexalin plus to re-oxygenate patient's blood.",
+					"tooltip" = "If you don't have Dexalin Plus, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
 					"icon" = "syringe",
 					"color" = "blue"
 					))
@@ -437,12 +451,14 @@ REAGENT SCANNER
 			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
 				advice += list(list(
 					"advice" = "Administer a single dose of Isotonic solution.",
+					"tooltip" = "The patient has lost a significant amount of blood. Isotonic solution speeds up blood regeneration, alongside normal Quick Clot.",
 					"icon" = "syringe",
 					"color" = "cyan"
 					))
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
+					"tooltip" = "Nanites purge all medicines except Peridaxon Plus, Quick Clot/Quick Clot Plus and Dylovene.",
 					"icon" = "window-close",
 					"color" = "blue"
 					))
@@ -450,6 +466,7 @@ REAGENT SCANNER
 			if(patient.stat != DEAD && patient.health < -50)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
+					"tooltip" = "Inaprovaline stabilizes critical patients, and heals them if they are in hard critical condition, triggering a 5 minute cooldown.",
 					"icon" = "syringe",
 					"color" = "purple"
 					))
@@ -465,6 +482,7 @@ REAGENT SCANNER
 			if(has_pain && !chemicals_lists["Paracetamol"] && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
+					"tooltip" = "The patient is experiencing performance impeding pain. Tramadol reduces pain.",
 					"icon" = "syringe",
 					"color" = "grey"
 					))
@@ -477,12 +495,14 @@ REAGENT SCANNER
 			if(chemicals_lists["Paracetamol"])
 				advice += list(list(
 					"advice" = "Do NOT administer tramadol.",
+					"tooltip" = "The patient has Paracetamol in their system. If Tramadol is administered, it will combine with Paracetamol to make Soporific, an anesthetic.",
 					"icon" = "window-close",
 					"color" = "red"
 					))
 	else
 		advice += list(list(
 			"advice" = "Patient is unrevivable.",
+			"tooltip" = "The patient is permanently deceased. Can occur through being dead longer than 5 minutes, decapitation, DNR on record, or soullessness.",
 			"icon" = "ribbon",
 			"color" = "white"
 			))
@@ -490,6 +510,7 @@ REAGENT SCANNER
 		data["advice"] = advice
 	else
 		data["advice"] = null
+	#undef SYNTHETIC_REVIVE
 	#undef ORGANIC_REVIVE
 
 	var/ssd = null

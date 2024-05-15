@@ -56,6 +56,10 @@ export const MedScanner = (props) => {
   return (
     <Window width={515} height={625} theme={theme}>
       <Window.Content scrollable>
+        <Box color="grey">
+          <Icon name="info" m={1} />
+          Hover over anything in this window to see additional information.
+        </Box>
         <Section title={'Patient: ' + patient}>
           {hugged ? (
             <NoticeBox danger>
@@ -69,32 +73,20 @@ export const MedScanner = (props) => {
                 content={
                   'How healthy the patient is.' +
                   (species === 'robot'
-                    ? null
+                    ? ''
                     : " If the patient's health dips below " +
                       crit_threshold +
                       '%, they enter critical condition and suffocate rapidly.')
                 }
               >
-                {health / max_health >= 0 ? (
-                  <ProgressBar
-                    value={health / max_health}
-                    ranges={{
-                      good: [0.4, Infinity],
-                      average: [0.2, 0.4],
-                      bad: [-Infinity, 0.2],
-                    }}
-                  />
-                ) : (
-                  <ProgressBar
-                    value={1 + health / max_health}
-                    ranges={{
-                      bad: [0.5, Infinity],
-                      purple: [-Infinity, 0.5],
-                    }}
-                  >
-                    {Math.trunc(health)}%
-                  </ProgressBar>
-                )}
+                <ProgressBar
+                  value={health / max_health}
+                  ranges={{
+                    good: [0.4, Infinity],
+                    average: [0.2, 0.4],
+                    bad: [-Infinity, 0.2],
+                  }}
+                />
               </Tooltip>
             </LabeledList.Item>
             {dead ? (
@@ -197,7 +189,9 @@ export const MedScanner = (props) => {
                       chemical.description +
                       (chemical.od
                         ? ' (OVERDOSING)'
-                        : ' (OD THRESHOLD: ' + chemical.od_threshold + 'u)')
+                        : chemical.od_threshold <= 9000 // We don't want xeno chems or other OD-less chems to show "OD: 9134717u" or something
+                          ? ' (OD: ' + chemical.od_threshold + 'u)'
+                          : '')
                     }
                   >
                     <Box
@@ -368,7 +362,7 @@ export const MedScanner = (props) => {
           </Section>
         ) : null}
         {damaged_organs.length ? (
-          <Section title="Organ Damaged">
+          <Section title="Organs">
             <LabeledList>
               {damaged_organs.map((organ) => (
                 <LabeledList.Item
@@ -379,7 +373,7 @@ export const MedScanner = (props) => {
                     <Box
                       inline
                       color={organ.status === 'Bruised' ? 'orange' : 'red'}
-                      bold={1}
+                      bold
                     >
                       {organ.status + ' with ' + organ.damage + ' damage'}
                     </Box>
@@ -427,11 +421,13 @@ export const MedScanner = (props) => {
             <Stack vertical>
               {advice.map((advice) => (
                 <Stack.Item key={advice.advice}>
-                  <Box inline>
-                    <Icon name={advice.icon} ml={0.2} color={advice.color} />
-                    <Box inline width={'5px'} />
-                    {advice.advice}
-                  </Box>
+                  <Tooltip content={advice.tooltip}>
+                    <Box inline>
+                      <Icon name={advice.icon} ml={0.2} color={advice.color} />
+                      <Box inline width={'5px'} />
+                      {advice.advice}
+                    </Box>
+                  </Tooltip>
                 </Stack.Item>
               ))}
             </Stack>
