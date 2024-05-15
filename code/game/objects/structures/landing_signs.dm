@@ -29,6 +29,7 @@
 /obj/structure/kutjevo_sign/Initialize(mapload)
 	. = ..()
 	icon_state = "kut_ingame"
+	update_overlays()
 
 /obj/structure/kutjevo_sign/update_overlays()
 	. = ..()

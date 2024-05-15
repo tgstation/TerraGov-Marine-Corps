@@ -2992,11 +2992,10 @@
 /turf/closed/wall/kutjevo,
 /area/kutjevo/interior/complex/med/locks)
 "dmz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/kutjevo/tan,
-/area/kutjevo/interior/complex/med/auto_doc)
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/kutjevo/exterior/Northwest_Colony)
 "dmK" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15455,6 +15454,10 @@
 "qzd" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_river)
+"qzi" = (
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/kutjevo/exterior/Northwest_Colony)
 "qzj" = (
 /obj/structure/window_frame/kutjevo,
 /turf/open/floor/plating/kutjevo,
@@ -30981,7 +30984,7 @@ soL
 soL
 soL
 pnJ
-huR
+qzi
 huR
 huR
 lRy
@@ -31150,7 +31153,7 @@ nWL
 iin
 huR
 gPL
-huR
+qzi
 sVF
 iin
 soL
@@ -31481,13 +31484,13 @@ dxF
 soL
 soL
 soL
-sVF
+dmz
 huR
 huR
 huR
 iin
 sVF
-sVF
+dmz
 dxF
 dxF
 dxF
@@ -38169,7 +38172,7 @@ wLp
 lkC
 lpK
 gPz
-dmz
+oxf
 oxf
 lOo
 xar
