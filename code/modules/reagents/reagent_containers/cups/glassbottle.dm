@@ -452,7 +452,7 @@
 	reagents.reagent_flags |= OPENCONTAINER
 	playsound(src, 'sound/items/champagne_pop.ogg', 70, TRUE)
 	update_appearance()
-	make_froth(offset_x = 0, offset_y = sabraged ? 13 : 15, intensity = froth_severity) //the y offset for sabraged is lower because the bottle's lip is smashed
+	make_froth(offset_x = 0, offset_y = 15, intensity = froth_severity)
 
 /obj/item/trash/champagne_cork
 	name = "champagne cork"

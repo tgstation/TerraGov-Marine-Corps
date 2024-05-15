@@ -129,7 +129,7 @@
 	. += filling
 
 ///Splashes atom/target with whatever reagents are contained
-/obj/item/reagent_containers/try_splash(mob/living/user, atom/target)
+/obj/item/reagent_containers/proc/try_splash(mob/living/user, atom/target)
 	if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
 		to_chat(user, span_warning("An airtight seal prevents you from splashing the solution!"))
 		return
