@@ -7,6 +7,7 @@ import {
   ProgressBar,
   Section,
   Stack,
+  Tooltip,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -18,6 +19,7 @@ export const MedScanner = (props) => {
     dead,
     health,
     max_health,
+    crit_threshold,
     total_brute,
     total_burn,
     toxin,
@@ -63,14 +65,37 @@ export const MedScanner = (props) => {
           {ssd ? <NoticeBox warning>{ssd}</NoticeBox> : null}
           <LabeledList>
             <LabeledList.Item label="Health">
-              <ProgressBar
-                value={health / max_health}
-                ranges={{
-                  good: [0.4, Infinity],
-                  average: [0.2, 0.4],
-                  bad: [-Infinity, 0.2],
-                }}
-              />
+              <Tooltip
+                content={
+                  'How healthy the patient is.' +
+                  (species === 'robot'
+                    ? null
+                    : " If the patient's health dips below " +
+                      crit_threshold +
+                      '%, they enter critical condition and suffocate rapidly.')
+                }
+              >
+                {health / max_health >= 0 ? (
+                  <ProgressBar
+                    value={health / max_health}
+                    ranges={{
+                      good: [0.4, Infinity],
+                      average: [0.2, 0.4],
+                      bad: [-Infinity, 0.2],
+                    }}
+                  />
+                ) : (
+                  <ProgressBar
+                    value={1 + health / max_health}
+                    ranges={{
+                      bad: [0.5, Infinity],
+                      purple: [-Infinity, 0.5],
+                    }}
+                  >
+                    {Math.trunc(health)}%
+                  </ProgressBar>
+                )}
+              </Tooltip>
             </LabeledList.Item>
             {dead ? (
               <LabeledList.Item label="Revivable">
@@ -80,54 +105,82 @@ export const MedScanner = (props) => {
               </LabeledList.Item>
             ) : null}
             <LabeledList.Item label="Damage">
-              <Box inline>
-                <ProgressBar>
-                  Brute:{' '}
-                  <Box inline bold color={'red'}>
-                    {total_brute}
-                  </Box>
-                </ProgressBar>
-              </Box>
+              <Tooltip
+                content={
+                  species === 'robot'
+                    ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
+                    : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
+                }
+              >
+                <Box inline>
+                  <ProgressBar>
+                    Brute:{' '}
+                    <Box inline bold color={'red'}>
+                      {total_brute}
+                    </Box>
+                  </ProgressBar>
+                </Box>
+              </Tooltip>
               <Box inline width={'5px'} />
-              <Box inline>
-                <ProgressBar>
-                  Burn:{' '}
-                  <Box inline bold color={'#ffb833'}>
-                    {total_burn}
-                  </Box>
-                </ProgressBar>
-              </Box>
+              <Tooltip
+                content={
+                  species === 'robot'
+                    ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
+                    : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
+                }
+              >
+                <Box inline>
+                  <ProgressBar>
+                    Burn:{' '}
+                    <Box inline bold color={'#ffb833'}>
+                      {total_burn}
+                    </Box>
+                  </ProgressBar>
+                </Box>
+              </Tooltip>
               {species !== 'robot' ? (
                 <>
                   <Box inline width={'5px'} />
-                  <Box inline>
-                    <ProgressBar>
-                      Toxin:{' '}
-                      <Box inline bold color={'green'}>
-                        {toxin}
-                      </Box>
-                    </ProgressBar>
-                  </Box>
+                  <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene.">
+                    <Box inline>
+                      <ProgressBar>
+                        Tox:{' '}
+                        <Box inline bold color={'green'}>
+                          {toxin}
+                        </Box>
+                      </ProgressBar>
+                    </Box>
+                  </Tooltip>
                   <Box inline width={'5px'} />
-                  <Box inline>
-                    <ProgressBar>
-                      Oxygen:{' '}
-                      <Box inline bold color={'blue'}>
-                        {oxy}
-                      </Box>
-                    </ProgressBar>
-                  </Box>
+                  <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or exhaustion. Treated with CPR, Dexalin Plus or decreases on its own if the patient isn't in critical condition.">
+                    <Box inline>
+                      <ProgressBar>
+                        Oxy:{' '}
+                        <Box inline bold color={'blue'}>
+                          {oxy}
+                        </Box>
+                      </ProgressBar>
+                    </Box>
+                  </Tooltip>
                 </>
               ) : null}
               <Box inline width={'5px'} />
-              <Box inline>
-                <ProgressBar>
-                  {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{' '}
-                  <Box inline bold color={'teal'}>
-                    {clone}
-                  </Box>
-                </ProgressBar>
-              </Box>
+              <Tooltip
+                content={
+                  species === 'robot'
+                    ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
+                    : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
+                }
+              >
+                <Box inline>
+                  <ProgressBar>
+                    {species === 'robot' ? 'Integrity' : 'Clone'}:{' '}
+                    <Box inline bold color={'teal'}>
+                      {clone}
+                    </Box>
+                  </ProgressBar>
+                </Box>
+              </Tooltip>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -139,19 +192,28 @@ export const MedScanner = (props) => {
             <LabeledList>
               {chemicals.map((chemical) => (
                 <LabeledList.Item key={chemical.name}>
-                  <Box
-                    inline
-                    color={chemical.dangerous ? 'red' : 'white'}
-                    bold={chemical.dangerous}
+                  <Tooltip
+                    content={
+                      chemical.description +
+                      (chemical.od
+                        ? ' (OVERDOSING)'
+                        : ' (OD THRESHOLD: ' + chemical.od_threshold + 'u)')
+                    }
                   >
-                    {chemical.amount + 'u ' + chemical.name}
-                  </Box>
-                  <Box inline width={'5px'} />
-                  {chemical.od ? (
-                    <Box inline color={'red'} bold={1}>
-                      {'OD'}
+                    <Box
+                      inline
+                      color={chemical.dangerous ? 'red' : 'white'}
+                      bold={chemical.dangerous}
+                    >
+                      {chemical.amount + 'u ' + chemical.name}
                     </Box>
-                  ) : null}
+                    <Box inline width={'5px'} />
+                    {chemical.od ? (
+                      <Box inline color={'red'} bold={1}>
+                        {'OD'}
+                      </Box>
+                    ) : null}
+                  </Tooltip>
                 </LabeledList.Item>
               ))}
             </LabeledList>
@@ -191,70 +253,111 @@ export const MedScanner = (props) => {
                   ) : (
                     <>
                       <Stack.Item>
-                        <Box
-                          inline
-                          width="50px"
-                          color={limb.brute > 0 ? 'red' : 'white'}
+                        <Tooltip
+                          content={
+                            limb.bandaged
+                              ? 'Treated wounds will slowly heal on their own, or can be healed faster with chemicals.'
+                              : 'Untreated physical trauma. Can be bandaged with gauze or advanced trauma kits.'
+                          }
                         >
-                          {limb.bandaged ? `${limb.brute}` : `{${limb.brute}}`}
-                        </Box>
+                          <Box
+                            inline
+                            width="50px"
+                            color={limb.brute > 0 ? 'red' : 'white'}
+                          >
+                            {limb.bandaged
+                              ? `${limb.brute}`
+                              : `{${limb.brute}}`}
+                          </Box>
+                        </Tooltip>
                         <Box inline width="5px" />
-                        <Box
-                          inline
-                          width="40px"
-                          color={limb.burn > 0 ? '#ffb833' : 'white'}
+                        <Tooltip
+                          content={
+                            limb.salved
+                              ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
+                              : 'Unsalved burns. Can be salved with ointment or advanced burn kits.'
+                          }
                         >
-                          {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
-                        </Box>
+                          <Box
+                            inline
+                            width="40px"
+                            color={limb.burn > 0 ? '#ffb833' : 'white'}
+                          >
+                            {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
+                          </Box>
+                        </Tooltip>
                         <Box inline width="5px" />
                       </Stack.Item>
                       <Stack.Item>
                         {limb.limb_status ? (
-                          <Box
-                            inline
-                            color={
-                              limb.limb_status === 'Splinted' ? 'lime' : 'white'
-                            }
-                            bold={1}
-                          >
-                            [{limb.limb_status}]
-                          </Box>
+                          <Tooltip content="Fractures can have most of their symptoms reduced by splinting, but can only be fully treated with cryogenics or surgery.">
+                            <Box
+                              inline
+                              color={
+                                limb.limb_status ===
+                                ('Splinted' || 'Stabilized')
+                                  ? 'lime'
+                                  : 'white'
+                              }
+                              bold={1}
+                            >
+                              [{limb.limb_status}]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.limb_type ? (
-                          <Box
-                            inline
-                            color={
-                              limb.limb_type === 'Robotic' ? 'pink' : 'tan'
+                          <Tooltip
+                            content={
+                              limb.limb_type === 'Robotic'
+                                ? 'Robotic limbs are only fixed by welding or cable coils.'
+                                : 'Biotic limbs take more damage.'
                             }
-                            bold={1}
                           >
-                            [{limb.limb_type}]
-                          </Box>
+                            <Box
+                              inline
+                              color={
+                                limb.limb_type === 'Robotic' ? 'pink' : 'tan'
+                              }
+                              bold={1}
+                            >
+                              [{limb.limb_type}]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.bleeding ? (
-                          <Box inline color={'red'} bold={1}>
-                            [Bleeding]
-                          </Box>
+                          <Tooltip content="This limb is bleeding. Treated with gauze or an advanced trauma kit. If this warning doesn't clear, it may be a limb with internal bleeding.">
+                            <Box inline color={'red'} bold={1}>
+                              [Bleeding]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.open_incision ? (
-                          <Box inline color={'red'} bold={1}>
-                            [Open Incision]
-                          </Box>
+                          <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
+                            <Box inline color={'red'} bold={1}>
+                              [Open Incision]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.infected ? (
-                          <Box inline color={'olive'} bold={1}>
-                            [Infected]
-                          </Box>
+                          <Tooltip content="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated.">
+                            <Box inline color={'olive'} bold={1}>
+                              [Infected]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.necrotized ? (
-                          <Box inline color={'brown'} bold={1}>
-                            [Necrotizing]
-                          </Box>
+                          <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur. Treated by surgery.">
+                            <Box inline color={'brown'} bold={1}>
+                              [Necrotizing]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                         {limb.implant ? (
-                          <Box inline color={'white'} bold={1}>
-                            [Implant]
-                          </Box>
+                          <Tooltip content="Harmful implants are usually shrapnel from firefights. Removed with tweezers.">
+                            <Box inline color={'white'} bold={1}>
+                              [Implant]
+                            </Box>
+                          </Tooltip>
                         ) : null}
                       </Stack.Item>
                     </>
@@ -272,13 +375,15 @@ export const MedScanner = (props) => {
                   key={organ.name}
                   label={organ.name[0].toUpperCase() + organ.name.slice(1)}
                 >
-                  <Box
-                    inline
-                    color={organ.status === 'Bruised' ? 'orange' : 'red'}
-                    bold={1}
-                  >
-                    {organ.status + ' with ' + organ.damage + ' damage'}
-                  </Box>
+                  <Tooltip content={organ.effects}>
+                    <Box
+                      inline
+                      color={organ.status === 'Bruised' ? 'orange' : 'red'}
+                      bold={1}
+                    >
+                      {organ.status + ' with ' + organ.damage + ' damage'}
+                    </Box>
+                  </Tooltip>
                 </LabeledList.Item>
               ))}
             </LabeledList>
@@ -288,14 +393,16 @@ export const MedScanner = (props) => {
           <Section>
             <LabeledList>
               <LabeledList.Item label={'Blood Type: ' + blood_type}>
-                <ProgressBar
-                  value={blood_amount / 560}
-                  ranges={{
-                    good: [0.9, Infinity],
-                    average: [0.7, 0.8],
-                    bad: [-Infinity, 0.7],
-                  }}
-                />
+                <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost.">
+                  <ProgressBar
+                    value={blood_amount / 560}
+                    ranges={{
+                      good: [0.9, Infinity],
+                      average: [0.7, 0.8],
+                      bad: [-Infinity, 0.7],
+                    }}
+                  />
+                </Tooltip>
               </LabeledList.Item>
               <LabeledList.Item label={'Body Temperature'}>
                 {body_temperature}

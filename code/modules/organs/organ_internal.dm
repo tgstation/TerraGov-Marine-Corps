@@ -11,6 +11,8 @@
 	var/damage = 0 // amount of damage to the organ
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30
+	///The effects when this limb is damaged. Used by health analyzers.
+	var/damage_effects
 	var/parent_limb = "chest"
 	var/robotic = 0 //1 for 'assisted' organs (e.g. pacemaker), 2 for actual cyber organ.
 	var/removed_type //When removed, forms this object.
@@ -112,6 +114,7 @@
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
 	organ_id = ORGAN_HEART
+	damage_effects = "Bruised hearts cause reduced constitution, suffocation and pain. Broken hearts prevent revival until repaired."
 
 /datum/internal_organ/heart/process()
 	. = ..()
@@ -139,6 +142,7 @@
 	removed_type = /obj/item/organ/lungs
 	robotic_type = /obj/item/organ/lungs/prosthetic
 	organ_id = ORGAN_LUNGS
+	damage_effects = "Bruised lungs cause suffocation, slowdown and slower endurance regeneration. Broken lungs significantly worsen these effects."
 
 /datum/internal_organ/lungs/process()
 	..()
@@ -170,6 +174,7 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	organ_id = ORGAN_LIVER
+	damage_effects = "Bruised or broken livers cause very minor amounts of toxin damage and occasional vomiting. Additionally, when a bruised or broken liver filters toxins, it causes toxin damage."
 	///lower value, higher resistance.
 	var/alcohol_tolerance = 0.005
 	///How fast we clean out toxins/toxloss. Adjusts based on organ damage.
@@ -222,6 +227,7 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
+	damage_effects = "Bruised and broken kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
 	///Tracks the number of reagent/medicine datums we currently have
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
@@ -306,6 +312,7 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+	damage_effects = "Brain damage reduces the patient's skills."
 
 /datum/internal_organ/brain/set_organ_status()
 	var/old_organ_status = organ_status
@@ -336,6 +343,7 @@
 	robotic_type = /obj/item/organ/eyes/prosthetic
 	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
 	organ_id = ORGAN_EYES
+	damage_effects = "Bruised eyes cause blurry vision. Broken eyes cause blindness."
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()

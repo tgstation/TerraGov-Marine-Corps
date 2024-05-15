@@ -156,6 +156,7 @@ REAGENT SCANNER
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
 		"max_health" = patient.maxHealth,
+		"crit_threshold" = patient.get_crit_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
@@ -175,8 +176,10 @@ REAGENT SCANNER
 			continue
 		chemicals_lists["[reagent.name]"] = list(
 			"name" = reagent.name,
+			"description" = reagent.description,
 			"amount" = round(reagent.volume, 0.1),
 			"od" = reagent.overdosed,
+			"od_threshold" = reagent.overdose_threshold,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
@@ -265,23 +268,34 @@ REAGENT SCANNER
 		var/current_organ = list(
 			"name" = organ.name,
 			"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
-			"damage" = organ.damage
+			"damage" = organ.damage,
+			"effects" = organ.damage_effects,
 		)
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
+	#define SYNTHETIC_REVIVE (patient.health >= patient.get_death_threshold())
+	#define ORGANIC_REVIVE (patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		data["revivable_string"] = "Permanently deceased" // revivable_string is the actual information. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // revivable_boolean is simply the TRUE/FALSE data entry used by tgui to color the revivable box
-	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) || issynth(patient) && SYNTHETIC_REVIVE)
 		data["revivable_string"] = "Ready to reboot"
 		data["revivable_boolean"] = TRUE
-	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+	else if(issynth(patient) && !SYNTHETIC_REVIVE)
+		data["revivable_string"] = "Not ready to reboot - repair damage first"
+		data["revivable_boolean"] = FALSE
+	else if(!patient.has_working_organs())
+		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
+		data["revivable_boolean"] = FALSE
+	else if(ORGANIC_REVIVE)
 		data["revivable_string"] = "Ready to defibrillate"
 		data["revivable_boolean"] = TRUE
 	else
 		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
 		data["revivable_boolean"] = FALSE
+	#undef SYNTHETIC_REVIVE
+	//ORGANIC_REVIVE isn't undefined yet so we can use it in advice.
 
 	// ADVICE
 	var/list/advice = list()
@@ -308,7 +322,7 @@ REAGENT SCANNER
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold() || isrobot(patient))
+			if(ORGANIC_REVIVE || isrobot(patient))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"icon" = "bolt",
@@ -476,6 +490,7 @@ REAGENT SCANNER
 		data["advice"] = advice
 	else
 		data["advice"] = null
+	#undef ORGANIC_REVIVE
 
 	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD)
