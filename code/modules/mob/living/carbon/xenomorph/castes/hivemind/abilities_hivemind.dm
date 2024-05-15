@@ -2,7 +2,7 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	desc = "Teleport back to your core."
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
@@ -25,7 +25,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
@@ -99,7 +99,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	///Is the map being shown to the player right now?
 	var/showing_map = FALSE
 
