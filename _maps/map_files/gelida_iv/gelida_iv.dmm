@@ -1363,9 +1363,6 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
-"aVS" = (
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/colony_streets/south_street)
 "aWg" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/cheesyfries,
@@ -4195,12 +4192,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
-"cNp" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "cNE" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -20960,9 +20951,6 @@
 /obj/structure/platform,
 /turf/closed/wall,
 /area/gelida/indoors/a_block/bridges/op_centre)
-"nPk" = (
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/colony_streets/north_west_street)
 "nPI" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/computer/PC{
@@ -26256,9 +26244,6 @@
 	},
 /turf/closed/wall,
 /area/gelida/indoors/a_block/bridges/corpo)
-"rhC" = (
-/turf/closed/wall/r_wall,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "rhH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -28797,7 +28782,7 @@
 "sOU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/windbreaker)
+/area/gelida/outdoors/colony_streets/south_west_street)
 "sPq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -33979,9 +33964,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
-"wuQ" = (
-/turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "wvm" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/wooden_tv{
@@ -35993,7 +35975,7 @@
 "xPZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/outdoors/colony_streets/windbreaker)
+/area/gelida/outdoors/colony_streets/south_west_street)
 "xQy" = (
 /obj/item/ammo_magazine/rifle/tx11{
 	current_rounds = 0
@@ -40226,7 +40208,7 @@ tzc
 tzc
 tzc
 tzc
-nPk
+ndb
 tzc
 eue
 uew
@@ -40447,8 +40429,8 @@ tzc
 tzc
 tzc
 uew
-nPk
-nPk
+ndb
+ndb
 uew
 uew
 tzc
@@ -40669,7 +40651,7 @@ tzc
 tzc
 kZp
 uew
-nPk
+ndb
 uew
 kZp
 uew
@@ -40745,7 +40727,7 @@ sQn
 ndb
 ndb
 ndb
-xUF
+lhb
 xPZ
 sOU
 xUF
@@ -40992,8 +40974,8 @@ tqi
 tqi
 tqi
 tqF
-cNp
-rhC
+nvd
+ngP
 ngP
 ngP
 wOd
@@ -41214,8 +41196,8 @@ tqi
 rMs
 tqF
 qOV
-cNp
-rhC
+nvd
+ngP
 ngP
 ngP
 wOd
@@ -41333,7 +41315,7 @@ uew
 uew
 uew
 uew
-nPk
+ndb
 uew
 uew
 uew
@@ -41437,7 +41419,7 @@ tqi
 tqF
 nNF
 ilJ
-wuQ
+ndb
 ngP
 wOd
 wOd
@@ -41554,8 +41536,8 @@ eQn
 uew
 kZp
 uew
-nPk
-nPk
+ndb
+ndb
 uew
 uew
 uew
@@ -41658,8 +41640,8 @@ tqi
 tqi
 tqF
 tqF
-cNp
-wuQ
+nvd
+ndb
 ngP
 wOd
 wOd
@@ -41777,8 +41759,8 @@ uew
 uew
 uew
 xMA
-nPk
-nPk
+ndb
+ndb
 uew
 kZp
 uew
@@ -41880,8 +41862,8 @@ tqi
 ndb
 qOV
 tqi
-cNp
-rhC
+nvd
+ngP
 ngP
 ngP
 wOd
@@ -42000,7 +41982,7 @@ uew
 uew
 uew
 uew
-nPk
+ndb
 uew
 uew
 esd
@@ -42325,7 +42307,7 @@ tqF
 tqi
 rMs
 ilJ
-nAJ
+npE
 wDw
 npE
 npE
@@ -42547,7 +42529,7 @@ tqi
 tqi
 mMH
 ilJ
-tqF
+npE
 npE
 npE
 wHB
@@ -43860,7 +43842,7 @@ tqi
 tqF
 tqF
 tqF
-nAJ
+tqF
 tqi
 tqi
 rMs
@@ -44081,8 +44063,8 @@ tqi
 tqF
 qOV
 tqF
-nAJ
-nAJ
+tqF
+tqF
 tqi
 tqi
 tqi
@@ -44303,7 +44285,7 @@ tqi
 tqF
 qOV
 qOV
-nAJ
+tqF
 tqF
 tqi
 tqi
@@ -55680,7 +55662,7 @@ pPX
 dvV
 ndb
 ndb
-aVS
+ndb
 dvV
 vky
 ndb
@@ -65864,10 +65846,10 @@ eWY
 eWY
 eWY
 mDs
-eWY
-eWY
-eWY
-eWY
+jDt
+jDt
+jDt
+jDt
 txG
 xmm
 nKB
@@ -66086,10 +66068,10 @@ eWY
 eWY
 eWY
 mDs
-eWY
-eWY
-eWY
-npE
+jDt
+jDt
+jDt
+txG
 apC
 xmm
 nKB
@@ -66308,8 +66290,8 @@ eWY
 iAT
 eWY
 mDs
-eWY
-eWY
+jDt
+jDt
 txG
 txG
 xmm
@@ -66530,7 +66512,7 @@ eWY
 eWY
 eWY
 mDs
-eWY
+jDt
 txG
 txG
 xmm
@@ -66752,7 +66734,7 @@ eWY
 eWY
 eWY
 mDs
-eWY
+jDt
 txG
 txG
 txG
@@ -66974,7 +66956,7 @@ eWY
 eWY
 eWY
 mDs
-eWY
+jDt
 txG
 txG
 txG

@@ -28,10 +28,10 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
-	screams = list(MALE = "male_scream", FEMALE = "female_scream")
-	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
-	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	screams = list(MALE = SFX_MALE_SCREAM, FEMALE = SFX_FEMALE_SCREAM)
+	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
+	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
+	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
@@ -100,10 +100,10 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
-	screams = list(MALE = "male_scream", FEMALE = "female_scream")
-	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
-	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	screams = list(MALE = SFX_MALE_SCREAM, FEMALE = SFX_FEMALE_SCREAM)
+	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
+	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
+	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)

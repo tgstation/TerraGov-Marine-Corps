@@ -94,6 +94,14 @@
 	icon_state = "Synth"
 	job = /datum/job/terragov/silicon/synthetic
 
+/obj/effect/landmark/start/job/synthetic/som
+	icon_state = "Synth"
+	job = /datum/job/som/silicon/synthetic/som
+
+/obj/effect/landmark/start/job/synthetic/clf
+	icon_state = "Synth"
+	job = /datum/job/clf/silicon/synthetic/clf
+
 /obj/effect/landmark/start/job/squadmarine
 	icon_state = "PFC"
 	job = /datum/job/terragov/squad/standard

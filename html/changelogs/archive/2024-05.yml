@@ -35,3 +35,7 @@
   - bugfix: fixed opening storage by clicking with another item, properly
   blackdav123:
   - bugfix: Treaded trucks now use the correct sprites.
+2024-05-15:
+  chizzy376:
+  - rscadd: added a new map, Meridian Riptide.
+  - rscadd: Adds a proper room for AC and TC in Sulaco.

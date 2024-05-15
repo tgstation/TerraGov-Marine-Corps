@@ -127,7 +127,7 @@
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks > 0 && remaining_health <= health_threshold)
 			heal_multiplier = 3
-	playsound(target, "alien_drool", 25)
+	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/X = target
 	var/recovery_aura = isxeno(target) ? X.recovery_aura : 2

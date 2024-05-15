@@ -119,7 +119,7 @@
 	if(bcell?.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
-		playsound(loc, "sparks", 25, 1, 6)
+		playsound(loc, SFX_SPARKS, 25, 1, 6)
 		update_icon()
 	else
 		status = 0
@@ -187,9 +187,9 @@
 	return 1
 
 /obj/item/weapon/baton/emp_act(severity)
+	. = ..()
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
-	..()
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/baton/cattleprod
@@ -237,7 +237,7 @@
 	if(charges > 0)
 		status = !status
 		to_chat(user, span_notice("\The [src] is now [status ? "on" : "off"]."))
-		playsound(loc, "sparks", 15, 1)
+		playsound(loc, SFX_SPARKS, 15, 1)
 		update_icon()
 	else
 		status = 0
@@ -291,11 +291,11 @@
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
-	switch(severity)
-		if(1)
-			charges = 0
-		if(2)
-			charges = max(0, charges - 5)
+	. = ..()
+	if(severity == EMP_DEVASTATE)
+		charges = 0
+	else
+		charges = max(0, charges - (6 - severity))
 	if(charges < 1)
 		status = 0
 		update_icon()

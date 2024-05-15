@@ -18,9 +18,9 @@
 	setDir(direction)
 	update_icon()
 
-/// Remove the blip from the operator screen
+///Remove the blip from the operator screen
 /obj/effect/blip/edge_blip/remove_blip(mob/operator)
-	operator.client.screen -= src
+	operator?.client?.screen -= src
 	qdel(src)
 
 /obj/effect/blip/edge_blip/update_icon_state()
@@ -41,7 +41,7 @@
 
 /// Remove the blip from the operator images
 /obj/effect/blip/close_blip/remove_blip(mob/operator)
-	operator.client?.images -= blip_image
+	operator?.client?.images -= blip_image
 	qdel(src)
 
 /obj/effect/blip/close_blip/Destroy()

@@ -84,5 +84,5 @@
 		var/mob/M = i
 		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
-		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played)
+		M.playsound_local(source, music_played, volume * using_instrument.volume_multiplier)
 		// Could do environment and echo later but not for now

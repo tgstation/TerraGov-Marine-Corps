@@ -582,3 +582,89 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BELT)
+
+/datum/job/clf/silicon
+	job_category = JOB_CAT_SILICON
+	selection_color = "#aaee55"
+
+//synthetic
+/datum/job/clf/silicon/synthetic/clf
+	title = "CLF Synthetic"
+	req_admin_notify = TRUE
+	comm_title = "Syn"
+	paygrade = "Mk.I"
+	supervisors = "the acting captain"
+	total_positions = 1
+	skills_type = /datum/skills/synthetic
+	access = ALL_ANTAGONIST_ACCESS
+	minimal_access = ALL_ANTAGONIST_ACCESS
+	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
+	outfit = /datum/outfit/job/civilian/synthetic/clf
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Soul Crushing<br /><br />
+		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
+		<b>Duty</b>: Be a synthussy.
+	"}
+	minimap_icon = "synth"
+
+/datum/job/clf/silicon/synthetic/clf/get_special_name(client/preference_source)
+	return preference_source.prefs.synthetic_name
+
+/datum/job/clf/silicon/synthetic/clf/return_spawn_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /mob/living/carbon/human/species/early_synthetic
+	return /mob/living/carbon/human/species/synthetic
+
+/datum/job/clf/silicon/synthetic/clf/return_skills_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /datum/skills/early_synthetic
+	return ..()
+
+/datum/job/clf/silicon/synthetic/clf/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "Mk.I"
+		if(601 to 1500) // 10hrs
+			new_human.wear_id.paygrade = "Mk.II"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "Mk.III"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "Mk.IV"
+		if(18001 to INFINITY) // 300 hrs
+			new_human.wear_id.paygrade = "Mk.V"
+
+/datum/job/clf/silicon/synthetic/clf/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your primary job is to support and assist all clf departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
+
+
+/datum/outfit/job/civilian/synthetic/clf
+	name = SYNTHETIC
+	jobtype = /datum/job/clf/silicon/synthetic
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/rank/synthetic
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/insulated
+	r_store = /obj/item/storage/pouch/general/medium
+	l_store = /obj/item/storage/pouch/general/medium

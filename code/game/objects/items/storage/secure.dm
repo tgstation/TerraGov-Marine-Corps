@@ -128,8 +128,7 @@
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/storage/secure/briefcase/Initialize(mapload)
-	. = ..()
+/obj/item/storage/secure/briefcase/PopulateContents()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
 

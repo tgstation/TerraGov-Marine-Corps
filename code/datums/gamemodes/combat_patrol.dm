@@ -115,9 +115,11 @@
 
 /datum/game_mode/hvh/combat_patrol/declare_completion()
 	. = ..()
-	to_chat(world, span_round_header("|[round_finished]|"))
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal NTC spawned: [GLOB.round_statistics.total_humans_created[FACTION_NTC]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the NTC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+
+/datum/game_mode/hvh/combat_patrol/end_round_fluff()
+	to_chat(world, span_round_header("|[round_finished]|"))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 /datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
 	switch(user.faction)

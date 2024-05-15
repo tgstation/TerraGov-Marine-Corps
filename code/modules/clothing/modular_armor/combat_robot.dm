@@ -13,7 +13,7 @@
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	greyscale_config = /datum/greyscale_config/robot
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -92,7 +92,7 @@
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	greyscale_config = /datum/greyscale_config/robot
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,

@@ -355,6 +355,10 @@
 		if(!QDELETED(src))
 			qdel(src)
 		return
+	if(storage_datum)
+		for(var/obj/item/item_in_storage AS in src)
+			storage_datum.remove_from_storage(item_in_storage)
+			item_in_storage.store_in_cryo()
 	moveToNullspace()
 	if(istype(src, /obj/item/weapon/gun))
 		GLOB.cryoed_item_list_gun += src
@@ -374,11 +378,6 @@
 		GLOB.cryoed_item_list_containers += src
 	else
 		GLOB.cryoed_item_list_other += src
-
-/obj/item/storage/store_in_cryo()
-	for(var/obj/item/I AS in src)
-		I.store_in_cryo()
-	return ..()
 
 /obj/machinery/cryopod/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()

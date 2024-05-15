@@ -122,6 +122,7 @@
 
 
 /obj/item/flash/emp_act(severity)
+	. = ..()
 	if(broken)
 		return
 	flash_recharge()
@@ -137,7 +138,6 @@
 				if(M.flash_act())
 					M.Paralyze(20 SECONDS)
 					M.visible_message(span_disarm("[M] is blinded by the flash!"))
-	..()
 
 /obj/item/flash/synthetic
 	name = "synthetic flash"

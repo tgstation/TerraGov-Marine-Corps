@@ -454,8 +454,7 @@
 
 /obj/machinery/computer/med_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
+		return ..()
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if(prob(10/severity))
@@ -479,7 +478,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	return ..()
 
 
 /obj/machinery/computer/med_data/laptop

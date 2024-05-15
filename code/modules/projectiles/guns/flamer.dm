@@ -12,7 +12,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	fire_sound = "gun_flamethrower"
+	fire_sound = SFX_GUN_FLAMETHROWER
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'

@@ -813,7 +813,7 @@
 	icon_state = "v51"
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_state = "v51"
-	fire_sound = "shotgun_som"
+	fire_sound = SFX_SHOTGUN_SOM
 	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'

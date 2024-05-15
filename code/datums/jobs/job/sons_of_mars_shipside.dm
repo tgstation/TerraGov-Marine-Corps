@@ -54,7 +54,7 @@ Godspeed, commander! And remember, you are not above the law."})
 	ears = /obj/item/radio/headset/mainship/mcom/som
 	belt = /obj/item/storage/holster/belt/mateba/officer/full
 	w_uniform = /obj/item/clothing/under/som/officer/senior
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	r_store = /obj/item/storage/pouch/general/large/command
 
@@ -139,11 +139,27 @@ Make the SOM proud!"})
 
 	id = /obj/item/card/id/dogtag/fc
 	ears = /obj/item/radio/headset/mainship/mcom/som
+	head = /obj/item/clothing/head/modular/som/leader
+	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/som/officer/senior
-	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/officer
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	r_store = /obj/item/storage/pouch/general/large/command
 	gloves = /obj/item/clothing/gloves/marine/officer
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+	glasses = /obj/item/clothing/glasses/hud/health
+	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	back = /obj/item/storage/backpack/satchel/som
+
+/datum/outfit/job/som/command/fieldcommander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
 //Staff Officer
 /datum/job/som/command/staffofficer
@@ -201,7 +217,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/som/officer
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 //Pilot Officer
@@ -262,8 +278,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
-	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/pilot
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
@@ -330,7 +346,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	w_uniform = /obj/item/clothing/under/marine/officer/mech
 	wear_suit = /obj/item/clothing/suit/storage/marine/mech_pilot
 	head = /obj/item/clothing/head/helmet/marine/mech_pilot
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/marine
 
 /datum/job/som/engineering
@@ -399,7 +415,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	ears = /obj/item/radio/headset/mainship/mcom/som
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/beret/marine/techofficer
@@ -468,7 +484,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/ship_tech
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
@@ -544,7 +560,7 @@ A happy base is a well-functioning base."})
 	w_uniform = /obj/item/clothing/under/marine/officer/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	suit_store = /obj/item/weapon/gun/energy/taser
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
@@ -752,3 +768,89 @@ You are also an expert when it comes to botany and hydroponics. If you do not kn
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+
+/datum/job/som/silicon
+	job_category = JOB_CAT_SILICON
+	selection_color = "#aaee55"
+
+//synthetic
+/datum/job/som/silicon/synthetic/som
+	title = "SOM Synthetic"
+	req_admin_notify = TRUE
+	comm_title = "Syn"
+	paygrade = "Mk.I"
+	supervisors = "the acting captain"
+	total_positions = 1
+	skills_type = /datum/skills/synthetic
+	access = ALL_SOM_ACCESS
+	minimal_access = ALL_SOM_ACCESS
+	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
+	outfit = /datum/outfit/job/civilian/synthetic/som
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Soul Crushing<br /><br />
+		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
+		<b>Duty</b>: Be a synthussy.
+	"}
+	minimap_icon = "synth"
+
+/datum/job/som/silicon/synthetic/som/get_special_name(client/preference_source)
+	return preference_source.prefs.synthetic_name
+
+/datum/job/som/silicon/synthetic/som/return_spawn_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /mob/living/carbon/human/species/early_synthetic
+	return /mob/living/carbon/human/species/synthetic
+
+/datum/job/som/silicon/synthetic/som/return_skills_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /datum/skills/early_synthetic
+	return ..()
+
+/datum/job/som/silicon/synthetic/som/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "Mk.I"
+		if(601 to 1500) // 10hrs
+			new_human.wear_id.paygrade = "Mk.II"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "Mk.III"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "Mk.IV"
+		if(18001 to INFINITY) // 300 hrs
+			new_human.wear_id.paygrade = "Mk.V"
+
+/datum/job/som/silicon/synthetic/som/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your primary job is to support and assist all SOM departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
+
+
+/datum/outfit/job/civilian/synthetic/som
+	name = SYNTHETIC
+	jobtype = /datum/job/som/silicon/synthetic
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/mcom/som
+	w_uniform = /obj/item/clothing/under/rank/synthetic
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/insulated
+	r_store = /obj/item/storage/pouch/general/medium
+	l_store = /obj/item/storage/pouch/general/medium

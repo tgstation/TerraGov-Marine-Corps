@@ -82,7 +82,7 @@
 	return ..()
 
 
-//USE THIS TO FILL IT, NOT INITIALIZE OR NEW
+///USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
 	return
 

@@ -514,7 +514,7 @@
 			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
-		playsound(user, "alien_roar", 50)
+		playsound(user, SFX_ALIEN_ROAR, 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
