@@ -399,7 +399,7 @@
 	set waitfor = FALSE
 	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
-	var/list/turf_list = range(range_num, target)
+	var/list/turf_list = RANGE_TURFS(range_num, target)
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
