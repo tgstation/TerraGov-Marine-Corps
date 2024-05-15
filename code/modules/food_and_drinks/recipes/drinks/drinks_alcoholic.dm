@@ -152,6 +152,10 @@
 	results = list(/datum/reagent/consumable/ethanol/bahama_mama = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/ethanol/kahlua = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/pineapplejuice = 1)
 
+/datum/chemical_reaction/drink/singulorecipe //TGMC Modified, radium instead of liquid_dark_matter
+	results = list(/datum/reagent/consumable/ethanol/singulo = 10)
+	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 5, /datum/reagent/radium = 1, /datum/reagent/consumable/ethanol/wine = 5)
+
 /datum/chemical_reaction/drink/alliescocktail
 	results = list(/datum/reagent/consumable/ethanol/alliescocktail = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/martini = 1, /datum/reagent/consumable/ethanol/vodka = 1)
@@ -226,9 +230,13 @@
 	results = list(/datum/reagent/consumable/ethanol/andalusia = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/ethanol/whiskey = 1, /datum/reagent/consumable/lemonjuice = 1)
 
-/datum/chemical_reaction/drink/neurotoxin
+/datum/chemical_reaction/drink/neurotoxin //TGMC Modified, oxycodone instead of morphine
 	results = list(/datum/reagent/consumable/ethanol/neurotoxin = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/gargle_blaster = 1, /datum/reagent/medicine/oxycodone = 1)
+
+/datum/chemical_reaction/drink/neurotoxinrecipe_alternate //TGMC recipe
+	results = list(/datum/reagent/consumable/ethanol/neurotoxin = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/gargle_blaster = 1, /datum/reagent/toxin/sleeptoxin = 1)
 
 /datum/chemical_reaction/drink/snowwhite
 	results = list(/datum/reagent/consumable/ethanol/snowwhite = 2)
@@ -253,6 +261,10 @@
 /datum/chemical_reaction/drink/bananahonk
 	results = list(/datum/reagent/consumable/ethanol/bananahonk = 2)
 	required_reagents = list(/datum/reagent/consumable/laughter = 1, /datum/reagent/consumable/cream = 1)
+
+/datum/chemical_reaction/drink/bananahonkrecipe_alternate //TGMC Recipe
+	results = list(/datum/reagent/consumable/ethanol/bananahonk = 3)
+	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/drink/silencer
 	results = list(/datum/reagent/consumable/ethanol/silencer = 3)
@@ -529,3 +541,9 @@
 /datum/chemical_reaction/drink/blue_hawaiian
 	results = list(/datum/reagent/consumable/ethanol/blue_hawaiian = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/coconut_rum = 2, /datum/reagent/consumable/pineapplejuice = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/curacao = 1)
+
+//---- TGMC Drinks
+
+/datum/chemical_reaction/drink/hippiesdelightrecipe
+	results = list(/datum/reagent/consumable/ethanol/hippies_delight = 2)
+	required_reagents = list(/datum/reagent/consumable/psilocybin = 1, /datum/reagent/consumable/ethanol/gargle_blaster = 1)

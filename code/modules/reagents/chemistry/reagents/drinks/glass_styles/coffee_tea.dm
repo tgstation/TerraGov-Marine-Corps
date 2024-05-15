@@ -13,7 +13,7 @@
 	icon_state = "teaglass"
 
 /datum/glass_style/drinking_glass/icecoffee
-	required_drink_type = /datum/reagent/consumable/icecoffee
+	required_drink_type = /datum/reagent/consumable/coffee/icecoffee
 	name = "iced coffee"
 	desc = "A drink to perk you up and refresh you!"
 	icon = 'icons/obj/drinks/coffee.dmi'
@@ -27,7 +27,7 @@
 	icon_state = "hoticecoffee"
 
 /datum/glass_style/drinking_glass/icetea
-	required_drink_type = /datum/reagent/consumable/icetea
+	required_drink_type = /datum/reagent/consumable/tea/icetea
 	name = "iced tea"
 	desc = "All natural, antioxidant-rich flavour sensation."
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'

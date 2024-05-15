@@ -840,6 +840,20 @@
 	boozepwr = 0 //custom drunk effect
 	taste_description = "da bomb"
 
+/datum/reagent/consumable/ethanol/atomicbomb/on_mob_life(mob/living/L, metabolism)
+	L.set_drugginess(50)
+	L.AdjustConfused(4 SECONDS)
+	L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
+	switch(current_cycle)
+		if(40 to 49)
+			L.adjustDrowsyness(2)
+		if(51 to 200)
+			L.Sleeping(6 SECONDS)
+		if(201 to INFINITY)
+			L.Sleeping(6 SECONDS)
+			L.adjustToxLoss(2)
+	return ..()
+
 /datum/reagent/consumable/ethanol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
 	description = "Whoah, this stuff looks volatile!"

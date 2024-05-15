@@ -1,18 +1,18 @@
-/datum/chemical_reaction/drink/icetea
-	results = list(/datum/reagent/consumable/icetea = 4)
+/datum/chemical_reaction/drink/icetea //TGMC recipe
+	results = list(/datum/reagent/consumable/tea/icetea = 4)
 	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/tea = 3)
 
 /datum/chemical_reaction/drink/icecoffee
-	results = list(/datum/reagent/consumable/icecoffee = 4)
+	results = list(/datum/reagent/consumable/coffee/icecoffee = 4)
 	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee = 3)
 
 /datum/chemical_reaction/drink/nuka_cola
 	results = list(/datum/reagent/consumable/nuka_cola = 6)
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/consumable/space_cola = 6)
 
-/datum/chemical_reaction/drink/doctor_delight
+/datum/chemical_reaction/drink/doctor_delight //TGMC modified, tricordrazine instead of cryoxadone
 	results = list(/datum/reagent/consumable/doctor_delight = 5)
-	required_reagents = list(/datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/medicine/cryoxadone = 1)
+	required_reagents = list(/datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/medicine/tricordrazine = 1)
 
 /datum/chemical_reaction/drink/soy_latte
 	results = list(/datum/reagent/consumable/coffee/soy_latte = 2)
@@ -69,7 +69,7 @@
 
 /datum/chemical_reaction/drink/arnold_palmer
 	results = list(/datum/reagent/consumable/tea/arnold_palmer = 2)
-	required_reagents = list(/datum/reagent/consumable/icetea = 1, /datum/reagent/consumable/lemonade = 1)
+	required_reagents = list(/datum/reagent/consumable/tea/icetea = 1, /datum/reagent/consumable/lemonade = 1)
 	mix_message = "The smells of fresh green grass and sand traps waft through the air as the mixture turns a friendly yellow-orange."
 
 /datum/chemical_reaction/drink/chocolate_milk
@@ -144,3 +144,28 @@
 /datum/chemical_reaction/drink/t_letter
 	results = list(/datum/reagent/consumable/t_letter = 2)
 	required_reagents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/tea = 1)
+
+//---- TGMC drinks
+/datum/chemical_reaction/drink/grapesodarecipe
+	results = list(/datum/reagent/consumable/grapesoda = 3)
+	required_reagents = list(/datum/reagent/consumable/grapejuice = 2, /datum/reagent/consumable/space_cola = 1)
+
+/datum/chemical_reaction/drink/kiraspecialrecipe
+	results = list(/datum/reagent/consumable/kiraspecial = 2)
+	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/sodawater = 1)
+
+/datum/chemical_reaction/drink/brownstarrecipe
+	results = list(/datum/reagent/consumable/brownstar = 2)
+	required_reagents = list(/datum/reagent/consumable/orangejuice = 2, /datum/reagent/consumable/space_cola = 1)
+
+/datum/chemical_reaction/drink/milkshakerecipe
+	results = list(/datum/reagent/consumable/milkshake = 5)
+	required_reagents = list(/datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/milk = 2)
+
+/datum/chemical_reaction/drink/rewriterrecipe
+	results = list(/datum/reagent/consumable/rewriter = 2)
+	required_reagents = list(/datum/reagent/consumable/spacemountainwind = 1, /datum/reagent/consumable/coffee = 1)
+
+/datum/chemical_reaction/drink/suidreamrecipe
+	results = list(/datum/reagent/consumable/ethanol/suidream = 4)
+	required_reagents = list(/datum/reagent/consumable/space_up = 2, /datum/reagent/consumable/ethanol/bluecuracao = 1, /datum/reagent/consumable/ethanol/melonliquor = 1)

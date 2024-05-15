@@ -245,26 +245,12 @@
 	nutriment_factor = 10
 	taste_description = "bitter tea"
 
-/datum/reagent/consumable/icecoffee
-	name = "Iced Coffee"
-	description = "Coffee and ice, refreshing and cool."
-	color = "#102838" // rgb: 16, 40, 56
-	nutriment_factor = 0
-	taste_description = "bitter coldness"
-
 /datum/reagent/consumable/hot_ice_coffee
 	name = "Hot Ice Coffee"
 	description = "Coffee with pulsing ice shards"
 	color = "#102838" // rgb: 16, 40, 56
 	nutriment_factor = 0
 	taste_description = "bitter coldness and a hint of smoke"
-
-/datum/reagent/consumable/icetea
-	name = "Iced Tea"
-	description = "No relation to a certain rap artist/actor."
-	color = "#104038" // rgb: 16, 64, 56
-	nutriment_factor = 0
-	taste_description = "sweet tea"
 
 /datum/reagent/consumable/space_cola
 	name = "Cola"
@@ -876,25 +862,4 @@
 
 /datum/reagent/consumable/rewriter/on_mob_life(mob/living/L, metabolism)
 	L.jitter(5)
-	return ..()
-
-/datum/reagent/consumable/atomicbomb
-	name = "Atomic Bomb"
-	description = "Nuclear proliferation never tasted so good."
-	color = "#666300" // rgb: 102, 99, 0
-	adj_dizzy = 10
-	taste_description = "da bomb"
-
-/datum/reagent/consumable/atomicbomb/on_mob_life(mob/living/L, metabolism)
-	L.set_drugginess(50)
-	L.AdjustConfused(4 SECONDS)
-	L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
-	switch(current_cycle)
-		if(40 to 49)
-			L.adjustDrowsyness(2)
-		if(51 to 200)
-			L.Sleeping(6 SECONDS)
-		if(201 to INFINITY)
-			L.Sleeping(6 SECONDS)
-			L.adjustToxLoss(2)
 	return ..()
