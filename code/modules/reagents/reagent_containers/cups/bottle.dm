@@ -231,11 +231,6 @@
 	desc = "A pump bottle containing mexican coffee-flavoured liqueur syrup. In production since 1936, HONK."
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 50)
 
-
-// XANTODO Parse TGMC bottles
-
-
-
 ///////////////////////////////////////////////Alchohol bottles! -Agouri //////////////////////////
 //Functionally identical to regular drinks. The only difference is that the default bottle size is 100. - Darem
 //Bottles now weaken and break when smashed on people's heads. - Giacom
@@ -506,9 +501,3 @@
 	center_of_mass = list("x"=16, "y"=8)
 	can_shatter = 0
 	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
-
-
-
-
-
-
