@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Campaign: If attrition is not manually set, it will automatically assign an amount at the start of a mission"

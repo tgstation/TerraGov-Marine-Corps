@@ -142,3 +142,31 @@
   chizzy376:
   - rscadd: added a new map, Meridian Riptide.
   - rscadd: Adds a proper room for AC and TC in Sulaco.
+2024-05-16:
+  Lumipharon:
+  - bugfix: fixed xenos being able to ignore queen and king death timers
+  - bugfix: fixed pref UI pill spam
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: If attrition is not manually set, it will automatically assign
+      an amount at the start of a mission'
+  - bugfix: fixed the blackscreen click catcher not working under some conditions
+  Notamaniac:
+  - balance: AI can now be dragged when unanchored, but is more vulnerable to getting
+      flung around by explosions than before.
+  - bugfix: AI can now use Ctrl Click on weeded tiles to get coordinates
+  Runian:
+  - bugfix: Xenos whose abilities cannot be used in a closed turf also cannot be used
+      in dense & opaque objects.
+  chizzy376:
+  - balance: changed tank's rocket from 100 sunder to 20
+  - balance: changed tank's minigun ltaap penetration from 10 to 15
+  - spellcheck: Charile removed
+  ivanmixo:
+  - balance: Retired ERT spawns less often, but can now walk (minus the leader)
+  jonash07:
+  - spellcheck: smg-45 description now tells you the right ammo type
+  novaepee:
+  - soundadd: New voicelines for donning and doffing Valkyrie and B18
+  novaepee, Shinji Nomura:
+  - imageadd: new title art made by Shinji Nomura
+  - imagedel: low effort title art
