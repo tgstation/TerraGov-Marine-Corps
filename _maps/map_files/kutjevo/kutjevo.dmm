@@ -6937,7 +6937,7 @@
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/obj/item/clothing/glasses/thermal/syndi,
+/obj/item/clothing/glasses/meson,
 /turf/open/floor/kutjevo/colors/cyan,
 /area/kutjevo/interior/complex/med/operating)
 "hnZ" = (
@@ -16877,7 +16877,7 @@
 "rRC" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/clipboard,
-/obj/item/clothing/glasses/thermal/syndi{
+/obj/item/clothing/glasses/meson{
 	pixel_y = -2
 	},
 /turf/open/floor/kutjevo/multi_tiles{

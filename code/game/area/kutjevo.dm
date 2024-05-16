@@ -225,7 +225,7 @@
 //Out buildings + foremans
 /area/kutjevo/interior/power
 	name = "Kutjevo - Hydroelectric Dam Substation"
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_METAL
 	icon_state = "power"
 	minimap_color = MINIMAP_AREA_ENGI
 
