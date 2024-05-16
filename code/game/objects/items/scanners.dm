@@ -82,9 +82,9 @@ REAGENT SCANNER
 	///Skill required to have the scanner auto refresh
 	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	///Current mob being tracked by the scanner
-	var/mob/living/carbon/patient
+	var/mob/living/carbon/human/patient
 	///Current user of the scanner
-	var/mob/living/carbon/current_user
+	var/mob/living/carbon/human/current_user
 	///Distance the current_user can be away from the patient and still get health data.
 	var/track_distance = 3
 
@@ -162,8 +162,6 @@ REAGENT SCANNER
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
 
-		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getOxyLoss() + patient.getCloneLoss() <= 200,
-
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
@@ -186,88 +184,305 @@ REAGENT SCANNER
 	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
-	if(ishuman(patient))
-		var/mob/living/carbon/human/human_patient = patient
-		var/infection_message
-		var/internal_bleeding
+	if(!ishuman(patient)) // how did we get here?
+		return
 
-		var/unknown_implants = 0
-		for(var/datum/limb/limb AS in human_patient.limbs)
-			var/infected = FALSE
-			var/necrotized = FALSE
+	var/infection_message
+	var/internal_bleeding
 
-			if(!internal_bleeding)
-				for(var/datum/wound/wound in limb.wounds)
-					if(!istype(wound, /datum/wound/internal_bleeding))
-						continue
-					internal_bleeding = TRUE
-					break
-			if(limb.germ_level > INFECTION_LEVEL_ONE)
-				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
-				infected = TRUE
-			if(limb.limb_status & LIMB_NECROTIZED)
-				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
-				necrotized = TRUE
+	var/unknown_implants = 0
+	for(var/datum/limb/limb AS in patient.limbs)
+		var/infected = FALSE
+		var/necrotized = FALSE
 
-			if(limb.hidden)
+		if(!internal_bleeding)
+			for(var/datum/wound/wound in limb.wounds)
+				if(!istype(wound, /datum/wound/internal_bleeding))
+					continue
+				internal_bleeding = TRUE
+				break
+		if(limb.germ_level > INFECTION_LEVEL_ONE)
+			infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
+			infected = TRUE
+		if(limb.limb_status & LIMB_NECROTIZED)
+			infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+			necrotized = TRUE
+
+		if(limb.hidden)
+			unknown_implants++
+		var/implant = FALSE
+		if(length(limb.implants))
+			for(var/obj/item/embedded AS in limb.implants)
+				if(embedded.is_beneficial_implant())
+					continue
 				unknown_implants++
-			var/implant = FALSE
-			if(length(limb.implants))
-				for(var/obj/item/embedded AS in limb.implants)
-					if(embedded.is_beneficial_implant())
-						continue
-					unknown_implants++
-					implant = TRUE
+				implant = TRUE
 
-			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
-				continue
-			var/list/current_list = list(
-				"name" = limb.display_name,
-				"brute" = round(limb.brute_dam),
-				"burn" = round(limb.burn_dam),
-				"bandaged" = limb.is_bandaged(),
-				"salved" = limb.is_salved(),
-				"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
-				"limb_status" = null,
-				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
-				"open_incision" = limb.surgery_open_stage,
-				"necrotized" = necrotized,
-				"infected" = infected,
-				"implant" = implant
-			)
-			var/limb_status = ""
-			if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-				limb_status = "Fracture"
-			else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
-				limb_status = "Stabilized"
-			else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-				limb_status = "Splinted"
-			current_list["limb_status"] = limb_status
-			limb_data_lists["[limb.name]"] = current_list
-		data["limb_data_lists"] = limb_data_lists
-		data["limbs_damaged"] = length(limb_data_lists)
-		data["internal_bleeding"] = internal_bleeding
-		data["infection"] = infection_message
-		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
-		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
-		data["implants"] = unknown_implants
-		var/damaged_organs = list()
-		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
-			if(organ.organ_status == ORGAN_HEALTHY)
-				continue
-			var/current_organ = list(
-				"name" = organ.name,
-				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
-				"damage" = organ.damage
-			)
-			damaged_organs += list(current_organ)
-		data["damaged_organs"] = damaged_organs
+		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
+			continue
+		var/list/current_list = list(
+			"name" = limb.display_name,
+			"brute" = round(limb.brute_dam),
+			"burn" = round(limb.burn_dam),
+			"bandaged" = limb.is_bandaged(),
+			"salved" = limb.is_salved(),
+			"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
+			"limb_status" = null,
+			"limb_type" = null,
+			"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
+			"open_incision" = limb.surgery_open_stage,
+			"necrotized" = necrotized,
+			"infected" = infected,
+			"implant" = implant
+		)
+		var/limb_type = ""
+		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))
+			limb_type = "Robotic"
+		else if(CHECK_BITFIELD(limb.limb_status, LIMB_BIOTIC))
+			limb_type = "Biotic"
+
+		var/limb_status = ""
+		if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+			limb_status = "Fracture"
+		else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
+			limb_status = "Stabilized"
+		else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+			limb_status = "Splinted"
+		current_list["limb_type"] = limb_type
+		current_list["limb_status"] = limb_status
+		limb_data_lists["[limb.name]"] = current_list
+	data["limb_data_lists"] = limb_data_lists
+	data["limbs_damaged"] = length(limb_data_lists)
+	data["internal_bleeding"] = internal_bleeding
+	data["infection"] = infection_message
+	data["body_temperature"] = "[round(patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(patient.bodytemperature-T0C, 0.1)] degrees C)"
+	data["pulse"] = "[patient.get_pulse(GETPULSE_TOOL)] bpm"
+	data["implants"] = unknown_implants
+	var/damaged_organs = list()
+	for(var/datum/internal_organ/organ AS in patient.internal_organs)
+		if(organ.organ_status == ORGAN_HEALTHY)
+			continue
+		var/current_organ = list(
+			"name" = organ.name,
+			"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+			"damage" = organ.damage
+		)
+		damaged_organs += list(current_organ)
+	data["damaged_organs"] = damaged_organs
+
+	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
+		data["revivable_string"] = "Permanently deceased" // revivable_string is the actual information. "too much damage" etc.
+		data["revivable_boolean"] = FALSE // revivable_boolean is simply the TRUE/FALSE data entry used by tgui to color the revivable box
+	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+		data["revivable_string"] = "Ready to reboot"
+		data["revivable_boolean"] = TRUE
+	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+		data["revivable_string"] = "Ready to defibrillate"
+		data["revivable_boolean"] = TRUE
+	else
+		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
+		data["revivable_boolean"] = FALSE
+
+	// ADVICE
+	var/list/advice = list()
+	var/list/temp_advice = list()
+	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
+		if(patient.stat == DEAD) // death advice
+			var/dead_color
+			switch(patient.dead_ticks)
+				if(0 to 0.4 * TIME_BEFORE_DNR)
+					dead_color = "yellow"
+				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
+					dead_color = "orange"
+				if(0.8 * TIME_BEFORE_DNR to INFINITY)
+					dead_color = "red"
+			if(!issynth(patient)) // synthetics don't expire
+				advice += list(list(
+					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+					"icon" = "clock",
+					"color" = dead_color
+					))
+			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
+				advice += list(list(
+					"advice" = "Remove patient's suit or armor.",
+					"icon" = "shield-alt",
+					"color" = "blue"
+					))
+			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold() || isrobot(patient))
+				advice += list(list(
+					"advice" = "Administer shock via defibrillator!",
+					"icon" = "bolt",
+					"color" = "yellow"
+					))
+		if(issynth(patient) || isrobot(patient)) // robotic damage advice
+			if(patient.getBruteLoss() > 0)
+				advice += list(list(
+					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
+					"icon" = "tools",
+					"color" = "red"
+					))
+			if(patient.getFireLoss() > 0)
+				advice += list(list(
+					"advice" = "Use a cable coil or nanopaste to repair the scorched areas.",
+					"icon" = "plug",
+					"color" = "orange"
+					))
+		else // organic damage advice
+			if(patient.getBruteLoss() > 20)
+				advice += list(list(
+					"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
+					"icon" = "band-aid",
+					"color" = "green"
+					))
+			if(patient.getFireLoss() > 20)
+				advice += list(list(
+					"advice" = "Use burn kits or sutures to repair the burned areas.",
+					"icon" = "band-aid",
+					"color" = "orange"
+					))
+		if(patient.getCloneLoss() > 5)
+			advice += list(list(
+				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
+				"icon" = "dna",
+				"color" = "teal"
+				))
+		if(unknown_implants)
+			advice += list(list(
+				"advice" = "Remove embedded objects with tweezers.",
+				"icon" = "window-close",
+				"color" = "red"
+				))
+		if(!issynth(patient) && !isrobot(patient)) // human advice, includes chems
+			if(patient.status_flags & XENO_HOST)
+				advice += list(list(
+					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
+					"icon" = "exclamation",
+					"color" = "red"
+					))
+			if(internal_bleeding)
+				advice += list(list(
+					"advice" = "Internal bleeding detected. Cryo treatment advised.",
+					"icon" = "tint",
+					"color" = "crimson"
+					))
+			if(infection_message)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"icon" = "biohazard",
+					"color" = "olive"
+					))
+				if(chemicals_lists["Spaceacillin"])
+					if(chemicals_lists["Spaceacillin"]["amount"] < 2)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
+					"icon" = "syringe",
+					"color" = "red"
+					))
+				if(chemicals_lists["Bicaridine"])
+					if(chemicals_lists["Bicaridine"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of kelotane to reduce burns.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Kelotane"])
+					if(chemicals_lists["Kelotane"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getToxLoss() > 15)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of dylovene.",
+					"icon" = "syringe",
+					"color" = "green"
+					))
+				if(chemicals_lists["Dylovene"])
+					if(chemicals_lists["Dylovene"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getOxyLoss() > 30)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of dexalin plus.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["Dexalin Plus"])
+					if(chemicals_lists["Dexalin Plus"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
+				advice += list(list(
+					"advice" = "Administer a single dose of Isotonic solution.",
+					"icon" = "syringe",
+					"color" = "cyan"
+					))
+			if(chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
+					"icon" = "window-close",
+					"color" = "blue"
+					))
+				advice += temp_advice
+			if(patient.stat != DEAD && patient.health < -50)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of inaprovaline.",
+					"icon" = "syringe",
+					"color" = "purple"
+					))
+				if(chemicals_lists["Inaprovaline"])
+					if(chemicals_lists["Inaprovaline"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/has_pain = FALSE
+			if(patient.traumatic_shock > 50)
+				has_pain = TRUE
+
+			if(has_pain && !chemicals_lists["Paracetamol"] && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of tramadol to reduce pain.",
+					"icon" = "syringe",
+					"color" = "grey"
+					))
+				if(chemicals_lists["Tramadol"])
+					if(chemicals_lists["Tramadol"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+
+			if(chemicals_lists["Paracetamol"])
+				advice += list(list(
+					"advice" = "Do NOT administer tramadol.",
+					"icon" = "window-close",
+					"color" = "red"
+					))
+	else
+		advice += list(list(
+			"advice" = "Patient is unrevivable.",
+			"icon" = "ribbon",
+			"color" = "white"
+			))
+	if(advice.len)
+		data["advice"] = advice
+	else
+		data["advice"] = null
+
 	var/ssd = null
-	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
+	if(patient.has_brain() && patient.stat != DEAD)
 		if(!patient.key)
-			ssd = "No soul detected." // they ghosted
+			ssd = "No soul detected." // Catatonic- NPC, or ghosted
 		else if(!patient.client)
-			ssd = "SSD detected." // SSD
+			ssd = "Space Sleep Disorder detected." // SSD
 	data["ssd"] = ssd
 
 	return data
