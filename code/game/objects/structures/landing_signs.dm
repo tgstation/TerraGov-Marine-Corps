@@ -30,7 +30,7 @@
 	. = ..()
 	icon_state = "kut_ingame"
 	var/image/sign_top = new(src.icon, "kut_sign_top")
-	sign_top.pixel_y += 31
+	sign_top.pixel_y += 32
 	sign_top.layer = ABOVE_ALL_MOB_LAYER
 	overlays += sign_top
 

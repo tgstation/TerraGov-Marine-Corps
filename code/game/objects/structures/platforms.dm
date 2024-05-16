@@ -88,6 +88,9 @@
 /obj/structure/platform/rockcliff/orange
 	icon_state = "rockcliff_orange"
 
+/obj/structure/platform/rockcliff/red
+	icon_state = "rockcliff_red"
+
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
 
@@ -138,6 +141,9 @@
 
 /obj/structure/platform_decoration/rockcliff_deco/orange
 	icon_state = "rockcliff_orange_deco"
+
+/obj/structure/platform_decoration/rockcliff_deco/red
+	icon_state = "rockcliff_red_deco"
 
 /obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
 	icon_state = "icerock_deco"

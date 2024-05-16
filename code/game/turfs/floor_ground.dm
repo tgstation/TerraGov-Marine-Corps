@@ -240,6 +240,10 @@
 	icon_state = "mars1"
 	icon_variants = 5
 
+/turf/open/floor/plating/ground/mars/dunes
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "sand"
+
 //Ice Colony grounds
 
 //Ice Floor

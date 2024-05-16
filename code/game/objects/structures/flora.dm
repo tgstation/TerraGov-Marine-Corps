@@ -403,6 +403,7 @@
 
 /obj/structure/flora/ausbushes/ppflowers
 	icon_state = "ppflowers"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass"
