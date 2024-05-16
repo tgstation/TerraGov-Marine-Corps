@@ -1240,10 +1240,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/marshalls)
-"aZU" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "aZV" = (
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating/ground/dirt,
@@ -1386,10 +1382,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/operations_hall)
-"bhj" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "bhR" = (
 /obj/machinery/disposal,
 /obj/machinery/light{
@@ -2257,10 +2249,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/marshalls)
-"bTK" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "bTL" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -18491,10 +18479,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/recdorms)
-"plm" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "plA" = (
 /obj/structure/fence,
 /obj/structure/cable,
@@ -73750,7 +73734,7 @@ bwI
 vON
 jts
 pxc
-bTK
+jts
 jts
 jts
 jts
@@ -73924,7 +73908,7 @@ xiR
 ojM
 jsZ
 prl
-bhj
+jsZ
 cGD
 jsZ
 jsZ
@@ -73967,7 +73951,7 @@ bwI
 vON
 jts
 jts
-plm
+jts
 jts
 jts
 jts
@@ -74141,7 +74125,7 @@ xiR
 ojM
 jsZ
 jsZ
-aZU
+jsZ
 jsZ
 jsZ
 jsZ
@@ -75269,7 +75253,7 @@ bwI
 vON
 jts
 jts
-plm
+jts
 jts
 jts
 jts
@@ -75443,7 +75427,7 @@ xiR
 ojM
 jsZ
 jsZ
-aZU
+jsZ
 jsZ
 jsZ
 jsZ
@@ -75486,7 +75470,7 @@ bwI
 vON
 jts
 pxc
-bTK
+jts
 jts
 jts
 jts
@@ -75660,7 +75644,7 @@ xiR
 ojM
 jsZ
 prl
-bhj
+jsZ
 jsZ
 jsZ
 jsZ

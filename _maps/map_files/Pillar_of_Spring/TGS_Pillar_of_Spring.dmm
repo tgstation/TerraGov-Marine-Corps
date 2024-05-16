@@ -1790,12 +1790,6 @@
 "cjC" = (
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/squads/req)
-"cjU" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "ckd" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 1;
@@ -2062,12 +2056,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
-"cEZ" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "cFk" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship/tcomms,
@@ -4044,10 +4032,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/engine_core)
-"fbT" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "fcu" = (
 /obj/effect/landmark/corpsespawner/chef/regular,
 /turf/open/floor/mainship/mono,
@@ -6986,10 +6970,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"iMu" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "iMF" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -47438,7 +47418,7 @@ xyA
 kDx
 kDx
 cfw
-fbT
+kDx
 kDx
 kDx
 kDx
@@ -47695,7 +47675,7 @@ xyA
 csW
 csW
 nzB
-iMu
+kDx
 kDx
 kDx
 kDx
@@ -49237,7 +49217,7 @@ cPE
 xDq
 xDq
 qWy
-iMu
+kDx
 kDx
 kDx
 kDx
@@ -49494,7 +49474,7 @@ cPE
 kDx
 kDx
 cfw
-fbT
+kDx
 kDx
 kDx
 kDx
@@ -52325,7 +52305,7 @@ tHk
 nzB
 kDx
 cxw
-cjU
+kDx
 kDx
 kDx
 kDx
@@ -54895,7 +54875,7 @@ nbW
 qWy
 kDx
 cxw
-cEZ
+kDx
 kDx
 kDx
 kDx

@@ -11140,12 +11140,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
-"dKl" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
 "dKT" = (
 /obj/machinery/vending/nanomed{
 	pixel_y = 25
@@ -17488,12 +17482,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"lxI" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
 "lyd" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -22347,10 +22335,6 @@
 	dir = 1
 	},
 /area/sulaco/cargo/prep)
-"rFe" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "rFM" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -24701,10 +24685,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"uvn" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "uvN" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -57418,7 +57398,7 @@ lJm
 fsb
 pwv
 jIo
-dKl
+pwv
 kJu
 dal
 pwv
@@ -59988,7 +59968,7 @@ qES
 ylS
 pwv
 jIo
-lxI
+pwv
 pwv
 pwv
 pwv
@@ -62819,7 +62799,7 @@ igo
 aPZ
 aPZ
 eQF
-rFe
+aPZ
 aPZ
 aPZ
 aPZ
@@ -63076,7 +63056,7 @@ igo
 dtI
 dtI
 npe
-uvn
+aPZ
 aPZ
 aPZ
 aPZ
@@ -64618,7 +64598,7 @@ bYh
 sMl
 sMl
 ger
-uvn
+aPZ
 aPZ
 aPZ
 aPZ
@@ -64875,7 +64855,7 @@ igo
 aPZ
 aPZ
 eQF
-rFe
+aPZ
 aPZ
 aPZ
 aPZ
