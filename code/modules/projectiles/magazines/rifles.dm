@@ -235,7 +235,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 120
+	max_rounds = 0
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
