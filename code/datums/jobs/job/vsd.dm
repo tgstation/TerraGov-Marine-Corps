@@ -7,7 +7,7 @@
 
 //VSD Standard
 /datum/job/vsd/standard
-	title = "VSD Mládshiy serzhánt"
+	title = "VSD Standard"
 	paygrade = "VSD1"
 	outfit = /datum/outfit/job/vsd/standard/c550
 	multiple_outfits = TRUE
@@ -140,7 +140,7 @@
 
 //VSD Engineer
 /datum/job/vsd/engineer
-	title = "VSD Starshiná"
+	title = "VSD Engineer"
 	paygrade = "VSD3"
 	skills_type = /datum/skills/combat_engineer
 	outfit = /datum/outfit/job/vsd/engineer/l26
@@ -227,7 +227,7 @@
 
 //VSD Medic
 /datum/job/vsd/medic
-	title = "VSD Stárshiy serzhánt"
+	title = "VSD Medic"
 	paygrade = "VSD2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/vsd/medic/ksg
@@ -321,7 +321,7 @@
 
 //VSD Spec
 /datum/job/vsd/spec
-	title = "VSD Stabsgefreiter"
+	title = "VSD Specialist"
 	paygrade = "VSD4"
 	skills_type = /datum/skills/crafty
 	outfit = /datum/outfit/job/vsd/spec/flamer
@@ -528,7 +528,7 @@
 
 //VSD Juggernauts
 /datum/job/vsd/juggernaut
-	title = "VSD Leytenánt"
+	title = "VSD Juggernaut"
 	paygrade = "VSD4"
 	outfit = /datum/outfit/job/vsd/juggernaut
 	multiple_outfits = TRUE
@@ -640,7 +640,7 @@
 //VSD Squad Leader
 /datum/job/vsd/leader
 	job_category = JOB_CAT_COMMAND
-	title = "VSD Generál-polkóvnik"
+	title = "VSD Squad Leader"
 	paygrade = "VSD5"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/vsd/leader/one

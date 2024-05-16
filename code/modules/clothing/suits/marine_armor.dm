@@ -801,6 +801,7 @@
 	)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	armor_features_flags = NONE
+	item_map_variant_flags = NONE
 	icon_state = "vsd_marmor"
 	worn_icon_state = "vsd_marmor"
 	soft_armor = list(MELEE = 40, BULLET = 70, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 10, FIRE = 25, ACID = 30)
@@ -826,6 +827,7 @@
 	)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	armor_features_flags = NONE
+	item_map_variant_flags = NONE
 	icon_state = "vsd_harmor"
 	worn_icon_state = "vsd_harmor"
 	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
@@ -845,6 +847,7 @@
 	)
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor_features_flags = NONE
+	item_map_variant_flags = NONE
 	icon_state = "vsd_juggernaut_one"
 	worn_icon_state = "vsd_juggernaut_one"
 	soft_armor = list(MELEE = 50, BULLET = 90, LASER = 20, ENERGY = 15, BOMB = 50, BIO = 10, FIRE = 25, ACID = 30)
@@ -858,6 +861,7 @@
 	)
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor_features_flags = NONE
+	item_map_variant_flags = NONE
 	icon_state = "vsd_juggernaut_two"
 	worn_icon_state = "vsd_juggernaut_two"
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 25, ACID = 30)
