@@ -2897,7 +2897,7 @@
 	},
 /area/kutjevo/interior/complex/med)
 "dew" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/kutjevo/plate,
 /area/kutjevo/exterior/telecomm/lz2_north)
 "dez" = (
@@ -12011,9 +12011,6 @@
 /turf/open/floor/mainship/research/containment/floor1,
 /area/kutjevo/interior/complex/med/auto_doc)
 "mJq" = (
-/obj/machinery/computer/security{
-	pixel_y = 32
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -20568,6 +20565,10 @@
 	dir = 6
 	},
 /area/kutjevo/interior/colony_South/power2)
+"vCm" = (
+/obj/machinery/computer/security,
+/turf/closed/wall/kutjevo,
+/area/kutjevo/interior/complex/botany/east)
 "vCx" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/pastries/applecakeslice,
@@ -43480,7 +43481,7 @@ aor
 rQY
 lCC
 oQc
-wtH
+vCm
 mJq
 mdw
 suC
