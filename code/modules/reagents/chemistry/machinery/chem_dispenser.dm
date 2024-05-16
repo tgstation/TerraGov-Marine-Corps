@@ -441,6 +441,10 @@
 		/datum/reagent/consumable/ethanol/thirteenloko,
 		/datum/reagent/consumable/ethanol/whiskey_cola,
 		/datum/reagent/toxin/mindbreaker,
+		//These are currently unobtainable but are required for some drinks so I'll throw them here
+		/datum/reagent/consumable/enzyme,
+		/datum/reagent/consumable/capsaicin,
+		/datum/reagent/uranium,
 	)
 	needs_medical_training = FALSE
 
