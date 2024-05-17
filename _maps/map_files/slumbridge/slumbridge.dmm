@@ -638,7 +638,7 @@
 	},
 /area/slumbridge/inside/sombase/west)
 "aCj" = (
-/obj/mecha_wreckage/ripley/firefighter,
+/obj/structure/mecha_wreckage/ripley/firefighter,
 /turf/open/floor/plating/ground/concrete,
 /area/slumbridge/outside/southwest)
 "aCG" = (
@@ -3609,7 +3609,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/pharmacy)
 "cIm" = (
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/plating/ground/concrete/edge,
 /area/slumbridge/outside/southwest)
 "cIK" = (
@@ -5022,7 +5022,7 @@
 /turf/open/ground/grass/weedable,
 /area/slumbridge/outside/southeast)
 "dQp" = (
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/plating/ground/concrete,
 /area/slumbridge/outside/southwest)
 "dQz" = (
@@ -5300,7 +5300,7 @@
 /turf/open/floor/tile/green,
 /area/slumbridge/inside/houses/recreational)
 "dYX" = (
-/obj/mecha_wreckage/seraph,
+/obj/structure/mecha_wreckage/seraph,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/engi/south)
 "dZj" = (
@@ -5558,7 +5558,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/mining)
 "emS" = (
-/obj/mecha_wreckage/durand,
+/obj/structure/mecha_wreckage/durand,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/engi/south)
 "enk" = (
@@ -6324,7 +6324,7 @@
 	},
 /area/slumbridge/inside/zeta/south)
 "eVa" = (
-/obj/mecha_wreckage/mauler,
+/obj/structure/mecha_wreckage/mauler,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/engi/south)
 "eVd" = (
@@ -21675,7 +21675,7 @@
 	},
 /area/slumbridge/inside/prison/outerringsouth)
 "qkn" = (
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
 	},
@@ -26209,7 +26209,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/pmcdome)
 "tBA" = (
-/obj/mecha_wreckage/gygax,
+/obj/structure/mecha_wreckage/gygax,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/engi/south)
@@ -31023,7 +31023,7 @@
 /turf/open/floor/tile/showroom,
 /area/slumbridge/inside/engi/west)
 "xbI" = (
-/obj/mecha_wreckage/marauder,
+/obj/structure/mecha_wreckage/marauder,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/engi/south)
@@ -31982,7 +31982,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/kitchen)
 "xQE" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/construction)
 "xQF" = (

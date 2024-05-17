@@ -5497,7 +5497,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Aq" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/orion_outpost/ground/underground/caveN)
 "As" = (
@@ -8193,7 +8193,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/landing_pad2_external)
 "Nu" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/underground/caveN)
 "Nv" = (

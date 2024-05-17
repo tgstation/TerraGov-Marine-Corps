@@ -17,7 +17,7 @@
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "cu" = (
-/obj/mecha_wreckage/durand,
+/obj/structure/mecha_wreckage/durand,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "cQ" = (

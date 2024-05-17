@@ -73,7 +73,6 @@
 /obj/machinery/computer/mech_bay_power_console
 	name = "mech bay power control console"
 	desc = "Displays the status of mechs connected to the recharge station."
-	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	screen_overlay = "recharge_comp"
 	broken_icon = "computer_yellow_broken"
