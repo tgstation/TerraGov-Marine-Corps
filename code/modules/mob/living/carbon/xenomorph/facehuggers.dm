@@ -606,9 +606,10 @@
 		targethole = rand(1, 3)
 	if(target.wear_suit)
 		var/obj/item/clothing/suit/O = target.wear_suit
+		if(istype(O, /obj/item/clothing/mask/facehugger))
+			targethole = 1
 		if(istype(O, /obj/item/clothing/suit/storage/marine/specialist))
 			targethole = 1
-			return FALSE
 	if(targethole > 1)
 		return TRUE
 	else
