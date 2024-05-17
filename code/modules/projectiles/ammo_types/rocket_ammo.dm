@@ -80,12 +80,7 @@
 	sundering = 20
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 2, 5, 0, 3)
-
-/datum/ammo/rocket/ltb/on_hit_mob(mob/victim, obj/projectile/proj)
-	drop_nade(get_turf(victim))
-	if(!isxeno(victim))
-		victim.gib()
+	explosion(T, 1, 2, 5, 0, 3)
 
 /datum/ammo/rocket/heavy_isg
 	name = "8.8cm round"
