@@ -1,8 +1,6 @@
 ///////////////////////////////////
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
-
-
 /obj/mecha_wreckage
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
@@ -12,7 +10,6 @@
 	anchored = FALSE
 	opacity = FALSE
 	resistance_flags = XENO_DAMAGEABLE
-
 
 /obj/mecha_wreckage/gygax
 	name = "Gygax wreckage"

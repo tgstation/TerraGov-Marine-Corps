@@ -9,7 +9,6 @@
 	max_temperature = 60000
 	wreckage = /obj/structure/mecha_wreckage/marauder
 	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
-	mech_type = EXOSUIT_MODULE_COMBAT
 	force = 45
 	max_equip_by_category = list(
 		MECHA_UTILITY = 3,
