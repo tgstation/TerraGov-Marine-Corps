@@ -1,7 +1,7 @@
 /datum/campaign_asset/strategic_reserves
 	name = "Strategic Reserve"
 	desc = "Emergency reserve forces"
-	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when the opponent has initiated a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_DISABLE_ON_MISSION_END|ASSET_DISALLOW_REPEAT_USE
@@ -36,6 +36,7 @@
 	ui_icon = "respawn"
 	uses = 1
 	cost = 5
+	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_SL_AVAILABLE
 
 /datum/campaign_asset/tactical_reserves/activation_checks()
 	. = ..()

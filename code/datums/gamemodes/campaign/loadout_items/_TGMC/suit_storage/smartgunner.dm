@@ -7,7 +7,7 @@
 	It has good mobility for a machinegun, and is extremely effective on the move. Its innate IFF, good damage application and attached motion sensor makes it a powerful support weapon. \
 	Has somewhat poor falloff however, and although it has an excellent capacity, has slow reloading. It uses 10x26mm caseless ammunition. \
 	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	ui_icon = "smartgun"
+	ui_icon = "sg29"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -19,7 +19,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
 
-	if(!istype(wearer.back, /obj/item/storage))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
@@ -37,7 +37,7 @@
 	desc = "Equipped with a motion sensor. The SG-85 is a monstrous IFF minigun, able to unleash an incredible torrent of bullets with a tremendous capacity thanks to its back mounted ammo supply. \
 	With excellent armor penetration and minimal falloff, the SG-85 is a supreme support weapon, able to effective apply damage at any range, causing hideous amounts of shrapnel to anyone it doesn't kill."
 	req_desc = "Requires a powerback for power and ammo. It uses 10x26mm caseless ammunition"
-	ui_icon = "smartgun"
+	ui_icon = "minigun_sg"
 	item_typepath = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	item_whitelist = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun = ITEM_SLOT_BACK)
 
@@ -77,7 +77,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_ACCESSORY)
 
-	if(!istype(wearer.back, /obj/item/storage))
+	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten, SLOT_IN_BACKPACK)

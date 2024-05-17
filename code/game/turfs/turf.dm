@@ -154,7 +154,7 @@
 			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
 				return FALSE //No need for a bump, already procesed.
 			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
-				//Continue. We've plowed through the obstacle.
+				EMPTY_BLOCK_GUARD
 			else
 				mover.Bump(src)
 				return FALSE
@@ -885,6 +885,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/contents_explosion(severity)
+	. = ..()
 	for(var/thing in contents)
 		var/atom/movable/thing_in_turf = thing
 		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
@@ -928,7 +929,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return
 
 ///cleans any cleanable decals from the turf
-/turf/proc/clean_turf()
+/turf/wash()
+	. = ..()
 	for(var/obj/effect/decal/cleanable/filth in src)
 		qdel(filth) //dirty, filthy floor
 

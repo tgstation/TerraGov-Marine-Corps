@@ -11,7 +11,7 @@
 /turf/open/floor/plating/ground/burnt_states()
 	return icon_state
 
-/turf/open/floor/plating/ground/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/plating/ground/fire_act(burn_level)
 	return
 
 /turf/open/floor/plating/ground/dirt
@@ -187,6 +187,7 @@
 /turf/open/floor/plating/ground/mars/random/cave
 	name = "cave"
 	icon_state = "mars_cave"
+	smoothing_groups = list(SMOOTH_GROUP_SAND)
 
 /turf/open/floor/plating/ground/mars/random/cave/darker
 	color = "#948a7c"
@@ -256,6 +257,9 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
+/turf/open/floor/plating/ground/ice/get_dirt_type()
+	return NO_DIRT
+
 // Colony tiles
 /turf/open/floor/plating/ground/concrete
 	name = "concrete"
@@ -265,6 +269,9 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
 	minimap_color = MINIMAP_AREA_COLONY
+
+/turf/open/floor/plating/ground/concrete/get_dirt_type()
+	return NO_DIRT
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -306,6 +313,9 @@
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
 
+/turf/open/floor/plating/ground/desertdam/asphalt/get_dirt_type()
+	return NO_DIRT
+
 /turf/open/floor/plating/ground/desertdam/asphalt/cement
 	name = "concrete"
 	icon_state = "cement5"
@@ -346,6 +356,20 @@
 	name = "asphalt"
 	icon_state = "cement_threeside"
 
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth
+	name = "concrete"
+	icon = 'icons/turf/floors/asphalt-regular.dmi'
+	icon_state = "asphalt-icon"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_ASPHALT,
+	)
+	base_icon_state = "asphalt-regular"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/autosmooth/alt
+	icon = 'icons/turf/floors/asphalt-sunbleached.dmi'
+	base_icon_state = "asphalt-sunbleached"
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
@@ -412,3 +436,20 @@
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
+
+///These are entirely for decoration purposes, do not make them functional, it will cause salt.
+/turf/open/floor/chasm
+	name = "chasm"
+	desc = "Watch your step."
+	icon = 'icons/turf/floors/chasms.dmi'
+	icon_state = "chasms-0"
+	base_icon_state = "chasms"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_CHASM)
+	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
+	density = TRUE //keep people from stepping on it
+
+/turf/open/floor/chasm/junglechasm
+	icon = 'icons/turf/floors/junglechasm.dmi'
+	icon_state = "junglechasm-0"
+	base_icon_state = "junglechasm"

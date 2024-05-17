@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/wraith
-	caste_base_type = /mob/living/carbon/xenomorph/wraith
+	caste_base_type = /datum/xeno_caste/wraith
 	name = "Wraith"
 	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
 	icon = 'icons/Xeno/castes/wraith.dmi'

@@ -5,14 +5,16 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
-	bypass_w_limit = list(
+
+/obj/item/storage/box/hsg_102/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 7
+	storage_datum.storage_type_limits = list(
 		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
 	)
 
-/obj/item/storage/box/hsg_102/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/hsg_102/PopulateContents()
 	new /obj/item/weapon/gun/hsg_102(src) //gun itself
 	new /obj/item/ammo_magazine/hsg_102(src) //ammo for the gun
 
@@ -25,7 +27,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -162,11 +164,11 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "autocannon"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
-	fire_sound = "ac_fire"
+	fire_sound = SFX_AC_FIRE
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/auto_cannon
@@ -212,7 +214,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavylaser"
+	icon_state = "heavylaser_deployed"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -363,7 +365,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -413,8 +415,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
-	item_state = "t27"
-	item_icons = list(
+	worn_icon_state = "t27"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
@@ -480,8 +482,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/clf_heavyrifle.dmi'
 	icon_state = "ptrs"
-	item_state = "ptrs"
-	item_icons = list(
+	worn_icon_state = "ptrs"
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
@@ -542,7 +544,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36"
-	item_state = "tat36"
+	worn_icon_state = "tat36"
 	caliber = CALIBER_37MM // codex
 	max_shells = 1 //codex
 	fire_sound = 'sound/weapons/guns/fire/tat36.ogg'
@@ -577,21 +579,19 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable/atgun
 
 /obj/machinery/deployable/mounted/moveable/atgun
-	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
+	///The internal storage of our atgun
+	var/obj/item/storage/atgun_ammo_rack/sponson = /obj/item/storage/atgun_ammo_rack
+
+/obj/item/storage/atgun_ammo_rack
+	storage_type = /datum/storage/internal/ammo_rack
 
 /obj/machinery/deployable/mounted/moveable/atgun/Destroy()
 	if(sponson)
 		QDEL_NULL(sponson)
 	return ..()
-
-/obj/item/storage/internal/ammo_rack
-	storage_slots = 10
-	max_storage_space = 40
-	max_w_class = WEIGHT_CLASS_BULKY
-	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
 /obj/machinery/deployable/mounted/moveable/atgun/Initialize(mapload)
 	. = ..()
@@ -603,17 +603,26 @@
 		balloon_alert(user, "Busy manning!")
 		return
 
-	return . = ..()
+	if(!sponson.attackby(I, user, params))
+		return ..()
 
 /obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
-	return sponson.open(user)
+	if(user.interactee == src)
+		balloon_alert(user, "Busy manning!")
+		return
 
-/obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
-	if(!ishuman(user) || user.lying_angle || user.incapacitated())
+	return sponson.attack_hand_alternate(user)
+
+/obj/machinery/deployable/mounted/moveable/atgun/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!ishuman(usr) || usr.lying_angle || usr.incapacitated())
 		return FALSE
 
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
+	if(usr.interactee == src)
+		balloon_alert(usr, "Busy manning!")
+		return
+
+	if(over == usr && Adjacent(usr)) //This must come before the screen objects only block
+		sponson.storage_datum.open(usr)
 		return FALSE
 
 /obj/machinery/deployable/mounted/moveable/atgun/ex_act(severity)
@@ -688,7 +697,7 @@
 	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "kord"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)

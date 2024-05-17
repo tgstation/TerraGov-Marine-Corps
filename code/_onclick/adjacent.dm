@@ -155,7 +155,7 @@
 		return TRUE
 
 	if(isitem(loc)) //Special case handling.
-		if(istype(loc, /obj/item/storage/internal)) //Special holders, could be contained really deep, like webbings, so let's go one step further.
+		if(istype(loc, /obj/item/storage/internal) || istype(loc, /obj/item/armor_module)) //Special holders, could be contained really deep, like webbings, so let's go one step further.
 			return loc.Adjacent(neighbor)
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.

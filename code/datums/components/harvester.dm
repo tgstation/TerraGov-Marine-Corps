@@ -224,7 +224,7 @@
 
 		if(/datum/reagent/medicine/kelotane)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.flamer_fire_act(10)
+			target.fire_act(10)
 
 		if(/datum/reagent/medicine/tramadol)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
@@ -294,8 +294,18 @@
 		if(initial(reagent_entry.name) == selected_option)
 			selected_reagent = reagent_entry
 
+	var/obj/item/item_parent = parent
+	item_parent.update_appearance(UPDATE_ICON)
+	loaded_reagent = null
+	var/parent_slot = reagent_select_action.owner.get_equipped_slot(parent)
+	if(parent_slot == SLOT_L_HAND)
+		reagent_select_action.owner.update_inv_l_hand()
+	else
+		reagent_select_action.owner.update_inv_r_hand()
+
 	update_selected_reagent(selected_reagent)
 
+	INVOKE_ASYNC(src, PROC_REF(activate_blade_async), item_parent, reagent_select_action.owner) //Load up on the chem we just picked
 
 /datum/component/harvester/proc/update_selected_reagent(datum/reagent/new_reagent)
 	selected_reagent = new_reagent

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/behemoth
-	caste_base_type = /mob/living/carbon/xenomorph/behemoth
+	caste_base_type = /datum/xeno_caste/behemoth
 	name = "Behemoth"
 	desc = "A resilient and equally ferocious monster that commands the earth itself."
 	icon = 'icons/Xeno/castes/behemoth.dmi'

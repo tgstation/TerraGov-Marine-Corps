@@ -39,6 +39,20 @@
 
 	active_attachable.reload(I, user)
 
+//tactical reloads
+/obj/item/weapon/gun/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	if(isammomagazine(target))
+		var/obj/item/ammo_magazine/mag_to_reload = target
+		if(mag_to_reload.magazine_flags & MAGAZINE_WORN)
+			return ..()
+		tactical_reload(target, user)
+	if(islascell(target))
+		var/obj/item/cell/lasgun/cell_to_reload = target
+		if(cell_to_reload.magazine_features_flags & MAGAZINE_WORN)
+			return ..()
+		tactical_reload(target, user)
+	return ..()
+
 /obj/item/weapon/gun/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
@@ -90,12 +104,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	wield(user)//Trying to wield it
 
-//tactical reloads
-/obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
-	if(istype(dropping, /obj/item/ammo_magazine) || istype(dropping, /obj/item/cell))
-		tactical_reload(dropping, user)
-	return ..()
-
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/new_magazine, mob/living/carbon/human/user)
 	if(!istype(user) || user.incapacitated(TRUE) || user.do_actions)
@@ -124,9 +132,9 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		unload(user)
 	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 		return
-	if(istype(new_magazine.loc, /obj/item/storage))
+	if(new_magazine.item_flags & IN_STORAGE)
 		var/obj/item/storage/S = new_magazine.loc
-		S.remove_from_storage(new_magazine, get_turf(user), user)
+		S.storage_datum.remove_from_storage(new_magazine, get_turf(user), user)
 	if(!CHECK_BITFIELD(get_magazine_features_flags(new_magazine), MAGAZINE_WORN))
 		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)
