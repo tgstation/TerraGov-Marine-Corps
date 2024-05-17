@@ -5055,7 +5055,7 @@
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
 "dBS" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle,
+/obj/item/mecha_equipment/weapon/energy/laser_rifle,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	max_integrity = 50;
@@ -7262,7 +7262,7 @@
 /turf/open/floor/tile/darkish,
 /area/riptide/inside/medical/surgery)
 "fcn" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear,
+/obj/item/mecha_equipment/weapon/energy/laser_spear,
 /obj/item/stack/sandbags,
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -16050,7 +16050,7 @@
 /turf/open/liquid/water/river,
 /area/riptide/outside/southislands)
 "lrQ" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/sniper,
+/obj/item/mecha_equipment/weapon/ballistic/sniper,
 /obj/structure/table/mainship,
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
@@ -22452,7 +22452,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
 "pMV" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear,
+/obj/item/mecha_equipment/weapon/energy/laser_spear,
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	max_integrity = 50;
@@ -24409,7 +24409,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
 "qVW" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle,
+/obj/item/mecha_equipment/weapon/energy/laser_rifle,
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	max_integrity = 50;
@@ -29017,7 +29017,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
 "tVO" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun,
+/obj/item/mecha_equipment/weapon/ballistic/minigun,
 /obj/structure/table/mainship,
 /turf/open/floor/iron/small,
 /area/riptide/caves/pmc/rnd)

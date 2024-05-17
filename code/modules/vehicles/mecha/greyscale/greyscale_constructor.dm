@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///generates the static list data containig all printable mech equipment modules for greyscale
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
-	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
+	for(var/obj/item/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_equipment))
 		switch(initial(type.equipment_slot))
 			if(MECHA_WEAPON)
 				var/list/weapon_representation = list(
@@ -22,8 +22,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(ispath(ammotype, /datum/ammo))
 					weapon_representation["damage"] = initial(ammotype.damage)
 					weapon_representation["armor_pierce"] = initial(ammotype.penetration)
-				if(ispath(type, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-					var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ballistic_type = type
+				if(ispath(type, /obj/item/mecha_equipment/weapon/ballistic))
+					var/obj/item/mecha_equipment/weapon/ballistic/ballistic_type = type
 					weapon_representation["projectiles"] = initial(ballistic_type.projectiles)
 					weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
 					weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
@@ -291,8 +291,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("add_weapon")
-			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
-			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+			var/obj/item/mecha_equipment/weapon/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_equipment))
 				return FALSE
 			if(initial(new_type.equipment_slot) != MECHA_WEAPON)
 				return FALSE
@@ -303,8 +303,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("add_power")
-			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
-			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+			var/obj/item/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_equipment))
 				return FALSE
 			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
 				return FALSE
@@ -312,8 +312,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("add_armor")
-			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
-			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+			var/obj/item/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_equipment))
 				return FALSE
 			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
 				return FALSE
@@ -321,8 +321,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("add_utility")
-			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
-			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+			var/obj/item/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_equipment))
 				return FALSE
 			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
 				return FALSE
@@ -337,17 +337,17 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("remove_power")
-			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			var/obj/item/mecha_equipment/removed_type = text2path(params["type"])
 			selected_equipment[MECHA_POWER] -= removed_type
 			return TRUE
 
 		if("remove_armor")
-			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			var/obj/item/mecha_equipment/removed_type = text2path(params["type"])
 			selected_equipment[MECHA_ARMOR] -= removed_type
 			return TRUE
 
 		if("remove_utility")
-			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			var/obj/item/mecha_equipment/removed_type = text2path(params["type"])
 			selected_equipment[MECHA_UTILITY] -= removed_type
 			return TRUE
 
@@ -369,14 +369,14 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		limb.attach(mech, slot)
 	if(selected_equipment[MECHA_L_ARM])
 		var/new_type = selected_equipment[MECHA_L_ARM]
-		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		var/obj/item/mecha_equipment/weapon/new_gun = new new_type
 		new_gun.attach(mech)
 	if(selected_equipment[MECHA_R_ARM])
 		var/new_type = selected_equipment[MECHA_R_ARM]
-		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		var/obj/item/mecha_equipment/weapon/new_gun = new new_type
 		new_gun.attach(mech, TRUE)
 	for(var/equipment in (selected_equipment[MECHA_POWER]|selected_equipment[MECHA_ARMOR]|selected_equipment[MECHA_UTILITY]))
-		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
+		var/obj/item/mecha_equipment/new_equip = new equipment
 		new_equip.attach(mech)
 
 	mech.pixel_y = 240

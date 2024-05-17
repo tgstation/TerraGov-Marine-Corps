@@ -72,8 +72,8 @@
 
 /obj/vehicle/sealed/mecha/greyscale/proc/max_ammo() //Max the ammo stored for Nuke Ops mechs, or anyone else that calls this
 	for(var/obj/item/I AS in flat_equipment)
-		if(istype(I, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = I
+		if(istype(I, /obj/item/mecha_equipment/weapon/ballistic))
+			var/obj/item/mecha_equipment/weapon/ballistic/gun = I
 			gun.projectiles_cache = gun.projectiles_cache_max
 
 /obj/vehicle/sealed/mecha/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
@@ -128,12 +128,12 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
+			var/obj/item/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
 			continue
 		if(key == MECHA_L_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
+			var/obj/item/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 			continue

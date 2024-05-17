@@ -28241,7 +28241,7 @@
 /area/lawankaoutpost/outside/northeast)
 "xfF" = (
 /obj/structure/rack,
-/obj/item/mecha_parts/mecha_equipment/generator,
+/obj/item/mecha_equipment/generator,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "xfN" = (

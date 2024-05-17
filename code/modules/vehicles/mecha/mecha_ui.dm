@@ -114,8 +114,8 @@
 			"frequency" = radio.frequency,
 		)
 	if(equip_by_category[MECHA_L_ARM])
-		var/obj/item/mecha_parts/mecha_equipment/l_gun = equip_by_category[MECHA_L_ARM]
-		var/isballisticweapon = istype(l_gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic)
+		var/obj/item/mecha_equipment/l_gun = equip_by_category[MECHA_L_ARM]
+		var/isballisticweapon = istype(l_gun, /obj/item/mecha_equipment/weapon/ballistic)
 		data["left_arm_weapon"] = list(
 			"name" = l_gun.name,
 			"desc" = l_gun.desc,
@@ -126,7 +126,7 @@
 			"snowflake" = l_gun.get_snowflake_data(),
 		)
 		if(isballisticweapon)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/weapon = l_gun
+			var/obj/item/mecha_equipment/weapon/ballistic/weapon = l_gun
 			data["left_arm_weapon"] += list(
 				"projectiles" = weapon.projectiles,
 				"max_magazine" = initial(weapon.projectiles),
@@ -136,8 +136,8 @@
 				"ammo_type" = weapon.ammo_type,
 			)
 	if(equip_by_category[MECHA_R_ARM])
-		var/obj/item/mecha_parts/mecha_equipment/r_gun = equip_by_category[MECHA_R_ARM]
-		var/isballisticweapon = istype(r_gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic)
+		var/obj/item/mecha_equipment/r_gun = equip_by_category[MECHA_R_ARM]
+		var/isballisticweapon = istype(r_gun, /obj/item/mecha_equipment/weapon/ballistic)
 		data["right_arm_weapon"] = list(
 			"name" = r_gun.name,
 			"desc" = r_gun.desc,
@@ -148,7 +148,7 @@
 			"snowflake" = r_gun.get_snowflake_data(),
 		)
 		if(isballisticweapon)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/weapon = r_gun
+			var/obj/item/mecha_equipment/weapon/ballistic/weapon = r_gun
 			data["right_arm_weapon"] += list(
 				"projectiles" = weapon.projectiles,
 				"max_magazine" = initial(weapon.projectiles),
@@ -158,21 +158,21 @@
 				"ammo_type" = weapon.ammo_type,
 			)
 	data["mech_equipment"] = list("utility" = list(), "power" = list(), "armor" = list())
-	for(var/obj/item/mecha_parts/mecha_equipment/utility AS in equip_by_category[MECHA_UTILITY])
+	for(var/obj/item/mecha_equipment/utility AS in equip_by_category[MECHA_UTILITY])
 		data["mech_equipment"]["utility"] += list(list(
 			"name" = utility.name,
 			"activated" = utility.activated,
 			"snowflake" = utility.get_snowflake_data(),
 			"ref" = REF(utility),
 		))
-	for(var/obj/item/mecha_parts/mecha_equipment/power AS in equip_by_category[MECHA_POWER])
+	for(var/obj/item/mecha_equipment/power AS in equip_by_category[MECHA_POWER])
 		data["mech_equipment"]["power"] += list(list(
 			"name" = power.name,
 			"activated" = power.activated,
 			"snowflake" = power.get_snowflake_data(),
 			"ref" = REF(power),
 		))
-	for(var/obj/item/mecha_parts/mecha_equipment/armor/armor AS in equip_by_category[MECHA_ARMOR])
+	for(var/obj/item/mecha_equipment/armor/armor AS in equip_by_category[MECHA_ARMOR])
 		data["mech_equipment"]["armor"] += list(list(
 			"protect_name" = armor.protect_name,
 			"iconstate_name" = armor.iconstate_name,
@@ -220,6 +220,6 @@
 			try_repair_int_damage(usr, params["flag"])
 			return FALSE
 		if("equip_act")
-			var/obj/item/mecha_parts/mecha_equipment/gear = locate(params["ref"]) in flat_equipment
+			var/obj/item/mecha_equipment/gear = locate(params["ref"]) in flat_equipment
 			return gear?.ui_act(params["gear_action"], params, ui, state)
 	return TRUE

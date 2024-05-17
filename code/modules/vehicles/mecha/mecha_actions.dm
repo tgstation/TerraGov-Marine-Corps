@@ -137,9 +137,9 @@
 		return
 
 	for(var/i in chassis.equip_by_category)
-		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
+		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_equipment))
 			continue
-		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)
+		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_equipment, attempt_rearm), owner)
 
 /datum/action/vehicle/sealed/mecha/mech_overload_mode
 	name = "Toggle leg actuators overload"
@@ -157,7 +157,7 @@
 		chassis.leg_overload_mode = !chassis.leg_overload_mode
 	action_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
-	var/obj/item/mecha_parts/mecha_equipment/ability/dash/ability = locate() in chassis.equip_by_category[MECHA_UTILITY]
+	var/obj/item/mecha_equipment/ability/dash/ability = locate() in chassis.equip_by_category[MECHA_UTILITY]
 	if(ability)
 		chassis.cut_overlay(ability.overlay)
 		var/state = chassis.leg_overload_mode ? (initial(ability.icon_state) + "_active") : initial(ability.icon_state)

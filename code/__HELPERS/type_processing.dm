@@ -13,7 +13,7 @@
 			/obj/item/reagent_containers = "REAGENT_CONTAINERS",
 			/obj/machinery/atmospherics = "ATMOS_MECH",
 			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
-			/obj/item/mecha_parts/mecha_equipment = "MECHA_EQUIP",
+			/obj/item/mecha_equipment = "MECHA_EQUIP",
 			/obj/item/organ = "ORGAN",
 			/obj/item = "ITEM",
 			/obj/machinery = "MACHINERY",

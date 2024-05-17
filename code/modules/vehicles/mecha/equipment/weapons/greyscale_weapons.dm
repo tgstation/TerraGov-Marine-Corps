@@ -11,7 +11,7 @@
  * equip_cooldown gets overriden unless propjectile is thrown
  */
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol
+/obj/item/mecha_equipment/weapon/ballistic/pistol
 	name = "\improper Cottus pistol"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
@@ -35,7 +35,7 @@
 	hud_icons = list("pistol", "pistol_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstpistol
+/obj/item/mecha_equipment/weapon/ballistic/burstpistol
 	name = "\improper Crius burst pistol"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
@@ -61,7 +61,7 @@
 	hud_icons = list("pistol_light", "pistol_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg
+/obj/item/mecha_equipment/weapon/ballistic/smg
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
@@ -85,7 +85,7 @@
 	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
+/obj/item/mecha_equipment/weapon/ballistic/burstrifle
 	name = "\improper Tethys burst rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Medium-sized mech assault weapon. Similar to the Cronus assault rifle, but fires in bursts."
@@ -110,7 +110,7 @@
 	hud_icons = list("hivelo", "hivelo_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle
+/obj/item/mecha_equipment/weapon/ballistic/assault_rifle
 	name = "\improper Cronus assault rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
@@ -133,7 +133,7 @@
 	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
+/obj/item/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
@@ -156,7 +156,7 @@
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg
+/obj/item/mecha_equipment/weapon/ballistic/greyscale_lmg
 	name = "\improper Briareus LMG"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A massive hulk of metal that fires base-bleed LMG rounds. Like the standard LMG, but bigger, better and heavier."
@@ -179,7 +179,7 @@
 	hud_icons = list("rifle_heavy", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon
+/obj/item/mecha_equipment/weapon/ballistic/light_cannon
 	name = "\improper Leto light autocannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A drum-fed autocannon that fires fragmentation rounds that burst in a frontal cone when the bullet impacts. Extra effective against clusters of enemies."
@@ -202,7 +202,7 @@
 	hud_icons = list("grenade_airburst", "grenade_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle
+/obj/item/mecha_equipment/weapon/energy/laser_rifle
 	name = "\improper Aegaeon laser rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Standard mech laser rifle. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
@@ -221,7 +221,7 @@
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector
+/obj/item/mecha_equipment/weapon/energy/laser_projector
 	name = "\improper Gyges laser projector"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A laser projector, capable of burstfiring. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
@@ -242,7 +242,7 @@
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg
+/obj/item/mecha_equipment/weapon/energy/laser_smg
 	name = "\improper Mnemosyne laser SMG"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Standard mech laser SMG. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons. More mobile than the laser rifle."
@@ -261,7 +261,7 @@
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon
+/obj/item/mecha_equipment/weapon/ballistic/heavy_cannon
 	name = "\improper Themis heavy cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Nothing says \"Go to hell\" like a tank cannon mounted on a war robot. Packs a big punch despite needing a reload after each shot."
@@ -284,7 +284,7 @@
 	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
+/obj/item/mecha_equipment/weapon/ballistic/minigun
 	name = "\improper Rhea vulcan cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Mobility isn't needed when you can just hide behind a hail of bullets! Requires windup before firing."
@@ -309,7 +309,7 @@
 	hud_icons = list("smartgun", "smartgun_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/sniper
+/obj/item/mecha_equipment/weapon/ballistic/sniper
 	name = "\improper Oceanus sniper rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A anti-tank rifle only capable of being wielded by mechs. Originally designed for fighting small armored vehicles, but works just as well against similarly sized creatures. Has IFF."
@@ -332,7 +332,7 @@
 	hud_icons = list("sniper_supersonic", "sniper_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
+/obj/item/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
 	name = "\improper Hyperion grenade launcher"
 	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
@@ -351,7 +351,7 @@
 	hud_icons = list("grenade_he", "grenade_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher/proj_init(obj/item/explosive/grenade/nade, mob/user)
+/obj/item/mecha_equipment/weapon/ballistic/launcher/grenadelauncher/proj_init(obj/item/explosive/grenade/nade, mob/user)
 	var/turf/T = get_turf(src)
 	log_game("[key_name(user)] fired a [nade] in [AREACOORD(T)]")
 	nade.det_time = min(1 SECONDS, nade.det_time)
@@ -359,7 +359,7 @@
 	nade.activate(user)
 	nade.throwforce += nade.launchforce
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower
+/obj/item/mecha_equipment/weapon/ballistic/flamethrower
 	name = "\improper Helios flamethrower"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized flamer for mounting on mechs. Bad mobility, but the additional napalm more than makes up for it."
@@ -382,7 +382,7 @@
 	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
+/obj/item/mecha_equipment/weapon/ballistic/rpg
 	name = "\improper Iapetus missile pod"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A mech missile pod. Does not hold a lot of spare ammo and requires frequent external refills. But hey, exploding missiles all the way!"
@@ -412,7 +412,7 @@
 #define LASER_DASH_RANGE_NORMAL 3
 #define LASER_DASH_RANGE_ENHANCED 5
 
-/obj/item/mecha_parts/mecha_equipment/laser_sword
+/obj/item/mecha_equipment/laser_sword
 	name = "\improper Moonlight particle cutter"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
@@ -427,7 +427,7 @@
 	/// holder var for the mob that is attacking right now
 	var/mob/cutter
 
-/obj/item/mecha_parts/mecha_equipment/laser_sword/action_checks(atom/target, ignore_cooldown)
+/obj/item/mecha_equipment/laser_sword/action_checks(atom/target, ignore_cooldown)
 	. = ..()
 	if(!.)
 		return
@@ -438,7 +438,7 @@
 		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Already in use!")]")
 		return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/laser_sword/action(mob/source, atom/target, list/modifiers)
+/obj/item/mecha_equipment/laser_sword/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return
 	//melee swipe, no need to dash
@@ -461,12 +461,12 @@
 	return ..()
 
 ///signal handler, drops afterimage every move executed while dashing
-/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
+/obj/item/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 
 ///Ends dash and executes attack
-/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
+/obj/item/mecha_equipment/laser_sword/proc/end_dash(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 	chassis.remove_filter("dash_blur")
@@ -477,7 +477,7 @@
 	chassis.atom_flags &= ~DIRLOCK
 
 ///executes a melee attack in the direction that the mech is facing
-/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
+/obj/item/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
 	var/list/turf/targets
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
 		targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
@@ -495,7 +495,7 @@
 			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear
+/obj/item/mecha_equipment/weapon/energy/laser_spear
 	name = "\improper Sunbeam particle piercer"
 	desc = "A spear made of compressed energy for the TGMC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
@@ -515,7 +515,7 @@
 	muzzle_flash_color = COLOR_PULSE_BLUE
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear/action_checks(mob/source, atom/target, list/modifiers)
+/obj/item/mecha_equipment/weapon/energy/laser_spear/action_checks(mob/source, atom/target, list/modifiers)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -17,7 +17,7 @@
 /obj/vehicle/sealed/mecha/proc/try_damage_component(damage, def_zone)
 	if(damage < component_damage_threshold)
 		return
-	var/obj/item/mecha_parts/mecha_equipment/gear
+	var/obj/item/mecha_equipment/gear
 	switch(def_zone)
 		if(BODY_ZONE_L_ARM)
 			gear = equip_by_category[MECHA_L_ARM]
@@ -173,8 +173,8 @@
 	return TRUE
 
 /obj/vehicle/sealed/mecha/attackby_alternate(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/mecha_parts))
-		var/obj/item/mecha_parts/parts = weapon
+	if(istype(weapon, /obj/item/mecha_equipment))
+		var/obj/item/mecha_equipment/parts = weapon
 		parts.try_attach_part(user, src, TRUE)
 		return TRUE
 	return ..()
@@ -184,8 +184,8 @@
 		ammo_resupply(W, user)
 		return
 
-	if(istype(W, /obj/item/mecha_parts))
-		var/obj/item/mecha_parts/P = W
+	if(istype(W, /obj/item/mecha_equipment))
+		var/obj/item/mecha_equipment/P = W
 		P.try_attach_part(user, src, FALSE)
 		return
 	return ..()
@@ -242,7 +242,7 @@
 			to_chat(user, span_warning("This box of ammo is empty!"))
 		return FALSE
 	var/found_gun
-	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in flat_equipment)
+	for(var/obj/item/mecha_equipment/weapon/ballistic/gun in flat_equipment)
 		if(gun.ammo_type != reload_box.ammo_type)
 			continue
 		found_gun = TRUE

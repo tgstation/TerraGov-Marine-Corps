@@ -83,11 +83,11 @@
 	. = ..()
 	update_icon()
 	//tgmc addition start
-	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
+	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
 		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
-	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
+	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
 		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
 	//tgmc addition end
 

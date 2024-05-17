@@ -200,11 +200,11 @@
 			var/path = equip_by_category[key]
 			if(!path)
 				continue
-			var/obj/item/mecha_parts/mecha_equipment/thing = new path
+			var/obj/item/mecha_equipment/thing = new path
 			thing.attach(src, key == MECHA_R_ARM)
 			continue
 		for(var/path in equip_by_category[key])
-			var/obj/item/mecha_parts/mecha_equipment/thing = new path
+			var/obj/item/mecha_equipment/thing = new path
 			thing.attach(src, FALSE)
 			equip_by_category[key] -= path
 
@@ -215,7 +215,7 @@
 	GLOB.nightfall_toggleable_lights -= src
 
 	if(LAZYLEN(flat_equipment))
-		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
+		for(var/obj/item/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
 			qdel(equip)
 	radio = null
@@ -256,7 +256,7 @@
 
 	if(wreckage)
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, unlucky_ais)
-		for(var/obj/item/mecha_parts/mecha_equipment/E in flat_equipment)
+		for(var/obj/item/mecha_equipment/E in flat_equipment)
 			if(E.detachable && prob(30))
 				E.detach(WR) //detaches from src into WR
 				E.activated = TRUE
@@ -383,7 +383,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
+		for(var/obj/item/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
@@ -490,7 +490,7 @@
 	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
 		return
-	var/obj/item/mecha_parts/mecha_equipment/selected
+	var/obj/item/mecha_equipment/selected
 	if(modifiers[BUTTON] == RIGHT_CLICK)
 		selected = equip_by_category[MECHA_R_ARM]
 	else
@@ -500,12 +500,12 @@
 	if(!Adjacent(target) && (selected.range & MECHA_RANGED))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_equipment, action), user, target, modifiers)
 		return
 	if((selected.range & MECHA_MELEE) && Adjacent(target))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_equipment, action), user, target, modifiers)
 		return
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
