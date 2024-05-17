@@ -3,6 +3,8 @@
 ///The height of the mask itself in the icon state. Changes to the icon requires a change to this define
 #define MOB_LIQUID_TURF_MASK_HEIGHT 32
 
+#define OBJ_LIQUID_TURF_ALPHA_MULT 11
+
 /turf/open/liquid //Basic liquid turf parent
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
@@ -28,13 +30,30 @@
 		return FALSE
 	. = TRUE
 
-	if(!ismob(arrived))
-		return
-
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
-		return
+		return //visually looks weird on these edge turfs
 
-	var/mob/arrived_mob = arrived
+	if(isliving(arrived))
+		submerge_mob(arrived, old_loc)
+	else if(isitem(arrived))
+		submerge_item(arrived, old_loc)
+
+/turf/open/liquid/Exited(atom/movable/leaver, direction)
+	. = ..()
+	var/turf/open/liquid/new_turf = leaver.loc
+	if(istype(new_turf))
+		if(length(new_turf.canSmoothWith))
+			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+				return
+		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
+			return
+	if(isliving(leaver))
+		unsubmerge_mob(leaver)
+	else if(isitem(leaver))
+		unsubmerge_item(leaver)
+
+
+/turf/open/liquid/proc/submerge_mob(mob/living/arrived_mob, atom/old_loc)
 	var/icon/mob_icon = icon(arrived_mob.icon)
 	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
 
@@ -56,27 +75,27 @@
 	if(!arrived_mob.throwing)
 		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 
-/turf/open/liquid/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(!ismob(leaver))
-		return
-	var/mob/mob_leaver = leaver
+/turf/open/liquid/proc/submerge_item(obj/item/arrived_item, atom/old_loc)
+	var/alpha_change = mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
+	if(istype(old_loc, /turf/open/liquid))
+		var/turf/open/liquid/old_liquid_loc = old_loc
+		if(!SEND_SIGNAL(old_liquid_loc, COMSIG_TURF_CHECK_COVERED) && (!length(old_liquid_loc.canSmoothWith) || CHECK_MULTIPLE_BITFIELDS(old_liquid_loc.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION))))
+			alpha_change -= old_liquid_loc.mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
+
+	arrived_item.alpha -= alpha_change
+
+/turf/open/liquid/proc/unsubmerge_mob(mob/living/mob_leaver)
 	if(!mob_leaver.get_filter(MOB_LIQUID_TURF_MASK))
 		return
-
-	var/turf/open/liquid/new_turf = mob_leaver.loc
-	if(istype(new_turf))
-		if(length(new_turf.canSmoothWith))
-			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
-				return
-		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
-			return
-
 	var/icon/mob_icon = icon(mob_leaver.icon)
 	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
 	animate(mob_leaver, pixel_y = mob_leaver.pixel_y - mob_liquid_depth, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(mob_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
 
+/turf/open/liquid/proc/unsubmerge_item(obj/item/item_leaver)
+	item_leaver.alpha +=  mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
+
+////////////////////////////////////////
 /turf/open/liquid/water
 	name = "river"
 	icon_state = "seashallow"
@@ -295,3 +314,7 @@
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 	base_icon_state = "lava"
+
+#undef MOB_LIQUID_TURF_MASK
+#undef MOB_LIQUID_TURF_MASK_HEIGHT
+#undef OBJ_LIQUID_TURF_ALPHA_MULT
