@@ -2,6 +2,7 @@
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 #define WARHEAD_FUEL_REQUIREMENT 6
+
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
 	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
@@ -192,7 +193,7 @@
 	ob_cannon_busy = TRUE
 
 	var/inaccurate_fuel = 0
-	inaccurate_fuel = WARHEAD_FUEL_REQUIREMENT - tray.fuel_amt
+	inaccurate_fuel = abs(WARHEAD_FUEL_REQUIREMENT - tray.fuel_amt)
 
 	// Give marines a warning if misfuelled.
 	var/fuel_warning = "Warhead fuel level: safe."
