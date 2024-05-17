@@ -358,8 +358,6 @@
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/reload, VEHICLE_CONTROL_EQUIPMENT)
 
 /obj/vehicle/sealed/mecha/proc/get_mecha_occupancy_state()
-	if((mecha_flags & SILICON_PILOT) && silicon_icon_state)
-		return silicon_icon_state
 	if(LAZYLEN(occupants))
 		return base_icon_state
 	return "[base_icon_state]-open"
@@ -400,11 +398,8 @@
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
-	if(mecha_flags & SILICON_PILOT)
-		. += "[src] appears to be piloting itself..."
-	else
-		for(var/occupante in occupants)
-			. += "You can see [occupante] inside."
+	for(var/occupante in occupants)
+		. += "You can see [occupante] inside."
 
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/vehicle/sealed/mecha/process(delta_time)

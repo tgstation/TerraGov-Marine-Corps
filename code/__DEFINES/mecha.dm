@@ -4,19 +4,18 @@
 
 #define CANSTRAFE (1<<0)
 #define LIGHTS_ON (1<<1)
-#define SILICON_PILOT (1<<2)
-#define IS_ENCLOSED (1<<3)
-#define HAS_LIGHTS (1<<4)
-#define QUIET_STEPS (1<<5)
-#define QUIET_TURNS (1<<6)
+#define IS_ENCLOSED (1<<2)
+#define HAS_LIGHTS (1<<3)
+#define QUIET_STEPS (1<<4)
+#define QUIET_TURNS (1<<5)
 ///blocks using equipment and melee attacking.
-#define CANNOT_INTERACT (1<<7)
+#define CANNOT_INTERACT (1<<6)
 /// Can click from any direction and perform stuff
-#define OMNIDIRECTIONAL_ATTACKS (1<<8)
+#define OMNIDIRECTIONAL_ATTACKS (1<<7)
 ///Do you need mech skill to pilot this mech
-#define MECHA_SKILL_LOCKED (1<<9)
+#define MECHA_SKILL_LOCKED (1<<8)
 ///Is currently suffering from an EMP
-#define MECHA_EMPED (1<<10)
+#define MECHA_EMPED (1<<9)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)

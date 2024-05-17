@@ -1,5 +1,3 @@
-import { toFixed } from 'common/math';
-
 import { useBackend } from '../../backend';
 import {
   Box,
@@ -9,15 +7,11 @@ import {
   Section,
   Stack,
 } from '../../components';
-import {OperatorData } from './data';
+import { OperatorData } from './data';
 
 export const MechStatPane = (props) => {
   const { act, data } = useBackend<OperatorData>();
-  const {
-    name,
-    integrity,
-    weapons_safety,
-  } = data;
+  const { name, integrity, weapons_safety } = data;
   return (
     <Stack fill vertical>
       <Stack.Item>
