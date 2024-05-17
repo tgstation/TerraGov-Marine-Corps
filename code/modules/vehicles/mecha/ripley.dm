@@ -3,7 +3,6 @@
 	name = "\improper APLU MK-I \"Ripley\""
 	icon_state = "ripley"
 	base_icon_state = "ripley"
-	silicon_icon_state = "ripley-empty"
 	move_delay = 1.5 //Move speed, lower is faster.
 	allow_diagonal_movement = TRUE
 	max_integrity = 200

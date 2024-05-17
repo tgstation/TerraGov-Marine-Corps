@@ -28,8 +28,6 @@
 		MECHA_POWER = 1,
 		MECHA_ARMOR = 3,
 	)
-	//no tax on flying, since the power cost is in the leap itself.
-	phasing_energy_drain = 0
 
 /obj/vehicle/sealed/mecha/combat/savannah_ivanov/get_mecha_occupancy_state()
 	var/driver_present = driver_amount() != 0
@@ -67,9 +65,6 @@
 /datum/action/vehicle/sealed/mecha/skyfall/action_activate()
 	. = ..()
 	if(!owner || !chassis || !(owner in chassis.occupants))
-		return
-	if(chassis.phasing)
-		to_chat(owner, span_warning("You're already airborne!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_SKYFALL))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_SKYFALL)
@@ -125,7 +120,6 @@
 	new /obj/effect/skyfall_landingzone(get_turf(chassis), chassis)
 	chassis.resistance_flags |= INDESTRUCTIBLE //not while jumping at least
 	chassis.mecha_flags |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
-	chassis.phasing = "flying"
 	chassis.move_delay = 1
 	chassis.density = FALSE
 	chassis.layer = ABOVE_ALL_MOB_LAYER
@@ -155,7 +149,6 @@
 	playsound(chassis, 'sound/effects/explosion_large1.ogg', 50, 1)
 	chassis.resistance_flags &= ~INDESTRUCTIBLE
 	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
-	chassis.phasing = initial(chassis.phasing)
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
 	chassis.layer = initial(chassis.layer)

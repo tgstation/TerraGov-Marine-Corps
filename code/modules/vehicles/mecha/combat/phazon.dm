@@ -15,11 +15,9 @@
 		MECHA_POWER = 1,
 		MECHA_ARMOR = 2,
 	)
-	phase_state = "phazon-phase"
 
 /obj/vehicle/sealed/mecha/combat/phazon/generate_actions()
 	. = ..()
-	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_phasing)
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_switch_damtype)
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype
@@ -43,16 +41,4 @@
 	chassis.damtype = new_damtype
 	action_icon_state = "mech_damtype_[new_damtype]"
 	playsound(chassis, 'sound/mecha/mechmove01.ogg', 50, TRUE)
-	update_button_icon()
-
-/datum/action/vehicle/sealed/mecha/mech_toggle_phasing
-	name = "Toggle Phasing"
-	action_icon_state = "mech_phasing_off"
-
-/datum/action/vehicle/sealed/mecha/mech_toggle_phasing/action_activate(trigger_flags)
-	if(!owner || !chassis || !(owner in chassis.occupants))
-		return
-	chassis.phasing = chassis.phasing ? "" : "phasing"
-	action_icon_state = "mech_phasing_[chassis.phasing ? "on" : "off"]"
-	chassis.balloon_alert(owner, "[chassis.phasing ? "enabled" : "disabled"] phasing")
 	update_button_icon()

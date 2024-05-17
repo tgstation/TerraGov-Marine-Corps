@@ -72,17 +72,11 @@
 	set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
 	//Otherwise just walk normally
 	. = step(src,direction, dir)
-	if(phasing)
-		use_power(phasing_energy_drain)
 	if(strafe)
 		setDir(olddir)
 
 /obj/vehicle/sealed/mecha/Bump(atom/obstacle)
 	. = ..()
-	if(phasing) //Theres only one cause for phasing canpass fails
-		to_chat(occupants, "[icon2html(src, occupants)][span_warning("A dull, universal force is preventing you from [phasing] here!")]")
-		spark_system.start()
-		return
 	if(.) //mech was thrown/door/whatever
 		return
 	if(bumpsmash) //Need a pilot to push the PUNCH button.

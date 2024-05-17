@@ -125,8 +125,6 @@
 	var/destruction_sleep_duration = 2 SECONDS
 	///Whether outside viewers can see the pilot inside
 	var/enclosed = TRUE
-	///In case theres a different iconstate for AI/MMI pilot(currently only used for ripley)
-	var/silicon_icon_state = null
 	///Currently ejecting, and unable to do things
 	var/is_currently_ejecting = FALSE
 	///Safety for weapons. Won't fire if enabled, and toggled by middle click.
@@ -152,13 +150,6 @@
 	var/smoke_charges = 5
 	///Cooldown between using smoke
 	var/smoke_cooldown = 10 SECONDS
-
-	///check for phasing, if it is set to text (to describe how it is phasing: "flying", "phasing") it will let the mech walk through walls.
-	var/phasing = ""
-	///Power we use every time we phaze through something
-	var/phasing_energy_drain = 200
-	///icon_state for flick() when phazing
-	var/phase_state = ""
 
 	///Wether we are strafing
 	var/strafe = FALSE
@@ -363,10 +354,8 @@
 	return "[base_icon_state]-open"
 
 /obj/vehicle/sealed/mecha/CanPassThrough(atom/blocker, movement_dir, blocker_opinion)
-	if(!phasing || get_charge() <= phasing_energy_drain || throwing)
+	if(throwing)
 		return ..()
-	if(phase_state)
-		flick(phase_state, src)
 	return TRUE
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
@@ -485,9 +474,6 @@
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
 	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
-		return
-	if(phasing)
-		balloon_alert(user, "not while [phasing]!")
 		return
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		return
