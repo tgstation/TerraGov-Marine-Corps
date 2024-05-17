@@ -35,11 +35,6 @@
 			emp_recharging = MT.recharging,
 			tracker_ref = REF(MT)
 		)
-		if(istype(M, /obj/vehicle/sealed/mecha/ripley))
-			var/obj/vehicle/sealed/mecha/ripley/RM = M
-			mech_data += list(
-				cargo_space = round((LAZYLEN(RM.cargo) / RM.cargo_capacity) * 100)
-		)
 
 		data["mechs"] += list(mech_data)
 
@@ -98,9 +93,6 @@
 				<b>Cell Charge:</b> [isnull(cell_charge) ? "Not Found":"[chassis.cell.percent()]%"]<br>
 				<b>Pilot:</b> [chassis.return_drivers() || "None"]<br>
 				<b>Location:</b> [get_area_name(chassis, TRUE) || "Unknown"]"}
-	if(istype(chassis, /obj/vehicle/sealed/mecha/ripley))
-		var/obj/vehicle/sealed/mecha/ripley/RM = chassis
-		answer += "<br><b>Used Cargo Space:</b> [round((LAZYLEN(RM.cargo) / RM.cargo_capacity * 100), 0.01)]%"
 
 	return answer
 
