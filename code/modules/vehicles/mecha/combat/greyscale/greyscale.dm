@@ -19,7 +19,6 @@
 	name = "Should not be visible"
 	icon_state = "greyscale"
 	layer = ABOVE_ALL_MOB_LAYER
-	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	move_delay = 3
@@ -27,7 +26,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -147,7 +146,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	mecha_flags = CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -160,7 +159,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	mecha_flags = CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -173,4 +172,4 @@
 	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
-	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	mecha_flags = CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS

@@ -1,7 +1,6 @@
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { MainData } from './data';
-import { MaintMode } from './MaintMode';
 import { OperatorMode } from './OperatorMode';
 
 export const Mecha = (props) => {
@@ -15,11 +14,4 @@ export const Mecha = (props) => {
       </Window>
     );
   }
-  return (
-    <Window theme={'retro'} width={640} height={670}>
-      <Window.Content>
-        <MaintMode />
-      </Window.Content>
-    </Window>
-  );
 };

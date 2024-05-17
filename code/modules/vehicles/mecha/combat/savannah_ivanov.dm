@@ -17,12 +17,10 @@
 	desc = "An insanely overbulked mecha that handily crushes single-pilot opponents. The price is that you need two pilots to use it."
 	base_icon_state = "savannah_ivanov"
 	icon_state = "savannah_ivanov_0_0"
-	//does not include mmi compatibility
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	move_delay = 3
 	max_integrity = 450 //really tanky, like damn
 	soft_armor = list(MELEE = 45, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 40, BIO = 0, FIRE = 100, ACID = 100)
-	max_temperature = 30000
 	wreckage = /obj/structure/mecha_wreckage/savannah_ivanov
 	max_occupants = 2
 	max_equip_by_category = list(

@@ -186,58 +186,6 @@
 		ammo_resupply(W, user)
 		return
 
-	if(isidcard(W))
-		if((mecha_flags & ADDING_ACCESS_POSSIBLE) || (mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
-			if(internals_access_allowed(user))
-				ui_interact(user)
-				return
-			to_chat(user, span_warning("Invalid ID: Access denied."))
-			return
-		to_chat(user, span_warning("Maintenance protocols disabled by operator."))
-		return
-
-	if(istype(W, /obj/item/cell))
-		if(construction_state == MECHA_OPEN_HATCH)
-			if(!cell)
-				if(!user.transferItemToLoc(W, src))
-					return
-				var/obj/item/cell/C = W
-				to_chat(user, span_notice("You install the power cell."))
-				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
-				cell = C
-				log_message("Power cell installed", LOG_MECHA)
-			else
-				to_chat(user, span_warning("There's already a power cell installed!"))
-		return
-
-	if(istype(W, /obj/item/stock_parts/scanning_module))
-		if(construction_state == MECHA_OPEN_HATCH)
-			if(!scanmod)
-				if(!user.transferItemToLoc(W, src))
-					return
-				to_chat(user, span_notice("You install the scanning module."))
-				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
-				scanmod = W
-				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
-			else
-				to_chat(user, span_warning("There's already a scanning module installed!"))
-		return
-
-	if(istype(W, /obj/item/stock_parts/capacitor))
-		if(construction_state == MECHA_OPEN_HATCH)
-			if(!capacitor)
-				if(!user.transferItemToLoc(W, src))
-					return
-				to_chat(user, span_notice("You install the capacitor."))
-				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
-				capacitor = W
-				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
-			else
-				to_chat(user, span_warning("There's already a capacitor installed!"))
-		return
-
 	if(istype(W, /obj/item/mecha_parts))
 		var/obj/item/mecha_parts/P = W
 		P.try_attach_part(user, src, FALSE)
@@ -267,28 +215,6 @@
 	if(.)
 		try_damage_component(., user.zone_selected)
 
-/obj/vehicle/sealed/mecha/wrench_act(mob/living/user, obj/item/I)
-	..()
-	. = TRUE
-	if(construction_state == MECHA_SECURE_BOLTS)
-		construction_state = MECHA_LOOSE_BOLTS
-		to_chat(user, span_notice("You undo the securing bolts."))
-		return
-	if(construction_state == MECHA_LOOSE_BOLTS)
-		construction_state = MECHA_SECURE_BOLTS
-		to_chat(user, span_notice("You tighten the securing bolts."))
-
-/obj/vehicle/sealed/mecha/crowbar_act(mob/living/user, obj/item/I)
-	..()
-	. = TRUE
-	if(construction_state == MECHA_LOOSE_BOLTS)
-		construction_state = MECHA_OPEN_HATCH
-		to_chat(user, span_notice("You open the hatch to the power unit."))
-		return
-	if(construction_state == MECHA_OPEN_HATCH)
-		construction_state = MECHA_LOOSE_BOLTS
-		to_chat(user, span_notice("You close the hatch to the power unit."))
-
 /obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
 
@@ -298,12 +224,8 @@
 		cell.charge = cell.maxcharge
 	if(internal_damage & MECHA_INT_FIRE)
 		clear_internal_damage(MECHA_INT_FIRE)
-	if(internal_damage & MECHA_INT_TEMP_CONTROL)
-		clear_internal_damage(MECHA_INT_TEMP_CONTROL)
 	if(internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		clear_internal_damage(MECHA_INT_SHORT_CIRCUIT)
-	if(internal_damage & MECHA_INT_TANK_BREACH)
-		clear_internal_damage(MECHA_INT_TANK_BREACH)
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		clear_internal_damage(MECHA_INT_CONTROL_LOST)
 

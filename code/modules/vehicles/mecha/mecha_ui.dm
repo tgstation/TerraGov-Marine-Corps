@@ -60,15 +60,11 @@
 	data["mineral_material_amount"] = MINERAL_MATERIAL_AMOUNT
 	//map of relevant flags to check tgui side, not every flag needs to be here
 	data["mechflag_keys"] = list(
-		"ADDING_ACCESS_POSSIBLE" = ADDING_ACCESS_POSSIBLE,
-		"ADDING_MAINT_ACCESS_POSSIBLE" = ADDING_MAINT_ACCESS_POSSIBLE,
 		"LIGHTS_ON" = LIGHTS_ON,
 		"HAS_HEADLIGHTS" = HAS_HEADLIGHTS,
 	)
 	data["internal_damage_keys"] = list(
 		"MECHA_INT_FIRE" = MECHA_INT_FIRE,
-		"MECHA_INT_TEMP_CONTROL" = MECHA_INT_TEMP_CONTROL,
-		"MECHA_INT_TANK_BREACH" = MECHA_INT_TANK_BREACH,
 		"MECHA_INT_CONTROL_LOST" = MECHA_INT_CONTROL_LOST,
 	)
 	data["mech_electronics"] = list(
@@ -84,12 +80,7 @@
 	if(!isoperator)
 		data["name"] = name
 		data["mecha_flags"] = mecha_flags
-		data["internal_tank_valve"] = internal_tank_valve
 		data["cell"] = cell?.name
-		data["scanning"] = scanmod?.name
-		data["capacitor"] = capacitor?.name
-		data["operation_req_access"] = list()
-		data["idcard_access"] = list()
 		for(var/code in operation_req_access)
 			data["operation_req_access"] += list(list("name" = get_access_desc(code), "number" = code))
 		if(!isliving(user))
@@ -113,13 +104,6 @@
 	data["power_max"] = cell?.maxcharge
 	data["mecha_flags"] = mecha_flags
 	data["internal_damage"] = internal_damage
-	data["airtank_present"] = !!internal_tank
-	data["air_source"] = use_internal_tank ? "Internal Airtank" : "Environment"
-	data["airtank_pressure"] = null
-	data["airtank_temp"] = return_temperature()
-	data["port_connected"] = internal_tank?.connected_port ? TRUE : FALSE
-	data["cabin_pressure"] = round(return_pressure(), 0.01)
-	data["cabin_temp"] = return_temperature()
 	data["dna_lock"] = dna_lock
 	data["weapons_safety"] = weapons_safety
 	data["mech_view"] = ui_view.assigned_map
@@ -200,64 +184,6 @@
 	. = ..()
 	if(.)
 		return
-	if(!(usr in occupants))
-		switch(action)
-			if("stopmaint")
-				if(construction_state > MECHA_LOCKED)
-					to_chat(usr, span_warning("You must end Maintenance Procedures first!"))
-					return
-				mecha_flags &= ~ADDING_MAINT_ACCESS_POSSIBLE
-				ui.close()
-				return FALSE
-			if("togglemaint")
-				if(!(mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
-					return FALSE
-				if(construction_state == MECHA_LOCKED)
-					construction_state = MECHA_SECURE_BOLTS
-					to_chat(usr, span_notice("The securing bolts are now exposed."))
-				else if(construction_state == MECHA_SECURE_BOLTS)
-					construction_state = MECHA_LOCKED
-					to_chat(usr, span_notice("The securing bolts are now hidden."))
-			if("drop_cell")
-				if(construction_state != MECHA_OPEN_HATCH)
-					return
-				cell.forceMove(get_turf(src))
-				cell = null
-			if("drop_scanning")
-				if(construction_state == MECHA_OPEN_HATCH)
-					return
-				scanmod.forceMove(get_turf(src))
-				scanmod = null
-			if("drop_capacitor")
-				if(construction_state == MECHA_OPEN_HATCH)
-					return
-				capacitor.forceMove(get_turf(src))
-				capacitor = null
-			if("set_pressure")
-				var/new_pressure = tgui_input_number(usr, "Enter new pressure", "Cabin pressure change", internal_tank_valve)
-				if(isnull(new_pressure) || !construction_state)
-					return
-				internal_tank_valve = new_pressure
-				to_chat(usr, span_notice("The internal pressure valve has been set to [internal_tank_valve]kPa."))
-			if("add_req_access")
-				if(!(mecha_flags & ADDING_ACCESS_POSSIBLE))
-					return
-				if(!(params["added_access"] == "all"))
-					operation_req_access += params["added_access"]
-				else
-					var/mob/living/living_user = usr
-					var/obj/item/card/id/card = living_user.get_idcard(TRUE)
-					operation_req_access += card.access
-			if("del_req_access")
-				if(!(mecha_flags & ADDING_ACCESS_POSSIBLE))
-					return
-				if(!(params["removed_access"] == "all"))
-					operation_req_access -= params["removed_access"]
-				else
-					operation_req_access = list()
-			if("lock_req_edit")
-				mecha_flags &= ~ADDING_ACCESS_POSSIBLE
-		return TRUE
 	//usr is in occupants
 	switch(action)
 		if("changename")
@@ -283,33 +209,6 @@
 		if("view_dna")
 			tgui_alert(usr, "Enzymes detected: " + dna_lock)
 			return FALSE
-		if("toggle_airsource")
-			if(!internal_tank)
-				return
-			use_internal_tank = !use_internal_tank
-			balloon_alert(usr, "taking air from [use_internal_tank ? "internal airtank" : "environment"]")
-			log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].", LOG_MECHA)
-		if("toggle_port")
-			if(internal_tank.connected_port)
-				if(internal_tank.disconnect())
-					to_chat(occupants, "[icon2html(src, occupants)][span_notice("Disconnected from the air system port.")]")
-					log_message("Disconnected from gas port.", LOG_MECHA)
-					return TRUE
-				to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to disconnect from the air system port!")]")
-				return
-			var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate() in loc
-			if(internal_tank.connect(new_port = possible_port))
-				to_chat(occupants, "[icon2html(src, occupants)][span_notice("Connected to the air system port.")]")
-				log_message("Connected to gas port.", LOG_MECHA)
-				return TRUE
-			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to connect with air system port!")]")
-		if("toggle_maintenance")
-			if(construction_state)
-				to_chat(occupants, "[icon2html(src, occupants)][span_danger("Maintenance protocols in effect")]")
-				return
-			mecha_flags ^= ADDING_MAINT_ACCESS_POSSIBLE
-		if("toggle_id_panel")
-			mecha_flags ^= ADDING_ACCESS_POSSIBLE
 		if("toggle_microphone")
 			radio.broadcasting = !radio.broadcasting
 		if("toggle_speaker")

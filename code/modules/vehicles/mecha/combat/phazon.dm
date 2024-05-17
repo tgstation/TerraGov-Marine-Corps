@@ -8,7 +8,6 @@
 	step_energy_drain = 3
 	max_integrity = 200
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 30, BIO = 0, FIRE = 100, ACID = 100)
-	max_temperature = 25000
 	wreckage = /obj/structure/mecha_wreckage/phazon
 	force = 15
 	max_equip_by_category = list(

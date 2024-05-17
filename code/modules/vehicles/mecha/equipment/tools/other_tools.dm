@@ -45,7 +45,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
 	name = "exosuit repair droid"
-	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
+	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external damage."
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0
@@ -55,7 +55,6 @@
 	var/health_boost = 0.5
 	///overlay to show on the mech
 	var/image/droid_overlay
-	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
 	STOP_PROCESSING(SSobj, src)

@@ -4,15 +4,11 @@ export const KelvinZeroCelcius = 273.15;
 
 export const InternalDamageToDamagedDesc = {
   MECHA_INT_FIRE: 'Internal fire detected',
-  MECHA_INT_TEMP_CONTROL: 'Temperature control inactive',
-  MECHA_INT_TANK_BREACH: 'Air tank breach detected',
   MECHA_INT_CONTROL_LOST: 'Control module damaged',
 };
 
 export const InternalDamageToNormalDesc = {
   MECHA_INT_FIRE: 'No internal fires detected',
-  MECHA_INT_TEMP_CONTROL: 'Temperature control active',
-  MECHA_INT_TANK_BREACH: 'Air tank intact',
   MECHA_INT_CONTROL_LOST: 'Control module active',
 };
 
@@ -55,12 +51,7 @@ export type MaintData = {
   name: string;
   mecha_flags: number;
   mechflag_keys: string[];
-  internal_tank_valve: number;
   cell: string;
-  scanning: string;
-  capacitor: string;
-  operation_req_access: AccessData[];
-  idcard_access: AccessData[];
 };
 
 export type OperatorData = {

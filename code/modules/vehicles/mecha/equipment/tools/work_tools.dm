@@ -11,7 +11,6 @@
 	range = MECHA_MELEE
 	toolspeed = 0.8
 	harmful = TRUE
-	mech_flags = EXOSUIT_MODULE_RIPLEY
 	///Bool for whether we beat the hell out of things we punch (and tear off their arms)
 	var/killer_clamp = FALSE
 	///How much base damage this clamp does

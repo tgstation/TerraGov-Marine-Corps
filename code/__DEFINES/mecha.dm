@@ -1,26 +1,22 @@
 #define MECHA_INT_FIRE (1<<0)
-#define MECHA_INT_TEMP_CONTROL (1<<1)
-#define MECHA_INT_SHORT_CIRCUIT (1<<2)
-#define MECHA_INT_TANK_BREACH (1<<3)
-#define MECHA_INT_CONTROL_LOST (1<<4)
+#define MECHA_INT_SHORT_CIRCUIT (1<<1)
+#define MECHA_INT_CONTROL_LOST (1<<2)
 
-#define ADDING_ACCESS_POSSIBLE (1<<0)
-#define ADDING_MAINT_ACCESS_POSSIBLE (1<<1)
-#define CANSTRAFE (1<<2)
-#define LIGHTS_ON (1<<3)
-#define SILICON_PILOT (1<<4)
-#define IS_ENCLOSED (1<<5)
-#define HAS_LIGHTS (1<<6)
-#define QUIET_STEPS (1<<7)
-#define QUIET_TURNS (1<<8)
+#define CANSTRAFE (1<<0)
+#define LIGHTS_ON (1<<1)
+#define SILICON_PILOT (1<<2)
+#define IS_ENCLOSED (1<<3)
+#define HAS_LIGHTS (1<<4)
+#define QUIET_STEPS (1<<5)
+#define QUIET_TURNS (1<<6)
 ///blocks using equipment and melee attacking.
-#define CANNOT_INTERACT (1<<9)
+#define CANNOT_INTERACT (1<<7)
 /// Can click from any direction and perform stuff
-#define OMNIDIRECTIONAL_ATTACKS (1<<10)
+#define OMNIDIRECTIONAL_ATTACKS (1<<8)
 ///Do you need mech skill to pilot this mech
-#define MECHA_SKILL_LOCKED (1<<11)
+#define MECHA_SKILL_LOCKED (1<<9)
 ///Is currently suffering from an EMP
-#define MECHA_EMPED (1<<12)
+#define MECHA_EMPED (1<<10)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
@@ -35,11 +31,6 @@
 #define MECHA_UTILITY "mecha_utility"
 #define MECHA_POWER "mecha_power"
 #define MECHA_ARMOR "mecha_armor"
-
-#define MECHA_LOCKED 0
-#define MECHA_SECURE_BOLTS 1
-#define MECHA_LOOSE_BOLTS 2
-#define MECHA_OPEN_HATCH 3
 
 // Some mechs must (at least for now) use snowflake handling of their UI elements, these defines are for that
 // when changing MUST update the same-named tsx file constants
@@ -71,11 +62,6 @@
 #define MECHA_AMMO_SNIPER "Anti-tank bullet"
 #define MECHA_AMMO_GRENADE "Frag grenade"
 #define MECHA_AMMO_FLAMER "Napalm"
-
-/// Module is compatible with Ripley Exosuit models
-#define EXOSUIT_MODULE_RIPLEY (1<<0)
-/// Module is compatible with Greyscale Exosuit models
-#define EXOSUIT_MODULE_GREYSCALE (1<<1)
 
 ///degree of cone in front of which mech is allowed to fire at
 #define MECH_FIRE_CONE_ALLOWED 120

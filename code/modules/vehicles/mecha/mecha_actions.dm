@@ -26,29 +26,6 @@
 		return
 	chassis.resisted_against(owner)
 
-/datum/action/vehicle/sealed/mecha/mech_toggle_internals
-	name = "Toggle Internal Airtank Usage"
-	action_icon_state = "mech_internals_off"
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_INTERNALS,
-	)
-
-/datum/action/vehicle/sealed/mecha/mech_toggle_internals/action_activate(trigger_flags)
-	if(!owner || !chassis || !(owner in chassis.occupants))
-		return
-
-	if(!chassis.internal_tank) //Just in case.
-		chassis.use_internal_tank = FALSE
-		chassis.balloon_alert(owner, "no tank available!")
-		chassis.log_message("Switch to internal tank failed. No tank available.", LOG_MECHA)
-		return
-
-	chassis.use_internal_tank = !chassis.use_internal_tank
-	action_icon_state = "mech_internals_[chassis.use_internal_tank ? "on" : "off"]"
-	chassis.balloon_alert(owner, "taking air from [chassis.use_internal_tank ? "internal airtank" : "environment"]")
-	chassis.log_message("Now taking air from [chassis.use_internal_tank?"internal airtank":"environment"].", LOG_MECHA)
-	update_button_icon()
-
 /datum/action/vehicle/sealed/mecha/mech_toggle_lights
 	name = "Toggle Lights"
 	action_icon_state = "mech_lights_off"

@@ -52,14 +52,8 @@
 	var/equipment_disabled = FALSE
 	/// Keeps track of the mech's cell
 	var/obj/item/cell/cell
-	/// Keeps track of the mech's scanning module
-	var/obj/item/stock_parts/scanning_module/scanmod
-	/// Keeps track of the mech's capacitor
-	var/obj/item/stock_parts/capacitor/capacitor
-	///Whether the mechs maintenance protocols are on or off
-	var/construction_state = MECHA_LOCKED
 	///Contains flags for the mecha
-	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	var/mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum
@@ -73,21 +67,9 @@
 	///Whether or not the mech destroys walls by running into it.
 	var/bumpsmash = FALSE
 
-	///////////ATMOS
-	///Whether we are currrently drawing from the internal tank
-	var/use_internal_tank = FALSE
-	///The setting of the valve on the internal tank
-	var/internal_tank_valve = ONE_ATMOSPHERE
-	///The internal air tank obj of the mech
-	var/obj/machinery/portable_atmospherics/canister/air/internal_tank
-	///The connected air port, if we have one
-	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
-
 	///Special version of the radio, which is unsellable
 	var/obj/item/radio/mech/radio
 	var/list/trackers = list()
-
-	var/max_temperature = 25000
 
 	///Bitflags for internal damage
 	var/internal_damage = NONE
@@ -96,7 +78,7 @@
 	/// % chance for internal damage to occur
 	var/internal_damage_probability = 20
 	/// list of possibly dealt internal damage for this mech type
-	var/possible_int_damage = MECHA_INT_FIRE|MECHA_INT_TEMP_CONTROL|MECHA_INT_TANK_BREACH|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
+	var/possible_int_damage = MECHA_INT_FIRE|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
 	/// damage threshold above which we take component damage
 	var/component_damage_threshold = 10
 
@@ -199,8 +181,6 @@
 /obj/vehicle/sealed/mecha/Initialize(mapload)
 	. = ..()
 	ui_view = new(null, null, src)
-	if(enclosed)
-		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
 
 	spark_system.set_up(2, 0, src)
@@ -213,9 +193,6 @@
 	radio.name = "[src] radio"
 
 	GLOB.nightfall_toggleable_lights += src
-	add_cell()
-	add_scanmod()
-	add_capacitor()
 	START_PROCESSING(SSobj, src)
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
@@ -256,9 +233,6 @@
 	LAZYCLEARLIST(flat_equipment)
 
 	QDEL_NULL(cell)
-	QDEL_NULL(scanmod)
-	QDEL_NULL(capacitor)
-	QDEL_NULL(internal_tank)
 	QDEL_NULL(spark_system)
 	QDEL_NULL(smoke_system)
 	QDEL_NULL(ui_view)
@@ -378,7 +352,6 @@
 
 /obj/vehicle/sealed/mecha/generate_actions()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_eject)
-	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_internals, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_lights, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_view_stats, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/strafe, VEHICLE_CONTROL_DRIVE)
@@ -406,19 +379,6 @@
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
 	set_mouse_pointer()
-
-///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
-/obj/vehicle/sealed/mecha/proc/update_part_values()
-	if(scanmod)
-		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
-		step_energy_drain = normal_step_energy_drain
-	else
-		normal_step_energy_drain = 500
-		step_energy_drain = normal_step_energy_drain
-	if(capacitor)
-		soft_armor = soft_armor.modifyRating(energy = (capacitor.rating * 5)) //Each level of capacitor protects the mech against emp by 5%
-	else //because we can still be hit without a cap, even if we can't move
-		soft_armor = soft_armor.setRating(energy = 0)
 
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
@@ -535,9 +495,6 @@
 		balloon_alert(user, "not while [phasing]!")
 		return
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
-		return
-	if(construction_state)
-		balloon_alert(user, "end maintenance first!")
 		return
 	if(!get_charge())
 		return
