@@ -216,6 +216,13 @@
 	screen_overlay = "rdcomp"
 	broken_icon = "computer_blue_broken"
 
+/obj/machinery/prop/computer/mecha
+	name = "exosuit control console"
+	desc = "Used to remotely locate or lockdown exosuits."
+	icon_state = "computer"
+	screen_overlay = "mecha"
+	broken_icon = "computer_blue_broken"
+
 /obj/machinery/prop/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
@@ -2219,6 +2226,7 @@
 	var/list/news_list = list()
 	///News stories
 	var/news_stories = ""
+
 /obj/prop/mainship/prop/news_tv/Initialize(mapload)
 	. = ..()
 	news_list = splittext(news_stories, ";")

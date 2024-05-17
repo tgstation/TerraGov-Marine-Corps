@@ -51142,7 +51142,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "kvn" = (
-/obj/machinery/computer/mecha{
+/obj/machinery/prop/computer/mecha{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
@@ -99865,7 +99865,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "umS" = (
-/obj/machinery/computer/mecha{
+/obj/machinery/prop/computer/mecha{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/transparent/red/fourcorners,

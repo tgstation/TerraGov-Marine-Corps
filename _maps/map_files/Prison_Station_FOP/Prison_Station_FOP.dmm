@@ -4767,7 +4767,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqg" = (
-/obj/machinery/computer/mecha,
+/obj/machinery/prop/computer/mecha,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqh" = (

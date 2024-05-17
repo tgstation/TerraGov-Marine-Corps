@@ -890,7 +890,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast/garbledradio)
 "Vi" = (
-/obj/machinery/computer/mecha,
+/obj/machinery/prop/computer/mecha,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 9
 	},

@@ -1898,7 +1898,7 @@
 	},
 /area/lv624/lazarus/comms)
 "lc" = (
-/obj/machinery/computer/mecha,
+/obj/machinery/prop/computer/mecha,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},

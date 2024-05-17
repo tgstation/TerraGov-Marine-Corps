@@ -1310,7 +1310,7 @@
 	},
 /area/centcom/valhalla)
 "bDI" = (
-/obj/machinery/computer/mecha{
+/obj/machinery/prop/computer/mecha{
 	dir = 8
 	},
 /obj/machinery/air_alarm{
