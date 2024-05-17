@@ -2,10 +2,9 @@
 	name = "pack of dice"
 	desc = "It's a small container with dice inside."
 
-/obj/item/storage/pill_bottle/dice/Initialize(mapload)
-	. = ..()
-	new /obj/item/toy/dice( src )
-	new /obj/item/toy/dice/d20( src )
+/obj/item/storage/pill_bottle/dice/PopulateContents()
+	new /obj/item/toy/dice(src)
+	new /obj/item/toy/dice/d20(src)
 
 /*
 * Donut Box
@@ -16,14 +15,17 @@
 	icon_state = "donutbox"
 	name = "\improper Yum! donuts"
 	desc = "A box of mouth watering \"<i>Yum!</i>\" brand donuts."
-	storage_slots = 6
+	///How many items spawn in src
 	var/startswith = 6
 	var/open = 0
-	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
-	foldable = /obj/item/stack/sheet/cardboard
 
 /obj/item/storage/donut_box/Initialize(mapload)
 	. = ..()
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/donut))
+	storage_datum.foldable = /obj/item/stack/sheet/cardboard
+	storage_datum.storage_slots = 6
+
+/obj/item/storage/donut_box/PopulateContents()
 	for(var/i in 1 to startswith)
 		new /obj/item/reagent_containers/food/snacks/donut/normal(src)
 	update_icon()
@@ -51,7 +53,7 @@
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
 		i++
 		var/image/img = image('icons/obj/items/food/donuts.dmi', "[D.overlay_state]-[i]")
-		. += img
+		. += img // wtf
 
 /obj/item/storage/donut_box/empty
 	icon_state = "donutbox_o"

@@ -14,6 +14,8 @@
 	var/obj/vehicle/sealed/armored/owner
 	///Bool whether this module is a driver module or not
 	var/is_driver_module = TRUE
+	///Bool whether this module is visually attached to the hull or not
+	var/attached_to_hull = FALSE
 
 ///Called to apply modules to a vehicle
 /obj/item/tank_module/proc/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
@@ -30,7 +32,7 @@
 		vehicle.driver_utility_module = src
 	else
 		vehicle.gunner_utility_module = src
-	if(!vehicle.turret_overlay)
+	if(!vehicle.turret_overlay || attached_to_hull)
 		overlay = image(vehicle.icon, null, icon_state)
 		vehicle.add_overlay(overlay)
 	else
@@ -64,12 +66,12 @@
 	name = "overdrive module"
 	desc = "A module that enhances the speed of armored combat vehicles by increasing fuel efficiency."
 	icon_state = "overdrive"
+	attached_to_hull = TRUE
 
-/obj/item/tank_module/overdrive/on_equip(target)
+/obj/item/tank_module/overdrive/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
 	. = ..()
 	if(!.)
 		return
-	var/obj/vehicle/sealed/armored/vehicle = target
 	vehicle.move_delay -= 0.15 SECONDS
 
 /obj/item/tank_module/overdrive/on_unequip()
@@ -81,14 +83,13 @@
 	desc = "A module that increases the carrying capacity of a vehicle with extra seats."
 	icon_state = "uninstalled APC frieght carriage"
 
-/obj/item/tank_module/passenger/on_equip(target)
+/obj/item/tank_module/passenger/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
 	. = ..()
 	if(!.)
 		return
-	var/obj/vehicle/sealed/armored/vehicle = target
 	vehicle.max_occupants += 4
 
-/obj/item/tank_module/passenger/on_unequip(target)
+/obj/item/tank_module/passenger/on_unequip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
 	owner.max_occupants -= 4
 	return ..()
 
@@ -125,3 +126,52 @@
 	is_driver_module = FALSE
 	flag_controller = VEHICLE_CONTROL_EQUIPMENT
 	ability_to_grant = /datum/action/vehicle/sealed/armored/zoom
+
+/obj/item/tank_module/interior
+	name = "generic interior module"
+	desc = "you shouldnt see this"
+	is_driver_module = TRUE
+	///max occupants to set when adding this module
+	var/set_max_occupants
+	/// typepath we want to be using for interiors
+	var/interior_typepath
+
+/obj/item/tank_module/interior/Initialize(mapload)
+	. = ..()
+#ifdef UNIT_TESTS
+	if(!interior_typepath && (type != /obj/item/tank_module/interior))
+		CRASH("Error: [type] has no interior_typepath")
+#endif
+
+/obj/item/tank_module/interior/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(vehicle.occupants))
+		if(user)
+			balloon_alert(user, "occupants still inside")
+		return FALSE
+	QDEL_NULL(vehicle.interior)
+	vehicle.interior = new interior_typepath(vehicle, CALLBACK(vehicle, TYPE_PROC_REF(/obj/vehicle/sealed/armored, interior_exit)))
+	if(set_max_occupants)
+		owner.max_occupants = set_max_occupants
+
+/obj/item/tank_module/interior/on_unequip(mob/user)
+	if(LAZYLEN(owner.occupants))
+		if(user)
+			balloon_alert(user, "occupants still inside")
+		return FALSE
+	QDEL_NULL(owner.interior)
+	var/init_type = initial(owner.interior)
+	if(init_type)
+		owner.interior = new init_type(owner, CALLBACK(owner, TYPE_PROC_REF(/obj/vehicle/sealed/armored, interior_exit)))
+	if(set_max_occupants)
+		owner.max_occupants = initial(owner.max_occupants)
+	return ..()
+
+/obj/item/tank_module/interior/medical
+	name = "medical interior"
+	desc = "A medical interior package, stocked with a operating table and a medical vendor."
+	icon_state = "medical_interior"
+	interior_typepath = /datum/interior/armored/medical
+	set_max_occupants = 12

@@ -25,13 +25,8 @@
 			if(prob(10))
 				qdel(src)
 
-
-/obj/structure/flora/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, FIRE)
-
-/obj/structure/flora/fire_act()
-	take_damage(25, BURN, FIRE)
-
+/obj/structure/flora/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 //TREES
 
@@ -44,6 +39,7 @@
 	layer = ABOVE_FLY_LAYER
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/flora/tree/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
@@ -103,8 +99,8 @@
 
 	qdel(src)
 
-/obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	take_damage(burnlevel/6, BURN, FIRE)
+/obj/structure/flora/tree/fire_act(burn_level)
+	take_damage(burn_level * 0.3, BURN, FIRE)
 
 
 /obj/structure/flora/tree/update_overlays()
@@ -131,6 +127,7 @@
 	name = "xmas tree"
 	icon_state = "pine_c"
 	icon_variants = NONE
+	resistance_flags = null
 
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
@@ -555,7 +552,7 @@
 	icon_state = "tall_cactus"
 	icon_variants = 3
 	density = TRUE
-
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/flora/drought/short_cactus
 	name = "cactus"
 	desc = "Some short, spikey looking cactus."

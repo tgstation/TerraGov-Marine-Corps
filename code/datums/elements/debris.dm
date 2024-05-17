@@ -85,7 +85,7 @@
 		var/pitch = 0
 		if(P.ammo.ammo_behavior_flags & AMMO_SOUND_PITCH)
 			pitch = 55000
-		playsound(source, P.ammo.sound_bounce, 50, 1, frequency = pitch)
+		playsound(source, P.ammo.sound_bounce, 50, TRUE, 4, 5, pitch)
 	addtimer(CALLBACK(src, PROC_REF(remove_ping), src, smoke_visuals, debris_visuals), 0.7 SECONDS)
 
 /datum/element/debris/proc/remove_ping(hit, obj/effect/abstract/particle_holder/smoke_visuals, obj/effect/abstract/particle_holder/debris_visuals)

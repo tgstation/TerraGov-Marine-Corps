@@ -241,3 +241,8 @@ CACHE_ASSETS 0
 ## Useful for developers to debug potential spritesheet issues to determine where the issue is cropping up (either in DM-side sprite generation or in the TGUI-side display of said spritesheet).
 ## Will only seek to waste disk space if ran on production.
 #SAVE_SPRITESHEETS
+
+## If enabled, then when the database is disabled, all players will get tutorials.
+## This is primarily useful for developing tutorials. If you have a proper DB setup, you
+## don't need (or want) this.
+#GIVE_TUTORIALS_WITHOUT_DB

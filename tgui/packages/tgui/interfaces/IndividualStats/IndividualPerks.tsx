@@ -47,10 +47,13 @@ export const IndividualPerks = (props) => {
                   <Button
                     width={'220px'}
                     height={'22px'}
-                    onClick={() => setSelectedPerk(perk)}
+                    onClick={() => {
+                      act('play_ding');
+                      setSelectedPerk(perk);
+                    }}
                     color={
                       selectedPerk.name === perk.name
-                        ? 'orange'
+                        ? 'green'
                         : perk.currently_active > 0
                           ? 'blue'
                           : perk.cost > data.currency
@@ -64,7 +67,7 @@ export const IndividualPerks = (props) => {
                         className={classes([
                           'campaign_perks18x18',
                           selectedPerk.name === perk.name
-                            ? perk.icon + '_orange'
+                            ? perk.icon + '_green'
                             : perk.currently_active > 0
                               ? perk.icon + '_blue'
                               : perk.cost > data.currency
@@ -90,7 +93,7 @@ export const IndividualPerks = (props) => {
                     mr={1.5}
                     className={classes([
                       'campaign_perks36x36',
-                      selectedPerk.icon + '_orange' + '_big',
+                      selectedPerk.icon + '_green' + '_big',
                     ])}
                   />
                   <Flex.Item fontSize="150%" grow={1}>

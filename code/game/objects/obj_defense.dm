@@ -72,7 +72,7 @@
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
-	fire_act()
+	fire_act(LAVA_BURN_LEVEL)
 	return TRUE
 
 /obj/hitby(atom/movable/AM, speed = 5)
@@ -136,7 +136,7 @@
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"),
 		span_danger("We slash [src]!"))
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		playsound(loc, "alien_claw_metal", 25)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
 	attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration)
 	return TRUE
 

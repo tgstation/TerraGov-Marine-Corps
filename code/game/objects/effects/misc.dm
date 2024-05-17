@@ -71,6 +71,9 @@
 	if(icon_state == "blocker")
 		icon_state = ""
 
+/obj/effect/forcefield/allow_bullet_travel
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
+
 /obj/effect/forcefield/fog
 	name = "dense fog"
 	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."

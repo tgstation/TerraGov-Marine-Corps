@@ -1,14 +1,7 @@
 import { classes } from 'common/react';
 
 import { useBackend, useLocalState } from '../../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  LabeledList,
-  Section,
-  Stack,
-} from '../../components';
+import { Box, Button, LabeledList, Section, Stack } from '../../components';
 import { IndividualData, LoadoutItemData, OutfitCostData } from './index';
 
 export const IndividualLoadouts = (props) => {
@@ -83,43 +76,48 @@ export const IndividualLoadouts = (props) => {
                       mr="3px"
                       ml="3px"
                       onClick={() => {
+                        act('play_ding');
                         setselectedLoadoutItem(equippeditem);
                         setselectedPossibleItem(equippeditem.item_type);
                       }}
                       color={
                         selectedLoadoutItem.item_type.name ===
                         equippeditem.item_type.name
-                          ? 'orange'
+                          ? 'green'
                           : equippeditem.item_type.quantity === 0
                             ? 'grey'
-                            : equippeditem.item_type.valid_choice === 0
+                            : !equippeditem.item_type.valid_choice
                               ? 'red'
-                              : 'blue'
+                              : equippeditem.item_type.purchase_cost > 0
+                                ? 'orange'
+                                : 'blue'
                       }
                     >
-                      <Flex align="center">
+                      <Stack align="center">
                         {!!equippeditem.item_type.icon && (
-                          <Flex.Item
-                            mr={1.5}
-                            width={'18px'}
+                          <Stack.Item
+                            mr={0.5}
+                            width={'32px'}
                             className={classes([
-                              'campaign_loadout_items18x18',
+                              'campaign_loadout_items32x32',
                               selectedLoadoutItem.item_type.name ===
                               equippeditem.item_type.name
-                                ? equippeditem.item_type.icon + '_orange'
+                                ? equippeditem.item_type.icon + '_green'
                                 : equippeditem.item_type.quantity === 0
                                   ? equippeditem.item_type.icon + '_grey'
-                                  : equippeditem.item_type.valid_choice === 0
+                                  : !equippeditem.item_type.valid_choice
                                     ? equippeditem.item_type.icon + '_red'
-                                    : equippeditem.item_type.icon + '_blue',
+                                    : equippeditem.item_type.purchase_cost > 0
+                                      ? equippeditem.item_type.icon + '_orange'
+                                      : equippeditem.item_type.icon + '_blue',
                             ])}
                           />
                         )}
-                        <Flex.Item bold={1} width={'90px'}>
+                        <Stack.Item bold={1} width={'90px'}>
                           {equippeditem.slot_text + ':'}
-                        </Flex.Item>
-                        <Flex.Item>{equippeditem.item_type.name}</Flex.Item>
-                      </Flex>
+                        </Stack.Item>
+                        <Stack.Item>{equippeditem.item_type.name}</Stack.Item>
+                      </Stack>
                     </Button>
                   </Stack.Item>
                 ))}
@@ -128,69 +126,75 @@ export const IndividualLoadouts = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section>
+        <Section fill width={'240px'}>
           <Stack
             fontSize="150%"
             bold={1}
             textAlign="center"
-            mt={'12px'}
-            mb={'28px'}
+            mt={'10px'}
+            mb={'14px'}
+            ml={'10px'}
           >
             Equipment options
           </Stack>
-          <Stack vertical>
-            {available_loadouts_data
-              .filter((potentialitem) => potentialitem.job === selectedJob)
-              .filter(
-                (potentialitem) =>
-                  potentialitem.slot === selectedLoadoutItem.item_type.slot,
-              )
-              .map((potentialitem) => (
-                <Stack.Item key={potentialitem.name}>
-                  <Button
-                    width={'180px'}
-                    onClick={() => {
-                      setselectedPossibleItem(potentialitem);
-                      potentialitem.unlocked &&
-                        act('equip_item', {
-                          selected_item: potentialitem.type,
-                          selected_job: potentialitem.job,
-                        });
-                    }}
-                    color={
-                      selectedPossibleItem.name === potentialitem.name
-                        ? 'orange'
-                        : !potentialitem.unlocked ||
-                            potentialitem.quantity === 0
-                          ? 'grey'
-                          : !potentialitem.valid_choice
-                            ? 'red'
-                            : 'blue'
-                    }
-                  >
-                    <Flex align="center">
-                      {!!potentialitem.icon && (
-                        <Flex.Item
-                          mr={1.5}
-                          className={classes([
-                            'campaign_loadout_items18x18',
-                            selectedPossibleItem.name === potentialitem.name
-                              ? potentialitem.icon + '_orange'
-                              : !potentialitem.unlocked ||
-                                  potentialitem.quantity === 0
-                                ? potentialitem.icon + '_grey'
-                                : !potentialitem.valid_choice
-                                  ? potentialitem.icon + '_red'
-                                  : potentialitem.icon + '_blue',
-                          ])}
-                        />
-                      )}
-                      {potentialitem.name}
-                    </Flex>
-                  </Button>
-                </Stack.Item>
-              ))}
-          </Stack>
+          <Section fill scrollable width={'240px'} height={'555px'}>
+            <Stack width={'220px'} wrap>
+              {available_loadouts_data
+                .filter((potentialitem) => potentialitem.job === selectedJob)
+                .filter(
+                  (potentialitem) =>
+                    potentialitem.slot === selectedLoadoutItem.item_type.slot,
+                )
+                .map((potentialitem) => (
+                  <Stack.Item ml={0.1} mr={1.5} mb={1} key={potentialitem.name}>
+                    <Button
+                      width={'100px'}
+                      onClick={() => {
+                        setselectedPossibleItem(potentialitem);
+                        potentialitem.unlocked &&
+                          act('equip_item', {
+                            selected_item: potentialitem.type,
+                            selected_job: potentialitem.job,
+                          });
+                      }}
+                      color={
+                        selectedPossibleItem.name === potentialitem.name
+                          ? 'green'
+                          : !potentialitem.unlocked ||
+                              potentialitem.quantity === 0
+                            ? 'grey'
+                            : !potentialitem.valid_choice
+                              ? 'red'
+                              : potentialitem.purchase_cost > 0
+                                ? 'orange'
+                                : 'blue'
+                      }
+                    >
+                      <Stack align="center" direction="column">
+                        {!!potentialitem.icon && (
+                          <Stack.Item
+                            className={classes([
+                              'campaign_loadout_items64x64',
+                              selectedPossibleItem.name === potentialitem.name
+                                ? potentialitem.icon + '_green' + '_big'
+                                : !potentialitem.unlocked ||
+                                    potentialitem.quantity === 0
+                                  ? potentialitem.icon + '_grey' + '_big'
+                                  : !potentialitem.valid_choice
+                                    ? potentialitem.icon + '_red' + '_big'
+                                    : potentialitem.purchase_cost > 0
+                                      ? potentialitem.icon + '_orange' + '_big'
+                                      : potentialitem.icon + '_blue' + '_big',
+                            ])}
+                          />
+                        )}
+                        {potentialitem.name}
+                      </Stack>
+                    </Button>
+                  </Stack.Item>
+                ))}
+            </Stack>
+          </Section>
         </Section>
       </Stack.Item>
       <Stack.Item>
@@ -210,28 +214,28 @@ export const IndividualLoadouts = (props) => {
           title={
             selectedPossibleItem ? (
               <Box>
-                <Flex align="center">
-                  <Flex.Item
-                    mr={1.5}
+                <Stack align="center">
+                  <Stack.Item
+                    mr={1}
                     className={classes([
-                      'campaign_loadout_items36x36',
-                      selectedPossibleItem.icon + '_orange' + '_big',
+                      'campaign_loadout_items64x64',
+                      selectedPossibleItem.icon + '_green' + '_big',
                     ])}
                   />
-                  <Flex.Item fontSize="150%" grow={1}>
+                  <Stack.Item fontSize="150%" grow={1}>
                     {selectedPossibleItem.name}
-                  </Flex.Item>
+                  </Stack.Item>
                   {!selectedPossibleItem.unlocked && (
-                    <Flex.Item alight="right" position="end">
+                    <Stack.Item alight="right" position="end">
                       <Button
                         onClick={() => setUnlockedItem(selectedPossibleItem)}
                         icon={'check'}
                       >
                         Unlock
                       </Button>
-                    </Flex.Item>
+                    </Stack.Item>
                   )}
-                </Flex>
+                </Stack>
               </Box>
             ) : (
               'No item selected'

@@ -15,7 +15,7 @@
 	The rail launcher electromagnetically launches a variety of 10 gauge airbursting grenades. Extremely effective when used correctly, their fixed fuse time makes them entirely ineffective at very close or far ranges. \
 	Managing engagement range is thus vital for maximising the effectiveness of this weapon. \
 	Uses 10x24mm caseless ammunition and 10 gauge micro grenades."
-	ui_icon = "ballistic"
+	ui_icon = "v31"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -57,7 +57,7 @@
 	desc = "Equipped with a mag harness and laser sight. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
 	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
 	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -82,7 +82,7 @@
 	It combines good mobility and managable handling with fearsome stopping power and a tremendous rate of fire, making the V-34 an exceptionally deadly weapon at close range. \
 	With poor falloff and accuracy, it is a poor weapon outside of close range, and its mobility lacks compared to some other close range weapons like the V-21. \
 	Uses 7.62x39mm ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -108,7 +108,7 @@
 	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
 	At close range however, it will quickly obliterate most targets - as long as you don't run out of ammo. \
 	It uses 10x20mm caseless rounds."
-	ui_icon = "smg"
+	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -149,7 +149,7 @@
 	desc = "Equipped with a mag harness and bayonet. The V-51 is the main shotgun utilised by the Sons of Mars. \
 	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
 	Uses 12 gauge shells."
-	ui_icon = "shotgun"
+	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -181,7 +181,7 @@
 	Has excellent mobility and handling and is best used at close range. Can be used one handed relatively effectively with sufficient skill. \
 	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
 	Uses volkite power cells, shared with the VX-33."
-	ui_icon = "volkite"
+	ui_icon = "vx32"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 	unlock_cost = 300
 	purchase_cost = 25

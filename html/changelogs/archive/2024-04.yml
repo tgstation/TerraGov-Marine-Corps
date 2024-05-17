@@ -1,0 +1,470 @@
+2024-04-01:
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new mission - Raiding Base for TGMC'
+  Notamaniac:
+  - bugfix: R76 icon no longer shows up as an error icon in holster
+  Xander3359:
+  - qol: Gives xenos "Toggle Seethrough" ability, making their sprite translucent,
+      allowing you to click through yourself
+2024-04-02:
+  RipGrayson:
+  - bugfix: Fixed posters displaying error signs instead of their valid icon.
+2024-04-03:
+  AusarAtkin:
+  - balance: Welder repair amount scale off Engi skill.
+  Barnet2:
+  - balance: Warding pheros have near half effectiveness, from 2.5 armor per aura
+      level to 1.5
+  Lumipharon:
+  - rscadd: 'Campaign: Added a few new loadout options and tweaked a few existing
+      ones'
+  - bugfix: 'Campaign: Fixed a few incorrect gun sprites in the loadout menu'
+  - qol: 'Campaign: Updated mech colours to distinguish the different weight classes
+      better'
+  - bugfix: 'Campaign: fixed a few minor issues on Raiding Base'
+  - qol: 'Campaign: Mech pods and deploy point descriptions explain how mechs can
+      use them'
+  MLGTASTICa:
+  - balance: Veteran ERT now starts with their firearms and rifles skills at trained
+      instead of the default(+1)
+  - balance: Special Ops ERT now starts with their smg skill set to trained instead
+      of the default(+1)
+  Naaanii:
+  - rscadd: Actually adds the cloak nade refill to req.
+  - balance: rebalances grenade pricing and reqtorio yield.
+  TiviPlus:
+  - bugfix: ACs can no longer use mech console
+  blackdav123:
+  - bugfix: Tanks will now be able to leave the Alamo on Slumbridge
+  - code_imp: Standardized dark frost walls with other wall types.
+  coldironwarrior:
+  - balance: CSE now has 5 in engineering and construction skills
+  - balance: SOs have higher engineering and powerloader skill now (shouldn't fumble
+      with OB)
+  - balance: ' CSEs now have leadership level 2, down from leadership 3'
+  lbnesquik:
+  - balance: Increase bulletproof vests armor bullet resistance. Slight energy/laser
+      increase.
+  novaepee:
+  - bugfix: PoS req and tc
+2024-04-04:
+  AusarAtkin:
+  - qol: Examining stasis bag while wearing med hud now show defib status (DNR, Almost
+      departed) and DNR timer
+  Lumipharon:
+  - bugfix: fixed conveyors breaking in certain scenarios
+  - code_imp: Fixed a minor runtime and removed an unneeded stack trace
+  - balance: 'Campaign: Deploying an OB beacon in the Raiding Base mission pauses
+      the game timer'
+  - balance: 'Campaign: Running a code computer on NT Base Rescue pauses the game
+      timer'
+  TiviPlus:
+  - balance: Doubled AI xeno spawnrate
+  - bugfix: Fixed tank ammo rack LTA-AP Overlay
+  Xander3359:
+  - qol: All chems (except neuraline) are scannable by a health scanner
+  coldironwarrior:
+  - rscadd: adds the paramedic labcoat
+  homexp13:
+  - balance: Silo larva gene now decreases more depending on the marine to xenos ratio.
+  lbnesquik:
+  - qol: Activating supply beacons notify the shipside console with a noise
+  - rscadd: Add alternate ammo MLRS ammo to the req factory
+  - bugfix: Fix the MLRS gas and cloaking gas sharing the same path and likely bugging
+      out
+  - code_imp: Renames the MLRS ammo to a more consistent schema
+  - bugfix: Fix the MLRS having free ammo thanks to init mapload :(
+2024-04-05:
+  PestoVerde322:
+  - bugfix: The lightbulbs on red alert or low power now no longer turn into a massive
+      error
+  - bugfix: The welding glasses have been aligned instead of nudging off weirdly when
+      toggled
+  - bugfix: The door control button will stay in place if you don't have access
+  - bugfix: The error on the escape pod controller is gone
+  - imagedel: Cleared some unused icons in lighting.dmi
+  - rscdel: Removed the unused firelight
+  TiviPlus:
+  - bugfix: Probably fixed AI roaming and that one startup runtime
+  exdal:
+  - bugfix: Fixes full_name typo in Orbit UI
+2024-04-06:
+  BraveMole:
+  - rscadd: Idled minions will now follow xenos players to the front
+  Lumipharon:
+  - bugfix: fixed infinite projectile reflection
+  - qol: 'Campaign: Loadout options with a cost are now coloured to indicate this'
+  - balance: Reduced the duration of smoke nades used in HvH
+  MLGTASTICa:
+  - code_imp: Moved entrance code from the armored/sealed/multitile type to armored/sealed.
+      Refactors the NT mini tank code to work with this.
+  - balance: You can now throw shells to the interior of the MT Ares by attacking
+      the tank with them at an entrance.
+  - qol: Radial menus for applying medicine will now fit all LIMBS on a ring instead
+      of having 2 pages.
+  Victor239:
+  - code_imp: Updated faction comparison docs.
+  yyzsong:
+  - rscadd: Adds night vision goggles to valhalla
+2024-04-07:
+  Naaanii:
+  - bugfix: fixes grenade box storage amount for some of the boxes.
+  TiviPlus:
+  - rscadd: AI can use evasion
+  - rscadd: Nymphs and non-minion AI will no longer be suicidal
+  blackdav123:
+  - balance: Gelida caves can now be plasmacut one tile deep.
+  lbnesquik:
+  - rscadd: Added extra clone bays to TGS Theseus
+2024-04-08:
+  Lumipharon:
+  - bugfix: 'Campaign: SOM SL actually gets an axe with the axe perk'
+  - balance: 'Campaign: Various minor loadout additions and tweaks'
+  - bugfix: Larva gen no longer counts minions when calculating xeno pop
+  PestoVerde322:
+  - bugfix: The M30 box magazine and the generic rocket launcher rocket have now a
+      proper path
+  - bugfix: Altought impossible to spot in normal game conditions, the 67mm internal
+      tube rocket is now rightfully 68mm
+  PibeCantina:
+  - balance: 'Lowers king pheros strength to 4.5
+
+      :cl:'
+  TiviPlus:
+  - bugfix: Pamphlets now have the ability to prevent being stacked
+  - balance: LTA-AP spread decreased
+  - rscadd: Tank has been enabled
+  - rscadd: Added tank vendor
+  coldironwarrior:
+  - qol: cleaned up the synth vendor
+  novaepee:
+  - bugfix: update smartgunner's job description to present sg better in 2024
+2024-04-09:
+  Lumipharon:
+  - imageadd: Improved some colour and detail in campaign portraits
+  - bugfix: fixed being able to dig dirt out of turfs such as solid concrete
+  - balance: 'Campaign: Adjusted the Raiding Base map slightly'
+  Naaanii:
+  - balance: Already infinite pill bottles and chem bottles in marine medivend are
+      now also infinite in med vendors.
+  - balance: Scanners are now infinite in med vendors.
+  - balance: Increases the sunder of AMR flak rounds.
+  TiviPlus:
+  - rscadd: Gives assault crewmen loader pamphlets
+  TiviPlus, Barnet:
+  - bugfix: Fixed an issue with improper naming leading to issues with special walls
+      keybinds. This may result in slight changes to this keybind as it fixes itself
+  - bugfix: Fixed the stock uptick event never firing
+  - bugfix: Codex entries for factions were not compiled, they now are in the game
+      correctly
+  - bugfix: Fixed Zombie Crash not being compiled
+  - bugfix: fixed the dev version of tts not working
+  - code_imp: Improved automated detection of issues and fixed a number of them
+  - code_imp: removed unused files
+  - code_imp: the codebase now ships with UpdatePath and midi2piano
+  blackdav123:
+  - bugfix: Removed locker floating in space around the Theseus
+  coldironwarrior:
+  - balance: AT-36 reqtorio supply packs now have 200 points
+  - bugfix: fixed the AT HE shell pack in req including 2 HE and 1 standard shell
+      instead of 3 HE
+  lbnesquik:
+  - rscadd: Ported floor lights from polaris
+  - bugfix: ' Tank is no longer stuck in Daedalus LZ'
+  - rscadd: Added glass to each ship CIC and engineering rooms
+  - rscadd: Added more materials to the debugabus engineering room
+2024-04-10:
+  Lumipharon:
+  - balance: Gun skills no longer effect fire delay for semi auto firing
+  - balance: Gun skills effect reload delay for magazines that have one
+  - qol: 'Campaign: Added some extra context around attrition and mission selection
+      for faction leaders'
+  - qol: 'Campaign: Deploy points have their corrosponding number on the sprite'
+  - balance: 'Campaign: Moved the SOM deploy points on NT Base Rescue a bit further
+      south'
+  - balance: 'Campaign: Both factions no longer get a free use of droppod refresh/teleporter
+      charges assets round start'
+  - balance: 'Campaign: Buffed the uses from teleporter activation, teleporter charges
+      and the default charges on the teleporter'
+  - bugfix: 'Campaign: Fixed the incorrect mortar disabler being applied to TGMC on
+      NT Base Rescue'
+  - rscadd: 'Campaign: Deploy and outro messages are now specific to each mission'
+  - code_imp: reworked how hvh deploy points work
+  - bugfix: You can no longer bypass innate order checks by using a keybind
+  coldironwarrior:
+  - balance: CMOs now heal an additional 7.5 damage per use of sutures
+  - code_imp: suture healing now scales with a divisor based off max med skill of
+      5 instead of 4, and base_healing is upped to 37.5 to accommodate skill 5 having
+      better healing. no changes to other skill levels.
+  lbnesquik:
+  - qol: made reqtorio machines direction indicators much easier to read
+  - bugfix: fixed AI's not being able to use the overwatch camera jump
+  - code_imp: Removed useless comment in the AI hologram code
+  - admin: Made the Reload Admins button default to No
+  - qol: Made it possible to read the amount of fuel in jerry cans
+  novaepee:
+  - rscadd: Mjolnir, a new armor
+2024-04-11:
+  Barnet2:
+  - bugfix: Fixes surgery blood loss occuring when bleeders are clamped
+  - bugfix: Fixes being able to clamp bleeders infinitely
+  Dikozda:
+  - rscdel: Removes puppeteer scout order and order radial menu.
+  - qol: Puppeteer attack and recall orders are now normal abilitys and have keybinds.
+  Lumipharon:
+  - bugfix: fixed a few campaign runtimes
+  - rscadd: 'Campaign: Added a SOM raiding base mission'
+  - qol: 'Campaign: Made some alterations to the home base maps'
+  - balance: Swapping with an illusion via mirage now breaks stealth
+  - bugfix: Mirage no longer lets you teleport across z-levels
+  - bugfix: fixed throwing rock pillars now applying the cooldown in many cases
+  Naaanii:
+  - rscadd: Captain now spawns with Captain's cloak and Captain's Beret.
+  - rscadd: Adds Captain's cloak red to Captain's locker.
+  - rscdel: Removes Captain's cloak from locker (Captain spawns with it now).
+  TiviPlus:
+  - rscadd: Tank riders can now hold on as long as at least one hand is free
+  lbnesquik:
+  - qol: Made it clearer that the scans on medHud humans inspections refers to body
+      scans, not handheld scanners.
+  - spellcheck: fixed missing capitalization regarding 2 tips
+  - spellcheck: removed superfluous dot at the end of Gas Mask preference
+  - code_imp: Go back to the line for some code.
+  - qol: Increased the AI holopad notification noise
+  - qol: The hand labeler now goes in and out to signify if it is open or not.
+  - bugfix: Fixed the AI carp holopad choice being called holo4
+  - bugfix: Fix the autopsy scanner not having an icon. I took the one from old polaris,
+      or old bay.
+  - bugfix: Fixed Asphalt  being called aasphalt
+  - code_imp: Renamed the OB laser typepath to not have capitals
+2024-04-12:
+  BraveMole:
+  - qol: Clicking on an opened storage will close it
+  - qol: Clicking on a storage with an item that cannot be inserted in said storage
+      will open it
+  Lumipharon:
+  - bugfix: fixed a couple minor bugs with light fittings
+  - code_imp: Cleaned up some light fitting code
+  - bugfix: You can once again light cigarettes using broken lights, burning turfs,
+      or burning mobs
+  Neocloudy:
+  - qol: Orbital bombardments now play screentext to humans that includes the type
+      of the OB
+  - qol: Send Orders will now include the sender's faction acronym and job
+  - spellcheck: The content of the orbital bombardment announcement is now "Evacuate
+      the impact zone immediately!" instead of "Get out of danger close!"
+  - code_imp: '"faction_to_acronym" global list for getting faction acronyms'
+2024-04-13:
+  Arturlang:
+  - balance: Ups wraith damage from 20 to 24
+  Lumipharon:
+  - balance: 'Campaign: Improved constitution perk unlocks Tyr/Lorica for all jobs'
+  - bugfix: fixed bemo rock count being updated incorrectly
+  - bugfix: fixed xeno turrets causing FF
+  Xander3359:
+  - refactor: Storage refactor
+  Yttriums:
+  - balance: Increased RG220 wield delay from 1.2 to 2.0 seconds
+  blackdav123:
+  - balance: Reduced lascarbine spread mode's effectiveness at range.
+  jonash07:
+  - balance: Made synthetics scannable
+2024-04-14:
+  AzonStarfall:
+  - qol: Adjustments to Arachne Medbay, CAS Bay, Vehicle Bay, and Marine Prep layouts.
+2024-04-15:
+  Lumipharon:
+  - code_imp: Combined duplicate types of fire_act
+  - bugfix: fixed red lights showing as error when empty
+  MLGTASTICa:
+  - code_imp: Optimized get_permeability_protection()
+  - balance: Xeno smoke now checks for acid protection(both soft and hard) whenever
+      dealing burn damage (from XENO_SMOKE_ACID sources) instead of bio.
+  Naaanii:
+  - rscadd: Adds alternate scout rifle magazines to reqtorio
+  Neocloudy:
+  - refactor: ammo_datums.dm has been split up into 24 different files
+  Yttriums:
+  - balance: loading magazines from ammo packets now has a 1.5 second delay
+  lbnesquik:
+  - bugfix: POS - Fixed a number of areas without any lights
+  - bugfix: POS - Verified again that every door has their firelocks
+  - bugfix: POS - Verified that all light fixtures, cameras, fire alarms and so on
+      aren't on glass
+  - bugfix: POS - deleted a number of duplicate lights
+  - bugfix: POS - Moved things like lights from being placed under firelocks, which
+      makes no sense
+  - bugfix: POS - Move the button for medical surgery shutters to not be under cameras
+  - bugfix: POS - Removed duplicate surgery shutters and make them in the right direction
+  - bugfix: ALAMO - Added more holopads to it
+  - bugfix: Debugabus - Fixed the bodyscanner being in the wrong direction
+  - qol: POS - Added FC privacy shutters
+  - qol: POS - Moved the FC not to have their bed in the middle of the room
+  - qol: POS - Added cameras coverage and better floor markings in the OB room and
+      brig
+  - qol: POS - Moved the ammo crates out of the path to the west of the hangar. Things
+      like black market weapons or surplus weapons.
+  - qol: POS & Debugabus - Added floorlights to the hangar alongside extra default
+      tubes
+  - qol: POS - Moved the leader pods not all being in the centerline of the pod bay
+  - rscadd: Add ghosts can now examine miners
+  novaepee:
+  - bugfix: fix rogue pixel on mjolnir
+2024-04-16:
+  MLGTASTICa:
+  - bugfix: fixed people being invincible to acid if they wore anything with more
+      than 11 acid protection.
+  TiviPlus:
+  - bugfix: Big Red is now an actual desert for map variants
+  - rscadd: Adds APC and Transport Crewmen to the game
+2024-04-17:
+  Barnet2:
+  - code_imp: Robot, non-modular jaegar and xenonauten use armor defines
+  - rscdel: Removes the stalemate system
+  Lumipharon:
+  - code_imp: Cleaned up some sword code
+  TiviPlus:
+  - bugfix: Tank treads movement animation fixed
+  XElectricX:
+  - bugfix: Interactive emotes work.
+2024-04-18:
+  Barnet2:
+  - admin: Adds tactical binocular admin logging, improved fuel tank logging.
+  Lumipharon:
+  - qol: Screaming from fire is a bit less spammy
+  - bugfix: fixes another order exploit
+  - bugfix: fixed various implant bugs
+  - code_imp: Cleaned up various implant related code
+  coldironwarrior:
+  - rscadd: adds category tags to the specialist vendors
+2024-04-19:
+  ivanmixo:
+  - bugfix: Valhalla xenos can use directional attacks on the puppets they spawn now
+2024-04-20:
+  Lumipharon:
+  - rscadd: Added a jump mod implant, currently admin only
+  - qol: 'Campaign: Unlocking a perk players a sound and overhead animation'
+  Wisemonster:
+  - rscadd: Gave the tank and apc the ability to honk a horn
+  - soundadd: added sound/vehicles/horns/armored_horn.ogg
+  - imageadd: re-added a horn ability icon sprite
+2024-04-21:
+  BraveMole:
+  - rscadd: Bring back banelings as minions
+  Lauwma:
+  - balance: Adds the ar-55 back in leaders vendors.
+  Lumipharon:
+  - imageadd: Updated fire sprites
+  - bugfix: fixed vendors not showing points costs
+  RipGrayson:
+  - bugfix: Fixed area on Big Red causing linter failure.
+  Xander3359:
+  - rscadd: Ports the crafting system from TG
+  coldironwarrior:
+  - bugfix: the FC GHMME now vends the right injector pouch
+  - balance: medical rig belts now can hold soap
+2024-04-22:
+  Wisemonster:
+  - rscadd: Expanded west side of Valhalla with an assault vehicle area
+  - rscadd: Added an Assault Vehicle category to the Valhalla requisition vendor;
+      added tank ammo to said category
+  novaepee:
+  - rscadd: keybind for vehicle honk
+  - qol: keybind for vehicle honk
+2024-04-24:
+  SandPoot:
+  - qol: Game will now tally up how many times people used Sandevistans (as well as
+      how many died to it).
+  TiviPlus:
+  - rscadd: Adds contextual tutorials for picking things up, dropping them and swapping
+      hands
+  Xander3359:
+  - code_imp: Organizes reagents folder
+2024-04-25:
+  Lumipharon:
+  - bugfix: fixed an alamo runtime on non hvx gamemodes
+  - bugfix: fixed a visual offset issue with sentry deployment systems
+  - bugfix: fixed some issues with mobs riding vehicles
+  - bugfix: fixed some visua issues with xeno fire overlays
+  - bugfix: Stray organs will no longer clang loudly
+  Xander3359:
+  - qol: Clicking a magazine with a gun will tactical reload instead of dragging the
+      magazine
+  - qol: Selecting a new vali chem will purge the old loaded reagent and load up the
+      new chem
+2024-04-26:
+  Lauwma:
+  - rscadd: AR-55 can now be issued to Field Commanders through their assigned vendor.
+  Xander3359:
+  - bugfix: You can now attack resin walls on help intent
+  - bugfix: Fix crafting ignoring construction checks
+  novaepee:
+  - qol: Put assault and transport crew spawning in their respective room in Pillar
+      of Spring.
+  - imageadd: Add image for transport crew landmark.
+  - qol: Change positions of some signs in PoS.
+2024-04-27:
+  Barnet2:
+  - balance: Evolution towers give 0.4 maturity per tick instead of 0.8
+  Lumipharon:
+  - balance: Significantly reduced unintented APC defensive stats
+  - bugfix: fixed some mainly visual issues with vendors
+  TiviPlus:
+  - bugfix: ACs will get loader phamplets correctly
+  - balance: Fixes APC having insane ram damage (it now has 25% of previous value)
+  - bugfix: fixed APC comms cutting out sometimes
+  blackdav123:
+  - qol: Defiler chems once again cycle Neuro-Hemo-Trans-Ozy.
+  - qol: Tank and APC sprites will now more accurately reflect their current integrity
+      values.
+  coldironwarrior:
+  - balance: autoinjector suit storage mod has 12 slots now, up from 10
+2024-04-28:
+  Lumipharon:
+  - bugfix: fixed broken/burnt light tube item sprites
+  - qol: You can click drag or grab click mobs into, or out of multitile vehicles
+  TiviPlus:
+  - rscadd: Adds blank shotgun shells that can be found in the firing range
+  Wisemonster:
+  - bugfix: Removed the Valhalla mech pilot's radio
+  Xander3359:
+  - bugfix: Fix powerpacks double reloading
+  - code_imp: replaces item_state, item_state_slots and item_icons
+  blackdav123:
+  - bugfix: Tank and APC can now get out of the Alamo easier on Ice Colony
+  - bugfix: Vehicles can now enter and exit the Alamo on Icy Caves
+  - bugfix: Fixed a few tiles without areas on Icy Caves
+  yyzsong:
+  - rscadd: Adds beanbag slugs to valhalla
+2024-04-29:
+  Lauwma:
+  - bugfix: Fixes a typo in loadout.dm that made so AR-55 and GL-54 ammos didn't appear
+      in FC vendor
+  Lumipharon:
+  - bugfix: quick equip storing will no longer close your active storage
+  - bugfix: Putting corpses into vehicles actually works now
+  Neocloudy:
+  - bugfix: Dropship Takeoff Alarm is fully implemented
+  - bugfix: Automatic dropship departure announcement no longer has sound
+  - bugfix: Delta alert plays the air raid siren
+  - bugfix: Send Orders behaves normally now
+  Wisemonster:
+  - rscadd: Added periscopes to the interior of APCs
+2024-04-30:
+  Barnet2:
+  - balance: Xeno spit toxin transfer amount reduced by half when staggered
+  - balance: Tank cannon now gibs non-xeno mobs again
+  - soundadd: Ports CM slam sound effects
+  Passe2142:
+  - bugfix: fixes gas masks giving full immunity to chemical gasses.
+  TiviPlus:
+  - bugfix: fixed some edge cases where xenos couldn't do certain things when spawned
+      by admins
+  - refactor: rewrote some code pertaining to xenos to be on castes instead of the
+      actual mob
+  Wisemonster:
+  - qol: Door control buttons now layer over objects and the tad's walls.
+  blackdav123:
+  - rscadd: Preweeded Icy Caves.
+  - bugfix: Fixed a big red modular south of ETA lab with a wrong area.
+  - balance: Melting laser MG firerate reduced to .45

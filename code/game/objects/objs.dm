@@ -4,6 +4,10 @@
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
 
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_preview
+	var/icon_state_preview
+
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
 	///damage type to deal when this obj is attacking something
@@ -321,6 +325,9 @@
 		span_notice("You fumble around figuring out how to repair [src]."))
 		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
+
+	if(user.skills.getRating(SKILL_ENGINEER) > skill_required)
+		repair_amount *= (1+(0.1*(user.skills.getRating(SKILL_ENGINEER) - (skill_required + 1))))
 
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")

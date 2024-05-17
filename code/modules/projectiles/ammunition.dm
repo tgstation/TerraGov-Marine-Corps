@@ -3,8 +3,8 @@
 	desc = "A box of ammo."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
-	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
-	item_icons = list(
+	worn_icon_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 		)
@@ -140,10 +140,10 @@
 		to_chat(user, span_warning("\The [source] is empty."))
 		return
 
-	//using handfuls; and filling internal mags has no delay.
-	if(fill_delay)
+	//if the source has a fill_delay, delay the reload by this amount
+	if(source.fill_delay)
 		to_chat(user, span_notice("You start refilling [src] with [source]."))
-		if(!do_after(user, fill_delay, NONE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, source.fill_delay, NONE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, span_notice("You refill [src] with [source]."))
@@ -211,7 +211,7 @@
 	caliber = source.caliber
 	default_ammo = source.default_ammo
 
-/obj/item/ammo_magazine/flamer_fire_act(burnlevel)
+/obj/item/ammo_magazine/fire_act(burn_level)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
@@ -390,7 +390,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
-	item_state = "big_ammo_box"
+	worn_icon_state = "big_ammo_box"
 	equip_slot_flags = ITEM_SLOT_BACK
 	base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
@@ -464,7 +464,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act(burnlevel)
+/obj/item/big_ammo_box/fire_act(burn_level)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
@@ -476,7 +476,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "A large, deployable ammo box."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
-	item_state = "ammoboxslug"
+	worn_icon_state = "ammoboxslug"
 	base_icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -597,14 +597,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
 	icon_state = "ammoboxbuckshot"
-	item_state = "ammoboxbuckshot"
+	worn_icon_state = "ammoboxbuckshot"
 	base_icon_state = "ammoboxbuckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
-	item_state = "ammoboxflechette"
+	worn_icon_state = "ammoboxflechette"
 	base_icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
@@ -612,16 +612,23 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "big ammo box (14.5mm API)"
 	caliber = CALIBER_14X5
 	icon_state = "ammobox_145"
-	item_state = "ammobox_145"
+	worn_icon_state = "ammobox_145"
 	base_icon_state = "ammobox_145"
 	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
 
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
 	icon_state = "ammoboxtracking"
-	item_state = "ammoboxtracking"
+	worn_icon_state = "ammoboxtracking"
 	base_icon_state = "ammoboxtracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
+
+/obj/item/shotgunbox/blank
+	name = "blank ammo box"
+	icon_state = "ammoboxblank"
+	worn_icon_state = "ammoboxblank"
+	base_icon_state = "ammoboxblank"
+	ammo_type = /datum/ammo/bullet/shotgun/blank
 
 /obj/item/big_ammo_box/mg
 	name = "big ammo box (10x26mm)"

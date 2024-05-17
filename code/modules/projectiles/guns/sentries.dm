@@ -36,20 +36,9 @@
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
+	storage_type = /datum/storage/box/crate/sentry
 
-/obj/item/storage/box/crate/sentry/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/crate/sentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
@@ -101,7 +90,7 @@
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take normal volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
@@ -227,14 +216,16 @@
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
 	icon_state = "sentry_mini_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/weapon/gun/sentry/mini,
-		/obj/item/ammo_magazine/minisentry,
-	)
 
 /obj/item/storage/box/crate/minisentry/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/weapon/gun/sentry/mini,
+		/obj/item/ammo_magazine/minisentry,
+	))
+
+/obj/item/storage/box/crate/minisentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)
@@ -299,4 +290,158 @@
 	ammo_datum_type = /datum/ammo/bullet/turret
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 
+// Sniper Sentry
 
+/obj/item/weapon/gun/sentry/sniper_sentry
+	name = "\improper SRT-574 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
+	icon_state = "snipersentry"
+
+	turret_range = 12
+	deploy_time = 10 SECONDS
+	max_shells = 75
+	fire_delay = 2 SECONDS
+	burst_amount = 1
+
+	scatter = 0
+
+	ammo_datum_type = /datum/ammo/bullet/turret/sniper
+	default_ammo_type = /obj/item/ammo_magazine/sentry/sniper
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/sniper)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable,
+	)
+
+/obj/item/storage/box/crate/sentry_sniper
+	name = "\improper SST-574 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/sentry_sniper/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/sniper_sentry,
+			/obj/item/ammo_magazine/sentry/sniper,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_sniper/PopulateContents()
+	new /obj/item/weapon/gun/sentry/sniper_sentry(src)
+	new /obj/item/ammo_magazine/sentry/sniper(src)
+
+// Shotgun Sentry
+
+/obj/item/weapon/gun/sentry/shotgun_sentry
+	name = "\improper SHT-573 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
+	icon_state = "shotgunsentry"
+
+	turret_range = 8
+	deploy_time = 5 SECONDS
+	max_shells = 75
+	fire_delay = 1 SECONDS
+	burst_amount = 1
+
+	scatter = 5
+
+	ammo_datum_type = /datum/ammo/bullet/turret/buckshot
+	default_ammo_type = /obj/item/ammo_magazine/sentry/shotgun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/shotgun)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/hsg_102,
+	)
+
+/obj/item/storage/box/crate/sentry_shotgun
+	name = "\improper SHT-573 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/sentry_shotgun/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/shotgun_sentry,
+			/obj/item/ammo_magazine/sentry/shotgun,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_shotgun/PopulateContents()
+	new /obj/item/weapon/gun/sentry/shotgun_sentry(src)
+	new /obj/item/ammo_magazine/sentry/shotgun(src)
+
+// Flamethrower Sentry
+
+/obj/item/weapon/gun/sentry/flamer_sentry
+	name = "\improper SFT-573 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
+	icon_state = "flamersentry"
+
+	turret_range = 8
+	deploy_time = 5 SECONDS
+	max_shells = 200
+	fire_delay = 2 SECONDS
+	burst_amount = 1
+
+	scatter = 5
+
+	ammo_datum_type = /datum/ammo/flamer
+	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/hsg_102,
+	)
+
+/obj/item/storage/box/crate/sentry_flamer
+	name = "\improper SHT-573 sentry crate"
+	desc = "A large case containing all you need to set up an automated sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/sentry_flamer/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/flamer_sentry,
+			/obj/item/ammo_magazine/sentry/flamer,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_flamer/PopulateContents()
+	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
+	new /obj/item/ammo_magazine/sentry/flamer(src)

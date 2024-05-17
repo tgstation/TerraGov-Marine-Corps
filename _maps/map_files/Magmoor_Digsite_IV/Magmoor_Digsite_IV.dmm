@@ -1,16 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
+/obj/machinery/door/window/secure{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "aab" = (
@@ -776,10 +768,11 @@
 /area/magmoor/compound/southeast)
 "aAC" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/turf/open/floor/tile/red/redtaupe{
+/obj/item/ashtray/bronze,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "aAG" = (
 /obj/structure/stairs/seamless/edge_vert,
@@ -934,6 +927,18 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"aGB" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/magmoor/security/storage)
 "aHi" = (
 /obj/machinery/air_alarm{
 	dir = 8
@@ -966,10 +971,6 @@
 	dir = 4
 	},
 /area/magmoor/civilian/arrival/east)
-"aJE" = (
-/obj/structure/bed/bunkbed,
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "aJH" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -980,7 +981,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/south)
 "aKn" = (
-/obj/structure/closet/secure_closet/security,
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -1202,7 +1206,8 @@
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
 "aSm" = (
-/obj/structure/closet/secure_closet/security,
+/obj/structure/table/reinforced,
+/obj/machinery/faxmachine/brig,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -1214,6 +1219,17 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
+"aSB" = (
+/obj/machinery/door_control{
+	id = "engi_garage";
+	name = "Engineering Garage";
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "aSR" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -1293,12 +1309,6 @@
 "aUQ" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/command/office/main)
-"aUR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/infocenter)
 "aUW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1327,6 +1337,13 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
+"aWK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "aWO" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/cave/north)
@@ -1437,7 +1454,7 @@
 "aZC" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "aZZ" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -1657,6 +1674,10 @@
 	dir = 1
 	},
 /area/magmoor/compound)
+"beD" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/tile/dark/red2,
+/area/magmoor/security/storage)
 "beH" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/grass,
@@ -1688,13 +1709,13 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "bfs" = (
+/obj/machinery/light,
+/obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 8
-	},
-/area/magmoor/security/infocenter)
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "bfN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/window/framed/colony/reinforced,
@@ -1746,15 +1767,8 @@
 	},
 /area/magmoor/compound/northwest)
 "bhF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
 	},
 /area/magmoor/security/infocenter)
 "bhS" = (
@@ -1814,12 +1828,8 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "bky" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/syndicate,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
+/obj/structure/closet/bombclosetsecurity,
+/turf/open/floor/tile/red/redtaupecorner,
 /area/magmoor/security/infocenter)
 "bkD" = (
 /obj/machinery/conveyor{
@@ -1863,6 +1873,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 1
 	},
@@ -1880,7 +1891,7 @@
 /area/magmoor/compound/south)
 "bmP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "bnr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1957,13 +1968,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "bpz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1;
-	welded = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupe{
@@ -2013,7 +2019,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "brJ" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/landing)
 "brR" = (
 /obj/machinery/door/window/right{
@@ -2264,6 +2270,18 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
+"bAS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 1
+	},
+/area/magmoor/compound/north)
 "bBC" = (
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2526,7 +2544,7 @@
 "bKz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "bKR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2746,8 +2764,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
 "bQc" = (
-/obj/machinery/vending/security,
-/turf/open/floor/tile/red/redtaupe,
+/turf/open/floor/tile/red/redtaupecorner,
 /area/magmoor/security/infocenter)
 "bQv" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -2835,7 +2852,7 @@
 /area/magmoor/medical/storage)
 "bUi" = (
 /obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/north)
 "bUz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -3131,6 +3148,15 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
+"cgC" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4;
+	welded = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 4
+	},
+/area/magmoor/security/infocenter)
 "cgW" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3294,6 +3320,9 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"cmO" = (
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "cna" = (
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -3374,6 +3403,12 @@
 	dir = 5
 	},
 /area/magmoor/cargo/storage/south)
+"cpY" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "cqc" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -3533,6 +3568,9 @@
 	dir = 4
 	},
 /area/magmoor/compound/north)
+"ctB" = (
+/turf/closed/wall/r_wall,
+/area/magmoor/engi/garage)
 "ctE" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -3581,6 +3619,19 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/side,
 /area/magmoor/command/conference)
+"cvm" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
+"cvp" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "cvs" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -3725,20 +3776,6 @@
 	dir = 4
 	},
 /area/magmoor/engi/storage)
-"cEE" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/magmoor/security/infocenter)
-"cEF" = (
-/obj/effect/landmark/corpsespawner/prisoner/burst,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1;
-	welded = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "cEM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -3881,6 +3918,14 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
+"cJf" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "cJq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -4329,12 +4374,37 @@
 	dir = 10
 	},
 /area/magmoor/compound/north)
+"dby" = (
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
+"dbA" = (
+/obj/effect/landmark/corpsespawner/prisoner/burst,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "dcg" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
+/area/magmoor/compound/north)
+"dck" = (
+/obj/machinery/door_control{
+	id = "engi_garage";
+	name = "Engineering Garage"
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/north)
 "dcn" = (
 /obj/machinery/vending/coffee,
@@ -4353,6 +4423,13 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
+"dcL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "dcP" = (
 /obj/structure/closet/wardrobe/engineering_yellow,
 /obj/machinery/light,
@@ -4423,12 +4500,14 @@
 /turf/closed/wall,
 /area/magmoor/hydroponics/north)
 "dfE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
 	},
-/turf/open/floor/tile/red/redtaupecorner,
-/area/magmoor/security/infocenter)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "dgj" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/cargo,
@@ -4510,13 +4589,7 @@
 /area/magmoor/landing/two)
 "din" = (
 /obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
+/obj/machinery/computer/secure_data,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "dio" = (
@@ -4670,11 +4743,6 @@
 	dir = 1
 	},
 /area/magmoor/engi/atmos)
-"dob" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/lobby)
 "doh" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/hydroponics/south)
@@ -4686,7 +4754,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "doD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "doR" = (
@@ -4938,10 +5013,16 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
 /area/magmoor/compound/north)
+"dwm" = (
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/storage)
 "dwo" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -5643,6 +5724,9 @@
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/secure/south)
+"dUN" = (
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/storage)
 "dVc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5682,10 +5766,8 @@
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dWD" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
+/obj/structure/closet/bombclosetsecurity,
+/turf/open/floor/tile/red/redtaupe,
 /area/magmoor/security/infocenter)
 "dWH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -5750,11 +5832,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/processing/south)
-"dYn" = (
-/obj/structure/table/reinforced,
-/obj/item/flash,
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/infocenter)
 "dYD" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -5951,6 +6028,14 @@
 "ehQ" = (
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"ehW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/magmoor/security/storage)
 "ein" = (
 /obj/structure/disposalpipe/down{
 	dir = 1
@@ -6107,9 +6192,7 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "enT" = (
-/obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Lobby"
-	},
+/obj/machinery/computer/forensic_scanning,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -6133,6 +6216,14 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/rnd)
+"eqA" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 4
+	},
+/area/magmoor/security/infocenter)
 "eqF" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -6149,16 +6240,13 @@
 	},
 /area/magmoor/civilian/pool)
 "erD" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/obj/effect/decal/cleanable/blood/gibs/xeno/core,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+	dir = 6
 	},
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "erJ" = (
@@ -6213,20 +6301,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/floor,
 /area/magmoor/civilian/cryostasis)
-"etJ" = (
-/obj/machinery/door/airlock/mainship/security{
-	dir = 8;
-	name = "\improper Security Breakroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile,
-/area/magmoor/security/lobby)
 "etK" = (
 /obj/machinery/science/pathogenic_incubator/open,
 /obj/machinery/light{
@@ -6282,13 +6356,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/patient)
-"euu" = (
-/obj/machinery/faxmachine/brig,
-/obj/structure/table/reinforced,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 8
-	},
-/area/magmoor/security/infocenter)
 "euH" = (
 /obj/machinery/light{
 	dir = 4
@@ -6394,18 +6461,13 @@
 	},
 /area/magmoor/medical/storage)
 "exF" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	name = "\improper Holding Cell"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/book/manual/detective,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "eyg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6478,6 +6540,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"eAw" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "eAy" = (
 /obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -6509,11 +6576,13 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "eBh" = (
-/obj/structure/bed/chair,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
 	},
-/area/magmoor/security/infocenter)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "eBl" = (
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/mainship/blue{
@@ -6559,6 +6628,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
+"eCE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/secure_data{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "eCK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6574,13 +6655,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/rnr)
-"eDc" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "eDq" = (
 /obj/structure/table/mainship,
 /obj/structure/rock/basalt/pile/alt3,
@@ -6695,6 +6769,18 @@
 /obj/structure/filingcabinet/medical,
 /turf/open/floor/mainship/blue,
 /area/magmoor/command/lobby)
+"eGW" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "eHj" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light/small{
@@ -6806,6 +6892,10 @@
 	dir = 4
 	},
 /area/magmoor/compound/east)
+"eJo" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "eJu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -6834,16 +6924,14 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
 "eJT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
 /obj/structure/cable,
-/turf/open/floor/plating/ground/concrete/edge{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/north)
 "eKc" = (
 /obj/structure/table/mainship,
@@ -7083,6 +7171,17 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
+"eSf" = (
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1;
+	name = "\improper Warden's Office"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red,
+/area/magmoor/security/storage)
 "eSj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -7173,6 +7272,12 @@
 	dir = 4
 	},
 /area/magmoor/engi/power)
+"eWb" = (
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "eWt" = (
 /turf/closed/wall/indestructible/bulkhead,
 /area/magmoor/landing)
@@ -7442,6 +7547,18 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
+"fht" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/magmoor/compound/north)
 "fhx" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -8243,6 +8360,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"fLn" = (
+/obj/structure/table/reinforced,
+/obj/item/flash,
+/turf/open/floor/tile/dark/red2,
+/area/magmoor/security/storage)
 "fLr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8316,16 +8438,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/southwest)
-"fNe" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "fNf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8343,6 +8455,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/southwest)
+"fNw" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "fOm" = (
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
@@ -8366,6 +8483,12 @@
 	},
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/northwest)
+"fQa" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/storage)
 "fQg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8661,6 +8784,16 @@
 	dir = 6
 	},
 /area/magmoor/compound)
+"gaM" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "gaP" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/effect/landmark/weed_node,
@@ -8766,6 +8899,14 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
+"geK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1;
+	welded = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/storage)
 "geP" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/gun/rifle/m16,
@@ -8943,6 +9084,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
+"glt" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "glK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -9153,8 +9301,6 @@
 	},
 /area/magmoor/compound/northeast)
 "guy" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/gun/energy/taser,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 1
 	},
@@ -9410,6 +9556,13 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
+"gCi" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/lobby)
 "gCk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -9459,18 +9612,11 @@
 	},
 /area/magmoor/compound/west)
 "gEe" = (
-/obj/item/explosive/plastique{
-	pixel_x = 3;
-	pixel_y = 7
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
 	},
-/obj/item/explosive/plastique{
-	pixel_y = 4
-	},
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "gEB" = (
 /obj/structure/bed/stool,
@@ -9632,6 +9778,13 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/north)
+"gKu" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/obj/item/shard{
+	pixel_x = -9
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/west)
 "gKI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -9832,12 +9985,6 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/storage/secure/south)
-"gUI" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/magmoor/security/infocenter)
 "gUT" = (
 /obj/machinery/landinglight/lz2{
 	dir = 4
@@ -9850,10 +9997,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
-"gVu" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/concrete/edge,
-/area/magmoor/compound/north)
+"gVO" = (
+/obj/structure/closet/secure_closet/security,
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/infocenter)
 "gWk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -9862,16 +10012,6 @@
 	dir = 1
 	},
 /area/magmoor/cargo/storage/secure/south)
-"gWS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/security{
-	dir = 1;
-	name = "\improper Security Breakroom"
-	},
-/turf/open/floor/tile,
-/area/magmoor/security/infocenter)
 "gXo" = (
 /obj/machinery/air_alarm{
 	dir = 8
@@ -9941,6 +10081,15 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
+"hbE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 1;
+	welded = 1
+	},
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 1
+	},
+/area/magmoor/security/infocenter)
 "hbM" = (
 /obj/structure/table/mainship,
 /obj/item/healthanalyzer,
@@ -10279,7 +10428,7 @@
 /area/magmoor/cave/north)
 "hpN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "hqe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -10298,6 +10447,17 @@
 	dir = 8
 	},
 /area/magmoor/research/rnd)
+"hrb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
+	},
+/area/magmoor/security/storage)
 "hrd" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/north)
@@ -10312,6 +10472,13 @@
 "hrv" = (
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
+"hrF" = (
+/obj/item/shard{
+	pixel_x = 12;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/west)
 "hrH" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/prison/kitchen,
@@ -10413,6 +10580,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
+"huH" = (
+/obj/item/weapon/gun/revolver/cmb{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/ammo_casing,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "hvH" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -10626,6 +10803,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing/south)
+"hDB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "hDZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -10640,6 +10826,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
+"hEg" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/infocenter)
 "hEl" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -10952,6 +11144,12 @@
 	dir = 1
 	},
 /area/magmoor/compound/east)
+"hSR" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
+	},
+/area/magmoor/security/lobby)
 "hTt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11039,7 +11237,7 @@
 "hWc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/magmoor/compound/north)
+/area/magmoor/engi/garage)
 "hWC" = (
 /turf/open/floor/mainship/ntlogo/nt3,
 /area/magmoor/civilian/arrival/east)
@@ -11223,6 +11421,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/west)
+"ibS" = (
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "ice" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/dirt/autosmoothing,
@@ -11290,6 +11491,13 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
+"ieq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4;
+	welded = 1
+	},
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "ier" = (
 /obj/machinery/light{
 	dir = 8
@@ -11337,6 +11545,16 @@
 	dir = 8
 	},
 /area/magmoor/cargo/processing/south)
+"ifh" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/storage)
 "ifp" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -11354,16 +11572,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
-"igA" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/magmoor/volcano)
 "igV" = (
 /obj/machinery/door/window/secure,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
+"iha" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/north)
 "ihH" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
@@ -11639,12 +11860,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
-"iqN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "iqO" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -11710,6 +11925,24 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"itD" = (
+/obj/structure/closet/gimmick{
+	anchored = 1;
+	name = "Riot gear"
+	},
+/obj/item/weapon/shield/riot,
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/suit/armor/riot,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/magmoor/security/storage)
 "itH" = (
 /obj/structure/curtain/open/medical,
 /turf/open/floor/mainship/sterile/dark,
@@ -11769,7 +12002,7 @@
 /area/magmoor/engi/power)
 "iwd" = (
 /obj/effect/ai_node,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "iwt" = (
 /turf/open/floor/mainship/purple,
@@ -12158,7 +12391,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "iLH" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "iLW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12182,9 +12415,8 @@
 /turf/open/floor/grass,
 /area/magmoor/civilian/clean)
 "iNr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
 	},
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
@@ -12385,6 +12617,16 @@
 	dir = 1
 	},
 /area/magmoor/compound/northwest)
+"iUC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "iUD" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/mainship/blue{
@@ -12395,8 +12637,9 @@
 /turf/closed/wall,
 /area/magmoor/medical/cmo)
 "iVe" = (
-/obj/machinery/vending/nanomed,
-/turf/open/floor/tile/red/redtaupecorner,
+/obj/structure/bed/chair,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupe,
 /area/magmoor/security/infocenter)
 "iVV" = (
 /obj/structure/largecrate/supply/medicine/iv,
@@ -12479,6 +12722,15 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
+"iZN" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "jaj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -12669,13 +12921,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/east)
-"jfI" = (
-/obj/machinery/door/airlock/mainship/security{
-	dir = 1;
-	name = "\improper Security Breakroom"
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "jfW" = (
 /obj/item/shard/phoron,
 /turf/open/floor/mainship/sterile/dark,
@@ -12710,19 +12955,6 @@
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
-"jhh" = (
-/obj/effect/decal/cleanable/blood/six,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
-/area/magmoor/security/lobby)
 "jho" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -13015,6 +13247,16 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
+"jpn" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 1
+	},
+/area/magmoor/security/infocenter)
 "jps" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/cult,
@@ -13117,6 +13359,15 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"jtk" = (
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "jto" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -13129,8 +13380,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "jtC" = (
-/turf/open/floor/tile,
-/area/magmoor/security/infocenter)
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "jtD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -13404,6 +13657,22 @@
 	dir = 10
 	},
 /area/magmoor/compound/northeast)
+"jEi" = (
+/obj/structure/bed/chair{
+	dir = 1;
+	pixel_y = 11
+	},
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/infocenter)
 "jEv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -13506,6 +13775,18 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)
+"jHk" = (
+/obj/machinery/door/airlock/mainship/security{
+	name = "\improper Armoury"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red,
+/area/magmoor/security/storage)
 "jHK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13594,21 +13875,17 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "jJJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/magmoor/security/infocenter)
-"jJW" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/lobby)
 "jKf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -13621,6 +13898,19 @@
 	dir = 4
 	},
 /area/magmoor/compound)
+"jKr" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	name = "\improper Holding Cell";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/lobby)
 "jKu" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13679,11 +13969,14 @@
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean/shower)
 "jMh" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
 	},
-/area/magmoor/security/infocenter)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/lobby)
 "jMi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -13770,6 +14063,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
+"jQa" = (
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "jQe" = (
 /obj/machinery/light{
 	dir = 4
@@ -13842,6 +14138,16 @@
 	dir = 1
 	},
 /area/magmoor/civilian/dorms)
+"jSe" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "jSk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -13933,6 +14239,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -13996,7 +14305,6 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
@@ -14062,10 +14370,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/northeast)
-"kaC" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/magmoor/medical/chemistry)
 "kaF" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -14195,17 +14499,6 @@
 /obj/structure/table/gamblingtable,
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
-"kfY" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "kgb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -14521,7 +14814,7 @@
 /area/magmoor/compound/southwest)
 "ksR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/storage/testroom)
 "ksX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -14720,6 +15013,15 @@
 /obj/item/tool/stamp,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
+"kzv" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/landmark/corpsespawner/prison_security,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/storage)
 "kzB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -14830,7 +15132,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "kDI" = (
 /turf/open/floor/mainship/green{
@@ -14869,6 +15171,14 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/lobby)
+"kEw" = (
+/obj/structure/bed/chair,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/infocenter)
 "kEA" = (
 /obj/item/lightstick/anchored,
 /obj/effect/ai_node,
@@ -14938,6 +15248,14 @@
 	dir = 1
 	},
 /area/magmoor/medical/lobby)
+"kGc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/magmoor/compound/north)
 "kGs" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -14967,6 +15285,13 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/magmoor/mining/garage)
+"kHP" = (
+/obj/machinery/door/airlock/mainship/security{
+	dir = 8;
+	name = "\improper Security Breakroom"
+	},
+/turf/open/floor/tile/red,
+/area/magmoor/security/infocenter)
 "kIw" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -15046,18 +15371,6 @@
 	dir = 8
 	},
 /area/magmoor/research/rnd/lobby)
-"kLd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/magmoor/security/infocenter)
 "kLm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -15161,6 +15474,17 @@
 	dir = 1
 	},
 /area/magmoor/research/containment)
+"kPM" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "kPP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15252,6 +15576,9 @@
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
 	},
@@ -15359,6 +15686,12 @@
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
 /area/magmoor/landing)
+"kWk" = (
+/obj/structure/prop/vehicle/big_truck{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "kWl" = (
 /obj/structure/lattice,
 /obj/structure/window/framed/colony/reinforced,
@@ -15436,6 +15769,10 @@
 	dir = 10
 	},
 /area/magmoor/compound/southwest)
+"kYM" = (
+/obj/machinery/vending/security,
+/turf/open/floor/tile/red,
+/area/magmoor/security/infocenter)
 "kZC" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -15446,17 +15783,29 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
+"kZG" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/computer/intel_computer,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/magmoor/security/storage)
+"kZZ" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/energy/taser,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 4
+	},
+/area/magmoor/security/infocenter)
 "laA" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/research)
-"laM" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1;
-	welded = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "laS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -15481,7 +15830,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "lbB" = (
 /obj/structure/rack,
@@ -15804,7 +16153,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
 "lng" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/north)
 "lnT" = (
 /obj/machinery/light,
@@ -15817,12 +16166,6 @@
 	},
 /turf/open/floor/mainship/green,
 /area/magmoor/hydroponics/north)
-"loi" = (
-/obj/machinery/computer/forensic_scanning,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
-/area/magmoor/security/lobby)
 "lop" = (
 /obj/structure/prop/oresilo,
 /turf/open/floor/plating/mainship,
@@ -15851,10 +16194,10 @@
 /area/magmoor/research)
 "lpe" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupe{
@@ -16018,10 +16361,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/dorms)
-"lvJ" = (
-/obj/item/ammo_casing,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/lobby)
 "lvP" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -16160,6 +16499,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"lAV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "lBd" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -16185,6 +16528,20 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
+"lCe" = (
+/obj/machinery/vending/nanomed,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/storage)
+"lCx" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "lCA" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 1
@@ -16241,6 +16598,14 @@
 	dir = 1
 	},
 /area/magmoor/command/lobby/east)
+"lFu" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp/green,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "lFD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -16416,6 +16781,10 @@
 	dir = 1
 	},
 /area/magmoor/civilian/arrival/east)
+"lMP" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "lNc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -16613,10 +16982,6 @@
 	dir = 9
 	},
 /area/magmoor/compound/north)
-"lSS" = (
-/obj/structure/bed/chair,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "lST" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -16687,11 +17052,15 @@
 /turf/open/floor/wood,
 /area/magmoor/command/office)
 "lUZ" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
-/turf/open/floor/tile/dark/red2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
 /area/magmoor/security/infocenter)
 "lVp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -16701,6 +17070,11 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"lVv" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/magmoor/security/storage)
 "lVE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -16844,10 +17218,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
-"maL" = (
-/obj/structure/flora/pottedplant/twentytwo,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "maS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -16945,12 +17315,12 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/research/serverroom)
 "mef" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete/edge{
@@ -17031,12 +17401,6 @@
 /obj/item/mecha_parts/part/durand_armor,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
-"miE" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/magmoor/compound/north)
 "miM" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -17046,7 +17410,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "miS" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/engi/power)
 "mjE" = (
 /obj/structure/largecrate/chick,
@@ -17117,6 +17481,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"mlU" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "mlZ" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
@@ -17151,6 +17519,16 @@
 	},
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound)
+"moe" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "mow" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17306,6 +17684,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
+"mwG" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/security/storage)
 "mwM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -17319,6 +17701,10 @@
 	dir = 5
 	},
 /area/magmoor/civilian/arrival)
+"mxr" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/tile/red,
+/area/magmoor/security/infocenter)
 "mxC" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -17422,8 +17808,14 @@
 /turf/open/floor/mainship/silver,
 /area/magmoor/civilian/arrival/east)
 "mCp" = (
-/obj/structure/closet/secure_closet/brig,
-/turf/open/floor/mainship/mono,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/magmoor/security/infocenter)
 "mCt" = (
 /obj/machinery/power/apc/drained{
@@ -17523,11 +17915,9 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
-"mFm" = (
+"mFf" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 1
-	},
+/turf/open/floor/tile/red,
 /area/magmoor/security/infocenter)
 "mFv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -17539,7 +17929,7 @@
 /area/magmoor/medical/treatment)
 "mFF" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "mFV" = (
 /obj/structure/bed/chair/office/dark{
@@ -17811,6 +18201,12 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/research/rnd/lobby)
+"mPT" = (
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "mPW" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -18133,17 +18529,6 @@
 	dir = 10
 	},
 /area/magmoor/medical/treatment)
-"nbR" = (
-/obj/effect/landmark/corpsespawner/prison_security,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "nbS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18253,7 +18638,7 @@
 /area/magmoor/command/conference)
 "nfy" = (
 /obj/structure/cable,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "nfY" = (
 /turf/open/floor/carpet/side{
@@ -18262,7 +18647,7 @@
 /area/magmoor/civilian/mosque)
 "ngh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "ngw" = (
 /obj/structure/xenoautopsy/tank/escaped,
@@ -18528,6 +18913,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/basket)
+"nsc" = (
+/obj/effect/decal/cleanable/blood/six,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "nsr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/silver,
@@ -18734,7 +19124,12 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "nBs" = (
-/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
 /turf/open/floor/tile/red/redtaupe,
 /area/magmoor/security/lobby)
 "nBx" = (
@@ -18805,14 +19200,14 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "nEg" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
+	dir = 1
 	},
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "nEn" = (
@@ -19057,11 +19452,16 @@
 	},
 /area/magmoor/civilian/clean)
 "nQY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
 /area/magmoor/security/infocenter)
 "nRj" = (
 /obj/machinery/floodlight/colony{
@@ -19105,6 +19505,13 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/basket)
+"nSH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "nSX" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
@@ -19148,7 +19555,7 @@
 	},
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "nUm" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -19190,12 +19597,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
-"nWl" = (
-/obj/effect/landmark/corpsespawner,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
-/area/magmoor/security/lobby)
 "nWx" = (
 /turf/open/floor/mainship/silver{
 	dir = 4
@@ -19489,6 +19890,12 @@
 "ohT" = (
 /turf/closed/wall,
 /area/magmoor/civilian/bar)
+"ohW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "oif" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -19677,6 +20084,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
+"opN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/storage)
 "oqh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19872,6 +20286,18 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/research)
+"owq" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "owv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -20174,12 +20600,6 @@
 	dir = 4
 	},
 /area/magmoor/civilian/clean/shower)
-"oEN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/infocenter)
 "oFF" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -20442,6 +20862,9 @@
 	},
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/south)
+"oOi" = (
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "oOw" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -20577,11 +21000,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/rnd)
-"oRO" = (
-/obj/structure/window_frame/colony/reinforced,
-/obj/item/shard,
-/turf/open/floor/plating,
-/area/magmoor/medical/chemistry)
 "oRP" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
@@ -20666,12 +21084,15 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
 "oVR" = (
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
+	dir = 4
 	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/infocenter)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "oWD" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 4
@@ -20928,6 +21349,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound)
+"peW" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	name = "\improper Power Management"
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "pfg" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete/edge,
@@ -21142,7 +21569,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Armoury"
+	name = "\improper Security Office"
 	},
 /turf/open/floor/tile,
 /area/magmoor/security/infocenter)
@@ -21165,6 +21592,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
+"pne" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "pnC" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -21184,23 +21617,9 @@
 	},
 /area/magmoor/compound/northwest)
 "pok" = (
-/obj/item/shard{
-	pixel_x = -9
-	},
-/obj/item/shard{
-	pixel_x = 12;
-	pixel_y = 7
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
+/obj/item/book/manual/security_space_law,
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "poC" = (
 /obj/machinery/hydroponics,
@@ -21362,6 +21781,12 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean)
+"ptJ" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/lobby)
 "ptS" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/emerald{
@@ -21628,7 +22053,7 @@
 	},
 /area/magmoor/engi/thermal)
 "pDq" = (
-/turf/closed/mineral/smooth/outdoor,
+/turf/closed/mineral/smooth/lavawall/outdoor,
 /area/magmoor/cave/rock)
 "pDs" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -21676,13 +22101,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "pEz" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "pEF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21832,7 +22255,9 @@
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical/lobby)
 "pLU" = (
-/obj/machinery/vending/cigarette,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
@@ -22088,11 +22513,12 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/south)
 "pTv" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
 	},
-/area/magmoor/security/infocenter)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "pUd" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
@@ -22195,14 +22621,9 @@
 	},
 /area/magmoor/command/conference)
 "pXw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "pXX" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/mono,
@@ -22222,12 +22643,6 @@
 	},
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/east)
-"pZr" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/infocenter)
 "pZu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -22468,6 +22883,16 @@
 	dir = 8
 	},
 /area/magmoor/civilian/clean)
+"qhG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "qhU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -22498,6 +22923,12 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
+"qjc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "qjx" = (
 /obj/machinery/science/isolator/inserted,
 /turf/open/floor/mainship/sterile/purple,
@@ -22523,6 +22954,16 @@
 /obj/structure/cable,
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/dorms)
+"qkm" = (
+/obj/item/ammo_casing/shell,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/storage)
 "qkn" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -22715,6 +23156,13 @@
 	dir = 8
 	},
 /area/magmoor/engi/atmos)
+"qrK" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/security_space_law,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 4
+	},
+/area/magmoor/security/infocenter)
 "qrL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -22758,6 +23206,12 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"qsN" = (
+/obj/machinery/air_alarm{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "qtg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -23056,6 +23510,13 @@
 	dir = 6
 	},
 /area/magmoor/compound/north)
+"qCx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "qDc" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
@@ -23073,10 +23534,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/hydroponics/south)
-"qFf" = (
-/obj/structure/flora/pottedplant/twentytwo,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/lobby)
 "qFr" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
@@ -23162,6 +23619,12 @@
 	dir = 4
 	},
 /area/magmoor/command/commandroom)
+"qIK" = (
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/lobby)
 "qIT" = (
 /turf/open/floor/mainship/black,
 /area/magmoor/landing)
@@ -23319,13 +23782,15 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/power)
 "qQZ" = (
-/obj/structure/bed/chair{
+/obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	pixel_y = 11
+	name = "\improper Security Breakroom"
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red,
 /area/magmoor/security/infocenter)
 "qRH" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -23367,6 +23832,11 @@
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
+"qUk" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "qUy" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23804,6 +24274,23 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/purple/taupepurple,
 /area/magmoor/civilian/dorms)
+"rjR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/explosive/plastique{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/obj/item/explosive/plastique{
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "rjZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -23901,6 +24388,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
 /area/magmoor/cargo/processing/south)
+"rou" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "roE" = (
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
@@ -23937,6 +24428,16 @@
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
+"rpH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "rpI" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -23944,6 +24445,12 @@
 /obj/structure/sign/examroom,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
+"rpK" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "rpV" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -23990,6 +24497,15 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/atmos)
+"rtj" = (
+/obj/structure/table/reinforced,
+/obj/item/ashtray/bronze,
+/obj/item/trash/cigbutt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "rtk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -24008,6 +24524,10 @@
 "rtA" = (
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/civilian/jani)
+"rtB" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "rtK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -24108,7 +24628,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
 "rxl" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "rxx" = (
 /obj/machinery/door/airlock/mainship/command{
@@ -24167,14 +24687,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
-"ryW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/red/redtaupe{
-	dir = 1
-	},
-/area/magmoor/security/infocenter)
 "rzj" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -24252,6 +24764,12 @@
 	},
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
+"rCo" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/magmoor/security/lobby)
 "rCt" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/side,
@@ -24269,6 +24787,13 @@
 	dir = 10
 	},
 /area/magmoor/civilian/cryostasis)
+"rDe" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/infocenter)
 "rDp" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/emerald{
@@ -24308,6 +24833,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -24571,6 +25099,16 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing/south)
+"rOv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "rOJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -24686,6 +25224,15 @@
 	dir = 1
 	},
 /area/magmoor/compound/north)
+"rTL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "rTX" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -24841,6 +25388,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/patient)
+"rZD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1;
+	welded = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "sac" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -25080,9 +25635,18 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "sjy" = (
-/turf/open/floor/tile/red/redtaupe{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	dir = 1;
+	name = "\improper Security Lobby"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "skh" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -25090,6 +25654,14 @@
 	dir = 4
 	},
 /area/magmoor/compound/north)
+"skx" = (
+/obj/structure/toilet,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "skK" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/structure/table/reinforced/flipped{
@@ -25116,6 +25688,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/southeast)
+"skX" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "sle" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -25191,6 +25767,10 @@
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/arrivals/east)
+"snF" = (
+/obj/machinery/vending/security,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/storage)
 "sod" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25358,10 +25938,16 @@
 	},
 /area/magmoor/compound/north)
 "stY" = (
-/obj/structure/window/reinforced{
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 1;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/red2,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
 /area/magmoor/security/infocenter)
 "sue" = (
 /obj/structure/cable,
@@ -25470,6 +26056,14 @@
 "syD" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound)
+"syH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/security,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/red2,
+/area/magmoor/security/storage)
 "syN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25627,6 +26221,14 @@
 	dir = 4
 	},
 /area/magmoor/command/lobby/east)
+"sDK" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/item/ammo_casing,
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "sEf" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -25837,6 +26439,12 @@
 	dir = 4
 	},
 /area/magmoor/engi)
+"sLM" = (
+/obj/structure/prop/vehicle/crawler/crawler_red{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "sMJ" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
@@ -25927,9 +26535,6 @@
 	dir = 8
 	},
 /area/magmoor/command/office/main)
-"sPW" = (
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/security/infocenter)
 "sQh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -26399,7 +27004,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "thG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -27378,15 +27983,15 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "tRG" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/turf/open/floor/tile/dark/red2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
 /area/magmoor/security/infocenter)
 "tRM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -27414,6 +28019,17 @@
 "tSL" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/cryostasis)
+"tSV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "tTH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
@@ -27523,11 +28139,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/west)
-"tXP" = (
-/obj/structure/table/reinforced,
-/obj/item/ashtray/bronze,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "tYc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -27556,6 +28167,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
+"tZy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "tZz" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -27603,6 +28220,12 @@
 	dir = 1
 	},
 /area/magmoor/compound/north)
+"uaN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "uaU" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -27613,7 +28236,7 @@
 	},
 /area/magmoor/command/commandroom)
 "ube" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/storage/testroom)
 "ubo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -27828,13 +28451,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/south)
-"ugU" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1;
-	welded = 1
-	},
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "ugW" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
@@ -27940,6 +28556,17 @@
 /obj/item/contraband/poster,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/south)
+"ujF" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	name = "\improper Holding Cell";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "ujR" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -27975,6 +28602,12 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
+"ukE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/infocenter)
 "ukL" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -28056,14 +28689,13 @@
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound/north)
 "umZ" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "unF" = (
 /obj/structure/barricade/guardrail{
@@ -28168,6 +28800,10 @@
 	dir = 4
 	},
 /area/magmoor/compound)
+"urn" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "urs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -28186,6 +28822,12 @@
 	dir = 8
 	},
 /area/magmoor/security/arrivals/east)
+"urA" = (
+/obj/structure/filingcabinet/security,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/magmoor/security/infocenter)
 "urG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -28248,6 +28890,15 @@
 	dir = 1
 	},
 /area/magmoor/cargo/processing/south)
+"utS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/compound/north)
 "utT" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
@@ -28300,6 +28951,14 @@
 	dir = 1
 	},
 /area/magmoor/compound/southeast)
+"uwD" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "uwE" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
@@ -28309,14 +28968,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
-"uwQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/lobby)
 "uwV" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -28562,6 +29213,11 @@
 	dir = 1
 	},
 /area/magmoor/command/commandroom)
+"uEu" = (
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/storage)
 "uFP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -28896,13 +29552,6 @@
 	dir = 4
 	},
 /area/magmoor/mining)
-"uTl" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno/limb,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
 "uTu" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/orange,
@@ -28994,8 +29643,11 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/dorms)
 "uUU" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "uVi" = (
@@ -29041,13 +29693,8 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "uWg" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/red/redtaupe,
 /area/magmoor/security/infocenter)
 "uXf" = (
 /turf/open/floor/carpet,
@@ -29176,6 +29823,12 @@
 "vaD" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/medical/storage)
+"vaO" = (
+/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/corpsespawner/prison_security/burst,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/infocenter)
 "vaW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -29330,6 +29983,12 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
+"vjK" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "vjN" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
@@ -29393,16 +30052,18 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
-"vnG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+"voh" = (
+/obj/structure/prop/vehicle/crane/cranecargo/destructible{
+	dir = 8
 	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
+"voC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/red,
 /area/magmoor/security/infocenter)
 "vpf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -29628,10 +30289,17 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
 /area/magmoor/compound/north)
+"vxQ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/magmoor/engi/garage)
 "vye" = (
 /obj/structure/rock/basalt/alt,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -29688,7 +30356,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/mineral/smooth/lavawall/indestructible,
 /area/magmoor/cave/rock)
 "vAK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -29708,6 +30376,17 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
+"vBE" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "engi_garage";
+	name = "\improper Engineering Garage"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "vBG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/side{
@@ -30117,7 +30796,7 @@
 /turf/open/lavaland/basalt/cave/autosmooth,
 /area/magmoor/cave/north)
 "vRf" = (
-/obj/item/toy/plush/rouny,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "vRg" = (
@@ -30139,7 +30818,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "vRG" = (
 /obj/structure/cargo_container/ch_green,
@@ -30156,14 +30835,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/south)
-"vRX" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 4
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
-/area/magmoor/security/lobby)
 "vRZ" = (
 /obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -30399,6 +31070,10 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/mosque)
+"vZv" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "vZF" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side{
@@ -30508,14 +31183,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/north)
 "wdP" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
-/obj/structure/cable,
+/obj/machinery/light,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "weq" = (
@@ -30982,6 +31654,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
+"wxl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/lobby)
 "wxp" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -31005,11 +31687,6 @@
 	dir = 4
 	},
 /area/magmoor/compound)
-"wyz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/lobby)
 "wyD" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -31309,6 +31986,11 @@
 /area/magmoor/mining)
 "wIz" = (
 /obj/structure/cable,
+/obj/machinery/vending/nanomed,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "wIA" = (
@@ -31480,6 +32162,14 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
+"wOh" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "engi_garage";
+	name = "\improper Engineering Garage"
+	},
+/turf/open/floor/plating,
+/area/magmoor/engi/garage)
 "wOk" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/tile/cmo,
@@ -31656,10 +32346,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
-"wUC" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber,
-/turf/open/floor/tile/red/redtaupe,
-/area/magmoor/security/lobby)
 "wUD" = (
 /obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/mainship/orange{
@@ -31691,6 +32377,14 @@
 /obj/structure/lattice,
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/north)
+"wWe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/magmoor/security/storage)
 "wWk" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
@@ -32270,7 +32964,7 @@
 /area/magmoor/landing)
 "xnL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/lavawall,
 /area/magmoor/cave/rock)
 "xou" = (
 /obj/structure/bed/chair/sofa,
@@ -32393,6 +33087,12 @@
 /obj/structure/rock/basalt/alt,
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/north)
+"xru" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/tile/red/full,
+/area/magmoor/security/infocenter)
 "xrx" = (
 /obj/structure/rack,
 /obj/item/storage/box/masks,
@@ -32588,6 +33288,9 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -32644,14 +33347,13 @@
 	},
 /area/magmoor/engi/atmos)
 "xxT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/lobby)
 "xxY" = (
@@ -32705,8 +33407,17 @@
 /turf/open/lavaland/basalt/cave/autosmooth,
 /area/magmoor/volcano)
 "xzL" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/tile/dark/red2,
+/obj/machinery/light,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
 /area/magmoor/security/infocenter)
 "xzO" = (
 /obj/structure/table/mainship,
@@ -32774,6 +33485,11 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/magmoor/civilian/arrival/east)
+"xBP" = (
+/obj/structure/rack,
+/obj/item/weapon/combat_knife,
+/turf/open/floor/tile/dark,
+/area/magmoor/security/storage)
 "xBS" = (
 /obj/structure/rack,
 /obj/effect/landmark/weed_node,
@@ -33235,11 +33951,9 @@
 	},
 /area/magmoor/cargo/processing/south)
 "xSw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/red/full,
-/area/magmoor/security/infocenter)
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/mainship/mono,
+/area/magmoor/security/lobby)
 "xSI" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -33455,6 +34169,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
+"xZM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/magmoor/security/lobby)
 "yan" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -33557,6 +34280,10 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
+"ydX" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/garage)
 "yej" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
@@ -33681,6 +34408,19 @@
 "yhW" = (
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
+"yia" = (
+/obj/machinery/door/airlock/mainship/security{
+	dir = 8;
+	name = "\improper Warden's Office"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/red,
+/area/magmoor/security/infocenter)
 "yip" = (
 /obj/structure/rack,
 /obj/item/clothing/under/shorts/red,
@@ -38545,14 +39285,14 @@ dPK
 dPK
 ojW
 dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-rxl
-rxl
-rxl
+mOt
+mOt
+mOt
+eQl
+mOt
+mOt
+mOt
+aap
 rxl
 rxl
 rxl
@@ -38772,27 +39512,27 @@ rxl
 rxl
 rxl
 rxl
-mlB
-ojW
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+pvQ
+pvQ
+pvQ
+pvQ
+vEo
+vEo
+mOt
+bQc
+cgC
+bhF
+kZZ
+qrK
+urA
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
 rxl
 rxl
 rxl
@@ -39005,27 +39745,27 @@ rxl
 rxl
 rxl
 rxl
-rxl
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-ojW
-dPK
-dPK
-dPK
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+pvQ
+pXw
+xSw
+pvQ
+hSR
+dhx
+mOt
+rDe
+lFu
+fNw
+rDJ
+rZD
+hEg
+aap
+snF
+kZG
+qUk
+kPM
+xBP
+beD
+aap
 rxl
 rxl
 rxl
@@ -39238,27 +39978,27 @@ rxl
 rxl
 rxl
 rxl
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-ojW
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-rxl
-rxl
-rxl
-rxl
-rxl
+pvQ
+dbA
+cJf
+jKr
+xZM
+qIK
+mOt
+vaO
+rtj
+xru
+rDJ
+tZy
+gVO
+aap
+dwm
+ehW
+ieq
+jQa
+rou
+fLn
+aap
 rxl
 rxl
 rxl
@@ -39471,27 +40211,27 @@ rxl
 rxl
 rxl
 mlB
-ojW
-dPK
-dPK
-ojW
-dPK
-ojW
-dPK
+pvQ
+cvm
+gaM
+pvQ
+hDB
+rCo
 mOt
-mOt
-syO
-mOt
-mOt
-dPK
-ojW
-dPK
-dPK
-dPK
-dPK
-dPK
-rxl
-rxl
+huH
+eCE
+ukE
+ukE
+eGW
+jpn
+eSf
+ifh
+aGB
+rjR
+jSe
+pne
+syH
+aap
 rxl
 rxl
 rxl
@@ -39704,28 +40444,28 @@ rxl
 tYu
 mlB
 dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
+pvQ
+pvQ
+pvQ
+pvQ
+hDB
+yej
 mOt
-aJE
-cEF
-pZr
 mOt
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-dPK
-ojW
-dPK
-dze
+mOt
+mOt
+mOt
+yia
+mOt
+aap
+lCe
+opN
+qkm
+kzv
+geK
+dUN
+lVv
+gKu
 rxl
 rxl
 rxl
@@ -39937,28 +40677,28 @@ tYu
 mlB
 ffI
 dPK
+vEo
+skX
+vjK
+ieA
+rTL
+yej
 mOt
-mOt
-syO
-mOt
-mOt
-syO
-mOt
-mOt
+wOk
 mCp
-kfY
-laM
-mOt
-dPK
-dPK
-dPK
-ojW
-dPK
-dPK
-dPK
-dPK
-dPK
-dze
+bhF
+bhF
+tRG
+mFf
+aap
+hrb
+wWe
+uEu
+uEu
+uEu
+fQa
+mwG
+hrF
 dze
 dze
 dze
@@ -40170,21 +40910,21 @@ mlB
 mlB
 dPK
 cKB
-mOt
-pUA
+cSt
+oOi
 dfE
 eBh
-jMh
+iZN
 jMh
 qQZ
-mOt
-syO
+voC
+kEw
 exF
-syO
+dby
+jEi
 mOt
-mOt
-syO
-mOt
+aap
+jHk
 aap
 aap
 aap
@@ -40403,19 +41143,19 @@ ffI
 dPK
 xMR
 fCK
-eQl
-woV
-aUR
-lSS
+pvQ
+oOi
+rTL
+pvQ
+pvQ
+pvQ
+mOt
+pUA
+iVe
 hed
-tXP
+aAC
 eKG
 mOt
-iVe
-vnG
-aAC
-mOt
-gUI
 bky
 tRG
 aap
@@ -40636,19 +41376,19 @@ dPK
 dPK
 xMR
 fCK
-jfI
+pvQ
 jtC
 oVR
-nbR
+pvQ
 xSw
 pXw
-ryW
-gWS
-oEN
-eDc
-hed
 mOt
-cEE
+woV
+aqn
+akY
+tSV
+hbE
+mOt
 dWD
 xzL
 aap
@@ -40869,19 +41609,19 @@ dPK
 dPK
 rfA
 fCK
-mOt
-wOk
-aqn
-jJJ
+pvQ
+oOi
+iUC
+ujF
 pTv
 bfs
-mFm
 mOt
-qKe
-fNe
-maL
 mOt
-kLd
+kHP
+mOt
+mOt
+mOt
+mOt
 uWg
 nQY
 oXd
@@ -41103,17 +41843,17 @@ dPK
 dPK
 plZ
 pvQ
+mlU
+oVR
 pvQ
+skx
+kWP
 pvQ
-etJ
-cSt
-pvQ
-pvQ
-mOt
+mxr
 bQc
 umZ
-ugU
-mOt
+bhF
+eqA
 bhF
 gEe
 lUZ
@@ -41336,17 +42076,17 @@ dPK
 dPK
 xMR
 pvQ
-loi
+oOi
 sjy
-jhh
-nWl
-vRX
-dhx
-mOt
-dRY
-fNe
-rDJ
-mOt
+pvQ
+pvQ
+pvQ
+pvQ
+kYM
+qKe
+tZy
+eAw
+qCx
 pok
 pEz
 stY
@@ -41568,24 +42308,24 @@ dPK
 dPK
 dPK
 xMR
-vEo
-dob
-jJW
+pvQ
+oOi
+oVR
 aaa
-lvJ
 ieA
-yej
+eWb
+pvQ
 mOt
-bWX
+dRY
 wdP
-iqN
-iqN
-uTl
+mOt
+mOt
+mOt
 wIz
 rEa
 aap
 lbB
-pxb
+itD
 pxb
 hMZ
 aap
@@ -41805,16 +42545,16 @@ pvQ
 nBs
 uUU
 din
-rCK
-pvQ
+nsc
+sDK
 enT
 mOt
-dYn
+bWX
 iNr
-rDJ
-rDJ
+uwD
+rOv
 erD
-rDJ
+moe
 aKn
 aap
 aap
@@ -42034,20 +42774,20 @@ dPK
 dPK
 dPK
 xMR
-vEo
-wUC
+pvQ
+skX
 doD
-uwQ
-ieA
-qFf
-yej
+pvQ
+aWK
+rCK
+gCi
 mOt
 aSm
 rDX
-euu
+akY
 pLU
 jJJ
-akY
+mPT
 guy
 mOt
 dPK
@@ -42267,12 +43007,12 @@ ojW
 dPK
 dPK
 xMR
-cSt
+pvQ
 byD
-ieA
+wxl
 nEg
 xxT
-wyz
+ieA
 bpz
 mOt
 mOt
@@ -42502,7 +43242,7 @@ dPK
 xMR
 pvQ
 nqJ
-mxC
+ptJ
 mxC
 lpe
 jYa
@@ -42516,7 +43256,7 @@ pIQ
 fCK
 sYz
 dPK
-sPW
+dPK
 dPK
 dPK
 dPK
@@ -47147,7 +47887,7 @@ xyy
 xyy
 pDq
 pDq
-lqI
+pDq
 oPq
 lqI
 lqI
@@ -47376,11 +48116,11 @@ vRc
 xyy
 xyy
 xyy
+ctB
 xyy
-xyy
-vBZ
 pDq
-lqI
+pDq
+pDq
 lqI
 lqI
 lqI
@@ -47607,12 +48347,12 @@ vRc
 vRc
 xyy
 xyy
-xyy
-xyy
-xyy
-xyy
-xfT
-lqI
+ctB
+ctB
+ctB
+ctB
+ctB
+pDq
 lqI
 lqI
 lqI
@@ -47840,12 +48580,12 @@ vRc
 xyy
 xyy
 xyy
-xyy
-xyy
-xyy
-xfT
-xfT
-lqI
+eJo
+ibS
+voh
+vxQ
+ctB
+ctB
 lqI
 lqI
 lqI
@@ -48072,14 +48812,14 @@ kcd
 vRc
 xyy
 xyy
-xyy
-xyy
-xyy
-xyy
-xfT
-lqI
-oPq
-lqI
+ctB
+ctB
+rpK
+ibS
+owq
+ohW
+ctB
+ctB
 lqI
 lqI
 oPq
@@ -48305,19 +49045,19 @@ kxx
 vRc
 xyy
 xyy
-xyy
-xyy
-vBZ
-xfT
-lqI
-lqI
-lqI
-lqI
-lqI
-lqI
-lqI
-dXE
-lQy
+ctB
+sLM
+ibS
+urn
+dcL
+ibS
+lMP
+wOh
+iha
+qHR
+qHR
+qHR
+khH
 vyy
 iks
 lqI
@@ -48537,19 +49277,19 @@ kcd
 vRc
 vRc
 xyy
-xyy
-xyy
-xyy
-xfT
-lqI
-fJD
-qHR
-qHR
-qHR
-qHR
-qHR
-qHR
-qHR
+ctB
+ctB
+ibS
+lCx
+lCx
+qhG
+qjc
+nSH
+vBE
+utS
+kLr
+kLr
+kLr
 eJT
 hNM
 gwg
@@ -48770,16 +49510,16 @@ kcd
 vRc
 xyy
 xyy
-xyy
-xyy
-xyy
-xfT
-lqI
-trh
-jKH
-gVu
-lGa
-lGa
+ctB
+cpY
+lCx
+lCx
+ibS
+glt
+ibS
+lMP
+wOh
+kGc
 gNd
 lGa
 lGa
@@ -49003,16 +49743,16 @@ vRc
 vRc
 xyy
 xyy
-xyy
-xyy
-xyy
-xfT
-lqI
-trh
-iNL
-vyy
-pDq
-lqI
+ctB
+ctB
+vZv
+hWc
+cvp
+rpH
+aSB
+ctB
+ctB
+dck
 lqI
 lqI
 lqI
@@ -49237,13 +49977,13 @@ xyy
 xyy
 xyy
 xyy
-xyy
-xyy
-vBZ
-lqI
-trh
-iNL
-vyy
+ctB
+ibS
+ibS
+vxQ
+ydX
+qsN
+ctB
 pDq
 pDq
 pDq
@@ -49470,14 +50210,14 @@ ymj
 ymj
 ymj
 ymj
-ymj
-ymj
-xfT
-xfT
-trh
-iNL
-vyy
-pDq
+ctB
+ctB
+kWk
+vxQ
+cmO
+rtB
+ctB
+ctB
 pDq
 lqI
 lqI
@@ -49704,18 +50444,18 @@ ymj
 ymj
 ymj
 ymj
-ymj
-ymj
-xfT
-trh
-jKH
-vyy
-lqI
+eJo
+ibS
+jtk
+lAV
+uaN
+lAV
+eJo
 lqI
 lqI
 lqI
 oPq
-lqI
+iwE
 lqI
 lqI
 xfT
@@ -49937,13 +50677,13 @@ ymj
 ymj
 ymj
 ymj
-ymj
-ymj
-xfT
-trh
-iNL
-vyy
-iKT
+ctB
+ctB
+ctB
+peW
+ctB
+peW
+ctB
 lqI
 lqI
 lqI
@@ -50172,11 +50912,11 @@ ymj
 ymj
 ymj
 ymj
-gxb
-miE
-gAp
-mOw
-gxb
+aSp
+kxw
+kVa
+frD
+aSp
 oPq
 lqI
 lqI
@@ -50405,11 +51145,11 @@ ymj
 ymj
 ymj
 ymj
-evt
-hWc
-fVX
-cFH
-puq
+rbw
+pgJ
+ktt
+tJb
+vzP
 mPq
 mPq
 xfT
@@ -50430,7 +51170,7 @@ bQv
 rWR
 dSo
 dSo
-nUF
+fht
 vyy
 dSo
 jIN
@@ -50663,7 +51403,7 @@ dSo
 dSo
 dSo
 dSo
-nUF
+fht
 vyy
 dSo
 dSo
@@ -50896,7 +51636,7 @@ gGI
 uyR
 uyR
 uyR
-rSY
+bAS
 wXX
 uyR
 kyY
@@ -51105,9 +51845,9 @@ ymj
 ymj
 ymj
 sBc
+xja
 tJb
-tJb
-igA
+pgJ
 eFU
 rxl
 ymj
@@ -55086,7 +55826,7 @@ ybx
 ybx
 gxb
 gxb
-nUF
+fht
 oLH
 lGa
 uSM
@@ -55319,7 +56059,7 @@ ymj
 ymj
 ymj
 vEO
-nUF
+fht
 vyy
 dSo
 fwM
@@ -55785,7 +56525,7 @@ rxl
 ymj
 ymj
 vEO
-nUF
+fht
 vyy
 dSo
 joN
@@ -56018,7 +56758,7 @@ ymj
 ymj
 ymj
 vEO
-nUF
+fht
 vyy
 dSo
 joN
@@ -56251,7 +56991,7 @@ ymj
 ymj
 ymj
 vEO
-nUF
+fht
 vyy
 dSo
 dSo
@@ -56484,7 +57224,7 @@ ymj
 ymj
 ymj
 xfT
-nUF
+fht
 vyy
 lZb
 dSo
@@ -57188,7 +57928,7 @@ iyf
 iyf
 iyf
 iyf
-nUF
+fht
 iNL
 vyy
 som
@@ -63942,8 +64682,8 @@ aXa
 dSo
 lUh
 lUh
-kaC
-kaC
+lUh
+lUh
 lUh
 lUh
 lUh
@@ -64406,7 +65146,7 @@ lGa
 lTp
 oGw
 dSo
-kaC
+lUh
 rKG
 lmZ
 bbG
@@ -64639,7 +65379,7 @@ wUY
 trh
 oGw
 dSo
-oRO
+lUh
 sBF
 ihH
 kAT
@@ -64872,7 +65612,7 @@ dXE
 cXr
 oGw
 dSo
-kaC
+lUh
 jlm
 xZH
 eHt

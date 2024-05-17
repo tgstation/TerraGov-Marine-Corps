@@ -87,7 +87,7 @@
 		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
-/obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act(burnlevel)
+/obj/effect/decal/cleanable/liquid_fuel/fire_act(burn_level)
 	. = ..()
 	ignite_fuel()
 

@@ -162,6 +162,8 @@
 	var/cycle_timer
 	///If first landing is false intro sequence wont play
 	var/static/first_landing = TRUE
+	///If this dropship can play the takeoff announcement
+	var/takeoff_alarm_locked = FALSE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -173,6 +175,7 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	takeoff_alarm_locked = FALSE // Allow the alarm to be used again
 	if(first_landing)
 		first_landing = FALSE
 		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -255,7 +258,7 @@
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
-	priority_announce("The Alamo will depart towards [previous.name] in 20 seconds.", "Dropship Automatic Departure", color_override = "grey")
+	priority_announce("The Alamo will depart towards [previous.name] in 20 seconds.", "Dropship Automatic Departure", color_override = "grey", playing_sound = FALSE)
 
 ///Send the dropship to its previous dock
 /obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
@@ -435,7 +438,7 @@
 			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
-		playsound(user, "alien_roar", 50)
+		playsound(user, SFX_ALIEN_ROAR, 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
@@ -506,11 +509,11 @@
 	#endif
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN && shuttle.hijack_state != HIJACK_STATE_CRASHING) //Process of corrupting the controls
-		to_chat(xeno_attacker, span_xenowarning("We corrupt the bird's controls, unlocking the doors[(shuttle.mode != SHUTTLE_IGNITING) ? "and preventing it from flying." : ", but we are unable to prevent it from flying as it is already taking off!"]"))
+		to_chat(xeno_attacker, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flying."))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
-		if(shuttle.mode != SHUTTLE_IGNITING)
-			shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-			shuttle.do_start_hijack_timer()
+		shuttle.set_idle()
+		shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
+		shuttle.do_start_hijack_timer()
 	interact(xeno_attacker) //Open the UI
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_state(mob/user)
@@ -547,7 +550,8 @@
 	data["time_between_cycle"] = shuttle.time_between_cycle
 
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
-	data["shuttle_hijacked"] = (infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //If we hijacked, our capture button greys out
+	if(istype(infestation_mode))
+		data["shuttle_hijacked"] = (infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //If we hijacked, our capture button greys out
 
 	var/locked = 0
 	var/reardoor = 0
@@ -641,6 +645,44 @@
 				deltimer(shuttle.cycle_timer)
 		if("cycle_time_change")
 			shuttle.time_between_cycle = params["cycle_time_change"]
+		if("signal_departure")
+			// Weird cases where the alarm shouldn't be used.
+			switch(shuttle.mode)
+				if(SHUTTLE_RECHARGING)
+					to_chat(usr, span_warning("The dropship is recharging."))
+					return
+				if(SHUTTLE_CALL)
+					to_chat(usr, span_warning("The dropship is in flight."))
+					return
+				if(SHUTTLE_IGNITING)
+					to_chat(usr, span_warning("The dropship is about to take off."))
+					return
+				if(SHUTTLE_PREARRIVAL)
+					to_chat(usr, span_warning("The dropship is about to land."))
+					return
+
+			// It's too early to launch it.
+			#ifndef TESTING
+			if(!(shuttle.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+				to_chat(usr, span_warning("It's too early to use the alarm right now."))
+				return TRUE
+			#endif
+
+			// Prevent spamming the alarm.
+			if(shuttle.takeoff_alarm_locked)
+				to_chat(usr, span_boldwarning("The dropship takeoff alarm is locked. To unlock it, the dropship must be cycled."))
+				return
+
+			priority_announce(
+				type = ANNOUNCEMENT_PRIORITY,
+				title = "Dropship Takeoff Imminent",
+				message = "[usr.real_name] has signalled that the Alamo will take off soon.",
+				sound = 'sound/misc/ds_signalled_alarm.ogg',
+				channel_override = SSsounds.random_available_channel(), // Probably important enough to avoid interruption?
+				color_override = "yellow"
+			)
+			to_chat(usr, span_warning("You slam your palm on the alarm button, locking it until the dropship lands again."))
+			shuttle.takeoff_alarm_locked = TRUE
 		//These are actions for the Xeno dropship UI
 		if("hijack")
 			var/mob/living/carbon/xenomorph/xeno = usr

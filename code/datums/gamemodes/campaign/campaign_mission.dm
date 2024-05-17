@@ -13,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///Camo color associated with this map
+	var/map_armor_color = MAP_ARMOR_STYLE_DEFAULT
 	///The actual z-level the mission is played on
 	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
@@ -21,7 +23,7 @@
 		MISSION_HOSTILE_FACTION = 0,
 	)
 	///Any mission behavior flags
-	var/mission_flags = null
+	var/mission_flags = NONE
 	///faction that chose the mission
 	var/starting_faction
 	///faction that did not choose the mission
@@ -77,7 +79,7 @@
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
 	///The length of time until mission ends, if timed
-	var/max_game_time = null
+	var/max_game_time = 0
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///Delay before the mission actually starts
@@ -198,6 +200,20 @@
 /datum/campaign_mission/proc/load_objective_description()
 	return
 
+///Get a mission specific message for the deploying user if there is one
+/datum/campaign_mission/proc/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(!message) //overridden by specific missions
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Stick together and achieve those objectives marines. Good luck."
+			if(FACTION_SOM)
+				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
+			else
+				return
+
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[text_source]</u></span><br>" + message, portrait_to_use)
+
 ///Generates status tab info for the mission
 /datum/campaign_mission/proc/get_status_tab_items(mob/source, list/items)
 	items += "Mission: [name]"
@@ -207,7 +223,7 @@
 	if(max_time_reached)
 		items += "Mission status: Mission complete"
 		items += ""
-	else if(game_timer)
+	else
 		items += "Mission time remaining: [mission_end_countdown()]"
 		items += ""
 
@@ -255,16 +271,35 @@
 
 ///sets up the timer for the mission
 /datum/campaign_mission/proc/set_mission_timer()
-	if(!iscampaigngamemode(SSticker.mode))
+	if(game_timer)
 		return
-
 	game_timer = addtimer(VARSET_CALLBACK(src, max_time_reached, TRUE), max_game_time, TIMER_STOPPABLE)
+
+///Pauses the gametimer, recording the remaining time left in max_game_time
+/datum/campaign_mission/proc/pause_mission_timer(trait_source = TRAIT_GENERIC)
+	if(!trait_source)
+		trait_source = TRAIT_GENERIC
+	ADD_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED, trait_source)
+	if(!game_timer)
+		return
+	max_game_time = timeleft(game_timer)
+	deltimer(game_timer)
+	game_timer = null
+
+///Attempts to resume the gametimer
+/datum/campaign_mission/proc/resume_mission_timer(trait_source = TRAIT_GENERIC, forced = FALSE)
+	REMOVE_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED, trait_source)
+	if(!forced && HAS_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED))
+		return
+	set_mission_timer()
 
 ///accesses the timer for status panel
 /datum/campaign_mission/proc/mission_end_countdown()
-	if(max_time_reached)
-		return "Mission finished"
-	var/eta = timeleft(game_timer) * 0.1
+	//if(max_time_reached)
+	//	return "Mission finished"
+	if(!game_timer && HAS_TRAIT(src, CAMPAIGN_MISSION_TIMER_PAUSED))
+		return "Timer paused"
+	var/eta = game_timer ? (timeleft(game_timer) * 0.1) : (max_game_time * 0.1)
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
@@ -311,7 +346,7 @@
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level.z_value)
 			continue
-		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse.job.job_cost)
+		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse?.job?.job_cost)
 			corpse.job.free_job_positions(1)
 
 		qdel(corpse)
@@ -334,10 +369,11 @@
 	map_text_broadcast(hostile_faction, intro_message[MISSION_HOSTILE_FACTION], op_name_hostile)
 
 ///Outro when the mission is finished
-/datum/campaign_mission/proc/play_outro() //todo: make generic
-	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
+/datum/campaign_mission/proc/play_outro()
 	log_game("[outcome]\nMission: [name]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
+
+	to_chat(world, span_round_header("[name] completed"))
+	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
 	map_text_broadcast(hostile_faction, outro_message[outcome][MISSION_HOSTILE_FACTION], op_name_hostile)
@@ -503,3 +539,10 @@
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")
+
+///Returns the current mission, if its the campaign gamemode
+/proc/get_current_mission()
+	if(!iscampaigngamemode(SSticker.mode))
+		return null
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	return mode.current_mission

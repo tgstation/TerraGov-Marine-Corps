@@ -34,7 +34,7 @@ export const CampaignMissions = (props) => {
                 onClick={() => setSelectedMission(mission)}
                 color={
                   selectedMission.name === mission.name
-                    ? 'orange'
+                    ? 'green'
                     : mission.mission_critical
                       ? 'red'
                       : 'blue'
@@ -47,7 +47,7 @@ export const CampaignMissions = (props) => {
                     className={classes([
                       'campaign_missions24x24',
                       selectedMission.name === mission.name
-                        ? mission.mission_icon + '_yellow'
+                        ? mission.mission_icon + '_green'
                         : mission.mission_critical
                           ? mission.mission_icon + '_red'
                           : mission.mission_icon + '_blue',

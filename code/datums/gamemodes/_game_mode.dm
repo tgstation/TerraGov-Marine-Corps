@@ -102,6 +102,12 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	for(var/datum/job/job AS in valid_job_types)
+		job = SSjob.GetJobType(job)
+		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
+			continue
+		job.on_pre_setup()
+
 	return TRUE
 
 /datum/game_mode/proc/setup()
@@ -193,7 +199,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/declare_completion()
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	end_round_fluff()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
 	if(time_between_round)
@@ -203,9 +209,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		SSpersistence.CollectData()
 	display_report()
 	addtimer(CALLBACK(src, PROC_REF(end_of_round_deathmatch)), ROUNDEND_EORG_DELAY)
-	//end_of_round_deathmatch()
 	return TRUE
 
+///End of round messaging
+/datum/game_mode/proc/end_round_fluff()
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 /datum/game_mode/proc/display_roundstart_logout_report()
 	var/msg = "<hr>[span_notice("<b>Roundstart logout report</b>")]<br>"
@@ -388,6 +396,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
 	if(GLOB.round_statistics.rocket_shells_fired)
 		parts += "[GLOB.round_statistics.rocket_shells_fired] rocket artillery shells were fired."
+	if(GLOB.round_statistics.obs_fired)
+		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
 	if(SSevacuation.human_escaped)
@@ -471,6 +481,15 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
+
+	if(GLOB.round_statistics.sandevistan_uses)
+		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
+		if(GLOB.round_statistics.sandevistan_gibs)
+			sandevistan_text += ", of which [GLOB.round_statistics.sandevistan_gibs] resulted in a gib!"
+		else
+			sandevistan_text += ", and nobody was gibbed by it!"
+		parts += sandevistan_text
+
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += ""  // make it special from other stats above
 		parts += "Requisitions produced: "
@@ -980,3 +999,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)
 	return
+
+///Returns the armor color variant applicable for this mode
+/datum/game_mode/proc/get_map_color_variant()
+	return SSmapping.configs[GROUND_MAP].armor_style
