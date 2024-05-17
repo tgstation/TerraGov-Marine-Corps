@@ -71,8 +71,8 @@
 	if(icon_state == "blocker")
 		icon_state = ""
 
-/obj/effect/forcefield/dense0forguns
-	resistance_flags = PROJECTILE_IMMUNE
+/obj/effect/forcefield/allow_bullet_travel
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
