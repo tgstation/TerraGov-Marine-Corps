@@ -5,12 +5,13 @@
 	density = FALSE
 	layer = WALL_OBJ_LAYER
 	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
+	var/unmodified_icon = 'icons/obj/decals.dmi' // the clean version of the sprite, which we replace in initialize when the sign loads in game
 
 /obj/structure/sign/Initialize(mapload)
 	. = ..()
 	if(!directional) //if not directional do not initialize to a x or y offset
 		return
-	icon = 'icons/obj/decals.dmi' // replace the modified decal sprites with normal ones without an arrow
+	icon = unmodified_icon
 	switch(dir)
 		if(NORTH)
 			pixel_y = 32
