@@ -86,8 +86,6 @@
 	///required access to change internal components
 	var/list/internals_req_access = list()
 
-	///Typepath for the wreckage it spawns when destroyed
-	var/wreckage
 	///single flag for the type of this mech, determines what kind of equipment can be attached to it
 	var/mech_type
 
@@ -244,28 +242,9 @@
 
 	spark_system?.start()
 
-	var/mob/living/silicon/ai/unlucky_ais
 	for(var/mob/living/occupant AS in occupants)
-		if(isAI(occupant))
-			unlucky_ais = occupant
-			occupant.gib() //No wreck, no AI to recover
-			continue
 		mob_exit(occupant, FALSE, TRUE)
 		occupant.SetSleeping(destruction_sleep_duration)
-
-	if(wreckage)
-		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, unlucky_ais)
-		for(var/obj/item/mecha_equipment/E in flat_equipment)
-			if(E.detachable && prob(30))
-				E.detach(WR) //detaches from src into WR
-				E.activated = TRUE
-			else
-				E.detach(loc)
-				qdel(E)
-		if(cell)
-			cell.forceMove(WR)
-			cell.use(rand(0, cell.charge), TRUE)
-			cell = null
 	return ..()
 
 
