@@ -69,7 +69,6 @@
 
 	///Special version of the radio, which is unsellable
 	var/obj/item/radio/mech/radio
-	var/list/trackers = list()
 
 	///Bitflags for internal damage
 	var/internal_damage = NONE

@@ -112,23 +112,15 @@
 		if(EXPLODE_DEVASTATE)
 			if(flat_equipment)
 				SSexplosions.highMovAtom += flat_equipment
-			if(trackers)
-				SSexplosions.highMovAtom += trackers
 		if(EXPLODE_HEAVY)
 			if(flat_equipment)
 				SSexplosions.medMovAtom += flat_equipment
-			if(trackers)
-				SSexplosions.medMovAtom += trackers
 		if(EXPLODE_LIGHT)
 			if(flat_equipment)
 				SSexplosions.lowMovAtom += flat_equipment
-			if(trackers)
-				SSexplosions.lowMovAtom += trackers
 		if(EXPLODE_WEAK)
 			if(flat_equipment)
 				SSexplosions.weakMovAtom += flat_equipment
-			if(trackers)
-				SSexplosions.weakMovAtom += trackers
 
 /obj/vehicle/sealed/mecha/handle_atom_del(atom/A)
 	. = ..()
