@@ -1,14 +1,12 @@
 GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
 GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
 
-
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
-
 
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!"
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = GHOST_LAYER
 	stat = DEAD
