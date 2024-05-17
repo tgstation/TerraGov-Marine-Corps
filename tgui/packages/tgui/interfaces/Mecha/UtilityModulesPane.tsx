@@ -51,8 +51,8 @@ export const UtilityModulesPane = (props) => {
   const { data } = useBackend<OperatorData>();
   const { mech_equipment } = data;
   return (
-    <Box style={{ height: '16rem' }}>
-      <Section scrollable fill>
+    <Box style={{ height: '15rem' }}>
+      <Section fill>
         <div>
           {mech_equipment['utility'].map((module, i) => {
             return module.snowflake.snowflake_id ? (

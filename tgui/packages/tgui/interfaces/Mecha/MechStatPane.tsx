@@ -8,6 +8,8 @@ import {
   Stack,
 } from '../../components';
 import { OperatorData } from './data';
+import { RadioPane } from './RadioPane';
+import { AlertPane } from './AlertPane';
 
 export const MechStatPane = (props) => {
   const { act, data } = useBackend<OperatorData>();
@@ -50,6 +52,16 @@ export const MechStatPane = (props) => {
       <Stack.Item>
         <Section title="DNA lock">
           <DNABody />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section title="Radio Control">
+          <RadioPane />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section title="Alerts">
+          <AlertPane />
         </Section>
       </Stack.Item>
     </Stack>

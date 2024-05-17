@@ -1,12 +1,10 @@
 import { useBackend } from '../../backend';
 import { ByondUi, Section, Stack } from '../../components';
-import { AlertPane } from './AlertPane';
 import { ArmorPane } from './ArmorPane';
 import { ArmPane } from './ArmPane';
 import { OperatorData } from './data';
 import { MechStatPane } from './MechStatPane';
 import { PowerModulesPane } from './PowerModulesPane';
-import { RadioPane } from './RadioPane';
 import { UtilityModulesPane } from './UtilityModulesPane';
 
 export const OperatorMode = (props) => {
@@ -24,11 +22,6 @@ export const OperatorMode = (props) => {
           <Stack.Item>
             <Section title="Power Modules">
               <PowerModulesPane />
-            </Section>
-          </Stack.Item>
-          <Stack.Item>
-            <Section title="Alerts">
-              <AlertPane />
             </Section>
           </Stack.Item>
         </Stack>
@@ -62,11 +55,6 @@ export const OperatorMode = (props) => {
           <Stack.Item>
             <Section title="Utility Modules">
               <UtilityModulesPane />
-            </Section>
-          </Stack.Item>
-          <Stack.Item>
-            <Section title="Radio Control">
-              <RadioPane />
             </Section>
           </Stack.Item>
         </Stack>
