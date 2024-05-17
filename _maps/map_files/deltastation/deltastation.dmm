@@ -61277,7 +61277,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/service/chapel/storage)
 "myf" = (
-/obj/vehicle/sealed/mecha/ripley/cargo,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/deltastation/cargo/storage)
 "myj" = (
