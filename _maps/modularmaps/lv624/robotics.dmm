@@ -189,7 +189,6 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "zl" = (
@@ -251,9 +250,6 @@
 /area/lv624/lazarus/robotics)
 "EM" = (
 /obj/structure/largecrate,
-/obj/item/mecha_parts/mecha_equipment/repair_droid{
-	pixel_y = -10
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -384,7 +380,6 @@
 /area/lv624/lazarus/robotics)
 "YK" = (
 /obj/structure/table,
-/obj/item/mecha_parts/mecha_equipment/drill,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "ZQ" = (
