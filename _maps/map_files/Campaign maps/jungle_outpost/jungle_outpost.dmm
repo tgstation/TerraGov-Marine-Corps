@@ -10188,7 +10188,6 @@
 /area/campaign/jungle_outpost/ground/jungle/south_east)
 "Zf" = (
 /obj/structure/table/reinforced,
-/obj/item/circuitboard/mecha/durand/peripherals,
 /obj/effect/spawner/random/engineering/computercircuit,
 /obj/machinery/light{
 	dir = 8

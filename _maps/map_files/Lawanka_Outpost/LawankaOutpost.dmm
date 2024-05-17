@@ -1595,7 +1595,6 @@
 /area/lawankaoutpost/caves/northwest)
 "bqK" = (
 /obj/structure/table,
-/obj/item/circuitboard/mecha/phazon/peripherals,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -3808,7 +3807,6 @@
 /area/lawankaoutpost/colony/operations_hall)
 "dfG" = (
 /obj/structure/table,
-/obj/item/circuitboard/mecha/phazon/targeting,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
@@ -5859,7 +5857,6 @@
 /area/lawankaoutpost/caves/southwest)
 "eSF" = (
 /obj/structure/table,
-/obj/item/circuitboard/mecha/phazon/main,
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/robotics)
 "eSM" = (
