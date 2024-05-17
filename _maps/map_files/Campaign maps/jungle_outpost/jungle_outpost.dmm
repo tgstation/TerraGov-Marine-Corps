@@ -263,7 +263,6 @@
 /area/campaign/jungle_outpost/ground/river/west)
 "bm" = (
 /obj/structure/table/reinforced,
-/obj/item/mecha_parts/part/durand_left_arm,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science)
@@ -10249,7 +10248,6 @@
 /area/campaign/jungle_outpost/outpost/command)
 "Zt" = (
 /obj/structure/table/reinforced,
-/obj/item/mecha_parts/part/durand_torso,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science)

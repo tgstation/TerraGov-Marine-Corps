@@ -8656,7 +8656,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "ieB" = (
-/obj/item/mecha_parts/part/gygax_torso,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "ieH" = (
@@ -9399,7 +9398,6 @@
 /obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
-/obj/item/mecha_parts/part/gygax_head,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "iXL" = (
@@ -14290,7 +14288,6 @@
 /obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
-/obj/item/mecha_parts/part/gygax_head,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "oGS" = (

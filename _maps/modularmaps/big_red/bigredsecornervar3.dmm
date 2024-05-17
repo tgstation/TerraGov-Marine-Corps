@@ -420,7 +420,6 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
 "rI" = (
-/obj/item/mecha_parts/part/durand_torso,
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
@@ -462,7 +461,6 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "uB" = (
-/obj/item/mecha_parts/part/durand_right_arm,
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
@@ -815,7 +813,6 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Qd" = (
-/obj/item/mecha_parts/part/durand_left_arm,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
