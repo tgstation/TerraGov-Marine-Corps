@@ -138,8 +138,8 @@
 ///does any effects and changes to the projectile when it is fired
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
-	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
-		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+	if(istype(chassis, /obj/vehicle/sealed/mecha/greyscale))
+		var/obj/vehicle/sealed/mecha/greyscale/grey = chassis
 		var/datum/mech_limb/head/head = grey.limbs[MECH_GREY_HEAD]
 		if(head)
 			projectile_to_fire.accuracy *= head.accuracy_mod //todo: we can probably just make the accuracy_mod apply directly to the gun like attachments do
@@ -165,8 +165,8 @@
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/proj_scatter = variance
-	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
-		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+	if(istype(chassis, /obj/vehicle/sealed/mecha/greyscale))
+		var/obj/vehicle/sealed/mecha/greyscale/grey = chassis
 		var/datum/mech_limb/arm/holding
 		if(grey.equip_by_category[MECHA_R_ARM] == src)
 			holding = grey.limbs[MECH_GREY_R_ARM]

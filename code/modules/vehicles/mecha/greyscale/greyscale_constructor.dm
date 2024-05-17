@@ -360,7 +360,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///Actually deploys mech after a short delay to let people spot it coming down
 /obj/machinery/computer/mech_builder/proc/deploy_mech()
 	var/turf/assemble_turf = get_step(src, dir)
-	var/obj/vehicle/sealed/mecha/combat/greyscale/mech = new(assemble_turf)
+	var/obj/vehicle/sealed/mecha/greyscale/mech = new(assemble_turf)
 	mech.name = selected_name
 	for(var/slot in selected_primary)
 		var/limb_type = get_mech_limb(slot, selected_variants[slot])

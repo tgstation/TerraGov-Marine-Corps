@@ -82,7 +82,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/drill/can_attach(obj/vehicle/sealed/mecha/M, attach_right = FALSE)
 	if(..())
-		if(istype(M, /obj/vehicle/sealed/mecha) || istype(M, /obj/vehicle/sealed/mecha/combat))
+		if(istype(M, /obj/vehicle/sealed/mecha))
 			return TRUE
 	return FALSE
 

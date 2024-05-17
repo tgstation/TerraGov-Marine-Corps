@@ -47,7 +47,7 @@
 	///Colours to paint mech heads from this spawner for better visual clarity
 	var/list/head_colors = list(ARMOR_PALETTE_STORM, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_SYNDIE_GREEN)
 	///Mech type for this spawner
-	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+	var/obj/vehicle/sealed/mecha/greyscale/mech_type = /obj/vehicle/sealed/mecha/greyscale/assault/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/Initialize(mapload)
 	. = ..()
@@ -59,7 +59,7 @@
 
 ///Creates and sets up the mech
 /obj/effect/landmark/campaign/mech_spawner/proc/spawn_mech()
-	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech = new mech_type(loc)
+	var/obj/vehicle/sealed/mecha/greyscale/new_mech = new mech_type(loc)
 	for(var/i in new_mech.limbs)
 		var/datum/mech_limb/limb = new_mech.limbs[i]
 		limb.update_colors(arglist(istype(limb, /datum/mech_limb/head) ? head_colors : colors))
@@ -70,13 +70,13 @@
 	name = "tgmc heavy mech spawner"
 	icon_state = "mech_heavy"
 	head_colors = list(ARMOR_PALETTE_RED, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_SYNDIE_GREEN)
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+	mech_type = /obj/vehicle/sealed/mecha/greyscale/vanguard/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/light
 	name = "tgmc light mech spawner"
 	icon_state = "mech_light"
 	head_colors = list(ARMOR_PALETTE_SPACE_CADET, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_SYNDIE_GREEN)
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+	mech_type = /obj/vehicle/sealed/mecha/greyscale/recon/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/som
 	name = "som med mech spawner"
@@ -89,11 +89,11 @@
 	icon_state = "mech_heavy"
 	colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_MAGENTA)
 	head_colors = list(ARMOR_PALETTE_MAGENTA, ARMOR_PALETTE_GRAPE, VISOR_PALETTE_ELITE_ORANGE)
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+	mech_type = /obj/vehicle/sealed/mecha/greyscale/vanguard/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/som/light
 	name = "som light mech spawner"
 	icon_state = "mech_light"
 	colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_BLACK)
 	head_colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
-	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+	mech_type = /obj/vehicle/sealed/mecha/greyscale/recon/noskill

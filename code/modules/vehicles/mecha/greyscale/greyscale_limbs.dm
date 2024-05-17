@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
  * * attached: mech we are attaching to
  * * slot: slot we are being attached to mostly relevant for r/l arm
  */
-/datum/mech_limb/proc/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+/datum/mech_limb/proc/attach(obj/vehicle/sealed/mecha/greyscale/attached, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!slot)
 		CRASH("attaching with no slot")
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
  * Args:
  * * attached: mech we are attaching to
  */
-/datum/mech_limb/proc/detach(obj/vehicle/sealed/mecha/combat/greyscale/detached)
+/datum/mech_limb/proc/detach(obj/vehicle/sealed/mecha/greyscale/detached)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/slot in detached.limbs)
 		if(detached.limbs[slot] != src)
@@ -99,11 +99,11 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	///light range we set on the mech
 	var/light_range = 5
 
-/datum/mech_limb/head/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+/datum/mech_limb/head/attach(obj/vehicle/sealed/mecha/greyscale/attached, slot)
 	. = ..()
 	attached.set_light_range(light_range)
 
-/datum/mech_limb/head/detach(obj/vehicle/sealed/mecha/combat/greyscale/detached)
+/datum/mech_limb/head/detach(obj/vehicle/sealed/mecha/greyscale/detached)
 	. = ..()
 	detached.set_light_range(initial(detached.light_range))
 
@@ -144,11 +144,11 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	/// cell typepath to place into the mech when this torso is attached
 	var/cell_type = /obj/item/cell/mecha
 
-/datum/mech_limb/torso/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+/datum/mech_limb/torso/attach(obj/vehicle/sealed/mecha/greyscale/attached, slot)
 	. = ..()
 	attached.add_cell(new cell_type)
 
-/datum/mech_limb/torso/detach(obj/vehicle/sealed/mecha/combat/greyscale/detached)
+/datum/mech_limb/torso/detach(obj/vehicle/sealed/mecha/greyscale/detached)
 	. = ..()
 	detached.add_cell() //replaces with a standard high cap that does not have built in recharge
 
@@ -179,11 +179,11 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	///which slot this arm is equipped to when it is attached
 	var/arm_slot
 
-/datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+/datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/greyscale/attached, slot)
 	arm_slot = slot
 	return ..()
 
-/datum/mech_limb/arm/detach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+/datum/mech_limb/arm/detach(obj/vehicle/sealed/mecha/greyscale/attached, slot)
 	arm_slot = null
 	return ..()
 

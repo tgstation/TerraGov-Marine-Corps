@@ -65,7 +65,7 @@
 /datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
 	var/obj/effect/landmark/campaign/mech_spawner/spawner
-	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech
+	var/obj/vehicle/sealed/mecha/greyscale/new_mech
 	var/faction_list = list(starting_faction, hostile_faction)
 	for(var/faction in faction_list)
 		for(var/i=1 to mechs_to_spawn)
@@ -109,7 +109,7 @@
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
 ///Cleans up after a mech is destroyed
-/datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/combat/greyscale/dead_mech)
+/datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/greyscale/dead_mech)
 	SIGNAL_HANDLER
 	remove_mission_object(dead_mech)
 	if(outcome)
