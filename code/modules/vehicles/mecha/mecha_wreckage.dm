@@ -126,6 +126,10 @@
 /obj/structure/mecha_wreckage/ripley/lv624
 	name = "MkIV Powerloader Wreckage"
 	anchored = TRUE
+
+/obj/mecha_wreckage/ripley/firefighter
+	name = "Firefighter wreckage"
+	icon_state = "firefighter-broken"
 /obj/structure/mecha_wreckage/clarke
 	name = "\improper Clarke wreckage"
 	icon_state = "clarke-broken"
