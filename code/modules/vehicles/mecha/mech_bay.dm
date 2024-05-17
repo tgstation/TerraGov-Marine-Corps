@@ -27,13 +27,6 @@
 	. = ..()
 	recharging_turf = get_step(loc, dir)
 
-/obj/machinery/mech_bay_recharge_port/RefreshParts()
-	. = ..()
-	var/total_rating = 0
-	for(var/obj/item/stock_parts/capacitor/cap in component_parts)
-		total_rating += cap.rating
-	recharge_power = total_rating * 12.5
-
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
@@ -151,5 +144,4 @@
 	var/obj/vehicle/sealed/mecha/recharging_mech = recharge_port?.recharging_mech_ref?.resolve()
 	if(recharging_mech?.cell && recharging_mech.cell.charge >= recharging_mech.cell.maxcharge)
 		screen_overlay = "[screen_overlay]_on"
-
 	return ..()
