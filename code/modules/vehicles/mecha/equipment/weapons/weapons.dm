@@ -314,73 +314,6 @@
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	attempt_rearm(current_firer)
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
-	name = "\improper FNX-99 \"Hades\" Carbine"
-	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
-	icon_state = "mecha_carbine"
-	equip_cooldown = 10
-	ammotype = /datum/ammo/bullet/machinegun
-	projectiles = 24
-	projectiles_cache = 24
-	projectiles_cache_max = 96
-	harmful = TRUE
-	ammo_type = MECHA_AMMO_INCENDIARY
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
-	name = "\improper LBX AC 10 \"Scattershot\""
-	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
-	icon_state = "mecha_scatter"
-	equip_cooldown = 20
-	ammotype = /datum/ammo/bullet/shotgun/buckshot
-	projectiles = 40
-	projectiles_cache = 40
-	projectiles_cache_max = 160
-	variance = 25
-	harmful = TRUE
-	ammo_type = MECHA_AMMO_BUCKSHOT
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
-	name = "\improper Ultra AC 2"
-	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
-	icon_state = "mecha_uac2"
-	equip_cooldown = 10
-	ammotype = /datum/ammo/bullet/minigun
-	projectiles = 300
-	projectiles_cache = 300
-	projectiles_cache_max = 1200
-	variance = 6
-	projectile_delay = 2
-	harmful = TRUE
-	ammo_type = MECHA_AMMO_LMG
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
-	name = "\improper SRM-8 missile rack"
-	desc = "A weapon for combat exosuits. Launches light explosive missiles."
-	icon_state = "mecha_missilerack"
-	ammotype = /datum/ammo/rocket/atgun_shell/he
-	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
-	projectiles = 8
-	projectiles_cache = 0
-	projectiles_cache_max = 0
-	disabledreload = TRUE
-	equip_cooldown = 60
-	harmful = TRUE
-	ammo_type = MECHA_AMMO_MISSILE_HE
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching
-	name = "\improper BRM-6 missile rack"
-	desc = "A weapon for combat exosuits. Launches low-explosive breaching missiles designed to explode only when striking a sturdy target."
-	icon_state = "mecha_missilerack_six"
-	ammotype = /datum/ammo/rocket/atgun_shell
-	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
-	projectiles = 6
-	projectiles_cache = 0
-	projectiles_cache_max = 0
-	disabledreload = TRUE
-	equip_cooldown = 60
-	harmful = TRUE
-	ammo_type = MECHA_AMMO_MISSILE_AP
-
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher
 	var/missile_speed = 2
@@ -421,24 +354,3 @@
 //used for projectile initilisation (priming flashbang) and additional logging
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(obj/O, mob/user)
 	return
-
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
-	name = "\improper SGL-6 grenade launcher"
-	desc = "A weapon for combat exosuits. Launches primed flashbangs."
-	icon_state = "mecha_grenadelnchr"
-	ammotype = /obj/item/explosive/grenade/flashbang
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	projectiles = 6
-	projectiles_cache = 6
-	projectiles_cache_max = 24
-	missile_speed = 1.5
-	equip_cooldown = 60
-	ammo_type = MECHA_AMMO_FLASHBANG
-	var/det_time = 20
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(obj/item/explosive/grenade/flashbang/F, mob/user)
-	var/turf/T = get_turf(src)
-	message_admins("[ADMIN_LOOKUPFLW(user)] fired a [F] in [ADMIN_VERBOSEJMP(T)]")
-	log_game("[key_name(user)] fired a [F] in [AREACOORD(T)]")
-	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/explosive/grenade/flashbang, prime)), det_time)
