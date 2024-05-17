@@ -1,8 +1,6 @@
 ///////////////////////////////////
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
-
-
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
@@ -12,81 +10,6 @@
 	anchored = FALSE
 	opacity = FALSE
 	resistance_flags = XENO_DAMAGEABLE
-	///list of welder-salvaged items that it can output
-	var/list/welder_salvage = list(/obj/item/stack/sheet/plasteel)
-	/// times we can salvage this mech
-	var/salvage_num = 5
-	///list of crowbar-salvaged items that it can output
-	var/list/crowbar_salvage = list()
-	/// if the wires got pulled yet
-	var/wires_removed = FALSE
-	///AIs to be salvaged
-	var/mob/living/silicon/ai/AI
-	/// parts of the mechs that can be taken out
-	var/list/parts
-
-/obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)
-	. = ..()
-	if(parts)
-		for(var/i in 1 to 2)
-			if(!length(parts))
-				break
-			if(prob(60))
-				continue
-			var/part = pick(parts)
-			welder_salvage += part
-		parts = null
-
-/obj/structure/mecha_wreckage/Destroy()
-	if(AI)
-		QDEL_NULL(AI)
-	QDEL_LIST(crowbar_salvage)
-	return ..()
-
-/obj/structure/mecha_wreckage/examine(mob/user)
-	. = ..()
-	if(!AI)
-		return
-	. += span_notice("The AI recovery beacon is active.")
-
-/obj/structure/mecha_wreckage/welder_act(mob/living/user, obj/item/I)
-	..()
-	. = TRUE
-	if(salvage_num <= 0 || !length(welder_salvage))
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
-		return
-	if(!I.use_tool(src, user, 0, volume=50))
-		return
-	if(prob(30))
-		to_chat(user, span_notice("You fail to salvage anything valuable from [src]!"))
-		return
-	var/type = pick(welder_salvage)
-	var/N = new type(get_turf(user))
-	user.visible_message(span_notice("[user] cuts [N] from [src]."), span_notice("You cut [N] from [src]."))
-	if(!istype(N, /obj/item/stack))
-		welder_salvage -= type
-	salvage_num--
-
-/obj/structure/mecha_wreckage/wirecutter_act(mob/living/user, obj/item/I)
-	..()
-	. = TRUE
-	if(wires_removed)
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
-		return
-	var/N = new /obj/item/stack/cable_coil(get_turf(user), rand(1,3))
-	user.visible_message(span_notice("[user] cuts [N] from [src]."), span_notice("You cut [N] from [src]."))
-	wires_removed = TRUE
-
-/obj/structure/mecha_wreckage/crowbar_act(mob/living/user, obj/item/I)
-	..()
-	. = TRUE
-	if(length(crowbar_salvage))
-		var/obj/S = pick(crowbar_salvage)
-		S.forceMove(user.drop_location())
-		user.visible_message(span_notice("[user] pries [S] from [src]."), span_notice("You pry [S] from [src]."))
-		crowbar_salvage -= S
-		return
-	to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
 
 /obj/structure/mecha_wreckage/gygax
 	name = "\improper Gygax wreckage"
