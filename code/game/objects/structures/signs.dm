@@ -1,5 +1,5 @@
 /obj/structure/sign
-	icon = 'icons/obj/decals_arrow.dmi'
+	icon = 'icons/obj/decals_arrow.dmi' // a copy of icons/obj/decals.dmi with directional arrows on the sprites, so a mapper knows which way a sign is facing
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -8,9 +8,9 @@
 
 /obj/structure/sign/Initialize(mapload)
 	. = ..()
-	icon = 'icons/obj/decals.dmi'
 	if(!directional) //if not directional do not initialize to a x or y offset
 		return
+	icon = 'icons/obj/decals.dmi' // replace the modified decal sprites with normal ones without an arrow
 	switch(dir)
 		if(NORTH)
 			pixel_y = 32
