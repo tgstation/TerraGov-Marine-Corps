@@ -8,7 +8,6 @@
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
 	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
-	ammo_behavior_flags = AMMO_BALLISTIC
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	accurate_range = 12
@@ -22,7 +21,6 @@
 	name = "minigun bullet"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
-	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
@@ -33,12 +31,12 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 30
+	damage = 25
 	penetration = 15
-	sundering = 0
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
-	damage_falloff = 2
-	accuracy = 80
+	sundering = 1
+	accuracy = -15
+	accurate_range = 12
+	damage_falloff = 0.75
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
