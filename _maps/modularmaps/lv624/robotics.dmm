@@ -114,7 +114,6 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "nv" = (
-/obj/item/mecha_parts/chassis/gygax,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "oe" = (

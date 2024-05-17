@@ -15558,7 +15558,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "qlc" = (
-/obj/item/mecha_parts/chassis/gygax,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "qmg" = (
