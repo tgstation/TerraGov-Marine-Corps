@@ -324,11 +324,6 @@
 		return base_icon_state
 	return "[base_icon_state]-open"
 
-/obj/vehicle/sealed/mecha/CanPassThrough(atom/blocker, movement_dir, blocker_opinion)
-	if(throwing)
-		return ..()
-	return TRUE
-
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
 	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
