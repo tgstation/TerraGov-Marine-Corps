@@ -5941,6 +5941,7 @@
 /area/lawankaoutpost/outside/north)
 "eWa" = (
 /obj/structure/rack,
+/obj/item/mecha_parts/tool/extuinguisher,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "eWb" = (
@@ -14641,6 +14642,7 @@
 /area/lawankaoutpost/colony/engineering)
 "mkd" = (
 /obj/structure/rack,
+/obj/item/mecha_parts/tool/clamp,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "mkA" = (

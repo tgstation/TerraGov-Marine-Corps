@@ -6239,6 +6239,7 @@
 /area/lv624/lazarus/engineering)
 "ftN" = (
 /obj/structure/table,
+/obj/item/mecha_parts/tool/drill,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "ftO" = (
@@ -14579,6 +14580,7 @@
 	dir = 4
 	},
 /obj/structure/table,
+/obj/item/mecha_parts/tool/clamp,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "oZp" = (

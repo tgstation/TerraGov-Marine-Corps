@@ -562,6 +562,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Ck" = (
 /obj/structure/table/reinforced,
+/obj/item/mecha_parts/tool/drill,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},

@@ -2,7 +2,6 @@
 ////// Mecha Parts //////
 //////Used for Maps//////
 /////////////////////////
-
 /obj/item/mecha_parts
 	name = "mecha part"
 	icon = 'icons/mecha/mech_construct.dmi'
@@ -13,8 +12,30 @@
 	name = "Mecha Chassis"
 	icon_state = "backbone"
 
-/////////// Ripley
+/obj/item/mecha_parts/tool
+	icon = 'icons/mecha/mecha_equipment.dmi'
 
+/obj/item/mecha_parts/tool/drill
+	name = "exosuit drill"
+	desc = "Equipment for engineering and combat exosuits. This is the drill that'll pierce the heavens!"
+	icon_state = "drill"
+
+/obj/item/mecha_parts/tool/drill/diamond
+	name = "diamond-tipped exosuit drill"
+	desc = "Equipment for engineering and combat exosuits. This is an upgraded version of the drill that'll pierce the heavens!"
+	icon_state = "diamond_drill"
+
+/obj/item/mecha_parts/tool/clamp
+	name = "hydraulic clamp"
+	desc = "Equipment for engineering exosuits. Lifts objects and loads them into cargo."
+	icon_state = "clamp"
+
+/obj/item/mecha_parts/tool/extuinguisher
+	name = "exosuit extinguisher"
+	desc = "Equipment for engineering exosuits. A rapid-firing high capacity fire extinguisher."
+	icon_state = "exting"
+
+/////////// Ripley
 /obj/item/mecha_parts/chassis/ripley
 	name = "Ripley Chassis"
 
@@ -44,7 +65,6 @@
 	icon_state = "ripley_r_leg"
 
 ///////// Gygax
-
 /obj/item/mecha_parts/chassis/gygax
 	name = "Gygax Chassis"
 
@@ -81,7 +101,6 @@
 	icon_state = "gygax_armour"
 
 //////////// Durand
-
 /obj/item/mecha_parts/chassis/durand
 	name = "Durand Chassis"
 
@@ -114,12 +133,10 @@
 	icon_state = "durand_armour"
 
 ////////// Firefighter
-
 /obj/item/mecha_parts/chassis/firefighter
 	name = "Firefighter Chassis"
 
 ////////// Phazon
-
 /obj/item/mecha_parts/chassis/phazon
 	name = "Phazon Chassis"
 
@@ -153,7 +170,6 @@
 	icon_state = "phazon_armor"
 
 ///////// Odysseus
-
 /obj/item/mecha_parts/chassis/odysseus
 	name = "Odysseus Chassis"
 
