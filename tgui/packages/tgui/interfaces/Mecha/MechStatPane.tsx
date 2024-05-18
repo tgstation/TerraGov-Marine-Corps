@@ -7,9 +7,9 @@ import {
   Section,
   Stack,
 } from '../../components';
+import { AlertPane } from './AlertPane';
 import { OperatorData } from './data';
 import { RadioPane } from './RadioPane';
-import { AlertPane } from './AlertPane';
 
 export const MechStatPane = (props) => {
   const { act, data } = useBackend<OperatorData>();
