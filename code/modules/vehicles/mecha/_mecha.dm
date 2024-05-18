@@ -247,7 +247,6 @@
 		occupant.SetSleeping(destruction_sleep_duration)
 	return ..()
 
-
 /obj/vehicle/sealed/mecha/update_icon_state()
 	icon_state = get_mecha_occupancy_state()
 	return ..()
