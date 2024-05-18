@@ -85,3 +85,7 @@ endmap
 map riptide
 minplayers 40
 endmap
+
+map bluesummers
+	minplayers 20
+endmap
