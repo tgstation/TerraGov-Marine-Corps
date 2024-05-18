@@ -1218,7 +1218,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	plant_icon = "banana"
 	harvest_repeat = 1
-	chems = list(/datum/reagent/consumable/drink/banana = list(1,10))
+	chems = list(/datum/reagent/consumable/banana = list(1,10))
 
 	lifespan = 50
 	maturation = 6

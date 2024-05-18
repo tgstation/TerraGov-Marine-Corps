@@ -7719,10 +7719,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"hem" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "hes" = (
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
@@ -10222,14 +10218,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
-"jRU" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop1/lz1)
 "jSi" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
@@ -15941,7 +15929,7 @@
 /area/lv624/ground/jungle6)
 "qJo" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /turf/open/floor/grimy,
@@ -17154,7 +17142,7 @@
 /area/lv624/lazarus/spaceport2)
 "rRG" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/weapon/broken_bottle,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
@@ -20050,10 +20038,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"vfY" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "vgb" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
@@ -22047,7 +22031,7 @@
 /area/lv624/ground/sand5)
 "xgs" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -22235,7 +22219,7 @@
 /area/lv624/ground/compound/se)
 "xop" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
 "xoE" = (
@@ -58673,7 +58657,7 @@ wVT
 wVT
 wVT
 wVT
-jRU
+wVT
 wVT
 wVT
 pFJ
@@ -58851,7 +58835,7 @@ kLN
 wvz
 ydT
 ycR
-hem
+ydT
 ydT
 ydT
 ydT
@@ -59033,7 +59017,7 @@ kLN
 wvz
 ydT
 ydT
-vfY
+ydT
 ydT
 ydT
 ydT
@@ -60125,7 +60109,7 @@ kLN
 wvz
 ydT
 ydT
-vfY
+ydT
 ydT
 ydT
 ydT
@@ -60307,7 +60291,7 @@ kLN
 wvz
 ydT
 ycR
-hem
+ydT
 ydT
 ydT
 ydT

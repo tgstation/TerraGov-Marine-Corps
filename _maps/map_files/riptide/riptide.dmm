@@ -5791,7 +5791,7 @@
 	pixel_x = 6;
 	pixel_y = 1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -6
 	},
 /turf/open/floor/tile/vault,
@@ -7620,10 +7620,10 @@
 "fqz" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/limejuice,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -6
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -20150,7 +20150,7 @@
 	pixel_x = -9;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola{
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola{
 	pixel_x = 9;
 	pixel_y = 4
 	},
