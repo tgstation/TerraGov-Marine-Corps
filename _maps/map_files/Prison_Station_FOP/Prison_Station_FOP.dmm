@@ -21465,7 +21465,7 @@
 /area/prison/yard)
 "boI" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "boJ" = (

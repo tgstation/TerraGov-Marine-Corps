@@ -15929,7 +15929,7 @@
 /area/lv624/ground/jungle6)
 "qJo" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /turf/open/floor/grimy,
@@ -17142,7 +17142,7 @@
 /area/lv624/lazarus/spaceport2)
 "rRG" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/weapon/broken_bottle,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
@@ -22031,7 +22031,7 @@
 /area/lv624/ground/sand5)
 "xgs" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -22219,7 +22219,7 @@
 /area/lv624/ground/compound/se)
 "xop" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
 "xoE" = (

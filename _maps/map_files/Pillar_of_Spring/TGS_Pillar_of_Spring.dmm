@@ -1568,7 +1568,7 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/bottle/patron,
 /obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "bTS" = (
