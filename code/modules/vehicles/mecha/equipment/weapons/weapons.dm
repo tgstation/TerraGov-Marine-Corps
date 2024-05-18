@@ -1,8 +1,9 @@
-/obj/item/mecha_equipment/weapon
+/obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = MECHA_RANGED
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
+	mech_flags = EXOSUIT_MODULE_COMBAT
 	/// ammo datum/object typepath
 	var/datum/ammo/ammotype
 	///sound file to play when this weapon you know, fires
@@ -45,13 +46,13 @@
 	/// smoke effect for when the gun fires
 	var/smoke_effect = FALSE
 
-/obj/item/mecha_equipment/weapon/Initialize(mapload)
+/obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(fire)))
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
 
-/obj/item/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
+/obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
 	. = ..()
 	if(!.)
 		return
@@ -59,7 +60,7 @@
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
 
-/obj/item/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
+/obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
 	. = ..()
@@ -91,19 +92,19 @@
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-/obj/item/mecha_equipment/weapon/proc/set_bursting(bursting)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
 		ADD_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
 		return
 	REMOVE_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
 
 ///Changes the current target.
-/obj/item/mecha_equipment/weapon/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, source, params))
 
 ///Sets the current target and registers for qdel to prevent hardels
-/obj/item/mecha_equipment/weapon/proc/set_target(atom/object)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_target(atom/object)
 	if(object == current_target || object == chassis)
 		return
 	if(current_target)
@@ -113,7 +114,7 @@
 		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Stops the Autofire component and resets the current cursor.
-/obj/item/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
@@ -124,22 +125,22 @@
 	UnregisterSignal(source, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP))
 
 ///Cleans the current target in case of Hardel
-/obj/item/mecha_equipment/weapon/proc/clean_target()
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/clean_target()
 	SIGNAL_HANDLER
 	current_target = get_turf(current_target)
 
 ///Resets the autofire component.
-/obj/item/mecha_equipment/weapon/proc/reset_fire()
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
 	set_target(null)
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
-	if(istype(chassis, /obj/vehicle/sealed/mecha/greyscale))
-		var/obj/vehicle/sealed/mecha/greyscale/grey = chassis
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
 		var/datum/mech_limb/head/head = grey.limbs[MECH_GREY_HEAD]
 		if(head)
 			projectile_to_fire.accuracy *= head.accuracy_mod //todo: we can probably just make the accuracy_mod apply directly to the gun like attachments do
@@ -157,7 +158,7 @@
 		projectile_to_fire.def_zone = firer.zone_selected
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
-/obj/item/mecha_equipment/weapon/proc/fire()
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
 	if(!action_checks(current_target, TRUE))
 		return NONE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
@@ -170,8 +171,8 @@
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/proj_scatter = variance
-	if(istype(chassis, /obj/vehicle/sealed/mecha/greyscale))
-		var/obj/vehicle/sealed/mecha/greyscale/grey = chassis
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
 		var/datum/mech_limb/arm/holding
 		if(grey.equip_by_category[MECHA_R_ARM] == src)
 			holding = grey.limbs[MECH_GREY_R_ARM]
@@ -221,25 +222,25 @@
 		QDEL_IN(gun_smoke, 0.6 SECONDS)
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
-/obj/item/mecha_equipment/weapon/proc/reset_light_range(lightrange)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_light_range(lightrange)
 	set_light_range(lightrange)
 	set_light_color(initial(light_color))
 	if(lightrange <= 0)
 		set_light_on(FALSE)
 
 ///removes the flash object from viscontents
-/obj/item/mecha_equipment/weapon/proc/remove_flash(atom/movable/vis_obj/effect/muzzle_flash/flash)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/remove_flash(atom/movable/vis_obj/effect/muzzle_flash/flash)
 	chassis.vis_contents -= flash
 	flash.applied = FALSE
 
 //Base energy weapon type
-/obj/item/mecha_equipment/weapon/energy
+/obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	muzzle_flash_color = COLOR_LASER_RED
 	muzzle_iconstate = "muzzle_flash_laser"
 
 //Base ballistic weapon type
-/obj/item/mecha_equipment/weapon/ballistic
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
 	fire_sound = 'sound/weapons/guns/fire/gunshot.ogg'
 	smoke_effect = TRUE
@@ -256,29 +257,29 @@
 	///list of icons to display for ammo counter: list("hud_normal", "hud_empty")
 	var/hud_icons = list("rifle", "rifle_empty")
 
-/obj/item/mecha_equipment/weapon/ballistic/attach(obj/vehicle/sealed/mecha/M, attach_right)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
 
-/obj/item/mecha_equipment/weapon/ballistic/detach(atom/moveto)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
 	return ..()
 
-/obj/item/mecha_equipment/weapon/ballistic/action_checks(target)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
 	if(!..())
 		return FALSE
 	if(projectiles <= 0)
 		return FALSE
 	return TRUE
 
-/obj/item/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
 		return attempt_rearm(usr)
 
-/obj/item/mecha_equipment/weapon/ballistic/attempt_rearm(mob/living/user)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attempt_rearm(mob/living/user)
 	if(!needs_rearm())
 		return FALSE
 	if(!projectiles_cache)
@@ -287,7 +288,7 @@
 		return FALSE
 	return rearm()
 
-/obj/item/mecha_equipment/weapon/ballistic/rearm()
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
 		return FALSE
 	var/projectiles_to_add = initial(projectiles) - projectiles
@@ -304,10 +305,10 @@
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	return TRUE
 
-/obj/item/mecha_equipment/weapon/ballistic/needs_rearm()
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/needs_rearm()
 	return projectiles < initial(projectiles)
 
-/obj/item/mecha_equipment/weapon/ballistic/fire()
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()
 	if(!(. & AUTOFIRE_SUCCESS))
 		return
@@ -319,12 +320,79 @@
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	attempt_rearm(current_firer)
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
+	name = "\improper FNX-99 \"Hades\" Carbine"
+	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
+	icon_state = "mecha_carbine"
+	equip_cooldown = 10
+	ammotype = /datum/ammo/bullet/machinegun
+	projectiles = 24
+	projectiles_cache = 24
+	projectiles_cache_max = 96
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_INCENDIARY
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	name = "\improper LBX AC 10 \"Scattershot\""
+	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
+	icon_state = "mecha_scatter"
+	equip_cooldown = 20
+	ammotype = /datum/ammo/bullet/shotgun/buckshot
+	projectiles = 40
+	projectiles_cache = 40
+	projectiles_cache_max = 160
+	variance = 25
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_BUCKSHOT
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
+	name = "\improper Ultra AC 2"
+	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
+	icon_state = "mecha_uac2"
+	equip_cooldown = 10
+	ammotype = /datum/ammo/bullet/minigun
+	projectiles = 300
+	projectiles_cache = 300
+	projectiles_cache_max = 1200
+	variance = 6
+	projectile_delay = 2
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_LMG
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+	name = "\improper SRM-8 missile rack"
+	desc = "A weapon for combat exosuits. Launches light explosive missiles."
+	icon_state = "mecha_missilerack"
+	ammotype = /datum/ammo/rocket/atgun_shell/he
+	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
+	projectiles = 8
+	projectiles_cache = 0
+	projectiles_cache_max = 0
+	disabledreload = TRUE
+	equip_cooldown = 60
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_MISSILE_HE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching
+	name = "\improper BRM-6 missile rack"
+	desc = "A weapon for combat exosuits. Launches low-explosive breaching missiles designed to explode only when striking a sturdy target."
+	icon_state = "mecha_missilerack_six"
+	ammotype = /datum/ammo/rocket/atgun_shell
+	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
+	projectiles = 6
+	projectiles_cache = 0
+	projectiles_cache_max = 0
+	disabledreload = TRUE
+	equip_cooldown = 60
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_MISSILE_AP
+
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher
 	var/missile_speed = 2
 	var/missile_range = 30
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
@@ -357,5 +425,26 @@
 	return TRUE
 
 //used for projectile initilisation (priming flashbang) and additional logging
-/obj/item/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(obj/O, mob/user)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(obj/O, mob/user)
 	return
+
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
+	name = "\improper SGL-6 grenade launcher"
+	desc = "A weapon for combat exosuits. Launches primed flashbangs."
+	icon_state = "mecha_grenadelnchr"
+	ammotype = /obj/item/explosive/grenade/flashbang
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	projectiles = 6
+	projectiles_cache = 6
+	projectiles_cache_max = 24
+	missile_speed = 1.5
+	equip_cooldown = 60
+	ammo_type = MECHA_AMMO_FLASHBANG
+	var/det_time = 20
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(obj/item/explosive/grenade/flashbang/F, mob/user)
+	var/turf/T = get_turf(src)
+	message_admins("[ADMIN_LOOKUPFLW(user)] fired a [F] in [ADMIN_VERBOSEJMP(T)]")
+	log_game("[key_name(user)] fired a [F] in [AREACOORD(T)]")
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/explosive/grenade/flashbang, prime)), det_time)
