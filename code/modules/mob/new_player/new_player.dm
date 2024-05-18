@@ -345,6 +345,11 @@
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
+
+/mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", atom/movable/screen/fullscreen/spawning_in)
+
 /mob/new_player/proc/transfer_character()
 	. = new_character
 	if(.)
