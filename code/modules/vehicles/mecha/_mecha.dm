@@ -53,7 +53,7 @@
 	/// Keeps track of the mech's cell
 	var/obj/item/cell/cell
 	///Contains flags for the mecha
-	var/mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
+	var/mecha_flags = HAS_LIGHTS
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum
@@ -437,7 +437,7 @@
 		. = COMSIG_MOB_CLICK_CANCELED
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
-	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
+	if(completely_disabled || is_currently_ejecting)
 		return
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		return
@@ -446,7 +446,7 @@
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
-	if(!(mecha_flags & OMNIDIRECTIONAL_ATTACKS) && dir_to_target && !(dir_to_target & dir))//wrong direction
+	if(dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))

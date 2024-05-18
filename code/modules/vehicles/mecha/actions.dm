@@ -34,7 +34,7 @@
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
-	if(!(chassis.mecha_flags & HAS_HEADLIGHTS))
+	if(!(chassis.mecha_flags & HAS_LIGHTS))
 		chassis.balloon_alert(owner, "the mech lights are broken!")
 		return
 	chassis.mecha_flags ^= LIGHTS_ON
@@ -82,13 +82,9 @@
 	toggle_strafe()
 
 /obj/vehicle/sealed/mecha/proc/toggle_strafe()
-	if(!(mecha_flags & CANSTRAFE))
-		to_chat(occupants, "this mecha doesn't support strafing!")
-		return
-
 	strafe = !strafe
 
-	to_chat(occupants, "strafing mode [strafe?"on":"off"].")
+	to_chat(occupants, span_notice("Strafing mode [strafe?"on":"off"]."))
 	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
 
 	for(var/occupant in occupants)

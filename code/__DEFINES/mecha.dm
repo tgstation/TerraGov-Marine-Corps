@@ -2,20 +2,12 @@
 #define MECHA_INT_SHORT_CIRCUIT (1<<1)
 #define MECHA_INT_CONTROL_LOST (1<<2)
 
-#define CANSTRAFE (1<<0)
-#define LIGHTS_ON (1<<1)
-#define IS_ENCLOSED (1<<2)
-#define HAS_LIGHTS (1<<3)
-#define QUIET_STEPS (1<<4)
-#define QUIET_TURNS (1<<5)
-///blocks using equipment and melee attacking.
-#define CANNOT_INTERACT (1<<6)
-/// Can click from any direction and perform stuff
-#define OMNIDIRECTIONAL_ATTACKS (1<<7)
+#define LIGHTS_ON (1<<0)
+#define HAS_LIGHTS (1<<1)
 ///Do you need mech skill to pilot this mech
-#define MECHA_SKILL_LOCKED (1<<8)
+#define MECHA_SKILL_LOCKED (1<<2)
 ///Is currently suffering from an EMP
-#define MECHA_EMPED (1<<9)
+#define MECHA_EMPED (1<<3)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
@@ -33,10 +25,7 @@
 
 // Some mechs must (at least for now) use snowflake handling of their UI elements, these defines are for that
 // when changing MUST update the same-named tsx file constants
-#define MECHA_SNOWFLAKE_ID_SLEEPER "sleeper_snowflake"
-#define MECHA_SNOWFLAKE_ID_SYRINGE "syringe_snowflake"
 #define MECHA_SNOWFLAKE_ID_MODE "mode_snowflake"
-#define MECHA_SNOWFLAKE_ID_EXTINGUISHER "extinguisher_snowflake"
 #define MECHA_SNOWFLAKE_ID_EJECTOR "ejector_snowflake"
 
 #define MECHA_AMMO_INCENDIARY "Incendiary bullet"
