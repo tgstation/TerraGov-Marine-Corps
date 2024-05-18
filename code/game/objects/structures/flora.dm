@@ -229,8 +229,9 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+///How deep things gets submerged in tallgrass
 /obj/structure/flora/grass/tallgrass/proc/get_submerge_height(turf/source, list/submerge_list)
-	submerge_list += 10
+	submerge_list += 8
 
 /obj/structure/flora/grass/tallgrass/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_GRASS] = layer
