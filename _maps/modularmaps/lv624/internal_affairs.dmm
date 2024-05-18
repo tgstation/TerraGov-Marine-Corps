@@ -358,6 +358,7 @@
 /obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
+/obj/item/mecha_parts/gygax_head,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "Jh" = (

@@ -2186,6 +2186,7 @@
 #include "code\modules\vehicles\mecha\melee_attack.dm"
 #include "code\modules\vehicles\mecha\mob_interaction.dm"
 #include "code\modules\vehicles\mecha\movement.dm"
+#include "code\modules\vehicles\mecha\parts.dm"
 #include "code\modules\vehicles\mecha\ui.dm"
 #include "code\modules\vehicles\mecha\wreckage.dm"
 #include "code\modules\vehicles\mecha\equipment\ammo.dm"

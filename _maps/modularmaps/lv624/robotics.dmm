@@ -301,6 +301,7 @@
 /area/lv624/lazarus/robotics)
 "NM" = (
 /obj/structure/largecrate,
+/obj/item/mecha_parts/gygax_armour,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Ot" = (
@@ -380,6 +381,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "Yu" = (
+/obj/item/mecha_parts/gygax_torso,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "YK" = (

@@ -8854,6 +8854,7 @@
 /area/riptide/outside/northbeach)
 "ghb" = (
 /obj/structure/table/mainship,
+/obj/item/mecha_parts/savannah_ivanov_torso,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
@@ -15603,6 +15604,14 @@
 /area/riptide/inside/boatdock)
 "lab" = (
 /obj/structure/table/mainship,
+/obj/item/mecha_parts/savannah_ivanov_right_arm{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/mecha_parts/savannah_ivanov_left_arm{
+	pixel_x = -3;
+	pixel_y = -3
+	},
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
 "laA" = (
@@ -16052,6 +16061,11 @@
 "lrQ" = (
 /obj/item/mecha_equipment/weapon/ballistic/sniper,
 /obj/structure/table/mainship,
+/obj/item/mecha_parts/savannah_ivanov_right_leg{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/mecha_parts/savannah_ivanov_left_leg,
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
 "lsl" = (
@@ -19552,6 +19566,8 @@
 /turf/open/floor/plating/warning,
 /area/riptide/outside/volcano)
 "nMl" = (
+/obj/item/mecha_parts/chassis/savannah_ivanov,
+/obj/item/mecha_parts/savannah_ivanov_armor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
@@ -29019,6 +29035,10 @@
 "tVO" = (
 /obj/item/mecha_equipment/weapon/ballistic/minigun,
 /obj/structure/table/mainship,
+/obj/item/mecha_parts/savannah_ivanov_head,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/iron/small,
 /area/riptide/caves/pmc/rnd)
 "tVQ" = (

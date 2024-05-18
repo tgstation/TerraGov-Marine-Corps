@@ -167,6 +167,7 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
 "afj" = (
+/obj/item/mecha_parts/odysseus_right_leg,
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "afk" = (
@@ -10873,6 +10874,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/northdorms)
 "jcY" = (
+/obj/item/mecha_parts/phazon_head,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "jei" = (
@@ -14569,6 +14571,7 @@
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
 "mfS" = (
+/obj/item/mecha_parts/odysseus_torso,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -15616,6 +15619,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/lawankaoutpost/colony/atmos)
 "mZz" = (
+/obj/item/mecha_parts/phazon_armor,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "nah" = (
@@ -15719,6 +15723,7 @@
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/biologics)
 "nfD" = (
+/obj/item/mecha_parts/gygax_armor,
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "nfF" = (
@@ -18308,6 +18313,7 @@
 	},
 /area/lawankaoutpost/colony/engineering)
 "pfv" = (
+/obj/item/mecha_parts/phazon_left_arm,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
@@ -19672,6 +19678,7 @@
 	},
 /area/lawankaoutpost/colony/marshalls)
 "qiQ" = (
+/obj/item/mecha_parts/odysseus_head,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "qjo" = (
@@ -26107,6 +26114,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southwest)
 "vxQ" = (
+/obj/item/mecha_parts/odysseus_right_arm,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/orange/full,
@@ -26769,6 +26777,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
 "vZb" = (
+/obj/item/mecha_parts/odysseus_left_arm,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "vZU" = (

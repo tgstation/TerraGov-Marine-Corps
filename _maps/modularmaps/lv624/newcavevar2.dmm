@@ -17,6 +17,7 @@
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "cu" = (
+/obj/item/mecha_parts/durand_head,
 /obj/structure/mecha_wreckage/durand,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -50,6 +51,7 @@
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "gj" = (
+/obj/item/mecha_parts/durand_right_leg,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -123,6 +125,8 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
 "nQ" = (
+/obj/item/mecha_parts/durand_head,
+/obj/item/mecha_parts/durand_right_leg,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "nT" = (
@@ -324,6 +328,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "LS" = (
+/obj/item/mecha_parts/durand_right_leg,
 /obj/effect/turf_decal/lvsanddecal,
 /obj/effect/turf_decal/lvsanddecal{
 	dir = 4
