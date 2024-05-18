@@ -81,7 +81,7 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll
 	name = "Roll"
-	desc = "Toggles Rolling on or off. This can be used to damage talls but won't deal much damage."
+	desc = "Toggles Rolling on or off. This can be used to displace talls but won't deal ANY damage."
 	charge_type = CHARGE_BEHEMOTH
 	speed_per_step = 0.35
 	steps_for_charge = 4
