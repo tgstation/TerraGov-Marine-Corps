@@ -17386,7 +17386,7 @@
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical/lobby)
 "miA" = (
-/obj/item/mecha_parts/durand_armor,
+/obj/item/mecha_parts/durand_armour,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "miM" = (

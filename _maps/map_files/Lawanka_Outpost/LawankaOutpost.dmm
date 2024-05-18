@@ -15726,7 +15726,7 @@
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/biologics)
 "nfD" = (
-/obj/item/mecha_parts/gygax_armor,
+/obj/item/mecha_parts/gygax_armour,
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "nfF" = (

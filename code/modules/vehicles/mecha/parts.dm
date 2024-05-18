@@ -147,6 +147,11 @@
 	name = "Phazon Right Leg"
 	icon_state = "phazon_r_leg"
 
+/obj/item/mecha_parts/phazon_armor
+	name="Phazon armor"
+	desc="Phazon armor plates. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
+	icon_state = "phazon_armor"
+
 ///////// Odysseus
 
 /obj/item/mecha_parts/chassis/odysseus
