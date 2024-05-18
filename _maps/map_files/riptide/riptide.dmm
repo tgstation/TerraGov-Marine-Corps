@@ -2584,6 +2584,7 @@
 /obj/item/stock_parts/subspace/amplifier,
 /obj/item/stock_parts/subspace/treatment,
 /obj/structure/table/mainship,
+/obj/item/circuitboard/mecha/savannah_ivanov/targeting,
 /obj/item/circuitboard/apc{
 	pixel_x = -3;
 	pixel_y = 6
@@ -18557,6 +18558,11 @@
 /obj/item/stock_parts/subspace/transmitter,
 /obj/structure/table/mainship,
 /obj/item/storage/box/lights/mixed,
+/obj/item/circuitboard/mecha/savannah_ivanov/peripherals{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/circuitboard/mecha/savannah_ivanov/main,
 /obj/item/circuitboard/apc{
 	pixel_x = 6;
 	pixel_y = 3

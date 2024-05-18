@@ -10952,6 +10952,8 @@
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
+/obj/item/circuitboard/mecha/ripley/main,
+/obj/item/circuitboard/mecha/ripley/peripherals,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/robotics/lab)
