@@ -62,7 +62,7 @@
 		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
 		add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
 
-	animate(get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - new_height), time = cached_multiplicative_slowdown + next_move_slowdown)
+	transition_filter(MOB_LIQUID_TURF_MASK, cached_multiplicative_slowdown + next_move_slowdown, list(y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - new_height)))
 	animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
 
 /obj/item/set_submerge_level(turf/new_loc, turf/old_loc)
