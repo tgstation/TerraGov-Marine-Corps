@@ -30187,6 +30187,7 @@
 /area/riptide/outside/northislands)
 "uOX" = (
 /obj/structure/mineral_door/sandstone,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/rock)
 "uPc" = (
