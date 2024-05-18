@@ -409,6 +409,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "qZ" = (
 /obj/structure/table/reinforced,
+/obj/item/mecha_equipment/repair_droid,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},

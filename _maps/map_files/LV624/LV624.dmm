@@ -9531,6 +9531,9 @@
 /area/lv624/lazarus/main_hall)
 "jgF" = (
 /obj/structure/largecrate,
+/obj/item/mecha_equipment/repair_droid{
+	pixel_y = -10
+	},
 /obj/machinery/light/small{
 	dir = 4
 	},
