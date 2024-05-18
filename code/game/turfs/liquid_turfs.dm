@@ -30,72 +30,78 @@
 		return FALSE
 	. = TRUE
 
-	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
-		return //visually looks weird on these edge turfs
-
-	if(isliving(arrived))
-		submerge_mob(arrived, old_loc)
-	else if(isitem(arrived))
-		submerge_item(arrived, old_loc)
-
-/turf/open/liquid/Exited(atom/movable/leaver, direction)
-	. = ..()
-	var/turf/open/liquid/new_turf = leaver.loc
-	if(istype(new_turf))
-		if(length(new_turf.canSmoothWith))
-			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
-				return
-		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
-			return
-	if(isliving(leaver))
-		unsubmerge_mob(leaver)
-	else if(isitem(leaver))
-		unsubmerge_item(leaver)
-
-
-/turf/open/liquid/proc/submerge_mob(mob/living/arrived_mob, atom/old_loc)
-	var/icon/mob_icon = icon(arrived_mob.icon)
-	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
-
-	if(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK))
-		var/turf/open/liquid/old_turf = old_loc
-		if(!istype(old_turf))
-			CRASH("orphaned liquid alpha mask")
-		if(mob_liquid_height != old_turf.mob_liquid_height)
-			animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
-		if(mob_liquid_depth != old_turf.mob_liquid_depth)
-			animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
-	else
-		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-		arrived_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
-
-		animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
-		animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
-
-	if(!arrived_mob.throwing)
-		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
-
-/turf/open/liquid/proc/submerge_item(obj/item/arrived_item, atom/old_loc)
-	var/alpha_change = mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
-	if(istype(old_loc, /turf/open/liquid))
-		var/turf/open/liquid/old_liquid_loc = old_loc
-		if(!SEND_SIGNAL(old_liquid_loc, COMSIG_TURF_CHECK_COVERED) && (!length(old_liquid_loc.canSmoothWith) || CHECK_MULTIPLE_BITFIELDS(old_liquid_loc.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION))))
-			alpha_change -= old_liquid_loc.mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
-
-	arrived_item.alpha -= alpha_change
-
-/turf/open/liquid/proc/unsubmerge_mob(mob/living/mob_leaver)
-	if(!mob_leaver.get_filter(MOB_LIQUID_TURF_MASK))
+	if(!isliving(arrived) || arrived.throwing)
 		return
-	var/icon/mob_icon = icon(mob_leaver.icon)
-	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
-	animate(mob_leaver, pixel_y = mob_leaver.pixel_y - mob_liquid_depth, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(mob_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
-
-/turf/open/liquid/proc/unsubmerge_item(obj/item/item_leaver)
-	item_leaver.alpha +=  mob_liquid_height * OBJ_LIQUID_TURF_ALPHA_MULT
+	var/mob/living/arrived_mob = arrived
+	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 
 ////////////////////////////////////////
+
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc)
+	return
+
+/mob/living/set_submerge_level(turf/new_loc, turf/old_loc)
+	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
+	var/new_height = istype(new_loc) ? new_loc.get_submerge_height() : 0
+	var/height_diff = new_height - old_height
+
+	var/old_depth = istype(old_loc) ? old_loc.get_submerge_depth() : 0
+	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
+	var/depth_diff = new_depth - old_depth
+
+	if(!height_diff && !depth_diff) //no change
+		return
+
+	if(!new_height && !new_depth) //no longer submerged
+		var/icon/mob_icon = icon(icon)
+		animate(get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = cached_multiplicative_slowdown + next_move_slowdown) //add parallel?
+		animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), cached_multiplicative_slowdown + next_move_slowdown)
+		return
+
+	var/icon/mob_icon = icon(icon)
+	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+
+	if(get_filter(MOB_LIQUID_TURF_MASK)) //between submerged turfs
+		if(height_diff)
+			animate(get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - new_height), time = cached_multiplicative_slowdown + next_move_slowdown)
+		if(depth_diff)
+			animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
+	else //onto submerged turf
+		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
+		add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
+
+		animate(get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - height_diff), time = cached_multiplicative_slowdown + next_move_slowdown)
+		animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
+
+/obj/item/set_submerge_level(turf/new_loc, turf/old_loc)
+	var/old_alpha_mod = istype(old_loc) ? old_loc.get_submerge_height() * OBJ_LIQUID_TURF_ALPHA_MULT : 0
+	var/new_alpha_mod = istype(new_loc) ? new_loc.get_submerge_height() * OBJ_LIQUID_TURF_ALPHA_MULT : 0
+	var/alpha_mod_diff = new_alpha_mod - old_alpha_mod
+
+	alpha -= alpha_mod_diff
+
+/turf/proc/get_submerge_height()
+	return 0
+
+/turf/open/liquid/get_submerge_height()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return 0
+	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+		return 0
+	return mob_liquid_height
+
+/turf/proc/get_submerge_depth()
+	return 0
+
+/turf/open/liquid/get_submerge_depth()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return 0
+	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+		return 0
+	return mob_liquid_depth
+
+////////////////////////////////////
 /turf/open/liquid/water
 	name = "river"
 	icon_state = "seashallow"
