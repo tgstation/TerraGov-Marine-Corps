@@ -51,10 +51,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_VIEW_STATS,
 	)
+
 /datum/action/vehicle/sealed/mecha/mech_view_stats/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-
 	chassis.ui_interact(owner)
 
 /datum/action/vehicle/sealed/mecha/strafe
