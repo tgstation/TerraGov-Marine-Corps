@@ -120,8 +120,6 @@
 	var/exit_delay = 2 SECONDS
 	///Time you get slept for if you get forcible ejected by the mech exploding
 	var/destruction_sleep_duration = 2 SECONDS
-	///Whether outside viewers can see the pilot inside
-	var/enclosed = TRUE
 	///Currently ejecting, and unable to do things
 	var/is_currently_ejecting = FALSE
 	///Safety for weapons. Won't fire if enabled, and toggled by middle click.
@@ -362,8 +360,6 @@
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
-	if(enclosed)
-		return
 	for(var/occupante in occupants)
 		. += "You can see [occupante] inside."
 
