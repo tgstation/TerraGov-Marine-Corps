@@ -126,11 +126,6 @@
 	var/weapons_safety = FALSE
 
 	var/datum/effect_system/smoke_spread/bad/smoke_system = new
-
-	////Action vars
-	///Bool for energy shield on/off
-	var/defense_mode = FALSE
-
 	///Bool for leg overload on/off
 	var/leg_overload_mode = FALSE
 	///Energy use modifier for leg overload
@@ -179,6 +174,7 @@
 	radio.name = "[src] radio"
 
 	GLOB.nightfall_toggleable_lights += src
+	add_cell()
 	START_PROCESSING(SSobj, src)
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
