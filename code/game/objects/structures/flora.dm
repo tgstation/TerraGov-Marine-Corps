@@ -221,6 +221,20 @@
 	opacity = TRUE
 	color = "#7a8c54"
 
+/obj/structure/flora/grass/tallgrass/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_TURF_SUBMERGE_CHECK = PROC_REF(get_submerge_height),
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/flora/grass/tallgrass/proc/get_submerge_height(turf/source, list/submerge_list)
+	submerge_list += 10
+
+/obj/structure/flora/grass/tallgrass/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_GRASS] = layer
+
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
 	icon_state = "tallgrass_corner"
