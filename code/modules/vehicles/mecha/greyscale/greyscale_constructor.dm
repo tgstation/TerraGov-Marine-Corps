@@ -4,6 +4,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
 	for(var/obj/item/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_equipment))
+		if(!type.used_for_greyscale_mech)
+			continue
 		switch(initial(type.equipment_slot))
 			if(MECHA_WEAPON)
 				var/list/weapon_representation = list(

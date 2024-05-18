@@ -23,8 +23,8 @@
 	var/range = MECHA_MELEE
 	///boolean: FALSE if this equipment can not be removed/salvaged
 	var/detachable = TRUE
-	///Boolean: whether a pacifist can use this equipment
-	var/harmful = FALSE
+	///Boolean: whether this can be used in greyscale constructor
+	var/used_for_greyscale_mech = FALSE
 	///Sound file: Sound to play when this equipment is destroyed while still attached to the mech
 	destroy_sound = 'sound/mecha/critdestr.ogg'
 

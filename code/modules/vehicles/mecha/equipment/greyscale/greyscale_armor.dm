@@ -6,6 +6,7 @@
 	protect_name = "Melee Armor"
 	slowdown = 0.5
 	armor_mod = list(MELEE = 15)
+	used_for_greyscale_mech = TRUE
 
 /obj/item/mecha_equipment/armor/acid
 	name = "caustic armor booster"
@@ -15,6 +16,7 @@
 	protect_name = "Caustic Armor"
 	slowdown = 0.4
 	armor_mod = list(ACID = 15)
+	used_for_greyscale_mech = TRUE
 
 /obj/item/mecha_equipment/armor/explosive
 	name = "explosive armor booster"
@@ -24,3 +26,4 @@
 	protect_name = "Explosive Armor"
 	slowdown = 0.3
 	armor_mod = list(BOMB = 25)
+	used_for_greyscale_mech = TRUE

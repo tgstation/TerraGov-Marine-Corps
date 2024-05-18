@@ -3,6 +3,7 @@
 	desc = "A bluespace orion-sperkov converter. Through science you can't be bothered to understand, makes mechs faster and their weapons able to draw more power, making them more dangerous. However this comes at the cost of not being able to use projectile and laser weaponry."
 	icon_state = "melee_core"
 	equipment_slot = MECHA_UTILITY
+	used_for_greyscale_mech = TRUE
 	///speed amount we modify the mech by
 	var/speed_mod
 
@@ -22,6 +23,7 @@
 	desc = "A haphazard collection of electronics that allows the user to override standard safety inputs to increase speed, at the cost of extremely high power usage."
 	icon_state = "booster"
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_overload_mode
+	used_for_greyscale_mech = TRUE
 	///sound to loop when the dash is activated
 	var/datum/looping_sound/mech_overload/sound_loop
 
@@ -34,6 +36,7 @@
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
+	used_for_greyscale_mech = TRUE
 
 /obj/item/mecha_equipment/ability/smoke
 	name = "generic smoke module"
@@ -66,6 +69,7 @@
 	icon_state = "tfoot_gas"
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/plasmaloss
+	used_for_greyscale_mech = TRUE
 
 /obj/item/mecha_equipment/ability/smoke/cloak_smoke
 	name = "smoke generator"
@@ -73,3 +77,4 @@
 	icon_state = "smoke_gas"
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical
+	used_for_greyscale_mech = TRUE

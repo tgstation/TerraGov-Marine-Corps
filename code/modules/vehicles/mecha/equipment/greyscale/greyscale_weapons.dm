@@ -30,7 +30,7 @@
 	variance = 10
 	slowdown = 0
 	projectile_delay = 0.3 SECONDS
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_PISTOL
 	hud_icons = list("pistol", "pistol_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -56,7 +56,7 @@
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
 	projectile_burst_delay = 0.1 SECONDS
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_BURSTPISTOL
 	hud_icons = list("pistol_light", "pistol_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
@@ -80,7 +80,7 @@
 	variance = 20
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.15
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_SMG
 	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -105,7 +105,7 @@
 	burst_amount = 3
 	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0.25
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_BURSTRIFLE
 	hud_icons = list("hivelo", "hivelo_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
@@ -128,7 +128,7 @@
 	variance = 15
 	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_RIFLE
 	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -151,7 +151,7 @@
 	variance = 6
 	projectile_delay = 2.0 SECONDS
 	slowdown = 0.3
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -174,7 +174,7 @@
 	variance = 25
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.3
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_GREY_LMG
 	hud_icons = list("rifle_heavy", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -197,7 +197,7 @@
 	variance = 20
 	projectile_delay = 0.7 SECONDS
 	slowdown = 0.4
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_LIGHTCANNON
 	hud_icons = list("grenade_airburst", "grenade_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -212,13 +212,13 @@
 		MECHA_R_ARM = list("N" = list(33,68), "S" = list(-2,-6), "E" = list(80,13), "W" = list(-50,33)),
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
 	)
+	used_for_greyscale_mech = TRUE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
 	max_integrity = 400
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.4 SECONDS
 	slowdown = 0.4
-	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_equipment/weapon/energy/laser_projector
@@ -231,6 +231,7 @@
 		MECHA_R_ARM = list("N" = list(33,52), "S" = list(-2,-6), "E" = list(75,11), "W" = list(-45,31)),
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
 	)
+	used_for_greyscale_mech = TRUE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
 	max_integrity = 400
 	energy_drain = 5
@@ -239,7 +240,6 @@
 	burst_amount = 3
 	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0.4
-	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
 /obj/item/mecha_equipment/weapon/energy/laser_smg
@@ -252,13 +252,13 @@
 		MECHA_R_ARM = list("N" = list(33,48), "S" = list(-2,6), "E" = list(67,11), "W" = list(-37,31)),
 		MECHA_L_ARM = list("N" = list(0,48), "S" = list(32,6), "E" = list(67,31), "W" = list(-37,11)),
 	)
+	used_for_greyscale_mech = TRUE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
 	max_integrity = 400
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
-	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_equipment/weapon/ballistic/heavy_cannon
@@ -279,7 +279,7 @@
 	variance = 0
 	projectile_delay = 1 SECONDS
 	slowdown = 1.2
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_HEAVYCANNON
 	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -304,7 +304,7 @@
 	projectile_delay = 1.5
 	slowdown = 0.7
 	windup_delay = 0.5 SECONDS
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_MINIGUN
 	hud_icons = list("smartgun", "smartgun_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -327,7 +327,7 @@
 	variance = -15
 	projectile_delay = 1 SECONDS
 	slowdown = 0.6
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_SNIPER
 	hud_icons = list("sniper_supersonic", "sniper_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -347,6 +347,7 @@
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS
 	slowdown = 0.4
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_GRENADE
 	hud_icons = list("grenade_he", "grenade_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -377,7 +378,7 @@
 	variance = 0
 	projectile_delay = 2 SECONDS
 	slowdown = 0.4
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -400,7 +401,7 @@
 	variance = 0
 	projectile_delay = 2 SECONDS
 	slowdown = 0.7
-	harmful = TRUE
+	used_for_greyscale_mech = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -417,9 +418,9 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
+	used_for_greyscale_mech = TRUE
 	max_integrity = 400
 	slowdown = 0
-	harmful = TRUE
 	equip_cooldown = 3 SECONDS
 	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
@@ -503,10 +504,10 @@
 	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
+	used_for_greyscale_mech = TRUE
 	max_integrity = 400
 	slowdown = 0.15
 	windup_delay = 0.6 SECONDS
-	harmful = TRUE
 	projectile_delay = 3 SECONDS
 	energy_drain = 100
 	variance = 0

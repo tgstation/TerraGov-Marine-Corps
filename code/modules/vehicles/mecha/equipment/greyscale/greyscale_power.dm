@@ -2,6 +2,7 @@
 	name = "phoron engine"
 	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
 	icon_state = "phoron_engine"
+	used_for_greyscale_mech = TRUE
 	rechargerate = 5
 	slowdown = 0.3
 	max_fuel = 30000
@@ -10,6 +11,7 @@
 	name = "fusion engine"
 	desc = "A highly experimental phoron fusion core. Generates more power at the same consumption rate, but slows you down even more than the standard phoron engine. Uses solid phoron as fuel, click engine to refuel. The heaviest engine mechs can use at a cost of speed due to weight."
 	icon_state = "phoron_engine_adv"
+	used_for_greyscale_mech = TRUE
 	rechargerate = 10
 	slowdown = 0.6
 	max_fuel = 60000
@@ -18,6 +20,7 @@
 	name = "energy optimizer"
 	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
 	icon_state = "optimizer"
+	used_for_greyscale_mech = TRUE
 	equipment_slot = MECHA_POWER
 	slowdown = 0.3
 
