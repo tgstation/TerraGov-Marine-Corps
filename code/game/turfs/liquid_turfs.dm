@@ -49,30 +49,21 @@
 	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
 	var/depth_diff = new_depth - old_depth
 
-	if(!height_diff && !depth_diff) //no change
-		return
-
-	if(!new_height && !new_depth) //no longer submerged
-		var/icon/mob_icon = icon(icon)
-		animate(get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = cached_multiplicative_slowdown + next_move_slowdown) //add parallel?
-		animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), cached_multiplicative_slowdown + next_move_slowdown)
+	if(!height_diff && !depth_diff)
 		return
 
 	var/icon/mob_icon = icon(icon)
 	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
 
-	if(get_filter(MOB_LIQUID_TURF_MASK)) //between submerged turfs
-		if(height_diff)
-			animate(get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - new_height), time = cached_multiplicative_slowdown + next_move_slowdown)
-		if(depth_diff)
-			animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
-	else //onto submerged turf
+	if(!new_height && !new_depth)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), cached_multiplicative_slowdown + next_move_slowdown)
+
+	else if(!get_filter(MOB_LIQUID_TURF_MASK))
 		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
 		add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
 
-		animate(get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - height_diff), time = cached_multiplicative_slowdown + next_move_slowdown)
-		animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
+	animate(get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - new_height), time = cached_multiplicative_slowdown + next_move_slowdown)
+	animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
 
 /obj/item/set_submerge_level(turf/new_loc, turf/old_loc)
 	var/old_alpha_mod = istype(old_loc) ? old_loc.get_submerge_height() * OBJ_LIQUID_TURF_ALPHA_MULT : 0
