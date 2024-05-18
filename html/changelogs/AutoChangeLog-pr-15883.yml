@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed an alamo sentry facing the wrong way"
+  - bugfix: "Removed various invisible blockers on some maps"

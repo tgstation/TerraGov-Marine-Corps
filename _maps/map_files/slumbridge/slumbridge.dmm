@@ -9573,7 +9573,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/slumbridge/inside/hydrotreatment)
 "hrM" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/mining)
 "hrQ" = (
@@ -16657,7 +16657,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/inside/sombase/west)
 "myx" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
 /area/slumbridge/caves/mining)
@@ -18797,7 +18797,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
 "obs" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/plating,
 /area/slumbridge/caves/northeastcaves)
 "obu" = (
@@ -21096,7 +21096,7 @@
 /area/slumbridge/inside/houses/dorms)
 "pPl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -1
 	},
@@ -31196,7 +31196,7 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
 "xkx" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/plating,
 /area/slumbridge/outside/northeast)
 "xkI" = (

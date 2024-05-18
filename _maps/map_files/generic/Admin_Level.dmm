@@ -1681,7 +1681,7 @@
 "chk" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "cjh" = (
@@ -9556,8 +9556,8 @@
 "nFB" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "nFD" = (
@@ -10638,10 +10638,10 @@
 /area/centcom/valhalla)
 "prJ" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 2
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -4;
 	pixel_y = 6
 	},
@@ -11581,7 +11581,7 @@
 /area/centcom/valhalla)
 "qTr" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "qTQ" = (
@@ -12869,7 +12869,7 @@
 /area/centcom/valhalla)
 "sQs" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
@@ -12888,8 +12888,8 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/machinery/reagentgrinder/nopower/valhalla{
 	pixel_y = 5
 	},
@@ -12957,11 +12957,11 @@
 	pixel_y = 3
 	},
 /obj/item/tool/lighter,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -16372,7 +16372,7 @@
 /obj/item/book/manual/barman_recipes,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
 "xOn" = (
