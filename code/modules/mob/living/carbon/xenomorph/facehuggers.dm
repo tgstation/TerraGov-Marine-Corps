@@ -26,8 +26,8 @@
 	throw_range = 5
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
-	worn_item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
-	worn_icon_list = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
+	worn_item_state_slots = list(slot_wear_suit_str = "facehugger_crotch")
+	worn_icon_list = list(slot_wear_suit_str = 'icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -480,11 +480,11 @@
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
-					if(w_uniform)
-						var/obj/item/U = w_uniform
+					if(wear_suit)
+						var/obj/item/U = wear_suit
 						if(istype(U, /obj/item/clothing/mask/facehugger))
-							var/obj/item/clothing/mask/facehugger/uniformhugger = U
-							if(uniformhugger.stat != DEAD)
+							var/obj/item/clothing/mask/facehugger/suithugger = U
+							if(suithugger.stat != DEAD)
 								return FALSE
 
 	return TRUE
@@ -540,13 +540,13 @@
 			return FALSE
 
 		if(attempt_lewd_attach(H))
-			var/obj/item/clothing/under/U = H.w_uniform
-			H.dropItemToGround(H.w_uniform)
-			if(H.w_uniform)
+			var/obj/item/clothing/under/U = H.wear_suit
+			H.dropItemToGround(H.wear_suit)
+			if(H.wear_suit)
 				visible_message("<span class='warning'>[src] rips into [H]'s [U.name] and latches onto their pelvis!</span>")
 			else
 				visible_message("<span class='warning'>[src] latches onto [H]'s pelvis!</span>")
-			H.equip_to_slot(src, SLOT_W_UNIFORM)
+			H.equip_to_slot(src, SLOT_WEAR_SUIT)
 			return TRUE
 
 		if(H.head)
@@ -567,11 +567,11 @@
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
 					var/mob/living/carbon/human/B
-					if(B.w_uniform)
-						var/obj/item/clothing/under/U = B.w_uniform
+					if(B.wear_suit)
+						var/obj/item/clothing/under/U = B.wear_suit
 						if(istype(U, /obj/item/clothing/mask/facehugger))
-							var/obj/item/clothing/mask/facehugger/uniformhugger = U
-							if(uniformhugger.stat != DEAD)
+							var/obj/item/clothing/mask/facehugger/suithugger = U
+							if(suithugger.stat != DEAD)
 								return FALSE
 
 			if(W.anti_hug > 0 || HAS_TRAIT(W, TRAIT_NODROP))
@@ -606,9 +606,10 @@
 		targethole = rand(1, 3)
 	if(target.wear_suit)
 		var/obj/item/clothing/suit/O = target.wear_suit
+		if(istype(O, /obj/item/clothing/mask/facehugger))
+			targethole = 1
 		if(istype(O, /obj/item/clothing/suit/storage/marine/specialist))
 			targethole = 1
-			return FALSE
 	if(targethole > 1)
 		return TRUE
 	else
@@ -620,7 +621,7 @@
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_WEAR_MASK && slot != SLOT_W_UNIFORM || stat == DEAD)
+	if(slot != SLOT_WEAR_MASK && slot != SLOT_WEAR_SUIT || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
 	if(!sterile && !issynth(user))
@@ -642,7 +643,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/human/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
-	var/as_planned = target?.wear_mask == src  || target?.w_uniform == src
+	var/as_planned = target?.wear_mask == src  || target?.wear_suit == src
 	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		var/obj/item/alien_embryo/embryo = new(target)
 		embryo.hivenumber = hivenumber
