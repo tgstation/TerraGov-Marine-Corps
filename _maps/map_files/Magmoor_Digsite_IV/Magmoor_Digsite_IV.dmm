@@ -9236,10 +9236,6 @@
 	dir = 8
 	},
 /area/magmoor/volcano)
-"gsi" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/magmoor/landing/two)
 "gsk" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
@@ -13064,10 +13060,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/southeast)
-"jkz" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/magmoor/landing/two)
 "jkK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -17136,10 +17128,6 @@
 /obj/structure/sign/greencross,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
-"lYz" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "lYC" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/blue/taupeblue,
@@ -31719,10 +31707,6 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
-"wAo" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "wAt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -44984,7 +44968,7 @@ jET
 dzo
 nlP
 gsk
-lYz
+nlP
 nlP
 nlP
 nlP
@@ -45217,7 +45201,7 @@ jET
 dzo
 nlP
 nlP
-wAo
+nlP
 nlP
 nlP
 nlP
@@ -46615,7 +46599,7 @@ rtV
 dzo
 nlP
 nlP
-wAo
+nlP
 nlP
 nlP
 nlP
@@ -46848,7 +46832,7 @@ jET
 dzo
 nlP
 gsk
-lYz
+nlP
 nlP
 nlP
 nlP
@@ -72420,7 +72404,7 @@ kRR
 afM
 ogT
 kqp
-jkz
+ogT
 ogT
 ogT
 ogT
@@ -72653,7 +72637,7 @@ kRR
 afM
 ogT
 ogT
-gsi
+ogT
 ogT
 ogT
 ogT
@@ -74051,7 +74035,7 @@ kRR
 afM
 ogT
 ogT
-gsi
+ogT
 ogT
 ogT
 ogT
@@ -74284,7 +74268,7 @@ kRR
 afM
 ogT
 kqp
-jkz
+ogT
 ogT
 ogT
 ogT
