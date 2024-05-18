@@ -42,7 +42,6 @@
 	var/health_boost = 0.5
 	///overlay to show on the mech
 	var/image/droid_overlay
-	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH)
 
 /obj/item/mecha_equipment/repair_droid/Destroy()
 	STOP_PROCESSING(SSobj, src)
