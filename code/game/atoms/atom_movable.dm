@@ -1342,3 +1342,7 @@
 //Throws AM away from something
 /atom/movable/proc/knockback(source, distance, speed, dir)
 	throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source)
+
+///Sets the submerged level of an AM based on its turf
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc)
+	return
