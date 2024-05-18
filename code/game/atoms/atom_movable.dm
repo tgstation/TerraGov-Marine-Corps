@@ -1344,5 +1344,29 @@
 	throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source)
 
 ///Sets the submerged level of an AM based on its turf
-/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc)
-	return
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration)
+	if(!submerge_icon) //catch all in case so people don't need to make child types just to specify a return
+		return
+	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
+	var/new_height = istype(new_loc) ? new_loc.get_submerge_height() : 0
+	var/height_diff = new_height - old_height
+
+	var/old_depth = istype(old_loc) ? old_loc.get_submerge_depth() : 0
+	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
+	var/depth_diff = new_depth - old_depth
+
+	if(!height_diff && !depth_diff)
+		return
+
+	var/icon/AM_icon = icon(icon)
+	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
+
+	if(!new_height && !new_depth)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), duration)
+
+	else if(!get_filter(AM_SUBMERGE_MASK))
+		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
+		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon(submerge_icon, submerge_icon_state), null, MASK_INVERSE))
+
+	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
+	animate(src, pixel_y = src.pixel_y + depth_diff, time = duration, flags = ANIMATION_PARALLEL)

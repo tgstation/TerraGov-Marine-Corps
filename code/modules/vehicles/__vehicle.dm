@@ -9,6 +9,7 @@
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)

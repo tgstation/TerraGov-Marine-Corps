@@ -1020,28 +1020,3 @@ below 100 is not dizzy
 		return
 
 	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])
-
-/mob/living/set_submerge_level(turf/new_loc, turf/old_loc)
-	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
-	var/new_height = istype(new_loc) ? new_loc.get_submerge_height() : 0
-	var/height_diff = new_height - old_height
-
-	var/old_depth = istype(old_loc) ? old_loc.get_submerge_depth() : 0
-	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
-	var/depth_diff = new_depth - old_depth
-
-	if(!height_diff && !depth_diff)
-		return
-
-	var/icon/mob_icon = icon(icon)
-	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
-
-	if(!new_height && !new_depth)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), cached_multiplicative_slowdown + next_move_slowdown)
-
-	else if(!get_filter(AM_SUBMERGE_MASK))
-		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
-
-	transition_filter(AM_SUBMERGE_MASK, cached_multiplicative_slowdown + next_move_slowdown, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
-	animate(src, pixel_y = src.pixel_y + depth_diff, time = cached_multiplicative_slowdown + next_move_slowdown, flags = ANIMATION_PARALLEL)
