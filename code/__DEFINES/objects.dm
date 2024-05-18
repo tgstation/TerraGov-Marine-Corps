@@ -239,6 +239,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //Unmanned vehicle define
 #define OVERLAY_TURRET (1<<0)
+#define HAS_HEADLIGHTS (1<<1)
 #define GIVE_NIGHT_VISION (1<<1)
 
 //Motion detector define

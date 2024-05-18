@@ -29,7 +29,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = HAS_LIGHTS | MECHA_SKILL_LOCKED
+	mecha_flags = MECHA_SKILL_LOCKED
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -158,7 +158,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/greyscale/recon/noskill
-	mecha_flags = HAS_LIGHTS
+	mecha_flags = null
 
 /obj/vehicle/sealed/mecha/greyscale/assault
 	name = "Assault Mecha"
@@ -171,7 +171,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/greyscale/assault/noskill
-	mecha_flags = HAS_LIGHTS
+	mecha_flags = null
 
 /obj/vehicle/sealed/mecha/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -184,4 +184,4 @@
 	)
 
 /obj/vehicle/sealed/mecha/greyscale/vanguard/noskill
-	mecha_flags = HAS_LIGHTS
+	mecha_flags = null

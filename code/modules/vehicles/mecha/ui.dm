@@ -60,7 +60,6 @@
 	//map of relevant flags to check tgui side, not every flag needs to be here
 	data["mechflag_keys"] = list(
 		"LIGHTS_ON" = LIGHTS_ON,
-		"HAS_LIGHTS" = HAS_LIGHTS,
 	)
 	data["internal_damage_keys"] = list(
 		"MECHA_INT_FIRE" = MECHA_INT_FIRE,

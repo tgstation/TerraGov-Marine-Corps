@@ -53,7 +53,7 @@
 	/// Keeps track of the mech's cell
 	var/obj/item/cell/cell
 	///Contains flags for the mecha
-	var/mecha_flags = HAS_LIGHTS
+	var/mecha_flags
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum

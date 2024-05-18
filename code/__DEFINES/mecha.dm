@@ -3,11 +3,10 @@
 #define MECHA_INT_CONTROL_LOST (1<<2)
 
 #define LIGHTS_ON (1<<0)
-#define HAS_LIGHTS (1<<1)
 ///Do you need mech skill to pilot this mech
-#define MECHA_SKILL_LOCKED (1<<2)
+#define MECHA_SKILL_LOCKED (1<<1)
 ///Is currently suffering from an EMP
-#define MECHA_EMPED (1<<3)
+#define MECHA_EMPED (1<<2)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)

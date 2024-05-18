@@ -44,7 +44,7 @@
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
-	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
+	var/unmanned_flags = OVERLAY_TURRET|HAS_HEADLIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
@@ -239,7 +239,7 @@
 ///Called when remote control is taken
 /obj/vehicle/unmanned/proc/on_remote_toggle(datum/source, is_on, mob/user)
 	SIGNAL_HANDLER
-	if(unmanned_flags & HAS_LIGHTS)
+	if(unmanned_flags & HAS_HEADLIGHTS)
 		set_light_on(is_on)
 	if(unmanned_flags & GIVE_NIGHT_VISION)
 		if(is_on)
