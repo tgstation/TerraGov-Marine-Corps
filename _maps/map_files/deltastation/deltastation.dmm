@@ -60264,10 +60264,6 @@
 	},
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
-"mmf" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "mmr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -63909,10 +63905,6 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/disposal/incinerator)
-"nbj" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "nbo" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
@@ -74170,14 +74162,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
-"phF" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop1/lz1)
 "phG" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -167644,7 +167628,7 @@ wVi
 wVi
 wVi
 wVi
-phF
+wVi
 wVi
 wVi
 rLQ
@@ -167897,7 +167881,7 @@ guZ
 hao
 qgB
 mMC
-mmf
+qgB
 qgB
 qgB
 qgB
@@ -168154,7 +168138,7 @@ fyi
 hao
 qgB
 qgB
-nbj
+qgB
 qgB
 qgB
 qgB
@@ -169696,7 +169680,7 @@ fyi
 hao
 qgB
 qgB
-nbj
+qgB
 qgB
 qgB
 qgB
@@ -169953,7 +169937,7 @@ fyi
 hao
 qgB
 mMC
-mmf
+qgB
 qgB
 qgB
 qgB

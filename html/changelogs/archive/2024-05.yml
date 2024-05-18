@@ -170,3 +170,10 @@
   novaepee, Shinji Nomura:
   - imageadd: new title art made by Shinji Nomura
   - imagedel: low effort title art
+2024-05-18:
+  Notamaniac:
+  - bugfix: Overwatch can select laser targets to fire OB's again
+  Xander3359:
+  - bugfix: fix a mistaken var edit that made forcefields breakable
+  jonash07:
+  - spellcheck: Added missing descriptions for a few packets
