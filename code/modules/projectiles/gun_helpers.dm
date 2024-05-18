@@ -41,6 +41,8 @@
 
 //tactical reloads
 /obj/item/weapon/gun/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	if(!has_proximity)
+		return FALSE
 	if(isammomagazine(target))
 		var/obj/item/ammo_magazine/mag_to_reload = target
 		if(mag_to_reload.magazine_flags & MAGAZINE_WORN)
