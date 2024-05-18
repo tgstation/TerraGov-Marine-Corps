@@ -30,7 +30,7 @@ export const OperatorMode = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <ByondUi
-              height="170px"
+              height="400px"
               params={{
                 id: mech_view,
                 zoom: 5,
