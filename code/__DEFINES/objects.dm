@@ -56,7 +56,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 	"NUKE"
 	))
 
-
 // Diagonal movement for movable atoms
 #define FIRST_DIAG_STEP 1
 #define SECOND_DIAG_STEP 2
@@ -68,13 +67,11 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SHUTTLE_COOLING_FACTOR_RECHARGE 0.5
 #define SHUTTLE_FUEL_ENHANCE_FACTOR_TRAVEL 0.75
 
-
 //sharp item defines
 #define IS_NOT_SHARP_ITEM 0
 #define IS_SHARP_ITEM_SIMPLE 1 //not easily usable to cut or slice. e.g. shard, wirecutters, spear
 #define IS_SHARP_ITEM_ACCURATE 2 //knife, scalpel
 #define IS_SHARP_ITEM_BIG 3 //fireaxe, hatchet, energy sword
-
 
 //pry capable item defines
 #define IS_PRY_CAPABLE_SIMPLE 1
@@ -129,7 +126,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define B18_PAIN_MIN 50
 #define B18_PAIN_MAX 150
 
-
 //Razor wire
 
 #define RAZORWIRE_BASE_DAMAGE 40
@@ -152,12 +148,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SCOPE_RAIL_MINI 0.2
 #define SCOPE_RAIL_SNIPER 0.5
 
-
 //Hypospray
 
 #define HYPOSPRAY_INJECT_MODE_DRAW 0
 #define HYPOSPRAY_INJECT_MODE_INJECT 1
-
 
 //Lighter
 
