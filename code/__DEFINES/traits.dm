@@ -139,6 +139,10 @@
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
+//atom/movable traits
+/// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
+#define TRAIT_WAS_RENAMED "was_renamed"
+
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
 #define TRAIT_BURROWED "burrowed" // Burrows the xeno
