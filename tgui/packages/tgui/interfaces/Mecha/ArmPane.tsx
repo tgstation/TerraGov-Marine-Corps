@@ -121,126 +121,17 @@ const BallisticStats = (props: { weapon: MechWeapon }) => {
   }
 };
 
-const MECHA_SNOWFLAKE_ID_SLEEPER = 'sleeper_snowflake';
-const MECHA_SNOWFLAKE_ID_SYRINGE = 'syringe_snowflake';
 const MECHA_SNOWFLAKE_ID_MODE = 'mode_snowflake';
 
 // Handles all the snowflake buttons and whatever
 const Snowflake = (props: { weapon: MechWeapon }) => {
   const { snowflake } = props.weapon;
   switch (snowflake['snowflake_id']) {
-    case MECHA_SNOWFLAKE_ID_SLEEPER:
-      return <SnowflakeSleeper weapon={props.weapon} />;
-    case MECHA_SNOWFLAKE_ID_SYRINGE:
-      return <SnowflakeSyringe weapon={props.weapon} />;
     case MECHA_SNOWFLAKE_ID_MODE:
       return <SnowflakeMode weapon={props.weapon} />;
     default:
       return null;
   }
-};
-
-const SnowflakeSleeper = (props: { weapon: MechWeapon }) => {
-  const { act, data } = useBackend<OperatorData>();
-  const { patient } = props.weapon.snowflake;
-  if (!patient) {
-    return null;
-  } else {
-    return (
-      <Section label={'Patient ' + patient.patientname}>
-        <LabeledList>
-          <LabeledList.Item label={'Status'}>
-            {patient.isdead ? 'DECEASED' : 'ALIVE'}
-          </LabeledList.Item>
-          <LabeledList.Item label={'Health'}>
-            <ProgressBar
-              ranges={{
-                good: [0.5, Infinity],
-                average: [0.25, 0.5],
-                bad: [-Infinity, 0.25],
-              }}
-              value={patient.patient_health}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label={'Ejection'}>
-            <Button
-              content={'Eject'}
-              onClick={() =>
-                act('equip_act', {
-                  ref: props.weapon.ref,
-                  gear_action: 'eject',
-                })
-              }
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label={'Stats'}>
-            <Button
-              content={'View'}
-              onClick={() =>
-                act('equip_act', {
-                  ref: props.weapon.ref,
-                  gear_action: 'view_stats',
-                })
-              }
-            />
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-    );
-  }
-};
-
-const SnowflakeSyringe = (props: { weapon: MechWeapon }) => {
-  const { act, data } = useBackend<OperatorData>();
-  const { mode, syringe, max_syringe, reagents, total_reagents } =
-    props.weapon.snowflake;
-  return (
-    <Section label={'Syringe gun control'}>
-      <LabeledList>
-        <LabeledList.Item label={'Syringes'}>
-          {syringe}/{max_syringe}
-        </LabeledList.Item>
-        <LabeledList.Item label={'Reagents'}>
-          {reagents}/{total_reagents}
-        </LabeledList.Item>
-        <LabeledList.Item label={'Mode'}>
-          <Button
-            content={mode}
-            onClick={() =>
-              act('equip_act', {
-                ref: props.weapon.ref,
-                gear_action: 'change_mode',
-              })
-            }
-          />
-        </LabeledList.Item>
-        <LabeledList.Item label={'Reagent control'}>
-          <Button
-            content={'View'}
-            onClick={() =>
-              act('equip_act', {
-                ref: props.weapon.ref,
-                gear_action: 'show_reagents',
-              })
-            }
-          />
-        </LabeledList.Item>
-      </LabeledList>
-    </Section>
-  );
-};
-
-const SnowflakeExtinguisher = (props: { weapon: MechWeapon }) => {
-  const { reagents, total_reagents } = props.weapon.snowflake;
-  return (
-    <Section label={'Reagent status:'}>
-      <LabeledList>
-        <LabeledList.Item label={'Reagents'}>
-          {reagents}/{total_reagents}
-        </LabeledList.Item>
-      </LabeledList>
-    </Section>
-  );
 };
 
 const SnowflakeMode = (props: { weapon: MechWeapon }) => {
