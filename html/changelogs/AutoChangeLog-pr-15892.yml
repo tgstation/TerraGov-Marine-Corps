@@ -1,0 +1,4 @@
+author: "JohnIsNotImpressed"
+delete-after: True
+changes:
+  - qol: "Changed See Through's sprite alpha from 100 to 170."
