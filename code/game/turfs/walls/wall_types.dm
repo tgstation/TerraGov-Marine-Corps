@@ -460,3 +460,49 @@
 		'icons/turf/walls/siding_red_2.dmi',
 		'icons/turf/walls/siding_red_3.dmi',
 	)
+
+/turf/closed/wall/hybrisa
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "hybrisa_colony_walls-0"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
+
+/turf/closed/wall/hybrisa/colony
+
+/turf/closed/wall/hybrisa/colony/ribbed
+
+/turf/closed/wall/hybrisa/colony/hospital
+
+/turf/closed/wall/hybrisa/colony/reinforced
+
+/turf/closed/wall/hybrisa/colony/office
+
+/turf/closed/wall/hybrisa/spaceport_unmeltable
+
+/turf/closed/wall/hybrisa/spaceport_reinforced
+
+/turf/closed/wall/hybrisa/engineering
+
+/turf/closed/wall/hybrisa/colony/engineering/ribbed
+
+/turf/closed/wall/hybrisa/research/reinforced
+
+/turf/closed/wall/hybrisa/colony/reinforced/hull
+
+/turf/closed/wall/engineership
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls.dmi'
+	icon_state = "engineer_walls-0"
+	walltype = "wall"
+	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/hangar
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls.dmi'
+	icon_state = "engineer_walls-0"
+	walltype = "wall"
+	base_icon_state = "engineer_walls"

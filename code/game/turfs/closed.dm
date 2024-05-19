@@ -186,6 +186,12 @@
 /turf/closed/mineral/smooth/lavawall/outdoor
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
+/turf/closed/mineral/smooth/black_stone
+	icon = 'icons/turf/walls/black_stone_walls.dmi'
+	icon_state = "black_stone_walls-0"
+	walltype = "lava_wall"
+	base_icon_state = "black_stone_walls"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'

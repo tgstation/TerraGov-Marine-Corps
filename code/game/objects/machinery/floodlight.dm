@@ -235,3 +235,99 @@
 	toggle_lights(turned_on ? FALSE : TRUE)
 	update_icon()
 	return TRUE
+
+// Hybrisa Streetlights
+/obj/machinery/floodlight/colony/street
+	name = "Colony Streetlight"
+	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon_state = "street_off"
+	layer = ABOVE_XENO_LAYER
+
+/obj/machinery/floodlight/colony/street/update_icon()
+	if(damaged)
+		icon_state = "street_dmg"
+	else if(is_lit)
+		icon_state = "street_on"
+	else
+		icon_state = "street_off"
+
+#undef FLOODLIGHT_REPAIR_UNSCREW
+#undef FLOODLIGHT_REPAIR_CROWBAR
+#undef FLOODLIGHT_REPAIR_WELD
+#undef FLOODLIGHT_REPAIR_CABLE
+#undef FLOODLIGHT_REPAIR_SCREW
+
+// Traffic
+
+/obj/machinery/floodlight/colony/traffic
+	lum_value = 0
+	name = "traffic light"
+	desc = "A traffic light"
+	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon_state = "trafficlight"
+	bound_width = 32
+	bound_height = 32
+	density = TRUE
+	health = 200
+	layer = ABOVE_XENO_LAYER
+
+/obj/machinery/floodlight/colony/traffic/update_icon()
+	if(damaged)
+		icon_state = "trafficlight_damaged"
+	else if(is_lit)
+		icon_state = "trafficlight_on"
+	else
+		icon_state = "trafficlight"
+
+#undef FLOODLIGHT_REPAIR_UNSCREW
+#undef FLOODLIGHT_REPAIR_CROWBAR
+#undef FLOODLIGHT_REPAIR_WELD
+#undef FLOODLIGHT_REPAIR_CABLE
+#undef FLOODLIGHT_REPAIR_SCREW
+/obj/machinery/floodlight/colony/traffic_alt
+	lum_value = 0
+	name = "traffic light"
+	desc = "A traffic light"
+	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon_state = "trafficlight_alt"
+	bound_width = 32
+	bound_height = 32
+	density = TRUE
+	health = 200
+	layer = ABOVE_XENO_LAYER
+
+/obj/machinery/floodlight/colony/traffic_alt/update_icon()
+	if(damaged)
+		icon_state = "trafficlight_alt_damaged"
+	else if(is_lit)
+		icon_state = "trafficlight_alt_on"
+	else
+		icon_state = "trafficlight_alt"
+
+#undef FLOODLIGHT_REPAIR_UNSCREW
+#undef FLOODLIGHT_REPAIR_CROWBAR
+#undef FLOODLIGHT_REPAIR_WELD
+#undef FLOODLIGHT_REPAIR_CABLE
+#undef FLOODLIGHT_REPAIR_SCREW
+
+/obj/machinery/floodlight/colony/engineer_circular
+	name = "circular light"
+	icon_state = "engineerlight_off"
+	desc = "A huge circular light"
+	icon = 'icons/obj/structures/props/zenithrandomprops.dmi'
+	density = FALSE
+	unslashable = TRUE
+	unacidable = TRUE
+	wrenchable = FALSE
+	layer = TURF_LAYER
+	light_color =  "#00ffa0"
+	lum_value = 14
+	light_power = 6
+
+/obj/structure/machinery/colony_floodlight/engineer_circular/update_icon()
+	if(damaged)
+		icon_state = "engineerlight_off"
+	else if(is_lit)
+		icon_state = "engineerlight_on"
+	else
+		icon_state = "engineerlight_off"

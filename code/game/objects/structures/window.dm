@@ -697,3 +697,17 @@
 	name = "reinforced orbital insertion safety window"
 	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
 	max_integrity = 600 // 25 hunter slashes
+
+/obj/structure/window/framed/hybrisa
+	name = "reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	icon = 'icons/obj/smooth_objects/ship_window.dmi'
+	icon_state = "window-reinforced"
+	basestate = "ship_window"
+	base_icon_state = "ship_window"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/mainship
+
+/obj/structure/window/framed/hybrisa/colony/engineering

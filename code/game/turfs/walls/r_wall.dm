@@ -89,3 +89,7 @@
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
+
+/turf/closed/wall/r_wall/biodome
+
+/turf/closed/wall/r_wall/biodome/biodome_unmeltable

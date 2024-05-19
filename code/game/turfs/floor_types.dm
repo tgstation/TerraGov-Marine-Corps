@@ -1271,7 +1271,7 @@
 /turf/open/engineership/ship_hull
 	name = "strange metal wall"
 	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
-	icon = 'icons/turf/floors/engineership.dmi'
+	icon = 'icons/turf/engineership.dmi'
 	icon_state = "engineerwallfloor1"
 	baseturfs = /turf/open/asphalt
 
@@ -1549,7 +1549,7 @@
 /turf/open/engineership
 	name = "floor"
 	desc = "A strange metal floor, unlike any metal you've seen before."
-	icon = 'icons/turf/floors/engineership.dmi'
+	icon = 'icons/turf/engineership.dmi'
 	icon_state = "hybrisa"
 	baseturfs = /turf/open/asphalt
 
@@ -1648,3 +1648,11 @@
 
 /turf/open/engineership/pillars/east/pillareast4
 	icon_state = "eng_pillareast4"
+
+/turf/open/auto_turf/hybrisashale/layer1
+
+/turf/open/auto_turf/hybrisashale/layer2
+
+/turf/open/auto_turf/hybrisashale/layer3
+
+/turf/open/auto_turf/hybrisashale/layer0_plate

@@ -460,6 +460,7 @@
 	status = LIGHT_EMPTY
 	update(FALSE)
 
+/obj/machinery/light/spot/blue
 
 /obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
