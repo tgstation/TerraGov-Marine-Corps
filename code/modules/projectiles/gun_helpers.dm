@@ -41,6 +41,7 @@
 
 //tactical reloads
 /obj/item/weapon/gun/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
 	if(!has_proximity)
 		return FALSE
 	if(isammomagazine(target))
