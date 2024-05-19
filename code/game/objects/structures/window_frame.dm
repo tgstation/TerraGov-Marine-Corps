@@ -184,3 +184,9 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_CANTERBURY,
 	)
+
+/obj/structure/window_frame/kutjevo
+	icon = 'icons/obj/smooth_objects/kutjevo_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
