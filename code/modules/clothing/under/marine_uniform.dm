@@ -55,8 +55,8 @@
 	desc = "A standard issued TGMC turtleneck colored blue, with a slight hint of bravery."
 	icon_state = "delta_merc"
 
-/obj/item/clothing/under/marine/squad/neck/charile
-	name = "\improper TGMC Charile turtleneck"
+/obj/item/clothing/under/marine/squad/neck/charlie
+	name = "\improper TGMC Charlie turtleneck"
 	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
 	icon_state = "charlie_merc"
 

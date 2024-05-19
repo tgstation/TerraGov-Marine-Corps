@@ -250,7 +250,7 @@
 /turf/open/floor/wood/alt_seven,
 /area/riptide/outside/westbeach)
 "akQ" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
@@ -3447,7 +3447,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "cvL" = (
@@ -3499,7 +3499,7 @@
 	},
 /area/riptide/caves/south)
 "cwH" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -5791,7 +5791,7 @@
 	pixel_x = 6;
 	pixel_y = 1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -6
 	},
 /turf/open/floor/tile/vault,
@@ -6265,7 +6265,7 @@
 /turf/open/ground,
 /area/riptide/outside/eastbeach)
 "erY" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/riptide/outside/southislands)
 "ese" = (
@@ -7620,10 +7620,10 @@
 "fqz" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/limejuice,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -6
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -7809,7 +7809,7 @@
 /turf/open/floor/tile/white,
 /area/riptide/inside/hydroponics)
 "fyC" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/mineral/smooth/indestructible,
 /area/riptide/caves/rock)
 "fyI" = (
@@ -8378,7 +8378,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "fOg" = (
@@ -8861,7 +8861,7 @@
 /area/riptide/caves/pmc/rnd)
 "ghP" = (
 /obj/structure/rock/basalt,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "ghQ" = (
@@ -9016,7 +9016,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "goj" = (
@@ -10069,7 +10069,7 @@
 	},
 /area/riptide/caves/north)
 "hfI" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration{
 	dir = 4
 	},
@@ -10128,7 +10128,7 @@
 /area/riptide/inside/engineering/cave)
 "hil" = (
 /obj/structure/rock/basalt/pile,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "hin" = (
@@ -10736,7 +10736,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
 "hDT" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
@@ -12807,7 +12807,7 @@
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical)
 "jie" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/riptide/outside/southislands)
 "jih" = (
@@ -16729,7 +16729,7 @@
 /turf/open/floor/wood/alt_two,
 /area/riptide/inside/recroom)
 "lPx" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -17018,7 +17018,7 @@
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
 "lZy" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/ground/coast{
 	dir = 10
 	},
@@ -17510,7 +17510,7 @@
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
 "msu" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration{
 	dir = 1
 	},
@@ -18339,7 +18339,7 @@
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
 "mVb" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
@@ -18841,7 +18841,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "nno" = (
@@ -19003,7 +19003,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/riptide/outside/southjungle)
 "nsL" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/ground/coast{
 	dir = 6
 	},
@@ -20150,7 +20150,7 @@
 	pixel_x = -9;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola{
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola{
 	pixel_x = 9;
 	pixel_y = 4
 	},
@@ -20289,7 +20289,7 @@
 	},
 /area/riptide/outside/beachlzone)
 "ooe" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
@@ -22157,7 +22157,7 @@
 /area/riptide/outside/beachlzone)
 "pBH" = (
 /obj/structure/flora/jungle/vines,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "pBI" = (
@@ -22608,7 +22608,7 @@
 /turf/open/floor/wood,
 /area/riptide/inside/southtower)
 "pPr" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -24258,7 +24258,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "qQq" = (
@@ -25404,7 +25404,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "rAY" = (
@@ -26820,7 +26820,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "sut" = (
@@ -27536,7 +27536,7 @@
 /area/riptide/outside/beachlzone)
 "sVu" = (
 /obj/structure/platform_decoration,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "sVO" = (
@@ -27726,7 +27726,7 @@
 /area/riptide/inside/syndicatestarboard)
 "tcv" = (
 /obj/item/fishing/lure,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "tcy" = (
@@ -28006,7 +28006,7 @@
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
 "tlp" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/flora/jungle/vines,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -28075,7 +28075,7 @@
 /area/riptide/inside/engineering/bridge)
 "top" = (
 /obj/structure/flora/jungle/vines/heavy,
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "tou" = (
@@ -28128,7 +28128,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular,
 /area/riptide/outside/volcano)
 "tql" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/ground/coast,
 /area/riptide/outside/southislands)
 "tqK" = (
@@ -28377,7 +28377,7 @@
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/warehouse)
 "tyY" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "tzb" = (
@@ -29065,7 +29065,7 @@
 /turf/open/floor/tile/caution,
 /area/riptide/inside/engineering)
 "tWc" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -29447,7 +29447,7 @@
 	},
 /area/riptide/outside/beachlzone)
 "ulQ" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -30214,7 +30214,7 @@
 /turf/open/floor/grimy,
 /area/riptide/outside/northislands)
 "uPS" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/mineral/smooth/outdoor,
 /area/riptide/caves/rock)
 "uQg" = (
@@ -30879,7 +30879,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "vot" = (
@@ -31957,7 +31957,7 @@
 	},
 /area/riptide/outside/beachlzone)
 "waT" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
@@ -33222,7 +33222,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
 "wXY" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/mineral/smooth/outdoor,
 /area/riptide/caves/sea)
 "wYy" = (
@@ -34426,7 +34426,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/riptide/outside/volcano)
 "xRv" = (
-/obj/effect/forcefield/dense0forguns,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/mineral/smooth/indestructible,
 /area/riptide/caves/sea)
 "xRJ" = (

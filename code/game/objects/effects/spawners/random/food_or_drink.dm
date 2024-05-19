@@ -315,7 +315,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/sodawater,
 		/obj/item/reagent_containers/food/drinks/flask/barflask,
 		/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/cup/glass/drinkingglass,
 		/obj/item/reagent_containers/food/drinks/ice,
 		/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
 		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,

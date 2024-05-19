@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - admin: "Added logging to LZ Containment Shutters"

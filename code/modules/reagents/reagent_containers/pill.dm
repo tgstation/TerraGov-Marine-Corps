@@ -9,7 +9,7 @@
 	worn_icon_state = "pill"
 	possible_transfer_amounts = null
 	amount_per_transfer_from_this = 15
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
 	attack_speed = 1 //War against input locking while pill munching

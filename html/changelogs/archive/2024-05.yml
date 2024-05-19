@@ -118,3 +118,62 @@
       from 10 to 1.8
   Xander3359:
   - bugfix: fix some broken playsound_local (notably nades and TTS)
+2024-05-15:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an issue with attrition going into the negatives, allowing
+      for more respawns than intended, and breaking allied spawns'
+  - balance: 'Campaign: SL''s can activate the Rapid Reserves asset'
+  - bugfix: fixed a couple of issues around building resin walls on the alamo
+  - bugfix: 'Campaign: Fixed a couple minior corpsman loadout issues'
+  Neocloudy:
+  - rscadd: Reworked the style of the Limbs Damaged section of the health analyzer.
+  - rscadd: Health analyzers now have a section for relevant information such as treatment
+      advice when scanning people again.
+  - rscadd: Information includes death/revival information, healing information, chemical
+      advice, etc.
+  - rscadd: The theme of a health analyzer will switch to green when working with
+      a synthetic or combat robot.
+  - qol: Robotic/Biotic limbs are shown in Damaged Limbs.
+  - qol: Revivable status now includes information such as too much damage, etc.
+  - qol: Toxin and Oxyloss will be hidden when working with a synthetic or combat
+      robot.
+  Runian:
+  - bugfix: Jerrycans correctly show how much fuel is inside of it when examined.
+  chizzy376:
+  - rscadd: added a new map, Meridian Riptide.
+  - rscadd: Adds a proper room for AC and TC in Sulaco.
+2024-05-16:
+  Lumipharon:
+  - bugfix: fixed xenos being able to ignore queen and king death timers
+  - bugfix: fixed pref UI pill spam
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: If attrition is not manually set, it will automatically assign
+      an amount at the start of a mission'
+  - bugfix: fixed the blackscreen click catcher not working under some conditions
+  Notamaniac:
+  - balance: AI can now be dragged when unanchored, but is more vulnerable to getting
+      flung around by explosions than before.
+  - bugfix: AI can now use Ctrl Click on weeded tiles to get coordinates
+  Runian:
+  - bugfix: Xenos whose abilities cannot be used in a closed turf also cannot be used
+      in dense & opaque objects.
+  chizzy376:
+  - balance: changed tank's rocket from 100 sunder to 20
+  - balance: changed tank's minigun ltaap penetration from 10 to 15
+  - spellcheck: Charile removed
+  ivanmixo:
+  - balance: Retired ERT spawns less often, but can now walk (minus the leader)
+  jonash07:
+  - spellcheck: smg-45 description now tells you the right ammo type
+  novaepee:
+  - soundadd: New voicelines for donning and doffing Valkyrie and B18
+  novaepee, Shinji Nomura:
+  - imageadd: new title art made by Shinji Nomura
+  - imagedel: low effort title art
+2024-05-18:
+  Notamaniac:
+  - bugfix: Overwatch can select laser targets to fire OB's again
+  Xander3359:
+  - bugfix: fix a mistaken var edit that made forcefields breakable
+  jonash07:
+  - spellcheck: Added missing descriptions for a few packets

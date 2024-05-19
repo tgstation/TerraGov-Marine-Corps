@@ -70,7 +70,7 @@
 
 	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
 	if((player_death_times[respawnee.ckey] + respawn_delay) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+		to_chat(respawnee, span_warning("Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining."))
 		return
 
 	attempt_attrition_respawn(respawnee)
@@ -357,19 +357,22 @@
 ///Actually respawns the player, if still able
 /datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
 	if(!ready_candidate.IsJobAvailable(job_datum, TRUE))
-		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		to_chat(usr, span_warning("Selected job is not available."))
 		return
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		to_chat(usr,span_warning("The round is either not ready, or has already finished!"))
 		return
 	if(!GLOB.enter_allowed)
-		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		to_chat(usr, span_warning("Spawning currently disabled, please observe."))
 		return
 	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
-		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		to_chat(usr, span_warning("Failed to assign selected role."))
 		return
 
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
+		if(stat_list[job_datum.faction].active_attrition_points < job_datum.job_cost)
+			to_chat(usr, span_warning("Unable to spawn. Insufficient attrition."))
+			return
 		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
