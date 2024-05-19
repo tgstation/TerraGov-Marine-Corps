@@ -245,20 +245,29 @@
 		current_type = initial(current_type.parent_type)
 	return current_type
 
+/// basetype = list(strain1, strain2)
+GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
+/proc/init_glob_strain_list()
+    var/list/strain_list = list()
+    for(var/datum/xeno_caste/root_caste AS in GLOB.xeno_caste_datums)
+        if(root_caste.parent_type != /datum/xeno_caste)
+            continue
+        strain_list[root_caste] = list()
+        for(var/datum/xeno_caste/typepath AS in subtypesof(root_caste))
+            if(typepath::upgrade != XENO_UPGRADE_BASETYPE)
+                continue
+            if(typepath::caste_flags & CASTE_EXCLUDE_STRAINS)
+                continue
+            strain_list[root_caste] += typepath
+    return strain_list
+
 ///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
 /datum/xeno_caste/proc/get_strain_options()
 	var/datum/xeno_caste/root_type = type
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
-		root_type = initial(root_type.parent_type)
-	var/list/candidates = typesof(root_type)
-	. = list()
-	for(var/datum/xeno_caste/typepath AS in candidates)
-		if(initial(typepath.upgrade) != XENO_UPGRADE_BASETYPE)
-			continue
-		if(initial(typepath.caste_flags) & CASTE_EXCLUDE_STRAINS)
-			continue
-		. += typepath
-	. -= get_base_caste_type()
+		root_type = root_type::parent_type
+	var/list/options = GLOB.strain_list[root_type]?.Copy()
+	return options
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
