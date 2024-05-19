@@ -2982,11 +2982,13 @@
 	},
 /area/mainship/squads/general)
 "cGx" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
-	dir = 1
-	},
 /obj/machinery/door/firedoor{
 	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+	dir = 1;
+	req_access = null;
+	req_one_access = list(44,48,47,49)
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
@@ -6878,7 +6880,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
 "fOe" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/bunk,
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
+	req_access = null;
+	req_one_access = s
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "fOu" = (
@@ -9426,7 +9431,6 @@
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/hangar)
 "hST" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -9440,6 +9444,11 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+	dir = 4;
+	req_access = null;
+	req_one_access = list(44,48,47,49)
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
@@ -10593,9 +10602,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "iQJ" = (
-/obj/machinery/computer/sleep_console{
-	dir = 1
-	},
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -12329,7 +12336,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "kpV" = (
-/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk,
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
+	req_access = null;
+	req_one_access = list(47,49)
+	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -13056,7 +13066,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters{
-	dir = 1
+	dir = 1;
+	req_access = null;
+	req_one_access = list(44,48,47,49)
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
@@ -15134,7 +15146,8 @@
 	dir = 6
 	},
 /obj/machinery/door_control/mainship/vehicle{
-	dir = 4
+	dir = 4;
+	req_one_access = list(47,49)
 	},
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/orange/corner{
@@ -16595,7 +16608,9 @@
 /area/mainship/hallways/port_hallway)
 "nJj" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters{
-	dir = 1
+	dir = 1;
+	req_access = null;
+	req_one_access = list(44,48,47,49)
 	},
 /obj/machinery/door/firedoor{
 	dir = 1
@@ -20135,7 +20150,8 @@
 	dir = 6
 	},
 /obj/machinery/door_control/mainship/mech{
-	dir = 4
+	dir = 4;
+	req_one_access = list(47,49)
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -23526,7 +23542,8 @@
 /area/mainship/hallways/hangar/droppod)
 "tEt" = (
 /obj/machinery/door_control/mainship/vehicle{
-	dir = 8
+	dir = 8;
+	req_one_access = list(47,49)
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -26317,7 +26334,8 @@
 /area/mainship/squads/general)
 "vSg" = (
 /obj/machinery/door_control/mainship/mech{
-	dir = 8
+	dir = 8;
+	req_one_access = list(47,49)
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -26427,9 +26445,13 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "vXt" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+	dir = 4;
+	req_access = null;
+	req_one_access = list(44,48,47,49)
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "vXI" = (
@@ -27412,9 +27434,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
 "wLQ" = (
-/obj/machinery/sleeper{
-	dir = 2
-	},
+/obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "wLX" = (
