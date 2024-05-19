@@ -3914,9 +3914,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "dqF" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/machinery/door/firedoor/multi_tile,
 /obj/effect/ai_node,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "drg" = (
@@ -12505,13 +12505,13 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "ktN" = (
-/obj/machinery/door/airlock/mainship/medical/glass/research{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -23924,11 +23924,11 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells)
 "tUV" = (
-/obj/machinery/door/airlock/mainship/medical/glass/research{
-	dir = 2
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -25643,11 +25643,11 @@
 	},
 /area/mainship/hallways/repair_bay)
 "vqy" = (
-/obj/machinery/door/airlock/mainship/medical/glass/research{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -26918,10 +26918,10 @@
 /turf/open/floor/mainship/red,
 /area/mainship/hull/starboard_hull)
 "wpQ" = (
-/obj/machinery/door/airlock/mainship/medical/glass/research{
-	dir = 2
-	},
 /obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -27618,9 +27618,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "wUV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/structure/cable,
 /obj/machinery/door/firedoor/multi_tile,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "wVu" = (
