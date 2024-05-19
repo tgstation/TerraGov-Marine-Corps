@@ -177,3 +177,17 @@
   - bugfix: fix a mistaken var edit that made forcefields breakable
   jonash07:
   - spellcheck: Added missing descriptions for a few packets
+2024-05-19:
+  Barnet2:
+  - admin: Added logging to LZ Containment Shutters
+  Lumipharon:
+  - bugfix: Stagger dam mod properly applies when a projectile is created instead
+      of when it hits
+  - balance: Stagger dam mod properly applies to nonmobs
+  - bugfix: 'Campaign: Fixed respawns not using attrition'
+  - bugfix: fixed an alamo sentry facing the wrong way
+  - bugfix: Removed various invisible blockers on some maps
+  Xander3359:
+  - rscadd: Ports TG Drinks
+  yyzsong:
+  - rscadd: adds thermal tarps to valhalla (marine weapons vendor, specialist tab)

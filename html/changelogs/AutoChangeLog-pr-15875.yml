@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Stagger dam mod properly applies when a projectile is created instead of when it hits"
-  - balance: "Stagger dam mod properly applies to nonmobs"
