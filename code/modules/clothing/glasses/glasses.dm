@@ -568,11 +568,3 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, NIGHT_VISION_GOGGLES_TRAIT)
 
-/obj/item/clothing/glasses/night_vision/vsd
-	name = "\improper CM-12 night vision goggles"
-	desc = "V.S.D's standard issue night vision goggles! Came with a battery, thanks to the beloved hackers of V.S.D, you will no longer have to switch the battery out! Might cause burning, they also combust when you take them off."
-	icon = 'icons/mob/clothing/eyes.dmi'
-	icon_state = "vsd_nvg"
-	deactive_state = "vsd_nvg_off"
-	tint = COLOR_GREEN
-	active_energy_cost = 0	//its real
