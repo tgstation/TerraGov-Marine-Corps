@@ -107,3 +107,14 @@
 	name = "\improper Optical imager prescription ballistic goggles"
 	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
 	prescription = TRUE
+
+/obj/item/clothing/glasses/night/vsd
+	name = "\improper CM-12 night vision goggles"
+	desc = "V.S.D's standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "vsd_nvg"
+	worn_icon_state = "vsd_nvg"
+	deactive_state = "vsd_nvg_off"
+	toggleable = TRUE
+	tint = COLOR_GREEN
+	item_flags = DELONDROP

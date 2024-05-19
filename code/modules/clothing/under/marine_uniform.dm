@@ -600,7 +600,6 @@
 
 /obj/item/clothing/under/vsd/secondary
 	name = "V.S.D jumpsuit"
-	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
 	icon_state = "vsd_uniform_secondary"
 	worn_icon_state = "vsd_uniform_secondary"
 
@@ -609,7 +608,6 @@
 
 /obj/item/clothing/under/vsd/upp
 	name = "V.S.D jumpsuit"
-	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
@@ -618,7 +616,6 @@
 
 /obj/item/clothing/under/vsd/shirt
 	name = "V.S.D shirt"
-	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
 	icon_state = "vsd_shirt"
 	worn_icon_state = "vsd_shirt"
 
@@ -627,7 +624,6 @@
 
 /obj/item/clothing/under/vsd/sleeveless
 	name = "V.S.D shirt"
-	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
 	icon_state = "vsd_shirt_sleeveless"
 	worn_icon_state = "vsd_shirt_sleeveless"
 

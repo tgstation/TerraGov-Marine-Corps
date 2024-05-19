@@ -626,7 +626,7 @@
 //-------------------------------------------------------
 //C96 based on P96
 
-/obj/item/weapon/gun/pistol/c96
+/obj/item/weapon/gun/pistol/vsd_pistol
 	name = "\improper C96 pistol"
 	desc = "A 'riot control' weapon used by the protectors of colonies. Now adopted by the V.S.D, it is the standard side arm for all members. Firing armor piercing 9x19mm parabellum with a capacity of 15 rounds."
 	icon_state = "c96"
@@ -638,8 +638,8 @@
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/pistol/c96
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/c96)
+	default_ammo_type = /obj/item/ammo_magazine/pistol/vsd_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vsd_pistol)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -661,8 +661,54 @@
 	scatter = -1
 	scatter_unwielded = 4
 
-/obj/item/weapon/gun/pistol/c96/standard
+/obj/item/weapon/gun/pistol/vsd_pistol/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
+
+/obj/item/weapon/gun/pistol/xmdivider
+	name = "\improper XM104 'Divider' Revolver"
+	desc = "Intertech's one of a kind revolver. Fires custom incendiary .357 rounds, has firemode switch of single action and burst fire. Kicks like a fucking mule. You remember High Command saying: 'Don't let this get into enemy hands'."
+	icon = 'icons/obj/items/guns/pistols64.dmi'
+	icon_state = "xm104"
+	worn_icon_state = "xm104"
+	fire_animation = "xm104_fire"
+	caliber = CALIBER_357 //codex
+	max_chamber_items = 6 //codex
+	default_ammo_type = /obj/item/ammo_magazine/pistol/xmdivider
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xmdivider)
+	force = 8
+	actions_types = null
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19, "rail_x" = 16, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
+	windup_delay = 0.5 SECONDS
+	aim_slowdown = 0.1
+	burst_amount = 3
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
+	fire_delay = 0.75 SECONDS
+	akimbo_additional_delay = 0.6
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 5
+	scatter = 2
+	recoil = 4
+	recoil_unwielded = 3
+
+/obj/item/weapon/gun/pistol/xmdivider/gunslinger
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+	)
 
 //-------------------------------------------------------
 /*

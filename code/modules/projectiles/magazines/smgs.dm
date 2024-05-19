@@ -223,10 +223,10 @@
 //------------------------------------------------------
 //C17 riot PDW
 
-/obj/item/ammo_magazine/smg/c17
+/obj/item/ammo_magazine/smg/vsd_pdw
 	name = "\improper C17 drum mag (.45 ACP)"
 	desc = "An Armor-Piercing .45 ACP caseless submachinegun magazine."
-	default_ammo = /datum/ammo/bullet/smg/heavyap
+	default_ammo = /datum/ammo/bullet/smg/ap/hv
 	caliber = CALIBER_45ACP
 	icon_state = "ppsh_ext"
 	max_rounds = 55

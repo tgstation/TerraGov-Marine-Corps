@@ -702,7 +702,7 @@
 	bonus_overlay = "l26_100"
 	max_rounds = 200
 
-/obj/item/ammo_magazine/rifle/c550
+/obj/item/ammo_magazine/rifle/vsd_rifle
 	name = "\improper C550 magazine (10x27mm)"
 	desc = "A 10x27mm rifle magazine."
 	caliber = CALIBER_10x27_CASELESS

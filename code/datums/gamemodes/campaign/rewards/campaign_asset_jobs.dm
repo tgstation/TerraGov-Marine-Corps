@@ -743,22 +743,22 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/vsd/standard/c550/campaign,
+		/datum/outfit/job/vsd/standard/gruntone/campaign,
 		/datum/outfit/job/vsd/standard/ksg/campaign,
-		/datum/outfit/job/vsd/standard/c550second/campaign,
-		/datum/outfit/job/vsd/standard/c550third/campaign,
+		/datum/outfit/job/vsd/standard/gruntsecond/campaign,
+		/datum/outfit/job/vsd/standard/gruntthree/campaign,
 	)
 
-/datum/outfit/job/vsd/standard/c550/campaign
+/datum/outfit/job/vsd/standard/gruntone/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/vsd/standard/ksg/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/standard/c550second/campaign
+/datum/outfit/job/vsd/standard/gruntsecond/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/standard/c550third/campaign
+/datum/outfit/job/vsd/standard/gruntthree/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/vsd/specialist/campaign_bonus
@@ -770,8 +770,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 		/datum/outfit/job/vsd/spec/flamer/campaign,
 		/datum/outfit/job/vsd/spec/demolitionist/campaign,
 		/datum/outfit/job/vsd/spec/gunslinger/campaign,
-		/datum/outfit/job/vsd/spec/uslspec1/campaign,
-		/datum/outfit/job/vsd/spec/uslspec2/campaign,
+		/datum/outfit/job/vsd/spec/uslspecone/campaign,
+		/datum/outfit/job/vsd/spec/uslspectwo/campaign,
 	)
 
 /datum/outfit/job/vsd/spec/flamer/campaign
@@ -783,10 +783,10 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 /datum/outfit/job/vsd/spec/gunslinger/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/spec/uslspec1/campaign
+/datum/outfit/job/vsd/spec/uslspecone/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/spec/uslspec2/campaign
+/datum/outfit/job/vsd/spec/uslspectwo/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/vsd/medic/campaign_bonus
@@ -796,13 +796,13 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/vsd/medic/ksg/campaign,
-		/datum/outfit/job/vsd/medic/c550/campaign,
+		/datum/outfit/job/vsd/medic/vsd_rifle/campaign,
 	)
 
 /datum/outfit/job/vsd/medic/ksg/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/medic/c550/campaign
+/datum/outfit/job/vsd/medic/vsd_rifle/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/vsd/engineer/campaign_bonus
@@ -812,13 +812,13 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/vsd/engineer/l26/campaign,
-		/datum/outfit/job/vsd/engineer/c550/campaign,
+		/datum/outfit/job/vsd/engineer/vsd_rifle/campaign,
 	)
 
 /datum/outfit/job/vsd/engineer/l26/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/engineer/c550/campaign
+/datum/outfit/job/vsd/engineer/vsd_rifle/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/vsd/juggernaut/campaign_bonus
@@ -845,7 +845,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	outfits = list(
 		/datum/outfit/job/vsd/leader/one/campaign,
 		/datum/outfit/job/vsd/leader/two/campaign,
-		/datum/outfit/job/vsd/leader/upp3/campaign,
+		/datum/outfit/job/vsd/leader/uppthree/campaign,
 	)
 
 /datum/outfit/job/vsd/leader/one/campaign
@@ -854,5 +854,5 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 /datum/outfit/job/vsd/leader/two/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/vsd/leader/upp3/campaign
+/datum/outfit/job/vsd/leader/uppthree/campaign
 	ears = /obj/item/radio/headset/mainship/som

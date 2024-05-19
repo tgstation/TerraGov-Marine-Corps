@@ -974,6 +974,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
+	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
@@ -998,11 +1002,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
-/obj/item/weapon/gun/launcher/rocket/icc/do_fire(obj/object_to_fire)
+/obj/item/weapon/gun/launcher/rocket/vsd/do_fire(obj/object_to_fire)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/vsd/incendiary))
 		gun_user?.record_war_crime()
 
 //-------------------------------------------------------

@@ -65,9 +65,6 @@
 	name = "incendiary heavy revolver bullet"
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC
 
-/datum/ammo/bullet/revolver/heavy/incen/vsd
-	damage = 50
-	penetration = 10
 
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"

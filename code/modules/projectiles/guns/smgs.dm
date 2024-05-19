@@ -713,7 +713,7 @@
 //-------------------------------------------------------
 // C17 Riot PDW
 
-/obj/item/weapon/gun/smg/c17
+/obj/item/weapon/gun/smg/vsd_pdw
 	name = "\improper C17 Riot PDW"
 	desc = "The C17 PDW, made by Crash Core for civilian use. Fires Armor Piercing .45 ACP in a 55 round drum mag, somewhat good accuracy and firerate. Meant to contain prison riots, this has more kills than arrests."
 	icon = 'icons/obj/items/guns/submachineguns.dmi'
@@ -726,9 +726,9 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	equip_slot_flags = ITEM_SLOT_BACK
 	type_of_casings = null
-	default_ammo_type = /obj/item/ammo_magazine/smg/c17
+	default_ammo_type = /obj/item/ammo_magazine/smg/vsd_pdw
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/smg/c17,
+		/obj/item/ammo_magazine/smg/vsd_pdw,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -756,17 +756,17 @@
 	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25
-	accuracy_mult = 1
+	accuracy_mult = 0.55
 	accuracy_mult_unwielded = 0.85
-	fire_delay = 0.15 SECONDS
-	burst_delay =  0.1 SECONDS
+	fire_delay = 0.25 SECONDS
+	burst_delay =  0.2 SECONDS
 	burst_amount = 4
 	scatter = 3
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
 
-/obj/item/weapon/gun/smg/c17/standard
+/obj/item/weapon/gun/smg/vsd_pdw/standard
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator)
 
-/obj/item/weapon/gun/smg/c17/medic
+/obj/item/weapon/gun/smg/vsd_pdw/medic
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight, /obj/item/attachable/extended_barrel)

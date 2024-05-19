@@ -2689,7 +2689,7 @@
 
 /obj/item/weapon/gun/rifle/vsd_lmg
 	name = "\improper L26 support machine gun"
-	desc = "The Syndicates main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
+	desc = "The Syndicate's main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "l26"
 	worn_icon_state = "l26"
@@ -2721,10 +2721,6 @@
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight/under,
@@ -2751,7 +2747,7 @@
 
 // C550
 
-/obj/item/weapon/gun/rifle/c550
+/obj/item/weapon/gun/rifle/vsd_rifle
 	name = "\improper C550 combat rifle"
 	desc = "Crash Core's first ever rifle. With designs reminiscent of the Sauer series, this gun is the perfect choice for CQC. Chambered in 10x27mm. Packs a kick to anyone standing infront of you. "
 	icon = 'icons/obj/items/guns/rifles64.dmi'
@@ -2764,8 +2760,8 @@
 	aim_slowdown = 0.5
 	wield_delay =  0.9 SECONDS
 	max_shells = 30 //codex
-	default_ammo_type = /obj/item/ammo_magazine/rifle/c550
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/c550)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_rifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -2791,8 +2787,8 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
-/obj/item/weapon/gun/rifle/c550/standard
+/obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
-/obj/item/weapon/gun/rifle/c550/medic
+/obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)

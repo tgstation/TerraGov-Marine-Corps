@@ -328,7 +328,7 @@
 	lifetime = 6
 	expansion_speed = 3
 	strength = 2
-	smoke_traits = SMOKE_SATRAPINE|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
 
 /obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
