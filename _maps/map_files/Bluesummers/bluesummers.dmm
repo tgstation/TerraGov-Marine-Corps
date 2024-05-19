@@ -25,6 +25,10 @@
 	dir = 8
 	},
 /area/space)
+"di" = (
+/obj/structure/flora/drought/aster,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "ds" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/plating,
@@ -76,6 +80,10 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/space)
+"gu" = (
+/obj/structure/flora/drought/grass,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "gx" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating/plating_catwalk,
@@ -105,6 +113,10 @@
 "ia" = (
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor,
 /area/space)
+"ij" = (
+/obj/structure/flora/drought/tall_cactus,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "ik" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/space)
@@ -122,6 +134,10 @@
 "kW" = (
 /turf/open/floor/plating/ground/desertdam/cave,
 /area/space)
+"kX" = (
+/obj/structure/flora/drought/yucca,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "lp" = (
 /turf/open/floor/plating/ground/desertdam/cave/desert_into_outer_cave_floor,
 /area/space)
@@ -136,6 +152,10 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
+"oz" = (
+/obj/structure/flora/drought/leafy_plant,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "pM" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
@@ -146,6 +166,10 @@
 /area/space)
 "qn" = (
 /turf/open/floor/plating/ground/desertdam/cave/outer_cave_to_inner_cave/alt,
+/area/space)
+"qX" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating,
 /area/space)
 "ru" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -220,6 +244,10 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/space)
+"wX" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/ground/drought/cave,
+/area/space)
 "xn" = (
 /turf/open/floor/plating/ground/desertdam/desert,
 /area/space)
@@ -260,6 +288,10 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/space)
+"Bi" = (
+/obj/structure/rock/variable/drought,
+/turf/open/floor/plating/ground/drought/cave,
+/area/space)
 "Bp" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
@@ -276,13 +308,21 @@
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
 "Ff" = (
-/obj/structure/girder,
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
+/area/space)
+"GD" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating/ground/drought,
 /area/space)
 "Hd" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
 	},
+/area/space)
+"Hi" = (
+/obj/structure/flora/drought/shroom,
+/turf/open/floor/plating/ground/drought,
 /area/space)
 "Hs" = (
 /obj/effect/turf_decal/sandytile,
@@ -334,6 +374,14 @@
 "Oi" = (
 /turf/open/floor/plating/ground/drought,
 /area/space)
+"Pt" = (
+/obj/structure/flora/drought/short_cactus,
+/turf/open/floor/plating/ground/drought,
+/area/space)
+"PA" = (
+/obj/structure/flora/drought/barrel_cactus,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "PU" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -382,11 +430,19 @@
 "VZ" = (
 /turf/open/beach/sand,
 /area/space)
+"Wm" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/ground/drought,
+/area/space)
 "Xo" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating,
+/area/space)
+"Yd" = (
+/obj/structure/flora/tree/dead/drought,
+/turf/open/floor/plating/ground/drought,
 /area/space)
 "YG" = (
 /obj/machinery/landinglight/lz1{
@@ -2395,7 +2451,7 @@ hM
 he
 hM
 ia
-Oi
+hM
 zu
 hM
 lw
@@ -12580,7 +12636,7 @@ Oi
 Oi
 Oi
 Bp
-Bp
+Bi
 Bp
 Bp
 Bp
@@ -13129,7 +13185,7 @@ Bp
 Bp
 Bp
 Bp
-Bp
+Bi
 Bp
 Bp
 Bp
@@ -13490,7 +13546,7 @@ Vp
 Vp
 Vp
 Vp
-Bp
+wX
 ot
 Bp
 Bp
@@ -13861,7 +13917,7 @@ Vp
 Vp
 Vp
 Vp
-Bp
+wX
 ot
 Bp
 Bp
@@ -14948,7 +15004,7 @@ Vp
 Vp
 ip
 rF
-Bp
+wX
 rF
 rF
 ot
@@ -15847,7 +15903,7 @@ Vp
 Oi
 Oi
 Oi
-Oi
+oz
 Oi
 Oi
 Oi
@@ -16030,7 +16086,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Hi
 Oi
 Oi
 Oi
@@ -16206,18 +16262,18 @@ Vp
 Oi
 Oi
 Oi
-Oi
+Wm
 ao
 ao
 Oi
 Oi
+gu
 Oi
 Oi
 Oi
 Oi
 Oi
-Oi
-Oi
+Wm
 ao
 rF
 ao
@@ -16399,7 +16455,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Pt
 Oi
 rN
 Oi
@@ -16760,11 +16816,11 @@ Oi
 Oi
 ao
 Oi
+di
+kX
 Oi
 Oi
-Oi
-Oi
-Oi
+ij
 Oi
 Oi
 rN
@@ -16941,6 +16997,7 @@ Oi
 rN
 rF
 ao
+Yd
 Oi
 Oi
 Oi
@@ -16948,8 +17005,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
+Wm
 rN
 Oi
 Oi
@@ -17127,7 +17183,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+PA
 Oi
 Oi
 Oi
@@ -17500,7 +17556,7 @@ cd
 MG
 Oi
 Oi
-Oi
+Wm
 rN
 ao
 Vp
@@ -17834,7 +17890,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Wm
 Oi
 Oi
 Oi
@@ -19140,7 +19196,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Wm
 rN
 Lf
 Vp
@@ -19654,7 +19710,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Wm
 ao
 ao
 Oi
@@ -20405,7 +20461,7 @@ Oi
 Oi
 Oi
 rF
-Oi
+Wm
 Oi
 Oi
 Oi
@@ -20748,7 +20804,7 @@ Vp
 Vp
 rF
 rF
-Oi
+Wm
 rF
 Oi
 Oi
@@ -21130,7 +21186,7 @@ Oi
 Oi
 Oi
 Oi
-Oi
+Wm
 rN
 ip
 rF
@@ -22394,9 +22450,9 @@ ur
 ur
 ur
 ur
-YL
-YL
-YL
+ur
+ur
+ur
 YL
 YL
 YL
@@ -22574,9 +22630,9 @@ Vp
 Vp
 Vp
 Vp
-Oi
-Oi
-Oi
+Vp
+Vp
+Vp
 Oi
 Oi
 Oi
@@ -22755,9 +22811,9 @@ Vp
 Vp
 Vp
 Vp
-Oi
-Oi
-Oi
+Vp
+Vp
+Vp
 Oi
 Oi
 Oi
@@ -22936,9 +22992,9 @@ Vp
 Vp
 Vp
 Vp
-Oi
-Oi
-Oi
+Vp
+Vp
+Vp
 Oi
 Oi
 Oi
@@ -23116,8 +23172,8 @@ Vp
 Vp
 Vp
 Vp
-Oi
-Oi
+Vp
+Vp
 Oi
 Oi
 Oi
@@ -24394,13 +24450,13 @@ Oi
 Oi
 Oi
 Oi
+rN
+Wm
 Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
+rN
 Oi
 Oi
 Oi
@@ -24576,14 +24632,14 @@ Oi
 Oi
 Oi
 Oi
+rN
+rN
+rF
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rF
+rF
+rN
+Wm
 Oi
 Oi
 Oi
@@ -24756,16 +24812,16 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rN
+rF
+rN
+rF
+rF
+rF
+rF
+rF
+rF
+rF
 Oi
 Oi
 Oi
@@ -24937,18 +24993,18 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rN
+rN
+ip
+ip
+ip
+fN
+Wm
+ip
+ip
+ip
+ip
+rN
 Oi
 Oi
 Oi
@@ -25120,17 +25176,17 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rF
+rF
+ip
+rN
+rF
+rF
+rF
+rF
+qX
+ip
+rF
 Oi
 Oi
 Oi
@@ -25302,17 +25358,17 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+Wm
+rN
+ip
+rF
+rF
+rN
+rN
+rF
+rF
+ip
+rF
 Oi
 Oi
 Oi
@@ -25486,17 +25542,17 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+ip
+rF
+rF
+GD
+rF
+rF
+rN
+ip
+rN
+rN
+rN
 Oi
 Oi
 Oi
@@ -25666,17 +25722,17 @@ Oi
 Oi
 Oi
 Oi
+rN
+rF
+ip
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rF
+rF
+rF
+rF
+rF
+ip
+rF
 Oi
 Oi
 Oi
@@ -25849,16 +25905,16 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rF
+ip
+rN
+rF
+rF
+GD
+ip
+ip
+ip
+Wm
 Oi
 Oi
 Oi
@@ -26030,15 +26086,15 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rN
+rN
+ip
+ip
+Ff
+Ff
+rF
+rF
+rF
 Oi
 Oi
 Oi
@@ -26214,12 +26270,12 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+rF
+rN
+rN
+rF
+rF
+rN
 Oi
 Oi
 Oi
@@ -26397,8 +26453,8 @@ Oi
 Oi
 Oi
 Oi
-Oi
-Oi
+Wm
+rN
 Oi
 Oi
 Oi

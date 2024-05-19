@@ -432,7 +432,6 @@
 
 /turf/open/floor/plating/ground/drought/cave/deep
 	icon = 'icons/turf/cave.dmi'
-	icon_state = "cave"
 	icon_variants = 7
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
