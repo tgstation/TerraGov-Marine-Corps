@@ -6882,7 +6882,7 @@
 "fOe" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	req_access = null;
-	req_one_access = s
+	req_one_access = list(44,48)
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
@@ -9154,7 +9154,8 @@
 "hFf" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "ammo1";
-	name = "Dropship Armament Storage"
+	name = "Dropship Armament Storage";
+	req_one_access = list(3,2,7,12,40,43,44,48)
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -16672,7 +16673,8 @@
 /obj/machinery/door_control/mainship/ammo{
 	dir = 1;
 	id = "ammo1";
-	name = "Dropship Armament Storage"
+	name = "Dropship Armament Storage";
+	req_one_access = list(3,2,7,12,40,43,44,48)
 	},
 /obj/machinery/light/floor{
 	dir = 8
@@ -20454,7 +20456,8 @@
 /obj/machinery/door_control/mainship/ammo{
 	dir = 1;
 	id = "ammo1";
-	name = "Dropship Armament Storage"
+	name = "Dropship Armament Storage";
+	req_one_access = list(3,2,7,12,40,43,44,48)
 	},
 /obj/machinery/light/floor{
 	dir = 4
@@ -26593,7 +26596,8 @@
 /obj/machinery/door_control/mainship/ammo{
 	dir = 4;
 	id = "ammo1";
-	name = "Dropship Armament Storage"
+	name = "Dropship Armament Storage";
+	req_one_access = list(3,2,7,12,40,43,44,48)
 	},
 /turf/open/floor/mainship/black{
 	dir = 8
