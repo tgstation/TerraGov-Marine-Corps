@@ -712,6 +712,24 @@
 
 /obj/structure/window/framed/hybrisa/colony/engineering
 
+/obj/structure/window/framed/hybrisa/marshalls/cell
+
+/obj/structure/window/framed/hybrisa/colony/office
+
+/obj/structure/window/framed/hybrisa/spaceport/reinforced
+
+/obj/structure/window/framed/hybrisa/colony/hospital
+
+/obj/structure/window/framed/hybrisa/colony/engineering/reinforced
+
+/obj/structure/window/framed/hybrisa/colony/engineering/hull
+
+/obj/structure/window/framed/hybrisa/colony/hospital/reinforced
+
+/obj/structure/window/framed/hybrisa/colony/reinforced
+
+/obj/structure/window/framed/hybrisa/marshalls/reinforced
+
 /obj/structure/window/framed/kutjevo
 	name = "window"
 	icon = 'icons/obj/smooth_objects/kutjevo_window_blue.dmi'

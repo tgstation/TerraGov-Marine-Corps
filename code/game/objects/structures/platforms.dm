@@ -247,3 +247,40 @@
 	icon_state = "zenithplatform_deco3"
 	name = "raised metal corner"
 	desc = "A raised level of metal, often used to elevate areas above others. You could probably climb it."
+
+
+/obj/structure/platform/mineral
+	icon_state = "stone"
+
+/obj/structure/platform_decoration/mineral
+	icon_state = "stone_deco"
+
+/obj/structure/platform/mineral/sandstone
+	name = "sandstone platform"
+	desc = "A platform supporting elevated ground, made of sandstone. Has what seem to be ancient hieroglyphs on its side."
+	color = "#c6a480"
+
+/obj/structure/platform/mineral/sandstone/runed
+	name = "sandstone temple platform"
+	color = "#b29082"
+
+
+/obj/structure/platform_decoration/mineral/sandstone
+	name = "sandstone platform corner"
+	desc = "A platform corner supporting elevated ground, made of sandstone. Has what seem to be ancient hieroglyphs on its side."
+	color = "#c6a480"
+
+/obj/structure/platform/shiva/catwalk
+	icon_state = "shiva"
+	name = "raised rubber cord platform"
+	desc = "Reliable steel and a polymer rubber substitute. Doesn't crack under cold weather."
+
+/obj/structure/platform_decoration/shiva/catwalk
+	icon_state = "shiva_deco"
+	name = "raised rubber cord platform"
+	desc = "Reliable steel and a polymer rubber substitute. Doesn't crack under cold weather."
+
+/obj/structure/platform_decoration/mineral/sandstone/runed
+	name = "sandstone temple platform corner"
+	color = "#b29082"
+

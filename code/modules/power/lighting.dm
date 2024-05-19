@@ -449,6 +449,8 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
+/obj/machinery/light/small/blue
+
 /obj/machinery/light/spot
 	name = "spotlight"
 	fitting = "large tube"
