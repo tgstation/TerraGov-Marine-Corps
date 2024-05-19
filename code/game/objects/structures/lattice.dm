@@ -11,8 +11,6 @@
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
-	if(!isspaceturf(loc))
-		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)
