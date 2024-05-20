@@ -21,6 +21,7 @@ export const MedScanner = (props) => {
     health,
     max_health,
     crit_threshold,
+    dead_threshold,
     total_brute,
     total_burn,
     toxin,
@@ -85,7 +86,10 @@ export const MedScanner = (props) => {
                     ? ''
                     : " If the patient's health dips below " +
                       crit_threshold +
-                      '%, they enter critical condition and suffocate rapidly.')
+                      '%, they enter critical condition and suffocate rapidly.') +
+                  " If the patient's health hits " +
+                  (dead_threshold / max_health) * 100 +
+                  '%, they die.'
                 }
               >
                 <ProgressBar
@@ -200,7 +204,7 @@ export const MedScanner = (props) => {
                       chemical.description +
                       (chemical.od
                         ? ' (OVERDOSING)'
-                        : !chemical.dangerous
+                        : chemical.od_threshold > 0 && !chemical.dangerous
                           ? ' (OD: ' + chemical.od_threshold + 'u)'
                           : '')
                     }
@@ -252,7 +256,7 @@ export const MedScanner = (props) => {
                     {limb.name[0].toUpperCase() + limb.name.slice(1)}
                   </Stack.Item>
                   {limb.missing ? (
-                    <Tooltip content="This limb is missing! Can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Either a printed limb or the missing limb will work as a replacement.">
+                    <Tooltip content="Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.">
                       <Stack.Item color={'red'} bold={1}>
                         MISSING
                       </Stack.Item>
@@ -336,7 +340,11 @@ export const MedScanner = (props) => {
                             <Box
                               inline
                               color={
-                                limb.limb_type === 'Robotic' ? 'pink' : 'tan'
+                                limb.limb_type === 'Robotic'
+                                  ? species === 'robot'
+                                    ? 'lime'
+                                    : 'pink'
+                                  : 'tan'
                               }
                               bold={1}
                             >

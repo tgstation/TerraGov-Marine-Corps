@@ -159,6 +159,7 @@ REAGENT SCANNER
 		"health" = patient.health,
 		"max_health" = patient.maxHealth,
 		"crit_threshold" = patient.get_crit_threshold(),
+		"dead_threshold" = patient.get_death_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
@@ -380,7 +381,7 @@ REAGENT SCANNER
 			advice += list(list(
 				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." : "Use a blowtorch or nanopaste to repair the dented areas.",
 				"tooltip" = organic_patient ? "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-				"Only a blowtorch or nanopaste can repair dented robotic limbs.",
+												"Only a blowtorch or nanopaste can repair dented robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "tools",
 				"color" = organic_patient ? "green" : "red"
 				))
@@ -388,7 +389,7 @@ REAGENT SCANNER
 			advice += list(list(
 				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." : "Use cable coils or nanopaste to repair the scorched areas.",
 				"tooltip" = organic_patient ? "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-				"Only cable coils or nanopaste can repair scorched robotic limbs.",
+												"Only cable coils or nanopaste can repair scorched robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "plug",
 				"color" = "orange"
 				))
@@ -443,6 +444,19 @@ REAGENT SCANNER
 					))
 				if(chemicals_lists["Alkysine"])
 					if(chemicals_lists["Alkysine"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/datum/internal_organ/eyes/eyes = patient.internal_organs_by_name["eyes"]
+			if(eyes.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of imidazoline.",
+					"tooltip" = "Eye damage detected. Imidazoline heals eye damage. If left untreated, patient may be unable to see properly.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Imidazoline"])
+					if(chemicals_lists["Imidazoline"]["amount"] < 3)
 						advice += temp_advice
 				else
 					advice += temp_advice
