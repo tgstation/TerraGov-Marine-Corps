@@ -311,4 +311,21 @@
 		return
 	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
+/obj/machinery/button/valhalla/vehicle_button
+	name = "Vehicle Spawner"
+
+/obj/machinery/button/valhalla/vehicle_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	var/list/spawnable_vehicles = list(/obj/vehicle/sealed/armored/multitile,
+	/obj/vehicle/sealed/armored/multitile/apc)
+
+	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
+	if(!selected_vehicle)
+		return
+
+	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(xeno_attacker, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
+	linked = new selected_vehicle(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+
 #undef DOOR_FLAG_OPEN_ONLY
