@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Activating the teleporter asset gives access to a teleport COPE air support type"
