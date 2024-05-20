@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some stutter with smooth movement"
+  - bugfix: "fixed some other movement related bugs"
