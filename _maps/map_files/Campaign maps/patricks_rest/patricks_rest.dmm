@@ -2844,7 +2844,7 @@
 /area/patricks_rest/surface/building/ore_storage)
 "mF" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "mG" = (
@@ -4834,8 +4834,8 @@
 /area/patricks_rest/surface/building/residential_cent)
 "vL" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "vM" = (
@@ -9339,7 +9339,7 @@
 /area/patricks_rest/surface/building/barracks)
 "RK" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/prison/sterilewhite,
 /area/patricks_rest/surface/building/residential_cent)
 "RL" = (

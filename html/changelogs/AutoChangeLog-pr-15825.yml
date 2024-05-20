@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign limited loadout quantities scale with pop"
+  - balance: "Campaign: LE RR loadout limit increased to 3 from 2"

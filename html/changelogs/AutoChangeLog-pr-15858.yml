@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Xenos whose abilities cannot be used in a closed turf also cannot be used in dense & opaque objects."

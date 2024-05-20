@@ -561,6 +561,7 @@
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
 			/obj/item/jetpack_marine = -1,
+			/obj/item/bodybag/tarp = -1,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = -1,
@@ -1201,7 +1202,7 @@
 			/obj/item/clothing/under/marine/striped = -1,
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/under/marine/squad/neck/delta = -1,
-			/obj/item/clothing/under/marine/squad/neck/charile = -1,
+			/obj/item/clothing/under/marine/squad/neck/charlie = -1,
 			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
 			/obj/item/clothing/gloves/marine = -1,

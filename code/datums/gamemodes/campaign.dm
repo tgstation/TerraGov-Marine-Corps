@@ -45,11 +45,12 @@
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list_timer))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(end_mission))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
+	INVOKE_ASYNC(src, PROC_REF(scale_loadouts)) //load_new_mission delays other proc calls in this proc both before and after it for whatever reason
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
 	load_new_mission(new /datum/campaign_mission/tdm/first_mission(factions[1])) //this is the 'roundstart' mission
@@ -269,10 +270,22 @@
 		player_respawn(player)
 		return
 
-///Wrapper for cutting the deathlist via timer due to the players not immediately returning to base
-/datum/game_mode/hvh/campaign/proc/cut_death_list_timer(datum/source)
+///Handles post mission cleanup
+/datum/game_mode/hvh/campaign/proc/end_mission(datum/source)
 	SIGNAL_HANDLER
 	addtimer(CALLBACK(src, PROC_REF(cut_death_list)), AFTER_MISSION_TELEPORT_DELAY + 1)
+	scale_loadouts()
+
+///Limited loadout quantities scale by pop
+/datum/game_mode/hvh/campaign/proc/scale_loadouts(pop_override)
+	if(!isnum(pop_override))
+		pop_override = length(GLOB.clients)
+	var/loadout_ratio = clamp((pop_override - CAMPAIGN_LOADOUT_POP_MIN) / (CAMPAIGN_LOADOUT_POP_MAX - CAMPAIGN_LOADOUT_POP_MIN), 0, 1)
+	for(var/job in GLOB.campaign_loadout_items_by_role)
+		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
+			if(loadout_item.quantity == -1)
+				continue
+			loadout_item.quantity = floor(LERP(initial(loadout_item.quantity), initial(loadout_item.quantity) * CAMPAIGN_LOADOUT_MULT_MAX, loadout_ratio))
 
 ///cuts the death time and respawn_timers list at mission end
 /datum/game_mode/hvh/campaign/proc/cut_death_list(datum/source)
@@ -370,11 +383,10 @@
 		return
 
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
-		var/active_attrition = stat_list[job_datum.faction].active_attrition_points
-		if(active_attrition < job_datum.job_cost)
+		if(stat_list[job_datum.faction].active_attrition_points < job_datum.job_cost)
 			to_chat(usr, span_warning("Unable to spawn. Insufficient attrition."))
 			return
-		active_attrition -= job_datum.job_cost
+		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
 

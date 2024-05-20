@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added a vehicle spawning area to xeno valhalla"
+  - rscadd: "Added a vehicle spawner and vehicle spawner landmark (Things used for spawning in Valhalla)"

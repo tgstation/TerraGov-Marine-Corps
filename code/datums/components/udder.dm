@@ -92,7 +92,7 @@
 /obj/item/udder/proc/initial_conditions()
 	if(!udder_mob)
 		return
-	reagents.add_reagent(/datum/reagent/consumable/drink/milk, 20)
+	reagents.add_reagent(/datum/reagent/consumable/milk, 20)
 	START_PROCESSING(SSobj, src)
 
 /**
@@ -102,7 +102,7 @@
  */
 /obj/item/udder/proc/generate()
 	if(prob(5))
-		reagents.add_reagent(/datum/reagent/consumable/drink/milk, rand(5, 10))
+		reagents.add_reagent(/datum/reagent/consumable/milk, rand(5, 10))
 		if(on_generate_callback)
 			on_generate_callback.Invoke(reagents.total_volume, reagents.maximum_volume)
 

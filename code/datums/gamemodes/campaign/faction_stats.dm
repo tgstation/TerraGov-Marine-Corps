@@ -121,6 +121,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		purchasable_assets += asset
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED, PROC_REF(mission_start))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 
@@ -225,15 +226,36 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	qdel(faction_assets[removed_asset])
 	faction_assets -= removed_asset
 
+///Sets attrition for the team
+/datum/faction_stats/proc/set_attrition(amount, mob/user)
+	var/combined_attrition = total_attrition_points + active_attrition_points
+	amount = clamp(amount, 0, combined_attrition)
+	total_attrition_points = combined_attrition - amount
+	active_attrition_points = amount
+	stats_flags |= CAMPAIGN_TEAM_HAS_SET_ATTRITION
+
+	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+		faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
+		to_chat(faction_member, span_warning("[user ? user : "Auto selection"] has assigned [amount] attrition points for the next mission."))
+	update_static_data_for_all_viewers()
+
+///handles mission start updates
+/datum/faction_stats/proc/mission_start(datum/source)
+	SIGNAL_HANDLER
+	if(stats_flags & CAMPAIGN_TEAM_HAS_SET_ATTRITION)
+		return
+	set_attrition(length(GLOB.alive_human_list_faction[faction]))
+
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
+	stats_flags &= ~CAMPAIGN_TEAM_HAS_SET_ATTRITION
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if(faction == winning_faction)
-		stats_flags |= MISSION_SELECTION_ALLOWED
+		stats_flags |= CAMPAIGN_TEAM_MISSION_SELECT_ALLOWED
 		loss_bonus = 0
 	else
-		stats_flags &= ~MISSION_SELECTION_ALLOWED
+		stats_flags &= ~CAMPAIGN_TEAM_MISSION_SELECT_ALLOWED
 		if((completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
 			loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
 
@@ -451,14 +473,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			var/combined_attrition = total_attrition_points + active_attrition_points
 			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
-			combined_attrition = total_attrition_points + active_attrition_points //we do it again in case the amount has changed
-			choice = clamp(choice, 0, combined_attrition)
-			total_attrition_points = combined_attrition - choice
-			active_attrition_points = choice
-			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
-				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, span_warning("[user] has assigned [choice] attrition points for the next mission."))
-			update_static_data_for_all_viewers()
+			//check again so you can't just hold the window open
+			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
+				to_chat(user, span_warning("Current mission already ongoing, unable to assign more personnel at this time."))
+				return
+			set_attrition(choice, user)
 			return TRUE
 
 		if("set_next_mission")
@@ -474,7 +493,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
 				to_chat(user, span_warning("Current mission still ongoing!"))
 				return
-			if(!(stats_flags & MISSION_SELECTION_ALLOWED))
+			if(!(stats_flags & CAMPAIGN_TEAM_MISSION_SELECT_ALLOWED))
 				to_chat(user, span_warning("The opposing side has the initiative, win a mission to regain it."))
 				return
 			current_mode.load_new_mission(choice)
