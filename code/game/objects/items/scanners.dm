@@ -284,23 +284,15 @@ REAGENT SCANNER
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // will be used for setting revivable_boolean, the TRUE/FALSE entry used by tgui
-	else if(!organic_patient)
-		if(revivable_patient)
-			data["revivable_string"] = "Ready to reboot"
-			data["revivable_boolean"] = TRUE
-		else
-			data["revivable_string"] = "Not ready to reboot - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
-			data["revivable_boolean"] = FALSE
+	else if(organic_patient && !patient.has_working_organs())
+		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
+		data["revivable_boolean"] = FALSE
+	else if(revivable_patient)
+		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
+		data["revivable_boolean"] = TRUE
 	else
-		if(!patient.has_working_organs())
-			data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
-			data["revivable_boolean"] = FALSE
-		else if(revivable_patient)
-			data["revivable_string"] = "Ready to defibrillate"
-			data["revivable_boolean"] = TRUE
-		else
-			data["revivable_string"] = "Not ready to defibrillate - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
-			data["revivable_boolean"] = FALSE
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
+		data["revivable_boolean"] = FALSE
 
 	// ADVICE
 	var/list/advice = list()
