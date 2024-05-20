@@ -75,12 +75,12 @@
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
-	damage = 200
+	damage = 100
 	hud_state = "bigshell_he"
-	sundering = 20
+	sundering = 40
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 2, 5, 0, 3)
+	explosion(T, 0, 3, 5, 0, 3)
 
 /datum/ammo/rocket/ltb/on_hit_mob(mob/victim, obj/projectile/proj)
 	drop_nade(get_turf(victim))
