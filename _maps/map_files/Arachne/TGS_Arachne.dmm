@@ -3931,10 +3931,10 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "drm" = (
-/obj/machinery/door/airlock/mainship/generic/glass{
+/obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/machinery/door/firedoor{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -10213,12 +10213,12 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "izW" = (
-/obj/machinery/door/airlock/mainship/generic/glass{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -28989,7 +28989,7 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/generic/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
