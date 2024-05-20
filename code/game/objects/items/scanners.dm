@@ -279,7 +279,7 @@ REAGENT SCANNER
 	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 	var/revivable_patient = (HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) ? TRUE :
 							(issynth(patient) ? patient.health >= patient.get_death_threshold() :
-							patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))  //patient.health + patient.getOxyLoss() + issynth(patient) ? patient.health >= patient.get_death_threshold() : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()) //(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) ? TRUE : (patient.health + patient.getOxyLoss() + issynth(patient) ? 0 : (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))
+							patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // will be used for setting revivable_boolean, the TRUE/FALSE entry used by tgui
@@ -378,8 +378,7 @@ REAGENT SCANNER
 					))
 		if(patient.getBruteLoss() > 5)
 			advice += list(list(
-				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." :
-				"Use a blowtorch or nanopaste to repair the dented areas.",
+				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." : "Use a blowtorch or nanopaste to repair the dented areas.",
 				"tooltip" = organic_patient ? "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
 				"Only a blowtorch or nanopaste can repair dented robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "tools",
@@ -387,8 +386,7 @@ REAGENT SCANNER
 				))
 		if(patient.getFireLoss() > 5)
 			advice += list(list(
-				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." :
-				"Use cable coils or nanopaste to repair the scorched areas.",
+				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." : "Use cable coils or nanopaste to repair the scorched areas.",
 				"tooltip" = organic_patient ? "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
 				"Only cable coils or nanopaste can repair scorched robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "plug",
@@ -404,7 +402,7 @@ REAGENT SCANNER
 		if(unknown_implants)
 			advice += list(list(
 				"advice" = "Remove embedded objects with tweezers.",
-				"tooltip" = "There are one or more embedded objects detected in the patient. While moving with these implants inside, they will randomly sustain Brute damage. Make sure to take some time in between removing large amounts of implants to avoid a fracture.",
+				"tooltip" = "While moving with embedded objects inside, the patient will randomly sustain Brute damage. Make sure to take some time in between removing large amounts of implants to avoid internal damage.",
 				"icon" = "window-close",
 				"color" = "red"
 				))
