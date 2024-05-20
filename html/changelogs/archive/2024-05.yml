@@ -191,3 +191,16 @@
   - rscadd: Ports TG Drinks
   yyzsong:
   - rscadd: adds thermal tarps to valhalla (marine weapons vendor, specialist tab)
+2024-05-20:
+  JohnIsNotImpressed:
+  - qol: Changed See Through's sprite alpha from 100 to 170.
+  Notamaniac:
+  - bugfix: Barsigns should no longer show up as errors
+  Xander3359:
+  - code_imp: swap out calls of .clean_blood() for .wash()
+  chizzy376:
+  - qol: clarifies that behemoth roll deals 0 damage in the ability description
+  yyzsong:
+  - balance: Ravager's Rage no longer shakes the screen of the ravager who used the
+      ability
+  - rscdel: Xenos evolution fade-in effect removed
