@@ -1,6 +1,8 @@
 GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 /*
+TODO split this file. health analyzer is literally taking up most of it.
+
 CONTAINS:
 T-RAY
 DETECTIVE SCANNER
@@ -377,18 +379,18 @@ REAGENT SCANNER
 		if(patient.getBruteLoss() > 5)
 			advice += list(list(
 				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." :
-												"Use a blowtorch or nanopaste to repair the dented areas.",
+				"Use a blowtorch or nanopaste to repair the dented areas.",
 				"tooltip" = organic_patient ? "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-												"Only a blowtorch or nanopaste can repair dented robotic limbs.",
+				"Only a blowtorch or nanopaste can repair dented robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "tools",
 				"color" = organic_patient ? "green" : "red"
 				))
 		if(patient.getFireLoss() > 5)
 			advice += list(list(
 				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." :
-												"Use cable coils or nanopaste to repair the scorched areas.",
+				"Use cable coils or nanopaste to repair the scorched areas.",
 				"tooltip" = organic_patient ? "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-												"Only cable coils or nanopaste can repair scorched robotic limbs.",
+				"Only cable coils or nanopaste can repair scorched robotic limbs.",
 				"icon" = organic_patient ? "band-aid" : "plug",
 				"color" = "orange"
 				))
