@@ -838,7 +838,7 @@ WEAPONS
 /datum/supply_packs/weapons/ltb_shells
 	name = "LTB tank shell"
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
+	cost = 30
 
 /datum/supply_packs/weapons/ltaap_rounds
 	name = "LTAAP tank magazine"
