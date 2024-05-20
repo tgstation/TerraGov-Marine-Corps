@@ -239,7 +239,7 @@
 // Hybrisa Streetlights
 /obj/machinery/floodlight/colony/street
 	name = "Colony Streetlight"
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "street_off"
 	layer = ABOVE_XENO_LAYER
 
@@ -263,7 +263,7 @@
 	lum_value = 0
 	name = "traffic light"
 	desc = "A traffic light"
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "trafficlight"
 	bound_width = 32
 	bound_height = 32
@@ -288,7 +288,7 @@
 	lum_value = 0
 	name = "traffic light"
 	desc = "A traffic light"
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "trafficlight_alt"
 	bound_width = 32
 	bound_height = 32

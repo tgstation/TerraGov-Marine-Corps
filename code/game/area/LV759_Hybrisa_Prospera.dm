@@ -105,7 +105,7 @@
 
 // Caves
 /area/lv759/indoors/wy_research_complex_entrance
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - North Main Entrance"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_HYBRISA_CAVES_ALARM
 	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
@@ -221,79 +221,79 @@
 
 //Spaceport Indoors
 /area/lv759/indoors/spaceport/hallway_northeast
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Hallway - Northeast"
+	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northeast"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/hallway_north
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Hallway - North"
+	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - North"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/hallway_northwest
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Hallway - Northwest"
+	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northwest"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/hallway_east
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Hallway - East"
+	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - East"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/heavyequip
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Heavy Equipment Storage"
+	name = "Nanotrasen Celestia Gateway Space-Port - Heavy Equipment Storage"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/engineering
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Fuel Storage & Processing"
+	name = "Nanotrasen Celestia Gateway Space-Port - Fuel Storage & Processing"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/janitor
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Janitorial Storage Room"
+	name = "Nanotrasen Celestia Gateway Space-Port - Janitorial Storage Room"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/maintenance_east
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Maintenance - East"
+	name = "Nanotrasen Celestia Gateway Space-Port - Maintenance - East"
 	icon_state = "WYSpaceport"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/communications_office
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Communications & Administration Office"
+	name = "Nanotrasen Celestia Gateway Space-Port - Communications & Administration Office"
 	icon_state = "WYSpaceportadmin"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/flight_control_room
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Flight Control Room"
+	name = "Nanotrasen Celestia Gateway Space-Port - Flight Control Room"
 	icon_state = "WYSpaceportadmin"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/security
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Security- Observation & Office"
+	name = "Nanotrasen Celestia Gateway Space-Port - Security- Observation & Office"
 	icon_state = "security_checkpoint"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/security_office
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Office"
+	name = "Nanotrasen Celestia Gateway Space-Port - Office"
 	icon_state = "security_checkpoint"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/cargo
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Cargo"
+	name = "Nanotrasen Celestia Gateway Space-Port - Cargo"
 	icon_state = "WYSpaceportcargo"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/cargo_maintenance
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Cargo - Maintenance"
+	name = "Nanotrasen Celestia Gateway Space-Port - Cargo - Maintenance"
 	icon_state = "WYSpaceportcargo"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/baggagehandling
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Baggage Storage & Handling"
+	name = "Nanotrasen Celestia Gateway Space-Port - Baggage Storage & Handling"
 	icon_state = "WYSpaceportbaggage"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/cuppajoes
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Cuppa Joe's"
+	name = "Nanotrasen Celestia Gateway Space-Port - Cuppa Joe's"
 	icon_state = "cuppajoes"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/kitchen
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Kitchen"
+	name = "Nanotrasen Celestia Gateway Space-Port - Kitchen"
 	icon_state = "WYSpaceportblue"
 	minimap_color = MINIMAP_AREA_LZ
 /area/lv759/indoors/spaceport/docking_bay_2
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
+	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
 	icon_state = "WYSpaceportblue"
 
 /area/lv759/indoors/spaceport/docking_bay_1
-	name = "Weyland-Yutani Celestia Gateway Space-Port - Docking Bay: 1"
+	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 1"
 	icon_state = "WYSpaceport"
 
 /area/lv759/indoors/spaceport/starglider
@@ -425,29 +425,29 @@
 	icon_state = "apartments"
 	minimap_color = MINIMAP_AREA_COLONY
 
-// Weyland-Yutani Offices
+// Nanotrasen Offices
 /area/lv759/indoors/weyyu_office
-	name = "Weyland-Yutani Offices - Reception Hallway"
+	name = "Nanotrasen Offices - Reception Hallway"
 	icon_state = "wyoffice"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/weyyu_office/hallway
-	name = "Weyland-Yutani Offices - West Foyer"
+	name = "Nanotrasen Offices - West Foyer"
 	icon_state = "wyoffice"
 
 /area/lv759/indoors/weyyu_office/floor
-	name = "Weyland-Yutani Offices - Main Office Floor"
+	name = "Nanotrasen Offices - Main Office Floor"
 
 /area/lv759/indoors/weyyu_office/breakroom
-	name = "Weyland-Yutani Offices - Breakroom"
+	name = "Nanotrasen Offices - Breakroom"
 
 /area/lv759/indoors/weyyu_office/vip
-	name = "Weyland-Yutani Offices - Conference Room"
+	name = "Nanotrasen Offices - Conference Room"
 
 /area/lv759/indoors/weyyu_office/pressroom
-	name = "Weyland-Yutani Offices - Assembly Hall"
+	name = "Nanotrasen Offices - Assembly Hall"
 /area/lv759/indoors/weyyu_office/supervisor
-	name = "Weyland-Yutani Offices - Colony Supervisors Office"
+	name = "Nanotrasen Offices - Colony Supervisors Office"
 
 // Bar & Entertainment Complex
 /area/lv759/indoors/bar
@@ -588,34 +588,34 @@
 
 // Power-Plant (Engineering)
 /area/lv759/indoors/power_plant
-	name = "Weyland-Yutani DynaGrid Nexus - Central Hallway"
+	name = "Nanotrasen DynaGrid Nexus - Central Hallway"
 	icon_state = "power0"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/power_plant/south_hallway
-	name = "Weyland-Yutani DynaGrid Nexus - South Hallway"
+	name = "Nanotrasen DynaGrid Nexus - South Hallway"
 /area/lv759/indoors/power_plant/geothermal_generators
-	name = "Weyland-Yutani DynaGrid Nexus - Geothermal Generators Room"
+	name = "Nanotrasen DynaGrid Nexus - Geothermal Generators Room"
 /area/lv759/indoors/power_plant/power_storage
-	name = "Weyland-Yutani DynaGrid Nexus - Power Storage Room"
+	name = "Nanotrasen DynaGrid Nexus - Power Storage Room"
 /area/lv759/indoors/power_plant/transformers_north
-	name = "Weyland-Yutani DynaGrid Nexus - Transformers - North"
+	name = "Nanotrasen DynaGrid Nexus - Transformers - North"
 /area/lv759/indoors/power_plant/transformers_south
-	name = "Weyland-Yutani DynaGrid Nexus - Transformers - South"
+	name = "Nanotrasen DynaGrid Nexus - Transformers - South"
 /area/lv759/indoors/power_plant/gas_generators
-	name = "Weyland-Yutani DynaGrid Nexus - Gas Mixing & Storage "
+	name = "Nanotrasen DynaGrid Nexus - Gas Mixing & Storage "
 /area/lv759/indoors/power_plant/fusion_generators
-	name = "Weyland-Yutani DynaGrid Nexus - Control Center"
+	name = "Nanotrasen DynaGrid Nexus - Control Center"
 /area/lv759/indoors/power_plant/telecomms
 	icon_state = "comms_1"
-	name = "Weyland-Yutani DynaGrid Nexus - Telecommunications"
+	name = "Nanotrasen DynaGrid Nexus - Telecommunications"
 /area/lv759/indoors/power_plant/workers_canteen
-	name = "Weyland-Yutani DynaGrid Nexus - Worker's Canteen"
+	name = "Nanotrasen DynaGrid Nexus - Worker's Canteen"
 /area/lv759/indoors/power_plant/workers_canteen_kitchen
-	name = "Weyland-Yutani DynaGrid Nexus - Worker's Canteen - Kitchen"
+	name = "Nanotrasen DynaGrid Nexus - Worker's Canteen - Kitchen"
 /area/lv759/indoors/power_plant/equipment_east
-	name = "Weyland-Yutani DynaGrid Nexus - Equipment Storage Room - East"
+	name = "Nanotrasen DynaGrid Nexus - Equipment Storage Room - East"
 /area/lv759/indoors/power_plant/equipment_west
-	name = "Weyland-Yutani DynaGrid Nexus - Equipment Storage Room - West"
+	name = "Nanotrasen DynaGrid Nexus - Equipment Storage Room - West"
 
 // Marshalls
 /area/lv759/indoors/colonial_marshals
@@ -682,24 +682,24 @@
 	icon_state = "jacks"
 	minimap_color = MINIMAP_AREA_COLONY
 
-//Weyland-Yutani - Resource Recovery Facility
+//Nanotrasen - Resource Recovery Facility
 /area/lv759/indoors/recycling_plant
-	name = "Weyland-Yutani - Resource Recovery Facility"
+	name = "Nanotrasen - Resource Recovery Facility"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/recycling_plant/garage
-	name = "Weyland-Yutani - Resource Recovery Facility - Garage"
+	name = "Nanotrasen - Resource Recovery Facility - Garage"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/recycling_plant/synthetic_storage
 	name = "Synthetic Storage"
 	icon_state = "synthetic"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/recycling_plant_office
-	name = "Weyland-Yutani - Resource Recovery Facility - Office"
+	name = "Nanotrasen - Resource Recovery Facility - Office"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator
-	name = "Weyland-Yutani - Resource Recovery Facility - Waste Disposal Incinerating Room"
+	name = "Nanotrasen - Resource Recovery Facility - Waste Disposal Incinerating Room"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
 // Restrooms
@@ -759,20 +759,20 @@
 
 // WY Security Checkpoints
 /area/lv759/indoors/wy_security/checkpoint_northeast
-	name = "Weyland-Yutani Security Checkpoint - North East"
+	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
 	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/wy_security/checkpoint_east
-	name = "Weyland-Yutani Security Checkpoint - East"
+	name = "Nanotrasen Security Checkpoint - East"
 	icon_state = "security_checkpoint_east"
 /area/lv759/indoors/wy_security/checkpoint_central
-	name = "Weyland-Yutani Security Checkpoint - Central"
+	name = "Nanotrasen Security Checkpoint - Central"
 	icon_state = "security_checkpoint_central"
 /area/lv759/indoors/wy_security/checkpoint_west
-	name = "Weyland-Yutani Security Checkpoint - West"
+	name = "Nanotrasen Security Checkpoint - West"
 	icon_state = "security_checkpoint_west"
 /area/lv759/indoors/wy_security/checkpoint_northwest
-	name = "Weyland-Yutani Security Checkpoint - North West"
+	name = "Nanotrasen Security Checkpoint - North West"
 	icon_state = "security_checkpoint_northwest"
 
 // Misc
@@ -783,144 +783,144 @@
 	is_resin_allowed = FALSE
 	flags_area = AREA_NOTUNNEL
 
-// Weyland-Yutani Advanced Bio-Genomic Research Complex
+// Nanotrasen Advanced Bio-Genomic Research Complex
 
 /area/lv759/indoors/wy_research_complex
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_COMMAND
 /area/lv759/indoors/wy_research_complex/medical_annex
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Medical Annex Building"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/reception
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Reception & Administration"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Reception & Administration"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/cargo
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/researchanddevelopment
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/mainlabs
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/xenobiology
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_2
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/weaponresearchlab
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/weaponresearchlabtesting
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/xenoarcheology
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/janitor
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/cafeteria
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Cafeteria"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/dormsfoyer
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Dorms Foyer"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms Foyer"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/dormsbedroom
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Dorms"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/securitycommand
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/securityarmory
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Armory"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Armory"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hangarbay
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Hangar Bay"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Hangar Bay - Weyland-Yutani PMC ERT Shuttle"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwaynorth
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwayeast
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Hallway East"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwaycentral
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Central Hallway"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - South West Hallway"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - South East Hallway"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/southeastexit
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB_HALLWAY
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS
 /area/lv759/indoors/wy_research_complex/changingroom
-	name = "Weyland-Yutani - Advanced Bio-Genomic Research Complex - Locker Room"
+	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Locker Room"
 	icon_state = "wylab"
 	ambience_exterior = AMBIENCE_LAB
 	soundscape_playlist = SCAPE_PL_LV759_INDOORS

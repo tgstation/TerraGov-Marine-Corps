@@ -114,7 +114,7 @@
 	desc = "Always good to keep a green thumb";
 	name = "gardener gloves"
 	},
-/obj/structure/prop/mainship/gelida/propplaceholder,
+/obj/structure/prop/propplaceholder,
 /obj/item/clothing/mask/cigarette/pipe,
 /obj/item/clothing/shoes/leather,
 /obj/item/clothing/under/color/green,
@@ -5280,7 +5280,7 @@
 	desc = "Always good to keep a green thumb";
 	name = "gardener gloves"
 	},
-/obj/structure/prop/mainship/gelida/propplaceholder,
+/obj/structure/prop/propplaceholder,
 /obj/item/clothing/mask/cigarette/pipe,
 /obj/item/clothing/shoes/leather,
 /obj/item/clothing/under/color/green,

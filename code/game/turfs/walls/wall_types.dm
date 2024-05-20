@@ -474,6 +474,40 @@
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
+/turf/closed/wall/hybrisa/colony
+
+/turf/closed/wall/hybrisa/colony/ribbed
+
+/turf/closed/wall/hybrisa/colony/hospital
+
+/turf/closed/wall/hybrisa/colony/reinforced
+
+/turf/closed/wall/hybrisa/colony/office
+
+/turf/closed/wall/hybrisa/spaceport_unmeltable
+
+/turf/closed/wall/hybrisa/spaceport_reinforced
+
+/turf/closed/wall/hybrisa/engineering
+
+/turf/closed/wall/hybrisa/colony/engineering/ribbed
+
+/turf/closed/wall/hybrisa/research/reinforced
+
+/turf/closed/wall/hybrisa/colony/reinforced/hull
+
+/turf/closed/wall/hybrisa/marhsalls_reinforced
+
+/turf/closed/wall/hybrisa/colony/engineering/reinforced
+
+/turf/closed/wall/hybrisa/spaceport
+
+/turf/closed/wall/hybrisa/research/reinforced/hull
+
+/turf/closed/wall/hybrisa/marhsalls_unmeltable
+
+/turf/closed/wall/hybrisa/colony/engineering/reinforced/hull
+
 /turf/closed/wall/engineership
 	name = "strange metal wall"
 	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
@@ -489,205 +523,3 @@
 	icon_state = "engineer_walls-0"
 	walltype = "wall"
 	base_icon_state = "engineer_walls"
-
-// Hybrisa Wall Types
-
-// Derelict Ship
-/turf/closed/wall/engineership
-	name = "strange metal wall"
-	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
-	icon = 'icons/turf/walls/engineership.dmi'
-	icon_state = "metal"//DMI specific name
-	walltype = WALL_HUNTERSHIP
-	hull = 1
-
-// Rock
-/turf/closed/wall/hybrisa/rock
-	name = "rock wall"
-	desc = "Massive columns comprised of anicent sedimentary rocks loom before you."
-	icon = 'icons/turf/walls/kutjevorockdark.dmi'
-	icon_state = "rock"
-	walltype = WALL_KUTJEVO_ROCK
-	hull = 1
-
-// Marshalls
-/turf/closed/wall/hybrisa/marhsalls
-	name = "metal wall"
-	icon = 'icons/turf/walls/hybrisa_marshalls.dmi'
-	icon_state = "metal"
-	walltype = WALL_METAL
-/turf/closed/wall/hybrisa/marhsalls_reinforced
-	name = "reinforced metal wall"
-	icon = 'icons/turf/walls/hybrisa_marshalls.dmi'
-	icon_state = "rwall"
-	walltype = WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/marhsalls_unmeltable
-	name = "heavy reinforced wall"
-	desc = "A huge chunk of ultra-reinforced metal used to separate rooms. Looks virtually indestructible."
-	icon = 'icons/turf/walls/hybrisa_marshalls.dmi'
-	icon_state = "hwall"
-	walltype = WALL_REINFORCED
-	hull = 1
-
-// Research
-
-/turf/closed/wall/hybrisa/research/ribbed //this guy is our reinforced replacement
-	name = "ribbed facility walls"
-	icon = 'icons/turf/walls/hybrisaresearchbrownwall.dmi'
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/research
-	name = "bare facility walls"
-	icon = 'icons/turf/walls/hybrisaresearchbrownwall.dmi'
-	icon_state = "strata_bare_outpost_"
-	desc = "A thick and chunky metal wall. The surface is barren and imposing."
-	walltype = WALL_STRATA_OUTPOST_BARE
-
-/turf/closed/wall/hybrisa/research/reinforced
-	name = "ribbed facility walls"
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/research/reinforced/hull
-	hull = 1
-	icon_state = "strata_hull"
-	desc = "A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible."
-
-// Colony Walls
-/turf/closed/wall/hybrisa/colony/ribbed //this guy is our reinforced replacement
-	name = "ribbed metal walls"
-	icon = 'icons/turf/walls/hybrisa_colonywall.dmi'
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony
-	name = "bare metal walls"
-	icon = 'icons/turf/walls/hybrisa_colonywall.dmi'
-	icon_state = "strata_bare_outpost_"
-	desc = "A thick and chunky metal wall. The surface is barren and imposing."
-	walltype = WALL_STRATA_OUTPOST_BARE
-
-/turf/closed/wall/hybrisa/colony/reinforced
-	name = "ribbed metal walls"
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/reinforced/hull
-	hull = 1
-	icon_state = "strata_hull"
-	desc = "A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible."
-
-// Hospital
-
-/turf/closed/wall/hybrisa/colony/hospital/ribbed //this guy is our reinforced replacement
-	name = "ribbed metal walls"
-	icon = 'icons/turf/walls/hybrisa_colonywall_hospital.dmi'
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/hospital
-	name = "bare metal walls"
-	icon = 'icons/turf/walls/hybrisa_colonywall_hospital.dmi'
-	icon_state = "strata_bare_outpost_"
-	desc = "A thick and chunky metal wall. The surface is barren and imposing."
-	walltype = WALL_STRATA_OUTPOST_BARE
-
-/turf/closed/wall/hybrisa/colony/hospital/reinforced
-	name = "ribbed metal walls"
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/hospital/reinforced/hull
-	hull = 1
-	icon_state = "strata_hull"
-	desc = "A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible."
-
-// Offices
-/turf/closed/wall/hybrisa/colony/office/ribbed //this guy is our reinforced replacement
-	name = "ribbed metal walls"
-	icon = 'icons/turf/walls/hybrisa_offices_colonywall.dmi'
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/office
-	name = "bare metal walls"
-	icon = 'icons/turf/walls/hybrisa_offices_colonywall.dmi'
-	icon_state = "strata_bare_outpost_"
-	desc = "A thick and chunky metal wall. The surface is barren and imposing."
-	walltype = WALL_STRATA_OUTPOST_BARE
-
-/turf/closed/wall/hybrisa/colony/office/reinforced
-	name = "ribbed metal walls"
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/office/reinforced/hull
-	hull = 1
-	icon_state = "strata_hull"
-	desc = "A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible."
-
-// Engineering
-/turf/closed/wall/hybrisa/colony/engineering/ribbed //this guy is our reinforced replacement
-	name = "ribbed metal walls"
-	icon = 'icons/turf/walls/hybrisa_engineering_wall.dmi'
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/engineering
-	name = "bare metal walls"
-	icon = 'icons/turf/walls/hybrisa_engineering_wall.dmi'
-	icon_state = "strata_bare_outpost_"
-	desc = "A thick and chunky metal wall. The surface is barren and imposing."
-	walltype = WALL_STRATA_OUTPOST_BARE
-
-/turf/closed/wall/hybrisa/colony/engineering/reinforced
-	name = "ribbed metal walls"
-	icon_state = "strata_ribbed_outpost_"
-	desc = "A thick and chunky metal wall covered in jagged ribs."
-	walltype = WALL_STRATA_OUTPOST_RIBBED
-	damage_cap = HEALTH_WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/colony/engineering/reinforced/hull
-	hull = 1
-	icon_state = "strata_hull"
-	desc = "A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible."
-
-// Space-Port
-/turf/closed/wall/hybrisa/spaceport
-	name = "metal wall"
-	icon = 'icons/turf/walls/hybrisa_spaceport_walls.dmi'
-	icon_state = "metal"
-	walltype = WALL_METAL
-/turf/closed/wall/hybrisa/spaceport_reinforced
-	name = "reinforced metal wall"
-	icon = 'icons/turf/walls/hybrisa_spaceport_walls.dmi'
-	icon_state = "rwall"
-	walltype = WALL_REINFORCED
-
-/turf/closed/wall/hybrisa/spaceport_unmeltable
-	name = "heavy reinforced wall"
-	desc = "A huge chunk of ultra-reinforced metal used to separate rooms. Looks virtually indestructible."
-	icon = 'icons/turf/walls/hybrisa_spaceport_walls.dmi'
-	icon_state = "hwall"
-	walltype = WALL_REINFORCED
-	hull = 1

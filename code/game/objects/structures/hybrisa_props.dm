@@ -111,12 +111,12 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 96
 /obj/structure/prop/hybrisa/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_1
-	name = "Weyland-Yutani security truck"
+	name = "Nanotrasen security truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_wy_security_1"
 
 /obj/structure/prop/hybrisa/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_2
-	name = "Weyland-Yutani security truck"
+	name = "Nanotrasen security truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_wy_security_2"
 
@@ -160,10 +160,10 @@ var/damage_state = 0
 
 //WY
 /obj/structure/prop/hybrisa/vehicles/large_vehicles/mega_hauler_truck/wy_black
-	name = "Weyland-Yutani mega-hauler truck"
+	name = "Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_wy_black"
 /obj/structure/prop/hybrisa/vehicles/large_vehicles/mega_hauler_truck/wy_blue
-	name = "Weyland-Yutani mega-hauler truck"
+	name = "Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_wy_blue"
 // SUV
 /obj/structure/prop/hybrisa/vehicles/suv
@@ -192,7 +192,7 @@ var/damage_state = 0
 // Meridian Cars - Damage States
 /obj/structure/prop/hybrisa/vehicles/Meridian
 	name = "Mono-Spectra"
-	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for the colonial markets, in and outside of the United Americas. Produced by 'Meridian' a car marque and associated operating division of the Weyland-Yutani Corporation."
+	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for the colonial markets, in and outside of the United Americas. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 	bound_height = 32
@@ -346,7 +346,7 @@ var/damage_state = 0
 /obj/structure/prop/hybrisa/vehicles/largetruck/largetruckwy
 	icon_state = "zenithlongtruckweyland1"
 /obj/structure/prop/hybrisa/vehicles/largetruck/largetruckwy
-    name = "Weyland-Yutani mega-hauler truck"
+    name = "Nanotrasen mega-hauler truck"
 /obj/structure/prop/hybrisa/vehicles/largetruck/largetruckwy/wy1
 	icon_state = "zenithlongtruckweyland1"
 /obj/structure/prop/hybrisa/vehicles/largetruck/largetruckwy/wy2
@@ -383,7 +383,7 @@ var/damage_state = 0
 // science crawlers
 
 /obj/structure/prop/hybrisa/vehicles/colonycrawlers/science
-    name = "weyland-yutani colony crawler"
+    name = "Nanotrasen colony crawler"
 
 /obj/structure/prop/hybrisa/vehicles/colonycrawlers/science/science1
 	icon_state = "crawler_wy1"
@@ -413,7 +413,7 @@ var/damage_state = 0
 // Special SUV's
 
 /obj/structure/prop/hybrisa/vehicles/suv/misc
-	name = "Weyland-Yutani rapid response vehicle"
+	name = "Nanotrasen rapid response vehicle"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 	icon_state = "WYSUV1"
@@ -453,7 +453,7 @@ var/damage_state = 0
 	desc = "Seems to be broken down."
 	icon_state = "SUV9"
 /obj/structure/prop/hybrisa/vehicles/suv/misc/expensive2
-	name = "Expensive Weyland-Yutani SUV"
+	name = "Expensive Nanotrasen SUV"
 	desc = "Seems to be broken down."
 	icon_state = "blackSUV"
 /obj/structure/prop/hybrisa/vehicles/suv/misc/expensive3
@@ -1136,8 +1136,8 @@ var/damage_state = 0
 // Pilot body
 
 /obj/structure/prop/hybrisa/airport/deadpilot1
-	name = "decapitated Weyland-Yutani Pilot"
-	desc = "What remains of a Weyland-Yutani Pilot. Their entire head is missing. Where'd it roll off to?..."
+	name = "decapitated Nanotrasen Pilot"
+	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
 	icon_state = "pilotbody_decap1"
 	bound_height = 64
@@ -1145,8 +1145,8 @@ var/damage_state = 0
 	unslashable = TRUE
 	unacidable = TRUE
 /obj/structure/prop/hybrisa/airport/deadpilot2
-	name = "decapitated Weyland-Yutani Pilot"
-	desc = "What remains of a Weyland-Yutani Pilot. Their entire head is missing. Where'd it roll off to?..."
+	name = "decapitated Nanotrasen Pilot"
+	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
 	icon_state = "pilotbody_decap2"
 	bound_height = 64
@@ -1296,8 +1296,8 @@ var/damage_state = 0
 // Misc
 
 /obj/structure/prop/hybrisa/misc/commandosuitemptyprop
-	name = "Weyland-Yutani 'Ape-Suit' Showcase"
-	desc = "A display model of the Weyland-Yutani 'Apesuit', shame it's only a model..."
+	name = "Nanotrasen 'Ape-Suit' Showcase"
+	desc = "A display model of the Nanotrasen 'Apesuit', shame it's only a model..."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dogcatchersuitempty1"
 
@@ -1308,13 +1308,13 @@ var/damage_state = 0
 	icon_state = "sidecabinet"
 /obj/structure/prop/hybrisa/misc/trash/green
 	name = "trash bin"
-	desc = "A Weyland-Yutani trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
+	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "trashgreen"
 	density = TRUE
 /obj/structure/prop/hybrisa/misc/trash/blue
 	name = "trash bin"
-	desc = "A Weyland-Yutani trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
+	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "trashblue"
 	density = TRUE
@@ -1626,35 +1626,35 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "redright"
 /obj/structure/prop/hybrisa/containersextended/greywyleft
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greywyleft"
 /obj/structure/prop/hybrisa/containersextended/greywyright
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greywyright"
 /obj/structure/prop/hybrisa/containersextended/lightgreywyleft
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "lightgreywyleft"
 /obj/structure/prop/hybrisa/containersextended/lightgreywyright
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "lightgreywyright"
 /obj/structure/prop/hybrisa/containersextended/blackwyleft
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blackwyleft"
 /obj/structure/prop/hybrisa/containersextended/blackwyright
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blackwyright"
 /obj/structure/prop/hybrisa/containersextended/whitewyleft
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "whitewyleft"
 /obj/structure/prop/hybrisa/containersextended/whitewyright
-	name = "Weyland-Yutani cargo container"
+	name = "Nanotrasen cargo container"
 	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "whitewyright"
 
@@ -1831,7 +1831,7 @@ var/damage_state = 0
 
 /obj/structure/prop/hybrisa/misc/concretestatue
 	name = "concrete statue"
-	desc = "A decorative statue with the Weyland-Yutani 'Wings' adorned on it, A corporate brutalist piece of art."
+	desc = "A decorative statue with the Nanotrasen 'Wings' adorned on it, A corporate brutalist piece of art."
 	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "concretesculpture"
 	bound_width = 64

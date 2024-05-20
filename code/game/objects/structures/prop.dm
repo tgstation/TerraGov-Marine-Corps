@@ -1683,7 +1683,7 @@
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
 
-/obj/structure/prop/mainship/gelida/propplaceholder
+/obj/structure/prop/propplaceholder
 	name = "prop placeholder"
 	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
 	icon = 'icons/Marine/mainship_props.dmi'
