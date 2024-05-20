@@ -77,7 +77,7 @@
 	penetration = 50
 	damage = 85
 	hud_state = "bigshell_he"
-	sundering = 40
+	sundering = 50
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0, 3)
