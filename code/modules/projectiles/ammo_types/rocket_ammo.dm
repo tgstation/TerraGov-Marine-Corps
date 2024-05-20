@@ -84,8 +84,6 @@
 
 /datum/ammo/rocket/ltb/on_hit_mob(mob/victim, obj/projectile/proj)
 	drop_nade(get_turf(victim))
-	if(!isxeno(victim))
-		victim.gib()
 
 /datum/ammo/rocket/heavy_isg
 	name = "8.8cm round"
