@@ -343,7 +343,7 @@
 
 /datum/outfit/job/som/ert/veteran/breacher_vet/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
@@ -669,7 +669,7 @@
 
 /datum/outfit/job/som/ert/veteran/breacher_melee/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som, SLOT_IN_BACKPACK)
@@ -721,7 +721,7 @@
 
 /datum/outfit/job/som/ert/veteran/breacher_rpg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BELT)
@@ -753,7 +753,7 @@
 
 /datum/outfit/job/som/ert/veteran/breacher_flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/som, SLOT_IN_BELT)
@@ -774,7 +774,7 @@
 
 /datum/outfit/job/som/ert/veteran/breacher_culverin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_ACCESSORY)
@@ -798,7 +798,7 @@
 
 /datum/outfit/job/som/ert/medic/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
@@ -836,7 +836,7 @@
 
 /datum/outfit/job/som/ert/leader/breacher_melee/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_BACKPACK)
@@ -871,7 +871,7 @@
 
 /datum/outfit/job/som/ert/leader/breacher_ranged/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), TRAIT_GENERIC)
+	H.add_traits(list(TRAIT_AXE_EXPERT, TRAIT_SWORD_EXPERT), INNATE_TRAIT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
