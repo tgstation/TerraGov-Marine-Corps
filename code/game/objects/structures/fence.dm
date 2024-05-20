@@ -18,6 +18,8 @@
 	canSmoothWith = list(SMOOTH_GROUP_FENCE)
 	///Chance for the fence to break on /init
 	var/chance_to_break = 80 //Defaults to 80%
+	///icon set we switch to when destroyed
+	var/destroyed_icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
@@ -136,7 +138,7 @@
 
 /obj/structure/fence/Destroy()
 	density = FALSE
-	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
+	icon = destroyed_icon
 	return ..()
 
 /obj/structure/fence/fire_act(burn_level)
@@ -144,3 +146,7 @@
 
 /obj/structure/fence/broken
 	chance_to_break = 100
+
+/obj/structure/fence/dark
+	icon = 'icons/obj/smooth_objects/dark_fence.dmi'
+	destroyed_icon = 'icons/obj/smooth_objects/brokenfence_dark.dmi'

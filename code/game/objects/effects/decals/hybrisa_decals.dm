@@ -88,7 +88,23 @@
 
 /obj/effect/hybrisa/decal/road/road_stop
 	name = "road"
+	icon_state = "thin_road_stop_decal"
+
+/obj/effect/hybrisa/decal/road/road_stop/one
+	name = "road"
 	icon_state = "thin_road_stop_decal1"
+
+/obj/effect/hybrisa/decal/road/road_stop/two
+	name = "road"
+	icon_state = "thin_road_stop_decal2"
+
+/obj/effect/hybrisa/decal/road/road_stop/three
+	name = "road"
+	icon_state = "thin_road_stop_decal3"
+
+/obj/effect/hybrisa/decal/road/road_stop/five
+	name = "road"
+	icon_state = "thin_stop_decal5"
 
 // Double Roadlines
 /obj/effect/hybrisa/decal/doubleroad

@@ -297,7 +297,9 @@
 	icon_state = "asteroidfloor"
 	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
-
+/turf/open/floor/sandrock
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "varadero_0"
 
 //////////////////////////////////////////////////////////////////////
 
@@ -1805,10 +1807,27 @@
 /turf/open/engineership/pillars/east/pillareast4
 	icon_state = "eng_pillareast4"
 
+// Hybrisa auto-turf
+
+/turf/open/auto_turf/hybrisashale
+	icon = 'icons/turf/auto_shaledesaturated.dmi'
+	icon_prefix = "shale"
+
+/turf/open/auto_turf/hybrisashale/get_dirt_type()
+	return DIRT_TYPE_SHALE
+
+/turf/open/auto_turf/hybrisashale/layer0
+	icon_state = "shale_0"
+	bleed_layer = 0
+
+/turf/open/auto_turf/hybrisashale/layer0_plate //for inner plate shenanigans
+	icon_state = "shale_1_alt"
+	bleed_layer = 0
+
 /turf/open/auto_turf/hybrisashale/layer1
+	icon_state = "shale_1"
+	bleed_layer = 1
 
 /turf/open/auto_turf/hybrisashale/layer2
-
-/turf/open/auto_turf/hybrisashale/layer3
-
-/turf/open/auto_turf/hybrisashale/layer0_plate
+	icon_state = "shale_2"
+	bleed_layer = 2
