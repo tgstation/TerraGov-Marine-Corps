@@ -153,7 +153,7 @@ export const MedScanner = (props) => {
                     </Box>
                   </Tooltip>
                   <Box inline width={'5px'} />
-                  <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or exhaustion. Treated with CPR, Dexalin Plus or decreases on its own if the patient isn't in critical condition.">
+                  <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin Plus or decreases on its own if the patient isn't in critical condition.">
                     <Box inline>
                       <ProgressBar>
                         Oxy:{' '}
@@ -188,7 +188,9 @@ export const MedScanner = (props) => {
         {has_chemicals ? (
           <Section title="Chemical Contents">
             {has_unknown_chemicals ? (
-              <NoticeBox warning>Unknown reagents detected.</NoticeBox>
+              <Tooltip content="There are unknown reagents detected inside the patient. Proceed with caution.">
+                <NoticeBox warning>Unknown reagents detected.</NoticeBox>
+              </Tooltip>
             ) : null}
             <LabeledList>
               {chemicals.map((chemical) => (
@@ -198,7 +200,7 @@ export const MedScanner = (props) => {
                       chemical.description +
                       (chemical.od
                         ? ' (OVERDOSING)'
-                        : chemical.od_threshold <= 9000 // We don't want xeno chems or other OD-less chems to show "OD: 9134717u" or something
+                        : !chemical.dangerous
                           ? ' (OD: ' + chemical.od_threshold + 'u)'
                           : '')
                     }
@@ -250,15 +252,17 @@ export const MedScanner = (props) => {
                     {limb.name[0].toUpperCase() + limb.name.slice(1)}
                   </Stack.Item>
                   {limb.missing ? (
-                    <Stack.Item color={'red'} bold={1}>
-                      MISSING
-                    </Stack.Item>
+                    <Tooltip content="This limb is missing! Can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Either a printed limb or the missing limb will work as a replacement.">
+                      <Stack.Item color={'red'} bold={1}>
+                        MISSING
+                      </Stack.Item>
+                    </Tooltip>
                   ) : (
                     <>
                       <Stack.Item>
                         <Tooltip
                           content={
-                            species === 'robot'
+                            limb.limb_type === 'Robotic'
                               ? 'Limb denting. Can be welded with a blowtorch or nanopaste.'
                               : limb.bandaged
                                 ? 'Treated wounds will slowly heal on their own, or can be healed faster with chemicals.'
@@ -278,7 +282,7 @@ export const MedScanner = (props) => {
                         <Box inline width="5px" />
                         <Tooltip
                           content={
-                            species === 'robot'
+                            limb.limb_type === 'Robotic'
                               ? 'Wire scorching. Can be repaired with a cable coil or nanopaste.'
                               : limb.bandaged
                                 ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
@@ -297,14 +301,23 @@ export const MedScanner = (props) => {
                       </Stack.Item>
                       <Stack.Item>
                         {limb.limb_status ? (
-                          <Tooltip content="Fractures can have most of their symptoms reduced by splinting, but can only be fully treated with cryogenics or surgery.">
+                          <Tooltip
+                            content={
+                              limb.limb_status === 'Splinted'
+                                ? 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off. It can be fully treated with surgery or cryo treatment.'
+                                : limb.limb_status === 'Stabilized'
+                                  ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized. It can be fully treated with surgery or cryo treatment."
+                                  : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.'
+                            }
+                          >
                             <Box
                               inline
                               color={
-                                limb.limb_status ===
-                                ('Splinted' || 'Stabilized')
+                                limb.limb_status === 'Splinted'
                                   ? 'lime'
-                                  : 'white'
+                                  : limb.limb_status === 'Stabilized'
+                                    ? 'lime'
+                                    : 'white'
                               }
                               bold={1}
                             >
@@ -317,7 +330,7 @@ export const MedScanner = (props) => {
                             content={
                               limb.limb_type === 'Robotic'
                                 ? 'Robotic limbs are only fixed by welding or cable coils.'
-                                : 'Biotic limbs take more damage.'
+                                : 'Biotic limbs take more damage, but can be fixed through normal methods.'
                             }
                           >
                             <Box
@@ -332,7 +345,7 @@ export const MedScanner = (props) => {
                           </Tooltip>
                         ) : null}
                         {limb.bleeding ? (
-                          <Tooltip content="This limb is bleeding. Treated with gauze or an advanced trauma kit.">
+                          <Tooltip content="This limb is bleeding and the patient is losing blood. Can be stopped with gauze or an advanced trauma kit.">
                             <Box inline color={'red'} bold={1}>
                               [Bleeding]
                             </Box>
@@ -360,7 +373,7 @@ export const MedScanner = (props) => {
                           </Tooltip>
                         ) : null}
                         {limb.implant ? (
-                          <Tooltip content="Harmful implants are usually shrapnel from firefights. Removed with tweezers.">
+                          <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
                             <Box inline color={'white'} bold={1}>
                               [Implant]
                             </Box>
@@ -400,7 +413,7 @@ export const MedScanner = (props) => {
           <Section>
             <LabeledList>
               <LabeledList.Item label={'Blood Type: ' + blood_type}>
-                <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost.">
+                <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution.">
                   <ProgressBar
                     value={blood_amount / 560}
                     ranges={{
@@ -434,7 +447,13 @@ export const MedScanner = (props) => {
             <Stack vertical>
               {advice.map((advice) => (
                 <Stack.Item key={advice.advice}>
-                  <Tooltip content={advice.tooltip}>
+                  <Tooltip
+                    content={
+                      advice.tooltip
+                        ? advice.tooltip
+                        : 'No tooltip entry for this advice.'
+                    }
+                  >
                     <Box inline>
                       <Icon name={advice.icon} ml={0.2} color={advice.color} />
                       <Box inline width={'5px'} />

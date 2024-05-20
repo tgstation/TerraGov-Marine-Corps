@@ -269,36 +269,81 @@ REAGENT SCANNER
 			"name" = organ.name,
 			"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
 			"damage" = organ.damage,
-			"effects" = organ.damage_effects,
+			"effects" = organ.damage_description,
 		)
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
-	#define SYNTHETIC_REVIVE (patient.health >= patient.get_death_threshold())
-	#define ORGANIC_REVIVE (patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+	var/revivable_patient = (HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) ? TRUE :
+							(issynth(patient) ? patient.health >= patient.get_death_threshold() :
+							patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))  //patient.health + patient.getOxyLoss() + issynth(patient) ? patient.health >= patient.get_death_threshold() : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()) //(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) ? TRUE : (patient.health + patient.getOxyLoss() + issynth(patient) ? 0 : (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		data["revivable_string"] = "Permanently deceased" // revivable_string is the actual information. "too much damage" etc.
-		data["revivable_boolean"] = FALSE // revivable_boolean is simply the TRUE/FALSE data entry used by tgui to color the revivable box
-	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) || issynth(patient) && SYNTHETIC_REVIVE)
-		data["revivable_string"] = "Ready to reboot"
-		data["revivable_boolean"] = TRUE
-	else if(issynth(patient) && !SYNTHETIC_REVIVE)
-		data["revivable_string"] = "Not ready to reboot - repair damage first"
-		data["revivable_boolean"] = FALSE
-	else if(!patient.has_working_organs())
-		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
-		data["revivable_boolean"] = FALSE
-	else if(ORGANIC_REVIVE)
-		data["revivable_string"] = "Ready to defibrillate"
-		data["revivable_boolean"] = TRUE
+		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
+		data["revivable_boolean"] = FALSE // will be used for setting revivable_boolean, the TRUE/FALSE entry used by tgui
+	else if(!organic_patient)
+		if(revivable_patient)
+			data["revivable_string"] = "Ready to reboot"
+			data["revivable_boolean"] = TRUE
+		else
+			data["revivable_string"] = "Not ready to reboot - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
+			data["revivable_boolean"] = FALSE
 	else
-		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
-		data["revivable_boolean"] = FALSE
+		if(!patient.has_working_organs())
+			data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
+			data["revivable_boolean"] = FALSE
+		else if(revivable_patient)
+			data["revivable_string"] = "Ready to defibrillate"
+			data["revivable_boolean"] = TRUE
+		else
+			data["revivable_string"] = "Not ready to defibrillate - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
+			data["revivable_boolean"] = FALSE
 
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
+		//random stuff that docs should be aware of. possible todo: put these in a collapsible element in tgui if there's more added here.
+		if(patient.maxHealth != 100)
+			advice += list(list(
+				"advice" = "Patient has [patient.maxHealth / initial(patient.maxHealth) * 100]% constitution.",
+				"tooltip" = patient.maxHealth < 100 ? "Patient has less constitution than most humans." : "Patient has more constitution than most humans.",
+				"icon" = patient.maxHealth < 100 ? "heart-broken" : "heartbeat",
+				"color" = patient.maxHealth < 100 ? "grey" : "pink"
+			))
+		//species advice. possible todo: put these in a collapsible element in tgui so species stuff can be hidden
+		if(issynth(patient)) //specifically checking synth/robot here as these are specific to whichever species
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not heal on defibrillation.",
+				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient overheats while lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]% health.",
+				"tooltip" = "Synthetics overheat rapidly while their health is lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]%. When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not suffer from brain-death.",
+				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+		else if(isrobot(patient))
+			advice += list(list(
+				"advice" = "Combat Robot: Patient can be immediately defibrillated.",
+				"tooltip" = "Combat Robots can be defibrillated regardless of health. It is highly advised to defibrillate them the moment their armor is removed instead of attempting repair.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Combat Robot: Patient does not enter critical condition.",
+				"tooltip" = "Combat Robots do not enter critical condition. They will continue operating until death at [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
 		if(patient.stat == DEAD) // death advice
 			var/dead_color
 			switch(patient.dead_ticks)
@@ -308,7 +353,7 @@ REAGENT SCANNER
 					dead_color = "orange"
 				if(0.8 * TIME_BEFORE_DNR to INFINITY)
 					dead_color = "red"
-			if(!issynth(patient)) // synthetics don't expire
+			if(!issynth(patient)) // specifically checking for synths here because synths don't expire but robots do
 				advice += list(list(
 					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
 					"tooltip" = "This is how long until the patient is permanently unrevivable. Stasis bags pause this timer.",
@@ -322,48 +367,36 @@ REAGENT SCANNER
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(ORGANIC_REVIVE || isrobot(patient) || issynth(patient) && SYNTHETIC_REVIVE)
+			if(revivable_patient)
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
 					"icon" = "bolt",
 					"color" = "yellow"
 					))
-		if(issynth(patient) || isrobot(patient)) // robotic damage advice
-			if(patient.getBruteLoss() > 0)
-				advice += list(list(
-					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
-					"tooltip" = "Only a blowtorch or nanopaste can heal scorched robotic limbs. Other sources, such as chemicals, will not work.",
-					"icon" = "tools",
-					"color" = "red"
-					))
-			if(patient.getFireLoss() > 0)
-				advice += list(list(
-					"advice" = "Use a cable coil or nanopaste to repair the scorched areas.",
-					"tooltip" = "Only cable coils or nanopaste can heal scorched robotic limbs. Other sources, such as chemicals, will not work.",
-					"icon" = "plug",
-					"color" = "orange"
-					))
-		else // organic damage advice
-			if(patient.getBruteLoss() > 20)
-				advice += list(list(
-					"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
-					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Patients may also self-administer gauze on bleeding wounds, allowing them to slowly heal on their own.",
-					"icon" = "band-aid",
-					"color" = "green"
-					))
-			if(patient.getFireLoss() > 20)
-				advice += list(list(
-					"advice" = "Use burn kits or sutures to repair the burned areas.",
-					"tooltip" = "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Patients may also self-administer ointment on bleeding wounds, allowing them to slowly heal on their own.",
-					"icon" = "band-aid",
-					"color" = "orange"
-					))
+		if(patient.getBruteLoss() > 5)
+			advice += list(list(
+				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." :
+												"Use a blowtorch or nanopaste to repair the dented areas.",
+				"tooltip" = organic_patient ? "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
+												"Only a blowtorch or nanopaste can repair dented robotic limbs.",
+				"icon" = organic_patient ? "band-aid" : "tools",
+				"color" = organic_patient ? "green" : "red"
+				))
+		if(patient.getFireLoss() > 5)
+			advice += list(list(
+				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." :
+												"Use cable coils or nanopaste to repair the scorched areas.",
+				"tooltip" = organic_patient ? "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
+												"Only cable coils or nanopaste can repair scorched robotic limbs.",
+				"icon" = organic_patient ? "band-aid" : "plug",
+				"color" = "orange"
+				))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
-				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
-				"tooltip" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Integrity damage" : "Cellular damage"] is sustained from psychic draining, special chemicals and special weapons. It can only be healed through the aforementioned methods.",
-				"icon" = "dna",
+				"advice" = organic_patient ? "Patient should sleep or seek cryo treatment - cellular damage." : "Patient should seek a robotic cradle - integrity damage.",
+				"tooltip" = "[organic_patient ? "Cellular damage" : "Integrity damage"] is sustained from psychic draining, special chemicals and special weapons. It can only be healed through the aforementioned methods.",
+				"icon" = organic_patient ? "dna" : "wrench",
 				"color" = "teal"
 				))
 		if(unknown_implants)
@@ -373,7 +406,7 @@ REAGENT SCANNER
 				"icon" = "window-close",
 				"color" = "red"
 				))
-		if(!issynth(patient) && !isrobot(patient)) // human advice, includes chems
+		if(organic_patient) // human advice, includes chems
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
@@ -397,6 +430,19 @@ REAGENT SCANNER
 					))
 				if(chemicals_lists["Spaceacillin"])
 					if(chemicals_lists["Spaceacillin"]["amount"] < 2)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/datum/internal_organ/brain/brain = patient.internal_organs_by_name["brain"]
+			if(brain.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of alkysine.",
+					"tooltip" = "Significant brain damage detected. Alkysine heals brain damage. If left untreated, patient may be unable to function well.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["Alkysine"])
+					if(chemicals_lists["Alkysine"]["amount"] < 3)
 						advice += temp_advice
 				else
 					advice += temp_advice
@@ -439,7 +485,7 @@ REAGENT SCANNER
 			if(patient.getOxyLoss() > 30)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dexalin plus to re-oxygenate patient's blood.",
-					"tooltip" = "If you don't have Dexalin Plus, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
+					"tooltip" = "If you don't have Dexalin or Dexalin Plus, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
 					"icon" = "syringe",
 					"color" = "blue"
 					))
@@ -451,7 +497,7 @@ REAGENT SCANNER
 			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
 				advice += list(list(
 					"advice" = "Administer a single dose of Isotonic solution.",
-					"tooltip" = "The patient has lost a significant amount of blood. Isotonic solution speeds up blood regeneration, alongside normal Quick Clot.",
+					"tooltip" = "The patient has lost a significant amount of blood. Isotonic solution speeds up blood regeneration significantly.",
 					"icon" = "syringe",
 					"color" = "cyan"
 					))
@@ -463,10 +509,10 @@ REAGENT SCANNER
 					"color" = "blue"
 					))
 				advice += temp_advice
-			if(patient.stat != DEAD && patient.health < -50)
+			if(patient.stat != DEAD && patient.health < patient.get_crit_threshold())
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
-					"tooltip" = "Inaprovaline stabilizes critical patients, and heals them if they are in hard critical condition, triggering a 5 minute cooldown.",
+					"tooltip" = "When used in hard critical condition, Inaprovaline prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
 					"icon" = "syringe",
 					"color" = "purple"
 					))
@@ -482,7 +528,7 @@ REAGENT SCANNER
 			if(has_pain && !chemicals_lists["Paracetamol"] && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
-					"tooltip" = "The patient is experiencing performance impeding pain. Tramadol reduces pain.",
+					"tooltip" = "The patient is experiencing performance impeding pain and may suffer symptoms from sluggishness to collapsing. Tramadol reduces pain.",
 					"icon" = "syringe",
 					"color" = "grey"
 					))
@@ -494,7 +540,7 @@ REAGENT SCANNER
 
 			if(chemicals_lists["Paracetamol"])
 				advice += list(list(
-					"advice" = "Do NOT administer tramadol.",
+					"advice" = "Paracetamol detected - do NOT administer tramadol.",
 					"tooltip" = "The patient has Paracetamol in their system. If Tramadol is administered, it will combine with Paracetamol to make Soporific, an anesthetic.",
 					"icon" = "window-close",
 					"color" = "red"
@@ -510,8 +556,6 @@ REAGENT SCANNER
 		data["advice"] = advice
 	else
 		data["advice"] = null
-	#undef SYNTHETIC_REVIVE
-	#undef ORGANIC_REVIVE
 
 	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD)
