@@ -283,7 +283,7 @@ REAGENT SCANNER
 							patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
-		data["revivable_boolean"] = FALSE // will be used for setting revivable_boolean, the TRUE/FALSE entry used by tgui
+		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
 	else if(organic_patient && !patient.has_working_organs())
 		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		data["revivable_boolean"] = FALSE
