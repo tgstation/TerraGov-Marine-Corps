@@ -252,7 +252,7 @@
 	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
 		var/turf/chosen = pick_n_take(pickable_turfs)
-		while(chosen.density)
+		while(chosen.density || QDELETED(chosen))
 			if(length(pickable_turfs) == 0)
 				chosen = get_turf(src)
 				break
