@@ -16,7 +16,8 @@
 	AddElement(/datum/element/submerge)
 
 /turf/open/liquid/Destroy(force)
-	RemoveElement(/datum/element/submerge)
+	if(!(get_submerge_height() - mob_liquid_height) && !(old_turf.get_submerge_depth() - mob_liquid_depth))
+		RemoveElement(/datum/element/submerge)
 	return ..()
 
 /turf/open/liquid/AfterChange()
