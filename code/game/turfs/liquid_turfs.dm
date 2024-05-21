@@ -15,6 +15,10 @@
 	. = ..()
 	AddElement(/datum/element/submerge)
 
+/turf/open/liquid/Destroy(force)
+	RemoveElement(/datum/element/submerge)
+	return ..()
+
 /turf/open/liquid/AfterChange()
 	. = ..()
 	baseturfs = type

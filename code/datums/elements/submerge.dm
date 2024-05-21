@@ -1,3 +1,9 @@
+/*
+	*Submerge element for turfs that apply submerge effects
+	*Element is required for a turf if the turf OR its contents (i.e. tallgrass) apply submerge.
+	*This means any new turfs that add submerge must add and remove this element on init/destroy
+	*Similarly, any atom that modifies submerge like tall grass, must appropriately set and unset the element on it's turf, and connect_loc to maintain the right connection
+**/
 /datum/element/submerge/Attach(datum/target)
 	. = ..()
 	if(!isturf(target))

@@ -241,6 +241,16 @@
 		return
 	turf_loc.RemoveElement(/datum/element/submerge)
 
+/obj/structure/flora/grass/tallgrass/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	loc.AddElement(/datum/element/submerge)
+	if(!isturf(old_loc))
+		return
+	var/turf/turf_loc = loc
+	if(turf_loc.get_submerge_height() || turf_loc.get_submerge_depth())
+		return
+	turf_loc.RemoveElement(/datum/element/submerge)
+
 ///How deep things gets submerged in tallgrass
 /obj/structure/flora/grass/tallgrass/proc/get_submerge_height(turf/source, list/submerge_list)
 	submerge_list += 8
