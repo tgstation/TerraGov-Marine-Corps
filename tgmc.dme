@@ -449,6 +449,7 @@
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\components\stun_mitigation.dm"
+#include "code\datums\components\submerge_mod.dm"
 #include "code\datums\components\suit_autodoc.dm"
 #include "code\datums\components\tac_reload_storage.dm"
 #include "code\datums\components\takes_reagent_appearance.dm"
