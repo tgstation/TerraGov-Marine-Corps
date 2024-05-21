@@ -204,3 +204,20 @@
   - balance: Ravager's Rage no longer shakes the screen of the ravager who used the
       ability
   - rscdel: Xenos evolution fade-in effect removed
+2024-05-21:
+  Helg2:
+  - rscdel: Removed old unused hostile simple_animals such as spiders, constructs
+      and etc.
+  Lumipharon:
+  - bugfix: fixed some stutter with smooth movement
+  - bugfix: fixed some other movement related bugs
+  - rscadd: Campaign limited loadout quantities scale with pop
+  - balance: 'Campaign: LE RR loadout limit increased to 3 from 2'
+  - rscadd: 'Campaign: Activating the teleporter asset gives access to a teleport
+      COPE air support type'
+  Wisemonster:
+  - rscadd: Added a vehicle spawning area to xeno valhalla
+  - rscadd: Added a vehicle spawner and vehicle spawner landmark (Things used for
+      spawning in Valhalla)
+  blackdav123:
+  - balance: Lava and fire no longer deal damage when jumped over.

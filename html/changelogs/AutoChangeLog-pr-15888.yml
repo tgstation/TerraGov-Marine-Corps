@@ -1,4 +1,0 @@
-author: "Helg2"
-delete-after: True
-changes:
-  - rscdel: "Removed old unused hostile simple_animals such as spiders, constructs and etc."
