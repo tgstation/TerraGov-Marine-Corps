@@ -393,7 +393,7 @@
 	return iswallturf(T) || ismineralturf(T)
 
 
-/mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
+/mob/living/simple_animal/hostile/Move(atom/newloc, direction, glide_size_override)
 	if(dodging && approaching_target && prob(dodge_prob) && isturf(loc) && isturf(newloc))
 		return dodge(newloc,dir)
 	else

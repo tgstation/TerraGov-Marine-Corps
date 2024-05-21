@@ -36,6 +36,8 @@
 #define FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM "smoke_mortar_som"
 ///Satrapine smoke mortar barrage
 #define FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR "satrapine_smoke_mortar"
+///Teleported COPE sentry
+#define FIRESUPPORT_TYPE_TELE_COPE "tele_cope"
 
 //Noncampaign mode types
 ///Unlimited GAU for regular gamemodes
@@ -67,4 +69,5 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM = new /datum/fire_support/mortar/incendiary/som,
 	FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM = new /datum/fire_support/mortar/smoke/som,
 	FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR = new /datum/fire_support/mortar/smoke/satrapine,
+	FIRESUPPORT_TYPE_TELE_COPE = new /datum/fire_support/tele_cope,
 	))
