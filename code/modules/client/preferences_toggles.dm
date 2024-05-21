@@ -295,16 +295,6 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_WEATHER) ? "now" : "no longer"] hear weather."))
 
-/client/verb/toggle_gas_mask_sound()
-	set category = "Preferences"
-	set name = "Toggle Gas Mask sounds"
-
-	usr.client.prefs.toggles_sound ^= SOUND_GAS_MASK
-	usr.client.prefs.save_preferences()
-
-	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_GAS_MASK) ? "no longer" : "now"] hear gas masks breathy noises."))
-
-
 /client/verb/toggle_round_end_sounds()
 	set category = "Preferences"
 	set name = "Toggle round end sounds."

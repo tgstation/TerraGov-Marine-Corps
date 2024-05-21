@@ -31,8 +31,6 @@
 	for(var/M in get_hearers_in_view(hearing_range, src))
 		if(ismob(M))
 			var/mob/HM = M
-			if(HM?.client?.prefs?.toggles_sound & SOUND_GAS_MASK)
-				continue
 			HM.playsound_local(user, SFX_GASBREATH, 20, 1)
 			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
