@@ -193,6 +193,8 @@
 /obj/fire/melting_fire/affect_mob(mob/living/carbon/target)
 	if(isxeno(target))
 		return
+	if(target.stat == DEAD)
+		return
 	var/damage = PYROGEN_MELTING_FIRE_DAMAGE
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)

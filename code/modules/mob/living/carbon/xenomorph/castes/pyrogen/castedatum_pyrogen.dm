@@ -7,6 +7,7 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "pyrogen" //used to match appropriate wound overlays
+	evolution_threshold = 225
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
