@@ -2,6 +2,7 @@
 	icon = 'icons/obj/structures/barsigns.dmi'
 	icon_state = "off"
 	anchored = TRUE
+	directional = FALSE
 
 /obj/structure/sign/double/barsign/Initialize(mapload)
 	. = ..()
