@@ -172,7 +172,7 @@
 
 /// called when attacking a mob
 /obj/effect/xenomorph/firenado/proc/mob_act(mob/living/carbon/human/target)
-	if(target.status_flags & GODMODE)
+	if(target.status_flags & GODMODE || target.stat == DEAD)
 		return
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
@@ -211,7 +211,7 @@
 		qdel(src)
 		return
 	for(var/mob/living/carbon/human/humie in current_location)
-		if(humie.stat == DEAD)
+		if(humie.stat == DEAD || humie.status_flags & GODMODE)
 			continue
 		mob_act(humie)
 	/// random number so it isn't north biased by default if no target
@@ -252,6 +252,12 @@
 	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
 		var/turf/chosen = pick_n_take(pickable_turfs)
+		while(chosen.density)
+			if(length(pickable_turfs) == 0)
+				chosen = get_turf(src)
+				break
+			chosen = pick_n_take(pickable_turfs)
+
 		new /obj/effect/xenomorph/firenado(chosen, target)
 
 	succeed_activate()
