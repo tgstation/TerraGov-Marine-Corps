@@ -9,13 +9,13 @@
 /datum/job/vsd/standard
 	title = "VSD Standard"
 	paygrade = "VSD1"
-	outfit = /datum/outfit/job/vsd/standard/gruntone
+	outfit = /datum/outfit/job/vsd/standard/grunt_one
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/vsd/standard/gruntone,
+		/datum/outfit/job/vsd/standard/grunt_one,
 		/datum/outfit/job/vsd/standard/ksg,
-		/datum/outfit/job/vsd/standard/gruntsecond,
-		/datum/outfit/job/vsd/standard/gruntthird,
+		/datum/outfit/job/vsd/standard/grunt_second,
+		/datum/outfit/job/vsd/standard/grunt_third,
 	)
 
 //outfits
@@ -66,13 +66,13 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
 
-/datum/outfit/job/vsd/standard/gruntone
+/datum/outfit/job/vsd/standard/grunt_one
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/desert
 	head = /obj/item/clothing/head/helmet/marine/vsd/secondary
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	mask = /obj/item/clothing/mask/gas/vsd
 
-/datum/outfit/job/vsd/standard/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/standard/grunt_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
@@ -109,11 +109,11 @@
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
-/datum/outfit/job/vsd/standard/gruntsecond
+/datum/outfit/job/vsd/standard/grunt_second
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
 
-/datum/outfit/job/vsd/standard/gruntsecond/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/standard/grunt_second/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
@@ -124,10 +124,10 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
 
-/datum/outfit/job/vsd/standard/gruntthird
+/datum/outfit/job/vsd/standard/grunt_third
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 
-/datum/outfit/job/vsd/standard/gruntthird/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/standard/grunt_third/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
@@ -350,8 +350,8 @@
 		/datum/outfit/job/vsd/spec/flamer,
 		/datum/outfit/job/vsd/spec/demolitionist,
 		/datum/outfit/job/vsd/spec/gunslinger,
-		/datum/outfit/job/vsd/spec/uslspecone,
-		/datum/outfit/job/vsd/spec/uslspectwo,
+		/datum/outfit/job/vsd/spec/uslspec_one,
+		/datum/outfit/job/vsd/spec/uslspec_two,
 	)
 
 //outfits
@@ -475,7 +475,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/xmdivider/gunslinger(H), SLOT_IN_BELT)
 
-/datum/outfit/job/vsd/spec/uslspecone
+/datum/outfit/job/vsd/spec/uslspec_one
 	w_uniform = /obj/item/clothing/under/vsd/upp
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor/upp
 	head = /obj/item/clothing/head/helmet/marine/vsd/upp
@@ -483,7 +483,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
 	l_store = /obj/item/storage/pouch/magazine
 
-/datum/outfit/job/vsd/spec/uslspec1/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/spec/uslspec_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_ACCESSORY)
@@ -514,7 +514,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
 
-/datum/outfit/job/vsd/spec/uslspectwo
+/datum/outfit/job/vsd/spec/uslspec_two
 	w_uniform = /obj/item/clothing/under/vsd/upp
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor/upp
 	head = /obj/item/clothing/head/uppcap/beret
@@ -524,7 +524,7 @@
 	back = /obj/item/shotgunbox/clf_heavyrifle
 	l_store = /obj/item/storage/pouch/grenade
 
-/datum/outfit/job/vsd/spec/uslspec2/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/spec/uslspec_two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_ACCESSORY)
@@ -669,7 +669,7 @@
 	outfits = list(
 		/datum/outfit/job/vsd/leader/one,
 		/datum/outfit/job/vsd/leader/two,
-		/datum/outfit/job/vsd/leader/uppthree,
+		/datum/outfit/job/vsd/leader/upp_three,
 	)
 
 //SL outfits
@@ -767,7 +767,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
 
-/datum/outfit/job/vsd/leader/uppthree
+/datum/outfit/job/vsd/leader/upp_three
 	head = /obj/item/clothing/head/uppcap/beret
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor/upp
 	mask = /obj/item/clothing/mask/gas/vsd

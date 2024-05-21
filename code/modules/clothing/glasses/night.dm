@@ -119,5 +119,4 @@
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	tint = COLOR_GREEN
-	item_flags = DELONDROP
 	worn_layer = COLLAR_LAYER

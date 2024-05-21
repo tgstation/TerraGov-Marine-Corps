@@ -6,7 +6,7 @@
 
 /datum/emergency_call/vsd/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a member of the Syndicate's personal guns. The Vyacheslav Security Detail. You are here to take down this corporate scum by any means necessary. Kill anything in your path.</b>")
-	to_chat(H, "<B>You are equipped with Ballistic Armor to counter some of TerraGov's weaponry. Jaeger's armor has a weakness, aim for the head. Jaeger has a weakness to 5.56.</b>")
+	to_chat(H, "<B>You are equipped with Ballistic Armor to counter some of TerraGov's weaponry. Jaeger's armor has a weakness, aim for the head and just below that chest plate. Jaeger has a weakness to 5.56.</b>")
 	to_chat(H, "<B>A TerraGov vessel has entered Syndicate and I.C.C. airspace. You're here to take down the ship. Goodluck.</b>")
 	to_chat(H, "")
 
