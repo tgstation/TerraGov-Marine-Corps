@@ -323,3 +323,14 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	usr.client.prefs.save_preferences()
 	SStgui.update_user_uis(usr)
 	to_chat(src, span_interface("TGUI compatibility mode is now [usr.client.prefs.tgui_fancy ? "dis" : "en"]abled."))
+
+/client/verb/toggle_switch_hand_unwield()
+	set name = "Toggle Switch-Hand Auto-Unwield"
+	set category = "Preferences"
+
+	prefs.toggles_gameplay ^= SWITCH_HAND_UNWIELD
+	prefs.save_preferences()
+
+	to_chat(src, "<span-class='notice'>You will [(prefs.toggles_gameplay & SWITCH_HAND_UNWIELD) ? "no longer" : "now"] automatically unwield your gun, should you switch your active hand with it wielded.</span>")
+
+	prefs.save_preferences()
