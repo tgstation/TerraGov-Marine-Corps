@@ -1,7 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	glide_size = 8
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -262,6 +262,10 @@
 		return
 
 	var/atom/oldloc = loc
+	//Early override for some cases like diagonal movement
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
+
 	loc = newloc
 	oldloc.Exited(src, direction)
 
@@ -280,9 +284,6 @@
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
-	if(glide_size_override)
-		set_glide_size(glide_size_override)
-
 	Moved(oldloc, direction)
 
 	if(pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
@@ -293,14 +294,19 @@
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (pull_dir - 1) & pull_dir)
 				pulling.moving_from_pull = src
-				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size_override) //the pullee tries to reach our previous position
+				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
+
+	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
+	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	last_move = direction
 	last_move_time = world.time
 
-	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction)) //movement failed due to buckled mob(s)
+	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction, glide_size_override)) //movement failed due to buckled mob(s)
 		return FALSE
 	return TRUE
 
@@ -580,7 +586,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_x
 				dist_since_sleep++
@@ -591,7 +597,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_y
 				dist_since_sleep++
@@ -606,7 +612,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_y
 				dist_since_sleep++
@@ -617,7 +623,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_x
 				dist_since_sleep++
@@ -644,10 +650,10 @@
 	thrown_speed = 0
 	throw_source = null
 
-/atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
+/atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override)
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
-		if(buckled_mob.Move(NewLoc, direct))
+		if(buckled_mob.Move(newloc, direct, glide_size_override))
 			continue
 		forceMove(buckled_mob.loc)
 		last_move = buckled_mob.last_move
@@ -1049,7 +1055,7 @@
 	var/turf/destination_turf = get_step(pulling.loc, move_dir)
 	if(!Adjacent(destination_turf) || (destination_turf == loc && pulling.density))
 		return FALSE
-	pulling.Move(destination_turf, move_dir)
+	pulling.Move(destination_turf, move_dir, glide_size)
 	return TRUE
 
 
@@ -1089,44 +1095,17 @@
 /atom/movable/proc/is_buckled()
 	return buckled
 
-
 /atom/movable/proc/set_glide_size(target = 8)
-	if(glide_size == target)
-		return FALSE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
 	glide_size = target
-	if(pulling && pulling.glide_size != target)
-		pulling.set_glide_size(target)
-	return TRUE
 
-/obj/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	for(var/m in buckled_mobs)
-		var/mob/living/buckled_mob = m
-		if(buckled_mob.glide_size == target)
-			continue
+	for(var/mob/buckled_mob AS in buckled_mobs)
 		buckled_mob.set_glide_size(target)
-
-/obj/structure/bed/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	if(buckled_bodybag && buckled_bodybag.glide_size != target)
-		buckled_bodybag.set_glide_size(target)
-	glide_size = target
-
 
 /atom/movable/proc/reset_glide_size()
 	if(glide_modifier_flags)
 		return
 	set_glide_size(initial(glide_size))
-
-/obj/vehicle/reset_glide_size()
-	if(glide_modifier_flags)
-		return
-	set_glide_size(DELAY_TO_GLIDE_SIZE_STATIC(move_delay))
 
 /mob/reset_glide_size()
 	if(glide_modifier_flags)

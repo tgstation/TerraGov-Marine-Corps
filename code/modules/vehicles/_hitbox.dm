@@ -67,6 +67,7 @@
 			new_pos = get_step(root, turn(get_dir(desant, root), -90))
 		else
 			new_pos = get_step(root, turn(get_dir(desant, root), 90))
+		desant.set_glide_size(32)
 		desant.forceMove(new_pos)
 
 ///signal handler when someone jumping lands on us
@@ -109,6 +110,7 @@
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	for(var/mob/living/tank_desant AS in tank_desants)
+		tank_desant.set_glide_size(root.glide_size)
 		tank_desant.forceMove(get_step(tank_desant, direction))
 		if(isxeno(tank_desant) || move_dist > 1)
 			continue
