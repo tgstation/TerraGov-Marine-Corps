@@ -10,6 +10,11 @@
 	///How far down the mob visually drops down when in water
 	var/mob_liquid_depth = -5
 
+
+/turf/open/liquid/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/submerge)
+
 /turf/open/liquid/AfterChange()
 	. = ..()
 	baseturfs = type

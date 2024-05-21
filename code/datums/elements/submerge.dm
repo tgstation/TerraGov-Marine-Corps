@@ -1,0 +1,26 @@
+/datum/element/submerge/Attach(datum/target)
+	. = ..()
+	if(!isturf(target))
+		return ELEMENT_INCOMPATIBLE
+	//override true as we don't look up if the turf already has the element
+	RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(atom_entered), TRUE)
+	RegisterSignal(target, COMSIG_ATOM_EXITED, PROC_REF(atom_exited), TRUE)
+
+/datum/element/submerge/Detach(datum/source, force)
+	. = ..()
+	UnregisterSignal(source, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED))
+
+///Applies or modifies submerge effects on entering AMs
+/datum/element/submerge/proc/atom_entered(datum/source, atom/movable/mover, atom/old_loc, list/old_locs)
+	SIGNAL_HANDLER
+	mover.set_submerge_level(mover.loc, old_loc)
+
+///Removes submerge effects if the new loc does not submerge the AM
+/datum/element/submerge/proc/atom_exited(datum/source, atom/movable/mover, direction)
+	SIGNAL_HANDLER
+	//this is slightly stinky since the submerge effects are not tied to the element itself, and because we can't check if the turf actually has the element or not,
+	//we have to hope that no one has shitcoded and forgot to give something the element when it's supposed to have it.
+	var/turf/new_loc = mover.loc
+	if(isturf(mover.loc) && (new_loc.get_submerge_height() || new_loc.get_submerge_depth()))
+		return //If the new loc submerges, we let it handle that on enter
+	mover.set_submerge_level(mover.loc, source)

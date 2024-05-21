@@ -104,7 +104,6 @@
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
 		AddComponent(/datum/component/overlay_lighting)
-	set_submerge_level(loc)
 
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
@@ -403,8 +402,6 @@
 
 		else if(new_turf && !old_turf)
 			SSspatial_grid.enter_cell(src, new_turf)
-
-	set_submerge_level(loc, old_loc)
 
 	return TRUE
 

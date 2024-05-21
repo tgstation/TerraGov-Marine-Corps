@@ -228,6 +228,18 @@
 		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	if(isturf(loc))
+		loc.AddElement(/datum/element/submerge)
+
+/obj/structure/flora/grass/tallgrass/Destroy()
+	var/old_loc = loc
+	. = ..()
+	if(!isturf(old_loc))
+		return
+	var/turf/turf_loc = loc
+	if(turf_loc.get_submerge_height() || turf_loc.get_submerge_depth())
+		return
+	turf_loc.RemoveElement(/datum/element/submerge)
 
 ///How deep things gets submerged in tallgrass
 /obj/structure/flora/grass/tallgrass/proc/get_submerge_height(turf/source, list/submerge_list)
