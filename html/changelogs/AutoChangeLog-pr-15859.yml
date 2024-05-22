@@ -1,0 +1,6 @@
+author: "chizzy376"
+delete-after: True
+changes:
+  - balance: "Added a new shortcut from Slumbridge prison to the south east quadrant."
+  - bugfix: "Fixed stairs in Slumbridge."
+  - qol: "Replaced every Slumbridge platform with a nondense one."
