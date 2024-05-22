@@ -561,11 +561,13 @@
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/kitchen)
 "ayr" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/obj/structure/platform_decoration,
-/turf/open/floor/tile/dark,
+/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
 /area/slumbridge/outside/southwest)
 "ayK" = (
 /obj/machinery/light,
@@ -723,11 +725,14 @@
 /turf/open/floor/mainship/red/corner,
 /area/slumbridge/inside/sombase/hangar)
 "aEQ" = (
-/obj/structure/platform_decoration{
-	dir = 4
+/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/snow,
-/area/slumbridge/outside/southwest/nearlz)
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/slumbridge/outside/southwest)
 "aFa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/floor,
@@ -1064,11 +1069,10 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/outerringnorth)
 "aSx" = (
-/obj/structure/platform/nondense{
-	dir = 9
-	},
-/turf/closed/wall,
-/area/slumbridge/inside/colony/kitchen)
+/obj/structure/platform/metalplatform/nondense,
+/obj/structure/fence/broken,
+/turf/open/floor/plating/ground/concrete,
+/area/slumbridge/outside/southwest)
 "aSY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/gibspawner/human,
@@ -1751,7 +1755,8 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "bpJ" = (
-/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense,
+/obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
 	},
@@ -2169,12 +2174,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
-"bEO" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
 "bEY" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -2308,12 +2307,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
-"bJn" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "bJr" = (
 /obj/structure/rock/basalt/pile/alt3,
 /obj/structure/cable,
@@ -2454,7 +2447,6 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/structure/stairs/seamless/edge,
-/obj/structure/platform/nondense,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest/nearlz)
 "bNd" = (
@@ -2871,8 +2863,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/outside/northeast)
 "cdy" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/tile/dark,
+/obj/structure/platform/metalplatform/nondense,
+/obj/structure/fence/broken,
+/turf/open/floor/plating/ground/concrete/lines,
 /area/slumbridge/outside/southwest)
 "cdz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3471,10 +3464,11 @@
 	},
 /area/slumbridge/landingzonetwo)
 "cAw" = (
-/obj/structure/platform_decoration{
-	dir = 8
+/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
 	},
-/turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "cAA" = (
 /turf/open/floor/mainship/red,
@@ -4108,17 +4102,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/lavaland/basalt,
 /area/slumbridge/inside/prison/outside)
-"cZT" = (
-/obj/structure/stairs,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "cZW" = (
 /obj/machinery/light{
 	dir = 1
@@ -4235,12 +4218,7 @@
 /turf/open/floor/scorched,
 /area/slumbridge/inside/pmcdome)
 "ddG" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
+/obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "ddR" = (
@@ -4872,13 +4850,6 @@
 	dir = 8
 	},
 /area/slumbridge/inside/sombase/hangar)
-"dFj" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "dFM" = (
 /obj/machinery/computer/atmos_alert,
 /obj/structure/table,
@@ -4953,12 +4924,6 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/yellow,
 /area/slumbridge/inside/engi/central)
-"dHw" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 6
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
 "dHA" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/decal/cleanable/dirt,
@@ -5068,6 +5033,7 @@
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
 "dLz" = (
+/obj/effect/ai_node,
 /obj/structure/platform_decoration{
 	dir = 1
 	},
@@ -5886,6 +5852,9 @@
 /area/slumbridge/inside/prison/innerring)
 "etk" = (
 /obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
@@ -6890,7 +6859,7 @@
 	},
 /area/slumbridge/inside/sombase/east)
 "flm" = (
-/obj/structure/platform_decoration/metalplatform_deco,
+/obj/structure/stairs/seamless/edge,
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/landingzonetwo)
 "flD" = (
@@ -7123,7 +7092,10 @@
 /turf/open/floor/tile/green/greentaupe,
 /area/slumbridge/inside/medical/surgery)
 "ftu" = (
-/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 4
+	},
+/obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
 	},
@@ -7510,18 +7482,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
-"fKR" = (
-/obj/structure/stairs,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "fLg" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -8582,6 +8542,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome)
+"gxv" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzonetwo)
 "gxB" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -9098,9 +9064,7 @@
 /turf/open/floor/mainship/red,
 /area/slumbridge/inside/sombase/hangar)
 "gRS" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
+/obj/structure/platform_decoration,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "gSj" = (
@@ -9774,10 +9738,9 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/dorms)
 "hqE" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/platform/nondense{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -10581,9 +10544,6 @@
 /obj/structure/stairs/seamless/edge{
 	dir = 8
 	},
-/obj/structure/platform/nondense{
-	dir = 1
-	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "hUh" = (
@@ -11071,7 +11031,7 @@
 /turf/open/floor/tile/barber,
 /area/slumbridge/inside/houses/surgery)
 "ikl" = (
-/obj/structure/platform_decoration/metalplatform_deco{
+/obj/structure/stairs/seamless/edge{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -11256,8 +11216,8 @@
 /area/slumbridge/inside/engi/engineroom)
 "ioZ" = (
 /obj/effect/ai_node,
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/landingzonetwo)
@@ -11310,7 +11270,7 @@
 /area/slumbridge/inside/zeta/north)
 "ipX" = (
 /obj/structure/stairs/seamless{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -11789,6 +11749,9 @@
 /area/slumbridge/inside/prison/outerringnorth)
 "iHB" = (
 /obj/structure/fence/broken,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -12153,13 +12116,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
-"iVg" = (
-/obj/machinery/floodlight/landing,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/drop2/lz2)
 "iVr" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -12218,7 +12174,10 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "iWV" = (
-/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
+/obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
 	},
@@ -12279,8 +12238,9 @@
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
 "jaz" = (
-/obj/structure/stairs/seamless/edge,
-/obj/structure/platform/nondense,
+/obj/structure/stairs/seamless/platform{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "jaC" = (
@@ -12502,11 +12462,11 @@
 /turf/open/floor/scorched,
 /area/slumbridge/inside/pmcdome)
 "jky" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/platform_decoration,
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest/nearlz)
+/obj/structure/platform/nondense{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/slumbridge/outside/southwest)
 "jkR" = (
 /obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/bar,
@@ -13259,8 +13219,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/houses/swcargo)
 "jLn" = (
-/obj/structure/stairs,
-/obj/structure/platform/nondense{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -14022,12 +13981,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkbrown/full,
 /area/slumbridge/inside/houses/swcargo)
-"kqg" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "kqp" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -15259,6 +15212,9 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
 /area/slumbridge/landingzonetwo)
+"lmE" = (
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzonetwo)
 "lmQ" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -15575,9 +15531,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/platform/nondense{
-	dir = 1
-	},
 /obj/structure/stairs/seamless/edge{
 	dir = 4
 	},
@@ -15827,8 +15780,8 @@
 	},
 /area/slumbridge/inside/engi/west)
 "lGv" = (
-/obj/structure/platform_decoration{
-	dir = 4
+/obj/structure/platform/nondense{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/slumbridge/outside/southwest)
@@ -15871,6 +15824,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/north)
+"lJw" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzonetwo)
 "lJC" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -16219,9 +16178,6 @@
 /obj/structure/stairs/seamless/edge{
 	dir = 4
 	},
-/obj/structure/platform/nondense{
-	dir = 1
-	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest/nearlz)
 "lUz" = (
@@ -16335,6 +16291,9 @@
 /area/slumbridge/inside/sombase/hangar)
 "lZe" = (
 /obj/structure/fence/broken,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -16718,12 +16677,6 @@
 "mkf" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/slumbridge/outside/northwest)
-"mkr" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "mku" = (
 /obj/item/shard,
 /turf/open/floor/plating/ground/snow/layer2{
@@ -17034,6 +16987,9 @@
 /turf/open/floor/plating,
 /area/slumbridge/outside/northeast)
 "mxR" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 8
+	},
 /obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -17120,15 +17076,10 @@
 	},
 /area/slumbridge/inside/zeta/entrance)
 "mAI" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/structure/platform/nondense{
+	dir = 8
 	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/slumbridge/outside/southwest)
 "mAS" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17806,9 +17757,11 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
 "neO" = (
-/obj/structure/stairs/seamless/edge,
-/turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/slumbridge/inside/colony/kitchen)
 "neU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18116,11 +18069,13 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/south)
 "noc" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/structure/platform_decoration{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/slumbridge/outside/southwest)
 "noy" = (
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/sombase/hangar)
@@ -18593,6 +18548,13 @@
 	},
 /turf/open/floor/tile/blue,
 /area/slumbridge/inside/houses/surgery/garbledradio)
+"nDG" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "nDL" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/dmg1,
@@ -19477,6 +19439,9 @@
 /area/slumbridge/caves/northwestcaves)
 "okT" = (
 /obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -19783,12 +19748,6 @@
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning,
 /area/slumbridge/outside/northwest/nearlz)
-"owA" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
 "owJ" = (
 /turf/open/floor/tile/brown/corner{
 	dir = 8
@@ -21019,11 +20978,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/platform/nondense,
-/obj/structure/platform/nondense{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer1,
+/turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "ptO" = (
 /obj/effect/landmark/weed_node,
@@ -21187,9 +21142,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/foamplating,
 /area/slumbridge/inside/prison/innerring)
-"pze" = (
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
 "pzv" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 4
@@ -22042,13 +21994,10 @@
 	},
 /area/slumbridge/inside/zeta/north)
 "qhy" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
+/obj/effect/landmark/weed_node,
+/obj/structure/platform_decoration,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "qhA" = (
@@ -22171,14 +22120,11 @@
 /turf/open/floor/tile/blue,
 /area/slumbridge/inside/medical/chemistry)
 "qkV" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/structure/platform_decoration{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest/nearlz)
+/turf/open/floor/wood,
+/area/slumbridge/inside/colony/kitchen)
 "qll" = (
 /obj/structure/barricade/snow,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -22288,11 +22234,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/minedrock)
 "qpP" = (
-/obj/structure/stairs{
+/obj/structure/stairs/seamless/platform_vert{
 	dir = 1
-	},
-/obj/structure/platform/nondense{
-	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -22479,6 +22422,12 @@
 /obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/wood/variable/mosaic,
 /area/slumbridge/inside/houses/dorms)
+"qwF" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "qxg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/cabinet,
@@ -23006,12 +22955,6 @@
 	},
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/slumbridge/caves/rock)
-"qPU" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
 "qPW" = (
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/floor,
@@ -23023,10 +22966,6 @@
 /obj/structure/cable,
 /obj/structure/stairs{
 	dir = 8
-	},
-/obj/structure/platform/nondense,
-/obj/structure/platform/nondense{
-	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -23694,6 +23633,13 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/closed/mineral/smooth/snowrock,
 /area/slumbridge/caves/rock)
+"roy" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/drop2/lz2)
 "roD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/showroom,
@@ -24493,6 +24439,15 @@
 /obj/effect/turf_decal/warning_stripes/linethick,
 /turf/open/floor/plating,
 /area/slumbridge/inside/pmcdome)
+"rRJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzonetwo)
 "rRL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/generic{
@@ -24533,16 +24488,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/orestorage)
-"rTC" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "rUk" = (
 /turf/open/lavaland/basalt,
 /area/slumbridge/inside/prison/innerring)
@@ -24893,18 +24838,6 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/central)
-"sdW" = (
-/obj/structure/stairs,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/slumbridge/outside/southwest)
 "seb" = (
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/construction)
@@ -25092,8 +25025,8 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/slumbridge/caves/rock)
 "skF" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner,
 /area/slumbridge/landingzonetwo)
@@ -25457,6 +25390,9 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "sAW" = (
+/obj/structure/platform/metalplatform/nondense{
+	dir = 8
+	},
 /obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
@@ -25502,14 +25438,6 @@
 "sCk" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/slumbridge/inside/zeta/entrance)
-"sCt" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "sCu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -25694,7 +25622,6 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
 "sJa" = (
-/obj/structure/platform/nondense,
 /obj/structure/stairs/seamless/edge,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -26117,6 +26044,10 @@
 	dir = 1
 	},
 /area/slumbridge/inside/houses/recreational)
+"sYp" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "sYP" = (
 /obj/structure/prop/mainship/gelida/powerccable,
 /obj/machinery/light{
@@ -26620,10 +26551,6 @@
 "tti" = (
 /turf/closed/wall,
 /area/slumbridge/inside/colony/dorms)
-"ttx" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/slumbridge/outside/southwest)
 "tuh" = (
 /obj/machinery/light{
 	dir = 8
@@ -27677,6 +27604,12 @@
 /obj/effect/spawner/random/misc/structure/broken_window,
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/central)
+"ujv" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 6
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzonetwo)
 "ujQ" = (
 /obj/structure/bed/stool,
 /obj/effect/decal/cleanable/dirt,
@@ -28332,12 +28265,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringnorth)
-"uLA" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/slumbridge/outside/southwest)
 "uLL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -28489,6 +28416,7 @@
 /area/slumbridge/inside/medical/cmo)
 "uRw" = (
 /obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/slumbridge/outside/southwest)
 "uRP" = (
@@ -28532,13 +28460,6 @@
 "uSH" = (
 /turf/open/floor/plating/platebot,
 /area/slumbridge/landingzonetwo)
-"uSV" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "uTe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -28642,12 +28563,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "uXW" = (
@@ -28729,6 +28644,12 @@
 	dir = 1
 	},
 /area/slumbridge/inside/sombase/east)
+"vbj" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "vbs" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -28777,14 +28698,6 @@
 	dir = 8
 	},
 /area/slumbridge/outside/northwest)
-"vdb" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "vdl" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
@@ -28932,7 +28845,10 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/houses/swcargo)
 "vhX" = (
-/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 1
+	},
+/obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -29736,9 +29652,6 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
-"vJh" = (
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "vJA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/purple/warning{
@@ -29943,10 +29856,7 @@
 /turf/open/floor/grass,
 /area/slumbridge/caves/mining)
 "vSc" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
+/obj/structure/stairs/seamless/platform{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -30793,7 +30703,10 @@
 	},
 /area/slumbridge/inside/colony/bar)
 "wtZ" = (
-/obj/structure/fence,
+/obj/structure/platform/metalplatform/nondense{
+	dir = 4
+	},
+/obj/structure/fence/broken,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
@@ -31297,7 +31210,6 @@
 /obj/structure/stairs/seamless/edge{
 	dir = 1
 	},
-/obj/structure/platform/nondense,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "wLZ" = (
@@ -31323,10 +31235,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/south)
-"wMG" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
 "wML" = (
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/north)
@@ -31506,15 +31414,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/slumbridge/inside/zeta/south)
-"wUh" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
 "wUo" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -31799,12 +31698,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest/nearlz)
-"xeD" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow,
-/area/slumbridge/outside/southwest/nearlz)
 "xfo" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/machinery/light{
@@ -31904,6 +31797,12 @@
 "xiI" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/slumbridge/inside/sombase/west)
+"xiM" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "xjw" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -32096,12 +31995,6 @@
 "xrN" = (
 /obj/structure/stairs,
 /obj/effect/ai_node,
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
 "xsd" = (
@@ -32927,6 +32820,9 @@
 /obj/effect/landmark/corpsespawner/miner/regular,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
+"xYH" = (
+/turf/open/floor/plating/mainship,
+/area/slumbridge/landingzoneone)
 "xYJ" = (
 /obj/structure/cargo_container/hd{
 	dir = 4
@@ -33022,12 +32918,6 @@
 /obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/obj/structure/platform/nondense{
-	dir = 8
-	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "ycB" = (
@@ -33161,13 +33051,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
-"ygn" = (
-/obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/slumbridge/outside/southwest)
 "ygv" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -33198,12 +33081,6 @@
 "yht" = (
 /obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/obj/structure/platform/nondense{
-	dir = 4
-	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "yhE" = (
@@ -34617,8 +34494,8 @@ xGq
 xGq
 xGq
 xGq
-qPU
-neO
+sfW
+sfW
 xGq
 xGq
 xGq
@@ -34630,8 +34507,8 @@ pzJ
 ffG
 pzJ
 fBt
-owA
-wUh
+lJw
+rRJ
 vNM
 nCu
 pjL
@@ -34812,7 +34689,7 @@ sfW
 sfW
 sfW
 gCy
-pze
+lmE
 dUf
 fVX
 pjL
@@ -34992,9 +34869,9 @@ wia
 wia
 wia
 wia
-iVg
+roy
 aDK
-dHw
+ujv
 yiz
 pjL
 xvW
@@ -36824,7 +36701,7 @@ bYh
 bYh
 bXQ
 llX
-kqg
+qwF
 fdr
 qKi
 qKi
@@ -36843,7 +36720,7 @@ qKi
 qKi
 qKi
 llX
-kqg
+qwF
 fdr
 qKi
 qYu
@@ -37005,8 +36882,8 @@ bYh
 qKi
 qKi
 jil
-vJh
-wMG
+xYH
+sYp
 qKi
 qKi
 qKi
@@ -37023,9 +36900,9 @@ tyh
 qKi
 qKi
 qKi
-mkr
-vJh
-wMG
+vbj
+xYH
+sYp
 qKi
 qYu
 qKi
@@ -37186,7 +37063,7 @@ bYh
 qKi
 qKi
 xQQ
-dFj
+nDG
 waz
 qKi
 qKi
@@ -37205,7 +37082,7 @@ qKi
 qKi
 gsR
 xQQ
-bJn
+xiM
 waz
 gsR
 qYu
@@ -37513,8 +37390,8 @@ egI
 egI
 egI
 egI
-nSK
-noc
+sfW
+sfW
 egI
 egI
 egI
@@ -38016,7 +37893,7 @@ hah
 vgR
 lZv
 nmr
-ygn
+jeD
 alt
 nmr
 uvc
@@ -38378,7 +38255,7 @@ jWJ
 vkc
 lZv
 nmr
-gRS
+alt
 mmJ
 nmr
 lRi
@@ -39323,7 +39200,7 @@ nxb
 fnu
 ooG
 aEa
-owA
+lJw
 mJi
 vNM
 ooG
@@ -39505,7 +39382,7 @@ fnu
 aEa
 ooG
 gCy
-pze
+lmE
 dUf
 ooG
 plp
@@ -39685,9 +39562,9 @@ fnu
 fnu
 ooG
 ooG
-bEO
+gxv
 aDK
-dHw
+ujv
 ooG
 ooG
 ooG
@@ -39720,7 +39597,7 @@ bXQ
 qKi
 qKi
 llX
-kqg
+qwF
 fdr
 qKi
 qKi
@@ -39739,7 +39616,7 @@ qKi
 qKi
 qKi
 llX
-kqg
+qwF
 fdr
 qKi
 qYu
@@ -39900,9 +39777,9 @@ bYh
 qKi
 qKi
 qKi
-mkr
-vJh
-wMG
+vbj
+xYH
+sYp
 qKi
 qKi
 lVB
@@ -39919,9 +39796,9 @@ oCu
 qKi
 qKi
 qKi
-mkr
-vJh
-wMG
+vbj
+xYH
+sYp
 qKi
 qYu
 qKi
@@ -40082,7 +39959,7 @@ bYh
 gsR
 iIV
 xQQ
-dFj
+nDG
 waz
 qKi
 qKi
@@ -40101,7 +39978,7 @@ qKi
 qKi
 qKi
 xQQ
-bJn
+xiM
 waz
 qKi
 qYu
@@ -40550,9 +40427,9 @@ tbj
 nTu
 qRS
 nmr
-ttx
+nmr
 qNF
-cAw
+alt
 alt
 alt
 alt
@@ -41470,7 +41347,7 @@ lQq
 alt
 fAZ
 bYo
-xeD
+qCL
 qCL
 qCL
 qCL
@@ -41832,7 +41709,7 @@ wTz
 alt
 fAZ
 pma
-aEQ
+qCL
 iIa
 qCL
 qCL
@@ -42731,11 +42608,11 @@ nmr
 ygm
 xrd
 vTh
-ayr
-vTh
-cNE
 oFW
-vdb
+noc
+cNE
+qhy
+vTh
 oFW
 xee
 xee
@@ -42749,10 +42626,10 @@ xee
 apl
 xee
 xee
-jky
+xee
 apl
 nRo
-qkV
+elM
 xee
 xee
 apl
@@ -42911,8 +42788,8 @@ vDC
 nmr
 iDq
 alt
-nmr
-nmr
+jky
+mAI
 vSc
 ipX
 jaz
@@ -43067,7 +42944,7 @@ bYo
 bYo
 dkI
 dkI
-iWV
+aEQ
 etk
 mxR
 sAW
@@ -43090,13 +42967,13 @@ nvH
 doH
 iBk
 vmp
-rTC
-cdy
-nmr
-aSx
+iDq
+alt
+lGv
+rFo
 ayc
 eeH
-eeH
+qkV
 rFo
 rFo
 rFo
@@ -43272,7 +43149,7 @@ iXX
 nmf
 hqE
 mWb
-caF
+dLz
 ddG
 ayc
 eeH
@@ -43284,7 +43161,7 @@ jQU
 xFn
 rFo
 nmr
-rTC
+iDq
 alt
 nmr
 sHO
@@ -43453,9 +43330,9 @@ fOo
 igQ
 jLn
 bIw
-alt
+gRS
 qpP
-eeH
+neO
 eBo
 eBo
 eBo
@@ -43464,7 +43341,7 @@ wos
 xqf
 coX
 xQx
-sdW
+ycz
 bmo
 alt
 nmr
@@ -43614,9 +43491,9 @@ gxe
 vRu
 gxe
 qwi
-gxe
+aSx
 rfs
-uLA
+nmr
 nmr
 nmr
 caF
@@ -43633,8 +43510,8 @@ nvH
 doH
 iBk
 eGl
-qhy
-dLz
+iDq
+alt
 nmr
 rFo
 jup
@@ -43646,7 +43523,7 @@ dcm
 qOF
 rFo
 nmr
-qhy
+iDq
 alt
 nmr
 qMO
@@ -43790,13 +43667,13 @@ bYo
 bYo
 bYo
 bYo
-vhX
+ayr
 dQp
 gxe
 aJV
 sfK
 sfK
-cZT
+yht
 smZ
 smZ
 ajy
@@ -43976,9 +43853,9 @@ gxe
 gxe
 pjp
 gxe
-gxe
+aSx
 uvc
-lGv
+nmr
 nmr
 nmr
 alt
@@ -44157,7 +44034,7 @@ gxe
 gxe
 rlX
 gxe
-uRw
+cdy
 rfs
 oge
 rfs
@@ -44338,7 +44215,7 @@ qkn
 aCj
 wpJ
 cIm
-ftu
+cAw
 dUW
 rfs
 lRi
@@ -45071,10 +44948,10 @@ nmr
 nmr
 nmr
 nmr
-ttx
+nmr
 iDq
 alt
-uLA
+nmr
 nmr
 nmr
 nmr
@@ -45271,9 +45148,9 @@ alt
 bCz
 alt
 xYp
-cdy
+alt
 lhd
-cAw
+alt
 alt
 alt
 nmr
@@ -46139,7 +46016,7 @@ oNT
 cDT
 cGt
 wVJ
-lXi
+bYo
 bYo
 bYo
 bYo
@@ -46320,7 +46197,7 @@ oNT
 obA
 iwH
 wVJ
-lXi
+bYo
 dkI
 dkI
 bYo
@@ -46501,7 +46378,7 @@ qMS
 vbQ
 hBM
 wVJ
-lXi
+bYo
 dkI
 dkI
 oLq
@@ -46682,7 +46559,7 @@ oNT
 ter
 xOD
 wVJ
-lXi
+bYo
 bYo
 asR
 alt
@@ -46871,7 +46748,7 @@ lQq
 alt
 fAZ
 nmr
-uLA
+nmr
 nmr
 gAa
 nmr
@@ -46926,7 +46803,7 @@ oTC
 hns
 mkv
 nmr
-rTC
+iDq
 alt
 nmr
 uvc
@@ -47233,7 +47110,7 @@ jLZ
 tXx
 fAZ
 cKW
-lGv
+nmr
 bCz
 tXx
 nmr
@@ -47275,7 +47152,7 @@ ruS
 yfF
 lRn
 nmr
-cAw
+alt
 alt
 nmr
 mkv
@@ -47288,7 +47165,7 @@ bLo
 rPb
 mkv
 nmr
-mAI
+bIw
 alt
 nmr
 lRi
@@ -47455,7 +47332,7 @@ frZ
 mdY
 bub
 bKy
-fKR
+ycz
 glQ
 alt
 nmr
@@ -47637,7 +47514,7 @@ mdY
 rLB
 lRn
 nmr
-qhy
+iDq
 alt
 nmr
 mkv
@@ -48691,10 +48568,10 @@ smZ
 ajy
 smZ
 smZ
-uSV
+smZ
 sAo
 vTh
-sCt
+vTh
 vTh
 oFW
 vTh
