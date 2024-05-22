@@ -1,5 +1,5 @@
 
-## About
+## About!
 
 The point of this document is to outline the server's current and future intended design.
 
