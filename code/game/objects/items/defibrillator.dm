@@ -160,7 +160,7 @@
 		if(!do_after(user, fumbling_time, NONE, patient, BUSY_ICON_UNSKILLED))
 			return
 
-	defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
+	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
 
 	// Weird cases where we just don't want to even bother with the defib progress bar
 	if(!ready)
