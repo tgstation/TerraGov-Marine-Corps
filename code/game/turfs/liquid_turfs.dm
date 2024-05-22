@@ -286,3 +286,19 @@
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 	base_icon_state = "lava"
+
+//Mapping helpers
+/turf/open/liquid/lava/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/catwalk/Initialize(mapload)
+	. = ..()
+	icon_state = "full"
+	new /obj/structure/catwalk(src)
+
+/turf/open/liquid/lava/autosmoothing/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/autosmoothing/catwalk/Initialize(mapload)
+	. = ..()
+	new /obj/structure/catwalk(src)

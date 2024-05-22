@@ -1063,7 +1063,7 @@
 /area/riptide/outside/beachlzone)
 "aOC" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicategen)
 "aOV" = (
 /obj/effect/landmark/weed_node,
@@ -11104,7 +11104,7 @@
 "hSv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicategen)
 "hSA" = (
 /obj/structure/table/reinforced,
@@ -12569,7 +12569,7 @@
 /area/riptide/inside/engineering/cave)
 "iYP" = (
 /obj/effect/ai_node,
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicatefoyer)
 "iYZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14027,7 +14027,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/outside/volcano)
 "kao" = (
 /obj/structure/cable,
@@ -14750,7 +14750,7 @@
 /turf/open/floor/mainship/sandtemple,
 /area/riptide/caves/pmc/warehouse)
 "kAz" = (
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicateport)
 "kAF" = (
 /obj/structure/rack,
@@ -18301,7 +18301,7 @@
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
 "mTA" = (
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicatefoyer)
 "mTL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -20482,7 +20482,7 @@
 	},
 /area/riptide/inside/landingzoneone)
 "ovl" = (
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/outside/volcano)
 "ovm" = (
 /obj/structure/mine_structure/wooden/support_wall/t_bar,
@@ -32959,7 +32959,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/outside/volcano)
 "wLU" = (
 /obj/structure/rock/variable/crystal_mound,
@@ -33717,7 +33717,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/lavaland/catwalk,
+/turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicatefoyer)
 "xqw" = (
 /obj/structure/window/framed/wood,

@@ -36,8 +36,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
-#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
-
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))
