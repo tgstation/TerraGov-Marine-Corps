@@ -549,7 +549,7 @@
 	if(istype(I))
 		perpname = I.registered_name
 
-	for(var/datum/data/record/E in GLOB.datacore.general)
+	for(var/datum/data/record/E in GLOB.datacore.general) // someone should either delete or fix this
 		if(E.fields["name"] == perpname)
 			for(var/datum/data/record/R in GLOB.datacore.security)
 				if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
