@@ -187,7 +187,7 @@
 		return FALSE
 	if(status_flags & GODMODE)
 		return TRUE //while godmode will stop the damage, we don't want the process to stop in case godmode is removed
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross lava without being affected.
+	if(pass_flags & PASS_FIRE) //As above, we want lava to keep processing in case pass_fire is removed
 		return TRUE
 
 	var/lava_damage = 20
