@@ -19,7 +19,8 @@
 	. = ..()
 	baseturfs = type
 
-#define CATWALK_ROD_REQ 4
+/turf/open/liquid/water/is_weedable()
+	return FALSE
 
 /turf/open/liquid/attackby(obj/item/C, mob/user, params)
 	. = ..()
@@ -168,9 +169,6 @@
 	name = "river"
 	icon = 'icons/turf/desertdam_map.dmi'
 
-/turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
-
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
@@ -228,15 +226,6 @@
 	light_color = LIGHT_COLOR_LAVA
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
-
-/turf/open/liquid/lava/is_weedable()
-	return FALSE
-
-/turf/open/liquid/lava/Initialize(mapload)
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	if(current_turf && density)
-		current_turf.atom_flags |= AI_BLOCKED
 
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
