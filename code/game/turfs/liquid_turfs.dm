@@ -19,7 +19,7 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/liquid/water/is_weedable()
+/turf/open/liquid/is_weedable()
 	return FALSE
 
 /turf/open/liquid/attackby(obj/item/C, mob/user, params)
