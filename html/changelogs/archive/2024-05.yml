@@ -221,3 +221,6 @@
       spawning in Valhalla)
   blackdav123:
   - balance: Lava and fire no longer deal damage when jumped over.
+2024-05-22:
+  Lewdcifer:
+  - rscadd: Added a bitfield menu for xeno_flags
