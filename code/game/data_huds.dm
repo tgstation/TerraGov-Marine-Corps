@@ -10,14 +10,12 @@
 /atom/proc/add_to_all_mob_huds()
 	return
 
-
 /mob/living/carbon/human/add_to_all_mob_huds()
 	for(var/h in GLOB.huds)
 		if(istype(h, /datum/atom_hud/xeno)) //this one is xeno only
 			continue
 		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
-
 
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
 	for(var/h in GLOB.huds)
@@ -26,10 +24,8 @@
 		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
 
-
 /atom/proc/remove_from_all_mob_huds()
 	return
-
 
 /mob/living/carbon/human/remove_from_all_mob_huds()
 	for(var/h in GLOB.huds)
@@ -45,18 +41,14 @@
 		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
 
-
 /datum/atom_hud/simple //Naked-eye observable statuses.
 	hud_icons = list(STATUS_HUD_SIMPLE)
-
 
 /datum/atom_hud/medical
 	hud_icons = list(HEALTH_HUD, STATUS_HUD)
 
-
 //med hud used by silicons, only shows humans with a uniform with sensor mode activated.
 /datum/atom_hud/medical/basic
-
 
 /datum/atom_hud/medical/basic/proc/check_sensors(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -68,11 +60,9 @@
 		return FALSE
 	return TRUE
 
-
 /datum/atom_hud/medical/basic/add_to_single_hud(mob/user, mob/target)
 	if(check_sensors(user))
 		return ..()
-
 
 /datum/atom_hud/medical/basic/proc/update_suit_sensors(mob/living/carbon/human/H)
 	if(check_sensors(H))
@@ -80,32 +70,25 @@
 	else
 		remove_from_hud(H)
 
-
 /mob/living/carbon/human/proc/update_suit_sensors()
 	var/datum/atom_hud/medical/basic/B = GLOB.huds[DATA_HUD_MEDICAL_BASIC]
 	B.update_suit_sensors(src)
 
-
 //med hud used by medical hud glasses
 /datum/atom_hud/medical/advanced
 
-
 //HUD used by the synth, separate typepath so it's not accidentally removed.
 /datum/atom_hud/medical/advanced/synthetic
-
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
 	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, XENO_DEBUFF_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
-
 /datum/atom_hud/medical/pain
 	hud_icons = list(PAIN_HUD)
 
-
 /mob/proc/med_hud_set_health()
 	return
-
 
 /mob/living/carbon/xenomorph/med_hud_set_health()
 	if(hud_used?.healths)
@@ -120,20 +103,24 @@
 	if(!holder)
 		return
 	if(stat == DEAD)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "health0"
 		return
 
 	var/amount = health > 0 ? round(health * 100 / maxHealth, 10) : CEILING(health, 10)
 	if(!amount && health < 0)
 		amount = -1 //don't want the 'zero health' icon when we are crit
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "health[amount]"
 
 /mob/living/carbon/human/med_hud_set_health()
 	var/image/holder = hud_list[HEALTH_HUD]
 	if(stat == DEAD)
+		holder.icon = 'icons/mob/hud/human_health.dmi'
 		holder.icon_state = "health-100"
 		return
 
+	holder.icon = 'icons/mob/hud/human_health.dmi'
 	var/percentage = round(health * 100 / maxHealth)
 	switch(percentage)
 		if(100 to INFINITY)
@@ -287,11 +274,13 @@
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
+			infection_hud.icon = 'icons/mob/hud/infected.dmi'
 			if(E.boost_timer)
 				infection_hud.icon_state = "infectedmodifier[E.stage]"
 			else
 				infection_hud.icon_state = "infected[E.stage]"
 		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
+			infection_hud.icon = 'icons/mob/hud/infected.dmi'
 			infection_hud.icon_state = "infected6"
 		else
 			infection_hud.icon_state = ""
@@ -373,10 +362,8 @@
 #define PAIN_RATIO_PAIN_HUD 0.25
 #define STAMINA_RATIO_PAIN_HUD 0.25
 
-
 /mob/proc/med_pain_set_perceived_health()
 	return
-
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
 	if(species?.species_flags & IS_SYNTHETIC)
@@ -384,6 +371,7 @@
 
 	var/image/holder = hud_list[PAIN_HUD]
 	if(stat == DEAD)
+		holder.icon = 'icons/mob/hud/human_health.dmi'
 		holder.icon_state = "health-100"
 		return TRUE
 
@@ -393,6 +381,7 @@
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
+	holder.icon = 'icons/mob/hud/human_health.dmi'
 	if(perceived_health >= 100)
 		holder.icon_state = "health100"
 	else if(perceived_health > 0)
@@ -436,10 +425,12 @@
 		return
 
 	if(stat == DEAD)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "sundering0"
 		return
 
 	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "sundering[amount]"
 
 ///Set fire stacks on the hud
@@ -458,14 +449,17 @@
 		if(-INFINITY to 0)
 			holder.icon_state = ""
 		if(1 to 5)
+			holder.icon = 'icons/mob/hud/xeno.dmi'
 			holder.icon_state = "firestack1"
 		if(6 to 10)
+			holder.icon = 'icons/mob/hud/xeno.dmi'
 			holder.icon_state = "firestack2"
 		if(11 to 15)
+			holder.icon = 'icons/mob/hud/xeno.dmi'
 			holder.icon_state = "firestack3"
 		if(16 to INFINITY)
+			holder.icon = 'icons/mob/hud/xeno.dmi'
 			holder.icon_state = "firestack4"
-
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) //this is cringe that we need this but currently its called before caste is set on init
@@ -484,11 +478,11 @@
 	holder.overlays.Cut()
 	if(stat == DEAD)
 		return
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
 	holder.overlays += xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
 	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
 	holder.overlays += "wrath[wrath_amount]"
-
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()
 	var/image/holder = hud_list[PHEROMONE_HUD]
@@ -504,6 +498,7 @@
 		if(recovery_aura)
 			tempname += AURA_XENO_RECOVERY
 		if(tempname)
+			holder.icon = 'icons/mob/hud/aura.dmi'
 			holder.icon_state = "[tempname]"
 
 	hud_list[PHEROMONE_HUD] = holder
@@ -527,6 +522,7 @@
 	if(stat != DEAD)
 		if(hive?.living_xeno_queen)
 			if(hive.living_xeno_queen.observed_xeno == src)
+				holder.icon = 'icons/mob/hud/xeno_health.dmi'
 				holder.icon_state = "queen_overwatch"
 			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud/xeno.dmi',src, "leader")
@@ -537,13 +533,13 @@
 	var/image/holder = hud_list[XENO_RANK_HUD]
 	holder.icon_state = ""
 	if(stat != DEAD && playtime_as_number() > 0)
+		holder.icon = 'icons/mob/hud/xeno.dmi'
 		holder.icon_state = "upgrade_[playtime_as_number()]"
 
 	hud_list[XENO_RANK_HUD] = holder
 
 /datum/atom_hud/security
 	hud_icons = list(WANTED_HUD)
-
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
 	var/image/holder = hud_list[WANTED_HUD]
@@ -565,7 +561,6 @@
 				else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 					holder.icon_state = "released"
 					break
-
 
 /datum/atom_hud/squad
 	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
@@ -625,6 +620,7 @@
 		if(marksman_aura)
 			tempname += "focus"
 		if(tempname)
+			holder.icon = 'icons/mob/hud/aura.dmi'
 			holder.icon_state = "[tempname]"
 
 	hud_list[ORDER_HUD] = holder
@@ -645,12 +641,14 @@
 		return
 
 	if(obj_integrity < 1)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "health0"
 		return
 
 	var/amount = round(obj_integrity * 100 / max_integrity, 10)
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "health[amount]"
 
 ///Makes mounted guns ammo visible
@@ -661,9 +659,11 @@
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item.resolve()
 	if(!internal_gun?.rounds)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "plasma0"
 		return
 	var/amount = internal_gun.max_rounds ? round(internal_gun.rounds * 100 / internal_gun.max_rounds, 10) : 0
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible
@@ -674,10 +674,12 @@
 		return
 
 	if(!current_rounds)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "plasma0"
 		return
 
 	var/amount = round(current_rounds * 100 / max_rounds, 10)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "plasma[amount]"
 
 ///Mecha health hud updates
@@ -688,12 +690,14 @@
 		return
 
 	if(obj_integrity < 1)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "health0"
 		return
 
 	var/amount = round(obj_integrity * 100 / max_integrity, 10)
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "health[amount]"
 
 ///Updates mecha battery
@@ -704,10 +708,12 @@
 		return
 
 	if(!cell)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
 		holder.icon_state = "plasma0"
 		return
 
 	var/amount = round(cell.charge * 100 / cell.maxcharge, 10)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	holder.icon_state = "plasma[amount]"
 
 /obj/vehicle/sealed/mecha/proc/diag_hud_set_mechstat()
