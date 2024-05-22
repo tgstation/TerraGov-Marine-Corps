@@ -17225,13 +17225,13 @@
 /area/magmoor/engi/thermal)
 "lZs" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 6;
-	pixel_y = 13
-	},
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice{
 	pixel_x = -2;
 	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 13;
+	pixel_x = 9
 	},
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/jani)
