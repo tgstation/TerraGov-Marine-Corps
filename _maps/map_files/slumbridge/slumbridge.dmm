@@ -663,12 +663,6 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
-"aDH" = (
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/turf/open/lavaland/catwalk,
-/area/slumbridge/outside/northwest)
 "aDJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -17995,12 +17989,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/slumbridge/inside/pmcdome)
-"noM" = (
-/obj/structure/platform/nondense{
-	dir = 4
-	},
-/turf/open/lavaland/catwalk,
-/area/slumbridge/outside/northwest)
 "npJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -36780,8 +36768,8 @@ hNa
 leg
 leg
 leg
-aDH
-aDH
+aNZ
+aNZ
 leg
 leg
 qgS
@@ -37323,8 +37311,8 @@ mkf
 hNa
 leg
 leg
-noM
-noM
+vyt
+vyt
 leg
 mca
 leg
