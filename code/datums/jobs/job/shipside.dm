@@ -1104,7 +1104,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 //Researcher
 /datum/job/terragov/medical/researcher
 	title = MEDICAL_RESEARCHER
-	comm_title = "Rsr"
+	comm_title = "Researcher"
 	paygrade = "RSRA"
 	total_positions = 2
 	supervisors = "the NT corporate office"
@@ -1273,7 +1273,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 /datum/job/terragov/silicon/synthetic
 	title = SYNTHETIC
 	req_admin_notify = TRUE
-	comm_title = "Syn"
+	comm_title = "Synth"
 	paygrade = "Mk.I"
 	supervisors = "the acting captain"
 	total_positions = 1

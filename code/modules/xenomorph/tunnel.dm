@@ -193,6 +193,6 @@ TUNNEL
 	var/image/holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
-	holder.icon = 'icons/mob/hud.dmi'
-	holder.icon_state = "hudtraitor"
+	holder.icon = 'icons/mob/hud/xeno.dmi'
+	holder.icon_state = "tunnel" // this wasn't working since "hudtraitor" was deleted, dunno if we should keep it
 	hud_list[XENO_TACTICAL_HUD] = holder

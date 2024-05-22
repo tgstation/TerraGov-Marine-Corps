@@ -652,7 +652,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		REMOVE_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
-	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
+	var/static/image/aim_mode_visual = image('icons/mob/hud/human.dmi', null, "aim_mode")
 
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
