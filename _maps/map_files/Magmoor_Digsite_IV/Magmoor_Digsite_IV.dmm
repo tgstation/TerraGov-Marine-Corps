@@ -2461,11 +2461,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/west)
-"bGT" = (
-/obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda,
-/turf/open/floor/wood,
-/area/magmoor/civilian/gambling)
 "bHh" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -17229,10 +17224,6 @@
 	pixel_x = -2;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = 13;
-	pixel_x = 9
-	},
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/jani)
 "mad" = (
@@ -18545,7 +18536,6 @@
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "naZ" = (
@@ -47127,7 +47117,7 @@ eNf
 roE
 kfI
 kfI
-bGT
+kfI
 jeO
 ucS
 roE
