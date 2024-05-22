@@ -153,9 +153,9 @@
 	destination.underwear = underwear
 	destination.undershirt = undershirt
 
-///is this mob under their death threshold
+///is this mob under their death threshold?
 /mob/living/carbon/human/proc/can_be_revived()
-	if(health <= health_threshold_dead)
+	if(health <= get_death_threshold())
 		return FALSE
 	return TRUE
 
@@ -206,11 +206,12 @@
 		apply_effect(20 SECONDS, PARALYZE)
 		handle_regular_hud_updates()
 		updatehealth() //One more time, so it doesn't show the target as dead on HUDs
-		dead_ticks = 0 //We reset the DNR time
+		dead_ticks = 0 //We reset the DNR timer
+		species.handle_revive_behavior()
 
-///Checks brute/fire damage, heart status, having a head, death ticks and client for defibrillation
+///Checks health, heart status, having a head, death ticks and client for defibrillation
 /mob/living/carbon/human/proc/check_defib()
-	if(health <= -100 && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB)) // allow robots to bypass the damage threshold
+	if(health <= get_death_threshold())
 		return DEFIB_FAIL_TISSUE_DAMAGE
 
 	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
@@ -220,13 +221,13 @@
 	if(head.limb_status & LIMB_DESTROYED)
 		return DEFIB_FAIL_DECAPITATED
 
-	if((dead_ticks > TIME_BEFORE_DNR) && !issynth(src))
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !issynth(src) || suiciding)
 		return DEFIB_FAIL_BRAINDEAD
 
-	if(!client) // no client at all
+	if(!mind && !get_ghost(TRUE)) // Nobody home
+		return DEFIB_FAIL_NPC
+
+	if(!client) // They moved out of their corpse
 		return DEFIB_FAIL_CLIENT_MISSING
-
-	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE)) // probably unreachable, BUT this is here for completion
-		return DEFIB_FAIL_BRAINDEAD
 
 	return DEFIB_POSSIBLE

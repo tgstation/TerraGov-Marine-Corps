@@ -1,6 +1,6 @@
 /obj/item/defibrillator
 	name = "emergency defibrillator"
-	desc = "A handheld emergency defibrillator, used to resuscitate patients."
+	desc = "A device that delivers powerful shocks to resuscitate incapacitated patients."
 	icon = 'icons/obj/items/defibrillator.dmi'
 	icon_state = "defib_full"
 	worn_icon_state = "defib"
@@ -10,19 +10,19 @@
 	force = 5
 	throwforce = 6
 	w_class = WEIGHT_CLASS_NORMAL
-
-	/// if the defibrillator is ready to use (paddles out)
+	///If the defibrillator is ready to use (paddles out)
 	var/ready = FALSE
-	/// whether this defibrillator has to be turned on to use
+	///Whether this defibrillator has to be turned on to use
 	var/ready_needed = TRUE
-	/// The base number to use for healing the patient's damage
+	///The base number to use for healing the patient's damage
 	var/damage_threshold = 8
-	/// How much charge is used on a shock, with a 1320 power cell, allows 20 uses
+	///How much charge is used on a shock
 	var/charge_cost = 66
-	/// The cooldown for toggling.
+	///The cooldown for toggling.
 	var/defib_cooldown = 0
-	/// The defibrillator's power cell
+	///The defibrillator's power cell
 	var/obj/item/cell/dcell = null
+	///Var for quickly creating sparks on shock
 	var/datum/effect_system/spark_spread/sparks
 
 
@@ -174,7 +174,7 @@
 
 	if(dcell.charge <= charge_cost)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted, seek recharger. Cannot analyze nor administer shock."))
-		to_chat(user, span_boldwarning("You can recharge the defibrillator by click-dragging it onto a corpsman backpack."))
+		to_chat(user, span_boldwarning("You can recharge the defibrillator by click-dragging it onto a corpsman backpack or satchel, or putting it in a recharger."))
 		return
 
 	if(patient.stat != DEAD) // They aren't even dead
@@ -182,19 +182,14 @@
 		return
 
 	if(patient.stat == DEAD && patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT) // Dead, chest obscured
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured, operation aborted. Remove suit or armor and try again."))
-		playsound(src, 'sound/items/defib_failed.ogg', 40, FALSE)
-		return
-
-	if(!patient.has_working_organs() && !(patient.species.species_flags & ROBOTIC_LIMBS))
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
 		return
 
 	var/mob/dead/observer/ghost = patient.get_ghost()
-	if(ghost)
+	if(ghost && patient.check_defib() == DEFIB_POSSIBLE || DEFIB_FAIL_CLIENT_MISSING)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
-			message = "Someone is trying to resurrect you! Stay in your body if you want to be resurrected!",
+			message = "Someone is trying to resuscitate your body! Stay in your body if you want to be resurrected!",
 			color_override = "purple"
 		), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		ghost.reenter_corpse()
@@ -210,17 +205,17 @@
 	//Do the defibrillation effects now. We're checking revive parameters in a moment.
 	sparks.start()
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
-	playsound(src, 'sound/items/defib_release.ogg', 25, FALSE)
 	dcell.use(charge_cost)
 	update_icon()
 	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
 	user.visible_message(span_notice("[user] shocks [patient] with the paddles."),
 	span_notice("You shock [patient] with the paddles."))
-	patient.visible_message(span_danger("[patient]'s body convulses a bit."))
+	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 	//At this point, the defibrillator is ready to work
-	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB)) // this trait allows specific species to be resuscitated regardless of their and defib user skill
+	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+	 	//This trait allows some species to be healed so they may always be resuscitated regardless of user skill
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
@@ -249,7 +244,7 @@
 		if(DEFIB_FAIL_TISSUE_DAMAGE)
 			fail_reason = "Tissue damage too severe. Repair damage and try again."
 		if(DEFIB_FAIL_BAD_ORGANS)
-			fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
+			fail_reason = "Patient's heart is too damaged. Surgical intervention required."
 		if(DEFIB_FAIL_DECAPITATED)
 			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
 				fail_reason = "Patient is missing their head. Reattach and try again."
@@ -257,13 +252,10 @@
 				fail_reason = "Patient is missing their head."
 		if(DEFIB_FAIL_BRAINDEAD)
 			fail_reason = "Patient is braindead. Further attempts futile."
+		if(DEFIB_FAIL_NPC)
+			fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
 		if(DEFIB_FAIL_CLIENT_MISSING)
-			if(!patient.mind && !patient.get_ghost(TRUE)) // confirmed NPC: colonist or something
-				fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
-			else if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-				fail_reason = "Patient is missing intelligence patterns or has a DNR. Further attempts futile."
-			else
-				fail_reason = "No soul detected. Please try again." // deadheads that exit their body *after* defib starts
+			fail_reason = "No soul detected. Please try again."
 
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - [fail_reason]"))
@@ -297,7 +289,7 @@
 
 /obj/item/defibrillator/civi
 	name = "emergency defibrillator"
-	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
+	desc = "A device that delivers powerful shocks to resuscitate incapacitated patients. This one appears to be a civillian model."
 	icon_state = "civ_defib_full"
 	worn_icon_state = "defib"
 
@@ -324,7 +316,7 @@
 
 /obj/item/clothing/gloves/defibrillator
 	name = "advanced medical combat gloves"
-	desc = "Advanced medical gauntlets with small electrodes to resuscitate patients without a bulky unit."
+	desc = "Advanced medical gauntlets with small but powerful electrodes to resuscitate incapacitated patients."
 	icon_state = "defib_out_full"
 	worn_icon_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)

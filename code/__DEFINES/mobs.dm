@@ -31,12 +31,20 @@
 //////////////Defibrillation Outcomes//////////////
 
 // Defibrillation outcomes. used in human_defines.dm
+///Ready to defibrillate
 #define DEFIB_POSSIBLE (1<<0)
+///Too much damage
 #define DEFIB_FAIL_TISSUE_DAMAGE (1<<1)
+///Doesn't have the required organs to sustain life OR heart is broken
 #define DEFIB_FAIL_BAD_ORGANS (1<<2)
+///Missing a head
 #define DEFIB_FAIL_DECAPITATED (1<<3)
+///They have TRAIT_UNDEFIBBABLE
 #define DEFIB_FAIL_BRAINDEAD (1<<4)
-#define DEFIB_FAIL_CLIENT_MISSING (1<<5)
+///Catatonic/NPC, a colonist or something
+#define DEFIB_FAIL_NPC (1<<5)
+///No client, typically just a human who moved out of their body mid defib
+#define DEFIB_FAIL_CLIENT_MISSING (1<<6)
 //=================================================
 
 //=================================================
