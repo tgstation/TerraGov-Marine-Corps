@@ -22,31 +22,6 @@
 /turf/open/liquid/is_weedable()
 	return FALSE
 
-/turf/open/liquid/attackby(obj/item/C, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!istype(C, /obj/item/stack/rods))
-		return
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
-		user.balloon_alert(user, "Already covered!")
-		return
-	var/obj/item/stack/rods/rods = C
-	if(rods.amount < CATWALK_ROD_REQ)
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
-		return
-	user.balloon_alert(user, "Building")
-	if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
-		return
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
-		user.balloon_alert(user, "Already covered!")
-		return
-	if(!rods.use(CATWALK_ROD_REQ))
-		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
-		return
-	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-	new /obj/structure/catwalk(src)
-
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))

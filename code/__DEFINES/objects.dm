@@ -274,3 +274,5 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///Rods needed to build a catwalk
 #define CATWALK_ROD_REQ 4
+///Rods needed to reinforce a floor
+#define REINFORCED_FLOOR_ROD_REQ 2

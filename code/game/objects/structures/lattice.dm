@@ -105,3 +105,16 @@
 		return
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	qdel(src)
+
+/obj/structure/catwalk/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			if(prob(50))
+				qdel(src)
+		if(EXPLODE_LIGHT)
+			if(prob(10))
+				qdel(src)
