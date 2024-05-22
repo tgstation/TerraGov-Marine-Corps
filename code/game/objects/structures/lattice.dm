@@ -90,3 +90,6 @@
 
 /obj/structure/catwalk/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_CATWALK] = layer
+
+/obj/structure/catwalk/lava_act()
+	return FALSE

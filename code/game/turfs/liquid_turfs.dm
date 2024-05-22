@@ -19,8 +19,32 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/liquid/attackby()
-	return
+#define CATWALK_ROD_REQ 4
+
+/turf/open/liquid/attackby(obj/item/C, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(C, /obj/item/stack/rods))
+		return
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		user.balloon_alert(user, "Already covered!")
+		return
+	var/obj/item/stack/rods/rods = C
+	if(rods.amount < CATWALK_ROD_REQ)
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		return
+	user.balloon_alert(user, "Building")
+	if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
+		return
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		user.balloon_alert(user, "Already covered!")
+		return
+	if(!rods.use(CATWALK_ROD_REQ))
+		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed")
+		return
+	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	new /obj/structure/catwalk(src)
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -216,6 +240,8 @@
 
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return
 	if(burn_stuff(arrived))
 		START_PROCESSING(SSobj, src)
 
@@ -236,30 +262,6 @@
 	for(var/atom/thing AS in thing_to_check)
 		if(thing.lava_act())
 			. = TRUE
-
-/turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
-		if(H)
-			to_chat(user, span_warning("There is already a catwalk here!"))
-			return
-		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
-			to_chat(user, span_warning("It takes time to construct a catwalk!"))
-			return
-		if(R.use(4))
-			to_chat(user, span_notice("You construct a heatproof catwalk."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ChangeTurf(/turf/open/lavaland/catwalk/built)
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.atom_flags &= ~AI_BLOCKED
-		else
-			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
-		return
 
 /turf/open/liquid/lava/corner
 	icon_state = "corner"
