@@ -17,7 +17,7 @@
 	desc = "The golden standard of pizzas."
 	icon_state = "pizzamargherita"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/drink/tomatojuice = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/tomatojuice = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice
@@ -33,7 +33,7 @@
 	desc = "A pizza with meat topping."
 	icon_state = "meatpizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 50, /datum/reagent/consumable/drink/tomatojuice = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 50, /datum/reagent/consumable/tomatojuice = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice
@@ -65,7 +65,7 @@
 	desc = "No Tomato Sapiens were harmed during making of this pizza."
 	icon_state = "vegetablepizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/vegetablepizzaslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/medicine/imidazoline = 12)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/medicine/imidazoline = 12)
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/vegetablepizzaslice
@@ -80,7 +80,7 @@
 	name = "donkpocket pizza"
 	desc = "Who thought this would be a good idea?"
 	icon_state = "donkpocketpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/donkpocket
 
@@ -99,7 +99,7 @@
 	name = "dank pizza"
 	desc = "The hippie's pizza of choice."
 	icon_state = "dankpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/drink/doctor_delight = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/doctor_delight = 5, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/dank
 
@@ -118,7 +118,7 @@
 	name = "sassysage pizza"
 	desc = "You can almost taste the sassiness."
 	icon_state = "sassysagepizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/sassysage
 
@@ -130,7 +130,7 @@
 	name = "\improper Hawaiian pizza"
 	desc = "The pizza equivalent of Einstein's riddle."
 	icon_state = "pineapplepizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/pineapple
 
@@ -149,7 +149,7 @@
 	name = "\improper Ant Party pizza"
 	desc = "/// Filled with bugs, remember to fix"
 	icon_state = "antpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/drink/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment/protein = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "insects" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/ants
 
@@ -386,7 +386,7 @@
 	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
 	icon_state = "pastatomato"
 	bitesize = 4
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/drink/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pasta" = 1, "tomato" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/copypasta
@@ -394,7 +394,7 @@
 	desc = "You probably shouldn't try this, you always hear people talking about how bad it is..."
 	icon_state = "copypasta"
 	bitesize = 4
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/drink/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
 	tastes = list("pasta" = 1, "tomato" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatballspaghetti

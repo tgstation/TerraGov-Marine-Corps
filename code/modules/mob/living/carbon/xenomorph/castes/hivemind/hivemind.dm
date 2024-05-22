@@ -204,21 +204,21 @@
 	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
 	setDir(SOUTH)
 
-/mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
+/mob/living/carbon/xenomorph/hivemind/Move(atom/newloc, direction, glide_size_override)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
-	if(!check_weeds(NewLoc))
+	if(!check_weeds(newloc))
 		return FALSE
 
 	// FIXME: Port canpass refactor from tg
 	// Don't allow them over the timed_late doors
-	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
-	if(door && !door.CanPass(src, NewLoc))
+	var/obj/machinery/door/poddoor/timed_late/door = locate() in newloc
+	if(door && !door.CanPass(src, newloc))
 		return FALSE
 
-	abstract_move(NewLoc)
+	abstract_move(newloc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
 	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
@@ -341,7 +341,7 @@
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))
 		return ..()
-	our_parent.playsound_local(our_parent, get_sfx("alien_help"), 30, TRUE)
+	our_parent.playsound_local(our_parent, SFX_ALIEN_HELP, 30, TRUE)
 	to_chat(our_parent, span_xenohighdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
 	GLOB.key_to_time_of_role_death[our_parent.key] = world.time

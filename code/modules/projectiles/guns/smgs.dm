@@ -156,7 +156,7 @@
 
 /obj/item/weapon/gun/smg/standard_heavysmg
 	name = "\improper SMG-45 heavy submachinegun"
-	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses 10x20mm caseless rounds."
+	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses .45 ACP caseless rounds."
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "t45"
 	worn_icon_state = "t45"
@@ -600,7 +600,7 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/icc_machinepistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol, /obj/item/ammo_magazine/smg/icc_machinepistol/hp)
-	fire_sound = "mp38_fire"
+	fire_sound = SFX_MP38_FIRE
 	unload_sound = 'sound/weapons/guns/interact/mp38_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp38_reload.ogg'
 

@@ -23,7 +23,7 @@
 
 /turf/proc/clean(atom/source)
 	if(source.reagents.has_reagent(/datum/reagent/water, 1))
-		clean_blood()
+		wash()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
@@ -102,13 +102,13 @@
 	else if(isturf(target))
 		balloon_alert(user, "Scrubs \the [target.name]")
 		var/turf/target_turf = target
-		target_turf.clean_turf()
+		target_turf.wash()
 	else if(istype(target,/obj/effect/decal/cleanable))
 		balloon_alert(user, "Scrubs \the [target.name] out")
 		qdel(target)
 	else
 		balloon_alert(user, "Cleans \the [target.name]")
-		target.clean_blood()
+		target.wash()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )

@@ -3,6 +3,9 @@
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 
+/// For advanced cases, fail unconditionally but don't return (so a test can return multiple results)
+#define TEST_FAIL(reason) (Fail(reason || "No reason", __FILE__, __LINE__))
+
 /// Asserts that a condition is true
 /// If the condition is not true, fails the test
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]", __FILE__, __LINE__) }
@@ -56,6 +59,7 @@
 #include "connect_loc.dm"
 #include "create_and_destroy.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "drink_icons.dm"
 #include "focus_only_tests.dm"
 #include "implanting.dm"
 #include "item_variant_test.dm"
@@ -70,6 +74,7 @@
 #include "timer_sanity.dm"
 #include "tutorial_sanity.dm"
 #include "unit_test.dm"
+#include "verify_emoji_names.dm"
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"

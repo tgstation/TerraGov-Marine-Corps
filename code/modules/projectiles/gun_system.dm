@@ -1790,6 +1790,10 @@
 	//no point blank bonus when akimbo
 	if(dual_wield)
 		projectile_to_fire.point_blank_range = 0
+	if(isliving(firer))
+		var/mob/living/living_firer = firer
+		if(living_firer.IsStaggered())
+			projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
 
 ///Sets the projectile accuracy and scatter
 /obj/item/weapon/gun/proc/setup_bullet_accuracy()
@@ -1890,7 +1894,7 @@
 		if(!istype(lit_flashlight))
 			continue
 		lit_flashlight.turn_light(null, FALSE)
-	playsound(loc, "alien_claw_metal", 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 

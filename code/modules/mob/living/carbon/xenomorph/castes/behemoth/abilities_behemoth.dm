@@ -81,7 +81,7 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll
 	name = "Roll"
-	desc = "Toggles Rolling on or off."
+	desc = "Toggles Rolling on or off. This can be used to displace talls but won't deal any damage."
 	charge_type = CHARGE_BEHEMOTH
 	speed_per_step = 0.35
 	steps_for_charge = 4
@@ -406,7 +406,7 @@
 		return
 	which_step = !which_step
 	step(xeno_owner, direction, 1)
-	playsound(owner_turf, "behemoth_step_sounds", 40)
+	playsound(owner_turf, SFX_BEHEMOTH_STEP_SOUNDS, 40)
 	new /obj/effect/temp_visual/behemoth/crack/landslide(owner_turf, direction, which_step)
 	new /obj/effect/temp_visual/behemoth/landslide/dust/charge(owner_turf, direction)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), get_turf(xeno_owner), direction, damage, which_step), LANDSLIDE_STEP_DELAY)
@@ -1247,7 +1247,7 @@
 
 /obj/structure/earth_pillar/attacked_by(obj/item/I, mob/living/user, def_zone)
 	. = ..()
-	playsound(src, get_sfx("behemoth_earth_pillar_hit"), 40)
+	playsound(src, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(src))
 
 // Attacking an Earth Pillar as a xeno has a few possible interactions, based on intent:
@@ -1266,7 +1266,7 @@
 			attacks_to_destroy--
 			xeno_attacker.do_attack_animation(src)
 			do_jitter_animation(jitter_loops = 1)
-			playsound(src, get_sfx("behemoth_earth_pillar_hit"), 40)
+			playsound(src, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
 			xeno_attacker.balloon_alert(xeno_attacker, "Attack [attacks_to_destroy] more time(s) to destroy")
 			new /obj/effect/temp_visual/behemoth/landslide/hit(current_turf)
 			return TRUE
@@ -1320,7 +1320,7 @@
 		return
 	SEND_SIGNAL(src, COMSIG_XENOABILITY_EARTH_PILLAR_THROW)
 	var/source_turf = get_turf(src)
-	playsound(source_turf, get_sfx("behemoth_earth_pillar_hit"), 40)
+	playsound(source_turf, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
 	new /obj/effect/temp_visual/behemoth/landslide/hit(source_turf)
 	qdel(src)
 	var/datum/ammo/xeno/earth_pillar/projectile = landslide? GLOB.ammo_list[/datum/ammo/xeno/earth_pillar/landslide] : GLOB.ammo_list[/datum/ammo/xeno/earth_pillar]
@@ -1404,7 +1404,7 @@
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 10
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 1.8
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
@@ -1438,7 +1438,7 @@
 			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 				affected_atom.do_jitter_animation()
 				new /obj/effect/temp_visual/behemoth/landslide/hit(affected_atom.loc)
-				playsound(affected_atom.loc, get_sfx("behemoth_earth_pillar_hit"), 40)
+				playsound(affected_atom.loc, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
 				if(isearthpillar(affected_atom))
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					if(affected_pillar.warning_flashes < initial(affected_pillar.warning_flashes))
@@ -1451,7 +1451,10 @@
 					continue
 				if(isvehicle(affected_atom))
 					var/obj/vehicle/veh_victim = affected_atom
-					veh_victim.take_damage(attack_damage * AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER, MELEE)
+					var/damage_add = 0
+					if(ismecha(veh_victim))
+						damage_add = 8.2
+					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom

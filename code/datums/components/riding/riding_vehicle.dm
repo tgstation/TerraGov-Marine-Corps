@@ -9,7 +9,7 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move))
 
-/datum/component/riding/vehicle/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/vehicle/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/obj/vehicle/vehicle_parent = parent
@@ -53,10 +53,14 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
-	handle_ride(user, direction)
+	last_move_diagonal = ISDIAGONALDIR(direction)
+	var/new_delay = (last_move_diagonal ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1) * vehicle_move_delay + calculate_additional_delay(user)
+	glide_size_override = DELAY_TO_GLIDE_SIZE(new_delay)
+	. = ..()
+	handle_ride(user, direction, new_delay)
 
 /// This handles the actual movement for vehicles once [/datum/component/riding/vehicle/proc/driver_move] has given us the green light
-/datum/component/riding/vehicle/proc/handle_ride(mob/living/user, direction)
+/datum/component/riding/vehicle/proc/handle_ride(mob/living/user, direction, cooldown_duration)
 	var/atom/movable/movable_parent = parent
 
 	var/turf/next = get_step(movable_parent, direction)
@@ -69,15 +73,14 @@
 	if(!isturf(movable_parent.loc))
 		return
 
+	//movable_parent.Move(next, direction, glide_size_override)
 	step(movable_parent, direction)
-	last_move_diagonal = ((direction & (direction - 1)) && (movable_parent.loc == next))
-	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal ? 2 : 1) * vehicle_move_delay + calculate_additional_delay(user))
+	COOLDOWN_START(src, vehicle_move_cooldown, cooldown_duration)
 
 	if(QDELETED(src))
 		return
 	handle_vehicle_layer(movable_parent.dir)
 	handle_vehicle_offsets(movable_parent.dir)
-	return TRUE
 
 /datum/component/riding/vehicle/atv
 	keytype = /obj/item/key/atv
@@ -116,7 +119,7 @@
 	vehicle_move_delay = 6
 	ride_check_flags = RIDER_NEEDS_ARMS
 
-/datum/component/riding/vehicle/wheelchair/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/vehicle/wheelchair/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	if(!iscarbon(user))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/mob/living/carbon/carbon_user = user
@@ -151,7 +154,7 @@
 		delay_to_add += vehicle_move_delay * 0.5
 	else if(right_hand.is_broken())
 		delay_to_add = vehicle_move_delay * 0.33
-	
+
 	return delay_to_add
 
 /datum/component/riding/vehicle/wheelchair/handle_specials()

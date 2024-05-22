@@ -95,7 +95,7 @@
 		return
 
 	var/mob/living/carbon/carbon_mob = arrived
-	carbon_mob.clean_mob()
+	carbon_mob.wash()
 
 	if(carbon_mob.on_fire)
 		carbon_mob.ExtinguishMob()

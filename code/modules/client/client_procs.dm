@@ -302,7 +302,6 @@
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -903,15 +902,11 @@
 	winset(src, "mainwindow", "is-maximized=true")
 
 
-/client/proc/generate_clickcatcher()
-	if(void)
-		return
-	void = new()
-	screen += void
-
-
+///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
-	generate_clickcatcher()
+	if(!void)
+		void = new()
+	screen |= void
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1], actualview[2])
 

@@ -71,7 +71,7 @@
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
+				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -204,8 +204,6 @@
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
-
-	new_xeno.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()

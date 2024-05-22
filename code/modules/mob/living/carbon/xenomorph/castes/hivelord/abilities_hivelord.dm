@@ -264,7 +264,7 @@
 	if(!T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/resin_jelly_pod))
 		return FALSE
 
 /datum/action/ability/xeno_action/place_jelly_pod/action_activate()
@@ -272,7 +272,7 @@
 
 	succeed_activate()
 
-	playsound(owner, "alien_resin_build", 25)
+	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
@@ -412,7 +412,7 @@
 		return FALSE
 
 	var/turf/T = get_turf(owner)
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent, owner_xeno.selected_plant))
 		return FALSE
 
 /datum/action/ability/xeno_action/sow/action_activate()
@@ -420,7 +420,7 @@
 	if(!X.selected_plant)
 		return FALSE
 
-	playsound(src, "alien_resin_build", 25)
+	playsound(src, SFX_ALIEN_RESIN_BUILD, 25)
 	new X.selected_plant(get_turf(owner))
 	add_cooldown()
 	return succeed_activate()
