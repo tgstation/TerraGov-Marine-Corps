@@ -36,7 +36,7 @@
 	return TRUE
 
 /datum/campaign_asset/teleporter_enabled/activated_effect()
-	linked_teleporter.teleporter_status = TELEPORTER_ARRAY_READY
+	linked_teleporter.enable_teleporter()
 	to_chat(faction.faction_leader, span_warning("Teleporter Array powered up. Link to Bluespace drive confirmed. Ready for teleportation."))
 
 //adds more charges
