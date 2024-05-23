@@ -533,7 +533,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
+	AddComponent(/datum/component/submerge_modifier, 10)
 
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
