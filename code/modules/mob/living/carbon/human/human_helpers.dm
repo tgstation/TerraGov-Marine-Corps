@@ -262,3 +262,69 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
 	GLOB.squad_selector.interact(src)
+
+/**
+ * Proc to check if a human has the required organs to sustain life.
+ *
+ * Returns false if this human is missing a heart, their current heart is broken, or they have no brain
+ *
+ * Returns true otherwise
+ */
+/mob/living/carbon/human/proc/has_working_organs()
+	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
+
+	if(!heart || heart.organ_status == ORGAN_BROKEN || !has_brain())
+		return FALSE
+
+	return TRUE
+
+/**
+ * proc that resuscitates a carbon human, bringing them back to life- only works if `can_be_revived()` is true and the human is actually dead
+ *
+ * intended to be called by defibrillators or anything that brings a carbon human back to life
+ */
+/mob/living/carbon/human/proc/resuscitate()
+	if(stat == DEAD && health >= get_death_threshold())
+		set_stat(UNCONSCIOUS)
+		emote("gasp")
+		chestburst = CARBON_NO_CHEST_BURST
+		regenerate_icons()
+		reload_fullscreens()
+		flash_act()
+		apply_effect(10, EYE_BLUR)
+		apply_effect(20 SECONDS, PARALYZE)
+		handle_regular_hud_updates()
+		updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+		dead_ticks = 0 //We reset the DNR timer
+
+/**
+ * Proc for checking parameters of a human for defibrillation.
+ *
+ * Checks decapitation, DNR status, mind/ghost status, damage, organs and having a client for defibrillation.
+ *
+ * See defines in `__DEFINES/defibrillator.dm` for bitflags.
+ *
+ * `additional_damage` can be used to add additional damage when calculating health for situations like grabbing ghost.
+ */
+/mob/living/carbon/human/proc/check_defib(additional_damage = 0)
+
+	var/datum/limb/head/head = get_limb("head")
+	if(head.limb_status & LIMB_DESTROYED)
+		return DEFIB_FAIL_DECAPITATED
+
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !issynth(src) || suiciding) // Synthetics do not expire. If they have a DNR, they'll be caught by the next check
+		return DEFIB_FAIL_BRAINDEAD
+
+	if(!mind && !get_ghost(TRUE)) // Nobody home
+		return DEFIB_FAIL_NPC
+
+	if(health + getOxyLoss() + additional_damage <= get_death_threshold())
+		return DEFIB_FAIL_TOO_MUCH_DAMAGE
+
+	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
+		return DEFIB_FAIL_BAD_ORGANS
+
+	if(!client) // They moved out of their corpse
+		return DEFIB_FAIL_CLIENT_MISSING
+
+	return DEFIB_POSSIBLE
