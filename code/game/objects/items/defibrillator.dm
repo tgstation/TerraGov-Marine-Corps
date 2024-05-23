@@ -207,7 +207,7 @@
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) & DEFIB_STRICT_REVIVABLE_STATES)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) & DEFIB_STRICT_REVIVABLE_STATES)
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
@@ -232,14 +232,18 @@
 	user.visible_message(span_notice("[user] shocks [patient] with the paddles."),
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
-	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
+	defib_cooldown = world.time + 1 SECONDS //1 second cooldown before you can shock again
 
 	if(!defib_ready(patient, user))
 		return
 
+	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
+	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
+		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
+
 	//At this point, the defibrillator is ready to work
 	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
-	 	//This trait allows some species to be healed so they may always be resuscitated regardless of user skill
+	 	//This trait allows some species, such as robots, to be healed to one hit from death instead of failing from too much damage
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
