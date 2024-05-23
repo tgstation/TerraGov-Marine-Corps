@@ -1323,7 +1323,7 @@
 GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 
 ///Sets the submerged level of an AM based on its turf
-/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration)
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration = 0)
 	if(!submerge_icon) //catch all in case so people don't need to make child types just to specify a return
 		return
 	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
