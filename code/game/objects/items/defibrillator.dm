@@ -2,7 +2,7 @@
 	name = "emergency defibrillator"
 	desc = "A device that delivers powerful shocks to resuscitate incapacitated patients."
 	icon = 'icons/obj/items/defibrillator.dmi'
-	icon_state = "defib_full"
+	icon_state = "defib"
 	worn_icon_state = "defib"
 	atom_flags = CONDUCT
 	item_flags = NOBLUDGEON
@@ -88,7 +88,7 @@
 
 	if(!message)
 		return
-	return "[message] You can click-drag this unit on a corpsman backpack to recharge it."
+	return "[message]You can click-drag this unit on a corpsman backpack to recharge it."
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -139,6 +139,22 @@
 /obj/item/defibrillator/attack(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	defibrillate(patient,user)
 
+///Proc for checking that the defib is ready to operate
+/obj/item/defibrillator/proc/defib_ready(mob/living/carbon/human/patient, mob/living/carbon/human/user)
+	if(!ready)
+		to_chat(user, span_warning("Take the paddles out to continue."))
+		return FALSE
+	if(!ishuman(patient))
+		to_chat(user, span_warning("The instructions on [src] don't mention how to resuscitate that..."))
+		return FALSE
+	if(patient.stat != DEAD)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
+		return FALSE
+	if(patient.wear_suit && (patient.wear_suit.atom_flags & CONDUCT)) // something conductive on their chest
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
+		return FALSE
+	return TRUE
+
 ///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
@@ -162,30 +178,37 @@
 
 	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
 
-	// Weird cases where we just don't want to even bother with the defib progress bar
-	if(!ready)
-		to_chat(user, span_warning("Take the paddles out to continue."))
-		return
-
-	if(!ishuman(patient))
-		to_chat(user, span_warning("You can't defibrillate [patient]. You don't even know where to put the paddles!"))
-		return
-
-	if(dcell.charge <= charge_cost)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted, seek recharger. Cannot analyze nor administer shock."))
+	if(dcell.charge <= charge_cost) // This is split from defib_ready because we don't want to check charge AFTER delivering shock
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Seek recharger. Cannot analyze nor administer shock."))
 		to_chat(user, span_boldwarning("You can recharge the defibrillator by click-dragging it onto a corpsman backpack or satchel, or putting it in a recharger."))
 		return
 
-	if(patient.stat != DEAD) // They aren't even dead
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
+	if(!defib_ready(patient, user))
 		return
 
-	if(patient.stat == DEAD && patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT) // Dead, chest obscured
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
+	var/blocking_fail_reason
+	if(patient.check_defib() & (DEFIB_PERMADEATH_STATES))
+		// Special bit for preventing the do_after if they can't come back.
+		// We'll check the rest of the check_defib states along with these after shocking, incase their status changes mid defib.
+		switch(patient.check_defib())
+			if(DEFIB_FAIL_DECAPITATED)
+				if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
+					blocking_fail_reason = "Patient is missing their head. Reattach and try again."
+				else
+					blocking_fail_reason = "Patient is missing their head. Further attempts futile."
+			if(DEFIB_FAIL_BRAINDEAD)
+				blocking_fail_reason = "Patient is braindead. Further attempts futile."
+			if(DEFIB_FAIL_NPC)
+				blocking_fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
+	if(blocking_fail_reason)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation impossible - [blocking_fail_reason]"))
 		return
 
 	var/mob/dead/observer/ghost = patient.get_ghost()
-	if(ghost && patient.check_defib() == DEFIB_POSSIBLE || DEFIB_FAIL_CLIENT_MISSING)
+	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
+	// still be unrevivable because of too much damage.
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) & DEFIB_STRICT_REVIVABLE_STATES)
+	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
 			message = "Someone is trying to resuscitate your body! Stay in your body if you want to be resurrected!",
@@ -195,7 +218,7 @@
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [patient]'s chest."),
 	span_notice("You start setting up the paddles on [patient]'s chest."))
-	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) // Don't vary this
+	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) // Don't vary this, it should be exactly 7 seconds
 
 	if(!do_after(user, 7 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) // 7 seconds revive time
 		to_chat(user, span_warning("You stop setting up the paddles on [patient]'s chest."))
@@ -203,7 +226,6 @@
 
 	//Do the defibrillation effects now. We're checking revive parameters in a moment.
 	sparks.start()
-	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 	dcell.use(charge_cost)
 	update_icon()
 	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
@@ -211,6 +233,9 @@
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 	defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
+
+	if(!defib_ready(patient, user))
+		return
 
 	//At this point, the defibrillator is ready to work
 	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
@@ -236,23 +261,23 @@
 
 	patient.updatehealth() // update health because it usually doesn't update for the dead
 	//the defibrillator is checking parameters now
-	var/defib_result = patient.check_defib()
-	var/fail_reason
 
-	switch(defib_result)
-		if(DEFIB_FAIL_TISSUE_DAMAGE)
-			fail_reason = "Tissue damage too severe. Repair damage and try again."
-		if(DEFIB_FAIL_BAD_ORGANS)
-			fail_reason = "Patient's heart is too damaged. Surgical intervention required."
+	var/fail_reason
+	// We're keeping permadeath states from earlier in here in case something changes mid revive
+	switch(patient.check_defib())
 		if(DEFIB_FAIL_DECAPITATED)
 			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
 				fail_reason = "Patient is missing their head. Reattach and try again."
 			else
-				fail_reason = "Patient is missing their head."
+				fail_reason = "Patient is missing their head. Further attempts futile."
 		if(DEFIB_FAIL_BRAINDEAD)
 			fail_reason = "Patient is braindead. Further attempts futile."
 		if(DEFIB_FAIL_NPC)
 			fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
+		if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
+			fail_reason = "Vital signs are weak. Repair damage and try again."
+		if(DEFIB_FAIL_BAD_ORGANS)
+			fail_reason = "Patient's heart is too damaged to sustain life. Surgical intervention required."
 		if(DEFIB_FAIL_CLIENT_MISSING)
 			fail_reason = "No soul detected. Please try again."
 
@@ -261,11 +286,10 @@
 		playsound(src, 'sound/items/defib_failed.ogg', 50, FALSE)
 		return
 
-	patient.updatehealth()
-
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
+	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
 
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.

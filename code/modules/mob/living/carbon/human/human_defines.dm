@@ -153,13 +153,7 @@
 	destination.underwear = underwear
 	destination.undershirt = undershirt
 
-///is this mob under their death threshold?
-/mob/living/carbon/human/proc/can_be_revived()
-	if(health <= get_death_threshold())
-		return FALSE
-	return TRUE
-
-/// Proc to check for a mob's ghost.
+///Proc to check for a mob's ghost.
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return null
@@ -195,8 +189,8 @@
  * intended to be called by defibrillators
  */
 /mob/living/carbon/human/proc/resuscitate()
-	updatehealth() // so they don't die instantly
-	if(stat == DEAD && can_be_revived())
+	if(stat == DEAD && health >= get_death_threshold())
+		set_stat(UNCONSCIOUS)
 		emote("gasp")
 		chestburst = CARBON_NO_CHEST_BURST
 		regenerate_icons()
@@ -209,13 +203,10 @@
 		dead_ticks = 0 //We reset the DNR timer
 		species.handle_revive_behavior()
 
-///Checks health, heart status, having a head, death ticks and client for defibrillation
-/mob/living/carbon/human/proc/check_defib()
-	if(health <= get_death_threshold())
-		return DEFIB_FAIL_TISSUE_DAMAGE
-
-	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
-		return DEFIB_FAIL_BAD_ORGANS
+///Checks health, heart status, having a head, death ticks and client for defibrillation.
+///`additional_damage` allows to add to patient's health when considering if they have too much damage.
+///This is used mainly with `DEFIBRILLATOR_HEALING_TIMES_SKILL` for checking if we should grab the ghost of a dead patient.
+/mob/living/carbon/human/proc/check_defib(additional_damage = 0)
 
 	var/datum/limb/head/head = get_limb("head")
 	if(head.limb_status & LIMB_DESTROYED)
@@ -226,6 +217,12 @@
 
 	if(!mind && !get_ghost(TRUE)) // Nobody home
 		return DEFIB_FAIL_NPC
+
+	if(health + getOxyLoss() + additional_damage <= get_death_threshold())
+		return DEFIB_FAIL_TOO_MUCH_DAMAGE
+
+	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl.
+		return DEFIB_FAIL_BAD_ORGANS
 
 	if(!client) // They moved out of their corpse
 		return DEFIB_FAIL_CLIENT_MISSING
