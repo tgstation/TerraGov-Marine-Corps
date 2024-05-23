@@ -212,7 +212,7 @@
 	if(head.limb_status & LIMB_DESTROYED)
 		return DEFIB_FAIL_DECAPITATED
 
-	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !issynth(src) || suiciding)
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !issynth(src) || suiciding) // Synthetics do not expire. If they have a DNR, they'll be caught by the next check
 		return DEFIB_FAIL_BRAINDEAD
 
 	if(!mind && !get_ghost(TRUE)) // Nobody home

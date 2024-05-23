@@ -58,15 +58,15 @@
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
-				overlays += "+full"
+				overlays += "_full"
 			if(34 to 66)
-				overlays += "+half"
+				overlays += "_half"
 			if(3 to 33)
-				overlays += "+low"
-			if(0 to 3)
-				overlays += "+empty"
+				overlays += "_low"
+			if(-INFINITY to 3)
+				overlays += "_empty"
 	else // No cell.
-		overlays += "+empty"
+		overlays += "_empty"
 
 
 /obj/item/defibrillator/examine(mob/user)
@@ -263,7 +263,7 @@
 	//the defibrillator is checking parameters now
 
 	var/fail_reason
-	// We're keeping permadeath states from earlier in here in case something changes mid revive
+	// We're keeping permadeath states from earlier here in case something changes mid revive
 	switch(patient.check_defib())
 		if(DEFIB_FAIL_DECAPITATED)
 			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
@@ -313,7 +313,7 @@
 /obj/item/defibrillator/civi
 	name = "emergency defibrillator"
 	desc = "A device that delivers powerful shocks to resuscitate incapacitated patients. This one appears to be a civillian model."
-	icon_state = "civ_defib_full"
+	icon_state = "civ_defib"
 	worn_icon_state = "defib"
 
 /obj/item/defibrillator/internal
@@ -340,7 +340,7 @@
 /obj/item/clothing/gloves/defibrillator
 	name = "advanced medical combat gloves"
 	desc = "Advanced medical gauntlets with small but powerful electrodes to resuscitate incapacitated patients."
-	icon_state = "defib_out_full"
+	icon_state = "defib_out"
 	worn_icon_state = "defib_gloves"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 	cold_protection_flags = HANDS
@@ -374,11 +374,11 @@
 	. = ..()
 	. += internal_defib.charge_information()
 
-/obj/item/clothing/gloves/defibrillator/update_icon_state()
+/obj/item/clothing/gloves/defibrillator/update_overlays()
 	. = ..()
-	if(!internal_defib) //should only happen on init
+	if(!internal_defib)
 		return
-	icon_state = internal_defib.icon_state
+	overlays += internal_defib.overlays
 
 //when you are wearing these gloves, this will call the normal attack code to begin defibing the target
 /obj/item/clothing/gloves/defibrillator/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
