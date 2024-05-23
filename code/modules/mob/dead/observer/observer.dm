@@ -201,6 +201,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
+				var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
+				if(istype(human_current))
+					human_current.set_undefibbable(TRUE)
+				can_reenter_corpse = null
+				to_chat(usr, span_notice("You can no longer be revived."))
 				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 
