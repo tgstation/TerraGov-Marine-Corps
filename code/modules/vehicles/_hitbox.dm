@@ -147,10 +147,12 @@
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
-			if(O.CanPass(root))	// Then check for obstacles to crush
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
 				continue
-			root.Bump(O) //manually call bump on everything
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
 	if(canstep)
