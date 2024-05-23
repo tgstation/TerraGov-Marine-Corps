@@ -178,9 +178,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/loadout_data in global_list_to_use)
+	var/list/loadouts_list = isrobot(user) ? GLOB.robot_loadouts : global_list_to_use
+	for(var/loadout_data in loadouts_list)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
-		var/datum/outfit/quick/current_loadout = global_list_to_use[loadout_data]
+		var/datum/outfit/quick/current_loadout = loadouts_list[loadout_data]
 		next_loadout_data["job"] = current_loadout.jobtype
 		next_loadout_data["name"] = current_loadout.name
 		next_loadout_data["desc"] = current_loadout.desc
@@ -197,7 +198,6 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	data["ui_theme"] = ui_theme
 	data["vendor_categories"] = categories
 	return data
-
 
 /obj/machinery/quick_vendor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

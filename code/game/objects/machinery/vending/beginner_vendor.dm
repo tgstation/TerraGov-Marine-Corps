@@ -22,8 +22,19 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		/datum/outfit/quick/beginner/smartgunner/sg85,
 	)
 
-	for(var/X in loadout_list)
-		.[X] = new X
+	for(var/loadout in loadout_list)
+		.[loadout] = new loadout
+
+GLOBAL_LIST_INIT(robot_loadouts, init_robot_loadouts())
+
+/proc/init_robot_loadouts()
+	. = list()
+	var/list/loadout_list = list(
+		/datum/outfit/quick/beginner_robot/marine/shotgunner,
+	)
+
+	for(var/loadout in loadout_list)
+		.[loadout] = new loadout
 
 /obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
 	icon_state = "loadoutvendor"
