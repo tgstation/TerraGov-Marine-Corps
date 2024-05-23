@@ -188,7 +188,7 @@
 
 	var/fail_reason
 	if(patient.check_defib() & (DEFIB_PERMADEATH_STATES))
-		// Special bit for preventing the do_after if they can't come back.
+		// Special bit for preventing the do_after if they almost 100% can't come back.
 		// We'll check the rest of the check_defib states along with these after shocking, incase their status changes mid defib.
 		switch(patient.check_defib())
 			if(DEFIB_FAIL_DECAPITATED)
