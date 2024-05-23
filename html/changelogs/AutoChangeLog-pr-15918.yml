@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed vehicles being able to shoot mobs on top of them when they shouldn't have been able to"

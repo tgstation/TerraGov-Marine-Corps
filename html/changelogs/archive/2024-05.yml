@@ -224,3 +224,11 @@
 2024-05-22:
   Lewdcifer:
   - rscadd: Added a bitfield menu for xeno_flags
+2024-05-23:
+  Lumipharon:
+  - bugfix: fixed vehicles being able to shoot mobs on top of them when they shouldn't
+      have been able to
+  chizzy376:
+  - balance: Added a new shortcut from Slumbridge prison to the south east quadrant.
+  - bugfix: Fixed stairs in Slumbridge.
+  - qol: Replaced every Slumbridge platform with a nondense one.
