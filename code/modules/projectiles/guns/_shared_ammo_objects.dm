@@ -23,7 +23,7 @@
 	///The color the flames and associated particles appear
 	var/flame_color = "red"
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
-	var/burn_level = 10
+	var/burn_level = 20
 	/// How many burn ticks we lose per process
 	var/burn_decay = 1
 
@@ -174,7 +174,10 @@
 
 /obj/fire/flamer/process()
 	. = ..()
-	burn_level -= 2
+	burn_level = max(0, burn_level - 2)
+	if(burn_level == 0)
+		qdel(src)
+		return PROCESS_KILL
 
 ///////////////////////////////
 //        MELTING FIRE       //
