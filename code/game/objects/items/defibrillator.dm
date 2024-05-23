@@ -18,7 +18,7 @@
 	var/damage_threshold = DEFIBRILLATOR_BASE_HEALING_VALUE
 	///How much charge is used on a shock
 	var/charge_cost = 66
-	///The cooldown for toggling.
+	///The cooldown for using the defib. Applied to toggling and shocking.
 	var/defib_cooldown = 0
 	///The defibrillator's power cell
 	var/obj/item/cell/dcell = null
@@ -186,22 +186,22 @@
 	if(!defib_ready(patient, user))
 		return
 
-	var/blocking_fail_reason
+	var/fail_reason
 	if(patient.check_defib() & (DEFIB_PERMADEATH_STATES))
 		// Special bit for preventing the do_after if they can't come back.
 		// We'll check the rest of the check_defib states along with these after shocking, incase their status changes mid defib.
 		switch(patient.check_defib())
 			if(DEFIB_FAIL_DECAPITATED)
 				if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
-					blocking_fail_reason = "Patient is missing their head. Reattach and try again."
+					fail_reason = "Patient is missing their head. Reattach and try again."
 				else
-					blocking_fail_reason = "Patient is missing their head. Further attempts futile."
+					fail_reason = "Patient is missing their head. Further attempts futile."
 			if(DEFIB_FAIL_BRAINDEAD)
-				blocking_fail_reason = "Patient is braindead. Further attempts futile."
+				fail_reason = "Patient is braindead. Further attempts futile."
 			if(DEFIB_FAIL_NPC)
-				blocking_fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
-	if(blocking_fail_reason)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation impossible - [blocking_fail_reason]"))
+				fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
+	if(fail_reason)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation impossible - [fail_reason]"))
 		return
 
 	var/mob/dead/observer/ghost = patient.get_ghost()
@@ -262,7 +262,7 @@
 	patient.updatehealth() // update health because it usually doesn't update for the dead
 	//the defibrillator is checking parameters now
 
-	var/fail_reason
+	fail_reason = null
 	// We're keeping permadeath states from earlier here in case something changes mid revive
 	switch(patient.check_defib())
 		if(DEFIB_FAIL_DECAPITATED)
@@ -378,7 +378,7 @@
 	. = ..()
 	if(!internal_defib)
 		return
-	overlays += internal_defib.overlays
+	overlays = internal_defib.overlays
 
 //when you are wearing these gloves, this will call the normal attack code to begin defibing the target
 /obj/item/clothing/gloves/defibrillator/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)

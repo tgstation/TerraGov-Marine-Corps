@@ -290,10 +290,6 @@
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
 
-///Called on resuscitate(), used for special behavior when this carbon human comes back to life
-/datum/species/proc/handle_revive_behavior(mob/living/carbon/human/H)
-	return
-
 ///Used to update alien icons for aliens
 /datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return

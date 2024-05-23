@@ -186,7 +186,7 @@
 /**
  * proc that resuscitates a carbon human, bringing them back to life- only works if `can_be_revived()` is true and the human is actually dead
  *
- * intended to be called by defibrillators
+ * intended to be called by defibrillators or anything that brings a carbon human back to life
  */
 /mob/living/carbon/human/proc/resuscitate()
 	if(stat == DEAD && health >= get_death_threshold())
@@ -201,7 +201,6 @@
 		handle_regular_hud_updates()
 		updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 		dead_ticks = 0 //We reset the DNR timer
-		species.handle_revive_behavior()
 
 ///Checks health, heart status, having a head, death ticks and client for defibrillation.
 ///`additional_damage` allows to add to patient's health when considering if they have too much damage.
