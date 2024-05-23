@@ -242,8 +242,8 @@
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 	//At this point, the defibrillator is ready to work
+	//This trait allows some species, such as robots, to be healed to one hit from death instead of failing from too much damage
 	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
-	 	//This trait allows some species, such as robots, to be healed to one hit from death instead of failing from too much damage
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
