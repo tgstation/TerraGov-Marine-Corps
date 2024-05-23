@@ -193,6 +193,16 @@
 	desc = "A white storage barrel"
 	icon_state = "barrel_white"
 
+/obj/structure/largecrate/random/barrel/black
+	name = "black barrel"
+	desc = "A black storage barrel"
+	icon_state = "barrel_black"
+
+/obj/structure/largecrate/random/barrel/brown
+	name = "black brown"
+	desc = "A black storage barrel"
+	icon_state = "barrel_brown"
+
 /obj/structure/largecrate/random/secure
 	name = "secure supply crate"
 	desc = "A secure crate."

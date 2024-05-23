@@ -202,4 +202,4 @@
 		SMOOTH_GROUP_CANTERBURY,
 	)
 
-/obj/structure/window_frame/hybrisa/colony/engineering/reinforced
+/obj/structure/window_frame/urban/colony/engineering/reinforced

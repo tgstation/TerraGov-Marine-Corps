@@ -474,39 +474,39 @@
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
-/turf/closed/wall/hybrisa/colony
+/turf/closed/wall/urban/colony
 
-/turf/closed/wall/hybrisa/colony/ribbed
+/turf/closed/wall/urban/colony/ribbed
 
-/turf/closed/wall/hybrisa/colony/hospital
+/turf/closed/wall/urban/colony/hospital
 
-/turf/closed/wall/hybrisa/colony/reinforced
+/turf/closed/wall/urban/colony/reinforced
 
-/turf/closed/wall/hybrisa/colony/office
+/turf/closed/wall/urban/colony/office
 
-/turf/closed/wall/hybrisa/spaceport_unmeltable
+/turf/closed/wall/urban/spaceport_unmeltable
 
-/turf/closed/wall/hybrisa/spaceport_reinforced
+/turf/closed/wall/urban/spaceport_reinforced
 
-/turf/closed/wall/hybrisa/engineering
+/turf/closed/wall/urban/engineering
 
-/turf/closed/wall/hybrisa/colony/engineering/ribbed
+/turf/closed/wall/urban/colony/engineering/ribbed
 
-/turf/closed/wall/hybrisa/research/reinforced
+/turf/closed/wall/urban/research/reinforced
 
-/turf/closed/wall/hybrisa/colony/reinforced/hull
+/turf/closed/wall/urban/colony/reinforced/hull
 
-/turf/closed/wall/hybrisa/marhsalls_reinforced
+/turf/closed/wall/urban/marhsalls_reinforced
 
-/turf/closed/wall/hybrisa/colony/engineering/reinforced
+/turf/closed/wall/urban/colony/engineering/reinforced
 
-/turf/closed/wall/hybrisa/spaceport
+/turf/closed/wall/urban/spaceport
 
-/turf/closed/wall/hybrisa/research/reinforced/hull
+/turf/closed/wall/urban/research/reinforced/hull
 
-/turf/closed/wall/hybrisa/marhsalls_unmeltable
+/turf/closed/wall/urban/marhsalls_unmeltable
 
-/turf/closed/wall/hybrisa/colony/engineering/reinforced/hull
+/turf/closed/wall/urban/colony/engineering/reinforced/hull
 
 /turf/closed/wall/engineership
 	name = "strange metal wall"

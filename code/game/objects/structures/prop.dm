@@ -19,6 +19,15 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
 	coverage = 15
 
+/obj/machinery/prop/structurelattice
+	name = "structural lattice"
+	desc = "Like rebar, but in space."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "structure_lattice"
+	coverage = 50
+	max_integrity = 750
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
 /obj/machinery/prop/computer

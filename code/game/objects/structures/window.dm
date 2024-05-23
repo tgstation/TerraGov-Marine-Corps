@@ -698,37 +698,36 @@
 	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
 	max_integrity = 600 // 25 hunter slashes
 
-/obj/structure/window/framed/hybrisa
-	name = "reinforced window"
-	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	icon = 'icons/obj/smooth_objects/ship_window.dmi'
-	icon_state = "window-reinforced"
-	basestate = "ship_window"
+/obj/structure/window/framed/urban
+	name = "window"
+	icon = 'icons/obj/smooth_objects/col_window.dmi'
+	icon_state = "col_window-0"
+	base_icon_state = "col_window"
 	base_icon_state = "ship_window"
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
-	window_frame = /obj/structure/window_frame/mainship
+	window_frame = /obj/structure/window_frame/colony
 
-/obj/structure/window/framed/hybrisa/colony/engineering
+/obj/structure/window/framed/urban/colony/engineering
 
-/obj/structure/window/framed/hybrisa/marshalls/cell
+/obj/structure/window/framed/urban/marshalls/cell
 
-/obj/structure/window/framed/hybrisa/colony/office
+/obj/structure/window/framed/urban/colony/office
 
-/obj/structure/window/framed/hybrisa/spaceport/reinforced
+/obj/structure/window/framed/urban/spaceport/reinforced
 
-/obj/structure/window/framed/hybrisa/colony/hospital
+/obj/structure/window/framed/urban/colony/hospital
 
-/obj/structure/window/framed/hybrisa/colony/engineering/reinforced
+/obj/structure/window/framed/urban/colony/engineering/reinforced
 
-/obj/structure/window/framed/hybrisa/colony/engineering/hull
+/obj/structure/window/framed/urban/colony/engineering/hull
 
-/obj/structure/window/framed/hybrisa/colony/hospital/reinforced
+/obj/structure/window/framed/urban/colony/hospital/reinforced
 
-/obj/structure/window/framed/hybrisa/colony/reinforced
+/obj/structure/window/framed/urban/colony/reinforced
 
-/obj/structure/window/framed/hybrisa/marshalls/reinforced
+/obj/structure/window/framed/urban/marshalls/reinforced
 
 /obj/structure/window/framed/kutjevo
 	name = "window"

@@ -314,7 +314,7 @@
 	name = "circular light"
 	icon_state = "engineerlight_off"
 	desc = "A huge circular light"
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	density = FALSE
 	unslashable = TRUE
 	unacidable = TRUE

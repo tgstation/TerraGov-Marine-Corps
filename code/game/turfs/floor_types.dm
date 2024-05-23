@@ -833,6 +833,13 @@
 /turf/open/floor/tile/dark/brown2/corner
 	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/tile/dark/brown3
+	icon_state = "darkbrown3"
+
+/turf/open/floor/tile/dark/brown3/corner
+	icon_state = "darkbrowncorners3"
+
+
 /turf/open/floor/tile/dark/green2
 	icon_state = "darkgreen2"
 
@@ -877,6 +884,180 @@
 
 /turf/open/floor/elevatorshaft
 	icon_state = "elevatorshaft"
+
+/turf/open/floor/squares
+	icon_state = "squares"
+
+/turf/open/floor/sterileplate
+	icon_state = "sterileplate"
+
+/turf/open/floor/retrosquareslightrough
+	icon_state = "retrosquareslightrough"
+
+/turf/open/floor/retrosquareslight
+	icon_state = "retrosquareslight"
+
+/turf/open/floor/retrosquares
+	icon_state = "retrosquares"
+
+/turf/open/floor/squareswood
+	icon_state = "squareswood"
+
+/turf/open/floor/lightspiral
+	icon_state = "lightspiral"
+
+/turf/open/floor/lightplate
+	icon_state = "lightplate"
+
+/turf/open/floor/spiralwoodalt
+	icon_state = "spiralwoodalt"
+
+/turf/open/floor/box
+	icon_state = "box"
+
+/turf/open/floor/plate
+	icon_state = "plate"
+
+/turf/open/floor/threeway
+	icon_state = "threeway"
+
+/turf/open/floor/officetiles
+	icon_state = "officetiles"
+
+/turf/open/floor/officesquares
+	icon_state = "officesquares"
+
+/turf/open/floor/spiraloffice
+	icon_state = "spiraloffice"
+
+/turf/open/floor/spiralblueoffice
+	icon_state = "spiralblueoffice"
+
+/turf/open/floor/spiralplate
+	icon_state = "spiralplate"
+
+/turf/open/floor/teleporter_static
+	icon_state = "teleporter_static"
+
+/turf/open/floor/tcomms
+	icon_state = "tcomms"
+
+/turf/open/floor/marked
+	icon_state = "marked"
+
+/turf/open/floor/urban_plating
+	icon_state = "urban_plating"
+
+/turf/open/floor/tan
+	icon_state = "tan"
+
+/turf/open/floor/urban_wood
+	icon_state = "wood"
+
+/turf/open/floor/floortwo
+	icon_state = "floor2"
+
+/turf/open/floor/floorthree
+	icon_state = "floor3"
+
+/turf/open/floor/multi_tiles
+	icon_state = "multi_tiles"
+
+/turf/open/floor/orangecover
+	icon_state = "orangecover"
+
+/turf/open/floor/orangetile
+	icon_state = "orangetile"
+
+/turf/open/floor/orange_edge
+	icon_state = "orange_edge"
+
+/turf/open/floor/orange_icorner
+	icon_state = "orange_icorner"
+
+/turf/open/floor/blue
+	icon_state = "blue"
+
+/turf/open/floor/bluetwo
+	icon_state = "blue2"
+
+/turf/open/floor/bluethree
+	icon_state = "blue3"
+
+/turf/open/floor/bluefour
+	icon_state = "blue4"
+
+/turf/open/floor/purp
+	icon_state = "purp"
+
+/turf/open/floor/purptwo
+	icon_state = "purp2"
+
+/turf/open/floor/purpthree
+	icon_state = "purp3"
+
+/turf/open/floor/purpfour
+	icon_state = "purp4"
+
+/turf/open/floor/green
+	icon_state = "green"
+
+/turf/open/floor/greentwo
+	icon_state = "green2"
+
+/turf/open/floor/greenthree
+	icon_state = "green3"
+
+/turf/open/floor/greenfour
+	icon_state = "green4"
+
+/turf/open/floor/cyan
+	icon_state = "cyan"
+
+/turf/open/floor/cyantwo
+	icon_state = "cyan2"
+
+/turf/open/floor/cyanthree
+	icon_state = "cyan3"
+
+/turf/open/floor/cyanfour
+	icon_state = "cyan4"
+
+/turf/open/floor/yellow
+	icon_state = "yellow"
+
+/turf/open/floor/yellowtwo
+	icon_state = "yellow2"
+
+/turf/open/floor/yellowthree
+	icon_state = "yellow3"
+
+/turf/open/floor/yellowfour
+	icon_state = "yellow4"
+
+/turf/open/floor/red
+	icon_state = "red"
+
+/turf/open/floor/redtwo
+	icon_state = "red2"
+
+/turf/open/floor/redthree
+	icon_state = "red3"
+
+/turf/open/floor/redfour
+	icon_state = "red4"
+
+/turf/open/floor/whitecyan
+	icon_state = "white_cyan1"
+
+/turf/open/floor/whitecyantwo
+	icon_state = "white_cyan2"
+
+/turf/open/floor/whitecyanthree
+	icon_state = "white_cyan3"
+
+/turf/open/floor/whitecyanfour
+	icon_state = "white_cyan4"
 
 /turf/open/floor/carpet
 	name = "Carpet"
@@ -983,6 +1164,12 @@
 
 /turf/open/floor/prison/cleanmarked
 	icon_state = "floor_marked_white"
+
+/turf/open/floor/prison/whitered
+	icon_state = "whitered"
+
+/turf/open/floor/prison/whiteredcorner
+	icon_state = "whiteredcorner"
 
 /turf/open/floor/prison/arrow
 	icon_state = "floor_arrow"
@@ -1366,61 +1553,61 @@
 // Street
 
 
-/turf/open/hybrisa/street
+/turf/open/urban/street
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cement1"
 	baseturfs = /turf/open/asphalt
 
 
-/turf/open/hybrisa/street/cement1
+/turf/open/urban/street/cement1
 	icon_state = "cement1"
 
-/turf/open/hybrisa/street/cement2
+/turf/open/urban/street/cement2
 	icon_state = "cement2"
 
-/turf/open/hybrisa/street/cement3
+/turf/open/urban/street/cement3
 	icon_state = "cement3"
 
-/turf/open/hybrisa/street/asphalt
+/turf/open/urban/street/asphalt
 	icon_state = "asphalt_old"
 
-/turf/open/hybrisa/street/sidewalk
+/turf/open/urban/street/sidewalk
 	icon_state = "sidewalk"
 
-/turf/open/hybrisa/street/sidewalkfull
+/turf/open/urban/street/sidewalkfull
 	icon_state = "sidewalkfull"
 
-/turf/open/hybrisa/street/sidewalkcorner
+/turf/open/urban/street/sidewalkcorner
 	icon_state = "sidewalkcorner"
 
-/turf/open/hybrisa/street/sidewalkcenter
+/turf/open/urban/street/sidewalkcenter
 	icon_state = "sidewalkcenter"
 
-/turf/open/hybrisa/street/roadlines
+/turf/open/urban/street/roadlines
 	icon_state = "asphalt_old_roadlines"
 
-/turf/open/hybrisa/street/roadlines2
+/turf/open/urban/street/roadlines2
 	icon_state = "asphalt_old_roadlines2"
 
-/turf/open/hybrisa/street/roadlines3
+/turf/open/urban/street/roadlines3
 	icon_state = "asphalt_old_roadlines3"
 
-/turf/open/hybrisa/street/roadlines4
+/turf/open/urban/street/roadlines4
 	icon_state = "asphalt_old_roadlines4"
 
-/turf/open/hybrisa/street/CMB_4x4_emblem
+/turf/open/urban/street/CMB_4x4_emblem
 	icon_state = "marshallsemblem_concrete_2x2"
 
 // Unweedable
 
-/turf/open/hybrisa/street/underground_unweedable
+/turf/open/urban/street/underground_unweedable
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "underground"
 	baseturfs = /turf/open/asphalt
 
-/turf/open/hybrisa/metal/underground_unweedable
+/turf/open/urban/metal/underground_unweedable
 	name = "floor"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "bcircuit"
@@ -1436,270 +1623,269 @@
 // Carpet
 
 
-/turf/open/floor/hybrisa/carpet
+/turf/open/floor/urban/carpet
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "carpetred"
 
 
-/turf/open/floor/hybrisa/carpet/carpetfadedred
+/turf/open/floor/urban/carpet/carpetfadedred
 	icon_state = "carpetfadedred"
 
-/turf/open/floor/hybrisa/carpet/carpetgreen
+/turf/open/floor/urban/carpet/carpetgreen
 	icon_state = "carpetgreen"
 
-/turf/open/floor/hybrisa/carpet/carpetbeige
+/turf/open/floor/urban/carpet/carpetbeige
 	icon_state = "carpetbeige"
 
-/turf/open/floor/hybrisa/carpet/carpetblack
+/turf/open/floor/urban/carpet/carpetblack
 	icon_state = "carpetblack"
 
-/turf/open/floor/hybrisa/carpet/carpetred
+/turf/open/floor/urban/carpet/carpetred
 	icon_state = "carpetred"
 
-/turf/open/floor/hybrisa/carpet/carpetdarkerblue
+/turf/open/floor/urban/carpet/carpetdarkerblue
 	icon_state = "carpetdarkerblue"
 
-/turf/open/floor/hybrisa/carpet/carpetorangered
+/turf/open/floor/urban/carpet/carpetorangered
 	icon_state = "carpetorangered"
 
-/turf/open/floor/hybrisa/carpet/carpetblue
+/turf/open/floor/urban/carpet/carpetblue
 	icon_state = "carpetblue"
 
-/turf/open/floor/hybrisa/carpet/carpetpatternblue
+/turf/open/floor/urban/carpet/carpetpatternblue
 	icon_state = "carpetpatternblue"
 
-/turf/open/floor/hybrisa/carpet/carpetpatternbrown
+/turf/open/floor/urban/carpet/carpetpatternbrown
 	icon_state = "carpetpatternbrown"
 
-/turf/open/floor/hybrisa/carpet/carpetreddeco
+/turf/open/floor/urban/carpet/carpetreddeco
 	icon_state = "carpetred_deco"
 
-/turf/open/floor/hybrisa/carpet/carpetbluedeco
+/turf/open/floor/urban/carpet/carpetbluedeco
 	icon_state = "carpetblue_deco"
 
-/turf/open/floor/hybrisa/carpet/carpetblackdeco
+/turf/open/floor/urban/carpet/carpetblackdeco
 	icon_state = "carpetblack_deco"
 
-/turf/open/floor/hybrisa/carpet/carpetbeigedeco
+/turf/open/floor/urban/carpet/carpetbeigedeco
 	icon_state = "carpetbeige_deco"
 
-/turf/open/floor/hybrisa/carpet/carpetgreendeco
+/turf/open/floor/urban/carpet/carpetgreendeco
 	icon_state = "carpetgreen_deco"
 
 // Tile
 
-/turf/open/floor/hybrisa/tile
+/turf/open/floor/urban/tile
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "supermartfloor1"
 
 
-/turf/open/floor/hybrisa/tile/supermartfloor1
+/turf/open/floor/urban/tile/supermartfloor1
 	icon_state = "supermartfloor1"
 
-/turf/open/floor/hybrisa/tile/supermartfloor2
+/turf/open/floor/urban/tile/supermartfloor2
 	icon_state = "supermartfloor2"
 
-/turf/open/floor/hybrisa/tile/cuppajoesfloor
+/turf/open/floor/urban/tile/cuppajoesfloor
 	icon_state = "cuppafloor"
 
-/turf/open/floor/hybrisa/tile/tilered
+/turf/open/floor/urban/tile/tilered
 	icon_state = "tilered"
 
-/turf/open/floor/hybrisa/tile/tileblue
+/turf/open/floor/urban/tile/tileblue
 	icon_state = "tileblue"
 
-/turf/open/floor/hybrisa/tile/tilegreen
+/turf/open/floor/urban/tile/tilegreen
 	icon_state = "tilegreen"
 
-/turf/open/floor/hybrisa/tile/tileblackcheckered
+/turf/open/floor/urban/tile/tileblackcheckered
 	icon_state = "tileblack"
 
-/turf/open/floor/hybrisa/tile/tilewhitecheckered
+/turf/open/floor/urban/tile/tilewhitecheckered
 	icon_state = "tilewhitecheck"
 
-/turf/open/floor/hybrisa/tile/tilelightbeige
+/turf/open/floor/urban/tile/tilelightbeige
 	icon_state = "tilelightbeige"
 
-/turf/open/floor/hybrisa/tile/tilebeigecheckered
+/turf/open/floor/urban/tile/tilebeigecheckered
 	icon_state = "tilebeigecheck"
 
-/turf/open/floor/hybrisa/tile/tilebeige
+/turf/open/floor/urban/tile/tilebeige
 	icon_state = "tilebeige"
 
-/turf/open/floor/hybrisa/tile/tilewhite
+/turf/open/floor/urban/tile/tilewhite
 	icon_state = "tilewhite"
 
-/turf/open/floor/hybrisa/tile/tilegrey
+/turf/open/floor/urban/tile/tilegrey
 	icon_state = "tilegrey"
 
-/turf/open/floor/hybrisa/tile/tileblack
+/turf/open/floor/urban/tile/tileblack
 	icon_state = "tileblack2"
 
-/turf/open/floor/hybrisa/tile/beigetileshiny
+/turf/open/floor/urban/tile/beigetileshiny
 	icon_state = "beigetileshiny"
 
-/turf/open/floor/hybrisa/tile/blacktileshiny
+/turf/open/floor/urban/tile/blacktileshiny
 	icon_state = "blacktileshiny"
 
-/turf/open/floor/hybrisa/tile/cementflat
+/turf/open/floor/urban/tile/cementflat
 	icon_state = "cementflat"
 
-/turf/open/floor/hybrisa/tile/beige_bigtile
+/turf/open/floor/urban/tile/beige_bigtile
 	icon_state = "beige_bigtile"
 
-/turf/open/floor/hybrisa/tile/yellow_bigtile
+/turf/open/floor/urban/tile/yellow_bigtile
 	icon_state = "yellow_bigtile"
 
-/turf/open/floor/hybrisa/tile/darkgrey_bigtile
+/turf/open/floor/urban/tile/darkgrey_bigtile
 	icon_state = "darkgrey_bigtile"
 
-/turf/open/floor/hybrisa/tile/darkbrown_bigtile
+/turf/open/floor/urban/tile/darkbrown_bigtile
 	icon_state = "darkbrown_bigtile"
 
-/turf/open/floor/hybrisa/tile/darkbrowncorner_bigtile
+/turf/open/floor/urban/tile/darkbrowncorner_bigtile
 	icon_state = "darkbrowncorner_bigtile"
 
-/turf/open/floor/hybrisa/tile/asteroidfloor_bigtile
+/turf/open/floor/urban/tile/asteroidfloor_bigtile
 	icon_state = "asteroidfloor_bigtile"
 
-/turf/open/floor/hybrisa/tile/asteroidwarning_bigtile
+/turf/open/floor/urban/tile/asteroidwarning_bigtile
 	icon_state = "asteroidwarning_bigtile"
 
-/turf/open/floor/hybrisa/tile/lightbeige_bigtile
+/turf/open/floor/urban/tile/lightbeige_bigtile
 	icon_state = "lightbeige_bigtile"
 
-/turf/open/floor/hybrisa/tile/green_bigtile
+/turf/open/floor/urban/tile/green_bigtile
 	icon_state = "green_bigtile"
 
-/turf/open/floor/hybrisa/tile/greencorner_bigtile
+/turf/open/floor/urban/tile/greencorner_bigtile
 	icon_state = "greencorner_bigtile"
 
-/turf/open/floor/hybrisa/tile/greenfull_bigtile
+/turf/open/floor/urban/tile/greenfull_bigtile
 	icon_state = "greenfull_bigtile"
 // Wood
 
-/turf/open/floor/hybrisa/wood
+/turf/open/floor/urban/wood
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "darkerwood"
 
-
-/turf/open/floor/hybrisa/wood/greywood
+/turf/open/floor/urban/wood/greywood
 	icon_state = "greywood"
 
-/turf/open/floor/hybrisa/wood/blackwood
+/turf/open/floor/urban/wood/blackwood
 	icon_state = "blackwood"
 
-/turf/open/floor/hybrisa/wood/darkerwood
+/turf/open/floor/urban/wood/darkerwood
 	icon_state = "darkerwood"
 
-/turf/open/floor/hybrisa/wood/redwood
+/turf/open/floor/urban/wood/redwood
 	icon_state = "redwood"
 
 
 // Metal
 
 
-/turf/open/floor/hybrisa/metal
+/turf/open/floor/urban/metal
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bluemetal1"
 
-/turf/open/floor/hybrisa/metal/bluemetal1
+/turf/open/floor/urban/metal/bluemetal1
 	icon_state = "bluemetal1"
 
-/turf/open/floor/hybrisa/metal/bluemetalfull
+/turf/open/floor/urban/metal/bluemetalfull
 	icon_state = "bluemetalfull"
 
-/turf/open/floor/hybrisa/metal/bluemetalcorner
+/turf/open/floor/urban/metal/bluemetalcorner
 	icon_state = "bluemetalcorner"
 
-/turf/open/floor/hybrisa/metal/orangelinecorner
+/turf/open/floor/urban/metal/orangelinecorner
 	icon_state = "orangelinecorner"
 
-/turf/open/floor/hybrisa/metal/orangeline
+/turf/open/floor/urban/metal/orangeline
 	icon_state = "orangeline"
 
-/turf/open/floor/hybrisa/metal/darkblackmetal1
+/turf/open/floor/urban/metal/darkblackmetal1
 	icon_state = "darkblackmetal1"
 
-/turf/open/floor/hybrisa/metal/darkblackmetal2
+/turf/open/floor/urban/metal/darkblackmetal2
 	icon_state = "darkblackmetal2"
 
-/turf/open/floor/hybrisa/metal/darkredfull2
+/turf/open/floor/urban/metal/darkredfull2
 	icon_state = "darkredfull2"
 
-/turf/open/floor/hybrisa/metal/redcorner
+/turf/open/floor/urban/metal/redcorner
 	icon_state = "zredcorner"
 
-/turf/open/floor/hybrisa/metal/grated
+/turf/open/floor/urban/metal/grated
 	icon_state = "rampsmaller"
 
-/turf/open/floor/hybrisa/metal/stripe_red
+/turf/open/floor/urban/metal/stripe_red
 	icon_state = "stripe_red"
 
-/turf/open/floor/hybrisa/metal/zbrownfloor1
+/turf/open/floor/urban/metal/zbrownfloor1
 	icon_state = "zbrownfloor1"
 
-/turf/open/floor/hybrisa/metal/zbrownfloor_corner
+/turf/open/floor/urban/metal/zbrownfloor_corner
 	icon_state = "zbrownfloorcorner1"
 
-/turf/open/floor/hybrisa/metal/zbrownfloor_full
+/turf/open/floor/urban/metal/zbrownfloor_full
 	icon_state = "zbrownfloorfull1"
 
-/turf/open/floor/hybrisa/metal/greenmetal1
+/turf/open/floor/urban/metal/greenmetal1
 	icon_state = "greenmetal1"
 
-/turf/open/floor/hybrisa/metal/greenmetalfull
+/turf/open/floor/urban/metal/greenmetalfull
 	icon_state = "greenmetalfull"
 
-/turf/open/floor/hybrisa/metal/greenmetalcorner
+/turf/open/floor/urban/metal/greenmetalcorner
 	icon_state = "greenmetalcorner"
 
-/turf/open/floor/hybrisa/metal/metalwhitefull
+/turf/open/floor/urban/metal/metalwhitefull
 	icon_state = "metalwhitefull"
 
 // Misc
 
-/turf/open/floor/hybrisa/misc/spaceport1
+/turf/open/floor/urban/misc/spaceport1
 	icon_state = "spaceport1"
 
-/turf/open/floor/hybrisa/misc/spaceport2
+/turf/open/floor/urban/misc/spaceport2
 	icon_state = "spaceport2"
 
 
 // Dropship
 
 
-/turf/open/hybrisa/dropship
+/turf/open/urban/dropship
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dropshipfloor1"
 
-/turf/open/hybrisa/dropship/dropship1
+/turf/open/urban/dropship/dropship1
 	icon_state = "dropshipfloor1"
 
-/turf/open/hybrisa/dropship/dropship2
+/turf/open/urban/dropship/dropship2
 	icon_state = "dropshipfloor2"
 
-/turf/open/hybrisa/dropship/dropship3
+/turf/open/urban/dropship/dropship3
 	icon_state = "dropshipfloor2"
 
-/turf/open/hybrisa/dropship/dropship3
+/turf/open/urban/dropship/dropship3
 	icon_state = "dropshipfloor3"
 
-/turf/open/hybrisa/dropship/dropship4
+/turf/open/urban/dropship/dropship4
 	icon_state = "dropshipfloor4"
 
-/turf/open/hybrisa/dropship/dropshipfloorcorner1
+/turf/open/urban/dropship/dropshipfloorcorner1
 	icon_state = "dropshipfloorcorner1"
 
-/turf/open/hybrisa/dropship/dropshipfloorcorner2
+/turf/open/urban/dropship/dropshipfloorcorner2
 	icon_state = "dropshipfloorcorner2"
 
-/turf/open/hybrisa/dropship/dropshipfloorfull
+/turf/open/urban/dropship/dropshipfloorfull
 	icon_state = "dropshipfloorfull"
 
 // Engineer tiles

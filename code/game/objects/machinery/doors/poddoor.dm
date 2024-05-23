@@ -337,3 +337,51 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/nt_lockdown/red
 	code_color = MISSION_CODE_RED
+
+// urban Shutters
+/obj/machinery/door/poddoor/urban
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	icon_state = "almayer_pdoor1"
+	base_icon_state = "almayer_pdoor"
+	openspeed = 4
+
+/obj/machinery/door/poddoor/urban/open_shutters/Initialize()
+	. = ..()
+	if(opacity)
+		set_opacity(0)
+
+/obj/machinery/door/poddoor/urban/open_shutters
+	name = "\improper Shutters"
+	desc = null
+	icon_state = "almayer_pdoor1"
+	base_icon_state = "almayer_pdoor"
+	opacity = FALSE
+	layer = ABOVE_WINDOW_LAYER
+
+/obj/machinery/door/poddoor/urban/shutters
+	name = "\improper Shutters"
+	desc = null
+	icon_state = "shutter1"
+	base_icon_state = "shutter"
+	layer = ABOVE_WINDOW_LAYER
+
+/obj/machinery/door/poddoor/urban/white
+	name = null
+	desc = "That looks like it doesn't open easily."
+	icon_state = "w_almayer_pdoor1"
+	base_icon_state = "w_almayer_pdoor"
+
+/obj/machinery/door/poddoor/urban/secure_red_door
+	desc = "That looks like it doesn't open easily."
+	icon_state = "pdoor1"
+	base_icon_state = "pdoor"
+
+/obj/machinery/door/poddoor/urban/open_shutters
+	name = "\improper Shutters"
+	icon_state = "almayer_pdoor1"
+	base_icon_state = "almayer_pdoor"
+	opacity = FALSE
+
+/obj/machinery/door/poddoor/mainship/biohazard/white
+	icon_state = "w_almayer_pdoor1"
+	base_icon_state = "w_almayer_pdoor"

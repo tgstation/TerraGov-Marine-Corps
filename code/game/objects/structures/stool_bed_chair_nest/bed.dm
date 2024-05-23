@@ -886,10 +886,10 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	base_bed_icon = "bigrollerbloodempty"
 
 // Hospital divider (not a bed)
-/obj/structure/bed/hybrisa/hospital/hospitaldivider
+/obj/structure/bed/urban/hospital/hospitaldivider
 	name = "hospital divider"
 	desc = "A hospital divider for privacy."
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "hospitalcurtain"
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE

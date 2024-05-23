@@ -558,5 +558,9 @@
 /obj/structure/rack/nometal
 	dropmetal = FALSE
 
+/obj/structure/rack/wood
+	color = "#8B7B5B"
+	dropmetal = FALSE
+
 #undef TABLE_STATUS_WEAKENED
 #undef TABLE_STATUS_FIRM
