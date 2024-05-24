@@ -174,7 +174,7 @@ const NuclearBombContent = (props) => {
           />
         </LabeledList.Item>
       </Section>
-      <Section title={'ineligible detonation sites'}>
+      <Section title={'Ineligible detonation sites'}>
         <Box width="100%">
           <NoticeBox color="blue">
             <Stack vertical>
