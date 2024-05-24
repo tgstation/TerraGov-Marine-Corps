@@ -407,6 +407,7 @@
 	icon_state = "landingzone1"
 	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE
 
 /area/daedalusprison/inside/telecomms
 	name = "Telecomms"

@@ -35,6 +35,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 	always_unpowered = TRUE
+	area_flags = CANNOT_NUKE
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Landing Zone 1"
@@ -42,6 +43,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE
 
 /area/orion_outpost/surface/landing_pad_2
 	name = "Landing Pad 2"
@@ -51,6 +53,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 	always_unpowered = TRUE
+	area_flags = CANNOT_NUKE
 
 /area/orion_outpost/surface/landing_pad2_external
 	name = "Landing Zone 2"
@@ -58,6 +61,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE
 
 /area/orion_outpost/surface/train_yard
 	name = "train yard"

@@ -1364,6 +1364,7 @@
 	name = "\improper Delta Station landing zone"
 	icon_state = "ship"
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE
 
 /area/deltastation/asteroidcaves
 	name = "Unknown Area"

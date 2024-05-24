@@ -212,9 +212,11 @@
 	icon_state = "landingzone1"
 	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE
 
 /area/lawankaoutpost/colony/landingzonetwo
 	name = "Landing Zone Two"
 	icon_state = "landingzone2"
 	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = CANNOT_NUKE

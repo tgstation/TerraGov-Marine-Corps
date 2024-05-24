@@ -91,8 +91,8 @@
 
 	update_base_lighting()
 
-	if(area_flags & CANNOT_NUKE | minimap_color == MINIMAP_AREA_LZ | ceiling > CEILING_UNDERGROUND_METAL) // This adds the area to the list of areas displayed on the nuke ineligible detonation site UI
-		if(get_area_name(src) in GLOB.nuke_ineligible_site) // To prevent duplicate entries into the list
+	if(area_flags & CANNOT_NUKE | ceiling > CEILING_UNDERGROUND_METAL)
+		if(get_area_name(src) in GLOB.nuke_ineligible_site)
 			return
 		GLOB.nuke_ineligible_site += get_area_name(src)
 
