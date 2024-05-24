@@ -1,0 +1,5 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - qol: "Boiler globules in reserve are now listed as a number on the create globule ability button. You're also told how many globules of your current acid type are in reserve when making a globule."
+  - qol: "Changed several boiler to_chat() messages to balloon alerts."
