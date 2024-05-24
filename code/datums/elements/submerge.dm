@@ -9,12 +9,12 @@
 	if(!isturf(target))
 		return ELEMENT_INCOMPATIBLE
 	//override true as we don't look up if the turf already has the element
-	RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(atom_entered), TRUE)
+	RegisterSignals(target, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON), PROC_REF(atom_entered), TRUE)
 	RegisterSignal(target, COMSIG_ATOM_EXITED, PROC_REF(atom_exited), TRUE)
 
 /datum/element/submerge/Detach(datum/source, force)
 	. = ..()
-	UnregisterSignal(source, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED))
+	UnregisterSignal(source, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON, COMSIG_ATOM_EXITED))
 	for(var/atom/movable/AM AS in source)
 		AM.set_submerge_level(null, source, duration = 0.1)
 

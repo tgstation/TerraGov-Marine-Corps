@@ -677,7 +677,7 @@ directive is properly returned.
 	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
-		loc.Entered(src)
+		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
 		if(isturf(loc) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
 			QUEUE_SMOOTH(src)
 			QUEUE_SMOOTH_NEIGHBORS(src)
