@@ -144,12 +144,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER] = neuroglob_maptext
 	neuroglob_maptext.pixel_x = 25
 	neuroglob_maptext.pixel_y = -4
-	neuroglob_maptext.maptext = "<span class='maptext' style=font-size:8px><font color=yellow>[X.neuro_ammo]</span>"
+	neuroglob_maptext.maptext = MAPTEXT("<font color=yellow>[X.neuro_ammo]")
 	var/mutable_appearance/corrosiveglob_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER] = corrosiveglob_maptext
 	corrosiveglob_maptext.pixel_x = 25
 	corrosiveglob_maptext.pixel_y = 8
-	corrosiveglob_maptext.maptext = "<span class='maptext' style=font-size:8px><font color=green>[X.corrosive_ammo]</span>"
+	corrosiveglob_maptext.maptext = MAPTEXT("<font color=green>[X.corrosive_ammo]")
 
 /datum/action/ability/xeno_action/create_boiler_bomb/New(Target)
 	. = ..()
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
 	if(X.xeno_flags & XENO_ZOOMED)
-		X.balloon_alert(X,"Can't prepare globules while zoomed in!")
+		X.balloon_alert(X,"Can't while zoomed in!")
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
@@ -170,10 +170,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	succeed_activate()
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		X.corrosive_ammo++
-		X.balloon_alert(X,"Acid globule prepared - [X.corrosive_ammo] in reserve.")
+		X.balloon_alert(X,"Acid globule prepared")
 	else
 		X.neuro_ammo++
-		X.balloon_alert(X,"Neuro globule prepared - [X.neuro_ammo] in reserve.")
+		X.balloon_alert(X,"Neuro globule prepared")
 	X.update_boiler_glow()
 	update_button_icon()
 
@@ -181,11 +181,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.cut_overlay(visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER])
 	var/mutable_appearance/corrosiveglobnumber = visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER]
-	corrosiveglobnumber.maptext = "<span class='maptext' style=font-size:8px><font color=green>[X.corrosive_ammo]</span>"
+	corrosiveglobnumber.maptext = MAPTEXT("<font color=green>[X.corrosive_ammo]")
 	button.add_overlay(visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER])
 	button.cut_overlay(visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER])
 	var/mutable_appearance/neuroglobnumber = visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER]
-	neuroglobnumber.maptext = "<span class='maptext' style=font-size:8px><font color=yellow>[X.neuro_ammo]</span>"
+	neuroglobnumber.maptext = MAPTEXT("<font color=yellow>[X.neuro_ammo]")
 	button.add_overlay(visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER])
 	return ..()
 
