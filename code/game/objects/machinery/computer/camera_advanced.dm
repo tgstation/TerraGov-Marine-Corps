@@ -369,8 +369,8 @@
 		return
 	holder.overlays.Cut()
 	for(var/aura_type in current_aura_list)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]")
-		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]")
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
