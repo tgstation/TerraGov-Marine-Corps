@@ -29001,9 +29001,6 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ygb" = (
-/obj/machinery/computer/body_scanconsole{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -29014,6 +29011,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
