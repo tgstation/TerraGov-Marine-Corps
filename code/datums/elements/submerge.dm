@@ -15,6 +15,8 @@
 /datum/element/submerge/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED))
+	for(var/atom/movable/AM AS in source)
+		AM.set_submerge_level(null, source, duration = 0.1)
 
 ///Applies or modifies submerge effects on entering AMs
 /datum/element/submerge/proc/atom_entered(datum/source, atom/movable/mover, atom/old_loc, list/old_locs)
