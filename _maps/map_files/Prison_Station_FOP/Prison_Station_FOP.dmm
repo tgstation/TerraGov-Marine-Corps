@@ -42241,7 +42241,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/prison/maintenance/hangar_barracks)
+/area/prison/hangar/main)
 "iqK" = (
 /turf/open/liquid/water/river,
 /area/prison/maintenance/residential/nw)
@@ -42740,6 +42740,11 @@
 	dir = 1
 	},
 /area/prison/cellblock/highsec/north/south)
+"jAB" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "jBM" = (
 /obj/machinery/light{
 	dir = 8
@@ -44204,12 +44209,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/north)
-"nkA" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/prison/maintenance/residential/nw)
 "nmh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -44721,7 +44720,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroid,
-/area/prison/residential/central)
+/area/prison/hangar/civilian)
 "own" = (
 /turf/open/ground/grass,
 /area/prison/residential/central)
@@ -44747,7 +44746,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/nw)
+/area/prison/hangar/civilian)
 "oAL" = (
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -45613,7 +45612,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/hangar/civilian)
 "qOY" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/sterilewhite,
@@ -46335,7 +46334,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/hallway/entrance)
+/area/prison/hangar/main)
 "stU" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -46470,7 +46469,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/hangar/civilian)
 "sGQ" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/misc/paperbin{
@@ -46884,6 +46883,13 @@
 	dir = 9
 	},
 /area/prison/medbay)
+"tIi" = (
+/obj/effect/turf_decal/siding{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/asteroid,
+/area/prison/hangar/civilian)
 "tIS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -48179,6 +48185,10 @@
 "wUH" = (
 /obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/prison,
+/area/prison/hangar/main)
+"wVw" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/prison/bright_clean,
 /area/prison/hangar/main)
 "wXP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53684,7 +53694,7 @@ iSZ
 rfc
 rqK
 aSN
-nkA
+sEQ
 bFG
 wxn
 xRQ
@@ -55753,10 +55763,10 @@ iTH
 mrt
 rpt
 ovT
+tIi
 bmV
 bmV
-bmV
-bmV
+tIi
 ovT
 cRI
 mrt
@@ -105355,10 +105365,10 @@ hKf
 rBG
 sOi
 ssR
+wVw
 sOi
 sOi
-sOi
-sOi
+wVw
 ssR
 sOi
 rBG
@@ -106912,7 +106922,7 @@ bnQ
 kZy
 buZ
 nTj
-sao
+jAB
 sao
 sSf
 sSf

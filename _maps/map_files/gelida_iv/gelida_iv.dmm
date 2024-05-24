@@ -2044,7 +2044,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/c_block/mining)
+/area/gelida/landing_zone_1)
 "bqb" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison,
@@ -4029,19 +4029,19 @@
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
-	worn_icon_state = "caution";
 	name = "fuel can";
-	pixel_y = 10
+	pixel_y = 10;
+	worn_icon_state = "caution"
 	},
 /obj/item/ashtray/bronze{
 	pixel_y = -5
 	},
 /obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
-	worn_icon_state = "caution";
 	name = "fuel can";
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = 3;
+	worn_icon_state = "caution"
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
@@ -4863,6 +4863,10 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/east_central_street)
+"diS" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/landing_zone_2)
 "diU" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -20862,7 +20866,7 @@
 "nNn" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/c_block/mining)
+/area/gelida/landing_zone_1)
 "nNq" = (
 /obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/darkbrown/full,
@@ -21602,7 +21606,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/south_west_street)
+/area/gelida/landing_zone_2)
 "olc" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison{
@@ -22105,10 +22109,10 @@
 "oEb" = (
 /obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
-	worn_icon_state = "caution";
 	name = "fuel can";
 	pixel_x = 4;
-	pixel_y = 16
+	pixel_y = 16;
+	worn_icon_state = "caution"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -24839,6 +24843,12 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/kitchen)
+"qnf" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/gelida/landing_zone_2)
 "qnk" = (
 /obj/item/shard,
 /obj/structure/window_frame/colony,
@@ -24930,6 +24940,12 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
+"qrm" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/landing_zone_2)
 "qrA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -31894,6 +31910,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
+"uZo" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall,
+/area/gelida/landing_zone_1)
 "uZz" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/blue/plate{
@@ -34765,8 +34785,8 @@
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/misc/earmuffs,
 /obj/item/clothing/ears/earmuffs{
-	worn_icon_state = "earmuffs2";
-	pixel_y = -4
+	pixel_y = -4;
+	worn_icon_state = "earmuffs2"
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -42086,7 +42106,7 @@ ndb
 ndb
 tqi
 tqi
-ilJ
+qrm
 npE
 ngP
 npE
@@ -42308,7 +42328,7 @@ qOV
 tqF
 tqi
 rMs
-ilJ
+qrm
 npE
 wDw
 npE
@@ -42530,7 +42550,7 @@ tqF
 tqi
 tqi
 mMH
-ilJ
+qrm
 npE
 npE
 npE
@@ -42974,7 +42994,7 @@ tqi
 tqi
 tqi
 tqi
-hkj
+qnf
 npE
 wDw
 npE
@@ -43196,7 +43216,7 @@ tqi
 rMs
 tqi
 tqi
-hkj
+qnf
 wDw
 wDw
 npE
@@ -43640,7 +43660,7 @@ tqi
 tqi
 tqi
 tqF
-hkj
+qnf
 wDw
 wDw
 npE
@@ -43862,7 +43882,7 @@ tqi
 tqi
 tqi
 tqF
-hkj
+qnf
 npE
 npE
 npE
@@ -44084,7 +44104,7 @@ tqi
 tqi
 tqi
 tqi
-hkj
+qnf
 npE
 npE
 wDw
@@ -44306,7 +44326,7 @@ tqF
 tqF
 bfO
 tqi
-ilJ
+qrm
 npE
 ngP
 npE
@@ -46316,14 +46336,14 @@ ndb
 ngP
 ndb
 ngP
-tqi
-tqi
-tqi
-tqi
-vYQ
-tqi
-tqi
-tqi
+wOd
+wOd
+wOd
+wOd
+csz
+wOd
+wOd
+wOd
 ngP
 ndb
 ngP
@@ -46538,14 +46558,14 @@ gEI
 gEI
 gEI
 oHe
-oHe
-oHe
-oHe
-oHe
+diS
+diS
+diS
+diS
 okT
-oHe
-oHe
-oHe
+diS
+diS
+diS
 gEI
 gEI
 gEI
@@ -64742,11 +64762,11 @@ hCY
 hCY
 hCY
 mth
-mth
+uZo
 nNn
 bpY
 nNn
-mth
+uZo
 mth
 mth
 mth
@@ -65847,7 +65867,7 @@ eWY
 eWY
 eWY
 eWY
-mDs
+ngv
 jDt
 jDt
 jDt
@@ -66069,7 +66089,7 @@ eWY
 eWY
 eWY
 eWY
-mDs
+ngv
 jDt
 jDt
 jDt
@@ -66291,7 +66311,7 @@ eWY
 eWY
 iAT
 eWY
-mDs
+ngv
 jDt
 jDt
 txG
@@ -66513,7 +66533,7 @@ eWY
 eWY
 eWY
 eWY
-mDs
+ngv
 jDt
 txG
 txG
@@ -66735,7 +66755,7 @@ eWY
 eWY
 eWY
 eWY
-mDs
+ngv
 jDt
 txG
 txG
@@ -66957,7 +66977,7 @@ eWY
 eWY
 eWY
 eWY
-mDs
+ngv
 jDt
 txG
 txG

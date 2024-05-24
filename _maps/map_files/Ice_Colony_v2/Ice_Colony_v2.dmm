@@ -20813,7 +20813,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/northwest)
+/area/ice_colony/exterior/surface/landing_pad2)
 "gAD" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet/highspawn,
 /turf/open/floor/tile/dark/red2{
@@ -20848,6 +20848,10 @@
 	dir = 6
 	},
 /area/ice_colony/underground/engineering)
+"gCl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/landing_pad2)
 "gCv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -24067,6 +24071,10 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"lgX" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/exterior/surface/landing_pad2)
 "lhq" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark/purple2{
@@ -25339,6 +25347,10 @@
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment/garbledradio)
+"mLO" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/landing_pad2)
 "mOg" = (
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -30117,6 +30129,12 @@
 	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west/garbledradio)
+"tbx" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/landing_pad2)
 "tbI" = (
 /obj/structure/cable,
 /obj/machinery/computer3/powermonitor,
@@ -30651,9 +30669,9 @@
 "tLn" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "garage_ice_3";
-	name = "garage shutter control";
-	dir = 8
+	name = "garage shutter control"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -40642,13 +40660,13 @@ qDA
 ajQ
 ajo
 aBi
-iYJ
+tbx
 gzY
-yll
-yll
-yll
-yem
-pqU
+mLO
+mLO
+mLO
+gCl
+lgX
 dZs
 oxN
 oxN

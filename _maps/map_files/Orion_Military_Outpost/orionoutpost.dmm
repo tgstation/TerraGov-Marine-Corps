@@ -1325,7 +1325,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/landing_pad2_external)
 "gB" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -2063,7 +2063,7 @@
 "ko" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/landing_pad2_external)
 "kp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2205,7 +2205,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "kW" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -4142,7 +4142,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/landing_pad2_external)
 "tK" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -4261,6 +4261,12 @@
 /obj/structure/closet/crate/science,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveS)
+"uu" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/surface/landing_pad2_external)
 "uv" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /obj/structure/platform,
@@ -4487,7 +4493,7 @@
 "vz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "vA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -4807,6 +4813,10 @@
 /obj/item/mortal_shell/howitzer/he,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/ammodepot)
+"xc" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/mineral/smooth,
+/area/orion_outpost/surface/landing_pad2_external)
 "xd" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -5228,7 +5238,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "zb" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
@@ -5730,6 +5740,12 @@
 "Bw" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/vehicledepot)
+"Bx" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/surface/landing_pad_external)
 "By" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /obj/machinery/light{
@@ -5767,7 +5783,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/landing_pad2_external)
 "BH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
@@ -5875,7 +5891,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "Ci" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
@@ -6303,7 +6319,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "Ei" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/effect/decal/cleanable/blood,
@@ -7140,7 +7156,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/landing_pad2_external)
 "Iz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -8570,7 +8586,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/orion_outpost/ground/outpostsw)
+/area/orion_outpost/surface/landing_pad_external)
 "Pl" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -10046,6 +10062,10 @@
 	dir = 10
 	},
 /area/orion_outpost/surface/building/tadpolepad)
+"Wk" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/surface/landing_pad2_external)
 "Wl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -10714,6 +10734,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
+"Zq" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/surface/landing_pad_external)
 "Zs" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/mono,
@@ -12725,7 +12749,7 @@ jF
 gU
 eW
 zI
-Df
+uu
 lW
 lW
 lW
@@ -12857,7 +12881,7 @@ jF
 gU
 eW
 zI
-Df
+uu
 lW
 lW
 lW
@@ -13323,11 +13347,11 @@ Gs
 Gs
 Gs
 Yz
-Yz
-Yz
-Yz
-Yz
-Yz
+Zq
+Zq
+Zq
+Zq
+Zq
 BO
 BO
 BO
@@ -13385,7 +13409,7 @@ jF
 gU
 eW
 zI
-Df
+uu
 lW
 lW
 lW
@@ -13517,7 +13541,7 @@ jF
 gU
 eW
 zI
-Df
+uu
 lW
 lW
 lW
@@ -13649,7 +13673,7 @@ jF
 gU
 eW
 zI
-Df
+uu
 lW
 lW
 lW
@@ -13964,7 +13988,7 @@ ve
 ve
 ve
 ve
-xg
+Bx
 UR
 UR
 UR
@@ -14096,7 +14120,7 @@ ve
 ve
 ve
 ve
-xg
+Bx
 UR
 UR
 UR
@@ -14127,7 +14151,7 @@ bq
 NN
 UR
 UR
-xg
+Bx
 ve
 ve
 wt
@@ -14228,7 +14252,7 @@ ve
 ve
 ve
 ve
-xg
+Bx
 UR
 UR
 UR
@@ -14259,7 +14283,7 @@ bq
 NN
 UR
 UR
-xg
+Bx
 ve
 ve
 ve
@@ -14391,7 +14415,7 @@ bq
 NN
 UR
 UR
-xg
+Bx
 ve
 ve
 ve
@@ -14523,7 +14547,7 @@ bq
 WD
 UR
 EL
-xg
+Bx
 ve
 ve
 ve
@@ -14655,7 +14679,7 @@ bq
 NN
 UR
 UR
-xg
+Bx
 ve
 ve
 ve
@@ -14756,7 +14780,7 @@ ve
 ve
 ve
 ve
-xg
+Bx
 UR
 UR
 UR
@@ -14787,7 +14811,7 @@ bq
 NN
 UR
 UR
-xg
+Bx
 ve
 ve
 ve
@@ -15074,13 +15098,11 @@ ap
 ap
 rp
 OG
-OG
-QE
-QE
-QE
-QE
-OG
-OG
+xc
+Wk
+Wk
+Wk
+Wk
 OG
 OG
 OG
@@ -15092,8 +15114,10 @@ OG
 OG
 OG
 OG
-QE
-QE
+OG
+OG
+Wk
+Wk
 BG
 ko
 ko
@@ -16095,13 +16119,13 @@ BO
 BO
 BO
 BO
-Yz
-Yz
+Zq
+Zq
 Pk
 za
 vz
-Yz
-Yz
+Zq
+Zq
 BO
 BO
 BO

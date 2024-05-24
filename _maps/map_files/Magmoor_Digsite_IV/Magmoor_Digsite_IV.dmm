@@ -569,7 +569,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
 	},
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "auM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1221,9 +1221,9 @@
 /area/magmoor/cave/northwest)
 "aSB" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "engi_garage";
-	name = "Engineering Garage";
-	dir = 1
+	name = "Engineering Garage"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1549,7 +1549,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete/edge,
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "bbv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4084,7 +4084,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "cRP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -6151,6 +6151,12 @@
 	dir = 10
 	},
 /area/magmoor/cargo/processing/south)
+"ena" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/magmoor/landing)
 "eni" = (
 /obj/machinery/light,
 /obj/structure/bed/chair,
@@ -9353,7 +9359,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
 	},
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "gwd" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/medical/cmo)
@@ -11794,7 +11800,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "ioE" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/mainship/floor,
@@ -13900,8 +13906,8 @@
 /area/magmoor/compound)
 "jKr" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	name = "\improper Holding Cell";
-	dir = 1
+	dir = 1;
+	name = "\improper Holding Cell"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -14811,7 +14817,7 @@
 "ksJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "ksR" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/lavawall/indestructible,
@@ -18875,7 +18881,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "nqJ" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -23489,7 +23495,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
 	},
-/area/magmoor/compound/southwest)
+/area/magmoor/landing)
 "qBL" = (
 /obj/structure/table/mainship,
 /obj/item/tool/hand_labeler,
@@ -26429,6 +26435,12 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
+"sLy" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/landing)
 "sLD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -28558,8 +28570,8 @@
 /area/magmoor/cargo/storage/south)
 "ujF" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	name = "\improper Holding Cell";
-	dir = 1
+	dir = 1;
+	name = "\improper Holding Cell"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -45670,7 +45682,7 @@ naZ
 lto
 naZ
 fMN
-kvj
+ena
 mTT
 xxY
 nlP
@@ -45903,7 +45915,7 @@ mQq
 mQq
 mQq
 tLs
-kvj
+ena
 mTT
 bss
 mFY
@@ -46136,7 +46148,7 @@ pMh
 pMh
 pMh
 kkj
-kvj
+ena
 mTT
 xxY
 nlP
@@ -46835,7 +46847,7 @@ mQq
 mQq
 kjk
 hxc
-kvj
+ena
 nio
 bss
 nlP
@@ -49173,12 +49185,12 @@ ibo
 ibo
 ibo
 ibo
-ibo
+sLy
 auF
 gvY
-ibo
-ibo
-ibo
+sLy
+sLy
+sLy
 auF
 ksJ
 amb
