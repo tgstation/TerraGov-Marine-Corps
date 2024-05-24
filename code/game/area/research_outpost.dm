@@ -17,7 +17,6 @@
 	icon_state="red"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/outpost/lz2
 	name = "Landing Zone 2"
@@ -25,7 +24,6 @@
 	icon_state="red"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 
 

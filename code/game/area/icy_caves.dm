@@ -168,14 +168,12 @@
 	icon_state = "green"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/icy_caves/outpost/LZ2
 	name = "\improper Landing Zone Two"
 	icon_state = "blue"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/icy_caves/outpost/outside
 	name = "\improper Colony Grounds"

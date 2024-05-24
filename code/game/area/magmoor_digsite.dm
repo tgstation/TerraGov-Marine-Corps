@@ -12,12 +12,10 @@
 	name = "Landing Zone One"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/magmoor/landing/two
 	name = "Landing Zone Two"
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 
 // Volcano

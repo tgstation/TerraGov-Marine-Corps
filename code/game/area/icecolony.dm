@@ -58,7 +58,6 @@
 	outside = FALSE
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
@@ -67,7 +66,6 @@
 	outside = FALSE
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external

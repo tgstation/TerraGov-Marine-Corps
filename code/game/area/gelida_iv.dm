@@ -29,7 +29,6 @@
 	icon_state = "explored"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/shuttle/drop1/gelida
 	name = "Gelida IV - Dropship Alamo Landing Zone"
@@ -51,7 +50,6 @@
 	icon_state = "explored"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/shuttle/drop2/gelida
 	name = "Gelida IV - Dropship Normandy Landing Zone"

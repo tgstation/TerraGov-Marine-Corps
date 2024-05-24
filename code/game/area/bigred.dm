@@ -242,7 +242,6 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/space_port/two
 

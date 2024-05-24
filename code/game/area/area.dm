@@ -91,7 +91,7 @@
 
 	update_base_lighting()
 
-	if(area_flags & CANNOT_NUKE | ceiling > CEILING_UNDERGROUND_METAL)
+	if(area_flags & CANNOT_NUKE | area_flags & NEAR_FOB | ceiling > CEILING_UNDERGROUND_METAL)
 		if(get_area_name(src) in GLOB.nuke_ineligible_site)
 			return
 		GLOB.nuke_ineligible_site += get_area_name(src)
