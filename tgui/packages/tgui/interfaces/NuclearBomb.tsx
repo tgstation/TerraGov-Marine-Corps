@@ -13,7 +13,7 @@ import { Window } from '../layouts';
 
 type NuclearBombData = {
   status: string;
-  nuke_inelegible_site: string[];
+  nuke_ineligible_site: string[];
   time: number;
   time_left: number;
   timer_enabled: boolean;
@@ -49,7 +49,7 @@ const NuclearBombContent = (props) => {
     red,
     green,
     blue,
-    nuke_inelegible_site,
+    nuke_ineligible_site,
   } = data;
   return (
     <>
@@ -174,15 +174,15 @@ const NuclearBombContent = (props) => {
           />
         </LabeledList.Item>
       </Section>
-      <Section title={'Inelegible detonation sites'}>
+      <Section title={'ineligible detonation sites'}>
         <Box width="100%">
           <NoticeBox color="blue">
             <Stack vertical>
-              {nuke_inelegible_site.map((nuke_inelegible_site) => (
-                <Stack.Item key={nuke_inelegible_site}>
+              {nuke_ineligible_site.map((nuke_ineligible_site) => (
+                <Stack.Item key={nuke_ineligible_site}>
                   <Box inline>
                     <Box inline width={'8px'} p={'8px'} />
-                    {nuke_inelegible_site}
+                    {nuke_ineligible_site}
                   </Box>
                 </Stack.Item>
               ))}

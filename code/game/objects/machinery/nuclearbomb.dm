@@ -198,7 +198,7 @@
 	data["red"] = r_auth
 	data["green"] = g_auth
 	data["blue"] = b_auth
-	data["nuke_inelegible_site"] = GLOB.nuke_inelegible_site
+	data["nuke_ineligible_site"] = GLOB.nuke_ineligible_site
 	var/safe_text = (safety) ? "Safe" : "Engaged"
 	var/status = "Unknown"
 
@@ -258,8 +258,8 @@
 		balloon_alert(user, "anchors not set")
 		return
 	var/area/area = get_area(src)
-	if(get_area_name(area) in GLOB.nuke_inelegible_site)
-		balloon_alert(user, "inelegible detonation site.")
+	if(get_area_name(area) in GLOB.nuke_ineligible_site)
+		balloon_alert(user, "ineligible detonation site.")
 		return
 	if(!timer_enabled)
 		enable()
