@@ -143,7 +143,6 @@
 /area/riptide/outside/beachlzone
 	name = "North West Beach"
 	icon_state = "firingrange"
-	area_flags = CANNOT_NUKE
 
 /area/riptide/outside/southjungle
 	name = "South Jungle"

@@ -78,7 +78,6 @@
 /area/daedalusprison/outside/southeast
 	name = "Southeastern Colony"
 	icon_state = "southeast"
-	area_flags = CANNOT_NUKE
 
 /area/daedalusprison/outside/south
 	name = "Southern Colony"

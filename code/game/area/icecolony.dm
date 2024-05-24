@@ -81,7 +81,6 @@
 /area/ice_colony/exterior/surface/taxiway
 	name = "Aerodrome Taxiway"
 	icon_state = "landing_pad_taxiway"
-	area_flags = CANNOT_NUKE
 //
 // Valleys
 // This is for all the areas mostly surrounded by mountains
