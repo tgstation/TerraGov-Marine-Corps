@@ -212,8 +212,9 @@
 	if(istype(I,/obj/item/circuitboard/tadpole))
 		var/repair_time = 50
 		if(!(machine_stat & BROKEN))
-			to_chat(user,"<span class='warning'>Nothing needs repairing here.</span>")
+			to_chat(user,"<span class='warning'>The circuits don't need replacing.</span>")
 			return
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
 			span_notice("You fumble around figuring out how to replace the electronics."))
@@ -225,6 +226,9 @@
 			span_notice("You begin replacing the electronics"))
 			if(!do_after(user,repair_time,NONE,src,BUSY_ICON_GENERIC))
 				return
+		user.visible_message(span_notice("[user] replaces the electronics."),
+			span_notice("You replace the electronics"))
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		repair()
 		qdel(I)
 
