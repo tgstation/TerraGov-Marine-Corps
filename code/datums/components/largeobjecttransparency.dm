@@ -54,7 +54,7 @@
 	for(var/regist_tu in registered_turfs)
 		if(!regist_tu)
 			continue
-		RegisterSignals(regist_tu, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON), PROC_REF(objectEnter))
+		RegisterSignal(regist_tu, COMSIG_ATOM_ENTERED, PROC_REF(objectEnter))
 		RegisterSignal(regist_tu, COMSIG_ATOM_EXITED, PROC_REF(objectLeave))
 		RegisterSignal(regist_tu, COMSIG_TURF_CHANGE, PROC_REF(OnTurfChange))
 		for(var/thing in regist_tu)
@@ -66,7 +66,7 @@
 		reduceAlpha()
 
 /datum/component/largetransparency/proc/UnregisterFromTurfs()
-	var/list/signal_list = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON)
+	var/list/signal_list = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE)
 	for(var/regist_tu in registered_turfs)
 		UnregisterSignal(regist_tu, signal_list)
 	registered_turfs.Cut()

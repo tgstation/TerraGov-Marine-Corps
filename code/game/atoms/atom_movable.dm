@@ -105,9 +105,6 @@
 	if(light_system == MOVABLE_LIGHT)
 		AddComponent(/datum/component/overlay_lighting)
 
-	if(isturf(loc))
-		loc.Entered(src)
-
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
