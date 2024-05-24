@@ -12,15 +12,19 @@
 /datum/component/submerge_modifier/RegisterWithParent()
 	var/atom/owner = parent
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_submerge_element))
+	for(var/atom/movable/AM AS in owner.loc) //we remove the submerge and reapply after owner is connect
+		AM.set_submerge_level(null, owner.loc, duration = 0.1)
 	add_connections(owner.loc)
+	for(var/atom/movable/AM AS in owner.loc)
+		AM.set_submerge_level(owner.loc, null, duration = 0.1)
 
 /datum/component/submerge_modifier/UnregisterFromParent()
 	var/atom/owner = parent
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	for(var/atom/movable/AM AS in owner.loc) //we remove the submerge entirely
+	for(var/atom/movable/AM AS in owner.loc) //we remove the submerge and reapply after owner is no longer connect
 		AM.set_submerge_level(null, owner.loc, duration = 0.1)
 	remove_connections(owner.loc)
-	for(var/atom/movable/AM AS in owner.loc) //we reapply after owner is removed
+	for(var/atom/movable/AM AS in owner.loc)
 		AM.set_submerge_level(owner.loc, null, duration = 0.1)
 
 ///Adds the submerge element to a turf and registers for the submerge signal
