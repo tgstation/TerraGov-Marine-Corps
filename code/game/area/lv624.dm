@@ -37,7 +37,6 @@
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
-	area_flags = CANNOT_NUKE
 
 /area/lv624/ground/jungle6
 	name = "Northwest Jungle"
@@ -68,7 +67,6 @@
 	icon_state = "west2"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
-	area_flags = CANNOT_NUKE
 
 //Sand
 /area/lv624/ground/sand1

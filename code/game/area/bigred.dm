@@ -13,7 +13,6 @@
 /area/bigredv2/outside/nw
 	name = "Northwest Colony Grounds"
 	icon_state = "northwest"
-	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/c
 	name = "Central Colony Grounds"
@@ -26,7 +25,6 @@
 /area/bigredv2/outside/w
 	name = "Western Colony Grounds"
 	icon_state = "west"
-	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/e
 	name = "Eastern Colony Grounds"
@@ -144,7 +142,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_REQ
-	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/general_store
 	name = "General Store"
@@ -258,7 +255,6 @@
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 	outside = FALSE
-	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering/east
 	name = "East Engineering Complex"
