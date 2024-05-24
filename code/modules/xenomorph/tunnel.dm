@@ -29,7 +29,6 @@ TUNNEL
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
-	hud_set_xeno_tunnel()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", VERY_HIGH_FLOAT_LAYER))
 
 /obj/structure/xeno/tunnel/Destroy()
@@ -187,12 +186,3 @@ TUNNEL
 	M.forceMove(targettunnel.loc)
 	M.visible_message(span_xenonotice("\The [M] pops out of \the [src].") , \
 	span_xenonotice("We pop out through the other side!") )
-
-///Makes sure the tunnel is visible to other xenos even through obscuration.
-/obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TACTICAL_HUD]
-	if(!holder)
-		return
-	holder.icon = 'icons/mob/hud/xeno.dmi'
-	holder.icon_state = "tunnel" // this wasn't working since "hudtraitor" was deleted, dunno if we should keep it
-	hud_list[XENO_TACTICAL_HUD] = holder
