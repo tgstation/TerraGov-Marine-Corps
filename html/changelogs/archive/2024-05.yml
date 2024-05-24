@@ -232,3 +232,13 @@
   - balance: Added a new shortcut from Slumbridge prison to the south east quadrant.
   - bugfix: Fixed stairs in Slumbridge.
   - qol: Replaced every Slumbridge platform with a nondense one.
+2024-05-24:
+  Barnet2:
+  - rscadd: Added harmless rain on desparity and lawanka
+  Notamaniac:
+  - bugfix: After two years - Tangle mortar shells can be ordered again
+  blackdav123:
+  - bugfix: Jumping onto lava now burns you when you land.
+  yyzsong:
+  - balance: removes an extra plat miner from a big red modular variant that was not
+      present on any other variants.
