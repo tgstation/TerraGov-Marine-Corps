@@ -78,6 +78,7 @@
 /area/daedalusprison/outside/southeast
 	name = "Southeastern Colony"
 	icon_state = "southeast"
+	area_flags = CANNOT_NUKE
 
 /area/daedalusprison/outside/south
 	name = "Southern Colony"
@@ -115,7 +116,6 @@
 	name = "Colony Dorms"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/daedalusprison/inside/bar
 	name = "Colony Bar"
@@ -201,7 +201,6 @@
 	name = "Prison Laundromat"
 	icon_state = "LP"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/daedalusprison/inside/laundromat/collapsedroof
 	outside = TRUE
@@ -267,7 +266,6 @@
 	name = "Prison Cafeteria"
 	icon_state = "cafeteria"
 	minimap_color = MINIMAP_AREA_ESCAPE
-	area_flags = NUKE_AREA
 
 /area/daedalusprison/inside/sportstorage
 	name = "Prison Sports Storage"
@@ -288,7 +286,6 @@
 	name = "Prison Execution"
 	icon_state = "sec_backroom"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/daedalusprison/inside/basketball
 	name = "Prison Basketball Court"

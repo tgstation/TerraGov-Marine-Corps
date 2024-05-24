@@ -136,7 +136,6 @@
 /area/slumbridge/inside/houses/dorms
 	name = "Dorms"
 	icon_state = "Sleep"
-	area_flags = NUKE_AREA
 
 /area/slumbridge/inside/houses/surgery
 	name = "Dorms Medical"
@@ -206,7 +205,6 @@
 /area/slumbridge/inside/prison/innerring
 	name = "\improper High Security Interior"
 	icon_state = "brig"
-	area_flags = NUKE_AREA
 
 /area/slumbridge/inside/prison/outerringnorth
 	name = "\improper High Security Northern Exterior"
@@ -242,7 +240,6 @@
 /area/slumbridge/inside/colony/hydro
 	name = "Colony Hydroponics"
 	icon_state = "hydro"
-	area_flags = NUKE_AREA
 
 /area/slumbridge/inside/colony/dorms
 	name = "Colony Dormitory"
@@ -288,7 +285,6 @@
 /area/slumbridge/inside/medical/morgue
 	name = "\improper Morgue"
 	icon_state = "morgue"
-	area_flags = NUKE_AREA
 
 /area/slumbridge/inside/medical/cmo
 	name = "\improper Chief Medical Office"

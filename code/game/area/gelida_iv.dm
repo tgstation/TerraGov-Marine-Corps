@@ -169,7 +169,6 @@
 	name = "Outdoor Storage"
 	icon_state = "blue"
 	minimap_color = MINIMAP_AREA_REQ
-	area_flags = NUKE_AREA
 
 /area/gelida/indoors/lone_buildings/chunk
 	name = "Chunk 'N Dump"
@@ -212,13 +211,11 @@
 	icon_state = "medbay"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_MEDBAY
-	area_flags = NUKE_AREA
 
 /area/gelida/indoors/a_block/security
 	name = "A-Block - Security"
 	icon_state = "head_quarters"
 	minimap_color = MINIMAP_AREA_SEC
-	area_flags = NUKE_AREA
 
 /area/gelida/indoors/a_block/kitchen
 	name = "A-Block - Kitchen And Dining"
@@ -321,7 +318,6 @@
 	name = "C-Block - Casino"
 	icon_state = "purple"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/gelida/indoors/c_block/bridge
 	name = "C-Block - Cargo To Garage Bridge"

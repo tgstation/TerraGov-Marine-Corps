@@ -13,7 +13,7 @@ import { Window } from '../layouts';
 
 type NuclearBombData = {
   status: string;
-  nuke_activation_sites: any;
+  nuke_inelegible_site: string[];
   time: number;
   time_left: number;
   timer_enabled: boolean;
@@ -49,7 +49,7 @@ const NuclearBombContent = (props) => {
     red,
     green,
     blue,
-    nuke_activation_sites,
+    nuke_inelegible_site,
   } = data;
   return (
     <>
@@ -139,22 +139,6 @@ const NuclearBombContent = (props) => {
           </LabeledList>
         </Section>
       ) : null}
-      <Section title={'Designated detonation sites'}>
-        <Box width="100%">
-          <NoticeBox color="blue">
-            <Stack vertical>
-              {nuke_activation_sites.map((nuke_activation_sites) => (
-                <Stack.Item key={nuke_activation_sites}>
-                  <Box inline>
-                    <Box inline width={'8px'} p={'8px'} />
-                    {nuke_activation_sites}
-                  </Box>
-                </Stack.Item>
-              ))}
-            </Stack>
-          </NoticeBox>
-        </Box>
-      </Section>
       <Section title={'Input area'}>
         <LabeledList.Item label="Red Auth. Disk">
           <Button
@@ -189,6 +173,22 @@ const NuclearBombContent = (props) => {
             color={!blue ? 'green' : 'red'}
           />
         </LabeledList.Item>
+      </Section>
+      <Section title={'Inelegible detonation sites'}>
+        <Box width="100%">
+          <NoticeBox color="blue">
+            <Stack vertical>
+              {nuke_inelegible_site.map((nuke_inelegible_site) => (
+                <Stack.Item key={nuke_inelegible_site}>
+                  <Box inline>
+                    <Box inline width={'8px'} p={'8px'} />
+                    {nuke_inelegible_site}
+                  </Box>
+                </Stack.Item>
+              ))}
+            </Stack>
+          </NoticeBox>
+        </Box>
       </Section>
     </>
   );

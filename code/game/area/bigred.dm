@@ -13,6 +13,7 @@
 /area/bigredv2/outside/nw
 	name = "Northwest Colony Grounds"
 	icon_state = "northwest"
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/c
 	name = "Central Colony Grounds"
@@ -25,6 +26,7 @@
 /area/bigredv2/outside/w
 	name = "Western Colony Grounds"
 	icon_state = "west"
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/e
 	name = "Eastern Colony Grounds"
@@ -142,6 +144,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_REQ
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/general_store
 	name = "General Store"
@@ -156,7 +159,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_SEC
-	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/medical
 	name = "Hospital"
@@ -178,7 +180,6 @@
 	minimap_color = MINIMAP_AREA_ENGI
 	ceiling = CEILING_METAL
 	outside = FALSE
-	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/virology
 	name = "Virology Lab"
@@ -200,7 +201,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/chapel
 	name = "Chapel"
@@ -222,7 +222,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/bigredv2/outside/library
 	name = "Library"
@@ -251,6 +250,7 @@
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering
 	name = "West Engineering Complex"
@@ -258,6 +258,7 @@
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 	outside = FALSE
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering/east
 	name = "East Engineering Complex"

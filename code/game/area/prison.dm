@@ -130,11 +130,9 @@
 
 /area/prison/recreation/highsec/n
 	name = "North High-Security Recreation"
-	area_flags = NUKE_AREA
 
 /area/prison/recreation/highsec/s
 	name = "South High-Security Recreation"
-	area_flags = NUKE_AREA
 
 /area/prison/execution
 	name = "Execution"
@@ -208,7 +206,6 @@
 
 /area/prison/maintenance/residential/ne
 	name = "Northeast Civilian Residences Maintenance"
-	area_flags = NUKE_AREA
 
 /area/prison/maintenance/residential/sw
 	name = "Southwest Civilian Residences Maintenance"
@@ -279,7 +276,6 @@
 	name = "Parole"
 	icon_state = "blue2"
 	ceiling = CEILING_METAL
-	area_flags = NUKE_AREA
 
 /area/prison/parole/protective_custody
 	name = "Protective Custody Parole"
@@ -294,7 +290,6 @@
 	name = "Yard"
 	icon_state = "thunder"
 	ceiling = CEILING_NONE
-	area_flags = NUKE_AREA
 
 /area/prison/hallway
 	ceiling = CEILING_METAL

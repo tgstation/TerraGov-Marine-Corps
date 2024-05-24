@@ -81,7 +81,7 @@
 /area/ice_colony/exterior/surface/taxiway
 	name = "Aerodrome Taxiway"
 	icon_state = "landing_pad_taxiway"
-
+	area_flags = CANNOT_NUKE
 //
 // Valleys
 // This is for all the areas mostly surrounded by mountains
@@ -223,7 +223,6 @@
 
 /area/ice_colony/surface/bar/bar
 	name = "Anti-Freeze Bar"
-	area_flags = NUKE_AREA
 
 /area/ice_colony/surface/bar/canteen
 	name = "Anti-Freeze Canteen"
@@ -248,7 +247,6 @@
 /area/ice_colony/surface/clinic/storage
 	name = "Aurora Medical Clinic Storage"
 	icon_state = "medbay3"
-	area_flags = NUKE_AREA
 
 /*
 * Surface - Colony Administration
@@ -258,7 +256,6 @@
 	name = "Colony Administration"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COMMAND
-	area_flags = NUKE_AREA
 
 /area/ice_colony/surface/command/checkpoint
 	name = "Colony Administration Security Checkpoint"
@@ -467,7 +464,6 @@
 	name = "Omicron Dome"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
-	area_flags = NUKE_AREA
 
 /area/ice_colony/surface/research/tech_storage
 	name = "Omicron Dome Technical Storage"

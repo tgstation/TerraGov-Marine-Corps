@@ -198,7 +198,7 @@
 	data["red"] = r_auth
 	data["green"] = g_auth
 	data["blue"] = b_auth
-	data["nuke_activation_sites"] = GLOB.nuke_activation_sites
+	data["nuke_inelegible_site"] = GLOB.nuke_inelegible_site
 	var/safe_text = (safety) ? "Safe" : "Engaged"
 	var/status = "Unknown"
 
@@ -249,7 +249,6 @@
 
 ///Toggles the timer on or off
 /obj/machinery/nuclearbomb/proc/toggle_timer(mob/user)
-	var/area/area = get_area(src)
 	if(exploded)
 		return
 	if(safety)
@@ -258,8 +257,9 @@
 	if(!anchored)
 		balloon_alert(user, "anchors not set")
 		return
-	if(!(area.area_flags & NUKE_AREA)) // if area we're activating in does not have the area flag NUKE_AREA, return.
-		balloon_alert(user, "Warning! This thermonuclear device needs to be armed at one of the designated detonation sites.")
+	var/area/area = get_area(src)
+	if(get_area_name(area) in GLOB.nuke_inelegible_site)
+		balloon_alert(user, "inelegible detonation site.")
 		return
 	if(!timer_enabled)
 		enable()

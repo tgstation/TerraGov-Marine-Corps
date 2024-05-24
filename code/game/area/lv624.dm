@@ -37,6 +37,7 @@
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
+	area_flags = CANNOT_NUKE
 
 /area/lv624/ground/jungle6
 	name = "Northwest Jungle"
@@ -67,6 +68,7 @@
 	icon_state = "west2"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
+	area_flags = CANNOT_NUKE
 
 //Sand
 /area/lv624/ground/sand1
@@ -322,7 +324,6 @@
 	name = "\improper Canteen"
 	icon_state = "cafeteria"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
@@ -352,7 +353,6 @@
 	name = "\improper Male Dorm"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/lv624/lazarus/sleep_female
 	name = "\improper Female Dorm"
@@ -419,14 +419,12 @@
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/lv624/lazarus/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/lv624/lazarus/hydroponics/aux
 	name = "\improper Auxillary Hydroponics"

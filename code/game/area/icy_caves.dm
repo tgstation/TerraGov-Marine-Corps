@@ -27,7 +27,6 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 	always_unpowered = FALSE
-	area_flags = NUKE_AREA
 
 /area/icy_caves/caves/northwestmonorail
 	name = "Northwestern Monorail Station"
@@ -113,7 +112,6 @@
 	name = "Engineering"
 	icon_state = "engine_smes"
 	minimap_color = MINIMAP_AREA_ENGI
-	area_flags = NUKE_AREA
 
 /area/icy_caves/outpost/garage
 	name = "Garage"
@@ -124,7 +122,6 @@
 	name = "\improper Medbay"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
-	area_flags = NUKE_AREA
 
 /area/icy_caves/outpost/refinery
 	name = "\improper Refinery"
@@ -152,7 +149,6 @@
 /area/icy_caves/outpost/mining/west
 	name = "\improper Mining West"
 	icon_state = "blue"
-	area_flags = NUKE_AREA
 
 /area/icy_caves/outpost/mining/east
 	name = "\improper Mining East"

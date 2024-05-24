@@ -137,7 +137,6 @@
 /area/magmoor/medical/breakroom
 	name = "Medical Break Room"
 	icon_state = "cafeteria"
-	area_flags = NUKE_AREA
 
 /area/magmoor/medical/lobby
 	name = "Medical Lobby"
@@ -263,7 +262,6 @@
 /area/magmoor/civilian/clean/shower
 	name = "Showers"
 	icon_state = "blue"
-	area_flags = NUKE_AREA
 
 /area/magmoor/civilian/chapel
 	name = "Chapel"
@@ -369,7 +367,6 @@
 
 /area/magmoor/cargo/storage/secure/south
 	name = "Cargo Secure Storage South"
-	area_flags = NUKE_AREA
 
 /area/magmoor/cargo/freezer
 	name = "Cargo Freezer East"
@@ -388,7 +385,6 @@
 
 /area/magmoor/hydroponics/south
 	name = "Hydropnics South"
-	area_flags = NUKE_AREA
 
 //Command
 /area/magmoor/command

@@ -143,6 +143,7 @@
 /area/riptide/outside/beachlzone
 	name = "North West Beach"
 	icon_state = "firingrange"
+	area_flags = CANNOT_NUKE
 
 /area/riptide/outside/southjungle
 	name = "South Jungle"
@@ -192,7 +193,6 @@
 	name = "Gift Shop"
 	icon_state = "thunder"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/riptide/inside/beachtoilet
 	name = "Public Restroom"
@@ -208,13 +208,11 @@
 	name = "Beach Dressing Room"
 	icon_state = "locker"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/riptide/inside/beachmotel
 	name = "Beach Motel"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
-	area_flags = NUKE_AREA
 
 /area/riptide/inside/luxurybar
 	name = "Luxurious River Bar"
@@ -238,7 +236,6 @@
 /area/riptide/inside/medical/offices
 	name = "CMO Office"
 	icon_state = "CMO"
-	area_flags = NUKE_AREA
 
 /area/riptide/inside/chapel
 	name = "Chapel"
@@ -349,7 +346,6 @@
 	name = "Ominous Base Foyer"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
-	area_flags = NUKE_AREA
 
 /area/riptide/inside/syndicateport
 	name = "Ominous Base Port"

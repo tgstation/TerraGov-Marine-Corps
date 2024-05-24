@@ -91,10 +91,10 @@
 
 	update_base_lighting()
 
-	if(area_flags & NUKE_AREA) // This adds the area to the list of areas displayed on the nuke detonation site UI
-		if(src in GLOB.nuke_activation_sites) // To prevent duplicate entries into the list
+	if(area_flags & CANNOT_NUKE | minimap_color == MINIMAP_AREA_LZ | ceiling > CEILING_UNDERGROUND_METAL) // This adds the area to the list of areas displayed on the nuke inelegible detonation site UI
+		if(get_area_name(src) in GLOB.nuke_inelegible_site) // To prevent duplicate entries into the list
 			return
-		GLOB.nuke_activation_sites += get_area_name(src)
+		GLOB.nuke_inelegible_site += get_area_name(src)
 
 	return INITIALIZE_HINT_LATELOAD
 
