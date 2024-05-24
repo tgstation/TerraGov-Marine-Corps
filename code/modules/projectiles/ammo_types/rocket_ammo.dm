@@ -290,7 +290,7 @@
 	name = "high velocity chemical shell"
 	icon_state = "rpg_rad"
 	hud_state = "rpg_rad"
-	smoketype = /obj/effect/particle_effect/smoke/vyacheslav
+	smoketype = /datum/effect_system/smoke_spread/vyacheslav
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
