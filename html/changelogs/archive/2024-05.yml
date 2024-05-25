@@ -242,3 +242,12 @@
   yyzsong:
   - balance: removes an extra plat miner from a big red modular variant that was not
       present on any other variants.
+2024-05-25:
+  Notamaniac:
+  - qol: Boiler globules in reserve are now listed as a number on the create globule
+      ability button. You're also told how many globules of your current acid type
+      are in reserve when making a globule.
+  - qol: Changed several boiler to_chat() messages to balloon alerts.
+  Xander3359:
+  - bugfix: It's no longer possible to perform a bluetooth tactical reload with a
+      magazine that is too far to reach
