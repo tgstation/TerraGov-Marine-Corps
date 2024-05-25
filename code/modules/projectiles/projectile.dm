@@ -1364,7 +1364,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 			proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(fire_sound)
-			playsound(source, fire_sound, 60, TRUE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE)
 		return
 
 	angle_between_bullets = 360 / (length(bullets) / rotations)
@@ -1377,7 +1377,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(play_sound % 3 && fire_sound)
-			playsound(source, fire_sound, 60, FALSE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, FALSE)
 		stoplag(1)
 
 #undef BULLET_FEEDBACK_PEN
