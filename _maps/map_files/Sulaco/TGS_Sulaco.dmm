@@ -13644,12 +13644,6 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
-"gTz" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
 "gUn" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -18811,10 +18805,6 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
-"neg" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "neZ" = (
 /obj/structure/closet/secure_closet/pilot_officer,
 /obj/machinery/air_alarm{
@@ -20603,12 +20593,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"poe" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
 "ppl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -26482,10 +26466,6 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
-"wMV" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "wMZ" = (
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
@@ -57419,7 +57399,7 @@ lJm
 fsb
 pwv
 jIo
-gTz
+pwv
 kJu
 dal
 pwv
@@ -59989,7 +59969,7 @@ qES
 ylS
 pwv
 jIo
-poe
+pwv
 pwv
 pwv
 pwv
@@ -62820,7 +62800,7 @@ igo
 aPZ
 aPZ
 eQF
-neg
+aPZ
 aPZ
 aPZ
 aPZ
@@ -63077,7 +63057,7 @@ igo
 dtI
 dtI
 npe
-wMV
+aPZ
 aPZ
 aPZ
 aPZ
@@ -64619,7 +64599,7 @@ bYh
 sMl
 sMl
 ger
-wMV
+aPZ
 aPZ
 aPZ
 aPZ
@@ -64876,7 +64856,7 @@ igo
 aPZ
 aPZ
 eQF
-neg
+aPZ
 aPZ
 aPZ
 aPZ
