@@ -1764,7 +1764,7 @@
 		playsound(user, fire_sound, GUN_FIRE_SOUND_VOLUME/2, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
 	if(firing_sndfreq && fire_rattle)
-		playsound(user, fire_rattle, 50, FALSE)
+		playsound(user, fire_rattle, GUN_FIRE_SOUND_VOLUME, FALSE)
 		return
 	playsound(user, fire_sound, GUN_FIRE_SOUND_VOLUME, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
