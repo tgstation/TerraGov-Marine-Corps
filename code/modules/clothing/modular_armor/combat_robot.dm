@@ -47,6 +47,13 @@
 		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
+//---- Medium armor with attachments
+/obj/item/clothing/suit/modular/robot/hodgrenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
 /obj/item/clothing/suit/modular/robot/light
 	name = "XR-1-L armor plating"
 	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
@@ -54,12 +61,21 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	greyscale_config = /datum/greyscale_config/robot/light
 
+//---- Light armor with attachments
+
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "XR-1-H armor plating"
 	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	soft_armor = MARINE_ARMOR_HEAVY
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/robot/heavy
+
+//---- Heavy armor with attachments
+/obj/item/clothing/suit/modular/robot/heavy/tyr_onegeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/storage/general,
+	)
 
 /obj/item/clothing/suit/modular/robot/heavy/tyr
 	starting_attachments = list(
@@ -116,6 +132,10 @@
 	if(!isrobot(user))
 		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
+
+//---- Medium helmets with attachments
+/obj/item/clothing/head/modular/robot/hod
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot, /obj/item/armor_module/module/hod_head)
 
 /obj/item/clothing/head/modular/robot/light
 	name = "XN-1-L upper armor plating"
