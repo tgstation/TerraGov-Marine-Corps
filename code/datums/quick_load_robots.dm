@@ -84,28 +84,28 @@
 	head = /obj/item/clothing/head/modular/robot/heavy/tyr
 
 	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = null
+	r_store = /obj/item/storage/pouch/tools
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/beginner
 
 /datum/outfit/quick/beginner_robot/marine/machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly)
-	for(var/amount_to_fill in 1 to 3)
-		H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 3)
-		H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 3)
+	for(var/amount_to_fill in 1 to 8)
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	for(var/amount_to_fill in 1 to 5)
+		H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
 
 	for(var/amount_to_fill in 1 to 3)
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_BELT)
+	for(var/amount_to_fill in 1 to 2)
+		H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_R_POUCH)
+	for(var/amount_to_fill in 1 to 3)
+		H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_R_POUCH)
 
 	for(var/amount_to_fill in 1 to 2)
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_SUIT)
@@ -114,8 +114,8 @@
 	name = "Marksman"
 	desc = "Marksman"
 
-	w_uniform = /obj/item/clothing/under/marine/robotic
-	wear_suit = /obj/item/clothing/suit/modular/robot
+	w_uniform = /obj/item/clothing/under/marine/robotic/holster
+	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
 	head = /obj/item/clothing/head/modular/robot
 
 	l_store = /obj/item/storage/holster/flarepouch/full
@@ -134,16 +134,24 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
 
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/beginner(H), SLOT_IN_ACCESSORY)
+
 	for(var/amount_to_fill in 1 to 3)
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_R_POUCH)
 
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_SUIT)
+
 /datum/outfit/quick/beginner_robot/marine/shotgunner
 	name = "Shotgunner"
-	desc = "You want to know why I used the shotgun? That's because it doesn't miss" //placeholder
+	desc = "Shotgunner" //placeholder
 
 	w_uniform = /obj/item/clothing/under/marine/robotic/holster
-	wear_suit = /obj/item/clothing/suit/modular/robot/light
-	head = /obj/item/clothing/head/modular/robot/light
+	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
+	head = /obj/item/clothing/head/modular/robot
 
 	l_store = /obj/item/storage/holster/flarepouch/full
 	r_store = /obj/item/storage/pouch/shotgun
@@ -170,6 +178,42 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol/beginner(H), SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+
+/datum/outfit/quick/beginner_robot/marine/shocktrooper
+	name = "Shocktrooper"
+	desc = "Shocktrooper"
+
+	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
+	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
+	head = /obj/item/clothing/head/modular/robot
+
+	l_store = /obj/item/storage/holster/flarepouch/full
+	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
+
+	back = /obj/item/storage/backpack/marine
+	belt = /obj/item/storage/belt/marine
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
+
+/datum/outfit/quick/beginner_robot/marine/shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly)
+	for(var/amount_to_fill in 1 to 6)
+		H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	for(var/amount_to_fill in 1 to 6)
+		H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+
+	for(var/amount_to_fill in 1 to 6)
+		H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+
+	for(var/amount_to_fill in 1 to 5)
+		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 
 //---- Squad Engineer loadouts
 /datum/outfit/quick/beginner_robot/engineer

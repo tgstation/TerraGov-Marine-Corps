@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(robot_loadouts, init_robot_loadouts())
 		/datum/outfit/quick/beginner_robot/marine/machinegunner,
 		/datum/outfit/quick/beginner_robot/marine/marksman,
 		/datum/outfit/quick/beginner_robot/marine/shotgunner,
-
+		/datum/outfit/quick/beginner_robot/marine/shocktrooper,
 	)
 
 	for(var/loadout in loadout_list)
