@@ -278,9 +278,16 @@ REAGENT SCANNER
 	data["damaged_organs"] = damaged_organs
 
 	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
-	var/revivable_patient = (HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) ? TRUE :
-							(issynth(patient) ? patient.health >= patient.get_death_threshold() :
-							patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold()))
+	var/revivable_patient = FALSE
+	
+	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+		revivable_patient = TRUE
+	else if(issynth(patient))
+		if(patient.health >= patient.get_death_threshold())
+			revivable_patient = TRUE
+	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+		revivable_patient = TRUE
+
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
@@ -291,14 +298,14 @@ REAGENT SCANNER
 		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100]%"
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL)))]%"
 		data["revivable_boolean"] = FALSE
 
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
-		//random stuff that docs should be aware of. possible todo: put these in a collapsible element in tgui if there's more added here.
+		//random stuff that docs should be aware of. possible todo: make a system so we can put these in a collapsible tgui element if there's more added here.
 		if(patient.maxHealth != 100)
 			advice += list(list(
 				"advice" = "Patient has [patient.maxHealth / initial(patient.maxHealth) * 100]% constitution.",
@@ -306,7 +313,7 @@ REAGENT SCANNER
 				"icon" = patient.maxHealth < 100 ? "heart-broken" : "heartbeat",
 				"color" = patient.maxHealth < 100 ? "grey" : "pink"
 			))
-		//species advice. possible todo: put these in a collapsible element in tgui so species stuff can be hidden
+		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
 		if(issynth(patient)) //specifically checking synth/robot here as these are specific to whichever species
 			advice += list(list(
 				"advice" = "Synthetic: Patient does not heal on defibrillation.",
@@ -370,20 +377,34 @@ REAGENT SCANNER
 					"color" = "yellow"
 					))
 		if(patient.getBruteLoss() > 5)
-			advice += list(list(
-				"advice" = organic_patient ? "Use trauma kits or sutures to repair the lacerated areas." : "Use a blowtorch or nanopaste to repair the dented areas.",
-				"tooltip" = organic_patient ? "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-												"Only a blowtorch or nanopaste can repair dented robotic limbs.",
-				"icon" = organic_patient ? "band-aid" : "tools",
-				"color" = organic_patient ? "green" : "red"
+			if(organic_patient)
+				advice += list(list(
+					"advice" = "Use trauma kits kits or sutures to repair the burned areas.",
+					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
+					"icon" = "band-aid",
+					"color" = "green"
+					))
+			else
+				advice += list(list(
+					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
+					"tooltip" = "Only a blowtorch or nanopaste can repair dented robotic limbs.",
+					"icon" = "tools",
+					"color" = "red"
 				))
 		if(patient.getFireLoss() > 5)
-			advice += list(list(
-				"advice" = organic_patient ? "Use burn kits or sutures to repair the burned areas." : "Use cable coils or nanopaste to repair the scorched areas.",
-				"tooltip" = organic_patient ? "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own." :
-												"Only cable coils or nanopaste can repair scorched robotic limbs.",
-				"icon" = organic_patient ? "band-aid" : "plug",
-				"color" = "orange"
+			if(organic_patient)
+				advice += list(list(
+					"advice" = "Use burn kits or sutures to repair the burned areas.",
+					"tooltip" = "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
+					"icon" = "band-aid",
+					"color" = "orange"
+					))
+			else
+				advice += list(list(
+					"advice" = "Use cable coils or nanopaste to repair the scorched areas.",
+					"tooltip" = "Only cable coils or nanopaste can repair scorched robotic limbs.",
+					"icon" = "plug",
+					"color" = "orange"
 				))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
