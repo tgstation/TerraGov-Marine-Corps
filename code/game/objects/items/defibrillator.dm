@@ -176,7 +176,7 @@
 		if(!do_after(user, fumbling_time, NONE, patient, BUSY_ICON_UNSKILLED))
 			return
 
-	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill)
+	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill, damage_threshold)
 
 	if(dcell.charge <= charge_cost) // This is split from defib_ready because we don't want to check charge AFTER delivering shock
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Seek recharger. Cannot analyze nor administer shock."))
@@ -207,7 +207,7 @@
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) & DEFIB_STRICT_REVIVABLE_STATES)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) & DEFIB_STRICT_REVIVABLE_STATES)
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
@@ -224,6 +224,9 @@
 		to_chat(user, span_warning("You stop setting up the paddles on [patient]'s chest."))
 		return
 
+	if(!defib_ready(patient, user)) // we're doing this again just in case something has changed
+		return
+
 	//Do the defibrillation effects now. We're checking revive parameters in a moment.
 	sparks.start()
 	dcell.use(charge_cost)
@@ -233,9 +236,6 @@
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 	defib_cooldown = world.time + 1 SECONDS //1 second cooldown before you can shock again
-
-	if(!defib_ready(patient, user))
-		return
 
 	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))

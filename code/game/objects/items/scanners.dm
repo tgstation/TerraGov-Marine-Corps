@@ -276,7 +276,7 @@ REAGENT SCANNER
 	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
 		data["revivable_string"] = "Ready to reboot"
 		data["revivable_boolean"] = TRUE
-	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
+	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) >= patient.get_death_threshold())
 		data["revivable_string"] = "Ready to defibrillate"
 		data["revivable_boolean"] = TRUE
 	else
@@ -308,7 +308,7 @@ REAGENT SCANNER
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold() || isrobot(patient))
+			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) >= patient.get_death_threshold() || isrobot(patient))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"icon" = "bolt",
