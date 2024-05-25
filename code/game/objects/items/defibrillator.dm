@@ -278,10 +278,10 @@
 			fail_reason = "Patient is braindead. Further attempts futile."
 		if(DEFIB_FAIL_NPC)
 			fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
-		if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
-			fail_reason = "Vital signs are weak. Repair damage and try again."
 		if(DEFIB_FAIL_BAD_ORGANS)
 			fail_reason = "Patient's heart is too damaged to sustain life. Surgical intervention required."
+		if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
+			fail_reason = "Vital signs are weak. Repair damage and try again."
 		if(DEFIB_FAIL_CLIENT_MISSING)
 			fail_reason = "No soul detected. Please try again."
 
