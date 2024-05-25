@@ -279,7 +279,7 @@
 	return TRUE
 
 /**
- * proc that resuscitates a carbon human, bringing them back to life- only works if `can_be_revived()` is true and the human is actually dead
+ * Proc that brings a carbon human back to life. Only works if their health is higher than their death threshold and they are dead in the first place.
  *
  * intended to be called by defibrillators or anything that brings a carbon human back to life
  */
