@@ -1061,10 +1061,6 @@
 	dir = 4
 	},
 /area/riptide/outside/beachlzone)
-"aOC" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicategen)
 "aOV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
@@ -2376,6 +2372,15 @@
 	dir = 8
 	},
 /area/riptide/inside/syndicateport)
+"bJk" = (
+/obj/machinery/landinglight{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/liquid/lava/catwalk,
+/area/riptide/outside/volcano)
 "bJm" = (
 /turf/closed/wall/mainship/gray,
 /area/riptide/inside/engineering/bridge)
@@ -6171,6 +6176,9 @@
 	dir = 8
 	},
 /area/riptide/outside/westislands)
+"enP" = (
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicateport)
 "enR" = (
 /obj/structure/flora/drought/short_cactus,
 /turf/open/floor/plating/ground/drought/alt,
@@ -9655,6 +9663,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought,
 /area/riptide/outside/northbeach)
+"gNv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicatefoyer)
 "gNP" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 5;
@@ -9722,6 +9736,13 @@
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
 /area/riptide/inside/southtower)
+"gQU" = (
+/obj/machinery/landinglight{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/liquid/lava/catwalk,
+/area/riptide/outside/volcano)
 "gQX" = (
 /turf/open/ground/coast{
 	dir = 9
@@ -10253,6 +10274,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/beachlzone)
+"hlp" = (
+/obj/structure/mineral_door/sandstone,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/rock)
 "hlQ" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
@@ -11134,11 +11160,6 @@
 /obj/structure/cable,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
-"hSv" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicategen)
 "hSA" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/syndi_cakes,
@@ -12428,6 +12449,10 @@
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering)
+"iSu" = (
+/obj/effect/ai_node,
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicatefoyer)
 "iSQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12615,10 +12640,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering/cave)
-"iYP" = (
-/obj/effect/ai_node,
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicatefoyer)
 "iYZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -12959,6 +12980,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical/surgery)
+"jlX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicategen)
 "jmg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -14070,15 +14096,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
-"kak" = (
-/obj/machinery/landinglight{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/lavaland/catwalk,
-/area/riptide/outside/volcano)
 "kao" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -14809,9 +14826,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sandtemple,
 /area/riptide/caves/pmc/warehouse)
-"kAz" = (
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicateport)
 "kAF" = (
 /obj/structure/rack,
 /obj/item/roller,
@@ -15891,6 +15905,9 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/platebotc,
 /area/riptide/caves/pmc/lobby)
+"lib" = (
+/turf/open/liquid/lava/catwalk,
+/area/riptide/outside/volcano)
 "lio" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/grass/weedable,
@@ -16821,6 +16838,9 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/riptide/outside/beachlzone)
+"lQU" = (
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicatefoyer)
 "lRo" = (
 /obj/structure/bed/roller,
 /obj/structure/sign/safety/autodoc,
@@ -18360,9 +18380,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
-"mTA" = (
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicatefoyer)
 "mTL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -20537,9 +20554,6 @@
 	dir = 5
 	},
 /area/riptide/inside/landingzoneone)
-"ovl" = (
-/turf/open/lavaland/catwalk,
-/area/riptide/outside/volcano)
 "ovm" = (
 /obj/structure/mine_structure/wooden/support_wall/t_bar,
 /obj/effect/landmark/xeno_resin_wall,
@@ -30255,11 +30269,6 @@
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
-"uOX" = (
-/obj/structure/mineral_door/sandstone,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/rock)
 "uPc" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -33013,13 +33022,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/prison,
 /area/riptide/inside/syndicatehead)
-"wLO" = (
-/obj/machinery/landinglight{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/lavaland/catwalk,
-/area/riptide/outside/volcano)
 "wLU" = (
 /obj/structure/rock/variable/crystal_mound,
 /obj/effect/decal/cleanable/dirt,
@@ -33768,12 +33770,6 @@
 /obj/item/stack/sheet/wood,
 /turf/open/ground,
 /area/riptide/outside/southislands)
-"xqm" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/lavaland/catwalk,
-/area/riptide/inside/syndicatefoyer)
 "xqw" = (
 /obj/structure/window/framed/wood,
 /obj/structure/platform/adobe,
@@ -34528,6 +34524,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/heatinggrate,
 /area/riptide/caves/tram)
+"xSK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/liquid/lava/catwalk,
+/area/riptide/inside/syndicategen)
 "xSL" = (
 /obj/structure/catwalk,
 /turf/closed/wall,
@@ -41134,7 +41134,7 @@ xnV
 eyC
 pdT
 pdT
-uOX
+hlp
 wWh
 qSs
 qSs
@@ -44781,7 +44781,7 @@ dsa
 enk
 kJT
 qBq
-hSv
+jlX
 dHO
 vot
 lUW
@@ -44960,7 +44960,7 @@ dsa
 xoc
 jqr
 jgt
-aOC
+xSK
 rxQ
 dsa
 rPz
@@ -45676,7 +45676,7 @@ wIu
 eUZ
 wRt
 iJM
-ovl
+lib
 nLR
 rJq
 iIf
@@ -45855,7 +45855,7 @@ qLb
 mSy
 mSy
 kCY
-ovl
+lib
 fEf
 mvk
 xRn
@@ -47108,7 +47108,7 @@ qzH
 bEi
 qzH
 wMM
-kAz
+enP
 cmb
 fzb
 iEm
@@ -47466,7 +47466,7 @@ npx
 jaz
 wAP
 wAP
-wLO
+gQU
 jaz
 imN
 qzH
@@ -48540,7 +48540,7 @@ ssE
 nrd
 rjR
 cih
-kak
+bJk
 nrd
 mgj
 bCn
@@ -48719,7 +48719,7 @@ pQL
 ahN
 bCn
 kXd
-xqm
+gNv
 bCn
 yeo
 bCn
@@ -49253,13 +49253,13 @@ qzE
 ilG
 qaV
 ujI
-mTA
+lQU
 cHj
 cHj
-iYP
+iSu
 cHj
 cHj
-mTA
+lQU
 ujI
 bCn
 nYL
@@ -49435,7 +49435,7 @@ ujI
 dJh
 dJh
 dJh
-mTA
+lQU
 dJh
 dJh
 dJh
@@ -49613,9 +49613,9 @@ qaV
 ujI
 cHj
 cHj
-mTA
-mTA
-mTA
+lQU
+lQU
+lQU
 cHj
 cHj
 ujI
@@ -49791,11 +49791,11 @@ frl
 hne
 gMg
 cHj
-mTA
+lQU
 ppT
 eCW
 sPF
-mTA
+lQU
 dJh
 vBo
 tNb
@@ -49969,13 +49969,13 @@ dss
 bGi
 hne
 sHU
-mTA
-mTA
+lQU
+lQU
 tGm
 qkK
 hqg
-mTA
-mTA
+lQU
+lQU
 wht
 dAn
 axG
@@ -50149,11 +50149,11 @@ lTY
 nqz
 ujI
 cHj
-mTA
+lQU
 poB
 vDU
 riQ
-mTA
+lQU
 dJh
 eMq
 bCn
@@ -50329,9 +50329,9 @@ tfu
 pZu
 dJh
 dJh
-mTA
-mTA
-mTA
+lQU
+lQU
+lQU
 cHj
 cHj
 xQU
@@ -50509,7 +50509,7 @@ fKk
 cHj
 cHj
 cHj
-iYP
+iSu
 cHj
 cHj
 dJh
@@ -50685,13 +50685,13 @@ ofV
 qQd
 hne
 wht
-mTA
+lQU
 dJh
 imy
-mTA
+lQU
 cHj
 cHj
-mTA
+lQU
 wht
 bCn
 cya
