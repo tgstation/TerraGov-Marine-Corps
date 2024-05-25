@@ -37,5 +37,5 @@
 		user.visible_message("[user] starts to wipe down [A] with [src]!")
 		if(do_after(user,30, TRUE, A, , BUSY_ICON_GENERIC))
 			user.visible_message("[user] finishes wiping off the [A]!")
-			A.clean_blood()
+			A.wash()
 

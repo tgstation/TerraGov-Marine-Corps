@@ -15,9 +15,9 @@
 		/obj/item/paper,
 	))
 
-/datum/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
 	. = ..()
-	if(. && user)
+	if(!silent && . && user)
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /datum/storage/pill_bottle/packet
@@ -33,7 +33,7 @@
 	. = ..()
 	set_holdable(cant_hold_list = list(/obj/item/reagent_containers/pill)) //Nada. Once you take the pills out. They don't come back in.
 
-/datum/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
 	. = ..()
 	if(!.)
 		return

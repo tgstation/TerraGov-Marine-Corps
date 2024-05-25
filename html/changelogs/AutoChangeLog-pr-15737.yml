@@ -1,0 +1,8 @@
+author: "Clay500z"
+delete-after: True
+changes:
+  - balance: "Gore charge injects 10u Ozelymelon and deals 1 second of stagger"
+  - balance: "Plow charge deals 0.2 seconds of stun"
+  - balance: "Headbutt charge max stun reduced to 2 seconds, and displacement increased by 1 tile"
+  - bugfix: "Bull can no longer multi-ram"
+  - spellcheck: "Updated Bull ability descriptions."

@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent) || !T.check_disallow_alien_fortification(owner, silent))
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/trap) || !T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
 /datum/action/ability/xeno_action/place_trap/action_activate()
@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(owner, span_xenowarning("No weeds here!"))
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])

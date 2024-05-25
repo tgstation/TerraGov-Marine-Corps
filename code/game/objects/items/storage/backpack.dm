@@ -780,3 +780,8 @@
 	name = "\improper Modello/190"
 	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic black fibre."
 	icon_state = "icc_bag_guard"
+
+/obj/item/storage/backpack/lightpack/vsd
+	name = "\improper Crasher branded combat backpack"
+	desc = "A backpack design from 21st century still proves to be a good design in the 25th century."
+	icon_state = "vsd_bag0"

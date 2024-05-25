@@ -658,6 +658,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/retired
 	frequency = FREQ_RETIRED
 
+/obj/item/radio/headset/distress/vsd
+	name = "security detail headset"
+	keyslot = /obj/item/encryptionkey/vsd
+	frequency = FREQ_VSD
+
 //SOM headsets
 
 /obj/item/radio/headset/mainship/som

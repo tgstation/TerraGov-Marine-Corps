@@ -28,13 +28,15 @@
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	playsound(parent, sheathe_sound, 15, 1)
 
-/datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
 	. = ..()
 	var/obj/item/storage/holster/holster = parent
 	if(!. || !is_type_in_list(item, holster.holsterable_allowed)) //check to see if the item being removed is the snowflake item
 		return
 	holster.holstered_item = null
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
+	if(silent)
+		return
 	playsound(parent, draw_sound, 15, 1)
 
 /datum/storage/holster/backholster
@@ -195,6 +197,8 @@
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99t,
+		/obj/item/weapon/gun/pistol/xmdivider,
+		/obj/item/ammo_magazine/pistol/xmdivider,
 	))
 
 /datum/storage/holster/belt/ts34

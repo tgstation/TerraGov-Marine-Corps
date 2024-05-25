@@ -690,6 +690,8 @@ SUBSYSTEM_DEF(minimaps)
 		map.stop_polling = TRUE
 		return
 	var/list/clicked_coords = map.get_coords_from_click(owner)
+	if(!clicked_coords)
+		return
 	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
 	if(!clicked_turf)
 		return

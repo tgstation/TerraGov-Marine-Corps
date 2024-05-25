@@ -154,7 +154,7 @@
 				say(pick(sentences))
 			qdel(dirtyobject)
 		else
-			dirtyobject.clean_blood()
+			dirtyobject.wash()
 	stuck_counter = 0
 
 /obj/machinery/bot/cleanbot/starts_active

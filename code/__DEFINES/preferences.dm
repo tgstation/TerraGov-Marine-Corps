@@ -195,8 +195,8 @@
 	)
 
 #define BE_SPECIAL_FLAGS list(\
-	"Latejoin Xenomorph" = BE_ALIEN,\
-	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\
+	"Join as Chestburster" = BE_ALIEN,\
+	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)

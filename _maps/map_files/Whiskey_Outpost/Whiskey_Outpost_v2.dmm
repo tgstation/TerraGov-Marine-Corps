@@ -6896,7 +6896,6 @@
 	},
 /area/whiskey_outpost/outside/east)
 "Pk" = (
-/obj/effect/attach_point/electronics/dropship1,
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
@@ -7128,7 +7127,6 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "RP" = (
-/obj/effect/attach_point/electronics/dropship1,
 /obj/structure/dropship_piece/one/weapon/leftright,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)

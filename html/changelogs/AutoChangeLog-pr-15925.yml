@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed tanks ramming into people mid jump"
+  - bugfix: "fixed being unable to throw things past tank"

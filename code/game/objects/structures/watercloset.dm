@@ -174,7 +174,7 @@
 			wash_atom(user)
 			check_heat(user)
 		for (var/atom/movable/G in src.loc)
-			G.clean_blood()
+			G.wash()
 	else
 		stop_processing()
 
@@ -346,7 +346,7 @@
 		return
 	busy = FALSE
 
-	user.clean_blood()
+	user.wash()
 	user:update_inv_gloves()
 	balloon_alert_to_viewers("Washes their hands")
 
@@ -400,7 +400,7 @@
 	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
-	I.clean_blood()
+	I.wash()
 	user.visible_message( \
 		span_notice(" [user] washes \a [I] using \the [src]."), \
 		span_notice(" You wash \a [I] using \the [src]."))

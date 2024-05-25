@@ -6,6 +6,12 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define AI_VOX
 
 //Mob movement define
+
+///Speed mod for walk intent
+#define MOB_WALK_MOVE_MOD 4
+///Speed mod for run intent
+#define MOB_RUN_MOVE_MOD 3
+///Move mod for going diagonally
 #define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
 
 
@@ -818,9 +824,9 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 // Pheromones and buff orders
 
-#define AURA_XENO_RECOVERY "Recovery"
-#define AURA_XENO_WARDING "Warding"
-#define AURA_XENO_FRENZY "Frenzy"
+#define AURA_XENO_RECOVERY "recovery"
+#define AURA_XENO_WARDING "warding"
+#define AURA_XENO_FRENZY "frenzy"
 
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"

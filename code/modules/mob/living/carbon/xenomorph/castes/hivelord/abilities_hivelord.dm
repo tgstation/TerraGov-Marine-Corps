@@ -268,7 +268,7 @@
 	if(!T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/resin_jelly_pod))
 		return FALSE
 
 /datum/action/ability/xeno_action/place_jelly_pod/action_activate()
@@ -416,7 +416,7 @@
 		return FALSE
 
 	var/turf/T = get_turf(owner)
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent, owner_xeno.selected_plant))
 		return FALSE
 
 /datum/action/ability/xeno_action/sow/action_activate()
