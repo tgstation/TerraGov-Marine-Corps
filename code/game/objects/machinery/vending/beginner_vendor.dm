@@ -30,11 +30,20 @@ GLOBAL_LIST_INIT(robot_loadouts, init_robot_loadouts())
 /proc/init_robot_loadouts()
 	. = list()
 	var/list/loadout_list = list(
+		//Marine
 		/datum/outfit/quick/beginner_robot/marine/rifleman,
 		/datum/outfit/quick/beginner_robot/marine/machinegunner,
 		/datum/outfit/quick/beginner_robot/marine/marksman,
 		/datum/outfit/quick/beginner_robot/marine/shotgunner,
 		/datum/outfit/quick/beginner_robot/marine/shocktrooper,
+		//Engineer
+		/datum/outfit/quick/beginner_robot/engineer/builder,
+		/datum/outfit/quick/beginner_robot/engineer/burnitall,
+		/datum/outfit/quick/beginner_robot/engineer/pcenjoyer,
+		//Corpsman
+		/datum/outfit/quick/beginner_robot/corpsman,
+		//Smartgunner
+		/datum/outfit/quick/beginner_robot/smartgunner,
 	)
 
 	for(var/loadout in loadout_list)

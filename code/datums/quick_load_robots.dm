@@ -219,6 +219,75 @@
 /datum/outfit/quick/beginner_robot/engineer
 	jobtype = "Squad Engineer"
 
+/datum/outfit/quick/beginner_robot/engineer/builder
+	name = "Engineer Standard"
+	desc = "Born to build. Equipped with a metric ton of metal, you can be certain that a lack of barricades is not a possibility with you around."
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/heavy
+	glasses = /obj/item/clothing/glasses/meson
+	head = /obj/item/clothing/head/modular/robot
+
+	l_store = /obj/item/storage/pouch/tools
+	r_store = null
+
+	back = /obj/item/storage/backpack/marine/radiopack
+	belt = /obj/item/belt_harness/marine
+	suit_store = /obj/item/weapon/gun/rifle/standard_lmg/beginner
+
+/datum/outfit/quick/beginner_robot/engineer/builder/post_equip(mob/living/carbon/human/H, visualsOnly)
+	H.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+
+/datum/outfit/quick/beginner_robot/engineer/burnitall
+	name = "Flamethrower"
+	desc = "For those who truly love to watch the world burn. Equipped with a laser carbine and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot/lightengineer
+	glasses = /obj/item/clothing/glasses/meson
+	head = /obj/item/clothing/head/modular/robot
+
+	l_store = /obj/item/storage/pouch/tools
+	r_store = null
+
+	back = /obj/item/storage/holster/backholster/flamer
+	belt = null
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
+
+/datum/outfit/quick/beginner_robot/engineer/burnitall/post_equip(mob/living/carbon/human/H, visualsOnly)
+	H.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+
+/datum/outfit/quick/beginner_robot/engineer/pcenjoyer
+	name = "Plasma Cutter"
+	desc = "For the open-air enjoyers. Equipped with a plasma cutter, you will be able to cut down all types of walls and obstacles that dare exist within your vicinity."
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot
+	glasses = /obj/item/clothing/glasses/meson
+	head = /obj/item/clothing/head/modular/robot
+
+	l_store = /obj/item/storage/pouch/tools
+	r_store = null
+
+	back = /obj/item/storage/backpack/marine
+	belt = /obj/item/belt_harness/marine
+	suit_store = /obj/item/tool/pickaxe/plasmacutter
+
+/datum/outfit/quick/beginner_robot/engineer/pcenjoyer/post_equip(mob/living/carbon/human/H, visualsOnly)
+	H.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+
 //---- Squad Corpsman loadouts
 /datum/outfit/quick/beginner_robot/corpsman
 	jobtype = "Squad Corpsman"
