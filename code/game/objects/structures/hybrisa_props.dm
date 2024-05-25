@@ -1128,8 +1128,9 @@ var/damage_state = 0
 	icon_state = "fuelline1"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
+	layer = BELOW_TABLE_LAYER
+
+
 /obj/structure/prop/urban/airport/refuelinghose2
 	name = "refueling hose"
 	desc = "A long refueling hose that connects to various types of dropships."
@@ -1137,8 +1138,7 @@ var/damage_state = 0
 	icon_state = "fuelline2"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
+	layer = BELOW_TABLE_LAYER
 
 // Pilot body
 

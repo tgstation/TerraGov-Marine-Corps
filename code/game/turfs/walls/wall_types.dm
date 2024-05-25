@@ -466,7 +466,7 @@
 		'icons/turf/walls/siding_red_3.dmi',
 	)
 
-/turf/closed/wall/hybrisa
+/turf/closed/wall/urban
 	name = "bare metal walls"
 	desc = "A thick and chunky metal wall. The surface is barren and imposing."
 	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'

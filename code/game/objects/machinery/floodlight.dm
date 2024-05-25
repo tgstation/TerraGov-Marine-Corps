@@ -324,7 +324,7 @@
 	lum_value = 14
 	light_power = 6
 
-/obj/structure/machinery/colony_floodlight/engineer_circular/update_icon()
+/obj/machinery/colony_floodlight/engineer_circular/update_icon()
 	if(damaged)
 		icon_state = "engineerlight_off"
 	else if(is_lit)

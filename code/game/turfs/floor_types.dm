@@ -963,8 +963,8 @@
 /turf/open/floor/multi_tiles
 	icon_state = "multi_tiles"
 
-/turf/open/floor/orangecover
-	icon_state = "orangecover"
+/turf/open/floor/orange_cover
+	icon_state = "orange_cover"
 
 /turf/open/floor/orangetile
 	icon_state = "orangetile"
@@ -1037,6 +1037,9 @@
 
 /turf/open/floor/red
 	icon_state = "red"
+
+/turf/open/floor/redone
+	icon_state = "red1"
 
 /turf/open/floor/redtwo
 	icon_state = "red2"

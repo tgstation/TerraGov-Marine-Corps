@@ -1273,6 +1273,39 @@
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
 
+/obj/structure/dropship_piece/four/dropshipfront
+	icon_state = "dropshipfrontwhite1"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/dropshipventone
+	icon_state = "dropshipvent1"
+
+/obj/structure/dropship_piece/four/dropshipventtwo
+	icon_state = "dropshipvent2"
+
+/obj/structure/dropship_piece/four/dropshipwingtopone
+	icon_state = "dropshipwingtop1"
+
+/obj/structure/dropship_piece/four/dropshipwingtoptwo
+	icon_state = "dropshipwingtop2"
+
+/obj/structure/dropship_piece/four/dropshipventthree
+	icon_state = "dropshipvent3"
+
+/obj/structure/dropship_piece/four/dropshipventfour
+	icon_state = "dropshipvent4"
+
+/obj/structure/dropship_piece/four/rearwing/lefttop
+	icon_state = "white_rearwing_lt"
+
+/obj/structure/dropship_piece/four/rearwing/righttop
+	icon_state = "white_rearwing_rt"
+
+/obj/structure/dropship_piece/four/rearwing/leftbottom
+	icon_state = "white_rearwing_lb"
+
+/obj/structure/dropship_piece/four/rearwing/rightbottom
+	icon_state = "white_rearwing_rb"
 
 //Dropship control console
 

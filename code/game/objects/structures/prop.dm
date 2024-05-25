@@ -28,6 +28,17 @@
 	max_integrity = 750
 	resistance_flags = XENO_DAMAGEABLE
 
+
+/obj/machinery/prop/fuel_enhancer
+	name = "fuel enhancer"
+	desc = "A fuel enhancement system for dropships. It improves the thrust produced by the fuel combustion for faster travels. Fits inside the engine attach points. You need a powerloader to lift it."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "fuel_enhancer"
+	coverage = 25
+	max_integrity = 350
+	resistance_flags = XENO_DAMAGEABLE
+
+
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
 /obj/machinery/prop/computer

@@ -102,3 +102,8 @@
 /turf/closed/wall/r_wall/biodome
 
 /turf/closed/wall/r_wall/biodome/biodome_unmeltable
+
+/turf/closed/wall/r_wall/bunker
+	icon = 'icons/turf/walls/junkwall.dmi'
+	icon_state = "junkwall-0"
+	base_icon_state = "junkwall"
