@@ -67,6 +67,7 @@
 			new_pos = get_step(root, turn(get_dir(desant, root), -90))
 		else
 			new_pos = get_step(root, turn(get_dir(desant, root), 90))
+		desant.set_glide_size(32)
 		desant.forceMove(new_pos)
 
 ///signal handler when someone jumping lands on us
@@ -102,16 +103,22 @@
 	qdel(src, TRUE)
 
 ///when the owner moves, let's move with them!
-/obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction)
+/obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction, forced, list/turf/old_locs)
 	SIGNAL_HANDLER
 	//direction is null here, so we improvise
 	direction = get_dir(oldloc, mover)
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	for(var/mob/living/tank_desant AS in tank_desants)
-		step(tank_desant, direction, root.step_size)
-		if(isxeno(tank_desant) || move_dist > 1) //skips xenos, and
-			return
+		tank_desant.set_glide_size(root.glide_size)
+		tank_desant.forceMove(get_step(tank_desant, direction))
+		if(isxeno(tank_desant) || move_dist > 1)
+			continue
+		if(move_dist > 1)
+			continue
+		if(!tank_desant.l_hand || !tank_desant.r_hand)
+			continue
+		balloon_alert(tank_desant, "poor grip!")
 		var/away_dir = get_dir(tank_desant, root)
 		if(!away_dir)
 			away_dir = pick(GLOB.alldirs)
@@ -142,10 +149,12 @@
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
-			if(O.CanPass(root))	// Then check for obstacles to crush
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
 				continue
-			root.Bump(O) //manually call bump on everything
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
 	if(canstep)

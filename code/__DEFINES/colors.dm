@@ -1,3 +1,15 @@
+//different types of atom colorations
+/// Only used by rare effects like greentext coloring mobs and when admins varedit color
+#define ADMIN_COLOUR_PRIORITY 1
+/// e.g. purple effect of the revenant on a mob, black effect when mob electrocuted
+#define TEMPORARY_COLOUR_PRIORITY 2
+/// Color splashed onto an atom (e.g. paint on turf)
+#define WASHABLE_COLOUR_PRIORITY 3
+/// Color inherent to the atom (e.g. blob color)
+#define FIXED_COLOUR_PRIORITY 4
+///how many colour priority levels there are.
+#define COLOUR_PRIORITY_AMOUNT 4
+
 #define COLOR_INPUT_DISABLED "#F0F0F0"
 #define COLOR_INPUT_ENABLED "#D3B5B5"
 
@@ -20,6 +32,7 @@
 #define COLOR_GRAY "#808080"
 #define COLOR_FLOORTILE_GRAY "#8D8B8B"
 #define COLOR_ALMOST_BLACK "#333333"
+#define COLOR_NEARLY_ALL_BLACK "#111111"
 #define COLOR_BLACK "#000000"
 #define COLOR_HALF_TRANSPARENT_BLACK "#0000007A"
 #define COLOR_TRANSPARENT_SHADOW "#03020781"

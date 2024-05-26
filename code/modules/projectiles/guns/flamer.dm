@@ -8,11 +8,11 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	fire_sound = "gun_flamethrower"
+	fire_sound = SFX_GUN_FLAMETHROWER
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
@@ -292,18 +292,21 @@
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
-	item_state = "m240"
+	worn_icon_state = "m240"
+
+/obj/item/weapon/gun/flamer/big_flamer/vsd
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flamer_nozzle/wide,)
 
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
 	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "v62"
-	item_state = "v62"
+	worn_icon_state = "v62"
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
 	)
@@ -399,7 +402,7 @@
 	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
-	item_state = "tl84"
+	worn_icon_state = "tl84"
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
 	attachable_allowed = list(
@@ -542,7 +545,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 ///Effects applied to a mob that crosses a burning turf
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
 	if(istype(M))
-		M.flamer_fire_act(burnlevel)
+		M.fire_act(burnlevel)
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -575,7 +578,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		return
 
 	for(var/mob/living/C in get_turf(src))
-		C.flamer_fire_act(fire_stacks)
+		C.fire_act(fire_stacks)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
@@ -613,7 +616,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel)
+	T.fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -622,7 +625,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel)
+		A.fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 

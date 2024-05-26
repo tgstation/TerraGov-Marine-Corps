@@ -603,7 +603,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "\improper TGMC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
-	item_state = "radiopack"
+	worn_icon_state = "radiopack"
 	///Var for the window pop-up
 	var/datum/supply_ui/requests/supply_interface
 
@@ -710,7 +710,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 /datum/supply_ui/vehicles/ui_static_data(mob/user)
 	var/list/data = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
-		var/flags = initial(vehtype.armored_flags)
+		var/flags = vehtype::armored_flags
 
 		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
 			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)

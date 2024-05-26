@@ -36,8 +36,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
-#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
-
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))
@@ -110,6 +108,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isxenopraetorian(A) (istype(A, /mob/living/carbon/xenomorph/praetorian))
 #define isxenoravager(A) (istype(A, /mob/living/carbon/xenomorph/ravager))
 #define isxenorunner(A) (istype(A, /mob/living/carbon/xenomorph/runner))
+#define isxenobaneling(A) (istype(A, /mob/living/carbon/xenomorph/baneling))
 #define isxenospitter(A) (istype(A, /mob/living/carbon/xenomorph/spitter))
 #define isxenosentinel(A) (istype(A, /mob/living/carbon/xenomorph/sentinel))
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/xenomorph/warrior))
@@ -135,8 +134,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
-#define isshade(A) (istype(A, /mob/living/simple_animal/shade))
-
 #define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
 
 #define iscrab(A) (istype(A, /mob/living/simple_animal/crab))
@@ -150,10 +147,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isbear(A) (istype(A, /mob/living/simple_animal/hostile/bear))
 
 #define iscarp(A) (istype(A, /mob/living/simple_animal/hostile/carp))
-
-#define isconstruct(A) (istype(A, /mob/living/simple_animal/construct))
-
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 
 //Misc mobs
 #define isobserver(A) (istype(A, /mob/dead/observer))
@@ -183,7 +176,9 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
 
-#define isstorage(A) (istype(A, /obj/item/storage))
+#define isdatumstorage(A) (istype(A, /datum/storage))
+
+#define isstorageobj(A) (istype(A, /obj/item/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
@@ -229,6 +224,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define iscell(I) (istype(I, /obj/item/cell))
 
+#define islascell(I) (istype(I, /obj/item/cell/lasgun))
+
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
 
 #define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
@@ -270,6 +267,10 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
+
+#define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
+
+#define isimplant(A) (istype(A, /obj/item/implant))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

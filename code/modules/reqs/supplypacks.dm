@@ -1034,12 +1034,12 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/howitzer/incendiary)
 	cost = 40
 
-/datum/supply_packs/explosives/mortar_ammo_wp
+/datum/supply_packs/explosives/howitzer_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"
 	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
 	cost = 60
 
-/datum/supply_packs/explosives/mortar_ammo_plasmaloss
+/datum/supply_packs/explosives/howitzer_ammo_plasmaloss
 	name = "MG-100Y howitzer tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 60
@@ -2260,6 +2260,15 @@ FACTORY
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
 	cost = 200
 
+/datum/supply_packs/factory/scout_rifle_incen_magazine_refill
+	name = "BR-8 scout rifle incendiary magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_incen_magazine_refill)
+	cost = 200
+
+/datum/supply_packs/factory/scout_rifle_impact_magazine_refill
+	name = "BR-8 scout rifle impact magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_impact_magazine_refill)
+	cost = 200
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)

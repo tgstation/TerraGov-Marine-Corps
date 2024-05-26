@@ -3,29 +3,34 @@
 #define GAS 3
 
 // reagent_flags defines
-#define INJECTABLE (1<<0)	// Makes it possible to add reagents through droppers and syringes.
-#define DRAWABLE (1<<1)	// Makes it possible to remove reagents through syringes.
+/// Makes it possible to add reagents through droppers and syringes
+#define INJECTABLE (1<<0)
+/// Makes it possible to remove reagents through syringes
+#define DRAWABLE (1<<1)
+/// Makes it possible to add reagents through any reagent container
+#define REFILLABLE (1<<2)
+/// Makes it possible to remove reagents through any reagent container
+#define DRAINABLE (1<<3)
+/// Used on containers which you want to be able to see the reagents off
+#define TRANSPARENT (1<<4)
+/// For non-transparent containers that still have the general amount of reagents in them visible.
+#define AMOUNT_VISIBLE (1<<5)
+///For containers which apply a skill check for wheter showing their reagents to the user or not.
+#define AMOUNT_SKILLCHECK (1<<6)
+///For containers without volume meters on (e.g. drinking glasses, cans, sprays)
+#define AMOUNT_ESTIMEE (1<<7)
 
-#define REFILLABLE (1<<2)	// Makes it possible to add reagents through any reagent container.
-#define DRAINABLE (1<<3)	// Makes it possible to remove reagents through any reagent container.
-
-#define TRANSPARENT (1<<4)	// Used on containers which you want to be able to see the reagents off.
-#define AMOUNT_VISIBLE (1<<5)	// For non-transparent containers that still have the general amount of reagents in them visible.
-
-#define AMOUNT_SKILLCHECK (1<<6) //For containers which apply a skill check for wheter showing their reagents to the user or not.
-#define AMOUNT_ESTIMEE (1<<7)	//For containers without volume meters on (e.g. drinking glasses, cans, sprays)
 #define NO_REACT (1<<8)
+
+// Is an open container for all intents and purposes.
+#define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
+#define OPENCONTAINER_NOUNIT (REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)
 
 // trait_flags
 #define TACHYCARDIC (1<<0)
 #define BRADYCARDICS (1<<1)
 #define HEARTSTOPPER (1<<2)
 #define CHEARTSTOPPER (1<<3)
-
-// Is an open container for all intents and purposes.
-#define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
-#define OPENCONTAINER_NOUNIT (REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)
-
 
 #define TOUCH 1	// splashing
 #define INGEST 2	// ingestion

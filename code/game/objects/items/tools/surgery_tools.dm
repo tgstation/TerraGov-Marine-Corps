@@ -1,7 +1,7 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/surgery_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/surgery_right.dmi',
 	)

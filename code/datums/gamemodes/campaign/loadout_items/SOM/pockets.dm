@@ -30,6 +30,14 @@
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
+/datum/loadout_item/r_pocket/som_emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/emp
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
 /datum/loadout_item/r_pocket/war_crime_grenades
 	name = "Warcrime nades"
 	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
@@ -136,6 +144,14 @@
 	item_typepath = /obj/item/storage/pouch/grenade/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 
+/datum/loadout_item/l_pocket/som_emp_grenades
+	name = "EMP nades"
+	desc = "A pouch carrying a set of six EMP grenades. Effective against electronic systems including mechs."
+	purchase_cost = 30
+	ui_icon = "grenade"
+	item_typepath = /obj/item/storage/pouch/grenade/som/emp
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+
 /datum/loadout_item/l_pocket/war_crime_grenades
 	name = "Warcrime nades"
 	desc = "A pouch carrying a set of rad and satrapine grenades. Extremely hazardous."
@@ -158,7 +174,7 @@
 	desc = "A pouch specialized for holding shotgun ammo. Contains Flechette shells."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/shotgun/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)

@@ -60,7 +60,8 @@
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(cancel_stealth))
+		COMSIG_LIVING_ADD_VENTCRAWL,
+		COMSIG_XENOABILITY_MIRAGE_SWAP), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
@@ -74,6 +75,12 @@
 	addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 	START_PROCESSING(SSprocessing, src)
 
+/datum/action/ability/xeno_action/stealth/process()
+	if(!stealth)
+		return PROCESS_KILL
+	handle_stealth()
+
+///Disables stealth
 /datum/action/ability/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	add_cooldown()
@@ -90,6 +97,7 @@
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
+		COMSIG_XENOABILITY_MIRAGE_SWAP,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOMORPH_ZONE_SELECT,
@@ -99,7 +107,7 @@
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
-	owner.alpha = 255 //no transparency/translucency
+	owner.alpha = initial(owner.alpha)
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
 /datum/action/ability/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
@@ -107,6 +115,7 @@
 	if(attacked.resistance_flags & XENO_DAMAGEABLE)
 		cancel_stealth()
 
+///Re-enables sneak attack if still stealthed
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_cooldown()
 	if(!stealth || can_sneak_attack)
 		return
@@ -114,11 +123,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
-/datum/action/ability/xeno_action/stealth/process()
-	if(!stealth)
-		return PROCESS_KILL
-	handle_stealth()
-
+///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xenoowner = owner
@@ -163,6 +168,7 @@
 		M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
+///Special sneak attack when stealthed
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
@@ -185,12 +191,14 @@
 
 	cancel_stealth()
 
+///Breaks stealth if sufficient damage taken
 /datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
+///Modifier to plasma regen when stealthed
 /datum/action/ability/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
 	SIGNAL_HANDLER
 	if(owner.last_move_intent < world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
@@ -198,6 +206,7 @@
 	else
 		plasma_mod[1] = 0
 
+///Makes sneak attack always accurate to def zone
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_zone()
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
@@ -306,7 +315,7 @@
 
 /datum/action/ability/activable/xeno/pounce/proc/movement_fx()
 	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner) //Create the after image.
+	new /obj/effect/temp_visual/after_image(get_turf(owner), owner) //Create the after image.
 
 /datum/action/ability/activable/xeno/pounce/proc/object_hit(datum/source, obj/object_target, speed)
 	SIGNAL_HANDLER
@@ -571,17 +580,20 @@
 /// Swap places of hunter and an illusion
 /datum/action/ability/xeno_action/mirage/proc/swap()
 	swap_used = TRUE
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 
 	if(!length(illusions))
-		to_chat(X, span_xenowarning("We have no illusions to swap with!"))
+		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
 
-	X.playsound_local(X, 'sound/effects/swap.ogg', 10, 0, 1)
-	var/turf/current_turf = get_turf(X)
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/swap.ogg', 10, 0, 1)
+	var/turf/current_turf = get_turf(xeno_owner)
 
 	var/mob/selected_illusion = illusions[1]
-	X.forceMove(get_turf(selected_illusion.loc))
+	if(selected_illusion.z != xeno_owner.z)
+		return
+	SEND_SIGNAL(xeno_owner, COMSIG_XENOABILITY_MIRAGE_SWAP)
+	xeno_owner.forceMove(get_turf(selected_illusion.loc))
 	selected_illusion.forceMove(current_turf)
 
 // ***************************************

@@ -211,6 +211,19 @@
 //
 // Single caste, alphabetical order
 //
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
@@ -1072,11 +1085,17 @@
 	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	keybind_signal = COMSIG_XENOABILITY_TENDRILS
 
-/datum/keybinding/xeno/send_orders_puppet
-	name = "Give Orders to Puppets"
-	full_name = "Puppeteer: Give Orders to Puppets"
-	description = "Give orders to your puppets, altering their behaviour."
-	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
+/datum/keybinding/xeno/unleash_puppet
+	name = "Unleash puppets"
+	full_name = "Puppeteer: Unleash puppets"
+	description = "Unleash puppets to attack nearby humans."
+	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+
+/datum/keybinding/xeno/recall_puppet
+	name = "Recall puppets"
+	full_name = "Puppeteer: Recall puppets"
+	description = "Recalls your puppets, making them follow you once more"
+	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
 
 /datum/keybinding/xeno/bestow_blessing
 	name = "Bestow Blessings"

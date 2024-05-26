@@ -8,11 +8,15 @@
 /datum/hud
 	var/mob/mymob
 
-	var/hud_version = HUD_STYLE_STANDARD	//the hud version used (standard, reduced, none)
-	var/hud_shown = TRUE			//Used for the HUD toggle (F12)
-	var/inventory_shown = TRUE		//the inventory
+	///the hud version used (standard, reduced, none)
+	var/hud_version = HUD_STYLE_STANDARD
+	///Used for the HUD toggle (F12)
+	var/hud_shown = TRUE
+	///the inventory
+	var/inventory_shown = TRUE
 	var/show_intent_icons = 0
-	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
+	///This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
+	var/hotkey_ui_hidden = FALSE
 
 	var/atom/movable/screen/r_hand_hud_object
 	var/atom/movable/screen/l_hand_hud_object

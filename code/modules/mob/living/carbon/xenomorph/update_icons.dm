@@ -81,10 +81,12 @@
 	if(!fire_overlay)
 		return
 	var/fire_light = min(fire_stacks * 0.2 , 3)
+	if(!on_fire)
+		fire_light = 0
 	if(fire_light == fire_luminosity)
 		return
 	fire_luminosity = fire_light
-	fire_overlay.update_icon()
+	fire_overlay.update_appearance(UPDATE_ICON)
 
 ///Updates the wound overlays on the xeno
 /mob/living/carbon/xenomorph/proc/update_wounds()
@@ -146,6 +148,7 @@
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT
+	layer = ABOVE_MOB_LAYER
 	///The xeno this belongs to
 	var/mob/living/carbon/xenomorph/owner
 
@@ -157,7 +160,7 @@
 	light_pixel_x = owner.light_pixel_x
 	light_pixel_y = owner.light_pixel_y
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/Destroy()
 	owner = null
@@ -178,7 +181,6 @@
 	if(HAS_TRAIT(owner, TRAIT_BURROWED))
 		icon_state = ""
 		return
-	layer = layer + 0.4
 	if((!owner.lying_angle && !owner.resting && !owner.IsSleeping()))
 		icon_state = "alien_fire"
 	else

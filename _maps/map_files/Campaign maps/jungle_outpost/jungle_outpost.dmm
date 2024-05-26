@@ -1261,8 +1261,8 @@
 "gn" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/drinkingglasses,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "go" = (
@@ -2675,7 +2675,7 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "nv" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/claymore/mercsword/machete/alt,
+/obj/item/weapon/sword/machete/alt,
 /obj/item/weapon/karambit/fade,
 /turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/outpost/outer/hermit)
@@ -4598,8 +4598,8 @@
 "xi" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_containers/food/drinks/flask,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/reagent_containers/food/drinks/bottle/experimentalliquor,
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
 /turf/open/floor/wood/alt_four,
@@ -8965,7 +8965,7 @@
 "Te" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/machinery/light{
 	dir = 4
 	},

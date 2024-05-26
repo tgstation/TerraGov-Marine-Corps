@@ -93,7 +93,7 @@
 	return ..()
 
 
-/mob/camera/aiEye/Move()
+/mob/camera/aiEye/Move(atom/newloc, direction, glide_size_override)
 	return FALSE
 
 
@@ -199,7 +199,7 @@
 /mob/camera/aiEye/proc/unregister_facedir_signals(mob/user)
 	UnregisterSignal(user, list(COMSIG_KB_MOB_FACENORTH_DOWN, COMSIG_KB_MOB_FACEEAST_DOWN, COMSIG_KB_MOB_FACESOUTH_DOWN, COMSIG_KB_MOB_FACEWEST_DOWN))
 
-/mob/camera/aiEye/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/S, distance_multiplier, mob/sound_reciever)
+/mob/camera/aiEye/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/sound_to_use, distance_multiplier, mob/sound_reciever)
 	if(istype(parent_cameranet) && !parent_cameranet.checkTurfVis(get_turf(src)))
 		return
-	return ..(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, distance_multiplier, ai)
+	return ..(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound_to_use, distance_multiplier, ai)

@@ -187,16 +187,34 @@
 	switch(paygrade)
 		if("C")
 			. = size ? "" : "Civilian"
-		if("CD")
-			. = size ? "Dr." : "Doctor"
+		if("MS")
+			. = size ? "MS" : "Medical Student"
+		if("JR")
+			. = size ? "JR" : "Junior Resident"
+		if("SR")
+			. = size ? "SR" : "Senior Resident"
+		if("GP")
+			. = size ? "GP" : "General Practitioner"
+		if("AP")
+			. = size ? "AP" : "Attending Physician"
+		if("SP")
+			. = size ? "SP" : "Senior Physician"
+		if("HP")
+			. = size ? "HP" : "Head Physician"
+		if("MSPVR")
+			. = size ? "MSPVR" : "Medical Supervisor"
+		if("MDR")
+			. = size ? "MDR" : "Medical Director"
+		if("RSRA")
+			. = size ? "RSRA" : "Research Assistant"
+		if("RSR")
+			. = size ? "RSR" : "Researcher"
+		if("LECT")
+			. = size ? "LECT" : "Lecturer"
+		if("APROF")
+			. = size ? "APROF" : "Associate Professor"
 		if("PROF")
-			. = size ? "Prof." : "Professor"
-		if("RES")
-			. = size ? "RES" : "Medical Resident"
-		if("MD")
-			. = size ? "MD" : "Medical Doctor"
-		if("CHO")
-			. = size ? "CHO" : "Chief Health Officer"
+			. = size ? "PROF" : "Professor"
 		if("CMO")
 			. = size ? "CMO" : "Chief Medical Officer"
 		if("CMN")
@@ -285,6 +303,8 @@
 			. = size ? "PO1" : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO" : "Chief Petty Officer"
+		if("SCPO")
+			. = size ? "SCPO" : "Senior Chief Petty Officer"
 		if("MO4")
 			. = size ? "MAJ" : "Major"
 		if("MO5")
@@ -405,6 +425,16 @@
 			. = size ? "ICCG" : "ICC Guard"
 		if("ICC4")
 			. = size ? "ICCL" : "ICC Leader"
+		if("VSD1")
+			. = size ? "JSGT" : "VSD Mládshiy serzhánt"
+		if("VSD2")
+			. = size ? "SSGT" : "VSD Stárshiy serzhánt"
+		if("VSD3")
+			. = size ? "SGM" : "VSD Starshiná"
+		if("VSD4")
+			. = size ? "LT" : "VSD Leytenánt"
+		if("VSD5")
+			. = size ? "COLGEN" : "VSD Generál-polkóvnik"
 		if("MRC1")
 			. = size ? "MERC" : "MERC Heavy"
 		if("MRC2")
@@ -413,6 +443,10 @@
 			. = size ? "MERC" : "MERC Engineer"
 		if("VM")
 			. = size ? "VAT" : "VatGrown Marine"
+		if("Mk.V")
+			. = size ? "Mk.V" : "Mark V"
+		if("Mk.IV")
+			. = size ? "Mk.IV" : "Mark IV"
 		if("Mk.III")
 			. = size ? "Mk.III" : "Mark III"
 		if("Mk.II")

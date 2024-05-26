@@ -3,7 +3,7 @@
 	desc = "Presents!"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
-	item_state = "gift1"
+	worn_icon_state = "gift1"
 
 	var/list/gift_types = list(
 		/obj/item/storage/wallet,
@@ -68,7 +68,7 @@
 	desc = "One, standard issue TGMC Present"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
-	item_state = "gift1"
+	worn_icon_state = "gift1"
 
 	var/fancy_chance = 0
 	var/fancy_type = 0
@@ -115,7 +115,7 @@
 			gift_type = pick(
 			/obj/item/weapon/gun/revolver/mateba,
 			/obj/item/weapon/gun/pistol/heavy,
-			/obj/item/weapon/claymore,
+			/obj/item/weapon/sword,
 			/obj/item/weapon/energy/sword/green,
 			/obj/item/weapon/energy/sword/red,
 			/obj/item/attachable/heavy_barrel,

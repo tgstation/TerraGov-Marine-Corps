@@ -41,7 +41,7 @@
 	update_icon()
 	sleep(20 SECONDS)
 	for(var/atom/A in contents)
-		A.clean_blood()
+		A.wash()
 
 	//Tanning!
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)

@@ -1,34 +1,34 @@
-/proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
+///EMP's everything in a specified radius, similar to an explosion
+/proc/empulse(turf/epicenter, devastate_range, heavy_range, light_range, weak_range, log = FALSE)
+	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return FALSE
 
-	if(!istype(epicenter, /turf))
-		epicenter = get_turf(epicenter.loc)
+	var/max_range = max(devastate_range, heavy_range, light_range, weak_range, 0)
+	if(!max_range)
+		return FALSE
 
 	if(log)
-		log_game("EMP with size ([heavy_range], [light_range]) in area [AREACOORD(epicenter.loc)].")
-		message_admins("EMP with size ([heavy_range], [light_range]) in area [ADMIN_VERBOSEJMP(epicenter.loc)].")
+		log_game("EMP with size ([devastate_range], [heavy_range], [light_range], [weak_range]) in area [AREACOORD(epicenter.loc)].")
 
-	if(heavy_range > 1)
+	playsound(epicenter, 'sound/effects/EMPulse.ogg', 50, FALSE, max_range * 2)
+	if(heavy_range || devastate_range)
 		new /obj/effect/overlay/temp/emp_pulse (epicenter)
 
-	if(heavy_range > light_range)
-		light_range = heavy_range
-
-	for(var/mob/M in range(heavy_range, epicenter))
-		M << 'sound/effects/EMPulse.ogg'
-
-	for(var/atom/T in range(light_range, epicenter))
-		var/distance = get_dist(epicenter, T)
-		if(distance < 0)
-			distance = 0
-		if(distance < heavy_range)
-			T.emp_act(1)
-		else if(distance == heavy_range)
-			if(prob(50))
-				T.emp_act(1)
-			else
-				T.emp_act(2)
+	var/list/turfs_in_range = filled_circle_turfs(epicenter, max_range)
+	for(var/turf/affected_turf AS in turfs_in_range)
+		var/distance = get_dist(epicenter, affected_turf)
+		var/effective_severity
+		if(distance <= devastate_range)
+			effective_severity = EMP_DEVASTATE
+		else if(distance <= heavy_range)
+			effective_severity = EMP_HEAVY
 		else if(distance <= light_range)
-			T.emp_act(2)
+			effective_severity = EMP_LIGHT
+		else
+			effective_severity = EMP_WEAK
+
+		for(var/atom/affected_atom AS in affected_turf)
+			affected_atom.emp_act(effective_severity)
+
 	return TRUE

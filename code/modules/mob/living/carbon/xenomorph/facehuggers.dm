@@ -16,7 +16,7 @@
 	desc = "It has some sort of a tube at the end of its tail."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
-	item_state = "facehugger"
+	worn_icon_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	resistance_flags = NONE
 	inventory_flags = COVEREYES|COVERMOUTH
@@ -555,7 +555,7 @@
 		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))
-		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
+		var/hugsound = user.gender == FEMALE ? SFX_FEMALE_HUGGED : SFX_MALE_HUGGED
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
 		var/stamina_dmg = user.maxHealth + user.max_stamina
@@ -645,11 +645,7 @@
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
 
-/obj/item/clothing/mask/facehugger/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		kill_hugger()
-
-/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
+/obj/item/clothing/mask/facehugger/fire_act(burn_level)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
@@ -774,7 +770,7 @@
 		return FALSE
 
 	visible_message(span_danger("[src] explodes into a mess of viscous resin!"))
-	playsound(loc, get_sfx("alien_resin_build"), 50, 1)
+	playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
@@ -808,7 +804,7 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M, ATTACK_EFFECT_REDSLASH)
-	playsound(loc, "alien_claw_flesh", 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!

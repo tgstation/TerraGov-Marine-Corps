@@ -68,7 +68,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(!linked_machine)
 		// Try to find the machine nearby
-		linked_machine = locate() in orange(1, src)
+		linked_machine = locate() in get_step(src, REVERSE_DIR(dir))
 		if(!linked_machine)
 			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Connection not available'.</span>")
 			return TRUE
@@ -277,3 +277,13 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 	linked_console.radio.talk_into(src, "<b>New clone: [occupant] has been grown in [src] at: [get_area(src)]. Please move the fresh clone to a squad using the squad distribution console.</b>", RADIO_CHANNEL_COMMAND)
 	occupant = null
 	update_icon()
+
+/obj/machinery/cloning/vats/apc
+	grow_timer = 8 MINUTES
+	pixel_y = 16
+	dir = NORTH
+
+/obj/machinery/cloning/vats/apc/south
+	pixel_y = -16
+	dir = SOUTH
+	layer = BELOW_OBJ_LAYER

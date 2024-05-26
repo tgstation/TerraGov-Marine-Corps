@@ -379,7 +379,7 @@
 	var/firing_spread = max_offset + spread
 	if(firing_spread > max_spread)
 		firing_spread = max_spread
-	var/list/turf_list = list()
+	var/list/turf_list = RANGE_TURFS(firing_spread, target)
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
 	var/amount_to_fire = fire_amount
@@ -387,8 +387,6 @@
 		amount_to_fire = length(chamber_items)
 	if(amount_to_fire > length(chamber_items))
 		amount_to_fire = length(chamber_items)
-	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
-		turf_list += spread_turf
 	//Probably easier to declare and update a counter than it is to keep accessing a client and datum multiple times
 	var/shells_fired = 0
 	var/war_crimes_counter = 0
@@ -643,7 +641,7 @@
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
 
-		rocket_box.remove_from_storage(mortar_shell,null,user)
+		rocket_box.storage_datum.remove_from_storage(mortar_shell,null,user)
 		rocketsloaded++
 	user.balloon_alert(user, "Right click to fire")
 
@@ -654,7 +652,7 @@
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 	)
@@ -890,7 +888,10 @@
 /obj/item/storage/box/mlrs_rockets
 	name = "\improper TA-40L rocket crate"
 	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 16
+
+/obj/item/storage/box/mlrs_rockets/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs(src)
@@ -912,6 +913,11 @@
 
 /obj/item/storage/box/mlrs_rockets/gas
 	name = "\improper TA-40L X-50 rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+
+/obj/item/storage/box/mlrs_rockets/gas/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/gas/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/gas(src)
@@ -954,6 +960,11 @@
 
 /obj/item/storage/box/mlrs_rockets/incendiary
 	name = "\improper TA-40L incendiary rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+
+/obj/item/storage/box/mlrs_rockets/incendiary/Initialize(mapload)
+	. = ..()
+	storage_datum.storage_slots = 16
 
 /obj/item/storage/box/mlrs_rockets/incendiary/PopulateContents()
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
@@ -972,7 +983,6 @@
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
 	new /obj/item/mortal_shell/rocket/mlrs/incendiary(src)
-
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER

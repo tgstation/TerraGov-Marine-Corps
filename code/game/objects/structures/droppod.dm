@@ -565,19 +565,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	owner.client.screen += map
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
-	if(!polled_coords)
-		owner.client?.screen -= map
-		choosing = FALSE
-		return
-	owner.client?.screen -= map
+	owner?.client?.screen -= map
 	choosing = FALSE
+	if(!polled_coords)
+		return
 	pod.set_target(polled_coords[1], polled_coords[2])
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
 		var/obj/structure/droppod/pod = target
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
 	return ..()

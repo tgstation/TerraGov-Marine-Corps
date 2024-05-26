@@ -17,7 +17,7 @@ The Grenade Launchers
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/special.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -64,6 +64,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/bullet/laser,
 		/obj/item/explosive/grenade/bullet/hefa,
+		/obj/item/explosive/grenade/emp,
 	)
 	reciever_flags = NONE
 
@@ -120,7 +121,7 @@ The Grenade Launchers
 	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t70"
-	item_state = "t70"
+	worn_icon_state = "t70"
 	fire_animation = "t70_fire"
 	equip_slot_flags = ITEM_SLOT_BACK
 	max_shells = 6 //codex
@@ -188,6 +189,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
 		/obj/item/explosive/grenade/flashbang/stun,
+		/obj/item/explosive/grenade/emp,
 	)
 
 	wield_delay_mod = 0.2 SECONDS
@@ -215,7 +217,7 @@ The Grenade Launchers
 	name = "\improper GL-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
-	item_state = "m81"
+	worn_icon_state = "m81"
 	max_shells = 1 //codex
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	wield_delay = 0.2 SECONDS
@@ -242,7 +244,7 @@ The Grenade Launchers
 	name = "flare gun"
 	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
 	icon_state = "flaregun"
-	item_state = "gun"
+	worn_icon_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL

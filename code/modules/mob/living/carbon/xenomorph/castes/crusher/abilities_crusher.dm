@@ -210,8 +210,8 @@
 		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
 	for(var/i=0 to max(get_dist(X, A), advance_range))
 		if(i % 2)
-			playsound(X, "alien_charge", 50)
-			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+			playsound(X, SFX_ALIEN_CHARGE, 50)
+			new /obj/effect/temp_visual/after_image(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
 		aimdir = get_dir(X, A)
 	succeed_activate()

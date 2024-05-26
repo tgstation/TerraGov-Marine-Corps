@@ -175,7 +175,7 @@
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
-		playsound(src, "acid_hit", 25)
+		playsound(src, SFX_ACID_HIT, 25)
 
 		if(istype(acid_t, /turf))
 			if(iswallturf(acid_t))
