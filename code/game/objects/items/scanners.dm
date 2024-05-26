@@ -306,12 +306,12 @@ REAGENT SCANNER
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
 		//random stuff that docs should be aware of. possible todo: make a system so we can put these in a collapsible tgui element if there's more added here.
-		if(patient.maxHealth != 100)
+		if(patient.maxHealth != LIVING_DEFAULT_MAX_HEALTH)
 			advice += list(list(
-				"advice" = "Patient has [patient.maxHealth / initial(patient.maxHealth) * 100]% constitution.",
-				"tooltip" = patient.maxHealth < 100 ? "Patient has less constitution than most humans." : "Patient has more constitution than most humans.",
-				"icon" = patient.maxHealth < 100 ? "heart-broken" : "heartbeat",
-				"color" = patient.maxHealth < 100 ? "grey" : "pink"
+				"advice" = "Patient has [patient.maxHealth / LIVING_DEFAULT_MAX_HEALTH * 100]% constitution.",
+				"tooltip" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less constitution than most humans." : "Patient has more constitution than most humans.",
+				"icon" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "heart-broken" : "heartbeat",
+				"color" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink"
 			))
 		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
 		if(issynth(patient)) //specifically checking synth/robot here as these are specific to whichever species
