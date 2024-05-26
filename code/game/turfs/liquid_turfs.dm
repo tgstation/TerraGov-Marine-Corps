@@ -19,8 +19,8 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/liquid/attackby()
-	return
+/turf/open/liquid/is_weedable()
+	return FALSE
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -144,9 +144,6 @@
 	name = "river"
 	icon = 'icons/turf/desertdam_map.dmi'
 
-/turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
-
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
@@ -205,17 +202,10 @@
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
 
-/turf/open/liquid/lava/is_weedable()
-	return FALSE
-
-/turf/open/liquid/lava/Initialize(mapload)
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	if(current_turf && density)
-		current_turf.atom_flags |= AI_BLOCKED
-
 /turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return
 	if(burn_stuff(arrived))
 		START_PROCESSING(SSobj, src)
 
@@ -236,30 +226,6 @@
 	for(var/atom/thing AS in thing_to_check)
 		if(thing.lava_act())
 			. = TRUE
-
-/turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
-		if(H)
-			to_chat(user, span_warning("There is already a catwalk here!"))
-			return
-		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
-			to_chat(user, span_warning("It takes time to construct a catwalk!"))
-			return
-		if(R.use(4))
-			to_chat(user, span_notice("You construct a heatproof catwalk."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ChangeTurf(/turf/open/lavaland/catwalk/built)
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.atom_flags &= ~AI_BLOCKED
-		else
-			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
-		return
 
 /turf/open/liquid/lava/corner
 	icon_state = "corner"
@@ -295,3 +261,19 @@
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 	base_icon_state = "lava"
+
+//Mapping helpers
+/turf/open/liquid/lava/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/catwalk/Initialize(mapload)
+	. = ..()
+	icon_state = "full"
+	new /obj/structure/catwalk(src)
+
+/turf/open/liquid/lava/autosmoothing/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/autosmoothing/catwalk/Initialize(mapload)
+	. = ..()
+	new /obj/structure/catwalk(src)

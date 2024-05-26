@@ -45,9 +45,10 @@
 	if(!holder)
 		return
 	holder.overlays.Cut()
-	holder.icon_state = "hudblank"
+	holder.icon_state = ""
 	if(stat == DEAD || !duration)
 		return
+	holder.icon = 'icons/mob/hud/xeno.dmi'
 	holder.icon_state = "evasion_duration[duration]"
 	holder.pixel_x = 24
 	holder.pixel_y = 24

@@ -352,6 +352,30 @@
 	default_ammo = /datum/ammo/rocket/som/thermobaric
 	bonus_overlay = "iccrpg_thermobaric"
 
+//VSD RPG
+
+/obj/item/ammo_magazine/rocket/vsd/he
+	name = "\improper 84mm HE 'Anti-Personnel' case"
+	desc = "84mm Anti Personnel case. The label reads: 'Makes big boom'."
+	icon_state = "c153_he"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "c153_he"
+
+/obj/item/ammo_magazine/rocket/vsd/incendiary
+	name = "\improper 84mm Incendiary 'Anti-Personnel' case"
+	desc = "84mm Incendiary Anti Personnel case. The label reads: 'Makes people go AAAAAAAHH'."
+	icon_state = "c153_incendiary"
+	default_ammo = /datum/ammo/rocket/wp/quad/som
+	bonus_overlay = "c153_incendiary"
+
+/obj/item/ammo_magazine/rocket/vsd/chemical
+	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
+	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
+	icon_state = "c153_chemical"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
+	bonus_overlay = "c153_chemical"
+
 // railgun
 
 /obj/item/ammo_magazine/railgun
