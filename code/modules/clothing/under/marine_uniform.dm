@@ -580,3 +580,52 @@
 	worn_icon_state = "specops_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
+
+/obj/item/clothing/under/vsd
+	name = "V.S.D jumpsuit"
+	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
+	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
+	icon_state = "vsd_uniform_main"
+	worn_icon_state = "vsd_uniform_main"
+	worn_icon_list = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+	)
+	has_sensor = FALSE
+
+/obj/item/clothing/under/vsd/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/medic
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/vsd/secondary
+	name = "V.S.D jumpsuit"
+	icon_state = "vsd_uniform_secondary"
+	worn_icon_state = "vsd_uniform_secondary"
+
+/obj/item/clothing/under/vsd/secondary/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/upp
+	name = "V.S.D jumpsuit"
+	icon_state = "upp_retired"
+	worn_icon_state = "upp_retired"
+
+/obj/item/clothing/under/vsd/upp/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/shirt
+	name = "V.S.D shirt"
+	icon_state = "vsd_shirt"
+	worn_icon_state = "vsd_shirt"
+
+/obj/item/clothing/under/vsd/shirt/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/sleeveless
+	name = "V.S.D shirt"
+	icon_state = "vsd_shirt_sleeveless"
+	worn_icon_state = "vsd_shirt_sleeveless"
+
+/obj/item/clothing/under/vsd/sleeveless/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)

@@ -286,6 +286,12 @@
 	hud_state = "shell_tanglefoot"
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
+/datum/ammo/rocket/recoilless/chemical/harmgas/vsd
+	name = "high velocity chemical shell"
+	icon_state = "rpg_rad"
+	hud_state = "rpg_rad"
+	smoketype = /datum/effect_system/smoke_spread/vyacheslav
+
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
 	icon_state = "recoilless_rifle_le"
