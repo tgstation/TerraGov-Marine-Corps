@@ -66,6 +66,12 @@
 		/obj/item/armor_module/storage/engineering,
 	)
 
+/obj/item/clothing/suit/modular/robot/lightinjector
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/injector,
+	)
+
 /obj/item/clothing/suit/modular/robot/light
 	name = "XR-1-L armor plating"
 	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
@@ -74,6 +80,12 @@
 	greyscale_config = /datum/greyscale_config/robot/light
 
 //---- Light armor with attachments
+/obj/item/clothing/suit/modular/robot/light/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
 
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "XR-1-H armor plating"
@@ -87,6 +99,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 		/obj/item/armor_module/storage/general,
+	)
+
+/obj/item/clothing/suit/modular/robot/heavy/lightengineer
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
 	)
 
 /obj/item/clothing/suit/modular/robot/heavy/tyr
@@ -163,3 +181,6 @@
 
 /obj/item/clothing/head/modular/robot/heavy/tyr
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/heavy, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/robot/antenna
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/heavy, /obj/item/armor_module/module/antenna)
