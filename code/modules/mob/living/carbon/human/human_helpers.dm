@@ -315,16 +315,10 @@
 	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !issynth(src) || suiciding) // Synthetics who manually DNR should be caught by the next check.
 		return DEFIB_FAIL_BRAINDEAD
 
-	if(!mind && !get_ghost(TRUE)) // Nobody home
-		return DEFIB_FAIL_NPC
-
 	if(!has_working_organs() && !(species.species_flags & ROBOTIC_LIMBS)) // Ya organs dpmt wprl
 		return DEFIB_FAIL_BAD_ORGANS
 
 	if(health + getOxyLoss() + additional_damage <= get_death_threshold())
 		return DEFIB_FAIL_TOO_MUCH_DAMAGE
-
-	if(!client) // They moved out of their corpse
-		return DEFIB_FAIL_CLIENT_MISSING
 
 	return DEFIB_POSSIBLE

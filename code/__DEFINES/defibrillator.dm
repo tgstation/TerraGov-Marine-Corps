@@ -15,18 +15,14 @@
 #define DEFIB_FAIL_DECAPITATED (1<<1)
 ///They have TRAIT_UNDEFIBBABLE
 #define DEFIB_FAIL_BRAINDEAD (1<<2)
-///Catatonic/NPC, a colonist or something
-#define DEFIB_FAIL_NPC (1<<3)
 ///Doesn't have the required organs to sustain life OR heart is broken
-#define DEFIB_FAIL_BAD_ORGANS (1<<4)
+#define DEFIB_FAIL_BAD_ORGANS (1<<3)
 ///Too much damage
-#define DEFIB_FAIL_TOO_MUCH_DAMAGE (1<<5)
-///No client, typically just a human who moved out of their body mid defib
-#define DEFIB_FAIL_CLIENT_MISSING (1<<6)
+#define DEFIB_FAIL_TOO_MUCH_DAMAGE (1<<4)
 
 ///Revival states that strictly entail permadeath. These will prevent defibrillation
-#define DEFIB_PREVENT_REVIVE_STATES (DEFIB_FAIL_DECAPITATED | DEFIB_FAIL_BRAINDEAD | DEFIB_FAIL_NPC)
-///Revival states that don't necessarily mean permadeath, but prevent revival temporarily until a condition is fixed
-#define DEFIB_TEMPORARILY_UNREVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
+#define DEFIB_PREVENT_REVIVE_STATES (DEFIB_FAIL_DECAPITATED | DEFIB_FAIL_BRAINDEAD)
+///Revival states including `DEFIB_POSSIBLE`. Some don't necessarily mean permadeath, but prevent revival temporarily until a condition is fixed
+#define DEFIB_TEMPORARILY_UNREVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_POSSIBLE)
 ///Revival states that strictly don't prevent revival
-#define DEFIB_STRICTLY_REVIVABLE_STATES (DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
+#define DEFIB_STRICTLY_REVIVABLE_STATES (DEFIB_POSSIBLE)

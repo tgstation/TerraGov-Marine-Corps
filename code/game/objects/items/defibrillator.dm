@@ -197,9 +197,7 @@
 				else
 					fail_reason = "Patient is missing their head. Further attempts futile."
 			if(DEFIB_FAIL_BRAINDEAD)
-				fail_reason = "Patient is braindead. Further attempts futile."
-			if(DEFIB_FAIL_NPC)
-				fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
+				fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation impossible - [fail_reason]"))
 		return
@@ -211,7 +209,7 @@
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
-			message = "Someone is trying to resuscitate your body! Stay in your body if you want to be resurrected!",
+			message = "Someone is trying to resuscitate your body!",
 			color_override = "purple"
 		), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		ghost.reenter_corpse()
@@ -275,26 +273,33 @@
 			else
 				fail_reason = "Patient is missing their head. Further attempts futile."
 		if(DEFIB_FAIL_BRAINDEAD)
-			fail_reason = "Patient is braindead. Further attempts futile."
-		if(DEFIB_FAIL_NPC)
-			fail_reason = "Patient is missing intelligence patterns. Further attempts futile."
+			fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
 		if(DEFIB_FAIL_BAD_ORGANS)
 			fail_reason = "Patient's heart is too damaged to sustain life. Surgical intervention required."
 		if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
 			fail_reason = "Vital signs are weak. Repair damage and try again."
-		if(DEFIB_FAIL_CLIENT_MISSING)
-			fail_reason = "No soul detected. Please try again."
 
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - [fail_reason]"))
 		playsound(src, 'sound/items/defib_failed.ogg', 50, FALSE)
 		return
 
+	ghost = patient.get_ghost(TRUE)
+	if(ghost) // grab ghost once more
+		ghost.reenter_corpse()
+
+	if(!patient.client)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected."))
+
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
 	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
+
+	ghost = patient.get_ghost(TRUE)
+	if(!ghost?.client) // Special bit for getting players who were revived while disconnected
+		ghost?.revived_while_away = TRUE
 
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.
 	if(istype(patient.wear_ear, /obj/item/radio/headset/mainship))

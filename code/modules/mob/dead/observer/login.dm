@@ -53,6 +53,18 @@
 	if(length(GLOB.offered_mob_list))
 		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))
 
+	if(revived_while_away)
+		to_chat(src, assemble_alert(
+			title = "Revived",
+			subtitle = "You were revived while disconnected.",
+			message = "Someone resuscitated you while you were disconnected. [isnull(can_reenter_corpse) ? "You're currently unable to re-enter your body." : "You will momentarily re-enter your body."]",
+			color_override = "red"
+		))
+		revived_while_away = FALSE
+		sleep(9 SECONDS)
+		if(!isnull(can_reenter_corpse))
+			reenter_corpse()
+
 ///Loads any gamemode specific ghost actions
 /mob/dead/observer/proc/load_ghost_gamemode_actions()
 	SIGNAL_HANDLER

@@ -245,6 +245,8 @@
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
+
+	status_hud.overlays.Cut()
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		if(stat != DEAD)
@@ -257,6 +259,8 @@
 				var/mob/dead/observer/G = get_ghost(TRUE)
 				if(!G)
 					status_hud.icon_state = "synthdnr"
+				else if(!G.client)
+					status_hud.overlays += "synth_noclient"
 				else
 					status_hud.icon_state = "synthdead"
 			else
@@ -302,9 +306,13 @@
 				return TRUE
 			if(!mind)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
-				if(!ghost?.can_reenter_corpse)
-					status_hud.icon_state = "dead"
+				if(!ghost)
+					status_hud.icon_state = "dead_dnr"
 					return TRUE
+				if(!ghost.client)
+					status_hud.overlays += "dead_noclient"
+			if(!client && !get_ghost(TRUE))
+				status_hud.overlays += "dead_noclient"
 			var/stage
 			switch(dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)

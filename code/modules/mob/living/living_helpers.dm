@@ -131,7 +131,7 @@
 
 ///Proc to check for a mob's ghost.
 /mob/living/proc/get_ghost(bypass_client_check = FALSE)
-	if(client) //Let's call up the correct ghost!
+	if(client) //We don't need to get a ghost for someone who's still under player control
 		return null
 	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
 		if(!ghost) //Observers hard del often so lets just be safe

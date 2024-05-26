@@ -50,6 +50,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	
+	///If this ghost was revived while disconnected
+	var/revived_while_away = FALSE
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -201,11 +204,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-				if(istype(human_current))
-					human_current.set_undefibbable(TRUE)
 				can_reenter_corpse = null
-				to_chat(usr, span_notice("You can no longer be revived."))
+				to_chat(usr, span_boldwarning("You can no longer enter your body to be revived."))
 				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 
@@ -852,12 +852,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Noone will be able to revive you."
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
-		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-		if(istype(human_current))
-			human_current.set_undefibbable(TRUE)
-
 		can_reenter_corpse = null
-		to_chat(usr, span_notice("You can no longer be revived."))
+		to_chat(usr, span_boldwarning("You can no longer enter your body to be revived."))
 		return
 
 	to_chat(usr, span_warning("You already can't be revived."))
