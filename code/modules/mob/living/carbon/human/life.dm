@@ -33,7 +33,6 @@
 
 		else //Dead
 			dead_ticks ++
-			var/mob/dead/observer/related_ghost = get_ghost(TRUE)
 			var/datum/limb/headcheck = get_limb("head")
 			var/decapitation = !headcheck || (headcheck.limb_status & LIMB_DESTROYED) && !(species.species_flags & DETACHABLE_HEAD)
 			if(dead_ticks > TIME_BEFORE_DNR || decapitation)
