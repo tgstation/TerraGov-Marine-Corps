@@ -711,3 +711,25 @@
 	icon_state = "box_minimi"
 	current_rounds = 500
 	max_rounds = 500
+
+// L26
+
+/obj/item/ammo_magazine/rifle/vsd_mg
+	name = "\improper L26 box mag (5.56x45mm)"
+	desc = "A 200 round box mag for the L26."
+	caliber = CALIBER_556X45
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	icon_state = "l26"
+	icon_state_mini = "mag_gpmg"
+	bonus_overlay = "l26_100"
+	max_rounds = 200
+
+/obj/item/ammo_magazine/rifle/vsd_rifle
+	name = "\improper C550 magazine (10x27mm)"
+	desc = "A 10x27mm rifle magazine."
+	caliber = CALIBER_10x27_CASELESS
+	icon_state = "c550"
+	icon_state_mini = "mag_rifle_big"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30

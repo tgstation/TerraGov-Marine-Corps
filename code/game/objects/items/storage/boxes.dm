@@ -137,7 +137,7 @@
 /obj/item/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
-	spawn_type = /obj/item/reagent_containers/food/drinks/drinkingglass
+	spawn_type = /obj/item/reagent_containers/cup/glass/drinkingglass
 	spawn_number = 6
 
 /obj/item/storage/box/condimentbottles

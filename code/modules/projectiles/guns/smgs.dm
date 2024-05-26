@@ -157,7 +157,7 @@
 
 /obj/item/weapon/gun/smg/standard_heavysmg
 	name = "\improper SMG-45 heavy submachinegun"
-	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses 10x20mm caseless rounds."
+	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses .45 ACP caseless rounds."
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "t45"
 	worn_icon_state = "t45"
@@ -715,3 +715,64 @@
 
 /obj/item/weapon/gun/smg/icc_pdw/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+// C17 Riot PDW
+
+/obj/item/weapon/gun/smg/vsd_pdw
+	name = "\improper C17 Riot PDW"
+	desc = "The C17 PDW, made by Crash Core for civilian use. Fires Armor Piercing .45 ACP in a 55 round drum mag, somewhat good accuracy and firerate. Meant to contain prison riots, this has more kills than arrests."
+	icon = 'icons/obj/items/guns/submachineguns.dmi'
+	icon_state = "c17"
+	worn_icon_state = "c17"
+	caliber = CALIBER_45ACP //codex
+	max_shells = 55 //codex
+	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
+	equip_slot_flags = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/vsd_pdw
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/vsd_pdw,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/gyro,
+	)
+
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 24, "stock_y" = 16)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+
+	aim_slowdown = 0.25
+	accuracy_mult = 0.55
+	accuracy_mult_unwielded = 0.85
+	fire_delay = 0.25 SECONDS
+	burst_delay =  0.2 SECONDS
+	burst_amount = 4
+	scatter = 3
+	scatter_unwielded = 11
+	akimbo_additional_delay = 0.4
+
+/obj/item/weapon/gun/smg/vsd_pdw/standard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/smg/vsd_pdw/medic
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight, /obj/item/attachable/extended_barrel)

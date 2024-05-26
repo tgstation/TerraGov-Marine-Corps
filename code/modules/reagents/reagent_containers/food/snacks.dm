@@ -761,7 +761,7 @@
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
 	filling_color = "#FF5D05"
 
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/doctor_delight = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/doctor_delight = 5)
 	trash = /obj/item/trash/syndi_cakes
 	bitesize = 3
 	tastes = list("sweetness" = 3, "cake" = 1)
@@ -942,7 +942,7 @@
 	icon_state = "monkeysdelight"
 	trash = /obj/item/trash/tray
 	filling_color = "#5C3C11"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/drink/banana = 5, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/sodiumchloride = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/sodiumchloride = 1)
 	bitesize = 6
 	tastes = list("the jungle" = 1, "banana" = 1)
 
@@ -1020,7 +1020,7 @@
 	icon_state = "carrotfries"
 	trash = /obj/item/trash/plate
 	filling_color = "#FAA005"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/drink/carrotjuice = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/carrotjuice = 3)
 	bitesize = 2
 	tastes = list("carrots" = 3, "salt" = 1)
 
@@ -1506,7 +1506,7 @@
 	wrapper = /obj/item/trash/berrybar
 	list_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
-		/datum/reagent/consumable/drink/berryjuice = 1,
+		/datum/reagent/consumable/berryjuice = 1,
 		/datum/reagent/medicine/tramadol = 10,
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
@@ -1713,42 +1713,42 @@
 	name = "\improper Pizza-pocket"
 	desc = "Delicious, cheesy and surprisingly filling."
 	icon_state = "donkpocketpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/drink/tomatojuice = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/tomatojuice = 2)
 	tastes = list("meat" = 2, "dough" = 2, "cheese"= 2)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza
 	name = "warm Pizza-pocket"
 	desc = "Delicious, cheesy, and even better when hot."
 	icon_state = "donkpocketpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/drink/tomatojuice = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/tomatojuice = 2)
 	tastes = list("meat" = 2, "dough" = 2, "melty cheese"= 2)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/honk
 	name = "\improper Honk-pocket"
 	desc = "The award-winning donk-pocket that won the hearts of clowns and humans alike."
 	icon_state = "donkpocketbanana"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/banana = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
 	tastes = list("banana" = 2, "dough" = 2, "children's antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/honk
 	name = "warm Honk-pocket"
 	desc = "The award-winning donk-pocket, now warm and toasty."
 	icon_state = "donkpocketbanana"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/drink/banana = 4, /datum/reagent/consumable/laughter = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/banana = 4, /datum/reagent/consumable/laughter = 6)
 	tastes = list("dough" = 2, "children's antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/berry
 	name = "\improper Berry-pocket"
 	desc = "A relentlessly sweet donk-pocket first created for use in Operation Dessert Storm."
 	icon_state = "donkpocketberry"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/berryjuice = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/berryjuice = 3)
 	tastes = list("dough" = 2, "jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/berry
 	name = "warm Berry-pocket"
 	desc = "A relentlessly sweet donk-pocket, now warm and delicious."
 	icon_state = "donkpocketberry"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/drink/berryjuice = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/berryjuice = 3)
 	tastes = list("dough" = 2, "warm jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/gondola

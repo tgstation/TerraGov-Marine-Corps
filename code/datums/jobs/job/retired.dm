@@ -1,5 +1,5 @@
 /datum/job/retired
-	title = "NTF retired veteran"
+	title = "TGMC retired veteran"
 	job_category = JOB_CAT_MARINE
 	paygrade = "MSGT"
 	access = ALL_ANTAGONIST_ACCESS
@@ -9,7 +9,7 @@
 	outfit = /datum/outfit/job/retired
 
 /datum/outfit/job/retired
-	name = "NTF retired veteran"
+	name = "TGMC retired veteran"
 	jobtype = /datum/job/retired
 
 	id = /obj/item/card/id/dogtag
@@ -25,6 +25,7 @@
 	r_store = /obj/item/storage/holster/flarepouch/full
 	suit_store = /obj/item/weapon/gun/rifle/m41a/magharness
 	ears = /obj/item/radio/headset/distress/retired
+	shoes = /obj/item/clothing/shoes/marine/brown/full
 
 /datum/outfit/job/retired/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BELT)
@@ -46,14 +47,19 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 
+	var/list/limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	for(var/i in 1 to 2)
+		var/datum/limb/picked_limb = H.get_limb(pick_n_take(limbs))
+		picked_limb.robotize()
+
 /datum/job/retired/leader
-	title = "NTF retired veteran expedition leader"
+	title = "TGMC retired veteran expedition leader"
 	paygrade = "LtCol"
 	skills_type = /datum/skills/veteran_captain //The leader gets even more skills
 	outfit = /datum/outfit/job/retired/leader
 
 /datum/outfit/job/retired/leader
-	name = "NTF retired veteran expedition leader"
+	name = "TGMC retired veteran expedition leader"
 	jobtype = /datum/job/retired/leader
 
 	id = /obj/item/card/id/dogtag/fc
@@ -63,6 +69,7 @@
 	belt = /obj/item/storage/holster/blade/officer/full
 	suit_store = /obj/item/storage/holster/belt/mateba/full
 	back = /obj/item/ammo_magazine/minigun_wheelchair
+	shoes = null
 
 /datum/outfit/job/retired/leader/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/chemrettes, SLOT_IN_SUIT)
@@ -72,17 +79,3 @@
 	H.amputate_limb(BODY_ZONE_R_LEG)
 	var/obj/vehicle/ridden/wheelchair/weaponized/wheelchair = new(H.drop_location())
 	wheelchair.buckle_mob(H, TRUE)
-
-/datum/job/retired/augmented
-	title = "NTF augmented veteran"
-	outfit = /datum/outfit/job/retired/augmented
-
-/datum/outfit/job/retired/augmented
-	name = "NTF augmented veteran"
-	jobtype = /datum/job/retired/augmented
-
-/datum/outfit/job/retired/augmented/post_equip(mob/living/carbon/human/H, visualsOnly)
-	. = ..() // Same gear as the regular outfit, but we give them some robot limbs
-	for(var/i in 1 to 2)
-		var/datum/limb/picked_limb = H.get_limb(pick_n_take(list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-		picked_limb.robotize()

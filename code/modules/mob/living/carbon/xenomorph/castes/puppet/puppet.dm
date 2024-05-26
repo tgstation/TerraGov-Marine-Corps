@@ -62,4 +62,4 @@
 		return
 	for(var/datum/status_effect/effect AS in status_effects)
 		if(istype(effect, /datum/status_effect/blessing))
-			holder.overlays += image('icons/mob/hud.dmi', icon_state = initial(effect.id))
+			holder.overlays += image('icons/mob/hud/xeno.dmi', icon_state = initial(effect.id))

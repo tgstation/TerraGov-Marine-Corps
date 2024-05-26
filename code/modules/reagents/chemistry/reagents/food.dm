@@ -11,6 +11,9 @@
 	var/nutriment_factor = 1
 	var/adj_temp = 0
 	var/targ_temp = BODYTEMP_NORMAL
+	var/adj_dizzy = 0
+	var/adj_drowsy = 0
+	var/adj_sleepy = 0
 
 /datum/reagent/consumable/on_mob_life(mob/living/L, metabolism)
 	current_cycle++
@@ -20,6 +23,12 @@
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)
+	if(adj_dizzy != 0)
+		L.dizzy(adj_dizzy)
+	if(adj_drowsy != 0)
+		L.adjustDrowsyness(adj_drowsy)
+	if(adj_sleepy != 0)
+		L.AdjustSleeping(adj_sleepy)
 	return TRUE
 
 /datum/reagent/consumable/nutriment

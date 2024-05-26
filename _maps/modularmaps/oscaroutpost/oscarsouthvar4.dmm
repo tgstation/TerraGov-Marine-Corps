@@ -188,7 +188,7 @@
 "dG" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small{
 	dir = 1
@@ -2044,17 +2044,17 @@
 "XI" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "XP" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,

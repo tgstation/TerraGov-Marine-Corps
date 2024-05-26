@@ -215,8 +215,8 @@
 	var/obj/effect/sliding_puzzle/source
 	var/icon/puzzle_icon
 
-/obj/structure/puzzle_element/Move(nloc, dir)
-	if(!isturf(nloc) || (dir - 1) & dir || get_dist(get_step(src,dir),get_turf(source)) > 1)
+/obj/structure/puzzle_element/Move(atom/newloc, direction, glide_size_override)
+	if(!isturf(newloc) || (dir - 1) & dir || get_dist(get_step(src,dir),get_turf(source)) > 1)
 		return 0
 	else
 		return ..()
