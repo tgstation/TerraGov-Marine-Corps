@@ -187,7 +187,7 @@
 		return
 
 	var/fail_reason
-	if(patient.check_defib() & (DEFIB_PERMADEATH_STATES))
+	if(patient.check_defib() & (DEFIB_PREVENT_REVIVE_STATES))
 		// Special bit for preventing the do_after if they almost 100% can't come back.
 		// We'll check the rest of the check_defib states along with these after shocking, incase their status changes mid defib.
 		switch(patient.check_defib())
@@ -207,7 +207,7 @@
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_RELAXED_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) & DEFIB_STRICT_REVIVABLE_STATES)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_TEMPORARILY_UNREVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) & DEFIB_STRICTLY_REVIVABLE_STATES)
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",

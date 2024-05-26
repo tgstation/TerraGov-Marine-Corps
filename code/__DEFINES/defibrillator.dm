@@ -25,8 +25,8 @@
 #define DEFIB_FAIL_CLIENT_MISSING (1<<6)
 
 ///Revival states that strictly entail permadeath. These will prevent defibrillation
-#define DEFIB_PERMADEATH_STATES (DEFIB_FAIL_DECAPITATED | DEFIB_FAIL_BRAINDEAD | DEFIB_FAIL_NPC)
-///Revival states that don't necessarily mean permadeath, but prevent revival temporarily
-#define DEFIB_RELAXED_REVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
+#define DEFIB_PREVENT_REVIVE_STATES (DEFIB_FAIL_DECAPITATED | DEFIB_FAIL_BRAINDEAD | DEFIB_FAIL_NPC)
+///Revival states that don't necessarily mean permadeath, but prevent revival temporarily until a condition is fixed
+#define DEFIB_TEMPORARILY_UNREVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
 ///Revival states that strictly don't prevent revival
-#define DEFIB_STRICT_REVIVABLE_STATES (DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
+#define DEFIB_STRICTLY_REVIVABLE_STATES (DEFIB_FAIL_CLIENT_MISSING | DEFIB_POSSIBLE)
