@@ -2694,6 +2694,10 @@
 	icon_state = "l26"
 	worn_icon_state = "l26"
 	fire_animation = "l26_fire"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
+	)
 	caliber = CALIBER_556X45 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 200  //codex

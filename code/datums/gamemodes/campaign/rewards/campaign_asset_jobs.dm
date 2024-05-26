@@ -761,7 +761,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 /datum/outfit/job/vsd/standard/grunt_third/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-/datum/job/vsd/specialist/campaign_bonus
+/datum/job/vsd/spec/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "VSD"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS

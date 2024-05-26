@@ -95,6 +95,6 @@
 		/datum/job/vsd/medic/campaign_bonus = 2,
 		/datum/job/vsd/engineer/campaign_bonus = 2,
 		/datum/job/vsd/standard/campaign_bonus = 4,
-		/datum/job/vsd/specialist/campaign_bonus = 1,
+		/datum/job/vsd/spec/campaign_bonus = 1,
 		/datum/job/vsd/juggernaut/campaign_bonus = 2,
 	)
