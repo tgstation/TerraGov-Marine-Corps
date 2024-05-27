@@ -78,9 +78,12 @@ map slumbridge
   minplayers 35
 endmap
 
-
 map daedalusprison
 	minplayers 50
+endmap
+
+map riptide
+minplayers 40
 endmap
 
 map lv759

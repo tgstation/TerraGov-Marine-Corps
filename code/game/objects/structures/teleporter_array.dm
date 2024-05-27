@@ -53,6 +53,14 @@
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.give_action(controller)
 
+///Enables the teleporter for us
+/obj/structure/teleporter_array/proc/enable_teleporter(forced = FALSE)
+	if(!forced && (teleporter_status == TELEPORTER_ARRAY_INOPERABLE))
+		return FALSE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED, src)
+	teleporter_status = TELEPORTER_ARRAY_READY
+	return TRUE
+
 ///Removes the current controlling mob
 /obj/structure/teleporter_array/proc/remove_user()
 	if(!controller)

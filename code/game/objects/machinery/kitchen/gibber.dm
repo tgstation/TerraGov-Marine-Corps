@@ -41,7 +41,7 @@
 	go_out()
 
 
-/obj/machinery/gibber/attack_hand(mob/living/user)
+/obj/machinery/gibber/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -49,7 +49,7 @@
 		to_chat(user, span_warning("It's locked and running"))
 		return
 
-	startgibbing(user)
+	activate_gibber(user)
 
 /obj/machinery/gibber/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(!is_operational())
@@ -101,7 +101,7 @@
 
 
 ///Gibs the victim, and sets the output
-/obj/machinery/gibber/proc/startgibbing(mob/user as mob)
+/obj/machinery/gibber/proc/activate_gibber(mob/user as mob)
 	if(operating)
 		return
 	if(!occupant)
@@ -166,14 +166,15 @@
 	var/turf/T = get_turf(src)
 	var/list/turf/nearby_turfs = RANGE_TURFS(3, T) - T
 
-	for(var/i=1 to meat_produced)
-		var/obj/item/meatslab = meatlist[i]
-		meatslab.forceMove(loc)
-		meatslab.throw_at(pick(nearby_turfs),i,3)
-		for(var/turfs=1 to meat_produced)
-			var/turf/gibturf = pick(nearby_turfs)
-			if(!gibturf.density && (src in view(gibturf)))
-				new gibtype(gibturf,i)
+	if(meat_produced)
+		for(var/i=1 to meat_produced)
+			var/obj/item/meatslab = meatlist[i]
+			meatslab.forceMove(loc)
+			meatslab.throw_at(pick(nearby_turfs),i,3)
+			for(var/turfs=1 to meat_produced)
+				var/turf/gibturf = pick(nearby_turfs)
+				if(!gibturf.density && (src in view(gibturf)))
+					new gibtype(gibturf,i)
 
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 	operating = FALSE
@@ -181,3 +182,63 @@
 
 /obj/machinery/gibber/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/gibber/apc
+	use_power = NO_POWER_USE
+	var/obj/item/reagent_containers/glass/beaker/bluespace/internal_beaker
+
+/obj/machinery/gibber/apc/Initialize(mapload)
+	. = ..()
+	internal_beaker = new(src)
+
+/obj/machinery/gibber/apc/Destroy()
+	qdel(internal_beaker)
+	return ..()
+
+/obj/machinery/gibber/apc/make_meat(list/meatlist, meat_produced, gibtype)
+	if(!internal_beaker)
+		return ..()
+
+	for(var/obj/item/meatslab AS in meatlist)
+		var/biomass_amount = 0
+		biomass_amount += 1 + floor(meatslab.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 0.5)
+		meatlist -= meatslab
+		meat_produced --
+		internal_beaker.reagents.add_reagent(/datum/reagent/medicine/biomass, biomass_amount)
+		if(internal_beaker.reagents.holder_full())
+			break
+
+	return ..()
+
+/obj/machinery/gibber/apc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(internal_beaker)
+		return
+	if(!istype(I, /obj/item/reagent_containers/glass/beaker))
+		balloon_alert(user, "Cannot insert")
+		return
+	user.transferItemToLoc(I, src)
+	internal_beaker = I
+	balloon_alert(user, "Adds beaker")
+
+/obj/machinery/gibber/apc/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(operating)
+		return
+	if(!internal_beaker)
+		return
+	internal_beaker.forceMove(drop_location())
+	if(user && Adjacent(user) && !issiliconoradminghost(user))
+		user.put_in_hands(internal_beaker)
+	internal_beaker = null
+
+/obj/machinery/gibber/apc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(HAS_TRAIT(grab.grabbed_thing, TRAIT_MAPSPAWNED))
+		balloon_alert(user, "bad meat")
+		return FALSE
+	return ..()

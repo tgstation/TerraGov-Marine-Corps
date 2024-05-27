@@ -821,7 +821,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 						null, visidist)
 
 ///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
 	if(!istype(item))
 		return FALSE
 
@@ -978,7 +978,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/handle_atom_del(datum/source, atom/movable/movable_atom)
 	SIGNAL_HANDLER
 	if(isitem(movable_atom))
-		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, movable_atom.loc, usr)
+		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, movable_atom.loc, usr, TRUE)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)

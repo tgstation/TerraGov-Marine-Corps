@@ -15,7 +15,7 @@
 	)
 	worn_icon_state = "syringe_0"
 	icon_state = "0"
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	reagent_flags = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15

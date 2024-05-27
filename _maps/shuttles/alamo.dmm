@@ -284,7 +284,7 @@
 "bk" = (
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 4
+	dir = 8
 	},
 /turf/template_noop,
 /area/shuttle/dropship/alamo)

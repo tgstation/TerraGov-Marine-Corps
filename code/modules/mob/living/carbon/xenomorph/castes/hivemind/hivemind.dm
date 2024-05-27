@@ -204,21 +204,21 @@
 	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
 	setDir(SOUTH)
 
-/mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
+/mob/living/carbon/xenomorph/hivemind/Move(atom/newloc, direction, glide_size_override)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
-	if(!check_weeds(NewLoc))
+	if(!check_weeds(newloc))
 		return FALSE
 
 	// FIXME: Port canpass refactor from tg
 	// Don't allow them over the timed_late doors
-	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
-	if(door && !door.CanPass(src, NewLoc))
+	var/obj/machinery/door/poddoor/timed_late/door = locate() in newloc
+	if(door && !door.CanPass(src, newloc))
 		return FALSE
 
-	abstract_move(NewLoc)
+	abstract_move(newloc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
 	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
@@ -268,7 +268,7 @@
 	var/amount = round(health * 100 / maxHealth, 10)
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
-	holder.icon_state = "xenohealth[amount]"
+	holder.icon_state = "health[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
