@@ -57680,11 +57680,7 @@
 /turf/open/floor/prison/darkbrown{
 	dir = 1
 	},
-/area/lv759/indoors/power_plant/south_hallway{
-	dir = 4;
-	id = "hybrisamining_northeast2";
-	name = "\improper Checkpoint Lock"
-	})
+/area/lv759/indoors/power_plant/south_hallway)
 "kRa" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
