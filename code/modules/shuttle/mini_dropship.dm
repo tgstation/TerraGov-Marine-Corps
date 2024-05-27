@@ -211,7 +211,7 @@
 		return
 	if(!istype(I,/obj/item/circuitboard/tadpole))
 		return
-	var/repair_time = 50
+	var/repair_time = 30 SECONDS
 	if(!(machine_stat & BROKEN))
 		to_chat(user,span_notice("The circuits don't need replacing"))
 		return
@@ -219,7 +219,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
 		span_notice("You fumble around figuring out how to replace the electronics."))
-		repair_time += 50 * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
+		repair_time += 5 SECONDS * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 	else
