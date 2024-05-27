@@ -26750,10 +26750,7 @@
 /turf/open/floor/prison/whitered{
 	dir = 1
 	},
-/area/lv759/indoors/hospital/icu{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
+/area/lv759/indoors/hospital/icu)
 "faY" = (
 /obj/item/reagent_containers/blood/empty,
 /obj/machinery/light/small{
@@ -62568,9 +62565,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/lv759/indoors/hospital/emergency_room{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/hospital/emergency_room)
 "lNY" = (
 /obj/effect/decal/cleanable/dirt{
 	layer = 5
