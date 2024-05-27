@@ -106,6 +106,60 @@
 	name = "road"
 	icon_state = "thin_stop_decal5"
 
+/////
+
+/obj/effect/urban/decal/road/road_edge/regular
+	name = "road"
+	icon_state = "road_edge_decal1"
+
+/obj/effect/urban/decal/road/road_edge/regular/two
+	name = "road"
+	icon_state = "road_edge_decal2"
+
+/obj/effect/urban/decal/road/road_edge/regular/three
+	name = "road"
+	icon_state = "road_edge_decal3"
+
+/obj/effect/urban/decal/road/road_edge/regular/four
+	name = "road"
+	icon_state = "road_edge_decal4"
+
+/obj/effect/urban/decal/road/road_edge/regular/five
+	name = "road"
+	icon_state = "road_edge_decal5"
+
+/obj/effect/urban/decal/road/road_edge/regular/six
+	name = "road"
+	icon_state = "road_edge_decal6"
+
+/obj/effect/urban/decal/road/road_edge/regular/seven
+	name = "road"
+	icon_state = "road_edge_decal7"
+
+/obj/effect/urban/decal/road/road_edge/regular/eight
+	name = "road"
+	icon_state = "road_edge_decal8"
+
+/obj/effect/urban/decal/road/road_edge/regular/nine
+	name = "road"
+	icon_state = "road_edge_decal9"
+
+/obj/effect/urban/decal/road/road_edge/regular/ten
+	name = "road"
+	icon_state = "road_edge_decal10"
+
+/obj/effect/urban/decal/road/road_edge/regular/eleven
+	name = "road"
+	icon_state = "road_edge_decal11"
+
+/obj/effect/urban/decal/road/road_edge/regular/twelve
+	name = "road"
+	icon_state = "road_edge_decal12"
+
+/obj/effect/urban/decal/road/road_stop/regular/five
+	name = "road"
+	icon_state = "thin_stop_decal5"
+
 // Double Roadlines
 /obj/effect/urban/decal/doubleroad
 	icon = 'icons/turf/desertdam_map.dmi'

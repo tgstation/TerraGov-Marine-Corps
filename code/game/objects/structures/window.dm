@@ -700,14 +700,13 @@
 
 /obj/structure/window/framed/urban
 	name = "window"
-	icon = 'icons/obj/smooth_objects/col_window.dmi'
-	icon_state = "col_window-0"
-	base_icon_state = "col_window"
-	base_icon_state = "ship_window"
+	icon = 'icons/obj/smooth_objects/urban_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
-	window_frame = /obj/structure/window_frame/colony
+	window_frame = /obj/structure/window_frame/urban_frame
 
 /obj/structure/window/framed/urban/colony/engineering
 
@@ -726,6 +725,14 @@
 /obj/structure/window/framed/urban/colony/hospital/reinforced
 
 /obj/structure/window/framed/urban/colony/reinforced
+	name = "window"
+	icon = 'icons/obj/smooth_objects/junk_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/junk_frame
 
 /obj/structure/window/framed/urban/marshalls/reinforced
 

@@ -122,3 +122,12 @@
 
 
 	cell.use(50*GLOB.CELLRATE)
+
+/obj/machinery/space_heater/radiator
+	name = "radiator"
+	desc = "It's a radiator. It heats the room through convection with hot water. This one has a red handle."
+	icon_state = "radiator"
+	density = FALSE
+
+/obj/machinery/space_heater/radiator/red
+	icon_state = "radiator-r"

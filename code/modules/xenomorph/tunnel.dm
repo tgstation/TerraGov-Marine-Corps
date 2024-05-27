@@ -22,6 +22,8 @@ TUNNEL
 	var/tunnel_desc = ""
 	///What hivelord created that tunnel. Can be null
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
+	///what icon we switch to after init
+	var/newicon = "hole"
 
 /obj/structure/xeno/tunnel/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -30,6 +32,7 @@ TUNNEL
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
+	icon_state = newicon
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", VERY_HIGH_FLOAT_LAYER))
 
 /obj/structure/xeno/tunnel/Destroy()
@@ -194,3 +197,30 @@ TUNNEL
 	holder.icon = 'icons/mob/hud.dmi'
 	holder.icon_state = "hudtraitor"
 	hud_list[XENO_TACTICAL_HUD] = holder
+
+/obj/structure/xeno/tunnel/urban
+	desc = "An entrance to a maintenance tunnel. You can see bits of slime and resin within. Pieces of debris keep you from getting a closer look."
+	newicon = "maintenancehatch_alt"
+
+/obj/structure/xeno/tunnel/urban/manhole
+	desc = "An entrance to a sewage maintenance tunnel. You can see bits of slime and resin within. Pieces of debris keep you from getting a closer look."
+	newicon = "manhole"
+
+// Hybrisa tunnels
+/obj/structure/tunnel/maint_tunnel/hybrisa
+	name = "\improper Maintenance Hatch"
+	desc = "An entrance to a maintenance tunnel. You can see bits of slime and resin within. Pieces of debris keep you from getting a closer look."
+	icon = 'icons/obj/structures/props/hybrisarandomprops.dmi'
+	icon_state = "maintenancehatch_alt"
+
+/obj/structure/tunnel/maint_tunnel/hybrisa/no_xeno_desc
+	desc = "An entrance to a maintenance tunnel. Pieces of debris keep you from getting a closer look."
+
+/obj/structure/tunnel/maint_tunnel/hybrisa/grate
+	name = "\improper Sewer Manhole"
+	desc = "An entrance to a sewage maintenance tunnel. You can see bits of slime and resin within. Pieces of debris keep you from getting a closer look."
+	icon = 'icons/obj/structures/props/hybrisarandomprops.dmi'
+	icon_state = "wymanhole"
+
+/obj/structure/tunnel/maint_tunnel/hybrisa/grate/no_xeno_desc
+	desc = "An entrance to a sewage maintenance tunnel. Pieces of debris keep you from getting a closer look."

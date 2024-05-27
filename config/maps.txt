@@ -82,3 +82,7 @@ endmap
 map daedalusprison
 	minplayers 50
 endmap
+
+map lv759
+	minplayers 80
+endmap

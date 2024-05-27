@@ -107,3 +107,8 @@
 	icon = 'icons/turf/walls/junkwall.dmi'
 	icon_state = "junkwall-0"
 	base_icon_state = "junkwall"
+
+/turf/closed/wall/r_wall/white_research_wall
+	icon = 'icons/turf/walls/white_research_wall.dmi'
+	icon_state = "white_research_wall-0"
+	base_icon_state = "white_research_wall"
