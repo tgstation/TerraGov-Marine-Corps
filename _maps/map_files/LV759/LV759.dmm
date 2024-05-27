@@ -125482,6 +125482,11 @@
 	dir = 1
 	},
 /area/lv759/indoors/power_plant)
+"xvn" = (
+/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/prop/urban/cavedecor/stalagmite2,
+/turf/open/urbanshale/layer1,
+/area/lv759/indoors/south_west_caves)
 "xvo" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -144085,7 +144090,7 @@ rhm
 rhm
 rhm
 rhm
-vuP
+hJj
 wKx
 unn
 unn
@@ -145585,7 +145590,7 @@ tHg
 unn
 unn
 hJj
-aMc
+xvn
 wKx
 vuP
 unn
