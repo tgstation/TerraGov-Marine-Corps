@@ -123,6 +123,12 @@
 	density = FALSE
 	update_icon()
 
+/obj/machinery/computer/proc/repair()
+	machine_stat &= ~BROKEN
+	density = TRUE
+	durability = initial(durability)
+	update_icon()
+
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
 	text = replacetext(text, "\n", "<BR>")

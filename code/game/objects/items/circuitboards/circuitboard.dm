@@ -58,6 +58,10 @@
 	var/last_configurator = null
 	var/locked = 1
 
+/obj/item/circuitboard/tadpole
+	name = "navigation electronics"
+	desc = "A circuit board used for navigation computers"
+	icon_state = "tadpole"
 
 /obj/item/circuitboard/airlock/interact(mob/user)
 	. = ..()
