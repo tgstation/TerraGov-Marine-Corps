@@ -62623,7 +62623,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lSd" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic.
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest)
 "lSe" = (
