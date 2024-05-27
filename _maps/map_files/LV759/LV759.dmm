@@ -308,7 +308,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/floor/orange_edge{
 	dir = 1
@@ -934,7 +934,6 @@
 /area/lv759/indoors/north_east_caves)
 "ajj" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -1024,12 +1023,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 4;
 	id = "hybrisacheckpoint_center";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_center";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_security/checkpoint_central)
@@ -1094,7 +1093,6 @@
 "akP" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -1205,7 +1203,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/effect/forcefield,
@@ -1291,13 +1289,13 @@
 /area/lv759/indoors/hospital/outgoing{
 	dir = 4;
 	id = "hybrisacheckpoint_center";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "anq" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_center";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_security/checkpoint_central)
@@ -1809,8 +1807,7 @@
 /area/lv759/indoors/botany/botany_mainroom)
 "asJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -2550,7 +2547,6 @@
 	})
 "aBn" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -2580,7 +2576,6 @@
 /area/lv759/indoors/mining_outpost/south)
 "aBT" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/freezer,
@@ -2635,8 +2630,7 @@
 /area/lv759/indoors/garage_reception)
 "aCt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/cargo)
@@ -4019,7 +4013,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
@@ -4027,7 +4021,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5153,7 +5147,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "baR" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -6068,11 +6061,11 @@
 "bkw" = (
 /obj/effect/forcefield{
 	dir = 2;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hangarbay)
@@ -6790,7 +6783,6 @@
 /area/lv759/indoors/north_west_caves)
 "bss" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /obj/effect/urban/decal/dirt,
@@ -7383,7 +7375,6 @@
 /area/lv759/outdoors/caveplateau)
 "bxV" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -7535,7 +7526,6 @@
 /area/lv759/oob)
 "bzE" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating{
@@ -9125,7 +9115,6 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bRE" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -9361,7 +9350,6 @@
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest)
 "bUl" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -9390,7 +9378,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street{
 	dir = 4;
 	id = "hybrisamining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	})
 "bUy" = (
 /obj/structure/rack,
@@ -10516,7 +10504,6 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "cfb" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -10858,8 +10845,7 @@
 /area/lv759/indoors/apartment/northapartments)
 "ciH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	autoname = 1;
-	name = "Reinforced Airlock"
+	name = "\improper Reinforced Airlock"
 	},
 /turf/open/floor/prison{
 	dir = 6
@@ -11542,7 +11528,6 @@
 	pixel_x = -17
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -11851,7 +11836,6 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "crR" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -13909,7 +13893,6 @@
 /area/lv759/indoors/mining_outpost/south)
 "cLo" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -14170,7 +14153,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -14312,7 +14295,6 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -14738,7 +14720,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "cTk" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -14982,7 +14963,6 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "cVa" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -16229,13 +16209,13 @@
 /obj/effect/urban/decal/dirt{
 	dir = 4;
 	id = "hybrisamining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -17272,7 +17252,6 @@
 "drp" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -17668,7 +17647,6 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "dvf" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -18695,7 +18673,6 @@
 "dGy" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -18984,7 +18961,7 @@
 /area/lv759/indoors/north_west_caves{
 	dir = 2;
 	id = "hybrisagarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	})
 "dJb" = (
 /obj/structure/rack,
@@ -19227,7 +19204,6 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -19289,7 +19265,7 @@
 "dLB" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/engineering{
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/mining_outpost/processing)
@@ -19734,7 +19710,6 @@
 	},
 /obj/effect/urban/decal/bloodtrail,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -20460,7 +20435,7 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2{
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "dXR" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco3{
@@ -20924,7 +20899,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
@@ -20932,7 +20907,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -21685,7 +21660,7 @@
 	},
 /obj/machinery/door_control{
 	id = "hybrisameridianfactory_1";
-	name = "Factory Floor Shutters button";
+	name = "\improper Factory Floor Shutters button";
 	pixel_x = 24;
 	pixel_y = 11
 	},
@@ -21759,7 +21734,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 8
@@ -21811,7 +21786,6 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ekf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -21945,7 +21919,6 @@
 /area/lv759/indoors/west_caves)
 "elu" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -22522,7 +22495,6 @@
 /area/lv759/indoors/hospital/central_hallway)
 "erq" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/urban_plating,
@@ -22896,7 +22868,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 8;
 	name = "autoname reinforced"
 	},
@@ -23257,7 +23228,6 @@
 "eyz" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -23926,14 +23896,14 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/structure/closet/crate/trashcart{
 	desc = "A heavy, metal foodcart with wheels.";
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_x = 3;
 	pixel_y = -9
 	},
@@ -24931,13 +24901,13 @@
 /area/lv759/indoors/electical_systems/substation3{
 	dir = 2;
 	id = "hybrisagarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	})
 "ePk" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
@@ -25683,7 +25653,6 @@
 	layer = 5
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -25793,7 +25762,7 @@
 /area/lv759/indoors/wy_research_complex_entrance{
 	dir = 4;
 	id = "hybrisamining_northeast2";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	})
 "eYN" = (
 /obj/effect/forcefield,
@@ -25803,7 +25772,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmining_northeast2";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -26217,7 +26186,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "fcU" = (
 /obj/structure/prop/mainship/cannon_cables{
-	name = "Cables"
+	name = "\improper Cables"
 	},
 /obj/structure/prop/urban/misc/fake/wire/blue,
 /obj/machinery/light/small/blue{
@@ -29022,17 +28991,16 @@
 	},
 /obj/effect/forcefield{
 	dir = 2;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "fEz" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -29125,7 +29093,6 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "fFj" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -30225,7 +30192,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1{
 	desc = "A tray of standard UA food. Stale cornbread, tomato paste and some green goop fill this tray.";
-	name = "UA Prepared Meal (cornbread)";
+	name = "\improper UA Prepared Meal (cornbread)";
 	pixel_y = 9
 	},
 /turf/open/floor/urban/metal/greenmetalfull,
@@ -32839,7 +32806,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "gry" = (
 /obj/structure/platform/urban/rockdark{
@@ -33059,7 +33026,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "gty" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/freezer,
@@ -34012,7 +33978,6 @@
 /area/lv759/indoors/derelict_ship)
 "gCE" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -34663,11 +34628,11 @@
 "gIJ" = (
 /obj/effect/forcefield{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/southeastexit)
@@ -36619,7 +36584,7 @@
 "hcI" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/southeastexit)
@@ -38503,7 +38468,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "hvt" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	dir = 1;
 	name = "autoname"
 	},
@@ -38891,7 +38855,6 @@
 "hzk" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -39569,7 +39532,6 @@
 "hEP" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -39927,12 +39889,12 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4;
 	id = "hybrisacheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 8
@@ -40565,7 +40527,6 @@
 	layer = 5
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -40605,7 +40566,7 @@
 /area/lv759/indoors/garage_reception{
 	dir = 4;
 	id = "hybrisacheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "hQb" = (
 /turf/open/floor/prison{
@@ -41888,8 +41849,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ieg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant/south_hallway)
@@ -42961,7 +42921,6 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "inp" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -44284,7 +44243,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/wire/red{
@@ -44302,7 +44261,6 @@
 /area/lv759/oob)
 "izC" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/officetiles,
@@ -45203,7 +45161,7 @@
 /obj/effect/urban/decal/tiretrack{
 	dir = 4;
 	id = "hybrisameridianfactory_1";
-	name = "Factory Floor Shutters";
+	name = "\improper Factory Floor Shutters";
 	pixel_y = 12
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -45212,7 +45170,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmeridianfactory_1";
-	name = "Factory Floor Shutters"
+	name = "\improper Factory Floor Shutters"
 	},
 /turf/open/floor/prison{
 	dir = 4
@@ -45905,9 +45863,8 @@
 /area/lv759/indoors/wy_research_complex/changingroom)
 "iRi" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
-	autoname = 1;
 	dir = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -45939,7 +45896,6 @@
 /area/lv759/indoors/botany/botany_greenhouse)
 "iRo" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -46019,8 +45975,7 @@
 /area/lv759/indoors/hospital/emergency_room)
 "iRQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant/geothermal_generators)
@@ -48087,8 +48042,7 @@
 /area/lv759/indoors/recycling_plant)
 "jnS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	autoname = 1;
-	name = "Reinforced Airlock"
+	name = "\improper Reinforced Airlock"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
@@ -48249,12 +48203,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2;
 	id = "hybrisagarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
@@ -48315,7 +48269,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles Corn-bread. Disgusting.";
-	name = "W-Y Prepared Meal (cornbread)"
+	name = "\improper W-Y Prepared Meal (cornbread)"
 	},
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 7;
@@ -48739,7 +48693,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
@@ -49360,7 +49314,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/wire/red{
@@ -50479,7 +50433,7 @@
 /area/lv759/indoors/north_caves)
 "jLW" = (
 /obj/structure/prop/mainship/cannon_cable_connector{
-	name = "Cable connector"
+	name = "\improper Cable connector"
 	},
 /obj/structure/prop/urban/misc/fake/wire/blue{
 	pixel_x = -4
@@ -51437,7 +51391,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "jVU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2{
-	name = "WY-LWI StarGlider SG-200 cargo hold"
+	name = "\improper WY-LWI StarGlider SG-200 cargo hold"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/spaceport/starglider)
@@ -52025,7 +51979,7 @@
 /area/lv759/indoors/hospital/east_hallway)
 "kbZ" = (
 /obj/structure/prop/propplaceholder{
-	name = "Control Module";
+	name = "\improper Control Module";
 	pixel_y = 15
 	},
 /turf/open/floor/marked,
@@ -52188,7 +52142,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "kdC" = (
 /turf/closed/wall/urban/colony/engineering,
@@ -53195,7 +53149,6 @@
 /obj/effect/urban/decal/dirt_2,
 /obj/effect/urban/decal/dirt_2,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -53684,7 +53637,6 @@
 /area/lv759/indoors/spaceport/cargo)
 "krm" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -53806,7 +53758,6 @@
 /area/lv759/outdoors/caveplateau)
 "krW" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/officetiles,
@@ -54277,12 +54228,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2;
 	id = "hybrisagarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
@@ -54478,7 +54429,6 @@
 /area/lv759/indoors/apartment/westfoyer)
 "kwC" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -54973,7 +54923,6 @@
 /area/lv759/indoors/meridian/meridian_office)
 "kBA" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -55663,20 +55612,20 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/monorail,
@@ -56095,7 +56044,6 @@
 /area/lv759/indoors/apartment/eastbedroomsstorage)
 "kMH" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -56177,7 +56125,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "kNv" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -56497,7 +56444,6 @@
 /area/lv759/indoors/power_plant/power_storage)
 "kQP" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -57765,7 +57711,7 @@
 "ldk" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
@@ -58461,7 +58407,6 @@
 /area/lv759/indoors/hospital/paramedics_garage)
 "lkw" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -58962,7 +58907,6 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "loQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -59632,12 +59576,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2;
 	id = "hybrisagarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_1";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
@@ -61062,12 +61006,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2;
 	id = "hybrisagarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
@@ -61476,7 +61420,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lNm" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -62060,13 +62003,13 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "lSc" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 10
@@ -62475,7 +62418,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street{
 	dir = 4;
 	id = "hybrisamining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	})
 "lWh" = (
 /obj/effect/urban/decal/dirt,
@@ -62527,11 +62470,11 @@
 "lWG" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
@@ -63495,7 +63438,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
@@ -65000,7 +64943,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/urban/dropship/dropship4,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -67988,7 +67931,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
@@ -69535,28 +69478,28 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart1";
 	icon_opened = "foodcart1_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles a Pizza. Disgusting.";
-	name = "W-Y Prepared Meal (pizza)"
+	name = "\improper W-Y Prepared Meal (pizza)"
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles Chicken. Disgusting.";
-	name = "W-Y Prepared Meal (chicken)"
+	name = "\improper W-Y Prepared Meal (chicken)"
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles Chicken. Disgusting.";
-	name = "W-Y Prepared Meal (chicken)"
+	name = "\improper W-Y Prepared Meal (chicken)"
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles Corn-bread. Disgusting.";
-	name = "W-Y Prepared Meal (cornbread)"
+	name = "\improper W-Y Prepared Meal (cornbread)"
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles Corn-bread. Disgusting.";
-	name = "W-Y Prepared Meal (cornbread)"
+	name = "\improper W-Y Prepared Meal (cornbread)"
 	},
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /obj/item/reagent_containers/food/drinks/cans/cola,
@@ -69599,7 +69542,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "nrw" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating{
@@ -70507,12 +70449,12 @@
 	dir = 6
 	},
 /area/lv759/indoors/hospital/emergency_room{
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "nAN" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_research_complex_entrance)
@@ -71625,8 +71567,7 @@
 /area/lv759/indoors/power_plant)
 "nMi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/fusion_generators)
@@ -72029,7 +71970,7 @@
 "nPU" = (
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1{
 	desc = "A tray of standard UA food. Stale cornbread, tomato paste and some green goop fill this tray.";
-	name = "UA Prepared Meal (cornbread)";
+	name = "\improper UA Prepared Meal (cornbread)";
 	pixel_y = 9
 	},
 /obj/item/tool/kitchen/utensil/pknife,
@@ -72999,7 +72940,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nZb" = (
 /obj/structure/prop/mainship/cannon_cable_connector{
-	name = "Cable connector"
+	name = "\improper Cable connector"
 	},
 /obj/structure/prop/urban/misc/fake/wire/red{
 	pixel_x = 4
@@ -74029,7 +73970,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ohV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -75837,7 +75777,6 @@
 /area/lv759/indoors/apartment/westshowers)
 "oyU" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -76403,7 +76342,6 @@
 	pixel_x = -17
 	},
 /obj/machinery/door/airlock/mainship/security{
-	autoname = 1;
 	dir = 1;
 	name = "autoname"
 	},
@@ -76418,7 +76356,6 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "oEh" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -76552,7 +76489,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "oEZ" = (
 /obj/structure/prop/propplaceholder{
-	name = "Large Cables";
+	name = "\improper Large Cables";
 	pixel_y = 12
 	},
 /turf/open/urbanshale/layer1,
@@ -77843,14 +77780,14 @@
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
 	layer = 6;
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/structure/closet/crate/trashcart{
 	desc = "A heavy, metal foodcart with wheels.";
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /turf/open/floor/officetiles,
@@ -78182,7 +78119,6 @@
 /area/lv759/indoors/north_west_caves)
 "oTG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -78450,7 +78386,7 @@
 "oVV" = (
 /obj/machinery/door/poddoor/urban/white{
 	dir = 2;
-	name = "WY-LWI Horizon Runner HR-150 Cargo Hold"
+	name = "\improper WY-LWI Horizon Runner HR-150 Cargo Hold"
 	},
 /turf/open/floor/mainship,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -78663,13 +78599,13 @@
 /area/lv759/indoors/spaceport/kitchen{
 	dir = 4;
 	id = "hybrisacheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "oYS" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 4
@@ -79356,11 +79292,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway{
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "pfs" = (
 /obj/machinery/door/poddoor/urban/white{
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
@@ -79412,14 +79348,14 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/wy_research_complex_entrance{
 	dir = 8;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "pfZ" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
 	indestructible = 1;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -79686,7 +79622,6 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "piz" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -79976,7 +79911,6 @@
 /area/lv759/indoors/power_plant)
 "plA" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -82939,14 +82873,14 @@
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
 	layer = 6;
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/structure/closet/crate/trashcart{
 	desc = "A heavy, metal foodcart with wheels.";
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
@@ -82955,7 +82889,7 @@
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
 	layer = 1;
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_x = 3;
 	pixel_y = 17
 	},
@@ -83209,7 +83143,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "pPO" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/plating,
@@ -84176,7 +84109,6 @@
 /area/lv759/indoors/apartment/westentertainment)
 "pYK" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -85530,7 +85462,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "qnX" = (
 /obj/machinery/door/airlock/mainship/security{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/prison,
@@ -85560,7 +85491,6 @@
 	},
 /obj/effect/forcefield,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -85861,7 +85791,6 @@
 /area/lv759/oob)
 "qqY" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	dir = 1;
 	name = "autoname"
 	},
@@ -87015,7 +86944,6 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "qBz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -88446,7 +88374,7 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "qOO" = (
 /obj/structure/prop/mainship/cannon_cable_connector{
-	name = "Cable connector"
+	name = "\improper Cable connector"
 	},
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/plain,
@@ -90381,7 +90309,6 @@
 /area/lv759/indoors/tcomms_northwest)
 "rhG" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -90761,7 +90688,7 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/central_streets{
-	name = "WY-LWI Horizon Runner HR-150 Cargo Hold"
+	name = "\improper WY-LWI Horizon Runner HR-150 Cargo Hold"
 	})
 "rla" = (
 /obj/structure/platform{
@@ -90927,13 +90854,13 @@
 /area/lv759/outdoors/colony_streets/north_west_street{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "rmJ" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -91479,7 +91406,6 @@
 /area/lv759/indoors/meridian/meridian_showroom)
 "rrU" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/officetiles,
@@ -91908,7 +91834,6 @@
 /area/lv759/indoors/bar)
 "rxy" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -93199,7 +93124,7 @@
 "rHr" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
-	name = "WY-LWI StarGlider SG-200 cargo hold"
+	name = "\improper WY-LWI StarGlider SG-200 cargo hold"
 	},
 /turf/open/shuttle/dropship/three,
 /area/lv759/indoors/spaceport/starglider)
@@ -93472,15 +93397,13 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rKb" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/weyyu_office/breakroom)
 "rKf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	autoname = 1;
-	name = "Reinforced Airlock"
+	name = "\improper Reinforced Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/reception)
@@ -93519,7 +93442,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "rKF" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	locked = 1;
 	name = "autoname reinforced"
 	},
@@ -94443,7 +94365,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/effect/forcefield,
@@ -94668,13 +94590,13 @@
 /area/lv759/outdoors/caveplateau{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "rUl" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_security/checkpoint_northwest)
@@ -95346,7 +95268,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_east_caves{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "saY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -95354,7 +95276,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 10
@@ -95424,7 +95346,6 @@
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "sbF" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -95577,7 +95498,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -95804,7 +95725,6 @@
 "sfB" = (
 /obj/effect/forcefield,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	locked = 1
 	},
 /turf/open/floor/prison{
@@ -96318,7 +96238,6 @@
 	pixel_x = 29
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -96550,7 +96469,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles a Pizza. Disgusting.";
-	name = "W-Y Prepared Meal (pizza)"
+	name = "\improper W-Y Prepared Meal (pizza)"
 	},
 /obj/item/trash/plate{
 	pixel_x = 1;
@@ -97173,7 +97092,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "sso" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -97448,12 +97366,12 @@
 	dir = 10
 	},
 /area/lv759/outdoors/colony_streets/south_west_street{
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "suG" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -98007,7 +97925,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
@@ -98231,7 +98149,6 @@
 /area/lv759/outdoors/landing_zone_1)
 "sAB" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -99129,7 +99046,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -100508,7 +100425,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles a Pizza. Disgusting.";
-	name = "W-Y Prepared Meal (pizza)"
+	name = "\improper W-Y Prepared Meal (pizza)"
 	},
 /obj/item/reagent_containers/food/drinks/cans/beer,
 /turf/open/floor/officetiles,
@@ -101508,7 +101425,6 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "tga" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilebeige,
@@ -101575,13 +101491,13 @@
 /area/lv759/indoors/wy_research_complex/hangarbay{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "tgC" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_security/checkpoint_northeast)
@@ -101839,7 +101755,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "tjN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -102615,7 +102530,6 @@
 /area/lv759/indoors/weyyu_office/vip)
 "tqY" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
-	autoname = 1;
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -104065,7 +103979,6 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "tHn" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/prison{
@@ -104074,7 +103987,6 @@
 /area/lv759/indoors/meridian/meridian_restroom)
 "tHo" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -104983,7 +104895,6 @@
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "tPb" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -105803,7 +105714,6 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "tWV" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /obj/structure/cable{
@@ -106098,7 +106008,6 @@
 "tZl" = (
 /obj/effect/forcefield,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -106435,14 +106344,13 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_2";
-	name = "Garage"
+	name = "\improper Garage"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
 "ucC" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -106625,7 +106533,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "udQ" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/officetiles,
@@ -107592,20 +107499,20 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/monorail,
@@ -109749,7 +109656,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "uGD" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	locked = 1;
 	name = "autoname reinforced"
 	},
@@ -110689,13 +110595,13 @@
 /obj/structure/sign/safety/hazard{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown";
+	name = "\improper Lockdown";
 	pixel_x = -17
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_security/checkpoint_northeast)
@@ -112526,7 +112432,7 @@
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "vfP" = (
 /obj/structure/prop/mainship/cannon_cables{
-	name = "Cables"
+	name = "\improper Cables"
 	},
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/five,
@@ -112811,7 +112717,7 @@
 /area/lv759/outdoors/colony_streets/north_street{
 	dir = 4;
 	id = "hybrisameridianfactory_1";
-	name = "Factory Floor Shutters"
+	name = "\improper Factory Floor Shutters"
 	})
 "vjO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -112820,7 +112726,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmeridianfactory_1";
-	name = "Factory Floor Shutters"
+	name = "\improper Factory Floor Shutters"
 	},
 /turf/open/floor/prison{
 	dir = 4
@@ -113094,7 +113000,6 @@
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "vlA" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -113658,7 +113563,6 @@
 "vqW" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -114270,7 +114174,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "vwb" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "Restroom"
+	name = "\improper Restroom"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east_dorms)
@@ -115943,9 +115847,8 @@
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "vLN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	autoname = 1;
 	dir = 2;
-	name = "Airlock";
+	name = "\improper Airlock";
 	req_one_access = null
 	},
 /obj/effect/turf_decal/medical_decals/triage{
@@ -116804,11 +116707,11 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	locked = 1;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/white{
 	dir = 4;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
@@ -116870,7 +116773,7 @@
 "vUQ" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/cargo)
@@ -117149,7 +117052,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "vWT" = (
 /obj/structure/prop/mainship/cannon_cable_connector{
-	name = "Cable connector"
+	name = "\improper Cable connector"
 	},
 /obj/structure/prop/urban/misc/fake/wire/blue,
 /obj/effect/forcefield,
@@ -117474,7 +117377,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmining_northeast1";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -117503,7 +117406,7 @@
 /area/lv759/outdoors/colony_streets/north_street{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "wad" = (
 /obj/item/stack/rods,
@@ -117931,7 +117834,7 @@
 /area/lv759/indoors/hospital/paramedics_garage)
 "wea" = (
 /obj/structure/prop/mainship/cannon_cable_connector{
-	name = "Cable connector"
+	name = "\improper Cable connector"
 	},
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/five,
@@ -119295,7 +119198,6 @@
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "wro" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -119694,7 +119596,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
@@ -119702,7 +119604,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -119771,7 +119673,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/machinery/light/small/blue{
@@ -120257,13 +120159,13 @@
 /obj/effect/urban/decal/checkpoint_decal{
 	dir = 4;
 	id = "hybrisacheckpoint_center";
-	name = "Lockdown";
+	name = "\improper Lockdown";
 	pixel_x = -6
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_center";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_security/checkpoint_central)
@@ -120500,7 +120402,6 @@
 /area/lv759/indoors/central_caves)
 "wCG" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -120523,7 +120424,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wCL" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -120834,14 +120734,14 @@
 /area/lv759/indoors/power_plant/south_hallway{
 	dir = 4;
 	id = "hybrisamining_northeast2";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	})
 "wFf" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanmining_northeast2";
-	name = "Checkpoint Lock"
+	name = "\improper Checkpoint Lock"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -120963,7 +120863,6 @@
 /area/lv759/indoors/mining_outpost/north)
 "wGJ" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -121548,7 +121447,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart1";
 	icon_opened = "foodcart1_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/kitchen)
@@ -123161,7 +123060,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart";
+	name = "\improper food cart";
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
@@ -123169,7 +123068,7 @@
 	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
 	icon_closed = "foodcart2";
 	icon_opened = "foodcart2_open";
-	name = "food cart"
+	name = "\improper food cart"
 	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
@@ -123200,7 +123099,7 @@
 /obj/structure/prop/mainship/missile_tube{
 	color = "grey";
 	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
-	name = "massive vent";
+	name = "\improper massive vent";
 	pixel_x = -15
 	},
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
@@ -123624,7 +123523,6 @@
 /area/lv759/indoors/power_plant/telecomms)
 "xeU" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -124025,7 +123923,6 @@
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "xiY" = (
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 2
 	},
 /turf/open/floor/plating/kutjevo,
@@ -124740,12 +124637,12 @@
 /obj/structure/window/framed/urban/marshalls/reinforced{
 	dir = 4;
 	id = "Office Complex 2";
-	name = "Marshal Office Complex Shutters"
+	name = "\improper Marshal Office Complex Shutters"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 2";
-	name = "Marshal Office Complex Shutters"
+	name = "\improper Marshal Office Complex Shutters"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/garage)
@@ -125405,7 +125302,6 @@
 "xtY" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilewhite,
@@ -126029,12 +125925,12 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4;
 	id = "hybrisacheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbancheckpoint_west";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 4
@@ -126144,7 +126040,6 @@
 "xzO" = (
 /obj/effect/forcefield,
 /obj/machinery/door/airlock/mainship/generic{
-	autoname = 1;
 	locked = 1
 	},
 /turf/open/floor/plating,
@@ -126487,7 +126382,6 @@
 /area/lv759/indoors/weymart)
 "xCa" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	dir = 1;
 	name = "autoname reinforced"
 	},
@@ -126592,13 +126486,13 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "xCP" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -126992,7 +126886,6 @@
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "xGq" = (
 /obj/machinery/door/airlock/mainship/maint{
-	autoname = 1;
 	name = "autoname reinforced"
 	},
 /turf/open/floor/plating,
@@ -127680,9 +127573,8 @@
 "xMr" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/engineering{
-	autoname = 1;
 	dir = 2;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_workshop_storage)
@@ -127789,8 +127681,7 @@
 /area/lv759/indoors/apartment/eastfoyer)
 "xND" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
-	autoname = 1;
-	name = "Airlock"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant/gas_generators)
@@ -127942,7 +127833,7 @@
 "xPl" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
-	name = "WY-LWI Horizon Runner HR-150 cockpit"
+	name = "\improper WY-LWI Horizon Runner HR-150 cockpit"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -129607,7 +129498,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "ygv" = (
 /obj/machinery/door/airlock/mainship/security{
-	autoname = 1;
 	name = "autoname"
 	},
 /turf/open/floor/prison,
@@ -129904,13 +129794,13 @@
 /area/lv759/outdoors/colony_streets/north_street{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "yjr" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -130358,13 +130248,13 @@
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
 	dir = 2;
 	id = "hybrisacheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	})
 "ylX" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
-	name = "Lockdown"
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_security/checkpoint_east)
