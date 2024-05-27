@@ -3280,7 +3280,6 @@
 "aHD" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/effect/forcefield,
 /turf/open/floor/plating,
 /area/lv759/oob)
@@ -7209,7 +7208,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	dir = 1;
 	layer = 3.1
@@ -9545,7 +9543,6 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
@@ -24757,10 +24754,8 @@
 	},
 /area/lv759/indoors/power_plant/telecomms)
 "eGV" = (
-/obj/structure/cable,
 /obj/structure/cable{
 	color = "#550d0d";
-	level = 2
 	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/propplaceholder{
@@ -37743,7 +37738,6 @@
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
 	},
@@ -44358,7 +44352,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/forcefield,
 /turf/open/floor/plating,
@@ -53554,7 +53547,6 @@
 /obj/structure/platform{
 	layer = 3.1
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/prop/urban/fakeplatforms/platform3{
 	dir = 4
@@ -62802,10 +62794,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "lQb" = (
-/obj/structure/cable,
 /obj/structure/cable{
 	color = "#550d0d";
-	level = 2
 	},
 /obj/structure/prop/propplaceholder,
 /turf/open/floor/plating,
@@ -69973,7 +69963,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "ndM" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/computer3frame,
 /obj/structure/prop/urban/misc/fake/wire/blue{
 	dir = 4;
@@ -75218,7 +75207,6 @@
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_reception)
 "oaV" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/item/tool/analyzer,
 /turf/open/floor/plating{
@@ -85948,10 +85936,8 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "pYp" = (
-/obj/structure/cable,
 /obj/structure/cable{
 	color = "550d0d";
-	layer = 5
 	},
 /obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
@@ -87048,7 +87034,6 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/platform{
@@ -91748,7 +91733,6 @@
 	name = "Pipe"
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "rct" = (
@@ -92953,7 +92937,6 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rpB" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/computer3frame,
 /obj/structure/prop/urban/misc/fake/wire/blue{
@@ -111264,7 +111247,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	dir = 1;
 	layer = 3.1
@@ -121509,7 +121491,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
 	},
@@ -121903,13 +121884,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
 /obj/item/tool/wrench{
 	pixel_x = -8;
 	pixel_y = 10
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
@@ -128482,7 +128460,6 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
