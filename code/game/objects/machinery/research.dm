@@ -38,7 +38,6 @@
 	var/static/list/rewards_lists = list(
 		RES_MONEY = list(
 			RES_TIER_BASIC = list(
-				/obj/item/research_product/money/basic,
 				/obj/item/research_product/money/common,
 			),
 			RES_TIER_COMMON = list(
@@ -55,7 +54,6 @@
 		),
 		RES_XENO = list(
 			RES_TIER_BASIC = list(
-				/obj/item/research_product/money/basic,
 				/obj/item/research_product/money/common,
 			),
 			RES_TIER_COMMON = list(

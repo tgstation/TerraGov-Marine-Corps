@@ -30,9 +30,9 @@
 ///Excavation rewards buckets
 /datum/excavation_rewards
 	///Min amount of rewards
-	var/rewards_min = 2
+	var/rewards_min = 1
 	///Max amount of rewards
-	var/rewards_max = 4
+	var/rewards_max = 2
 	///Minimaps icon name of the excavation site
 	var/map_icon = "excav_money"
 	///List of rewards for the excavation
@@ -48,8 +48,8 @@
 		new typepath(excav_site.loc)
 
 /datum/excavation_rewards/xeno
-	rewards_min = 2
-	rewards_max = 4
+	rewards_min = 1
+	rewards_max = 2
 	map_icon = "excav_xeno"
 	rewards = list(
 		/obj/item/research_resource/xeno,
