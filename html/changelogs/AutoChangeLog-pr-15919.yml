@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - rscadd: "Adds Tadpole circuits to requsitions for 750 points each, which can be used to repair the Tad after it's been disabled"
