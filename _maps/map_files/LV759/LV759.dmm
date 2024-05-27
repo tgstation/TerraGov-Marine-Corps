@@ -109300,11 +109300,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo{
-	dir = 8;
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
+/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "urv" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
