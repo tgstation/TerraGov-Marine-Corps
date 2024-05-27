@@ -37559,7 +37559,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
 	},
@@ -40153,7 +40152,6 @@
 	desc = null;
 	name = "floor panel"
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/item/clothing/head/hardhat/dblue{
 	pixel_x = -3;
@@ -86631,7 +86629,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/floorprops/grate,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/platform{
 	layer = 3.1
 	},
@@ -121350,8 +121347,6 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "wIM" = (
 /obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
 /obj/item/tool/wrench{
 	pixel_x = -8;
 	pixel_y = 10
@@ -122390,7 +122385,6 @@
 /obj/item/stack/cable_coil,
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
