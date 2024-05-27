@@ -71,7 +71,6 @@
 /obj/structure/barricade/handrail/urban/road/plastic
 	name = "plastic road barrier"
 	icon_state = "plasticroadbarrierred"
-	barricade_hitsound = 'sound/effects/thud.ogg'
 
 /obj/structure/barricade/handrail/urban/road/plastic/red
 	name = "plastic road barrier"
@@ -90,10 +89,11 @@
 /obj/structure/barricade/handrail/urban/road/wood
 	name = "wood road barrier"
 	icon_state = "roadbarrierwood"
-	barricade_hitsound = 'sound/effects/woodhit.ogg'
+
 /obj/structure/barricade/handrail/urban/road/wood/orange
 	name = "wood road barrier"
 	icon_state = "roadbarrierwood"
+
 /obj/structure/barricade/handrail/urban/road/wood/blue
 	name = "wood road barrier"
 	icon_state = "roadbarrierpolice"

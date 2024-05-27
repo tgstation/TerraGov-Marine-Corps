@@ -4,8 +4,6 @@
 	name = "LV-759 Hybrisa Prospera"
 	icon = 'icons/turf/hybrisareas.dmi'
 	icon_state = "hybrisa"
-	can_build_special = TRUE
-	powernet_name = "ground"
 	minimap_color = MINIMAP_AREA_COLONY
 
 //parent types
@@ -14,34 +12,29 @@
 	name = "Hybrisa - Indoors"
 	icon_state = "cliff_blocked"//because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_METAL
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
-	ambience_exterior = AMBIENCE_HYBRISA_INTERIOR
+
 /area/lv759/outdoors
 	name = "Hybrisa - Outdoors"
 	icon_state = "cliff_blocked"//because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
-	soundscape_playlist = SCAPE_PL_LV759_OUTDOORS
-	ambience_exterior = AMBIENCE_CITY
-	soundscape_interval = 25
+
 /area/lv759/oob
 	name = "Out Of Bounds"
 	icon_state = "oob"
-	ceiling = CEILING_MAX
-	is_resin_allowed = FALSE
-	flags_area = AREA_NOTUNNEL
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 // Landing Zone 1
 /area/lv759/outdoors/landing_zone_1
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One"
 	icon_state = "medical_lz1"
-	is_resin_allowed =  FALSE
-	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 	ceiling = CEILING_NONE
+
 /area/lv759/indoors/landing_zone_1/flight_control_room
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One - Flight Control Room"
 	icon_state = "hybrisa"
 	ceiling = CEILING_METAL
+
 /area/lv759/indoors/landing_zone_1/lz1_console
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One - Dropship Alamo Console"
 	icon_state = "hybrisa"
@@ -52,10 +45,9 @@
 /area/lv759/outdoors/landing_zone_2
 	name = "KMCC Interstellar Freight Hub - Landing Zone Two"
 	icon_state = "mining_lz2"
-	is_resin_allowed =  FALSE
-	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 	ceiling = CEILING_NONE
+
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room
 	name = "KMCC Interstellar Freight Hub - Flight Control Room"
 	icon_state = "hybrisa"
@@ -85,10 +77,12 @@
 	icon_state = "hybrisa"
 	requires_power = FALSE
 	ceiling = CEILING_METAL
+
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center"
 	icon_state = "mining_cargo"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center - Maintenance"
 	icon_state = "mining"
@@ -98,78 +92,61 @@
 /area/lv759/indoors/derelict_ship
 	name = "Derelict Ship"
 	icon_state = "derelictship"
-	ceiling = CEILING_MAX
-	flags_area = AREA_NOTUNNEL
-	ambience_exterior = AMBIENCE_DERELICT
-	soundscape_playlist = SCAPE_PL_LV759_DERELICTSHIP
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 // Caves
 /area/lv759/indoors/wy_research_complex_entrance
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES_ALARM
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/west_caves
 	name = "Caverns - West"
 	icon_state = "caves_west"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
+
 /area/lv759/indoors/west_caves_alarm
 	name = "Caverns - West"
 	icon_state = "caves_west"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES_ALARM
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
+
 /area/lv759/indoors/east_caves
 	name = "Caverns - East"
 	icon_state = "caves_east"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/south_caves
 	name = "Caverns - South"
 	icon_state = "caves_south"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/south_east_caves
 	name = "Caverns - Southeast"
 	icon_state = "caves_southeast"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/south_west_caves
 	name = "Caverns - Southwest"
 	icon_state = "caves_southwest"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/south_west_caves_alarm
 	name = "Caverns - Southwest"
 	icon_state = "caves_southwest"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES_ALARM
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/north_west_caves
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/outdoors/north_west_caves_outdoors
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
 	ceiling = CEILING_NONE
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
+
 /area/lv759/indoors/north_east_caves
 	name = "Caverns - Northeast"
 	icon_state = "caves_northeast"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
+
 /area/lv759/indoors/north_caves
 	name = "Caverns - North"
 	icon_state = "caves_north"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_DEEPCAVES
+
 /area/lv759/indoors/central_caves
 	name = "Caverns - Central"
 	icon_state = "caves_central"
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
 
 
 // Caves Central Plateau
@@ -177,14 +154,13 @@
 	name = "Caverns - Plateau"
 	icon_state = "caves_plateau"
 	ceiling = CEILING_NONE
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_PLATEAU_OUTDOORS
 
 // Colony Streets
 /area/lv759/outdoors/colony_streets
 	name = "Colony Streets"
 	icon_state = "colonystreets_north"
 	ceiling = CEILING_NONE
+
 /area/lv759/outdoors/colony_streets/central_streets
 	name = "Central Street - West"
 	icon_state = "colonystreets_west"
@@ -205,8 +181,7 @@
 	name = "Colony Streets - Southwest - WY Checkpoint Passthrough"
 	icon_state = "colonystreets_southwest"
 	ceiling = CEILING_NONE
-	ambience_exterior = AMBIENCE_HYBRISA_CAVES
-	soundscape_playlist = SCAPE_PL_LV759_CAVES
+
 /area/lv759/outdoors/colony_streets/north_west_street
 	name = "Colony Streets - Northwest"
 	icon_state = "colonystreets_northwest"
@@ -747,7 +722,7 @@
 	name = "Weymart"
 	icon_state = "weymart"
 	minimap_color = MINIMAP_AREA_COMMAND
-	ambience_exterior = AMBIENCE_WEYMART
+
 /area/lv759/indoors/weymart/backrooms
 	name = "Weymart - Backrooms"
 	icon_state = "weymartbackrooms"
@@ -779,9 +754,7 @@
 /area/lv759/indoors/hobosecret
 	name = "Hidden Hobo Haven"
 	icon_state = "hobo"
-	ceiling = CEILING_REINFORCED_METAL
-	is_resin_allowed = FALSE
-	flags_area = AREA_NOTUNNEL
+	ceiling = CEILING_METAL
 
 // Nanotrasen Advanced Bio-Genomic Research Complex
 
@@ -789,138 +762,111 @@
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/lv759/indoors/wy_research_complex/medical_annex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/reception
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Reception & Administration"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/cargo
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/researchanddevelopment
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/mainlabs
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/xenobiology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_2
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/weaponresearchlab
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/weaponresearchlabtesting
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/xenoarcheology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/janitor
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/cafeteria
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/dormsfoyer
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms Foyer"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/dormsbedroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/securitycommand
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/securityarmory
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Armory"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hangarbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwaynorth
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwayeast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwaycentral
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/southeastexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB_HALLWAY
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS
+
 /area/lv759/indoors/wy_research_complex/changingroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Locker Room"
 	icon_state = "wylab"
-	ambience_exterior = AMBIENCE_LAB
-	soundscape_playlist = SCAPE_PL_LV759_INDOORS

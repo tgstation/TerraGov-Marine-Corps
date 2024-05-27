@@ -170,8 +170,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tripod_lamp"
 	light_range = 6//pretty good
-	w_class = SIZE_LARGE
-	on = 1
 
 /obj/item/device/flashlight/lamp/tripod/grey
 	icon_state = "tripod_lamp_grey"

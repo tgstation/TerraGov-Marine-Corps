@@ -340,7 +340,6 @@
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	apply_transform(turn(transform,rand(0,360)))
 
 // Cuppa Joes no random axis
 /obj/item/trash/cuppa_joes_static/lid

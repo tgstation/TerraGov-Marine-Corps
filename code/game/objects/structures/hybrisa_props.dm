@@ -9,7 +9,7 @@
 /obj/structure/prop/urban/vehicles
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 	icon_state = "SUV"
-	health = 3000
+	max_integrity = 3000
 	var/damage_state = 0
 	var/brute_multiplier = 1
 
@@ -17,17 +17,17 @@
 	user.animation_attack_on(src)
 	take_damage( rand(user.melee_damage_lower, user.melee_damage_upper) * brute_multiplier)
 	playsound(src, 'sound/effects/metalscrape.ogg', 25, 1)
-	if(health <= 0)
-		user.visible_message(SPAN_DANGER("[user] slices [src] apart!"), \
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	if(obj_integrity <= 0)
+		user.visible_message(span_danger("[user] slices [src] apart!"), \
+		span_danger("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	else
-		user.visible_message(SPAN_DANGER("[user] [user.slashes_verb] [src]!"), \
-		SPAN_DANGER("We [user.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		user.visible_message(span_danger("[user] [user.slashes_verb] [src]!"), \
+		span_danger("We [user.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	update_icon()
 	return XENO_ATTACK_ACTION
 
 /obj/structure/prop/urban/vehicles/update_icon()
-	switch(health)
+	switch(obj_integrity)
 		if(2500 to 3000)
 			icon_state = initial(icon_state)
 			return
@@ -45,7 +45,7 @@
 var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/proc/explode(dam, mob/M)
-    src.visible_message(SPAN_DANGER("<B>[src] blows apart!</B>"), null, null, 1)
+    src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
     playsound(loc, 'sound/effects/car_crush.ogg', 25)
     var/turf/Tsec = get_turf(src)
     new /obj/item/stack/rods(Tsec)
@@ -59,9 +59,9 @@ var/damage_state = 0
 
     deconstruct(FALSE)
 /obj/structure/prop/urban/vehicles/proc/take_damage(dam, mob/M)
-    if(health) //Prevents unbreakable objects from being destroyed
-        health -= dam
-        if(health <= 0)
+    if(obj_integrity) //Prevents unbreakable objects from being destroyed
+        obj_integrity -= dam
+        if(obj_integrity <= 0)
             explode()
         else
             update_icon()
@@ -143,8 +143,7 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/128x32_vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 128
-	unslashable = TRUE
-	unacidable = TRUE
+	resistance_flags = RESIST_ALL
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
@@ -173,9 +172,8 @@ var/damage_state = 0
 	icon_state = "SUV"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/suv/suv_1
 	icon_state = "SUV1"
 /obj/structure/prop/urban/vehicles/suv/suv_2
@@ -261,22 +259,16 @@ var/damage_state = 0
 	icon_state = "SUV_damaged"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged1
 	icon_state = "SUV1_damaged"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged2
 	icon_state = "SUV2_damaged"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 
 // small trucks
@@ -288,8 +280,6 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/truck/truck1
 	icon_state = "zentruck2"
@@ -320,8 +310,6 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/largetruck/largetruck1
 	icon_state = "zenithlongtruck2"
@@ -359,8 +347,6 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining
@@ -419,8 +405,6 @@ var/damage_state = 0
 	icon_state = "WYSUV1"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/suv/misc/wy1
 	icon_state = "WYSUV1"
@@ -470,8 +454,6 @@ var/damage_state = 0
 	icon_state = "greyvan"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/van/vandamaged
 	name = "van"
@@ -479,8 +461,6 @@ var/damage_state = 0
 	icon_state = "greyvan_damaged"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/van/vanpizza
 	name = "pizza delivery van"
@@ -488,8 +468,6 @@ var/damage_state = 0
 	icon_state = "pizzavan"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/van/vanmining
 	name = "Kelland Mining van"
@@ -497,8 +475,6 @@ var/damage_state = 0
 	icon_state = "kellandminingvan"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/van/hyperdynevan
 	name = "Hyperdyne van"
@@ -506,8 +482,6 @@ var/damage_state = 0
 	icon_state = "hyperdynevan"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/vehicles/crashedcarsleft
 	name = "car pileup"
@@ -516,8 +490,6 @@ var/damage_state = 0
 	icon_state = "crashedcarsleft"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 	layer = 5
 /obj/structure/prop/urban/vehicles/crashedcarsright
@@ -527,8 +499,6 @@ var/damage_state = 0
 	icon_state = "crashedcarsright"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 	layer = 5
 
@@ -546,8 +516,6 @@ var/damage_state = 0
 	density = TRUE
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1
 	icon_state = "boulder_largedark1"
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2
@@ -562,8 +530,6 @@ var/damage_state = 0
 	density = TRUE
 	bound_height = 32
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1
 	icon_state = "boulderwidedark"
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2
@@ -573,8 +539,6 @@ var/damage_state = 0
 	icon_state = "bouldersmalldark1"
 	desc = "A large rock. It's not cooking anything."
 	icon = 'icons/obj/structures/boulder_small.dmi'
-	unslashable = TRUE
-	unacidable = TRUE
 	density = TRUE
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1
 	icon_state = "bouldersmalldark1"
@@ -737,7 +701,6 @@ var/damage_state = 0
 	icon_state = "blackmetaltable"
 	density = TRUE
 	climbable = TRUE
-	breakable = TRUE
 	bound_height = 32
 	bound_width = 64
 	debris = list(/obj/item/stack/sheet/metal)
@@ -752,10 +715,8 @@ var/damage_state = 0
 	icon_state = "brownlargetable"
 	density = TRUE
 	climbable = TRUE
-	breakable = TRUE
 	bound_height = 32
 	bound_width = 64
-	debris = list(/obj/item/stack/sheet/wood)
 
 /obj/structure/prop/urban/furniture/tables/tablewood/woodtablecomputer
     icon = 'icons/obj/structures/zenithtables.dmi'
@@ -770,8 +731,7 @@ var/damage_state = 0
 	bound_height = 32
 	bound_width = 64
 	climbable = TRUE
-	breakable = TRUE
-	debris = list(/obj/item/stack/sheet/wood)
+
 /obj/structure/prop/urban/furniture/tables/tablegambling
 	name = "gambling table"
 	desc = "A large table used for gambling."
@@ -781,8 +741,6 @@ var/damage_state = 0
 	bound_height = 32
 	bound_width = 64
 	climbable = TRUE
-	breakable = TRUE
-	debris = list(/obj/item/stack/sheet/wood)
 
 // Chairs
 /obj/structure/bed/urban/chairs
@@ -921,9 +879,6 @@ var/damage_state = 0
 	desc = "A giant tube with a hulking monstrosity inside, is this thing alive?"
 	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
 	icon_state = "bigqueencryo1"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 /obj/structure/prop/urban/xenobiology/big/bigleft
 	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
@@ -950,7 +905,6 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "inertegg"
 	unslashable = TRUE
-	indestructible = TRUE
 	layer = 2
 
 // Engineer
@@ -964,9 +918,6 @@ var/damage_state = 0
 	desc = "A Giant Alien life form. Looks like it's been dead a long time. Fossilized. Looks like it's growing out of the chair. Bones are bent outward, like it exploded from inside."
 	icon = 'icons/obj/structures/engineerJockey.dmi'
 	icon_state = "spacejockey"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/urban/engineer/giantpodbroken
@@ -976,9 +927,6 @@ var/damage_state = 0
 	icon_state = "pod_broken"
 	bound_height = 96
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
 /obj/structure/prop/urban/engineer/giantpod
@@ -988,9 +936,6 @@ var/damage_state = 0
 	icon_state = "pod"
 	bound_height = 96
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	density = TRUE
 
 /obj/structure/prop/urban/engineer/giantconsole
@@ -1000,18 +945,12 @@ var/damage_state = 0
 	icon_state = "engineerconsole"
 	bound_height = 32
 	bound_width = 32
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	density = TRUE
 /obj/structure/prop/urban/engineer/engineerpillar
 	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW1fade"
 	bound_height = 64
 	bound_width = 128
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop
@@ -1051,50 +990,41 @@ var/damage_state = 0
 	name = "nose cone"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipfrontwhite1"
-	unslashable = TRUE
-	unacidable = TRUE
 
 /obj/structure/prop/urban/airport/dropshipnosecone
 	name = "nose cone"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipfrontwhite1"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipwingleft
 	name = "wing"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipwingtop1"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipwingright
 	name = "wing"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipwingtop2"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipvent1left
 	name = "vent"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipvent1"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipvent2right
 	name = "vent"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipvent2"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipventleft
 	name = "vent"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipvent3"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 /obj/structure/prop/urban/airport/dropshipventright
 	name = "vent"
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "dropshipvent4"
-	indestructible = TRUE
 	layer = ABOVE_MOB_LAYER
 
 // Dropship damage
@@ -1106,9 +1036,6 @@ var/damage_state = 0
 	icon_state = "dropship_engine_damage"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 /obj/structure/prop/urban/airport/dropshipenginedamagenofire
 	name = "dropship damage"
@@ -1117,9 +1044,6 @@ var/damage_state = 0
 	icon_state = "dropship_engine_damage_nofire"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 /obj/structure/prop/urban/airport/refuelinghose
 	name = "refueling hose"
@@ -1149,8 +1073,6 @@ var/damage_state = 0
 	icon_state = "pilotbody_decap1"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
 /obj/structure/prop/urban/airport/deadpilot2
 	name = "decapitated Nanotrasen Pilot"
 	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
@@ -1158,8 +1080,6 @@ var/damage_state = 0
 	icon_state = "pilotbody_decap2"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
 
 // Misc
 
@@ -1196,26 +1116,17 @@ var/damage_state = 0
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "solidgrate2"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 /obj/structure/prop/urban/misc/floorprops/floorglass2
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "solidgrate3"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	layer = 2.1
 /obj/structure/prop/urban/misc/floorprops/floorglass3
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "solidgrate4"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 // Graffiti
 
@@ -1225,9 +1136,6 @@ var/damage_state = 0
 	icon_state = "zgraffiti4"
 	bound_height = 64
 	bound_width = 96
-	unslashable = TRUE
-	unacidable = TRUE
-	breakable = TRUE
 
 /obj/structure/prop/urban/misc/graffiti/graffiti1
 	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
@@ -1257,9 +1165,6 @@ var/damage_state = 0
 	name = "blood"
 	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
 	icon_state = "wallblood_floorblood"
-	unslashable = TRUE
-	unacidable = TRUE
-	breakable = TRUE
 
 /obj/structure/prop/urban/misc/blood/blood1
 	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
@@ -1552,8 +1457,6 @@ var/damage_state = 0
 /obj/structure/prop/urban/misc/road
 	name = "road barrier"
 	desc = "A plastic barrier for blocking entry."
-	breakable = TRUE
-	debris = list(/obj/item/stack/sheet/mineral/plastic)
 
 /obj/structure/prop/urban/misc/road/roadbarrierred
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
@@ -1585,8 +1488,6 @@ var/damage_state = 0
 	desc = "A wooden barrier for blocking entry."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrierwood"
-	breakable = TRUE
-	debris = list(/obj/item/stack/sheet/wood)
 
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
@@ -1605,11 +1506,9 @@ var/damage_state = 0
 	bound_width = 32
 	bound_height = 32
 	density = TRUE
-	health = 200
+	max_integrity = 200
 	opacity = TRUE
 	anchored = TRUE
-	unslashable = TRUE
-	unacidable = TRUE
 	layer = 5
 
 /obj/structure/prop/urban/containersextended/blueleft
@@ -1734,27 +1633,15 @@ var/damage_state = 0
 /obj/structure/prop/urban/fakeplatforms/platform1
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "engineer_platform"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 /obj/structure/prop/urban/fakeplatforms/platform2
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "engineer_platform_platformcorners"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 /obj/structure/prop/urban/fakeplatforms/platform3
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "platform"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 /obj/structure/prop/urban/fakeplatforms/platform4
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "zenithplatform3"
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 // Grille
 
@@ -1770,7 +1657,7 @@ var/damage_state = 0
 	bound_width = 64
 	bound_height = 32
 	density = TRUE
-	health = 200
+	max_integrity = 200
 	anchored = TRUE
 	layer = 5
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble1
@@ -1840,7 +1727,7 @@ var/damage_state = 0
 	bound_width = 32
 	bound_height = 64
 	density = TRUE
-	health = 200
+	max_integrity = 200
 	anchored = TRUE
 
 /obj/structure/prop/urban/misc/stoneplanterseats/empty
@@ -1857,9 +1744,6 @@ var/damage_state = 0
 	bound_height = 64
 	density = TRUE
 	anchored = TRUE
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 
 /obj/structure/prop/urban/misc/detonator
 	name = "detonator"
@@ -1868,9 +1752,6 @@ var/damage_state = 0
 	icon_state = "detonator"
 	density = FALSE
 	anchored = TRUE
-	unslashable = TRUE
-	unacidable = TRUE
-	indestructible = TRUE
 	var/id = 1
 	var/range = 15
 
@@ -1917,7 +1798,7 @@ var/damage_state = 0
 	bound_height = 64
 	layer = 4
 	density = FALSE
-	health = 200
+	max_integrity = 200
 	anchored = TRUE
 
 // Signs
@@ -1928,8 +1809,6 @@ var/damage_state = 0
 	icon_state = "jacksopen_on"
 	bound_height = 64
 	bound_width = 64
-	unslashable = TRUE
-	unacidable = TRUE
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/urban/signs/casniosign
@@ -1992,7 +1871,7 @@ var/damage_state = 0
 	bound_width = 64
 	bound_height = 32
 	density = FALSE
-	health = 200
+	max_integrity = 200
 	anchored = TRUE
 /obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1
 	name = "billboard"
@@ -2024,7 +1903,7 @@ var/damage_state = 0
 	bound_width = 64
 	bound_height = 32
 	density = FALSE
-	health = 200
+	max_integrity = 200
 	anchored = TRUE
 	layer = 8
 /obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1
@@ -2063,7 +1942,7 @@ var/damage_state = 0
 	icon_state = "lattice1"
 	density = FALSE
 	layer = RIPPLE_LAYER
-	health = 6000
+	max_integrity = 6000
 
 /obj/structure/prop/urban/lattice_prop/lattice_1
 	icon_state = "lattice1"

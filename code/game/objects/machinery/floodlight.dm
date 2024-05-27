@@ -279,11 +279,6 @@
 	else
 		icon_state = "trafficlight"
 
-#undef FLOODLIGHT_REPAIR_UNSCREW
-#undef FLOODLIGHT_REPAIR_CROWBAR
-#undef FLOODLIGHT_REPAIR_WELD
-#undef FLOODLIGHT_REPAIR_CABLE
-#undef FLOODLIGHT_REPAIR_SCREW
 /obj/machinery/floodlight/colony/traffic_alt
 	lum_value = 0
 	name = "traffic light"
@@ -303,12 +298,6 @@
 		icon_state = "trafficlight_alt_on"
 	else
 		icon_state = "trafficlight_alt"
-
-#undef FLOODLIGHT_REPAIR_UNSCREW
-#undef FLOODLIGHT_REPAIR_CROWBAR
-#undef FLOODLIGHT_REPAIR_WELD
-#undef FLOODLIGHT_REPAIR_CABLE
-#undef FLOODLIGHT_REPAIR_SCREW
 
 /obj/machinery/floodlight/colony/engineer_circular
 	name = "circular light"
