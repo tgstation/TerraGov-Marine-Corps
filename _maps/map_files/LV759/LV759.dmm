@@ -1022,12 +1022,10 @@
 "ajW" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
-	id = "hybrisacheckpoint_center";
 	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
-	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
