@@ -8959,9 +8959,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "bKQ" = (
 /turf/closed/wall/urban/colony,
-/area/lv759/indoors/apartment/eastbedrooms{
-	dir = 2
-	})
+/area/lv759/indoors/apartment/eastbedrooms)
 "bKU" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/urban/colony/hospital,
@@ -49259,9 +49257,7 @@
 /turf/open/floor/urban/tile/asteroidwarning_bigtile{
 	dir = 8
 	},
-/area/lv759/indoors/mining_outpost/northeast{
-	dir = 4
-	})
+/area/lv759/indoors/mining_outpost/northeast)
 "joD" = (
 /obj/structure/closet/crate/medical{
 	pixel_x = -5;
@@ -54948,9 +54944,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/lv759/indoors/mining_outpost/south{
-	dir = 1
-	})
+/area/lv759/indoors/mining_outpost/south)
 "kpW" = (
 /obj/structure/sign/poster,
 /obj/structure/sign/poster{
@@ -59415,10 +59409,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/hospital/morgue{
-	dir = 4;
-	id = "brg"
-	})
+/area/lv759/indoors/hospital/morgue)
 "lgM" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /turf/open/urban/street/asphalt,
@@ -69324,9 +69315,7 @@
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
-/area/lv759/indoors/recycling_plant/garage{
-	dir = 8
-	})
+/area/lv759/indoors/recycling_plant/garage)
 "mYT" = (
 /obj/structure/cable{
 	color = "#9f8700";
