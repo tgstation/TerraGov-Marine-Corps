@@ -75125,11 +75125,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/heavyequip)
-"oao" = (
-/turf/open/floor/carpet,
-/area/lv759/indoors/apartment/eastbedroomsstorage{
-	dir = 8
-	})
 "oar" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/trash/cigbutt,
@@ -90279,9 +90274,7 @@
 /turf/open/floor/prison/darkbrown{
 	dir = 9
 	},
-/area/lv759/indoors/power_plant/fusion_generators{
-	dir = 2
-	})
+/area/lv759/indoors/power_plant/fusion_generators)
 "qPk" = (
 /obj/structure/bed/chair{
 	dir = 8;
@@ -95358,11 +95351,7 @@
 /area/lv759/indoors/botany/botany_mainroom)
 "rNk" = (
 /turf/open/floor/spiralplate,
-/area/lv759/indoors/spaceport/kitchen{
-	dir = 4;
-	id = "hybrisacheckpoint_west";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/kitchen)
 "rNo" = (
 /obj/item/clothing/head/warning_cone{
 	layer = 2;
@@ -156475,7 +156464,7 @@ rOK
 aWh
 sPT
 kcw
-oao
+hyL
 sTE
 sPT
 uAX
