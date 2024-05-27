@@ -245,7 +245,6 @@
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
-
 	status_hud.overlays.Cut()
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -256,10 +255,10 @@
 			return TRUE
 		else
 			if(!mind)
-				var/mob/dead/observer/G = get_ghost(TRUE)
-				if(!G)
+				var/mob/dead/observer/ghost = get_ghost(TRUE)
+				if(!ghost)
 					status_hud.icon_state = "synthdnr"
-				else if(!G.client)
+				else if(!ghost.client)
 					status_hud.overlays += "synth_noclient"
 				else
 					status_hud.icon_state = "synthdead"

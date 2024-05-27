@@ -26,6 +26,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
 
+	/**
+	 * Are we in the ghost list?
+	 * 
+	 * This var is used so we can avoid adding multiple of this ghost to `GLOB.observer_list` whenever they reconnect
+	 */
+	var/ghost_listed = FALSE
+
 	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
 	//If there's a bug with changing your ghost settings, it's probably related to this.
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION

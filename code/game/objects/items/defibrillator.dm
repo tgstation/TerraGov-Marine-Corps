@@ -158,7 +158,7 @@
 ///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
-		user.visible_message(span_warning("You're already doing something!"))
+		user.visible_message(span_warning("You're too busy to use \the [src]!"))
 		return
 
 	if(defib_cooldown > world.time)
@@ -205,11 +205,11 @@
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_TEMPORARILY_UNREVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) & DEFIB_STRICTLY_REVIVABLE_STATES)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) == DEFIB_POSSIBLE)
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
-			message = "Someone is trying to resuscitate your body!",
+			message = "Someone is trying to resuscitate your body! Stay in it if you want to be resurrected!",
 			color_override = "purple"
 		), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
 		ghost.reenter_corpse()

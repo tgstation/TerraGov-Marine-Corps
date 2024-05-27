@@ -28,7 +28,9 @@
 		H = GLOB.huds[DATA_HUD_ORDER]
 		H.add_hud_to(src)
 
-	GLOB.observer_list += src
+	if(!ghost_listed)
+		ghost_listed = TRUE
+		GLOB.observer_list += src
 
 	ghost_others = client.prefs.ghost_others
 
@@ -57,13 +59,11 @@
 		to_chat(src, assemble_alert(
 			title = "Revived",
 			subtitle = "You were revived while disconnected.",
-			message = "Someone resuscitated you while you were disconnected. [isnull(can_reenter_corpse) ? "You're currently unable to re-enter your body." : "You will momentarily re-enter your body."]",
+			message = "Someone resuscitated you while you were disconnected. [isnull(can_reenter_corpse) ? "You're currently unable to re-enter your body." : "You will re-enter your body momentarily."]",
 			color_override = "red"
 		))
 		revived_while_away = FALSE
-		sleep(9 SECONDS)
-		if(!isnull(can_reenter_corpse))
-			reenter_corpse()
+		addtimer(CALLBACK(src, TYPE_VERB_REF(/mob/dead/observer, reenter_corpse)), 7 SECONDS)
 
 ///Loads any gamemode specific ghost actions
 /mob/dead/observer/proc/load_ghost_gamemode_actions()

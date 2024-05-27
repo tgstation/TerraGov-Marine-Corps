@@ -204,7 +204,7 @@
 			msg += "[span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life")]"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 				msg += "[span_deadsay(" and [t_he] won't be coming back...")]\n"
-			else if(!client && mind)
+			else if(!mind && !get_ghost(FALSE))
 				msg += "[span_deadsay(" and [t_his] soul has departed, [t_he] might come back later...")]\n"
 			else
 				msg += "[span_deadsay("...")]\n"

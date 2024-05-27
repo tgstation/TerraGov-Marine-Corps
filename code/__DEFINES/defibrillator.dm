@@ -22,7 +22,5 @@
 
 ///Revival states that strictly entail permadeath. These will prevent defibrillation
 #define DEFIB_PREVENT_REVIVE_STATES (DEFIB_FAIL_DECAPITATED | DEFIB_FAIL_BRAINDEAD)
-///Revival states including `DEFIB_POSSIBLE`. Some don't necessarily mean permadeath, but prevent revival temporarily until a condition is fixed
-#define DEFIB_TEMPORARILY_UNREVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_POSSIBLE)
-///Revival states that strictly don't prevent revival
-#define DEFIB_STRICTLY_REVIVABLE_STATES (DEFIB_POSSIBLE)
+///All defibrillation outcomes that leave a revivable patient
+#define DEFIB_REVIVABLE_STATES (DEFIB_FAIL_BAD_ORGANS | DEFIB_FAIL_TOO_MUCH_DAMAGE | DEFIB_POSSIBLE)

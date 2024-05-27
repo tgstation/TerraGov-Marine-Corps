@@ -134,7 +134,7 @@
 	if(client) //We don't need to get a ghost for someone who's still under player control
 		return null
 	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
-		if(!ghost) //Observers hard del often so lets just be safe
+		if(!ghost) //Observers hard del often so let's just be safe
 			continue
 		if(isnull(ghost.can_reenter_corpse))
 			continue
