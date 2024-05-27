@@ -629,9 +629,7 @@
 /turf/open/floor/prison{
 	dir = 6
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "afW" = (
 /obj/structure/barricade/handrail/medical{
 	dir = 4
@@ -1024,10 +1022,12 @@
 "ajW" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
+	id = "hybrisacheckpoint_center";
 	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
+	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
@@ -1286,7 +1286,11 @@
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
-/area/lv759/indoors/hospital/outgoing)
+/area/lv759/indoors/hospital/outgoing{
+	dir = 4;
+	id = "hybrisacheckpoint_center";
+	name = "\improper Lockdown"
+	})
 "anq" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -1589,11 +1593,7 @@
 	},
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "aqL" = (
 /turf/closed/shuttle/dropship4/finright{
 	dir = 1
@@ -2559,22 +2559,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenobiology)
-"aBx" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
-/obj/effect/urban/decal/dirt,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8;
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "aBC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -5462,11 +5446,7 @@
 	},
 /obj/item/clothing/head/hardhat/white,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "bdI" = (
 /obj/structure/rack,
 /obj/item/tool/shovel/spade,
@@ -6007,9 +5987,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/larva,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "bjP" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random{
@@ -6513,9 +6491,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "bpe" = (
 /obj/structure/window/framed/urban/colony/engineering/reinforced{
 	dir = 8
@@ -8163,9 +8139,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/urban/decal/road/road_edge/three,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "bGv" = (
 /turf/open/floor/prison{
 	dir = 4
@@ -9401,7 +9375,11 @@
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
-/area/lv759/outdoors/colony_streets/east_central_street)
+/area/lv759/outdoors/colony_streets/east_central_street{
+	dir = 4;
+	id = "hybrisamining_northeast1";
+	name = "\improper Checkpoint Lock"
+	})
 "bUy" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox{
@@ -10275,7 +10253,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/trash/cigbutt,
 /turf/open/floor/urban/tile/tilebeigecheckered,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "ccC" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide{
@@ -11387,13 +11365,6 @@
 /obj/structure/prop/propplaceholder,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
-"cnr" = (
-/turf/open/floor/prison{
-	dir = 8
-	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "cnw" = (
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/meridian/meridian_factory)
@@ -11430,9 +11401,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "cnM" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/spawner/random/misc/plushie,
@@ -12408,10 +12377,10 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/weymart)
 "cwr" = (
-/turf/open/floor/plating,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/obj/item/ammo_casing/bullet,
+/obj/item/ammo_casing/bullet,
+/turf/open/floor/prison,
+/area/lv759/indoors/wy_research_complex_entrance)
 "cwt" = (
 /obj/effect/decal/cleanable/dirt/grime3{
 	dir = 4
@@ -14487,9 +14456,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "cPP" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -15532,7 +15499,9 @@
 	dir = 8
 	},
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/north_street)
+/area/lv759/outdoors/colony_streets/north_street{
+	dir = 8
+	})
 "dbi" = (
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 8
@@ -15982,11 +15951,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/multi_tiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "dfk" = (
 /obj/structure/prop/propplaceholder{
 	dir = 4
@@ -18590,7 +18555,11 @@
 /obj/effect/urban/decal/road/road_edge/two,
 /obj/effect/urban/decal/road/lines4,
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/central_streets)
+/area/lv759/outdoors/colony_streets/central_streets{
+	dir = 2;
+	id = "hybrisa_mining_lockdown1";
+	name = "Emergency Lockdown"
+	})
 "dFh" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -18989,7 +18958,11 @@
 	dir = 8
 	},
 /turf/open/urbanshale/layer2,
-/area/lv759/indoors/north_west_caves)
+/area/lv759/indoors/north_west_caves{
+	dir = 2;
+	id = "hybrisagarage_1";
+	name = "\improper Garage"
+	})
 "dJb" = (
 /obj/structure/rack,
 /turf/open/floor/officetiles,
@@ -19128,7 +19101,9 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/lv759/indoors/mining_outpost/south)
+/area/lv759/indoors/mining_outpost/south{
+	dir = 1
+	})
 "dKa" = (
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 8
@@ -19811,9 +19786,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "dRI" = (
 /obj/structure/sign/safety/hazard{
 	pixel_x = 3
@@ -21095,11 +21068,7 @@
 	dir = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "edw" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_stop/five{
@@ -21704,12 +21673,6 @@
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
-"eiM" = (
-/turf/open/engineership/engineer_floor2,
-/area/lv759/indoors/derelict_ship{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
 "eiO" = (
 /obj/machinery/space_heater/radiator/red{
 	dir = 8
@@ -21776,9 +21739,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "ejt" = (
 /turf/open/floor/urban/metal/zbrownfloor_corner{
 	dir = 1
@@ -23565,19 +23526,6 @@
 /obj/effect/decal/cleanable/dirt/grime4,
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
-"eBi" = (
-/obj/structure/stairs/seamless{
-	color = "#6e6e6e";
-	dir = 4
-	},
-/turf/open/floor/prison/ramptop{
-	dir = 8
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "eBk" = (
 /obj/structure/barricade/handrail/urban/road/plastic/blue{
 	dir = 1
@@ -23727,16 +23675,6 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
-"eDp" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/prison{
-	dir = 8
-	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "eDu" = (
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
@@ -23853,9 +23791,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "eED" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -24138,7 +24074,7 @@
 /obj/item/trash/cigbutt,
 /obj/structure/prop/urban/furniture/tables/tablepool,
 /turf/open/floor/urban/carpet/carpetbeige,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "eHy" = (
 /obj/item/clothing/mask/facehugger/dead,
 /turf/open/shuttle/dropship/three,
@@ -24821,7 +24757,7 @@
 /obj/structure/table,
 /obj/item/radio,
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "eNU" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -25286,9 +25222,7 @@
 	layer = 2
 	},
 /turf/open/floor/mainship/black/full,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "eSB" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco2{
 	dir = 4
@@ -25825,7 +25759,11 @@
 	},
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_research_complex_entrance)
+/area/lv759/indoors/wy_research_complex_entrance{
+	dir = 4;
+	id = "hybrisamining_northeast2";
+	name = "\improper Checkpoint Lock"
+	})
 "eYN" = (
 /obj/effect/forcefield,
 /obj/structure/prop/mainship/gelida/rails{
@@ -25919,7 +25857,11 @@
 "eZG" = (
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/cafeteria)
+/area/lv759/indoors/wy_research_complex/cafeteria{
+	dir = 1;
+	id = "hybrisaLZ2_2";
+	name = "Emergency Lockdown"
+	})
 "eZQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light{
@@ -26597,11 +26539,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "fgo" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines2,
@@ -26989,7 +26927,10 @@
 	pixel_y = 2
 	},
 /turf/open/floor/prison/ramptop,
-/area/lv759/indoors/spaceport/heavyequip)
+/area/lv759/indoors/spaceport/heavyequip{
+	dir = 4;
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "fkI" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
@@ -27202,19 +27143,13 @@
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "fmQ" = (
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "fmR" = (
 /obj/item/stack/sheet/wood,
 /obj/item/stack/sheet/cardboard,
@@ -27911,9 +27846,7 @@
 	dir = 2
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "ftE" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge,
@@ -28445,7 +28378,9 @@
 /turf/closed/shuttle/dropship4/zwing_right{
 	dir = 8
 	},
-/area/lv759/indoors/spaceport/horizon_runner)
+/area/lv759/indoors/spaceport/horizon_runner{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "fyC" = (
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_on{
 	dir = 1;
@@ -28884,9 +28819,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "fDa" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -29824,11 +29757,7 @@
 	light_range = 2
 	},
 /turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "fMa" = (
 /obj/effect/urban/decal/road/road_edge/eight,
 /obj/effect/urban/decal/road/lines4,
@@ -29926,7 +29855,7 @@
 	},
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/urban/carpet/carpetbeige,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "fNg" = (
 /obj/machinery/light{
 	dir = 8
@@ -31158,7 +31087,11 @@
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/road/road_edge/two,
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/north_east_street)
+/area/lv759/outdoors/colony_streets/north_east_street{
+	dir = 4;
+	id = "hybrisaLZ2_4";
+	name = "Emergency Lockdown"
+	})
 "fZS" = (
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -31185,9 +31118,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "gas" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -13;
@@ -31692,11 +31623,7 @@
 "gfd" = (
 /obj/structure/platform,
 /turf/open/floor/squares,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "gfe" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -32386,7 +32313,9 @@
 	pixel_y = 15
 	},
 /turf/open/floor/urban/tile/tileblue,
-/area/lv759/indoors/mining_outpost/east_dorms)
+/area/lv759/indoors/mining_outpost/east_dorms{
+	dir = 2
+	})
 "gnl" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -32875,7 +32804,10 @@
 	pixel_y = 27
 	},
 /turf/open/urban/street/sidewalk,
-/area/lv759/outdoors/colony_streets/central_streets)
+/area/lv759/outdoors/colony_streets/central_streets{
+	dir = 4;
+	name = "\improper Lockdown"
+	})
 "gry" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -33192,11 +33124,7 @@
 	dir = 10
 	},
 /turf/open/floor/multi_tiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "guz" = (
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
@@ -33452,9 +33380,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "gwW" = (
 /obj/structure/prop/propplaceholder{
 	pixel_x = -4;
@@ -34992,7 +34918,9 @@
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
-/area/lv759/outdoors/colony_streets/north_street)
+/area/lv759/outdoors/colony_streets/north_street{
+	dir = 2
+	})
 "gLS" = (
 /turf/open/floor/prison/red{
 	dir = 8
@@ -36958,7 +36886,9 @@
 /turf/open/floor/prison/blue{
 	dir = 5
 	},
-/area/lv759/indoors/hospital/outgoing)
+/area/lv759/indoors/hospital/outgoing{
+	dir = 8
+	})
 "hfF" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/urban/street/sidewalk,
@@ -37069,7 +36999,9 @@
 	},
 /obj/effect/forcefield,
 /turf/open/urbanshale/layer1,
-/area/lv759/indoors/wy_research_complex_entrance)
+/area/lv759/indoors/wy_research_complex_entrance{
+	dir = 4
+	})
 "hgN" = (
 /obj/structure/platform_decoration/mineral{
 	dir = 1
@@ -37350,11 +37282,7 @@
 "hjU" = (
 /obj/machinery/floodlight,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "hkb" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/item/clothing/mask/facehugger/dead,
@@ -38363,7 +38291,7 @@
 	pixel_x = 7
 	},
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "htW" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
@@ -39757,9 +39685,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/egg,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "hGB" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/medical{
@@ -39973,9 +39899,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "hJf" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenobiology)
@@ -40510,9 +40434,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "hOM" = (
 /obj/structure/platform{
 	dir = 1
@@ -40650,9 +40572,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "hQc" = (
 /obj/effect/spawner/random/weaponry/ammo/rifle{
 	current_rounds = 17
@@ -41398,9 +41318,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "hXU" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 8
@@ -41635,9 +41553,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "iat" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -41778,9 +41694,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "icp" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 26
@@ -43738,7 +43652,9 @@
 	pixel_y = 5
 	},
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/central_streets)
+/area/lv759/outdoors/colony_streets/central_streets{
+	dir = 8
+	})
 "iuY" = (
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -44244,9 +44160,7 @@
 	},
 /obj/item/shard,
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "iyL" = (
 /obj/structure/bed/chair{
 	can_buckle = 0;
@@ -44752,9 +44666,7 @@
 	dir = 8
 	},
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "iDo" = (
 /obj/item/reagent_containers/food/snacks/donkpocket{
 	pixel_x = 5;
@@ -45708,9 +45620,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "iOb" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -45838,23 +45748,6 @@
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/kitchen)
-"iPy" = (
-/obj/structure/lattice/autosmooth,
-/obj/machinery/prop/structurelattice{
-	dir = 4
-	},
-/obj/machinery/prop/structurelattice{
-	dir = 4;
-	pixel_y = 10
-	},
-/turf/open/floor/plating/plating_catwalk{
-	color = "#dfcfc0"
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "iPE" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt/grime4,
@@ -46312,9 +46205,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "iUA" = (
 /obj/structure/prop/urban/misc/machinery/screens/redalertblank{
 	light_color = "#FF0000";
@@ -48792,9 +48683,7 @@
 /obj/item/clothing/under/marine/veteran/pmc,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "jtY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -48896,7 +48785,7 @@
 /obj/item/pizzabox/meat,
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "jva" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
@@ -50042,16 +49931,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/hobosecret)
-"jGe" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/squares,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "jGh" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/flora/pottedplant,
@@ -50267,11 +50146,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "jJa" = (
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/lines3,
@@ -50508,7 +50383,7 @@
 	pixel_y = 21
 	},
 /turf/open/floor/urban/tile/tilebeigecheckered,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "jLJ" = (
 /obj/machinery/space_heater/radiator/red{
 	dir = 4;
@@ -51790,9 +51665,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "jZG" = (
 /obj/item/tool/kitchen/utensil/pfork,
 /turf/open/floor/mainship/black/full,
@@ -52617,9 +52490,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "khj" = (
 /obj/structure/window/framed/urban,
 /obj/machinery/door/poddoor/urban/shutters{
@@ -53190,7 +53061,10 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/hospital/morgue)
+/area/lv759/indoors/hospital/morgue{
+	dir = 4;
+	id = "brg"
+	})
 "klS" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -53914,15 +53788,6 @@
 	},
 /turf/closed/mineral/smooth/black_stone,
 /area/lv759/oob)
-"ksl" = (
-/obj/machinery/floodlight,
-/obj/structure/lattice/autosmooth,
-/turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "ksm" = (
 /obj/structure/toilet{
 	dir = 4
@@ -55034,11 +54899,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "kBq" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -56613,11 +56474,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/multi_tiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "kRg" = (
 /obj/effect/urban/decal/dirt,
 /turf/closed/wall/urban/colony/reinforced/hull,
@@ -59078,7 +58935,9 @@
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines4,
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/south_west_street)
+/area/lv759/outdoors/colony_streets/south_west_street{
+	name = "Buttons"
+	})
 "lps" = (
 /turf/open/floor/carpet,
 /area/lv759/indoors/apartment/eastbedroomsstorage{
@@ -59490,9 +59349,7 @@
 /turf/open/floor/prison{
 	dir = 10
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "ltc" = (
 /obj/structure/prop/propplaceholder,
 /turf/open/floor/plating,
@@ -61305,21 +61162,15 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "lJI" = (
-/obj/structure/platform{
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/lv759/indoors/north_caves{
 	dir = 8
-	},
-/turf/open/floor/prison{
-	dir = 1
-	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
 	})
 "lJV" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "lKf" = (
 /turf/open/floor/multi_tiles{
 	dir = 8
@@ -61433,9 +61284,7 @@
 	health = 80
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "lLt" = (
 /obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -61597,9 +61446,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "lNK" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/communications,
@@ -62149,7 +61996,10 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/outdoors/north_west_caves_outdoors)
+/area/lv759/outdoors/north_west_caves_outdoors{
+	dir = 4;
+	name = "\improper Lockdown"
+	})
 "lSc" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/urban/secure_red_door{
@@ -62234,9 +62084,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/offempty,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "lSI" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_y = 17
@@ -62606,11 +62454,6 @@
 	dir = 10
 	},
 /area/lv759/indoors/hospital/maintenance)
-"lWx" = (
-/turf/open/floor/prison,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "lWz" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
@@ -63665,22 +63508,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
-"mhE" = (
-/obj/structure/platform/urban/metalplatform6{
-	dir = 1
-	},
-/obj/machinery/floodlight{
-	layer = 4
-	},
-/obj/structure/barricade/handrail/wire{
-	dir = 4
-	},
-/obj/structure/barricade/handrail/wire{
-	dir = 1;
-	layer = 4
-	},
-/turf/open/floor/mech_bay_recharge_floor,
-/area/lv759/indoors/wy_research_complex_entrance)
 "mhH" = (
 /obj/structure/platform{
 	dir = 8
@@ -64250,9 +64077,7 @@
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "mnz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -65242,11 +65067,7 @@
 	},
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/squares,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "mxo" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaltan{
 	dir = 1;
@@ -65509,9 +65330,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "mzB" = (
 /obj/machinery/sleeper,
 /turf/open/floor/prison/sterilewhite,
@@ -66814,7 +66633,11 @@
 /obj/structure/window/reinforced,
 /obj/structure/rack,
 /turf/open/floor/mainship/black/full,
-/area/lv759/indoors/wy_research_complex/mainlabs)
+/area/lv759/indoors/wy_research_complex/mainlabs{
+	dir = 2;
+	id = "hybrisaLZ2_1";
+	name = "Emergency Lockdown"
+	})
 "mMM" = (
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -67198,7 +67021,9 @@
 	pixel_y = 2
 	},
 /turf/closed/wall/urban/colony/hospital,
-/area/lv759/indoors/hospital/outgoing)
+/area/lv759/indoors/hospital/outgoing{
+	dir = 8
+	})
 "mQP" = (
 /obj/item/tool/wrench{
 	pixel_x = -8;
@@ -68198,9 +68023,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "naS" = (
 /obj/effect/urban/decal/dirt,
 /turf/closed/wall/urban/colony/reinforced,
@@ -68916,9 +68739,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "nie" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
@@ -69258,7 +69079,10 @@
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /turf/open/urban/street/sidewalkcenter,
-/area/lv759/outdoors/landing_zone_2)
+/area/lv759/outdoors/landing_zone_2{
+	id = "hybrisacolonylockdown";
+	name = "Emergency Lockdown"
+	})
 "nlY" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
@@ -69480,24 +69304,6 @@
 	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
-"npc" = (
-/obj/structure/prop/propplaceholder{
-	pixel_x = 6;
-	pixel_y = 19
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
-	dir = 1
-	},
-/obj/structure/lattice/autosmooth,
-/turf/open/floor/squares,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "npf" = (
 /obj/structure/disposalpipe/tagger{
 	dir = 4
@@ -69949,13 +69755,6 @@
 /obj/effect/urban/decal/road/road_edge/three,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
-"ntN" = (
-/obj/structure/prop/propplaceholder,
-/turf/open/engineership/engineer_floor2,
-/area/lv759/indoors/derelict_ship{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
 "ntQ" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/item/clothing/head/warning_cone{
@@ -70283,7 +70082,12 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/outdoors/colony_streets/south_west_street)
+/area/lv759/outdoors/colony_streets/south_west_street{
+	dir = 2;
+	icon = 'icons/obj/structures/urbanshutters.dmi';
+	id = "secretlockdown4";
+	name = "Stuck Emergency Lockdown"
+	})
 "nxn" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -70602,7 +70406,9 @@
 /turf/closed/shuttle/dropship4/zwing_left{
 	dir = 8
 	},
-/area/lv759/indoors/spaceport/horizon_runner)
+/area/lv759/indoors/spaceport/horizon_runner{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "nAf" = (
 /obj/machinery/floodlight/colony/traffic_alt{
 	pixel_x = 5;
@@ -70637,7 +70443,9 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
-/area/lv759/indoors/hospital/emergency_room)
+/area/lv759/indoors/hospital/emergency_room{
+	name = "\improper Lockdown"
+	})
 "nAN" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
@@ -74534,11 +74342,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "olm" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_x = -4;
@@ -74619,15 +74423,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
-"omc" = (
-/turf/open/floor/plating/plating_catwalk{
-	color = "#dfcfc0"
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "omf" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
@@ -75215,18 +75010,6 @@
 	dir = 4
 	},
 /area/lv759/indoors/mining_outpost/north_maint)
-"ork" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison{
-	dir = 10
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "orm" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/urban/street/sidewalk,
@@ -75540,13 +75323,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
-"ouh" = (
-/obj/structure/largecrate/random,
-/turf/open/engineership/engineer_floor2,
-/area/lv759/indoors/derelict_ship{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
 "ouj" = (
 /obj/structure/ore_box,
 /turf/open/urbanshale/layer1,
@@ -77067,9 +76843,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "oIC" = (
 /obj/effect/forcefield,
 /turf/closed/wall/urban/colony/reinforced,
@@ -78831,9 +78605,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "oYW" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
 /obj/structure/platform/urban/metalplatform1{
@@ -79098,7 +78870,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "paU" = (
 /obj/structure/prop/propplaceholder{
 	dir = 4
@@ -80328,7 +80100,7 @@
 "pog" = (
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "pol" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/lattice/autosmooth,
@@ -81301,9 +81073,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "pxi" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 8
@@ -81656,7 +81426,6 @@
 /obj/structure/barricade/handrail/wire{
 	dir = 4
 	},
-/obj/item/ammo_casing/bullet,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -83298,9 +83067,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "pOL" = (
 /turf/open/urban/dropship/dropshipfloorcorner1,
 /area/lv759/indoors/spaceport/starglider)
@@ -83428,11 +83195,7 @@
 	},
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "pQf" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -84126,9 +83889,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "pWB" = (
 /obj/item/trash/cigbutt{
 	pixel_x = 1;
@@ -84586,7 +84347,7 @@
 "qct" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/urban/carpet/carpetbeige,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "qcw" = (
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -84649,19 +84410,6 @@
 	dir = 10
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
-"qdt" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
-/turf/open/floor/prison{
-	dir = 8
-	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "qdx" = (
 /obj/structure/platform/mineral{
 	dir = 4
@@ -85284,7 +85032,9 @@
 	pixel_x = 4
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/lv759/outdoors/colony_streets/central_streets)
+/area/lv759/outdoors/colony_streets/central_streets{
+	dir = 2
+	})
 "qje" = (
 /obj/structure/sign/safety/hazard,
 /obj/structure/sign/safety/hazard{
@@ -89538,9 +89288,12 @@
 	},
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "qXE" = (
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/lv759/indoors/north_caves)
+/turf/open/engineership/engineer_floor9,
+/area/lv759/indoors/derelict_ship{
+	dir = 2;
+	id = "hybrisaLZ2_2";
+	name = "Emergency Lockdown"
+	})
 "qXH" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -89875,7 +89628,7 @@
 "raB" = (
 /obj/machinery/light,
 /turf/open/floor/urban/carpet/carpetbeige,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "raD" = (
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -90581,9 +90334,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rhO" = (
 /obj/item/clothing/head/hardhat/white{
 	pixel_x = -8;
@@ -90794,9 +90545,7 @@
 /obj/item/ammo_magazine/revolver/cmb,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rjW" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
 /turf/closed/wall/urban/colony,
@@ -90824,9 +90573,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rku" = (
 /obj/effect/urban/decal/trash/two{
 	pixel_y = 12
@@ -90935,7 +90682,9 @@
 /turf/open/urban/street/sidewalk{
 	dir = 8
 	},
-/area/lv759/outdoors/colony_streets/central_streets)
+/area/lv759/outdoors/colony_streets/central_streets{
+	name = "\improper WY-LWI Horizon Runner HR-150 Cargo Hold"
+	})
 "rla" = (
 /obj/structure/platform{
 	dir = 1;
@@ -90971,9 +90720,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rlq" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit/formal,
@@ -92367,9 +92114,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rzB" = (
 /obj/structure/barricade/handrail/strata,
 /obj/structure/barricade/handrail/strata{
@@ -92694,9 +92439,7 @@
 /area/lv759/indoors/power_plant/transformers_south)
 "rCG" = (
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "rCI" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -94438,7 +94181,7 @@
 	pixel_y = -5
 	},
 /turf/open/floor/urban/carpet/carpetbeige,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "rRi" = (
 /obj/item/clothing/head/warning_cone{
 	layer = 5;
@@ -94599,7 +94342,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "rSv" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/disposalpipe/segment{
@@ -94839,7 +94582,11 @@
 	layer = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/lv759/outdoors/caveplateau)
+/area/lv759/outdoors/caveplateau{
+	dir = 2;
+	id = "hybrisacheckpoint_northwest";
+	name = "\improper Lockdown"
+	})
 "rUl" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -94993,20 +94740,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/lv759/indoors/wy_security/checkpoint_central)
-"rVy" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8;
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/turf/open/floor/orange_edge{
-	dir = 8
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "rVA" = (
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 8
@@ -95528,7 +95261,10 @@
 "saW" = (
 /obj/machinery/floodlight,
 /turf/open/floor/sandrock,
-/area/lv759/indoors/north_east_caves)
+/area/lv759/indoors/north_east_caves{
+	dir = 4;
+	name = "\improper Lockdown"
+	})
 "saY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -96278,15 +96014,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/hospital/central_hallway)
-"sii" = (
-/turf/open/floor/prison{
-	dir = 10
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "sij" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -96459,10 +96186,10 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/bar)
 "sjP" = (
-/turf/closed/wall/urban/spaceport,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/ammo_casing/bullet,
+/turf/open/floor/prison,
+/area/lv759/indoors/wy_research_complex_entrance)
 "sjQ" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chips,
@@ -97633,7 +97360,9 @@
 /turf/open/floor/prison{
 	dir = 10
 	},
-/area/lv759/outdoors/colony_streets/south_west_street)
+/area/lv759/outdoors/colony_streets/south_west_street{
+	name = "\improper Lockdown"
+	})
 "suG" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
@@ -98882,9 +98611,7 @@
 /obj/item/weapon/stunprod,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "sFB" = (
 /obj/structure/largecrate/random,
 /obj/structure/platform,
@@ -99055,9 +98782,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/cracked1,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "sHk" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/drip,
@@ -99300,14 +99025,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/north_east_caves)
-"sJL" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "sJO" = (
 /obj/item/stack/sheet/cardboard{
 	pixel_y = -12
@@ -99469,9 +99186,7 @@
 	light_range = 2
 	},
 /turf/closed/wall/r_wall/white_research_wall,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "sLd" = (
 /obj/effect/spawner/random/machinery/random_broken_computer{
 	dir = 4;
@@ -99910,7 +99625,9 @@
 /turf/closed/shuttle/dropship4/zwing_left{
 	dir = 4
 	},
-/area/lv759/indoors/spaceport/horizon_runner)
+/area/lv759/indoors/spaceport/horizon_runner{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "sOI" = (
 /obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
@@ -100105,11 +99822,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "sQK" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/ammo_casing/bullet,
@@ -100241,9 +99954,7 @@
 	dir = 8
 	},
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "sSv" = (
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -100553,7 +100264,9 @@
 /turf/closed/shuttle/dropship4/zwing_right{
 	dir = 1
 	},
-/area/lv759/indoors/spaceport/horizon_runner)
+/area/lv759/indoors/spaceport/horizon_runner{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "sWg" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -101297,7 +101010,9 @@
 /turf/closed/shuttle/dropship4/zwing_left{
 	dir = 1
 	},
-/area/lv759/indoors/spaceport/horizon_runner)
+/area/lv759/indoors/spaceport/horizon_runner{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "tcU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/poddoor/mainship/biohazard/white{
@@ -101645,9 +101360,7 @@
 /area/lv759/indoors/mining_outpost/east_command)
 "tfm" = (
 /turf/closed/wall/urban/colony/ribbed,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "tfp" = (
 /obj/structure/barricade/handrail/urban/road/plastic/black,
 /obj/effect/urban/decal/road/road_edge/three,
@@ -101770,7 +101483,11 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/wy_research_complex/hangarbay)
+/area/lv759/indoors/wy_research_complex/hangarbay{
+	dir = 2;
+	id = "hybrisacheckpoint_northwest";
+	name = "\improper Lockdown"
+	})
 "tgC" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -101931,7 +101648,6 @@
 /obj/effect/decal/cleanable/blood/xeno{
 	dir = 8
 	},
-/obj/item/ammo_casing/bullet,
 /turf/open/floor/prison,
 /area/lv759/indoors/wy_research_complex_entrance)
 "tiF" = (
@@ -102013,9 +101729,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "tjF" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -102396,12 +102110,6 @@
 "tnh" = (
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
-"tnm" = (
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/prison,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
 "tnn" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform/urban/metalplatform6{
@@ -102517,9 +102225,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "tor" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
@@ -102527,9 +102233,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/cracked1,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "tou" = (
 /obj/structure/prop/propplaceholder{
 	layer = 3.02;
@@ -102876,7 +102580,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "trB" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/effect/decal/cleanable/dirt/grime1,
@@ -103824,8 +103528,23 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "tCj" = (
-/turf/open/floor/urban/tile/tilebeigecheckered,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/obj/structure/platform/urban/metalplatform6{
+	dir = 1
+	},
+/obj/machinery/floodlight{
+	layer = 4
+	},
+/obj/structure/barricade/handrail/wire{
+	dir = 4
+	},
+/obj/structure/barricade/handrail/wire{
+	dir = 1;
+	layer = 4
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/lv759/indoors/wy_research_complex_entrance{
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "tCk" = (
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
@@ -107057,9 +106776,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "ugB" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/table/mainship,
@@ -107313,14 +107030,6 @@
 /obj/structure/flora/pottedplant,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/press_room)
-"uiO" = (
-/turf/open/engineership/engineer_floor8{
-	dir = 4
-	},
-/area/lv759/indoors/derelict_ship{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
 "uiP" = (
 /obj/item/stool{
 	pixel_x = -4;
@@ -107594,9 +107303,7 @@
 "ukN" = (
 /obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/ribbed,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "ukO" = (
 /obj/structure/platform{
 	dir = 1;
@@ -107634,9 +107341,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "uli" = (
 /obj/effect/urban/decal/road/road_edge/five,
 /obj/effect/urban/decal/road/corner{
@@ -107647,20 +107352,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
-"ulj" = (
-/obj/structure/bed/chair{
-	dir = 8;
-	pixel_x = 7;
-	pixel_y = 7
-	},
-/turf/open/floor/plating/plating_catwalk{
-	color = "#dfcfc0"
-	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
 "ulu" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/closet/walllocker/hydrant{
@@ -108349,7 +108040,6 @@
 "urA" = (
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood,
-/obj/item/ammo_casing/bullet,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -109090,9 +108780,6 @@
 	},
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/westrestroom)
-"uyR" = (
-/turf/closed/wall/r_wall/white_research_wall,
-/area/lv759/indoors/wy_research_complex/cafeteria)
 "uyV" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -109650,7 +109337,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uDC" = (
 /turf/open/floor/urban_wood,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer)
 "uDF" = (
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
 /obj/item/clothing/head/warning_cone{
@@ -109792,11 +109479,7 @@
 	},
 /obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "uEX" = (
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitormedium_on{
 	pixel_x = 1
@@ -109888,9 +109571,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/larva,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "uGc" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -110354,7 +110035,9 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/ramptop,
-/area/lv759/indoors/wy_research_complex_entrance)
+/area/lv759/indoors/wy_research_complex_entrance{
+	dir = 2
+	})
 "uIQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
@@ -110370,7 +110053,10 @@
 "uIW" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison/sterilewhite,
-/area/lv759/indoors/hospital/reception)
+/area/lv759/indoors/hospital/reception{
+	dir = 4;
+	icon = 'icons/obj/structures/urbanshutters.dmi'
+	})
 "uIX" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
@@ -112169,9 +111855,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "uZy" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment{
@@ -112265,9 +111949,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vap" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/largecrate/random,
@@ -112545,7 +112227,7 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
+	dir = 2
 	})
 "vdl" = (
 /turf/open/floor/prison/red{
@@ -113446,9 +113128,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vmY" = (
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -9;
@@ -113508,11 +113188,7 @@
 /turf/open/floor/prison{
 	dir = 10
 	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "vnF" = (
 /obj/item/shard,
 /turf/open/floor/prison/darkyellow{
@@ -113847,9 +113523,7 @@
 /turf/open/floor/prison{
 	dir = 5
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vqz" = (
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
@@ -115021,9 +114695,7 @@
 "vAW" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/colony/ribbed,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vAY" = (
 /obj/structure/platform{
 	dir = 1
@@ -115111,9 +114783,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vBz" = (
 /obj/effect/decal/cleanable/dirt/grime4{
 	dir = 4
@@ -115232,14 +114902,6 @@
 	},
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/bar)
-"vCz" = (
-/turf/open/engineership/engineer_floor8{
-	dir = 8
-	},
-/area/lv759/indoors/derelict_ship{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	})
 "vCD" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -115467,9 +115129,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vFm" = (
 /obj/structure/prop/mainship/gelida/barrier,
 /obj/machinery/light{
@@ -115595,7 +115255,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
+/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo{
+	dir = 8;
+	id = "hybrisacolonylockdown";
+	name = "Emergency Lockdown"
+	})
 "vGv" = (
 /obj/machinery/door/airlock/hybrisa/medical/autoname{
 	dir = 1
@@ -116060,9 +115724,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vKZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -117608,9 +117270,7 @@
 	dir = 4
 	},
 /turf/open/urban/street/asphalt,
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vYX" = (
 /obj/structure/barricade/handrail/urban/road/plastic/red,
 /obj/structure/prop/mainship/gelida/smallwire,
@@ -117707,9 +117367,7 @@
 /turf/open/floor/prison{
 	dir = 9
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "vZI" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -117740,7 +117398,11 @@
 /obj/effect/urban/decal/road/road_edge/seven,
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/north_street)
+/area/lv759/outdoors/colony_streets/north_street{
+	dir = 2;
+	id = "hybrisacheckpoint_northwest";
+	name = "\improper Lockdown"
+	})
 "wad" = (
 /obj/item/stack/rods,
 /obj/structure/prop/urban/misc/fake/wire/red{
@@ -117762,7 +117424,9 @@
 /turf/open/floor/urban/tile/asteroidwarning_bigtile{
 	dir = 8
 	},
-/area/lv759/indoors/mining_outpost/northeast)
+/area/lv759/indoors/mining_outpost/northeast{
+	dir = 4
+	})
 "wak" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4
@@ -118360,11 +118024,7 @@
 "wgb" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "wgc" = (
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -118450,9 +118110,7 @@
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "whb" = (
 /obj/structure/rack,
 /obj/item/clothing/head/hardhat/dblue{
@@ -120113,7 +119771,10 @@
 "wxd" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/urban/tile/tilebeigecheckered,
-/area/lv759/indoors/apartment/eastrestroomsshower)
+/area/lv759/indoors/apartment/eastfoyer{
+	id = "hybrisacolonylockdown";
+	name = "Emergency Lockdown"
+	})
 "wxj" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/weymart/maintenance)
@@ -122973,11 +122634,7 @@
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "wXy" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/clothing/under/marine/veteran/pmc,
@@ -124447,9 +124104,7 @@
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/squares,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
+	dir = 8
 	})
 "xkx" = (
 /obj/structure/window/framed/urban/spaceport/reinforced,
@@ -124617,7 +124272,9 @@
 "xlX" = (
 /obj/structure/platform_decoration/urban/rockdark,
 /turf/open/urbanshale/layer1,
-/area/lv759/indoors/wy_research_complex_entrance)
+/area/lv759/indoors/wy_research_complex_entrance{
+	pixel_y = 12
+	})
 "xlZ" = (
 /turf/open/floor/redfour,
 /area/lv759/indoors/wy_research_complex/securitycommand)
@@ -125798,11 +125455,7 @@
 /turf/open/floor/prison/red{
 	dir = 10
 	},
-/area/lv759/indoors/wy_security/checkpoint_northeast{
-	dir = 2;
-	id = "hybrisaLZ2_2";
-	name = "Emergency Lockdown"
-	})
+/area/lv759/indoors/wy_security/checkpoint_northeast)
 "xvj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -125822,11 +125475,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/power_plant)
-"xvn" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
-/obj/structure/prop/urban/cavedecor/stalagmite2,
-/turf/open/urbanshale/layer1,
-/area/lv759/indoors/south_west_caves)
 "xvo" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -126278,9 +125926,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/wy_security/checkpoint_west{
-	dir = 8
-	})
+/area/lv759/indoors/wy_security/checkpoint_west)
 "xyX" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
@@ -127212,11 +126858,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "xGc" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -127596,11 +127238,7 @@
 	},
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "xJj" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -128167,11 +127805,7 @@
 "xPb" = (
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay{
-	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "xPf" = (
 /turf/open/floor/urban/tile/cuppajoesfloor,
 /area/lv759/oob)
@@ -128730,11 +128364,6 @@
 	},
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/eastbedroomsstorage)
-"xVw" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 8
-	},
-/area/lv759/indoors/wy_research_complex_entrance)
 "xVx" = (
 /obj/structure/rack,
 /obj/item/storage/box/lights/mixed,
@@ -129091,9 +128720,7 @@
 	},
 /obj/structure/prop/urban/xenobiology/small/offempty,
 /turf/open/floor/podhatch/floor,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "xZk" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -129104,11 +128731,6 @@
 	dir = 8
 	},
 /area/lv759/outdoors/landing_zone_2)
-"xZp" = (
-/turf/closed/wall/r_wall/white_research_wall,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
 "xZq" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -129550,9 +129172,7 @@
 	},
 /obj/item/shard,
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/wy_research_complex/mainlabs{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/mainlabs)
 "ydA" = (
 /obj/structure/platform{
 	layer = 3.1
@@ -130162,7 +129782,11 @@
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
-/area/lv759/outdoors/colony_streets/north_street)
+/area/lv759/outdoors/colony_streets/north_street{
+	dir = 2;
+	id = "hybrisacheckpoint_northwest";
+	name = "\improper Lockdown"
+	})
 "yjr" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -134317,9 +133941,9 @@ tki
 tki
 rKp
 tuO
-xZp
-xZp
-xZp
+phW
+phW
+phW
 sKY
 crD
 kZa
@@ -134569,7 +134193,7 @@ tki
 tki
 kDl
 tuO
-xZp
+phW
 eSz
 iDm
 lLs
@@ -134795,7 +134419,7 @@ pzO
 lGN
 kZq
 kZq
-mhE
+tCj
 oBq
 oBq
 rGG
@@ -134821,7 +134445,7 @@ tki
 vHn
 tuO
 tuO
-xZp
+phW
 crc
 ydu
 hGz
@@ -135073,7 +134697,7 @@ tki
 fCN
 tNh
 tuO
-xZp
+phW
 xZi
 wEP
 tor
@@ -135325,7 +134949,7 @@ tki
 fCN
 dzV
 tuO
-xZp
+phW
 bjO
 iyI
 uGb
@@ -135577,7 +135201,7 @@ tki
 fCN
 dzV
 tuO
-xZp
+phW
 sHb
 iyI
 lSE
@@ -137068,11 +136692,11 @@ lko
 puo
 vFU
 xIF
-xIF
+vFU
 ttV
 uUm
-xIF
-puo
+cwr
+mKy
 xIF
 xIF
 puo
@@ -137318,12 +136942,12 @@ wSc
 aqD
 rfd
 urA
-xIF
-xIF
+jSq
+sjP
 tiB
 dvd
 bMO
-xIF
+vFU
 puo
 xIF
 xIF
@@ -137819,9 +137443,9 @@ pzO
 lGN
 kZq
 kZq
-mhE
+tCj
 oBq
-xVw
+oBq
 pzU
 pzU
 pzU
@@ -139372,7 +138996,7 @@ jOG
 gOy
 ldC
 rZN
-uyR
+nRN
 eZG
 ryW
 gcy
@@ -139624,7 +139248,7 @@ phR
 nmr
 tqy
 pIY
-uyR
+nRN
 swE
 lde
 nPU
@@ -140886,15 +140510,15 @@ dui
 nRN
 ylQ
 wgb
-sii
-sii
-sii
-sii
-ork
-sii
-sii
+lof
+lof
+lof
+lof
+fNg
+lof
+lof
 vnD
-sii
+lof
 lof
 fNg
 ucp
@@ -141138,16 +140762,16 @@ rkS
 nRN
 ylQ
 bdA
-omc
-omc
-omc
-omc
-omc
-omc
-omc
-omc
-ulj
-omc
+jhX
+jhX
+jhX
+jhX
+jhX
+jhX
+jhX
+jhX
+jhQ
+jhX
 jhX
 jhX
 jhX
@@ -141395,10 +141019,10 @@ olg
 xPb
 xkv
 mxl
-iPy
+rNi
 xkv
-npc
-iPy
+iYE
+rNi
 xkv
 iYE
 rNi
@@ -141480,17 +141104,17 @@ oAg
 oAg
 uZx
 vdg
-cwr
-cwr
 oAg
-cwr
+oAg
+oAg
+oAg
 uZx
 iap
-cwr
-cwr
-cwr
-cwr
-cwr
+oAg
+oAg
+oAg
+oAg
+oAg
 oAg
 vfy
 kxB
@@ -141642,16 +141266,16 @@ xKj
 nRN
 ylQ
 edp
-eBi
+nZn
 wXx
 hjU
-jGe
+iOx
 gfd
-ksl
-jGe
+dck
+iOx
 gfd
-ksl
-jGe
+dck
+iOx
 mAt
 dck
 nZn
@@ -141733,16 +141357,16 @@ lNT
 gaa
 dXM
 tom
-eDp
 neX
-lJI
+neX
+lNT
 gaa
 dXM
 tom
-qdt
-eDp
+oja
+neX
 tom
-eDp
+neX
 oja
 fEo
 sJS
@@ -141897,7 +141521,7 @@ fmN
 kRd
 dfi
 xJg
-aBx
+rnU
 xFX
 aqG
 fgi
@@ -141982,19 +141606,19 @@ bAJ
 hCr
 ejV
 xmu
-cnr
-cnr
-cnr
-cnr
 xmu
-cnr
-cnr
-cnr
+xmu
+xmu
+xmu
+xmu
+xmu
+xmu
+xmu
 pOJ
-sjP
-cnr
-cnr
-cnr
+ejV
+xmu
+xmu
+xmu
 ejV
 xmu
 qZj
@@ -142152,7 +141776,7 @@ jIZ
 sQJ
 sQJ
 uEW
-rVy
+ydL
 wQG
 kqr
 ydL
@@ -142239,14 +141863,14 @@ qZj
 qZj
 llV
 llV
-lWx
-lWx
-lWx
-lWx
-sJL
-lWx
-lWx
-tnm
+qZj
+qZj
+qZj
+qZj
+aoY
+qZj
+qZj
+llV
 aoY
 qZj
 qZj
@@ -144454,7 +144078,7 @@ rhm
 rhm
 rhm
 rhm
-hJj
+vuP
 wKx
 unn
 unn
@@ -145954,7 +145578,7 @@ tHg
 unn
 unn
 hJj
-xvn
+aMc
 wKx
 vuP
 unn
@@ -148031,7 +147655,7 @@ tLI
 mak
 mak
 wVE
-qXE
+lJI
 unn
 unn
 unn
@@ -149543,7 +149167,7 @@ unn
 nzm
 pGs
 wVE
-qXE
+lJI
 unn
 unn
 unn
@@ -150299,7 +149923,7 @@ nzm
 mak
 mak
 wVE
-qXE
+lJI
 unn
 unn
 unn
@@ -151811,7 +151435,7 @@ mak
 mak
 mak
 wVE
-qXE
+lJI
 unn
 unn
 unn
@@ -152568,7 +152192,7 @@ wVE
 rNg
 xza
 wVE
-qXE
+lJI
 wVE
 unn
 unn
@@ -152815,13 +152439,13 @@ rPf
 unn
 unn
 unn
-qXE
+lJI
 frH
 cBo
-qXE
-qXE
+lJI
+lJI
 cBo
-qXE
+lJI
 unn
 unn
 gXX
@@ -153326,7 +152950,7 @@ xza
 aAH
 wVE
 wVE
-qXE
+lJI
 unn
 gXX
 eGU
@@ -153831,7 +153455,7 @@ mak
 mak
 mak
 xza
-qXE
+lJI
 xdw
 aIl
 tcX
@@ -155152,7 +154776,7 @@ eZh
 xNw
 xNw
 aiG
-tCj
+xNw
 rRd
 fNb
 qct
@@ -155656,8 +155280,8 @@ lWM
 pxX
 bds
 dIo
-tCj
-tCj
+xNw
+xNw
 pog
 uDC
 paT
@@ -165171,7 +164795,7 @@ ifJ
 plo
 vzN
 pmM
-qXE
+lJI
 unn
 uIk
 vMz
@@ -166179,7 +165803,7 @@ ifJ
 wVE
 tLI
 vzN
-qXE
+lJI
 unn
 ybU
 ybU
@@ -167945,7 +167569,7 @@ mak
 mak
 mak
 mak
-qXE
+lJI
 rmG
 mRK
 bMn
@@ -168132,10 +167756,10 @@ hXC
 hxs
 bhk
 kmV
-uiO
-eiM
-eiM
-eiM
+avM
+jKA
+jKA
+jKA
 nnK
 kmV
 bhk
@@ -168384,10 +168008,10 @@ fEm
 bhk
 kmV
 avM
-uiO
-uiO
-eiM
-uiO
+avM
+avM
+jKA
+avM
 avM
 avM
 kmV
@@ -168636,10 +168260,10 @@ bGa
 bhk
 jKA
 jKA
-ntN
-ouh
+oWm
+aUv
 gUs
-eiM
+jKA
 jKA
 jKA
 oWm
@@ -168888,10 +168512,10 @@ bGa
 bhk
 jKA
 jKA
-eiM
-eiM
-uiO
-eiM
+jKA
+jKA
+avM
+jKA
 jKA
 jKA
 jKA
@@ -168953,7 +168577,7 @@ mak
 nzm
 tLI
 nzm
-qXE
+lJI
 unn
 unn
 mRK
@@ -169140,10 +168764,10 @@ hMP
 bhk
 kmV
 nnK
-vCz
-uiO
-eiM
-uiO
+nnK
+avM
+jKA
+avM
 avM
 avM
 aUe
@@ -170410,7 +170034,7 @@ auT
 auT
 qvM
 fEm
-bGa
+qXE
 bGa
 iRE
 nTG
