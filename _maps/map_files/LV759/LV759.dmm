@@ -967,7 +967,6 @@
 /area/lv759/indoors/power_plant/power_storage)
 "ajC" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 16
 	},
@@ -1068,13 +1067,11 @@
 /area/lv759/indoors/weymart)
 "akz" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 5;
 	pixel_x = 8;
 	pixel_y = 21
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 6;
 	pixel_x = -8;
 	pixel_y = 21
@@ -3414,12 +3411,10 @@
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "aIB" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -3428,7 +3423,6 @@
 /area/lv759/indoors/colonial_marshals/office)
 "aIE" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/kutjevo/colors/orange,
@@ -3495,12 +3489,10 @@
 /area/lv759/indoors/wy_research_complex/cargo)
 "aJM" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 16
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
@@ -4335,7 +4327,6 @@
 /area/lv759/indoors/mining_outpost/north)
 "aSI" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	layer = 4;
 	pixel_x = 11;
 	pixel_y = 16
@@ -5411,7 +5402,6 @@
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -11;
 	pixel_y = -1
 	},
@@ -6078,13 +6068,11 @@
 "bkw" = (
 /obj/effect/forcefield{
 	dir = 2;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hangarbay)
@@ -6300,7 +6288,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bmy" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 16
 	},
@@ -6446,9 +6433,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
 "bor" = (
@@ -6469,12 +6454,10 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "boD" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 11
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 11
 	},
@@ -7944,7 +7927,6 @@
 /area/lv759/indoors/power_plant/equipment_west)
 "bDS" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban/tile/tilebeigecheckered,
@@ -9064,7 +9046,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bRo" = (
 /obj/machinery/vending/cigarette{
-	density = 0;
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -9978,7 +9959,6 @@
 	},
 /obj/machinery/door_control{
 	id = "secretlockdown4";
-	needs_power = 0;
 	pixel_y = 24
 	},
 /turf/open/floor/urban_plating,
@@ -10002,12 +9982,10 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "cad" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -10624,7 +10602,6 @@
 /obj/effect/spawner/random/engineering/metal,
 /obj/machinery/door_control{
 	id = "secretlockdown1";
-	needs_power = 0;
 	pixel_y = 24
 	},
 /obj/structure/prop/urban/misc/fake/wire/red{
@@ -10981,7 +10958,6 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -12181,12 +12157,10 @@
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "cuD" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -12401,9 +12375,7 @@
 	dir = 8;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -14229,13 +14201,11 @@
 /area/lv759/outdoors/landing_zone_2)
 "cNK" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = 8;
 	pixel_y = 20
@@ -14801,7 +14771,6 @@
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "cTy" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 16
 	},
@@ -14809,7 +14778,6 @@
 	layer = 2
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -16500,7 +16468,6 @@
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "djf" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/mainship/black{
@@ -17885,9 +17852,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dxl" = (
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /obj/effect/decal/cleanable/dirt/grime3{
 	dir = 8
 	},
@@ -18555,13 +18520,11 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "dEK" = (
 /obj/effect/forcefield{
-	dir = 4;
-	needs_power = 0
+	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -18617,16 +18580,13 @@
 /area/lv759/outdoors/colony_streets/central_streets{
 	dir = 2;
 	id = "hybrisa_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "dFh" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urban_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -18693,15 +18653,12 @@
 "dGc" = (
 /obj/effect/forcefield{
 	id = "hybrisa_mining_lockdown2";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "urban_mining_lockdown2";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -18915,12 +18872,10 @@
 "dIa" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
@@ -19439,12 +19394,10 @@
 /area/lv759/indoors/power_plant/equipment_west)
 "dMJ" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
@@ -20246,7 +20199,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dVo" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 16
 	},
@@ -20508,8 +20460,7 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "dXR" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco3{
@@ -20705,7 +20656,6 @@
 /area/lv759/indoors/wy_research_complex/medical_annex)
 "dZt" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_x = 10;
 	pixel_y = 16
 	},
@@ -21200,7 +21150,6 @@
 /obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -21757,7 +21706,6 @@
 /area/lv759/indoors/apartment/northhallway)
 "eja" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 11
 	},
@@ -22934,12 +22882,10 @@
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "euI" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = 8;
 	pixel_y = 20
@@ -24136,12 +24082,10 @@
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "eGU" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -24938,7 +24882,6 @@
 	},
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -25819,12 +25762,10 @@
 /area/lv759/indoors/recycling_plant/garage)
 "eYA" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -27409,7 +27350,6 @@
 	},
 /obj/item/tool/mop,
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/wood/variable,
@@ -27880,8 +27820,7 @@
 "fsS" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor{
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
@@ -28153,8 +28092,7 @@
 /obj/effect/forcefield{
 	dir = 4;
 	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -28162,9 +28100,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urban_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -29086,13 +29022,11 @@
 	},
 /obj/effect/forcefield{
 	dir = 2;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hangarbay)
@@ -29536,8 +29470,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Secretroom";
-	indestructible = 1;
-	unacidable = 1
+	indestructible = 1
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
@@ -30688,7 +30621,6 @@
 /area/lv759/indoors/apartment/westhallway)
 "fUg" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	layer = 1;
 	pixel_x = -11;
 	pixel_y = 8
@@ -31200,12 +31132,10 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "fZU" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = 11;
 	pixel_y = 16
 	},
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 16
 	},
@@ -31274,7 +31204,6 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "gaA" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban/tile/tilegreen,
@@ -31367,9 +31296,7 @@
 /turf/open/auto_turf/hybrisashale/layer2,
 /area/lv759/indoors/wy_research_complex_entrance)
 "gbU" = (
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/eastrestroomsshower)
 "gcd" = (
@@ -32912,8 +32839,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "gry" = (
 /obj/structure/platform/urban/rockdark{
@@ -32971,17 +32897,14 @@
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "hybrisacolonylockdown";
 	layer = 5;
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/hospital/maintenance_north)
@@ -34452,12 +34375,10 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "gGD" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -34742,13 +34663,11 @@
 "gIJ" = (
 /obj/effect/forcefield{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/southeastexit)
@@ -35157,7 +35076,6 @@
 /area/lv759/indoors/spaceport/starglider)
 "gNx" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /obj/item/trash/cigbutt{
@@ -35978,17 +35896,14 @@
 	},
 /area/lv759/indoors/derelict_ship{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "gUt" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_office)
@@ -36704,8 +36619,7 @@
 "hcI" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/southeastexit)
@@ -38430,7 +38344,6 @@
 /area/lv759/indoors/power_plant/telecomms)
 "htX" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -38966,7 +38879,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "hzd" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_y = 17
 	},
 /obj/item/reagent_containers/food/drinks/sillycup,
@@ -39343,13 +39255,11 @@
 /area/lv759/indoors/weyyu_office/pressroom)
 "hBP" = (
 /obj/effect/forcefield{
-	dir = 4;
-	needs_power = 0
+	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
@@ -40135,13 +40045,11 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "hKl" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.3;
 	pixel_x = 8;
 	pixel_y = 21
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = -8;
 	pixel_y = 21
@@ -41285,8 +41193,7 @@
 	needs_power = 0
 	},
 /obj/machinery/door/poddoor{
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
@@ -42031,7 +41938,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ieu" = (
 /obj/structure/closet{
-	density = 0;
 	opened = 1
 	},
 /obj/item/storage/briefcase,
@@ -42398,7 +42304,6 @@
 /area/lv759/indoors/power_plant/geothermal_generators)
 "ihd" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = 11;
 	pixel_y = 16
 	},
@@ -44421,7 +44326,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "izO" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -45599,7 +45503,6 @@
 /area/lv759/indoors/meridian/meridian_showroom)
 "iLZ" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /obj/effect/urban/decal/dirt_2,
@@ -45872,15 +45775,12 @@
 /obj/effect/forcefield{
 	dir = 4;
 	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urban_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -47741,9 +47641,7 @@
 	color = "#6b675e"
 	},
 /obj/item/clothing/head/beret/sec/warden,
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -10;
 	pixel_y = 8
@@ -48070,7 +47968,6 @@
 /area/lv759/indoors/central_caves)
 "jmm" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 16
 	},
@@ -48842,8 +48739,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
@@ -48874,7 +48770,6 @@
 /area/lv759/indoors/weyyu_office/breakroom)
 "juj" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	layer = 4;
 	pixel_y = 19
 	},
@@ -49266,7 +49161,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -49418,7 +49312,6 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "jzT" = (
 /obj/structure/closet{
-	density = 0;
 	opened = 1
 	},
 /turf/open/floor/urban/tile/tilegreen,
@@ -49917,13 +49810,11 @@
 /area/lv759/indoors/power_plant/telecomms)
 "jDZ" = (
 /obj/effect/forcefield{
-	dir = 4;
-	needs_power = 0
+	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -52297,8 +52188,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "kdC" = (
 /turf/closed/wall/urban/colony/engineering,
@@ -53018,9 +52908,7 @@
 	dir = 4
 	},
 /obj/structure/table/fancywoodentable,
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
 "kkA" = (
@@ -57239,7 +57127,6 @@
 /area/lv759/indoors/garage_workshop)
 "kXt" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 21
@@ -57334,15 +57221,12 @@
 /obj/effect/forcefield{
 	dir = 4;
 	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urban_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -57489,9 +57373,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/outdoors/colony_streets/central_streets)
 "kZF" = (
-/obj/machinery/light{
-	unslashable = 1
-	},
+/obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -57883,8 +57765,7 @@
 "ldk" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
@@ -58644,7 +58525,6 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "llc" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/grimy,
@@ -58905,7 +58785,6 @@
 /area/lv759/indoors/mining_outpost/south)
 "lny" = (
 /obj/structure/bookcase{
-	density = 0;
 	desc = "On closer inspection, everything on these shelves are made of plastic.";
 	name = "book case";
 	pixel_y = 18
@@ -59046,7 +58925,6 @@
 /area/lv759/indoors/hospital/pharmacy)
 "loM" = (
 /obj/machinery/vending/cigarette{
-	density = 0;
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -61075,7 +60953,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "lGU" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban/metal/bluemetal1,
@@ -62025,13 +61902,11 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lQT" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = -8;
 	pixel_y = 21
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.3;
 	pixel_x = 8;
 	pixel_y = 21
@@ -62185,15 +62060,13 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "lSc" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 10
@@ -62654,13 +62527,11 @@
 "lWG" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
@@ -62925,7 +62796,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "lYP" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = 11;
 	pixel_y = 16
 	},
@@ -63485,9 +63355,7 @@
 	dir = 2;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_maintenance_south)
@@ -63627,8 +63495,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
@@ -65703,7 +65570,6 @@
 /area/lv759/indoors/south_west_caves)
 "mBJ" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -11;
 	pixel_y = 8
 	},
@@ -66058,12 +65924,10 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "mEU" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -66593,7 +66457,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mKC" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -11;
 	pixel_y = -1
 	},
@@ -68345,13 +68208,11 @@
 /area/lv759/indoors/power_plant/telecomms)
 "nbW" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 21
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
@@ -68564,7 +68425,6 @@
 /area/lv759/indoors/wy_research_complex/janitor)
 "ndT" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
@@ -69283,17 +69143,14 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/landing_zone_2{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "nlY" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/jacks_surplus)
@@ -69621,7 +69478,6 @@
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "nqC" = (
 /obj/machinery/vending/cigarette{
-	density = 0;
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -69978,7 +69834,6 @@
 /obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -70294,8 +70149,7 @@
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown4";
-	name = "Stuck Emergency Lockdown";
-	needs_power = 0
+	name = "Stuck Emergency Lockdown"
 	})
 "nxn" = (
 /obj/machinery/door/poddoor/mainship{
@@ -70303,36 +70157,28 @@
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown1";
 	indestructible = 1;
-	name = "Stuck Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown2";
 	indestructible = 1;
-	name = "Stuck Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown3";
 	indestructible = 1;
-	name = "Stuck Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown4";
 	indestructible = 1;
-	name = "Stuck Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Stuck Emergency Lockdown"
 	},
 /turf/open/floor/plating{
 	dir = 8
@@ -70581,17 +70427,14 @@
 /area/lv759/indoors/hospital/medical_storage{
 	dir = 8;
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "nzN" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/weymart/backrooms)
@@ -70664,14 +70507,12 @@
 	dir = 6
 	},
 /area/lv759/indoors/hospital/emergency_room{
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "nAN" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_research_complex_entrance)
@@ -70818,12 +70659,10 @@
 /area/lv759/indoors/wy_security/checkpoint_central)
 "nBR" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = 8;
 	pixel_y = 20
@@ -71021,12 +70860,10 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "nEj" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -71116,7 +70953,6 @@
 /obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -71171,7 +71007,6 @@
 /area/lv759/indoors/wy_research_complex/cargo)
 "nFW" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/prison/red{
@@ -72040,7 +71875,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "nOA" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_y = 24
 	},
 /turf/open/floor/prison/red,
@@ -73855,7 +73689,6 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "oeH" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 18
 	},
@@ -74099,16 +73932,13 @@
 /obj/effect/urban/decal/dirt{
 	dir = 8;
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -75322,12 +75152,10 @@
 /area/lv759/indoors/colonial_marshals/restroom)
 "osf" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -76851,7 +76679,6 @@
 /area/lv759/indoors/hospital/maintenance)
 "oGz" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban/metal/bluemetal1{
@@ -76921,7 +76748,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "oGW" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/drinks/sillycup,
@@ -76983,8 +76809,7 @@
 	},
 /area/lv759/indoors/hospital/icu{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "oHE" = (
 /turf/open/floor/plating,
@@ -77447,12 +77272,10 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "oLF" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -79308,12 +79131,10 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "pcR" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
@@ -79591,16 +79412,14 @@
 /turf/open/auto_turf/hybrisashale/layer1,
 /area/lv759/indoors/wy_research_complex_entrance{
 	dir = 8;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "pfZ" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
 	indestructible = 1;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -80094,7 +79913,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ple" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban/tile/cuppajoesfloor,
@@ -80514,15 +80332,12 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield{
 	id = "hybrisa_mining_lockdown2";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "urban_mining_lockdown2";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -81794,9 +81609,7 @@
 	dir = 8;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
@@ -82142,7 +81955,6 @@
 	},
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -82610,7 +82422,6 @@
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
 "pIq" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 18
 	},
@@ -83517,12 +83328,10 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pQO" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -85839,7 +85648,6 @@
 /area/lv759/indoors/derelict_ship)
 "qoY" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/urban_wood,
@@ -87279,8 +87087,7 @@
 /obj/effect/forcefield{
 	dir = 4;
 	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -87288,9 +87095,7 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urban_mining_lockdown3";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -87461,7 +87266,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "qEi" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -20;
 	pixel_y = 24
 	},
@@ -88862,7 +88666,6 @@
 /area/lv759/indoors/hospital/operation)
 "qQp" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 16
 	},
@@ -89804,12 +89607,10 @@
 /area/lv759/indoors/wy_research_complex/medical_annex)
 "qZL" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 16
 	},
@@ -91519,7 +91320,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "rqZ" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_y = 17
 	},
 /obj/item/reagent_containers/food/drinks/sillycup{
@@ -93301,16 +93101,13 @@
 /obj/structure/window/framed/urban/marshalls/cell{
 	dir = 8;
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
@@ -94561,15 +94358,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 1;
 	id = "hybrisa_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urban_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -95552,8 +95346,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_east_caves{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "saY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -95561,8 +95354,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison{
 	dir = 10
@@ -95959,8 +95751,7 @@
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "sfm" = (
 /obj/effect/forcefield,
@@ -95969,9 +95760,7 @@
 	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_maintenance)
@@ -97119,7 +96908,6 @@
 /area/lv759/indoors/north_west_caves)
 "sqe" = (
 /obj/machinery/vending/cigarette{
-	density = 0;
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -97660,14 +97448,12 @@
 	dir = 10
 	},
 /area/lv759/outdoors/colony_streets/south_west_street{
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	})
 "suG" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -97726,7 +97512,6 @@
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "suV" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 16
 	},
@@ -98661,7 +98446,6 @@
 /obj/item/stack/cable_coil,
 /obj/machinery/door_control{
 	id = "secretlockdown2";
-	needs_power = 0;
 	pixel_y = 24
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -99953,7 +99737,6 @@
 /area/lv759/indoors/apartment/northfoyer)
 "sOV" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/mainship{
@@ -100486,12 +100269,10 @@
 /area/lv759/indoors/central_caves)
 "sUQ" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -100820,16 +100601,13 @@
 "sYs" = (
 /obj/effect/urban/decal/dirt{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
@@ -100978,7 +100756,6 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "sZX" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -11;
 	pixel_y = -1
 	},
@@ -102496,12 +102273,10 @@
 /area/lv759/indoors/spaceport/hallway_northwest)
 "tnV" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 10;
 	pixel_y = 18
 	},
@@ -102830,7 +102605,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "tqP" = (
 /obj/machinery/vending/snack{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/grimy,
@@ -102883,12 +102657,10 @@
 /area/lv759/indoors/colonial_marshals/reception)
 "tru" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
@@ -103235,13 +103007,11 @@
 /area/lv759/indoors/north_east_caves)
 "tva" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 4;
 	pixel_x = 8;
 	pixel_y = 20
@@ -103740,7 +103510,6 @@
 /area/lv759/indoors/botany/botany_mainroom)
 "tAC" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_x = -9;
 	pixel_y = 16
 	},
@@ -104932,7 +104701,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tMn" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_x = 11;
 	pixel_y = 16
 	},
@@ -106096,7 +105864,6 @@
 "tXw" = (
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -111322,7 +111089,6 @@
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "uRd" = (
 /obj/machinery/vending/cola{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/prison/red,
@@ -112208,12 +111974,10 @@
 /area/lv759/indoors/recycling_plant/garage)
 "uZE" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 5;
 	pixel_x = -8;
 	pixel_y = 21
@@ -112699,7 +112463,6 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "veD" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -6;
 	pixel_y = 18
 	},
@@ -113015,8 +112778,7 @@
 /area/lv759/indoors/weyyu_office/floor{
 	dir = 8;
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "vju" = (
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble7,
@@ -113434,9 +113196,7 @@
 	dir = 2;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/weymart/maintenance)
@@ -114171,13 +113931,11 @@
 	pixel_x = 11
 	},
 /obj/structure/filingcabinet/filingcabinet{
-	density = 0;
 	layer = 2.9;
 	pixel_x = 7;
 	pixel_y = 16
 	},
 /obj/structure/filingcabinet/filingcabinet{
-	density = 0;
 	layer = 2.9;
 	pixel_x = -8;
 	pixel_y = 16
@@ -115601,8 +115359,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo{
 	dir = 8;
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "vGv" = (
 /obj/machinery/door/airlock/hybrisa/medical/autoname{
@@ -116675,7 +116432,6 @@
 /area/lv759/indoors/north_caves)
 "vQY" = (
 /obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
 	pixel_x = -11;
 	pixel_y = 8
 	},
@@ -117114,8 +116870,7 @@
 "vUQ" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	name = "\improper Lockdown";
-	needs_power = 0
+	name = "\improper Lockdown"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/cargo)
@@ -117342,12 +117097,10 @@
 /area/lv759/indoors/central_caves)
 "vWI" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -117641,7 +117394,6 @@
 /area/lv759/indoors/central_caves)
 "vZd" = (
 /obj/machinery/vending/coffee{
-	density = 0;
 	pixel_y = 16
 	},
 /turf/open/floor/mainship/black{
@@ -118671,7 +118423,6 @@
 	},
 /obj/structure/showcase{
 	breakable = 1;
-	density = 0;
 	desc = null;
 	name = "floor panel"
 	},
@@ -119649,8 +119400,7 @@
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1;
-	needs_power = 0
+	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -119778,12 +119528,10 @@
 /area/lv759/indoors/west_caves)
 "wul" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
@@ -119975,15 +119723,12 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2;
 	id = "hybrisa_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urban_mining_lockdown1";
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -120131,8 +119876,7 @@
 /turf/open/floor/urban/tile/tilebeigecheckered,
 /area/lv759/indoors/apartment/eastfoyer{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "wxj" = (
 /turf/open/floor/plating,
@@ -120585,7 +120329,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wBq" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 21
@@ -123358,7 +123101,6 @@
 /area/lv759/indoors/north_caves)
 "xar" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 21
@@ -125104,9 +124846,7 @@
 	dir = 1;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_maintenance_south)
@@ -125154,12 +124894,10 @@
 /area/lv759/indoors/bar/bathroom)
 "xqP" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 18
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -125551,7 +125289,6 @@
 	pixel_y = 17
 	},
 /obj/machinery/vending/cola{
-	density = 0;
 	layer = 4;
 	level = 3;
 	pixel_y = 16
@@ -127802,17 +127539,14 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street{
 	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown";
-	needs_power = 0
+	name = "Emergency Lockdown"
 	})
 "xLj" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	indestructible = 1;
-	name = "Emergency Lockdown";
-	needs_power = 0;
-	unacidable = 1
+	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating{
 	dir = 8
@@ -130373,7 +130107,6 @@
 /obj/item/tool/wrench,
 /obj/machinery/door_control{
 	id = "secretlockdown3";
-	needs_power = 0;
 	pixel_y = 24
 	},
 /turf/open/floor/prison{
@@ -130448,12 +130181,10 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "ykI" = (
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
-	density = 0;
 	pixel_x = 8;
 	pixel_y = 20
 	},
