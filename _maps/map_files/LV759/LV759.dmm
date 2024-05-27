@@ -61284,9 +61284,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/spaceport/docking_bay_2{
-	name = "\improper Lockdown"
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "lzA" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -4;
@@ -66059,9 +66057,7 @@
 	pixel_y = 18
 	},
 /turf/open/floor/mainship/black/full,
-/area/lv759/indoors/wy_research_complex/xenoarcheology{
-	dir = 1
-	})
+/area/lv759/indoors/wy_research_complex/xenoarcheology)
 "mvj" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -101486,9 +101482,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/lv759/indoors/wy_research_complex/xenoarcheology{
-	dir = 2
-	})
+/area/lv759/indoors/wy_research_complex/xenoarcheology)
 "sTd" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -106662,11 +106656,7 @@
 "tRi" = (
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/cafeteria{
-	dir = 1;
-	id = "hybrisaLZ2_2";
-	name = "Emergency Lockdown"
-	})
+/area/lv759/indoors/wy_research_complex/cafeteria)
 "tRj" = (
 /turf/open/urban/street/sidewalk{
 	dir = 9
@@ -116878,9 +116868,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/spaceport/docking_bay_2{
-	dir = 2
-	})
+/area/lv759/indoors/spaceport/docking_bay_2)
 "vNB" = (
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
