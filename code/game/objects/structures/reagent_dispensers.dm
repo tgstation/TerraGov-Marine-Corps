@@ -246,6 +246,11 @@
 
 	qdel(src)
 
+/obj/structure/reagent_dispensers/fueltank/spacefuel
+	name = "spacecraft fuel-mix tank"
+	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
+	icon = 'icons/obj/structures/zenithrandomprops.dmi';
+
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."

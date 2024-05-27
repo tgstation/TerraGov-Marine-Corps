@@ -496,9 +496,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "aeE" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
@@ -1934,7 +1932,7 @@
 	},
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	name = "Vandalized Cargo Container"
 	},
 /obj/effect/urban/decal/dirt,
@@ -3993,21 +3991,10 @@
 	},
 /area/lv759/indoors/hospital/reception)
 "aPK" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "aPQ" = (
@@ -8559,13 +8546,7 @@
 /turf/open/floor/kutjevo/fake_wood,
 /area/lv759/indoors/bar)
 "bIO" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -10004,9 +9985,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bUR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -10285,9 +10264,7 @@
 "bXt" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -10321,7 +10298,6 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -11283,9 +11259,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "cfS" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -11623,9 +11597,7 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "ciP" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -12166,9 +12138,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "cnw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/machinery/door/poddoor/mainship/biohazard/white{
-	icon = 'icons/obj/structures/urbanshutters.dmi'
-	},
+/obj/machinery/door/poddoor/mainship/biohazard/white,
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 4
 	},
@@ -12812,7 +12782,7 @@
 "cug" = (
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 1;
 	name = "Vandalized Cargo Container"
 	},
@@ -13630,9 +13600,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/hybrisa_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "cAO" = (
 /obj/structure/disposalpipe/junction{
@@ -16926,11 +16894,7 @@
 	},
 /area/lv759/indoors/central_caves)
 "diG" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -26787,11 +26751,7 @@
 	pixel_x = 4;
 	pixel_y = 7
 	},
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "fcx" = (
@@ -28121,7 +28081,6 @@
 "frY" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -28177,11 +28136,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "fsx" = (
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/prison{
 	dir = 4
@@ -29825,7 +29780,6 @@
 "fHH" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -31667,7 +31621,6 @@
 "fYB" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -31720,7 +31673,6 @@
 "fZp" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/weaponresearchlabtesting)
@@ -32055,7 +32007,6 @@
 "gcb" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -32135,28 +32086,12 @@
 /area/lv759/oob)
 "gcV" = (
 /obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
 	layer = 6;
-	name = "\improper food cart"
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
 /obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	layer = 1;
-	name = "\improper food cart";
 	pixel_x = 3;
 	pixel_y = 17
 	},
@@ -32448,19 +32383,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/indoors/recycling_plant/garage)
 "gfH" = (
+/obj/structure/closet/crate/trashcart/food,
 /obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
 	pixel_x = 3;
 	pixel_y = -9
 	},
@@ -33442,7 +33366,6 @@
 "goD" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
@@ -33723,9 +33646,7 @@
 /obj/structure/prop/urban/misc/floorprops/grate{
 	layer = 4
 	},
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/hybrisa_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "gro" = (
 /obj/structure/platform_decoration,
@@ -34190,9 +34111,7 @@
 	pixel_y = 12
 	},
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/urban_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/central_streets)
 "gvN" = (
 /obj/machinery/conveyor,
@@ -34580,7 +34499,6 @@
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/structure/table/mainship,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -35336,7 +35254,6 @@
 "gHa" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 1
@@ -35403,13 +35320,7 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "gHz" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
 "gHP" = (
@@ -35532,7 +35443,6 @@
 	},
 /obj/item/reagent_containers/glass/rag{
 	desc = "A towel for drying yourself.";
-	icon = 'icons/obj/items/hunter/pred_gear.dmi';
 	name = "towel"
 	},
 /turf/open/floor/urban/tile/tilebeige,
@@ -36908,7 +36818,6 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "gVX" = (
 /obj/machinery/atm{
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi';
 	pixel_x = 9;
 	pixel_y = 11
 	},
@@ -38701,9 +38610,7 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "hpO" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -39148,21 +39055,10 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "huf" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -40281,7 +40177,6 @@
 "hGz" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 1;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -41659,7 +41554,6 @@
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -41724,7 +41618,7 @@
 "hVY" = (
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 1;
 	name = "Vandalized Cargo Container"
 	},
@@ -42264,7 +42158,6 @@
 "ibi" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -42278,7 +42171,6 @@
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/doors/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -43943,9 +43835,6 @@
 "irI" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/bananapeel{
-	desc = "A bunch of tiny bits of shattered metal.";
-	icon = 'icons/obj/items/shards.dmi';
-	name = "piece of shrapnel";
 	pixel_x = -6;
 	pixel_y = -7
 	},
@@ -44018,9 +43907,7 @@
 	layer = 4;
 	pixel_x = 6
 	},
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/hybrisa_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "isb" = (
 /obj/effect/urban/decal/dirt,
@@ -45831,11 +45718,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "iII" = (
@@ -48677,9 +48560,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "jlA" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
-	icon = 'icons/obj/structures/urbanshutters.dmi'
-	},
+/obj/machinery/door/poddoor/mainship/biohazard/white,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "jlC" = (
@@ -51459,9 +51340,7 @@
 /area/lv759/indoors/north_east_caves)
 "jLi" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -51837,7 +51716,6 @@
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "urbancolonylockdown";
 	indestructible = 1;
 	name = "Emergency Lockdown"
@@ -51852,7 +51730,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 5;
 	name = "Vandalized Cargo Container"
 	},
@@ -53528,19 +53406,9 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "kfE" = (
 /obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
 	layer = 6;
-	name = "\improper food cart"
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
 /turf/open/floor/officetiles,
@@ -54025,13 +53893,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/west_caves)
 "kkh" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /turf/open/urban/dropship/dropship4,
 /area/lv759/indoors/spaceport/horizon_runner)
 "kkm" = (
@@ -56645,11 +56507,7 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "kKu" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "kKD" = (
@@ -58870,7 +58728,6 @@
 "lfi" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -60340,9 +60197,7 @@
 /area/lv759/indoors/weyyu_office/pressroom)
 "lsR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -60754,9 +60609,6 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "lwO" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 8;
 	locked = 1
@@ -64557,9 +64409,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mkt" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -64587,9 +64437,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mla" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -66447,7 +66295,6 @@
 "mBY" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 1
@@ -68478,7 +68325,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 4;
 	name = "Vandalized Cargo Container"
 	},
@@ -71211,9 +71058,7 @@
 "nsI" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -71929,10 +71774,6 @@
 "nAw" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/doors/urbanshutters.dmi'
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -79198,12 +79039,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "oRm" = (
 /obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart1";
-	icon_opened = "foodcart1_open";
-	name = "\improper food cart";
-	pixel_y = 9
+	pixel_y = 9;
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles a Pizza. Disgusting.";
@@ -80119,11 +79955,7 @@
 	},
 /area/lv759/indoors/electical_systems/substation1)
 "paa" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -82632,8 +82464,6 @@
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
-/obj/structure/table/mainship,
-/obj/structure/table/mainship,
 /obj/machinery/science/analyser,
 /turf/open/floor/prison/blue,
 /area/lv759/indoors/hospital/pharmacy)
@@ -85164,9 +84994,7 @@
 /obj/item/trash/cigbutt{
 	pixel_x = 4
 	},
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/urban_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/central_streets)
 "pVH" = (
 /obj/structure/noticeboard,
@@ -85391,7 +85219,6 @@
 "pXK" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 4
@@ -87900,7 +87727,6 @@
 "qwZ" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
@@ -88326,7 +88152,6 @@
 	},
 /obj/item/reagent_containers/glass/rag{
 	desc = "A towel for drying yourself.";
-	icon = 'icons/obj/items/hunter/pred_gear.dmi';
 	name = "towel"
 	},
 /turf/open/floor/plating/kutjevo,
@@ -90710,11 +90535,7 @@
 	},
 /area/lv759/indoors/recycling_plant/garage)
 "qXQ" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/structure/prop/urban/misc/fake/wire/red{
 	pixel_x = 4
 	},
@@ -90840,9 +90661,7 @@
 	},
 /area/lv759/oob)
 "qYQ" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -91147,7 +90966,6 @@
 "rbv" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -92427,11 +92245,7 @@
 /turf/closed/wall/wood,
 /area/lv759/indoors/east_caves)
 "roZ" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
@@ -92487,7 +92301,7 @@
 "rpE" = (
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 4;
 	name = "Vandalized Cargo Container"
 	},
@@ -93262,13 +93076,6 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/pressroom)
 "rxa" = (
-/obj/item/bananapeel{
-	desc = "An experimental B8 Smart-Scope. Based on the technologies used in the Smart Gun by ARMAT, this sight has integrated IFF systems. It can only attach to the L42A Battle Rifle, M44 Combat Revolver, and M46C Pulse Rifle. This one appears to be covered in gun oil";
-	icon = 'icons/obj/items/weapons/guns/attachments.dmi';
-	name = "Broken B8 Smart-Scope";
-	pixel_x = -1;
-	pixel_y = 11
-	},
 /obj/item/attachable/suppressor,
 /obj/structure/largecrate/supply,
 /obj/item/attachable/scope/mini,
@@ -93769,9 +93576,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "rBZ" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -93893,13 +93698,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/weyyu_office/floor)
 "rDj" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart1";
-	icon_opened = "foodcart1_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart,
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/kitchen)
 "rDk" = (
@@ -93981,13 +93780,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "rDW" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "rDX" = (
@@ -95171,7 +94964,6 @@
 "rQk" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atm{
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi';
 	pixel_x = 6;
 	pixel_y = 11
 	},
@@ -95559,7 +95351,6 @@
 /obj/structure/prop/propplaceholder{
 	desc = "An exchange valve";
 	dir = 8;
-	icon = 'icons/obj/pipes/filter.dmi';
 	name = "Automated Valve"
 	},
 /obj/structure/showcase{
@@ -96258,11 +96049,7 @@
 	},
 /area/lv759/indoors/north_caves)
 "sbP" = (
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -97687,11 +97474,7 @@
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/prison{
 	dir = 6
 	},
@@ -98910,9 +98693,7 @@
 	dir = 8;
 	layer = 4
 	},
-/turf/open/floor/sandrock{
-	icon = 'icons/turf/floors/hybrisa_dirt.dmi'
-	},
+/turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "szv" = (
 /obj/structure/filingcabinet{
@@ -99912,7 +99693,6 @@
 "sIZ" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -104281,7 +104061,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	name = "Vandalized Cargo Container"
 	},
 /turf/open/urban/street/cement3,
@@ -104827,21 +104607,10 @@
 /turf/open/floor/mainship/cargo,
 /area/lv759/indoors/spaceport/baggagehandling)
 "tFG" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -104891,9 +104660,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "tGd" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	layer = 3.33
@@ -104946,13 +104713,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "tGq" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
-	},
-/obj/machinery/door/poddoor/mainship/biohazard/white{
-	icon = 'icons/obj/structures/urbanshutters.dmi'
-	},
+/obj/machinery/door/poddoor/mainship/biohazard/white,
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 1
 	},
@@ -106082,7 +105843,7 @@
 "tRf" = (
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 4;
 	name = "Vandalized Cargo Container"
 	},
@@ -106131,11 +105892,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/structure/lattice/autosmooth,
 /obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
@@ -106694,7 +106451,6 @@
 "tXT" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 4
@@ -107126,9 +106882,7 @@
 /area/lv759/indoors/tcomms_northwest)
 "ubW" = (
 /obj/effect/forcefield,
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -110201,21 +109955,10 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_east_caves)
 "uFy" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart";
+/obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
 	},
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -111919,7 +111662,7 @@
 "uWc" = (
 /obj/structure/cargo_container{
 	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/props/containersextended.dmi';
+	icon = 'icons/obj/structures/containersextended.dmi';
 	layer = 1;
 	name = "Vandalized Cargo Container"
 	},
@@ -113049,7 +112792,6 @@
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/doors/urbanshutters.dmi'
 	},
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -113464,7 +113206,6 @@
 /obj/machinery/reagentgrinder{
 	pixel_y = 3
 	},
-/obj/structure/table/mainship,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -115601,7 +115342,6 @@
 "vGc" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -116435,9 +116175,7 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "vOx" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
@@ -117964,11 +117702,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wbR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/machinery/light/small{
 	dir = 4
@@ -118036,7 +117770,6 @@
 "wco" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -119734,13 +119467,7 @@
 /turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "wtM" = (
-/obj/structure/closet/crate/trashcart{
-	desc = "A heavy, metal foodcart with wheels.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	icon_closed = "foodcart2";
-	icon_opened = "foodcart2_open";
-	name = "\improper food cart"
-	},
+/obj/structure/closet/crate/trashcart/food,
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
@@ -121041,7 +120768,6 @@
 "wGN" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4;
-	icon = 'icons/obj/structures/doors/urbanshutters.dmi'
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenobiology)
@@ -123764,9 +123490,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "xip" = (
-/obj/structure/fence{
-	icon = 'icons/obj/structures/props/electric_fence.dmi'
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	layer = 3.33
@@ -124268,28 +123992,24 @@
 "xom" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown1";
 	indestructible = 1;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown2";
 	indestructible = 1;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown3";
 	indestructible = 1;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "secretlockdown4";
 	indestructible = 1;
 	name = "Stuck Emergency Lockdown"
@@ -124493,11 +124213,7 @@
 	desc = null;
 	name = "floor panel"
 	},
-/obj/structure/reagent_dispensers/fueltank{
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "spacecraft fuel-mix tank"
-	},
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
@@ -125798,7 +125514,6 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
 	id = "urbancolonylockdown";
 	indestructible = 1;
 	name = "Emergency Lockdown"

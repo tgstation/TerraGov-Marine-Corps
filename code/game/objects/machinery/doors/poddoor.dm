@@ -385,3 +385,4 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 /obj/machinery/door/poddoor/mainship/biohazard/white
 	icon_state = "w_almayer_pdoor1"
 	base_icon_state = "w_almayer_pdoor"
+	icon = 'icons/obj/structures/urbanshutters.dmi'
