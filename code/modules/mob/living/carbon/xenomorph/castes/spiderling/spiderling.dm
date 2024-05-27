@@ -133,9 +133,6 @@
 		return
 	if(isliving(atom_to_walk_to))
 		var/mob/living/victim = atom_to_walk_to
-		if(victim.stat != CONSCIOUS)
-			change_action(ESCORTING_ATOM, escorted_atom)
-			return
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 
