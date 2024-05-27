@@ -711,16 +711,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "agg" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/grille,
 /obj/structure/barricade/handrail/wire{
 	dir = 8
@@ -1436,14 +1427,7 @@
 	amount = 15
 	},
 /obj/item/stock_parts/manipulator,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -3349,10 +3333,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "aIA" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform,
 /obj/structure/stairs{
 	color = "#a6aeab";
@@ -3860,11 +3841,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	name = "autoname reinforced"
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/processing)
 "aNT" = (
@@ -3968,15 +3945,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "aPm" = (
 /obj/structure/platform/urban/metalplatform6,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
@@ -6182,15 +6151,7 @@
 	layer = 2.7;
 	pixel_y = 8
 	},
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/item/trash/cigbutt,
 /turf/open/floor/plating,
 /area/lv759/indoors/bar/entertainment)
@@ -8096,11 +8057,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2
@@ -8629,10 +8586,7 @@
 "bIQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/gibs/body,
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform_decoration/shiva,
 /obj/structure/platform{
 	dir = 8
@@ -9147,10 +9101,7 @@
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/spaceport/communications_office)
 "bNa" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_x = -1;
@@ -11247,16 +11198,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "cfe" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/grille,
 /obj/structure/barricade/handrail/wire{
 	dir = 4
@@ -12533,11 +12475,7 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "cqG" = (
 /obj/machinery/recharge_station,
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "cqH" = (
@@ -12808,10 +12746,7 @@
 	icon = 'icons/obj/pipes/pipes.dmi';
 	name = "Pipe"
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -13008,9 +12943,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "cuU" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/south_caves)
 "cuW" = (
@@ -13259,10 +13192,7 @@
 	layer = 2
 	},
 /obj/item/alienjar,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "cwK" = (
@@ -14197,11 +14127,7 @@
 	pixel_x = -4;
 	pixel_y = 23
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "cGc" = (
@@ -14726,11 +14652,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cLc" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
 /obj/effect/spawner/random/engineering/tool,
@@ -15159,9 +15081,7 @@
 /area/lv759/indoors/hospital/outgoing)
 "cPa" = (
 /obj/machinery/power/port_gen/pacman/super,
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	dir = 1
 	},
@@ -15274,11 +15194,7 @@
 	},
 /obj/item/tool/wirecutters,
 /obj/item/assembly/voice,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "cPU" = (
@@ -19793,10 +19709,7 @@
 /area/lv759/indoors/garage_reception)
 "dJZ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform_decoration/shiva{
 	dir = 4
 	},
@@ -20228,16 +20141,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
 /obj/item/stack/rods,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/forcefield,
 /turf/open/floor/plating{
 	dir = 8
@@ -20388,10 +20292,7 @@
 	},
 /area/lv759/indoors/power_plant/fusion_generators)
 "dPo" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
@@ -20430,11 +20331,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest)
 "dPF" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/stripes/full,
 /turf/open/floor/plating,
@@ -21652,11 +21549,7 @@
 "ecO" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform_decoration/shiva{
 	dir = 4
 	},
@@ -23501,9 +23394,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "eur" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/caveplateau)
 "euy" = (
@@ -24221,10 +24112,7 @@
 /area/lv759/indoors/mining_outpost/east_command)
 "eBR" = (
 /obj/structure/platform,
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "eBS" = (
@@ -24631,10 +24519,7 @@
 /area/lv759/indoors/hospital/cryo_room)
 "eFF" = (
 /obj/item/paper/crumpled,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 3.3
@@ -24754,9 +24639,7 @@
 	},
 /area/lv759/indoors/power_plant/telecomms)
 "eGV" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/propplaceholder{
 	desc = "An old company comms tower used to transmit communications between subspace bodies. Looks like this one has seen better days.";
@@ -25047,10 +24930,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/weymart)
 "eKL" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_maintenance)
 "eKP" = (
@@ -26309,14 +26189,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eWs" = (
 /obj/machinery/prop/autolathe,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -26831,11 +26704,7 @@
 	},
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/marine_card,
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/strata{
 	dir = 4;
 	layer = 4
@@ -29839,11 +29708,7 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/forcefield,
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
@@ -31120,9 +30985,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fQZ" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_caves)
 "fRa" = (
@@ -31786,16 +31649,7 @@
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "fYt" = (
@@ -32846,11 +32700,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "ghI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/grille,
 /obj/effect/forcefield,
 /turf/open/floor/plating,
@@ -33071,9 +32921,7 @@
 /turf/open/floor/urban/metal/grated,
 /area/lv759/outdoors/colony_streets/central_streets)
 "gjz" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/structure/prop/propplaceholder,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/caveplateau)
@@ -34145,11 +33993,7 @@
 	},
 /area/lv759/indoors/electical_systems/substation1)
 "gui" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/grille,
 /obj/structure/barricade/handrail/wire{
 	dir = 1
@@ -34808,14 +34652,7 @@
 /obj/effect/decal/cleanable/generic,
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform,
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "gzH" = (
@@ -34931,11 +34768,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/south_west_caves)
 "gBh" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
@@ -35845,9 +35678,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "gJV" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 9
 	},
@@ -37306,9 +37137,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "gYs" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /obj/item/explosive/plastique{
 	name = "large mining charge"
 	},
@@ -37722,14 +37551,7 @@
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
 "hch" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance)
 "hct" = (
@@ -38024,10 +37846,7 @@
 	color = "#6b675e"
 	},
 /obj/item/bodybag/tarp,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "hfW" = (
@@ -38098,9 +37917,7 @@
 /obj/structure/cable{
 	level = 2
 	},
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "hgJ" = (
@@ -39388,11 +39205,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "huu" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -39467,11 +39280,7 @@
 /obj/structure/platform/mineral{
 	dir = 8
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
@@ -40114,11 +39923,7 @@
 	},
 /area/lv759/indoors/garage_workshop)
 "hCC" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/platform{
 	dir = 4
@@ -40348,18 +40153,8 @@
 	desc = null;
 	name = "floor panel"
 	},
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
+/obj/structure/cable,
 /obj/item/clothing/head/hardhat/dblue{
 	pixel_x = -3;
 	pixel_y = 16
@@ -40579,11 +40374,7 @@
 /area/lv759/indoors/east_caves)
 "hHK" = (
 /obj/machinery/prop/autolathe,
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "hHN" = (
@@ -41217,11 +41008,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
@@ -42547,14 +42334,7 @@
 	dir = 1;
 	layer = 1
 	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -43535,11 +43315,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "ikI" = (
@@ -43741,10 +43517,7 @@
 /turf/open/floor/officesquares,
 /area/lv759/indoors/hospital/virology)
 "ilV" = (
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
@@ -43852,11 +43625,7 @@
 	pixel_x = 15;
 	pixel_y = -9
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
@@ -45111,10 +44880,7 @@
 /area/lv759/indoors/derelict_ship)
 "izy" = (
 /obj/effect/spawner/random/engineering/metal,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/prison/yellow{
 	dir = 8
 	},
@@ -49552,11 +49318,7 @@
 	color = "#6b675e"
 	},
 /obj/machinery/science/analyser,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2
@@ -50402,10 +50164,7 @@
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "jyO" = (
 /obj/item/tool/pen,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "jyX" = (
@@ -51313,10 +51072,7 @@
 	color = "#6b675e"
 	},
 /obj/effect/spawner/random/engineering/technology_scanner,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/item/reagent_containers/food/drinks/coffee{
 	layer = 4;
 	pixel_x = 16;
@@ -52928,11 +52684,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "jWr" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -53075,10 +52827,7 @@
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
 	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "jXo" = (
@@ -56116,10 +55865,7 @@
 /obj/effect/decal/cleanable/blood{
 	desc = "Watch your step."
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -57440,15 +57186,6 @@
 	allow_construction = 0
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
-"kOU" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/plating,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "kPb" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 1;
@@ -57860,10 +57597,7 @@
 	pixel_y = 3
 	},
 /obj/structure/table/reinforced/prison,
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "kSq" = (
@@ -58575,9 +58309,7 @@
 	},
 /area/lv759/outdoors/caveplateau)
 "kYX" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/hardhat{
 	pixel_x = 4;
@@ -59353,10 +59085,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "lgt" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/platform,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
@@ -60374,10 +60103,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/wire{
 	dir = 8;
@@ -60608,9 +60334,7 @@
 /obj/structure/cable{
 	level = 2
 	},
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_caves)
 "lsD" = (
@@ -61718,11 +61442,7 @@
 	layer = 4
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_north)
 "lEM" = (
@@ -62021,10 +61741,7 @@
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen)
 "lHS" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "lIk" = (
@@ -62089,10 +61806,7 @@
 "lJg" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/head/helmet/marine/veteran/pmc/leader,
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison,
 /area/lv759/indoors/central_caves)
@@ -62385,16 +62099,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "lLS" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
@@ -62794,9 +62499,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "lQb" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	},
+/obj/structure/cable,
 /obj/structure/prop/propplaceholder,
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
@@ -63890,11 +63593,7 @@
 /obj/effect/spawner/random/engineering/powercell{
 	layer = 2.9
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
@@ -65032,10 +64731,7 @@
 /turf/open/floor/urban/carpet/carpetred,
 /area/lv759/indoors/casino)
 "mmg" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -65699,10 +65395,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "mqU" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 2
@@ -66932,10 +66625,7 @@
 /area/lv759/indoors/spaceport/maintenance_east)
 "mDI" = (
 /obj/item/clothing/gloves/marine/veteran/pmc/commando,
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
@@ -67785,10 +67475,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mLh" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "mLn" = (
@@ -68187,11 +67874,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/garage)
 "mOf" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 8;
 	layer = 4
@@ -69294,11 +68977,7 @@
 	},
 /area/lv759/indoors/recycling_plant/garage)
 "mYT" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt/grime3{
@@ -71359,18 +71038,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
-"nqS" = (
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1;
-	pixel_y = 2
-	},
-/turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/wy_research_complex/mainlabs)
 "nqX" = (
 /obj/effect/urban/decal/engineership_corners,
 /turf/open/engineership/engineer_floor3,
@@ -72247,9 +71914,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/cryo_room)
 "nAc" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/structure/prop/propplaceholder,
 /obj/item/clothing/glasses/regular/hipster,
 /obj/structure/table/mainship,
@@ -72382,10 +72047,7 @@
 /obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating{
 	dir = 8
@@ -74229,10 +73891,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/molten_item,
 /obj/structure/platform,
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "nRW" = (
@@ -74458,11 +74117,7 @@
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
 "nUF" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -74479,11 +74134,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -76740,11 +76391,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
 "opy" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/maint{
 	name = "autoname reinforced"
@@ -76840,18 +76487,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/north_street)
-"oqh" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
-/obj/structure/prop/mainship/brokengen,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/fusion_generators)
 "oqm" = (
 /turf/open/urban/street/sidewalk{
 	dir = 4
@@ -77138,9 +76773,7 @@
 	},
 /area/lv759/indoors/wy_security/checkpoint_west)
 "otg" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/item/storage/backpack/marine/satchel{
 	pixel_x = 7;
 	pixel_y = 19
@@ -79076,10 +78709,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oLQ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing/bullet,
@@ -79746,10 +79376,7 @@
 /area/lv759/indoors/north_caves)
 "oSe" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 1;
 	layer = 3.1
@@ -80074,9 +79701,7 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oVn" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /obj/item/tool/screwdriver{
 	pixel_x = 7;
 	pixel_y = 4
@@ -80891,16 +80516,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "peD" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -82010,10 +81626,7 @@
 /obj/effect/decal/cleanable/blood{
 	layer = 3
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -82559,10 +82172,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ptC" = (
 /obj/structure/grille,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	dir = 4
 	},
@@ -84449,11 +84059,7 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
 "pKE" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -85635,12 +85241,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "pVP" = (
-/obj/structure/cable{
-	color = "#550d0d"
-	},
-/obj/structure/cable{
-	color = "#550d0d"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -85734,10 +85335,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "pWW" = (
@@ -85936,9 +85534,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "pYp" = (
-/obj/structure/cable{
-	color = "550d0d";
-	},
+/obj/structure/cable,
 /obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
@@ -87886,11 +87482,7 @@
 /obj/structure/platform_decoration/mineral{
 	dir = 1
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
@@ -92219,11 +91811,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
-/obj/structure/cable{
-	color = "#007740";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -92365,10 +91953,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "rjh" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
@@ -92910,11 +92495,7 @@
 	pixel_x = 12;
 	pixel_y = 8
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
@@ -93857,11 +93438,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ryj" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
@@ -96319,10 +95896,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "rXE" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "rXF" = (
@@ -97068,10 +96642,7 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/prop/urban/misc/buildinggreebliessmall/computer{
 	light_color = "#00ff9f";
 	light_on = 1;
@@ -97612,10 +97183,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "sjX" = (
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "skb" = (
@@ -97894,11 +97462,7 @@
 /area/lv759/indoors/casino)
 "smt" = (
 /obj/structure/table/reinforced/prison,
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -98523,11 +98087,7 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/mining_outpost/south)
 "srD" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
@@ -98551,14 +98111,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "srL" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "srN" = (
@@ -98804,10 +98357,7 @@
 	},
 /area/lv759/indoors/tcomms_northwest)
 "suJ" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "autoname reinforced"
@@ -100242,10 +99792,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "sGY" = (
 /obj/effect/spawner/random/engineering/tool,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/platform_decoration/shiva{
 	dir = 8
 	},
@@ -100844,10 +100391,7 @@
 /obj/structure/prop/propplaceholder{
 	pixel_y = 12
 	},
-/obj/structure/cable{
-	color = "9f8700";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble5{
 	pixel_y = 12
 	},
@@ -101767,9 +101311,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/east_caves)
 "sVI" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "sVP" = (
@@ -102014,11 +101556,7 @@
 /obj/structure/platform/mineral{
 	dir = 8
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6;
 	pixel_x = 1
@@ -103019,10 +102557,7 @@
 /obj/item/storage/toolbox/emergency{
 	pixel_y = 4
 	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "ths" = (
@@ -103387,10 +102922,7 @@
 /obj/effect/spawner/random/weaponry/ammo/rifle{
 	current_rounds = 17
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/platform,
 /obj/structure/platform_decoration/shiva,
 /obj/item/ammo_casing/bullet,
@@ -104478,10 +104010,7 @@
 /area/lv759/indoors/spaceport/cuppajoes)
 "twi" = (
 /obj/structure/grille,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/barricade/handrail/wire{
 	dir = 4
 	},
@@ -107228,10 +106757,7 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "tYr" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/platform{
 	dir = 4;
 	layer = 2.8
@@ -107526,10 +107052,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east)
 "uaX" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -107914,10 +107437,7 @@
 	color = "#6b675e"
 	},
 /obj/structure/prop/propplaceholder,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "ueO" = (
@@ -111534,11 +111054,7 @@
 	pixel_y = -4
 	},
 /obj/item/stock_parts/manipulator,
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
@@ -112425,10 +111941,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "uVo" = (
@@ -112493,10 +112006,7 @@
 /area/lv759/indoors/recycling_plant)
 "uWm" = (
 /obj/machinery/prop/autolathe,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -113555,11 +113065,7 @@
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	layer = 3.33
@@ -113587,10 +113093,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_south)
 "vgh" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -114982,11 +114485,7 @@
 	pixel_x = 6;
 	pixel_y = 18
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
@@ -116658,11 +116157,7 @@
 /obj/structure/platform/mineral{
 	dir = 1
 	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
@@ -116771,9 +116266,7 @@
 /obj/structure/prop/propplaceholder{
 	pixel_y = 7
 	},
-/obj/structure/cable{
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/south_caves)
 "vMD" = (
@@ -117081,10 +116574,7 @@
 "vPc" = (
 /obj/structure/largecrate/random,
 /obj/item/tool/multitool,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "vPh" = (
@@ -117595,10 +117085,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_west_caves)
 "vTe" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /obj/structure/prop/urban/misc/buildinggreebliessmall/computer{
 	light_color = "#00ff9f";
 	light_on = 1;
@@ -118897,14 +118384,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "wej" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_north)
 "wek" = (
@@ -120876,11 +120356,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "wzn" = (
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2
@@ -121117,15 +120593,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "#9f8700";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -122530,10 +121998,7 @@
 	dir = 1;
 	layer = 2.1
 	},
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_maintenance)
 "wPN" = (
@@ -122925,22 +122390,8 @@
 /obj/item/stack/cable_coil,
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform,
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "550d0d";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
-/obj/structure/cable{
-	color = "007740";
-	layer = 5
-	},
+/obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "wTG" = (
@@ -123926,11 +123377,7 @@
 	pixel_y = 18
 	},
 /obj/item/stack/cable_coil,
-/obj/structure/cable{
-	color = "#550d0d";
-	layer = 5;
-	level = 2
-	},
+/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -126417,14 +125864,7 @@
 /turf/open/floor/hybrisa,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "xDX" = (
-/obj/structure/cable{
-	color = "#550d0d";
-	dir = 2;
-	icon = 'icons/obj/structures/urbanshutters.dmi';
-	id = "hybrisacolonylockdown";
-	layer = 5;
-	name = "Emergency Lockdown"
-	},
+/obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	icon = 'icons/obj/structures/urbanshutters.dmi';
@@ -133848,7 +133288,7 @@ duz
 vXo
 nRL
 lph
-nqS
+srD
 mqT
 jrW
 obN
@@ -161472,7 +160912,7 @@ eKW
 rOK
 aWh
 eFv
-oqh
+pYp
 nRT
 eEu
 cEj
@@ -178971,7 +178411,7 @@ eKo
 mPv
 vtC
 ojg
-kOU
+mmg
 mpS
 wVX
 wVX
