@@ -4033,9 +4033,7 @@
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_hallway)
 "aPY" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/mainship/security/glass,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "aQd" = (
@@ -4105,9 +4103,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/reception)
 "aRg" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "aRh" = (
@@ -22002,9 +21998,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/wy_research_complex_entrance)
 "ehr" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "eht" = (
@@ -26187,14 +26181,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
-"eWs" = (
-/obj/machinery/prop/autolathe,
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/officetiles,
-/area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "eWt" = (
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/storage/box/gloves{
@@ -37916,7 +37902,6 @@
 /obj/structure/cable{
 	level = 2
 	},
-/obj/structure/cable,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "hgJ" = (
@@ -43514,11 +43499,6 @@
 /obj/effect/decal/cleanable/dirt/grime1,
 /turf/open/floor/officesquares,
 /area/lv759/indoors/hospital/virology)
-"ilV" = (
-/obj/structure/cable,
-/obj/structure/prop/mainship/brokengen,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/fusion_generators)
 "imk" = (
 /obj/structure/prop/urban/vehicles/truck/truck3{
 	dir = 1;
@@ -49832,9 +49812,7 @@
 	},
 /area/lv759/indoors/south_public_restroom)
 "jwx" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwayeast)
 "jwE" = (
@@ -55535,9 +55513,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "kyD" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "kyG" = (
@@ -60332,7 +60308,6 @@
 /obj/structure/cable{
 	level = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_caves)
 "lsD" = (
@@ -62648,9 +62623,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lSd" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic.
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest)
 "lSe" = (
@@ -67452,9 +67425,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mKO" = (
-/obj/machinery/door/airlock/mainship/secure{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/mainship/secure,
 /turf/open/floor/prison,
 /area/lv759/indoors/electical_systems/substation2)
 "mKZ" = (
@@ -81852,9 +81823,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/securityarmory)
 "pqv" = (
-/obj/machinery/door/airlock/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen)
 "pqz" = (
@@ -84855,16 +84824,6 @@
 "pSj" = (
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
-"pSk" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/structure/cable,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "pSn" = (
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -92293,9 +92252,7 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/indoors/south_west_caves)
 "rnq" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
 "rnw" = (
@@ -96044,9 +96001,7 @@
 	},
 /area/lv759/outdoors/landing_zone_1)
 "rZn" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_factory)
 "rZu" = (
@@ -110759,20 +110714,6 @@
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/medical_annex)
-"uKZ" = (
-/obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
-/obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/floorprops/grate,
-/obj/structure/cable,
-/obj/structure/platform{
-	dir = 1;
-	layer = 3.1
-	},
-/obj/structure/prop/urban/fakeplatforms/platform3{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/space)
 "uLf" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -114407,9 +114348,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "vsV" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/mainship/security/glass,
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "vsX" = (
@@ -120921,9 +120860,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "wET" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	autoname = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/reception)
 "wFc" = (
@@ -132007,7 +131944,7 @@ qwq
 wRc
 uWm
 vPc
-eWs
+uWm
 xVj
 qwq
 kNC
@@ -161158,7 +161095,7 @@ eKW
 bxx
 qHz
 exS
-ilV
+pYp
 wTs
 tXP
 fqc
@@ -165949,7 +165886,7 @@ qMB
 rpB
 dIq
 jij
-pSk
+rcq
 hoZ
 sbU
 bbV
@@ -168988,7 +168925,7 @@ cAQ
 oKM
 bYX
 bYX
-uKZ
+xzA
 bQQ
 bYX
 bYX
