@@ -717,19 +717,19 @@
 	icon_state = "comms_1"
 	minimap_color = MINIMAP_AREA_ENGI
 
-// Weymart
-/area/lv759/indoors/weymart
-	name = "Weymart"
-	icon_state = "weymart"
+// ntmart
+/area/lv759/indoors/ntmart
+	name = "ntmart"
+	icon_state = "ntmart"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/lv759/indoors/weymart/backrooms
-	name = "Weymart - Backrooms"
-	icon_state = "weymartbackrooms"
+/area/lv759/indoors/ntmart/backrooms
+	name = "ntmart - Backrooms"
+	icon_state = "ntmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
-/area/lv759/indoors/weymart/maintenance
-	name = "Weymart - Maintenance"
-	icon_state = "weymartbackrooms"
+/area/lv759/indoors/ntmart/maintenance
+	name = "ntmart - Maintenance"
+	icon_state = "ntmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 // WY Security Checkpoints

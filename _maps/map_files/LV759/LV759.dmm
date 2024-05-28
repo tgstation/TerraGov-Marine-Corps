@@ -363,7 +363,7 @@
 	pixel_y = 22
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "ads" = (
 /obj/structure/platform/urban/metalplatform1{
 	dir = 8
@@ -1056,7 +1056,7 @@
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ajI" = (
 /obj/machinery/mineral/processing_unit,
 /turf/open/floor/plating,
@@ -1417,7 +1417,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "anL" = (
 /obj/item/stack/rods{
 	amount = 15
@@ -2420,7 +2420,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ayH" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/tile/tilewhitecheckered,
@@ -3333,7 +3333,7 @@
 "aIF" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "aIG" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/road_edge,
@@ -3416,7 +3416,7 @@
 	layer = 3
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "aKg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -5343,7 +5343,7 @@
 "bcW" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "bcZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9;
@@ -5640,7 +5640,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "bfd" = (
 /obj/structure/fence/dark,
 /turf/open/urban/street/cement3,
@@ -5667,7 +5667,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "bfq" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall2{
 	pixel_y = 25
@@ -5804,7 +5804,7 @@
 	pixel_y = 20
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "bgR" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
@@ -6047,7 +6047,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "bjl" = (
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -6324,7 +6324,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "blN" = (
 /obj/effect/urban/decal/trash/eleven{
 	dir = 4
@@ -7098,7 +7098,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "btu" = (
 /obj/structure/platform{
 	dir = 4
@@ -7286,7 +7286,7 @@
 "bvL" = (
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer2,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "bvN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/medical_decals/triage/edge{
@@ -9071,7 +9071,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "bNx" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/urban/tile/darkgrey_bigtile,
@@ -11205,7 +11205,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "cfJ" = (
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 1
@@ -12998,7 +12998,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "cvI" = (
 /obj/item/reagent_containers/glass/bucket{
 	pixel_x = -11;
@@ -14797,7 +14797,7 @@
 "cNb" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "cNc" = (
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/road_stop/three{
@@ -14957,7 +14957,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "cOR" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
@@ -15946,7 +15946,7 @@
 /obj/structure/rack,
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "cZx" = (
 /obj/structure/stairs{
 	color = "#a6aeab";
@@ -16019,7 +16019,7 @@
 /obj/structure/closet,
 /obj/item/storage/box,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "dah" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -16355,7 +16355,7 @@
 	},
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ddu" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
@@ -17578,7 +17578,7 @@
 "dph" = (
 /obj/structure/prop/urban/supermart/rack/longrack6,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "dpl" = (
 /obj/machinery/door/airlock/hybrisa/generic/autoname{
 	dir = 1
@@ -18231,7 +18231,7 @@
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "dvH" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall2{
 	pixel_y = 25
@@ -20116,7 +20116,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "dOV" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods{
@@ -22071,7 +22071,7 @@
 	pixel_x = -17
 	},
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "eiM" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison{
@@ -22248,7 +22248,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "ekr" = (
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ekw" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -22355,7 +22355,7 @@
 "elQ" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "elR" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
 /turf/closed/wall/urban/research/reinforced,
@@ -22574,7 +22574,7 @@
 	},
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer6,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "eog" = (
 /obj/structure/rack,
 /obj/item/clothing/head/hardhat/dblue{
@@ -23218,7 +23218,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "etV" = (
 /obj/item/storage/bag/plasticbag,
 /obj/item/reagent_containers/food/drinks/milk,
@@ -23227,7 +23227,7 @@
 	layer = 3
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "etW" = (
 /obj/structure/closet/jcloset,
 /turf/open/floor/urban/tile/darkbrown_bigtile{
@@ -23528,7 +23528,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "exd" = (
 /obj/structure/barricade/handrail/wire{
 	dir = 8
@@ -24793,7 +24793,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "eKL" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -26533,7 +26533,7 @@
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fbB" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -26637,7 +26637,7 @@
 	},
 /obj/item/storage/bag/plasticbag,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fcw" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/hardhat{
@@ -26775,7 +26775,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fdy" = (
 /obj/machinery/landinglight/lz2{
 	dir = 1
@@ -27074,7 +27074,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "fgF" = (
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
@@ -27442,7 +27442,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fld" = (
 /obj/machinery/light{
 	dir = 4
@@ -28022,7 +28022,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fsw" = (
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/landing_zone_2)
@@ -29349,7 +29349,7 @@
 	},
 /obj/item/tool/pen,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "fEO" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
@@ -29910,7 +29910,7 @@
 	},
 /obj/item/clothing/head/soft/orange,
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fJt" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -30141,7 +30141,7 @@
 /area/lv759/indoors/central_caves)
 "fLx" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "fLz" = (
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 1
@@ -30324,7 +30324,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fNb" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/urban/colony/hospital,
@@ -30405,7 +30405,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "fNB" = (
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "fNC" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
@@ -30420,7 +30420,7 @@
 "fND" = (
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fNJ" = (
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/north_office)
@@ -30458,7 +30458,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "fNV" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/largecrate/random,
@@ -30599,7 +30599,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "fOU" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -30794,7 +30794,7 @@
 /turf/open/floor/orange_edge{
 	dir = 5
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "fQV" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -32161,7 +32161,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "geS" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -32335,7 +32335,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "ggm" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
 /obj/structure/prop/urban/misc/floorprops/grate,
@@ -33351,7 +33351,7 @@
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "gpX" = (
 /obj/structure/platform{
 	dir = 1;
@@ -34015,7 +34015,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "gvQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble7{
@@ -35859,7 +35859,7 @@
 	layer = 2
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "gNX" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/fertilizer,
@@ -36160,7 +36160,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "gQE" = (
 /obj/structure/platform{
 	layer = 3.1
@@ -36224,7 +36224,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "gRn" = (
 /obj/structure/prop/urban/engineer/engineerpillar/southwesttop,
 /turf/closed/wall/engineership,
@@ -36840,7 +36840,7 @@
 "gXs" = (
 /obj/structure/prop/urban/supermart/rack/longrack5,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "gXw" = (
 /obj/structure/table/mainship,
 /obj/structure/prop/mainship/research/circuit_imprinter,
@@ -38077,7 +38077,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "hkY" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -39261,7 +39261,7 @@
 "hyo" = (
 /obj/structure/bed/stool,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "hyt" = (
 /obj/structure/prop/propplaceholder{
 	pixel_x = -6;
@@ -39718,7 +39718,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "hEa" = (
 /obj/structure/prop/propplaceholder{
 	pixel_x = 6;
@@ -39869,7 +39869,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "hFw" = (
 /obj/item/tool/wrench{
 	pixel_x = 1;
@@ -40973,7 +40973,7 @@
 	layer = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "hQY" = (
 /obj/structure/lattice/autosmooth,
 /obj/structure/largecrate/random/barrel/white,
@@ -43023,7 +43023,7 @@
 /obj/item/reagent_containers/spray,
 /obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ikH" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -43107,7 +43107,7 @@
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ill" = (
 /turf/closed/wall/urban/marhsalls_reinforced,
 /area/lv759/indoors/colonial_marshals/office)
@@ -43563,7 +43563,7 @@
 /obj/machinery/light/spot/blue,
 /obj/structure/prop/urban/supermart/rack/longrack5,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "iqg" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -43806,7 +43806,7 @@
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "isU" = (
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1
@@ -44221,7 +44221,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrack7,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "iwq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines3,
@@ -44693,7 +44693,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "iBo" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -45525,7 +45525,7 @@
 /area/lv759/oob)
 "iIE" = (
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "iIF" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -45774,7 +45774,7 @@
 /obj/machinery/light,
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "iKC" = (
 /obj/item/tool/weldpack{
 	pixel_x = -6;
@@ -46462,7 +46462,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "iRt" = (
 /obj/structure/barricade/handrail/strata,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -46537,7 +46537,7 @@
 	pixel_y = 22
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "iRV" = (
 /obj/structure/prop/propplaceholder{
 	pixel_x = -4;
@@ -47325,7 +47325,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "jbm" = (
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -48199,7 +48199,7 @@
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "jjS" = (
 /obj/structure/table,
 /obj/structure/rack,
@@ -48924,7 +48924,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "jre" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines3,
@@ -50200,7 +50200,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "jCj" = (
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/geothermal_generators)
@@ -51077,7 +51077,7 @@
 /area/lv759/indoors/spaceport/engineering)
 "jKE" = (
 /turf/closed/wall/urban/colony,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "jKN" = (
 /obj/structure/table/mainship,
 /obj/structure/largecrate/supply/weapons/flamers,
@@ -51423,7 +51423,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "jOu" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
@@ -51530,7 +51530,7 @@
 	dir = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "jPE" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
@@ -52821,7 +52821,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "kbx" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/road_edge,
@@ -55386,7 +55386,7 @@
 	pixel_x = -17
 	},
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "kBa" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
 /turf/open/floor/prison,
@@ -55783,7 +55783,7 @@
 	layer = 3
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "kFv" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/containersextended/redleft,
@@ -58086,7 +58086,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "laO" = (
 /obj/structure/closet/walllocker/hydrant{
 	pixel_y = 32
@@ -58917,7 +58917,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "lir" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -60667,7 +60667,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "lAh" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 1;
@@ -61968,7 +61968,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "lPp" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
@@ -62745,7 +62745,7 @@
 /turf/open/floor/orange_edge{
 	dir = 5
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "lWS" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -63018,7 +63018,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "lZA" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
@@ -63843,7 +63843,7 @@
 /obj/structure/table/reinforced/fabric,
 /obj/structure/prop/urban/supermart/supermartfruitbasketempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mib" = (
 /obj/structure/prop/urban/misc/machinery/screens/redalert{
 	light_color = "#FF0000";
@@ -64364,7 +64364,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mmx" = (
 /obj/machinery/door/airlock/hybrisa/medical/autoname{
 	dir = 1
@@ -65260,7 +65260,7 @@
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "muT" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -65695,7 +65695,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "myE" = (
 /obj/machinery/light,
 /turf/open/floor/urban/carpet/carpetbeige,
@@ -66159,7 +66159,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "mDo" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -67250,7 +67250,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mMw" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/lattice_prop/lattice_6{
@@ -67317,7 +67317,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mMV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -67877,7 +67877,7 @@
 	},
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mST" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -68460,7 +68460,7 @@
 	pixel_y = 13
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "mYs" = (
 /obj/item/stack/sheet/cardboard{
 	layer = 1
@@ -69152,7 +69152,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "ndn" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -69625,7 +69625,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "nhv" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -71660,7 +71660,7 @@
 /obj/item/reagent_containers/food/drinks/cans/souto,
 /obj/item/reagent_containers/food/drinks/cans/souto,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "nBE" = (
 /obj/structure/rack,
 /obj/item/toner,
@@ -73330,7 +73330,7 @@
 "nQw" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "nQy" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 8
@@ -73934,7 +73934,7 @@
 	pixel_x = -27
 	},
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "nXs" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -77038,7 +77038,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "oAk" = (
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -77214,7 +77214,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "oCh" = (
 /obj/machinery/light,
 /turf/open/floor/prison,
@@ -77670,7 +77670,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "oHv" = (
 /obj/structure/closet,
 /obj/item/clothing/under/pizza,
@@ -77912,7 +77912,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "oJB" = (
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "oJD" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/storage/belt/marine,
@@ -79409,7 +79409,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "oYa" = (
 /obj/structure/prop/urban/containersextended/redright,
 /turf/open/urban/street/sidewalk,
@@ -79940,7 +79940,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "pdM" = (
 /obj/structure/table,
 /obj/structure/closet/walllocker/hydrant{
@@ -80586,7 +80586,7 @@
 	pixel_y = 11
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "pjy" = (
 /obj/structure/largecrate/random,
 /obj/effect/urban/decal/road/road_edge/six,
@@ -83067,7 +83067,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "pGk" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -83489,7 +83489,7 @@
 /obj/structure/closet/crate/freezer,
 /obj/machinery/conveyor,
 /turf/open/floor/mainship/sterile/dark,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "pKj" = (
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
@@ -83565,7 +83565,7 @@
 	layer = 2
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "pKK" = (
 /obj/machinery/light/small/blue{
 	dir = 4
@@ -84262,7 +84262,7 @@
 	pixel_x = 2
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "pRG" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating{
@@ -84554,7 +84554,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "pUy" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
 /obj/item/stack/sheet/cardboard,
@@ -84658,7 +84658,7 @@
 "pVx" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "pVz" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -85396,7 +85396,7 @@
 	},
 /obj/structure/sign/poster,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qci" = (
 /obj/effect/urban/decal/road/roadmiddle{
 	dir = 1;
@@ -85697,7 +85697,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qfE" = (
 /obj/structure/stairs{
 	color = "#b7b8b2";
@@ -85758,7 +85758,7 @@
 "qgg" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qgn" = (
 /turf/closed/shuttle/dropship4/engine_sidealt{
 	dir = 4
@@ -86275,7 +86275,7 @@
 	},
 /obj/item/clothing/suit/storage/apron,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qmj" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east)
@@ -87275,7 +87275,7 @@
 /obj/machinery/light/spot/blue,
 /obj/structure/prop/urban/supermart/rack/longrack3,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qvt" = (
 /obj/structure/largecrate/random{
 	layer = 6;
@@ -87380,7 +87380,7 @@
 	},
 /obj/effect/spawner/random/food_or_drink/beer,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qwS" = (
 /obj/structure/prop/propplaceholder{
 	pixel_x = 6;
@@ -88077,7 +88077,7 @@
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qDp" = (
 /obj/structure/reagent_dispensers/water_cooler{
 	pixel_x = 11;
@@ -89660,7 +89660,7 @@
 	layer = 3
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "qSS" = (
 /obj/machinery/floodlight,
 /obj/structure/lattice/autosmooth,
@@ -90753,7 +90753,7 @@
 	pixel_x = 12
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "rch" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/prison{
@@ -91473,7 +91473,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "rka" = (
 /turf/open/floor/urban/metal/grated,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -92065,7 +92065,7 @@
 /obj/item/spacecash/ewallet,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "rqr" = (
 /obj/structure/bed/urban/chairs/red{
 	dir = 4
@@ -92339,7 +92339,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "rtn" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison/whitegreen{
@@ -93122,7 +93122,7 @@
 /turf/open/floor/orange_edge{
 	dir = 9
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "rAI" = (
 /obj/item/stack/rods,
 /turf/open/urbanshale/layer2,
@@ -93276,7 +93276,7 @@
 "rCq" = (
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "rCw" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/chair{
@@ -93683,7 +93683,7 @@
 "rGR" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "rGW" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -95890,7 +95890,7 @@
 /obj/item/tool/wet_sign,
 /obj/item/tool/mop,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "sds" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
 	dir = 1
@@ -96015,7 +96015,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "seq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -96535,7 +96535,7 @@
 /obj/structure/closet/crate/plastic,
 /obj/machinery/conveyor,
 /turf/open/floor/mainship/sterile/dark,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "sjz" = (
 /obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -97078,7 +97078,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "snX" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/structure/prop/urban/misc/firehydrant{
@@ -97822,7 +97822,7 @@
 "svz" = (
 /obj/structure/prop/urban/supermart/rack/longrack7,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "svG" = (
 /turf/open/urban/street/sidewalk{
 	dir = 6
@@ -98823,7 +98823,7 @@
 "sEg" = (
 /obj/structure/prop/urban/supermart/rack/longrack1,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "sEh" = (
 /obj/effect/turf_decal/medical_decals/doc/three,
 /turf/open/floor/urban/tile/lightbeige_bigtile,
@@ -99226,7 +99226,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "sHK" = (
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "sHN" = (
 /obj/structure/barricade/handrail/urban/road/plastic/black{
 	dir = 1
@@ -99869,7 +99869,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "sOL" = (
 /obj/effect/urban/decal/trash/three,
 /turf/open/floor/urban/carpet/carpetblack,
@@ -100605,7 +100605,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "sUW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -100627,7 +100627,7 @@
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "sVi" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -103100,7 +103100,7 @@
 "tty" = (
 /obj/item/storage/bag/plasticbag,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ttI" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -104583,7 +104583,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "tIw" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 8
@@ -104686,7 +104686,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "tJs" = (
 /obj/structure/platform{
 	dir = 4
@@ -105714,7 +105714,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "tTQ" = (
 /obj/structure/toilet{
 	dir = 4
@@ -105922,7 +105922,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "tWs" = (
 /turf/open/floor/mainship,
 /area/lv759/indoors/power_plant/fusion_generators)
@@ -106224,7 +106224,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer4,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "tZN" = (
 /obj/structure/rack,
 /obj/machinery/light/small/blue,
@@ -106829,7 +106829,7 @@
 	pixel_y = -10
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ufr" = (
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/apartment/eastentrance)
@@ -107663,7 +107663,7 @@
 	},
 /obj/item/shard,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "uof" = (
 /obj/structure/cargo_container,
 /obj/structure/sign/poster{
@@ -108607,7 +108607,7 @@
 "uvm" = (
 /obj/structure/prop/urban/supermart/rack/longrack3,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "uvw" = (
 /obj/structure/prop/urban/cavedecor/stalagmite5,
 /turf/open/urbanshale/layer1,
@@ -109909,7 +109909,7 @@
 "uJd" = (
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "uJf" = (
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 1
@@ -110365,7 +110365,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "uNo" = (
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
@@ -111990,7 +111990,7 @@
 	pixel_y = 11
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "vcR" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 10
@@ -112242,7 +112242,7 @@
 	pixel_x = -3
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "veQ" = (
 /obj/structure/bed/stool{
 	buckling_y = 14;
@@ -112819,7 +112819,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "vkD" = (
 /turf/closed/shuttle/dropship4/engine_sidealt{
 	dir = 1
@@ -113014,7 +113014,7 @@
 "vmx" = (
 /obj/structure/prop/urban/supermart/rack/longrack2,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "vmA" = (
 /obj/structure/platform{
 	dir = 1
@@ -114962,7 +114962,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer1,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "vGO" = (
 /obj/structure/barricade/handrail/urban/handrail,
 /turf/open/floor/prison/cellstripe,
@@ -117094,7 +117094,7 @@
 /area/lv759/indoors/south_east_caves)
 "wan" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "wat" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 10;
@@ -117417,7 +117417,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weymart/backrooms)
+/area/lv759/indoors/ntmart/backrooms)
 "wcL" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4;
@@ -119447,7 +119447,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "wxk" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/urban/colony,
@@ -121818,7 +121818,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "wWs" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -122068,7 +122068,7 @@
 "wYL" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "wYO" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -122400,7 +122400,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "xcr" = (
 /obj/structure/bed/chair{
 	can_buckle = 0;
@@ -125562,7 +125562,7 @@
 	},
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer5,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "xJr" = (
 /turf/open/floor/sandrock,
 /area/lv759/indoors/wy_research_complex_entrance)
@@ -125730,7 +125730,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "xKG" = (
 /obj/structure/closet/crate/miningcar,
 /turf/open/floor/plating{
@@ -126706,7 +126706,7 @@
 	},
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer3,
 /turf/open/floor/plating,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "xSj" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
@@ -127845,7 +127845,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "yeK" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/weymart/maintenance)
+/area/lv759/indoors/ntmart/maintenance)
 "yeN" = (
 /turf/open/engineership/ship_hull,
 /area/lv759/oob)
@@ -128514,7 +128514,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/weymart)
+/area/lv759/indoors/ntmart)
 "ymd" = (
 /obj/item/storage/briefcase{
 	pixel_y = -2
