@@ -31,7 +31,7 @@
 		if(0 to 500)
 			damage_state = 5
 	icon_state = "[initial(icon_state)]_damage_[damage_state]"
-var/damage_state = 0
+	var/damage_state = 0
 */
 
 /obj/structure/prop/urban/vehicles/proc/explode(dam, mob/M)
