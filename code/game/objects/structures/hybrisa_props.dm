@@ -35,35 +35,35 @@ var/damage_state = 0
 */
 
 /obj/structure/prop/urban/vehicles/proc/explode(dam, mob/M)
-    src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
-    playsound(loc, 'sound/effects/car_crush.ogg', 25)
-    var/turf/Tsec = get_turf(src)
-    new /obj/item/stack/rods(Tsec)
-    new /obj/item/stack/rods(Tsec)
-    new /obj/item/stack/sheet/metal(Tsec)
-    new /obj/item/stack/sheet/metal(Tsec)
-    new /obj/item/stack/cable_coil/cut(Tsec)
+	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
+	playsound(loc, 'sound/effects/car_crush.ogg', 25)
+	var/turf/Tsec = get_turf(src)
+	new /obj/item/stack/rods(Tsec)
+	new /obj/item/stack/rods(Tsec)
+	new /obj/item/stack/sheet/metal(Tsec)
+	new /obj/item/stack/sheet/metal(Tsec)
+	new /obj/item/stack/cable_coil/cut(Tsec)
 
-    new /obj/effect/spawner/gibspawner/robot(Tsec)
-    new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	new /obj/effect/spawner/gibspawner/robot(Tsec)
+	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
-    deconstruct(FALSE)
+	deconstruct(FALSE)
 
 /obj/structure/prop/urban/vehicles/suv
-    icon = 'icons/obj/structures/vehiclesexpanded.dmi'
-    icon_state = "SUV"
+	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon_state = "SUV"
 
 /obj/structure/prop/urban/vehicles/suvdamaged
-    icon = 'icons/obj/structures/vehiclesexpanded.dmi'
-    icon_state = "SUV_damaged"
+	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon_state = "SUV_damaged"
 
 /obj/structure/prop/urban/vehicles/largetruck
-    icon = 'icons/obj/structures/vehiclesexpanded.dmi'
-    icon_state = "zenithlongtruck3"
+	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon_state = "zenithlongtruck3"
 
 /obj/structure/prop/urban/vehicles/Car
-    icon = 'icons/obj/structures/vehiclesexpanded.dmi'
-    icon_state = "MeridianCar_1"
+	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon_state = "MeridianCar_1"
 
 
 // Very Large Vehicles
@@ -248,7 +248,7 @@ var/damage_state = 0
 // Car Chassis
 
 /obj/structure/prop/urban/vehicles/Car/Car_chassis
-    desc = "A Mono-Spectra chassis in the early stages of assembly."
+	desc = "A Mono-Spectra chassis in the early stages of assembly."
 
 /obj/structure/prop/urban/vehicles/Car/Car_chassis
 	name = "Mono-Spectra Chassis"
@@ -257,8 +257,8 @@ var/damage_state = 0
 // damaged suv
 
 /obj/structure/prop/urban/vehicles/suvdamaged
-    name = "heavily damaged SUV"
-    desc = "A shell of a vehicle, broken down beyond repair."
+	name = "heavily damaged SUV"
+	desc = "A shell of a vehicle, broken down beyond repair."
 
 /obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged0
 	icon_state = "SUV_damaged"
@@ -345,7 +345,7 @@ var/damage_state = 0
 	icon_state = "zenithlongtruckkellandmining1"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckmining
-    name = "Kelland mining mega-hauler truck"
+	name = "Kelland mining mega-hauler truck"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckmining/mining
 	icon_state = "zenithlongtruckkellandmining1"
@@ -356,7 +356,7 @@ var/damage_state = 0
 	icon_state = "zenithlongtruckweyland1"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy
-    name = "Nanotrasen mega-hauler truck"
+	name = "Nanotrasen mega-hauler truck"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy/wy1
 	icon_state = "zenithlongtruckweyland1"
@@ -396,7 +396,7 @@ var/damage_state = 0
 // science crawlers
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science
-    name = "Nanotrasen colony crawler"
+	name = "Nanotrasen colony crawler"
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1
 	icon_state = "crawler_wy1"
@@ -409,7 +409,7 @@ var/damage_state = 0
 // Mining Crawlers
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining
-    name = "kelland mining colony crawler"
+	name = "kelland mining colony crawler"
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining1
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
@@ -753,12 +753,12 @@ var/damage_state = 0
 
 // Furniture
 /obj/structure/prop/urban/furniture
-    icon = 'icons/obj/structures/zenithtables.dmi'
-    icon_state = "blackmetaltable"
+	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon_state = "blackmetaltable"
 
 /obj/structure/prop/urban/furniture/tables
-    icon = 'icons/obj/structures/zenithtables.dmi'
-    icon_state = "table_pool"
+	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon_state = "table_pool"
 
 /obj/structure/prop/urban/furniture/tables/tableblack
 	name = "large metal table"
@@ -770,8 +770,8 @@ var/damage_state = 0
 	bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tableblack/blacktablecomputer
-    icon = 'icons/obj/structures/zenithtables.dmi'
-    icon_state = "blackmetaltable_computer"
+	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon_state = "blackmetaltable_computer"
 
 /obj/structure/prop/urban/furniture/tables/tablewood
 	name = "large wood table"
@@ -783,8 +783,8 @@ var/damage_state = 0
 	bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tablewood/woodtablecomputer
-    icon = 'icons/obj/structures/zenithtables.dmi'
-    icon_state = "brownlargetable_computer"
+	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon_state = "brownlargetable_computer"
 
 /obj/structure/prop/urban/furniture/tables/tablepool
 	name = "pool table"
@@ -808,8 +808,8 @@ var/damage_state = 0
 
 // Chairs
 /obj/structure/bed/urban/chairs
-    name = "expensive chair"
-    desc = "A expensive looking chair"
+	name = "expensive chair"
+	desc = "A expensive looking chair"
 
 /obj/structure/bed/urban/chairs/black
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
@@ -1367,7 +1367,7 @@ var/damage_state = 0
 
 
 /obj/structure/prop/urban/misc/machinery/screens
-    name = "monitor"
+	name = "monitor"
 /obj/structure/prop/urban/misc/machinery/screens/frame
 	icon_state = "frame"
 /obj/structure/prop/urban/misc/machinery/screens/security
@@ -1425,7 +1425,7 @@ var/damage_state = 0
 	icon_state = "wallegg_on"
 
 /obj/structure/prop/urban/misc/fake/pipes
-    name = "disposal pipe"
+	name = "disposal pipe"
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe1
 	layer = 2
@@ -1444,7 +1444,7 @@ var/damage_state = 0
 	icon_state = "pipe-b"
 
 /obj/structure/prop/urban/misc/fake/wire
-    name = "power cable"
+	name = "power cable"
 
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
@@ -1458,7 +1458,7 @@ var/damage_state = 0
 
 
 /obj/structure/prop/urban/misc/fake/heavydutywire
-    name = "heavy duty wire"
+	name = "heavy duty wire"
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy1
 	layer = 2
@@ -1477,7 +1477,7 @@ var/damage_state = 0
 	icon_state = "1-2-4-8"
 
 /obj/structure/prop/urban/misc/fake/lattice
-    name = "structural lattice"
+	name = "structural lattice"
 
 /obj/structure/prop/urban/misc/fake/lattice/full
 	icon_state = "latticefull"
@@ -1701,7 +1701,7 @@ var/damage_state = 0
 /// Fake Platforms
 
 /obj/structure/prop/urban/fakeplatforms
-    name = "platform"
+	name = "platform"
 
 /obj/structure/prop/urban/fakeplatforms/platform1
 	icon_state = "engineer_platform"
