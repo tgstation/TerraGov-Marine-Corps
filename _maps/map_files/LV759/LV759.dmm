@@ -25867,9 +25867,6 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv759/indoors/hospital/emergency_room)
 "eTz" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -37532,9 +37529,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "hdy" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -51126,9 +51120,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jJC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -55561,9 +55552,6 @@
 /turf/open/floor/carpet/orange,
 /area/lv759/indoors/bar/entertainment)
 "kBA" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -57785,16 +57773,13 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "kWB" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	id = "hybrisaLZ2_3";
-	name = "Emergency Lockdown"
-	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbanLZ2_3";
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+    name = "Emergency Lockdown"
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -66312,9 +66297,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "mCI" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
 	dir = 1
 	},
@@ -67617,7 +67599,6 @@
 	},
 /area/lv759/indoors/south_west_caves)
 "mNP" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/medical_solid{
 	dir = 4
 	},
@@ -73562,9 +73543,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast)
 "nQJ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
 	dir = 1
 	},
@@ -91552,9 +91530,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/janitor)
 "rhQ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 1
 	},
@@ -97293,9 +97268,6 @@
 /turf/closed/wall/urban/marhsalls_unmeltable,
 /area/lv759/oob)
 "snD" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -101117,9 +101089,6 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "sWY" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
 	},
@@ -113791,9 +113760,6 @@
 	},
 /area/lv759/indoors/meridian/meridian_factory)
 "vrb" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
 	dir = 1
 	},
@@ -124456,9 +124422,6 @@
 	},
 /area/lv759/indoors/power_plant/south_hallway)
 "xub" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
 	dir = 1
 	},
