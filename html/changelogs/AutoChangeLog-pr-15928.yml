@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - soundadd: "Decrease gun fire sound volume from 60 to 50"
