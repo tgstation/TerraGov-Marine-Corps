@@ -258,12 +258,12 @@
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost)
 					status_hud.icon_state = "synthdnr"
-				else if(!ghost.client)
-					status_hud.overlays += "synth_noclient"
-				else
-					status_hud.icon_state = "synthdead"
-			else
-				status_hud.icon_state = "synthdead"
+					return TRUE
+				if(!ghost.client) // AFK ghost detected
+					status_hud.overlays += "dead_noclient"
+			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
+				status_hud.overlays += "dead_noclient"
+			status_hud.icon_state = "synthdead"
 			return TRUE
 		infection_hud.icon_state = "synth" //Xenos can feel synths are not human.
 		return TRUE
@@ -305,12 +305,12 @@
 				return TRUE
 			if(!mind)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
-				if(!ghost)
+				if(!ghost) // No ghost detected. DNR player or NPC
 					status_hud.icon_state = "dead_dnr"
 					return TRUE
-				if(!ghost.client)
+				if(!ghost.client) // AFK ghost detected
 					status_hud.overlays += "dead_noclient"
-			if(!client && !get_ghost(TRUE))
+			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
 				status_hud.overlays += "dead_noclient"
 			var/stage
 			switch(dead_ticks)
