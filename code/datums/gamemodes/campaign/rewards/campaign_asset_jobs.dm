@@ -739,7 +739,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 //VSD
 /datum/job/vsd/standard/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD JSGT"
+	comm_title = "VSD"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -764,6 +764,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 /datum/job/vsd/specialist/campaign_bonus
 	faction = FACTION_SOM
 	comm_title = "VSD"
+	minimap_icon = "pmc2"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -791,7 +792,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/medic/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD SSGT"
+	comm_title = "VSD"
+	minimap_icon = "pmc2"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -807,7 +809,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/engineer/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD SGM"
+	comm_title = "VSD"
+	minimap_icon = "pmc2"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -823,7 +826,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/juggernaut/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD LT"
+	comm_title = "VSD"
+	minimap_icon = "pmc2"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
@@ -839,7 +843,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/job/vsd/leader/campaign_bonus
 	faction = FACTION_SOM
-	comm_title = "VSD COLGEN"
+	comm_title = "VSD"
+	minimap_icon = "pmc2"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
