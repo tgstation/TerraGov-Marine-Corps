@@ -92,7 +92,7 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/large_vehicles
 	icon = 'icons/obj/structures/128x32_vehiclesexpanded.dmi'
-	icon_state = "armoredtruck_wy_security_1"
+	icon_state = "armoredtruck_nt_security_1"
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 
@@ -110,25 +110,27 @@ var/damage_state = 0
 	icon_state = "armoredtruck_wy_security_1"
 	bound_height = 64
 	bound_width = 96
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_1
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1
 	name = "Nanotrasen security truck"
 	desc = "Seems to be broken down."
-	icon_state = "armoredtruck_wy_security_1"
+	icon_state = "armoredtruck_nt_security_1"
 
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_2
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_2
 	name = "Nanotrasen security truck"
 	desc = "Seems to be broken down."
-	icon_state = "armoredtruck_wy_security_2"
+	icon_state = "armoredtruck_nt_security_2"
 
 // Armored Truck Goods
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white
 	name = "heavy loader truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_white_white"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal
 	name = "heavy loader truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_white_teal"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/blue_white
 	name = "heavy loader truck"
 	desc = "Seems to be broken down."
@@ -158,12 +160,12 @@ var/damage_state = 0
 	icon_state = "longtruck_donk"
 
 //WY
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/wy_black
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black
 	name = "Nanotrasen mega-hauler truck"
-	icon_state = "longtruck_wy_black"
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/wy_blue
+	icon_state = "longtruck_nt_black"
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_blue
 	name = "Nanotrasen mega-hauler truck"
-	icon_state = "longtruck_wy_blue"
+	icon_state = "longtruck_nt_blue"
 // SUV
 /obj/structure/prop/urban/vehicles/suv
 	name = "SUV"
@@ -190,7 +192,7 @@ var/damage_state = 0
 // Meridian Cars - Damage States
 /obj/structure/prop/urban/vehicles/Meridian
 	name = "Mono-Spectra"
-	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for the colonial markets, in and outside of the United Americas. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
+	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 	bound_height = 32
@@ -351,19 +353,19 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining
 	icon_state = "miningcrawler1"
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining2
 	icon_state = "crawler_fuel"
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining3
 	icon_state = "crawler_covered_bed"
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 /obj/structure/prop/urban/vehicles/colonycrawlers/science
 	icon_state = "crawler_wy2"
-	desc = "It is a tread bound crawler used in harsh conditions. This one is designed for personnel transportation. Supplied by Orbital Blue International; 'Your friends, in the Aerospace business.' A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. This one is designed for personnel transportation. Supplied by Orbital Blue International; 'Your friends, in the Aerospace business.' A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
 
 // science crawlers
@@ -384,16 +386,16 @@ var/damage_state = 0
     name = "kelland mining colony crawler"
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining1
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler2"
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining2
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler3"
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining3
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler4"
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining4
-	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Weyland Yutani."
+	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawlerblank"
 
 // Special SUV's

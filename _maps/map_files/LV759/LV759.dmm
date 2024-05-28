@@ -25528,7 +25528,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eQR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown,
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -30808,10 +30808,6 @@
 /obj/effect/urban/decal/road/lines3,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
-"fQZ" = (
-/obj/structure/cable,
-/turf/open/floor/sandrock,
-/area/lv759/indoors/south_caves)
 "fRa" = (
 /obj/effect/urban/decal/road/road_edge,
 /obj/effect/urban/decal/road/lines1,
@@ -37680,10 +37676,6 @@
 /obj/item/weapon/classic_baton,
 /turf/open/floor/prison,
 /area/lv759/indoors/colonial_marshals/wardens_office)
-"hgH" = (
-/obj/structure/cable,
-/turf/open/urbanshale/layer1,
-/area/lv759/indoors/south_caves)
 "hgJ" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor,
@@ -42131,7 +42123,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "icm" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/wy_black{
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black{
 	layer = 4;
 	pixel_x = -4;
 	pixel_y = 4
@@ -55912,7 +55904,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
 "kGC" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_1{
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -60800,7 +60792,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "lBH" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_1{
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -82614,7 +82606,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pBE" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_2{
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_2{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -97563,7 +97555,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/weyyu_office)
 "sss" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/wy_blue{
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_blue{
 	layer = 6
 	},
 /obj/effect/urban/decal/road/lines3,
@@ -113397,7 +113389,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/patient_ward)
 "vqC" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/WY_Security/Truck_1{
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
 	pixel_y = 6
 	},
 /turf/open/urban/street/asphalt,
@@ -168348,9 +168340,9 @@ wVX
 wVX
 hvN
 ryu
-fQZ
-hgH
-fQZ
+lsy
+sVI
+lsy
 fnN
 fnN
 fnN
@@ -168601,7 +168593,7 @@ xfa
 cJf
 hAc
 fnN
-fQZ
+lsy
 fnN
 fnN
 fnN
@@ -168852,7 +168844,7 @@ wVX
 hAc
 hAc
 fnN
-fQZ
+lsy
 fnN
 hAc
 hAc
@@ -169103,7 +169095,7 @@ iKv
 wVX
 oGP
 vMB
-fQZ
+lsy
 fnN
 fnN
 iKv
