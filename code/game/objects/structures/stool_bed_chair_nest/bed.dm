@@ -780,7 +780,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/structure/bed/bedroll
 	name = "unfolded bedroll"
 	desc = "Perfect for those long missions, when there's nowhere else to sleep, you remembered to bring at least one thing of comfort."
-	icon = 'icons/monkey_icos.dmi'
+	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "bedroll_o"
 	buckling_y = 0
 	foldabletype = /obj/item/roller/bedroll
@@ -790,7 +790,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/item/roller/bedroll
 	name = "folded bedroll"
 	desc = "A standard issue USCMC bedroll, They've been in service for as long as you can remember. The tag on it states to unfold it before rest, but who needs rules anyway, right?"
-	icon = 'icons/monkey_icos.dmi'
+	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "bedroll"
 	rollertype = /obj/structure/bed/bedroll
 
@@ -798,7 +798,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/roller/hospital
 	name = "hospital bed"
-	icon = 'icons/obj/structures/rollerbed.dmi'
+	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "bigrollerempty_up"
 	foldabletype = null
 	base_bed_icon = "bigrollerempty"

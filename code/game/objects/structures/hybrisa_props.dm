@@ -973,33 +973,7 @@ var/damage_state = 0
 // Engineer
 
 /obj/structure/prop/urban/engineer
-	icon = 'icons/obj/structures/engineerJockey.dmi'
 	icon_state = "spacejockey"
-
-/obj/structure/prop/urban/engineer/spacejockey
-	name = "Giant Pilot"
-	desc = "A Giant Alien life form. Looks like it's been dead a long time. Fossilized. Looks like it's growing out of the chair. Bones are bent outward, like it exploded from inside."
-	icon = 'icons/obj/structures/engineerJockey.dmi'
-	icon_state = "spacejockey"
-	layer = ABOVE_MOB_LAYER
-
-/obj/structure/prop/urban/engineer/giantpodbroken
-	name = "Giant Hypersleep Chamber"
-	desc = "What looks to be a Giant Hypersleep Chamber, this one appears to contain a Alien life form. it looks like it's been dead for a long time, Fossilized. From what you can see it's bones are bent outwards, the chambers outer shell has holes melted, pushing outwards. "
-	icon = 'icons/obj/structures/engineerPod.dmi'
-	icon_state = "pod_broken"
-	bound_height = 96
-	bound_width = 64
-	layer = ABOVE_MOB_LAYER
-	density = TRUE
-/obj/structure/prop/urban/engineer/giantpod
-	name = "Giant Hypersleep Chamber"
-	desc = "What looks to be a Giant Hypersleep Chamber, a strange alien design, unlike anything you've ever seen before. It's empty."
-	icon = 'icons/obj/structures/engineerPod.dmi'
-	icon_state = "pod"
-	bound_height = 96
-	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/engineer/giantconsole
 	name = "Giant Alien Console"
@@ -1040,12 +1014,6 @@ var/damage_state = 0
 	name = "strange pillar"
 	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW2fade"
-
-/obj/structure/prop/urban/engineer/blackgoocontainer
-	name = "strange container"
-	icon_state = "blackgoocontainer1"
-	desc = "A strange alien container, who knows what's inside..."
-	icon = 'icons/obj/structures/blackgoocontainers.dmi'
 
 // Airport
 
