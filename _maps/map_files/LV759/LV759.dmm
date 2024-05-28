@@ -6368,7 +6368,6 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "blV" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/outdoors/landing_zone_2)
 "bmi" = (
@@ -7758,7 +7757,6 @@
 /obj/structure/prop/propplaceholder{
 	pixel_y = 16
 	},
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced/hull,
 /area/lv759/oob)
 "bAd" = (
@@ -20623,7 +20621,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "dTk" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/outdoors/landing_zone_2)
 "dTt" = (
@@ -24627,13 +24624,6 @@
 	pixel_y = 12;
 	plane = -5
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "eHH" = (
@@ -26201,7 +26191,6 @@
 /turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "eXg" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
 "eXm" = (
@@ -45001,7 +44990,6 @@
 	},
 /area/lv759/indoors/hospital/emergency_room)
 "iCX" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/wy_security/checkpoint_west)
 "iCY" = (
@@ -72919,7 +72907,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "nLG" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/indoors/meridian/meridian_factory)
 "nLI" = (
@@ -90942,7 +90929,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "rcg" = (
-/obj/structure/table/reinforced/fabric,
 /obj/structure/prop/urban/supermart/supermartfruitbasketcarrots{
 	pixel_x = -10
 	},
@@ -94904,7 +94890,6 @@
 /obj/structure/prop/propplaceholder{
 	pixel_y = 16
 	},
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "rRr" = (
@@ -99493,7 +99478,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "sIw" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "sIA" = (
@@ -115394,7 +115378,6 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "vIY" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/r_wall/bunker,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "vJb" = (
@@ -120188,10 +120171,6 @@
 /turf/closed/wall/urban/spaceport_reinforced,
 /area/lv759/indoors/spaceport/engineering)
 "wCI" = (
-/obj/structure/barricade/handrail{
-	dir = 8;
-	layer = 4
-	},
 /obj/structure/barricade/handrail{
 	dir = 8;
 	layer = 4
@@ -128620,7 +128599,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "ykE" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/outdoors/landing_zone_2)
 "ykO" = (
