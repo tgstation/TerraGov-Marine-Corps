@@ -10199,7 +10199,6 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/prop/urban/misc/fake/wire/blue{
 	dir = 4;
 	pixel_y = -4
@@ -14255,10 +14254,6 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen)
 "cHC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	locked = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
 	dir = 1;
 	locked = 1
@@ -20077,7 +20072,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
 /obj/item/stack/rods,
-/obj/structure/cable,
 /obj/effect/forcefield,
 /turf/open/floor/plating{
 	dir = 8
@@ -50850,8 +50844,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "jHt" = (
-/obj/structure/barricade/handrail/strata,
-/obj/structure/barricade/handrail/strata,
 /obj/structure/barricade/handrail/strata{
 	dir = 4
 	},
@@ -77082,9 +77074,6 @@
 	dir = 8
 	},
 /obj/structure/barricade/handrail/kutjevo{
-	dir = 8
-	},
-/obj/structure/barricade/handrail/kutjevo{
 	dir = 1;
 	layer = 5;
 	level = 5;
@@ -94535,10 +94524,6 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "rNi" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	locked = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1;
 	locked = 1
@@ -110874,7 +110859,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/cable,
 /obj/item/flashlight{
 	pixel_x = 8
 	},
@@ -120864,7 +120848,6 @@
 	pixel_x = -8;
 	pixel_y = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "wIP" = (
@@ -122375,9 +122358,6 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "wYW" = (
-/obj/machinery/door/airlock/mainship/generic{
-	locked = 1
-	},
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
 	locked = 1
 	},
