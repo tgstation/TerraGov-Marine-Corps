@@ -785,7 +785,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	buckling_y = 0
 	foldabletype = /obj/item/roller/bedroll
 	accepts_bodybag = FALSE
-	debris = null
 	buildstacktype = null
 
 /obj/item/roller/bedroll
@@ -804,86 +803,28 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	foldabletype = null
 	base_bed_icon = "bigrollerempty"
 
-	var/body_icon_state = "bigroller"
-	var/raised_with_body = TRUE
-	var/mob/living/carbon/human/body
-	var/datum/equipment_preset/body_preset = /datum/equipment_preset/corpse/colonist/random
-
-/obj/structure/bed/roller/hospital/Initialize(mapload, ...)
-	. = ..()
-	create_body()
-	update_icon()
-
-/obj/structure/bed/roller/hospital/Destroy()
-	if(body)
-		QDEL_NULL(body)
-	return ..()
-
-/obj/structure/bed/roller/hospital/attackby()
-	if(body)
-		return
-	..()
-
-/obj/structure/bed/roller/hospital/attack_hand()
-	if(body)
-		if(raised_with_body)
-			raised_with_body = FALSE
-			update_icon()
-			return
-		else
-			dump_body()
-			update_icon()
-			return
-	..()
-
-/obj/structure/bed/roller/hospital/update_icon()
-	overlays.Cut()
-	if(body)
-		icon_state = body_icon_state + "body"
-		if(raised_with_body)
-			icon_state = icon_state + "_up"
-		else
-			icon_state = icon_state + "_down"
-	else
-		..()
-
-/obj/structure/bed/roller/hospital/MouseDrop_T(atom/dropping, mob/user)
-	if(body)
-		return
-	..()
-
-/obj/structure/bed/roller/hospital/proc/create_body()
-	body = new()
-	contents += body
-	arm_equipment(body, body_preset, TRUE, FALSE)
-	body.death(create_cause_data("exposure"))
-
-/obj/structure/bed/roller/hospital/proc/dump_body()
-	var/turf/dump_turf = get_turf(src)
-	body.forceMove(dump_turf)
-	contents -= body
-	body = null
-
 /obj/structure/bed/roller/hospital/bloody
 	base_bed_icon = "bigrollerbloodempty"
-	body_icon_state = "bigrollerblood"
-	body_preset = /datum/equipment_preset/corpse/colonist/random/burst
 
 /obj/structure/bed/roller/hospital_empty
 	icon_state = "bigrollerempty2_down"
 	foldabletype = null
+
 /obj/structure/bed/roller/hospital_empty/bigrollerempty
 	icon_state = "bigrollerempty_down"
 	buckling_y = 2
 	base_bed_icon = "bigrollerempty"
+
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2
 	icon_state = "bigrollerempty2_down"
 	buckling_y = 2
 	base_bed_icon = "bigrollerempty2"
+
 /obj/structure/bed/roller/hospital_empty/bigrollerempty3
 	icon_state = "bigrollerempty3_down"
 	buckling_y = 2
 	base_bed_icon = "bigrollerempty3"
+
 /obj/structure/bed/roller/hospital_empty/bigrollerbloodempty
 	icon_state = "bigrollerbloodempty_down"
 	buckling_y = 2
@@ -897,5 +838,3 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	icon_state = "hospitalcurtain"
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
-	can_buckle = FALSE
-	hit_bed_sound = 'sound/effects/thud.ogg'

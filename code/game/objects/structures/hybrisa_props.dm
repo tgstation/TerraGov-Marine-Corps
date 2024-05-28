@@ -12,20 +12,9 @@
 	max_integrity = 3000
 	var/damage_state = 0
 	var/brute_multiplier = 1
+	resistance_flags = XENO_DAMAGEABLE
 
-/obj/structure/prop/urban/vehicles/attack_alien(mob/living/carbon/xenomorph/user)
-	user.animation_attack_on(src)
-	take_damage( rand(user.melee_damage_lower, user.melee_damage_upper) * brute_multiplier)
-	playsound(src, 'sound/effects/metalscrape.ogg', 25, 1)
-	if(obj_integrity <= 0)
-		user.visible_message(span_danger("[user] slices [src] apart!"), \
-		span_danger("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
-	else
-		user.visible_message(span_danger("[user] [user.slashes_verb] [src]!"), \
-		span_danger("We [user.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
-	update_icon()
-	return XENO_ATTACK_ACTION
-
+/*
 /obj/structure/prop/urban/vehicles/update_icon()
 	switch(obj_integrity)
 		if(2500 to 3000)
@@ -43,6 +32,7 @@
 			damage_state = 5
 	icon_state = "[initial(icon_state)]_damage_[damage_state]"
 var/damage_state = 0
+*/
 
 /obj/structure/prop/urban/vehicles/proc/explode(dam, mob/M)
     src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
@@ -58,18 +48,6 @@ var/damage_state = 0
     new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
     deconstruct(FALSE)
-/obj/structure/prop/urban/vehicles/proc/take_damage(dam, mob/M)
-    if(obj_integrity) //Prevents unbreakable objects from being destroyed
-        obj_integrity -= dam
-        if(obj_integrity <= 0)
-            explode()
-        else
-            update_icon()
-
-/obj/structure/prop/urban/vehicles/bullet_act(obj/projectile/P)
-    if(P.ammo.damage)
-        take_damage(P.ammo.damage)
-        update_icon()
 
 /obj/structure/prop/urban/vehicles/suv
     icon = 'icons/obj/structures/vehiclesexpanded.dmi'
@@ -790,7 +768,6 @@ var/damage_state = 0
 	climbable = TRUE
 	bound_height = 32
 	bound_width = 64
-	debris = list(/obj/item/stack/sheet/metal)
 
 /obj/structure/prop/urban/furniture/tables/tableblack/blacktablecomputer
     icon = 'icons/obj/structures/zenithtables.dmi'
@@ -991,7 +968,6 @@ var/damage_state = 0
 	desc = "A strange ancient looking egg, it seems to be inert."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "inertegg"
-	unslashable = TRUE
 	layer = 2
 
 // Engineer
@@ -1758,7 +1734,6 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/fakeplatforms
     name = "platform"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 
 /obj/structure/prop/urban/fakeplatforms/platform1
 	icon_state = "engineer_platform"
@@ -1902,15 +1877,6 @@ var/damage_state = 0
 	anchored = TRUE
 	var/id = 1
 	var/range = 15
-
-/obj/structure/prop/urban/misc/detonator/attack_hand(mob/user)
-	for(var/obj/item/explosive/plastic/urban/mining/explosive in range(range))
-		if(explosive.id == id)
-			var/turf/target_turf
-			target_turf = get_turf(explosive.loc)
-			var/datum/cause_data/temp_cause = create_cause_data(src, user)
-			explosive.handle_explosion(target_turf,temp_cause)
-
 
 /obj/structure/prop/urban/misc/firehydrant
 	name = "fire hydrant"
