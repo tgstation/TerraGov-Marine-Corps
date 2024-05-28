@@ -251,12 +251,6 @@
 	else
 		icon_state = "street_off"
 
-#undef FLOODLIGHT_REPAIR_UNSCREW
-#undef FLOODLIGHT_REPAIR_CROWBAR
-#undef FLOODLIGHT_REPAIR_WELD
-#undef FLOODLIGHT_REPAIR_CABLE
-#undef FLOODLIGHT_REPAIR_SCREW
-
 // Traffic
 
 /obj/machinery/floodlight/colony/traffic

@@ -1771,6 +1771,7 @@ var/damage_state = 0
 	icon_state = "firehydrant"
 	density = TRUE
 	anchored = TRUE
+
 /obj/structure/prop/urban/misc/phonebox
 	name = "phonebox"
 	desc = "A phone-box, it doesn't seem to be working, the line must be down."
@@ -1781,6 +1782,7 @@ var/damage_state = 0
 	bound_height = 32
 	density = TRUE
 	anchored = TRUE
+
 /obj/structure/prop/urban/misc/phonebox/broken
 	desc = "A phone-box, it doesn't seem to be working, the line must be down. The glass has been broken."
 	icon_state = "phonebox_closed_broken"

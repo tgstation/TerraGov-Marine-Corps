@@ -678,7 +678,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "afJ" = (
-/obj/structure/prop/propplaceholder,
 /obj/structure/platform{
 	layer = 4
 	},
@@ -1584,12 +1583,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/propplaceholder{
-	layer = 3.02;
-	light_color = "#00AAFF";
-	light_on = 1;
-	light_power = 3;
-	light_range = 4;
+/obj/structure/prop/urban/misc/phonebox/lightup{
 	pixel_x = 4;
 	pixel_y = -10
 	},
@@ -2694,7 +2688,6 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "aBK" = (
-/obj/structure/largecrate/random,
 /obj/structure/largecrate/random/barrel/brown,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -5201,8 +5194,7 @@
 	},
 /area/lv759/indoors/spaceport/horizon_runner)
 "baZ" = (
-/obj/structure/prop/propplaceholder{
-	name = "\improper Control Module";
+/obj/structure/prop/mainship/cannon_cable_connector{
 	pixel_y = 15
 	},
 /turf/open/floor/marked,
@@ -7508,8 +7500,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/propplaceholder{
-	color = "#FF7700";
-	icon = 'icons/effects/fire.dmi'
+	color = "#FF7700"
 	},
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/sidewalkcenter,
@@ -8157,10 +8148,6 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bFa" = (
-/obj/structure/largecrate/random{
-	pixel_x = 5;
-	pixel_y = 4
-	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random/barrel{
 	pixel_x = 5;
@@ -10297,7 +10284,7 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -17981,15 +17968,6 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
-"dtn" = (
-/obj/machinery/atm{
-	name = "Automatic Teller Machine";
-	pixel_y = 30
-	},
-/turf/open/floor/multi_tiles{
-	dir = 6
-	},
-/area/lv759/indoors/spaceport/docking_bay_1)
 "dto" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance)
@@ -20492,9 +20470,6 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/spaceport/maintenance_east)
 "dRo" = (
-/obj/structure/prop/propplaceholder{
-	pixel_x = -6
-	},
 /obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
 	pixel_x = -6
 	},
@@ -20532,7 +20507,7 @@
 /turf/closed/wall/urban/marhsalls_unmeltable,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "dRy" = (
-/obj/structure/prop/propplaceholder,
+/obj/structure/prop/mainship/gelida/miner,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_east_caves)
 "dRA" = (
@@ -21686,15 +21661,10 @@
 	},
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "eet" = (
-/obj/structure/prop/propplaceholder{
-	layer = 3.02;
-	light_color = "#00AAFF";
-	light_on = 1;
-	light_power = 3;
-	light_range = 4;
+/obj/effect/urban/decal/dirt,
+/obj/structure/prop/urban/misc/phonebox/lightup{
 	pixel_x = 6
 	},
-/obj/effect/urban/decal/dirt,
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eex" = (
@@ -25623,10 +25593,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eQR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/wy_black{
-	pixel_x = 2;
-	pixel_y = 4
-	},
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -28080,7 +28047,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "frY" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -29779,7 +29746,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fHH" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -31620,7 +31587,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "fYB" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -31672,7 +31639,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "fZp" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/weaponresearchlabtesting)
@@ -32006,7 +31973,7 @@
 /area/lv759/outdoors/caveplateau)
 "gcb" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -32086,7 +32053,7 @@
 /area/lv759/oob)
 "gcV" = (
 /obj/structure/closet/crate/trashcart{
-	layer = 6;
+	layer = 6
 	},
 /obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
@@ -33365,7 +33332,7 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "goD" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
@@ -35253,7 +35220,7 @@
 /area/lv759/indoors/hospital/cryo_room)
 "gHa" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 1
@@ -36817,7 +36784,7 @@
 	},
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "gVX" = (
-/obj/machinery/atm{
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = 9;
 	pixel_y = 11
 	},
@@ -38849,9 +38816,6 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hrT" = (
-/obj/structure/prop/propplaceholder{
-	dir = 1
-	},
 /obj/structure/largecrate/random,
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 1
@@ -39890,11 +39854,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "hEg" = (
-/obj/structure/prop/propplaceholder{
-	light_color = "#00AAFF";
-	light_on = 1;
-	light_power = 3;
-	light_range = 4;
+/obj/structure/prop/urban/misc/phonebox/lightup{
 	pixel_x = 4
 	},
 /turf/open/floor/prison{
@@ -40176,7 +40136,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hGz" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 1;
+	dir = 1
 	},
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -40291,6 +40251,15 @@
 /obj/structure/window/framed/urban/marshalls/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/armory_foyer)
+"hIi" = (
+/obj/item/trash/cigbutt{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/urban/street/sidewalk{
+	dir = 1
+	},
+/area/lv759/outdoors/colony_streets/central_streets)
 "hIs" = (
 /obj/effect/urban/decal/tiretrack{
 	dir = 6;
@@ -41553,7 +41522,7 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -42157,7 +42126,7 @@
 /area/lv759/indoors/power_plant)
 "ibi" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -42170,7 +42139,7 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -49754,7 +49723,7 @@
 "jwN" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/propplaceholder,
+/obj/structure/prop/urban/misc/phonebox,
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jwU" = (
@@ -52454,11 +52423,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "jVE" = (
-/obj/structure/prop/propplaceholder{
-	dir = 1;
-	layer = 4;
-	pixel_x = 4
-	},
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining2{
 	dir = 1;
 	layer = 4;
@@ -53225,7 +53189,7 @@
 	},
 /area/lv759/indoors/hospital/virology)
 "kdS" = (
-/obj/machinery/atm,
+/obj/structure/prop/urban/misc/atm,
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/casino)
 "kdV" = (
@@ -53406,7 +53370,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "kfE" = (
 /obj/structure/closet/crate/trashcart{
-	layer = 6;
+	layer = 6
 	},
 /obj/structure/closet/crate/trashcart/food{
 	pixel_y = 9
@@ -58727,7 +58691,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "lfi" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
@@ -60635,15 +60599,6 @@
 /obj/machinery/light,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
-"lxe" = (
-/obj/structure/prop/propplaceholder{
-	desc = null
-	},
-/obj/structure/prop/urban/signs/high_voltage{
-	desc = null
-	},
-/turf/closed/wall/urban/colony/reinforced/hull,
-/area/lv759/oob)
 "lxj" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/seven,
@@ -66294,7 +66249,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mBY" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 1
@@ -71773,7 +71728,7 @@
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "nAw" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 1
@@ -73748,7 +73703,7 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "nSB" = (
-/obj/machinery/atm{
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = -2;
 	pixel_y = 28
 	},
@@ -79039,7 +78994,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "oRm" = (
 /obj/structure/closet/crate/trashcart{
-	pixel_y = 9;
+	pixel_y = 9
 	},
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4{
 	desc = "A tray of standard W-Y 'flight' food. This one is what resembles a Pizza. Disgusting.";
@@ -80844,8 +80799,7 @@
 	},
 /area/lv759/outdoors/caveplateau)
 "pje" = (
-/obj/machinery/atm{
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi';
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = 6;
 	pixel_y = 11
 	},
@@ -81471,7 +81425,6 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/structure/prop/propplaceholder{
 	color = "#FF7700";
-	icon = 'icons/effects/fire.dmi';
 	pixel_y = 14
 	},
 /obj/structure/prop/urban/vehicles/Meridian/Green{
@@ -84089,7 +84042,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pNm" = (
-/obj/structure/prop/propplaceholder,
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/power_plant/workers_canteen)
@@ -85218,7 +85170,7 @@
 /area/lv759/indoors/apartment/northapartments)
 "pXK" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
 	dir = 4
@@ -87726,7 +87678,7 @@
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "qwZ" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
@@ -90065,9 +90017,6 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
-/obj/structure/prop/propplaceholder{
-	pixel_y = 18
-	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/vehicles/truck/garbage{
 	pixel_y = 18
@@ -90965,7 +90914,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "rbv" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -91131,9 +91080,6 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/heavyequip)
 "rcJ" = (
-/obj/structure/prop/propplaceholder{
-	pixel_y = 12
-	},
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble6{
 	pixel_y = 12
 	},
@@ -94963,7 +94909,7 @@
 /area/lv759/indoors/hospital/outgoing)
 "rQk" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/atm{
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = 6;
 	pixel_y = 11
 	},
@@ -97672,11 +97618,6 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/largecrate/random{
-	layer = 3.2;
-	pixel_x = -17;
-	pixel_y = -9
-	},
 /obj/structure/largecrate/random/barrel{
 	layer = 3.2;
 	pixel_x = -17;
@@ -99692,7 +99633,7 @@
 /area/lv759/indoors/garage_reception)
 "sIZ" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -100010,8 +99951,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/cuppajoes)
 "sML" = (
-/obj/structure/prop/propplaceholder{
-	name = "\improper Large Cables";
+/obj/structure/prop/mainship/cannon_cables{
 	pixel_y = 12
 	},
 /turf/open/urbanshale/layer1,
@@ -105131,12 +105071,6 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "tKb" = (
-/obj/structure/prop/propplaceholder{
-	light_color = "#00da64";
-	light_on = 1;
-	light_power = 3;
-	light_range = 5
-	},
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_on{
 	light_color = "#00da64";
 	light_on = 1;
@@ -106450,7 +106384,7 @@
 /area/lv759/indoors/north_east_caves)
 "tXT" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 4
@@ -110654,9 +110588,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "uMh" = (
-/obj/structure/prop/propplaceholder{
-	layer = 4
-	},
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal{
 	layer = 4
 	},
@@ -111384,7 +111315,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "uTi" = (
-/obj/structure/prop/propplaceholder{
+/obj/structure/prop/urban/misc/phonebox{
 	pixel_x = 6
 	},
 /turf/open/floor/prison{
@@ -112791,7 +112722,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
 	dir = 8
@@ -115341,7 +115272,7 @@
 /area/lv759/indoors/apartment/westfoyer)
 "vGc" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
@@ -116268,11 +116199,6 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/west_caves)
 "vPn" = (
-/obj/structure/prop/propplaceholder{
-	dir = 8;
-	pixel_x = 2;
-	pixel_y = 6
-	},
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown{
 	dir = 8;
 	pixel_x = 2;
@@ -117769,7 +117695,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "wco" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -117779,11 +117705,7 @@
 	dir = 1;
 	layer = 2.9
 	},
-/obj/structure/prop/propplaceholder{
-	light_color = "#00AAFF";
-	light_on = 1;
-	light_power = 3;
-	light_range = 4;
+/obj/structure/prop/urban/misc/phonebox/lightup{
 	pixel_x = -2;
 	pixel_y = -10
 	},
@@ -120684,8 +120606,7 @@
 	},
 /area/lv759/indoors/west_caves)
 "wGd" = (
-/obj/machinery/atm{
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi';
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = 6;
 	pixel_y = 11
 	},
@@ -120767,7 +120688,7 @@
 /area/lv759/indoors/weyyu_office/vip)
 "wGN" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenobiology)
@@ -127480,8 +127401,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/southwest_public_restroom)
 "xVV" = (
-/obj/machinery/atm{
-	icon = 'icons/obj/structures/props/64x64_zenithrandomprops.dmi';
+/obj/structure/prop/urban/misc/atm{
 	pixel_x = 3;
 	pixel_y = 15
 	},
@@ -131557,7 +131477,7 @@ qNe
 hZJ
 jDx
 jDx
-dtn
+kAn
 pXX
 xPI
 xPI
@@ -139895,7 +139815,7 @@ mcG
 iUK
 mpS
 mpS
-lxe
+feO
 kEm
 uNq
 nnl
@@ -149240,7 +149160,7 @@ qCc
 rcx
 upZ
 apn
-kuh
+hIi
 lqG
 qln
 dsD
