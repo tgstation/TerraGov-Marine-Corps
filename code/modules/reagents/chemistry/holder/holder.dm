@@ -639,7 +639,7 @@
 			amount = clamp(amount, 0, cached_reagent.volume) //P.S. Change it with the define when the other PR is merged.
 			cached_reagent.volume -= amount
 			update_total()
-			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, QDELING(cached_reagent) ? reagent : cached_reagent, amount)
+			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, reagent, amount)
 			cached_holder_atom?.on_reagent_change(REM_REAGENT)
 			return TRUE
 
