@@ -12123,7 +12123,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "cnw" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/poddoor/mainship/biohazard/white,
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
 	dir = 4
@@ -41510,9 +41509,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "hVd" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
@@ -42127,9 +42123,6 @@
 /turf/closed/wall/urban/spaceport,
 /area/lv759/indoors/spaceport/kitchen)
 "iby" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
@@ -76915,9 +76908,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "oxr" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 8
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 8
 	},
@@ -112667,9 +112657,6 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/heavyequip)
 "vgp" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 8
-	},
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
