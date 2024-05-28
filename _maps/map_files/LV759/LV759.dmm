@@ -2687,7 +2687,6 @@
 "aBP" = (
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisaLZ2_2"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -61286,7 +61285,6 @@
 "lJI" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 2;
-	id = "hybrisaLZ2_2";
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -74991,7 +74989,6 @@
 "ohY" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/door_control{
-	id = "hybrisaLZ2_2";
 	name = "remote door-control"
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -83239,7 +83236,6 @@
 	pixel_x = -17
 	},
 /obj/structure/window/framed/urban/colony/reinforced{
-	id = "hybrisaLZ2_2";
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -85904,7 +85900,6 @@
 "qkY" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 4;
-	id = "hybrisaLZ2_2";
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
