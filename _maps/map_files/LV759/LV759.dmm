@@ -971,7 +971,7 @@
 /obj/structure/prop/urban/vehicles/Car/Car_chassis{
 	dir = 4
 	},
-/obj/structure/prop/urban/Factory/Conveyor_belt,
+/obj/structure/prop/urban/factory/conveyor_belt,
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
 "aiR" = (
@@ -1215,7 +1215,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "alt" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 10;
 	pixel_y = 34
 	},
@@ -1307,7 +1307,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 4;
 	pixel_x = -12;
 	pixel_y = 34
@@ -1690,7 +1690,7 @@
 	dir = 1;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -1923,17 +1923,13 @@
 	pixel_x = 6;
 	pixel_y = -16
 	},
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	name = "Vandalized Cargo Container"
-	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random/barrel{
 	layer = 3.1;
 	pixel_x = 6;
 	pixel_y = -16
 	},
+/obj/structure/prop/urban/containersextended/graffiti/two,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "atD" = (
@@ -2560,7 +2556,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -4775,7 +4771,7 @@
 	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/generic,
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 1;
 	pixel_y = 16
 	},
@@ -5425,7 +5421,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/obj/structure/prop/urban/Factory/Robotic_arm/Flipped{
+/obj/structure/prop/urban/factory/robotic_arm/flipped{
 	dir = 4;
 	pixel_x = -7;
 	pixel_y = 7
@@ -7393,7 +7389,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/south)
 "bwZ" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -7511,7 +7507,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	layer = 8;
 	level = 8;
 	pixel_x = -8;
@@ -7687,7 +7683,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk,
@@ -8346,7 +8342,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -11214,7 +11210,6 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "cfS" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -11552,7 +11547,6 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "ciP" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -12734,18 +12728,13 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_west_caves)
 "cug" = (
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 1;
-	name = "Vandalized Cargo Container"
-	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random/barrel{
 	layer = 4;
 	pixel_x = 6;
 	pixel_y = -16
 	},
+/obj/structure/prop/urban/containersextended/graffiti/eight,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "cuk" = (
@@ -13834,13 +13823,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "cDE" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/largecrate/random{
-	desc = "A green storage barrel.";
-	layer = 2;
-	name = "green barrel";
-	pixel_x = 13;
-	pixel_y = 16
-	},
 /obj/structure/largecrate/random/barrel{
 	desc = "A green storage barrel.";
 	layer = 2;
@@ -16031,7 +16013,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	pixel_y = 16
 	},
 /turf/open/urban/street/sidewalk{
@@ -18481,7 +18463,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -18787,7 +18769,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/obj/structure/prop/urban/Factory/Robotic_arm/Flipped{
+/obj/structure/prop/urban/factory/robotic_arm/flipped{
 	pixel_y = 7
 	},
 /turf/open/floor/mainship,
@@ -20812,7 +20794,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 9;
 	layer = 8;
 	level = 8;
@@ -21390,7 +21372,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -22441,7 +22423,7 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 9;
 	pixel_y = 34
 	},
@@ -23121,7 +23103,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -24479,7 +24461,7 @@
 /obj/structure/platform/urban/metalplatform1{
 	dir = 8
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 9;
 	pixel_y = 34
 	},
@@ -24660,7 +24642,7 @@
 	pixel_x = -11;
 	pixel_y = 6
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_2{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_2{
 	pixel_y = 16
 	},
 /obj/structure/prop/urban/lattice_prop/lattice_6{
@@ -28317,11 +28299,6 @@
 /turf/open/floor/mainship/black/corner,
 /area/lv759/indoors/wy_research_complex/dormsbedroom)
 "fvk" = (
-/obj/structure/largecrate/random{
-	layer = 4;
-	pixel_x = -6;
-	pixel_y = 4
-	},
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/trashbag{
 	pixel_x = 3;
@@ -30429,7 +30406,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 8;
 	pixel_x = 6;
 	pixel_y = 34
@@ -30751,7 +30728,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -32499,7 +32476,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -33301,7 +33278,7 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 4;
 	pixel_y = 34
 	},
@@ -38471,7 +38448,6 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "hpO" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -38607,7 +38583,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 5;
 	layer = 8;
 	level = 8;
@@ -39490,7 +39466,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -41466,13 +41442,8 @@
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/lv759/indoors/casino)
 "hVY" = (
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 1;
-	name = "Vandalized Cargo Container"
-	},
 /obj/effect/urban/decal/dirt,
+/obj/structure/prop/urban/containersextended/graffiti/nine,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "hWf" = (
@@ -44456,7 +44427,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 1;
 	pixel_x = 16;
 	pixel_y = 34
@@ -44856,7 +44827,7 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -46172,7 +46143,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 1;
 	pixel_y = 32
 	},
@@ -46903,6 +46874,13 @@
 /obj/effect/urban/decal/road/lines4,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"iVU" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/forcefield,
+/turf/open/floor/urban/metal/stripe_red{
+	dir = 1
+	},
+/area/lv759/indoors/north_west_caves)
 "iWa" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating{
@@ -47070,7 +47048,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -47898,7 +47876,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	pixel_x = -16;
 	pixel_y = 34
 	},
@@ -51159,7 +51137,6 @@
 /area/lv759/indoors/north_east_caves)
 "jLi" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -51547,12 +51524,7 @@
 /area/lv759/indoors/south_caves)
 "jPS" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 5;
-	name = "Vandalized Cargo Container"
-	},
+/obj/structure/prop/urban/containersextended/graffiti/three,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jPW" = (
@@ -55081,7 +55053,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "kyl" = (
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 1;
 	pixel_y = 16
 	},
@@ -58862,7 +58834,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -59902,7 +59874,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 5;
 	layer = 8;
 	level = 8;
@@ -60301,7 +60273,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 4;
 	pixel_y = 16
 	},
@@ -64169,7 +64141,6 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mkt" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -64197,7 +64168,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mla" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
@@ -65458,7 +65428,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 8;
 	pixel_y = 32
 	},
@@ -67211,7 +67181,7 @@
 	layer = 5
 	},
 /obj/effect/urban/decal/dirt_2,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 5;
 	pixel_y = 34
 	},
@@ -67775,7 +67745,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "mRW" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	layer = 8;
 	level = 8;
 	pixel_y = 20
@@ -68071,16 +68041,7 @@
 /area/lv759/indoors/weyyu_office)
 "mUQ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 4;
-	name = "Vandalized Cargo Container"
-	},
-/obj/structure/sign/poster{
-	layer = 5;
-	pixel_y = 8
-	},
+/obj/structure/prop/urban/containersextended/graffiti/four,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mUR" = (
@@ -68755,7 +68716,7 @@
 /obj/structure/bed/chair{
 	pixel_y = 13
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -68879,7 +68840,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "nbn" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -69379,11 +69340,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/west_caves)
 "nfw" = (
-/obj/structure/largecrate/random{
-	layer = 2.9;
-	pixel_x = -17;
-	pixel_y = -9
-	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/red{
@@ -69980,7 +69936,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nkM" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -70750,7 +70706,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -70803,7 +70759,6 @@
 "nsI" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield,
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -71347,7 +71302,7 @@
 	pixel_x = -21;
 	pixel_y = 3
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -72237,7 +72192,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_2{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_2{
 	pixel_y = 16
 	},
 /turf/open/urban/street/sidewalkcenter{
@@ -74669,7 +74624,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 1;
 	pixel_y = 16
 	},
@@ -74952,7 +74907,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -75082,7 +75037,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "ogv" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -76048,7 +76003,7 @@
 	dir = 1
 	},
 /obj/item/clothing/head/warning_cone,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk{
@@ -77227,7 +77182,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/power_plant/fusion_generators)
 "oCk" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -77312,7 +77267,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -80074,7 +80029,7 @@
 	dir = 8;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -80245,7 +80200,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -80762,7 +80717,7 @@
 	dir = 5;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 5;
 	pixel_y = 34
 	},
@@ -84886,7 +84841,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk{
@@ -84900,7 +84855,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 4;
 	pixel_y = 34
 	},
@@ -87738,7 +87693,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -89219,7 +89174,7 @@
 	pixel_x = -14;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 5;
 	pixel_x = -14;
 	pixel_y = 34
@@ -89991,7 +89946,7 @@
 /obj/structure/barricade/handrail/strata{
 	layer = 3.1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -90396,7 +90351,7 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "qZl" = (
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	dir = 4;
 	pixel_y = 16
 	},
@@ -91970,13 +91925,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "rpE" = (
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 4;
-	name = "Vandalized Cargo Container"
-	},
 /obj/effect/urban/decal/dirt,
+/obj/structure/prop/urban/containersextended/graffiti,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rpF" = (
@@ -94654,7 +94604,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -98060,7 +98010,7 @@
 	dir = 6;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -99910,7 +99860,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/obj/structure/prop/urban/Factory/Robotic_arm/Flipped{
+/obj/structure/prop/urban/factory/robotic_arm/flipped{
 	dir = 1;
 	pixel_x = -7;
 	pixel_y = 7
@@ -100720,7 +100670,7 @@
 	},
 /area/lv759/indoors/weyyu_office)
 "sWq" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 9;
 	layer = 8;
 	level = 8;
@@ -101554,7 +101504,7 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast)
 "tek" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 6;
 	layer = 8;
 	level = 8;
@@ -101635,7 +101585,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/obj/structure/prop/urban/Factory/Robotic_arm/Flipped{
+/obj/structure/prop/urban/factory/robotic_arm/flipped{
 	dir = 8;
 	pixel_y = 7
 	},
@@ -103681,11 +103631,7 @@
 /area/lv759/indoors/colonial_marshals/north_office)
 "tzC" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	name = "Vandalized Cargo Container"
-	},
+/obj/structure/prop/urban/containersextended/graffiti/five,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tzF" = (
@@ -103963,7 +103909,7 @@
 	},
 /area/lv759/indoors/wy_security/checkpoint_east)
 "tCD" = (
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 1;
 	pixel_y = 32
 	},
@@ -104107,7 +104053,7 @@
 /obj/structure/prop/propplaceholder{
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk{
@@ -104446,7 +104392,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "tHl" = (
-/obj/structure/prop/urban/Factory/Conveyor_belt,
+/obj/structure/prop/urban/factory/conveyor_belt,
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
 "tHn" = (
@@ -105453,12 +105399,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/wy_research_complex_entrance)
 "tRf" = (
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 4;
-	name = "Vandalized Cargo Container"
-	},
+/obj/structure/prop/urban/containersextended/graffiti/five,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tRg" = (
@@ -105516,7 +105457,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -105852,7 +105793,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -106494,7 +106435,6 @@
 /area/lv759/indoors/tcomms_northwest)
 "ubW" = (
 /obj/effect/forcefield,
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -107727,7 +107667,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -111264,12 +111204,7 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uWc" = (
-/obj/structure/cargo_container{
-	desc = "A huge industrial shipping container. Seems to have been vandalized.";
-	icon = 'icons/obj/structures/containersextended.dmi';
-	layer = 1;
-	name = "Vandalized Cargo Container"
-	},
+/obj/structure/prop/urban/containersextended/graffiti/seven,
 /turf/open/urban/street/sidewalk{
 	dir = 10
 	},
@@ -111950,7 +111885,7 @@
 "vcv" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -112906,7 +112841,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 6;
 	layer = 8;
 	level = 8;
@@ -115443,7 +115378,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk{
@@ -115763,7 +115698,6 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "vOx" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
@@ -116126,7 +116060,7 @@
 	pixel_x = 5;
 	pixel_y = 7
 	},
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1{
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -117836,7 +117770,7 @@
 /obj/structure/prop/urban/vehicles/Car/Car_chassis{
 	dir = 1
 	},
-/obj/structure/prop/urban/Factory/Conveyor_belt,
+/obj/structure/prop/urban/factory/conveyor_belt,
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
 "wge" = (
@@ -118625,7 +118559,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/eastfoyer)
 "wpL" = (
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1{
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1{
 	pixel_y = 16
 	},
 /obj/structure/prop/urban/lattice_prop/lattice_6{
@@ -123051,7 +122985,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "xip" = (
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	layer = 3.33
@@ -124062,7 +123995,6 @@
 /turf/open/urban/street/cement3,
 /area/lv759/indoors/recycling_plant/garage)
 "xtF" = (
-/obj/structure/largecrate/random,
 /obj/structure/largecrate/random/barrel/brown,
 /obj/effect/urban/decal/road/road_edge,
 /obj/effect/urban/decal/road/lines4,
@@ -125567,7 +125499,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/wy_research_complex_entrance)
 "xJv" = (
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -133927,7 +133859,7 @@ wfK
 wfK
 hKf
 syU
-ubW
+iVU
 cYd
 mkt
 xSb

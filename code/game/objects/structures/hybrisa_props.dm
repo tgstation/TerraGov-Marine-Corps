@@ -150,12 +150,16 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/red_stripe
 	icon_state = "longtruck_blue_redstripe"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/blue_stripe
 	icon_state = "longtruck_red_bluestripe"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown
 	icon_state = "longtruck_brown"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/donk
 	icon_state = "longtruck_donk"
 
@@ -163,9 +167,11 @@ var/damage_state = 0
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black
 	name = "Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_nt_black"
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_blue
 	name = "Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_nt_blue"
+
 // SUV
 /obj/structure/prop/urban/vehicles/suv
 	name = "SUV"
@@ -178,14 +184,19 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/suv/suv_1
 	icon_state = "SUV1"
+
 /obj/structure/prop/urban/vehicles/suv/suv_2
 	icon_state = "SUV2"
+
 /obj/structure/prop/urban/vehicles/suv/suv_5
 	icon_state = "SUV5"
+
 /obj/structure/prop/urban/vehicles/suv/suv_6
 	icon_state = "SUV6"
+
 /obj/structure/prop/urban/vehicles/suv/suv_7
 	icon_state = "SUV7"
+
 /obj/structure/prop/urban/vehicles/suv/suv_8
 	icon_state = "SUV8"
 
@@ -199,45 +210,59 @@ var/damage_state = 0
 	bound_width = 64
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/vehicles/Meridian/Red
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
+
 /obj/structure/prop/urban/vehicles/Meridian/Black
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_black.dmi'
 	icon_state = "meridian_black"
+
 /obj/structure/prop/urban/vehicles/Meridian/Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_blue.dmi'
 	icon_state = "meridian_blue"
+
 /obj/structure/prop/urban/vehicles/Meridian/Brown
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_brown.dmi'
 	icon_state = "meridian_brown"
+
 /obj/structure/prop/urban/vehicles/Meridian/Cop
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_cop.dmi'
 	icon_state = "meridian_cop"
+
 /obj/structure/prop/urban/vehicles/Meridian/Desat_Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_desatblue.dmi'
 	icon_state = "meridian_desatblue"
+
 /obj/structure/prop/urban/vehicles/Meridian/Green
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_green.dmi'
 	icon_state = "meridian_green"
+
 /obj/structure/prop/urban/vehicles/Meridian/Light_Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_lightblue.dmi'
 	icon_state = "meridian_lightblue"
+
 /obj/structure/prop/urban/vehicles/Meridian/Pink
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_pink.dmi'
 	icon_state = "meridian_pink"
+
 /obj/structure/prop/urban/vehicles/Meridian/Purple
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_purple.dmi'
 	icon_state = "meridian_purple"
+
 /obj/structure/prop/urban/vehicles/Meridian/Turquoise
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_turquoise.dmi'
 	icon_state = "meridian_turquoise"
+
 /obj/structure/prop/urban/vehicles/Meridian/Orange
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_orange.dmi'
 	icon_state = "meridian_orange"
+
 /obj/structure/prop/urban/vehicles/Meridian/WeylandYutani
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_wy.dmi'
 	icon_state = "meridian_wy"
+
 /obj/structure/prop/urban/vehicles/Meridian/Taxi
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_taxi.dmi'
 	icon_state = "meridian_taxi"
@@ -262,11 +287,13 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged1
 	icon_state = "SUV1_damaged"
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged2
 	icon_state = "SUV2_damaged"
 	bound_height = 64
@@ -283,22 +310,30 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/truck/truck1
 	icon_state = "zentruck2"
+
 /obj/structure/prop/urban/vehicles/truck/truck2
 	icon_state = "zentruck3"
+
 /obj/structure/prop/urban/vehicles/truck/truck3
 	icon_state = "zentruck4"
+
 /obj/structure/prop/urban/vehicles/truck/truck4
 	icon_state = "zentruck5"
+
 /obj/structure/prop/urban/vehicles/truck/truck5
 	icon_state = "truck_cargo"
+
 /obj/structure/prop/urban/vehicles/truck/truck6
 	icon_state = "truck"
+
 /obj/structure/prop/urban/vehicles/truck/garbage
 	name = "garbage truck"
 	icon_state = "zengarbagetruck"
 	desc = "Seems to be broken down."
+
 /obj/structure/prop/urban/vehicles/truck/mining
 	name = "mining supply truck"
 	icon_state = "truck_mining"
@@ -313,12 +348,16 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruck1
 	icon_state = "zenithlongtruck2"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruck2
 	icon_state = "zenithlongtruck3"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruck3
 	icon_state = "zenithlongtruck4"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruck4
 	icon_state = "zenithlongtruck5"
 
@@ -326,8 +365,10 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckmining
 	icon_state = "zenithlongtruckkellandmining1"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruckmining
     name = "Kelland mining mega-hauler truck"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruckmining/mining
 	icon_state = "zenithlongtruckkellandmining1"
 
@@ -335,10 +376,13 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy
 	icon_state = "zenithlongtruckweyland1"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy
     name = "Nanotrasen mega-hauler truck"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy/wy1
 	icon_state = "zenithlongtruckweyland1"
+
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy/wy2
 	icon_state = "zenithlongtruckweyland2"
 
@@ -355,14 +399,17 @@ var/damage_state = 0
 	icon_state = "miningcrawler1"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining2
 	icon_state = "crawler_fuel"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining3
 	icon_state = "crawler_covered_bed"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/science
 	icon_state = "crawler_wy2"
 	desc = "It is a tread bound crawler used in harsh conditions. This one is designed for personnel transportation. Supplied by Orbital Blue International; 'Your friends, in the Aerospace business.' A subsidiary of Nanotrasen."
@@ -376,6 +423,7 @@ var/damage_state = 0
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1
 	icon_state = "crawler_wy1"
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science2
 	icon_state = "crawler_wy2"
 	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
@@ -388,12 +436,15 @@ var/damage_state = 0
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining1
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler2"
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining2
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler3"
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining3
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawler4"
+
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining4
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
 	icon_state = "miningcrawlerblank"
@@ -408,40 +459,51 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/suv/misc/wy1
 	icon_state = "WYSUV1"
+
 /obj/structure/prop/urban/vehicles/suv/misc/wy2
 	icon_state = "WYSUV2"
+
 /obj/structure/prop/urban/vehicles/suv/misc/wy3
 	icon_state = "WYSUV3"
+
 /obj/structure/prop/urban/vehicles/suv/misc/ambulance
 	name = "emergency response medical van"
 	desc = "Seems to be broken down."
 	icon_state = "ambulance"
+
 /obj/structure/prop/urban/vehicles/suv/misc/whitevan
 	name = "maintenance SUV"
 	desc = "Seems to be broken down."
 	icon_state = "whitevan"
+
 /obj/structure/prop/urban/vehicles/suv/misc/maintenance
 	name = "maintenance SUV"
 	desc = "Seems to be broken down."
 	icon_state = "maintenaceSUV"
+
 /obj/structure/prop/urban/vehicles/suv/misc/marshalls
 	name = "colonial marshalls rapid response SUV"
 	desc = "Seems to be broken down."
 	icon_state = "marshalls"
+
 /obj/structure/prop/urban/vehicles/suv/misc/marshalls2
 	name = "colonial marshalls rapid response SUV"
 	desc = "Seems to be broken down."
 	icon_state = "marshalls2"
+
 /obj/structure/prop/urban/vehicles/suv/misc/expensive
 	name = "Expensive looking SUV"
 	desc = "Seems to be broken down."
 	icon_state = "SUV9"
+
 /obj/structure/prop/urban/vehicles/suv/misc/expensive2
 	name = "Expensive Nanotrasen SUV"
 	desc = "Seems to be broken down."
 	icon_state = "blackSUV"
+
 /obj/structure/prop/urban/vehicles/suv/misc/expensive3
 	name = "The Pimp-Mobile"
 	desc = "Seems to be broken down."
@@ -457,6 +519,7 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/van/vandamaged
 	name = "van"
 	desc = "A shell of a vehicle, broken down beyond repair."
@@ -464,6 +527,7 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/van/vanpizza
 	name = "pizza delivery van"
 	desc = "Seems to be broken down."
@@ -471,6 +535,7 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/van/vanmining
 	name = "Kelland Mining van"
 	desc = "Seems to be broken down."
@@ -478,6 +543,7 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/van/hyperdynevan
 	name = "Hyperdyne van"
 	desc = "Seems to be broken down."
@@ -485,6 +551,7 @@ var/damage_state = 0
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+
 /obj/structure/prop/urban/vehicles/crashedcarsleft
 	name = "car pileup"
 	desc = "Burned out wrecked vehicles block your path."
@@ -494,6 +561,7 @@ var/damage_state = 0
 	bound_width = 64
 	density = TRUE
 	layer = 5
+
 /obj/structure/prop/urban/vehicles/crashedcarsright
 	name = "car pileup"
 	desc = "Burned out wrecked vehicles block your path."
@@ -518,12 +586,16 @@ var/damage_state = 0
 	density = TRUE
 	bound_height = 64
 	bound_width = 64
+
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1
 	icon_state = "boulder_largedark1"
+
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2
 	icon_state = "boulder_largedark2"
+
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3
 	icon_state = "boulder_largedark3"
+
 /obj/structure/prop/urban/boulders/wide_boulderdark
 	name = "boulder"
 	desc = "A large rock. It's not cooking anything."
@@ -532,20 +604,26 @@ var/damage_state = 0
 	density = TRUE
 	bound_height = 32
 	bound_width = 64
+
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1
 	icon_state = "boulderwidedark"
+
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2
 	icon_state = "boulderwidedark2"
+
 /obj/structure/prop/urban/boulders/smallboulderdark
 	name = "boulder"
 	icon_state = "bouldersmalldark1"
 	desc = "A large rock. It's not cooking anything."
 	icon = 'icons/obj/structures/boulder_small.dmi'
 	density = TRUE
+
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1
 	icon_state = "bouldersmalldark1"
+
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2
 	icon_state = "bouldersmalldark2"
+
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3
 	icon_state = "bouldersmalldark3"
 
@@ -590,36 +668,43 @@ var/damage_state = 0
 	desc = "A long empty shelf."
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrackempty"
+
 /obj/structure/prop/urban/supermart/rack/longrack1
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack1"
+
 /obj/structure/prop/urban/supermart/rack/longrack2
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack2"
+
 /obj/structure/prop/urban/supermart/rack/longrack3
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack3"
+
 /obj/structure/prop/urban/supermart/rack/longrack4
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack4"
+
 /obj/structure/prop/urban/supermart/rack/longrack5
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack5"
+
 /obj/structure/prop/urban/supermart/rack/longrack6
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
 	icon = 'icons/obj/structures/supermart.dmi'
 	icon_state = "longrack6"
+
 /obj/structure/prop/urban/supermart/rack/longrack7
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
@@ -1463,24 +1548,31 @@ var/damage_state = 0
 /obj/structure/prop/urban/misc/road/roadbarrierred
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier"
+
 /obj/structure/prop/urban/misc/road/roadbarrierredlong
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier4"
+
 /obj/structure/prop/urban/misc/road/roadbarrierblue
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier2"
+
 /obj/structure/prop/urban/misc/road/roadbarrierbluelong
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier5"
+
 /obj/structure/prop/urban/misc/road/roadbarrierwyblack
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier3"
+
 /obj/structure/prop/urban/misc/road/roadbarrierwyblacklong
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrier6"
+
 /obj/structure/prop/urban/misc/road/roadbarrierwyblackjoined
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrierjoined3"
+
 /obj/structure/prop/urban/misc/road/roadbarrierjoined
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrierjoined"
@@ -1494,6 +1586,7 @@ var/damage_state = 0
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrierwood"
+
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodblue
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "roadbarrierpolice"
@@ -1515,135 +1608,173 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/containersextended/blueleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blueleft"
+
 /obj/structure/prop/urban/containersextended/blueright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blueright"
+
 /obj/structure/prop/urban/containersextended/greenleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greenleft"
+
 /obj/structure/prop/urban/containersextended/greenright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greenright"
+
 /obj/structure/prop/urban/containersextended/tanleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "tanleft"
+
 /obj/structure/prop/urban/containersextended/tanright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "tanright"
+
 /obj/structure/prop/urban/containersextended/redleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "redleft"
+
 /obj/structure/prop/urban/containersextended/redright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "redright"
+
 /obj/structure/prop/urban/containersextended/greywyleft
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greywyleft"
+
 /obj/structure/prop/urban/containersextended/greywyright
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greywyright"
+
 /obj/structure/prop/urban/containersextended/lightgreywyleft
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "lightgreywyleft"
+
 /obj/structure/prop/urban/containersextended/lightgreywyright
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "lightgreywyright"
+
 /obj/structure/prop/urban/containersextended/blackwyleft
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blackwyleft"
+
 /obj/structure/prop/urban/containersextended/blackwyright
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "blackwyright"
+
 /obj/structure/prop/urban/containersextended/whitewyleft
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "whitewyleft"
+
 /obj/structure/prop/urban/containersextended/whitewyright
 	name = "Nanotrasen cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "whitewyright"
 
 /obj/structure/prop/urban/containersextended/tanwywingsleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "tanwywingsleft"
+
 /obj/structure/prop/urban/containersextended/tanwywingsright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "tanwywingsright"
+
 /obj/structure/prop/urban/containersextended/greenwywingsleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greenwywingsleft"
+
 /obj/structure/prop/urban/containersextended/greenwywingsright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "greenwywingsright"
+
 /obj/structure/prop/urban/containersextended/bluewywingsleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "bluewywingsleft"
+
 /obj/structure/prop/urban/containersextended/bluewywingsright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "bluewywingsright"
+
 /obj/structure/prop/urban/containersextended/redwywingsleft
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "redwywingsleft"
+
 /obj/structure/prop/urban/containersextended/redwywingsright
 	name = "cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "redwywingsright"
+
 /obj/structure/prop/urban/containersextended/medicalleft
 	name = "medical cargo containers"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "medicalleft"
+
 /obj/structure/prop/urban/containersextended/medicalright
 	name = "medical cargo containers"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "medicalright"
+
 /obj/structure/prop/urban/containersextended/emptymedicalleft
 	name = "medical cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "emptymedicalleft"
+
 /obj/structure/prop/urban/containersextended/emptymedicalright
 	name = "medical cargo container"
-	icon = 'icons/obj/structures/containersextended.dmi'
 	icon_state = "emptymedicalright"
+
+/obj/structure/prop/urban/containersextended/graffiti
+	name = "defaced cargo container"
+	icon_state = "grafcontain_l"
+
+/obj/structure/prop/urban/containersextended/graffiti/two
+	name = "defaced cargo container"
+	icon_state = "grafcontain_rm"
+
+/obj/structure/prop/urban/containersextended/graffiti/three
+	name = "defaced cargo container"
+	icon_state = "grafcontain_r"
+
+/obj/structure/prop/urban/containersextended/graffiti/four
+	name = "defaced cargo container"
+	icon_state = "grafcontain2_l"
+
+/obj/structure/prop/urban/containersextended/graffiti/five
+	name = "defaced cargo container"
+	icon_state = "grafcontain2_rm"
+
+/obj/structure/prop/urban/containersextended/graffiti/six
+	name = "defaced cargo container"
+	icon_state = "grafcontain2_r"
+
+/obj/structure/prop/urban/containersextended/graffiti/seven
+	name = "defaced cargo container"
+	icon_state = "grafcontain3_l"
+
+/obj/structure/prop/urban/containersextended/graffiti/eight
+	name = "defaced cargo container"
+	icon_state = "grafcontain3_rm"
+
+/obj/structure/prop/urban/containersextended/graffiti/nine
+	name = "defaced cargo container"
+	icon_state = "grafcontain3_r"
 
 /// Fake Platforms
 
 /obj/structure/prop/urban/fakeplatforms
     name = "platform"
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 
 /obj/structure/prop/urban/fakeplatforms/platform1
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "engineer_platform"
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+
 /obj/structure/prop/urban/fakeplatforms/platform2
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "engineer_platform_platformcorners"
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+
 /obj/structure/prop/urban/fakeplatforms/platform3
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "platform"
-/obj/structure/prop/urban/fakeplatforms/platform4
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+
+/obj/structure/prop/urban/fakeplatforms/platform4
 	icon_state = "zenithplatform3"
+	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 
 // Grille
 
@@ -1662,30 +1793,42 @@ var/damage_state = 0
 	max_integrity = 200
 	anchored = TRUE
 	layer = 5
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble1
 	icon_state = "buildingventbig2"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble2
 	icon_state = "buildingventbig3"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble3
 	icon_state = "buildingventbig4"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble4
 	icon_state = "buildingventbig5"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble5
 	icon_state = "buildingventbig6"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble6
 	icon_state = "buildingventbig7"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble7
 	icon_state = "buildingventbig8"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble8
 	icon_state = "buildingventbig9"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble9
 	icon_state = "buildingventbig10"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble10
 	density = FALSE
 	icon_state = "buildingventbig11"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble11
 	density = FALSE
 	icon_state = "buildingventbig12"
+
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble12
 	density = FALSE
 	icon_state = "buildingventbig13"
@@ -1696,12 +1839,15 @@ var/damage_state = 0
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "smallwallvent1"
 	density = FALSE
+
 /obj/structure/prop/urban/misc/buildinggreebliessmall2
 	name = "wall vent"
 	icon_state = "smallwallvent2"
+
 /obj/structure/prop/urban/misc/buildinggreebliessmall2
 	name = "wall vent"
 	icon_state = "smallwallvent2"
+
 /obj/structure/prop/urban/misc/buildinggreebliessmall3
 	name = "wall vent"
 	icon_state = "smallwallvent3"
@@ -1819,10 +1965,12 @@ var/damage_state = 0
 	name = "casino sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "nightgoldcasinoopen_on"
+
 /obj/structure/prop/urban/signs/jackssign
 	name = "jack's surplus sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "jacksopen_on"
+
 /obj/structure/prop/urban/signs/opensign
 	name = "open sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
@@ -1831,22 +1979,27 @@ var/damage_state = 0
 	name = "open sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "open_on2"
+
 /obj/structure/prop/urban/signs/pizzasign
 	name = "pizza sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "pizzaneon_on"
+
 /obj/structure/prop/urban/signs/weymartsign
 	name = "weymart sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "weymartsign2"
+
 /obj/structure/prop/urban/signs/mechanicsign
 	name = "mechanic sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "mechanicopen_on2"
+
 /obj/structure/prop/urban/signs/cuppajoessign
 	name = "cuppa joe's sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
 	icon_state = "cuppajoes"
+
 /obj/structure/prop/urban/signs/barsign
 	name = "bar sign"
 	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
@@ -1858,16 +2011,17 @@ var/damage_state = 0
 	desc = "DANGER - HIGH VOLTAGE - DEATH!."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "shockyBig"
+
 /obj/structure/prop/urban/signs/high_voltage/small
 	name = "warning sign"
 	desc = "DANGER - HIGH VOLTAGE - DEATH!."
 	icon = 'icons/obj/structures/zenithrandomprops.dmi'
 	icon_state = "shockyTiny"
 
-// Billboards, Signs and Posters
+// billboards, Signs and Posters
 
 /// Alien Isolation - posters used as reference (direct downscale of the image for some) If anyone wants to name the billboards individually ///
-/obj/structure/prop/urban/BillboardsandSigns/BigBillboards
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
@@ -1877,29 +2031,33 @@ var/damage_state = 0
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard1
+
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
 	icon_state = "billboard1"
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard2
+
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
 	icon_state = "billboard2"
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard3
+
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
 	icon_state = "billboard3"
-/obj/structure/prop/urban/BillboardsandSigns/Billboardsmedium/Billboard4
+
+/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
 	icon_state = "billboard4"
 
 // Big Road Signs
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns
 	name = "road sign"
 	desc = "A road sign."
 	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
@@ -1910,27 +2068,31 @@ var/damage_state = 0
 	max_integrity = 200
 	anchored = TRUE
 	layer = 8
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_1
+
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1
 	icon_state = "roadsign_1"
-/obj/structure/prop/urban/BillboardsandSigns/Bigroadsigns/road_sign_2
+
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_2
 	icon_state = "roadsign_2"
 
 // Car Factory
 
-/obj/structure/prop/urban/Factory
+/obj/structure/prop/urban/factory
 	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "factory_roboticarm"
 
-/obj/structure/prop/urban/Factory/Robotic_arm
+/obj/structure/prop/urban/factory/robotic_arm
 	name = "Robotic arm"
 	desc = "A robotic arm used in the construction of 'Meridian' Automobiles."
 	icon_state = "factory_roboticarm"
 	bound_width = 64
 	bound_height = 32
 	anchored = TRUE
-/obj/structure/prop/urban/Factory/Robotic_arm/Flipped
+
+/obj/structure/prop/urban/factory/robotic_arm/flipped
 	icon_state = "factory_roboticarm2"
-/obj/structure/prop/urban/Factory/Conveyor_belt
+
+/obj/structure/prop/urban/factory/conveyor_belt
 	name = "large conveyor belt"
 	desc = "A large conveyor belt used in industrial factories."
 	icon_state = "factory_conveyer"
@@ -1950,13 +2112,18 @@ var/damage_state = 0
 
 /obj/structure/prop/urban/lattice_prop/lattice_1
 	icon_state = "lattice1"
+
 /obj/structure/prop/urban/lattice_prop/lattice_2
 	icon_state = "lattice2"
+
 /obj/structure/prop/urban/lattice_prop/lattice_3
 	icon_state = "lattice3"
+
 /obj/structure/prop/urban/lattice_prop/lattice_4
 	icon_state = "lattice4"
+
 /obj/structure/prop/urban/lattice_prop/lattice_5
 	icon_state = "lattice5"
+
 /obj/structure/prop/urban/lattice_prop/lattice_6
 	icon_state = "lattice6"
