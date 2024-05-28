@@ -4999,7 +4999,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -8602,7 +8601,6 @@
 "bJD" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -13491,8 +13489,7 @@
 "cAz" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -15433,7 +15430,6 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Secretroom";
-	indestructible = 1
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
@@ -18189,8 +18185,7 @@
 "dvG" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -26999,8 +26994,7 @@
 "fgE" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating{
@@ -28596,8 +28590,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -33250,8 +33243,7 @@
 "gpW" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -35206,8 +35198,7 @@
 "gIH" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 1;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -47433,7 +47424,6 @@
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -51380,8 +51370,7 @@
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -53318,7 +53307,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
@@ -54731,8 +54719,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -55635,9 +55622,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/obj/structure/dropship_equipment/fuel{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment/fuel,
 /obj/effect/forcefield,
 /turf/open/floor/plating,
 /area/lv759/oob)
@@ -59874,9 +59859,7 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2{
 	dir = 4
 	},
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/five,
 /area/lv759/oob)
@@ -60275,9 +60258,7 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2{
 	dir = 4
 	},
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
@@ -63569,8 +63550,7 @@
 "mhn" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/urban/secure_red_door{
-	dir = 8;
-	indestructible = 1;
+	dir = 8;;
 	name = "\improper Lockdown"
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
@@ -67914,7 +67894,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -72729,8 +72708,7 @@
 "nMT" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -73327,8 +73305,7 @@
 "nTF" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -73738,8 +73715,7 @@
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -75281,7 +75257,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -77682,9 +77657,7 @@
 /obj/effect/forcefield{
 	needs_power = 0
 	},
-/obj/machinery/door/poddoor{
-	indestructible = 1
-	},
+/obj/machinery/door/poddoor,
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
 "oJX" = (
@@ -87129,8 +87102,7 @@
 "qwW" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -105013,9 +104985,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "tQs" = (
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/five,
 /area/lv759/oob)
@@ -107683,9 +107653,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_research_complex/hallwaysouthwest)
 "uqV" = (
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/structure/prop/urban/misc/fake/wire/blue,
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/plain,
@@ -113136,9 +113104,7 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2{
 	dir = 4
 	},
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/structure/prop/urban/misc/fake/wire/blue,
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/plain,
@@ -116466,7 +116432,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -119012,7 +118977,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
-	indestructible = 1
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -119609,9 +119573,7 @@
 	desc = null;
 	name = "floor panel"
 	},
-/obj/structure/dropship_equipment{
-	indestructible = 1
-	},
+/obj/structure/dropship_equipment,
 /obj/structure/prop/urban/misc/fake/wire/blue,
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/plain,
@@ -119772,9 +119734,7 @@
 /area/lv759/indoors/garage_workshop)
 "wFk" = (
 /obj/effect/forcefield,
-/obj/machinery/door/poddoor{
-	indestructible = 1
-	},
+/obj/machinery/door/poddoor,
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
 "wFl" = (
@@ -121196,8 +121156,7 @@
 "wSW" = (
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
@@ -123138,26 +123097,22 @@
 "xom" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "secretlockdown1";
-	indestructible = 1;
+	id = "secretlockdown1";;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "secretlockdown2";
-	indestructible = 1;
+	id = "secretlockdown2";;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "secretlockdown3";
-	indestructible = 1;
+	id = "secretlockdown3";;
 	name = "Stuck Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "secretlockdown4";
-	indestructible = 1;
+	id = "secretlockdown4";;
 	name = "Stuck Emergency Lockdown"
 	},
 /turf/open/floor/plating{
@@ -124646,8 +124601,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "urbancolonylockdown";
-	indestructible = 1;
+	id = "urbancolonylockdown";;
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/marked,
