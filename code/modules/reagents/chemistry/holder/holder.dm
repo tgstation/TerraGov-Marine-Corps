@@ -591,7 +591,7 @@
 		if(cached_atom)
 			cached_atom.on_reagent_change(ADD_REAGENT)
 		existing_reagent.on_merge(data, amount)
-		SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, existing_reagent, amount)
+		SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, reagent, amount)
 		if(!no_react)
 			handle_reactions()
 		return TRUE
@@ -611,7 +611,7 @@
 	update_total()
 	if(cached_atom)
 		cached_atom.on_reagent_change(ADD_REAGENT)
-	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, new_reagent, amount)
+	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, reagent, amount)
 	if(!no_react)
 		handle_reactions()
 	return TRUE
