@@ -10441,7 +10441,6 @@
 	pixel_x = 6;
 	pixel_y = 19
 	},
-/obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
@@ -19736,7 +19735,7 @@
 /area/lv759/indoors/wy_research_complex/reception)
 "dKU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2{
-	name = "\improper WY-LWI StarGlider SG-200 cargo hold"
+	name = "\improper WY-LWI StarGlider SG-200 Cargo Hold"
 	},
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/spaceport/starglider)
@@ -37682,9 +37681,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "hgH" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "hgJ" = (
@@ -59951,9 +59948,7 @@
 	},
 /area/lv759/indoors/mining_outpost/south)
 "lsy" = (
-/obj/structure/cable{
-	level = 2
-	},
+/obj/structure/cable,
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_caves)
 "lsD" = (
@@ -95356,7 +95351,7 @@
 "rYb" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
-	name = "\improper WY-LWI Horizon Runner HR-150 cockpit"
+	name = "\improper WY-LWI Horizon Runner HR-150 Cockpit"
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/horizon_runner)
