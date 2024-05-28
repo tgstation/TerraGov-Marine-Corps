@@ -626,7 +626,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship
-	w_uniform = /obj/item/clothing/under/marine/robotic/webbing
+	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
 	head = /obj/item/clothing/head/modular/robot/heavy/tyr
 	r_store = /obj/item/storage/pouch/pistol
