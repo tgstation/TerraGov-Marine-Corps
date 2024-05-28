@@ -1060,7 +1060,7 @@
 	user.client.perspective = EYE_PERSPECTIVE
 	user.client.eye = target_turf
 
-	if(do_after(user, 5 SECONDS, TRUE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+	if(do_after(user, 5 SECONDS, NONE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
@@ -1121,7 +1121,7 @@
 
 ///Deploys the rappel and unlocks the hatch so that people can drop down
 /obj/structure/dropship_equipment/rappel_system/proc/deploy_rope(turf/target)
-	if(!rope || rappel_condition < RAPPEL_CONDITION_GOOD || rappel_state < RAPPEL_STATE_USABLE)
+	if(!rope || rappel_condition < RAPPEL_CONDITION_GOOD || rappel_state >= RAPPEL_STATE_USABLE)
 		return
 
 	rope.forceMove(target)
