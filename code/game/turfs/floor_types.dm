@@ -1560,7 +1560,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cement1"
-	baseturfs = /turf/open/asphalt
+	baseturfs = /turf/open/urban/street/asphalt
 
 
 /turf/open/urban/street/cement1
@@ -1608,7 +1608,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "underground"
-	baseturfs = /turf/open/asphalt
+	baseturfs = /turf/open/urban/street/asphalt
 
 /turf/open/urban/metal/underground_unweedable
 	name = "floor"
@@ -1621,7 +1621,7 @@
 	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
 	icon = 'icons/turf/engineership.dmi'
 	icon_state = "engineerwallfloor1"
-	baseturfs = /turf/open/asphalt
+	baseturfs = /turf/open/urban/street/asphalt
 
 // Carpet
 
@@ -1898,7 +1898,7 @@
 	desc = "A strange metal floor, unlike any metal you've seen before."
 	icon = 'icons/turf/engineership.dmi'
 	icon_state = "hybrisa"
-	baseturfs = /turf/open/asphalt
+	baseturfs = /turf/open/urban/street/asphalt
 
 /turf/open/engineership/engineer_floor1
 	icon_state = "engineer_metalfloor_3"

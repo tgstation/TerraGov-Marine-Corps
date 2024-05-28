@@ -1632,7 +1632,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "apA" = (
 /obj/effect/urban/decal/dirt,
@@ -1673,7 +1673,7 @@
 	dir = 4
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -1805,7 +1805,7 @@
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -2350,7 +2350,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "axY" = (
 /turf/open/floor/urban_plating,
@@ -2743,7 +2743,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "aCw" = (
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -2924,7 +2924,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -4032,6 +4032,11 @@
 	},
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/east_caves)
+"aQz" = (
+/turf/open/floor/bluethree{
+	dir = 4
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "aQJ" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -13;
@@ -5443,7 +5448,7 @@
 /area/lv759/indoors/power_plant/equipment_west)
 "bdP" = (
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -5539,7 +5544,9 @@
 	plane = -6
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "bew" = (
 /obj/effect/urban/decal/dirt,
@@ -5648,7 +5655,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -7902,6 +7909,12 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
+"bCh" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/open/floor/multi_tiles{
+	dir = 8
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "bCi" = (
 /obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
 /turf/open/floor/plating,
@@ -8186,7 +8199,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/security)
@@ -10310,7 +10323,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "bYK" = (
 /obj/effect/urban/decal/dirt,
@@ -11513,8 +11526,8 @@
 "ciG" = (
 /obj/structure/platform/urban/metalplatformstair1,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison{
-	dir = 4
+/turf/open/floor/prison/ramptop{
+	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ciH" = (
@@ -11610,7 +11623,7 @@
 /area/lv759/indoors/south_west_caves)
 "cjC" = (
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cjG" = (
 /obj/structure/platform/urban/rockdark{
@@ -11639,7 +11652,7 @@
 /area/lv759/indoors/apartment/westhallway)
 "cjO" = (
 /obj/structure/largecrate/random/barrel/brown,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -11839,6 +11852,11 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/landing_zone_2)
+"clo" = (
+/turf/open/floor/redfour{
+	dir = 8
+	},
+/area/lv759/indoors/spaceport/security)
 "cls" = (
 /obj/machinery/door_control{
 	id = "hybrisaLZ2_3";
@@ -12354,7 +12372,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cqu" = (
 /obj/effect/forcefield,
@@ -13703,7 +13723,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cCD" = (
 /obj/effect/urban/decal/road/road_edge/three,
@@ -14979,6 +15001,11 @@
 /obj/structure/prop/urban/cavedecor/stalagmite4,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/east_caves)
+"cPs" = (
+/turf/open/floor/redfour{
+	dir = 1
+	},
+/area/lv759/indoors/spaceport/security)
 "cPt" = (
 /obj/structure/prop/propplaceholder{
 	density = 1
@@ -15286,7 +15313,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "cTr" = (
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cTw" = (
 /turf/open/floor/prison/darkyellow{
@@ -17473,9 +17500,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "doU" = (
 /obj/effect/urban/decal/gold/line4,
@@ -17514,7 +17539,7 @@
 	pixel_x = -21;
 	pixel_y = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "dph" = (
 /obj/structure/prop/urban/supermart/rack/longrack6,
@@ -18474,7 +18499,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_burrito,
 /obj/effect/urban/decal/dirt_2,
 /obj/effect/urban/decal/dirt_2,
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "dzo" = (
 /obj/effect/decal/cleanable/blood,
@@ -20445,7 +20470,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/security)
@@ -20609,9 +20634,7 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/engineering)
 "dUg" = (
 /obj/machinery/light/spot/blue{
@@ -22191,7 +22214,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -22721,7 +22744,7 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "epw" = (
 /obj/effect/urban/decal/engineership_corners{
@@ -22811,7 +22834,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -23628,7 +23651,7 @@
 /turf/open/floor/urban/carpet/carpetblue,
 /area/lv759/indoors/apartment/westentertainment)
 "eyA" = (
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/five,
 /area/lv759/indoors/spaceport/engineering)
 "eyI" = (
 /obj/structure/table/reinforced,
@@ -24182,7 +24205,7 @@
 	dir = 4;
 	layer = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "eDZ" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -24712,6 +24735,11 @@
 	dir = 1
 	},
 /area/lv759/indoors/colonial_marshals/garage)
+"eKK" = (
+/turf/open/floor/bluethree{
+	dir = 8
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "eKL" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -25942,7 +25970,7 @@
 	pixel_x = -12;
 	pixel_y = -12
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "eWp" = (
 /obj/item/trash/cigbutt,
@@ -26764,7 +26792,7 @@
 	layer = 5;
 	level = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "feM" = (
 /obj/structure/platform{
@@ -26830,7 +26858,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -27933,7 +27961,7 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -28931,9 +28959,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "fBB" = (
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "fBD" = (
 /obj/effect/urban/decal/dirt,
@@ -29264,7 +29290,7 @@
 /obj/machinery/computer/security{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "fET" = (
 /obj/structure/prop/urban/misc/cabinet{
@@ -29530,7 +29556,7 @@
 /obj/structure/dropship_piece/four/dropshipfront{
 	dir = 1
 	},
-/turf/open/floor/prison{
+/turf/open/floor/prison/ramptop{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -31104,6 +31130,11 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/mainlabs)
+"fVM" = (
+/turf/open/floor/bluefour{
+	dir = 8
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "fVU" = (
 /obj/item/clothing/head/warning_cone{
 	layer = 5;
@@ -31200,7 +31231,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -31852,7 +31883,7 @@
 	pixel_x = 3;
 	pixel_y = 17
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -32061,7 +32092,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "geV" = (
 /obj/effect/decal/cleanable/dirt/grime4,
@@ -34735,7 +34766,7 @@
 /obj/structure/dropship_piece/four/dropshipfront{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/prison/ramptop{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -35553,7 +35584,7 @@
 	pixel_y = 21
 	},
 /obj/effect/urban/decal/dirt_2,
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "gLG" = (
 /obj/item/clothing/head/hardhat/dblue{
@@ -36101,7 +36132,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "gRA" = (
 /obj/structure/platform{
@@ -37297,7 +37328,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -37886,6 +37917,12 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
+"hjE" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/kutjevo/colors/blue,
+/area/lv759/indoors/spaceport/docking_bay_2)
 "hjL" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
@@ -39908,6 +39945,12 @@
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/communications_office)
+"hHg" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/kutjevo/colors/blue,
+/area/lv759/indoors/spaceport/docking_bay_2)
 "hHi" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/largecrate/random{
@@ -40299,7 +40342,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/spaceport/engineering)
 "hLP" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -40473,7 +40516,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "hNE" = (
 /obj/effect/urban/decal/dirt,
@@ -40910,7 +40953,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -41095,9 +41138,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "hTh" = (
 /obj/structure/platform/urban/metalplatform6,
@@ -41865,7 +41906,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ibB" = (
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "ibH" = (
 /obj/effect/urban/decal/dirt,
@@ -42034,7 +42075,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "icU" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "idp" = (
 /obj/effect/turf_decal/medical_decals/doc/three,
@@ -42189,7 +42230,7 @@
 /obj/structure/bed/urban/chairs/brown{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -43214,7 +43255,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/redfour,
 /area/lv759/indoors/spaceport/security)
 "inT" = (
 /obj/item/shard{
@@ -43807,7 +43848,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison{
+/turf/open/floor/prison/ramptop{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -50255,9 +50296,7 @@
 /obj/machinery/computer/communications{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "jFf" = (
 /obj/structure/reagent_dispensers/water_cooler{
@@ -51761,7 +51800,7 @@
 	pixel_y = 18
 	},
 /obj/effect/urban/decal/trash/two,
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -52562,9 +52601,7 @@
 /area/lv759/indoors/central_caves)
 "kaB" = (
 /obj/effect/turf_decal/medical_decals/triage,
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "kaC" = (
 /obj/structure/sign/poster,
@@ -53087,7 +53124,7 @@
 "kgM" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "kgN" = (
 /obj/structure/rack,
@@ -53201,7 +53238,7 @@
 	},
 /area/lv759/indoors/wy_research_complex_entrance)
 "khA" = (
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "khB" = (
 /obj/effect/urban/decal/doubleroad/lines1{
@@ -53798,7 +53835,7 @@
 	pixel_x = -17
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -53877,7 +53914,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -53900,7 +53937,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "koJ" = (
 /obj/structure/table/reinforced/prison,
@@ -56152,9 +56189,7 @@
 /obj/machinery/computer/security{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "kLa" = (
 /obj/structure/sign/safety/hazard{
@@ -56865,7 +56900,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "kRg" = (
 /obj/effect/spawner/random/machinery/random_broken_computer,
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -57025,7 +57060,7 @@
 "kSu" = (
 /obj/item/fuel_cell,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -57084,7 +57119,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/multi_tiles{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -58694,6 +58729,11 @@
 /obj/machinery/light,
 /turf/open/floor/urban/metal/greenmetal1,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
+"lio" = (
+/turf/open/floor/multi_tiles{
+	dir = 8
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "lir" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -60363,7 +60403,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/multi_tiles{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -62367,7 +62407,7 @@
 "lVI" = (
 /obj/item/fuel_cell,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "lVN" = (
 /obj/structure/window/framed/urban/colony,
@@ -64329,7 +64369,7 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/indoors/south_caves)
 "mnR" = (
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/security)
@@ -64978,7 +65018,7 @@
 	pixel_y = 18
 	},
 /obj/effect/urban/decal/trash/four,
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -65275,7 +65315,7 @@
 	pixel_x = -12;
 	pixel_y = -12
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -65767,7 +65807,7 @@
 /area/lv759/indoors/power_plant/telecomms)
 "mBN" = (
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -71987,7 +72027,7 @@
 /obj/structure/table/reinforced/prison,
 /obj/machinery/faxmachine,
 /obj/item/paper/crumpled,
-/turf/open/floor/prison{
+/turf/open/floor/redfour{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/security)
@@ -72632,7 +72672,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "nMz" = (
 /obj/effect/urban/decal/dirt,
@@ -72868,9 +72908,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "nOB" = (
 /obj/structure/bed/chair/office/light,
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "nOL" = (
 /obj/structure/platform,
@@ -76446,7 +76484,7 @@
 /area/lv759/indoors/north_caves)
 "oxC" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "oxE" = (
 /obj/structure/rack,
@@ -76494,7 +76532,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -76921,7 +76959,7 @@
 /area/lv759/indoors/ntmart)
 "oCh" = (
 /obj/machinery/light,
-/turf/open/floor/prison,
+/turf/open/floor/redthree,
 /area/lv759/indoors/spaceport/security)
 "oCj" = (
 /obj/structure/platform{
@@ -77157,7 +77195,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -78236,7 +78274,7 @@
 /area/lv759/indoors/recycling_plant/garage)
 "oOY" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -79204,7 +79242,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "oYN" = (
 /obj/item/trash/barcaridine,
@@ -81505,7 +81543,7 @@
 	dir = 8
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -81626,7 +81664,7 @@
 	pixel_x = -8;
 	pixel_y = 10
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -81849,7 +81887,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -81938,7 +81976,7 @@
 	pixel_x = -10;
 	pixel_y = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/redthree,
 /area/lv759/indoors/spaceport/security)
 "pyW" = (
 /obj/effect/urban/decal/dirt,
@@ -82251,7 +82289,9 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "pBb" = (
 /obj/structure/rack,
@@ -83815,7 +83855,7 @@
 /area/lv759/indoors/central_caves)
 "pQt" = (
 /obj/item/fuel_cell,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -84411,7 +84451,7 @@
 "pVK" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -85150,7 +85190,7 @@
 /obj/machinery/photocopier{
 	pixel_y = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/security)
@@ -86038,9 +86078,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/engineering)
 "qmJ" = (
 /obj/structure/platform{
@@ -86440,7 +86478,7 @@
 	layer = 5
 	},
 /obj/machinery/light,
-/turf/open/floor/prison{
+/turf/open/floor/redfour{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/security)
@@ -86927,7 +86965,7 @@
 	pixel_x = -21;
 	pixel_y = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "quO" = (
 /obj/structure/rack{
@@ -87175,7 +87213,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "qxv" = (
 /obj/structure/largecrate/random{
@@ -89354,7 +89392,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/spaceport/engineering)
 "qTd" = (
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
@@ -90945,7 +90983,7 @@
 /obj/structure/bed/urban/chairs/brown{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -91669,7 +91707,7 @@
 	pixel_x = 1;
 	pixel_y = 6
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "rpL" = (
 /obj/machinery/door/window{
@@ -93032,7 +93070,7 @@
 /area/lv759/indoors/weyyu_office/floor)
 "rDj" = (
 /obj/structure/closet/crate/trashcart,
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "rDk" = (
 /obj/item/smallDelivery,
@@ -93948,7 +93986,7 @@
 	pixel_x = -17
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "rNe" = (
 /obj/machinery/meter,
@@ -94583,7 +94621,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -94670,8 +94708,8 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_street)
 "rVh" = (
-/turf/open/floor/prison{
-	dir = 4
+/turf/open/floor/prison/ramptop{
+	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "rVn" = (
@@ -95585,7 +95623,7 @@
 "sdH" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/item/clothing/head/warning_cone,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -95851,9 +95889,7 @@
 "sgC" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/medical_decals/doc/stripe,
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "sgD" = (
 /obj/structure/prop/propplaceholder{
@@ -96758,6 +96794,11 @@
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
+"soh" = (
+/turf/open/floor/bluefour{
+	dir = 4
+	},
+/area/lv759/indoors/spaceport/docking_bay_2)
 "sol" = (
 /obj/item/clothing/head/hardhat/white{
 	pixel_x = -8;
@@ -97164,6 +97205,11 @@
 	dir = 8
 	},
 /area/lv759/indoors/botany/botany_maintenance)
+"srY" = (
+/turf/open/floor/redthree{
+	dir = 4
+	},
+/area/lv759/indoors/spaceport/security)
 "ssd" = (
 /turf/closed/shuttle/dropship4/window/alt{
 	dir = 4
@@ -97915,7 +97961,7 @@
 	pixel_x = 9
 	},
 /obj/structure/platform/urban/metalplatform6,
-/turf/open/floor/prison{
+/turf/open/floor/redfour{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -98362,7 +98408,7 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/effect/urban/decal/dirt_2,
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "sDy" = (
 /obj/structure/sign/safety/hazard{
@@ -99879,7 +99925,9 @@
 	plane = -6
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "sRk" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
@@ -101786,7 +101834,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -103261,7 +103309,7 @@
 /obj/machinery/computer/security{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "tzb" = (
 /obj/item/ammo_casing/bullet,
@@ -104104,7 +104152,7 @@
 /area/lv759/indoors/apartment/eastfoyer)
 "tHD" = (
 /obj/effect/turf_decal/medical_decals/triage/edge,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -104246,7 +104294,7 @@
 	},
 /area/lv759/indoors/hospital/virology)
 "tIX" = (
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -104667,7 +104715,7 @@
 	dir = 4;
 	layer = 3.33
 	},
-/turf/open/floor/prison{
+/turf/open/floor/multi_tiles{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -106546,7 +106594,7 @@
 	dir = 4;
 	layer = 3.33
 	},
-/turf/open/floor/prison{
+/turf/open/floor/multi_tiles{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -107226,7 +107274,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/blue,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "umT" = (
 /obj/structure/closet/firecloset,
@@ -107685,7 +107733,7 @@
 	dir = 1
 	},
 /obj/structure/dropship_piece/four/dropshipfront,
-/turf/open/floor/prison{
+/turf/open/floor/prison/ramptop{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -108612,7 +108660,7 @@
 	pixel_x = 7;
 	pixel_y = 14
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/kitchen,
 /area/lv759/indoors/spaceport/kitchen)
 "uzK" = (
 /obj/item/lightstick/anchored,
@@ -110714,7 +110762,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -111422,7 +111470,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "vby" = (
 /obj/structure/barricade/handrail/wire{
@@ -111671,7 +111719,9 @@
 	},
 /obj/structure/largecrate/random,
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "vdR" = (
 /obj/effect/urban/decal/dirt,
@@ -113517,7 +113567,7 @@
 /obj/item/paper{
 	layer = 2
 	},
-/turf/open/floor/prison{
+/turf/open/floor/redthree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/security)
@@ -114357,7 +114407,7 @@
 /obj/machinery/computer/security{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/redthree,
 /area/lv759/indoors/spaceport/security)
 "vEo" = (
 /turf/open/urban/street/sidewalk{
@@ -114758,7 +114808,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -115377,7 +115427,7 @@
 	pixel_x = 16;
 	pixel_y = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "vOH" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -116570,7 +116620,7 @@
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -117259,7 +117309,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/ramptop{
+	dir = 1
+	},
 /area/lv759/indoors/spaceport/docking_bay_2)
 "weZ" = (
 /obj/effect/decal/cleanable/blood,
@@ -117417,7 +117469,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "wgA" = (
 /obj/structure/platform_decoration{
@@ -117912,7 +117964,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -118083,7 +118135,7 @@
 /obj/structure/bed/urban/chairs/brown{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -118332,6 +118384,9 @@
 	},
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/jacks_surplus)
+"wqM" = (
+/turf/open/floor/redthree,
+/area/lv759/indoors/spaceport/security)
 "wra" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/flora/ausbushes/ywflowers,
@@ -120555,7 +120610,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "wNp" = (
 /obj/structure/largecrate/random/barrel/black,
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -121930,9 +121985,7 @@
 "xce" = (
 /obj/item/fuel_cell,
 /obj/effect/turf_decal/medical_decals/triage,
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "xcj" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -123225,15 +123278,13 @@
 	},
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
-/turf/open/floor/prison{
-	dir = 4
-	},
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "xpx" = (
 /obj/structure/bed/urban/chairs/brown{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -123959,9 +124010,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "xxD" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe,
-/turf/open/floor/mainship{
-	dir = 5
-	},
+/turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "xxN" = (
 /obj/structure/bed/chair/office/dark,
@@ -125020,7 +125069,7 @@
 /obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -125251,7 +125300,7 @@
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 6
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -126898,7 +126947,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/prison{
+/turf/open/floor/bluethree{
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -134379,7 +134428,7 @@ tIX
 fEQ
 nMu
 fBB
-khA
+wqM
 eMl
 jYX
 rYG
@@ -134627,11 +134676,11 @@ csf
 gjs
 axU
 tIX
-tIX
+cPs
 bFK
 dSa
-fBB
-mnR
+srY
+clo
 wtD
 qkf
 rJA
@@ -135642,12 +135691,12 @@ mxe
 pvh
 uUi
 aCw
-csf
+eKK
 cTr
 cTr
-csf
-csf
-csf
+eKK
+eKK
+eKK
 aBe
 oxr
 nvN
@@ -136137,21 +136186,21 @@ nNR
 xII
 acb
 bdP
-csf
-csf
-rVh
-rVh
+lio
+lio
+aQz
+aQz
 pws
 xKq
-csf
-aCw
+lio
+bCh
 pVK
 acb
 fsx
 kSu
-rVh
+aQz
 acb
-rVh
+soh
 aBe
 nkD
 uRJ
@@ -136400,7 +136449,7 @@ ugj
 umF
 pys
 bfk
-wgn
+hjE
 aqo
 hdh
 quH
@@ -139169,10 +139218,10 @@ yai
 ffs
 kTo
 lzz
-gRu
+hHg
 wmm
 yai
-gRu
+hHg
 yai
 wmm
 kox
@@ -139412,22 +139461,22 @@ rqw
 xKi
 tHD
 acb
-csf
-csf
-csf
-csf
-csf
-csf
-csf
-csf
-csf
+eKK
+lio
+lio
+eKK
+eKK
+eKK
+eKK
+lio
+lio
 mBN
 acb
-csf
-csf
-csf
+eKK
+eKK
+eKK
 acb
-csf
+fVM
 aBe
 gIc
 qxj
@@ -139917,10 +139966,10 @@ vYP
 wNp
 cjO
 rTX
-rVh
+aQz
 oOY
-rVh
-rVh
+aQz
+aQz
 woj
 rhJ
 ifF
@@ -139929,9 +139978,9 @@ xpx
 xpx
 xpx
 icU
-rVh
-rVh
-rVh
+aQz
+aQz
+aQz
 gcV
 hMQ
 cwE
