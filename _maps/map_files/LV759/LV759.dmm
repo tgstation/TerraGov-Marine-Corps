@@ -57779,7 +57779,6 @@
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
-    name = "Emergency Lockdown"
 	dir = 4
 	},
 /turf/open/floor/mainship{
