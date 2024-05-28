@@ -105,6 +105,9 @@
 		for(var/obj/effect/forcefield/fog/fog in throw_origin)
 			A.balloon_alert(X, "Cannot, fog")
 			return fail_activate()
+	if(isvehicle(A))
+		A.balloon_alert(X, "Too heavy!")
+		return fail_activate()
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
