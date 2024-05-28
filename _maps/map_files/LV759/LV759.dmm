@@ -3481,7 +3481,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "aKQ" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 4
 	},
@@ -20531,7 +20530,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dRI" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
 	dir = 4
 	},
@@ -43490,7 +43488,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "inK" = (
 /obj/structure/table/reinforced/prison,
-/obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -8;
 	pixel_y = 7
@@ -51735,7 +51732,6 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "jQi" = (
 /obj/structure/table,
-/obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/syringes,
 /turf/open/floor/prison/whitered,
@@ -57003,9 +56999,6 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/wy_research_complex_entrance)
 "kPv" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/hybrisa/medical_solid/autoname{
 	dir = 1
 	},
@@ -75050,11 +75043,6 @@
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
 	},
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	id = "hybrisaLZ2_2";
-	name = "Emergency Lockdown"
-	},
 /obj/machinery/door/poddoor/mainship{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -82802,7 +82790,6 @@
 	},
 /area/lv759/indoors/central_caves)
 "pBk" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 4
 	},
@@ -100111,7 +100098,6 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "sOy" = (
 /obj/structure/table/reinforced/prison,
-/obj/structure/table/reinforced/prison,
 /obj/item/storage/box/syringes{
 	pixel_x = 4;
 	pixel_y = 6
@@ -104338,9 +104324,6 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "tDE" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
 	dir = 1
 	},
@@ -104908,7 +104891,6 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tIN" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 4
 	},
@@ -111715,7 +111697,6 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "uXe" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 8
 	},
@@ -113920,7 +113901,6 @@
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/meridian/meridian_factory)
 "vss" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 4
 	},
@@ -114147,9 +114127,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "vuV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
 	dir = 1
 	},
