@@ -335,5 +335,5 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/retract_rappels()
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
 	for(var/obj/structure/dropship_equipment/rappel_system/system in shuttle.equipments)
-		if(system.unlocked)
+		if(system.rappel_state >= RAPPEL_STATE_USABLE)
 			system.pre_retract()
