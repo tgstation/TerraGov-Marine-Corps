@@ -1612,8 +1612,8 @@
 
 /turf/open/urban/metal/underground_unweedable
 	name = "floor"
-	icon = 'icons/turf/floors/floors.dmi'
-	icon_state = "bcircuit"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "podfloor"
 
 // Engineer Ship Hull
 /turf/open/engineership/ship_hull

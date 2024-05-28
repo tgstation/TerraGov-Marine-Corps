@@ -218,7 +218,6 @@
 	layer = TURF_LAYER
 
 /obj/effect/turf_decal/strata_decals/catwalk/prison //For finding and replacing prison catwalk objects since they nasty
-	icon = 'icons/turf/floors/strata_floor.dmi'
 	icon_state = "catwalk"
 	name = "catwalk"
 	layer = CATWALK_LAYER
