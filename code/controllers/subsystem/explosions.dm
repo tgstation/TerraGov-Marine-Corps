@@ -392,10 +392,10 @@ This way we'll be able to draw the explosion's expansion path without having to 
 
 		timer = TICK_USAGE_REAL
 		for(var/flamed_turf in flameturf)
-			var/obj/flamer_fire/pre_existing_flame = locate(/obj/flamer_fire) in flamed_turf
+			var/obj/fire/flamer/pre_existing_flame = locate(/obj/fire/flamer) in flamed_turf
 			if(pre_existing_flame)
 				qdel(pre_existing_flame)
-			new /obj/flamer_fire(flamed_turf, max(1, rand(0, 25) + rand(0, 25)), max(1, rand(0, 25) + rand(0, 25)))
+			new /obj/fire/flamer(flamed_turf, max(1, rand(0, 25) + rand(0, 25)), max(1, rand(0, 25) + rand(0, 25)))
 		flameturf.Cut()
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
