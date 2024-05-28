@@ -100,7 +100,7 @@
 	density = FALSE
 	climbable = FALSE
 	coverage = 0
-	
+
 /obj/structure/platform/trench
 	icon_state = "platformtrench"
 	name = "trench wall"
@@ -161,10 +161,10 @@
 /// Hybrisa Platforms
 
 /obj/structure/platform/hybrisa
-    icon_state = "hybrisa"
+	icon_state = "hybrisa"
 
 /obj/structure/platform_decoration/hybrisa
-    icon_state = "hybrisa"
+	icon_state = "hybrisa"
 
 /obj/structure/platform/urban/engineer
 	icon_state = "engineer_platform"
