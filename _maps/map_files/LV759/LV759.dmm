@@ -77056,9 +77056,6 @@
 	pixel_y = 3
 	},
 /obj/structure/barricade/handrail/kutjevo{
-	dir = 8
-	},
-/obj/structure/barricade/handrail/kutjevo{
 	dir = 1;
 	layer = 5;
 	level = 5;
