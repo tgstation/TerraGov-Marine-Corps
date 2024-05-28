@@ -3146,9 +3146,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/spaceport/maintenance_east)
 "aGE" = (
-/obj/machinery/vending/snack{
-	stat = 1
-	},
+/obj/machinery/vending/snack,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
@@ -21602,9 +21600,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eeG" = (
-/obj/machinery/vending/coffee{
-	stat = 1
-	},
+/obj/machinery/vending/coffee,
 /turf/open/floor/prison/red{
 	dir = 5
 	},
@@ -76102,9 +76098,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/north_west_caves)
 "otL" = (
-/obj/machinery/vending/sovietsoda{
-	stat = 1
-	},
+/obj/machinery/vending/sovietsoda,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/maintenance_east)
 "otP" = (
@@ -97904,9 +97898,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "syG" = (
-/obj/machinery/vending/sovietsoda{
-	stat = 1
-	},
+/obj/machinery/vending/sovietsoda,
 /turf/open/floor/urban/tile/darkbrown_bigtile{
 	dir = 10
 	},
@@ -99108,9 +99100,7 @@
 /area/lv759/oob)
 "sKi" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/vending/sovietsoda{
-	stat = 1
-	},
+/obj/machinery/vending/sovietsoda,
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "sKm" = (
@@ -112015,10 +112005,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/machinery/vending/coffee{
-	layer = 4;
-	stat = 1
-	},
+/obj/machinery/vending/coffee,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "vfW" = (
