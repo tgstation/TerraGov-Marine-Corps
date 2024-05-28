@@ -1576,7 +1576,7 @@
 	pixel_x = 4;
 	pixel_y = 14
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "apn" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -1979,8 +1979,10 @@
 	},
 /area/lv759/indoors/wy_research_complex/securityarmory)
 "atZ" = (
-/obj/structure/cargo_container,
 /obj/structure/platform/urban/metalplatform6{
+	dir = 4
+	},
+/obj/structure/cargo_container/hd{
 	dir = 4
 	},
 /turf/open/urban/street/sidewalk,
@@ -2632,15 +2634,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "aBe" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/obj/effect/forcefield,
-/turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/hallwaynorthexit)
+/turf/open/floor/floorthree,
+/area/lv759/indoors/spaceport/docking_bay_2)
 "aBm" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
@@ -2735,6 +2730,11 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
+"aCt" = (
+/obj/effect/urban/decal/dirt,
+/obj/structure/cargo_container/horizontal,
+/turf/open/urban/street/cement3,
+/area/lv759/outdoors/colony_streets/south_east_street)
 "aCu" = (
 /obj/structure/barricade/handrail/urban/handrail,
 /turf/open/floor/plating/plating_catwalk{
@@ -2850,7 +2850,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/nt,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "aEf" = (
@@ -3411,7 +3411,7 @@
 /obj/machinery/conveyor{
 	layer = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "aKg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3767,14 +3767,12 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "aNy" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 1;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
+/obj/effect/urban/decal{
+	pixel_x = 15;
+	pixel_y = 34
 	},
-/turf/open/floor/squares,
-/area/lv759/indoors/power_plant/gas_generators)
+/turf/open/floor/mainship/tcomms,
+/area/lv759/indoors/spaceport/docking_bay_1)
 "aNA" = (
 /obj/machinery/light{
 	dir = 1
@@ -4933,7 +4931,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced/prison,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "aZh" = (
 /obj/structure/bed/chair/office/light{
@@ -5371,14 +5369,9 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "bdn" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/colony,
-/area/lv759/indoors/mining_outpost/east)
+/obj/effect/urban/decal/dirt,
+/turf/open/floor/floorthree,
+/area/lv759/indoors/spaceport/docking_bay_2)
 "bdo" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5686,7 +5679,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "bfz" = (
 /obj/effect/urban/decal/road/road_edge,
@@ -7630,9 +7623,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bzf" = (
-/obj/structure/cargo_container{
-	layer = 5
-	},
+/obj/structure/cargo_container/nt,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -7941,14 +7932,6 @@
 	dir = 6
 	},
 /area/lv759/indoors/wy_research_complex/hallwayeast)
-"bCD" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
-	name = "computer"
-	},
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/meridian/meridian_factory)
 "bCO" = (
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
@@ -8889,14 +8872,8 @@
 	},
 /area/lv759/indoors/north_east_caves)
 "bLv" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/colony/reinforced/hull,
-/area/lv759/oob)
+/turf/open/floor/floorthree,
+/area/lv759/indoors/spaceport/hallway_east)
 "bLz" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -9675,7 +9652,7 @@
 /obj/effect/turf_decal/medical_decals/doc/stripe{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "bSZ" = (
 /turf/open/floor/prison,
@@ -10216,7 +10193,6 @@
 "bXt" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 1
@@ -10963,9 +10939,11 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "cek" = (
-/obj/structure/prop/propplaceholder,
-/turf/open/urban/street/sidewalk,
-/area/lv759/outdoors/landing_zone_2)
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv759/indoors/north_caves)
 "ceo" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2{
 	dir = 8
@@ -11151,7 +11129,7 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "cfj" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "cfn" = (
 /obj/item/stack/rods,
@@ -11337,7 +11315,9 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "cgQ" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "cgT" = (
@@ -11818,7 +11798,6 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
 	},
-/obj/structure/prop/propplaceholder,
 /obj/effect/forcefield,
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
 /turf/open/urbanshale/layer1,
@@ -12653,17 +12632,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/starglider)
-"ctl" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 6;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/structure/cable,
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/plating,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "cto" = (
 /obj/item/stack/rods{
 	pixel_y = 14
@@ -13945,9 +13913,6 @@
 /obj/structure/platform{
 	dir = 1;
 	layer = 2.1
-	},
-/obj/effect/turf_decal/strata_decals/catwalk/prison{
-	icon = 'icons/turf/floors/hybrisafloors.dmi'
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/catwalk,
@@ -15295,7 +15260,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "cSP" = (
 /obj/effect/spawner/random/engineering/metal,
@@ -15686,7 +15651,7 @@
 	dir = 8;
 	layer = 2.5
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/five,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "cWI" = (
 /obj/structure/bed/chair/comfy,
@@ -15800,7 +15765,7 @@
 	pixel_y = 10
 	},
 /obj/structure/table/reinforced/prison,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "cYd" = (
 /obj/structure/fence{
@@ -15965,12 +15930,6 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "cZT" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/portable_atmospherics/scrubber/huge{
 	layer = 4
 	},
@@ -16070,7 +16029,7 @@
 	pixel_y = -1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "daV" = (
 /obj/effect/decal/cleanable/blood,
@@ -16291,7 +16250,7 @@
 "dcS" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/propplaceholder,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
 /turf/open/floor/mainship/cargo/arrow,
 /area/lv759/indoors/spaceport/heavyequip)
 "dcT" = (
@@ -18717,12 +18676,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/structure/prop/mainship/mapping_computer{
-	desc = null;
-	icon = 'icons/obj/structures/props/urbanrandomprops.dmi';
-	name = "computer";
-	pixel_y = 12
-	},
+/obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "dBs" = (
@@ -19164,7 +19118,7 @@
 	dir = 10;
 	layer = 2.5
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/zero,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "dGI" = (
 /obj/item/tool/pickaxe,
@@ -20576,9 +20530,11 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "dTv" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/road_edge/two,
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "dTw" = (
@@ -20896,8 +20852,8 @@
 /area/lv759/indoors/north_caves)
 "dWU" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	layer = 4
+/obj/structure/cargo_container/horizontal{
+	dir = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -21151,6 +21107,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/oob)
+"eai" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/landing_zone_2)
 "eal" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -21288,12 +21250,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt{
 	name = "impact"
-	},
-/obj/structure/prop/propplaceholder{
-	desc = "An exchange valve";
-	dir = 1;
-	icon = 'icons/obj/pipes/filter.dmi';
-	name = "Automated Valve"
 	},
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison{
@@ -22846,10 +22802,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/yellow_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
-"epV" = (
-/obj/structure/sign/safety/hazard,
-/turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "epW" = (
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
@@ -23208,7 +23160,7 @@
 /obj/machinery/conveyor{
 	layer = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "etW" = (
 /obj/structure/closet/jcloset,
@@ -23706,9 +23658,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/shuttle/escapepod{
-	dir = 4
-	},
+/turf/open/shuttle/escapepod/seven,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "eyS" = (
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble2{
@@ -24505,14 +24455,6 @@
 "eGV" = (
 /obj/structure/cable,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/propplaceholder{
-	desc = "An old company comms tower used to transmit communications between subspace bodies. Looks like this one has seen better days.";
-	dir = 4;
-	icon = 'icons/obj/structures/machinery/comm_tower2.dmi';
-	layer = 5;
-	level = 5;
-	name = "destroyed comms tower"
-	},
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -24770,12 +24712,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/colonial_marshals/garage)
-"eKK" = (
-/obj/structure/barricade/handrail{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/lv759/indoors/ntmart)
 "eKL" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -24987,14 +24923,11 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
 "eMv" = (
-/obj/effect/turf_decal/strata_decals/catwalk/prison,
-/obj/structure/showcase{
-	breakable = 1;
-	desc = null;
-	name = "floor panel"
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/urban/metal/stripe_red{
+	dir = 1
 	},
-/turf/open/floor/plating/heatinggrate,
-/area/lv759/indoors/wy_research_complex/hangarbay)
+/area/lv759/outdoors/north_west_caves_outdoors)
 "eMF" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
@@ -25078,12 +25011,6 @@
 /area/lv759/indoors/power_plant/south_hallway)
 "eNF" = (
 /obj/structure/sign/safety/hazard,
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "eNH" = (
@@ -26557,7 +26484,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
 "fbM" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "fca" = (
@@ -27299,12 +27226,10 @@
 	},
 /area/lv759/indoors/wy_research_complex/reception)
 "fjb" = (
-/obj/structure/prop/propplaceholder{
-	dir = 4
-	},
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 4
 	},
+/obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "fjd" = (
@@ -27669,11 +27594,7 @@
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
 "fof" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/mainship,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "foi" = (
@@ -28565,11 +28486,7 @@
 /turf/open/shuttle/escapepod/five,
 /area/lv759/oob)
 "fxR" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /obj/machinery/door_control{
 	id = "hybrisacolonylockdown";
 	name = "Colony Exterior Lockdown";
@@ -29690,10 +29607,6 @@
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/prop/propplaceholder{
-	layer = 3.9;
-	pixel_y = -12
-	},
 /obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
 	layer = 3.9;
 	pixel_y = -12
@@ -29886,7 +29799,7 @@
 	layer = 3
 	},
 /obj/item/clothing/head/soft/orange,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "fJt" = (
 /obj/effect/urban/decal/dirt,
@@ -31200,9 +31113,6 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "fVY" = (
-/obj/structure/prop/propplaceholder{
-	icon = 'icons/obj/structures/tents_deployed_urban.dmi'
-	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -31222,15 +31132,6 @@
 /obj/item/clothing/mask/muzzle,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/casino/casino_vault)
-"fWf" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/hallwaynorth)
 "fWj" = (
 /obj/structure/closet/firecloset,
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -34689,7 +34590,9 @@
 	},
 /area/lv759/indoors/spaceport/security_office)
 "gCO" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/south_caves)
 "gCP" = (
@@ -34888,15 +34791,6 @@
 "gEE" = (
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/bar)
-"gEI" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/colony,
-/area/lv759/indoors/mining_outpost/north)
 "gES" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
 /obj/structure/prop/urban/fakeplatforms/platform1{
@@ -35420,9 +35314,6 @@
 /area/lv759/indoors/electical_systems/substation2)
 "gJQ" = (
 /obj/structure/platform,
-/obj/effect/turf_decal/strata_decals/catwalk/prison{
-	icon = 'icons/turf/floors/hybrisafloors.dmi'
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -37369,12 +37260,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "hcN" = (
-/obj/structure/prop/propplaceholder{
-	light_color = "#00AAFF";
-	light_on = 1;
-	light_power = 4;
-	light_range = 5
-	},
 /obj/structure/prop/urban/signs/jackssign{
 	light_color = "#00AAFF";
 	light_on = 1;
@@ -37416,6 +37301,12 @@
 	dir = 4
 	},
 /area/lv759/indoors/spaceport/docking_bay_2)
+"hdi" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/urban/street/sidewalk,
+/area/lv759/outdoors/landing_zone_2)
 "hdx" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
@@ -37747,11 +37638,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
@@ -38372,7 +38259,6 @@
 /obj/structure/prop/propplaceholder{
 	desc = "A pipe.";
 	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
 	name = "Pipe"
 	},
 /obj/machinery/portable_atmospherics/scrubber,
@@ -38401,7 +38287,6 @@
 /obj/structure/prop/propplaceholder{
 	desc = "A pipe.";
 	dir = 9;
-	icon = 'icons/obj/pipes/pipes.dmi';
 	name = "Pipe"
 	},
 /turf/open/floor/mainship,
@@ -39236,7 +39121,7 @@
 /area/lv759/indoors/recycling_plant_office)
 "hyo" = (
 /obj/structure/bed/stool,
-/turf/open/floor/kutjevo/colors/orange,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "hyt" = (
 /obj/structure/prop/propplaceholder{
@@ -39654,9 +39539,6 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "hDm" = (
-/obj/structure/prop/propplaceholder{
-	pixel_x = 4
-	},
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining3{
 	pixel_x = 4
 	},
@@ -40227,7 +40109,6 @@
 /obj/structure/prop/propplaceholder{
 	desc = "An exchange valve";
 	dir = 8;
-	icon = 'icons/obj/pipes/filter.dmi';
 	name = "Automated Valve"
 	},
 /turf/open/floor/plating,
@@ -40792,14 +40673,12 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "hPw" = (
-/obj/structure/prop/propplaceholder{
-	desc = "Righty tighty, lefty loosey!";
-	dir = 1;
-	icon = 'icons/obj/pipes/valve.dmi';
-	name = "Pressure Valve"
+/obj/effect/urban/decal/dirt,
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/urban/metal/stripe_red{
+	dir = 1
 	},
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
+/area/lv759/outdoors/north_west_caves_outdoors)
 "hPC" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -40988,15 +40867,6 @@
 /obj/structure/prop/urban/misc/floorprops/grate,
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
-"hRx" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/mining_outpost/northeast)
 "hRy" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
@@ -42221,15 +42091,13 @@
 /turf/open/shuttle/escapepod/five,
 /area/lv759/oob)
 "idW" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	icon = 'icons/obj/pipes/manifold.dmi';
-	name = "Pipe manifold"
-	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/cable,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	layer = 3.33
+	},
+/turf/open/floor/urban/metal/stripe_red,
+/area/lv759/outdoors/north_west_caves_outdoors)
 "idZ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/handrail/kutjevo{
@@ -42866,13 +42734,12 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "ijL" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	icon = 'icons/obj/pipes/manifold.dmi';
-	name = "Pipe manifold"
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	layer = 3.33
 	},
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
+/turf/open/floor/urban/metal/stripe_red,
+/area/lv759/outdoors/north_west_caves_outdoors)
 "ijO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -44461,11 +44328,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/janitor)
 "iyM" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "iyN" = (
@@ -45177,7 +45040,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_street)
 "iGb" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
 /area/lv759/indoors/north_east_caves)
 "iGe" = (
@@ -45232,7 +45095,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "iGH" = (
 /obj/effect/urban/decal/dirt,
@@ -45507,7 +45370,6 @@
 	},
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "iIG" = (
-/obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/showcase{
 	breakable = 1;
 	desc = null;
@@ -45518,6 +45380,7 @@
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "iII" = (
@@ -45761,15 +45624,11 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "iKD" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	layer = 4;
-	name = "computer";
-	pixel_y = 12
-	},
 /obj/structure/barricade/handrail{
 	dir = 4
+	},
+/obj/effect/spawner/random/machinery/random_broken_computer{
+	pixel_y = 12
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -45786,9 +45645,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/shuttle/escapepod{
-	dir = 4
-	},
+/turf/open/shuttle/escapepod/seven,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "iKH" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -45952,14 +45809,6 @@
 	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/mining_outpost/east_dorms)
-"iMh" = (
-/obj/structure/cargo_container{
-	layer = 3
-	},
-/turf/open/urban/street/sidewalk{
-	dir = 1
-	},
-/area/lv759/outdoors/landing_zone_2)
 "iMi" = (
 /obj/item/trash/trashbag{
 	pixel_x = 3;
@@ -46507,7 +46356,7 @@
 	buckling_y = 14;
 	pixel_y = 22
 	},
-/turf/open/floor/kutjevo/colors/orange,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "iRV" = (
 /obj/structure/prop/propplaceholder{
@@ -46522,10 +46371,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/prop/propplaceholder{
-	layer = 2.9;
-	pixel_y = 8
-	},
 /obj/structure/prop/urban/vehicles/Meridian/Turquoise{
 	layer = 2.9;
 	pixel_y = 8
@@ -47715,7 +47560,7 @@
 	dir = 10;
 	layer = 2.5
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/zero,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "jfO" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -48176,7 +48021,7 @@
 "jjL" = (
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
-/turf/open/floor/kutjevo/colors/orange,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "jjS" = (
 /obj/structure/table,
@@ -48533,7 +48378,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/office)
 "jmX" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "jnd" = (
@@ -48546,7 +48391,6 @@
 /obj/structure/prop/propplaceholder{
 	desc = "A pipe.";
 	dir = 8;
-	icon = 'icons/obj/pipes/pipes.dmi';
 	name = "Pipe"
 	},
 /turf/open/floor/mainship,
@@ -49115,12 +48959,6 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/power/terminal,
 /turf/open/floor/prison{
 	dir = 1
@@ -49323,10 +49161,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/prop/propplaceholder{
-	color = "#FF7700";
-	icon = 'icons/effects/fire.dmi'
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -50687,8 +50521,8 @@
 "jHm" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	layer = 7
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -52681,16 +52515,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
-"jZM" = (
-/obj/structure/prop/propplaceholder{
-	desc = "Righty tighty, lefty loosey!";
-	dir = 1;
-	icon = 'icons/obj/pipes/valve.dmi';
-	name = "Pressure Valve"
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "jZS" = (
 /obj/structure/rack,
 /obj/item/tool/weldpack,
@@ -53238,7 +53062,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -13;
-	pixel_y = 19
+	pixel_y = 5
 	},
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
@@ -54943,7 +54767,7 @@
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "kwu" = (
 /obj/structure/prop/urban/misc/firehydrant{
@@ -55548,10 +55372,7 @@
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "kDm" = (
-/obj/structure/prop/propplaceholder{
-	layer = 4;
-	pixel_y = 12
-	},
+/obj/structure/prop/urban/containersextended/blackwyleft,
 /turf/open/floor/prison,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "kDw" = (
@@ -55754,7 +55575,7 @@
 /obj/machinery/conveyor{
 	layer = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "kFv" = (
 /obj/effect/urban/decal/dirt,
@@ -57043,11 +56864,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "kRg" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/prison{
 	dir = 1
 	},
@@ -57598,9 +57415,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/shuttle/escapepod{
-	dir = 1
-	},
+/turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "kWD" = (
 /obj/effect/urban/decal/dirt,
@@ -58269,7 +58084,7 @@
 	layer = 2
 	},
 /obj/structure/table/reinforced/prison,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "ldJ" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -58879,17 +58694,6 @@
 /obj/machinery/light,
 /turf/open/floor/urban/metal/greenmetal1,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
-"lio" = (
-/obj/machinery/line_nexter{
-	dir = 1;
-	id = "MTline";
-	pixel_y = 3
-	},
-/obj/structure/barricade/handrail{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/lv759/indoors/ntmart)
 "lir" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -59053,7 +58857,7 @@
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine1{
 	pixel_y = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "ljF" = (
 /turf/open/floor/prison,
@@ -60211,9 +60015,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/shuttle/escapepod{
-	dir = 1
-	},
+/turf/open/shuttle/escapepod/six,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "lvo" = (
 /obj/structure/platform_decoration/urban/rockdark{
@@ -62484,9 +62286,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/landing_zone_2)
 "lUQ" = (
-/obj/structure/cargo_container{
-	layer = 5
-	},
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "lUU" = (
@@ -62617,7 +62417,9 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "lWi" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "lWj" = (
@@ -62989,7 +62791,7 @@
 /obj/structure/barricade/handrail{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/ntmart)
 "lZA" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -63254,12 +63056,6 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/meridian/meridian_office)
 "mbW" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 1;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -63297,11 +63093,7 @@
 	dir = 1;
 	layer = 1
 	},
-/obj/structure/prop/mainship/sensor_computer2{
-	desc = null;
-	icon = 'icons/obj/structures/props/urbanrandomprops.dmi';
-	name = "computer"
-	},
+/obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "mci" = (
@@ -63757,8 +63549,10 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "mht" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines2,
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mhu" = (
@@ -64763,7 +64557,7 @@
 	dir = 8
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "mpM" = (
 /obj/structure/barricade/handrail/kutjevo{
@@ -65082,15 +64876,6 @@
 	dir = 10
 	},
 /area/lv759/outdoors/landing_zone_1)
-"msS" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "msU" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -65117,11 +64902,7 @@
 	dir = 4;
 	layer = 2.8
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	layer = 4;
-	name = "computer";
+/obj/effect/spawner/random/machinery/random_broken_computer{
 	pixel_y = 12
 	},
 /turf/open/floor/prison,
@@ -65229,7 +65010,7 @@
 /obj/item/spacecash/c10,
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
-/turf/open/floor/kutjevo/colors/orange,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "muT" = (
 /obj/structure/bed/chair/comfy{
@@ -65836,7 +65617,7 @@
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "mAh" = (
 /obj/structure/prop/propplaceholder,
@@ -67758,10 +67539,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mRY" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "mRZ" = (
@@ -68256,8 +68034,8 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "mWI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container{
-	layer = 7
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -70474,10 +70252,6 @@
 /obj/item/stack/rods{
 	layer = 6
 	},
-/obj/structure/prop/propplaceholder{
-	layer = 5;
-	pixel_y = 12
-	},
 /obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
 	layer = 5;
 	pixel_y = 12
@@ -70939,10 +70713,10 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "nuF" = (
-/obj/structure/prop/propplaceholder,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
+/obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "nuG" = (
@@ -71196,6 +70970,12 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
+"nxo" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/turf/open/urban/street/sidewalk,
+/area/lv759/outdoors/landing_zone_2)
 "nxD" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/urban/decal/bloodtrail{
@@ -71815,15 +71595,6 @@
 "nDl" = (
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
-"nDp" = (
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/research/reinforced,
-/area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "nDq" = (
 /obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
@@ -71833,7 +71604,9 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
 "nDr" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -72509,16 +72282,6 @@
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
-"nJJ" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 10;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "nJK" = (
 /obj/machinery/vending/dinnerware,
 /obj/effect/decal/cleanable/dirt/grime1,
@@ -73011,7 +72774,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "nNV" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -73284,7 +73047,7 @@
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
 "nQw" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "nQy" = (
 /turf/open/floor/mainship/black/corner{
@@ -73322,7 +73085,7 @@
 	pixel_x = -9;
 	pixel_y = 17
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "nQX" = (
 /obj/effect/urban/decal/dirt,
@@ -73417,12 +73180,14 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/wy_research_complex/medical_annex)
 "nSn" = (
-/obj/structure/cargo_container,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
+	},
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north)
@@ -73564,12 +73329,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/prop/mainship/mapping_computer{
-	desc = null;
-	icon = 'icons/obj/structures/props/urbanrandomprops.dmi';
-	name = "computer";
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -73581,6 +73340,7 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "nUm" = (
@@ -73604,11 +73364,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/colony_streets/north_street)
 "nUy" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/wy_research_complex/reception)
 "nUA" = (
@@ -75598,10 +75354,7 @@
 /obj/structure/platform/mineral{
 	dir = 1
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer";
+/obj/effect/spawner/random/machinery/random_broken_computer{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -76562,11 +76315,7 @@
 	dir = 1;
 	layer = 1
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "oww" = (
@@ -76597,7 +76346,7 @@
 	},
 /area/lv759/indoors/central_caves)
 "owE" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -76671,7 +76420,7 @@
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "oxs" = (
 /obj/structure/prop/mainship/gelida/rails{
@@ -77624,7 +77373,7 @@
 /obj/structure/barricade/handrail{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/ntmart)
 "oHv" = (
 /obj/structure/closet,
@@ -78642,7 +78391,9 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "oQF" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/north_east_caves)
 "oQK" = (
@@ -79069,7 +78820,7 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "oTQ" = (
 /turf/closed/wall/urban/research/reinforced,
@@ -80838,6 +80589,14 @@
 	},
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
+"plS" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/outdoors/colony_streets/south_west_street)
 "plU" = (
 /obj/structure/largecrate/random/barrel{
 	layer = 5;
@@ -81427,7 +81186,7 @@
 	dir = 10;
 	layer = 2.5
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "psa" = (
 /obj/machinery/processor,
@@ -81684,7 +81443,7 @@
 	pixel_y = -1
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "puB" = (
 /obj/item/clothing/head/warning_cone{
@@ -81717,8 +81476,10 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "puM" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines5,
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "puN" = (
@@ -82729,9 +82490,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/shuttle/escapepod{
-	dir = 8
-	},
+/turf/open/shuttle/escapepod/ten,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "pDf" = (
 /obj/machinery/optable,
@@ -83274,12 +83033,6 @@
 	layer = 4
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -83343,11 +83096,7 @@
 	dir = 1;
 	layer = 1
 	},
-/obj/structure/prop/mainship/sensor_computer3{
-	desc = null;
-	icon = 'icons/obj/structures/props/urbanrandomprops.dmi';
-	name = "computer"
-	},
+/obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "pJs" = (
@@ -84874,10 +84623,10 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "pXM" = (
-/obj/structure/cargo_container{
-	layer = 5
-	},
 /obj/effect/urban/decal/dirt,
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "pXO" = (
@@ -85820,7 +85569,7 @@
 /obj/machinery/door/airlock/mainship/security{
 	name = "autoname"
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security_office)
 "qil" = (
 /obj/structure/platform/urban/rockdark{
@@ -86229,7 +85978,7 @@
 	pixel_y = 22
 	},
 /obj/item/clothing/suit/storage/apron,
-/turf/open/floor/kutjevo/colors/orange,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "qmj" = (
 /turf/open/floor/plating,
@@ -86332,11 +86081,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "qnb" = (
@@ -86613,7 +86358,7 @@
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "qpv" = (
 /obj/structure/table/mainship,
@@ -88323,11 +88068,7 @@
 	},
 /area/lv759/indoors/central_caves)
 "qGt" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
@@ -88400,16 +88141,6 @@
 /obj/effect/forcefield,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/wy_research_complex_entrance)
-"qGZ" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 1;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/structure/cable,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "qHd" = (
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/armory)
@@ -88514,7 +88245,7 @@
 	pixel_x = -14;
 	pixel_y = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "qIg" = (
 /obj/structure/filingcabinet,
@@ -89068,11 +88799,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "qNs" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/redone,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "qNt" = (
@@ -89577,12 +89304,6 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/spaceport/cargo_maintenance)
 "qSv" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
@@ -89614,7 +89335,7 @@
 /obj/machinery/conveyor{
 	layer = 3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/ntmart)
 "qSS" = (
 /obj/machinery/floodlight,
@@ -89859,7 +89580,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "qUI" = (
 /obj/effect/urban/decal/road/lines1,
@@ -89939,6 +89660,12 @@
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
+"qVO" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/urban/tile/asteroidfloor_bigtile,
+/area/lv759/indoors/mining_outpost/east_deploymentbay)
 "qVR" = (
 /obj/structure/platform/urban/metalplatform1{
 	dir = 1
@@ -90724,16 +90451,6 @@
 /obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
-"rcq" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/structure/cable,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "rct" = (
 /obj/machinery/floodlight,
 /turf/open/urbanshale/layer1,
@@ -91198,9 +90915,9 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/bar/entertainment)
 "rhz" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_edge/four,
+/obj/structure/cargo_container/gorg,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "rhE" = (
@@ -91263,11 +90980,7 @@
 /turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "rii" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "rik" = (
@@ -91660,7 +91373,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "rmE" = (
 /obj/structure/sign/poster,
@@ -92510,12 +92223,12 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "rvs" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container,
 /obj/structure/sign/poster{
 	pixel_x = 12;
 	pixel_y = 6
 	},
 /obj/effect/urban/decal/road/lines1,
+/obj/structure/cargo_container/ch_red,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rvz" = (
@@ -93401,7 +93114,7 @@
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "rDW" = (
 /obj/structure/closet/crate/trashcart/food,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "rDY" = (
 /obj/machinery/light{
@@ -93715,7 +93428,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "rHW" = (
 /obj/structure/prop/mainship/gelida/rails{
@@ -94640,12 +94353,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
-"rRk" = (
-/obj/structure/prop/propplaceholder{
-	pixel_y = 16
-	},
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "rRr" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/cargo/arrow{
@@ -94657,9 +94364,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/shuttle/escapepod{
-	dir = 8
-	},
+/turf/open/shuttle/escapepod/ten,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "rRI" = (
 /obj/effect/urban/decal/dirt,
@@ -94771,11 +94476,11 @@
 	},
 /area/lv759/indoors/weyyu_office/pressroom)
 "rST" = (
-/obj/structure/prop/propplaceholder{
-	layer = 4
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
 	},
-/turf/open/urban/street/sidewalk,
-/area/lv759/outdoors/landing_zone_2)
+/area/lv759/outdoors/colony_streets/north_west_street)
 "rTa" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform/urban/metalplatform6,
@@ -94953,16 +94658,6 @@
 	},
 /area/lv759/indoors/power_plant)
 "rUT" = (
-/obj/structure/prop/propplaceholder{
-	desc = "An exchange valve";
-	dir = 8;
-	name = "Automated Valve"
-	},
-/obj/structure/showcase{
-	breakable = 1;
-	desc = null;
-	name = "floor panel"
-	},
 /obj/machinery/light/small/blue{
 	dir = 8
 	},
@@ -95918,10 +95613,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "sdZ" = (
 /obj/structure/table/reinforced/prison,
-/obj/structure/prop/propplaceholder{
-	pixel_x = -9;
-	pixel_y = 5
-	},
 /obj/item/storage/box/ids{
 	pixel_x = -4;
 	pixel_y = 14
@@ -96382,7 +96073,7 @@
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "siy" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_east_caves)
 "siE" = (
@@ -96506,7 +96197,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
 "sjM" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "sjP" = (
@@ -97452,10 +97143,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/wy_research_complex/dormsbedroom)
 "srU" = (
-/obj/machinery/computer/security{
-	desc = "A broken Tele-Screen monitor.";
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi'
-	},
+/obj/machinery/computer/security,
 /turf/closed/wall/urban/marhsalls_reinforced,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "srW" = (
@@ -98441,7 +98129,7 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "sAF" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north)
 "sAP" = (
@@ -100071,9 +99759,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/shuttle/escapepod{
-	dir = 1
-	},
+/turf/open/shuttle/escapepod/six,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "sQs" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -100220,7 +99906,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "sRy" = (
 /obj/structure/table/reinforced/prison,
@@ -100884,12 +100570,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/weaponresearchlab)
 "sYt" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
@@ -101317,9 +100997,7 @@
 	},
 /area/lv759/indoors/mining_outpost/north_maint)
 "tcv" = (
-/obj/structure/cargo_container{
-	layer = 2
-	},
+/obj/structure/cargo_container/gorg,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -101794,6 +101472,10 @@
 	dir = 4
 	},
 /area/lv759/indoors/colonial_marshals/press_room)
+"tgB" = (
+/obj/structure/prop/urban/containersextended/blackwyright,
+/turf/open/floor/prison,
+/area/lv759/outdoors/colony_streets/south_west_street)
 "tgD" = (
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
@@ -102810,9 +102492,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "trx" = (
-/obj/structure/prop/propplaceholder{
-	icon = 'icons/obj/structures/tents_deployed_urban.dmi'
-	},
 /obj/item/trash/cigbutt{
 	pixel_x = -3;
 	pixel_y = 9
@@ -103262,13 +102941,6 @@
 	},
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/apartment/westbedrooms)
-"tvA" = (
-/obj/structure/cargo_container{
-	layer = 2;
-	pixel_x = -6
-	},
-/turf/open/urbanshale/layer1,
-/area/lv759/indoors/north_east_caves)
 "tvD" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -103392,7 +103064,6 @@
 "twX" = (
 /obj/machinery/portable_atmospherics/scrubber{
 	desc = "A big air filter.";
-	icon = 'icons/obj/structures/props/mainship_props64.dmi';
 	layer = 5;
 	name = "Air filter";
 	pixel_x = -3;
@@ -103728,7 +103399,9 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/mining_outpost/northeast)
 "tAP" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -104516,7 +104189,7 @@
 	dir = 8;
 	layer = 2.5
 	},
-/turf/open/shuttle/escapepod,
+/turf/open/shuttle/escapepod/five,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "tIo" = (
 /obj/structure/barricade/handrail{
@@ -105313,6 +104986,14 @@
 /obj/effect/forcefield,
 /turf/open/shuttle/escapepod/five,
 /area/lv759/oob)
+"tQv" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/outdoors/colony_streets/south_west_street)
 "tQz" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light/small{
@@ -105728,9 +105409,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "tUz" = (
-/obj/structure/cargo_container{
-	layer = 2;
-	pixel_x = -6
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_east_caves)
@@ -106600,7 +106280,7 @@
 "udR" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "udT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -107080,10 +106760,12 @@
 	},
 /area/lv759/indoors/colonial_marshals/press_room)
 "uhZ" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_edge/ten,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uil" = (
@@ -107120,13 +106802,13 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/east_caves)
 "uiy" = (
-/obj/structure/cargo_container,
 /obj/structure/sign/poster,
 /obj/structure/sign/poster{
 	layer = 4;
 	pixel_x = 6;
 	pixel_y = 7
 	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "uiG" = (
@@ -107237,8 +106919,10 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_workshop)
 "ujx" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/dirt,
+/obj/structure/cargo_container/hd_blue{
+	dir = 8
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "ujy" = (
@@ -107605,10 +107289,12 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/ntmart)
 "uof" = (
-/obj/structure/cargo_container,
 /obj/structure/sign/poster{
 	pixel_x = 12;
 	pixel_y = 9
+	},
+/obj/structure/cargo_container/ch_red{
+	dir = 1
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -108624,10 +108310,10 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/weyyu_office/pressroom)
 "uvY" = (
-/obj/structure/cargo_container,
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/road_edge/nine,
+/obj/structure/cargo_container/gorg,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "uwb" = (
@@ -108696,7 +108382,9 @@
 /area/lv759/indoors/casino/casino_restroom)
 "uwQ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "uwU" = (
@@ -108965,6 +108653,12 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"uAg" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/urban/street/cement3,
+/area/lv759/outdoors/landing_zone_2)
 "uAi" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
@@ -109552,12 +109246,6 @@
 /area/lv759/indoors/power_plant/telecomms)
 "uFR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/structure/computer3frame{
 	layer = 4
 	},
@@ -109887,7 +109575,6 @@
 	},
 /area/lv759/indoors/spaceport/communications_office)
 "uJD" = (
-/obj/structure/cargo_container,
 /obj/structure/sign/poster{
 	pixel_x = -4;
 	pixel_y = 12
@@ -109898,6 +109585,9 @@
 	},
 /obj/effect/urban/decal/road/road_stop/five{
 	dir = 8
+	},
+/obj/structure/cargo_container/ch_red{
+	dir = 4
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -109916,11 +109606,11 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uKn" = (
-/obj/structure/cargo_container{
-	layer = 4.3
-	},
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_edge/four,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "uKt" = (
@@ -109971,7 +109661,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant)
 "uKJ" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/nt,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/landing_zone_2)
 "uKL" = (
@@ -110097,14 +109787,13 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/south_west_caves)
 "uLS" = (
-/obj/structure/cargo_container{
-	layer = 5;
-	pixel_x = 12
-	},
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/road_edge/two,
 /obj/effect/urban/decal/road/road_stop/five{
 	dir = 8
+	},
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
@@ -110519,11 +110208,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
 /obj/structure/girder/reinforced,
-/obj/structure/prop/propplaceholder{
-	color = "#FF7700";
-	icon = 'icons/effects/fire.dmi';
-	pixel_y = 14
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -110993,12 +110677,6 @@
 /obj/machinery/portable_atmospherics/scrubber/huge{
 	layer = 4
 	},
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 8;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /turf/open/floor/mainship,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "uUc" = (
@@ -111139,14 +110817,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/cafeteria)
 "uVh" = (
-/obj/structure/prop/propplaceholder{
-	desc = "Righty tighty, lefty loosey!";
-	dir = 1;
-	icon = 'icons/obj/pipes/valve.dmi';
-	name = "Pressure Valve"
-	},
 /obj/effect/urban/decal/dirt,
-/obj/machinery/portable_atmospherics,
 /turf/open/floor/prison{
 	dir = 5
 	},
@@ -112386,16 +112057,6 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/mainship/cargo,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
-"vhj" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 4;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "vhk" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/two,
@@ -112706,7 +112367,6 @@
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
 "vjP" = (
-/obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/table/reinforced/prison,
 /obj/item/clothing/head/hardhat/white{
 	pixel_x = -8;
@@ -112872,11 +112532,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "vlG" = (
 /obj/structure/cable,
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/caveplateau)
 "vlJ" = (
@@ -113700,12 +113356,6 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "vtC" = (
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 9;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -113822,7 +113472,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_east_caves)
 "vvv" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/hd,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vvA" = (
@@ -115301,12 +114951,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/propplaceholder{
-	desc = "A pipe.";
-	dir = 5;
-	icon = 'icons/obj/pipes/pipes.dmi';
-	name = "Pipe"
-	},
 /turf/open/floor/prison{
 	dir = 6
 	},
@@ -115715,7 +115359,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/south_west_caves)
 "vOB" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/nt,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "vOE" = (
@@ -115904,20 +115548,6 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/indoors/derelict_ship)
-"vQl" = (
-/obj/structure/prop/propplaceholder{
-	desc = "An exchange valve";
-	dir = 8;
-	icon = 'icons/obj/pipes/filter.dmi';
-	name = "Automated Valve"
-	},
-/obj/structure/showcase{
-	breakable = 1;
-	desc = null;
-	name = "floor panel"
-	},
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/power_plant/gas_generators)
 "vQm" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -116397,8 +116027,8 @@
 /turf/open/floor/orange_cover,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "vUy" = (
-/obj/structure/cargo_container{
-	layer = 6
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
@@ -117231,10 +116861,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
 "wbU" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "wca" = (
@@ -117736,12 +117363,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/south)
 "wfR" = (
-/obj/structure/prop/propplaceholder{
-	desc = "Righty tighty, lefty loosey!";
-	dir = 1;
-	icon = 'icons/obj/pipes/valve.dmi';
-	name = "Pressure Valve"
-	},
 /obj/machinery/light/small/blue{
 	dir = 4
 	},
@@ -120773,7 +120394,7 @@
 /obj/machinery/door/airlock/mainship/security{
 	name = "autoname"
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security)
 "wLn" = (
 /obj/item/trash/cigbutt{
@@ -121696,11 +121317,7 @@
 /turf/closed/shuttle/dropship_white/interior_wall,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "wVv" = (
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/meridian/meridian_factory)
 "wVy" = (
@@ -121715,7 +121332,7 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "wVL" = (
 /obj/machinery/light/spot/blue,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "wVO" = (
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname,
@@ -122429,7 +122046,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "xcT" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/gorg,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_east_caves)
 "xcU" = (
@@ -123689,11 +123306,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/item/shard,
-/obj/structure/prop/propplaceholder{
-	color = "#FF7700";
-	icon = 'icons/effects/fire.dmi';
-	pixel_y = 14
-	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "xqC" = (
@@ -123701,7 +123313,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "xqE" = (
-/obj/effect/turf_decal/strata_decals/catwalk/prison,
 /obj/structure/showcase{
 	breakable = 1;
 	desc = null;
@@ -123711,6 +123322,7 @@
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "xqF" = (
@@ -124209,7 +123821,7 @@
 	pixel_x = -8;
 	pixel_y = 12
 	},
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "xvA" = (
 /obj/structure/bed/chair{
@@ -124645,8 +124257,8 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/botany/botany_greenhouse)
 "xAU" = (
-/obj/structure/cargo_container{
-	layer = 4.1
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 1
@@ -125233,11 +124845,11 @@
 	},
 /area/lv759/indoors/north_east_caves)
 "xGc" = (
-/obj/structure/cargo_container{
-	layer = 3
+/obj/structure/cargo_container/hd{
+	dir = 1
 	},
-/turf/open/urban/street/cement3,
-/area/lv759/outdoors/colony_streets/north_street)
+/turf/open/urban/street/sidewalk,
+/area/lv759/outdoors/colony_streets/north_west_street)
 "xGh" = (
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 1
@@ -125626,7 +125238,7 @@
 /area/lv759/indoors/wy_research_complex/hallwayeast)
 "xKi" = (
 /obj/effect/turf_decal/medical_decals/triage,
-/turf/open/floor/prison,
+/turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "xKk" = (
 /obj/effect/urban/decal/dirt,
@@ -126505,10 +126117,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/east_caves)
 "xRg" = (
-/obj/structure/cargo_container{
-	layer = 5;
-	pixel_x = 12
-	},
+/obj/structure/cargo_container/gorg,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "xRi" = (
@@ -127179,16 +126788,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
-"xYM" = (
-/obj/effect/urban/decal/dirt,
-/obj/structure/sign/safety/hazard{
-	desc = "The now broken door access console for these podlocks. Seems like some poor bastard was frantically trying to slide their card due to the the card reader being scraped up. Poor bastards.";
-	icon = 'icons/obj/structures/machinery/monitors.dmi';
-	name = "Access console";
-	pixel_y = -2
-	},
-/turf/closed/wall/urban/colony/reinforced/hull,
-/area/lv759/oob)
 "xYO" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
@@ -127993,11 +127592,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/prop/propplaceholder{
-	desc = null;
-	icon = 'icons/obj/structures/props/zenithrandomprops.dmi';
-	name = "computer"
-	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/wy_research_complex/xenoarcheology)
 "ygR" = (
@@ -128445,7 +128040,7 @@
 /obj/structure/barricade/handrail{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/ntmart)
 "ymd" = (
 /obj/item/storage/briefcase{
@@ -132773,7 +132368,7 @@ fGR
 lWe
 aja
 glf
-glf
+aNy
 jRE
 cmX
 fVc
@@ -134612,8 +134207,8 @@ lym
 sSO
 sSO
 xPu
-kDm
-bzf
+tgB
+tQv
 fHm
 mpS
 mpS
@@ -134865,7 +134460,7 @@ nRq
 oyl
 kWP
 qyq
-bzf
+plS
 fHm
 wVX
 wVX
@@ -135796,7 +135391,7 @@ eHR
 eHR
 eHR
 nkD
-cTr
+aBe
 qpt
 nkD
 wXJ
@@ -136053,7 +135648,7 @@ cTr
 csf
 csf
 csf
-cTr
+aBe
 oxr
 nvN
 fMJ
@@ -136305,8 +135900,8 @@ cTr
 cTr
 bYJ
 cTr
-cTr
-cTr
+aBe
+aBe
 nvN
 fMJ
 auh
@@ -136488,7 +136083,7 @@ tAU
 beR
 iIG
 xqE
-eMv
+wVf
 wxK
 lYF
 dUZ
@@ -136557,7 +136152,7 @@ kSu
 rVh
 acb
 rVh
-cTr
+aBe
 nkD
 uRJ
 ejB
@@ -136809,7 +136404,7 @@ wgn
 aqo
 hdh
 quH
-cTr
+aBe
 iGl
 eXR
 xJz
@@ -137103,9 +136698,9 @@ fIU
 dNp
 qUX
 vqh
-rBZ
+eMv
 mhj
-bUR
+idW
 krA
 wVX
 wVX
@@ -137355,9 +136950,9 @@ kPb
 gjV
 lnr
 oyy
-lsR
+hPw
 tde
-bUR
+idW
 krA
 hOW
 wVX
@@ -137565,7 +137160,7 @@ dMd
 kJr
 cNy
 qxt
-icU
+bdn
 aIo
 bBJ
 ceD
@@ -137607,9 +137202,9 @@ kPb
 grr
 bzc
 sHN
-lsR
+hPw
 gbm
-bUR
+idW
 krA
 hOW
 hOW
@@ -137859,9 +137454,9 @@ kPb
 dNp
 eQR
 jrJ
-lsR
+hPw
 fqP
-qYQ
+ijL
 krA
 fKn
 hOW
@@ -138111,9 +137706,9 @@ fIU
 dNp
 wHC
 jrJ
-lsR
+hPw
 iNb
-qYQ
+ijL
 krA
 fKn
 fKn
@@ -138363,9 +137958,9 @@ kPb
 dNp
 wHC
 jrJ
-lsR
+hPw
 fqP
-bUR
+idW
 krA
 fKn
 fKn
@@ -138615,9 +138210,9 @@ kPb
 exV
 wHC
 aHt
-rBZ
+eMv
 iNb
-qYQ
+ijL
 krA
 fKn
 fKn
@@ -138736,7 +138331,7 @@ ffR
 tKd
 tKd
 tKd
-epV
+eNF
 mqh
 leB
 tVI
@@ -138825,7 +138420,7 @@ tpL
 bVj
 cNy
 feI
-cTr
+aBe
 aIo
 bKG
 bUG
@@ -138867,9 +138462,9 @@ kPb
 jXO
 bML
 aHt
-lsR
+hPw
 bhn
-bUR
+idW
 krA
 fKn
 fKn
@@ -139121,7 +138716,7 @@ hdD
 vqh
 bXt
 mhj
-bUR
+idW
 krA
 hOW
 hOW
@@ -139833,7 +139428,7 @@ csf
 csf
 acb
 csf
-cTr
+aBe
 gIc
 qxj
 kfE
@@ -140347,8 +139942,8 @@ ibB
 oYL
 qwj
 dbe
-jxp
-jxp
+bLv
+bLv
 dbe
 tcB
 jra
@@ -140464,7 +140059,7 @@ gpj
 gpj
 gpj
 gpj
-fWf
+vqd
 hCY
 trG
 vqd
@@ -141343,7 +140938,7 @@ eMe
 giL
 lWi
 nDr
-nDr
+rST
 xWR
 gAz
 rbw
@@ -142255,8 +141850,8 @@ vnc
 vLz
 vLz
 tsi
-epV
-epV
+eNF
+eNF
 bMF
 bMF
 bMF
@@ -143489,7 +143084,7 @@ eQz
 gWc
 eQz
 xFr
-nDp
+xFr
 kRa
 gYV
 oNN
@@ -144379,7 +143974,7 @@ wWQ
 kPb
 dNp
 rHX
-vvv
+xGc
 xCt
 cDD
 dNI
@@ -144497,7 +144092,7 @@ dGz
 wVX
 wVX
 oUV
-aBe
+oUV
 wDc
 wDc
 gxK
@@ -145706,7 +145301,7 @@ vhU
 wan
 fcv
 oCf
-lio
+ajG
 ymc
 ekr
 vmx
@@ -146462,8 +146057,8 @@ ebL
 mSL
 bfc
 oCf
-lio
-eKK
+ajG
+ili
 ekr
 sEg
 ekr
@@ -151678,7 +151273,7 @@ wVX
 nIg
 hxv
 cRY
-orM
+rgo
 dMG
 gFb
 aAX
@@ -151930,7 +151525,7 @@ wVX
 fFv
 vtc
 dlZ
-xGc
+aPd
 uvY
 kFm
 lFI
@@ -154440,13 +154035,13 @@ wuo
 cZd
 iig
 lYd
-fbM
+cek
 iJw
 uCD
 ihh
 khh
 sAF
-gEI
+psh
 iQv
 mCE
 ipI
@@ -160574,7 +160169,7 @@ bFW
 tBM
 lir
 uiM
-bCD
+wVv
 xqF
 mKZ
 aPQ
@@ -164257,7 +163852,7 @@ gzy
 (143,1,1) = {"
 gzy
 mpS
-xYM
+yek
 tpc
 dRm
 vUs
@@ -164322,8 +163917,8 @@ hOA
 sbU
 pCB
 tiI
-jZM
-qGZ
+pgc
+jij
 rUT
 pgc
 kZT
@@ -164575,8 +164170,8 @@ imR
 ndM
 dIq
 dIq
-rcq
-vhj
+jij
+pgc
 kZT
 pgc
 kZT
@@ -164826,8 +164421,8 @@ hOA
 ajd
 pCB
 uGa
-jZM
-idW
+pgc
+dIq
 sYt
 bwR
 rPB
@@ -165079,7 +164674,7 @@ qMB
 rpB
 dIq
 jij
-rcq
+jij
 hoZ
 sbU
 bbV
@@ -165330,8 +164925,8 @@ hOA
 sbU
 uDi
 tZb
-hPw
-ijL
+kRj
+kRj
 qSv
 sbU
 ptg
@@ -165583,8 +165178,8 @@ ygn
 xsX
 qqS
 kRj
-nJJ
-ijL
+pgc
+kRj
 xEU
 jcN
 nwU
@@ -165836,7 +165431,7 @@ miE
 umr
 kZT
 kZT
-msS
+kRj
 tYf
 jcN
 bpl
@@ -166088,7 +165683,7 @@ bWv
 kRj
 qqS
 kRj
-vhj
+pgc
 lEH
 jcN
 nwU
@@ -166339,8 +165934,8 @@ sbU
 pCB
 nnT
 wfR
-aNy
-vQl
+kZT
+kRj
 ajd
 jcN
 bpl
@@ -173226,7 +172821,7 @@ oWQ
 xrv
 uwQ
 dWU
-uwQ
+aCt
 aaD
 aEA
 gKl
@@ -174595,7 +174190,7 @@ myS
 ilv
 xiw
 mjj
-hRx
+tJE
 pLw
 pLw
 pLw
@@ -177029,7 +176624,7 @@ lTb
 mSW
 oka
 vTe
-ctl
+mmg
 aPm
 hpu
 mpS
@@ -177210,7 +176805,7 @@ yaB
 psF
 dOC
 dOC
-jmX
+qVO
 sPE
 sPE
 sPE
@@ -177483,7 +177078,7 @@ bSt
 aVq
 mHX
 pov
-rRk
+pov
 pov
 uFg
 pov
@@ -178784,7 +178379,7 @@ roa
 bhO
 aaf
 sjd
-tcv
+xAU
 oYa
 cfJ
 nDl
@@ -179541,7 +179136,7 @@ bhN
 oet
 qkn
 vWz
-uKJ
+hdi
 sjM
 nDl
 cBR
@@ -179793,8 +179388,8 @@ bhN
 kAh
 qkn
 vWz
-uKJ
-sjM
+nxo
+uAg
 nDl
 dyq
 pPp
@@ -179817,7 +179412,7 @@ pHJ
 qIB
 gHh
 pBb
-bLv
+mpS
 tOP
 qgz
 qgz
@@ -180727,7 +180322,7 @@ duA
 bJI
 gOr
 yeh
-bdn
+xpf
 aJf
 hHA
 upS
@@ -181237,7 +180832,7 @@ bPA
 mQy
 ojl
 irO
-tvA
+xcT
 xcT
 mJO
 wVX
@@ -181809,7 +181404,7 @@ bhO
 bhO
 xNe
 cUv
-rST
+ftN
 pXM
 gXU
 cBR
@@ -182023,7 +181618,7 @@ rqJ
 frM
 pZM
 aHf
-vOB
+eai
 sjd
 txI
 bhN
@@ -182061,7 +181656,7 @@ bhN
 kAh
 mCF
 vWz
-cek
+ftN
 vUy
 nDl
 cBR
@@ -182566,7 +182161,7 @@ kAh
 qkn
 iej
 hbv
-sjM
+uAg
 nDl
 cBR
 pPp
@@ -183068,7 +182663,7 @@ pTt
 xmv
 xYF
 vsj
-iMh
+tcv
 mqx
 eGI
 nDl
@@ -184652,7 +184247,7 @@ wVX
 wVX
 wVX
 wVX
-bLv
+mpS
 hon
 gCB
 qXD
