@@ -2696,8 +2696,7 @@
 "aBP" = (
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisaLZ2_2";
-	name = "Emergency Lockdown"
+	id = "hybrisaLZ2_2"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -3821,9 +3820,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "aNO" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/processing)
@@ -14679,9 +14676,7 @@
 /area/lv759/indoors/wy_security/checkpoint_northeast)
 "cLW" = (
 /obj/effect/forcefield,
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "cMe" = (
@@ -24966,9 +24961,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_west_caves)
 "eMj" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "eMk" = (
@@ -26083,9 +26076,7 @@
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "eWz" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "eWB" = (
@@ -38390,9 +38381,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_east_caves)
 "hoF" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "hoK" = (
@@ -40878,9 +40867,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/garage_reception)
 "hQc" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "hQf" = (
@@ -44860,9 +44847,7 @@
 /turf/closed/wall/urban/spaceport_reinforced,
 /area/lv759/indoors/garage_workshop)
 "iCo" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
@@ -56030,9 +56015,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/janitor)
 "kHJ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/office)
 "kHM" = (
@@ -57440,9 +57423,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "kUv" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/eastrestroomsshower)
 "kUx" = (
@@ -58283,9 +58264,7 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "lcY" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/central_hallway)
 "ldc" = (
@@ -59608,7 +59587,7 @@
 "lpS" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
-	name = "\improper WY-LWI StarGlider SG-200 cargo hold"
+	name = "\improper WY-LWI StarGlider SG-200 Cargo Hold"
 	},
 /turf/open/shuttle/dropship/three,
 /area/lv759/indoors/spaceport/starglider)
@@ -61885,9 +61864,7 @@
 /obj/effect/decal/cleanable/dirt{
 	layer = 5
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/morgue)
 "lOm" = (
@@ -62737,7 +62714,7 @@
 /area/lv759/indoors/hospital/east_hallway)
 "lWD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Reinforced Airlock"
+	name = "Reinforced Airlock"
 	},
 /turf/open/floor/prison{
 	dir = 6
@@ -69386,9 +69363,7 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "neZ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "nfh" = (
@@ -75961,9 +75936,7 @@
 "opy" = (
 /obj/structure/cable,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_north)
 "opE" = (
@@ -85796,9 +85769,7 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/colonial_marshals/north_office)
 "qgg" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/weymart)
 "qgn" = (
@@ -86482,10 +86453,6 @@
 "qnB" = (
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
-"qnC" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/plating,
-/area/lv759/indoors/bar/kitchen)
 "qnD" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -86750,9 +86717,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "qpW" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/eastentrance)
 "qqb" = (
@@ -89981,9 +89946,7 @@
 	},
 /area/lv759/indoors/wy_research_complex_entrance)
 "qVl" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_north)
 "qVq" = (
@@ -94229,9 +94192,7 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "rLI" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/bar/kitchen)
 "rLK" = (
@@ -94361,9 +94322,7 @@
 	},
 /area/lv759/indoors/spaceport/heavyequip)
 "rNj" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_mainroom)
 "rNk" = (
@@ -96448,9 +96407,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "shW" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "sid" = (
@@ -97910,9 +97867,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "svV" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/equipment_east)
 "svX" = (
@@ -98827,9 +98782,7 @@
 	},
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
 "sDI" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "sDM" = (
@@ -107780,9 +107733,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/wy_research_complex/medical_annex)
 "uoD" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/equipment_west)
 "uoI" = (
@@ -120783,9 +120734,7 @@
 /area/lv759/indoors/garage_reception)
 "wJG" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north_maint)
 "wJI" = (
@@ -125989,9 +125938,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "xMa" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "autoname reinforced"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "xMc" = (
@@ -162143,7 +162090,7 @@ rAK
 fVh
 kfW
 fpy
-qnC
+rLI
 fpy
 fpy
 gEE
