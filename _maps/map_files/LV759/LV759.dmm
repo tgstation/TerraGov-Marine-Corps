@@ -20624,7 +20624,6 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "dTk" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/outdoors/landing_zone_2)
 "dTt" = (
@@ -31983,7 +31982,6 @@
 /obj/structure/sign/safety/hazard{
 	pixel_x = 12
 	},
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "gcB" = (
@@ -39660,7 +39658,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "hCj" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
 /turf/open/floor/prison{
 	dir = 4
 	},
@@ -46869,7 +46866,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "iUi" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "iUm" = (
@@ -53060,7 +53056,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "kcA" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "kcB" = (
@@ -56538,10 +56533,6 @@
 	color = "#a6aeab";
 	dir = 8
 	},
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 8
-	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office)
 "kLq" = (
@@ -58768,7 +58759,6 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "lfZ" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex_entrance)
 "lga" = (
@@ -65154,7 +65144,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "mrg" = (
 /obj/structure/sign/safety/hazard,
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "mrh" = (
@@ -74095,10 +74084,6 @@
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "nXi" = (
 /obj/structure/platform,
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 4
-	},
 /obj/structure/stairs{
 	color = "#a6aeab";
 	dir = 4
@@ -85352,7 +85337,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/reception)
 "pZz" = (
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast)
 "pZG" = (
@@ -100559,7 +100543,6 @@
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast)
 "sRW" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -108569,7 +108552,6 @@
 	light_power = 3;
 	light_range = 5
 	},
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/securitycommand)
 "utq" = (
@@ -108578,7 +108560,6 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "utx" = (
-/obj/structure/lattice/autosmooth,
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/prison{
 	dir = 8
@@ -115414,8 +115395,6 @@
 "vIY" = (
 /obj/structure/lattice/autosmooth,
 /obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
-/obj/structure/lattice/autosmooth,
 /turf/closed/wall/r_wall/bunker,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "vJb" = (
@@ -116029,10 +116008,6 @@
 	},
 /area/lv759/indoors/central_caves)
 "vOy" = (
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 1
-	},
 /obj/structure/stairs{
 	color = "#a6aeab";
 	dir = 1
@@ -128645,9 +128620,6 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "ykE" = (
-/obj/structure/lattice/autosmooth{
-	pixel_y = 16
-	},
 /obj/structure/lattice/autosmooth,
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/outdoors/landing_zone_2)
