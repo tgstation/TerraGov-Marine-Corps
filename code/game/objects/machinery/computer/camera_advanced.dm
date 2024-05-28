@@ -248,6 +248,11 @@
 	user.see_in_dark = 2
 	return TRUE
 
+/mob/camera/aiEye/remote/reset_glide_size() //because this mob only moves via relay move which has a hardcoded move delay var, we set for that specifically
+	if(glide_modifier_flags)
+		return
+	set_glide_size(16)
+
 
 /mob/camera/aiEye/remote/Destroy()
 	if(origin && eye_user)
@@ -364,8 +369,8 @@
 		return
 	holder.overlays.Cut()
 	for(var/aura_type in current_aura_list)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]")
-		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]")
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
 
 /datum/action/innate/camera_off
 	name = "End Camera View"

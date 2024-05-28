@@ -691,20 +691,23 @@
 // ***************************************
 // *********** Xeno death
 // ***************************************
-/datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/X)
-	remove_from_lists(X)
-	dead_xenos += X
 
-	SEND_SIGNAL(X, COMSIG_HIVE_XENO_DEATH)
+///Handles any effects when a xeno dies
+/datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/dead_xeno)
+	remove_from_lists(dead_xeno)
+	dead_xenos += dead_xeno
 
-	if(X == living_xeno_ruler)
-		on_ruler_death(X)
-	var/datum/xeno_caste/caste = X?.xeno_caste
-	if(caste.death_evolution_delay <= 0)
+	SEND_SIGNAL(dead_xeno, COMSIG_HIVE_XENO_DEATH)
+
+	if(dead_xeno == living_xeno_ruler)
+		on_ruler_death(dead_xeno)
+	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[dead_xeno.caste_base_type][XENO_UPGRADE_BASETYPE]
+	if(base_caste.death_evolution_delay <= 0)
 		return
-	if(!caste_death_timers[caste])
-		caste_death_timers[caste] = addtimer(CALLBACK(src, PROC_REF(end_caste_death_timer), caste), caste.death_evolution_delay , TIMER_STOPPABLE)
+	if(!caste_death_timers[base_caste])
+		caste_death_timers[base_caste] = addtimer(CALLBACK(src, PROC_REF(end_caste_death_timer), base_caste), base_caste.death_evolution_delay , TIMER_STOPPABLE)
 
+///Handles effects if a xeno is revived
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
 	add_to_lists(X)

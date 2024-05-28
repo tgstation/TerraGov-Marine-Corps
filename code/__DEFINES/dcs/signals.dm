@@ -123,6 +123,8 @@
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION "!campaign_ob_beacon_activation"
 ///Campaign OB beacon going off
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
+///Enables the teleporter array
+#define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals

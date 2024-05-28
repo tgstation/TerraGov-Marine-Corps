@@ -81,7 +81,7 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll
 	name = "Roll"
-	desc = "Toggles Rolling on or off."
+	desc = "Toggles Rolling on or off. This can be used to displace talls but won't deal any damage."
 	charge_type = CHARGE_BEHEMOTH
 	speed_per_step = 0.35
 	steps_for_charge = 4
@@ -1404,7 +1404,7 @@
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 10
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 1.8
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
@@ -1451,7 +1451,10 @@
 					continue
 				if(isvehicle(affected_atom))
 					var/obj/vehicle/veh_victim = affected_atom
-					veh_victim.take_damage(attack_damage * AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER, MELEE)
+					var/damage_add = 0
+					if(ismecha(veh_victim))
+						damage_add = 8.2
+					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom

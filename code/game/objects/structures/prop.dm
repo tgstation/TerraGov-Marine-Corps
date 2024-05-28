@@ -2190,6 +2190,12 @@
 /obj/structure/prop/computer/broken/nineteen
 	icon_state = "broken_computer19"
 
+/obj/structure/prop/sandman
+	name = "sandman"
+	desc = "Like a snowman except it gets everywhere."
+	icon = 'icons/obj/structures/jungle.dmi'
+	icon_state = "sandman"
+
 /obj/machinery/computer/solars
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."

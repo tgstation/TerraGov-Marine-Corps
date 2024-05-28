@@ -81,6 +81,9 @@
 /turf/closed/mineral/smooth/outdoor
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
+/turf/closed/mineral/smooth/outdoor/phoron
+	icon = 'icons/turf/walls/lvwall-phoron.dmi'
+
 /turf/closed/mineral/smooth/indestructible
 	name = "tough rock"
 	resistance_flags = RESIST_ALL

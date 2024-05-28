@@ -161,6 +161,11 @@ OPERATIONS
 	contains = list(/obj/item/supplytablet)
 	cost = 50
 
+/datum/supply_packs/operations/tadpole_electronics
+	name = "Tadpole Navigation Electronics"
+	contains = list(/obj/item/circuitboard/tadpole)
+	cost = 750
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -1034,12 +1039,12 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/howitzer/incendiary)
 	cost = 40
 
-/datum/supply_packs/explosives/mortar_ammo_wp
+/datum/supply_packs/explosives/howitzer_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"
 	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
 	cost = 60
 
-/datum/supply_packs/explosives/mortar_ammo_plasmaloss
+/datum/supply_packs/explosives/howitzer_ammo_plasmaloss
 	name = "MG-100Y howitzer tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 60

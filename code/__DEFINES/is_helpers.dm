@@ -36,8 +36,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
-#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
-
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))
@@ -136,8 +134,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
-#define isshade(A) (istype(A, /mob/living/simple_animal/shade))
-
 #define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
 
 #define iscrab(A) (istype(A, /mob/living/simple_animal/crab))
@@ -151,10 +147,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isbear(A) (istype(A, /mob/living/simple_animal/hostile/bear))
 
 #define iscarp(A) (istype(A, /mob/living/simple_animal/hostile/carp))
-
-#define isconstruct(A) (istype(A, /mob/living/simple_animal/construct))
-
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 
 //Misc mobs
 #define isobserver(A) (istype(A, /mob/dead/observer))
