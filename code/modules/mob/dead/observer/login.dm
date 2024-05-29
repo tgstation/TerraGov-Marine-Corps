@@ -28,9 +28,7 @@
 		H = GLOB.huds[DATA_HUD_ORDER]
 		H.add_hud_to(src)
 
-	if(!ghost_listed)
-		ghost_listed = TRUE
-		GLOB.observer_list += src
+	GLOB.observer_list |= src
 
 	ghost_others = client.prefs.ghost_others
 
@@ -55,15 +53,16 @@
 	if(length(GLOB.offered_mob_list))
 		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))
 
-	if(revived_while_away)
-		to_chat(src, assemble_alert(
-			title = "Revived",
-			subtitle = "You were revived while disconnected.",
-			message = "Someone resuscitated you while you were disconnected. [isnull(can_reenter_corpse) ? "You're currently unable to re-enter your body." : "You will re-enter your body momentarily."]",
-			color_override = "red"
-		))
-		revived_while_away = FALSE
-		addtimer(CALLBACK(src, TYPE_VERB_REF(/mob/dead/observer, reenter_corpse)), 7 SECONDS)
+///Warn the ghost and send them into their body after a few seconds
+/mob/dead/observer/proc/revived_while_away()
+	to_chat(src, assemble_alert(
+		title = "Revived",
+		subtitle = "You were revived while disconnected.",
+		message = "Someone resuscitated you while you were disconnected. [isnull(can_reenter_corpse) ? "You're currently unable to re-enter your body." : "You will re-enter your body in a few seconds."]",
+		color_override = "red"
+	))
+	if(!isnull(can_reenter_corpse))
+		addtimer(CALLBACK(src, TYPE_VERB_REF(/mob/dead/observer, reenter_corpse)), 6 SECONDS)
 
 ///Loads any gamemode specific ghost actions
 /mob/dead/observer/proc/load_ghost_gamemode_actions()

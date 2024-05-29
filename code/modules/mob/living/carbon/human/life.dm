@@ -33,10 +33,8 @@
 
 		else //Dead
 			dead_ticks ++
-			var/datum/limb/headcheck = get_limb("head")
-			var/decapitation = !headcheck || (headcheck.limb_status & LIMB_DESTROYED) && !(species.species_flags & DETACHABLE_HEAD)
-			if(dead_ticks > TIME_BEFORE_DNR || decapitation)
-				set_undefibbable(decapitation)
+			if(dead_ticks > TIME_BEFORE_DNR)
+				set_undefibbable()
 			else
 				med_hud_set_status()
 

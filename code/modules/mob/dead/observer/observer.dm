@@ -25,14 +25,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
-
-	/**
-	 * Are we in the ghost list?
-	 * 
-	 * This var is used so we can avoid adding multiple of this ghost to `GLOB.observer_list` whenever they reconnect
-	 */
-	var/ghost_listed = FALSE
-
 	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
 	//If there's a bug with changing your ghost settings, it's probably related to this.
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
@@ -57,9 +49,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
-	
-	///If this ghost was revived while disconnected
-	var/revived_while_away = FALSE
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -211,8 +200,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				can_reenter_corpse = null
-				to_chat(usr, span_boldwarning("You can no longer enter your body to be revived."))
 				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 

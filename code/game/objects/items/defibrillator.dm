@@ -18,12 +18,12 @@
 	var/damage_threshold = DEFIBRILLATOR_BASE_HEALING_VALUE
 	///How much charge is used on a shock
 	var/charge_cost = 66
-	///The cooldown for using the defib. Applied to toggling and shocking.
-	var/defib_cooldown = 0
 	///The defibrillator's power cell
 	var/obj/item/cell/dcell = null
 	///Var for quickly creating sparks on shock
 	var/datum/effect_system/spark_spread/sparks
+	///The cooldown for using the defib, applied to shocking *and* toggling
+	COOLDOWN_DECLARE(defib_cooldown)
 
 
 /obj/item/defibrillator/suicide_act(mob/user)
@@ -88,7 +88,7 @@
 
 	if(!message)
 		return
-	return "[message]You can click-drag this unit on a corpsman backpack to recharge it."
+	return "[message]You can click-drag this unit on a corpsman backpack or satchel to recharge it."
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -96,7 +96,7 @@
 		return
 	if(!istype(user))
 		return
-	if(defib_cooldown > world.time)
+	if(!COOLDOWN_CHECK(src, defib_cooldown))
 		user.visible_message(span_warning("You've toggled [src] too recently!"))
 		return
 
@@ -105,10 +105,10 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, SKILL_TASK_EASY - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	defib_cooldown = world.time + 1 SECONDS
+	COOLDOWN_START(src, defib_cooldown, 1 SECONDS)
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
@@ -116,7 +116,6 @@
 	if(ready)
 		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
 	else
-		w_class = initial(w_class)
 		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
 	update_icon()
 
@@ -161,11 +160,11 @@
 		user.visible_message(span_warning("You're too busy to use \the [src]!"))
 		return
 
-	if(defib_cooldown > world.time)
-		user.visible_message(span_warning("\The [src] has been used too recently, wait a second!"))
+	if(!COOLDOWN_CHECK(src, defib_cooldown))
+		user.visible_message(span_warning("\The [src] is recharging, wait a second!"))
 		return
 
-	defib_cooldown = world.time + 2 SECONDS
+	COOLDOWN_START(src, defib_cooldown, 2 SECONDS) // 2 seconds before you can try again, initially
 
 	//job knowledge requirement
 	var/medical_skill = user.skills.getRating(SKILL_MEDICAL)
@@ -187,17 +186,16 @@
 		return
 
 	var/fail_reason
-	if(patient.check_defib() & (DEFIB_PREVENT_REVIVE_STATES))
-		// Special bit for preventing the do_after if they almost 100% can't come back.
-		// We'll check the rest of the check_defib states along with these after shocking, incase their status changes mid defib.
-		switch(patient.check_defib())
-			if(DEFIB_FAIL_DECAPITATED)
-				if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
-					fail_reason = "Patient is missing their head. Reattach and try again."
-				else
-					fail_reason = "Patient is missing their head. Further attempts futile."
-			if(DEFIB_FAIL_BRAINDEAD)
-				fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
+	switch(patient.check_defib())
+		// A special bit for preventing the defib do_after if they can't come back
+		// This will be ran again after shocking just in case their status changes
+		if(DEFIB_FAIL_DECAPITATED)
+			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
+				fail_reason = "Patient is missing their head. Reattach and try again."
+			else
+				fail_reason = "Patient is missing their head. Further attempts futile."
+		if(DEFIB_FAIL_BRAINDEAD)
+			fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation impossible - [fail_reason]"))
 		return
@@ -233,7 +231,8 @@
 	user.visible_message(span_notice("[user] shocks [patient] with the paddles."),
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
-	defib_cooldown = world.time + 1 SECONDS //1 second cooldown before you can shock again
+
+	COOLDOWN_START(src, defib_cooldown, 1 SECONDS) // 1 second before you can try again if you finish the do_after
 
 	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
@@ -261,10 +260,10 @@
 		patient.adjustToxLoss(-defib_heal_amt)
 		patient.setOxyLoss(0)
 
-	patient.updatehealth() // update health because it usually doesn't update for the dead
+	patient.updatehealth() // update health because it won't always update for the dead
 	//the defibrillator is checking parameters now
 
-	fail_reason = null
+	fail_reason = null // Clear the fail reason as we check again
 	// We're keeping permadeath states from earlier here in case something changes mid revive
 	switch(patient.check_defib())
 		if(DEFIB_FAIL_DECAPITATED)
@@ -296,10 +295,14 @@
 	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
 	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
+	patient.emote("gasp")
+	patient.flash_act()
+	patient.apply_effect(10, EYE_BLUR)
+	patient.apply_effect(20 SECONDS, PARALYZE)
 
 	ghost = patient.get_ghost(TRUE)
-	if(!ghost?.client) // Special bit for getting players who were revived while disconnected
-		ghost?.revived_while_away = TRUE
+	if(ghost) // Special bit for getting players who were revived while disconnected
+		ghost.RegisterSignal(ghost, COMSIG_MOB_LOGIN, TYPE_PROC_REF(/mob/dead/observer, revived_while_away))
 
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.
 	if(istype(patient.wear_ear, /obj/item/radio/headset/mainship))
@@ -325,6 +328,7 @@
 	icon_state = "civ_defib"
 	worn_icon_state = "defib"
 
+///used for advanced medical (defibrillator) gloves: marine_gloves.dm
 /obj/item/defibrillator/internal
 	icon = 'icons/obj/clothing/gloves.dmi' //even though you'll never see this directly, it shows up in the chat panel due to icon2html
 	ready = TRUE
@@ -345,54 +349,3 @@
 /obj/item/defibrillator/internal/update_icon()
 	. = ..()
 	parent_obj.update_icon()
-
-/obj/item/clothing/gloves/defibrillator
-	name = "advanced medical combat gloves"
-	desc = "Advanced medical gauntlets with small but powerful electrodes to resuscitate incapacitated patients."
-	icon_state = "defib_out"
-	worn_icon_state = "defib_gloves"
-	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
-	cold_protection_flags = HANDS
-	heat_protection_flags = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-	///The internal defib item
-	var/obj/item/defibrillator/internal/internal_defib
-
-/obj/item/clothing/gloves/defibrillator/Initialize(mapload)
-	. = ..()
-	internal_defib = new(src, src)
-	update_icon()
-
-/obj/item/clothing/gloves/defibrillator/Destroy()
-	internal_defib = null
-	return ..()
-
-/obj/item/clothing/gloves/defibrillator/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(user.gloves == src)
-		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
-	else
-		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
-
-/obj/item/clothing/gloves/defibrillator/unequipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
-
-/obj/item/clothing/gloves/defibrillator/examine(mob/user)
-	. = ..()
-	. += internal_defib.charge_information()
-
-/obj/item/clothing/gloves/defibrillator/update_overlays()
-	. = ..()
-	if(!internal_defib)
-		return
-	overlays = internal_defib.overlays
-
-//when you are wearing these gloves, this will call the normal attack code to begin defibing the target
-/obj/item/clothing/gloves/defibrillator/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	SIGNAL_HANDLER
-	if(user.a_intent != INTENT_HELP)
-		return
-	if(istype(user) && istype(target))
-		INVOKE_ASYNC(internal_defib, TYPE_PROC_REF(/obj/item/defibrillator, defibrillate), target, user)
