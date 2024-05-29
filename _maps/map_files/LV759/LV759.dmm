@@ -39694,7 +39694,6 @@
 	pixel_y = 10
 	},
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
@@ -45323,7 +45322,6 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "iIG" = (
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
@@ -104941,7 +104939,6 @@
 "tRv" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
@@ -116107,7 +116104,6 @@
 "vWM" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
@@ -119356,7 +119352,6 @@
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "wDt" = (
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
@@ -123077,7 +123072,6 @@
 /area/lv759/indoors/central_caves)
 "xqE" = (
 /obj/structure/showcase{
-	breakable = 1;
 	desc = null;
 	name = "floor panel"
 	},
