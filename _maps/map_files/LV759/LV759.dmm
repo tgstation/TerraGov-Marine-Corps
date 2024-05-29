@@ -1419,9 +1419,7 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/ntmart)
 "anL" = (
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /obj/item/stock_parts/manipulator,
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7892,9 +7890,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "bCg" = (
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/urban/decal/tiretrack{
 	dir = 4;
@@ -13641,17 +13637,12 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "cCg" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
+/obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/plasteel{
-	amount = 30;
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/engineering/metal{
-	amount = 50
-	},
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/equipment_west)
@@ -17404,9 +17395,7 @@
 	dir = 1;
 	pixel_x = -7
 	},
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/effect/decal/cleanable/greenglow{
 	color = "#140400";
@@ -20815,9 +20804,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "dWu" = (
 /obj/effect/urban/decal/dirt,
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/road_edge/two,
 /turf/open/urban/street/asphalt,
@@ -38246,9 +38233,7 @@
 /area/lv759/indoors/colonial_marshals/changing_room)
 "hoK" = (
 /obj/effect/urban/decal/dirt,
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /obj/effect/urban/decal/road/road_stop/one,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -38703,9 +38688,7 @@
 	dir = 8
 	},
 /obj/item/stack/cable_coil,
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
@@ -42395,12 +42378,10 @@
 "igQ" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack{
-	amount = 1;
 	pixel_x = -3;
 	pixel_y = 11
 	},
 /obj/item/stack/medical/heal_pack/ointment{
-	amount = 2;
 	pixel_x = 4;
 	pixel_y = 1
 	},
@@ -45109,9 +45090,7 @@
 "iGH" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /turf/open/floor/urban/misc/spaceport2,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "iGO" = (
@@ -45880,9 +45859,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/mining_outpost/east_command)
 "iMV" = (
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/effect/urban/decal/road/lines1,
 /turf/open/urban/street/roadlines4,
@@ -58094,9 +58071,7 @@
 	},
 /obj/effect/decal/cleanable/molten_item,
 /obj/effect/urban/decal/dirt,
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "ldP" = (
@@ -64204,9 +64179,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/item/shard,
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mna" = (
@@ -67208,9 +67181,7 @@
 /obj/effect/urban/decal/tiretrack{
 	dir = 4
 	},
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/structure/prop/urban/vehicles/crashedcarsright{
 	pixel_y = -9
@@ -79931,9 +79902,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "pgx" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/plasteel{
-	amount = 36
-	},
+/obj/item/stack/sheet/plasteel,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -83855,9 +83824,7 @@
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/meridian/meridian_foyer)
 "pRh" = (
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -86090,9 +86057,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "qnt" = (
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -93475,9 +93440,7 @@
 	pixel_x = 5;
 	pixel_y = 13
 	},
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/effect/urban/decal/road/road_edge/eleven,
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
@@ -107976,17 +107939,12 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "utZ" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
+/obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/plasteel{
-	amount = 30;
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/engineering/metal{
-	amount = 50
-	},
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship{
 	dir = 5
@@ -113123,9 +113081,7 @@
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "vrY" = (
 /obj/effect/urban/decal/dirt,
-/obj/item/stack/rods{
-	amount = 15
-	},
+/obj/item/stack/rods,
 /turf/open/urban/street/roadlines3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vrZ" = (
@@ -115993,9 +115949,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "vUH" = (
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/structure/sign/safety/hazard{
 	pixel_x = 32
 	},
@@ -117529,9 +117483,7 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wif" = (
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/forcefield,
 /turf/open/floor/officetiles,
@@ -121396,9 +121348,7 @@
 /area/lv759/indoors/mining_outpost/northeast)
 "wXt" = (
 /obj/structure/platform/urban/metalplatformstair1,
-/obj/item/stack/rods{
-	amount = 25
-	},
+/obj/item/stack/rods,
 /obj/structure/stairs{
 	color = "#a6aeab";
 	dir = 4
