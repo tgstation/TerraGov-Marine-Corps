@@ -8916,7 +8916,6 @@
 /area/lv759/indoors/derelict_ship)
 "bLM" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -13594,7 +13593,6 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "cBF" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
@@ -14350,17 +14348,14 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "cJx" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -14643,7 +14638,6 @@
 /area/lv759/indoors/electical_systems/substation3)
 "cMe" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -20063,7 +20057,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "dOP" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
@@ -22807,7 +22800,6 @@
 /area/lv759/indoors/colonial_marshals/armory_evidenceroom)
 "epS" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -24995,7 +24987,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eNk" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -28168,13 +28159,11 @@
 	pixel_x = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -36934,17 +36923,14 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "gZI" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -38042,7 +38028,6 @@
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "hlB" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
@@ -41612,13 +41597,11 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "hYV" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -46553,7 +46536,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "iTT" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -49384,17 +49366,14 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "jwL" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -50307,17 +50286,14 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "jFA" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -58608,7 +58584,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "lhi" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -64301,7 +64276,6 @@
 /area/lv759/indoors/central_caves)
 "mnr" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/barricade/handrail/strata{
@@ -68662,17 +68636,14 @@
 /area/lv759/indoors/mining_outpost/east_dorms)
 "nbu" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -70891,17 +70862,14 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "nwB" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -73293,7 +73261,6 @@
 /area/lv759/indoors/south_east_caves)
 "nTD" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -74007,7 +73974,6 @@
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "oam" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/machinery/light/spot{
@@ -79458,7 +79424,6 @@
 /area/lv759/indoors/hospital/central_hallway)
 "pbC" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -81138,7 +81103,6 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "pri" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
@@ -83361,7 +83325,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "pLM" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -88365,17 +88328,14 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "qJI" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -91926,7 +91886,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "rsH" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -95493,7 +95452,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "sdk" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -95798,7 +95756,6 @@
 /area/lv759/indoors/north_west_caves)
 "sgj" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
@@ -101898,7 +101855,6 @@
 /area/lv759/indoors/colonial_marshals/hallway_north)
 "tkp" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -108410,7 +108366,6 @@
 "uxi" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 17;
 	pixel_y = 6
@@ -110808,7 +110763,6 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uVf" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
@@ -120294,7 +120248,6 @@
 "wJY" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -121912,7 +121865,6 @@
 /area/lv759/oob)
 "xbZ" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
@@ -121946,7 +121898,6 @@
 /area/lv759/indoors/ntmart)
 "xcr" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 10
@@ -122752,17 +122703,14 @@
 /area/lv759/indoors/recycling_plant_office)
 "xjZ" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -124500,17 +124448,14 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "xDa" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
