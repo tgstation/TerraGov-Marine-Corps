@@ -2684,7 +2684,7 @@
 /area/lv759/indoors/apartment/northapartments)
 "aBP" = (
 /obj/effect/urban/decal/dirt{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -4996,7 +4996,7 @@
 	id = "cargo_container"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -8595,7 +8595,7 @@
 /area/lv759/indoors/wy_security/checkpoint_central)
 "bJD" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -12109,7 +12109,7 @@
 	pixel_x = -17
 	},
 /obj/effect/forcefield{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
@@ -15412,7 +15412,7 @@
 "cUj" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
-	id = "Secretroom";
+	id = "Secretroom"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
@@ -15872,7 +15872,7 @@
 /area/lv759/indoors/north_caves)
 "cZe" = (
 /obj/structure/window/framed/urban/colony/reinforced{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -16616,7 +16616,7 @@
 /area/lv759/indoors/garage_reception)
 "dhn" = (
 /obj/structure/window/framed/urban/colony/reinforced{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -17974,7 +17974,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -19735,7 +19735,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "dLN" = (
 /obj/effect/forcefield{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -19803,7 +19803,7 @@
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "dMs" = (
 /obj/structure/platform/urban/metalplatform2{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -22254,7 +22254,7 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "elG" = (
 /obj/structure/window/framed/urban/colony/reinforced{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -28545,7 +28545,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "fyF" = (
 /obj/effect/urban/decal/dirt{
-	dir = 8;
+	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
@@ -28863,7 +28863,7 @@
 "fBc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2;
-	name = "\improper Airlock";
+	name = "\improper Airlock"
 	},
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 1
@@ -31747,7 +31747,7 @@
 /area/lv759/indoors/wy_research_complex/hallwaycentral)
 "gcd" = (
 /obj/effect/urban/decal/dirt{
-	dir = 1;
+	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -31896,7 +31896,7 @@
 /area/lv759/indoors/west_caves)
 "gdG" = (
 /obj/effect/forcefield{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
@@ -33988,7 +33988,7 @@
 "gwA" = (
 /obj/structure/table/reinforced/prison{
 	color = "#8B7B5B";
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/effect/spawner/random/weaponry/gun/rifles,
@@ -34917,7 +34917,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "gGy" = (
 /obj/effect/forcefield{
-	dir = 4;
+	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -36490,7 +36490,7 @@
 /area/lv759/indoors/meridian/meridian_maintenance_east)
 "gVO" = (
 /obj/structure/window/reinforced{
-	dir = 8;
+	dir = 8
 	},
 /obj/structure/prop/urban/xenobiology/small/cracked1,
 /turf/open/floor/podhatch/floor,
@@ -41750,7 +41750,7 @@
 "iaB" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield{
-	dir = 4;
+	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -47343,7 +47343,7 @@
 "jen" = (
 /obj/effect/forcefield,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -48349,9 +48349,6 @@
 "jnp" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 3
-	},
 /obj/effect/turf_decal/medical_decals/cryo,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -50916,7 +50913,7 @@
 /area/lv759/indoors/north_west_caves)
 "jLk" = (
 /obj/structure/window/framed/urban/colony/reinforced{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -52779,7 +52776,7 @@
 /area/lv759/indoors/weyyu_office)
 "kee" = (
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
-	desc = "Always returning. Always watching.";
+	desc = "Always returning. Always watching."
 	},
 /turf/open/floor{
 	dir = 6
@@ -53212,7 +53209,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
@@ -61156,7 +61153,7 @@
 /area/lv759/indoors/power_plant/telecomms)
 "lJI" = (
 /obj/structure/window/framed/urban/colony/reinforced{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	id = "urbanLZ2_2";
@@ -61972,7 +61969,7 @@
 	id = "W_Containment Cell 1";
 	name = "Containment Lockdown";
 	pixel_x = -7;
-	pixel_y = 1;
+	pixel_y = 1
 	},
 /turf/open/floor/spiralplate,
 /area/lv759/indoors/wy_research_complex/xenobiology)
@@ -65471,7 +65468,7 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "mzH" = (
 /obj/effect/urban/decal/dirt{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -67768,7 +67765,7 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -73572,7 +73569,7 @@
 /area/lv759/indoors/wy_research_complex/hallwaynorth)
 "nYo" = (
 /obj/structure/window/framed/urban/marshalls/cell{
-	dir = 8;
+	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
@@ -75115,7 +75112,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /turf/closed/wall/urban/colony/reinforced/hull,
 /area/lv759/oob)
@@ -75706,7 +75703,7 @@
 /area/lv759/indoors/apartment/eastentrance)
 "orC" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 8
 	},
 /obj/structure/largecrate/supply{
 	pixel_x = -4
@@ -84767,7 +84764,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -85289,7 +85286,7 @@
 /area/lv759/indoors/central_caves)
 "qfT" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -93698,7 +93695,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -101250,7 +101247,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tgs" = (
 /obj/effect/urban/decal/dirt{
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
@@ -104701,7 +104698,7 @@
 /area/lv759/indoors/wy_research_complex_entrance)
 "tPn" = (
 /obj/effect/forcefield{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
@@ -108565,7 +108562,7 @@
 "uBG" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -110734,7 +110731,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "uWA" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
@@ -111792,7 +111789,7 @@
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "vgG" = (
 /obj/structure/platform/urban/metalplatform2{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -112583,7 +112580,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "voH" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 8
 	},
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor/multi_tiles{
@@ -116163,7 +116160,7 @@
 	},
 /obj/machinery/door/window,
 /obj/structure/window/reinforced{
-	dir = 8;
+	dir = 8
 	},
 /obj/effect/turf_decal/medical_decals/doc/stripe{
 	dir = 8
@@ -116208,7 +116205,7 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -118749,7 +118746,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -120179,7 +120176,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "wLw" = (
 /obj/effect/urban/decal/dirt{
-	dir = 2;
+	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -122909,7 +122906,7 @@
 "xou" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield{
-	dir = 4;
+	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -126800,7 +126797,7 @@
 /area/lv759/indoors/hospital/central_hallway)
 "ybL" = (
 /obj/structure/window/reinforced{
-	dir = 8;
+	dir = 8
 	},
 /obj/structure/prop/urban/xenobiology/small/crackedegg,
 /obj/machinery/light,
