@@ -55,6 +55,7 @@
 
 ///Warn the ghost and send them into their body after a few seconds
 /mob/dead/observer/proc/revived_while_away()
+	SIGNAL_HANDLER
 	to_chat(src, assemble_alert(
 		title = "Revived",
 		subtitle = "You were revived while disconnected.",
