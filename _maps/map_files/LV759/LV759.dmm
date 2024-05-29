@@ -75159,7 +75159,6 @@
 	pixel_y = 12
 	},
 /obj/item/weapon/gun/flamer{
-	current_mag = null;
 	layer = 3.1
 	},
 /obj/structure/table/reinforced/prison{
@@ -103370,7 +103369,6 @@
 	pixel_x = -28
 	},
 /obj/structure/window/framed/urban/colony/hospital/reinforced,
-	},
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
