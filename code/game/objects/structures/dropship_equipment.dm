@@ -1086,7 +1086,7 @@
 			return
 		rappel_condition = RAPPEL_CONDITION_DISABLED
 		update_icon_state()
-		addtimer(CALLBACK(src, .proc/self_repair), RAPPEL_REPAIR_TIME)
+		addtimer(CALLBACK(src, PROC_REF(self_repair)), RAPPEL_REPAIR_TIME)
 		balloon_alert(user, "You replace the rappel cord.")
 		QDEL_NULL(I)
 		return
@@ -1150,7 +1150,7 @@
 	balloon_alert_to_viewers("The system hums as ropes start reeling in.")
 	rope.balloon_alert_to_viewers("The rope starts reeling into the sky...")
 
-	addtimer(CALLBACK(src, .proc/retract_rope), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(retract_rope)), 5 SECONDS)
 
 
 ///Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)
@@ -1173,7 +1173,7 @@
 	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 	flick("rope_up", rope)
 
-	addtimer(CALLBACK(src, .proc/reel_in), 0.4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reel_in)), 0.4 SECONDS)
 
 ///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.
 /obj/structure/dropship_equipment/rappel_system/proc/reel_in()
