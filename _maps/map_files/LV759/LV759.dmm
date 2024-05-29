@@ -36305,7 +36305,6 @@
 "gTU" = (
 /obj/machinery/door_display/research_cell{
 	dir = 4;
-	has_wall_divider = 1;
 	id = "Containment Cell 2";
 	layer = 3.2;
 	name = "Cell 2 Control";
@@ -65927,9 +65926,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "mEf" = (
 /obj/effect/urban/decal/tiretrack{
-	dir = 4;
-	id = "hybrisameridianfactory_1";
-	name = "\improper Factory Floor Shutters";
 	pixel_y = 12
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -68470,11 +68466,7 @@
 	},
 /area/lv759/indoors/hospital/cryo_room)
 "naV" = (
-/obj/effect/urban/decal/dirt{
-	dir = 2;
-	id = "hybrisagarage_1";
-	name = "\improper Garage"
-	},
+/obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urbangarage_1";
