@@ -32615,9 +32615,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "gkd" = (
 /obj/structure/platform_decoration/shiva,
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 17
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/prison,
 /area/lv759/indoors/central_caves)
 "gkg" = (
@@ -34938,9 +34936,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
 "gGJ" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "gGL" = (
@@ -56319,9 +56315,7 @@
 	},
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "kMK" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 17
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -60218,9 +60212,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "lyA" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 17
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform_decoration/shiva{
 	dir = 4
@@ -95180,9 +95172,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "sbk" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/mainship,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "sbx" = (
@@ -101778,10 +101768,7 @@
 "tkq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 17
-	},
-/obj/structure/cable,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/structure/platform,
 /obj/structure/platform_decoration/shiva,
 /obj/item/ammo_casing/bullet,
@@ -106639,9 +106626,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uil" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
 /turf/open/shuttle/dropship,
@@ -109247,18 +109232,10 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "uHV" = (
 /obj/structure/largecrate/random,
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
@@ -117347,9 +117324,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "whE" = (
-/obj/effect/spawner/random/weaponry/ammo/rifle{
-	current_rounds = 2
-	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/dropship,
 /area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "whL" = (
