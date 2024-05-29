@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(ticker)
 				for(var/client/C AS in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts
 
-				if(mode.round_finished == MODE_INFESTATION_M_MAJOR && prob(1))
+				if(mode.round_finished == MODE_INFESTATION_M_MAJOR && prob(5))
 					var/sound/S = sound('sound/misc/aliens_aint_shit.ogg', channel = CHANNEL_LOBBYMUSIC, volume = 80)
 					for(var/client/C as anything in GLOB.clients)
 						SEND_SOUND(C, S)
