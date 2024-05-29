@@ -12111,7 +12111,6 @@
 	},
 /obj/effect/forcefield{
 	dir = 2;
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
@@ -19806,8 +19805,6 @@
 "dMs" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4;
-	id = "hybrisacheckpoint_west";
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -20380,8 +20377,6 @@
 "dRv" = (
 /obj/structure/sign/safety/hazard{
 	dir = 2;
-	id = "hybrisacheckpoint_northwest";
-	name = "\improper Lockdown";
 	pixel_x = -17
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -31905,7 +31900,6 @@
 "gdG" = (
 /obj/effect/forcefield{
 	dir = 4;
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 4;
@@ -65504,8 +65498,6 @@
 "mzH" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
-	id = "hybrisacheckpoint_center";
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -104772,7 +104764,6 @@
 "tPn" = (
 /obj/effect/forcefield{
 	dir = 2;
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
@@ -111878,8 +111869,6 @@
 "vgG" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4;
-	id = "hybrisacheckpoint_west";
-	name = "\improper Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -123576,8 +123565,6 @@
 "xuS" = (
 /obj/effect/urban/decal/checkpoint_decal{
 	dir = 4;
-	id = "hybrisacheckpoint_center";
-	name = "\improper Lockdown";
 	pixel_x = -6
 	},
 /obj/machinery/door/poddoor/mainship{
