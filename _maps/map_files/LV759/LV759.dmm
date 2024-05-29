@@ -77511,9 +77511,6 @@
 	},
 /area/lv759/indoors/wy_research_complex/weaponresearchlabtesting)
 "oJR" = (
-/obj/effect/forcefield{
-	needs_power = 0
-	},
 /obj/machinery/door/poddoor,
 /turf/closed/wall/urban/spaceport_unmeltable,
 /area/lv759/oob)
