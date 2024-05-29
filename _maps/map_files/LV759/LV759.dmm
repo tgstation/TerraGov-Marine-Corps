@@ -90217,7 +90217,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "rbL" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced.
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2;
 	id = "medical_storage_lockdown"
