@@ -150,7 +150,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
 		return FALSE
 	if(patient.wear_suit && (patient.wear_suit.atom_flags & CONDUCT)) // something conductive on their chest
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's chest is obscured. Remove suit or armor and try again."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms. Remove interfering suit or armor and try again."))
 		return FALSE
 	return TRUE
 
@@ -171,7 +171,7 @@
 	if(medical_skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * medical_skill) // 3 seconds with medical medical_skill, 5 without
+		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * medical_skill) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, NONE, patient, BUSY_ICON_UNSKILLED))
 			return
 
@@ -223,7 +223,7 @@
 	if(!defib_ready(patient, user)) // we're doing this again just in case something has changed
 		return
 
-	//Do the defibrillation effects now. We're checking revive parameters in a moment.
+	// do the defibrillation effects now and check revive parameters in a moment
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
@@ -239,7 +239,7 @@
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 	//At this point, the defibrillator is ready to work
-	//This trait allows some species, such as robots, to be healed to one hit from death instead of failing from too much damage
+	//this trait allows some species to be healed to one hit from death, so the defibrillator can't fail from too much damage
 	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
 		patient.setOxyLoss(0)
 		patient.updatehealth()
@@ -261,7 +261,7 @@
 		patient.setOxyLoss(0)
 
 	patient.updatehealth() // update health because it won't always update for the dead
-	//the defibrillator is checking parameters now
+	// now checking revive parameters
 
 	fail_reason = null // Clear the fail reason as we check again
 	// We're keeping permadeath states from earlier here in case something changes mid revive
@@ -300,8 +300,8 @@
 	patient.apply_effect(10, EYE_BLUR)
 	patient.apply_effect(20 SECONDS, PARALYZE)
 
-	ghost = patient.get_ghost(TRUE)
-	if(ghost) // Special bit for getting players who were revived while disconnected
+	ghost = patient.get_ghost(TRUE) // we're getting ghost again since the ghost may have reentered their corpse
+	if(ghost) // register a signal to bring them into their body on reconnect (this check works because reenter_corpse doesn't work on disconnected ghosts)
 		ghost.RegisterSignal(ghost, COMSIG_MOB_LOGIN, TYPE_PROC_REF(/mob/dead/observer, revived_while_away))
 
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.

@@ -266,7 +266,7 @@
 /**
  * Proc to check if a carbon human has the required organs to sustain life.
  *
- * Returns false if this human is missing a heart, their current heart is broken, or they have no brain
+ * Returns false if `has_brain` returns false, this human is missing a heart, or their current heart is broken
  *
  * Returns true otherwise
  */
@@ -315,7 +315,7 @@
 	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		return DEFIB_FAIL_BRAINDEAD
 
-	if(!has_working_organs()) // Robots and Synthetics don't have hearts or brains.
+	if(!has_working_organs())
 		return DEFIB_FAIL_BAD_ORGANS
 
 	if(health + getOxyLoss() + additional_health_increase <= get_death_threshold())
