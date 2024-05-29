@@ -5,12 +5,12 @@
 	var/submerge_height
 
 /datum/component/submerge_modifier/Initialize(_submerge_height = 10)
-	if(!isatom(parent) || isturf(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	submerge_height = _submerge_height
 
 /datum/component/submerge_modifier/RegisterWithParent()
-	var/atom/owner = parent
+	var/atom/movable/owner = parent
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_submerge_element))
 	for(var/atom/movable/AM AS in owner.loc) //we remove the submerge and reapply after owner is connect
 		AM.set_submerge_level(null, owner.loc, duration = 0.1)
@@ -19,7 +19,7 @@
 		AM.set_submerge_level(owner.loc, null, duration = 0.1)
 
 /datum/component/submerge_modifier/UnregisterFromParent()
-	var/atom/owner = parent
+	var/atom/movable/owner = parent
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	for(var/atom/movable/AM AS in owner.loc) //we remove the submerge and reapply after owner is no longer connect
 		AM.set_submerge_level(null, owner.loc, duration = 0.1)
