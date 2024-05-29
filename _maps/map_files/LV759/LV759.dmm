@@ -22256,8 +22256,6 @@
 "elG" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 4;
-	id = "hybrisaLZ2_1";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
