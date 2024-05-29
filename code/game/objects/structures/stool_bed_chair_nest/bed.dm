@@ -136,10 +136,10 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "You activate the brakes")
+		balloon_alert(user, "Brakes on")
 		anchored = TRUE
 	else
-		balloon_alert(user, "You release the brakes")
+		balloon_alert(user, "Brakes off")
 		anchored = FALSE
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
