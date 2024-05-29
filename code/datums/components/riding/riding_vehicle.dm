@@ -228,6 +228,6 @@
 /datum/component/riding/vehicle/hover_bike/get_offsets(pass_index, mob_type)
 	switch(pass_index)
 		if(1) //driver
-			return list(TEXT_NORTH = list(0, 15, MOB_LAYER), TEXT_SOUTH = list(0, -4, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(19, 8, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-20, 8, ABOVE_MOB_PLATFORM_LAYER))
+			return list(TEXT_NORTH = list(0, 10, MOB_LAYER), TEXT_SOUTH = list(0, -9, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(19, 8, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-20, 8, ABOVE_MOB_PLATFORM_LAYER))
 		if(2) //passenger
-			return list(TEXT_NORTH = list(0, 9, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, 6, MOB_LAYER), TEXT_EAST = list(9, 8, MOB_LAYER), TEXT_WEST = list(-10, 8, MOB_LAYER))
+			return list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, 1, MOB_LAYER), TEXT_EAST = list(9, 8, MOB_LAYER), TEXT_WEST = list(-10, 8, MOB_LAYER))
