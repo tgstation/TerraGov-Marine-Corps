@@ -12,6 +12,7 @@
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
+	layer = ABOVE_LYING_MOB_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
@@ -28,6 +29,7 @@
 /obj/vehicle/ridden/hover_bike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/hover_bike)
+	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	create_storage(/datum/storage/internal/motorbike_pack)
 	update_icon()
 	fuel_count = fuel_max
@@ -41,8 +43,8 @@
 
 /obj/vehicle/ridden/hover_bike/update_overlays()
 	. = ..()
-	. += mutable_appearance(icon, "hover_bike_overlay", ABOVE_MOB_PROP_LAYER)
-	. += mutable_appearance(icon, "hover_bike_underlay", ABOVE_LYING_MOB_LAYER)
+	. += mutable_appearance(icon, "hover_bike_toplayer", ABOVE_MOB_PROP_LAYER)
+	. += mutable_appearance(icon, "hover_bike_midlayer", ABOVE_MOB_LAYER)
 
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)

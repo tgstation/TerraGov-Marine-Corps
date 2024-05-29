@@ -205,9 +205,8 @@
 		if(2) //second one buckled, so sidecar rider
 			return list(TEXT_NORTH = list(-6, 2), TEXT_SOUTH = list(6, 2), TEXT_EAST = list(-3, 0, ABOVE_OBJ_LAYER), TEXT_WEST = list(3, 0, LYING_MOB_LAYER))
 
-//hover
 /datum/component/riding/vehicle/hover_bike
-	vehicle_move_delay = 1
+	vehicle_move_delay = 1.2
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 
 /datum/component/riding/vehicle/hover_bike/Initialize(mob/living/riding_mob, force, ride_check_flags, potion_boost)
@@ -218,16 +217,9 @@
 	former_rider.density = TRUE
 	return ..()
 
-/datum/component/riding/vehicle/hover_bike/handle_specials()
-	. = ..()
-	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
-	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
-	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
-	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
-
 /datum/component/riding/vehicle/hover_bike/get_offsets(pass_index, mob_type)
 	switch(pass_index)
 		if(1) //driver
-			return list(TEXT_NORTH = list(0, 10, MOB_LAYER), TEXT_SOUTH = list(0, -9, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(19, 8, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-20, 8, ABOVE_MOB_PLATFORM_LAYER))
+			return list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, -11, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(17, 7, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-11, 7, ABOVE_MOB_PLATFORM_LAYER))
 		if(2) //passenger
-			return list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, 1, MOB_LAYER), TEXT_EAST = list(9, 8, MOB_LAYER), TEXT_WEST = list(-10, 8, MOB_LAYER))
+			return list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, -1, MOB_LAYER), TEXT_EAST = list(4, 9, MOB_LAYER), TEXT_WEST = list(1, 9, MOB_LAYER))
