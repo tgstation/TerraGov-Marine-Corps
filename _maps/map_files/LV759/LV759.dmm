@@ -48348,7 +48348,6 @@
 /area/lv759/indoors/hospital/maintenance)
 "jnp" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/medical_decals/cryo,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
