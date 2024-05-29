@@ -251,3 +251,28 @@
   Xander3359:
   - bugfix: It's no longer possible to perform a bluetooth tactical reload with a
       magazine that is too far to reach
+2024-05-26:
+  Clay500z:
+  - balance: Gore charge injects 10u Ozelymelon and deals 1 second of stagger
+  - balance: Plow charge deals 0.2 seconds of stun
+  - balance: Headbutt charge max stun reduced to 2 seconds, and displacement increased
+      by 1 tile
+  - bugfix: Bull can no longer multi-ram
+  - spellcheck: Updated Bull ability descriptions.
+  Lumipharon:
+  - rscadd: Catwalks can now be built on any liquid turf, not just lava
+  - code_imp: Fixed some weird code with certain water tiles
+  - rscadd: Added a cloner module for the APC
+  - bugfix: fixed tanks ramming into people mid jump
+  - bugfix: fixed being unable to throw things past tank
+  SomrNetwork:
+  - rscadd: vsd faction
+  - rscadd: New magfed revolvers!
+  - imageadd: campaign portrait and UI
+  - imageadd: VSD armor and weapons
+  - balance: faction balance
+  Wisemonster:
+  - balance: Reduce puppet damage from 15 to 12
+  blackdav123:
+  - rscadd: Added a ton of researcher digsites to Riptide, Magmoor, and Lawanka.
+  - spellcheck: Renamed chestburster preferences.

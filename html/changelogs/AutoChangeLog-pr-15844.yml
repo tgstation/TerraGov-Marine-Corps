@@ -1,8 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - rscadd: "vsd faction"
-  - rscadd: "New magfed revolvers!"
-  - imageadd: "campaign portrait and UI"
-  - imageadd: "VSD armor and weapons"
-  - balance: "faction balance"

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Catwalks can now be built on any liquid turf, not just lava"
-  - code_imp: "Fixed some weird code with certain water tiles"
