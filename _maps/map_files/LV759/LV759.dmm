@@ -52780,11 +52780,6 @@
 "kee" = (
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	desc = "Always returning. Always watching.";
-	icon_dead = "pimpclowndead";
-	icon_living = "pimpclown";
-	move_to_delay = 2;
-	name = "Pimpified Gonzo the Magnificent";
-	rapid = 1
 	},
 /turf/open/floor{
 	dir = 6
