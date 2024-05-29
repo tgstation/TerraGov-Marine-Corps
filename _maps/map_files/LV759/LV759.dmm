@@ -15875,8 +15875,6 @@
 "cZe" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 4;
-	id = "hybrisaLZ2_4";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -16621,8 +16619,6 @@
 "dhn" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 2;
-	id = "hybrisaLZ2_3";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -19743,8 +19739,6 @@
 "dLN" = (
 /obj/effect/forcefield{
 	dir = 4;
-	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -28561,8 +28555,6 @@
 "fyF" = (
 /obj/effect/urban/decal/dirt{
 	dir = 8;
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
@@ -31765,8 +31757,6 @@
 "gcd" = (
 /obj/effect/urban/decal/dirt{
 	dir = 1;
-	id = "hybrisa_mining_lockdown1";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -34941,8 +34931,6 @@
 "gGy" = (
 /obj/effect/forcefield{
 	dir = 4;
-	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown"
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -41782,8 +41770,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield{
 	dir = 4;
-	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown"
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -50956,8 +50942,6 @@
 "jLk" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 2;
-	id = "hybrisaLZ2_1";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -54665,10 +54649,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "kvI" = (
-/obj/effect/urban/decal/dirt{
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
-	},
+/obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
@@ -61211,7 +61192,6 @@
 "lJI" = (
 /obj/structure/window/framed/urban/colony/reinforced{
 	dir = 2;
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	id = "urbanLZ2_2";
@@ -63841,11 +63821,7 @@
 /area/lv759/indoors/spaceport/communications_office)
 "mkg" = (
 /obj/effect/urban/decal/dirt,
-/obj/effect/urban/decal/dirt{
-	dir = 2;
-	id = "hybrisa_mining_lockdown1";
-	name = "Emergency Lockdown"
-	},
+/obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "urban_mining_lockdown1";
@@ -64322,11 +64298,7 @@
 	},
 /area/lv759/indoors/wy_security/checkpoint_west)
 "mog" = (
-/obj/structure/window/framed/urban/colony/reinforced{
-	dir = 4;
-	id = "hybrisaLZ2_1";
-	name = "Emergency Lockdown"
-	},
+/obj/structure/window/framed/urban/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanLZ2_1";
@@ -73646,8 +73618,6 @@
 "nYo" = (
 /obj/structure/window/framed/urban/marshalls/cell{
 	dir = 8;
-	id = "hybrisacolonylockdown";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/urban/secure_red_door{
 	dir = 8;
@@ -83133,9 +83103,7 @@
 /obj/structure/sign/safety/hazard{
 	pixel_x = -17
 	},
-/obj/structure/window/framed/urban/colony/reinforced{
-	name = "Emergency Lockdown"
-	},
+/obj/structure/window/framed/urban/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -88239,7 +88207,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
 	dir = 2;
-	id = "hybrisaLZ2_4";
 	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -93156,10 +93123,7 @@
 /area/lv759/indoors/hospital/emergency_room)
 "rFq" = (
 /obj/effect/urban/decal/dirt,
-/obj/effect/forcefield{
-	id = "hybrisa_mining_lockdown2";
-	name = "Emergency Lockdown"
-	},
+/obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "urban_mining_lockdown2";
@@ -120312,8 +120276,6 @@
 "wLw" = (
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisaLZ2_3";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -123044,8 +123006,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/forcefield{
 	dir = 4;
-	id = "hybrisa_mining_lockdown3";
-	name = "Emergency Lockdown"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -124385,10 +124345,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "xCW" = (
-/obj/effect/forcefield{
-	id = "hybrisa_mining_lockdown2";
-	name = "Emergency Lockdown"
-	},
+/obj/effect/forcefield,
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "urban_mining_lockdown2";
