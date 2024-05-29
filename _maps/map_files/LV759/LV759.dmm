@@ -17977,7 +17977,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	health = 80
 	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/wy_research_complex/mainlabs)
@@ -36507,7 +36506,6 @@
 "gVO" = (
 /obj/structure/window/reinforced{
 	dir = 8;
-	health = 80
 	},
 /obj/structure/prop/urban/xenobiology/small/cracked1,
 /turf/open/floor/podhatch/floor,
@@ -59309,7 +59307,6 @@
 "lpV" = (
 /obj/structure/window/reinforced{
 	dir = 8;
-	health = 80;
 	layer = 5
 	},
 /obj/structure/prop/urban/xenobiology/small/hugger,
@@ -116256,7 +116253,6 @@
 /obj/machinery/door/window,
 /obj/structure/window/reinforced{
 	dir = 8;
-	health = 80
 	},
 /obj/effect/turf_decal/medical_decals/doc/stripe{
 	dir = 8
@@ -126903,7 +126899,6 @@
 "ybL" = (
 /obj/structure/window/reinforced{
 	dir = 8;
-	health = 80
 	},
 /obj/structure/prop/urban/xenobiology/small/crackedegg,
 /obj/machinery/light,
