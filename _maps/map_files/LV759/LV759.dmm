@@ -6687,7 +6687,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bpZ" = (
 /obj/machinery/flasher{
-	id = "Containment Cell 3";
 	pixel_y = 30
 	},
 /turf/open/floor/mainship/research/containment/floor1,
@@ -33990,7 +33989,6 @@
 /obj/structure/table/reinforced/prison{
 	color = "#8B7B5B";
 	dir = 4;
-	id = "brg"
 	},
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/effect/spawner/random/weaponry/gun/rifles,
@@ -39640,7 +39638,6 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "hFn" = (
 /obj/machinery/door/poddoor/two_tile_hor/secure{
-	id = "colony_sec_armory";
 	name = "Secure Armory"
 	},
 /turf/open/floor/mainship,
@@ -42095,9 +42092,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "ieF" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	id = "virology_lockdown"
-	},
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "virology_lockdown"
@@ -43660,9 +43655,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant)
 "itA" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	id = "medical_storage_lockdown"
-	},
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
@@ -48314,7 +48307,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
 	dir = 4;
-	id = "brg";
 	name = "Security Desk"
 	},
 /obj/structure/paper_bin,
@@ -68360,7 +68352,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
 	dir = 4;
-	id = "brg";
 	name = "Security Desk"
 	},
 /obj/structure/paper_bin,
@@ -75063,7 +75054,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
 	dir = 4;
-	id = "brg";
 	name = "Security Desk"
 	},
 /obj/item/tool/stamp,
@@ -75733,7 +75723,6 @@
 "orC" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
 	},
 /obj/structure/largecrate/supply{
 	pixel_x = -4
@@ -84798,8 +84787,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisagarage_2";
-	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -85322,7 +85309,6 @@
 "qfT" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
 	},
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -90246,9 +90232,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "rbL" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	id = "medical_storage_lockdown"
-	},
+/obj/structure/window/framed/urban/colony/hospital/reinforced.
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2;
 	id = "medical_storage_lockdown"
@@ -93734,8 +93718,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisagarage_1";
-	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -95130,9 +95112,7 @@
 	},
 /area/lv759/indoors/mining_outpost/south)
 "saS" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	id = "virology_lockdown"
-	},
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2;
 	id = "virology_lockdown"
@@ -100784,11 +100764,7 @@
 	},
 /area/lv759/indoors/wy_research_complex/cargo)
 "tbG" = (
-/obj/structure/window/framed/urban/marshalls/reinforced{
-	dir = 4;
-	id = "Office Complex 2";
-	name = "\improper Marshal Office Complex Shutters"
-	},
+/obj/structure/window/framed/urban/marshalls/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 2";
@@ -101294,8 +101270,6 @@
 "tgs" = (
 /obj/effect/urban/decal/dirt{
 	dir = 4;
-	id = "hybrisamining_northeast1";
-	name = "\improper Checkpoint Lock"
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
@@ -103410,8 +103384,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	id = "medical_storage_lockdown"
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 	},
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
@@ -108614,8 +108587,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt{
 	dir = 2;
-	id = "hybrisagarage_2";
-	name = "\improper Garage"
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -110785,7 +110756,6 @@
 "uWA" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
 	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
@@ -112635,7 +112605,6 @@
 "voH" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "cargo_container"
 	},
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor/multi_tiles{
@@ -124008,10 +123977,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xAz" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
-	dir = 8;
-	id = "virology_lockdown"
-	},
+/obj/structure/window/framed/urban/colony/hospital/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 8;
 	id = "virology_lockdown"
