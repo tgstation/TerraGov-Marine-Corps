@@ -176,6 +176,12 @@
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
+//internal storage
+/obj/item/vehicle_module/storage/motorbike
+	name = "internal storage"
+	desc = "A set of handy compartments to store things in."
+	storage_type = /datum/storage/internal/motorbike_pack
+
 /**
  * Sidecar that when attached lets you put two people on the bike
  */

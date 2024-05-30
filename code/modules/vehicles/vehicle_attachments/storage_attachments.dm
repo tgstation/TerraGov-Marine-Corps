@@ -1,7 +1,6 @@
-/** Storage modules */
 /obj/item/vehicle_module/storage
-	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	icon_state = "mod_is_bag"
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = ""
 	slot = ATTACHMENT_SLOT_STORAGE
 	w_class = WEIGHT_CLASS_BULKY
 	///Determines what subtype of storage is on our item, see datums\storage\subtypes
@@ -26,10 +25,3 @@
 ///Use this to fill your storage with items. USE THIS INSTEAD OF NEW/INIT
 /obj/item/vehicle_module/storage/proc/PopulateContents()
 	return
-
-/obj/item/vehicle_module/storage/motorbike
-	name = "internal storage"
-	desc = "A set of handy compartments to store things in."
-	icon_state = ""
-	storage_type = /datum/storage/internal/motorbike_pack
-	attach_features_flags = NONE
