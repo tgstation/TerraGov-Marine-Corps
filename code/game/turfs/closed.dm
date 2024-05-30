@@ -195,6 +195,10 @@
 	walltype = "lava_wall"
 	base_icon_state = "black_stone_walls"
 
+/turf/closed/mineral/smooth/black_stone/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
