@@ -208,9 +208,9 @@
 	base_icon_state = "chigusa_wall"
 	basestate = "chigusa_wall"
 
-/obj/structure/window_frame/urban/colony/engineering/reinforced
-
-/obj/structure/window_frame/urban_frame
+/obj/structure/window_frame/urban
 	icon = 'icons/obj/smooth_objects/urban_window_frame.dmi'
 	icon_state = "col_window_frame-0"
 	base_icon_state = "col_window_frame"
+
+/obj/structure/window_frame/urban/colony/engineering/reinforced

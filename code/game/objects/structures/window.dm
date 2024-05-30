@@ -706,7 +706,7 @@
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
-	window_frame = /obj/structure/window_frame/urban_frame
+	window_frame = /obj/structure/window_frame/urban
 
 /obj/structure/window/framed/urban/colony/engineering
 
