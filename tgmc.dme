@@ -1160,6 +1160,7 @@
 #include "code\game\objects\structures\droppod.dm"
 #include "code\game\objects\structures\dropship_ammo.dm"
 #include "code\game\objects\structures\dropship_equipment.dm"
+#include "code\game\objects\structures\rappel_system.dm"
 #include "code\game\objects\structures\dummy_mapping_objects.dm"
 #include "code\game\objects\structures\electricchair.dm"
 #include "code\game\objects\structures\extinguisher.dm"

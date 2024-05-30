@@ -153,7 +153,6 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	shuttle_port.shuttle_computer = src
-	retract_rappels()
 	to_transit = TRUE
 	next_fly_state = SHUTTLE_IN_SPACE
 	destination_fly_state = SHUTTLE_ON_SHIP
@@ -322,6 +321,7 @@
 		to_chat(owner, span_warning("The shuttle can't move while docked on the planet"))
 		return
 	origin.retract_rappels()
+
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
@@ -329,11 +329,3 @@
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
-	origin.retract_rappels() //Deal with any rappels that have been retracted since we started to land
-
-///Retracts all rappels that might be deployed by the shuttle. Currently used when moving (i.e whenever we need to forcefully retract all rappels); could be repurposed for different equipment if needed
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/retract_rappels()
-	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
-	for(var/obj/structure/dropship_equipment/rappel_system/system in shuttle.equipments)
-		if(system.rappel_state >= RAPPEL_STATE_USABLE)
-			system.pre_retract()
