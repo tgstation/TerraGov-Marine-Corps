@@ -42,6 +42,8 @@
 	max_spiderlings = 5
 
 	// *** Abilities *** ///
+	resin_max_range = 1 // Widow can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
@@ -81,6 +83,8 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** ///
+	resin_max_range = 1 //Widow can place resin structures from 1 tile away
+	
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
