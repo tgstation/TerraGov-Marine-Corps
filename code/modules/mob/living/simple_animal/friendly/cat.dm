@@ -123,6 +123,9 @@
 	if(H.l_hand && H.r_hand)
 		return
 
+	if(!H.Adjacent(src))
+		return
+
 	var/obj/item/clothing/head/cat/C = new
 	C.name = name
 	C.desc = desc
