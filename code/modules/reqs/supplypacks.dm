@@ -161,6 +161,11 @@ OPERATIONS
 	contains = list(/obj/item/supplytablet)
 	cost = 50
 
+/datum/supply_packs/operations/tadpole_electronics
+	name = "Tadpole Navigation Electronics"
+	contains = list(/obj/item/circuitboard/tadpole)
+	cost = 750
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/

@@ -354,3 +354,4 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	barricade_clear_distance = 2
+

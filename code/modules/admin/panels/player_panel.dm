@@ -484,6 +484,8 @@
 		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
 		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
 		<a href='?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
+		<a href='?src=[ref];transform=pyrogen;mob=[REF(M)]'>Pyrogen</a> |
+
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |

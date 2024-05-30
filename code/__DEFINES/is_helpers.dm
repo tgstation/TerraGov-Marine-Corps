@@ -268,6 +268,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
 
+#define isfire(A) istype(A, /obj/fire)
+
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))

@@ -19,11 +19,17 @@
 		"No Top" = "_r",
 	)
 
-/obj/item/clothing/under/marine/holster
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+/obj/item/clothing/under/marine/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 /obj/item/clothing/under/marine/corpman_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/marine/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/marine/hyperscale
 	name = "\improper 8E Chameleon TGMC uniform"
@@ -34,12 +40,6 @@
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
-
-/obj/item/clothing/under/marine/black_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
-
-/obj/item/clothing/under/marine/brown_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 //Squad colored turtlenecks
 /obj/item/clothing/under/marine/squad/neck
@@ -565,8 +565,20 @@
 		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
 
-/obj/item/clothing/under/marine/robotic/webbing
+/obj/item/clothing/under/marine/robotic/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/robotic/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/marine/robotic/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/marine/robotic/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing)
+
+/obj/item/clothing/under/marine/robotic/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/marine/specops
 	name = "Tactical turtleneck"
