@@ -10,7 +10,7 @@
 	title = CAPTAIN
 	req_admin_notify = TRUE
 	paygrade = "COL"
-	comm_title = "CMDR"
+	comm_title = "CMMDR"
 	supervisors = "NTC high command"
 	selection_color = "#ccccff"
 	total_positions = 1
