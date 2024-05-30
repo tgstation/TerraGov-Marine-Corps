@@ -325,9 +325,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 ///Default living `maxHealth`
 #define LIVING_DEFAULT_MAX_HEALTH 100
-///Default living `health`
-#define LIVING_DEFAULT_HEALTH 100
-
 
 //species_flags
 #define NO_BLOOD (1<<0)
