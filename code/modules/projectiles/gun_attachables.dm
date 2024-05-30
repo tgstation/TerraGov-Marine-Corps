@@ -1589,8 +1589,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
-	if(!istype(attached_to, /obj/item/weapon/gun))
+	if(!isgun(attached_to))
 		return
+	var/obj/item/weapon/gun/gun_attached_to = attached_to
+	gun_attached_to.gunattachment = src
 	master_gun = attached_to
 	master_gun.wield_delay					+= wield_delay_mod
 	if(gun_user)
@@ -1601,7 +1603,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
-	attached_to:gunattachment = src
 	activate(user)
 	new_action.set_toggle(TRUE)
 	update_icon()
@@ -1609,7 +1610,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 ///This is called when an attachment gun (src) detaches from a gun.
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
-	if(!istype(attached_to, /obj/item/weapon/gun))
+	if(!isgun(attached_to))
 		return
 	for(var/datum/action/action_to_delete AS in master_gun.actions)
 		if(action_to_delete.target != src)
@@ -1622,7 +1623,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.wield_delay					-= wield_delay_mod
 	UnregisterSignal(master_gun, COMSIG_ITEM_REMOVED_INVENTORY)
 	master_gun = null
-	attached_to:gunattachment = null
+	var/obj/item/weapon/gun/gun_attached_to = attached_to
+	gun_attached_to.gunattachment = null
 	update_icon()
 
 ///This activates the weapon for use.
