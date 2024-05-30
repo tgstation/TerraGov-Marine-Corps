@@ -12476,7 +12476,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ctE" = (
 /obj/structure/table/fancywoodentable,
-/obj/item/camera/oldcamera,
+/obj/item/camera,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "ctH" = (
@@ -19196,7 +19196,9 @@
 /turf/open/floor/urban/carpet/carpetred,
 /area/lv759/indoors/casino)
 "dJL" = (
-/obj/structure/stairs/seamless,
+/obj/structure/stairs/edge{
+	color = "#a6aeab"
+	},
 /turf/open/floor/urban/tile/tileblue,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "dJR" = (
@@ -72146,13 +72148,12 @@
 /area/lv759/indoors/spaceport/horizon_runner)
 "nWb" = (
 /obj/structure/platform/urban/metalplatform6,
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/structure/stairs/seamless/edge{
+	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -88200,13 +88201,13 @@
 /area/lv759/outdoors/landing_zone_1)
 "qXs" = (
 /obj/structure/platform/urban/metalplatformstair2,
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/structure/stairs/seamless/edge{
+	color = "#a6aeab";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -96724,7 +96725,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
 	},
-/obj/structure/stairs{
+/obj/structure/stairs/edge{
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/tile/tilebeige,
@@ -104103,7 +104104,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/obj/structure/stairs{
+/obj/structure/stairs/edge{
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/tile/tilebeige,
@@ -107011,13 +107012,13 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "uEh" = (
-/obj/structure/stairs{
-	color = "#a6aeab";
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/structure/stairs/seamless{
+	color = "#b8b8b0";
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -117390,11 +117391,6 @@
 	},
 /turf/open/floor/urban/carpet/carpetpatternbrown,
 /area/lv759/indoors/apartment/eastbedroomsstorage)
-"wDR" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters,
-/turf/open/floor/plating,
-/area/lv759/indoors/colonial_marshals/head_office)
 "wDU" = (
 /turf/open/floor/redfour{
 	dir = 4
@@ -124584,7 +124580,9 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/south_caves)
 "yaB" = (
-/obj/structure/stairs/seamless,
+/obj/structure/stairs/edge{
+	color = "#a6aeab"
+	},
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "yaK" = (
@@ -170417,7 +170415,7 @@ bbd
 kdB
 ktl
 psI
-wDR
+dVs
 eLX
 iEr
 iEr
