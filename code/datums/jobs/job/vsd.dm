@@ -3,7 +3,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
 	faction = FACTION_VSD
-
+	minimap_icon = "pmc2"
 
 //VSD Standard
 /datum/job/vsd/standard

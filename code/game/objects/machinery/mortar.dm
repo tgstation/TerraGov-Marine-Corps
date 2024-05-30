@@ -268,7 +268,7 @@
 		if(TALLY_ROCKET_ARTY)
 			GLOB.round_statistics.rocket_shells_fired++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
-	playsound(loc, fire_sound, 50, 1)
+	playsound(loc, fire_sound, GUN_FIRE_SOUND_VOLUME, 1)
 	flick(icon_state + "_fire", src)
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
