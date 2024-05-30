@@ -217,9 +217,10 @@
 	former_rider.density = TRUE
 	return ..()
 
-/datum/component/riding/vehicle/hover_bike/get_offsets(pass_index, mob_type)
-	switch(pass_index)
-		if(1) //driver
-			return list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, -11, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(17, 7, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-11, 7, ABOVE_MOB_PLATFORM_LAYER))
-		if(2) //passenger
-			return list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, -1, MOB_LAYER), TEXT_EAST = list(4, 9, MOB_LAYER), TEXT_WEST = list(1, 9, MOB_LAYER))
+/datum/component/riding/vehicle/hover_bike/handle_specials()
+	set_riding_offsets(1, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, -11, ABOVE_MOB_PLATFORM_LAYER), TEXT_EAST = list(17, 7, ABOVE_MOB_PLATFORM_LAYER), TEXT_WEST = list(-11, 7, ABOVE_MOB_PLATFORM_LAYER)))
+	set_riding_offsets(2, list(TEXT_NORTH = list(0, 4, ABOVE_MOB_PLATFORM_LAYER), TEXT_SOUTH = list(0, -1, MOB_LAYER), TEXT_EAST = list(4, 9, MOB_LAYER), TEXT_WEST = list(1, 9, MOB_LAYER)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)

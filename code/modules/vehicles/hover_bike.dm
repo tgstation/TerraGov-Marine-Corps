@@ -7,10 +7,11 @@
 	icon = 'icons/obj/vehicles/hover_bike.dmi'
 	icon_state = "hover_bike"
 	max_integrity = 300
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 30, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 35, BULLET = 45, LASER = 45, ENERGY = 60, BOMB = 50, FIRE = 75, ACID = 30)
 	resistance_flags = XENO_DAMAGEABLE
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
+	coverage = 60
 	integrity_failure = 0.5
 	layer = ABOVE_LYING_MOB_LAYER
 	allow_pass_flags = PASSABLE
@@ -33,6 +34,10 @@
 	create_storage(/datum/storage/internal/motorbike_pack)
 	update_icon()
 	fuel_count = fuel_max
+
+/obj/vehicle/ridden/hover_bike/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/vehicle/ridden/hover_bike/examine(mob/user)
 	. = ..()
@@ -75,10 +80,11 @@
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
 		for(var/mob/rider AS in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
-
+	/*
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 20)
 		playsound(get_turf(src), 'sound/vehicles/carrev.ogg', 100, TRUE)
+	**/
 
 /obj/vehicle/ridden/hover_bike/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
@@ -98,16 +104,6 @@
 		return TRUE
 	return ..()
 
-/obj/vehicle/ridden/hover_bike/proc/sidecar_dir_change(datum/source, dir, newdir)
-	SIGNAL_HANDLER
-	switch(newdir)
-		if(NORTH)
-			pixel_x = 9
-		if(SOUTH)
-			pixel_x = -9
-		if(EAST, WEST)
-			pixel_x = 0
-
 /obj/vehicle/ridden/hover_bike/obj_break()
 	START_PROCESSING(SSobj, src)
 	return ..()
@@ -122,12 +118,12 @@
 	smoke.start()
 
 /obj/vehicle/ridden/hover_bike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 2, flash_range = 0)
+	explosion(src, light_impact_range = 4, flash_range = 0)
 	return ..()
 
-/obj/vehicle/ridden/hover_bike/Destroy()
-	STOP_PROCESSING(SSobj,src)
-	return ..()
+/obj/vehicle/ridden/hover_bike/lava_act()
+	return //we flying baby
+
 
 #undef FUEL_PER_CAN_POUR
 #undef LOW_FUEL_LEFT_MESSAGE
