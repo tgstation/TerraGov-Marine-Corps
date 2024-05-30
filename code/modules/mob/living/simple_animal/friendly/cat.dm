@@ -112,6 +112,8 @@
 
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 	. = ..()
+	if(!.)
+		return
 
 	if(!ishuman(over_object))
 		return
@@ -121,9 +123,6 @@
 		return
 
 	if(H.l_hand && H.r_hand)
-		return
-
-	if(!H.Adjacent(src))
 		return
 
 	var/obj/item/clothing/head/cat/C = new
