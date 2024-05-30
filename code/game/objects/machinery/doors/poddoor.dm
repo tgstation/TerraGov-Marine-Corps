@@ -357,6 +357,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	base_icon_state = "almayer_pdoor"
 	opacity = FALSE
 	layer = ABOVE_WINDOW_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/machinery/door/poddoor/urban/shutters
 	name = "\improper Shutters"
@@ -375,12 +376,6 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	desc = "That looks like it doesn't open easily."
 	icon_state = "pdoor1"
 	base_icon_state = "pdoor"
-
-/obj/machinery/door/poddoor/urban/open_shutters
-	name = "\improper Shutters"
-	icon_state = "almayer_pdoor1"
-	base_icon_state = "almayer_pdoor"
-	opacity = FALSE
 
 /obj/machinery/door/poddoor/mainship/biohazard/white
 	icon_state = "w_almayer_pdoor1"

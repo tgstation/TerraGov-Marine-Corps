@@ -1534,11 +1534,11 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "aoI" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
+/obj/structure/prop/mainship/sensor_computer3/black,
+/turf/open/floor/redthree{
+	dir = 1
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
-/area/lv759/oob)
+/area/lv759/indoors/spaceport/security)
 "aoM" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /turf/open/urban/street/sidewalk{
@@ -11304,11 +11304,15 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "chO" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
+/obj/structure/window/reinforced/toughened{
+	dir = 1;
+	layer = 2
 	},
-/turf/closed/wall/urban/spaceport_reinforced,
-/area/lv759/indoors/spaceport/docking_bay_2)
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/urban/metal/bluemetal1{
+	dir = 1
+	},
+/area/lv759/indoors/landing_zone_1/flight_control_room)
 "chT" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison/whitegreen/full,
@@ -14011,8 +14015,8 @@
 /area/lv759/indoors/casino)
 "cIv" = (
 /obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
+/turf/closed/wall/urban/colony/hospital,
+/area/lv759/indoors/hospital/virology)
 "cIw" = (
 /obj/structure/window/framed/urban/colony/reinforced,
 /turf/open/floor/plating,
@@ -19650,6 +19654,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
 /obj/item/stack/rods,
+/obj/structure/sign/safety/airlock,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -22072,11 +22077,14 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance_south)
 "enn" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 12
+/obj/structure/barricade/handrail/strata{
+	dir = 1
 	},
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/outdoors/landing_zone_2)
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/prison/cellstripe{
+	dir = 1
+	},
+/area/lv759/indoors/electical_systems/substation1)
 "enp" = (
 /obj/effect/urban/decal/road/road_edge,
 /obj/effect/urban/decal/road/lines1,
@@ -26180,6 +26188,7 @@
 	pixel_y = 7
 	},
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/structure/sign/safety/airlock,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "fcx" = (
@@ -27870,7 +27879,6 @@
 	pixel_x = 11
 	},
 /obj/structure/sign/safety,
-/obj/structure/sign/safety/airlock,
 /turf/closed/wall/urban/colony/engineering/reinforced/hull,
 /area/lv759/oob)
 "fvM" = (
@@ -29567,11 +29575,9 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "fLs" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
-	},
-/turf/closed/wall/urban/colony,
-/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/urban_plating,
+/area/lv759/indoors/meridian/meridian_factory)
 "fLw" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 10;
@@ -33329,16 +33335,6 @@
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
-"gvA" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 1;
-	layer = 2
-	},
-/obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/urban/metal/bluemetal1{
-	dir = 1
-	},
-/area/lv759/indoors/landing_zone_1/flight_control_room)
 "gvB" = (
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -4;
@@ -34461,11 +34457,9 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "gGL" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
-	},
-/turf/closed/wall/urban/spaceport_reinforced,
-/area/lv759/indoors/spaceport/cargo)
+/obj/structure/sign/safety/airlock,
+/turf/closed/wall/urban/colony/reinforced/hull,
+/area/lv759/oob)
 "gGS" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -34832,7 +34826,6 @@
 	dir = 4;
 	layer = 3.33
 	},
-/obj/structure/sign/safety/airlock,
 /turf/closed/wall/urban/research/reinforced,
 /area/lv759/indoors/wy_research_complex/hallwayeast)
 "gKl" = (
@@ -38204,10 +38197,6 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/north_street)
-"hut" = (
-/obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/redone,
-/area/lv759/indoors/wy_research_complex/securitycommand)
 "huu" = (
 /obj/structure/cable,
 /turf/open/floor/plating{
@@ -39424,12 +39413,6 @@
 /obj/effect/urban/decal/road/lines1,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
-"hIO" = (
-/obj/structure/prop/mainship/sensor_computer3/black,
-/turf/open/floor/redthree{
-	dir = 1
-	},
-/area/lv759/indoors/spaceport/security)
 "hIQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -45192,8 +45175,8 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "iMX" = (
 /obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/research/reinforced/hull,
-/area/lv759/oob)
+/turf/closed/wall/urban/colony/reinforced,
+/area/lv759/outdoors/landing_zone_2)
 "iNb" = (
 /obj/structure/fence{
 	dir = 4
@@ -46901,11 +46884,9 @@
 	},
 /area/lv759/indoors/power_plant)
 "jgA" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 3
-	},
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/outdoors/landing_zone_2)
+/obj/structure/sign/safety/airlock,
+/turf/open/floor/plating,
+/area/lv759/indoors/colonial_marshals/south_maintenance)
 "jgD" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt{
@@ -48837,9 +48818,6 @@
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "jyC" = (
 /obj/structure/sign/safety/hazard,
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
-	},
 /turf/closed/wall/urban/colony/reinforced,
 /area/lv759/indoors/hospital/maintenance_north)
 "jyE" = (
@@ -51432,6 +51410,7 @@
 	dir = 4;
 	layer = 3.33
 	},
+/obj/structure/sign/safety/airlock,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -55662,6 +55641,11 @@
 	dir = 8
 	},
 /area/lv759/indoors/hospital/central_hallway)
+"kOC" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/structure/sign/safety/airlock,
+/turf/open/floor/plating,
+/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "kOE" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 9
@@ -58945,15 +58929,6 @@
 /obj/effect/urban/decal/road/road_stop/three,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
-"luy" = (
-/obj/structure/barricade/handrail/strata{
-	dir = 1
-	},
-/obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/prison/cellstripe{
-	dir = 1
-	},
-/area/lv759/indoors/electical_systems/substation1)
 "luB" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -61124,6 +61099,7 @@
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 4
 	},
+/obj/structure/sign/safety/airlock,
 /turf/open/floor/plating,
 /area/lv759/oob)
 "lSW" = (
@@ -62624,9 +62600,7 @@
 /turf/closed/wall/urban/spaceport_reinforced,
 /area/lv759/indoors/spaceport/cuppajoes)
 "mij" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
-	},
+/obj/structure/sign/safety/airlock,
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/meridian/meridian_office)
 "mim" = (
@@ -64187,6 +64161,10 @@
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"mwG" = (
+/obj/structure/prop/mainship/sensor_computer1/white,
+/turf/open/floor/mainship,
+/area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "mwK" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 2;
@@ -75514,6 +75492,10 @@
 /obj/item/tool/wirecutters,
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/spaceport/cargo)
+"oAm" = (
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/redone,
+/area/lv759/indoors/wy_research_complex/securitycommand)
 "oAn" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/warning_cone{
@@ -81344,10 +81326,6 @@
 "pFe" = (
 /turf/open/floor/prison,
 /area/lv759/indoors/meridian/meridian_showroom)
-"pFi" = (
-/obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/urban_plating,
-/area/lv759/indoors/meridian/meridian_factory)
 "pFp" = (
 /obj/effect/urban/decal/engineership_corners{
 	dir = 1
@@ -84733,6 +84711,7 @@
 /obj/structure/prop/urban/misc/floorprops/grate{
 	layer = 4
 	},
+/obj/structure/sign/safety/airlock,
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/indoors/wy_research_complex/hallwayeast)
 "qnH" = (
@@ -91717,7 +91696,9 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rFU" = (
 /obj/structure/barricade/handrail/strata,
-/obj/structure/sign/safety/hazard,
+/obj/structure/sign/safety/hazard{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -94999,9 +94980,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_east_caves)
 "sny" = (
-/obj/structure/sign/safety/airlock{
-	pixel_x = 11
-	},
+/obj/structure/sign/safety/airlock,
 /turf/closed/wall/urban/marhsalls_unmeltable,
 /area/lv759/oob)
 "snD" = (
@@ -96915,10 +96894,6 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
-"sFs" = (
-/obj/structure/prop/mainship/sensor_computer1/white,
-/turf/open/floor/mainship,
-/area/lv759/indoors/wy_research_complex/hangarbayshuttle)
 "sFx" = (
 /obj/structure/prop/urban/fakeplatforms/platform1,
 /obj/structure/largecrate/random/mini/small_case{
@@ -100008,10 +99983,6 @@
 	},
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/wy_research_complex/hallwayeast)
-"tje" = (
-/obj/structure/prop/mainship/sensor_computer3/black,
-/turf/open/floor/urban/metal/bluemetalfull,
-/area/lv759/indoors/wy_research_complex/reception)
 "tji" = (
 /obj/structure/bed/urban/prisonbed{
 	dir = 9
@@ -115569,9 +115540,9 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/south_east_caves)
 "wiD" = (
-/obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/colony/hospital,
-/area/lv759/indoors/hospital/virology)
+/obj/structure/prop/mainship/sensor_computer3/black,
+/turf/open/floor/urban/metal/bluemetalfull,
+/area/lv759/indoors/wy_research_complex/reception)
 "wiH" = (
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
 /turf/open/urbanshale/layer1,
@@ -117853,6 +117824,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "wHh" = (
 /obj/machinery/door/airlock/mainship/maint,
+/obj/structure/sign/safety/airlock,
 /turf/open/floor/plating,
 /area/lv759/indoors/wy_research_complex/southeastexit)
 "wHp" = (
@@ -124664,6 +124636,10 @@
 /obj/effect/urban/decal/trash,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"xZF" = (
+/obj/structure/sign/safety/airlock,
+/turf/closed/mineral/smooth/black_stone,
+/area/lv759/oob)
 "xZH" = (
 /obj/item/bodybag/tarp,
 /obj/item/bodybag/tarp,
@@ -128232,7 +128208,7 @@ mpS
 oZY
 vGO
 tZX
-luy
+enn
 vwV
 xVF
 xVF
@@ -128583,7 +128559,7 @@ imB
 mCb
 osn
 vSP
-sFs
+mwG
 iMD
 bpe
 hKn
@@ -131049,7 +131025,7 @@ qYy
 uSX
 wfr
 aRd
-tje
+wiD
 aSk
 tVn
 tVn
@@ -131922,7 +131898,7 @@ eyA
 eyA
 agE
 haw
-hIO
+aoI
 ekw
 vOG
 hTf
@@ -132352,7 +132328,7 @@ kVO
 iRr
 dKa
 lyU
-hut
+oAm
 kPH
 jjf
 pER
@@ -133932,7 +133908,7 @@ gzy
 (33,1,1) = {"
 gzy
 aWM
-chO
+eHR
 nNR
 xII
 acb
@@ -134140,7 +134116,7 @@ nFl
 mAi
 nFl
 wHh
-iMX
+eQz
 eQz
 eQz
 eQz
@@ -138216,7 +138192,7 @@ gzy
 (50,1,1) = {"
 gzy
 aWM
-gGL
+eZi
 iKD
 dZx
 pYv
@@ -146893,8 +146869,8 @@ bcW
 hQX
 fNB
 mpS
+gGL
 mpS
-aoI
 wCt
 lFu
 ufH
@@ -154201,7 +154177,7 @@ nmm
 mpS
 ibL
 txO
-aoI
+mpS
 dix
 cAa
 bds
@@ -157252,8 +157228,8 @@ dRx
 dRx
 iNe
 iNe
-iNe
 sny
+iNe
 aRy
 uGn
 ufH
@@ -157753,8 +157729,8 @@ sNS
 lhi
 mZE
 mpR
-jzT
-sny
+jgA
+iNe
 aiC
 hst
 nAI
@@ -157969,7 +157945,7 @@ bFW
 tBM
 lir
 uiM
-pFi
+fLs
 xqF
 mKZ
 aPQ
@@ -158513,8 +158489,8 @@ fRW
 edp
 mnt
 fxA
-iNe
 sny
+iNe
 qwW
 iNe
 wVX
@@ -159269,8 +159245,8 @@ fRW
 tlE
 fRW
 ogd
-iNe
 sny
+iNe
 qwW
 iNe
 iNe
@@ -171393,8 +171369,8 @@ wVX
 wVX
 wVX
 wVX
-wVX
-aoI
+xZF
+mpS
 mpS
 fyF
 mpS
@@ -172401,8 +172377,8 @@ lEX
 pfN
 epO
 epO
-hQc
-fLs
+kOC
+epO
 xQX
 cHt
 mpS
@@ -174285,8 +174261,8 @@ jkH
 gjF
 dyD
 gjF
+cIv
 jkH
-wiD
 ouY
 rLZ
 pUO
@@ -175520,7 +175496,7 @@ wot
 sKK
 oym
 fJu
-gvA
+chO
 sKK
 paw
 kRH
@@ -175887,8 +175863,8 @@ fmk
 mHX
 erw
 ykE
+iMX
 ykE
-jgA
 dgm
 bkw
 sjd
@@ -176886,8 +176862,8 @@ ppR
 bNQ
 rEr
 iwE
-vIY
 iBU
+vIY
 vIY
 sYB
 byU
@@ -178911,8 +178887,8 @@ vdp
 dkG
 erw
 ykE
+iMX
 ykE
-enn
 hZu
 wpZ
 sss
@@ -181428,7 +181404,7 @@ vLo
 ngd
 wbR
 fcw
-cIv
+ngd
 oTD
 whf
 hZo
