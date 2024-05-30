@@ -449,8 +449,6 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
-/obj/machinery/light/small/blue
-
 /obj/machinery/light/spot
 	name = "spotlight"
 	fitting = "large tube"
@@ -462,7 +460,26 @@
 	status = LIGHT_EMPTY
 	update(FALSE)
 
+/obj/machinery/light/blue
+	base_icon_state = "tube"
+	icon_state = "tube_empty"
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	desc = "A lighting fixture that is fitted with a bright blue fluorescent light tube. Looking at it for too long makes your eyes go watery."
+
+/obj/machinery/light/small/blue
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	fitting = "bulb"
+	brightness = 4
+	desc = "A small lighting fixture that is fitted with a bright blue fluorescent light bulb. Looking at it for too long makes your eyes go watery."
+	light_type = /obj/item/light_bulb/bulb
+
 /obj/machinery/light/spot/blue
+	name = "spotlight"
+	light_color = LIGHT_COLOR_BLUE_FLAME
+	desc = "A wide light fixture fitted with a large, blue, very bright fluorescent light tube. You want to sneeze just looking at it."
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
 
 /obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()

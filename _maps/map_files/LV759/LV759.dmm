@@ -155,6 +155,7 @@
 "abf" = (
 /obj/structure/platform/urban/metalplatform6,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "abk" = (
@@ -316,6 +317,7 @@
 "acT" = (
 /obj/structure/platform/urban/metalplatform6,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/landing_zone_2)
 "acU" = (
@@ -505,15 +507,15 @@
 	},
 /area/lv759/indoors/north_east_caves)
 "aeF" = (
-/obj/item/reagent_containers/glass{
-	pixel_x = -12;
-	pixel_y = 9
-	},
 /obj/structure/bed/stool{
 	buckling_y = 14;
 	layer = 4;
 	pixel_x = 4;
 	pixel_y = 22
+	},
+/obj/item/prop/paint{
+	pixel_x = -12;
+	pixel_y = 9
 	},
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 5
@@ -742,6 +744,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/engineering)
 "agG" = (
@@ -920,6 +925,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -952,6 +960,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
 "aiQ" = (
@@ -964,13 +975,13 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
 "aiR" = (
-/obj/machinery/light/small/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/light/small/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/wy_research_complex/cargo)
 "aiX" = (
@@ -1814,15 +1825,15 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "asH" = (
-/obj/machinery/light/small/blue{
-	dir = 4
-	},
 /obj/structure/barricade/handrail/wire{
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 2
+	},
+/obj/machinery/light/small/blue{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	dir = 8
@@ -1921,6 +1932,7 @@
 	layer = 2.7;
 	pixel_y = 2
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -2316,6 +2328,9 @@
 	layer = 3.33;
 	pixel_y = 2
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/security)
 "axY" = (
@@ -2431,11 +2446,11 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "azs" = (
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 4
+	},
+/obj/machinery/light/small/blue{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -2949,6 +2964,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/hallway_east)
 "aFz" = (
@@ -3008,6 +3026,9 @@
 /area/lv759/indoors/landing_zone_1/flight_control_room)
 "aFW" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -3190,16 +3211,16 @@
 /obj/item/reagent_containers/glass/bucket{
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/glass{
-	pixel_x = -12;
-	pixel_y = 9
-	},
 /obj/item/reagent_containers/glass/bucket{
 	pixel_x = -11;
 	pixel_y = 1
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/item/prop/paint{
+	pixel_x = -12;
+	pixel_y = 9
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
@@ -3582,6 +3603,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -3676,6 +3700,9 @@
 "aMW" = (
 /obj/structure/rack,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/urban_wood,
@@ -4371,15 +4398,15 @@
 	},
 /area/lv759/indoors/central_caves)
 "aUZ" = (
-/obj/machinery/light/small/blue{
-	dir = 4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
 	},
 /obj/structure/largecrate/random/barrel/yellow,
+/obj/machinery/light/small/blue{
+	dir = 4
+	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/cargo_maintenance)
 "aVg" = (
@@ -4419,6 +4446,9 @@
 /obj/structure/prop/urban/misc/fake/wire/blue{
 	dir = 4;
 	pixel_y = -4
+	},
+/obj/machinery/light/small/blue{
+	dir = 4
 	},
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/north_east_street)
@@ -4765,6 +4795,9 @@
 	},
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
@@ -5621,6 +5654,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bfU" = (
@@ -5966,6 +6002,9 @@
 	pixel_y = 6
 	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/orange_edge{
@@ -6783,6 +6822,7 @@
 	pixel_y = 14
 	},
 /obj/structure/largecrate/random/barrel/yellow,
+/obj/machinery/light/blue,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -7064,6 +7104,9 @@
 	dir = 8
 	},
 /obj/structure/prop/urban/misc/floorprops/grate,
+/obj/machinery/light/small/blue{
+	dir = 8
+	},
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bub" = (
@@ -7100,6 +7143,9 @@
 	},
 /obj/structure/barricade/handrail/strata{
 	dir = 4
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -7148,6 +7194,9 @@
 /obj/structure/table,
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/tile/cementflat,
@@ -7386,6 +7435,9 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bxR" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/misc/spaceport2,
@@ -7712,6 +7764,9 @@
 	},
 /obj/structure/stairs/seamless{
 	color = "#656c6b"
+	},
+/obj/machinery/light/blue{
+	dir = 4
 	},
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/hallway_north)
@@ -9613,6 +9668,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/light/small/blue{
+	dir = 1
+	},
 /turf/open/floor/urban_plating,
 /area/lv759/oob)
 "bTI" = (
@@ -10165,6 +10223,9 @@
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bYJ" = (
@@ -10184,6 +10245,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark{
 	dir = 8
@@ -10900,6 +10964,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ceR" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/apartment/westentertainment)
 "ceS" = (
@@ -11903,12 +11968,12 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/wy_research_complex/researchanddevelopment)
 "cny" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "cnA" = (
@@ -12438,6 +12503,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
 "ctk" = (
@@ -12660,6 +12728,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/central_caves)
 "cvc" = (
@@ -12780,6 +12851,9 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/prison/cellstripe{
@@ -13637,6 +13711,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/liquid/water/river/autosmooth{
 	dir = 1
 	},
@@ -14208,6 +14285,9 @@
 	layer = 5;
 	pixel_x = 9
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "cKC" = (
@@ -14395,6 +14475,9 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -14533,6 +14616,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light,
 /obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/light/blue,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "cNy" = (
@@ -14622,7 +14706,7 @@
 "cOo" = (
 /obj/structure/platform_decoration,
 /obj/effect/urban/decal/dirt,
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = 8;
 	pixel_y = 14
 	},
@@ -15108,12 +15192,12 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "cTV" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
 /obj/machinery/light/spot/blue{
 	dir = 1;
 	pixel_y = 22
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/south_west_caves)
@@ -16086,6 +16170,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/westentertainment)
 "ddP" = (
@@ -16095,6 +16182,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/machinery/light/blue{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 4
@@ -17266,6 +17356,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dpL" = (
@@ -17518,6 +17611,9 @@
 	dir = 1
 	},
 /obj/structure/barricade/handrail/urban/road/plastic/blue,
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "dsB" = (
@@ -17602,6 +17698,9 @@
 "dtF" = (
 /obj/structure/closet/l3closet/virology,
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/floor/prison{
@@ -17855,6 +17954,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 4
 	},
@@ -17984,6 +18086,9 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "dxm" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/urban/tile/blacktileshiny,
@@ -18281,10 +18386,10 @@
 	pixel_y = 20
 	},
 /obj/effect/urban/decal/dirt,
+/obj/effect/urban/decal/trash/four,
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
-/obj/effect/urban/decal/trash/four,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dAC" = (
@@ -18296,7 +18401,6 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco2{
 	dir = 1
 	},
-/obj/machinery/light/spot/blue,
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -18305,6 +18409,7 @@
 	dir = 8;
 	layer = 3.3
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -18844,15 +18949,15 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/light/small/blue{
-	dir = 4
-	},
 /obj/structure/barricade/handrail/wire{
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 2
+	},
+/obj/machinery/light/small/blue{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	dir = 8
@@ -20887,6 +20992,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/redfour{
 	dir = 1
 	},
@@ -21055,6 +21163,9 @@
 	},
 /obj/item/card/id,
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/orange_edge,
@@ -21482,6 +21593,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt/grime1,
+/obj/machinery/light/blue,
 /turf/open/floor/officesquares,
 /area/lv759/indoors/hospital/virology)
 "eib" = (
@@ -21633,6 +21745,9 @@
 	dir = 4;
 	pixel_x = 2
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/officesquares,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "eiU" = (
@@ -21664,6 +21779,7 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -22095,10 +22211,10 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "eod" = (
+/obj/structure/prop/urban/supermart/freezer/supermartfreezer6,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/obj/structure/prop/urban/supermart/freezer/supermartfreezer6,
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart)
 "eog" = (
@@ -23032,6 +23148,7 @@
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "ewY" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "ewZ" = (
@@ -23601,6 +23718,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "eCy" = (
@@ -23747,11 +23867,11 @@
 	},
 /area/lv759/indoors/wy_research_complex/xenobiology)
 "eDI" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/wy_research_complex_entrance)
 "eDL" = (
@@ -24532,6 +24652,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/tile/dark/brown3,
 /area/lv759/indoors/meridian/meridian_factory)
 "eMW" = (
@@ -24687,7 +24808,6 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "eOA" = (
-/obj/machinery/light/spot/blue,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 6;
 	pixel_y = 6
@@ -24699,6 +24819,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_showroom)
 "eOF" = (
@@ -25121,6 +25242,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -25178,6 +25302,9 @@
 	dir = 1;
 	layer = 3.33;
 	pixel_y = 2
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -25676,6 +25803,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
@@ -25772,6 +25902,7 @@
 /area/lv759/indoors/hospital/operation)
 "eYW" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_foyer)
 "eZa" = (
@@ -25803,10 +25934,16 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
 "eZs" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/shuttle/escapepod{
@@ -25855,6 +25992,9 @@
 /area/lv759/indoors/derelict_ship)
 "eZR" = (
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/floor/urban/metal/grated{
@@ -25998,6 +26138,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security_office)
 "fby" = (
@@ -26608,6 +26751,9 @@
 	dir = 4
 	},
 /obj/structure/largecrate/random,
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "fhi" = (
@@ -27481,12 +27627,15 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass{
-	pixel_x = -14;
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
+	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
+/obj/item/prop/paint/violet{
+	pixel_x = -14;
+	pixel_y = 4
 	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 1
@@ -28453,6 +28602,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/box,
 /area/lv759/indoors/power_plant/gas_generators)
 "fCf" = (
@@ -28903,6 +29055,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/orange_edge,
 /area/lv759/indoors/spaceport/hallway_east)
 "fFO" = (
@@ -29012,6 +29165,9 @@
 	},
 /obj/structure/stairs/seamless{
 	color = "#656c6b"
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/hallway_north)
@@ -29941,15 +30097,15 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "fOK" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/barricade/handrail/strata,
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -30159,6 +30315,9 @@
 	pixel_x = -4
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/shuttle/escapepod/plain,
@@ -30499,6 +30658,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/tile/green_bigtile{
 	dir = 10
 	},
@@ -30651,6 +30813,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/barricade/handrail/urban/road/plastic/black,
+/obj/machinery/light/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -31050,6 +31213,7 @@
 /area/lv759/indoors/mining_outpost/south)
 "gam" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -31105,10 +31269,10 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gaR" = (
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light/small/blue{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
@@ -31407,10 +31571,10 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/wy_research_complex/hallwaysoutheast)
 "gdW" = (
+/obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/urban/metal/grated,
 /area/lv759/indoors/meridian/meridian_factory)
 "gdY" = (
@@ -31511,6 +31675,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/spaceport/security)
 "geV" = (
@@ -31601,11 +31768,11 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 4
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -32238,12 +32405,12 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 8;
 	layer = 4
+	},
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -32776,9 +32943,6 @@
 /obj/item/fuel_cell,
 /obj/item/fuel_cell,
 /obj/item/fuel_cell,
-/obj/machinery/light/small/blue{
-	dir = 1
-	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_x = 20;
 	pixel_y = 28
@@ -32786,8 +32950,22 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
+/obj/machinery/light/small/blue{
+	dir = 1
+	},
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
+"grb" = (
+/obj/structure/prop/urban/factory/conveyor_belt{
+	layer = 2
+	},
+/obj/structure/lattice/autosmooth{
+	pixel_x = 6;
+	pixel_y = 19
+	},
+/obj/machinery/light/spot/blue,
+/turf/open/floor/mainship,
+/area/lv759/indoors/meridian/meridian_factory)
 "grc" = (
 /obj/machinery/floodlight/colony/street{
 	layer = 7;
@@ -33317,6 +33495,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/ntmart)
 "gvQ" = (
@@ -33448,6 +33629,9 @@
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/structure/window/reinforced,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/wood/variable,
@@ -34178,6 +34362,9 @@
 	},
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/urban/metal/bluemetalfull,
@@ -36201,6 +36388,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/west_caves)
 "gYV" = (
@@ -36491,6 +36681,9 @@
 	dir = 4
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/urban/street/sidewalk{
@@ -37572,6 +37765,7 @@
 "hoZ" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "hpg" = (
@@ -37858,6 +38052,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 3.3
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/officesquares,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
@@ -38466,6 +38663,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
@@ -39036,6 +39236,9 @@
 	dir = 8;
 	layer = 3
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/liquid/water/river/autosmooth,
 /area/lv759/indoors/apartment/westentertainment)
 "hFM" = (
@@ -39326,6 +39529,9 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 9
 	},
@@ -39571,6 +39777,9 @@
 	},
 /obj/item/reagent_containers/food/drinks/cans/souto,
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/urbanshale/layer1,
@@ -40357,6 +40566,7 @@
 "hTh" = (
 /obj/structure/platform/urban/metalplatform6,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hTo" = (
@@ -40931,7 +41141,7 @@
 "hZM" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/table,
-/obj/item/reagent_containers/glass,
+/obj/item/prop/paint,
 /turf/open/floor/urban/tile/darkbrown_bigtile{
 	dir = 8
 	},
@@ -40983,10 +41193,10 @@
 /obj/structure/toilet{
 	pixel_y = 8
 	},
+/obj/effect/spawner/random/medical/pillbottle,
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
-/obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/urban/tile/blacktileshiny,
 /area/lv759/indoors/casino/casino_restroom)
 "ian" = (
@@ -41420,11 +41630,11 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "ifF" = (
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
 /obj/structure/bed/urban/chairs/brown{
 	dir = 8
+	},
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
 /turf/open/floor/bluethree{
 	dir = 4
@@ -42135,10 +42345,10 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/obj/machinery/light/small/blue{
+/obj/effect/turf_decal/medical_decals/triage{
 	dir = 8
 	},
-/obj/effect/turf_decal/medical_decals/triage{
+/obj/machinery/light/small/blue{
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
@@ -42323,6 +42533,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "imB" = (
@@ -42441,6 +42654,9 @@
 	pixel_x = -6
 	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/redfour,
@@ -42603,15 +42819,15 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_street)
 "ipP" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
 	},
 /obj/effect/urban/decal/road/road_edge,
+/obj/machinery/light/spot/blue{
+	dir = 8
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/indoors/wy_security/checkpoint_northeast)
 "ipQ" = (
@@ -42627,8 +42843,8 @@
 	},
 /area/lv759/outdoors/caveplateau)
 "ipY" = (
-/obj/machinery/light/spot/blue,
 /obj/structure/prop/urban/supermart/rack/longrack5,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/ntmart)
 "iqg" = (
@@ -43137,6 +43353,10 @@
 	},
 /obj/structure/table/mainship{
 	color = "#848484"
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
@@ -43839,6 +44059,7 @@
 	},
 /obj/item/tool/weldpack,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -43902,6 +44123,7 @@
 /obj/item/toy/beach_ball,
 /obj/item/toy/inflatable_duck,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/carpet/carpetfadedred,
 /area/lv759/indoors/apartment/westentertainment)
 "iCM" = (
@@ -44046,6 +44268,7 @@
 	pixel_x = -1;
 	pixel_y = 1
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
@@ -44374,11 +44597,11 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "iHB" = (
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
 /obj/machinery/recharge_station{
 	layer = 2.9
+	},
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 4
@@ -45075,6 +45298,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -45465,6 +45691,9 @@
 	dir = 4
 	},
 /obj/structure/lattice/autosmooth,
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -45618,14 +45847,14 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "iTi" = (
 /obj/item/stack/sheet/cardboard,
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
 /obj/structure/platform{
 	dir = 4
 	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
+	},
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/west_caves)
@@ -46782,6 +47011,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jgE" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_mainroom)
 "jgG" = (
@@ -47994,6 +48224,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "jtm" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison/darkbrown,
 /area/lv759/indoors/power_plant/fusion_generators)
 "jtn" = (
@@ -48520,6 +48751,9 @@
 /obj/structure/stairs{
 	color = "#a6aeab"
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/spaceport/cargo)
 "jxp" = (
@@ -48802,14 +49036,14 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westfoyer)
 "jzI" = (
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -48972,6 +49206,9 @@
 	dir = 8
 	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/urbanshale/layer1,
@@ -49938,6 +50175,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/north_east_caves)
 "jKw" = (
@@ -50255,6 +50495,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/squares,
 /area/lv759/indoors/power_plant/gas_generators)
 "jNp" = (
@@ -50427,6 +50670,9 @@
 "jQb" = (
 /obj/machinery/vending/hydroseeds,
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/floor/urban/tile/cementflat,
@@ -51529,15 +51775,15 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jZC" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
-/obj/machinery/light/spot/blue,
 /obj/structure/prop/urban/vehicles/Meridian/Blue{
 	dir = 1;
 	layer = 6;
 	pixel_y = 12
 	},
+/obj/machinery/light/spot/blue{
+	dir = 8
+	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/kutjevo/colors/blue,
 /area/lv759/indoors/meridian/meridian_showroom)
 "jZE" = (
@@ -52475,9 +52721,6 @@
 	},
 /area/lv759/indoors/hospital/icu)
 "kjD" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 3.3
@@ -52485,6 +52728,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -52835,13 +53081,13 @@
 /turf/closed/mineral/smooth/black_stone,
 /area/lv759/oob)
 "knF" = (
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -53909,6 +54155,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -54733,13 +54982,13 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "kHh" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/glass,
+/obj/item/prop/paint,
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 8
 	},
@@ -55207,6 +55456,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -55277,6 +55529,9 @@
 /obj/item/trash/cigbutt,
 /obj/effect/urban/decal/trash/fourteen{
 	pixel_y = 14
+	},
+/obj/machinery/light/blue{
+	dir = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -55537,6 +55792,9 @@
 /area/lv759/indoors/wy_research_complex/securityarmory)
 "kON" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -55988,6 +56246,7 @@
 /obj/machinery/vending/dinnerware,
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "kSN" = (
@@ -56308,6 +56567,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -56553,19 +56815,22 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 1
 	},
 /area/lv759/indoors/meridian/meridian_factory)
 "kYs" = (
-/obj/machinery/light/spot/blue,
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/prop/urban/vehicles/Meridian/Turquoise{
 	dir = 1;
 	layer = 6;
 	pixel_y = 12
+	},
+/obj/machinery/light/spot/blue,
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/cyan,
 /area/lv759/indoors/meridian/meridian_showroom)
@@ -56810,6 +57075,9 @@
 /obj/structure/prop/urban/supermart/supermartfruitbasketmelons{
 	pixel_x = -2;
 	pixel_y = 10
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/ntmart)
@@ -57615,6 +57883,7 @@
 "lik" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/metal/greenmetal1,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "lio" = (
@@ -57989,6 +58258,10 @@
 	pixel_x = 6;
 	pixel_y = 19
 	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
+	},
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
 "lmW" = (
@@ -58153,6 +58426,9 @@
 /area/lv759/indoors/wy_research_complex/mainlabs)
 "lpi" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/tile/blacktileshiny,
@@ -58432,11 +58708,11 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
+	},
+/obj/machinery/light/small/blue{
+	dir = 8
 	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/hallway_northwest)
@@ -59064,6 +59340,7 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "lxj" = (
@@ -60120,6 +60397,9 @@
 	dir = 4;
 	pixel_x = 2
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/officesquares,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "lJN" = (
@@ -60139,6 +60419,9 @@
 	pixel_y = 8
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/urban/street/cement3,
@@ -61490,6 +61773,9 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 1
 	},
@@ -62074,10 +62360,10 @@
 /obj/structure/platform/mineral{
 	dir = 1
 	},
-/obj/machinery/light/small/blue{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
+/obj/machinery/light/small/blue{
 	dir = 1
 	},
 /turf/open/floor/prison/ramptop{
@@ -63541,8 +63827,8 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mra" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/light/small/blue,
 /obj/effect/urban/decal/trash/eleven,
+/obj/machinery/light/small/blue,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mrh" = (
@@ -63609,6 +63895,9 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/tool/plantspray/pests,
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/tile/greenfull_bigtile,
@@ -63704,13 +63993,13 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "mtv" = (
-/obj/machinery/light/small/blue{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = -1
+	},
+/obj/machinery/light/small/blue{
+	dir = 1
 	},
 /turf/open/floor/urban/metal/grated{
 	dir = 4
@@ -64340,6 +64629,7 @@
 	layer = 4
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison/darkbrown,
 /area/lv759/indoors/power_plant/fusion_generators)
 "mzH" = (
@@ -64436,6 +64726,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 3
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 1
@@ -64761,9 +65054,6 @@
 /area/lv759/indoors/power_plant/telecomms)
 "mEd" = (
 /obj/item/evidencebag,
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33;
@@ -64771,6 +65061,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
+	},
+/obj/machinery/light/small/blue{
+	dir = 8
 	},
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/armory_evidenceroom)
@@ -65037,10 +65330,10 @@
 /obj/item/fuel_cell,
 /obj/item/fuel_cell,
 /obj/item/fuel_cell,
-/obj/machinery/light/small/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/light/small/blue,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
 "mGq" = (
@@ -65210,6 +65503,9 @@
 	dir = 8
 	},
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/urbanshale/layer2,
@@ -65674,6 +65970,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -65843,12 +66142,12 @@
 /area/lv759/indoors/hospital/emergency_room)
 "mNg" = (
 /obj/structure/closet/l3closet/general,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
 /obj/machinery/light/spot/blue{
 	dir = 1;
 	pixel_y = 22
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -65864,6 +66163,9 @@
 	dir = 4
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -66204,11 +66506,11 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/mining_outpost/south)
 "mQZ" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/drinks/coffee,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
@@ -66525,6 +66827,7 @@
 	pixel_x = -8;
 	pixel_y = 4
 	},
+/obj/machinery/light/blue,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mUx" = (
@@ -66934,15 +67237,15 @@
 /obj/item/stack/sheet/cardboard{
 	layer = 1
 	},
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -67137,6 +67440,9 @@
 /area/lv759/indoors/wy_research_complex/vehicledeploymentbay)
 "mZI" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/tile/green_bigtile{
@@ -67669,6 +67975,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "ndN" = (
@@ -67729,6 +68038,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "ner" = (
@@ -67961,6 +68271,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -68412,6 +68723,7 @@
 	level = 2
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -68875,9 +69187,6 @@
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/machinery/light/small/blue{
-	dir = 1
-	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
 	},
@@ -68885,6 +69194,9 @@
 	dir = 1
 	},
 /obj/effect/urban/decal/trash/fourteen,
+/obj/machinery/light/small/blue{
+	dir = 1
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "npC" = (
@@ -68922,9 +69234,6 @@
 	pixel_x = 12;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/glass{
-	pixel_y = -6
-	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
 	pixel_y = 18
 	},
@@ -68934,6 +69243,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 3.3
+	},
+/obj/item/prop/paint/violet{
+	pixel_y = -6
 	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 9
@@ -69762,6 +70074,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/prison/ramptop{
 	dir = 8
@@ -70968,16 +71283,16 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/bar/kitchen)
 "nJL" = (
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -71461,11 +71776,11 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nNW" = (
+/obj/structure/rack,
+/obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/structure/rack,
-/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 8
 	},
@@ -71507,7 +71822,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "nOu" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco2,
-/obj/machinery/light/spot/blue,
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -71517,6 +71831,7 @@
 	pixel_x = 1
 	},
 /obj/item/device/flashlight/lamp/tripod/grey,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -72456,6 +72771,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -72573,6 +72891,9 @@
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "nZz" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/urban/misc/spaceport1,
@@ -73560,11 +73881,11 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/south_east_caves)
 "ohO" = (
-/obj/machinery/light/spot/blue{
-	dir = 4
-	},
 /obj/structure/largecrate/random/case/double{
 	pixel_y = 7
+	},
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
 /turf/open/floor/multi_tiles{
 	dir = 6
@@ -74489,8 +74810,27 @@
 	dir = 8
 	},
 /obj/structure/largecrate/random/secure,
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
+"orW" = (
+/obj/structure/lattice/autosmooth,
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/obj/machinery/prop/structurelattice{
+	dir = 4;
+	pixel_y = 10
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/indoors/wy_research_complex/hangarbay)
 "osg" = (
 /obj/structure/platform_decoration/urban/rockdark,
 /turf/open/urbanshale/layer2,
@@ -75505,6 +75845,7 @@
 /area/lv759/indoors/ntmart)
 "oCh" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/redthree,
 /area/lv759/indoors/spaceport/security)
 "oCj" = (
@@ -75582,15 +75923,15 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "oDm" = (
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -75767,13 +76108,13 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/meridian/meridian_office)
 "oFu" = (
-/obj/machinery/light/spot/blue,
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/prop/urban/vehicles/Meridian/Red{
 	layer = 6;
 	pixel_y = 12
+	},
+/obj/machinery/light/spot/blue,
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/red,
 /area/lv759/indoors/meridian/meridian_showroom)
@@ -76018,6 +76359,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/orange_edge,
 /area/lv759/indoors/spaceport/hallway_east)
 "oIo" = (
@@ -76118,6 +76460,9 @@
 	},
 /obj/structure/table/reinforced/prison{
 	color = "#8B7B5B"
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
@@ -76545,6 +76890,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
@@ -76717,10 +77065,10 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "oOn" = (
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light/small/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
@@ -76783,6 +77131,12 @@
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /turf/open/floor/urban/tile/darkbrown_bigtile,
 /area/lv759/indoors/recycling_plant/garage)
+"oOU" = (
+/obj/machinery/light/blue{
+	dir = 1
+	},
+/turf/closed/mineral/smooth/black_stone,
+/area/lv759/oob)
 "oOY" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/bluethree{
@@ -77045,6 +77399,9 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "oRB" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
@@ -78614,6 +78971,9 @@
 /obj/structure/largecrate/random/barrel/green{
 	layer = 5
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
 "phT" = (
@@ -79401,6 +79761,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "poB" = (
@@ -79682,6 +80045,14 @@
 	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/docking_bay_2)
+"prW" = (
+/obj/structure/lattice/autosmooth{
+	pixel_x = 6;
+	pixel_y = 19
+	},
+/obj/machinery/light/spot/blue,
+/turf/open/floor/mainship,
+/area/lv759/indoors/meridian/meridian_factory)
 "psa" = (
 /obj/machinery/processor,
 /obj/effect/urban/decal/dirt,
@@ -79994,10 +80365,10 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/northapartments)
 "pvh" = (
+/obj/item/device/flashlight/lamp/tripod,
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/item/device/flashlight/lamp/tripod,
 /turf/open/floor/bluethree{
 	dir = 8
 	},
@@ -80076,15 +80447,15 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
 "pvN" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/lattice/autosmooth,
 /obj/structure/largecrate/random,
 /obj/structure/largecrate/random/mini{
 	layer = 4;
 	pixel_x = -7;
 	pixel_y = 16
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/orange_edge{
 	dir = 8
@@ -80540,8 +80911,8 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pzA" = (
 /obj/structure/closet/l3closet/general,
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "pzE" = (
@@ -80597,6 +80968,9 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -81754,11 +82128,11 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/ntmart/backrooms)
 "pKK" = (
-/obj/machinery/light/small/blue{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt/grime4{
 	dir = 8
+	},
+/obj/machinery/light/small/blue{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
@@ -82013,8 +82387,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pNF" = (
-/obj/machinery/light/small/blue,
 /obj/effect/decal/cleanable/dirt/grime3,
+/obj/machinery/light/small/blue,
 /turf/open/floor/prison/red{
 	dir = 6
 	},
@@ -82510,10 +82884,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/garage)
 "pSg" = (
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -82522,6 +82892,10 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -84877,6 +85251,7 @@
 	layer = 5
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/redfour{
 	dir = 8
 	},
@@ -85310,12 +85685,12 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qua" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_factory)
 "que" = (
@@ -85398,8 +85773,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qvr" = (
-/obj/machinery/light/spot/blue,
 /obj/structure/prop/urban/supermart/rack/longrack3,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/ntmart)
 "qvt" = (
@@ -85414,6 +85789,9 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/metal,
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban/metal/zbrownfloor1{
@@ -85510,6 +85888,10 @@
 /obj/structure/lattice/autosmooth{
 	pixel_x = 6;
 	pixel_y = 19
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/mainship,
 /area/lv759/indoors/meridian/meridian_factory)
@@ -86325,6 +86707,9 @@
 	pixel_x = -9;
 	pixel_y = 10
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "qFo" = (
@@ -86333,6 +86718,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -86451,9 +86837,6 @@
 	pixel_x = -20;
 	pixel_y = 12
 	},
-/obj/machinery/light/small/blue{
-	dir = 1
-	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
 	},
@@ -86462,6 +86845,9 @@
 	},
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 4
+	},
+/obj/machinery/light/small/blue{
+	dir = 1
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -86762,6 +87148,7 @@
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "qJu" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -87078,6 +87465,9 @@
 	dir = 1;
 	pixel_y = 2
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/hallway_north)
 "qMm" = (
@@ -87296,6 +87686,7 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/effect/spawner/random/medical/pillbottle,
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -87396,6 +87787,9 @@
 "qPj" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/prison/darkbrown{
@@ -87533,6 +87927,7 @@
 /area/lv759/indoors/hospital/outgoing)
 "qQv" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
@@ -87964,16 +88359,16 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "qUC" = (
 /obj/effect/urban/decal/dirt,
+/obj/item/trash/cigbutt{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = 1;
+	pixel_y = 8
+	},
 /obj/machinery/light/small/blue{
 	dir = 1
-	},
-/obj/item/trash/cigbutt{
-	pixel_x = 1;
-	pixel_y = 8
-	},
-/obj/item/trash/cigbutt{
-	pixel_x = 1;
-	pixel_y = 8
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -88149,7 +88544,7 @@
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = -12;
 	pixel_y = 9
 	},
@@ -89655,10 +90050,16 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/freezer,
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen)
 "rmj" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/urban/street/cement3,
@@ -89991,6 +90392,9 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rpF" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -90431,6 +90835,9 @@
 	dir = 8
 	},
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/floor/sandrock,
@@ -91364,6 +91771,9 @@
 	pixel_x = -12;
 	pixel_y = 14
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/north_street)
 "rDp" = (
@@ -91870,10 +92280,10 @@
 /obj/structure/platform{
 	dir = 8
 	},
+/obj/structure/largecrate/random/mini/small_case,
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/structure/largecrate/random/mini/small_case,
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -92253,6 +92663,9 @@
 /area/lv759/indoors/wy_research_complex/cafeteriakitchen)
 "rNh" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/urban/metal/zbrownfloor1{
@@ -93036,6 +93449,9 @@
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/prison/plate,
 /area/lv759/indoors/spaceport/cargo)
 "rWi" = (
@@ -93686,6 +94102,9 @@
 	dir = 4
 	},
 /obj/structure/sign/safety/hazard,
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "scB" = (
@@ -94375,6 +94794,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
 "sjd" = (
@@ -94426,8 +94848,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/lv759/indoors/ntmart/backrooms)
 "sjz" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/wy_research_complex/hallwaynorthexit)
 "sjD" = (
@@ -95122,14 +95544,14 @@
 	pixel_x = -11;
 	pixel_y = 6
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
 /obj/machinery/light/small/blue{
 	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -95472,12 +95894,12 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ssY" = (
-/obj/machinery/light/small/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = -1
 	},
+/obj/machinery/light/small/blue,
 /turf/open/floor/urban/metal/grated{
 	dir = 4
 	},
@@ -97870,11 +98292,11 @@
 /obj/item/reagent_containers/food/snacks/soup/stew,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/structure/table/mainship{
 	color = "#EBD9B7"
+	},
+/obj/machinery/light/small/blue{
+	dir = 8
 	},
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
@@ -97968,6 +98390,9 @@
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
 	pixel_x = -2;
 	pixel_y = 20
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 10
@@ -98409,6 +98834,9 @@
 /obj/structure/barricade/handrail{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/ntmart)
 "sVi" = (
@@ -98746,6 +99174,9 @@
 /obj/structure/barricade/handrail/strata{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -98973,11 +99404,11 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "taF" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	layer = 3.33
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_factory)
 "taN" = (
@@ -99845,16 +100276,16 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/machinery/light/spot/blue{
-	dir = 1;
-	pixel_y = 22
-	},
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_x = 20;
 	pixel_y = 28
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoil{
 	dir = 5
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
 	},
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
@@ -99867,13 +100298,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/reagent_containers/glass,
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/prop/paint,
 /turf/open/floor/tile/dark/brown3{
 	dir = 6
 	},
@@ -100211,6 +100642,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "tmu" = (
@@ -100341,6 +100775,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 3.3
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 8
@@ -100714,12 +101151,12 @@
 	dir = 1
 	},
 /obj/item/clothing/head/warning_cone,
-/obj/machinery/light/small/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
 	},
+/obj/machinery/light/small/blue,
 /turf/open/floor/urban/metal/stripe_red{
 	dir = 4
 	},
@@ -100903,6 +101340,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tum" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/metal/greenmetal1,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "tun" = (
@@ -102517,10 +102955,10 @@
 	},
 /area/lv759/indoors/weyyu_office)
 "tKu" = (
+/obj/structure/lattice/autosmooth,
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/structure/lattice/autosmooth,
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
@@ -102921,9 +103359,6 @@
 /area/lv759/outdoors/landing_zone_1)
 "tOI" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -102933,10 +103368,14 @@
 	layer = 4;
 	pixel_y = 14
 	},
+/obj/machinery/light/small/blue{
+	dir = 8
+	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/cargo_maintenance)
 "tON" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/botany/botany_mainroom)
 "tOO" = (
@@ -103044,6 +103483,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tQi" = (
@@ -103164,9 +103604,6 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tRg" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/table/mainship,
 /obj/structure/largecrate/random/mini/small_case{
 	layer = 5;
@@ -103176,6 +103613,9 @@
 	layer = 6;
 	pixel_x = 5;
 	pixel_y = 4
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/multi_tiles{
 	dir = 6
@@ -103923,11 +104363,11 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tZK" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/structure/prop/urban/supermart/freezer/supermartfreezer4,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/obj/structure/prop/urban/supermart/freezer/supermartfreezer4,
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart)
 "tZN" = (
@@ -104477,10 +104917,10 @@
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_factory)
 "ueZ" = (
+/obj/structure/barricade/handrail/urban/handrail,
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
-/obj/structure/barricade/handrail/urban/handrail,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -104518,6 +104958,9 @@
 /obj/structure/prop/urban/supermart/supermartfruitbasketapples{
 	pixel_x = -1;
 	pixel_y = -10
+	},
+/obj/machinery/light/blue{
+	dir = 4
 	},
 /turf/open/floor/officetiles,
 /area/lv759/indoors/ntmart)
@@ -104577,9 +105020,6 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ugb" = (
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/barricade/handrail/strata{
 	dir = 1
 	},
@@ -104588,6 +105028,9 @@
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -104788,6 +105231,9 @@
 	dir = 8
 	},
 /obj/structure/largecrate/random/barrel/green,
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/tile/green_bigtile{
 	dir = 9
 	},
@@ -105884,6 +106330,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 9
 	},
@@ -106976,6 +107425,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "uDj" = (
@@ -107147,10 +107599,10 @@
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "uFe" = (
 /obj/effect/urban/decal/dirt,
+/obj/item/trash/cigbutt,
 /obj/machinery/light/small/blue{
 	dir = 4
 	},
-/obj/item/trash/cigbutt,
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
 "uFg" = (
@@ -107456,6 +107908,9 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/dirt,
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
@@ -107564,13 +108019,20 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
 	},
+/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
 /obj/machinery/light/small/blue{
 	dir = 8
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"uJs" = (
+/obj/structure/platform{
+	layer = 3.1
+	},
+/obj/machinery/light/spot/blue,
+/turf/open/floor/urban/metal/zbrownfloor_full,
+/area/lv759/indoors/meridian/meridian_factory)
 "uJB" = (
 /obj/item/paper{
 	pixel_x = -7;
@@ -107821,6 +108283,9 @@
 "uMa" = (
 /obj/structure/platform,
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -108984,12 +109449,12 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/east_caves)
 "uWU" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
 /obj/machinery/light/spot/blue{
 	dir = 1;
 	pixel_y = 22
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -109119,13 +109584,13 @@
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "uYe" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/light/small/blue{
-	dir = 8
-	},
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/lines5,
 /obj/effect/urban/decal/road/lines5{
 	pixel_y = 5
+	},
+/obj/machinery/light/small/blue{
+	dir = 8
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -109275,6 +109740,7 @@
 "uZM" = (
 /obj/machinery/light,
 /obj/item/device/flashlight/lamp/tripod,
+/obj/machinery/light/blue,
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -110074,16 +110540,16 @@
 	pixel_x = -12;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass{
-	pixel_x = 8;
-	pixel_y = 14
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	layer = 3.3
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 2
+	},
+/obj/item/prop/paint/blue{
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /turf/open/floor/tile/dark/brown3{
 	dir = 6
@@ -110312,6 +110778,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
 "vjP" = (
@@ -110654,6 +111121,9 @@
 	dir = 8
 	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/urban/street/sidewalk{
@@ -111546,6 +112016,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
 "vwZ" = (
@@ -111564,6 +112037,9 @@
 	color = "#6e6e6e"
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/urban_plating,
@@ -112019,6 +112495,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
 	pixel_y = 2
+	},
+/obj/machinery/light/blue{
+	dir = 4
 	},
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/hallway_north)
@@ -112486,6 +112965,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
+/obj/machinery/light/blue,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "vHx" = (
@@ -113119,6 +113599,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -113135,6 +113618,9 @@
 	},
 /obj/effect/urban/decal/road/road_edge/two,
 /obj/effect/urban/decal/road/lines4,
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "vNZ" = (
@@ -113187,6 +113673,9 @@
 	},
 /obj/structure/table/reinforced/prison{
 	color = "#8B7B5B"
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
@@ -113275,10 +113764,10 @@
 /area/lv759/indoors/derelict_ship)
 "vOR" = (
 /obj/structure/closet/secure_closet/freezer/meat,
+/obj/effect/decal/cleanable/dirt/grime2,
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/grime2,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/bar/kitchen)
 "vOS" = (
@@ -113687,6 +114176,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -113919,6 +114411,9 @@
 	},
 /obj/effect/decal/cleanable/dirt/grime4,
 /obj/effect/decal/cleanable/dirt/grime1,
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/urban/street/sidewalk{
 	dir = 4
 	},
@@ -114427,6 +114922,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "vYR" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "vYT" = (
@@ -114458,6 +114954,9 @@
 	layer = 4;
 	pixel_x = 1;
 	pixel_y = 14
+	},
+/obj/machinery/light/blue{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/west_caves)
@@ -114593,6 +115092,7 @@
 /area/lv759/indoors/wy_security/checkpoint_east)
 "waV" = (
 /obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/metal/bluemetal1,
 /area/lv759/indoors/spaceport/flight_control_room)
 "wbc" = (
@@ -114720,6 +115220,9 @@
 /obj/item/paper,
 /obj/item/tool/pen/blue,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/red,
@@ -115082,10 +115585,10 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "weT" = (
+/obj/structure/table/mainship,
 /obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/structure/table/mainship,
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 8
 	},
@@ -115249,6 +115752,9 @@
 	pixel_y = 16
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/orange_edge{
@@ -115806,6 +116312,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/light/blue{
+	dir = 1
+	},
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "wnh" = (
@@ -116100,6 +116609,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /obj/structure/table/black,
+/obj/machinery/light/blue,
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 10
 	},
@@ -116173,12 +116683,12 @@
 "wra" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/prop/mainship/gelida/planterboxsoil{
+	dir = 9
+	},
 /obj/machinery/light/spot/blue{
 	dir = 1;
 	pixel_y = 22
-	},
-/obj/structure/prop/mainship/gelida/planterboxsoil{
-	dir = 9
 	},
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
@@ -116534,6 +117044,9 @@
 /area/lv759/indoors/weyyu_office/floor)
 "wuY" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light/blue{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -118403,6 +118916,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/urban/metal/zbrownfloor1{
 	dir = 8
 	},
@@ -118474,6 +118990,9 @@
 	dir = 1;
 	layer = 3.33;
 	pixel_y = 2
+	},
+/obj/machinery/light/blue{
+	dir = 1
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -118588,14 +119107,14 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wPX" = (
-/obj/machinery/light/small/blue{
-	dir = 4
-	},
 /obj/item/clothing/head/hardhat{
 	pixel_x = 4;
 	pixel_y = 7
 	},
 /obj/structure/largecrate/random/barrel/black,
+/obj/machinery/light/small/blue{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -119152,6 +119671,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
@@ -119363,6 +119885,9 @@
 "wYD" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/light/blue{
 	dir = 1
 	},
 /turf/open/floor/urban_wood,
@@ -119637,7 +120162,6 @@
 /turf/open/floor/kutjevo/fake_wood,
 /area/lv759/indoors/bar)
 "xby" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
@@ -119650,6 +120174,7 @@
 	pixel_x = 1;
 	pixel_y = 1
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/wy_research_complex/cargo)
 "xbJ" = (
@@ -119733,7 +120258,6 @@
 	pixel_x = -8;
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/glass,
 /obj/effect/decal/cleanable/blood/oil{
 	alpha = 175;
 	color = "#0079ff";
@@ -119753,6 +120277,10 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
+/obj/item/prop/paint/blue,
 /turf/open/floor/tile/dark/brown3{
 	dir = 5
 	},
@@ -120034,8 +120562,8 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_caves)
 "xfb" = (
-/obj/machinery/light/spot/blue,
 /obj/structure/closet/secure_closet/personal,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_foyer)
 "xfd" = (
@@ -120112,6 +120640,9 @@
 	pixel_y = 3
 	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light/blue{
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -120588,6 +121119,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "xkU" = (
@@ -120785,11 +121319,11 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "xnj" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -121049,10 +121583,10 @@
 	name = "floor panel"
 	},
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/structure/catwalk,
 /obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/obj/structure/catwalk,
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/wy_research_complex/hangarbay)
 "xqF" = (
@@ -121366,8 +121900,8 @@
 	},
 /area/lv759/indoors/power_plant/south_hallway)
 "xui" = (
-/obj/machinery/light/spot/blue,
 /obj/structure/lattice/autosmooth,
+/obj/machinery/light/spot/blue,
 /turf/open/floor/prison{
 	dir = 8
 	},
@@ -122048,13 +122582,13 @@
 /area/lv759/indoors/garage_reception)
 "xBA" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/glass{
+/obj/item/prop/paint{
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/glass,
+/obj/item/prop/paint,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/meridian/meridian_factory)
 "xBB" = (
@@ -123852,12 +124386,12 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "xRz" = (
-/obj/machinery/light/spot/blue,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
 	},
+/obj/machinery/light/spot/blue,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -123881,6 +124415,24 @@
 /obj/effect/urban/decal/dirt,
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/recycling_plant/garage)
+"xRI" = (
+/obj/structure/platform{
+	dir = 1;
+	layer = 1
+	},
+/obj/structure/platform{
+	dir = 1;
+	layer = 1
+	},
+/obj/structure/table/mainship{
+	color = "#848484"
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1;
+	pixel_y = 22
+	},
+/turf/open/floor/urban/metal/zbrownfloor_full,
+/area/lv759/indoors/meridian/meridian_factory)
 "xRJ" = (
 /obj/machinery/iv_drip{
 	pixel_y = 19
@@ -123933,6 +124485,9 @@
 	dir = 8
 	},
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer3,
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart)
 "xSj" = (
@@ -124164,6 +124719,9 @@
 	layer = 4
 	},
 /obj/structure/largecrate/random/barrel/red,
+/obj/machinery/light/blue{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -124547,13 +125105,13 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
 /obj/structure/largecrate/random/case/small,
 /obj/structure/largecrate/random/mini/small_case{
 	pixel_x = -9;
 	pixel_y = 10
+	},
+/obj/machinery/light/spot/blue{
+	dir = 8
 	},
 /turf/open/floor/orange_edge{
 	dir = 4
@@ -126444,7 +127002,7 @@ ixn
 tKu
 ixn
 vUu
-yeY
+orW
 yeY
 eQz
 eQz
@@ -156825,13 +157383,13 @@ bJB
 bqx
 cme
 xqF
-gQE
+uJs
 sGI
 lmV
 oTJ
-lmV
+grb
 sGI
-sOn
+xRI
 gmx
 xGI
 fxb
@@ -160101,11 +160659,11 @@ tLf
 xcy
 vhq
 nmO
-gQE
+uJs
 sGI
 qwS
 cwz
-qwS
+prW
 eMJ
 ivd
 gmx
@@ -180647,7 +181205,7 @@ wVX
 wVX
 wVX
 wVX
-wVX
+oOU
 wVX
 mpS
 dPX

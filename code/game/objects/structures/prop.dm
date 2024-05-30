@@ -1055,6 +1055,36 @@
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
+/obj/item/prop/paint
+	name = "paint bucket"
+	desc = "It's a paint bucket."
+	icon_state = "paint_empty"
+	icon = 'icons/obj/items/items.dmi'
+
+/obj/item/prop/paint/red
+	icon_state = "paint_red"
+
+/obj/item/prop/paint/green
+	icon_state = "paint_green"
+
+/obj/item/prop/paint/neutral
+	icon_state = "paint_neutral"
+
+/obj/item/prop/paint/yellow
+	icon_state = "paint_yellow"
+
+/obj/item/prop/paint/black
+	icon_state = "paint_black"
+
+/obj/item/prop/paint/white
+	icon_state = "paint_white"
+
+/obj/item/prop/paint/blue
+	icon_state = "paint_blue"
+
+/obj/item/prop/paint/violet
+	icon_state = "paint_violet"
+
 ///BROKEN MARINE VENDOR PROPS
 
 /obj/structure/prop/brokenvendor
