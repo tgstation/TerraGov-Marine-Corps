@@ -10286,12 +10286,16 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bZs" = (
-/obj/structure/lattice/autosmooth{
-	pixel_x = 6;
-	pixel_y = 19
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4;
+	pixel_x = 1;
+	pixel_y = -1
 	},
-/turf/closed/wall/urban/colony,
-/area/lv759/indoors/meridian/meridian_factory)
+/obj/structure/stairs/seamless/edge{
+	color = "#a6aeab"
+	},
+/turf/open/floor/sandrock,
+/area/lv759/outdoors/north_west_caves_outdoors)
 "bZz" = (
 /obj/machinery/smartfridge/chemistry/virology,
 /turf/open/floor/prison{
@@ -58629,7 +58633,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/sandrock,
-/area/lv759/outdoors/north_west_caves_outdoors)
+/area/lv759/indoors/north_west_caves)
 "lsW" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_y = 19
@@ -88369,17 +88373,6 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/lv759/oob)
-"qYQ" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4;
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/structure/stairs/seamless/edge{
-	color = "#a6aeab"
-	},
-/turf/open/floor/sandrock,
-/area/lv759/indoors/north_west_caves)
 "qYR" = (
 /obj/machinery/conveyor,
 /obj/item/tool/crowbar/red,
@@ -128329,7 +128322,7 @@ sor
 sWz
 iPO
 aZZ
-qYQ
+lsR
 pkS
 hFS
 oNI
@@ -133086,7 +133079,7 @@ hOW
 eWQ
 tJs
 pjG
-lsR
+bZs
 cMS
 utz
 fKn
@@ -160069,7 +160062,7 @@ xcy
 vhq
 nmO
 gQE
-bZs
+sGI
 qwS
 cwz
 qwS
