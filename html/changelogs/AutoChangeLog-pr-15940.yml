@@ -1,5 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - bugfix: "ert spawning naked"
-  - imageadd: "icons for xmdivider, vsd pistol, mapblips, hudicon, holstered sprites on all weapons"
