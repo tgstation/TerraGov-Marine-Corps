@@ -69,7 +69,7 @@
 		repair_damage(max_integrity, user)
 		cut = 0
 		density = TRUE
-		icon = 'icons/obj/smooth_objects/fence.dmi'
+		icon = initial(icon)
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
@@ -124,7 +124,7 @@
 		new /obj/item/stack/rods(loc)
 	cut = TRUE
 	density = FALSE
-	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
+	icon = destroyed_icon
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()

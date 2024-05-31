@@ -72,6 +72,8 @@
 
 	probability = 60
 	repeatable = TRUE
+	weather_duration_lower = 2000
+	weather_duration_upper = 2500
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
 	L.wash()

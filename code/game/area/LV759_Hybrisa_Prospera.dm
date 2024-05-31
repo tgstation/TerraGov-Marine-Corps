@@ -12,16 +12,21 @@
 	name = "Hybrisa - Indoors"
 	icon_state = "cliff_blocked"//because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_METAL
+	outside = FALSE
+	always_unpowered = FALSE
 
 /area/lv759/outdoors
 	name = "Hybrisa - Outdoors"
 	icon_state = "cliff_blocked"//because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/lv759/oob
 	name = "Out Of Bounds"
 	icon_state = "oob"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
+	always_unpowered = TRUE
 
 // Landing Zone 1
 /area/lv759/outdoors/landing_zone_1
@@ -154,6 +159,7 @@
 	name = "Caverns - Plateau"
 	icon_state = "caves_plateau"
 	ceiling = CEILING_NONE
+	outside = FALSE
 
 // Colony Streets
 /area/lv759/outdoors/colony_streets
@@ -662,6 +668,7 @@
 	name = "Nanotrasen - Resource Recovery Facility"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/recycling_plant/garage
 	name = "Nanotrasen - Resource Recovery Facility - Garage"
 	minimap_color = MINIMAP_AREA_COLONY
@@ -669,19 +676,23 @@
 	name = "Synthetic Storage"
 	icon_state = "synthetic"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/recycling_plant_office
 	name = "Nanotrasen - Resource Recovery Facility - Office"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator
 	name = "Nanotrasen - Resource Recovery Facility - Waste Disposal Incinerating Room"
 	icon_state = "recycling"
 	minimap_color = MINIMAP_AREA_COLONY
+
 // Restrooms
 /area/lv759/indoors/south_public_restroom
 	name = "Public Restroom - South"
 	icon_state = "restroom"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/southwest_public_restroom
 	name = "Public Restroom - Southwest"
 	icon_state = "restroom"
@@ -692,14 +703,17 @@
 	name = "Night Gold Casino"
 	icon_state = "nightgold"
 	minimap_color = MINIMAP_AREA_ENGI
+
 /area/lv759/indoors/casino/casino_office
 	name = "Night Gold Casino - Managers Office"
 	icon_state = "nightgold"
 	minimap_color = MINIMAP_AREA_ENGI
+
 /area/lv759/indoors/casino/casino_restroom
 	name = "Night Gold Casino - Restroom"
 	icon_state = "nightgold"
 	minimap_color = MINIMAP_AREA_ENGI
+
 /area/lv759/indoors/casino/casino_vault
 	name = "Night Gold Casino - Vault"
 	icon_state = "nightgold"
@@ -727,6 +741,7 @@
 	name = "ntmart - Backrooms"
 	icon_state = "ntmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/lv759/indoors/ntmart/maintenance
 	name = "ntmart - Maintenance"
 	icon_state = "ntmartbackrooms"
@@ -737,15 +752,19 @@
 	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
 	minimap_color = MINIMAP_AREA_COLONY
+
 /area/lv759/indoors/wy_security/checkpoint_east
 	name = "Nanotrasen Security Checkpoint - East"
 	icon_state = "security_checkpoint_east"
+
 /area/lv759/indoors/wy_security/checkpoint_central
 	name = "Nanotrasen Security Checkpoint - Central"
 	icon_state = "security_checkpoint_central"
+
 /area/lv759/indoors/wy_security/checkpoint_west
 	name = "Nanotrasen Security Checkpoint - West"
 	icon_state = "security_checkpoint_west"
+
 /area/lv759/indoors/wy_security/checkpoint_northwest
 	name = "Nanotrasen Security Checkpoint - North West"
 	icon_state = "security_checkpoint_northwest"

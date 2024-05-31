@@ -242,16 +242,17 @@
 	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
 	icon_state = "street_off"
 	layer = ABOVE_MOB_LAYER
+	brightness_on = 10
 
-/*
-/obj/machinery/floodlight/colony/street/update_icon()
-	if(obj_integrity >= 100)
+/obj/machinery/floodlight/colony/street/update_icon_state()
+	var/area/A = get_area(src)
+	if(obj_integrity != initial(max_integrity))
 		icon_state = "street_dmg"
-	else if(turned_on)
+	else if(A.power_light)
+		icon_state = "street_on"
 		icon_state = "street_on"
 	else
 		icon_state = "street_off"
-*/
 
 // Traffic
 
@@ -266,16 +267,19 @@
 	max_integrity = 200
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	brightness_on = 10
 
-/*
-/obj/machinery/floodlight/colony/traffic/update_icon()
-	if(obj_integrity >= 100)
+/obj/machinery/floodlight/colony/traffic/update_icon_state()
+	var/area/A = get_area(src)
+	if(obj_integrity != initial(max_integrity))
 		icon_state = "trafficlight_damaged"
-	else if(turned_on)
+		set_light(0)
+	else if(A.power_light)
 		icon_state = "trafficlight_on"
+		set_light(2, 5, COLOR_WHITE)
 	else
 		icon_state = "trafficlight"
-*/
+		set_light(0)
 
 /obj/machinery/floodlight/colony/traffic_alt
 	name = "traffic light"
@@ -288,15 +292,16 @@
 	max_integrity = 200
 	layer = ABOVE_MOB_LAYER
 
-	/*
-/obj/machinery/floodlight/colony/traffic_alt/update_icon()
-	if(obj_integrity >= 100)
+/obj/machinery/floodlight/colony/traffic_alt/update_icon_state()
+	if(obj_integrity != initial(max_integrity))
 		icon_state = "trafficlight_alt_damaged"
-	else if(turned_on)
+		set_light(0)
+	else if(light_on)
 		icon_state = "trafficlight_alt_on"
+		set_light(7, 5, COLOR_WHITE)
 	else
 		icon_state = "trafficlight_alt"
-	*/
+		set_light(0)
 
 /obj/machinery/floodlight/colony/engineer_circular
 	name = "circular light"
@@ -310,12 +315,14 @@
 	light_color =  "#00ffa0"
 	light_power = 6
 
-	/*
-/obj/machinery/colony_floodlight/engineer_circular/update_icon()
-	if(obj_integrity >= 100)
+/obj/machinery/colony_floodlight/engineer_circular/update_icon_state()
+	var/area/A = get_area(src)
+	if(obj_integrity != initial(max_integrity))
 		icon_state = "engineerlight_off"
-	else if(turned_on)
+		set_light(0)
+	else if(A.power_light)
 		icon_state = "engineerlight_on"
+		set_light(10, 5, COLOR_WHITE)
 	else
 		icon_state = "engineerlight_off"
-	*/
+		set_light(0)

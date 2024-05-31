@@ -6,13 +6,18 @@
 	layer = WALL_OBJ_LAYER
 	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
 	/// The clean version of the sprite, which we replace in initialize when the sign loads in game
-	var/base_icon = 'icons/obj/decals.dmi' 
+	var/base_icon = 'icons/obj/decals.dmi'
+	///if true try to automatically find the nearest wall and put ourselves on it
+	var/autoplace = TRUE
 
 /obj/structure/sign/Initialize(mapload)
 	. = ..()
 	if(!directional) //if not directional do not initialize to a x or y offset
 		return
 	icon = base_icon
+	if(autoplace)
+		place_poster()
+		return
 	switch(dir)
 		if(NORTH)
 			pixel_y = 32
@@ -22,6 +27,56 @@
 			pixel_x = 30
 		if(WEST)
 			pixel_x = -30
+
+/obj/structure/sign/proc/place_poster()
+	var/turf/locatedturf
+	switch(dir)
+		if(NORTH)
+			locatedturf = get_step(loc, NORTH)
+		if(SOUTH)
+			locatedturf = get_step(loc, SOUTH)
+		if(EAST)
+			locatedturf = get_step(loc, EAST)
+		if(WEST)
+			locatedturf = get_step(loc, WEST)
+	if(isclosedturf(locatedturf))
+		switch(dir)
+			if(NORTH)
+				pixel_y = 32
+			if(SOUTH)
+				pixel_y = -32
+			if(EAST)
+				pixel_x = 30
+			if(WEST)
+				pixel_x = -30
+	else
+		locatedturf = get_turf(loc)
+		if(isclosedturf(locatedturf))
+			return
+		for(var/i in CARDINAL_ALL_DIRS)
+			locatedturf = get_step(loc, i)
+			if(isclosedturf(locatedturf))
+				switch(i)
+					if(NORTH)
+						pixel_y = 32
+					if(NORTHEAST)
+						pixel_y = 32
+						pixel_x = 30
+					if(NORTHWEST)
+						pixel_y = 32
+						pixel_x = -30
+					if(SOUTH)
+						pixel_y = -32
+					if(SOUTHWEST)
+						pixel_y = -32
+						pixel_x = -30
+					if(SOUTHEAST)
+						pixel_y = -32
+						pixel_x = 30
+					if(EAST)
+						pixel_x = 30
+					if(WEST)
+						pixel_x = -30
 
 /obj/structure/sign/ex_act(severity)
 	if(severity == EXPLODE_WEAK)

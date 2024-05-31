@@ -62,59 +62,77 @@
 
 // Hybrisa Barricades
 
-/obj/structure/barricade/handrail/hybrisa
+/obj/structure/barricade/handrail/urban
 	icon_state = "plasticroadbarrierred"
 	stack_amount = 0 //we do not want it to drop any stuff when destroyed
 	destroyed_stack_amount = 0
+	barricade_type = "plasticroadbarrierred"
 
 // Plastic
 /obj/structure/barricade/handrail/urban/road/plastic
 	name = "plastic road barrier"
 	icon_state = "plasticroadbarrierred"
+	barricade_type = "plasticroadbarrierred"
 
 /obj/structure/barricade/handrail/urban/road/plastic/red
 	name = "plastic road barrier"
 	icon_state = "plasticroadbarrierred"
+	barricade_type = "plasticroadbarrierred"
 
 /obj/structure/barricade/handrail/urban/road/plastic/blue
 	name = "plastic road barrier"
 	icon_state = "plasticroadbarrierblue"
+	barricade_type = "plasticroadbarrierblue"
 
 /obj/structure/barricade/handrail/urban/road/plastic/black
 	name = "plastic road barrier"
 	icon_state = "plasticroadbarrierblack"
+	barricade_type = "plasticroadbarrierblack"
 
 //Wood
 
 /obj/structure/barricade/handrail/urban/road/wood
 	name = "wood road barrier"
 	icon_state = "roadbarrierwood"
+	barricade_type = "roadbarrierwood"
 
 /obj/structure/barricade/handrail/urban/road/wood/orange
 	name = "wood road barrier"
 	icon_state = "roadbarrierwood"
+	barricade_type = "roadbarrierwood"
 
 /obj/structure/barricade/handrail/urban/road/wood/blue
 	name = "wood road barrier"
 	icon_state = "roadbarrierpolice"
+	barricade_type = "roadbarrierpolice"
 
 // Metal
 /obj/structure/barricade/handrail/urban/road/metal
 	name = "metal road barrier"
 	icon_state = "centerroadbarrier"
+	barricade_type = "centerroadbarrier"
+
 /obj/structure/barricade/handrail/urban/road/metal/metaltan
 	name = "metal road barrier"
 	icon_state = "centerroadbarrier"
+	barricade_type = "centerroadbarrier"
+
 /obj/structure/barricade/handrail/urban/road/metal/metaldark
 	name = "metal road barrier"
 	icon_state = "centerroadbarrier2"
+	barricade_type = "centerroadbarrier2"
+
 /obj/structure/barricade/handrail/urban/road/metal/metaldark2
 	name = "metal road barrier"
 	icon_state = "centerroadbarrier3"
+	barricade_type = "centerroadbarrier3"
+
 /obj/structure/barricade/handrail/urban/road/metal/double
 	name = "metal road barrier"
 	icon_state = "centerroadbarrierdouble"
+	barricade_type = "centerroadbarrierdouble"
 
 /obj/structure/barricade/handrail/urban/handrail
 	name = "haindrail"
 	icon_state = "handrail_hybrisa"
+	barricade_type = "handrail_hybrisa"
