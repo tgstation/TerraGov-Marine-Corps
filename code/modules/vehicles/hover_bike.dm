@@ -18,9 +18,9 @@
 	max_occupants = 2
 	pixel_x = -22
 	pixel_y = -22
-	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
-	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
-	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE, ATTACHMENT_SLOT_WEAPON)
+	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/minigun)
+	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/minigun)
 
 /obj/vehicle/ridden/hover_bike/Initialize(mapload)
 	. = ..()
@@ -52,6 +52,12 @@
 	add_occupant(M)
 	M.pass_flags |= pass_flags
 	return ..()
+
+/obj/vehicle/ridden/hover_bike/auto_assign_occupant_flags(mob/M)
+	. = ..()
+	if(!is_driver(M))
+		return
+	add_control_flags(M, VEHICLE_CONTROL_EQUIPMENT)
 
 /obj/vehicle/ridden/hover_bike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
