@@ -329,6 +329,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //How long it takes for a human to become undefibbable
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
 
+///Default living `maxHealth`
+#define LIVING_DEFAULT_MAX_HEALTH 100
 
 //species_flags
 #define NO_BLOOD (1<<0)
@@ -518,6 +520,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
 #define CASTE_HAS_WOUND_MASK (1<<16) //uses an alpha mask for wounded states
+#define CASTE_EXCLUDE_STRAINS (1<<17) // denotes castes/basetypes that should be excluded from being evoable as a strain
 
 // Xeno defines that affect evolution, considering making a new var for these
 #define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions
@@ -631,6 +634,54 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
 #define TENTACLE_ABILITY_RANGE 5
+
+// Pyrogen defines
+/// Damage per melting fire stack
+#define PYROGEN_DAMAGE_PER_STACK 2.5
+/// Amount of ticks of fire removed when helped by another human to extinguish
+#define PYROGEN_ASSIST_REMOVAL_STRENGTH 2
+/// How fast the pyrogen moves when charging using fire charge
+#define PYROGEN_CHARGESPEED 3
+/// Maximum charge distance.
+#define PYROGEN_CHARGEDISTANCE 3
+/// Damage on hitting a mob using fire charge
+#define PYROGEN_FIRECHARGE_DAMAGE 10
+/// Bonus damage per fire stack
+#define PYROGEN_FIRECHARGE_DAMAGE_PER_STACK 5
+/// Bonus damage for directly hitting someone
+#define PYROGEN_FIREBALL_DIRECT_DAMAGE 30
+/// Damage in a 3x3 AOE when we hit anything
+#define PYROGEN_FIREBALL_AOE_DAMAGE 20
+/// Fire stacks on FIREBALL burst in the 3x3 AOE
+#define PYROGEN_FIREBALL_MELTING_STACKS 2
+/// How many turfs can our fireball move
+#define PYROGEN_FIREBALL_MAXDIST 8
+/// How fast the fireball moves
+#define PYROGEN_FIREBALL_SPEED 1
+/// How much damage the fire does per tick or cross.
+#define PYROGEN_MELTING_FIRE_DAMAGE 10
+/// How many melting fire effect stacks we give per tick or cross
+#define PYROGEN_MELTING_FIRE_EFFECT_STACK 2
+/// How many  tornadoes we unleash when using the firestorm
+#define PYROGEN_FIRESTORM_TORNADE_COUNT 3
+/// Damage on fire tornado hit
+#define PYROGEN_TORNADE_HIT_DAMAGE 15
+/// melting fire stacks on fire tornado hit
+#define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
+/// damage on direct hit with the heatray
+#define PYROGEN_HEATRAY_HIT_DAMAGE 50
+/// damage per melting fire stack
+#define PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK 10
+/// Range for the heatray
+#define PYROGEN_HEATRAY_RANGE 7
+/// Time before the beam fires
+#define PYROGEN_HEATRAY_CHARGEUP 1 SECONDS
+/// Max duration of the heatray
+#define PYROGEN_HEATRAY_MAXDURATION 3 SECONDS
+/// Time between each refire of the pyrogen heatray (in 3 seconds it will fire 3 times)
+#define PYROGEN_HEATRAY_REFIRE_TIME 1 SECONDS
+/// Amount of stacks removed per resist.
+#define PYROGEN_MELTING_FIRE_STACKS_PER_RESIST 4
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
@@ -823,9 +874,9 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 // Pheromones and buff orders
 
-#define AURA_XENO_RECOVERY "Recovery"
-#define AURA_XENO_WARDING "Warding"
-#define AURA_XENO_FRENZY "Frenzy"
+#define AURA_XENO_RECOVERY "recovery"
+#define AURA_XENO_WARDING "warding"
+#define AURA_XENO_FRENZY "frenzy"
 
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
