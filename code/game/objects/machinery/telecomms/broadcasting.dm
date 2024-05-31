@@ -199,6 +199,20 @@
 			continue
 		hearer.Hear(rendered, virt, language, message, frequency, spans)
 
+
+	//Now we can handle radio TTS for squads
+
+	var/mob/living/carbon/human/speaker = virt.source
+	if(speaker?.assigned_squad && speaker.voice && !(speaker.client?.prefs.muted & MUTE_TTS) && !is_banned_from(speaker.ckey, "TTS"))
+		var/headset_target = HEADSET_TTS_ALL
+		if(speaker.assigned_squad.squad_leader == speaker)
+			headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
+
+		for(var/mob/living/carbon/human/potential_squadmate in receive)
+			var/obj/item/radio/headset/radio = potential_squadmate.wear_ear
+			if(speaker.assigned_squad != potential_squadmate.assigned_squad && radio.squad_tts_mode >= headset_target )
+				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), potential_squadmate, html_decode(message), language, speaker.voice, potential_squadmate.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO)
+
 	var/spans_part = ""
 	if(length(spans))
 		spans_part = "(spans:"
