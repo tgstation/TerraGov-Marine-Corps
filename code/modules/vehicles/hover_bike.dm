@@ -1,6 +1,3 @@
-#define FUEL_PER_CAN_POUR 100
-///Fuel limit when you will recieve an alert for low fuel message
-#define LOW_FUEL_LEFT_MESSAGE 100
 /obj/vehicle/ridden/hover_bike
 	name = "hover bike"
 	desc = "desc here"
@@ -21,19 +18,15 @@
 	max_occupants = 2
 	pixel_x = -22
 	pixel_y = -22
-	///Fuel count, fuel usage is one per tile moved
-	var/fuel_count = 0
-	///max fuel that this bike can hold
-	var/fuel_max = 1000
-	COOLDOWN_DECLARE(enginesound_cooldown)
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
+	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
+	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
 
 /obj/vehicle/ridden/hover_bike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/hover_bike)
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
-	create_storage(/datum/storage/internal/motorbike_pack)
 	update_icon()
-	fuel_count = fuel_max
 
 /obj/vehicle/ridden/hover_bike/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -44,7 +37,6 @@
 	if(!ishuman(user))
 		return
 	. += "To access internal storage click with an empty hand or drag the bike onto self."
-	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
 /obj/vehicle/ridden/hover_bike/update_overlays()
 	. = ..()
@@ -63,46 +55,6 @@
 
 /obj/vehicle/ridden/hover_bike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
-
-/obj/vehicle/ridden/hover_bike/relaymove(mob/living/user, direction)
-	if(fuel_count <= 0)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
-			to_chat(user, span_warning("There is no fuel left!"))
-			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
-		return FALSE
-	return ..()
-
-/obj/vehicle/ridden/hover_bike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
-	. = ..()
-	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
-		return
-	fuel_count--
-	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
-		for(var/mob/rider AS in buckled_mobs)
-			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
-	/*
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, 20)
-		playsound(get_turf(src), 'sound/vehicles/carrev.ogg', 100, TRUE)
-	**/
-
-/obj/vehicle/ridden/hover_bike/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/reagent_containers/jerrycan))
-		var/obj/item/reagent_containers/jerrycan/gascan = I
-		if(gascan.reagents.total_volume == 0)
-			balloon_alert(user, "Out of fuel!")
-			return
-		if(fuel_count >= fuel_max)
-			balloon_alert(user, "Already full!")
-			return
-
-		var/fuel_transfer_amount = min(gascan.fuel_usage*2, gascan.reagents.total_volume)
-		gascan.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		fuel_count = min(fuel_count + FUEL_PER_CAN_POUR, fuel_max)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "[fuel_count/fuel_max*100]%")
-		return TRUE
-	return ..()
 
 /obj/vehicle/ridden/hover_bike/obj_break()
 	START_PROCESSING(SSobj, src)
@@ -123,7 +75,3 @@
 
 /obj/vehicle/ridden/hover_bike/lava_act()
 	return //we flying baby
-
-
-#undef FUEL_PER_CAN_POUR
-#undef LOW_FUEL_LEFT_MESSAGE
