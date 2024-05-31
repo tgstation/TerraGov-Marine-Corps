@@ -16,12 +16,16 @@
 	return ..()
 
 /obj/item/cell/process()
-	if(self_recharge)
-		if(world.time >= last_use + charge_delay)
-			give(charge_amount)
-			update_icon()
-	else
+	if(!self_recharge)
 		return PROCESS_KILL
+	if(world.time < last_use + charge_delay)
+		return
+	give(charge_amount)
+	update_icon()
+	if(!isgun(loc))
+		return
+	var/obj/item/weapon/gun/gun_loc = loc
+	gun_loc.update_ammo_count()
 
 /obj/item/cell/update_overlays()
 	. = ..()
@@ -188,6 +192,11 @@
 /obj/item/cell/emp_act(severity)
 	. = ..()
 	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
+	update_icon()
+	if(!isgun(loc))
+		return
+	var/obj/item/weapon/gun/gun_loc = loc
+	gun_loc.update_ammo_count()
 
 /obj/item/cell/ex_act(severity)
 
