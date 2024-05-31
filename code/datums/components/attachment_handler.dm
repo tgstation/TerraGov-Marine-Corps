@@ -18,7 +18,7 @@
 
 /datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
-	if(!isitem(parent))
+	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.slots = slots
@@ -105,7 +105,8 @@
 	var/obj/parent_obj = parent
 	///The gun has another gun attached to it
 	if(isgun(attachment) && isgun(parent))
-		parent_obj:gunattachment = attachment
+		var/obj/item/weapon/gun/gun_parent = parent
+		gun_parent.gunattachment = attachment
 
 	on_attach?.Invoke(attachment, attacker)
 	if(attachment_data[ON_ATTACH])

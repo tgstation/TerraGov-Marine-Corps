@@ -290,3 +290,13 @@
   - rscadd: Added in the Pyrogen xenomorph caste , a T2 caste.
   TiviPlus:
   - soundadd: Decrease gun fire sound volume from 60 to 50
+2024-05-30:
+  Lumipharon:
+  - bugfix: fixed a bug with the chem cap
+  SomrNetwork:
+  - bugfix: ert spawning naked
+  - imageadd: icons for xmdivider, vsd pistol, mapblips, hudicon, holstered sprites
+      on all weapons
+  Wisemonster:
+  - balance: Crusher can no longer crest toss armored vehicles (such as the apc and
+      tank)
