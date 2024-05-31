@@ -105,6 +105,9 @@
 	charge_amount = 24
 	charge_delay = 2 SECONDS
 
+/obj/item/cell/lasgun/volkite/turret/hover_bike
+	charge_amount = 100
+
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
