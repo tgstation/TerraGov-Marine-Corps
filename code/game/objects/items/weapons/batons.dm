@@ -34,7 +34,7 @@
 	on = !on
 	if(on)
 		user.visible_message(span_warning(" With a flick of their wrist, [user] extends their telescopic baton."),\
-		span_warning(" You extend the baton."),\
+		span_warning("You extend the baton."),\
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
 		worn_icon_state = "telebaton_1"
@@ -43,7 +43,7 @@
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(span_notice(" [user] collapses their telescopic baton."),\
-		span_notice(" You collapse the baton."),\
+		span_notice("You collapse the baton."),\
 		"You hear a click.")
 		icon_state = "telebaton_0"
 		worn_icon_state = "telebaton_0"

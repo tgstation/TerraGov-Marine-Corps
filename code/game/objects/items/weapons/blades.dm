@@ -130,7 +130,6 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	equip_slot_flags = ITEM_SLOT_POCKET
-
 	max_amount = 5
 	amount = 5
 	///Delay between throwing.
@@ -139,6 +138,8 @@
 	var/current_target
 	///The person throwing knives
 	var/mob/living/living_user
+	///Do we change sprite depending on the amount left?
+	var/update_on_throwing = TRUE
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
@@ -147,7 +148,8 @@
 
 /obj/item/stack/throwing_knife/update_icon_state()
 	. = ..()
-	icon_state = "throwing_knife_[amount]"
+	if(update_on_throwing)
+		icon_state = "throwing_knife_[amount]"
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
 	. = ..()
@@ -242,17 +244,18 @@
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
-	icon_state = "chainswordoff"
+	icon_state = "chainsword_off"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10
 	throwforce = 5
 	var/on = FALSE
+	var/icon_state_on = "chainsword_on"
 
 /obj/item/weapon/chainsword/attack_self(mob/user)
 	. = ..()
 	if(!on)
 		on = !on
-		icon_state = "[initial(icon_state)]_on"
+		icon_state = icon_state_on
 		force = 80
 		throwforce = 30
 	else
@@ -272,4 +275,5 @@
 /obj/item/weapon/chainsword/civilian
 	name = "chainsaw"
 	desc = "A chainsaw. Good for turning big things into little things."
-	icon_state = "chainsaw"
+	icon_state = "chainsaw_off"
+	icon_state_on = "chainsaw_on"

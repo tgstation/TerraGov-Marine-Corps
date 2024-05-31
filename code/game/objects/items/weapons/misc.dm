@@ -190,3 +190,4 @@
 	singular_name = "stone"
 	atom_flags = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM
+	update_on_throwing = FALSE

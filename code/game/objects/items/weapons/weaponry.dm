@@ -48,7 +48,8 @@
 /obj/item/weapon/baseballbat
 	name = "\improper wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
-	icon_state = "woodbat"
+	icon = 'icons/obj/items/weapons/bat.dmi'
+	icon_state = "wood"
 	worn_icon_state = "woodbat"
 	sharp = 0
 	edge = 0
@@ -63,7 +64,7 @@
 /obj/item/weapon/baseballbat/metal
 	name = "\improper metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
-	icon_state = "metalbat"
+	icon_state = "metal"
 	worn_icon_state = "metalbat"
 	force = 25
 	w_class = WEIGHT_CLASS_NORMAL
