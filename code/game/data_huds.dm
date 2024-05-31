@@ -585,7 +585,9 @@
 	holder.overlays.Cut()
 
 	if(assigned_squad)
-		var/squad_color = assigned_squad.color
+		var/squad_color = 0
+		if(ismarinejob(job)) //Marines inherit squad colour
+			squad_color = assigned_squad.color
 		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
 			rank = JOB_COMM_TITLE_SQUAD_LEADER

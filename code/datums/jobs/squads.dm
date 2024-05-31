@@ -7,7 +7,7 @@
 	var/color = 0 //Color for helmets, etc.
 	var/list/access = list() //Which special access do we grant them
 
-	var/current_positions = list(
+	var/list/current_positions = list(
 		SQUAD_MARINE = 0,
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
@@ -15,7 +15,7 @@
 		SQUAD_LEADER = 0,
 		SQUAD_ROBOT = 0, //for campaign
 	)
-	var/max_positions = list(
+	var/list/max_positions = list(
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)
 
@@ -187,10 +187,9 @@
 	if(new_squaddie.assigned_squad)
 		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
-	if(!(new_squaddie.job.title in current_positions))
-		CRASH("Attempted to insert [new_squaddie.job.title] into squad [name]")
-
-	current_positions[new_squaddie.job.title]++
+	if(!(new_squaddie.job.title in current_positions)) //If the job title isn't already registered, register it
+		current_positions += new_squaddie.job.title
+		current_positions[new_squaddie.job.title] = 1
 
 	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
@@ -251,8 +250,11 @@
 
 	if(leaving_squaddie.job.title in current_positions)
 		current_positions[leaving_squaddie.job.title]--
+		if(current_positions[leaving_squaddie.job.title] == 0) //All people with that role have been removed, so we should remove that person
+			current_positions[leaving_squaddie.job.title] = null
+			current_positions -= leaving_squaddie.job.title
 	else
-		stack_trace("Removed [leaving_squaddie.job.title] from squad [name] somehow")
+		stack_trace("Removed [leaving_squaddie.job.title] from squad [name], a role somehow not registered to that squad")
 
 	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))

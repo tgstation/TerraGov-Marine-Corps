@@ -1041,9 +1041,6 @@
 	popup.open(FALSE)
 
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !ismarinejob(job))
-		return FALSE
-
 	var/datum/squad/S = SSjob.squads[squad]
 
 	if(!mind)
