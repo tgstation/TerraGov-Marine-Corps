@@ -192,7 +192,6 @@
 		/obj/item/tool/crowbar/red,
 		/obj/item/flashlight,
 		/obj/item/storage/pill_bottle/packet/tramadol,
-		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/splint,
 		/obj/item/healthanalyzer,
 		/obj/item/tool/extinguisher/mini,
