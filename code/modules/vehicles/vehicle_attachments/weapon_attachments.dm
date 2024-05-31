@@ -3,7 +3,7 @@
 	icon_state = ""
 	slot = ATTACHMENT_SLOT_WEAPON
 	w_class = WEIGHT_CLASS_BULKY
-	attach_features_flags = ATTACH_ACTIVATION
+	attach_features_flags = ATTACH_ACTIVATION|ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	///The gun mounted on a vehicle
 	var/obj/item/weapon/gun/mounted_gun
 
@@ -45,7 +45,7 @@
 	action_icon_state = mounted_gun.icon_state
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/bike_mounted
-	icon = 'icons/obj/items/guns/energy.dmi'
+	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
 	icon_state = "bike_volkite"
 	worn_icon_state = null
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/turret/hover_bike)
@@ -59,15 +59,19 @@
 	recoil_unwielded = 0
 	damage_mult = 0.9
 
-//smelly test minigun
 /obj/item/vehicle_module/mounted_gun/minigun
 	name = "mounted minigun"
 	icon = 'icons/obj/vehicles/hover_bike.dmi'
-	icon_state = "minigun"
+	icon_state = "bike_minigun"
 	should_use_obj_appeareance = FALSE
-	mounted_gun = /obj/item/weapon/gun/minigun/one_handed
+	mounted_gun = /obj/item/weapon/gun/minigun/one_handed/bike_mounted
 
 /obj/item/vehicle_module/mounted_gun/minigun/Initialize(mapload)
 	. = ..()
 	action_icon = mounted_gun.icon
 	action_icon_state = mounted_gun.icon_state
+
+/obj/item/weapon/gun/minigun/one_handed/bike_mounted
+	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
+	icon_state = "bike_minigun"
+	worn_icon_state = null
