@@ -621,3 +621,22 @@
 	corpsehelmet = /obj/item/clothing/head/modular/m10x
 	corpsegloves = /obj/item/clothing/gloves/marine
 	corpseshoes = /obj/item/clothing/shoes/marine
+
+// Freelancer
+/obj/effect/landmark/corpsespawner/freelancer
+	name = "Freelancer mercenary"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine
+
+/obj/effect/landmark/corpsespawner/freelancer_officer
+	name = "Freelancer mercenary"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer/beret
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine
