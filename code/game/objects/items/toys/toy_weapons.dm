@@ -188,7 +188,7 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "sword0"
 	worn_icon_state = "sword0"
 	w_class = WEIGHT_CLASS_SMALL
@@ -219,7 +219,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "katana"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK

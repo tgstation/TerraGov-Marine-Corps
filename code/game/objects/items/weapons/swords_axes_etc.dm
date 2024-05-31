@@ -1,25 +1,10 @@
-/* Weapons
-* Contains:
-*		Banhammer
-*		Classic Baton
-*		Energy Shield
-*/
-
-/*
-* Banhammer
-*/
-/obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
-	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
-	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
-
-
 /*
 * Classic Baton
 */
 /obj/item/weapon/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "baton"
 	worn_icon_state = "classic_baton"
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -37,14 +22,13 @@
 /obj/item/weapon/telebaton
 	name = "telescopic baton"
 	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "telebaton_0"
 	worn_icon_state = "telebaton_0"
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 3
-	var/on = 0
-
+	var/on = FALSE
 
 /obj/item/weapon/telebaton/attack_self(mob/user as mob)
 	on = !on
@@ -83,7 +67,6 @@
 		blood_overlay = I
 
 		overlays += blood_overlay
-
 
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)

@@ -27,7 +27,6 @@
 	bcell = new/obj/item/cell/high(src)
 	update_icon()
 
-
 /obj/item/weapon/baton/proc/deductcharge(chrgdeductamt)
 	if(bcell)
 		if(bcell.use(chrgdeductamt))
@@ -59,11 +58,9 @@
 		return
 	check_user_auth(user)
 
-
 /obj/item/weapon/baton/equipped(mob/user, slot)
 	..()
 	check_user_auth(user)
-
 
 //checks if the mob touching the baton has proper access
 /obj/item/weapon/baton/proc/check_user_auth(mob/user)
@@ -127,7 +124,6 @@
 			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
 			to_chat(user, span_warning("[src] is out of charge."))
-
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
@@ -206,7 +202,6 @@
 	equip_slot_flags = NONE
 	has_user_lock = FALSE
 
-
 /obj/item/weapon/stunprod
 	name = "electrified prodder"
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
@@ -219,11 +214,9 @@
 	var/charges = 12
 	var/status = 0
 
-
 /obj/item/weapon/stunprod/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is putting the live [src] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide."))
 	return FIRELOSS
-
 
 /obj/item/weapon/stunprod/update_icon_state()
 	. = ..()
@@ -231,7 +224,6 @@
 		icon_state = "stunbaton_active"
 	else
 		icon_state = "stunbaton"
-
 
 /obj/item/weapon/stunprod/attack_self(mob/user)
 	if(charges > 0)
@@ -242,7 +234,6 @@
 	else
 		status = 0
 		to_chat(user, span_warning("\The [src] is out of charge."))
-
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HARM)
@@ -265,8 +256,6 @@
 			status = 0
 			update_icon()
 
-
-
 /obj/item/weapon/stunprod/emp_act(severity)
 	. = ..()
 	if(severity == EMP_DEVASTATE)
@@ -276,14 +265,11 @@
 	if(charges < 1)
 		status = 0
 		update_icon()
-
-
 /obj/item/weapon/stunprod/improved
 	charges = 30
 	name = "improved electrified prodder"
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with. This one seems to be much more effective than its predecessor."
 	color = "#FF6666"
-
 
 /obj/item/weapon/stunprod/improved/attack(mob/M, mob/user)
 	. = ..()
@@ -291,7 +277,6 @@
 		return
 	var/mob/living/L = M
 	L.Paralyze(28 SECONDS)
-
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)
 	. = ..()

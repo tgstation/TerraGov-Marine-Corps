@@ -1,5 +1,6 @@
 /obj/item/weapon/shield
 	name = "shield"
+	icon = 'icons/obj/items/weapons/shield.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/shields_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
@@ -16,7 +17,6 @@
 /obj/item/weapon/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
 	item_flags = IMPEDE_JETPACK
@@ -91,7 +91,6 @@
 /obj/item/weapon/shield/riot/marine
 	name = "\improper TL-172 defensive shield"
 	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust. Alt click to tighten the strap."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
 	equip_slot_flags = ITEM_SLOT_BACK
 	max_integrity = 400
@@ -130,7 +129,6 @@
 /obj/item/weapon/shield/riot/marine/som
 	name = "\improper S-144 boarding shield"
 	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "som_shield"
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
 
@@ -138,7 +136,6 @@
 /obj/item/weapon/shield/riot/marine/deployable
 	name = "\improper TL-182 deployable shield"
 	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "folding_shield"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
@@ -166,7 +163,6 @@
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
 	atom_flags = CONDUCT|NOBLOODY
 	force = 3
