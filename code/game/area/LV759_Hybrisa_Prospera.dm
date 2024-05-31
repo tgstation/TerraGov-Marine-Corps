@@ -115,6 +115,7 @@
 /area/lv759/indoors/east_caves
 	name = "Caverns - East"
 	icon_state = "caves_east"
+	always_unpowered = TRUE
 
 /area/lv759/indoors/south_caves
 	name = "Caverns - South"
@@ -127,6 +128,7 @@
 /area/lv759/indoors/south_west_caves
 	name = "Caverns - Southwest"
 	icon_state = "caves_southwest"
+	always_unpowered = TRUE
 
 /area/lv759/indoors/south_west_caves_alarm
 	name = "Caverns - Southwest"
@@ -152,7 +154,7 @@
 /area/lv759/indoors/central_caves
 	name = "Caverns - Central"
 	icon_state = "caves_central"
-
+	always_unpowered = TRUE
 
 // Caves Central Plateau
 /area/lv759/outdoors/caveplateau
