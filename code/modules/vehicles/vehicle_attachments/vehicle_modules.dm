@@ -29,25 +29,25 @@
 	///Time it takes to detach.
 	var/detach_delay = 1.5 SECONDS
 
-	///Layer for the attachment to be applied to.
-	var/attachment_layer
-	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
-	var/prefered_slot = SLOT_WEAR_SUIT
-
 	///List of slots this attachment has.
 	var/list/attachments_by_slot = list()
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
-
 	///Allowed attachment types
 	var/list/attachments_allowed = list()
 
 	///The signal for this module if it can toggled
 	var/toggle_signal
+	///dmi for the action button
+	var/action_icon
+	///icon_state for the action button
+	var/action_icon_state
+	///Whether the obj appearance for this attachment should be used for the action buttno
+	var/should_use_obj_appeareance = TRUE
 
 /obj/item/vehicle_module/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, attachment_layer = attachment_layer)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay)
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
 	update_icon()
 
@@ -82,7 +82,7 @@
 		return
 
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/new_action = new(src)
+	var/datum/action/item_action/toggle/new_action = new(src, src, action_icon, action_icon_state, should_use_obj_appeareance)
 	if(toggle_signal)
 		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(buckling_mob)
@@ -90,7 +90,8 @@
 ///Removes actions if the mob had them
 /obj/item/vehicle_module/proc/on_unbuckle(datum/source, mob/living/unbuckled_mob, force = FALSE)
 	SIGNAL_HANDLER
-	if(!(src in unbuckled_mob.actions))
+	var/obj/vehicle/parent_vehicle = source
+	if(!parent_vehicle.is_equipment_controller(unbuckled_mob))
 		return
 	LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions

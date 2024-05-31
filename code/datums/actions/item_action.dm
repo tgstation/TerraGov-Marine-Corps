@@ -9,7 +9,11 @@
 	/// Defines wheter we overlay the image of the obj we are linked to
 	var/use_obj_appeareance = TRUE
 
-/datum/action/item_action/New(Target, obj/item/holder)
+/datum/action/item_action/New(Target, obj/item/holder, _action_icon, _action_icon_state, should_use_obj_appeareance = TRUE)
+	if(_action_icon)
+		action_icon = _action_icon
+	if(_action_icon_state)
+		action_icon_state = _action_icon_state
 	. = ..()
 	if(!holder)
 		holder = target
@@ -18,6 +22,7 @@
 	if(!name)
 		name = "Use [target]"
 	button.name = name
+	use_obj_appeareance = should_use_obj_appeareance
 
 /datum/action/item_action/Destroy()
 	LAZYREMOVE(holder_item.actions, src)
