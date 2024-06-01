@@ -9,7 +9,6 @@
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	coverage = 60
-	integrity_failure = 0.5
 	layer = ABOVE_LYING_MOB_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
@@ -28,10 +27,6 @@
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
 	animate_hover()
-
-/obj/vehicle/ridden/hover_bike/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/vehicle/ridden/hover_bike/examine(mob/user)
 	. = ..()
@@ -65,19 +60,6 @@
 
 /obj/vehicle/ridden/hover_bike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
-
-/obj/vehicle/ridden/hover_bike/obj_break()
-	START_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/vehicle/ridden/hover_bike/process()
-	if(obj_integrity >= integrity_failure * max_integrity)
-		return PROCESS_KILL
-	if(prob(20))
-		return
-	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(0, src)
-	smoke.start()
 
 /obj/vehicle/ridden/hover_bike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	explosion(src, light_impact_range = 4, flash_range = 0, flame_range = (rand(33) ? 3 : 0))
