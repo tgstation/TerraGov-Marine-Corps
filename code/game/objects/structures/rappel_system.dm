@@ -318,7 +318,7 @@
 ///This is the rope that the system deploys, a subtype of the HvH deployment rappel.
 ///Created by the rappel system on init and stored in the rappel system when it's not in use
 /obj/effect/rappel_rope/tadpole
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	name = "tadpole rappel rope"
 	light_system = STATIC_LIGHT
 	light_power = 0.5
@@ -379,6 +379,6 @@
 /obj/item/spare_cord
 	name = "Replacement rappel cord box"
 	desc = "A box full of expensive, plasteel-infused spare rappel cord for a rappel system. Click on a rappel system to replace any damaged cord, making the system functional again."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "cordbox"
 	w_class = WEIGHT_CLASS_BULKY
