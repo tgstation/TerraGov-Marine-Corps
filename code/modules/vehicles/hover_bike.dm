@@ -27,6 +27,7 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/hover_bike)
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
+	animate_hover()
 
 /obj/vehicle/ridden/hover_bike/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -46,12 +47,15 @@
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
 	M.pass_flags &= ~pass_flags
-	return ..()
+	. = ..()
+	animate_hover()
+	animate(M)
 
 /obj/vehicle/ridden/hover_bike/post_buckle_mob(mob/living/M)
 	add_occupant(M)
 	M.pass_flags |= pass_flags
-	return ..()
+	. = ..()
+	animate_hover()
 
 /obj/vehicle/ridden/hover_bike/auto_assign_occupant_flags(mob/M)
 	. = ..()
@@ -76,8 +80,16 @@
 	smoke.start()
 
 /obj/vehicle/ridden/hover_bike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 4, flash_range = 0)
+	explosion(src, light_impact_range = 4, flash_range = 0, flame_range = (rand(33) ? 3 : 0))
 	return ..()
 
 /obj/vehicle/ridden/hover_bike/lava_act()
 	return //we flying baby
+
+/obj/vehicle/ridden/hover_bike/proc/animate_hover()
+	var/list/hover_list = list(src)
+	if(length(occupants))
+		hover_list += occupants
+	for(var/atom/atom AS in hover_list)
+		animate(atom, time = 1.2 SECONDS , loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 4)
+		animate(time = 1.2 SECONDS , loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -4)
