@@ -542,8 +542,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "For the quenching of unfortunate mistakes."
 	icon_state = "hydrocannon_pepper"
 
-
-
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
 	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
