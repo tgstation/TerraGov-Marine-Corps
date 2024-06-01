@@ -106,6 +106,7 @@
 	charge_delay = 2 SECONDS
 
 /obj/item/cell/lasgun/volkite/turret/hover_bike
+	maxcharge = 1500
 	charge_amount = 100
 
 /obj/item/cell/lasgun/volkite/powerpack
