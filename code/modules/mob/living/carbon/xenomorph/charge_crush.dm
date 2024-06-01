@@ -29,7 +29,7 @@
 	var/charge_ability_on = FALSE
 	var/valid_steps_taken = 0
 	var/crush_sound = SFX_PUNCH
-	var/speed_per_step = 0.15
+	var/speed_per_step = 0.13
 	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 20
@@ -342,7 +342,7 @@
 	speed_per_step = 0.15
 	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 15
+	crush_living_damage = 32
 	plasma_use_multiplier = 2
 
 
@@ -564,12 +564,12 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
+			Paralyze(CHARGE_SPEED(charge_datum) * 1.5 SECONDS)
 		if(CHARGE_BULL)
 			Paralyze(CHARGE_SPEED(charge_datum) * 0.2 SECONDS)
 		if(CHARGE_BULL_GORE)
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
-			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
+			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 15)
 			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
 
 	if(anchored)
@@ -603,8 +603,6 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				attack_alien_harm(charger, charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, charger.zone_selected, FALSE, TRUE, TRUE) //Free gore attack.
-				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)
 					throw_at(destination, 1, 1, charger, FALSE)
