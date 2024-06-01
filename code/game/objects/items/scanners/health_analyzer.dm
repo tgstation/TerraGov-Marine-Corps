@@ -1,66 +1,5 @@
 GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
-/*
-CONTAINS:
-T-RAY
-DETECTIVE SCANNER
-HEALTH ANALYZER
-GAS ANALYZER
-PLANT ANALYZER
-MASS SPECTROMETER
-REAGENT SCANNER
-*/
-/obj/item/t_scanner
-	name = "\improper T-ray scanner"
-	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "t-ray0"
-	var/on = 0
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_SMALL
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
-	)
-	worn_icon_state = "electronic"
-
-
-/obj/item/t_scanner/attack_self(mob/user)
-
-	on = !on
-	icon_state = "t-ray[on]"
-
-	if(on)
-		START_PROCESSING(SSobj, src)
-
-
-/obj/item/t_scanner/process()
-	if(!on)
-		STOP_PROCESSING(SSobj, src)
-		return null
-
-	for(var/turf/T in range(1, src.loc) )
-
-		if(!T.intact_tile)
-			continue
-
-		for(var/obj/O in T.contents)
-
-			if(!HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-				continue
-
-			if(O.invisibility == INVISIBILITY_MAXIMUM)
-				O.invisibility = 0
-				O.alpha = 128
-				spawn(10)
-					if(O && !O.gc_destroyed)
-						var/turf/U = O.loc
-						if(U.intact_tile)
-							O.invisibility = INVISIBILITY_MAXIMUM
-							O.alpha = 255
-
-
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon = 'icons/obj/device.dmi'
@@ -156,6 +95,8 @@ REAGENT SCANNER
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
 		"max_health" = patient.maxHealth,
+		"crit_threshold" = patient.get_crit_threshold(),
+		"dead_threshold" = patient.get_death_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
@@ -175,8 +116,10 @@ REAGENT SCANNER
 			continue
 		chemicals_lists["[reagent.name]"] = list(
 			"name" = reagent.name,
+			"description" = reagent.description,
 			"amount" = round(reagent.volume, 0.1),
 			"od" = reagent.overdosed,
+			"od_threshold" = reagent.overdose_threshold,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
@@ -265,28 +208,81 @@ REAGENT SCANNER
 		var/current_organ = list(
 			"name" = organ.name,
 			"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
-			"damage" = organ.damage
+			"damage" = organ.damage,
+			"effects" = organ.damage_description,
 		)
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
-	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		data["revivable_string"] = "Permanently deceased" // revivable_string is the actual information. "too much damage" etc.
-		data["revivable_boolean"] = FALSE // revivable_boolean is simply the TRUE/FALSE data entry used by tgui to color the revivable box
-	else if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
-		data["revivable_string"] = "Ready to reboot"
-		data["revivable_boolean"] = TRUE
+	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+	var/revivable_patient = FALSE
+
+	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+		revivable_patient = TRUE
+	else if(issynth(patient))
+		if(patient.health >= patient.get_death_threshold())
+			revivable_patient = TRUE
 	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold())
-		data["revivable_string"] = "Ready to defibrillate"
+		revivable_patient = TRUE
+
+	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
+		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
+		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
+	else if(organic_patient && !patient.has_working_organs())
+		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
+		data["revivable_boolean"] = FALSE
+	else if(revivable_patient)
+		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to defibrillate - repair damage first"
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) : 0]%"
 		data["revivable_boolean"] = FALSE
 
 	// ADVICE
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
+		//random stuff that docs should be aware of. possible todo: make a system so we can put these in a collapsible tgui element if there's more added here.
+		if(patient.maxHealth != LIVING_DEFAULT_MAX_HEALTH)
+			advice += list(list(
+				"advice" = "Patient has [patient.maxHealth / LIVING_DEFAULT_MAX_HEALTH * 100]% constitution.",
+				"tooltip" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less maximum health than most humans." : "Patient has more maximum health than most humans.",
+				"icon" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "heart-broken" : "heartbeat",
+				"color" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink"
+			))
+		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
+		if(issynth(patient)) //specifically checking synth/robot here as these are specific to whichever species
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not heal on defibrillation.",
+				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient overheats while lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]% health.",
+				"tooltip" = "Synthetics overheat rapidly while their health is lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]%. When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not suffer from brain-death.",
+				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+		else if(isrobot(patient))
+			advice += list(list(
+				"advice" = "Combat Robot: Patient can be immediately defibrillated.",
+				"tooltip" = "Combat Robots can be defibrillated regardless of health. It is highly advised to defibrillate them the moment their armor is removed instead of attempting repair.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
+			advice += list(list(
+				"advice" = "Combat Robot: Patient does not enter critical condition.",
+				"tooltip" = "Combat Robots do not enter critical condition. They will continue operating until death at [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
+				"icon" = "robot",
+				"color" = "lime"
+			))
 		if(patient.stat == DEAD) // death advice
 			var/dead_color
 			switch(patient.dead_ticks)
@@ -296,78 +292,90 @@ REAGENT SCANNER
 					dead_color = "orange"
 				if(0.8 * TIME_BEFORE_DNR to INFINITY)
 					dead_color = "red"
-			if(!issynth(patient)) // synthetics don't expire
+			if(!issynth(patient)) // specifically checking for synths here because synths don't expire but robots do
 				advice += list(list(
 					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+					"tooltip" = "This is how long until the patient is permanently unrevivable. Stasis bags pause this timer.",
 					"icon" = "clock",
 					"color" = dead_color
 					))
 			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
 				advice += list(list(
 					"advice" = "Remove patient's suit or armor.",
+					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
 					"icon" = "shield-alt",
 					"color" = "blue"
 					))
-			if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) >= patient.get_death_threshold() || isrobot(patient))
+			if(revivable_patient)
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
+					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
 					"icon" = "bolt",
 					"color" = "yellow"
 					))
-		if(issynth(patient) || isrobot(patient)) // robotic damage advice
-			if(patient.getBruteLoss() > 0)
+		if(patient.getBruteLoss() > 5)
+			if(organic_patient)
 				advice += list(list(
-					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
-					"icon" = "tools",
-					"color" = "red"
-					))
-			if(patient.getFireLoss() > 0)
-				advice += list(list(
-					"advice" = "Use a cable coil or nanopaste to repair the scorched areas.",
-					"icon" = "plug",
-					"color" = "orange"
-					))
-		else // organic damage advice
-			if(patient.getBruteLoss() > 20)
-				advice += list(list(
-					"advice" = "Use trauma kits or sutures to repair the lacerated areas.",
+					"advice" = "Use trauma kits kits or sutures to repair the burned areas.",
+					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
 					"icon" = "band-aid",
 					"color" = "green"
 					))
-			if(patient.getFireLoss() > 20)
+			else
+				advice += list(list(
+					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
+					"tooltip" = "Only a blowtorch or nanopaste can repair dented robotic limbs.",
+					"icon" = "tools",
+					"color" = "red"
+				))
+		if(patient.getFireLoss() > 5)
+			if(organic_patient)
 				advice += list(list(
 					"advice" = "Use burn kits or sutures to repair the burned areas.",
+					"tooltip" = "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
 					"icon" = "band-aid",
 					"color" = "orange"
 					))
+			else
+				advice += list(list(
+					"advice" = "Use cable coils or nanopaste to repair the scorched areas.",
+					"tooltip" = "Only cable coils or nanopaste can repair scorched robotic limbs.",
+					"icon" = "plug",
+					"color" = "orange"
+				))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
-				"advice" = "[patient.species.species_flags & ROBOTIC_LIMBS ? "Patient should seek a robotic cradle - integrity damage" : "Patient should sleep or seek cryo treatment - cellular damage"].",
-				"icon" = "dna",
+				"advice" = organic_patient ? "Patient should sleep or seek cryo treatment - cellular damage." : "Patient should seek a robotic cradle - integrity damage.",
+				"tooltip" = "[organic_patient ? "Cellular damage" : "Integrity damage"] is sustained from psychic draining, special chemicals and special weapons. It can only be healed through the aforementioned methods.",
+				"icon" = organic_patient ? "dna" : "wrench",
 				"color" = "teal"
 				))
 		if(unknown_implants)
 			advice += list(list(
 				"advice" = "Remove embedded objects with tweezers.",
+				"tooltip" = "While moving with embedded objects inside, the patient will randomly sustain Brute damage. Make sure to take some time in between removing large amounts of implants to avoid internal damage.",
 				"icon" = "window-close",
 				"color" = "red"
 				))
-		if(!issynth(patient) && !isrobot(patient)) // human advice, includes chems
+		if(organic_patient) // human advice, includes chems
 			if(patient.status_flags & XENO_HOST)
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
+					"tooltip" = "The patient has been implanted with an alien embryo! Left untreated, it will burst out of their chest. Surgical intervention is strongly advised.",
 					"icon" = "exclamation",
 					"color" = "red"
 					))
 			if(internal_bleeding)
 				advice += list(list(
 					"advice" = "Internal bleeding detected. Cryo treatment advised.",
+					"tooltip" = "Alongside cryogenic treatment, Quick Clot Plus can remove internal bleeding, or normal Quick Clot reduces its symptoms.",
 					"icon" = "tint",
 					"color" = "crimson"
 					))
 			if(infection_message)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"tooltip" = "There are one or more infections detected. If left untreated, they may worsen into Necrosis and require surgery.",
 					"icon" = "biohazard",
 					"color" = "olive"
 					))
@@ -376,9 +384,36 @@ REAGENT SCANNER
 						advice += temp_advice
 				else
 					advice += temp_advice
+			var/datum/internal_organ/brain/brain = patient.internal_organs_by_name["brain"]
+			if(brain.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of alkysine.",
+					"tooltip" = "Significant brain damage detected. Alkysine heals brain damage. If left untreated, patient may be unable to function well.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["Alkysine"])
+					if(chemicals_lists["Alkysine"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/datum/internal_organ/eyes/eyes = patient.internal_organs_by_name["eyes"]
+			if(eyes.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of imidazoline.",
+					"tooltip" = "Eye damage detected. Imidazoline heals eye damage. If left untreated, patient may be unable to see properly.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Imidazoline"])
+					if(chemicals_lists["Imidazoline"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
 			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
+					"tooltip" = "Significant physical trauma detected. Bicaridine reduces brute damage.",
 					"icon" = "syringe",
 					"color" = "red"
 					))
@@ -390,6 +425,7 @@ REAGENT SCANNER
 			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of kelotane to reduce burns.",
+					"tooltip" = "Significant tissue burns detected. Kelotane reduces burn damage.",
 					"icon" = "syringe",
 					"color" = "yellow"
 					))
@@ -401,6 +437,7 @@ REAGENT SCANNER
 			if(patient.getToxLoss() > 15)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dylovene.",
+					"tooltip" = "Significant blood toxins detected. Dylovene will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
 					"icon" = "syringe",
 					"color" = "green"
 					))
@@ -411,7 +448,8 @@ REAGENT SCANNER
 					advice += temp_advice
 			if(patient.getOxyLoss() > 30)
 				temp_advice = list(list(
-					"advice" = "Administer a single dose of dexalin plus.",
+					"advice" = "Administer a single dose of dexalin plus to re-oxygenate patient's blood.",
+					"tooltip" = "If you don't have Dexalin or Dexalin Plus, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
 					"icon" = "syringe",
 					"color" = "blue"
 					))
@@ -423,19 +461,22 @@ REAGENT SCANNER
 			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
 				advice += list(list(
 					"advice" = "Administer a single dose of Isotonic solution.",
+					"tooltip" = "The patient has lost a significant amount of blood. Isotonic solution speeds up blood regeneration significantly.",
 					"icon" = "syringe",
 					"color" = "cyan"
 					))
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
+					"tooltip" = "Nanites purge all medicines except Peridaxon Plus, Quick Clot/Quick Clot Plus and Dylovene.",
 					"icon" = "window-close",
 					"color" = "blue"
 					))
 				advice += temp_advice
-			if(patient.stat != DEAD && patient.health < -50)
+			if(patient.stat != DEAD && patient.health < patient.get_crit_threshold())
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
+					"tooltip" = "When used in hard critical condition, Inaprovaline prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
 					"icon" = "syringe",
 					"color" = "purple"
 					))
@@ -451,6 +492,7 @@ REAGENT SCANNER
 			if(has_pain && !chemicals_lists["Paracetamol"] && !chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
+					"tooltip" = "The patient is experiencing performance impeding pain and may suffer symptoms from sluggishness to collapsing. Tramadol reduces pain.",
 					"icon" = "syringe",
 					"color" = "grey"
 					))
@@ -462,13 +504,15 @@ REAGENT SCANNER
 
 			if(chemicals_lists["Paracetamol"])
 				advice += list(list(
-					"advice" = "Do NOT administer tramadol.",
+					"advice" = "Paracetamol detected - do NOT administer tramadol.",
+					"tooltip" = "The patient has Paracetamol in their system. If Tramadol is administered, it will combine with Paracetamol to make Soporific, an anesthetic.",
 					"icon" = "window-close",
 					"color" = "red"
 					))
 	else
 		advice += list(list(
 			"advice" = "Patient is unrevivable.",
+			"tooltip" = "The patient is permanently deceased. Can occur through being dead longer than 5 minutes, decapitation, DNR on record, or soullessness.",
 			"icon" = "ribbon",
 			"color" = "white"
 			))
@@ -552,141 +596,3 @@ REAGENT SCANNER
 	if(user.a_intent != INTENT_HELP)
 		return
 	analyze_vitals(M, user, TRUE)
-
-
-/obj/item/tool/analyzer
-	desc = "A hand-held environmental scanner which reports current gas levels."
-	name = "analyzer"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "atmos"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-
-/obj/item/tool/analyzer/attack_self(mob/user as mob)
-	..()
-	var/turf/T = get_turf(user)
-	if(!T)
-		return
-
-	playsound(src, 'sound/effects/pop.ogg', 100)
-	var/area/user_area = T.loc
-	var/datum/weather/ongoing_weather = null
-
-	if(!user_area.outside)
-		to_chat(user, span_warning("[src]'s barometer function won't work indoors!"))
-		return
-
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
-		if(W.barometer_predictable && (T.z in W.impacted_z_levels) && W.area_type == user_area.type && !(W.stage == END_STAGE))
-			ongoing_weather = W
-			break
-
-	if(ongoing_weather)
-		if((ongoing_weather.stage == MAIN_STAGE) || (ongoing_weather.stage == WIND_DOWN_STAGE))
-			to_chat(user, span_warning("[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]"))
-			return
-
-		to_chat(user, span_notice("The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds."))
-		if(ongoing_weather.aesthetic)
-			to_chat(user, span_warning("[src]'s barometer function says that the next storm will breeze on by."))
-	else
-		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
-		var/fixed = next_hit ? timeleft(next_hit) : -1
-		if(fixed < 0)
-			to_chat(user, span_warning("[src]'s barometer function was unable to trace any weather patterns."))
-		else
-			to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds]."))
-
-/obj/item/mass_spectrometer
-	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
-	name = "mass-spectrometer"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "spectrometer"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-	var/details = FALSE
-
-/obj/item/mass_spectrometer/Initialize(mapload)
-	. = ..()
-	create_reagents(5, OPENCONTAINER)
-
-/obj/item/mass_spectrometer/on_reagent_change()
-	if(reagents.total_volume)
-		icon_state = initial(icon_state) + "_s"
-	else
-		icon_state = initial(icon_state)
-
-/obj/item/mass_spectrometer/attack_self(mob/user as mob)
-	if (user.stat)
-		return
-	if(!reagents.total_volume)
-		return
-	var/list/blood_traces
-	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.type != /datum/reagent/blood)
-			reagents.clear_reagents()
-			to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
-			return
-		else
-			blood_traces = params2list(R.data["trace_chem"])
-			break
-	var/dat = "Trace Chemicals Found: "
-	for(var/R in blood_traces)
-		dat += "\n\t[R][details ? " ([blood_traces[R]] units)" : "" ]"
-	to_chat(user, "[dat]")
-	reagents.clear_reagents()
-
-
-/obj/item/mass_spectrometer/adv
-	name = "advanced mass-spectrometer"
-	icon_state = "adv_spectrometer"
-	details = TRUE
-
-
-/obj/item/reagent_scanner
-	name = "reagent scanner"
-	desc = "A hand-held reagent scanner which identifies chemical agents."
-	icon_state = "spectrometer"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-	var/details = FALSE
-
-/obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
-	if(!proximity)
-		return
-	if (user.stat)
-		return
-	if(!istype(O))
-		return
-	if(!O.reagents || !length(O.reagents.reagent_list))
-		to_chat(user, span_notice("No chemical agents found in [O]"))
-		return
-	var/dat = ""
-	var/one_percent = O.reagents.total_volume / 100
-	for (var/datum/reagent/R in O.reagents.reagent_list)
-		dat += "\n \t [span_notice(" [R.name][details ? ": [R.volume / one_percent]%" : ""]")]"
-	to_chat(user, span_notice("Chemicals found: [dat]"))
-
-/obj/item/reagent_scanner/adv
-	name = "advanced reagent scanner"
-	icon_state = "adv_spectrometer"
-	details = TRUE

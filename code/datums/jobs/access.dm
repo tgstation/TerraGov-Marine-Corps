@@ -425,6 +425,16 @@
 			. = size ? "ICCG" : "ICC Guard"
 		if("ICC4")
 			. = size ? "ICCL" : "ICC Leader"
+		if("VSD1")
+			. = size ? "JSGT" : "VSD Mládshiy serzhánt"
+		if("VSD2")
+			. = size ? "SSGT" : "VSD Stárshiy serzhánt"
+		if("VSD3")
+			. = size ? "SGM" : "VSD Starshiná"
+		if("VSD4")
+			. = size ? "LT" : "VSD Leytenánt"
+		if("VSD5")
+			. = size ? "COLGEN" : "VSD Generál-polkóvnik"
 		if("MRC1")
 			. = size ? "MERC" : "MERC Heavy"
 		if("MRC2")

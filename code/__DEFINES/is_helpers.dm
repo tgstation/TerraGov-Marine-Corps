@@ -36,8 +36,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
-#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
-
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))
@@ -270,10 +268,11 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
 
+#define isfire(A) istype(A, /obj/fire)
+
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
-
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
