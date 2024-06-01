@@ -76,6 +76,7 @@
 /area/magmoor/cave/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 //Compound Outside
 /area/magmoor/compound

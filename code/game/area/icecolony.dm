@@ -197,6 +197,7 @@
 /area/ice_colony/exterior/underground/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /*
 *  ---------------------
