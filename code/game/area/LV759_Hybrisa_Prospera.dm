@@ -169,6 +169,7 @@
 	name = "Colony Streets"
 	icon_state = "colonystreets_north"
 	ceiling = CEILING_NONE
+	always_unpowered = FALSE
 
 /area/lv759/outdoors/colony_streets/central_streets
 	name = "Central Street - West"
@@ -187,7 +188,7 @@
 	icon_state = "colonystreets_southeast"
 
 /area/lv759/outdoors/colony_streets/south_west_street
-	name = "Colony Streets - Southwest - WY Checkpoint Passthrough"
+	name = "Colony Streets - Southwest - NT Checkpoint Passthrough"
 	icon_state = "colonystreets_southwest"
 	ceiling = CEILING_NONE
 
@@ -281,11 +282,11 @@
 	icon_state = "WYSpaceport"
 
 /area/lv759/indoors/spaceport/starglider
-	name = "WY-LWI StarGlider SG-200"
+	name = "NT-LWI StarGlider SG-200"
 	icon_state = "wydropship"
 	requires_power = FALSE
 /area/lv759/indoors/spaceport/horizon_runner
-	name = "WY-LWI Horizon Runner HR-150"
+	name = "NT-LWI Horizon Runner HR-150"
 	icon_state = "wydropship"
 	requires_power = FALSE
 
@@ -750,7 +751,7 @@
 	icon_state = "ntmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-// WY Security Checkpoints
+// NT Security Checkpoints
 /area/lv759/indoors/wy_security/checkpoint_northeast
 	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
