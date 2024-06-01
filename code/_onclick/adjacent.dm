@@ -123,14 +123,6 @@
 			return TRUE
 	return FALSE
 
-
-/mob/living/silicon/decoy/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
-	for(var/turf/myloc AS in locs)
-		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
-			return TRUE
-	return FALSE
-
-
 /obj/machinery/door/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
