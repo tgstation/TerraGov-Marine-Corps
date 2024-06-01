@@ -2683,3 +2683,112 @@
 
 /obj/item/weapon/gun/rifle/icc_mg/guard
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel)
+
+// VSD weapons
+// L26
+
+/obj/item/weapon/gun/rifle/vsd_lmg
+	name = "\improper L26 support machine gun"
+	desc = "The Syndicate's main all purpose machine gun, chambered in 5.56. It's design seems... outdated yet still reliable. Fires rapidly with devasting kicks, at a cost of movement speed."
+	icon = 'icons/obj/items/guns/machineguns64.dmi'
+	icon_state = "l26"
+	worn_icon_state = "l26"
+	fire_animation = "l26_fire"
+	caliber = CALIBER_556X45 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	max_shells = 200  //codex
+	wield_delay = 1.4 SECONDS
+	aim_slowdown = 0.95
+	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_mg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_mg)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+	)
+
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 20, "under_x" = 31, "under_y" = 11, "stock_x" = 8, "stock_y" = 13)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+
+	fire_delay = 0.15 SECONDS
+	scatter = 5
+	burst_amount = 1
+	movement_acc_penalty_mult = 8
+
+/obj/item/weapon/gun/rifle/vsd_lmg/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/foldable/bipod, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/vsd_lmg/engineer
+	starting_attachment_types = list(/obj/item/attachable/foldable/bipod, /obj/item/attachable/compensator)
+
+/obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/foldable/bipod, /obj/item/attachable/extended_barrel)
+
+// C550
+
+/obj/item/weapon/gun/rifle/vsd_rifle
+	name = "\improper C550 combat rifle"
+	desc = "Crash Core's first ever rifle. With designs reminiscent of the Sauer series, this gun is the perfect choice for CQC. Chambered in 10x27mm. Packs a kick to anyone standing infront of you. "
+	icon = 'icons/obj/items/guns/rifles64.dmi'
+	icon_state = "c550"
+	worn_icon_state = "c550"
+	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	aim_slowdown = 0.5
+	wield_delay =  0.9 SECONDS
+	max_shells = 30 //codex
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_rifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+	)
+
+	attachable_offset = list("muzzle_x" = 58, "muzzle_y" = 18,"rail_x" = 24, "rail_y" = 21, "under_x" = 35, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
+	burst_amount = 4
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	burst_delay = 0.15 SECONDS
+	scatter = 0
+	fire_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/rifle/vsd_rifle/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/vsd_rifle/medic
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
