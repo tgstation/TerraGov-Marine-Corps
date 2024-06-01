@@ -20,7 +20,7 @@ map bigred_v2
 	minplayers 25
 endmap
 
-map Icarus_Military_Port
+map icarus_military_port
         minplayers 25
 endmap
 
