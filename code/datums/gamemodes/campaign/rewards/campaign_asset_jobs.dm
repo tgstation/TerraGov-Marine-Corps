@@ -626,7 +626,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship
-	w_uniform = /obj/item/clothing/under/marine/robotic/webbing
+	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
 	head = /obj/item/clothing/head/modular/robot/heavy/tyr
 	r_store = /obj/item/storage/pouch/pistol
@@ -735,3 +735,124 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+
+//VSD
+/datum/job/vsd/standard/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/standard/grunt_one/campaign,
+		/datum/outfit/job/vsd/standard/ksg/campaign,
+		/datum/outfit/job/vsd/standard/grunt_second/campaign,
+		/datum/outfit/job/vsd/standard/grunt_third/campaign,
+	)
+
+/datum/outfit/job/vsd/standard/grunt_one/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/ksg/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/grunt_second/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/standard/grunt_third/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/job/vsd/specialist/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/spec/flamer/campaign,
+		/datum/outfit/job/vsd/spec/demolitionist/campaign,
+		/datum/outfit/job/vsd/spec/gunslinger/campaign,
+		/datum/outfit/job/vsd/spec/uslspec_one/campaign,
+		/datum/outfit/job/vsd/spec/uslspec_two/campaign,
+	)
+
+/datum/outfit/job/vsd/spec/flamer/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/spec/demolitionist/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/spec/gunslinger/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/spec/uslspec_one/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/spec/uslspec_two/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/job/vsd/medic/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/medic/ksg/campaign,
+		/datum/outfit/job/vsd/medic/vsd_rifle/campaign,
+	)
+
+/datum/outfit/job/vsd/medic/ksg/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/medic/vsd_rifle/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/job/vsd/engineer/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/engineer/l26/campaign,
+		/datum/outfit/job/vsd/engineer/vsd_rifle/campaign,
+	)
+
+/datum/outfit/job/vsd/engineer/l26/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/engineer/vsd_rifle/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/job/vsd/juggernaut/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/juggernaut/campaign,
+		/datum/outfit/job/vsd/eod/campaign,
+	)
+
+/datum/outfit/job/vsd/juggernaut/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/eod/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/job/vsd/leader/campaign_bonus
+	faction = FACTION_SOM
+	comm_title = "VSD"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/vsd/leader/one/campaign,
+		/datum/outfit/job/vsd/leader/two/campaign,
+		/datum/outfit/job/vsd/leader/upp_three/campaign,
+	)
+
+/datum/outfit/job/vsd/leader/one/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/leader/two/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/vsd/leader/upp_three/campaign
+	ears = /obj/item/radio/headset/mainship/som

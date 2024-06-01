@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_asset/mech/light/som,
 		/datum/campaign_asset/bonus_job/colonial_militia,
 		/datum/campaign_asset/bonus_job/icc,
+		/datum/campaign_asset/bonus_job/vsd,
 		/datum/campaign_asset/fire_support/som_mortar,
 		/datum/campaign_asset/teleporter_enabled,
 	),

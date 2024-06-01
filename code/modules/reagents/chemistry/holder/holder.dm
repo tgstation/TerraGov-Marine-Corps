@@ -168,7 +168,7 @@
  * * show_message - passed through to [/datum/reagents/proc/react_single]
  * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
  */
-/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier=1, preserve_data=1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = 1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
 	var/list/cached_reagents = reagent_list
 	if (!target || !total_volume)
 		return
@@ -591,7 +591,7 @@
 		if(cached_atom)
 			cached_atom.on_reagent_change(ADD_REAGENT)
 		existing_reagent.on_merge(data, amount)
-		SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, existing_reagent, amount)
+		SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, reagent, amount)
 		if(!no_react)
 			handle_reactions()
 		return TRUE
@@ -611,7 +611,7 @@
 	update_total()
 	if(cached_atom)
 		cached_atom.on_reagent_change(ADD_REAGENT)
-	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, new_reagent, amount)
+	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, reagent, amount)
 	if(!no_react)
 		handle_reactions()
 	return TRUE
@@ -639,7 +639,7 @@
 			amount = clamp(amount, 0, cached_reagent.volume) //P.S. Change it with the define when the other PR is merged.
 			cached_reagent.volume -= amount
 			update_total()
-			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, QDELING(cached_reagent) ? reagent : cached_reagent, amount)
+			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, reagent, amount)
 			cached_holder_atom?.on_reagent_change(REM_REAGENT)
 			return TRUE
 
@@ -796,9 +796,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-
-// Convenience proc to create a reagents holder for an atom
-// Max vol is maximum volume of holder
+/**
+ * Convenience proc to create a reagents holder for an atom
+ * Max vol is maximum volume of holder
+ */
 /atom/proc/create_reagents(max_vol, new_flags, list/init_reagents, data)
 	if(reagents)
 		qdel(reagents)
@@ -807,7 +808,8 @@
 	if(init_reagents)
 		reagents.add_reagent_list(init_reagents, data)
 
-/proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents
+/// Returns a random reagent ID minus blacklisted reagents
+/proc/get_random_reagent_id()
 	var/static/list/random_reagents = list()
 	if(!length(random_reagents))
 		for(var/thing  in subtypesof(/datum/reagent))

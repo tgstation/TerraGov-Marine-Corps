@@ -123,7 +123,7 @@
 		bound_height = width * world.icon_size
 	update_state()
 
-/obj/structure/door_assembly/multi_tile/Move()
+/obj/structure/door_assembly/multi_tile/Move(atom/newloc, direction, glide_size_override)
 	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size

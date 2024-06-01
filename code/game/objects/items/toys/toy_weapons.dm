@@ -188,9 +188,8 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "sword0"
-	worn_icon_state = "sword0"
+	icon = 'icons/obj/items/weapons/energy.dmi'
+	icon_state = "sword"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
@@ -205,8 +204,7 @@
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 		playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
-		src.icon_state = "sword0"
-		src.worn_icon_state = "sword0"
+		src.icon_state = "sword"
 		src.w_class = WEIGHT_CLASS_SMALL
 
 	if(istype(user,/mob/living/carbon/human))
@@ -219,7 +217,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	icon_state = "katana"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK

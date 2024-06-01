@@ -40,6 +40,12 @@
 	icon_state = "grenade_som"
 	worn_icon_state = "grenade_som"
 
+/obj/item/explosive/grenade/vsd
+	name = "\improper XM93 HEAP Grenade"
+	desc = "InterTech's experimental High Explosive Anti Personnel grenade. Good for clearing out rooms and such."
+	icon_state = "grenade_vsd"
+	light_impact_range = 5
+
 /obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."

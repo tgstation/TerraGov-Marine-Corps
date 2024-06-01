@@ -52,7 +52,7 @@
 
 	. = ..()
 
-/mob/oranges_ear/Move()
+/mob/oranges_ear/Move(atom/newloc, direction, glide_size_override)
 	SHOULD_CALL_PARENT(FALSE)
 	stack_trace("SOMEHOW A /mob/oranges_ear MOVED")
 	return FALSE

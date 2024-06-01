@@ -11,7 +11,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
@@ -273,7 +273,7 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
 	core_name = "hypospray"
 	icon_state = "hypo"
-	init_reagent_flags = REFILLABLE|DRAINABLE
+	reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
 /obj/item/reagent_containers/hypospray/advanced/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
