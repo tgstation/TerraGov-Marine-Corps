@@ -87,5 +87,5 @@ minplayers 40
 endmap
 
 map lv759
-	minplayers 80
+	minplayers 65
 endmap
