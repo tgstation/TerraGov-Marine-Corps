@@ -150,6 +150,7 @@
 /area/lv759/indoors/north_caves
 	name = "Caverns - North"
 	icon_state = "caves_north"
+	always_unpowered = FALSE
 
 /area/lv759/indoors/central_caves
 	name = "Caverns - Central"
@@ -776,6 +777,7 @@
 	name = "Hidden Hobo Haven"
 	icon_state = "hobo"
 	ceiling = CEILING_METAL
+	always_unpowered = FALSE
 
 // Nanotrasen Advanced Bio-Genomic Research Complex
 
