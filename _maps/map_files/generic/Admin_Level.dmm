@@ -3932,7 +3932,16 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
 "fmN" = (
-/obj/effect/forcefield,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
 /turf/open/space/basic,
 /area/space)
 "fmR" = (
@@ -16662,7 +16671,16 @@
 "yaj" = (
 /obj/structure/lattice,
 /obj/structure/cable,
-/obj/effect/forcefield,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
 /turf/open/space/basic,
 /area/space)
 "yaZ" = (
@@ -23254,7 +23272,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 fmN
 fmN
 fmN
@@ -26868,7 +26886,7 @@ fog
 boC
 fmN
 fmN
-fmN
+xrI
 xrI
 xrI
 xrI
