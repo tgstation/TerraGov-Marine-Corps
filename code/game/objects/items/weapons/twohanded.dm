@@ -1,4 +1,5 @@
 /obj/item/weapon/twohanded
+	icon = 'icons/obj/items/weapons/twohanded.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/twohanded_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/twohanded_right.dmi',
@@ -12,15 +13,12 @@
 	unwield(user)
 	return ..()
 
-
 /obj/item/weapon/twohanded/dropped(mob/user)
 	. = ..()
 	unwield(user)
 
-
 /obj/item/weapon/twohanded/pickup(mob/user)
 	unwield(user)
-
 
 /obj/item/proc/wield(mob/user)
 	if(!(item_flags & TWOHANDED) || item_flags & WIELDED)
@@ -56,7 +54,6 @@
 	user.update_inv_r_hand()
 	return TRUE
 
-
 /obj/item/proc/unwield(mob/user)
 	if(!CHECK_MULTIPLE_BITFIELDS(item_flags, TWOHANDED|WIELDED))
 		return FALSE
@@ -71,7 +68,6 @@
 	update_item_state()
 	remove_offhand(user)
 	return TRUE
-
 
 /obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
@@ -91,7 +87,6 @@
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
 
-
 /obj/item/proc/toggle_wielded(user, wielded)
 	if(wielded)
 		item_flags |= WIELDED
@@ -108,7 +103,6 @@
 		playsound(user, wieldsound, 15, 1)
 
 	force = force_wielded
-
 
 /obj/item/weapon/twohanded/unwield(mob/user)
 	. = ..()
@@ -130,7 +124,6 @@
 	else
 		wield(user)
 
-
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand
 	w_class = WEIGHT_CLASS_HUGE
@@ -138,7 +131,6 @@
 	name = "offhand"
 	item_flags = DELONDROP|TWOHANDED|WIELDED
 	resistance_flags = RESIST_ALL
-
 
 /obj/item/weapon/twohanded/offhand/Destroy()
 	if(ismob(loc))
@@ -148,22 +140,17 @@
 			main_hand.unwield(user)
 	return ..()
 
-
 /obj/item/weapon/twohanded/offhand/unwield(mob/user)
 	return
-
 
 /obj/item/weapon/twohanded/offhand/dropped(mob/user)
 	. = ..()
 	return
 
-
 /obj/item/weapon/twohanded/offhand/forceMove(atom/destination)
 	if(!ismob(destination))
 		qdel(src)
 	return ..()
-
-
 
 /*
 * Fireaxe
@@ -183,13 +170,11 @@
 	force_wielded = 75
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
-
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
 	if(!.)
 		return
 	pry_capable = IS_PRY_CAPABLE_SIMPLE
-
 
 /obj/item/weapon/twohanded/fireaxe/unwield(mob/user)
 	. = ..()
@@ -200,7 +185,7 @@
 /obj/item/weapon/twohanded/fireaxe/som
 	name = "boarding axe"
 	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
-	icon = 'icons/obj/items/weapons64.dmi'
+	icon = 'icons/obj/items/weapons/64x64.dmi'
 	icon_state = "som_axe"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/weapon64_left.dmi',
@@ -312,6 +297,7 @@
 /obj/item/weapon/twohanded/dualsaber
 	name = "double-bladed energy sword"
 	desc = "Handle with care."
+	icon = 'icons/obj/items/weapons/energy.dmi'
 	icon_state = "dualsaber"
 	worn_icon_state = "dualsaber"
 	force = 3
@@ -326,7 +312,6 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-
 
 /obj/item/weapon/twohanded/dualsaber/Initialize(mapload)
 	. = ..()
@@ -385,7 +370,7 @@
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
-	icon = 'icons/Marine/spear.dmi'
+	icon = 'icons/obj/items/weapons/64x64.dmi'
 	desc = "A TACTICOOL spear. Used for TACTICOOLNESS in combat."
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool/Initialize(mapload)
@@ -464,7 +449,6 @@
 	atom_flags = CONDUCT | TWOHANDED
 	attack_verb = list("smashed", "hammered")
 	attack_speed = 20
-
 	///amount of fuel stored inside
 	var/max_fuel = 50
 	///amount of fuel used per hit
@@ -542,7 +526,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
-	if (knockback)
+	if(knockback)
 		stun = crush_stun_amount
 		weaken = crush_weaken_amount
 		knockback = 0
