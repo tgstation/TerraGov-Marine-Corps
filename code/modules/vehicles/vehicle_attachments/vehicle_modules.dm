@@ -82,7 +82,9 @@
 		return
 
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/new_action = new(src, src, action_icon, action_icon_state, should_use_obj_appeareance)
+	var/datum/action/item_action/toggle/new_action = new(src, src, action_icon, action_icon_state)
+	new_action.use_obj_appeareance = FALSE
+	new_action.update_button_icon()
 	if(toggle_signal)
 		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(buckling_mob)
