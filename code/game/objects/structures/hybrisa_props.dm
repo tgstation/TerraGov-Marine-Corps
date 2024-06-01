@@ -973,7 +973,7 @@
 // Engineer
 
 /obj/structure/prop/hybrisa/engineer
-	icon = 'icons/obj/structures/props/engineerjockey.dmi'
+	icon = 'icons/obj/structures/engineerjockey.dmi'
 	icon_state = "spacejockey"
 
 /obj/structure/prop/hybrisa/engineer/spacejockey
