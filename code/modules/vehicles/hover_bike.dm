@@ -91,5 +91,5 @@
 	if(length(occupants))
 		hover_list += occupants
 	for(var/atom/atom AS in hover_list)
-		animate(atom, time = 1.2 SECONDS , loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 4)
-		animate(time = 1.2 SECONDS , loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -4)
+		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
+		animate(time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
