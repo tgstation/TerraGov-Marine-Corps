@@ -2,6 +2,7 @@
 	name = "red-dot sight"
 	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
@@ -11,7 +12,8 @@
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
 	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
-	icon_state = "m16sight"
+	icon_state = "m16sight" // missing icon?
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.05
@@ -21,6 +23,7 @@
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	light_mod = 6
 	light_system = MOVABLE_LIGHT
 	slot = ATTACHMENT_SLOT_RAIL
@@ -82,6 +85,7 @@
 	name = "underbarreled flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "uflashlight"
+	icon = 'icons/obj/items/guns/attachments/underbarrel.dmi'
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
@@ -90,6 +94,7 @@
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, it also reduces accuracy and the number of bullets fired on burst."
 	slot = ATTACHMENT_SLOT_RAIL
 	icon_state = "autoloader"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	accuracy_mod = -0.10
 	delay_mod = -0.125 SECONDS
 	burst_mod = -1
@@ -99,6 +104,7 @@
 	name = "magnetic harness"
 	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
 	icon_state = "magnetic"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
 	///Handles the harness functionality, created when attached to a gun and removed on detach
