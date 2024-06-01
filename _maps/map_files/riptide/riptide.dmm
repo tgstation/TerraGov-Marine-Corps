@@ -1231,11 +1231,6 @@
 "aTZ" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -2884,11 +2879,6 @@
 "bZI" = (
 /obj/item/fishing/lure,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/item/fishing/lure,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -5953,11 +5943,6 @@
 	dir = 4
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 4
 	},
@@ -6501,11 +6486,6 @@
 	},
 /obj/structure/platform_decoration,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -6838,11 +6818,6 @@
 	dir = 1
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 1
 	},
@@ -7489,11 +7464,6 @@
 /area/riptide/caves/north/garbledradio)
 "fis" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/closed/mineral/smooth/indestructible,
 /area/riptide/caves/rock)
 "fiK" = (
@@ -7793,11 +7763,6 @@
 "ftr" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/flora/jungle/vines,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -8655,11 +8620,6 @@
 	dir = 9
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -8798,11 +8758,6 @@
 	dir = 6
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 6
 	},
@@ -12414,11 +12369,6 @@
 /area/riptide/inside/engineering)
 "iPx" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
@@ -14052,11 +14002,6 @@
 /area/riptide/inside/beachmotel)
 "jXb" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/closed/mineral/smooth/outdoor,
 /area/riptide/caves/rock)
 "jXf" = (
@@ -14153,11 +14098,6 @@
 "jZw" = (
 /obj/structure/platform_decoration,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -14363,11 +14303,6 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration{
 	dir = 8
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/platform_decoration{
 	dir = 8
@@ -17162,11 +17097,6 @@
 	dir = 5
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 5
 	},
@@ -19720,11 +19650,6 @@
 /area/riptide/outside/volcano)
 "nMe" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2,
 /area/riptide/outside/southislands)
 "nMl" = (
@@ -20603,11 +20528,6 @@
 /area/riptide/inside/beachmotel)
 "ouP" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
 	},
@@ -20770,11 +20690,6 @@
 /area/riptide/outside/southjungle)
 "ozb" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 1
 	},
@@ -21994,11 +21909,6 @@
 /area/riptide/outside/northislands)
 "ppj" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/closed/mineral/smooth/indestructible,
 /area/riptide/caves/sea)
 "ppA" = (
@@ -22108,11 +22018,6 @@
 /area/riptide/inside/tikihut)
 "ptC" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 4
 	},
@@ -22303,11 +22208,6 @@
 /area/riptide/outside/southbeach)
 "pzJ" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner,
 /area/riptide/outside/southislands)
 "pzM" = (
@@ -23081,11 +22981,6 @@
 "pXZ" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/flora/jungle/vines,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/flora/jungle/vines,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -25256,11 +25151,6 @@
 /area/riptide/outside/westbeach)
 "rrb" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/closed/mineral/smooth/outdoor,
 /area/riptide/caves/sea)
 "rrh" = (
@@ -25361,11 +25251,6 @@
 /area/riptide/inside/southtower)
 "rvF" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/space/sea,
 /area/riptide/caves/sea)
 "rvJ" = (
@@ -25635,11 +25520,6 @@
 	dir = 8
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -25658,11 +25538,6 @@
 /area/riptide/inside/syndicatestarboard)
 "rBy" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/ground/coast{
 	dir = 6
 	},
@@ -27363,11 +27238,6 @@
 "sFF" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -27824,11 +27694,6 @@
 /area/riptide/outside/beachlzone)
 "sVF" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/ground/coast,
 /area/riptide/outside/southislands)
 "sVO" = (
@@ -28318,11 +28183,6 @@
 /area/riptide/inside/engineering/bridge)
 "tmR" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/ground/coast{
 	dir = 10
 	},
@@ -29441,11 +29301,6 @@
 "tYn" = (
 /obj/structure/rock/basalt/pile,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/rock/basalt/pile,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -30129,11 +29984,6 @@
 "uAC" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/flora/jungle/vines/heavy,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -31917,11 +31767,6 @@
 "vMZ" = (
 /obj/structure/rock/basalt,
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/rock/basalt,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
@@ -33387,11 +33232,6 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 4
 	},
@@ -33524,11 +33364,6 @@
 	dir = 10
 	},
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/platform_decoration{
 	dir = 10
 	},
@@ -33616,11 +33451,6 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/structure/platform_decoration{
 	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/platform_decoration{
 	dir = 1
@@ -34639,11 +34469,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -34992,11 +34817,6 @@
 /area/riptide/caves/pmc/toxins)
 "xYT" = (
 /obj/effect/forcefield/allow_bullet_travel,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
 	},
@@ -35332,11 +35152,6 @@
 "ykm" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
