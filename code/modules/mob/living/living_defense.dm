@@ -144,6 +144,9 @@
 
 ///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()
+	var/datum/status_effect/stacking/melting_fire/xeno_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(xeno_fire)
+		remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(!on_fire)
 		return FALSE
 	on_fire = FALSE
@@ -187,8 +190,8 @@
 		return FALSE
 	if(status_flags & GODMODE)
 		return TRUE //while godmode will stop the damage, we don't want the process to stop in case godmode is removed
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross lava without being affected.
-		return FALSE
+	if(pass_flags & PASS_FIRE) //As above, we want lava to keep processing in case pass_fire is removed
+		return TRUE
 
 	var/lava_damage = 20
 	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity

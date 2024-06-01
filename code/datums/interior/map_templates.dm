@@ -20,3 +20,7 @@
 /datum/map_template/interior/medical
 	name = "medical apc interior template"
 	filename = "apc_medical"
+
+/datum/map_template/interior/clone_bay
+	name = "clone bay apc interior template"
+	filename = "apc_cloner"
