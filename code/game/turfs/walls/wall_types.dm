@@ -469,14 +469,18 @@
 /turf/closed/wall/urban
 	name = "bare metal walls"
 	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/urban_wall_regular.dmi'
+	icon_state = "urban_wall_regular-0"
+	walltype = "wall"
+	base_icon_state = "urban_wall_regular"
+
+/turf/closed/wall/urban/colony/ribbed
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
 	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
 	icon_state = "hybrisa_colony_walls-0"
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
-
-/turf/closed/wall/urban/colony
-
-/turf/closed/wall/urban/colony/ribbed
 
 /turf/closed/wall/urban/colony/hospital
 
@@ -491,6 +495,12 @@
 /turf/closed/wall/urban/engineering
 
 /turf/closed/wall/urban/colony/engineering/ribbed
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "hybrisa_colony_walls-0"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
 
 /turf/closed/wall/urban/research/reinforced
 
