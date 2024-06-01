@@ -2758,18 +2758,18 @@
 "qp" = (
 /obj/structure/table/flipped,
 /obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qq" = (
 /obj/structure/table/flipped,
 /obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qr" = (
 /obj/structure/table/flipped,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qs" = (
@@ -2781,7 +2781,7 @@
 "qt" = (
 /obj/structure/table/flipped,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qu" = (

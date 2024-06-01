@@ -201,6 +201,20 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
+/**
+ * Checks if an item is allowed to be used on an atom/target
+ * Returns TRUE if allowed.
+ *
+ * Args:
+ * target_self - Whether we will check if we (src) are in target, preventing people from using items on themselves.
+ * not_inside - Whether target (or target's loc) has to be a turf.
+ */
+/obj/item/proc/check_allowed_items(atom/target, not_inside = FALSE, target_self = FALSE)
+	if(!target_self && (src in target))
+		return FALSE
+	if(not_inside && !isturf(target.loc) && !isturf(target))
+		return FALSE
+	return TRUE
 
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
@@ -1101,13 +1115,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					if(!W.reagents)
 						break
 					W.reagents.reaction(atm)
-					if(istype(atm, /obj/flamer_fire))
-						var/obj/flamer_fire/FF = atm
-						if(FF.firelevel > 20)
-							FF.firelevel -= 20
-							FF.updateicon()
-						else
-							qdel(atm)
+					if(isfire(atm))
+						var/obj/fire/FF = atm
+						FF.set_fire(FF.burn_ticks - 20)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm

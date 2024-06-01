@@ -10959,7 +10959,7 @@
 /area/campaign/tgmc_raiding/underground/tunnel/west)
 "Sq" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grimy,
 /area/campaign/tgmc_raiding/colony/indoor/bar)
 "Sr" = (
@@ -11200,7 +11200,7 @@
 /area/campaign/tgmc_raiding/colony/indoor/storage)
 "Tg" = (
 /obj/structure/table/fancywoodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
 "Th" = (

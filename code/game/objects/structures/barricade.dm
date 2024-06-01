@@ -1,7 +1,6 @@
 // Snow, wood, sandbags, metal, plasteel
 
 /obj/structure/barricade
-	icon = 'icons/Marine/barricades.dmi'
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
@@ -206,9 +205,9 @@
 	. = ..()
 	if(is_wired)
 		if(!closed)
-			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
+			. += image(icon, icon_state = "[barricade_type]_wire")
 		else
-			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
+			. += image(icon, icon_state = "[barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -257,6 +256,7 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
+	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "snow_0"
 	barricade_type = "snow"
 	max_integrity = 75
@@ -312,6 +312,7 @@
 /obj/structure/barricade/guardrail
 	name = "guard rail"
 	desc = "A short wall made of rails to prevent entry into dangerous areas."
+	icon = 'icons/obj/structures/barricades/misc.dmi'
 	icon_state = "railing_0"
 	coverage = 25
 	max_integrity = 150
@@ -334,6 +335,7 @@
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
+	icon = 'icons/obj/structures/barricades/misc.dmi'
 	icon_state = "wooden"
 	max_integrity = 100
 	layer = OBJ_LAYER
@@ -401,6 +403,7 @@
 /obj/structure/barricade/metal
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
+	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -436,11 +439,11 @@
 			damage_state = 0
 	switch(barricade_upgrade_type)
 		if(CADE_TYPE_BOMB)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
 		if(CADE_TYPE_MELEE)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+brute_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+brute_upgrade_[damage_state]")
 		if(CADE_TYPE_ACID)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+burn_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+burn_upgrade_[damage_state]")
 
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -486,7 +489,7 @@
 		balloon_alert(user, "You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal to upgrade")
 		return FALSE
 
-	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
+	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
@@ -721,6 +724,7 @@
 /obj/structure/barricade/plasteel
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
+	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -960,7 +964,7 @@
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
-				. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
+				. += image(icon, icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
@@ -986,6 +990,7 @@
 /obj/structure/barricade/sandbags
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
+	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "sandbag_0"
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -1057,6 +1062,7 @@
 		update_icon()
 
 /obj/structure/barricade/metal/deployable
+	icon = 'icons/obj/structures/barricades/folding.dmi'
 	icon_state = "folding_0"
 	max_integrity = 300
 	coverage = 100
@@ -1127,6 +1133,7 @@
 /obj/structure/barricade/concrete
 	name = "concrete barricade"
 	desc = "A short wall made of reinforced concrete. It looks like it can take a lot of punishment."
+	icon = 'icons/obj/structures/barricades/concrete.dmi'
 	icon_state = "concrete_0"
 	coverage = 100
 	max_integrity = 500

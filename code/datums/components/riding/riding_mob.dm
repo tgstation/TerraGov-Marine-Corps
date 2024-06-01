@@ -68,7 +68,7 @@
 		former_rider.log_message("is no longer riding [living_parent]", LOG_ATTACK, color="pink")
 	return ..()
 
-/datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(!keycheck(user))
@@ -76,11 +76,12 @@
 			var/obj/item/key = keytype
 			to_chat(user, "<span class='warning'>You need a [initial(key.name)] to ride [movable_parent]!</span>")
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	var/mob/living/living_parent = parent
-	var/turf/next = get_step(living_parent, direction)
-	step(living_parent, direction)
-	last_move_diagonal = ((direction & (direction - 1)) && (living_parent.loc == next))
-	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal? 2 : 1) * vehicle_move_delay)
+	last_move_diagonal = ISDIAGONALDIR(direction)
+	var/new_delay = (last_move_diagonal ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1) * vehicle_move_delay
+	glide_size_override = DELAY_TO_GLIDE_SIZE(new_delay)
+	. = ..()
+	step(movable_parent, direction)
+	COOLDOWN_START(src, vehicle_move_cooldown, new_delay)
 
 /// Yeets the rider off, used for animals and cyborgs, redefined for humans who shove their piggyback rider off
 /datum/component/riding/creature/proc/force_dismount(mob/living/rider, gentle = FALSE)

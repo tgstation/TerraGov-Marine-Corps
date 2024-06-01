@@ -42,19 +42,19 @@
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)		
+			if(0 to 9)
 				filling.icon_state = "[icon_state]--10"
-			if(10 to 24) 	
+			if(10 to 24)
 				filling.icon_state = "[icon_state]-10"
-			if(25 to 49)	
+			if(25 to 49)
 				filling.icon_state = "[icon_state]-25"
-			if(50 to 74)	
+			if(50 to 74)
 				filling.icon_state = "[icon_state]-50"
-			if(75 to 79)	
+			if(75 to 79)
 				filling.icon_state = "[icon_state]-75"
-			if(80 to 90)	
+			if(80 to 90)
 				filling.icon_state = "[icon_state]-80"
-			if(91 to INFINITY)	
+			if(91 to INFINITY)
 				filling.icon_state = "[icon_state]-100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
@@ -254,4 +254,4 @@
 	name = "\improper Doctor's Delight bottle"
 	desc = "A small bottle. Contains Doctor's Delight - functions similar to tricordrazine, but is weaker and makes the patient hungry."
 	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)
+	list_reagents = list(/datum/reagent/consumable/doctor_delight = 60)

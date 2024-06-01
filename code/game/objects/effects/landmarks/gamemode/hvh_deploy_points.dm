@@ -158,7 +158,7 @@
 
 /atom/movable/effect/rappel_rope
 	name = "rope"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "rope"
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
