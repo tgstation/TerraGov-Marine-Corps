@@ -200,7 +200,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost.client)
+				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
+				if(SSticker.mode.attempt_to_join_as_larva(ghost.client))
+					original_corpse.set_undefibbable()
 		return
 
 	else if(href_list["preference"])

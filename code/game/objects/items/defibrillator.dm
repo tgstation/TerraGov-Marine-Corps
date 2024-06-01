@@ -14,8 +14,8 @@
 	var/ready = FALSE
 	///Whether this defibrillator has to be turned on to use
 	var/ready_needed = TRUE
-	///The base healing number. This will be multiplied using DEFIBRILLATOR_HEALING_TIMES_SKILL.
-	var/damage_threshold = DEFIBRILLATOR_BASE_HEALING_VALUE
+	///The base healing number when someone is shocked. Uses `DEFIBRILLATOR_HEALING_TIMES_SKILL` to change based on user skill.
+	var/defibrillator_healing = DEFIBRILLATOR_BASE_HEALING_VALUE
 	///How much charge is used on a shock
 	var/charge_cost = 66
 	///The defibrillator's power cell
@@ -108,7 +108,7 @@
 		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	COOLDOWN_START(src, defib_cooldown, 1 SECONDS)
+	COOLDOWN_START(src, defib_cooldown, 2 SECONDS)
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
@@ -175,9 +175,9 @@
 		if(!do_after(user, fumbling_time, NONE, patient, BUSY_ICON_UNSKILLED))
 			return
 
-	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill, damage_threshold)
+	var/defib_heal_amt = DEFIBRILLATOR_HEALING_TIMES_SKILL(medical_skill, defibrillator_healing)
 
-	if(dcell.charge <= charge_cost) // This is split from defib_ready because we don't want to check charge AFTER delivering shock
+	if(dcell.charge <= charge_cost)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Seek recharger. Cannot analyze nor administer shock."))
 		to_chat(user, span_boldwarning("You can recharge the defibrillator by click-dragging it onto a corpsman backpack or satchel, or putting it in a recharger."))
 		return
@@ -203,7 +203,7 @@
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), damage_threshold)) == DEFIB_POSSIBLE)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), defibrillator_healing)) == DEFIB_POSSIBLE)
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
@@ -216,7 +216,7 @@
 	span_notice("You start setting up the paddles on [patient]'s chest."))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) // Don't vary this, it should be exactly 7 seconds
 
-	if(!do_after(user, 7 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) // 7 seconds revive time
+	if(!do_after(user, 7 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		to_chat(user, span_warning("You stop setting up the paddles on [patient]'s chest."))
 		return
 
@@ -261,7 +261,6 @@
 		patient.setOxyLoss(0)
 
 	patient.updatehealth() // update health because it won't always update for the dead
-	// now checking revive parameters
 
 	fail_reason = null // Clear the fail reason as we check again
 	// We're keeping permadeath states from earlier here in case something changes mid revive
@@ -284,7 +283,7 @@
 		return
 
 	ghost = patient.get_ghost(TRUE)
-	if(ghost) // grab ghost once more
+	if(ghost)
 		ghost.reenter_corpse()
 
 	if(!patient.client)
@@ -300,8 +299,8 @@
 	patient.apply_effect(10, EYE_BLUR)
 	patient.apply_effect(20 SECONDS, PARALYZE)
 
-	ghost = patient.get_ghost(TRUE) // we're getting ghost again since the ghost may have reentered their corpse
-	if(ghost) // register a signal to bring them into their body on reconnect (this check works because reenter_corpse doesn't work on disconnected ghosts)
+	ghost = patient.get_ghost(TRUE) // just in case they re-entered their body
+	if(ghost) // register a signal to bring them into their body on reconnect
 		ghost.RegisterSignal(ghost, COMSIG_MOB_LOGIN, TYPE_PROC_REF(/mob/dead/observer, revived_while_away))
 
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.

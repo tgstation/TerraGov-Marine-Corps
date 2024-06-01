@@ -274,7 +274,7 @@
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
 	if(species.species_flags & ROBOTIC_LIMBS)
-		return TRUE // combat robots and synthetics don't really have any of these
+		return TRUE // combat robots and synthetics don't have any of these for some reason
 	if(!has_brain())
 		return FALSE
 	if(!heart || heart.organ_status == ORGAN_BROKEN)
