@@ -54,7 +54,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "aaX" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "aaZ" = (
 /obj/item/radio/intercom{
@@ -217,7 +217,7 @@
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "acH" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/changingroom)
 "acI" = (
 /obj/structure/extinguisher_cabinet,
@@ -718,7 +718,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "ahr" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -1387,9 +1387,6 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
-"anp" = (
-/turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/colonial_marshals/garage)
 "anq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
@@ -2001,7 +1998,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "asS" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ata" = (
 /obj/structure/sign/poster{
@@ -2195,7 +2192,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_factory)
 "auQ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -2731,7 +2728,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "aAG" = (
 /obj/structure/closet/fireaxecabinet,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/baggagehandling)
 "aAJ" = (
 /obj/structure/curtain/open/shower,
@@ -3443,7 +3440,7 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "aHA" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "aHF" = (
 /obj/effect/urban/decal/dirt,
@@ -3596,7 +3593,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "aJn" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "aJp" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -4399,7 +4396,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_west_caves)
 "aQx" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 8
 	},
@@ -4435,7 +4432,7 @@
 /turf/open/floor/urban/tile/tilered,
 /area/lv759/indoors/pizzaria)
 "aQJ" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "aQL" = (
 /obj/effect/urban/decal/dirt,
@@ -4720,7 +4717,7 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/landing_zone_2)
 "aTy" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
 "aTA" = (
 /obj/effect/urban/decal/dirt,
@@ -5958,7 +5955,7 @@
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "beL" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "bfa" = (
 /obj/structure/platform_decoration{
@@ -6309,7 +6306,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "bir" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -6766,7 +6763,7 @@
 /turf/open/floor/urban/carpet/carpetfadedred,
 /area/lv759/indoors/colonial_marshals/head_office)
 "boh" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2;
 	id = "medical_storage_lockdown"
@@ -7022,7 +7019,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "bqP" = (
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitormedium_on,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "bqW" = (
 /turf/open/floor/prison{
@@ -7229,7 +7226,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "bsz" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -7395,7 +7392,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitormedium_on{
 	pixel_x = 1
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "bug" = (
 /obj/structure/platform{
@@ -7618,7 +7615,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "bvN" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "bvP" = (
 /obj/effect/urban/decal/dirt,
@@ -7756,7 +7753,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "bxd" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/flight_control_room)
 "bxk" = (
 /obj/structure/barricade/handrail/urban/road/plastic/black{
@@ -8158,7 +8155,7 @@
 /turf/open/floor/urban/tile/cuppajoesfloor,
 /area/lv759/indoors/spaceport/cuppajoes)
 "bBk" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_evidenceroom)
 "bBo" = (
 /obj/item/stack/rods,
@@ -8908,7 +8905,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bId" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -9017,7 +9014,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bJl" = (
 /obj/structure/sign/nosmoking_2,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/baggagehandling)
 "bJm" = (
 /obj/item/clothing/under/suit_jacket/tan,
@@ -9863,7 +9860,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bRA" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "bRH" = (
@@ -9936,7 +9933,7 @@
 /area/lv759/indoors/spaceport/security)
 "bSm" = (
 /obj/structure/closet/walllocker/hydrant,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "bSs" = (
 /obj/item/tool/wet_sign{
@@ -10077,7 +10074,7 @@
 /area/lv759/indoors/spaceport/maintenance_east)
 "bTK" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "bTS" = (
 /obj/effect/urban/decal/road/road_stop/three,
@@ -11073,7 +11070,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "caZ" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/baggagehandling)
 "cba" = (
 /turf/open/floor/prison/red{
@@ -11642,7 +11639,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/equipment_west)
 "chm" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/structure/curtain/temple,
@@ -11840,7 +11837,7 @@
 	name = "Mining Lockdown";
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "ciX" = (
 /obj/structure/barricade/handrail/strata{
@@ -11863,7 +11860,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "cjg" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cjh" = (
 /obj/structure/cable,
@@ -12144,9 +12141,6 @@
 "cmc" = (
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
-"cmg" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
-/area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "cmh" = (
 /obj/structure/platform{
 	dir = 1
@@ -12232,7 +12226,7 @@
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "cmX" = (
@@ -13521,7 +13515,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "czu" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -13770,7 +13764,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_factory)
 "cBP" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -13861,7 +13855,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/nt_research_complex_entrance)
 "cCY" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "cDl" = (
 /obj/structure/cable,
@@ -14639,7 +14633,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "cJM" = (
 /obj/structure/platform/urban/metalplatformstair1,
@@ -14789,7 +14783,7 @@
 /area/lv759/indoors/north_west_caves)
 "cLt" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "cLv" = (
 /obj/structure/cable,
@@ -14934,7 +14928,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "cNh" = (
 /obj/structure/platform{
@@ -14956,7 +14950,7 @@
 /area/lv759/outdoors/landing_zone_1)
 "cNn" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "cNo" = (
 /obj/item/facepaint/brown,
@@ -15092,7 +15086,7 @@
 	},
 /area/lv759/indoors/spaceport/cargo)
 "cOG" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "cOM" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -16807,7 +16801,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ddz" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
@@ -16964,7 +16958,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/reception)
 "deH" = (
 /obj/structure/bed/urban/bunkbed2{
@@ -17004,7 +16998,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "deR" = (
 /obj/structure/sign/safety/hazard,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "dfb" = (
 /obj/effect/urban/decal/dirt,
@@ -17520,12 +17514,12 @@
 	},
 /area/lv759/indoors/power_plant/south_hallway)
 "djF" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/security_office)
 "djH" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "djI" = (
 /obj/effect/ai_node,
@@ -17585,7 +17579,7 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "dkr" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/north_office)
 "dkE" = (
@@ -18251,7 +18245,7 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "dre" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "drh" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
@@ -18820,7 +18814,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "dvN" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "dvQ" = (
 /obj/structure/platform_decoration/urban/rockdark,
@@ -19195,7 +19189,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/casino)
 "dAk" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -19437,7 +19431,7 @@
 /turf/open/floor/prison/red/full,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "dCy" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "virology_lockdown"
@@ -19766,7 +19760,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "dHd" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "dHe" = (
 /obj/effect/urban/decal/road/road_stop,
@@ -19805,7 +19799,7 @@
 /turf/closed/mineral/smooth/black_stone,
 /area/lv759/oob)
 "dHl" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "dHx" = (
 /obj/machinery/power/apc/drained{
@@ -20254,7 +20248,7 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "dLG" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -20492,11 +20486,11 @@
 /area/lv759/outdoors/caveplateau)
 "dNR" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/reception)
 "dNT" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "dNW" = (
 /obj/effect/urban/decal/dirt,
@@ -20538,7 +20532,7 @@
 	dir = 8;
 	name = "\improper Lockdown"
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "dOE" = (
 /obj/effect/urban/decal/dirt,
@@ -20848,7 +20842,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "dSe" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/prop/urban/signs/opensign{
 	light_color = "#00AAFF";
 	light_on = 1;
@@ -21345,7 +21339,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dWF" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cargo)
 "dWJ" = (
 /obj/structure/bed/chair/sofa/corsat/right,
@@ -21507,7 +21501,7 @@
 /obj/machinery/crema_switch{
 	id = "Hybrisa_Crem_switch1"
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "dYO" = (
 /obj/structure/sign/poster{
@@ -22000,10 +21994,6 @@
 /obj/structure/cable,
 /turf/open/floor/bluethree,
 /area/lv759/indoors/spaceport/docking_bay_2)
-"eei" = (
-/obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
-/area/lv759/oob)
 "eeq" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -22349,7 +22339,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "egG" = (
 /obj/effect/urban/decal/dirt,
@@ -22390,7 +22380,7 @@
 /turf/closed/wall/urban/colony/hospital,
 /area/lv759/indoors/hospital/central_hallway)
 "ehl" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/north_office)
 "ehp" = (
 /obj/effect/urban/decal{
@@ -23131,7 +23121,7 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "eoP" = (
 /obj/structure/closet/fireaxecabinet,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "eoQ" = (
 /obj/machinery/floodlight/colony/street{
@@ -23431,7 +23421,7 @@
 	},
 /area/lv759/indoors/power_plant/telecomms)
 "erI" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/structure/platform{
@@ -23862,7 +23852,7 @@
 /area/lv759/indoors/recycling_plant/garage)
 "euV" = (
 /obj/structure/sign/safety/atmospherics,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "evp" = (
 /obj/effect/ai_node,
@@ -23891,7 +23881,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/casino)
 "evC" = (
 /obj/structure/bed/chair{
@@ -23960,7 +23950,7 @@
 /obj/structure/prop/urban/signs/high_voltage/small{
 	pixel_x = -6
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "ewf" = (
 /obj/structure/platform/urban/rockdark{
@@ -24084,7 +24074,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "exK" = (
 /obj/structure/platform/urban/rockdark{
@@ -24151,7 +24141,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "eyg" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 8;
 	id = "virology_lockdown"
@@ -24159,7 +24149,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/virology)
 "eyj" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_greenhouse)
 "eyk" = (
@@ -24460,7 +24450,7 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/hospital/cmo_office)
 "eBP" = (
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_reception)
 "eBX" = (
 /obj/structure/platform/urban/metalplatformstair1,
@@ -24953,7 +24943,7 @@
 /area/lv759/indoors/casino)
 "eFT" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/office)
 "eFU" = (
 /obj/effect/urban/decal/trash/six{
@@ -25151,14 +25141,14 @@
 /turf/open/floor/urban/carpet/carpetblue,
 /area/lv759/indoors/apartment/westbedrooms)
 "eIs" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "eIw" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -25511,7 +25501,7 @@
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	pixel_x = 30
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "eLS" = (
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
@@ -25587,7 +25577,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "eMD" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "eMH" = (
 /obj/structure/platform{
@@ -25641,7 +25631,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "eNA" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/reception)
 "eNC" = (
@@ -26077,7 +26067,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/north_east_caves)
 "eRb" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory)
 "eRd" = (
 /obj/structure/bed/roller,
@@ -26144,7 +26134,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eRx" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "eRy" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
@@ -26204,7 +26194,7 @@
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "eRY" = (
 /obj/structure/sign/safety/galley,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "eSa" = (
 /turf/closed/shuttle/dropship4/engine_sidealt{
@@ -26376,7 +26366,7 @@
 /area/lv759/indoors/power_plant)
 "eTF" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/janitor)
 "eTH" = (
 /obj/structure/prop/urban/misc/stoneplanterseats{
@@ -26534,10 +26524,10 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "eWb" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/casino/casino_restroom)
 "eWc" = (
 /obj/structure/platform_decoration,
@@ -27018,7 +27008,7 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "faL" = (
 /obj/structure/sign/safety/maintenance,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/maintenance_east)
 "faP" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -27065,7 +27055,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "fbo" = (
 /obj/effect/urban/decal/road/road_edge/three,
@@ -27815,7 +27805,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "fib" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/reception)
 "fic" = (
 /obj/machinery/conveyor{
@@ -28048,7 +28038,7 @@
 	},
 /area/lv759/indoors/hospital/operation)
 "fkc" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -28639,7 +28629,7 @@
 /obj/machinery/crema_switch{
 	id = "Hybrisa_Crem_switch2"
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "fpj" = (
 /obj/effect/urban/decal/dirt,
@@ -28998,7 +28988,7 @@
 /area/lv759/indoors/power_plant/south_hallway)
 "fsM" = (
 /obj/item/ammo_casing/bullet,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "fsP" = (
 /turf/open/floor/plating{
@@ -29552,7 +29542,7 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/north_office)
 "fyv" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "fyw" = (
 /obj/structure/window/reinforced{
@@ -29978,7 +29968,7 @@
 "fCl" = (
 /obj/structure/sign/safety/ladder,
 /obj/structure/sign/safety/ladder,
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/indoors/power_plant/fusion_generators)
 "fCo" = (
 /obj/effect/urban/decal/road/lines3,
@@ -30006,7 +29996,7 @@
 	desc = "Semiotic Standard denoting the nearby presence of a weapon research lab.";
 	name = "weapon research lab semiotic"
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "fCu" = (
 /obj/effect/urban/decal/road/road_stop/one,
@@ -30353,7 +30343,7 @@
 	pixel_x = -26;
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "fGk" = (
 /obj/effect/urban/decal/dirt,
@@ -30560,7 +30550,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "fHI" = (
 /obj/structure/window/framed/urban,
@@ -31652,7 +31642,7 @@
 /area/lv759/indoors/mining_outpost/east_command)
 "fRC" = (
 /obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/outdoors/landing_zone_2)
 "fRD" = (
 /obj/structure/rack,
@@ -31769,7 +31759,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fSU" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/garage)
 "fTa" = (
 /obj/effect/urban/decal/dirt,
@@ -31957,7 +31947,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "fUW" = (
 /obj/structure/girder,
@@ -32216,7 +32206,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "fXf" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "fXm" = (
 /turf/open/floor/urban/metal/zbrownfloor_corner{
@@ -32370,7 +32360,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "fYz" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_office)
 "fYA" = (
@@ -32746,7 +32736,7 @@
 	},
 /area/lv759/indoors/west_caves)
 "gbW" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -32769,9 +32759,6 @@
 	},
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/apartment/northapartments)
-"gcn" = (
-/turf/closed/wall/urban/colony/engineering/reinforced,
-/area/lv759/indoors/garage_workshop)
 "gcD" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/urban/street/cement3,
@@ -33070,7 +33057,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "gft" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -33719,7 +33706,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "gkR" = (
 /obj/machinery/conveyor,
@@ -33752,7 +33739,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gkX" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/interrogation)
 "glg" = (
@@ -33837,7 +33824,7 @@
 /turf/open/floor/prison/red/full,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "glT" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -34042,7 +34029,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
 "gnL" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/pizzaria)
 "gnM" = (
@@ -34194,7 +34181,7 @@
 /area/lv759/indoors/spaceport/security)
 "goG" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "goL" = (
 /obj/structure/prop/urban/lattice_prop/lattice_6{
@@ -34867,7 +34854,7 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/colonial_marshals/north_office)
 "gvw" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/maintenance_north)
 "gvB" = (
 /obj/effect/urban/decal/dirt,
@@ -35247,10 +35234,10 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_reception)
 "gzr" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "gzD" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "gzI" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -36029,7 +36016,7 @@
 /area/lv759/indoors/power_plant)
 "gIr" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/flight_control_room)
 "gIs" = (
 /obj/machinery/vending/nanomed,
@@ -36233,7 +36220,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gKF" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/reception)
 "gKK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -36465,7 +36452,7 @@
 	},
 /area/lv759/indoors/garage_workshop)
 "gNL" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -36673,7 +36660,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gPB" = (
 /obj/structure/sign/safety/storage,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/security_office)
 "gPC" = (
 /turf/open/floor/urban/tile/tilebeigecheckered,
@@ -36723,7 +36710,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "gQz" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "gQG" = (
 /turf/open/floor/mainship{
@@ -36757,7 +36744,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "gQY" = (
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer4,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/kitchen)
 "gRb" = (
 /obj/structure/window/framed/urban,
@@ -37998,7 +37985,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/bar/bathroom)
 "hcl" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "hco" = (
 /obj/effect/urban/decal,
@@ -38068,7 +38055,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_5{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "hcL" = (
 /obj/structure/prop/urban/lattice_prop/lattice_1{
@@ -38169,10 +38156,10 @@
 /obj/effect/spawner/random/engineering/metal,
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "hdr" = (
-/obj/structure/window/framed/urban/spaceport/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -38390,7 +38377,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "hfZ" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -38789,7 +38776,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "hjw" = (
 /obj/machinery/prop/structurelattice{
@@ -38871,7 +38858,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/reception)
 "hkB" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -39375,7 +39362,7 @@
 /obj/structure/sign/poster{
 	layer = 2.9
 	},
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/flight_control_room)
 "hoI" = (
 /obj/effect/urban/decal/road/lines2,
@@ -39826,7 +39813,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "hsl" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "hsq" = (
@@ -40204,7 +40191,7 @@
 /turf/open/floor/urban/wood/redwood,
 /area/lv759/indoors/weyyu_office/floor)
 "hvw" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/janitor)
 "hvy" = (
 /obj/structure/table/mainship,
@@ -40871,7 +40858,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "hAQ" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "hAW" = (
 /obj/structure/prop/mainship/gelida/rails{
@@ -41123,7 +41110,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "hDD" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -41254,7 +41241,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "hET" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -41272,7 +41259,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "hFm" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/casino/casino_office)
 "hFn" = (
 /obj/structure/prop/urban/lattice_prop/lattice_5{
@@ -41362,7 +41349,7 @@
 /turf/open/floor/urban/tile/lightbeige_bigtile,
 /area/lv759/indoors/hospital/paramedics_garage)
 "hFS" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -41507,7 +41494,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "hHE" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/office)
 "hHK" = (
@@ -41630,7 +41617,7 @@
 	},
 /area/lv759/indoors/central_caves)
 "hIN" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -41667,7 +41654,7 @@
 /obj/structure/sign/poster{
 	layer = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/botany/botany_mainroom)
 "hJn" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
@@ -42062,7 +42049,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "hNr" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/head_office)
 "hNz" = (
 /obj/effect/urban/decal/dirt,
@@ -42199,7 +42186,7 @@
 	name = "CMB - Garage Lockdown";
 	pixel_x = 28
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/garage)
 "hOB" = (
 /obj/structure/largecrate/random/mini/med{
@@ -42658,7 +42645,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hSB" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -42746,15 +42733,12 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hTn" = (
-/obj/structure/window/framed/urban/colony/reinforced{
-	dir = 4;
-	name = "Emergency Lockdown"
-	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "hTo" = (
@@ -42790,7 +42774,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "hTt" = (
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_managersoffice)
 "hTx" = (
 /obj/structure/disposalpipe/segment,
@@ -42839,7 +42823,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "hTN" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -42890,10 +42874,6 @@
 	dir = 10
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
-"hVf" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
-/turf/open/floor/plating,
-/area/lv759/indoors/hospital/virology)
 "hVj" = (
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -42921,7 +42901,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "hVE" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/security)
 "hVF" = (
 /obj/structure/table/reinforced/prison{
@@ -43514,7 +43494,7 @@
 	name = "Mining Lockdown";
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "ibL" = (
 /obj/machinery/power/apc/drained{
@@ -43614,7 +43594,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/garage)
 "icF" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/press_room)
 "icI" = (
@@ -43811,7 +43791,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "iev" = (
 /obj/structure/sign/nosmoking_2,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "ieA" = (
 /obj/structure/rack,
@@ -44234,7 +44214,7 @@
 /area/lv759/indoors/north_west_caves)
 "iiB" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "iiC" = (
 /obj/structure/bed/chair{
@@ -44276,7 +44256,7 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/apartment/westbedrooms)
 "iiY" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "ija" = (
@@ -44646,7 +44626,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/central_caves)
 "imH" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_security/checkpoint_west)
 "imM" = (
@@ -45637,7 +45617,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "iwy" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/curtain/temple,
 /turf/open/floor/plating,
 /area/lv759/indoors/casino/casino_office)
@@ -45933,7 +45913,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/power_plant/telecomms)
 "iyT" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "iyY" = (
 /obj/structure/bed/chair{
@@ -46289,7 +46269,7 @@
 /area/lv759/indoors/casino)
 "iCY" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "iDe" = (
 /obj/structure/table/reinforced/prison{
@@ -46345,7 +46325,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "iDp" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "iDs" = (
 /obj/structure/bed/stool{
@@ -46577,7 +46557,7 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/cuppajoes)
 "iFX" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -46938,7 +46918,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/indoors/east_caves)
 "iJL" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -47074,7 +47054,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "iLa" = (
 /obj/structure/prop/urban/signs/high_voltage/small,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "iLc" = (
 /turf/closed/wall/urban/colony/office,
@@ -47475,7 +47455,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "iOg" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "iOs" = (
@@ -47960,7 +47940,7 @@
 /obj/structure/prop/urban/signs/high_voltage/small{
 	pixel_x = 6
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "iTs" = (
 /obj/item/stack/rods,
@@ -48684,7 +48664,7 @@
 /area/lv759/indoors/spaceport/flight_control_room)
 "iZx" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "iZy" = (
 /obj/effect/urban/decal/dirt,
@@ -49082,7 +49062,7 @@
 /area/lv759/indoors/botany/botany_greenhouse)
 "jdu" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/reception)
 "jdx" = (
 /turf/closed/shuttle/dropship4/aisle{
@@ -49731,7 +49711,7 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/meridian/meridian_foyer)
 "jiB" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -50056,7 +50036,7 @@
 	dir = 8;
 	layer = 3.3
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "jkX" = (
 /obj/structure/ore_box,
@@ -50158,7 +50138,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "jlX" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -50361,7 +50341,7 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "jnM" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "jnO" = (
@@ -50403,7 +50383,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "jnU" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -50423,7 +50403,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "jnZ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 8
 	},
@@ -50494,7 +50474,7 @@
 /obj/structure/prop/urban/signs/high_voltage{
 	desc = null
 	},
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/indoors/power_plant/fusion_generators)
 "jps" = (
 /obj/structure/platform{
@@ -50549,8 +50529,8 @@
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 4
 	},
-/obj/structure/window/framed/urban/colony/reinforced,
 /obj/structure/sign/safety/storage,
+/obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "jpU" = (
@@ -51196,7 +51176,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "jvF" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -51226,7 +51206,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory)
 "jwb" = (
 /obj/structure/prop/urban/misc/firehydrant{
@@ -51290,7 +51270,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "jwW" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "jwY" = (
 /obj/structure/disposalconstruct,
@@ -51305,7 +51285,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/lv759/indoors/hospital/east_hallway)
 "jxa" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "jxc" = (
 /turf/open/floor/prison{
@@ -51342,7 +51322,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "jxr" = (
-/obj/structure/window/framed/urban/marshalls/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -51673,7 +51653,7 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/outdoors/caveplateau)
 "jAx" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/garage_reception)
 "jAz" = (
@@ -51938,7 +51918,7 @@
 /turf/open/floor/carpet/orange,
 /area/lv759/indoors/bar/entertainment)
 "jDx" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
@@ -52177,7 +52157,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "jGF" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/press_room)
 "jGG" = (
 /obj/effect/decal/cleanable/blood{
@@ -52442,7 +52422,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/reception)
 "jJd" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "jJg" = (
 /obj/structure/closet/crate/trashcart{
@@ -52767,7 +52747,7 @@
 /area/lv759/indoors/hospital/east_hallway)
 "jMu" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "jMx" = (
 /obj/effect/urban/decal/dirt,
@@ -52813,7 +52793,7 @@
 /turf/open/floor/urban/wood/blackwood,
 /area/lv759/indoors/apartment/northapartments)
 "jMK" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -52995,7 +52975,7 @@
 /area/lv759/indoors/north_caves)
 "jOn" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/engineering)
 "jOo" = (
 /obj/structure/closet/secure_closet/marshal,
@@ -53040,7 +53020,7 @@
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
 "jOR" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/telecomms)
 "jOX" = (
@@ -53670,7 +53650,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jVU" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "jVW" = (
 /obj/effect/urban/decal/dirt,
@@ -54062,7 +54042,7 @@
 /turf/open/floor/urban/carpet/carpetfadedred,
 /area/lv759/indoors/apartment/northapartments)
 "jZb" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -54684,7 +54664,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/reception)
 "kfx" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -54710,7 +54690,7 @@
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_reception)
 "kgg" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -54724,7 +54704,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "kgx" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -55516,7 +55496,7 @@
 	desc = "Semiotic Standard denoting the nearby presence of a weapon research lab.";
 	name = "weapon research lab semiotic"
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "kok" = (
 /obj/effect/urban/decal/dirt,
@@ -55590,7 +55570,7 @@
 	pixel_x = 24;
 	pixel_y = 12
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_office)
 "koT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -55737,7 +55717,7 @@
 /area/lv759/indoors/central_caves)
 "kqk" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "kql" = (
 /obj/effect/urban/decal/dirt,
@@ -55773,7 +55753,7 @@
 	pixel_x = 8;
 	pixel_y = -12
 	},
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "kqA" = (
 /obj/item/tool/shovel{
@@ -56006,7 +55986,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ksU" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/curtain/medical,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/medical_annex)
@@ -56256,7 +56236,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/north_east_caves)
 "kvD" = (
-/obj/structure/window/framed/urban/spaceport/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -56298,7 +56278,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/jacks_surplus)
 "kwc" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_office)
 "kwe" = (
 /obj/item/stool{
@@ -56567,7 +56547,7 @@
 "kyp" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "kys" = (
 /obj/effect/urban/decal/dirt,
@@ -57226,7 +57206,7 @@
 /area/lv759/outdoors/caveplateau)
 "kFf" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "kFj" = (
 /obj/structure/prop/urban/vehicles/Meridian/Taxi{
@@ -57302,9 +57282,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/hospital/reception)
-"kGa" = (
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
-/area/lv759/oob)
 "kGb" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -57595,7 +57572,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "kJx" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "kJD" = (
 /obj/effect/decal/cleanable/blood/xeno,
@@ -58772,7 +58749,7 @@
 	},
 /area/lv759/indoors/power_plant)
 "kUO" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/curtain/temple,
 /obj/machinery/door/poddoor/urban/open_shutters,
 /turf/open/floor/plating,
@@ -59026,7 +59003,7 @@
 	name = "Mining Lockdown";
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "kXi" = (
 /obj/structure/window/framed/urban,
@@ -59166,7 +59143,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "kYz" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_1/flight_control_room)
 "kYI" = (
@@ -59242,7 +59219,7 @@
 	name = "Mining Lockdown";
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "kZr" = (
 /obj/effect/urban/decal/dirt,
@@ -59327,7 +59304,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/hospital/virology)
 "laz" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 8
 	},
@@ -59335,7 +59312,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "laB" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_workshop)
 "laD" = (
 /obj/structure/barricade/handrail/urban/road/plastic/black{
@@ -59569,7 +59546,7 @@
 /obj/structure/sign/poster{
 	pixel_x = 12
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "lcD" = (
 /obj/effect/urban/decal/dirt,
@@ -59683,7 +59660,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/northfoyer)
 "ldK" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "ldR" = (
 /obj/structure/disposalpipe/segment{
@@ -60137,7 +60114,7 @@
 /area/lv759/oob)
 "lie" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "lif" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -60355,7 +60332,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east)
 "lke" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_north)
 "lkh" = (
 /obj/effect/urban/decal/dirt,
@@ -60665,7 +60642,7 @@
 /turf/open/floor/orange_edge,
 /area/lv759/indoors/spaceport/hallway_east)
 "lmU" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -61041,7 +61018,7 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "lqL" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -61227,7 +61204,7 @@
 /area/lv759/indoors/electical_systems/substation1)
 "lsP" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -61277,7 +61254,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_caves)
 "lto" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -61691,7 +61668,7 @@
 /area/lv759/indoors/colonial_marshals/head_office)
 "lxp" = (
 /obj/structure/sign/safety/maintenance,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "lxD" = (
 /obj/structure/lattice/autosmooth,
@@ -61961,7 +61938,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "lAu" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "lAB" = (
@@ -62190,7 +62167,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lCS" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "lCT" = (
 /obj/structure/curtain/open/shower,
@@ -63253,7 +63230,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "lNl" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "lNn" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -63298,7 +63275,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "lNz" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -63683,7 +63660,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lQJ" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "lQN" = (
 /turf/open/floor/prison{
@@ -63896,7 +63873,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lSx" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -64732,7 +64709,7 @@
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/power_plant/fusion_generators)
 "max" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "maG" = (
 /obj/machinery/light/small/blue{
@@ -65061,7 +65038,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "med" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -65323,7 +65300,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mgD" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -65417,7 +65394,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mhj" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "mhr" = (
@@ -65703,7 +65680,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "mjL" = (
 /obj/effect/urban/decal/dirt,
@@ -65731,7 +65708,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/landing_zone_1)
 "mjV" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "mjY" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -65821,7 +65798,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "mkA" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "mkB" = (
 /turf/open/floor/urban/tile/tilewhitecheckered,
@@ -65904,7 +65881,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "mli" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -66218,7 +66195,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/landing_zone_2)
 "mol" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -66817,7 +66794,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/engineering)
 "mtj" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -67442,7 +67419,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "mzl" = (
 /obj/structure/sign/safety/maintenance,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "mzv" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -67547,7 +67524,7 @@
 /area/lv759/indoors/garage_workshop)
 "mAr" = (
 /obj/structure/sign/safety/laser,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "mAy" = (
 /obj/structure/table/reinforced,
@@ -67707,7 +67684,7 @@
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_foyer)
 "mBR" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_security/checkpoint_northwest)
 "mBU" = (
@@ -67737,7 +67714,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "mCk" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "mCo" = (
 /obj/item/clothing/head/warning_cone{
@@ -67806,7 +67783,7 @@
 	},
 /area/lv759/indoors/spaceport/cargo)
 "mCQ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -67898,7 +67875,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "mDJ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
 "mDK" = (
@@ -68386,7 +68363,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "mJf" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -68467,7 +68444,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mKe" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "mKf" = (
 /obj/machinery/light/spot/blue{
@@ -68756,7 +68733,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "mMJ" = (
 /obj/effect/ai_node,
@@ -69529,7 +69506,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/emergency_room)
 "mUh" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "mUr" = (
@@ -69763,7 +69740,7 @@
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "mWv" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory)
 "mWx" = (
 /obj/structure/platform{
@@ -69800,7 +69777,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "mWH" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/virology)
 "mWI" = (
@@ -70308,7 +70285,7 @@
 	},
 /area/lv759/indoors/power_plant/geothermal_generators)
 "naC" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "naI" = (
@@ -70603,7 +70580,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "ncQ" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "ncS" = (
 /obj/structure/prop/urban/signs/high_voltage/small,
@@ -70619,9 +70596,6 @@
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_street)
-"ndk" = (
-/turf/closed/wall/urban/research/reinforced/hull,
-/area/lv759/oob)
 "ndm" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/three,
@@ -71000,7 +70974,7 @@
 /area/lv759/indoors/spaceport/engineering)
 "ngw" = (
 /obj/structure/sign/safety/hazard,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "ngy" = (
 /obj/structure/platform/urban/metalplatform2{
@@ -71501,7 +71475,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "nkg" = (
 /obj/structure/sign/safety/atmospherics,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "nkn" = (
 /obj/effect/urban/decal/road/lines4,
@@ -71680,7 +71654,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nme" = (
 /obj/structure/curtain/medical,
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/patient_ward)
 "nmk" = (
@@ -72721,7 +72695,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/casino/casino_vault)
 "nvt" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -72738,7 +72712,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/casino/casino_vault)
 "nvH" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/communications_office)
 "nvW" = (
 /turf/open/floor/mainship/black{
@@ -72779,7 +72753,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_west)
 "nwx" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/restroom)
 "nwF" = (
 /obj/effect/urban/decal/dirt,
@@ -73097,7 +73071,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "nyI" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/office)
 "nyN" = (
 /obj/effect/urban/decal/dirt,
@@ -73140,7 +73114,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "nzf" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -73491,7 +73465,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "nCt" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/north_office)
 "nCv" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -73528,7 +73502,7 @@
 	dir = 4;
 	layer = 3.33
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "nCO" = (
 /obj/item/clothing/head/warning_cone{
@@ -74047,7 +74021,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nIv" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_restroom)
 "nIz" = (
 /obj/machinery/landinglight/lz1{
@@ -74458,7 +74432,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "nMs" = (
 /obj/structure/curtain/medical,
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "nMx" = (
@@ -75050,7 +75024,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "nRI" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/platform_decoration{
 	dir = 8;
 	layer = 4
@@ -75118,7 +75092,7 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "nSr" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -75983,7 +75957,7 @@
 /area/lv759/indoors/ntmart)
 "obb" = (
 /obj/structure/sign/safety/medical_supplies,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "obd" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -76026,7 +76000,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "obw" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "oby" = (
@@ -76091,7 +76065,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "obT" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "obU" = (
 /obj/machinery/power/apc/drained,
@@ -76111,7 +76085,7 @@
 /area/lv759/indoors/bar)
 "och" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ocj" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco1,
@@ -76563,7 +76537,7 @@
 /turf/open/floor/mainship/cargo,
 /area/lv759/indoors/nt_research_complex/cargo)
 "oht" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -77020,7 +76994,7 @@
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "olH" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -77397,7 +77371,7 @@
 /area/lv759/indoors/colonial_marshals/head_office)
 "oqQ" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "oqS" = (
 /obj/structure/prop/urban/containersextended/blackwyright,
@@ -77478,7 +77452,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/outgoing)
 "orT" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "orY" = (
 /obj/effect/urban/decal/road/lines4,
@@ -77770,7 +77744,7 @@
 /area/lv759/indoors/colonial_marshals/north_office)
 "ouD" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "ouI" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -77868,7 +77842,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/central_hallway)
 "ovO" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "ovS" = (
@@ -77886,7 +77860,7 @@
 /area/lv759/indoors/casino/casino_restroom)
 "ovX" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "ovY" = (
 /obj/item/stool{
@@ -78356,7 +78330,7 @@
 	},
 /area/lv759/indoors/hospital/virology)
 "oAK" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/flight_control_room)
 "oAP" = (
 /obj/effect/decal/cleanable/blood,
@@ -78395,7 +78369,7 @@
 /area/lv759/indoors/north_west_caves)
 "oBr" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/north_office)
 "oBu" = (
 /obj/structure/platform{
@@ -78760,7 +78734,7 @@
 /area/lv759/indoors/north_east_caves)
 "oFh" = (
 /obj/structure/sign/safety/laser,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cargo)
 "oFo" = (
 /obj/structure/fence/dark,
@@ -78802,7 +78776,7 @@
 /area/lv759/indoors/spaceport/security)
 "oFP" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/press_room)
 "oFQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -78840,7 +78814,7 @@
 	},
 /area/lv759/indoors/weyyu_office/pressroom)
 "oGg" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -79529,7 +79503,7 @@
 /turf/open/floor/urban/carpet/carpetpatternbrown,
 /area/lv759/indoors/recycling_plant_office)
 "oKZ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 1
 	},
@@ -79674,7 +79648,7 @@
 	},
 /area/lv759/indoors/spaceport/security)
 "oNf" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/botany/botany_mainroom)
 "oNg" = (
 /obj/item/stack/rods,
@@ -79697,7 +79671,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "oNA" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -79771,7 +79745,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "oOx" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -79930,7 +79904,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_central)
 "oPB" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/interrogation)
 "oPM" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
@@ -79983,7 +79957,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/caveplateau)
 "oQp" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 2";
@@ -80318,10 +80292,10 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "oUf" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "oUl" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -80382,7 +80356,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv759/indoors/hospital/reception)
 "oUL" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -80536,7 +80510,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "oWC" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "oWD" = (
 /obj/machinery/vending/nanomed{
@@ -81236,7 +81210,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
@@ -81465,7 +81439,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/garage_managersoffice)
 "pfa" = (
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/indoors/power_plant/fusion_generators)
 "pfb" = (
 /obj/structure/table/mainship,
@@ -81898,7 +81872,7 @@
 	dir = 1
 	},
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "pjk" = (
 /obj/item/clothing/head/warning_cone{
@@ -81911,7 +81885,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/hallway_north)
 "pjq" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "pjE" = (
@@ -82097,7 +82071,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "plP" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -82619,7 +82593,7 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/garage_workshop)
 "pqT" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/janitor)
 "pqX" = (
 /obj/effect/turf_decal/medical_decals/triage{
@@ -82983,7 +82957,7 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pui" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -83175,7 +83149,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "pvM" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "pvO" = (
@@ -83826,7 +83800,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "pAW" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "pAX" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
@@ -84339,7 +84313,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "pFJ" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -84722,7 +84696,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
 "pJP" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -84873,7 +84847,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pKF" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/outdoors/landing_zone_2)
 "pKG" = (
 /obj/effect/urban/decal/dirt,
@@ -84949,7 +84923,7 @@
 /area/lv759/indoors/hospital/cryo_room)
 "pLb" = (
 /obj/structure/prop/urban/signs/high_voltage,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "pLd" = (
 /obj/machinery/disposal,
@@ -85227,7 +85201,7 @@
 /area/lv759/indoors/spaceport/cuppajoes)
 "pNv" = (
 /obj/effect/acid_hole,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "pNw" = (
 /obj/effect/urban/decal/dirt,
@@ -85259,7 +85233,7 @@
 	},
 /area/lv759/indoors/power_plant/geothermal_generators)
 "pND" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "pNG" = (
 /obj/effect/urban/decal/dirt,
@@ -85987,7 +85961,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "pVw" = (
 /obj/structure/platform/urban/rockdark{
@@ -86179,7 +86153,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "pXc" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -86891,7 +86865,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/south_west_caves)
 "qdM" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -87108,7 +87082,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "qeZ" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "qfd" = (
 /obj/structure/platform/urban/rockdark{
@@ -87161,7 +87135,7 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "qfI" = (
 /obj/effect/urban/decal/road/road_edge/three,
@@ -87595,7 +87569,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_west)
 "qkf" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "qki" = (
 /obj/structure/cable,
@@ -88646,7 +88620,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "quD" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/garage_workshop)
 "quE" = (
@@ -88755,7 +88729,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "qvV" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -89398,7 +89372,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/virology)
 "qDr" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -89471,7 +89445,7 @@
 	dir = 4;
 	pixel_x = 1
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "qEG" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco4{
@@ -89706,7 +89680,7 @@
 /turf/open/floor/carpet/black,
 /area/lv759/indoors/weyyu_office/vip)
 "qHG" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -89949,7 +89923,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qKk" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -90282,7 +90256,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "qNU" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -90857,7 +90831,7 @@
 	dir = 4;
 	layer = 4
 	},
-/obj/structure/window/framed/urban/colony/engineering/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -91522,7 +91496,7 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "raJ" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "raQ" = (
 /turf/open/floor/mainship/sterile/plain,
@@ -91719,7 +91693,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rdp" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -92006,7 +91980,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "rfH" = (
 /turf/open/floor/plating,
@@ -92072,7 +92046,7 @@
 /area/lv759/indoors/colonial_marshals/armory)
 "rgs" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "rgt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -92432,7 +92406,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "rjr" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
 "rju" = (
 /obj/structure/prop/urban/containersextended/tanwywingsleft,
@@ -92460,10 +92434,10 @@
 	dir = 1;
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "rjI" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -92472,7 +92446,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westhallway)
 "rjT" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -92866,7 +92840,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "rmU" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/curtain/temple{
 	dir = 4
 	},
@@ -92902,7 +92876,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "rni" = (
 /turf/open/engineership/engineer_floor1,
@@ -93057,7 +93031,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "roP" = (
 /turf/open/floor/urban/metal/greenmetal1{
@@ -93375,7 +93349,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "rrR" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -93613,7 +93587,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "ruf" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/casino)
 "rus" = (
 /obj/structure/table/reinforced/prison{
@@ -94210,7 +94184,7 @@
 /obj/structure/prop/urban/signs/high_voltage{
 	desc = null
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "rAz" = (
 /obj/effect/urban/decal/dirt,
@@ -94505,7 +94479,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "rDc" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "rDd" = (
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
@@ -94530,7 +94504,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "rDn" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/kitchen)
 "rDt" = (
 /obj/structure/bed/chair{
@@ -94757,7 +94731,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/casino/casino_restroom)
 "rFF" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -95142,7 +95116,7 @@
 /area/lv759/indoors/mining_outpost/north)
 "rJI" = (
 /obj/structure/mirror,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/restroom)
 "rJJ" = (
 /obj/effect/urban/decal/dirt,
@@ -95301,7 +95275,7 @@
 	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "rLf" = (
 /obj/machinery/recharge_station,
@@ -95397,7 +95371,7 @@
 /area/lv759/indoors/north_east_caves)
 "rMe" = (
 /obj/machinery/computer/security,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "rMg" = (
 /obj/structure/barricade/sandbags,
@@ -95499,7 +95473,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "rNk" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -96098,7 +96072,7 @@
 /area/lv759/indoors/garage_reception)
 "rSe" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "rSf" = (
 /obj/machinery/light,
@@ -96503,7 +96477,7 @@
 /turf/closed/wall/urban/colony/hospital,
 /area/lv759/indoors/hospital/patient_ward)
 "rWv" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/security_office)
 "rWy" = (
 /obj/structure/table/reinforced/prison{
@@ -96553,7 +96527,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "rWQ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -96630,7 +96604,7 @@
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/recycling_plant/garage)
 "rXK" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/office)
 "rXQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -96755,7 +96729,7 @@
 /obj/structure/sign/poster{
 	layer = 2.9
 	},
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/communications_office)
 "rZc" = (
 /obj/machinery/newscaster,
@@ -97025,7 +96999,7 @@
 /area/lv759/indoors/central_caves)
 "scp" = (
 /obj/structure/sign/safety/galley,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "scs" = (
 /obj/structure/cable,
@@ -97403,7 +97377,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "sfu" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "sfy" = (
 /obj/effect/urban/decal/road/lines2,
@@ -97446,7 +97420,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "sfZ" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -97790,7 +97764,7 @@
 /area/lv759/indoors/north_east_caves)
 "sjj" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "sjl" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -97916,7 +97890,7 @@
 /turf/open/floor/urban/carpet/carpetred,
 /area/lv759/indoors/casino)
 "sjZ" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "skd" = (
 /obj/effect/decal/cleanable/blood,
@@ -98857,7 +98831,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "sst" = (
 /obj/structure/sign/safety/radio,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/reception)
 "ssw" = (
 /obj/structure/table,
@@ -98902,7 +98876,7 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "ssM" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -99095,7 +99069,7 @@
 	pixel_x = 6;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "sul" = (
 /obj/machinery/light,
@@ -99611,7 +99585,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "szd" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westfoyer)
 "szk" = (
@@ -99701,7 +99675,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "szM" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "szQ" = (
 /obj/item/trash/cigbutt,
@@ -99730,7 +99704,7 @@
 /area/lv759/indoors/nt_research_complex/changingroom)
 "szS" = (
 /obj/structure/closet/walllocker/hydrant,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "szT" = (
 /obj/effect/ai_node,
@@ -100140,7 +100114,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/electical_systems/substation3)
 "sEj" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/maintenance_east)
 "sEn" = (
 /obj/effect/urban/decal/dirt,
@@ -100470,7 +100444,7 @@
 /area/lv759/indoors/colonial_marshals/reception)
 "sHF" = (
 /obj/effect/acid_hole,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cargo)
 "sHK" = (
 /obj/effect/urban/decal/dirt,
@@ -100542,7 +100516,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "sIu" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -100613,7 +100587,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory)
 "sIQ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_managersoffice)
 "sIR" = (
@@ -100681,7 +100655,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "sJm" = (
 /obj/structure/sign/safety/maintenance,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "sJo" = (
 /obj/effect/decal/cleanable/vomit,
@@ -101218,7 +101192,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "sNO" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/communications_office)
 "sNP" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -101378,7 +101352,7 @@
 /area/lv759/indoors/hospital/virology)
 "sPt" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/head_office)
 "sPv" = (
 /obj/effect/urban/decal/trash/fifteen{
@@ -101957,7 +101931,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "sVb" = (
 /obj/structure/curtain/medical,
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/icu)
 "sVc" = (
@@ -102217,7 +102191,7 @@
 	},
 /area/lv759/indoors/spaceport/horizon_runner)
 "sXq" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -102270,7 +102244,7 @@
 /area/lv759/indoors/derelict_ship)
 "sYc" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "sYj" = (
 /obj/effect/ai_node,
@@ -102655,7 +102629,7 @@
 /area/lv759/indoors/jacks_surplus)
 "tbO" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "tbS" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco1{
@@ -102827,7 +102801,7 @@
 	light_range = 5;
 	pixel_x = 1
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "tdz" = (
 /obj/machinery/gear{
@@ -102929,7 +102903,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_off{
 	pixel_x = 1
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "tef" = (
 /obj/machinery/light/small,
@@ -103669,7 +103643,7 @@
 	pixel_x = 11
 	},
 /obj/structure/sign/safety,
-/turf/closed/wall/urban/colony/engineering/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/indoors/power_plant/fusion_generators)
 "tle" = (
 /obj/structure/cable,
@@ -103694,7 +103668,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "tlj" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_mainroom)
 "tll" = (
@@ -103851,7 +103825,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "tmO" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "tmW" = (
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -103899,7 +103873,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "tnX" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "tob" = (
 /obj/structure/barricade/handrail/medical,
@@ -104342,7 +104316,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tro" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "trp" = (
 /obj/effect/urban/decal/dirt,
@@ -104482,7 +104456,7 @@
 	},
 /area/lv759/indoors/spaceport/cargo)
 "tsZ" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "urbanLZ2_1";
@@ -104898,7 +104872,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "twx" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "twA" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -104949,7 +104923,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_off{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "txj" = (
 /obj/item/stool{
@@ -106137,7 +106111,7 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "tJv" = (
-/obj/structure/window/framed/urban/marshalls/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -106765,7 +106739,7 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/apartment/eastfoyer)
 "tPs" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/engineering)
 "tPx" = (
 /obj/effect/urban/decal/engineership_corners{
@@ -107424,7 +107398,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tVe" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "tVg" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -107503,7 +107477,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "tVQ" = (
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "tVX" = (
 /obj/effect/urban/decal/dirt,
@@ -107978,7 +107952,7 @@
 	pixel_x = 4;
 	pixel_y = 3
 	},
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_workshop_storage)
 "tZw" = (
 /obj/effect/urban/decal/dirt,
@@ -107996,7 +107970,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tZz" = (
 /obj/structure/sign/safety/hazard,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/hospital/maintenance_north)
 "tZD" = (
 /obj/structure/disposalpipe/segment,
@@ -108118,7 +108092,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "uav" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "uax" = (
 /obj/structure/platform{
@@ -108146,7 +108120,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "uaF" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "uaJ" = (
 /obj/machinery/light{
@@ -108864,7 +108838,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "uhf" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/changingroom)
 "uhg" = (
 /obj/effect/urban/decal/road/road_stop/five,
@@ -109602,7 +109576,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/garage)
 "unu" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -110206,7 +110180,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/lv759/indoors/colonial_marshals/garage)
 "usH" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/north_office)
 "usP" = (
@@ -110781,7 +110755,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "uzx" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "uzz" = (
@@ -111013,7 +110987,7 @@
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
 "uBH" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/janitor)
 "uBI" = (
 /obj/effect/spawner/random/engineering/powercell,
@@ -111128,8 +111102,8 @@
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 4
 	},
-/obj/structure/window/framed/urban/colony/reinforced,
 /obj/structure/sign/safety/laser,
+/obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "uCN" = (
@@ -111147,7 +111121,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "uCW" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_reception)
 "uDa" = (
 /turf/closed/shuttle/dropship4/fins{
@@ -111660,7 +111634,7 @@
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/lv759/indoors/casino)
 "uHf" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship,
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_2)
@@ -111767,7 +111741,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "uIE" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "uIF" = (
 /obj/structure/stairs/seamless,
@@ -111997,7 +111971,7 @@
 /area/lv759/indoors/electical_systems/substation2)
 "uKk" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "uKl" = (
 /obj/structure/bed/chair/wood/normal,
@@ -112102,7 +112076,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_workshop)
 "uLG" = (
 /obj/machinery/floodlight/colony/street{
@@ -112147,7 +112121,7 @@
 /area/lv759/indoors/apartment/eastbedrooms)
 "uLY" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "uMh" = (
 /obj/effect/urban/decal/dirt,
@@ -112440,7 +112414,7 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "uOG" = (
 /obj/effect/urban/decal/road/lines1,
@@ -113177,7 +113151,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "uWI" = (
 /obj/effect/urban/decal/dirt,
@@ -113442,7 +113416,7 @@
 /area/lv759/indoors/power_plant/power_storage)
 "uZy" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_workshop_storage)
 "uZz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -114104,7 +114078,7 @@
 	},
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "vfk" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/mining_outpost/northeast)
 "vfn" = (
 /obj/effect/urban/decal/road/road_edge,
@@ -114212,7 +114186,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4
 	},
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart)
 "vgq" = (
@@ -114531,7 +114505,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "vja" = (
 /obj/effect/urban/decal/dirt,
@@ -114669,7 +114643,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "vkz" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/head_office)
 "vkA" = (
@@ -115436,7 +115410,7 @@
 /turf/closed/wall/urban/colony/office,
 /area/lv759/indoors/weyyu_office/floor)
 "vrz" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2;
 	id = "virology_lockdown"
@@ -115531,7 +115505,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/weyyu_office/pressroom)
 "vrZ" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "vsa" = (
 /turf/closed/shuttle/dropship4/window{
@@ -115596,7 +115570,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "vsQ" = (
 /obj/structure/sign/safety/hazard,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "vsW" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -115627,7 +115601,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "vtk" = (
-/obj/structure/window/framed/urban/colony/hospital/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -116074,7 +116048,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vxx" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/structure/prop/urban/lattice_prop/lattice_2{
 	pixel_x = -26
 	},
@@ -116466,7 +116440,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vBV" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westentertainment)
 "vBX" = (
@@ -116673,7 +116647,7 @@
 /area/lv759/indoors/north_west_caves)
 "vDL" = (
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "vDP" = (
 /obj/structure/window/reinforced{
@@ -117033,7 +117007,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vHj" = (
 /obj/structure/sign/safety,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/baggagehandling)
 "vHr" = (
 /obj/item/storage/briefcase,
@@ -117110,7 +117084,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "vHV" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "vHW" = (
 /obj/structure/platform/urban/rockdark,
@@ -117377,7 +117351,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/oob)
 "vKA" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 1
 	},
@@ -117615,7 +117589,7 @@
 /turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "vMZ" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -118423,7 +118397,7 @@
 /area/lv759/indoors/spaceport/horizon_runner)
 "vUa" = (
 /obj/structure/sign/safety/storage,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "vUc" = (
 /obj/machinery/power/geothermal,
@@ -119738,7 +119712,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2
 	},
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart)
 "wfD" = (
@@ -120115,7 +120089,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "wjh" = (
 /obj/structure/sign/safety/blast_door,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "wji" = (
 /obj/structure/platform/urban/rockdark{
@@ -120342,7 +120316,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "wkR" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -120884,7 +120858,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "wpS" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 1
 	},
@@ -121299,7 +121273,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "wup" = (
 /obj/structure/sign/safety/laser,
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "wuy" = (
 /obj/structure/platform_decoration/metalplatform_deco{
@@ -121526,7 +121500,7 @@
 /turf/open/engineership/engineer_floor2,
 /area/lv759/indoors/derelict_ship)
 "wwX" = (
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wxe" = (
 /obj/item/shard,
@@ -121746,7 +121720,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/lv759/indoors/power_plant/fusion_generators)
 "wzA" = (
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_foyer)
 "wzB" = (
 /obj/structure/table/mainship,
@@ -122049,7 +122023,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "wCa" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -122246,7 +122220,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "wDs" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "wDB" = (
 /obj/structure/table/reinforced/prison,
@@ -122517,7 +122491,7 @@
 /turf/open/floor/urban/carpet/carpetgreendeco,
 /area/lv759/indoors/meridian/meridian_managersoffice)
 "wFQ" = (
-/obj/structure/window/framed/urban/colony/engineering/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -122650,7 +122624,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "wHl" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "wHv" = (
 /obj/structure/largecrate/random/barrel/black{
@@ -122787,7 +122761,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "wII" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "wIM" = (
 /obj/effect/urban/decal/dirt,
@@ -123052,7 +123026,7 @@
 /area/lv759/indoors/derelict_ship)
 "wLg" = (
 /obj/structure/sign/nosmoking_2,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "wLh" = (
 /turf/open/floor/urban/tile/tilewhite,
@@ -123094,7 +123068,7 @@
 /area/lv759/indoors/apartment/eastbedroomsstorage)
 "wLz" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/communications_office)
 "wLA" = (
 /obj/vehicle/train/cargo/trolley,
@@ -123456,7 +123430,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wPf" = (
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_workshop_storage)
 "wPh" = (
 /obj/structure/fence{
@@ -123506,7 +123480,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wPE" = (
-/obj/structure/window/framed/urban/colony/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship{
@@ -123688,7 +123662,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
 "wQU" = (
-/obj/structure/window/framed/urban/spaceport/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/security)
 "wQV" = (
@@ -124669,7 +124643,7 @@
 /area/lv759/indoors/garage_reception)
 "wZI" = (
 /obj/structure/closet/walllocker/hydrant,
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/reception)
 "wZN" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -124689,7 +124663,7 @@
 	},
 /area/lv759/indoors/hospital/operation)
 "wZW" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "wZY" = (
@@ -124770,7 +124744,7 @@
 /area/lv759/indoors/bar/bathroom)
 "xbo" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/head_office)
 "xbx" = (
 /obj/effect/urban/decal/dirt,
@@ -124923,7 +124897,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "xcI" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/shutters{
 	dir = 2
 	},
@@ -125026,7 +125000,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xde" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/heavyequip)
 "xdh" = (
 /obj/structure/sign/poster,
@@ -125034,7 +125008,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_factory)
 "xdk" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -125340,7 +125314,7 @@
 /turf/open/floor/prison/whitered,
 /area/lv759/indoors/hospital/operation)
 "xfz" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/cargo_maintenance)
 "xfG" = (
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -125539,7 +125513,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "xhz" = (
 /obj/machinery/light{
@@ -125960,7 +125934,7 @@
 /obj/structure/prop/urban/signs/high_voltage/small{
 	pixel_x = 6
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "xlS" = (
 /obj/structure/bed/chair{
@@ -126361,7 +126335,7 @@
 /area/lv759/indoors/power_plant)
 "xpB" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "xpD" = (
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
@@ -127102,7 +127076,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/research/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "xvX" = (
 /turf/closed/wall/urban/colony/hospital,
@@ -127575,7 +127549,7 @@
 /area/lv759/indoors/central_caves)
 "xAB" = (
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_off,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
 "xAC" = (
 /obj/structure/rack,
@@ -127932,7 +127906,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "xEC" = (
-/obj/structure/window/framed/urban/marshalls/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -127985,7 +127959,7 @@
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/north_street)
 "xFb" = (
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "xFc" = (
 /obj/item/clothing/head/warning_cone,
@@ -128147,7 +128121,7 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xGm" = (
 /obj/structure/sign/safety/laser,
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/security)
 "xGs" = (
 /obj/structure/cable,
@@ -128234,7 +128208,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4
 	},
-/turf/closed/wall/urban/colony/reinforced/hull,
+/turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "xHt" = (
 /obj/machinery/light{
@@ -128471,7 +128445,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/nt_research_complex/securityarmory)
 "xJp" = (
-/obj/structure/window/framed/urban/spaceport/reinforced{
+/obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/urban/shutters{
@@ -129696,7 +129670,7 @@
 /turf/closed/wall/urban/colony/engineering/ribbed,
 /area/lv759/indoors/power_plant/gas_generators)
 "xVj" = (
-/obj/structure/window/framed/urban/colony/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "xVA" = (
@@ -129984,7 +129958,7 @@
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "xYZ" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/marhsalls_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/north_office)
 "xZc" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -130337,7 +130311,7 @@
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastfoyer)
 "ycz" = (
-/turf/closed/wall/urban/colony/engineering/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/garage_restroom)
 "ycA" = (
 /turf/open/floor/officetiles,
@@ -130478,10 +130452,10 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ydz" = (
-/turf/closed/wall/urban/spaceport_reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ydA" = (
-/obj/structure/window/framed/urban/marshalls/reinforced,
+/obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/urban/open_shutters{
 	dir = 2
 	},
@@ -130586,7 +130560,7 @@
 /area/lv759/indoors/spaceport/engineering)
 "yeM" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/reinforced,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/electical_systems/substation3)
 "yeP" = (
 /obj/structure/noticeboard,
@@ -131793,95 +131767,95 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 qhg
 qhg
 qhg
 qhg
 qhg
 qhg
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 lwn
 "}
 (3,1,1) = {"
@@ -131995,10 +131969,10 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
-ndk
+tVQ
 fzZ
 eMt
 ngy
@@ -132083,8 +132057,8 @@ gvH
 gPO
 dCa
 jht
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (4,1,1) = {"
@@ -132197,11 +132171,11 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
-ndk
+tVQ
 jSU
 lsv
 thn
@@ -132286,8 +132260,8 @@ uff
 dcK
 jht
 jht
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (5,1,1) = {"
@@ -132399,12 +132373,12 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rto
 tAK
 thn
@@ -132489,8 +132463,8 @@ cNW
 dyu
 ccV
 nlh
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (6,1,1) = {"
@@ -132601,13 +132575,13 @@ tVQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 vbJ
 lsv
 nMs
@@ -132692,8 +132666,8 @@ rxa
 mQG
 mQG
 rkp
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (7,1,1) = {"
@@ -132804,13 +132778,13 @@ tVQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 vwE
 qkG
 nMs
@@ -132896,7 +132870,7 @@ mQG
 mQG
 cpN
 fZs
-ndk
+tVQ
 eqU
 "}
 (8,1,1) = {"
@@ -133007,8 +132981,8 @@ tVQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 vtr
 vtr
 bzZ
@@ -133210,8 +133184,8 @@ tVQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 vtr
 vtr
 sqL
@@ -133413,8 +133387,8 @@ tVQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 dnK
 aso
 jWO
@@ -134723,7 +134697,7 @@ fMS
 wIm
 dRS
 eCm
-ndk
+tVQ
 mRP
 "}
 (17,1,1) = {"
@@ -134925,8 +134899,8 @@ pYg
 hQI
 jht
 jht
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (18,1,1) = {"
@@ -135128,8 +135102,8 @@ wGS
 hQI
 jht
 jht
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (19,1,1) = {"
@@ -135332,7 +135306,7 @@ ezX
 ccV
 daz
 fZN
-ndk
+tVQ
 sEg
 "}
 (20,1,1) = {"
@@ -137159,7 +137133,7 @@ mQG
 mQG
 cpN
 hoY
-ndk
+tVQ
 eqU
 "}
 (29,1,1) = {"
@@ -137361,8 +137335,8 @@ ykj
 mQG
 mQG
 rkp
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (30,1,1) = {"
@@ -137564,8 +137538,8 @@ uff
 mEZ
 vdn
 mcI
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (31,1,1) = {"
@@ -137676,8 +137650,8 @@ eNf
 fdM
 vDJ
 eoh
-ndk
-ndk
+tVQ
+tVQ
 mai
 jCz
 eAt
@@ -137767,8 +137741,8 @@ sKv
 vCm
 qCQ
 qCQ
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (32,1,1) = {"
@@ -137879,8 +137853,8 @@ gOl
 fdM
 jjV
 hoo
-ndk
-ndk
+tVQ
+tVQ
 vtr
 vtr
 iwK
@@ -137970,8 +137944,8 @@ pUV
 gCM
 jht
 jht
-ndk
-ndk
+tVQ
+tVQ
 lwn
 "}
 (33,1,1) = {"
@@ -138082,8 +138056,8 @@ gOl
 qUo
 fdM
 hoo
-ndk
-ndk
+tVQ
+tVQ
 vtr
 vtr
 cAD
@@ -138169,12 +138143,12 @@ mjV
 lxp
 mjV
 uMv
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 lwn
 "}
 (34,1,1) = {"
@@ -138285,13 +138259,13 @@ qUo
 qUo
 qUo
 hoo
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 jsY
 ron
 pYC
@@ -138372,12 +138346,12 @@ qHX
 bWg
 rfH
 gdd
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 lwn
 "}
 (35,1,1) = {"
@@ -138488,13 +138462,13 @@ qUo
 qUo
 qUo
 hoo
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rto
 ron
 svN
@@ -138575,7 +138549,7 @@ gqh
 exJ
 rfH
 rfH
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -138692,12 +138666,12 @@ jjV
 qUo
 hoo
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rto
 ron
 jTv
@@ -138775,10 +138749,10 @@ mjV
 mjV
 mjV
 mjV
-ndk
+tVQ
 tds
 rfH
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -138896,11 +138870,11 @@ nCv
 hxR
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
-ndk
+tVQ
 rto
 pAu
 vtr
@@ -138975,13 +138949,13 @@ mjV
 mjV
 mjV
 mjV
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
 mjY
 rfH
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -139100,10 +139074,10 @@ ivr
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
-ndk
+tVQ
 bXV
 qgR
 tac
@@ -139173,18 +139147,18 @@ miu
 uTT
 apK
 gzr
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 opj
 mix
-ndk
+tVQ
 rfH
 tds
-ndk
+tVQ
 mix
 utX
 aWQ
@@ -139304,21 +139278,21 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 orT
 cER
 olN
@@ -139376,7 +139350,7 @@ jIp
 cQw
 bqB
 gzr
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -139508,20 +139482,20 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 orT
 eOY
 lmW
@@ -139579,7 +139553,7 @@ cpH
 uWJ
 fcm
 gzr
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -139717,14 +139691,14 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 orT
 mOA
 lCx
@@ -139782,7 +139756,7 @@ eXj
 jGU
 xos
 gzr
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -139921,13 +139895,13 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 orT
 rfQ
 rIn
@@ -139985,7 +139959,7 @@ iDp
 bDA
 iDp
 iDp
-ndk
+tVQ
 aWQ
 aWQ
 taw
@@ -140125,12 +140099,12 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 bSm
 nIH
 vmj
@@ -140187,8 +140161,8 @@ fVj
 mIq
 iSK
 iDp
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 uCf
@@ -140329,11 +140303,11 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
-ndk
+tVQ
 tnX
 kfD
 qiS
@@ -140390,7 +140364,7 @@ oeN
 lfA
 reC
 iDp
-ndk
+tVQ
 aWQ
 aWQ
 ghY
@@ -140533,10 +140507,10 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
-ndk
+tVQ
 djH
 tYO
 qiS
@@ -140593,7 +140567,7 @@ nvW
 nvW
 pFr
 iDp
-ndk
+tVQ
 aWQ
 uCf
 qdG
@@ -140737,9 +140711,9 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
 xhx
 xno
 qlK
@@ -140796,7 +140770,7 @@ wAi
 krS
 wGR
 iDp
-ndk
+tVQ
 aWQ
 moW
 hkm
@@ -140941,8 +140915,8 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 orT
 tYe
 uEx
@@ -140999,7 +140973,7 @@ fVj
 mIq
 wKM
 iDp
-ndk
+tVQ
 aWQ
 taw
 uCf
@@ -141145,7 +141119,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
+tVQ
 orT
 orT
 kZo
@@ -141202,7 +141176,7 @@ diF
 vcf
 aJV
 iDp
-ndk
+tVQ
 aWQ
 qcM
 iTW
@@ -141348,7 +141322,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
+tVQ
 acH
 xAm
 vdB
@@ -141405,7 +141379,7 @@ iDp
 iDp
 iDp
 iDp
-ndk
+tVQ
 aWQ
 taw
 egN
@@ -141551,7 +141525,7 @@ udt
 aWQ
 aWQ
 aWQ
-ndk
+tVQ
 uhf
 iFM
 aFr
@@ -141596,19 +141570,19 @@ ode
 vJY
 uPD
 obT
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 aWQ
 aWQ
 ghY
@@ -141754,7 +141728,7 @@ lnQ
 psh
 aWQ
 aWQ
-ndk
+tVQ
 uhf
 kAy
 sVL
@@ -141799,13 +141773,13 @@ oWO
 sYH
 xPa
 obT
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -141957,7 +141931,7 @@ tHU
 udt
 aWQ
 aWQ
-ndk
+tVQ
 uhf
 fhJ
 mcq
@@ -142002,12 +141976,12 @@ uIr
 aUq
 aUq
 obT
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -142160,7 +142134,7 @@ aNS
 aNS
 tHU
 aWQ
-ndk
+tVQ
 uhf
 uhf
 uhf
@@ -142205,11 +142179,11 @@ oHU
 vot
 vot
 obT
-ndk
+tVQ
 lhZ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -142363,27 +142337,27 @@ aUH
 aNS
 aWQ
 aWQ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 rjr
 thC
 nUA
 niN
 glx
 rjr
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 hvw
 qnk
 dNJ
@@ -142408,10 +142382,10 @@ lBv
 aep
 mZe
 obT
-ndk
+tVQ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -142566,27 +142540,27 @@ lRa
 aUH
 tHU
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rjr
 bst
 ejc
 vne
 alm
 rjr
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 uBH
 oDp
 eju
@@ -142611,9 +142585,9 @@ obT
 obT
 obT
 obT
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -142769,27 +142743,27 @@ lRa
 qES
 tHU
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rjr
 rHY
 ejc
 vne
 did
 rjr
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 hvw
 rNS
 avy
@@ -142805,17 +142779,17 @@ gUR
 jzy
 gUR
 obT
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -142973,34 +142947,34 @@ aNS
 udt
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rjr
 rHY
 cqX
 vne
 did
 rjr
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
 lhZ
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
+tVQ
 obT
 dFn
 bYS
@@ -143008,7 +142982,7 @@ bYS
 bYS
 pXd
 obT
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143177,24 +143151,24 @@ aNS
 tHU
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
+tVQ
 rjr
 sHW
 ejc
 vne
 sJA
 rjr
-ndk
+tVQ
 lhZ
 lhZ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143203,7 +143177,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-ndk
+tVQ
 obT
 vvI
 xRT
@@ -143211,7 +143185,7 @@ xRT
 xRT
 ktf
 obT
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143381,22 +143355,22 @@ aNS
 udt
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
 lhZ
-ndk
+tVQ
 rjr
 dqc
 ejc
 vne
 aEk
 rjr
-ndk
+tVQ
 lhZ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143406,7 +143380,7 @@ aWQ
 nds
 aWQ
 aWQ
-ndk
+tVQ
 obT
 gUR
 gUR
@@ -143414,7 +143388,7 @@ gUR
 gUR
 gUR
 obT
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143585,20 +143559,20 @@ tHU
 aWQ
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 lhZ
-ndk
+tVQ
 rjr
 rjr
 hiL
 xLD
 rjr
 rjr
-ndk
+tVQ
 lhZ
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143609,7 +143583,7 @@ udt
 bLL
 aNS
 aWQ
-ndk
+tVQ
 obT
 roY
 roY
@@ -143617,7 +143591,7 @@ roY
 roY
 roY
 obT
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143789,18 +143763,18 @@ psh
 aWQ
 aWQ
 aWQ
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
 rjr
 rjr
 owB
 jwE
 rjr
 rjr
-ndk
-ndk
-ndk
+tVQ
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -143875,14 +143849,14 @@ fWa
 fWa
 aWQ
 aWQ
-kGa
-gcn
-gcn
-gcn
-gcn
-gcn
-gcn
-gcn
+tVQ
+laB
+laB
+laB
+laB
+laB
+laB
+laB
 sMz
 fwK
 fMK
@@ -143993,16 +143967,16 @@ aWQ
 udt
 aWQ
 aWQ
-ndk
-ndk
+tVQ
+tVQ
 rjr
 lvA
 mAU
 srS
 lXp
 rjr
-ndk
-ndk
+tVQ
+tVQ
 aWQ
 aWQ
 aWQ
@@ -144078,14 +144052,14 @@ hRC
 pQA
 aSK
 aWQ
-kGa
+tVQ
 qkv
 fcu
 vWi
 pFw
 jqM
 ovi
-gcn
+laB
 ahC
 huP
 rIM
@@ -144197,14 +144171,14 @@ tHU
 bLL
 aWQ
 aWQ
-ndk
+tVQ
 rjr
 thC
 fdt
 fdt
 glx
 rjr
-ndk
+tVQ
 aWQ
 aWQ
 aWQ
@@ -144281,7 +144255,7 @@ uTs
 aSK
 aWQ
 aWQ
-kGa
+tVQ
 kUR
 gjP
 agl
@@ -144484,14 +144458,14 @@ pjR
 aSK
 aWQ
 aWQ
-kGa
+tVQ
 tkU
 iNk
 rKz
 mAi
 sYN
 tqK
-gcn
+laB
 djw
 kwz
 plW
@@ -144687,7 +144661,7 @@ vvA
 vvA
 aWQ
 aWQ
-kGa
+tVQ
 khZ
 iZy
 qUK
@@ -144890,7 +144864,7 @@ aSK
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 wMN
 djn
 djn
@@ -145093,7 +145067,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 uru
 djn
 dCS
@@ -145296,7 +145270,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 fnl
 pJx
 jpi
@@ -145499,14 +145473,14 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 dKA
 nnx
 sgJ
 mXi
 hMu
 vZC
-gcn
+laB
 uTi
 bcs
 mpO
@@ -145709,7 +145683,7 @@ vch
 vWy
 sdk
 irY
-gcn
+laB
 cID
 bcs
 plW
@@ -145912,7 +145886,7 @@ gRh
 bnx
 bbW
 dNd
-gcn
+laB
 gmG
 bcs
 plW
@@ -146717,7 +146691,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 xms
 mDA
 fgE
@@ -146920,14 +146894,14 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 fFU
 gNH
 hMu
 nYz
 xTZ
 duS
-gcn
+laB
 geF
 geF
 geF
@@ -147123,14 +147097,14 @@ lIc
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 quD
 oBI
 sQT
 quD
-gcn
-gcn
-gcn
+laB
+laB
+laB
 dRA
 qwL
 qwL
@@ -147326,7 +147300,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 hiU
 jmo
 vBv
@@ -148544,7 +148518,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 edq
 vdZ
 eAw
@@ -148747,7 +148721,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-eei
+lCS
 xpF
 gnw
 pKe
@@ -148950,7 +148924,7 @@ byv
 aWQ
 aWQ
 aWQ
-kGa
+tVQ
 rYG
 nqf
 cFj
@@ -149153,7 +149127,7 @@ ouc
 pQA
 aWQ
 aWQ
-kGa
+tVQ
 ahz
 kRj
 iRt
@@ -149356,7 +149330,7 @@ oaW
 ouc
 aWQ
 aWQ
-kGa
+tVQ
 qrW
 qcn
 qrW
@@ -149559,7 +149533,7 @@ vvA
 pQA
 aWQ
 aWQ
-kGa
+tVQ
 ury
 xtS
 prU
@@ -149762,7 +149736,7 @@ pQA
 pQA
 ouc
 aWQ
-kGa
+tVQ
 uvw
 oJz
 aHd
@@ -149965,7 +149939,7 @@ pjR
 hRC
 fWa
 aWQ
-eei
+lCS
 gNE
 ppu
 gHe
@@ -150173,7 +150147,7 @@ ylk
 ovl
 dBd
 pFF
-kGa
+tVQ
 aWQ
 ftk
 mUw
@@ -150373,10 +150347,10 @@ miQ
 qKr
 hTt
 hTt
-kGa
-kGa
-kGa
-kGa
+tVQ
+tVQ
+tVQ
+tVQ
 aWQ
 tpT
 dSH
@@ -159806,7 +159780,7 @@ bvw
 nkc
 qLX
 qkf
-cmg
+tVe
 gcZ
 aFz
 xhG
@@ -160009,7 +159983,7 @@ qkf
 qkf
 qkf
 qkf
-cmg
+tVe
 gRj
 tor
 xCE
@@ -160618,7 +160592,7 @@ qkf
 cOO
 qkf
 qkf
-anp
+fSU
 fSU
 fSU
 oQp
@@ -170092,10 +170066,10 @@ stR
 vLk
 iLW
 wxJ
-hVf
+mWH
 roT
 qDo
-hVf
+mWH
 rte
 wAW
 rad
@@ -170487,9 +170461,9 @@ sVb
 aEc
 nSu
 wxJ
-hVf
+mWH
 eKZ
-hVf
+mWH
 ngL
 wxJ
 tfd
@@ -170695,20 +170669,20 @@ veg
 iVZ
 oah
 wxJ
-hVf
-hVf
+mWH
+mWH
 wxJ
 dji
 mWH
 wxJ
 yfS
-hVf
+mWH
 wxJ
 dji
-hVf
+mWH
 wxJ
 dji
-hVf
+mWH
 wxJ
 wxJ
 aWQ

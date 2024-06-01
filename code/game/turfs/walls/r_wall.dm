@@ -112,3 +112,15 @@
 	icon = 'icons/turf/walls/white_research_wall.dmi'
 	icon_state = "white_research_wall-0"
 	base_icon_state = "white_research_wall"
+
+/turf/closed/wall/r_wall/urban
+	name = "reinforced metal walls"
+	desc = "A thick and chunky metal wall ribbed with reinforced steel. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "wall-reinforced"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
+
+/turf/closed/wall/r_wall/urban/invincible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"

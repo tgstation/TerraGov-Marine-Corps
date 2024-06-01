@@ -708,7 +708,7 @@
 	dir = 5
 	window_frame = /obj/structure/window_frame/urban
 
-/obj/structure/window/framed/urban/colony/engineering
+/obj/structure/window/framed/urban/reinforced
 
 /obj/structure/window/framed/urban/marshalls/cell
 
@@ -718,13 +718,9 @@
 
 /obj/structure/window/framed/urban/colony/hospital
 
-/obj/structure/window/framed/urban/colony/engineering/reinforced
-
 /obj/structure/window/framed/urban/colony/engineering/hull
 
-/obj/structure/window/framed/urban/colony/hospital/reinforced
-
-/obj/structure/window/framed/urban/colony/reinforced
+/obj/structure/window/framed/urban/junk_window
 	name = "window"
 	icon = 'icons/obj/smooth_objects/junk_window.dmi'
 	icon_state = "chigusa_wall-0"
@@ -733,8 +729,6 @@
 	reinf = TRUE
 	dir = 5
 	window_frame = /obj/structure/window_frame/junk_frame
-
-/obj/structure/window/framed/urban/marshalls/reinforced
 
 /obj/structure/window/framed/kutjevo
 	name = "window"
