@@ -845,7 +845,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
-/area/janitor)
+/area/space)
 "de" = (
 /obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
@@ -1379,7 +1379,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -1791,7 +1790,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/arrival/start)
 "gG" = (
-/obj/structure/table/mainship,
 /obj/structure/table/mainship,
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/tcomms,
@@ -2778,9 +2776,7 @@
 /area/arrival/start)
 "ku" = (
 /obj/structure/cryofeed,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "kv" = (
 /obj/effect/landmark/weed_node,
@@ -4370,10 +4366,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/mainship/living/officer_study)
-"qB" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
 "qC" = (
 /obj/machinery/computer/communications,
 /obj/structure/table/mainship,
@@ -5661,7 +5653,7 @@
 "vv" = (
 /obj/structure/disposaloutlet,
 /turf/open/floor/mainship_hull/dir,
-/area/janitor)
+/area/space)
 "vw" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -6253,10 +6245,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
-"xJ" = (
-/turf/closed/mineral/smooth/indestructible,
-/turf/closed/mineral/smooth/indestructible,
-/area/bigredv2/caves/south)
 "xK" = (
 /obj/structure/caspart{
 	icon_state = "30"
@@ -7951,11 +7939,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
-"Ef" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/shuttle/drop2/lz2)
 "Eh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -9278,11 +9261,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
-"Jb" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/security)
 "Jc" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/southeast)
@@ -9606,7 +9584,6 @@
 	},
 /area/arrival/start)
 "Kk" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/daedalusprison/inside/security)
@@ -10150,12 +10127,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/e)
-"Mq" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
-/area/bigredv2/outside/c)
 "Mr" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/smooth/indestructible,
@@ -10310,12 +10281,6 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"MV" = (
-/obj/structure/lattice,
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/janitor)
 "MW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/storage)
@@ -11652,9 +11617,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "RL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -13672,11 +13635,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/arrival/start)
-"Zb" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
 "Zc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/mono,
@@ -19722,8 +19680,8 @@ nT
 nT
 nT
 nT
-MV
-MV
+vm
+vm
 CR
 CR
 CR
@@ -20236,8 +20194,8 @@ SM
 fU
 fU
 nT
-MV
-MV
+vm
+vm
 CR
 CR
 CR
@@ -20703,7 +20661,7 @@ Sr
 Sr
 LB
 CQ
-ix
+oP
 uF
 XW
 eK
@@ -24540,7 +24498,7 @@ Nr
 Rf
 Rf
 Nr
-Ef
+Nr
 sJ
 sJ
 sJ
@@ -24804,7 +24762,7 @@ Lq
 Lq
 dM
 dM
-Zb
+bz
 wH
 wH
 wH
@@ -31006,7 +30964,7 @@ vE
 vE
 vE
 vE
-Jb
+QJ
 QJ
 QJ
 QJ
@@ -41646,7 +41604,7 @@ mK
 mK
 mK
 mK
-xJ
+bQ
 bQ
 bQ
 bQ
@@ -52374,7 +52332,7 @@ Ib
 Kh
 tl
 sk
-qB
+TB
 TB
 TB
 TB
@@ -55422,7 +55380,7 @@ qz
 tD
 Xa
 qM
-Mq
+hi
 tD
 Rb
 XT
