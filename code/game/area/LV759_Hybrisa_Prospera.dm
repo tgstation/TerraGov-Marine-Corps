@@ -100,13 +100,14 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 // Caves
-/area/lv759/indoors/wy_research_complex_entrance
+/area/lv759/indoors/nt_research_complex_entrance
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
 	icon_state = "wylab"
 
 /area/lv759/indoors/west_caves
 	name = "Caverns - West"
 	icon_state = "caves_west"
+	always_unpowered = TRUE
 
 /area/lv759/indoors/west_caves_alarm
 	name = "Caverns - West"
@@ -150,7 +151,7 @@
 /area/lv759/indoors/north_caves
 	name = "Caverns - North"
 	icon_state = "caves_north"
-	always_unpowered = FALSE
+	always_unpowered = TRUE
 
 /area/lv759/indoors/central_caves
 	name = "Caverns - Central"
@@ -752,24 +753,24 @@
 	minimap_color = MINIMAP_AREA_COMMAND
 
 // NT Security Checkpoints
-/area/lv759/indoors/wy_security/checkpoint_northeast
+/area/lv759/indoors/nt_security/checkpoint_northeast
 	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
 	minimap_color = MINIMAP_AREA_COLONY
 
-/area/lv759/indoors/wy_security/checkpoint_east
+/area/lv759/indoors/nt_security/checkpoint_east
 	name = "Nanotrasen Security Checkpoint - East"
 	icon_state = "security_checkpoint_east"
 
-/area/lv759/indoors/wy_security/checkpoint_central
+/area/lv759/indoors/nt_security/checkpoint_central
 	name = "Nanotrasen Security Checkpoint - Central"
 	icon_state = "security_checkpoint_central"
 
-/area/lv759/indoors/wy_security/checkpoint_west
+/area/lv759/indoors/nt_security/checkpoint_west
 	name = "Nanotrasen Security Checkpoint - West"
 	icon_state = "security_checkpoint_west"
 
-/area/lv759/indoors/wy_security/checkpoint_northwest
+/area/lv759/indoors/nt_security/checkpoint_northwest
 	name = "Nanotrasen Security Checkpoint - North West"
 	icon_state = "security_checkpoint_northwest"
 
@@ -778,119 +779,119 @@
 	name = "Hidden Hobo Haven"
 	icon_state = "hobo"
 	ceiling = CEILING_METAL
-	always_unpowered = FALSE
+	always_unpowered = TRUE
 
 // Nanotrasen Advanced Bio-Genomic Research Complex
 
-/area/lv759/indoors/wy_research_complex
+/area/lv759/indoors/nt_research_complex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/lv759/indoors/wy_research_complex/medical_annex
+/area/lv759/indoors/nt_research_complex/medical_annex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/reception
+/area/lv759/indoors/nt_research_complex/reception
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Reception & Administration"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/cargo
+/area/lv759/indoors/nt_research_complex/cargo
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/researchanddevelopment
+/area/lv759/indoors/nt_research_complex/researchanddevelopment
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/mainlabs
+/area/lv759/indoors/nt_research_complex/mainlabs
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/xenobiology
+/area/lv759/indoors/nt_research_complex/xenobiology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/weaponresearchlab
+/area/lv759/indoors/nt_research_complex/weaponresearchlab
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/weaponresearchlabtesting
+/area/lv759/indoors/nt_research_complex/weaponresearchlabtesting
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/xenoarcheology
+/area/lv759/indoors/nt_research_complex/xenoarcheology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/vehicledeploymentbay
+/area/lv759/indoors/nt_research_complex/vehicledeploymentbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/janitor
+/area/lv759/indoors/nt_research_complex/janitor
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/cafeteria
+/area/lv759/indoors/nt_research_complex/cafeteria
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/cafeteriakitchen
+/area/lv759/indoors/nt_research_complex/cafeteriakitchen
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/dormsfoyer
+/area/lv759/indoors/nt_research_complex/dormsfoyer
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms Foyer"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/dormsbedroom
+/area/lv759/indoors/nt_research_complex/dormsbedroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/securitycommand
+/area/lv759/indoors/nt_research_complex/securitycommand
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/securityarmory
+/area/lv759/indoors/nt_research_complex/securityarmory
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Armory"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hangarbay
+/area/lv759/indoors/nt_research_complex/hangarbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hangarbayshuttle
+/area/lv759/indoors/nt_research_complex/hangarbayshuttle
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwaynorth
+/area/lv759/indoors/nt_research_complex/hallwaynorth
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwaynorthexit
+/area/lv759/indoors/nt_research_complex/hallwaynorthexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwayeast
+/area/lv759/indoors/nt_research_complex/hallwayeast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwaycentral
+/area/lv759/indoors/nt_research_complex/hallwaycentral
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwaysouthwest
+/area/lv759/indoors/nt_research_complex/hallwaysouthwest
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/hallwaysoutheast
+/area/lv759/indoors/nt_research_complex/hallwaysoutheast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/southeastexit
+/area/lv759/indoors/nt_research_complex/southeastexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
 	icon_state = "wylab"
 
-/area/lv759/indoors/wy_research_complex/changingroom
+/area/lv759/indoors/nt_research_complex/changingroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Locker Room"
 	icon_state = "wylab"
