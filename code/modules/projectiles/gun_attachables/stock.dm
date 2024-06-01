@@ -11,7 +11,7 @@
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
 	desc = "A non-standard long wooden stock for Slavic firearms."
-	icon_state = "stock"
+	icon_state = "mosin"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
