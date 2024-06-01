@@ -215,6 +215,15 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
+"acF" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/darkyellow{
+	dir = 10
+	},
+/area/lv759/indoors/nt_research_complex/hallwaynorth)
 "acH" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/research/reinforced,
@@ -21205,10 +21214,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/east_central_street)
-"dUZ" = (
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "dVd" = (
 /obj/structure/prop/urban/misc/fake/pipes/pipe1,
 /obj/structure/prop/urban/misc/fake/wire/yellow{
@@ -28374,6 +28379,9 @@
 /obj/structure/largecrate/random,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
+"fnc" = (
+/turf/open/shuttle/dropship/three,
+/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "fnd" = (
 /obj/structure/prop/urban/fakeplatforms/platform1{
 	dir = 4
@@ -28778,6 +28786,20 @@
 "fqV" = (
 /turf/closed/wall/urban/colony/hospital,
 /area/lv759/indoors/hospital/storage)
+"frd" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 4;
+	locked = 1;
+	name = "\improper Lockdown"
+	},
+/obj/machinery/door/poddoor/urban/white{
+	dir = 4;
+	name = "\improper Lockdown"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/structure/cable,
+/turf/open/floor/marked,
+/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "fre" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/marked,
@@ -33164,9 +33186,6 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_street)
 "ggw" = (
-/obj/structure/droppod{
-	desc = "A display model of a Weyland-Yutani orbital drop-pod."
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
@@ -33174,6 +33193,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/weaponresearchlab)
 "ggx" = (
@@ -35079,6 +35099,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/weaponresearchlab)
 "gxM" = (
@@ -36032,6 +36053,13 @@
 	},
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/nt_research_complex_entrance)
+"gIC" = (
+/obj/machinery/landinglight/lz2,
+/obj/structure/cable,
+/turf/open/floor/orange_edge{
+	dir = 8
+	},
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "gIL" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/ai_node,
@@ -49334,15 +49362,6 @@
 	allow_construction = 0
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
-"jeX" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/darkyellow{
-	dir = 10
-	},
-/area/lv759/indoors/nt_research_complex/hallwaynorth)
 "jeZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -56938,13 +56957,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/nt_research_complex/mainlabs)
-"kBY" = (
-/obj/machinery/landinglight/lz2,
-/obj/structure/cable,
-/turf/open/floor/orange_edge{
-	dir = 8
-	},
-/area/lv759/indoors/nt_research_complex/hangarbay)
 "kCc" = (
 /obj/structure/prop/urban/xenobiology/small/crackedegg,
 /turf/open/floor/podhatch/floor,
@@ -58046,16 +58058,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
-"kNO" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/lifesaver/full,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "kNP" = (
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 1
@@ -63369,20 +63371,6 @@
 	dir = 1
 	},
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
-"lOh" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
-	locked = 1;
-	name = "\improper Lockdown"
-	},
-/obj/machinery/door/poddoor/urban/white{
-	dir = 4;
-	name = "\improper Lockdown"
-	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/structure/cable,
-/turf/open/floor/marked,
-/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "lOn" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox{
@@ -76655,6 +76643,12 @@
 	dir = 8
 	},
 /area/lv759/indoors/power_plant/telecomms)
+"ohT" = (
+/obj/structure/cable,
+/turf/open/floor/orange_edge{
+	dir = 8
+	},
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "ohU" = (
 /obj/machinery/light,
 /turf/open/urban/street/sidewalk,
@@ -90043,6 +90037,13 @@
 	},
 /turf/open/floor/box,
 /area/lv759/indoors/power_plant/gas_generators)
+"qLO" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "qLR" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -92939,6 +92940,15 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/outdoors/colony_streets/south_west_street)
+"rod" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/orange_edge{
+	dir = 8
+	},
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "roh" = (
 /obj/machinery/light{
 	dir = 1
@@ -100776,12 +100786,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
-"sKt" = (
-/obj/structure/cable,
-/turf/open/floor/orange_edge{
-	dir = 8
-	},
-/area/lv759/indoors/nt_research_complex/hangarbay)
 "sKu" = (
 /obj/item/stack/sheet/cardboard,
 /obj/effect/urban/decal/dirt,
@@ -102581,6 +102585,22 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/north_street)
+"taY" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/machinery/light/spot/blue{
+	dir = 8
+	},
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/orange_edge{
+	dir = 4
+	},
+/area/lv759/indoors/spaceport/docking_bay_1)
 "tbe" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
 	dir = 1
@@ -102829,22 +102849,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
-"tdG" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/machinery/disposal,
-/obj/machinery/light/spot/blue{
-	dir = 8
-	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/orange_edge{
-	dir = 4
-	},
-/area/lv759/indoors/spaceport/docking_bay_1)
 "tdH" = (
 /obj/structure/platform{
 	dir = 4
@@ -103653,6 +103657,13 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
+"tla" = (
+/obj/machinery/landinglight/lz2,
+/obj/structure/cable,
+/turf/open/floor/orange_edge{
+	dir = 10
+	},
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "tlb" = (
 /obj/structure/prop/urban/misc/atm{
 	pixel_x = 9;
@@ -106809,9 +106820,6 @@
 /obj/item/roller/bedroll,
 /turf/open/floor/urban/carpet/carpetblue,
 /area/lv759/indoors/apartment/westbedrooms)
-"tQc" = (
-/turf/open/shuttle/dropship/three,
-/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "tQe" = (
 /obj/effect/urban/decal/grate{
 	dir = 8
@@ -115978,13 +115986,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/hospital/maintenance)
-"vwT" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lv759/indoors/nt_research_complex/hangarbay)
 "vwZ" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/medical_decals/triage,
@@ -120828,6 +120829,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/reception)
+"wpw" = (
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "wpD" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/paramedics_garage)
@@ -121020,6 +121025,16 @@
 	dir = 8
 	},
 /area/lv759/indoors/hospital/central_hallway)
+"wrE" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/lifesaver/full,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "wrK" = (
 /obj/item/paper/crumpled,
 /turf/open/floor/prison/yellow{
@@ -123307,13 +123322,6 @@
 "wNa" = (
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/weyyu_office/breakroom)
-"wNh" = (
-/obj/machinery/landinglight/lz2,
-/obj/structure/cable,
-/turf/open/floor/orange_edge{
-	dir = 10
-	},
-/area/lv759/indoors/nt_research_complex/hangarbay)
 "wNr" = (
 /obj/structure/closet,
 /obj/machinery/light,
@@ -128238,6 +128246,7 @@
 	dir = 4;
 	pixel_x = 1
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/weaponresearchlab)
 "xHv" = (
@@ -129711,15 +129720,6 @@
 	},
 /turf/open/floor/floorthree,
 /area/lv759/indoors/nt_research_complex/mainlabs)
-"xVF" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor/orange_edge{
-	dir = 8
-	},
-/area/lv759/indoors/nt_research_complex/hangarbay)
 "xVG" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/black{
@@ -132325,7 +132325,7 @@ lcz
 lcz
 lcz
 sus
-tdG
+taY
 nzS
 qiq
 hzH
@@ -133690,9 +133690,9 @@ sIX
 dQD
 hPR
 oal
-tQc
-tQc
-tQc
+fnc
+fnc
+fnc
 nwG
 sXz
 uhK
@@ -134094,8 +134094,8 @@ iOs
 hle
 cQK
 hle
-dUZ
-kNO
+wpw
+wrE
 abL
 szs
 szs
@@ -134297,7 +134297,7 @@ wQX
 xua
 iDv
 aAa
-lOh
+frd
 szs
 vZB
 vvT
@@ -134500,7 +134500,7 @@ rNi
 rNi
 rNi
 lnx
-vwT
+qLO
 rNi
 rNi
 rNi
@@ -134649,7 +134649,7 @@ hKj
 jkL
 uod
 tWE
-jeX
+acF
 uoi
 pSC
 vNR
@@ -134694,15 +134694,15 @@ aaX
 chG
 fYH
 sDg
-wNh
-sKt
-sKt
+tla
+ohT
+ohT
 uGR
 vqP
 dUE
-xVF
+rod
 wYy
-kBY
+gIC
 vVD
 tGy
 nmU
