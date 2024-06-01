@@ -34,18 +34,22 @@
 	return TRUE
 
 /obj/item/vehicle_module/mounted_gun/volkite
-	name = "mounted demi-culverin"
+	name = "mounted Demi-Culverin"
+	desc = "A paired set of volkite weapons mounted into light vehicles such as SOM hover bikes. While they lack the raw power of some other volkite weapons, they make up for this through sheer volume of fire and integrate recharging power source."
 	icon = 'icons/obj/vehicles/hover_bike.dmi'
 	icon_state = "bike_volkite"
 	should_use_obj_appeareance = FALSE
-	mounted_gun = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/bike_mounted
+	mounted_gun = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
 
 /obj/item/vehicle_module/mounted_gun/volkite/Initialize(mapload)
 	. = ..()
 	action_icon = mounted_gun.icon
 	action_icon_state = mounted_gun.icon_state
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/bike_mounted
+///bike volkite
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
+	name = "\improper VX-42b Demi-Culverin"
+	desc = "A paired set of volkite weapons mounted into light vehicles such as SOM hover bikes. While they lack the raw power of some other volkite weapons, they make up for this through sheer volume of fire and integrate recharging power source."
 	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
 	icon_state = "bike_volkite"
 	worn_icon_state = null
@@ -55,10 +59,17 @@
 	item_flags = NONE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_AUTO_EJECT_LOCKED
-	accuracy_mult_unwielded = 0.9
-	scatter_unwielded = 5
-	recoil_unwielded = 0
-	damage_mult = 0.9
+	ammo_level_icon = null
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	max_shots = 90
+	ammo_datum_type = /datum/ammo/energy/volkite/demi_culverin
+	rounds_per_shot = 20
+	fire_delay = 0.1 SECONDS
+	accuracy_mult_unwielded = 1
+	scatter_unwielded = 8
+	recoil_unwielded = -2
+	damage_falloff_mult = 0.4
+	movement_acc_penalty_mult = 3
 
 /obj/item/vehicle_module/mounted_gun/minigun
 	name = "mounted minigun"
