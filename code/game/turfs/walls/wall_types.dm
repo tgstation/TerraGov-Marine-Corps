@@ -478,7 +478,7 @@
 	name = "bare metal walls"
 	desc = "A thick and chunky metal wall. The surface is barren and imposing."
 	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
-	icon_state = "hybrisa_colony_walls-0"
+	icon_state = "wall-reinforced"
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
@@ -498,7 +498,7 @@
 	name = "bare metal walls"
 	desc = "A thick and chunky metal wall. The surface is barren and imposing."
 	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
-	icon_state = "hybrisa_colony_walls-0"
+	icon_state = "wall-reinforced"
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
