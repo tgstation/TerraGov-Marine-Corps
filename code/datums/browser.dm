@@ -1,7 +1,7 @@
 /datum/browser
 	var/mob/user
 	var/title
-	var/window_id // window_id is used as the window name for browse and onclose.
+	var/window_id // window_id is used as the window name for browse and onclose
 	var/width = 0
 	var/height = 0
 	var/atom/ref = null
