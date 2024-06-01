@@ -48,8 +48,7 @@
 /obj/item/weapon/baseballbat
 	name = "\improper wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
-	icon = 'icons/obj/items/weapons/bat.dmi'
-	icon_state = "wood"
+	icon_state = "woodbat"
 	worn_icon_state = "woodbat"
 	sharp = 0
 	edge = 0
@@ -64,7 +63,7 @@
 /obj/item/weapon/baseballbat/metal
 	name = "\improper metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
-	icon_state = "metal"
+	icon_state = "metalbat"
 	worn_icon_state = "metalbat"
 	force = 25
 	w_class = WEIGHT_CLASS_NORMAL
@@ -72,7 +71,7 @@
 /obj/item/weapon/butterfly
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
-	icon = 'icons/obj/items/weapons/butterfly.dmi'
+	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "butterflyknife"
 	worn_icon_state = null
 	hitsound = null
@@ -119,6 +118,7 @@
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
 	worn_icon_state = "rods"
+	icon = 'icons/obj/items/weapons/batons.dmi'
 	atom_flags = CONDUCT
 	force = 8
 	throwforce = 10

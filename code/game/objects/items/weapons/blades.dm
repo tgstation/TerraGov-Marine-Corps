@@ -1,6 +1,6 @@
 /obj/item/tool/kitchen/knife/shiv
 	name = "glass shiv"
-	icon = 'icons/obj/items/weapons/weapons.dmi'
+	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "shiv"
 	desc = "A makeshift glass shiv."
 	attack_verb = list("shanked", "shived")
@@ -20,9 +20,9 @@
 
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
-	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "combat_knife"
 	worn_icon_state = "combat_knife"
+	icon = 'icons/obj/items/weapons/knives.dmi'
 	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	atom_flags = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -73,7 +73,7 @@
 
 /obj/item/weapon/karambit
 	name = "karambit"
-	icon = 'icons/obj/items/weapons/weapons.dmi'
+	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "karambit"
 	worn_icon_state = "karambit"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
@@ -102,13 +102,11 @@
 	do_trick(user)
 
 /obj/item/weapon/karambit/fade
-	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "karambit_fade"
 	worn_icon_state = "karambit_fade"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been painted by airbrushing transparent paints that fade together over a chrome base coat."
 
 /obj/item/weapon/karambit/case_hardened
-	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "karambit_case_hardened"
 	worn_icon_state = "karambit_case_hardened"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been color case-hardened through the application of wood charcoal at high temperatures."
@@ -243,7 +241,6 @@
 /obj/item/weapon/chainsword
 	name = "chainsword"
 	desc = "chainsword thing"
-	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "chainsword_off"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10

@@ -17,7 +17,6 @@
 /obj/item/weapon/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "cane"
 	worn_icon_state = "cane"
 	atom_flags = CONDUCT
