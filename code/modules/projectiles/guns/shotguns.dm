@@ -876,7 +876,7 @@
 	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
 	icon_state = "va61"
-	icon = 'icons/obj/items/guns/attachments/underbarrel.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
 	max_chamber_items = 2
 	gun_features_flags = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
