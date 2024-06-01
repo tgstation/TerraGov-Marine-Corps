@@ -2,6 +2,7 @@
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	worn_icon_state = "claymore"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -127,7 +128,6 @@
 	icon_state = "machete_alt"
 
 //FC's sword.
-
 /obj/item/weapon/sword/officersword
 	name = "officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
