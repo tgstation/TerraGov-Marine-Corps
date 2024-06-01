@@ -70,6 +70,12 @@
 		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
+		var/area/area = get_area(location)
+		var/turf/open/placement_loc = location
+		if(istype(item_to_deploy, /obj/item/weapon/shield/riot/marine/deployable) && (!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION)) // long ass check to prevent things like deployable shields on alamo
+			user.balloon_alert(user, "Can't deploy here")
+			return
+
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
