@@ -7,6 +7,7 @@
 /obj/machinery/door/airlock/hybrisa/generic/autoname{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/floor)
 "aay" = (
@@ -931,7 +932,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "ajs" = (
 /obj/structure/curtain/black,
 /obj/structure/window/framed/colony,
@@ -1422,9 +1423,6 @@
 "anM" = (
 /obj/structure/rack,
 /obj/machinery/light/small/blue,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/equipment_east)
 "anQ" = (
@@ -8712,7 +8710,7 @@
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "bGK" = (
 /obj/effect/urban/decal/road/road_stop/two,
 /turf/open/urban/street/asphalt,
@@ -13620,6 +13618,8 @@
 /obj/structure/flora/pottedplant{
 	pixel_y = 6
 	},
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/urban/metal/bluemetal1,
 /area/lv759/indoors/weyyu_office/hallway)
 "cAu" = (
@@ -14966,7 +14966,7 @@
 "cNs" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "cNF" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
@@ -17609,6 +17609,7 @@
 	},
 /area/lv759/indoors/power_plant/gas_generators)
 "dkJ" = (
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -20582,14 +20583,10 @@
 	},
 /area/lv759/indoors/garage_reception)
 "dOV" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
+/obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/turf/open/floor/prison/darkbrown{
-	dir = 8
-	},
-/area/lv759/indoors/power_plant/south_hallway)
+/turf/open/floor/prison,
+/area/lv759/indoors/garage_workshop_storage)
 "dPb" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -21907,7 +21904,6 @@
 	pixel_y = 21
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -22112,11 +22108,9 @@
 /turf/open/floor/urban/metal/metalwhitefull,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "eeZ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/obj/structure/cable,
+/turf/open/floor/urban/tile/tilewhitecheckered,
+/area/lv759/indoors/hospital/icu)
 "efg" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -22307,6 +22301,10 @@
 	dir = 4;
 	pixel_x = 2
 	},
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
@@ -23095,6 +23093,7 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant)
 "eox" = (
@@ -23474,7 +23473,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "ese" = (
 /obj/structure/platform{
 	dir = 8
@@ -26874,6 +26873,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_east_caves)
 "eZK" = (
+/obj/structure/cable,
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 6
 	},
@@ -27218,6 +27218,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/storage)
 "fcQ" = (
@@ -28146,7 +28147,7 @@
 /turf/open/floor/prison{
 	dir = 10
 	},
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "flm" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 4;
@@ -28443,6 +28444,7 @@
 	dir = 4;
 	pixel_x = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
@@ -28718,6 +28720,7 @@
 /area/lv759/indoors/mining_outpost/east)
 "fqw" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/hallway_south)
 "fqD" = (
@@ -29665,13 +29668,11 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "fzS" = (
-/obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/prison/whitegreen{
-	dir = 4
+/turf/open/floor/mainship{
+	dir = 5
 	},
-/area/lv759/indoors/hospital/central_hallway)
+/area/lv759/indoors/weyyu_office/hallway)
 "fzX" = (
 /obj/structure/toilet{
 	dir = 4
@@ -31594,7 +31595,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/ai_node,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/full,
 /area/lv759/indoors/hospital/east_hallway)
 "fRu" = (
@@ -31607,6 +31607,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -32725,6 +32726,7 @@
 	dir = 8;
 	pixel_x = -6
 	},
+/obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/hospital/icu)
 "gcl" = (
@@ -33781,6 +33783,7 @@
 "glR" = (
 /obj/item/storage/pill_bottle/packet/bicaridine,
 /obj/effect/decal/cleanable/blood/drip,
+/obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/hospital/icu)
 "glS" = (
@@ -33799,6 +33802,7 @@
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
+/obj/structure/cable,
 /turf/open/floor/prison/red/full,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "glT" = (
@@ -34191,9 +34195,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "goY" = (
 /obj/machinery/light,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/cryo_room)
@@ -35808,7 +35809,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "gFp" = (
 /obj/effect/urban/decal/dirt,
 /turf/closed/wall/r_wall/bunker,
@@ -37117,7 +37118,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "gVg" = (
 /obj/effect/ai_node,
 /turf/open/urban/street/roadlines4,
@@ -37512,6 +37513,7 @@
 	dir = 4;
 	pixel_y = -1
 	},
+/obj/effect/ai_node,
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "gZb" = (
@@ -40099,12 +40101,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
-"huX" = (
-/obj/effect/ai_node,
-/turf/open/engineership/engineer_floor8{
-	dir = 4
-	},
-/area/lv759/indoors/derelict_ship)
 "huZ" = (
 /obj/effect/urban/decal/road/lines3,
 /turf/open/urban/street/asphalt,
@@ -40226,7 +40222,7 @@
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "hwD" = (
 /obj/structure/platform{
 	dir = 4
@@ -40456,7 +40452,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "hyk" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -41546,6 +41542,10 @@
 /obj/item/stack/rods,
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/storage)
@@ -44190,8 +44190,12 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "iiE" = (
-/turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/bright_clean,
+/area/lv759/indoors/power_plant)
 "iiF" = (
 /obj/structure/platform/urban/rockdark,
 /turf/open/floor/sandrock,
@@ -47640,7 +47644,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "iQG" = (
 /obj/structure/platform_decoration{
 	dir = 1;
@@ -53736,6 +53740,8 @@
 	dir = 1
 	},
 /obj/machinery/prop/autolathe,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_workshop_storage)
 "jXd" = (
@@ -54101,7 +54107,6 @@
 /area/lv759/indoors/wy_research_complex/cargo)
 "jZR" = (
 /obj/effect/ai_node,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/lv759/indoors/spaceport/horizon_runner)
 "jZV" = (
@@ -55059,9 +55064,14 @@
 	},
 /area/lv759/indoors/spaceport/security_office)
 "kkc" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/obj/item/ammo_casing/bullet,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4;
+	pixel_x = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/cellstripe,
+/area/lv759/indoors/colonial_marshals/armory_firingrange)
 "kki" = (
 /obj/structure/prop/urban/containersextended/whitewyleft,
 /turf/open/floor/multi_tiles{
@@ -55516,7 +55526,7 @@
 	pixel_y = 12
 	},
 /turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "koT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
@@ -56231,7 +56241,7 @@
 /area/lv759/indoors/jacks_surplus)
 "kwc" = (
 /turf/closed/wall/urban/colony/reinforced,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "kwe" = (
 /obj/item/stool{
 	pixel_x = 3;
@@ -63951,6 +63961,7 @@
 	dir = 2;
 	name = "\improper Airlock"
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_workshop_storage)
 "lTL" = (
@@ -73830,8 +73841,12 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/ntmart/maintenance)
 "nGU" = (
-/turf/closed/wall/urban/colony/hospital,
-/area/lv759/indoors/hospital/maintenance_south)
+/obj/effect/urban/decal/engineership_corners{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/engineership/engineer_floor3,
+/area/lv759/indoors/derelict_ship)
 "nGX" = (
 /obj/structure/sink{
 	pixel_y = 16
@@ -74578,7 +74593,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "nOl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -77462,6 +77477,7 @@
 	dir = 4;
 	pixel_x = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/ramptop{
 	dir = 8
 	},
@@ -78356,6 +78372,12 @@
 /obj/structure/cable,
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
+"oCi" = (
+/obj/effect/forcefield,
+/turf/open/engineership/engineer_floor8{
+	dir = 4
+	},
+/area/lv759/indoors/derelict_ship)
 "oCj" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
@@ -78604,6 +78626,7 @@
 	},
 /area/lv759/indoors/power_plant/telecomms)
 "oEN" = (
+/obj/structure/cable,
 /turf/open/floor/prison/whitered{
 	dir = 8
 	},
@@ -79045,6 +79068,7 @@
 "oIv" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_workshop_storage)
 "oIC" = (
@@ -80786,6 +80810,7 @@
 /obj/effect/turf_decal/medical_decals/triage{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -80900,7 +80925,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "pbz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -81004,7 +81029,7 @@
 "pch" = (
 /obj/structure/sign/safety/maintenance,
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "pcq" = (
 /obj/machinery/vending/coffee{
 	pixel_x = -6;
@@ -84301,15 +84326,12 @@
 	},
 /area/lv759/indoors/north_east_caves)
 "pGv" = (
-/obj/effect/urban/decal/dirt,
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/structure/platform_decoration/urban/engineer_corner{
+	dir = 1
 	},
-/turf/open/floor/urban/metal/grated{
-	dir = 4
-	},
-/area/lv759/outdoors/landing_zone_2)
+/obj/effect/ai_node,
+/turf/open/engineership/engineer_floor1,
+/area/lv759/indoors/derelict_ship)
 "pGw" = (
 /turf/open/floor/prison/darkbrown{
 	dir = 10
@@ -86098,11 +86120,11 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "pXi" = (
-/obj/structure/platform_decoration/urban/engineer_corner,
-/obj/effect/ai_node,
-/turf/open/engineership/engineer_floor8{
+/obj/effect/urban/decal/engineership_corners{
 	dir = 4
 	},
+/obj/effect/forcefield,
+/turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "pXm" = (
 /obj/item/ammo_casing/bullet,
@@ -88789,6 +88811,8 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qxK" = (
 /obj/item/ammo_casing/bullet,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/prison/red{
 	dir = 6
 	},
@@ -89233,10 +89257,6 @@
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/starglider)
 "qDk" = (
@@ -90385,7 +90405,6 @@
 /obj/structure/largecrate/random/secure{
 	pixel_y = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
 "qQR" = (
@@ -94166,7 +94185,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "rBv" = (
 /obj/effect/urban/decal/road/road_stop/three,
 /obj/effect/ai_node,
@@ -94547,7 +94566,6 @@
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "rEY" = (
 /obj/structure/largecrate/random/case/double,
-/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/starglider)
 "rEZ" = (
@@ -94697,7 +94715,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "rGz" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -97387,6 +97405,10 @@
 	dir = 4
 	},
 /obj/structure/ore_box,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north)
 "sgR" = (
@@ -103189,7 +103211,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "thi" = (
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor/urban/tile/cementflat,
@@ -105126,6 +105148,7 @@
 /obj/machinery/door/airlock/hybrisa/medical_solid{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/lv759/indoors/hospital/icu)
 "tAv" = (
@@ -107871,6 +107894,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/urban/wood/redwood,
 /area/lv759/indoors/weyyu_office/floor)
 "tZO" = (
@@ -110505,6 +110529,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "uxD" = (
@@ -111440,7 +111465,7 @@
 "uGU" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
-/area/lv759/indoors/hospital/maintenance_south)
+/area/lv759/indoors/hospital/east_hallway)
 "uGW" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 4;
@@ -111712,8 +111737,9 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/botany/botany_mainroom)
 "uJB" = (
-/turf/closed/wall/urban/colony,
-/area/lv759/indoors/meridian/meridian_restroom)
+/obj/effect/forcefield,
+/turf/open/engineership/engineer_floor1,
+/area/lv759/indoors/derelict_ship)
 "uJH" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 4;
@@ -114177,6 +114203,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "vhG" = (
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/storage)
 "vhI" = (
@@ -114590,6 +114617,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vlC" = (
 /obj/effect/urban/decal/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/storage)
 "vlE" = (
@@ -114756,7 +114784,6 @@
 	pixel_y = -1
 	},
 /obj/effect/ai_node,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/power_storage)
@@ -114943,7 +114970,6 @@
 /area/lv759/indoors/meridian/meridian_office)
 "voS" = (
 /obj/vehicle/ridden/wheelchair,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -116065,10 +116091,9 @@
 	},
 /area/lv759/indoors/central_caves)
 "vzN" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/lv759/indoors/spaceport/horizon_runner)
+/obj/structure/prop/hybrisa/engineer/spacejockey,
+/turf/open/engineership/engineer_floor1,
+/area/lv759/indoors/derelict_ship)
 "vzQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -117725,17 +117750,6 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
-"vPO" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/item/trash/cigbutt{
-	pixel_x = 1;
-	pixel_y = 8
-	},
-/turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
 "vPP" = (
 /obj/machinery/floodlight,
 /turf/open/floor/sandrock,
@@ -118830,6 +118844,10 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/tie/stethoscope,
 /obj/item/storage/pill_bottle/alkysine,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
 /turf/open/floor/prison/whitered,
 /area/lv759/indoors/hospital/icu)
 "vZa" = (
@@ -119700,6 +119718,10 @@
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
 "wha" = (
 /obj/structure/closet,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -122344,7 +122366,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/meridian/meridian_maintenance_south)
+/area/lv759/indoors/meridian/meridian_office)
 "wGc" = (
 /obj/effect/urban/decal/trash/six{
 	pixel_x = -8;
@@ -123495,6 +123517,8 @@
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
 "wQU" = (
@@ -125545,7 +125569,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "xiQ" = (
 /obj/structure/platform,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -128970,6 +128994,7 @@
 /obj/machinery/door/airlock/hybrisa/personal/autoname{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "xQo" = (
@@ -131176,7 +131201,7 @@
 	pixel_x = 11
 	},
 /turf/open/floor/urban/tile/tilebeige,
-/area/lv759/indoors/meridian/meridian_restroom)
+/area/lv759/indoors/meridian/meridian_office)
 "ylt" = (
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
@@ -139205,7 +139230,7 @@ pWc
 hgv
 tsO
 jZR
-vSx
+mkt
 vSx
 vQL
 mTG
@@ -139407,7 +139432,7 @@ oQs
 ycA
 oFt
 gyn
-vzN
+mkt
 rbv
 tdS
 atD
@@ -144910,9 +144935,9 @@ vfL
 hhK
 wFn
 wFn
-jMV
+kjw
 aan
-hpl
+fzS
 kVr
 kzZ
 jKD
@@ -145113,7 +145138,7 @@ jMV
 jMV
 jMV
 jMV
-jMV
+kjw
 sJW
 bJU
 aeM
@@ -145899,7 +145924,7 @@ oaW
 wPf
 jXc
 oIv
-lED
+dOV
 lTG
 oqb
 fgE
@@ -147057,7 +147082,7 @@ rQx
 xOJ
 auM
 nCj
-pXi
+dKQ
 jTQ
 jTQ
 jTQ
@@ -147260,9 +147285,9 @@ xOJ
 iEo
 vVG
 dKQ
-nCj
-rni
-rni
+pXi
+uJB
+vzN
 rni
 wOg
 fzk
@@ -147460,12 +147485,12 @@ kmd
 dXr
 uKb
 adL
-nCj
+nGU
 dKQ
-nCj
-sYj
-dOL
-dOL
+pXi
+uJB
+oCi
+oCi
 dOL
 rni
 vEb
@@ -147665,10 +147690,10 @@ uKb
 tJs
 lDd
 hlw
-rni
-dOL
-dOL
-dOL
+uJB
+oCi
+oCi
+oCi
 dOL
 dOL
 crH
@@ -147868,10 +147893,10 @@ sTI
 jeF
 kXd
 sMP
-rni
-dOL
-dOL
-dOL
+uJB
+oCi
+oCi
+oCi
 dOL
 dOL
 rXv
@@ -148071,10 +148096,10 @@ sTI
 rni
 gqO
 tJs
-rni
-dOL
-dOL
-dOL
+uJB
+oCi
+oCi
+oCi
 dOL
 vbk
 tmC
@@ -148272,11 +148297,11 @@ aWQ
 aWQ
 sTI
 tJs
-sYj
+rni
 tJs
 rni
-huX
-dOL
+oCi
+oCi
 dOL
 dOL
 dOL
@@ -148678,7 +148703,7 @@ aWQ
 aWQ
 erb
 wFj
-fTo
+pGv
 iBA
 iMY
 gYW
@@ -153099,10 +153124,10 @@ mZC
 mSZ
 pzL
 its
-uJB
-uJB
-uJB
-uJB
+gSs
+gSs
+gSs
+gSs
 tVQ
 tST
 gkK
@@ -153302,9 +153327,9 @@ mZC
 hoA
 hoA
 mNE
-uJB
+gSs
 hyf
-uJB
+gSs
 rBt
 tVQ
 xDr
@@ -153505,9 +153530,9 @@ sGc
 vDP
 duU
 mNE
-uJB
+gSs
 gFn
-uJB
+gSs
 gFn
 tVQ
 cLm
@@ -154113,7 +154138,7 @@ gSs
 qHv
 fYz
 kwc
-kkc
+cvZ
 kwc
 tVQ
 wFR
@@ -154315,9 +154340,9 @@ vLo
 mKn
 tXV
 vLo
-eeZ
+nZd
 nOk
-vPO
+giZ
 bGH
 ajr
 cNs
@@ -157543,7 +157568,7 @@ lNa
 lFP
 iNN
 iNN
-dOV
+iNN
 iNN
 iNN
 wuV
@@ -158394,11 +158419,11 @@ wSw
 wDs
 rCT
 fnz
-xyZ
+kkc
 glS
 uxA
 xQf
-uxs
+tuj
 nPc
 uxs
 bDO
@@ -162395,10 +162420,10 @@ sHc
 peV
 grb
 wCy
-hrk
+gjF
 eow
-kpO
-ieV
+dWX
+oMH
 kpO
 kpO
 kpO
@@ -162814,7 +162839,7 @@ vNf
 xHW
 oeV
 dWX
-xbM
+iiE
 mlp
 nRX
 erI
@@ -165616,7 +165641,7 @@ mfZ
 kFI
 mfZ
 qie
-fzS
+mfZ
 qie
 mfZ
 ntB
@@ -168260,12 +168285,12 @@ tSD
 qtl
 okY
 aQe
-nGU
-nGU
-nGU
-nGU
-nGU
-nGU
+jup
+jup
+jup
+jup
+jup
+jup
 lkJ
 xot
 irP
@@ -168464,10 +168489,10 @@ rBM
 vaj
 rTl
 esc
-iiE
+jxf
 rGx
-iiE
-iiE
+jxf
+jxf
 esc
 hYe
 xut
@@ -168666,12 +168691,12 @@ okY
 okY
 aRX
 cDv
-nGU
+jup
 pby
 gVf
 the
-nGU
-nGU
+jup
+jup
 kkt
 ubq
 vSI
@@ -168852,7 +168877,7 @@ vuE
 vhG
 vlC
 fcP
-qtl
+fhC
 vaj
 mSF
 uMH
@@ -168869,11 +168894,11 @@ kBW
 tHC
 rKJ
 tol
-nGU
+jup
 uGU
 uGU
 uGU
-nGU
+jup
 rNY
 syB
 fdC
@@ -170681,7 +170706,7 @@ jUA
 nSu
 nkB
 glR
-icI
+eeZ
 gce
 vYY
 wxJ
@@ -173418,7 +173443,7 @@ wrT
 fIF
 dRO
 fUR
-pGv
+avB
 nlr
 mKR
 aKB
