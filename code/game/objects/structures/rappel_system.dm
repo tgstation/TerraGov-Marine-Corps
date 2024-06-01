@@ -90,6 +90,7 @@
 /obj/structure/dropship_equipment/rappel_system/attack_hand(mob/living/carbon/human/user)
 	if(!rope)
 		balloon_alert(user, "You shouldn't be seeing this; ask admins for help!")
+		attack_rappel() //If rope can't be found, default to a visibly broken state
 
 	switch(rappel_condition)
 		if(RAPPEL_CONDITION_DAMAGED)
@@ -158,6 +159,8 @@
 		balloon_alert(user, "You start replacing the rappel cord...")
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
+		if(!rope) //If the rappel is bugged, fix it
+			rope = new(src)
 		rappel_condition = RAPPEL_CONDITION_DISABLED
 		update_icon_state()
 		addtimer(CALLBACK(src, PROC_REF(self_repair)), RAPPEL_REPAIR_TIME)
@@ -320,6 +323,7 @@
 	light_system = STATIC_LIGHT
 	light_power = 0.5
 	light_range = 2
+	resistance_flags = RESIST_ALL
 	///The rappel system this rope originates from
 	var/obj/structure/dropship_equipment/rappel_system/parent_system
 
@@ -327,6 +331,10 @@
 	. = ..()
 	if(istype(loc, /obj/structure/dropship_equipment/rappel_system))
 		parent_system = loc
+
+/obj/effect/rappel_rope/tadpole/Destroy()
+	. = ..()
+	parent_system.rope = null //Clean refs
 
 /obj/effect/rappel_rope/tadpole/update_icon_state()
 	. = ..()
