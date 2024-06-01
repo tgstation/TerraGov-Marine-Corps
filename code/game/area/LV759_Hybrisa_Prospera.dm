@@ -103,11 +103,13 @@
 /area/lv759/indoors/nt_research_complex_entrance
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
 	icon_state = "wylab"
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/indoors/west_caves
 	name = "Caverns - West"
 	icon_state = "caves_west"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/lv759/indoors/west_caves_alarm
 	name = "Caverns - West"
@@ -117,6 +119,7 @@
 	name = "Caverns - East"
 	icon_state = "caves_east"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/lv759/indoors/south_caves
 	name = "Caverns - South"
@@ -130,6 +133,7 @@
 	name = "Caverns - Southwest"
 	icon_state = "caves_southwest"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/lv759/indoors/south_west_caves_alarm
 	name = "Caverns - Southwest"
@@ -138,31 +142,35 @@
 /area/lv759/indoors/north_west_caves
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/outdoors/north_west_caves_outdoors
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
-	ceiling = CEILING_NONE
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/indoors/north_east_caves
 	name = "Caverns - Northeast"
 	icon_state = "caves_northeast"
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/indoors/north_caves
 	name = "Caverns - North"
 	icon_state = "caves_north"
 	always_unpowered = TRUE
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/indoors/central_caves
 	name = "Caverns - Central"
 	icon_state = "caves_central"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 // Caves Central Plateau
 /area/lv759/outdoors/caveplateau
 	name = "Caverns - Plateau"
 	icon_state = "caves_plateau"
-	ceiling = CEILING_NONE
+	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 
 // Colony Streets
@@ -191,7 +199,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street
 	name = "Colony Streets - Southwest - NT Checkpoint Passthrough"
 	icon_state = "colonystreets_southwest"
-	ceiling = CEILING_NONE
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv759/outdoors/colony_streets/north_west_street
 	name = "Colony Streets - Northwest"
@@ -787,6 +795,7 @@
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_COMMAND
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/lv759/indoors/nt_research_complex/medical_annex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
