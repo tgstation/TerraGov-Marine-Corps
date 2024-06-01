@@ -10,6 +10,7 @@
 /obj/item/vehicle_module/mounted_gun/Initialize(mapload)
 	. = ..()
 	mounted_gun = new mounted_gun(src)
+	mounted_gun.gun_features_flags |= GUN_FORWARD_FIRE_ANGLE
 	//NODROP so that you can't just drop the gun or have someone take it off your hands
 	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
 	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
