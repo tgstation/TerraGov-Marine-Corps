@@ -58,15 +58,15 @@
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
-				overlays += "_full"
+				. += "_full"
 			if(34 to 66)
-				overlays += "_half"
+				. += "_half"
 			if(3 to 33)
-				overlays += "_low"
+				. += "_low"
 			if(-INFINITY to 3)
-				overlays += "_empty"
+				. += "_empty"
 	else // No cell.
-		overlays += "_empty"
+		. += "_empty"
 
 
 /obj/item/defibrillator/examine(mob/user)
@@ -327,7 +327,7 @@
 	icon_state = "civ_defib"
 	worn_icon_state = "defib"
 
-///used for advanced medical (defibrillator) gloves: marine_gloves.dm
+///used for advanced medical (defibrillator) gloves: defibrillator_gloves.dm
 /obj/item/defibrillator/internal
 	icon = 'icons/obj/clothing/gloves.dmi' //even though you'll never see this directly, it shows up in the chat panel due to icon2html
 	ready = TRUE
