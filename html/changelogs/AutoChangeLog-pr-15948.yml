@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Xeno Valhalla is now more secure with a layer of forcefields."
