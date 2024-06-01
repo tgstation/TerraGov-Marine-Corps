@@ -3,7 +3,7 @@
 	return
 
 /obj/effect/blip/edge_blip
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/blips.dmi'
 	plane = ABOVE_HUD_PLANE
 	/// A friendly/hostile identifier
 	var/identifier = MOTION_DETECTOR_HOSTILE
@@ -35,7 +35,7 @@
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
-	blip_image = image('icons/Marine/marine-items.dmi', src, "close_blip_[identifier]")
+	blip_image = image('icons/effects/blips.dmi', src, "close_blip_[identifier]")
 	blip_image.layer = BELOW_FULLSCREEN_LAYER
 	operator.client.images += blip_image
 
