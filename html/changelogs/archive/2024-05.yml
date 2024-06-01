@@ -300,3 +300,16 @@
   Wisemonster:
   - balance: Crusher can no longer crest toss armored vehicles (such as the apc and
       tank)
+2024-05-31:
+  Neocloudy:
+  - rscadd: Health analyzers now have tooltips for a variety of things, including
+      organs, limb states, damage types, and more!
+  - bugfix: Synthetics only show as revivable if their health is greater than -100.
+  - bugfix: '[Stabilized] limb state is now green, like the [Splinted] state.'
+  - rscadd: Revivable status will now account for if the patient does not have the
+      required organs to sustain life.
+  - rscadd: Revivable status shows at what threshold the patient will be revivable.
+  - rscadd: 'Advice for Synthetic/Combat Robot quirks:'
+  - rscadd: 'Synthetic advice: no defibrillator healing, overheating threshold, no
+      braindeath.'
+  - rscadd: 'Combat Robot advice: immediate defibrillation, no critical condition.'
