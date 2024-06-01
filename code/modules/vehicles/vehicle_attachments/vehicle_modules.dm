@@ -71,7 +71,7 @@
 	SEND_SIGNAL(detaching_from, COMSIG_ARMOR_MODULE_DETACHED, user, src)
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
-	UnregisterSignal(parent, COMSIG_MOVABLE_BUCKLE)
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_BUCKLE, COMSIG_MOVABLE_UNBUCKLE))
 	parent = null
 
 ///Adds actions if the mob has the correct flag
