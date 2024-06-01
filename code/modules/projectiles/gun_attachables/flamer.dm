@@ -1,7 +1,8 @@
 /obj/item/attachable/flamer_nozzle
 	name = "standard flamer nozzle"
 	desc = "The standard flamer nozzle. This one fires a stream of fire for direct and accurate flames. Though not as area filling as its counterpart, this one excels at directed frontline combat."
-	icon_state = "flame_directional"
+	icon_state = "directional"
+	icon = 'icons/obj/items/guns/attachments/flamer.dmi'
 	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
@@ -42,12 +43,12 @@
 	attach_features_flags = NONE
 
 /obj/item/attachable/flamer_nozzle/unremovable/invisible
-	icon_state = null
+	icon_state = "invisible"
 
 /obj/item/attachable/flamer_nozzle/wide
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
-	icon_state = "flame_wide"
+	icon_state = "wide"
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 	burn_time_mod = 0.3
@@ -56,13 +57,13 @@
 /obj/item/attachable/flamer_nozzle/wide/red
 	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."
-	icon_state = "flame_wide_red"
+	icon_state = "wide_red"
 	range_modifier = 3
 
 ///Flamer ammo is a normal ammo datum, which means we can shoot it if we want
 /obj/item/attachable/flamer_nozzle/long
 	name = "extended flamer nozzle"
-	icon_state = "flame_long"
+	icon_state = "long"
 	desc = "Rather than spreading the supplied fuel over an area, this nozzle launches a single fireball to ignite a target at range. Reduced volume per shot also means the next is ready quicker."
 	stream_type = FLAMER_STREAM_RANGED
 	delay_mod = -10

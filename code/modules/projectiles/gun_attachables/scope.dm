@@ -1,6 +1,7 @@
 /obj/item/attachable/scope
 	name = "rail scope"
-	icon_state = "sniperscope"
+	icon_state = "sniper"
+	icon = 'icons/obj/items/guns/attachments/scope.dmi'
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	slot = ATTACHMENT_SLOT_RAIL
 	aim_speed_mod = 0.5 //Extra slowdown when aiming
@@ -27,17 +28,17 @@
 /obj/item/attachable/scope/marine
 	name = "T-47 rail scope"
 	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment."
-	icon_state = "marinescope"
+	icon_state = "marine"
 
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
-	icon_state = "nvscope"
+	icon_state = "nv"
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 
 /obj/item/attachable/scope/optical
 	name = "T-49 Optical imaging scope"
-	icon_state = "imagerscope"
+	icon_state = "imager"
 	desc = "A rail-mounted scope designed for the AR-55 and GL-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 	aim_speed_mod = 0.3
@@ -48,13 +49,13 @@
 
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
-	icon_state = "mosinscope"
+	icon_state = "mosin"
 	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment."
 
 /obj/item/attachable/scope/standard_magnum
 	name = "R-76 rail scope"
 	desc = "A custom rail mounted zoom sight scope designed specifically for the R-76 Magnum. Allows zoom by activating the attachment."
-	icon = 'icons/Marine/attachments_64.dmi'
+	icon = 'icons/obj/items/guns/attachments/scope_64.dmi'
 	icon_state = "t76scope"
 
 /obj/item/attachable/scope/unremovable
@@ -72,7 +73,7 @@
 
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
-	icon_state = "tl127_scope"
+	icon_state = "tl127"
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment."
@@ -80,13 +81,13 @@
 /obj/item/attachable/scope/unremovable/heavymachinegun
 	name = "HMG-08 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
-	icon_state = "sniperscope_invisible"
+	icon_state = "sniper_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 5
 
 /obj/item/attachable/scope/unremovable/mmg
 	name = "MG-27 rail scope"
-	icon_state = "miniscope"
+	icon_state = "mini"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	wield_delay_mod = 0.2 SECONDS
 	aim_speed_mod = 0.2
@@ -98,14 +99,14 @@
 /obj/item/attachable/scope/unremovable/standard_atgun
 	name = "AT-36 long range scope"
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
-	icon_state = "sniperscope_invisible"
+	icon_state = "sniper_invisible"
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 
 /obj/item/attachable/scope/unremovable/hsg_102
 	name = "HSG-102 smart sight"
 	desc = "An unremovable smart sight built for use with the HSG-102, it does nearly all the aiming work for the gun's integrated IFF systems."
-	icon_state = "sniperscope_invisible"
+	icon_state = "sniper_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 5
 	deployed_scope_rezoom = TRUE
@@ -197,11 +198,11 @@
 /obj/item/attachable/scope/unremovable/plasma_sniper_scope
 	name = "PL-02 sniper rifle rail scope"
 	desc = "A marine standard mounted zoom sight scope made for the PL-02 plasma sniper rifle, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	icon_state = "plasma_scope"
+	icon_state = "plasma_scope" // missing icon?
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
-	icon_state = "miniscope"
+	icon_state = "mini"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	slot = ATTACHMENT_SLOT_RAIL
 	wield_delay_mod = 0.2 SECONDS
@@ -218,7 +219,7 @@
 
 /obj/item/attachable/scope/mini/tx11
 	name = "AR-11 mini rail scope"
-	icon_state = "tx11scope"
+	icon_state = "tx11"
 
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
@@ -232,10 +233,10 @@
 	pixel_shift_y = 17
 
 /obj/item/attachable/scope/slavic
-	icon_state = "slavicscope"
+	icon_state = "slavic"
 
 /obj/item/attachable/scope/pmc
-	icon_state = "pmcscope"
+	icon_state = "pmc"
 	attach_features_flags = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/mini/dmr
