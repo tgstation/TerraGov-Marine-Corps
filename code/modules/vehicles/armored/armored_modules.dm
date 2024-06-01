@@ -175,3 +175,10 @@
 	icon_state = "medical_interior"
 	interior_typepath = /datum/interior/armored/medical
 	set_max_occupants = 12
+
+/obj/item/tank_module/interior/clone_bay
+	name = "clone bay interior"
+	desc = "A clone interior package, designed for the rapid production of cheap clone soldiers."
+	icon_state = "cloner_interior"
+	interior_typepath = /datum/interior/armored/clone_bay
+	set_max_occupants = 12
