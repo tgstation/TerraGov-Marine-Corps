@@ -323,7 +323,7 @@
 	light_system = STATIC_LIGHT
 	light_power = 0.5
 	light_range = 2
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE | DROPSHIP_IMMUNE | BANISH_IMMUNE //Things might implode if we allow these
 	///The rappel system this rope originates from
 	var/obj/structure/dropship_equipment/rappel_system/parent_system
 
@@ -334,7 +334,7 @@
 
 /obj/effect/rappel_rope/tadpole/Destroy()
 	. = ..()
-	parent_system.rope = null //Clean refs
+	parent_system?.rope = null //Clean refs
 
 /obj/effect/rappel_rope/tadpole/update_icon_state()
 	. = ..()
