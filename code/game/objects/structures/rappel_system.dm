@@ -151,6 +151,8 @@
 
 /obj/structure/dropship_equipment/rappel_system/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/powerloader_clamp))
+		return
 
 	if(istype(I, /obj/item/spare_cord))
 		if(rappel_condition != RAPPEL_CONDITION_DAMAGED)
