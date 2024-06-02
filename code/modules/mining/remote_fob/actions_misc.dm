@@ -118,7 +118,7 @@
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
-	action_icon = 'icons/Marine/marine-items.dmi' //update it with marine-items.dmi
+	action_icon = 'icons/obj/stack_objects.dmi'
 	action_icon_state = "barbed_wire"
 
 /datum/action/innate/remote_fob/toggle_wiring/Activate()
