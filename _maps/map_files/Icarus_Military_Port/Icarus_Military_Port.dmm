@@ -420,12 +420,10 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "bP" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 8
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/button/door/open_only/landing_zone/lz2,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -1567,13 +1565,6 @@
 /obj/structure/sign/directions/science,
 /turf/open/floor/mainship/sterile/side,
 /area/bigredv2/outside/medical)
-"gN" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "gO" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mainship/sterile/dark,
@@ -2536,6 +2527,10 @@
 "lc" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/arrival/start)
+"ld" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/arrival/start)
 "le" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2831,10 +2826,6 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"mv" = (
-/obj/structure/lattice,
-/turf/closed/wall/sulaco/unmeltable,
-/area/bigredv2/caves/north)
 "mw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4499,10 +4490,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"tT" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/closed/wall/sulaco/unmeltable,
-/area/outpost/lz1)
 "tU" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /obj/effect/forcefield,
@@ -5499,6 +5486,13 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
+"yb" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "tcomms"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/drop2/lz2)
 "yc" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
@@ -6392,10 +6386,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
-"BS" = (
-/obj/machinery/door/poddoor/mainship,
-/turf/open/floor/mainship_hull,
-/area/shuttle/drop2/lz2)
 "BT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -7224,14 +7214,6 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor/mainship,
 /area/outpost/lz1)
-"Fx" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/space)
 "Fy" = (
 /obj/structure/sign/directions/security{
 	dir = 4
@@ -7473,19 +7455,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/security)
-"GC" = (
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 9
-	},
-/obj/structure/monorail{
-	dir = 6
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/space)
 "GD" = (
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
@@ -7646,19 +7615,6 @@
 /obj/structure/mopbucket,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"Hj" = (
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 10
-	},
-/obj/structure/monorail{
-	dir = 5
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/space)
 "Hk" = (
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
@@ -8169,17 +8125,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
-"Jy" = (
-/obj/structure/monorail,
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/space)
 "Jz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -8700,10 +8645,6 @@
 	dir = 4
 	},
 /area/outpost/lz1)
-"LG" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship,
-/area/bigredv2/outside/c)
 "LH" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
@@ -10001,9 +9942,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop2/lz2)
-"Rg" = (
-/turf/open/space/basic,
-/area/shuttle/drop2/lz2)
 "Ri" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/closet/crate/science,
@@ -10030,6 +9968,13 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
+"Rn" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "Ro" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11106,6 +11051,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
+"VQ" = (
+/turf/closed/wall/sulaco/unmeltable,
+/area/bigredv2/outside/dorms)
 "VR" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -11543,14 +11491,6 @@
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/officer_study)
-"XE" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 8
-	},
-/area/space)
 "XF" = (
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -21384,20 +21324,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
 uf
 uf
 uf
@@ -21641,20 +21581,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 CR
 CR
 CR
@@ -21898,20 +21838,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 kO
 oP
 oP
@@ -22155,20 +22095,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 fq
 oP
 lw
@@ -22412,20 +22352,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 ST
 oP
 lw
@@ -22669,20 +22609,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
 lw
 oP
 lw
@@ -22924,28 +22864,28 @@ CR
 CR
 CR
 CR
-kx
-kx
-XE
-kx
-kx
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 lw
-BS
-BS
-BS
-BS
-BS
+yb
+lw
+lw
+lw
+lw
 ix
 lW
 Lq
@@ -23181,29 +23121,29 @@ CR
 CR
 CR
 CR
-sx
-bH
-GC
 CR
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 eJ
-dM
+yb
 lw
 lw
 lw
 lw
-dM
+yb
 lW
 Lq
 Lq
@@ -23438,29 +23378,29 @@ CR
 CR
 CR
 CR
-vj
-by
-Jy
 CR
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 eJ
-dM
+yb
 lw
 lw
 lw
 lw
-dM
+yb
 lW
 Lq
 Lq
@@ -23695,29 +23635,29 @@ CR
 CR
 CR
 CR
-Bm
-NM
-Hj
 CR
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 eJ
-dM
+yb
 lw
 lw
 lw
 lw
-dM
+yb
 lW
 Lq
 OZ
@@ -23952,28 +23892,28 @@ CR
 CR
 CR
 CR
-cI
-cI
-Fx
-cI
-cI
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 lw
-BS
-BS
-BS
-BS
-BS
+yb
+lw
+lw
+lw
+lw
 ix
 lW
 Lq
@@ -24211,20 +24151,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
-Rg
 lw
 oP
 lw
@@ -24232,7 +24172,7 @@ lw
 lw
 lw
 ix
-lW
+Rn
 Lq
 Lq
 ix
@@ -24468,20 +24408,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 lw
 oP
 lw
@@ -24492,7 +24432,7 @@ ix
 lW
 Lq
 Lq
-ix
+Lq
 Lq
 Lq
 Lq
@@ -24725,20 +24665,20 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 kO
 oP
 lw
@@ -24749,8 +24689,8 @@ ix
 bP
 EN
 go
-ix
-gN
+EN
+EN
 EN
 EN
 EN
@@ -24982,27 +24922,27 @@ CR
 CR
 CR
 CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 SJ
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-CR
 fq
 oP
-ix
-ix
-ix
-ix
-ix
+oP
+oP
+oP
+oP
+oP
 ix
 ix
 ix
@@ -25239,20 +25179,20 @@ CR
 CR
 CR
 CR
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+SJ
 JW
 Tq
 he
@@ -31799,8 +31739,8 @@ kR
 kR
 kR
 kR
-tT
-tT
+IE
+IE
 kR
 dY
 CR
@@ -34369,7 +34309,7 @@ XW
 XW
 XW
 XW
-se
+ld
 UL
 sM
 sM
@@ -34626,7 +34566,7 @@ XW
 XW
 XW
 XW
-se
+ld
 sM
 sM
 sM
@@ -35911,7 +35851,7 @@ XW
 XW
 XW
 XW
-se
+ld
 sM
 sM
 sM
@@ -36168,7 +36108,7 @@ XW
 XW
 XW
 XW
-se
+ld
 sM
 sM
 sM
@@ -50773,16 +50713,16 @@ Jr
 Hm
 Xo
 Xo
-Xo
-Xo
-Xo
-Xo
-Xo
+sX
+sX
+sX
+sX
+sX
 eQ
 eQ
 eQ
-Xo
-Xo
+sX
+sX
 Xo
 Xo
 tl
@@ -51286,7 +51226,7 @@ Hm
 Jr
 tl
 Hm
-yE
+Qx
 CR
 CR
 CR
@@ -51296,7 +51236,7 @@ CR
 CR
 CR
 CR
-yE
+Qx
 wk
 wk
 hh
@@ -51514,7 +51454,7 @@ OX
 OX
 OX
 OX
-Fm
+Fo
 tl
 tl
 tl
@@ -51543,7 +51483,7 @@ Hm
 Jr
 tl
 Hm
-yE
+Qx
 CR
 CR
 CR
@@ -51553,7 +51493,7 @@ CR
 CR
 CR
 CR
-yE
+Qx
 wk
 ry
 IU
@@ -51800,7 +51740,7 @@ Hm
 Jr
 tl
 Hm
-yE
+Qx
 CR
 CR
 CR
@@ -51810,7 +51750,7 @@ CR
 CR
 CR
 CR
-yE
+Qx
 RX
 ry
 fz
@@ -52027,7 +51967,7 @@ OB
 Mc
 YO
 tW
-mv
+tW
 sX
 eQ
 eQ
@@ -52057,7 +51997,7 @@ NT
 Jr
 tl
 Hm
-yE
+Qx
 CR
 CR
 CR
@@ -52067,7 +52007,7 @@ CR
 CR
 CR
 CR
-yE
+Qx
 wk
 wk
 SH
@@ -52314,7 +52254,7 @@ Hm
 Jr
 tl
 Hm
-yE
+Qx
 CR
 CR
 CR
@@ -52324,7 +52264,7 @@ CR
 CR
 CR
 CR
-yE
+Qx
 wk
 ON
 wk
@@ -53089,13 +53029,13 @@ UD
 UD
 ap
 ap
-UD
-UD
+VQ
+VQ
 ap
 ap
 ap
-UD
-UD
+VQ
+VQ
 Eb
 Eb
 Eb
@@ -57167,7 +57107,7 @@ Xi
 cS
 cS
 cS
-LG
+cS
 Xo
 Xo
 Xo
