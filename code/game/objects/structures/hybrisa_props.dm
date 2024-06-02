@@ -1206,13 +1206,13 @@
 // Engineer
 
 /obj/structure/prop/hybrisa/engineer
-	icon = 'icons/obj/structures/engineerjockey.dmi'
+	icon = 'icons/obj/structures/prop/urban/engineerjockey.dmi'
 	icon_state = "spacejockey"
 
 /obj/structure/prop/hybrisa/engineer/spacejockey
 	name = "Giant Pilot"
 	desc = "A Giant Alien life form. Looks like it's been dead a long time. Fossilized. Looks like it's growing out of the chair. Bones are bent outward, like it exploded from inside."
-	icon = 'icons/obj/structures/engineerjockey.dmi'
+	icon = 'icons/obj/structures/prop/urban/engineerjockey.dmi'
 	icon_state = "spacejockey"
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = RESIST_ALL
