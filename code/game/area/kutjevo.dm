@@ -29,6 +29,9 @@
 	name = "Kutjevo - Interior"
 	icon_state = "int"
 	always_unpowered = FALSE
+	min_ambience_cooldown = 1 SECONDS
+	max_ambience_cooldown = 1 SECONDS
+	ambience = list('sound/ambience/ambienthum.ogg' = 1)
 
 /area/kutjevo/interior/oob
 	name = "Kutjevo -  Out Of Bounds"
@@ -73,6 +76,9 @@
 
 /area/kutjevo/exterior/scrubland/south
 	name = "Kutjevo - Scrubland South"
+	ambience = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
+	min_ambience_cooldown = 10 SECONDS
+	max_ambience_cooldown = 12 SECONDS
 
 /area/kutjevo/exterior/stonyfields
 	name = "Kutjevo - Stony Fields"
@@ -84,6 +90,9 @@
 	icon_state = "rf_dunes"
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
+	ambience = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
+	min_ambience_cooldown = 10 SECONDS
+	max_ambience_cooldown = 12 SECONDS
 
 /area/kutjevo/exterior/runoff_dunes
 	name = "Kutjevo - Runoff Dunes"
@@ -112,6 +121,9 @@
 	name = "Kutjevo - Abandoned Construction"
 	icon_state = "construction"
 	minimap_color = MINIMAP_AREA_COLONY
+	ambience = list('sound/ambience/windambient.ogg' = 1)
+	min_ambience_cooldown = 19 SECONDS
+	max_ambience_cooldown = 19 SECONDS
 
 /area/kutjevo/exterior/complex_border
 	name = "Kutjevo Complex - Exterior"
@@ -121,6 +133,9 @@
 /area/kutjevo/exterior/complex_border/botany_medical_cave
 	name = "Kutjevo Complex - Botany - Medical Cave"
 	icon_state = "med_ext"
+	ambience = list('sound/ambience/windambient.ogg' = 1)
+	min_ambience_cooldown = 19 SECONDS
+	max_ambience_cooldown = 19 SECONDS
 
 /area/kutjevo/exterior/complex_border/med_park
 	name = "Kutjevo Complex - Medical Park"

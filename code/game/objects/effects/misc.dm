@@ -80,20 +80,8 @@
 /obj/effect/soundplayer/riverplayer
 	sound_type = /datum/looping_sound/river_loop
 
-/obj/effect/soundplayer/windplayer
-	sound_type = /datum/looping_sound/wind_loop
-
-/obj/effect/soundplayer/humplayer
-	sound_type = /datum/looping_sound/indoor_hum_loop
-
-/obj/effect/soundplayer/humplayer_low_range
-	sound_type = /datum/looping_sound/indoor_hum_loop/lowrange
-
 /obj/effect/soundplayer/dripplayer
 	sound_type = /datum/looping_sound/drip_loop
-
-/obj/effect/soundplayer/lowwindplayer
-	sound_type = /datum/looping_sound/low_wind_loop
 
 /obj/effect/soundplayer/waterreservoirplayer
 	sound_type = /datum/looping_sound/water_res_loop
