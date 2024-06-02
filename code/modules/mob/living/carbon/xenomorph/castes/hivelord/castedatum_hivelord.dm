@@ -54,6 +54,7 @@
 	resin_max_range = 1 //Hivelord can place resin structures from 1 tile away
 
 	actions = list(
+		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/xeno_action/psychic_influence,
