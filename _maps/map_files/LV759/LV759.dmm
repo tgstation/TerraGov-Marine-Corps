@@ -10207,7 +10207,9 @@
 	name = "dirt"
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Black,
+/obj/structure/prop/urban/vehicles/Meridian/Black/damagethree{
+	dir = 4
+	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bJW" = (
@@ -10244,10 +10246,10 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Pink,
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 8
 	},
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damagethree,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 4
 	},
@@ -14235,10 +14237,6 @@
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
-	layer = 3.9;
-	pixel_y = -12
-	},
 /obj/structure/prop/urban/misc/fire/fire1{
 	color = "#ffa700";
 	layer = 7
@@ -14247,6 +14245,9 @@
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/doubleroad/lines3{
 	pixel_y = -4
+	},
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree{
+	pixel_y = -12
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -20083,6 +20084,10 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/urban/decal/dirt,
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree{
+	dir = 1;
+	pixel_y = -4
+	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dng" = (
@@ -21400,13 +21405,13 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "dyx" = (
-/obj/structure/prop/urban/vehicles/Meridian/Green{
-	dir = 1
-	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
+	},
+/obj/structure/prop/urban/vehicles/Meridian/Green/damagethree{
+	dir = 8
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -24948,8 +24953,8 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue{
-	dir = 8
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree{
+	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -26666,7 +26671,8 @@
 "etp" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cargo_container/nt{
-	dir = 4
+	dir = 4;
+	layer = 7
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -29899,14 +29905,13 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
-	layer = 2.9;
-	pixel_y = 8
-	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
+	},
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagethree{
+	pixel_y = 8
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -30336,7 +30341,8 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/cargo_container/nt{
-	dir = 1
+	dir = 1;
+	layer = 7
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -48109,7 +48115,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Blue{
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damagethree{
 	pixel_x = -2;
 	pixel_y = 9
 	},
@@ -59539,6 +59545,9 @@
 /obj/effect/urban/decal/doubleroad/lines3{
 	pixel_y = -4
 	},
+/obj/structure/prop/urban/vehicles/van/hyperdynevan{
+	layer = 4.2
+	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "jPl" = (
@@ -61802,15 +61811,15 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
-	dir = 8;
-	pixel_x = -3;
-	pixel_y = 3
-	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
+	},
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagethree{
+	dir = 8;
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -73842,13 +73851,13 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
-	pixel_x = -2
-	},
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
+	},
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree{
+	dir = 4
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -74193,7 +74202,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
-/obj/structure/prop/urban/vehicles/Meridian/Red,
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -107586,10 +107595,8 @@
 	dir = 6;
 	pixel_y = -7
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
-	dir = 8;
-	pixel_x = -3;
-	pixel_y = 3
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagetwo{
+	dir = 8
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -114189,9 +114196,8 @@
 /obj/item/stack/rods{
 	layer = 6
 	},
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
-	layer = 5;
-	pixel_y = 12
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree{
+	pixel_y = 13
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 1
@@ -118564,9 +118570,7 @@
 /obj/item/stack/rods{
 	pixel_y = 14
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue{
-	dir = 4
-	},
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree,
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tFN" = (
@@ -128712,7 +128716,7 @@
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/generic,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree{
 	dir = 1;
 	pixel_x = 6
 	},
@@ -132017,8 +132021,9 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Red{
-	pixel_x = -6
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagefour{
+	pixel_x = -6;
+	pixel_y = -3
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -140675,7 +140680,7 @@
 "xgM" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree{
 	pixel_x = -1;
 	pixel_y = 2
 	},

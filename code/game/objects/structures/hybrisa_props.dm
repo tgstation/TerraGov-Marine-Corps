@@ -14,25 +14,24 @@
 	var/brute_multiplier = 1
 	resistance_flags = XENO_DAMAGEABLE
 
-/*
-/obj/structure/prop/urban/vehicles/update_icon()
+/obj/structure/prop/urban/vehicles/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+	. = ..()
+	if(!.)
+		return
 	switch(obj_integrity)
 		if(2500 to 3000)
 			icon_state = initial(icon_state)
 			return
 		if(2000 to 2500)
-			damage_state = 1
+			icon_state = icon_state = "[initial(icon_state)]_damage_[1]"
 		if(1500 to 2000)
-			damage_state = 2
+			icon_state = icon_state = "[initial(icon_state)]_damage_[2]"
 		if(1000 to 1500)
-			damage_state = 3
+			icon_state = icon_state = "[initial(icon_state)]_damage_[3]"
 		if(500 to 1000)
-			damage_state = 4
+			icon_state = icon_state = "[initial(icon_state)]_damage_[4]"
 		if(0 to 500)
-			damage_state = 5
-	icon_state = "[initial(icon_state)]_damage_[damage_state]"
-	var/damage_state = 0
-*/
+			icon_state = icon_state = "[initial(icon_state)]_damage_[5]"
 
 /obj/structure/prop/urban/vehicles/proc/explode(dam, mob/M)
 	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
@@ -193,57 +192,267 @@
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 
+/obj/structure/prop/urban/vehicles/Meridian/Red/damageone
+	icon_state = "meridian_red_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagetwo
+	icon_state = "meridian_red_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree
+	icon_state = "meridian_red_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagefour
+	icon_state = "meridian_red_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Red/damagefive
+	icon_state = "meridian_red_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Black
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_black.dmi'
 	icon_state = "meridian_black"
+
+/obj/structure/prop/urban/vehicles/Meridian/Black/damageone
+	icon_state = "meridian_black_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Black/damagetwo
+	icon_state = "meridian_black_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Black/damagethree
+	icon_state = "meridian_black_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Black/damagefour
+	icon_state = "meridian_black_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Black/damagefive
+	icon_state = "meridian_black_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_blue.dmi'
 	icon_state = "meridian_blue"
 
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damageone
+	icon_state = "meridian_blue_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damagetwo
+	icon_state = "meridian_blue_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damagethree
+	icon_state = "meridian_blue_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damagefour
+	icon_state = "meridian_blue_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Blue/damagefive
+	icon_state = "meridian_blue_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Brown
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_brown.dmi'
 	icon_state = "meridian_brown"
+
+/obj/structure/prop/urban/vehicles/Meridian/Brown/damageone
+	icon_state = "meridian_brown_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Brown/damagetwo
+	icon_state = "meridian_brown_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Brown/damagethree
+	icon_state = "meridian_brown_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Brown/damagefour
+	icon_state = "meridian_brown_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Brown/damagefive
+	icon_state = "meridian_brown_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/Cop
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_cop.dmi'
 	icon_state = "meridian_cop"
 
+/obj/structure/prop/urban/vehicles/Meridian/Cop/damageone
+	icon_state = "meridian_cop_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Cop/damagetwo
+	icon_state = "meridian_cop_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Cop/damagethree
+	icon_state = "meridian_cop_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Cop/damagefour
+	icon_state = "meridian_cop_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Cop/damagefive
+	icon_state = "meridian_cop_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Desat_Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_desatblue.dmi'
 	icon_state = "meridian_desatblue"
+
+/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damageone
+	icon_state = "meridian_desatblue_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagetwo
+	icon_state = "meridian_desatblue_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagethree
+	icon_state = "meridian_desatblue_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagefour
+	icon_state = "meridian_desatblue_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagefive
+	icon_state = "meridian_desatblue_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/Green
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_green.dmi'
 	icon_state = "meridian_green"
 
+/obj/structure/prop/urban/vehicles/Meridian/Green/damageone
+	icon_state = "meridian_green_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Green/damagetwo
+	icon_state = "meridian_green_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Green/damagethree
+	icon_state = "meridian_green_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Green/damagefour
+	icon_state = "meridian_green_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Green/damagefive
+	icon_state = "meridian_green_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Light_Blue
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_lightblue.dmi'
 	icon_state = "meridian_lightblue"
+
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damageone
+	icon_state = "meridian_lightblue_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagetwo
+	icon_state = "meridian_lightblue_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree
+	icon_state = "meridian_lightblue_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagefour
+	icon_state = "meridian_lightblue_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagefive
+	icon_state = "meridian_lightblue_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/Pink
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_pink.dmi'
 	icon_state = "meridian_pink"
 
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damageone
+	icon_state = "meridian_pink_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damagetwo
+	icon_state = "meridian_pink_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damagethree
+	icon_state = "meridian_pink_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damagefour
+	icon_state = "meridian_pink_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Pink/damagefive
+	icon_state = "meridian_pink_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Purple
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_purple.dmi'
 	icon_state = "meridian_purple"
+
+/obj/structure/prop/urban/vehicles/Meridian/Purple/damageone
+	icon_state = "meridian_purple_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Purple/damagetwo
+	icon_state = "meridian_purple_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Purple/damagethree
+	icon_state = "meridian_purple_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Purple/damagefour
+	icon_state = "meridian_purple_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Purple/damagefive
+	icon_state = "meridian_purple_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/Turquoise
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_turquoise.dmi'
 	icon_state = "meridian_turquoise"
 
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damageone
+	icon_state = "meridian_turquoise_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagetwo
+	icon_state = "meridian_turquoise_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagethree
+	icon_state = "meridian_turquoise_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagefour
+	icon_state = "meridian_turquoise_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagefive
+	icon_state = "meridian_turquoise_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Orange
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_orange.dmi'
 	icon_state = "meridian_orange"
+
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damageone
+	icon_state = "meridian_orange_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagetwo
+	icon_state = "meridian_orange_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree
+	icon_state = "meridian_orange_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagefour
+	icon_state = "meridian_orange_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Orange/damagefive
+	icon_state = "meridian_orange_damage_5"
 
 /obj/structure/prop/urban/vehicles/Meridian/WeylandYutani
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_wy.dmi'
 	icon_state = "meridian_wy"
 
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damageone
+	icon_state = "meridian_wy_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagetwo
+	icon_state = "meridian_wy_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree
+	icon_state = "meridian_wy_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagefour
+	icon_state = "meridian_wy_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagefive
+	icon_state = "meridian_wy_damage_5"
+
 /obj/structure/prop/urban/vehicles/Meridian/Taxi
 	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_taxi.dmi'
 	icon_state = "meridian_taxi"
+
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damageone
+	icon_state = "meridian_taxi_damage_1"
+
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagetwo
+	icon_state = "meridian_taxi_damage_2"
+
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagethree
+	icon_state = "meridian_taxi_damage_3"
+
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagefour
+	icon_state = "meridian_taxi_damage_4"
+
+/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagefive
+	icon_state = "meridian_taxi_damage_5"
 
 // Car Chassis
 
