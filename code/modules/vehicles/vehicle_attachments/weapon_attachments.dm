@@ -72,18 +72,47 @@
 	movement_acc_penalty_mult = 3
 
 /obj/item/vehicle_module/mounted_gun/minigun
-	name = "mounted minigun"
+	name = "dual V-44 light gatling guns"
+	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
 	icon = 'icons/obj/vehicles/hover_bike.dmi'
 	icon_state = "bike_minigun"
 	should_use_obj_appeareance = FALSE
-	mounted_gun = /obj/item/weapon/gun/minigun/one_handed/bike_mounted
+	mounted_gun = /obj/item/weapon/gun/bike_minigun
 
 /obj/item/vehicle_module/mounted_gun/minigun/Initialize(mapload)
 	. = ..()
 	action_icon = mounted_gun.icon
 	action_icon_state = mounted_gun.icon_state
 
-/obj/item/weapon/gun/minigun/one_handed/bike_mounted
+/obj/item/weapon/gun/bike_minigun
+	name = "dual V-44 light gatling guns"
+	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
 	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
 	icon_state = "bike_minigun"
 	worn_icon_state = null
+	fire_animation = "minigun_fire"
+	max_shells = 500 //codex
+	caliber = CALIBER_762X51 //codex
+	load_method = MAGAZINE //codex
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/bike_minigun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/bike_minigun)
+	w_class = WEIGHT_CLASS_HUGE
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	item_flags = NONE
+	equip_slot_flags = NONE
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.3 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+
+	recoil_unwielded = -2
+	scatter_unwielded = 10
+	damage_falloff_mult = 0.4
+	movement_acc_penalty_mult = 2
