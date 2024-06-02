@@ -6,10 +6,8 @@
 	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
-
 	///This is pulled when the parent flamer fires, it determines how the parent flamers fire stream acts.
 	var/stream_type = FLAMER_STREAM_STRAIGHT
-
 	///Modifier for burn level of attached flamer. Percentage based.
 	var/burn_level_mod = 1
 	///Modifier for burn time of attached flamer. Percentage based.
