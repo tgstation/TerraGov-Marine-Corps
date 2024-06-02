@@ -5721,7 +5721,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
 "vQ" = (
@@ -10882,7 +10881,6 @@
 /area/mainship)
 "Pb" = (
 /obj/item/paper/crumpled/bloody,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "Pc" = (
@@ -11436,7 +11434,6 @@
 /obj/machinery/door/airlock/mainship/security{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/prison/darkred,
 /area/mainship/living/briefing)
 "Rd" = (
@@ -12808,7 +12805,6 @@
 "Wh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
 "Wi" = (
@@ -12955,13 +12951,6 @@
 	},
 /turf/open/floor/plating,
 /area/janitor)
-"WI" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/briefing)
 "WJ" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13134,7 +13123,6 @@
 	},
 /area/mainship/living/briefing)
 "Xr" = (
-/obj/structure/cable,
 /turf/open/floor/prison/darkred,
 /area/mainship/living/briefing)
 "Xs" = (
@@ -13739,7 +13727,6 @@
 /area/ai_monitored/storage/secure)
 "ZH" = (
 /obj/item/paper/crumpled,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "ZI" = (
@@ -13809,15 +13796,6 @@
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"ZU" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/darkred{
-	dir = 8
-	},
-/area/mainship/living/briefing)
 "ZV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
@@ -52235,11 +52213,11 @@ LJ
 LJ
 LJ
 vP
-jN
-jN
-jN
+bn
+bn
+bn
 Wh
-WI
+Pp
 jN
 lm
 kc
@@ -52488,10 +52466,10 @@ gE
 Jk
 Xq
 Te
-ZU
+FA
 Im
 Jk
-Mt
+fv
 GC
 GC
 GC
@@ -52748,7 +52726,7 @@ QR
 Pb
 St
 Jk
-Mt
+fv
 GC
 GC
 GC
@@ -53002,10 +52980,10 @@ gE
 gS
 hG
 QR
-FF
+GC
 pt
 Jk
-Mt
+fv
 GC
 GC
 GC
@@ -53262,7 +53240,7 @@ HS
 ZH
 Xr
 Rc
-Mt
+fv
 GC
 GC
 GC
