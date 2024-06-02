@@ -567,10 +567,6 @@
 	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 
-#undef REGULAR_DEATH
-#undef COCOONED_DEATH
-#undef HEADBITE_DEATH
-#undef CHESTBURST_DEATH
 
 //ICC
 /obj/effect/landmark/corpsespawner/icc
@@ -640,3 +636,8 @@
 	corpsehelmet = /obj/item/clothing/head/frelancer/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/marine
+
+#undef REGULAR_DEATH
+#undef COCOONED_DEATH
+#undef HEADBITE_DEATH
+#undef CHESTBURST_DEATH
