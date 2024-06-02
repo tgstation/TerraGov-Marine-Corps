@@ -11,12 +11,12 @@
 /area/construction/qmaint)
 "ac" = (
 /turf/open/floor/mainship/red,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ad" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/guestpass,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "ae" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 8
@@ -33,21 +33,21 @@
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /turf/open/floor/plating/plating_catwalk,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ah" = (
 /obj/structure/dropship_piece/one/rearwing/rightbottom,
 /turf/open/floor/plating/mainship,
 /area/construction)
 "aj" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/deltastation/tcommsat)
+/area/storage/testroom)
 "ak" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "al" = (
 /obj/structure/table/mainship,
 /obj/machinery/door/window/secure/req{
@@ -90,11 +90,11 @@
 "ar" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "as" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "at" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -122,7 +122,7 @@
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "ay" = (
 /turf/closed/shuttle/cas/rightwingmid,
 /area/bigredv2/outside/c)
@@ -131,25 +131,25 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "aA" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "aB" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
-/area/deltastation/tcommsat)
+/area/storage/testroom)
 "aC" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "aD" = (
 /obj/structure/lattice,
 /obj/structure/monorail,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "aE" = (
 /turf/open/shuttle/dropship/eight,
 /area/construction)
@@ -162,7 +162,7 @@
 /area/space)
 "aG" = (
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "aH" = (
 /obj/structure/table/mainship,
 /obj/item/tank/anesthetic,
@@ -186,7 +186,7 @@
 "aL" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "aM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -232,7 +232,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "aT" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -259,7 +259,7 @@
 	on = 1
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "aZ" = (
 /obj/machinery/light,
 /turf/open/floor/prison/darkpurple/full,
@@ -323,7 +323,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "bl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/indestructible,
@@ -386,7 +386,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "bx" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/sterile,
@@ -402,7 +402,7 @@
 "bz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bA" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/cargo)
@@ -462,7 +462,7 @@
 "bK" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/side{
@@ -493,7 +493,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bQ" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/caves/south)
@@ -524,7 +524,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bV" = (
 /obj/machinery/light{
 	dir = 8
@@ -535,10 +535,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bX" = (
 /turf/open/floor/mainship/red,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "bY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -572,7 +572,7 @@
 "ce" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/sulaco/unmeltable,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "cf" = (
 /obj/structure/prop/mainship/massdiver{
 	dir = 4
@@ -643,7 +643,7 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ct" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -664,7 +664,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "cx" = (
 /turf/closed/shuttle/cas/rightwingclose,
 /area/bigredv2/outside/c)
@@ -685,7 +685,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "cB" = (
 /turf/closed/shuttle/cas/centertop,
 /area/bigredv2/outside/c)
@@ -705,7 +705,7 @@
 /area/bigredv2/outside/c)
 "cF" = (
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "cG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -716,7 +716,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/zx76/standard,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "cI" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -742,12 +742,12 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "cO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "cP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
@@ -776,7 +776,7 @@
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "cV" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -795,18 +795,18 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "da" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "db" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "dc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -821,14 +821,14 @@
 /obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "df" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "dg" = (
 /obj/structure/cable,
 /turf/open/shuttle/dropship/floor,
@@ -848,7 +848,7 @@
 "dj" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "dk" = (
 /obj/structure/cable,
 /obj/structure/barricade/guardrail{
@@ -878,7 +878,7 @@
 	},
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "dp" = (
 /obj/structure/monorail,
 /turf/open/floor/mainship/mono,
@@ -981,10 +981,10 @@
 "dL" = (
 /obj/structure/closet/crate/mass_produced_crate/supply,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "dM" = (
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "dN" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship)
@@ -1011,7 +1011,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "dT" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1025,7 +1025,7 @@
 "dV" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "dW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 1
@@ -1051,7 +1051,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "eb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1092,11 +1092,11 @@
 /obj/machinery/computer3/laptop/secure_data,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ej" = (
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ek" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/plating,
@@ -1145,7 +1145,7 @@
 "es" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "et" = (
 /obj/effect/landmark/corpsespawner,
 /obj/structure/cable,
@@ -1154,7 +1154,7 @@
 "eu" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "ev" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -1195,11 +1195,11 @@
 	on = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "eC" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "eD" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1230,13 +1230,13 @@
 /area/mainship)
 "eJ" = (
 /turf/open/shuttle/dropship/floor,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "eK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "eL" = (
 /obj/structure/caspart/fourteen,
 /turf/open/floor/mainship,
@@ -1274,14 +1274,14 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "eS" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "eT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -1325,7 +1325,7 @@
 "fa" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "fb" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
@@ -1335,7 +1335,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fd" = (
 /obj/structure/showcase/yaut,
 /obj/structure/window/reinforced{
@@ -1367,7 +1367,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "fj" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 4
@@ -1392,7 +1392,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "fn" = (
 /obj/effect/particle_effect/smoke/phosphorus{
 	dir = 1;
@@ -1413,28 +1413,28 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fq" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "fr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "fs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ft" = (
 /obj/structure/largecrate/random,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fu" = (
 /obj/machinery/light{
 	dir = 8
@@ -1470,11 +1470,11 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "fB" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fC" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
@@ -1495,7 +1495,7 @@
 "fF" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "fG" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/cargo,
@@ -1505,14 +1505,14 @@
 	dir = 5
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "fJ" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "fK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1543,11 +1543,11 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "fP" = (
 /turf/open/floor/mainship/green{
 	dir = 10
@@ -1592,7 +1592,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "fY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -1616,7 +1616,7 @@
 "gb" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "gc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1661,7 +1661,7 @@
 "gj" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "gk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile,
@@ -1675,7 +1675,7 @@
 /area/mainship/living/officer_study)
 "gn" = (
 /turf/open/floor/plating,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad)
 "go" = (
 /obj/machinery/light{
 	dir = 4
@@ -1683,7 +1683,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "gp" = (
 /obj/machinery/door/window/right{
 	dir = 8
@@ -1725,7 +1725,7 @@
 /obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "gv" = (
 /obj/machinery/light{
 	dir = 8
@@ -1734,7 +1734,7 @@
 /area/prison/security/briefing)
 "gw" = (
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "gx" = (
 /obj/structure/sink{
 	dir = 8
@@ -1751,18 +1751,18 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "gz" = (
 /obj/machinery/door/poddoor/two_tile_ver,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "gA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "gB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -1772,7 +1772,7 @@
 "gC" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "gD" = (
 /obj/structure/closet/crate/radiation,
 /turf/open/floor/mainship/mono,
@@ -1786,7 +1786,7 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "gG" = (
 /obj/structure/dropship_piece/one/wing/right/top,
 /turf/open/floor/plating/mainship,
@@ -1805,13 +1805,13 @@
 "gK" = (
 /obj/structure/closet/crate/mass_produced_crate/medical,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "gL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "gM" = (
 /obj/structure/sign/directions/science,
 /turf/open/floor/mainship/sterile/side,
@@ -1819,7 +1819,7 @@
 "gN" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "gO" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mainship/sterile/dark,
@@ -1861,7 +1861,7 @@
 /obj/item/ammo_magazine/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "gV" = (
 /obj/machinery/light{
 	dir = 1
@@ -1880,6 +1880,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
+"ha" = (
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "hb" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -1896,21 +1899,21 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "he" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "hf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "hg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -1944,7 +1947,7 @@
 	},
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "hn" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
@@ -2002,7 +2005,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "hB" = (
 /turf/open/floor/prison/darkred{
 	dir = 9
@@ -2035,7 +2038,7 @@
 "hH" = (
 /obj/machinery/door/airlock/mainship/security,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "hI" = (
 /obj/machinery/light{
 	dir = 8
@@ -2113,7 +2116,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "hV" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
@@ -2125,10 +2128,10 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "hX" = (
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "hY" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -2171,14 +2174,14 @@
 /area/bigredv2/caves/lambda_lab)
 "if" = (
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ig" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ih" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/prison/darkpurple/full,
@@ -2231,11 +2234,11 @@
 "iq" = (
 /obj/structure/closet/crate/mass_produced_crate/weapon,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "ir" = (
 /obj/structure/sign/directions/security,
 /turf/closed/wall/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "is" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -2251,20 +2254,27 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/security)
+"iv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/outpost/arrivals)
 "iw" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/prison/darkyellow/full,
 /area/deltastation/engineering)
 "ix" = (
 /turf/closed/wall/mainship,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "iy" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/plating/mainship,
 /area/prison/security/checkpoint)
 "iz" = (
 /turf/open/floor/mainship/stripesquare,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "iA" = (
 /turf/closed/shuttle/dropship1/wall{
 	dir = 8
@@ -2287,7 +2297,7 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual/research_and_development,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "iE" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
@@ -2299,7 +2309,7 @@
 "iG" = (
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg,
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "iH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red/full,
@@ -2313,7 +2323,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "iK" = (
 /obj/machinery/door/airlock/mainship/security,
 /turf/open/floor/plating/mainship,
@@ -2323,11 +2333,11 @@
 /obj/structure/monorail,
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "iM" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "iN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -2337,6 +2347,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"iP" = (
+/turf/closed/wall/sulaco/unmeltable,
+/area/outpost/arrivals)
 "iQ" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile/side{
@@ -2357,7 +2370,7 @@
 /area/bigredv2/caves/lambda_lab)
 "iT" = (
 /turf/closed/wall/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "iU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -2386,11 +2399,11 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "jb" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "jc" = (
 /turf/open/floor/mainship/floor,
 /area/gelida/indoors/a_block/hallway)
@@ -2427,7 +2440,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "jk" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating,
@@ -2447,7 +2460,7 @@
 "jo" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "jp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -2506,7 +2519,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "jC" = (
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
@@ -2520,13 +2533,13 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "jG" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "jH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/purple/side,
@@ -2551,7 +2564,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "jM" = (
 /obj/machinery/light{
 	dir = 8
@@ -2628,12 +2641,12 @@
 /obj/item/explosive/grenade/sticky/trailblazer,
 /obj/item/explosive/grenade/sticky/trailblazer,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "kd" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -2646,7 +2659,7 @@
 /area/daedalusprison/inside/security)
 "kf" = (
 /turf/open/floor/mainship/red/full,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "kg" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -2656,7 +2669,7 @@
 /area/bigredv2/caves/north)
 "kh" = (
 /turf/closed/mineral/smooth/indestructible,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "ki" = (
 /obj/structure/caspart/nineteen{
 	dir = 1
@@ -2699,7 +2712,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "kq" = (
 /turf/open/floor/prison/darkred{
 	dir = 1
@@ -2719,11 +2732,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ku" = (
 /obj/structure/cryofeed,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "kv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship_hull/dir{
@@ -2824,18 +2837,18 @@
 "kM" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "kN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/table/woodentable,
 /obj/item/book/codebook,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "kO" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "kP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/largecrate,
@@ -2847,15 +2860,15 @@
 /area/bigredv2/outside/c)
 "kR" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "kS" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "kT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "kU" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/mainship/mono,
@@ -2872,12 +2885,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "kX" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "kY" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -2885,7 +2898,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "kZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2905,10 +2918,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "lc" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ld" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -2936,11 +2949,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "li" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "lj" = (
 /turf/open/floor/mainship,
 /area/prison/security/briefing)
@@ -2964,7 +2977,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "lo" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
@@ -2983,7 +2996,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "lr" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway{
@@ -2995,7 +3008,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "lt" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/mainship/sterile,
@@ -3003,7 +3016,7 @@
 "lu" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/library)
 "lv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -3012,7 +3025,7 @@
 /area/bigredv2/outside/cargo)
 "lw" = (
 /turf/open/floor/mainship_hull,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "lx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -3049,7 +3062,7 @@
 "lD" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "lE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -3074,7 +3087,7 @@
 "lI" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "lJ" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -3087,11 +3100,11 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "lL" = (
 /obj/structure/table,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "lM" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/corpsespawner,
@@ -3155,7 +3168,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "lX" = (
 /obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/floor/mainship/mono,
@@ -3222,7 +3235,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "mm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3247,7 +3260,7 @@
 /obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "mq" = (
 /turf/open/floor/plating/mainship,
 /area/janitor)
@@ -3258,7 +3271,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "ms" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating,
@@ -3270,7 +3283,7 @@
 "mu" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "mw" = (
 /turf/closed/shuttle/dropship1/window{
 	dir = 8
@@ -3279,14 +3292,14 @@
 "mx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "my" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "mz" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -3294,7 +3307,7 @@
 "mA" = (
 /obj/structure/sign/fire,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "mB" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/mainship,
@@ -3325,7 +3338,7 @@
 	},
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -3350,7 +3363,7 @@
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "mM" = (
 /obj/structure/monorail{
 	dir = 5
@@ -3374,7 +3387,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "mP" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/mineral/phoron{
@@ -3393,7 +3406,7 @@
 /area/bigredv2/caves/lambda_lab)
 "mQ" = (
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "mR" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
@@ -3431,7 +3444,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "mY" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -3440,7 +3453,7 @@
 "mZ" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "na" = (
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 8
@@ -3448,22 +3461,22 @@
 /area/construction)
 "nb" = (
 /turf/closed/wall/mainship,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "nc" = (
 /obj/structure/closet/crate/secure/surgery,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "nd" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad_2)
 "ne" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "nf" = (
 /turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "ng" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -3489,7 +3502,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "nk" = (
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 1
@@ -3508,7 +3521,7 @@
 "nn" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "no" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/darkyellow{
@@ -3529,11 +3542,11 @@
 "nr" = (
 /obj/item/tool/weldingtool,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ns" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "nt" = (
 /obj/structure/largecrate,
 /turf/open/floor/prison/darkyellow,
@@ -3558,7 +3571,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ny" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway{
@@ -3570,11 +3583,17 @@
 	dir = 6
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
+"nA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "nB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "nC" = (
 /obj/structure/table/reinforced,
 /obj/item/megaphone,
@@ -3600,7 +3619,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "nI" = (
 /obj/structure/caspart/nineteen{
 	dir = 6
@@ -3610,7 +3629,7 @@
 "nJ" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/mainship/mono,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "nK" = (
 /turf/closed/shuttle/cas/fifteen,
 /area/bigredv2/outside/c)
@@ -3627,7 +3646,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "nO" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -3681,7 +3700,7 @@
 /area/construction)
 "nX" = (
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "nY" = (
 /obj/structure/morgue{
 	dir = 2
@@ -3697,7 +3716,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ob" = (
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
@@ -3710,7 +3729,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "oe" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
@@ -3726,7 +3745,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "oh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3739,11 +3758,11 @@
 "oj" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad)
 "ok" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "ol" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -3753,7 +3772,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "oo" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/wood,
@@ -3761,7 +3780,7 @@
 "op" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "oq" = (
 /obj/vehicle/train/cargo/engine{
 	dir = 2
@@ -3783,7 +3802,7 @@
 "ou" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ov" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3794,14 +3813,14 @@
 	on = 1
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "ox" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "oy" = (
 /obj/machinery/light{
 	dir = 4
@@ -3840,7 +3859,7 @@
 "oF" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "oG" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/plating,
@@ -3848,7 +3867,7 @@
 "oH" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "oI" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -3891,20 +3910,20 @@
 /area/bigredv2/outside/cargo)
 "oP" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "oQ" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "oR" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/prison/security/briefing)
 "oT" = (
 /turf/open/floor/mainship/stripesquare,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "oU" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
@@ -3918,7 +3937,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "oX" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -3970,7 +3989,7 @@
 "pg" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ph" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3993,7 +4012,7 @@
 "pk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "pl" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/cargo/arrow,
@@ -4005,7 +4024,7 @@
 "pn" = (
 /obj/structure/grille/fence,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "po" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
@@ -4015,18 +4034,18 @@
 /obj/structure/catwalk,
 /obj/structure/cable,
 /turf/open/liquid/water,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "pq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "pr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ps" = (
 /obj/machinery/light{
 	dir = 1
@@ -4046,7 +4065,7 @@
 	on = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "pv" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -4085,7 +4104,7 @@
 "pC" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "pD" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2/corner,
@@ -4104,7 +4123,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "pG" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 1
@@ -4113,7 +4132,7 @@
 "pH" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "pI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -4123,7 +4142,7 @@
 /area/gelida/indoors/a_block/hallway)
 "pJ" = (
 /turf/open/space/basic,
-/area/arrival/start)
+/area/outpost/arrivals)
 "pK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -4157,7 +4176,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "pQ" = (
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 1
@@ -4180,12 +4199,12 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "pU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/attach_point/crew_weapon/dropship1,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "pW" = (
 /turf/closed/shuttle/cas/eighteen{
 	dir = 8
@@ -4244,7 +4263,7 @@
 "qh" = (
 /obj/machinery/door/poddoor/mainship,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "qi" = (
 /obj/machinery/light,
 /turf/open/floor/prison/darkyellow,
@@ -4258,7 +4277,7 @@
 "qk" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "ql" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	welded = 1
@@ -4270,7 +4289,7 @@
 /obj/item/paper/Court,
 /obj/item/flashlight/pen,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "qn" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -4283,7 +4302,7 @@
 "qo" = (
 /obj/structure/dropship_piece/one/corner/rearright,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "qp" = (
 /obj/machinery/light{
 	dir = 1
@@ -4323,7 +4342,7 @@
 "qy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "qz" = (
 /obj/effect/attach_point/weapon/cas{
 	equipment_offset_x = -5;
@@ -4359,12 +4378,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "qF" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "qG" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/mainship/mono,
@@ -4373,7 +4392,7 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "qI" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
@@ -4388,7 +4407,7 @@
 "qK" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "qL" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -4415,11 +4434,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "qQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "qR" = (
 /obj/structure/grille,
 /turf/open/floor/mainship,
@@ -4465,7 +4484,7 @@
 /obj/item/paper/hydroponics,
 /obj/structure/paper_bin,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "qZ" = (
 /obj/machinery/light{
 	dir = 8
@@ -4507,7 +4526,7 @@
 "rg" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "rh" = (
 /turf/open/floor/prison/darkred{
 	dir = 9
@@ -4521,7 +4540,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/arrival/start)
+/area/outpost/arrivals)
 "rl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -4530,17 +4549,17 @@
 "rm" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "rn" = (
 /obj/structure/sign/electricshock,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "ro" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "rp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -4556,7 +4575,7 @@
 "rs" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "rt" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo/destructible,
 /turf/open/floor/mainship,
@@ -4568,7 +4587,7 @@
 "rv" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "rw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -4600,6 +4619,9 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
+"rD" = (
+/turf/closed/wall/mainship,
+/area/library)
 "rE" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4651,12 +4673,12 @@
 "rP" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "rQ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "rR" = (
 /obj/machinery/door/window,
 /obj/machinery/door/window{
@@ -4702,7 +4724,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/double/sawn,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "rZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -4753,10 +4775,10 @@
 	},
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "sh" = (
 /turf/closed/wall/wood,
-/area/arrival/start)
+/area/library)
 "si" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -4771,7 +4793,7 @@
 /area/deltastation/engineering)
 "sk" = (
 /turf/closed/wall/mainship,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "sl" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/caves/northeast)
@@ -4797,7 +4819,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "sq" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4877,7 +4899,7 @@
 "sE" = (
 /obj/structure/closet/crate/secure/gear,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "sF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -4904,7 +4926,7 @@
 "sJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "sK" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/floor,
@@ -4920,7 +4942,7 @@
 "sN" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "sO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -4933,17 +4955,17 @@
 	name = "\improper Engine Reactor"
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "sQ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "sR" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "sS" = (
 /obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/mainship,
@@ -4970,6 +4992,10 @@
 "sX" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/bigredv2/outside/e)
+"sY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "sZ" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/shuttle/dropship/thirtyfive,
@@ -4986,7 +5012,7 @@
 	dir = 2
 	},
 /turf/closed/wall/sulaco/unmeltable,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "td" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/maint{
@@ -5010,7 +5036,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "th" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5028,7 +5054,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "tk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship,
@@ -5039,7 +5065,7 @@
 "tm" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "tn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -5057,7 +5083,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "tq" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
@@ -5076,7 +5102,7 @@
 /area/mainship)
 "tt" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "tu" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
@@ -5092,7 +5118,7 @@
 "ty" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "tz" = (
 /obj/machinery/light{
 	dir = 4
@@ -5103,7 +5129,7 @@
 "tA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "tB" = (
 /obj/structure/dropship_piece/one/wing/left/top,
 /turf/open/floor/plating/mainship,
@@ -5180,7 +5206,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -5223,11 +5249,17 @@
 	},
 /obj/item/paper,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "tZ" = (
 /obj/effect/landmark/corpsespawner/miner/rig,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"ua" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "ub" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -5237,7 +5269,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "ud" = (
 /obj/machinery/computer/camera,
 /obj/structure/table/mainship,
@@ -5279,7 +5311,7 @@
 "um" = (
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "un" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
@@ -5289,7 +5321,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
+"uq" = (
+/turf/open/floor/mainship/mono,
+/area/library)
 "ur" = (
 /obj/structure/table,
 /obj/machinery/power/monitor{
@@ -5299,7 +5334,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "us" = (
 /obj/machinery/light{
 	dir = 8
@@ -5353,7 +5388,7 @@
 "uC" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "uD" = (
 /obj/structure/monorail,
 /turf/open/floor/mainship_hull/dir{
@@ -5369,7 +5404,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "uG" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/mainship,
@@ -5381,7 +5416,7 @@
 "uI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "uJ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -5398,7 +5433,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "uL" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 1
@@ -5409,7 +5444,7 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "uN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -5421,14 +5456,14 @@
 /area/bigredv2/outside/dorms)
 "uP" = (
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "uQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "uR" = (
 /obj/structure/dropship_piece/one/corner/rearright,
 /obj/structure/dropship_piece/one/corner/rearright,
@@ -5454,7 +5489,7 @@
 /obj/item/ammo_magazine/sniper,
 /obj/item/ammo_magazine/sniper,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "uV" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -5475,7 +5510,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "uY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5500,7 +5535,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "ve" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 1
@@ -5520,7 +5555,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "vi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -5537,7 +5572,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "vl" = (
 /obj/machinery/light,
 /turf/open/floor/prison/darkred,
@@ -5630,13 +5665,13 @@
 "vC" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "vD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	welded = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "vE" = (
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
@@ -5657,7 +5692,7 @@
 	name = "\improper Engineering Secure Storage"
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "vJ" = (
 /obj/effect/landmark/corpsespawner/miner/rig,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5681,7 +5716,7 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "vN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/closet/crate/weapon,
@@ -5690,7 +5725,7 @@
 "vO" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "vP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -5747,7 +5782,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "vZ" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile/dark,
@@ -5783,7 +5818,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "wg" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/mono,
@@ -5793,7 +5828,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "wi" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5801,11 +5836,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "wj" = (
 /obj/item/toy/waterflower,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "wk" = (
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/hallway)
@@ -5817,13 +5852,13 @@
 "wm" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "wn" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "wo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5856,7 +5891,7 @@
 "wt" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "wu" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -5869,12 +5904,12 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "wx" = (
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "wy" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship/mono,
@@ -5890,14 +5925,14 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "wB" = (
 /obj/machinery/door/poddoor/mainship/ammo,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "wC" = (
 /obj/machinery/conveyor,
 /turf/open/floor/plating/mainship,
@@ -5915,7 +5950,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "wF" = (
 /obj/item/flashlight,
 /turf/open/floor/wood,
@@ -5926,11 +5961,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "wH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "wI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -5980,7 +6015,7 @@
 	on = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "wR" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/mono,
@@ -6027,7 +6062,7 @@
 /obj/machinery/light,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "xb" = (
 /obj/machinery/light{
 	dir = 1
@@ -6035,7 +6070,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "xc" = (
 /turf/closed/shuttle/cas/leftwingclose,
 /area/bigredv2/outside/c)
@@ -6052,7 +6087,7 @@
 "xf" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "xg" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/mono,
@@ -6067,7 +6102,7 @@
 "xi" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "xj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -6081,7 +6116,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "xl" = (
 /obj/machinery/light{
 	dir = 1
@@ -6110,7 +6145,7 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "xq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6194,7 +6229,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "xE" = (
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/mainship/tcomms,
@@ -6217,6 +6252,10 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southwest)
+"xJ" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "xK" = (
 /obj/structure/caspart/minigun,
 /turf/open/floor/mainship,
@@ -6228,11 +6267,11 @@
 "xM" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "xN" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "xO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6288,7 +6327,7 @@
 "xX" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "xY" = (
 /obj/machinery/light{
 	dir = 1
@@ -6303,7 +6342,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "ya" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/floor,
@@ -6314,7 +6353,7 @@
 	id = "tcomms"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "yc" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
@@ -6354,7 +6393,7 @@
 "yj" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "yk" = (
 /obj/structure/dropship_piece/one/rearwing/leftbottom,
 /turf/open/floor/plating/mainship,
@@ -6412,7 +6451,7 @@
 "yu" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "yv" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/mono,
@@ -6428,7 +6467,7 @@
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "yy" = (
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -6494,13 +6533,13 @@
 	dir = 6
 	},
 /turf/closed/wall/mainship,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "yK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
 /turf/closed/wall/mainship,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "yL" = (
 /obj/machinery/door/airlock/mainship/generic/ert{
 	dir = 2
@@ -6532,7 +6571,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/combat,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "yQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -6541,7 +6580,7 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "yS" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/mainship/mono,
@@ -6562,7 +6601,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "yW" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 4
@@ -6603,13 +6642,17 @@
 /obj/machinery/computer/intel_computer,
 /obj/structure/table/mainship,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "zc" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
 /area/construction)
+"zd" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/plating/mainship,
+/area/outpost/arrivals)
 "ze" = (
 /obj/structure/cable,
 /obj/structure/table/mainship,
@@ -6637,7 +6680,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "zk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -6654,7 +6697,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "zn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -6679,7 +6722,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "zr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6707,7 +6750,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/famas,
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "zz" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -6717,11 +6760,11 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "zB" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "zC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security{
@@ -6741,17 +6784,17 @@
 /area/bigredv2/outside/c)
 "zF" = (
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "zG" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "zH" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "zI" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/mainship/mono,
@@ -6767,6 +6810,12 @@
 /obj/structure/cable,
 /turf/closed/wall/mainship,
 /area/prison/security/briefing)
+"zL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "zM" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge{
 	dir = 1
@@ -6928,7 +6977,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Ar" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -6954,7 +7003,7 @@
 "Av" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Aw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -7024,7 +7073,7 @@
 "AL" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "AM" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -7071,7 +7120,7 @@
 "AT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "AU" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light{
@@ -7099,7 +7148,7 @@
 "AY" = (
 /obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/floor/mainship/mono,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "AZ" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/bigredv2/outside/c)
@@ -7126,7 +7175,7 @@
 "Be" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Bf" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -7145,14 +7194,14 @@
 "Bi" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/floor,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Bj" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Bk" = (
 /obj/structure/table/mainship,
 /obj/machinery/door/window/secure/req{
@@ -7183,7 +7232,7 @@
 /obj/item/explosive/grenade/phosphorus,
 /obj/item/explosive/grenade/phosphorus,
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Bo" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -7209,7 +7258,7 @@
 /obj/machinery/chem_dispenser/soda,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Bt" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -7225,7 +7274,7 @@
 /area/bigredv2/caves/lambda_lab)
 "Bw" = (
 /turf/open/floor/mainship/floor,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Bx" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/plating/mainship,
@@ -7270,7 +7319,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "BG" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -7317,7 +7366,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "BP" = (
 /obj/structure/cargo_container/red,
 /obj/structure/cable,
@@ -7347,7 +7396,7 @@
 /obj/item/paper/hydroponics,
 /obj/item/tool/pen/invisible,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "BV" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -7383,13 +7432,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "Cc" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Cd" = (
 /obj/structure/table/mainship,
 /obj/machinery/vending/nanomed,
@@ -7411,6 +7460,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
+"Ch" = (
+/turf/closed/wall/mainship,
+/area/outpost/arrivals)
 "Ci" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
 /turf/open/floor/mainship/sterile/dark,
@@ -7418,7 +7470,7 @@
 "Ck" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Cl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7457,7 +7509,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Cs" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -7507,7 +7559,7 @@
 	},
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "CB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7554,6 +7606,12 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/dorms)
+"CJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/outpost/arrivals)
 "CK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7571,7 +7629,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "CN" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/cargo,
@@ -7579,7 +7637,7 @@
 "CO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "CP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -7591,18 +7649,18 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "CR" = (
 /turf/open/space/basic,
 /area/space)
 "CS" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "CT" = (
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "CU" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile,
@@ -7618,7 +7676,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "CY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7638,7 +7696,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Db" = (
 /obj/item/clothing/under/rank/janitor,
 /turf/open/floor/plating/mainship,
@@ -7664,7 +7722,7 @@
 "Df" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Dg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
@@ -7675,7 +7733,7 @@
 "Di" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Dj" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -7686,11 +7744,15 @@
 /obj/structure/table/mainship,
 /obj/item/paper/prison_station,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Dl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/basic,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
+"Dm" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/outpost/arrivals)
 "Dn" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 8
@@ -7712,7 +7774,7 @@
 "Dq" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Dr" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/arrival/start)
@@ -7748,6 +7810,14 @@
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
+"Dx" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/orion_outpost/surface/landing_pad2_external)
 "Dy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -7830,7 +7900,7 @@
 "DP" = (
 /obj/structure/largecrate/goat,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "DQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7843,7 +7913,7 @@
 /obj/structure/table/mainship,
 /obj/item/camera,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "DS" = (
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mainship/tcomms,
@@ -7860,7 +7930,7 @@
 /area/bigredv2/caves/northeast)
 "DV" = (
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "DW" = (
 /obj/structure/grille,
 /turf/open/floor/mainship/mono,
@@ -7868,7 +7938,7 @@
 "DX" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "DY" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/mainship,
@@ -7891,7 +7961,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ed" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -7926,7 +7996,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ek" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
@@ -7957,7 +8027,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/red,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Eq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -7983,7 +8053,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Ew" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -8008,7 +8078,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "EB" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera,
@@ -8021,7 +8091,7 @@
 "ED" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "EE" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 10
@@ -8038,7 +8108,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "EI" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating/mainship,
@@ -8051,7 +8121,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "EL" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -8060,7 +8130,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "EM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8071,7 +8141,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "EO" = (
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
@@ -8130,7 +8200,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "EZ" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/nuke_disk_candidate,
@@ -8170,7 +8240,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Fi" = (
 /turf/open/shuttle/dropship/thirtyeight,
 /area/construction)
@@ -8242,7 +8312,7 @@
 "Fv" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Fw" = (
 /obj/machinery/light{
 	dir = 8
@@ -8275,7 +8345,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "FC" = (
 /obj/machinery/light{
 	dir = 8
@@ -8310,12 +8380,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "FJ" = (
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "FK" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southwest)
@@ -8337,7 +8407,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "FP" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/sterile/dark,
@@ -8347,11 +8417,11 @@
 /obj/item/paper/Toxin,
 /obj/item/radio/survivor,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "FR" = (
 /obj/docking_port/mobile/crashmode/bigbury,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "FS" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8370,7 +8440,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "FV" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8451,7 +8521,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Gk" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/floor,
@@ -8460,13 +8530,13 @@
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Gm" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Gn" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/gelida/indoors/a_block/hallway)
@@ -8475,7 +8545,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Gp" = (
 /obj/machinery/light{
 	dir = 4
@@ -8491,13 +8561,13 @@
 "Gr" = (
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Gs" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Gt" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/prison/darkyellow,
@@ -8505,7 +8575,11 @@
 "Gu" = (
 /obj/structure/largecrate/supply/powerloader,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
+"Gv" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/library)
 "Gw" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -8552,7 +8626,7 @@
 "GF" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "GG" = (
 /obj/structure/table/mainship,
 /obj/item/healthanalyzer,
@@ -8575,7 +8649,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "GL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8602,7 +8676,7 @@
 "GP" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "GQ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -8624,7 +8698,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "GV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -8640,7 +8714,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "GY" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -8663,17 +8737,17 @@
 /area/space)
 "Hc" = (
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "Hd" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "He" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Hf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8735,7 +8809,7 @@
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Hp" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -8766,7 +8840,7 @@
 "Hv" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad_2)
 "Hw" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -8804,7 +8878,7 @@
 "HC" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "HD" = (
 /obj/structure/table/mainship,
 /obj/item/laptop,
@@ -8821,7 +8895,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "HG" = (
 /turf/closed/wall/mainship,
 /area/arrival/start)
@@ -8843,7 +8917,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "HL" = (
 /obj/structure/largecrate/random/case/double,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8868,7 +8942,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "HO" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/prison/security/checkpoint)
@@ -8886,7 +8960,7 @@
 "HR" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8919,7 +8993,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "HX" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -8949,7 +9023,7 @@
 /obj/structure/table/mainship,
 /obj/item/megaphone,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Id" = (
 /turf/closed/shuttle/dropship1/enginefour{
 	dir = 4
@@ -8967,7 +9041,7 @@
 "Ig" = (
 /obj/effect/landmark/corpsespawner/bridgeofficer,
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Ih" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -9009,7 +9083,7 @@
 "Io" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Ip" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -9034,7 +9108,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Iu" = (
 /obj/structure/table/mainship,
 /obj/item/moneybag,
@@ -9053,7 +9127,7 @@
 "Ix" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/stripesquare,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Iz" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -9084,7 +9158,7 @@
 "IE" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "IF" = (
 /obj/structure/caspart/sixteen{
 	dir = 4
@@ -9114,13 +9188,13 @@
 "IJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "IL" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "IM" = (
 /obj/structure/caspart/nineteen,
 /turf/open/floor/mainship,
@@ -9137,7 +9211,7 @@
 "IP" = (
 /obj/machinery/door/poddoor/mainship/ammo,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "IQ" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -9177,7 +9251,7 @@
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "IW" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -9189,7 +9263,7 @@
 "IX" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "IY" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -9207,6 +9281,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
+"Jb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/outpost/arrivals)
 "Jc" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/southeast)
@@ -9238,7 +9318,7 @@
 /area/bigredv2/caves/lambda_lab)
 "Jh" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ji" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/plating/mainship,
@@ -9246,7 +9326,7 @@
 "Jj" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Jk" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
@@ -9288,7 +9368,7 @@
 "Js" = (
 /obj/structure/bed/chair/dropship/pilot,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Jt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 1
@@ -9331,7 +9411,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/floor,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "JA" = (
 /obj/structure/cargo_container/hd_blue{
 	dir = 4
@@ -9341,11 +9421,11 @@
 "JB" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "JC" = (
 /obj/structure/girder,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "JD" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -9363,13 +9443,13 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "JG" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "JH" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -9377,14 +9457,14 @@
 	},
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "JI" = (
 /obj/structure/dropship_piece/one/cockpit/left,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "JJ" = (
 /turf/closed/wall/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "JK" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -9411,7 +9491,7 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual/medical_cloning,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "JP" = (
 /obj/structure/lattice,
 /turf/open/floor/mainship_hull/dir{
@@ -9428,7 +9508,7 @@
 "JR" = (
 /obj/item/toy/plush/lizard,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "JS" = (
 /obj/structure/largecrate/supply,
 /obj/structure/cable,
@@ -9453,7 +9533,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "JX" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9494,7 +9574,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/crew,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Ke" = (
 /obj/machinery/light{
 	dir = 1
@@ -9505,7 +9585,7 @@
 "Kf" = (
 /obj/machinery/door/poddoor/mainship/ammo,
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Kg" = (
 /obj/machinery/light{
 	dir = 8
@@ -9521,7 +9601,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ki" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 1
@@ -9532,7 +9612,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Kk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -9589,7 +9669,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Kt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9668,7 +9748,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "KI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -9676,11 +9756,11 @@
 "KJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "KK" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "KL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9691,13 +9771,13 @@
 "KM" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "KN" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "KO" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 1
@@ -9718,7 +9798,7 @@
 /obj/item/ammo_magazine/shotgun/flechette,
 /obj/item/ammo_magazine/shotgun/flechette,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "KR" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 1
@@ -9758,7 +9838,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9812,11 +9892,11 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Li" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Lj" = (
 /obj/structure/dropship_piece/one/corner/rearleft,
 /obj/effect/turf_overlay/shuttle/heater,
@@ -9825,7 +9905,7 @@
 "Lk" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Ll" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship/outer/canterbury,
@@ -9852,7 +9932,7 @@
 /area/mainship)
 "Lq" = (
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Lr" = (
 /obj/structure/lattice,
 /turf/open/floor/mainship_hull/dir{
@@ -9868,14 +9948,14 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Lu" = (
 /turf/open/shuttle/dropship/four,
 /area/construction)
 "Lv" = (
 /obj/structure/cargo_container/hd_blue,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Lw" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
@@ -9886,7 +9966,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Ly" = (
 /turf/closed/shuttle/dropship1/edge/alt,
 /area/construction)
@@ -9905,7 +9985,7 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "LC" = (
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -9915,7 +9995,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "LE" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -9925,7 +10005,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "LH" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
@@ -10021,7 +10101,7 @@
 "Mb" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Mc" = (
 /turf/closed/mineral,
 /area/bigredv2/caves/north)
@@ -10052,7 +10132,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Mj" = (
 /obj/machinery/light{
 	dir = 4
@@ -10061,15 +10141,15 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Ml" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Mm" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Mn" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 4
@@ -10140,7 +10220,7 @@
 "MB" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "MC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10157,7 +10237,7 @@
 "MF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "MG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10168,7 +10248,7 @@
 /obj/structure/dropship_piece/one/corner/rearright,
 /obj/effect/turf_overlay/shuttle/heater,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "MJ" = (
 /obj/machinery/door_control{
 	id = "riot_armory";
@@ -10182,14 +10262,18 @@
 "MK" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "ML" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/southwest)
 "MM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
+"MN" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/mainship/mono,
+/area/library)
 "MO" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/glasses/welding,
@@ -10221,7 +10305,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "MT" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -10238,7 +10322,7 @@
 /area/construction)
 "MW" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "MX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -10271,23 +10355,23 @@
 "Nc" = (
 /obj/structure/grille,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Nd" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Ne" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Nf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/library)
 "Ng" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship/gray,
@@ -10325,7 +10409,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Nn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10341,13 +10425,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Np" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
 	},
 /turf/open/space/basic,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Nq" = (
 /obj/machinery/light{
 	dir = 1
@@ -10359,7 +10443,7 @@
 "Nr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Ns" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
@@ -10374,7 +10458,7 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Nv" = (
 /obj/effect/ai_node,
 /obj/machinery/light{
@@ -10396,7 +10480,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Ny" = (
 /obj/item/stack/cable_coil/tiny,
 /turf/open/floor/mainship,
@@ -10437,14 +10521,14 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "NH" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/officer_study)
 "NI" = (
 /obj/item/stack/rods,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "NJ" = (
 /obj/structure/toilet{
 	dir = 8
@@ -10484,7 +10568,7 @@
 "NO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "NP" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -10506,7 +10590,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "NU" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/north)
@@ -10530,7 +10614,7 @@
 "NY" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "NZ" = (
 /turf/open/floor/mainship/terragov/west,
 /area/bigredv2/caves/southeast)
@@ -10539,7 +10623,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Ob" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
@@ -10570,10 +10654,10 @@
 /obj/effect/turf_overlay/shuttle/heater,
 /obj/structure/dropship_piece/one/corner/rearleft,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Og" = (
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "Oh" = (
 /obj/structure/lattice,
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded,
@@ -10588,7 +10672,7 @@
 	dir = 2
 	},
 /turf/open/space/basic,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Ok" = (
 /turf/closed/shuttle/dropship1/edge/alt,
 /area/prison/security/briefing)
@@ -10596,17 +10680,17 @@
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Om" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "On" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Oo" = (
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
@@ -10649,7 +10733,7 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Ov" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -10665,7 +10749,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ox" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -10678,7 +10762,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Oz" = (
 /turf/open/shuttle/dropship/floor/out{
 	dir = 8
@@ -10687,7 +10771,7 @@
 "OA" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "OB" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10700,6 +10784,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
+"OD" = (
+/turf/open/floor/plating,
+/area/outpost/arrivals)
 "OE" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data,
@@ -10734,7 +10821,7 @@
 "OJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "OK" = (
 /turf/closed/shuttle/dropship1/wall,
 /area/construction)
@@ -10744,7 +10831,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "OM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/light{
@@ -10769,15 +10856,15 @@
 	},
 /obj/structure/girder,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "OQ" = (
 /obj/structure/cable,
 /turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "OR" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad)
 "OS" = (
 /obj/structure/caspart/caschair,
 /turf/open/floor/mainship,
@@ -10809,7 +10896,7 @@
 "OZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Pa" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -10825,7 +10912,7 @@
 /area/mainship/living/briefing)
 "Pc" = (
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Pd" = (
 /turf/open/floor/plating,
 /area/prison/security/checkpoint)
@@ -10838,12 +10925,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Ph" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship,
@@ -10862,7 +10949,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Pl" = (
 /obj/structure/table/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10939,7 +11026,7 @@
 	},
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Py" = (
 /obj/effect/attach_point/electronics/dropship1{
 	dir = 1
@@ -10970,13 +11057,13 @@
 "PC" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "PD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "PE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/janitorialcart,
@@ -10999,7 +11086,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "PJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -11010,7 +11097,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "PM" = (
 /obj/machinery/disposal,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -11071,11 +11158,15 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "PW" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
+"PX" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "PY" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/darkyellow/full,
@@ -11125,7 +11216,7 @@
 "Qf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "Qg" = (
 /turf/open/shuttle/dropship/floor,
 /area/prison/security/briefing)
@@ -11140,7 +11231,7 @@
 "Qi" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Qj" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -11172,7 +11263,7 @@
 "Qo" = (
 /obj/structure/prop/mainship/ship_memorial,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Qp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
@@ -11182,7 +11273,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Qs" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -11215,7 +11306,7 @@
 /obj/item/ammo_magazine/shotgun/tracker,
 /obj/item/ammo_magazine/shotgun/tracker,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Qy" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2
@@ -11298,7 +11389,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "QQ" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -11393,7 +11484,7 @@
 /obj/structure/window/framed/mainship/gray,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Rh" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11413,7 +11504,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Rl" = (
 /obj/structure/dropship_piece/one/front,
 /turf/open/floor/plating/mainship,
@@ -11422,13 +11513,6 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"Rn" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
 "Ro" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11456,12 +11540,12 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Rv" = (
 /obj/structure/table/mainship,
 /obj/item/paper/commendation,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Rw" = (
 /turf/open/shuttle/dropship/thirtyfour,
 /area/construction)
@@ -11478,7 +11562,7 @@
 "Rz" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "RA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -11496,7 +11580,7 @@
 "RD" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad)
 "RE" = (
 /turf/closed/wall/mainship,
 /area/deltastation/engineering)
@@ -11536,7 +11620,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "RL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -11562,11 +11646,11 @@
 "RP" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "RQ" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "RR" = (
 /obj/structure/ship_rail_gun,
 /obj/structure/prop/mainship/cannon_cable_connector,
@@ -11582,7 +11666,7 @@
 "RT" = (
 /obj/structure/closet/crate/secure/explosives,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "RU" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -11631,7 +11715,7 @@
 /area/janitor)
 "Sb" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad_2)
 "Sc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -11656,7 +11740,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Sg" = (
 /obj/structure/dropship_piece/one/corner/middleright,
 /turf/open/floor/plating/mainship,
@@ -11666,7 +11750,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Si" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11699,7 +11783,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Sn" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
@@ -11708,7 +11792,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Sp" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
@@ -11723,7 +11807,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Ss" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -11756,11 +11840,11 @@
 "Sx" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Sy" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Sz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -11776,7 +11860,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/sniper/antimaterial,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "SC" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
@@ -11786,7 +11870,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "SE" = (
 /obj/item/bananapeel,
 /turf/open/floor/wood,
@@ -11811,7 +11895,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "SJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -11867,12 +11951,12 @@
 /obj/machinery/power/monitor/grid,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "ST" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "SU" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred,
@@ -11884,7 +11968,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "SW" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/window/reinforced,
@@ -11893,7 +11977,7 @@
 "SX" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "SY" = (
 /turf/open/shuttle/dropship/thirtythree,
 /area/construction)
@@ -11910,7 +11994,7 @@
 "Tb" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "Tc" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -11921,7 +12005,7 @@
 	on = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Te" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11946,7 +12030,7 @@
 "Th" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Ti" = (
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
@@ -11960,7 +12044,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Tm" = (
 /obj/structure/nuke_disk_candidate,
 /obj/structure/cable,
@@ -11983,7 +12067,7 @@
 "Tq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/sulaco/unmeltable,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Tr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -12032,7 +12116,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "TA" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -12040,17 +12124,17 @@
 	},
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "TB" = (
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "TC" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "TD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12124,7 +12208,7 @@
 /obj/structure/catwalk,
 /obj/structure/cable,
 /turf/open/liquid/water,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "TQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -12182,7 +12266,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Ua" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/bigredv2/outside/cargo)
@@ -12195,7 +12279,7 @@
 "Uc" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ud" = (
 /obj/structure/table/mainship,
 /obj/machinery/door/window/secure/req{
@@ -12240,7 +12324,7 @@
 "Uj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Ul" = (
 /obj/machinery/shower{
 	dir = 8
@@ -12265,7 +12349,7 @@
 "Up" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Uq" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -12300,7 +12384,7 @@
 /area/bigredv2/outside/medical)
 "Uw" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Ux" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12309,7 +12393,7 @@
 /area/bigredv2/caves/lambda_lab)
 "Uy" = (
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Uz" = (
 /obj/machinery/light{
 	dir = 8
@@ -12319,11 +12403,11 @@
 "UA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "UB" = (
 /obj/structure/lattice,
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/outpost/arrivals)
 "UC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12486,7 +12570,10 @@
 "Vi" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
+"Vj" = (
+/turf/closed/wall/sulaco/unmeltable,
+/area/library)
 "Vk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12527,13 +12614,13 @@
 "Vq" = (
 /obj/structure/table/mainship,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Vr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Vs" = (
 /obj/structure/dropship_piece/one/corner/rearleft,
 /turf/open/floor/plating/mainship,
@@ -12545,15 +12632,15 @@
 "Vu" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Vv" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad_2)
 "Vw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
-/area/arrival/start)
+/area/library)
 "Vx" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -12576,7 +12663,11 @@
 "VA" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
+"VB" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/mainship/mono,
+/area/outpost/arrivals)
 "VC" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -12588,7 +12679,7 @@
 "VE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "VF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -12632,14 +12723,14 @@
 "VM" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/mono,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "VN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
 /turf/open/floor/plating,
-/area/arrival/start)
+/area/library)
 "VO" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -12675,7 +12766,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "VU" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -12719,12 +12810,12 @@
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Wd" = (
 /obj/item/stack/sheet/metal,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "We" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/stripesquare,
@@ -12732,7 +12823,7 @@
 "Wf" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/stripesquare,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "Wh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -12742,7 +12833,7 @@
 "Wi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Wj" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -12767,7 +12858,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Wo" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/hypospray/advanced/nanoblood,
@@ -12816,7 +12907,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Wz" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/window/reinforced{
@@ -12845,10 +12936,10 @@
 "WC" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "WD" = (
 /turf/closed/wall/sulaco/unmeltable,
-/area/bigredv2/outside/engineering)
+/area/orion_outpost/surface/building/engineering)
 "WE" = (
 /turf/open/shuttle/dropship/nine,
 /area/construction)
@@ -12903,13 +12994,16 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
+"WN" = (
+/turf/open/floor/mainship/stripesquare,
+/area/outpost/arrivals)
 "WO" = (
 /turf/closed/wall/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "WP" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "WQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -13012,7 +13106,7 @@
 /obj/item/ammo_magazine/rifle/icc_battlecarbine,
 /obj/item/ammo_magazine/rifle/icc_battlecarbine,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Xm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13061,7 +13155,7 @@
 "Xt" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/plating_catwalk,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Xu" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -13109,12 +13203,12 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "XC" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/officer_study)
@@ -13132,7 +13226,7 @@
 "XG" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "XH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -13146,23 +13240,23 @@
 /area/mainship/living/officer_study)
 "XJ" = (
 /turf/closed/wall/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "XK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "XL" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "XM" = (
 /obj/item/reagent_containers/jerrycan,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "XN" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 5
@@ -13242,7 +13336,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/icc_battlecarbine,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "Yb" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/mainship,
@@ -13306,7 +13400,7 @@
 "Yq" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Yr" = (
 /obj/machinery/light{
 	dir = 4
@@ -13320,7 +13414,7 @@
 "Yt" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "Yu" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
@@ -13336,7 +13430,7 @@
 /obj/machinery/recharger,
 /obj/item/flashlight/pen,
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Yx" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -13381,7 +13475,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/outpost/lz1)
+/area/orion_outpost/surface/landing_pad_external)
 "YH" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -13408,7 +13502,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "YN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -13466,7 +13560,7 @@
 "YX" = (
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
 /turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "YY" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
@@ -13492,7 +13586,7 @@
 "Zc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 "Zd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13545,7 +13639,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Zm" = (
 /turf/closed/shuttle/dropship1/enginefour{
 	dir = 1
@@ -13596,7 +13690,7 @@
 "Zu" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "Zv" = (
 /obj/structure/caspart/nineteen{
 	dir = 5
@@ -13618,13 +13712,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/westcomputerlab)
+/area/assembly/robotics)
 "Zz" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "ZA" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -13661,7 +13755,7 @@
 "ZG" = (
 /obj/structure/closet/crate/secure/gear,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/storage)
+/area/ai_monitored/storage/secure)
 "ZH" = (
 /obj/item/paper/crumpled,
 /obj/structure/cable,
@@ -13684,7 +13778,7 @@
 	},
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/mainship,
-/area/campaign/som_raiding/outpost/living/briefing)
+/area/construction/hallway)
 "ZL" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -13753,7 +13847,7 @@
 "ZX" = (
 /obj/machinery/vending/security,
 /turf/open/floor/plating/mainship,
-/area/arrival/start)
+/area/outpost/arrivals)
 "ZY" = (
 /obj/structure/rack,
 /turf/open/floor/mainship,
@@ -13763,7 +13857,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
+/area/orion_outpost/surface/landing_pad2_external)
 
 (1,1,1) = {"
 CR
@@ -20005,17 +20099,17 @@ Dl
 Tq
 Tq
 tc
-Dr
-Dr
-Dr
-Rx
-Rx
-Rx
-Rx
-Dr
-Dr
-Dr
-Dr
+iP
+iP
+iP
+VB
+VB
+VB
+VB
+iP
+iP
+iP
+iP
 CR
 CR
 CR
@@ -20262,17 +20356,17 @@ kS
 oP
 oP
 uF
-XW
+ha
 ig
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-QO
-Dr
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+xJ
+iP
 CR
 CR
 CR
@@ -20519,17 +20613,17 @@ LB
 CQ
 oP
 uF
-XW
+ha
 eK
-wT
-wT
-wT
-wT
+sY
+sY
+sY
+sY
 Eu
-XW
-XW
-XW
-Rx
+ha
+ha
+ha
+VB
 CR
 CR
 CR
@@ -20776,17 +20870,17 @@ bX
 bX
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-XW
+ha
+nA
+ha
+ha
+ha
+ha
 gy
-XW
-XW
-XW
-Rx
+ha
+ha
+ha
+VB
 CR
 CR
 CR
@@ -21033,19 +21127,19 @@ bX
 bX
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-Dr
-Dr
-Dr
+ha
+nA
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+iP
+iP
+iP
 nT
 nT
 nT
@@ -21290,8 +21384,8 @@ bX
 bX
 ix
 fX
-XW
-jF
+ha
+nA
 if
 jb
 if
@@ -21547,8 +21641,8 @@ bX
 bX
 ix
 fX
-XW
-jF
+ha
+nA
 if
 om
 if
@@ -21804,8 +21898,8 @@ bX
 bX
 ix
 fX
-XW
-jF
+ha
+nA
 if
 Ks
 if
@@ -22061,8 +22155,8 @@ bX
 bX
 ix
 uF
-XW
-jF
+ha
+nA
 if
 if
 if
@@ -22318,17 +22412,17 @@ bX
 bX
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
+ha
+nA
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
 Lx
 Lx
 tb
@@ -22575,19 +22669,19 @@ bX
 uC
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-XW
-jy
-XW
-XW
-XW
-XW
-Iv
-Iv
+ha
+nA
+ha
+ha
+ha
+ha
+ua
+ha
+ha
+ha
+ha
+WN
+WN
 zh
 UZ
 UZ
@@ -22832,19 +22926,19 @@ bX
 bX
 ix
 uF
-XW
+ha
 OL
-XW
-XW
-XW
-XW
-Dr
-Rx
-Rx
-Dr
-XW
+ha
+ha
+ha
+ha
+iP
+VB
+VB
+iP
+ha
 fN
-Iv
+WN
 zh
 UZ
 UZ
@@ -23089,17 +23183,17 @@ bX
 bX
 bK
 fX
-XW
-jF
-XW
-XW
-XW
-XW
-Dr
+ha
+nA
+ha
+ha
+ha
+ha
+iP
 pJ
 pJ
-Dr
-XW
+iP
+ha
 rk
 Ix
 JT
@@ -23346,19 +23440,19 @@ bX
 bX
 bK
 fX
-XW
-jF
-XW
-XW
-XW
-XW
-Rx
+ha
+nA
+ha
+ha
+ha
+ha
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 kt
-Iv
+WN
 zh
 UZ
 UZ
@@ -23603,17 +23697,17 @@ FJ
 bX
 nB
 fX
-XW
-jF
-XW
-XW
-XW
-XW
-Rx
+ha
+nA
+ha
+ha
+ha
+ha
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 No
 ls
 tb
@@ -23862,17 +23956,17 @@ cO
 wi
 da
 Vr
-dc
-dc
-dc
-dc
-Dr
+Dm
+Dm
+Dm
+Dm
+iP
 pJ
 pJ
-Dr
-eH
+iP
+zL
 SD
-XW
+ha
 tb
 PT
 UZ
@@ -24089,7 +24183,7 @@ lw
 lw
 lw
 ix
-lW
+Dx
 Lq
 Lq
 Lq
@@ -24117,19 +24211,19 @@ wH
 bX
 bK
 fX
-XW
-jF
-XW
-XW
-XW
-dc
-Rx
+ha
+nA
+ha
+ha
+ha
+Dm
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 SD
-QO
+xJ
 WO
 WO
 WO
@@ -24374,19 +24468,19 @@ wH
 bX
 bK
 fX
-XW
-jF
-XW
-XW
-XW
-dc
-Rx
+ha
+nA
+ha
+ha
+ha
+Dm
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 SD
-XW
+ha
 WO
 fm
 DV
@@ -24631,17 +24725,17 @@ wH
 bX
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-dc
-Rx
+ha
+nA
+ha
+ha
+ha
+Dm
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 hm
 Vi
 WO
@@ -24888,17 +24982,17 @@ Lq
 uC
 ix
 uF
-XW
-jF
-XW
-XW
-XW
-dc
-Dr
+ha
+nA
+ha
+ha
+ha
+Dm
+iP
 pJ
 pJ
-Dr
-XW
+iP
+ha
 SD
 Vi
 WO
@@ -25145,17 +25239,17 @@ Lq
 bX
 ix
 fX
-Iv
+WN
 kt
-Iv
-Iv
-HG
-dc
-Rx
+WN
+WN
+Ch
+Dm
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 SD
 Vi
 WO
@@ -25406,13 +25500,13 @@ uP
 SD
 uP
 Df
-HG
-dc
-Rx
+Ch
+Dm
+VB
 pJ
 pJ
-Rx
-XW
+VB
+ha
 SD
 aL
 WO
@@ -25663,15 +25757,15 @@ uP
 SD
 uP
 Yq
-HG
-dc
-Dr
+Ch
+Dm
+iP
 pJ
 pJ
-Dr
-eH
+iP
+zL
 SD
-QO
+xJ
 WO
 DV
 DV
@@ -25888,7 +25982,7 @@ lw
 lw
 lw
 ix
-Rn
+lW
 Lq
 Lq
 ix
@@ -25921,14 +26015,14 @@ SI
 uP
 uP
 uP
-dc
-Dr
-Rx
-Rx
-Dr
-XW
+Dm
+iP
+VB
+VB
+iP
+ha
 SI
-XW
+ha
 WO
 DV
 DV
@@ -26183,9 +26277,9 @@ fO
 fO
 fO
 fO
-wT
+sY
 ED
-XW
+ha
 WO
 DV
 DV
@@ -26435,14 +26529,14 @@ SD
 Df
 uP
 uP
-dc
-dc
-dc
-dc
-dc
-dc
-Xs
-XW
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iv
+ha
 WO
 WO
 AY
@@ -26692,14 +26786,14 @@ SD
 Df
 uP
 uP
-XW
-XW
-XW
-XW
-XW
-XW
-Xs
-XW
+ha
+ha
+ha
+ha
+ha
+ha
+iv
+ha
 az
 DV
 DV
@@ -26949,14 +27043,14 @@ SD
 dj
 uP
 uP
-XW
+ha
 lc
 Cc
 lc
 lc
-XW
-Xs
-XW
+ha
+iv
+ha
 WO
 WO
 AY
@@ -27167,7 +27261,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -27205,15 +27299,15 @@ uP
 SD
 uP
 uP
-HG
-XW
-Dr
-Dr
-Dr
-Dr
-XW
-Xs
-QO
+Ch
+ha
+iP
+iP
+iP
+iP
+ha
+iv
+xJ
 WO
 DV
 DV
@@ -27424,7 +27518,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 CO
 uP
 ty
@@ -27462,15 +27556,15 @@ fO
 jL
 pu
 uP
-HG
+Ch
 gj
-Dr
+iP
 pJ
 pJ
-Dr
-eH
-Xs
-XW
+iP
+zL
+iv
+ha
 WO
 DV
 DV
@@ -27681,7 +27775,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -27719,15 +27813,15 @@ uP
 uP
 uP
 uP
-HG
-XW
-lu
+Ch
+ha
+zd
 pJ
 pJ
-lu
-XW
-Xs
-XW
+zd
+ha
+iv
+ha
 WO
 DV
 DV
@@ -27938,7 +28032,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -27977,14 +28071,14 @@ uP
 Yq
 uP
 uP
-XW
-lu
+ha
+zd
 pJ
 pJ
-lu
-XW
-Xs
-XW
+zd
+ha
+iv
+ha
 WO
 DV
 ns
@@ -28195,7 +28289,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -28234,12 +28328,12 @@ mu
 uP
 uP
 uP
-XW
-Dr
+ha
+iP
 pJ
 pJ
-Dr
-XW
+iP
+ha
 Lh
 Wm
 WO
@@ -28452,7 +28546,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -28491,14 +28585,14 @@ uP
 uP
 uP
 uP
-XW
-lu
+ha
+zd
 pJ
 pJ
-lu
-XW
-Xs
-XW
+zd
+ha
+iv
+ha
 WO
 DV
 DV
@@ -28709,7 +28803,7 @@ CR
 CR
 CR
 CR
-Dr
+iP
 uP
 uP
 uP
@@ -28747,15 +28841,15 @@ uP
 uP
 CT
 uP
-HG
-XW
-lu
+Ch
+ha
+zd
 pJ
 pJ
-lu
-XW
-Xs
-QO
+zd
+ha
+iv
+xJ
 dz
 hz
 hz
@@ -28966,20 +29060,20 @@ CR
 CR
 CR
 CR
-Dr
-Og
-Og
-Og
-Og
+iP
+OD
+OD
+OD
+OD
 xf
 xf
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 SD
 uP
 uP
@@ -29004,15 +29098,15 @@ uP
 Sx
 es
 uP
-HG
-XW
-Dr
+Ch
+ha
+iP
 pJ
 pJ
-Dr
-XW
-Xs
-XW
+iP
+ha
+iv
+ha
 dz
 hu
 JV
@@ -29224,19 +29318,19 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
+OD
+OD
+OD
 qh
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 Of
-Og
+OD
 SD
 uP
 uP
@@ -29259,17 +29353,17 @@ uP
 uP
 uP
 uP
-HG
-HG
-HG
-XW
-lu
+Ch
+Ch
+Ch
+ha
+zd
 pJ
 pJ
-lu
-XW
-Xs
-XW
+zd
+ha
+iv
+ha
 dz
 LH
 hz
@@ -29482,51 +29576,51 @@ CR
 CR
 Np
 JI
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
 gC
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 SD
-Iv
-Iv
-Dr
-Dr
-Dr
-lu
-lu
-lu
-Dr
-Dr
-Dr
-Iv
-Iv
-Iv
-Iv
+WN
+WN
+iP
+iP
+iP
+zd
+zd
+zd
+iP
+iP
+iP
+WN
+WN
+WN
+WN
 kt
 Up
-XW
-XW
-XW
+ha
+ha
+ha
 VT
-XW
-XW
-XW
-XW
-Dr
+ha
+ha
+ha
+ha
+iP
 pJ
 pJ
-lu
-XW
+zd
+ha
 Sf
-XW
+ha
 dz
 Ik
 hz
@@ -29738,23 +29832,23 @@ CR
 CR
 CR
 Np
-Og
-Og
+OD
+OD
 rs
-Og
-Og
-Og
+OD
+OD
+OD
 nr
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
 SD
-Og
-Og
-Dr
+OD
+OD
+iP
 pJ
 pJ
 pJ
@@ -29762,28 +29856,28 @@ pJ
 pJ
 pJ
 pJ
-Dr
+iP
 HW
-Og
-Og
-Og
+OD
+OD
+OD
 wG
-Iv
-XW
-Dr
-Dr
-Dr
-lu
-lu
-lu
-Dr
-Dr
+WN
+ha
+iP
+iP
+iP
+zd
+zd
+zd
+iP
+iP
 pJ
 pJ
-Dr
-XW
-Xs
-XW
+iP
+ha
+iv
+ha
 dz
 ye
 hz
@@ -29995,23 +30089,23 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 UB
-Og
-Og
-Og
+OD
+OD
+OD
 hW
-Og
+OD
 SD
-Og
-Og
-lu
+OD
+OD
+zd
 pJ
 pJ
 pJ
@@ -30019,15 +30113,15 @@ pJ
 pJ
 pJ
 pJ
-lu
-Og
-Og
-Og
+zd
+OD
+OD
+OD
 rs
-HK
-Iv
+Jb
+WN
 NI
-lu
+zd
 pJ
 pJ
 pJ
@@ -30037,10 +30131,10 @@ pJ
 pJ
 pJ
 pJ
-Dr
-eH
-Xs
-XW
+iP
+zL
+iv
+ha
 dz
 Ak
 hz
@@ -30253,22 +30347,22 @@ CR
 CR
 Np
 JH
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 dV
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 JH
-Og
+OD
 SD
-Og
-Og
-lu
+OD
+OD
+zd
 pJ
 pJ
 pJ
@@ -30276,15 +30370,15 @@ pJ
 pJ
 pJ
 pJ
-lu
-Og
-Og
-Og
-Og
+zd
+OD
+OD
+OD
+OD
 Nm
-Iv
-XW
-lu
+WN
+ha
+zd
 pJ
 pJ
 pJ
@@ -30294,10 +30388,10 @@ pJ
 pJ
 pJ
 pJ
-Dr
-XW
-Xs
-QO
+iP
+ha
+iv
+xJ
 HI
 HI
 HI
@@ -30512,20 +30606,20 @@ Np
 rs
 UB
 UB
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 ej
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 SD
-Og
-Og
-Dr
+OD
+OD
+iP
 pJ
 pJ
 pJ
@@ -30533,28 +30627,28 @@ pJ
 pJ
 pJ
 pJ
-Dr
-Og
-Og
-Og
+iP
+OD
+OD
+OD
 vO
-HK
-Iv
+Jb
+WN
 JC
-Dr
-Dr
-Dr
-lu
-lu
-lu
-lu
-lu
-lu
-Dr
-Dr
-XW
-Xs
-XW
+iP
+iP
+iP
+zd
+zd
+zd
+zd
+zd
+zd
+iP
+iP
+ha
+iv
+ha
 HI
 rh
 dC
@@ -30766,52 +30860,52 @@ CR
 CR
 CR
 Np
-Og
+OD
 UB
 UB
 UB
-Og
+OD
 gC
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 SI
-Iv
-Iv
-Dr
-Dr
-Dr
-lu
-lu
-lu
-Dr
-Dr
-Dr
-Iv
-Iv
-Iv
-Iv
+WN
+WN
+iP
+iP
+iP
+zd
+zd
+zd
+iP
+iP
+iP
+WN
+WN
+WN
+WN
 kt
-Iv
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-XW
-Xs
-XW
+WN
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+iv
+ha
 HI
 kq
 vE
@@ -31023,19 +31117,19 @@ CR
 CR
 CR
 Np
-Og
-Og
+OD
+OD
 lI
 aD
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 MI
-Og
+OD
 SD
 uP
 uP
@@ -31056,19 +31150,19 @@ No
 CO
 uP
 Ck
-HG
-HG
-ld
-ld
-ld
-ld
-ld
-ld
-HG
-HG
-eH
-Xs
-XW
+Ch
+Ch
+PX
+PX
+PX
+PX
+PX
+PX
+Ch
+Ch
+zL
+iv
+ha
 HI
 kq
 vE
@@ -31280,10 +31374,10 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 qy
 fO
 fO
@@ -31313,7 +31407,7 @@ SD
 uP
 uP
 uP
-HG
+Ch
 YM
 uP
 qY
@@ -31323,9 +31417,9 @@ uP
 uP
 uP
 ir
-XW
-Xs
-XW
+ha
+iv
+ha
 HI
 kG
 vE
@@ -31537,22 +31631,22 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 cN
 bw
-HG
+Ch
 ro
 fO
 fO
@@ -31572,17 +31666,17 @@ Go
 fO
 nN
 CM
-wT
-wT
+sY
+sY
 Fh
 tA
-wT
+sY
 Eu
 uP
-ld
-XW
-Xs
-XW
+PX
+ha
+iv
+ha
 AA
 kq
 vE
@@ -31794,22 +31888,22 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
+OD
+OD
+OD
 iL
-Og
-Og
-Og
+OD
+OD
+OD
 TA
 rs
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 SD
 Jj
-HG
+Ch
 uP
 uP
 uP
@@ -31827,17 +31921,17 @@ uP
 uP
 ox
 uP
-ld
+PX
 DX
-XW
-XW
+ha
+ha
 uP
 uP
-XW
-jF
+ha
+nA
 uP
 fs
-XW
+ha
 Lh
 fO
 iU
@@ -32051,22 +32145,22 @@ CR
 CR
 CR
 Np
-Og
-Og
+OD
+OD
 UB
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 SD
 uP
-HG
+Ch
 RQ
 up
 uP
@@ -32084,13 +32178,13 @@ uP
 uP
 lc
 uP
-ld
+PX
 ei
 GK
 Ne
 Rk
 Rk
-dc
+Dm
 Lh
 da
 Kj
@@ -32308,30 +32402,30 @@ CR
 CR
 CR
 Np
-Og
+OD
 Ol
 UB
-Og
-Og
+OD
+OD
 xf
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 xi
-Og
+OD
 SD
 uP
-HG
-HG
-HG
-HG
+Ch
+Ch
+Ch
+Ch
 gN
 pr
-HG
-HG
-HG
+Ch
+Ch
+Ch
 uP
 uP
 Yq
@@ -32341,19 +32435,19 @@ uP
 uP
 lc
 uP
-ld
+PX
 sQ
 On
 Jj
-HG
-HG
+Ch
+Ch
 og
 Td
 uP
-ld
-XW
+PX
+ha
 Sf
-XW
+ha
 AA
 kq
 vE
@@ -32567,20 +32661,20 @@ CR
 Np
 Px
 UB
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 xi
-Og
+OD
 SD
 uP
-HG
+Ch
 Yq
 Zu
 qP
@@ -32588,7 +32682,7 @@ uP
 PD
 es
 Sx
-HG
+Ch
 og
 uP
 uP
@@ -32598,19 +32692,19 @@ uP
 uP
 lc
 uP
-ld
+PX
 Gl
 uP
 Jj
-HG
-HG
+Ch
+Ch
 og
 uP
 uP
-HG
-XW
+Ch
+ha
 Cr
-XW
+ha
 HI
 kq
 vE
@@ -32822,19 +32916,19 @@ CR
 CR
 CR
 Np
-Og
+OD
 UB
 UB
 UB
 gC
 nr
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 Px
-Og
+OD
 CA
 uP
 gN
@@ -32845,7 +32939,7 @@ uP
 PD
 uP
 Sx
-HG
+Ch
 uP
 uP
 uP
@@ -32855,18 +32949,18 @@ uP
 uP
 lc
 uP
-ld
+PX
 zb
-XW
-XW
+ha
+ha
 Tz
 Tz
-XW
-XW
+ha
+ha
 uP
-HG
+Ch
 lc
-Xs
+iv
 uP
 HI
 kG
@@ -33080,18 +33174,18 @@ CR
 CR
 Np
 Ol
-Og
+OD
 UB
 UB
-Og
+OD
 ej
-Og
-Og
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
+OD
+OD
 SD
 uP
 gN
@@ -33112,18 +33206,18 @@ uP
 uP
 lc
 uP
-ld
+PX
 uP
-XW
-XW
+ha
+ha
 AL
 uP
-XW
-XW
+ha
+ha
 uP
-HG
+Ch
 lc
-Xs
+iv
 uP
 HI
 kq
@@ -33336,22 +33430,22 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
+OD
 rs
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 aD
 qo
-Og
+OD
 SD
 Jj
-HG
+Ch
 Vq
 uP
 uP
@@ -33359,7 +33453,7 @@ uP
 Td
 uP
 Rz
-HG
+Ch
 uP
 uP
 uP
@@ -33369,16 +33463,16 @@ uP
 uP
 lc
 uP
-ld
+PX
 uP
-XW
-XW
+ha
+ha
 uP
 uP
-XW
-XW
+ha
+ha
 uP
-HG
+Ch
 dS
 Lh
 pu
@@ -33593,22 +33687,22 @@ CR
 CR
 CR
 Np
-Og
-Og
-Og
+OD
+OD
+OD
 iL
-Og
-Og
-Og
+OD
+OD
+OD
 OP
 gC
-Og
-Og
-Og
-Og
+OD
+OD
+OD
+OD
 SD
 uP
-HG
+Ch
 lc
 lc
 lc
@@ -33616,7 +33710,7 @@ lc
 lc
 lc
 Xt
-HG
+Ch
 lc
 lc
 lc
@@ -33626,18 +33720,18 @@ lc
 lc
 lc
 uP
-HG
+Ch
 uP
-XW
-XW
+ha
+ha
 uP
 uP
-XW
-XW
+ha
+ha
 uP
-HG
+Ch
 lc
-Xs
+iv
 uP
 HI
 kq
@@ -33849,23 +33943,23 @@ CR
 CR
 CR
 CR
-Dr
-zj
+iP
+CJ
 uI
-Og
-Og
-Og
-zj
-Og
-Og
-Og
-Og
-Og
-zj
-Og
+OD
+OD
+OD
+CJ
+OD
+OD
+OD
+OD
+OD
+CJ
+OD
 SI
 uP
-HG
+Ch
 Gu
 Gr
 uP
@@ -33873,7 +33967,7 @@ lc
 up
 xM
 xM
-HG
+Ch
 Gr
 up
 uP
@@ -33892,9 +33986,9 @@ uP
 ZX
 ZX
 uP
-HG
+Ch
 lc
-Xs
+iv
 uP
 HI
 kq
@@ -34106,53 +34200,53 @@ CR
 CR
 CR
 CR
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
 sg
-HG
-HG
-HG
-HG
-HG
+Ch
+Ch
+Ch
+Ch
+Ch
 Be
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
 Be
-HG
-HG
-HG
-HG
-HG
-HG
+Ch
+Ch
+Ch
+Ch
+Ch
+Ch
 SV
-HG
+Ch
 HI
 oB
 oE
@@ -34376,14 +34470,14 @@ CR
 CR
 CR
 CR
-Dr
+iP
 SD
 uP
 uP
 uP
 Tz
 uP
-dc
+Dm
 rP
 CS
 eC
@@ -34392,7 +34486,7 @@ uP
 Tz
 uP
 uP
-HG
+Ch
 uP
 uP
 uP
@@ -34408,8 +34502,8 @@ lc
 zH
 lc
 lc
-Xs
-HG
+iv
+Ch
 HI
 HI
 HI
@@ -34633,7 +34727,7 @@ CR
 CR
 CR
 CR
-lu
+zd
 ro
 fO
 fO
@@ -34890,7 +34984,7 @@ CR
 CR
 CR
 CR
-lu
+zd
 uP
 uP
 uP
@@ -34906,7 +35000,7 @@ uP
 uP
 uP
 Td
-HG
+Ch
 uP
 uP
 uP
@@ -35147,7 +35241,7 @@ CR
 CR
 CR
 CR
-lu
+zd
 up
 uP
 Gs
@@ -35163,7 +35257,7 @@ uP
 Gs
 Gs
 uP
-HG
+Ch
 uP
 up
 uP
@@ -35404,39 +35498,39 @@ CR
 CR
 CR
 CR
-Dr
-Dr
-Dr
-lu
-lu
-lu
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-lu
-lu
-lu
-lu
-lu
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-Dr
-lu
-lu
-lu
-lu
-Dr
+iP
+iP
+iP
+zd
+zd
+zd
+iP
+iP
+iP
+iP
+iP
+iP
+zd
+zd
+zd
+zd
+zd
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+iP
+zd
+zd
+zd
+zd
+iP
 zP
 Rp
 Rp
@@ -38562,25 +38656,25 @@ NH
 lu
 lu
 lu
-Dr
-Dr
-Rx
-ld
-XW
+Vj
+Vj
+MN
+Gv
+uq
 hU
-ld
-Dr
-Rx
+Gv
+Vj
+MN
 Nf
-Dr
-HG
-HG
-HG
-HG
-HG
-HG
-HG
-HG
+Vj
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+rD
 lo
 dc
 dc
@@ -38837,7 +38931,7 @@ jB
 aG
 aG
 aG
-ld
+Gv
 XW
 XW
 XW
@@ -39072,7 +39166,7 @@ ob
 ue
 ob
 ob
-HG
+rD
 Og
 HK
 Og
@@ -39329,7 +39423,7 @@ ob
 nG
 ob
 kd
-HG
+rD
 Og
 HK
 Og
@@ -39586,7 +39680,7 @@ KI
 RU
 FS
 KI
-HG
+rD
 Og
 VN
 FB
@@ -39843,7 +39937,7 @@ ob
 TK
 ob
 KI
-HG
+rD
 Qf
 Og
 qK
@@ -39859,13 +39953,13 @@ oF
 aG
 aG
 sh
-Dr
-Dr
-Dr
-Rx
-Rx
-Dr
-Dr
+Vj
+Vj
+Vj
+MN
+MN
+Vj
+Vj
 CR
 CR
 CR
@@ -40100,7 +40194,7 @@ ob
 nG
 ob
 KI
-HG
+rD
 Og
 zj
 qK
@@ -40116,7 +40210,7 @@ aG
 aG
 aG
 jo
-Rx
+MN
 CR
 CR
 CR
@@ -40357,9 +40451,9 @@ gZ
 is
 Qh
 Qd
-HG
-HG
-HG
+rD
+rD
+rD
 IV
 sh
 GF
@@ -40373,7 +40467,7 @@ GU
 GF
 aG
 jG
-Rx
+MN
 CR
 CR
 CR
@@ -40618,7 +40712,7 @@ KI
 KI
 KI
 Ek
-HG
+rD
 sh
 pn
 sh
@@ -40630,7 +40724,7 @@ sh
 sh
 sh
 sh
-Dr
+Vj
 CR
 CR
 CR
