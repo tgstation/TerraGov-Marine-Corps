@@ -20,6 +20,10 @@
 	if(!silent && . && user)
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
+/datum/storage/pill_bottle/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
+	if(!istype(attacking_item, /obj/item/reagent_containers/hypospray))
+		return ..()
+
 /datum/storage/pill_bottle/packet
 	storage_slots = 8
 	max_w_class = 0

@@ -1,68 +1,5 @@
 GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
-/*
-TODO split this file. health analyzer is literally taking up most of it.
-
-CONTAINS:
-T-RAY
-DETECTIVE SCANNER
-HEALTH ANALYZER
-GAS ANALYZER
-PLANT ANALYZER
-MASS SPECTROMETER
-REAGENT SCANNER
-*/
-/obj/item/t_scanner
-	name = "\improper T-ray scanner"
-	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "t-ray0"
-	var/on = 0
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_SMALL
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
-	)
-	worn_icon_state = "electronic"
-
-
-/obj/item/t_scanner/attack_self(mob/user)
-
-	on = !on
-	icon_state = "t-ray[on]"
-
-	if(on)
-		START_PROCESSING(SSobj, src)
-
-
-/obj/item/t_scanner/process()
-	if(!on)
-		STOP_PROCESSING(SSobj, src)
-		return null
-
-	for(var/turf/T in range(1, src.loc) )
-
-		if(!T.intact_tile)
-			continue
-
-		for(var/obj/O in T.contents)
-
-			if(!HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-				continue
-
-			if(O.invisibility == INVISIBILITY_MAXIMUM)
-				O.invisibility = 0
-				O.alpha = 128
-				spawn(10)
-					if(O && !O.gc_destroyed)
-						var/turf/U = O.loc
-						if(U.intact_tile)
-							O.invisibility = INVISIBILITY_MAXIMUM
-							O.alpha = 255
-
-
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon = 'icons/obj/device.dmi'
@@ -279,7 +216,7 @@ REAGENT SCANNER
 
 	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 	var/revivable_patient = FALSE
-	
+
 	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
 		revivable_patient = TRUE
 	else if(issynth(patient))
@@ -298,7 +235,7 @@ REAGENT SCANNER
 		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL)))]%"
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL))) : 0]%"
 		data["revivable_boolean"] = FALSE
 
 	// ADVICE
@@ -309,7 +246,7 @@ REAGENT SCANNER
 		if(patient.maxHealth != LIVING_DEFAULT_MAX_HEALTH)
 			advice += list(list(
 				"advice" = "Patient has [patient.maxHealth / LIVING_DEFAULT_MAX_HEALTH * 100]% constitution.",
-				"tooltip" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less constitution than most humans." : "Patient has more constitution than most humans.",
+				"tooltip" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less maximum health than most humans." : "Patient has more maximum health than most humans.",
 				"icon" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "heart-broken" : "heartbeat",
 				"color" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink"
 			))
@@ -659,141 +596,3 @@ REAGENT SCANNER
 	if(user.a_intent != INTENT_HELP)
 		return
 	analyze_vitals(M, user, TRUE)
-
-
-/obj/item/tool/analyzer
-	desc = "A hand-held environmental scanner which reports current gas levels."
-	name = "analyzer"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "atmos"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-
-/obj/item/tool/analyzer/attack_self(mob/user as mob)
-	..()
-	var/turf/T = get_turf(user)
-	if(!T)
-		return
-
-	playsound(src, 'sound/effects/pop.ogg', 100)
-	var/area/user_area = T.loc
-	var/datum/weather/ongoing_weather = null
-
-	if(!user_area.outside)
-		to_chat(user, span_warning("[src]'s barometer function won't work indoors!"))
-		return
-
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
-		if(W.barometer_predictable && (T.z in W.impacted_z_levels) && W.area_type == user_area.type && !(W.stage == END_STAGE))
-			ongoing_weather = W
-			break
-
-	if(ongoing_weather)
-		if((ongoing_weather.stage == MAIN_STAGE) || (ongoing_weather.stage == WIND_DOWN_STAGE))
-			to_chat(user, span_warning("[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]"))
-			return
-
-		to_chat(user, span_notice("The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds."))
-		if(ongoing_weather.aesthetic)
-			to_chat(user, span_warning("[src]'s barometer function says that the next storm will breeze on by."))
-	else
-		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
-		var/fixed = next_hit ? timeleft(next_hit) : -1
-		if(fixed < 0)
-			to_chat(user, span_warning("[src]'s barometer function was unable to trace any weather patterns."))
-		else
-			to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds]."))
-
-/obj/item/mass_spectrometer
-	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
-	name = "mass-spectrometer"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "spectrometer"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-	var/details = FALSE
-
-/obj/item/mass_spectrometer/Initialize(mapload)
-	. = ..()
-	create_reagents(5, OPENCONTAINER)
-
-/obj/item/mass_spectrometer/on_reagent_change()
-	if(reagents.total_volume)
-		icon_state = initial(icon_state) + "_s"
-	else
-		icon_state = initial(icon_state)
-
-/obj/item/mass_spectrometer/attack_self(mob/user as mob)
-	if (user.stat)
-		return
-	if(!reagents.total_volume)
-		return
-	var/list/blood_traces
-	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.type != /datum/reagent/blood)
-			reagents.clear_reagents()
-			to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
-			return
-		else
-			blood_traces = params2list(R.data["trace_chem"])
-			break
-	var/dat = "Trace Chemicals Found: "
-	for(var/R in blood_traces)
-		dat += "\n\t[R][details ? " ([blood_traces[R]] units)" : "" ]"
-	to_chat(user, "[dat]")
-	reagents.clear_reagents()
-
-
-/obj/item/mass_spectrometer/adv
-	name = "advanced mass-spectrometer"
-	icon_state = "adv_spectrometer"
-	details = TRUE
-
-
-/obj/item/reagent_scanner
-	name = "reagent scanner"
-	desc = "A hand-held reagent scanner which identifies chemical agents."
-	icon_state = "spectrometer"
-	worn_icon_state = "analyzer"
-	w_class = WEIGHT_CLASS_SMALL
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 5
-	throw_speed = 4
-	throw_range = 20
-
-	var/details = FALSE
-
-/obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
-	if(!proximity)
-		return
-	if (user.stat)
-		return
-	if(!istype(O))
-		return
-	if(!O.reagents || !length(O.reagents.reagent_list))
-		to_chat(user, span_notice("No chemical agents found in [O]"))
-		return
-	var/dat = ""
-	var/one_percent = O.reagents.total_volume / 100
-	for (var/datum/reagent/R in O.reagents.reagent_list)
-		dat += "\n \t [span_notice(" [R.name][details ? ": [R.volume / one_percent]%" : ""]")]"
-	to_chat(user, span_notice("Chemicals found: [dat]"))
-
-/obj/item/reagent_scanner/adv
-	name = "advanced reagent scanner"
-	icon_state = "adv_spectrometer"
-	details = TRUE
