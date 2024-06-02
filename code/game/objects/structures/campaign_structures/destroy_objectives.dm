@@ -302,7 +302,7 @@
 /obj/structure/prop/som_fighter
 	name = "harbinger"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -311,7 +311,7 @@
 
 /obj/effect/landmark/campaign_structure/harbinger
 	name = "harbinger"
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -321,7 +321,7 @@
 /obj/structure/campaign_objective/destruction_objective/harbinger
 	name = "harbinger"
 	desc = "A state of the art harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -333,7 +333,7 @@
 
 /obj/effect/landmark/campaign_structure/viper
 	name = "\improper Viper"
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
@@ -343,7 +343,7 @@
 /obj/structure/campaign_objective/destruction_objective/viper
 	name = "\improper Viper"
 	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
