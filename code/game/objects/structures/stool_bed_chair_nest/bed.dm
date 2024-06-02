@@ -846,7 +846,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/structure/bed/urban/hospital/hospitaldivider
 	name = "hospital divider"
 	desc = "A hospital divider for privacy."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "hospitalcurtain"
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE

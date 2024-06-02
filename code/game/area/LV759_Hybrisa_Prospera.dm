@@ -744,20 +744,20 @@
 	icon_state = "comms_1"
 	minimap_color = MINIMAP_AREA_ENGI
 
-// ntmart
-/area/lv759/indoors/ntmart
-	name = "ntmart"
-	icon_state = "ntmart"
+// NTmart
+/area/lv759/indoors/NTmart
+	name = "NTmart"
+	icon_state = "NTmart"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/lv759/indoors/ntmart/backrooms
-	name = "ntmart - Backrooms"
-	icon_state = "ntmartbackrooms"
+/area/lv759/indoors/NTmart/backrooms
+	name = "NTmart - Backrooms"
+	icon_state = "NTmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/lv759/indoors/ntmart/maintenance
-	name = "ntmart - Maintenance"
-	icon_state = "ntmartbackrooms"
+/area/lv759/indoors/NTmart/maintenance
+	name = "NTmart - Maintenance"
+	icon_state = "NTmartbackrooms"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 // NT Security Checkpoints

@@ -227,7 +227,7 @@
 
 /obj/structure/closet/crate/trashcart/food
 	desc = "A heavy, metal foodcart with wheels."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi';
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
 	icon_state = "foodcart2"
 	icon_closed = "foodcart2"
 	icon_opened = "foodcart2_open"

@@ -239,7 +239,7 @@
 // Hybrisa Streetlights
 /obj/machinery/floodlight/colony/street
 	name = "Colony Streetlight"
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "street_off"
 	layer = ABOVE_MOB_LAYER
 	brightness_on = 10
@@ -259,7 +259,7 @@
 /obj/machinery/floodlight/colony/traffic
 	name = "traffic light"
 	desc = "A traffic light"
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "trafficlight"
 	bound_width = 32
 	bound_height = 32
@@ -284,7 +284,7 @@
 /obj/machinery/floodlight/colony/traffic_alt
 	name = "traffic light"
 	desc = "A traffic light"
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "trafficlight_alt"
 	bound_width = 32
 	bound_height = 32
@@ -307,7 +307,7 @@
 	name = "circular light"
 	icon_state = "engineerlight_off"
 	desc = "A huge circular light"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	density = FALSE
 	resistance_flags = RESIST_ALL
 	wrenchable = FALSE

@@ -1,13 +1,13 @@
 // Hybrisa props
 
 /obj/structure/prop/hybrisa
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "pimp"
 
 // Vehicles
 
 /obj/structure/prop/urban/vehicles
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
 	max_integrity = 3000
 	var/damage_state = 0
@@ -49,26 +49,26 @@
 	deconstruct(FALSE)
 
 /obj/structure/prop/urban/vehicles/suv
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
 
 /obj/structure/prop/urban/vehicles/suvdamaged
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV_damaged"
 
 /obj/structure/prop/urban/vehicles/largetruck
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "zenithlongtruck3"
 
-/obj/structure/prop/urban/vehicles/Car
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+/obj/structure/prop/urban/vehicles/car
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "MeridianCar_1"
 
 
 // Very Large Vehicles
 
 /obj/structure/prop/urban/vehicles/large_vehicles
-	icon = 'icons/obj/structures/128x32_vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/128x32_vehiclesexpanded.dmi'
 	icon_state = "armoredtruck_nt_security_1"
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -119,7 +119,7 @@
 	name = "mega-hauler truck"
 	icon_state = "longtruck_kellandmining"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/128x32_vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/128x32_vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 128
 	resistance_flags = RESIST_ALL
@@ -153,7 +153,7 @@
 /obj/structure/prop/urban/vehicles/suv
 	name = "SUV"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
 	bound_height = 64
 	bound_width = 64
@@ -178,288 +178,288 @@
 	icon_state = "SUV8"
 
 // Meridian Cars - Damage States
-/obj/structure/prop/urban/vehicles/Meridian
+/obj/structure/prop/urban/vehicles/meridian
 	name = "Mono-Spectra"
 	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 	bound_height = 32
 	bound_width = 64
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/prop/urban/vehicles/Meridian/Red
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_red.dmi'
+/obj/structure/prop/urban/vehicles/meridian/red
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
 
-/obj/structure/prop/urban/vehicles/Meridian/Red/damageone
+/obj/structure/prop/urban/vehicles/meridian/red/damageone
 	icon_state = "meridian_red_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/red/damagetwo
 	icon_state = "meridian_red_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree
+/obj/structure/prop/urban/vehicles/meridian/red/damagethree
 	icon_state = "meridian_red_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagefour
+/obj/structure/prop/urban/vehicles/meridian/red/damagefour
 	icon_state = "meridian_red_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagefive
+/obj/structure/prop/urban/vehicles/meridian/red/damagefive
 	icon_state = "meridian_red_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_black.dmi'
+/obj/structure/prop/urban/vehicles/meridian/black
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_black.dmi'
 	icon_state = "meridian_black"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black/damageone
+/obj/structure/prop/urban/vehicles/meridian/black/damageone
 	icon_state = "meridian_black_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/black/damagetwo
 	icon_state = "meridian_black_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black/damagethree
+/obj/structure/prop/urban/vehicles/meridian/black/damagethree
 	icon_state = "meridian_black_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black/damagefour
+/obj/structure/prop/urban/vehicles/meridian/black/damagefour
 	icon_state = "meridian_black_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Black/damagefive
+/obj/structure/prop/urban/vehicles/meridian/black/damagefive
 	icon_state = "meridian_black_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_blue.dmi'
+/obj/structure/prop/urban/vehicles/meridian/blue
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_blue.dmi'
 	icon_state = "meridian_blue"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damageone
+/obj/structure/prop/urban/vehicles/meridian/blue/damageone
 	icon_state = "meridian_blue_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/blue/damagetwo
 	icon_state = "meridian_blue_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damagethree
+/obj/structure/prop/urban/vehicles/meridian/blue/damagethree
 	icon_state = "meridian_blue_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damagefour
+/obj/structure/prop/urban/vehicles/meridian/blue/damagefour
 	icon_state = "meridian_blue_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damagefive
+/obj/structure/prop/urban/vehicles/meridian/blue/damagefive
 	icon_state = "meridian_blue_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_brown.dmi'
+/obj/structure/prop/urban/vehicles/meridian/brown
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_brown.dmi'
 	icon_state = "meridian_brown"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown/damageone
+/obj/structure/prop/urban/vehicles/meridian/brown/damageone
 	icon_state = "meridian_brown_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/brown/damagetwo
 	icon_state = "meridian_brown_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown/damagethree
+/obj/structure/prop/urban/vehicles/meridian/brown/damagethree
 	icon_state = "meridian_brown_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown/damagefour
+/obj/structure/prop/urban/vehicles/meridian/brown/damagefour
 	icon_state = "meridian_brown_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Brown/damagefive
+/obj/structure/prop/urban/vehicles/meridian/brown/damagefive
 	icon_state = "meridian_brown_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_cop.dmi'
+/obj/structure/prop/urban/vehicles/meridian/cop
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_cop.dmi'
 	icon_state = "meridian_cop"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop/damageone
+/obj/structure/prop/urban/vehicles/meridian/cop/damageone
 	icon_state = "meridian_cop_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/cop/damagetwo
 	icon_state = "meridian_cop_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop/damagethree
+/obj/structure/prop/urban/vehicles/meridian/cop/damagethree
 	icon_state = "meridian_cop_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop/damagefour
+/obj/structure/prop/urban/vehicles/meridian/cop/damagefour
 	icon_state = "meridian_cop_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Cop/damagefive
+/obj/structure/prop/urban/vehicles/meridian/cop/damagefive
 	icon_state = "meridian_cop_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_desatblue.dmi'
+/obj/structure/prop/urban/vehicles/meridian/desat_blue
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_desatblue.dmi'
 	icon_state = "meridian_desatblue"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damageone
+/obj/structure/prop/urban/vehicles/meridian/desat_blue/damageone
 	icon_state = "meridian_desatblue_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagetwo
 	icon_state = "meridian_desatblue_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagethree
+/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagethree
 	icon_state = "meridian_desatblue_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagefour
+/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefour
 	icon_state = "meridian_desatblue_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue/damagefive
+/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefive
 	icon_state = "meridian_desatblue_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_green.dmi'
+/obj/structure/prop/urban/vehicles/meridian/green
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_green.dmi'
 	icon_state = "meridian_green"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green/damageone
+/obj/structure/prop/urban/vehicles/meridian/green/damageone
 	icon_state = "meridian_green_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/green/damagetwo
 	icon_state = "meridian_green_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green/damagethree
+/obj/structure/prop/urban/vehicles/meridian/green/damagethree
 	icon_state = "meridian_green_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green/damagefour
+/obj/structure/prop/urban/vehicles/meridian/green/damagefour
 	icon_state = "meridian_green_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Green/damagefive
+/obj/structure/prop/urban/vehicles/meridian/green/damagefive
 	icon_state = "meridian_green_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_lightblue.dmi'
+/obj/structure/prop/urban/vehicles/meridian/light_blue
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_lightblue.dmi'
 	icon_state = "meridian_lightblue"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damageone
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damageone
 	icon_state = "meridian_lightblue_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagetwo
 	icon_state = "meridian_lightblue_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree
 	icon_state = "meridian_lightblue_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagefour
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefour
 	icon_state = "meridian_lightblue_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagefive
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefive
 	icon_state = "meridian_lightblue_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_pink.dmi'
+/obj/structure/prop/urban/vehicles/meridian/pink
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_pink.dmi'
 	icon_state = "meridian_pink"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damageone
+/obj/structure/prop/urban/vehicles/meridian/pink/damageone
 	icon_state = "meridian_pink_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/pink/damagetwo
 	icon_state = "meridian_pink_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damagethree
+/obj/structure/prop/urban/vehicles/meridian/pink/damagethree
 	icon_state = "meridian_pink_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damagefour
+/obj/structure/prop/urban/vehicles/meridian/pink/damagefour
 	icon_state = "meridian_pink_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damagefive
+/obj/structure/prop/urban/vehicles/meridian/pink/damagefive
 	icon_state = "meridian_pink_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_purple.dmi'
+/obj/structure/prop/urban/vehicles/meridian/purple
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_purple.dmi'
 	icon_state = "meridian_purple"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple/damageone
+/obj/structure/prop/urban/vehicles/meridian/purple/damageone
 	icon_state = "meridian_purple_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/purple/damagetwo
 	icon_state = "meridian_purple_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple/damagethree
+/obj/structure/prop/urban/vehicles/meridian/purple/damagethree
 	icon_state = "meridian_purple_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple/damagefour
+/obj/structure/prop/urban/vehicles/meridian/purple/damagefour
 	icon_state = "meridian_purple_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Purple/damagefive
+/obj/structure/prop/urban/vehicles/meridian/purple/damagefive
 	icon_state = "meridian_purple_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_turquoise.dmi'
+/obj/structure/prop/urban/vehicles/meridian/turquoise
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_turquoise.dmi'
 	icon_state = "meridian_turquoise"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damageone
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damageone
 	icon_state = "meridian_turquoise_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damagetwo
 	icon_state = "meridian_turquoise_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagethree
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damagethree
 	icon_state = "meridian_turquoise_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagefour
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefour
 	icon_state = "meridian_turquoise_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagefive
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefive
 	icon_state = "meridian_turquoise_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_orange.dmi'
+/obj/structure/prop/urban/vehicles/meridian/orange
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_orange.dmi'
 	icon_state = "meridian_orange"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damageone
+/obj/structure/prop/urban/vehicles/meridian/orange/damageone
 	icon_state = "meridian_orange_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/orange/damagetwo
 	icon_state = "meridian_orange_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree
+/obj/structure/prop/urban/vehicles/meridian/orange/damagethree
 	icon_state = "meridian_orange_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagefour
+/obj/structure/prop/urban/vehicles/meridian/orange/damagefour
 	icon_state = "meridian_orange_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagefive
+/obj/structure/prop/urban/vehicles/meridian/orange/damagefive
 	icon_state = "meridian_orange_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_wy.dmi'
+/obj/structure/prop/urban/vehicles/meridian/generic
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_wy.dmi'
 	icon_state = "meridian_wy"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damageone
+/obj/structure/prop/urban/vehicles/meridian/generic/damageone
 	icon_state = "meridian_wy_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/generic/damagetwo
 	icon_state = "meridian_wy_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree
+/obj/structure/prop/urban/vehicles/meridian/generic/damagethree
 	icon_state = "meridian_wy_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagefour
+/obj/structure/prop/urban/vehicles/meridian/generic/damagefour
 	icon_state = "meridian_wy_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagefive
+/obj/structure/prop/urban/vehicles/meridian/generic/damagefive
 	icon_state = "meridian_wy_damage_5"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi
-	icon = 'icons/obj/structures/hybrisa_vehicles/meridian_taxi.dmi'
+/obj/structure/prop/urban/vehicles/meridian/taxi
+	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_taxi.dmi'
 	icon_state = "meridian_taxi"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damageone
+/obj/structure/prop/urban/vehicles/meridian/taxi/damageone
 	icon_state = "meridian_taxi_damage_1"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagetwo
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagetwo
 	icon_state = "meridian_taxi_damage_2"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagethree
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagethree
 	icon_state = "meridian_taxi_damage_3"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagefour
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagefour
 	icon_state = "meridian_taxi_damage_4"
 
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagefive
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagefive
 	icon_state = "meridian_taxi_damage_5"
 
 // Car Chassis
 
-/obj/structure/prop/urban/vehicles/Car/Car_chassis
+/obj/structure/prop/urban/vehicles/car/car_chassis
 	desc = "A Mono-Spectra chassis in the early stages of assembly."
 
-/obj/structure/prop/urban/vehicles/Car/Car_chassis
+/obj/structure/prop/urban/vehicles/car/car_chassis
 	name = "Mono-Spectra Chassis"
 	icon_state = "MeridianCar_shell"
 
@@ -493,7 +493,7 @@
 	name = "truck"
 	icon_state = "zentruck1"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
@@ -531,7 +531,7 @@
 	name = "mega-hauler truck"
 	icon_state = "zenithlongtruck4"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
@@ -577,7 +577,7 @@
 
 /obj/structure/prop/urban/vehicles/colonycrawlers
 	icon_state = "crawler_wy2"
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
@@ -585,22 +585,22 @@
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining
 	icon_state = "miningcrawler1"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining2
 	icon_state = "crawler_fuel"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining3
 	icon_state = "crawler_covered_bed"
 	desc = "It is a tread bound crawler used in harsh conditions. Supplied by The Kelland Mining Company; A subsidiary of Nanotrasen."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science
 	icon_state = "crawler_wy2"
 	desc = "It is a tread bound crawler used in harsh conditions. This one is designed for personnel transportation. Supplied by Orbital Blue International; 'Your friends, in the Aerospace business.' A subsidiary of Nanotrasen."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 // science crawlers
 
@@ -609,11 +609,11 @@
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1
 	icon_state = "crawler_wy1"
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science2
 	icon_state = "crawler_wy2"
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 
 // Mining Crawlers
 
@@ -641,7 +641,7 @@
 /obj/structure/prop/urban/vehicles/suv/misc
 	name = "Nanotrasen rapid response vehicle"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "WYSUV1"
 	bound_height = 64
 	bound_width = 64
@@ -701,7 +701,7 @@
 /obj/structure/prop/urban/vehicles/van
 	name = "van"
 	desc = "Seems to be broken down."
-	icon = 'icons/obj/structures/vehiclesexpanded.dmi'
+	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "greyvan"
 	bound_height = 64
 	bound_width = 64
@@ -742,7 +742,7 @@
 /obj/structure/prop/urban/vehicles/crashedcarsleft
 	name = "car pileup"
 	desc = "Burned out wrecked vehicles block your path."
-	icon = 'icons/obj/structures/crashedcars.dmi'
+	icon = 'icons/obj/structures/prop/urban/crashedcars.dmi'
 	icon_state = "crashedcarsleft"
 	bound_height = 64
 	bound_width = 64
@@ -752,7 +752,7 @@
 /obj/structure/prop/urban/vehicles/crashedcarsright
 	name = "car pileup"
 	desc = "Burned out wrecked vehicles block your path."
-	icon = 'icons/obj/structures/crashedcars.dmi'
+	icon = 'icons/obj/structures/prop/urban/crashedcars.dmi'
 	icon_state = "crashedcarsright"
 	bound_height = 64
 	bound_width = 64
@@ -815,7 +815,7 @@
 	icon_state = "bouldersmalldark3"
 
 /obj/structure/prop/urban/cavedecor
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	name = "stalagmite"
 	icon_state = "stalagmite"
 	desc = "A cave stalagmite."
@@ -847,126 +847,136 @@
 	name = "long rack"
 	icon_state = "longrack1"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	density = TRUE
 
 /obj/structure/prop/urban/supermart/rack/longrackempty
 	name = "shelf"
 	desc = "A long empty shelf."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrackempty"
 
 /obj/structure/prop/urban/supermart/rack/longrack1
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack1"
 
 /obj/structure/prop/urban/supermart/rack/longrack2
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack2"
 
 /obj/structure/prop/urban/supermart/rack/longrack3
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack3"
 
 /obj/structure/prop/urban/supermart/rack/longrack4
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack4"
 
 /obj/structure/prop/urban/supermart/rack/longrack5
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack5"
 
 /obj/structure/prop/urban/supermart/rack/longrack6
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack6"
 
 /obj/structure/prop/urban/supermart/rack/longrack7
 	name = "shelf"
 	desc = "A long shelf filled with various foodstuffs"
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "longrack7"
 
 /obj/structure/prop/urban/supermart/supermartbelt
 	name = "conveyor belt"
 	desc = "A conveyor belt."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "checkoutbelt"
 
 /obj/structure/prop/urban/supermart/freezer
 	name = "commercial freezer"
 	desc = "A commercial grade freezer."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezerupper"
 	density = TRUE
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer1
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezerupper"
+
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer2
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezerlower"
+
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer3
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezermid"
+
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer4
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezerupper1"
+
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer5
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezerlower1"
+
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer6
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "freezermid1"
 
 /obj/structure/prop/urban/supermart/supermartfruitbasketempty
 	name = "basket"
 	desc = "A basket."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasketempty"
+
 /obj/structure/prop/urban/supermart/supermartfruitbasketoranges
 	name = "basket"
 	desc = "A basket full of oranges."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasket1"
+
 /obj/structure/prop/urban/supermart/supermartfruitbasketpears
 	name = "basket"
 	desc = "A basket full of pears."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasket2"
+
 /obj/structure/prop/urban/supermart/supermartfruitbasketcarrots
 	name = "basket"
 	desc = "A basket full of carrots."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasket3"
+
 /obj/structure/prop/urban/supermart/supermartfruitbasketmelons
 	name = "basket"
 	desc = "A basket full of melons."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasket4"
+
 /obj/structure/prop/urban/supermart/supermartfruitbasketapples
 	name = "basket"
 	desc = "A basket full of apples."
-	icon = 'icons/obj/structures/supermart.dmi'
+	icon = 'icons/obj/structures/prop/urban/supermart.dmi'
 	icon_state = "supermarketbasket5"
 
 // Furniture
 /obj/structure/prop/urban/furniture
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "blackmetaltable"
 
 /obj/structure/prop/urban/furniture/tables
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_pool"
 
 /obj/structure/prop/urban/furniture/tables/tableblack
@@ -979,7 +989,7 @@
 	bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tableblack/blacktablecomputer
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "blackmetaltable_computer"
 
 /obj/structure/prop/urban/furniture/tables/tablewood
@@ -992,13 +1002,13 @@
 	bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tablewood/woodtablecomputer
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "brownlargetable_computer"
 
 /obj/structure/prop/urban/furniture/tables/tablepool
 	name = "pool table"
 	desc = "A large table used for Pool."
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_pool"
 	density = TRUE
 	bound_height = 32
@@ -1008,7 +1018,7 @@
 /obj/structure/prop/urban/furniture/tables/tablegambling
 	name = "gambling table"
 	desc = "A large table used for gambling."
-	icon = 'icons/obj/structures/zenithtables.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_cards"
 	density = TRUE
 	bound_height = 32
@@ -1021,80 +1031,83 @@
 	desc = "A expensive looking chair"
 
 /obj/structure/bed/urban/chairs/black
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "comfychair_zenithblack"
+
 /obj/structure/bed/urban/chairs/red
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "comfychair_zenithred"
+
 /obj/structure/bed/urban/chairs/blue
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "comfychair_zenithblue"
+
 /obj/structure/bed/urban/chairs/brown
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "comfychair_zenithbrown"
 
 // Beds
 
 /obj/structure/bed/hybrisa
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "hybrisa"
 
 /obj/structure/bed/urban/prisonbed
 	name = "bunk bed"
 	desc = "A sorry looking bunk-bed."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "prisonbed"
 
 /obj/structure/bed/urban/bunkbed1
 	name = "bunk bed"
 	desc = "A comfy looking bunk-bed."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zbunkbed"
 
 /obj/structure/bed/urban/bunkbed2
 	name = "bunk bed"
 	desc = "A comfy looking bunk-bed."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zbunkbed2"
 
 /obj/structure/bed/urban/bunkbed3
 	name = "bunk bed"
 	desc = "A comfy looking bunk-bed."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zbunkbed3"
 
 /obj/structure/bed/urban/bunkbed4
 	name = "bunk bed"
 	desc = "A comfy looking bunk-bed."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zbunkbed4"
 
 /obj/structure/bed/urban/hospitalbeds
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "hospital"
 
 /obj/structure/bed/urban/hospitalbeds/hospitalbed1
 	name = "hospital bed"
 	desc = "A mattress seated on a rectangular metallic frame with wheels. This is used to support a lying person in a comfortable manner."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "bigrollerempty2_up"
 
 /obj/structure/bed/urban/hospitalbeds/hospitalbed2
 	name = "hospital bed"
 	desc = "A mattress seated on a rectangular metallic frame with wheels. This is used to support a lying person in a comfortable manner."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "bigrollerempty_up"
 
 /obj/structure/bed/urban/hospitalbeds/hospitalbed3
 	name = "hospital bed"
 	desc = "A mattress seated on a rectangular metallic frame with wheels. This is used to support a lying person in a comfortable manner."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "bigrollerempty3_up"
 
 // Xenobiology
 
 /obj/structure/prop/urban/xenobiology
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellemptyon"
 	layer = ABOVE_MOB_LAYER
 
@@ -1102,72 +1115,83 @@
 /obj/structure/prop/urban/xenobiology/small/empty
 	name = "specimen containment cell"
 	desc = "It's empty."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellemptyon"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/offempty
 	name = "specimen containment cell"
 	desc = "It's turned off and empty."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellemptyoff"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/larva
 	name = "specimen containment cell"
 	desc = "There is something worm-like inside..."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocelllarva"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/egg
 	name = "specimen containment cell"
 	desc = "There is, what looks like some sort of egg inside..."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellegg"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/hugger
 	name = "specimen containment cell"
 	desc = "There's something spider-like inside..."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellhugger"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/cracked1
 	name = "specimen containment cell"
 	desc = "Looks like something broke it...from the inside."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellcrackedempty"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/cracked2
 	name = "specimen containment cell"
 	desc = "Looks like something broke it...from the inside."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellcrackedempty2"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/small/crackedegg
 	name = "specimen containment cell"
 	desc = "Looks like something broke it, there's a giant empty egg inside."
-	icon = 'icons/obj/structures/zenithxenocryogenics.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics.dmi'
 	icon_state = "xenocellcrackedegg"
 	density = TRUE
+
 /obj/structure/prop/urban/xenobiology/big
 	name = "specimen containment cell"
 	desc = "A giant tube with a hulking monstrosity inside, is this thing alive?"
-	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics2.dmi'
 	icon_state = "bigqueencryo1"
 
 /obj/structure/prop/urban/xenobiology/big/bigleft
-	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics2.dmi'
 	icon_state = "bigqueencryo1"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/xenobiology/big/bigright
-	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics2.dmi'
 	icon_state = "bigqueencryo2"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/xenobiology/big/bigbottomleft
-	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics2.dmi'
 	icon_state = "bigqueencryo3"
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/xenobiology/big/bigbottomright
-	icon = 'icons/obj/structures/zenithxenocryogenics2.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanxenocryogenics2.dmi'
 	icon_state = "bigqueencryo4"
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -1175,7 +1199,7 @@
 /obj/structure/prop/urban/xenobiology/misc
 	name = "strange egg"
 	desc = "A strange ancient looking egg, it seems to be inert."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "inertegg"
 	layer = 2
 
@@ -1199,13 +1223,13 @@
 /obj/structure/prop/urban/engineer/giantconsole
 	name = "Giant Alien Console"
 	desc = "A Giant Alien console of some kind, unlike anything you've ever seen before. Who knows the purpose of this strange technology..."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "engineerconsole"
 	bound_height = 32
 	bound_width = 32
 	density = TRUE
 /obj/structure/prop/urban/engineer/engineerpillar
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW1fade"
 	bound_height = 64
 	bound_width = 128
@@ -1213,69 +1237,75 @@
 
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_NW1"
 /obj/structure/prop/urban/engineer/engineerpillar/northwestbottom
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_NW2"
 /obj/structure/prop/urban/engineer/engineerpillar/southwesttop
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW1"
 /obj/structure/prop/urban/engineer/engineerpillar/southwestbottom
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW2"
 /obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest1
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW1fade"
 /obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest2
 	name = "strange pillar"
-	icon = 'icons/obj/structures/zenithengineerpillarangled.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW2fade"
 
 // Airport
 
 /obj/structure/prop/urban/airport
 	name = "nose cone"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipfrontwhite1"
 
 /obj/structure/prop/urban/airport/dropshipnosecone
 	name = "nose cone"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipfrontwhite1"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipwingleft
 	name = "wing"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipwingtop1"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipwingright
 	name = "wing"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipwingtop2"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipvent1left
 	name = "vent"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipvent1"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipvent2right
 	name = "vent"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipvent2"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipventleft
 	name = "vent"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipvent3"
 	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/urban/airport/dropshipventright
 	name = "vent"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dropshipvent4"
 	layer = ABOVE_MOB_LAYER
 
@@ -1284,7 +1314,7 @@
 /obj/structure/prop/urban/airport/dropshipenginedamage
 	name = "dropship damage"
 	desc = "the engine appears to have severe damage."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "dropship_engine_damage"
 	bound_height = 64
 	bound_width = 96
@@ -1292,7 +1322,7 @@
 /obj/structure/prop/urban/airport/dropshipenginedamagenofire
 	name = "dropship damage"
 	desc = "the engine appears to have severe damage."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "dropship_engine_damage_nofire"
 	bound_height = 64
 	bound_width = 96
@@ -1300,7 +1330,7 @@
 /obj/structure/prop/urban/airport/refuelinghose
 	name = "refueling hose"
 	desc = "A long refueling hose that connects to various types of dropships."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "fuelline1"
 	bound_height = 64
 	bound_width = 96
@@ -1310,7 +1340,7 @@
 /obj/structure/prop/urban/airport/refuelinghose2
 	name = "refueling hose"
 	desc = "A long refueling hose that connects to various types of dropships."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "fuelline2"
 	bound_height = 64
 	bound_width = 96
@@ -1321,14 +1351,15 @@
 /obj/structure/prop/urban/airport/deadpilot1
 	name = "decapitated Nanotrasen Pilot"
 	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap1"
 	bound_height = 64
 	bound_width = 96
+
 /obj/structure/prop/urban/airport/deadpilot2
 	name = "decapitated Nanotrasen Pilot"
 	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap2"
 	bound_height = 64
 	bound_width = 96
@@ -1336,103 +1367,113 @@
 // Misc
 
 /obj/structure/prop/urban/misc
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier"
 
 // Floor props
 
 /obj/structure/prop/urban/misc/floorprops
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate1"
 
 /obj/structure/prop/urban/misc/floorprops/grate
 	name = "solid metal grate"
 	desc = "A metal grate."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate1"
 
 /obj/structure/prop/urban/misc/floorprops/grate2
 	name = "solid metal grate"
 	desc = "A metal grate."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate5"
 
 /obj/structure/prop/urban/misc/floorprops/grate3
 	name = "solid metal grate"
 	desc = "A metal grate."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zhalfgrate1"
 
 /obj/structure/prop/urban/misc/floorprops/floorglass
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate2"
+
 /obj/structure/prop/urban/misc/floorprops/floorglass2
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate3"
 	layer = 2.1
+
 /obj/structure/prop/urban/misc/floorprops/floorglass3
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate4"
 
 // Graffiti
 
 /obj/structure/prop/urban/misc/graffiti
 	name = "graffiti"
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti4"
 	bound_height = 64
 	bound_width = 96
 
 /obj/structure/prop/urban/misc/graffiti/graffiti1
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti1"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti2
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti2"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti3
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti3"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti4
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti4"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti5
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti5"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti6
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti6"
+
 /obj/structure/prop/urban/misc/graffiti/graffiti7
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti7"
 
 // Wall Blood
 
 /obj/structure/prop/urban/misc/blood
 	name = "blood"
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "wallblood_floorblood"
 
 /obj/structure/prop/urban/misc/blood/blood1
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "wallblood_floorblood"
+
 /obj/structure/prop/urban/misc/blood/blood2
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "wall_blood_1"
+
 /obj/structure/prop/urban/misc/blood/blood3
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "wall_blood_2"
 
 // Fire
 
 /obj/structure/prop/urban/misc/fire/fire1
 	name = "fire"
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zfire_smoke"
 	layer = 5
 	light_on = TRUE
@@ -1441,7 +1482,7 @@
 
 /obj/structure/prop/urban/misc/fire/fire2
 	name = "fire"
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zfire_smoke2"
 	layer = 5
 	light_on = TRUE
@@ -1450,7 +1491,7 @@
 
 /obj/structure/prop/urban/misc/fire/firebarrel
 	name = "barrel"
-	icon = 'icons/obj/structures/64x96-zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zbarrelfireon"
 	layer = 5
 	light_on = TRUE
@@ -1462,45 +1503,48 @@
 /obj/structure/prop/urban/misc/commandosuitemptyprop
 	name = "Nanotrasen 'Ape-Suit' Showcase"
 	desc = "A display model of the Nanotrasen 'Apesuit', shame it's only a model..."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dogcatchersuitempty1"
 
 /obj/structure/prop/urban/misc/cabinet
 	name = "cabinet"
 	desc = "a small cabinet with drawers."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "sidecabinet"
+
 /obj/structure/prop/urban/misc/trash/green
 	name = "trash bin"
 	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "trashgreen"
 	density = TRUE
+
 /obj/structure/prop/urban/misc/trash/blue
 	name = "trash bin"
 	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "trashblue"
 	density = TRUE
+
 /obj/structure/prop/urban/misc/redmeter
 	name = "meter"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "redmeter"
 
 /obj/structure/prop/urban/misc/firebarreloff
 	name = "barrel"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zfirebarreloff"
 
 /obj/structure/prop/urban/misc/trashbagfullprop
 	name = "trash bag"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "ztrashbag"
 
 /obj/structure/prop/urban/misc/slotmachine
 	name = "slot machine"
 	desc = "A slot machine."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "slotmachine"
 	bound_width = 32
 	bound_height = 32
@@ -1511,7 +1555,7 @@
 /obj/structure/prop/urban/misc/atm
 	name = "NanoTrasen Automatic Teller Machine"
 	desc = "For all your monetary needs!"
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "atm"
 	bound_width = 32
 	bound_height = 32
@@ -1522,23 +1566,24 @@
 /obj/structure/prop/urban/misc/slotmachine_broken
 	name = "slot machine"
 	desc = "A broken slot machine."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "slotmachine_broken"
 	bound_width = 32
 	bound_height = 32
 	anchored = TRUE
 	density = TRUE
 	layer = 3.2
+
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine1
 	name = "coffee machine"
 	desc = "A coffee machine."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "coffee"
 
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine2
 	name = "coffee machine"
 	desc = "A coffee machine."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "coffee_cup"
 
 /obj/structure/prop/urban/misc/machinery/computers
@@ -1546,65 +1591,74 @@
 	icon_state = "mapping_comp"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer1
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "mapping_comp"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer2
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "mps"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer3
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "sensor_comp1"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer4
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "sensor_comp2"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer5
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "sensor_comp3"
 
 
 /obj/structure/prop/urban/misc/machinery/computers/computerblack/computer1
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "blackmapping_comp"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerblack/computer2
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "blackmps"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerblack/computer3
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "blacksensor_comp1"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerblack/computer4
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "blacksensor_comp2"
 
 /obj/structure/prop/urban/misc/machinery/computers/computerblack/computer5
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "blacksensor_comp3"
 
 
 /obj/structure/prop/urban/misc/machinery/screens
 	name = "monitor"
+
 /obj/structure/prop/urban/misc/machinery/screens/frame
 	icon_state = "frame"
+
 /obj/structure/prop/urban/misc/machinery/screens/security
 	icon_state = "security"
+
 /obj/structure/prop/urban/misc/machinery/screens/evac
 	icon_state = "evac"
+
 /obj/structure/prop/urban/misc/machinery/screens/redalert
 	icon_state = "redalert"
+
 /obj/structure/prop/urban/misc/machinery/screens/redalertblank
 	icon_state = "redalertblank"
+
 /obj/structure/prop/urban/misc/machinery/screens/entertainment
 	icon_state = "entertainment"
+
 /obj/structure/prop/urban/misc/machinery/screens/telescreen
 	icon_state = "telescreen"
+
 /obj/structure/prop/urban/misc/machinery/screens/telescreenbroke
 	icon_state = "telescreenb"
+
 /obj/structure/prop/urban/misc/machinery/screens/telescreenbrokespark
 	icon_state = "telescreenbspark"
 
@@ -1613,14 +1667,19 @@
 //Green
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_off
 	icon_state = "multimonitorsmall_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_on
 	icon_state = "multimonitorsmall_on"
+
 /obj/structure/prop/urban/misc/machinery/screens/multimonitormedium_off
 	icon_state = "multimonitormedium_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/multimonitormedium_on
 	icon_state = "multimonitormedium_on"
+
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorbig_off
 	icon_state = "multimonitorbig_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorbig_on
 	icon_state = "multimonitorbig_on"
 
@@ -1628,20 +1687,26 @@
 
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_off
 	icon_state = "bluemultimonitorsmall_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_on
 	icon_state = "bluemultimonitorsmall_on"
+
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitormedium_off
 	icon_state = "bluemultimonitormedium_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitormedium_on
 	icon_state = "bluemultimonitormedium_on"
+
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorbig_off
 	icon_state = "bluemultimonitorbig_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorbig_on
 	icon_state = "bluemultimonitorbig_on"
 
 // Egg
 /obj/structure/prop/urban/misc/machinery/screens/wallegg_off
 	icon_state = "wallegg_off"
+
 /obj/structure/prop/urban/misc/machinery/screens/wallegg_on
 	icon_state = "wallegg_on"
 
@@ -1651,15 +1716,19 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1
 	layer = 2
 	icon_state = "pipe-s"
+
 /obj/structure/prop/urban/misc/fake/pipes/pipe2
 	layer = 2
 	icon_state = "pipe-c"
+
 /obj/structure/prop/urban/misc/fake/pipes/pipe3
 	layer = 2
 	icon_state = "pipe-j1"
+
 /obj/structure/prop/urban/misc/fake/pipes/pipe4
 	layer = 2
 	icon_state = "pipe-y"
+
 /obj/structure/prop/urban/misc/fake/pipes/pipe5
 	layer = 2
 	icon_state = "pipe-b"
@@ -1670,9 +1739,11 @@
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
 	icon_state = "intactred"
+
 /obj/structure/prop/urban/misc/fake/wire/yellow
 	layer = 2
 	icon_state = "intactyellow"
+
 /obj/structure/prop/urban/misc/fake/wire/blue
 	layer = 2
 	icon_state = "intactblue"
@@ -1684,15 +1755,19 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy1
 	layer = 2
 	icon_state = "0-1"
+
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2
 	layer = 2
 	icon_state = "1-2"
+
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy3
 	layer = 2
 	icon_state = "1-4"
+
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy4
 	layer = 2
 	icon_state = "1-2-4"
+
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy5
 	layer = 2
 	icon_state = "1-2-4-8"
@@ -1711,49 +1786,49 @@
 	desc = "A plastic barrier for blocking entry."
 
 /obj/structure/prop/urban/misc/road/roadbarrierred
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier"
 
 /obj/structure/prop/urban/misc/road/roadbarrierredlong
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier4"
 
 /obj/structure/prop/urban/misc/road/roadbarrierblue
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier2"
 
 /obj/structure/prop/urban/misc/road/roadbarrierbluelong
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier5"
 
 /obj/structure/prop/urban/misc/road/roadbarrierwyblack
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier3"
 
 /obj/structure/prop/urban/misc/road/roadbarrierwyblacklong
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrier6"
 
 /obj/structure/prop/urban/misc/road/roadbarrierwyblackjoined
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrierjoined3"
 
 /obj/structure/prop/urban/misc/road/roadbarrierjoined
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrierjoined"
 
 /obj/structure/prop/urban/misc/road/wood
 	name = "road barrier"
 	desc = "A wooden barrier for blocking entry."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrierwood"
 
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrierwood"
 
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodblue
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "roadbarrierpolice"
 
 // Cargo Containers extended
@@ -1761,7 +1836,7 @@
 /obj/structure/prop/urban/containersextended
 	name = "cargo container"
 	desc = "a cargo container."
-	icon = 'icons/obj/structures/containersextended.dmi'
+	icon = 'icons/obj/structures/prop/urban/containersextended.dmi'
 	icon_state = "blackwyleft"
 	bound_width = 32
 	bound_height = 32
@@ -1926,30 +2001,30 @@
 
 /obj/structure/prop/urban/fakeplatforms/platform1
 	icon_state = "engineer_platform"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 
 /obj/structure/prop/urban/fakeplatforms/platform2
 	icon_state = "engineer_platform_platformcorners"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 
 /obj/structure/prop/urban/fakeplatforms/platform3
 	icon_state = "platform"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 
 /obj/structure/prop/urban/fakeplatforms/platform4
 	icon_state = "zenithplatform3"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 
 // Grille
 
 /obj/structure/prop/urban/misc/highvoltagegrille
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "highvoltagegrille"
 
 // Greeblies
 /obj/structure/prop/urban/misc/buildinggreeblies
 	name = "machinery"
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "buildingventbig1"
 	bound_width = 64
 	bound_height = 32
@@ -2000,7 +2075,7 @@
 /obj/structure/prop/urban/misc/buildinggreebliessmall
 	name = "wall vent"
 	name = "wall vent"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "smallwallvent1"
 	density = FALSE
 
@@ -2019,13 +2094,13 @@
 
 /obj/structure/prop/urban/misc/buildinggreebliessmall/computer
 	name = "machinery"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zcomputermachine"
 	density = TRUE
 
 /obj/structure/prop/urban/misc/metergreen
 	name = "meter"
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "biggreenmeter1"
 
 
@@ -2034,7 +2109,7 @@
 /obj/structure/prop/urban/misc/stoneplanterseats
 	name = "concrete seated planter"
 	desc = "A decorative concrete planter with seating attached, the seats are fitted with synthetic leather, they've faded in time.."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "planterseats"
 	bound_width = 32
 	bound_height = 64
@@ -2050,7 +2125,7 @@
 /obj/structure/prop/urban/misc/concretestatue
 	name = "concrete statue"
 	desc = "A decorative statue with the Nanotrasen 'Wings' adorned on it, A corporate brutalist piece of art."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "concretesculpture"
 	bound_width = 64
 	bound_height = 64
@@ -2060,7 +2135,7 @@
 /obj/structure/prop/urban/misc/detonator
 	name = "detonator"
 	desc = "A detonator for explosives, armed and ready."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "detonator"
 	density = FALSE
 	anchored = TRUE
@@ -2070,7 +2145,7 @@
 /obj/structure/prop/urban/misc/firehydrant
 	name = "fire hydrant"
 	desc = "A fire hydrant public water outlet, designed for quick access to water."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "firehydrant"
 	density = TRUE
 	anchored = TRUE
@@ -2078,7 +2153,7 @@
 /obj/structure/prop/urban/misc/phonebox
 	name = "phonebox"
 	desc = "A phone-box, it doesn't seem to be working, the line must be down."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "phonebox_closed"
 	layer = ABOVE_MOB_LAYER
 	bound_width = 32
@@ -2097,7 +2172,7 @@
 /obj/structure/prop/urban/misc/bench
 	name = "bench"
 	desc = "A metal frame, with seats that are fitted with synthetic leather, they've faded in time."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "seatedbench"
 	bound_width = 32
 	bound_height = 64
@@ -2110,7 +2185,7 @@
 
 /obj/structure/prop/urban/signs
 	name = "neon sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "jacksopen_on"
 	bound_height = 64
 	bound_width = 64
@@ -2118,59 +2193,59 @@
 
 /obj/structure/prop/urban/signs/casniosign
 	name = "casino sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "nightgoldcasinoopen_on"
 
 /obj/structure/prop/urban/signs/jackssign
 	name = "jack's surplus sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "jacksopen_on"
 
 /obj/structure/prop/urban/signs/opensign
 	name = "open sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "open_on"
 /obj/structure/prop/urban/signs/opensign2
 	name = "open sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "open_on2"
 
 /obj/structure/prop/urban/signs/pizzasign
 	name = "pizza sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "pizzaneon_on"
 
 /obj/structure/prop/urban/signs/weymartsign
 	name = "weymart sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "weymartsign2"
 
 /obj/structure/prop/urban/signs/mechanicsign
 	name = "mechanic sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "mechanicopen_on2"
 
 /obj/structure/prop/urban/signs/cuppajoessign
 	name = "cuppa joe's sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "cuppajoes"
 
 /obj/structure/prop/urban/signs/barsign
 	name = "bar sign"
-	icon = 'icons/obj/structures/zenith64x64_signs.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "barsign_on"
 
 // Small Sign
 /obj/structure/prop/urban/signs/high_voltage
 	name = "warning sign"
 	desc = "DANGER - HIGH VOLTAGE - DEATH!."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "shockyBig"
 
 /obj/structure/prop/urban/signs/high_voltage/small
 	name = "warning sign"
 	desc = "DANGER - HIGH VOLTAGE - DEATH!."
-	icon = 'icons/obj/structures/zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "shockyTiny"
 
 // billboards, Signs and Posters
@@ -2179,7 +2254,7 @@
 /obj/structure/prop/urban/billboardsandsigns/bigbillboards
 	name = "billboard"
 	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
+	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard_bigger"
 	bound_width = 64
 	bound_height = 32
@@ -2190,32 +2265,32 @@
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1
 	name = "billboard"
 	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
+	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard1"
 
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2
 	name = "billboard"
 	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
+	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard2"
 
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3
 	name = "billboard"
 	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
+	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard3"
 
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4
 	name = "billboard"
 	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/32x64_zenithbillboards.dmi'
+	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard4"
 
 // Big Road Signs
 /obj/structure/prop/urban/billboardsandsigns/bigroadsigns
 	name = "road sign"
 	desc = "A road sign."
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "roadsign_1"
 	bound_width = 64
 	bound_height = 32
@@ -2233,7 +2308,7 @@
 // Car Factory
 
 /obj/structure/prop/urban/factory
-	icon = 'icons/obj/structures/64x64_zenithrandomprops.dmi'
+	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "factory_roboticarm"
 
 /obj/structure/prop/urban/factory/robotic_arm
@@ -2259,7 +2334,7 @@
 /obj/structure/prop/urban/lattice_prop
 	desc = "A support lattice."
 	name = "lattice"
-	icon = 'icons/obj/structures/hybrisa_lattice.dmi'
+	icon = 'icons/obj/structures/prop/urban/urban_lattice.dmi'
 	icon_state = "lattice1"
 	density = FALSE
 	layer = RIPPLE_LAYER

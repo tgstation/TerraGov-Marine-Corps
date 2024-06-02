@@ -265,7 +265,7 @@
 "acI" = (
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "acJ" = (
 /obj/item/tool/kitchen/utensil/pfork,
 /obj/structure/table/mainship{
@@ -1268,7 +1268,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "akI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Cop{
+/obj/structure/prop/urban/vehicles/meridian/cop{
 	dir = 1;
 	pixel_y = 4
 	},
@@ -1373,7 +1373,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "alC" = (
 /obj/structure/prop/urban/signs/pizzasign{
 	dir = 1;
@@ -2022,7 +2022,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "aqU" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -2670,7 +2670,7 @@
 "awo" = (
 /obj/structure/prop/urban/supermart/rack/longrack7,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "awp" = (
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/nt_security/checkpoint_central)
@@ -3085,7 +3085,7 @@
 /obj/structure/prop/urban/supermart/rack/longrack5,
 /obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "aBc" = (
 /obj/structure/platform{
 	dir = 4
@@ -3353,7 +3353,7 @@
 	layer = 2
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "aEc" = (
 /obj/structure/sign/safety/autodoc{
 	desc = "Semiotic Standard denoting the nearby presence of a  intensive care ward for a medbay.";
@@ -5451,7 +5451,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "aUk" = (
 /obj/structure/platform{
 	dir = 1
@@ -6629,7 +6629,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "bes" = (
 /obj/machinery/recharge_station,
 /obj/structure/sign/safety/storage,
@@ -7008,7 +7008,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "bih" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco3{
 	dir = 8
@@ -7111,7 +7111,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "biP" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Green{
+/obj/structure/prop/urban/vehicles/meridian/green{
 	dir = 1;
 	pixel_x = -4
 	},
@@ -8219,7 +8219,7 @@
 "btt" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "btz" = (
 /obj/machinery/door/airlock/mainship/maint{
 	locked = 1
@@ -9184,7 +9184,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "bCe" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -9293,7 +9293,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "bDk" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -9613,7 +9613,7 @@
 	pixel_x = 2
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "bGb" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/storage/belt/marine,
@@ -9701,7 +9701,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "bGz" = (
 /obj/item/tool/wrench{
 	pixel_x = -7;
@@ -9859,7 +9859,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "bHF" = (
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/hallway)
@@ -9932,7 +9932,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "bIc" = (
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/meridian/red{
 	dir = 1
 	},
 /obj/effect/urban/decal/road/road_stop/two,
@@ -10207,7 +10207,7 @@
 	name = "dirt"
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Black/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/black/damagethree{
 	dir = 4
 	},
 /turf/open/urban/street/sidewalk,
@@ -10249,7 +10249,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 8
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Pink/damagethree,
+/obj/structure/prop/urban/vehicles/meridian/pink/damagethree,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 4
 	},
@@ -11452,7 +11452,7 @@
 	pixel_y = 7
 	},
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
+/obj/structure/prop/urban/vehicles/meridian/generic{
 	dir = 8;
 	pixel_y = 8
 	},
@@ -12692,7 +12692,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "cdC" = (
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	dir = 1;
 	pixel_x = 6
 	},
@@ -13549,7 +13549,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/east_caves)
 "clU" = (
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	dir = 1;
 	pixel_y = -4
 	},
@@ -14246,7 +14246,7 @@
 /obj/effect/urban/decal/doubleroad/lines3{
 	pixel_y = -4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/generic/damagethree{
 	pixel_y = -12
 	},
 /turf/open/urban/street/asphalt,
@@ -14466,7 +14466,7 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Brown{
+/obj/structure/prop/urban/vehicles/meridian/brown{
 	pixel_x = -2;
 	pixel_y = -8
 	},
@@ -14922,7 +14922,7 @@
 	pixel_x = -3
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cxk" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
@@ -15657,7 +15657,7 @@
 "cDD" = (
 /obj/structure/cable,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cDE" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/disposalpipe/segment,
@@ -16593,7 +16593,7 @@
 	},
 /area/lv759/indoors/central_caves)
 "cLo" = (
-/obj/structure/prop/urban/vehicles/Meridian/Blue,
+/obj/structure/prop/urban/vehicles/meridian/blue,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "cLp" = (
@@ -17417,7 +17417,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cRR" = (
 /obj/item/tool/wirecutters,
 /turf/open/floor/plating,
@@ -17516,7 +17516,7 @@
 	},
 /obj/item/clothing/suit/storage/apron,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cTb" = (
 /obj/machinery/vending/snack{
 	pixel_y = 16
@@ -17758,7 +17758,7 @@
 	dir = 4;
 	pixel_y = 7
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Pink{
+/obj/structure/prop/urban/vehicles/meridian/pink{
 	dir = 1
 	},
 /turf/open/urban/street/roadlines4,
@@ -17771,7 +17771,7 @@
 	pixel_y = 13
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cUO" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/ai_node,
@@ -17795,7 +17795,7 @@
 "cUY" = (
 /obj/structure/bed/stool,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "cVc" = (
 /obj/structure/cable,
 /turf/open/floor/wood/variable,
@@ -17969,7 +17969,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "cWR" = (
 /obj/item/defibrillator,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18292,7 +18292,7 @@
 /turf/closed/shuttle/dropship4/damagedconsolethree,
 /area/lv759/indoors/spaceport/starglider)
 "cZb" = (
-/obj/structure/prop/urban/vehicles/Meridian/Blue{
+/obj/structure/prop/urban/vehicles/meridian/blue{
 	dir = 1;
 	layer = 6;
 	pixel_y = 12
@@ -18465,7 +18465,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dai" = (
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise,
+/obj/structure/prop/urban/vehicles/meridian/turquoise,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -18632,7 +18632,7 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	dir = 8;
 	pixel_x = 4;
 	pixel_y = 4
@@ -18806,7 +18806,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "dcx" = (
 /obj/machinery/light,
 /obj/machinery/light/blue,
@@ -20084,7 +20084,7 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree{
 	dir = 1;
 	pixel_y = -4
 	},
@@ -21410,7 +21410,7 @@
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Green/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/green/damagethree{
 	dir = 8
 	},
 /turf/open/urban/street/asphalt,
@@ -22761,7 +22761,7 @@
 	desc = "It's dried to the floor.";
 	name = "spilled paint"
 	},
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 4;
 	pixel_y = -12
 	},
@@ -23083,7 +23083,7 @@
 "dOl" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue,
+/obj/structure/prop/urban/vehicles/meridian/light_blue,
 /obj/structure/prop/urban/misc/fire/fire1{
 	pixel_x = -7;
 	pixel_y = 12
@@ -24408,7 +24408,7 @@
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "eaK" = (
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -24768,7 +24768,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "eec" = (
 /obj/structure/platform{
 	dir = 1
@@ -24953,7 +24953,7 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
@@ -25526,7 +25526,7 @@
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ekA" = (
 /obj/structure/computerframe{
 	pixel_x = -5;
@@ -26760,7 +26760,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer1,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "euq" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -27260,7 +27260,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "eyx" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/prop/urban/misc/floorprops/grate,
@@ -28117,7 +28117,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "eFZ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	dir = 8;
 	layer = 3
 	},
@@ -28361,7 +28361,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "eIE" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "eIH" = (
 /obj/structure/flora/pottedplant{
 	pixel_y = 6
@@ -29910,7 +29910,7 @@
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/turquoise/damagethree{
 	pixel_y = 8
 	},
 /turf/open/urban/street/asphalt,
@@ -30148,7 +30148,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "eYQ" = (
 /obj/effect/ai_node,
 /turf/open/engineership/engineer_floor2,
@@ -30741,7 +30741,7 @@
 	},
 /obj/item/storage/bag/plasticbag,
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fdC" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/trashbag{
@@ -30946,7 +30946,7 @@
 "ffk" = (
 /obj/structure/prop/urban/supermart/rack/longrack1,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ffn" = (
 /obj/structure/rack,
 /obj/item/flash,
@@ -30985,7 +30985,7 @@
 	dir = 5
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "ffK" = (
 /turf/closed/shuttle/dropship4/window/alt,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -31133,7 +31133,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "fhi" = (
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
+/obj/structure/prop/urban/vehicles/meridian/taxi{
 	dir = 1;
 	name = "Mono-Spectra GT"
 	},
@@ -32988,7 +32988,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fwl" = (
 /obj/vehicle/ridden/powerloader{
 	layer = 5
@@ -33276,7 +33276,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fyU" = (
 /obj/machinery/door/airlock/hybrisa/generic/autoname{
 	dir = 1
@@ -33565,7 +33565,7 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "fAU" = (
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fAW" = (
 /obj/structure/platform/urban/metalplatform1{
 	dir = 4
@@ -34171,7 +34171,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "fGo" = (
 /obj/effect/spawner/random/weaponry/ammo,
 /obj/structure/platform{
@@ -34252,7 +34252,7 @@
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fGR" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/red,
@@ -34443,7 +34443,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "fIo" = (
 /obj/structure/largecrate/random/barrel/black{
 	layer = 3.1;
@@ -34672,7 +34672,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue,
+/obj/structure/prop/urban/vehicles/meridian/light_blue,
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines2,
 /obj/structure/cable,
@@ -34709,13 +34709,13 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "fKA" = (
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 1
 	},
 /obj/structure/prop/urban/factory/conveyor_belt{
 	layer = 2
 	},
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 1
 	},
 /turf/open/floor/plate,
@@ -35004,7 +35004,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "fMY" = (
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
+/obj/structure/prop/urban/vehicles/meridian/taxi{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -35151,7 +35151,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "fOd" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
@@ -36208,7 +36208,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "fWB" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/stripes/full,
@@ -37023,7 +37023,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "gdF" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 9
@@ -37550,7 +37550,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ghY" = (
 /turf/closed/mineral/smooth/black_stone,
 /area/lv759/indoors/south_west_caves)
@@ -37731,7 +37731,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/lv759/indoors/hospital/central_hallway)
 "gji" = (
-/obj/structure/prop/urban/vehicles/Meridian/Black{
+/obj/structure/prop/urban/vehicles/meridian/black{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = -9
@@ -38528,7 +38528,7 @@
 "gpG" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/decal/cleanable/generic,
-/obj/structure/prop/urban/vehicles/Meridian/Blue{
+/obj/structure/prop/urban/vehicles/meridian/blue{
 	layer = 2.9
 	},
 /obj/effect/urban/decal/road/road_stop/three,
@@ -38725,7 +38725,7 @@
 	layer = 3
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "grk" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -39913,7 +39913,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "gCb" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
 	dir = 1
@@ -40068,7 +40068,7 @@
 	},
 /area/lv759/indoors/bar)
 "gDo" = (
-/obj/structure/prop/urban/vehicles/Meridian/Purple,
+/obj/structure/prop/urban/vehicles/meridian/purple,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "gDp" = (
@@ -41715,7 +41715,7 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "gUj" = (
-/obj/structure/prop/urban/vehicles/Meridian/Purple{
+/obj/structure/prop/urban/vehicles/meridian/purple{
 	dir = 1;
 	pixel_x = 4;
 	pixel_y = 3
@@ -42065,7 +42065,7 @@
 /obj/structure/closet,
 /obj/item/storage/box,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "gXz" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -42931,7 +42931,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "hdo" = (
 /obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
 	dir = 1
@@ -44123,7 +44123,7 @@
 "hnu" = (
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer2,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hnw" = (
 /turf/closed/shuttle/dropship4/left_engine{
 	dir = 1
@@ -44330,7 +44330,7 @@
 	pixel_x = -27
 	},
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hpa" = (
 /obj/structure/platform/urban/metalplatformstair1,
 /obj/structure/stairs/seamless/edge{
@@ -45320,7 +45320,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "hwP" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/shard,
@@ -45347,7 +45347,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "hxf" = (
 /obj/item/weapon/broken_bottle,
 /obj/item/shard,
@@ -45643,7 +45643,7 @@
 /obj/item/spacecash/ewallet,
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hzf" = (
 /obj/effect/urban/decal/tiretrack{
 	dir = 8;
@@ -46578,7 +46578,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hHl" = (
 /obj/effect/urban/decal/road/road_edge/two,
 /obj/effect/urban/decal/road/lines4,
@@ -46807,7 +46807,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hJt" = (
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
@@ -47028,7 +47028,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hLv" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/meridian/red{
 	pixel_x = -6
 	},
 /turf/open/urban/street/sidewalkcenter{
@@ -47142,7 +47142,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hMm" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
@@ -48115,7 +48115,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Blue/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/blue/damagethree{
 	pixel_x = -2;
 	pixel_y = 9
 	},
@@ -48704,7 +48704,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "hZh" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
@@ -48745,7 +48745,7 @@
 	layer = 3
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "hZS" = (
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/hallway_north)
@@ -48945,7 +48945,7 @@
 "ibW" = (
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "ibY" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -49776,7 +49776,7 @@
 /area/lv759/indoors/colonial_marshals/north_office)
 "ijq" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Blue{
+/obj/structure/prop/urban/vehicles/meridian/blue{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk{
@@ -50313,7 +50313,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "inU" = (
 /obj/structure/platform,
 /obj/effect/urban/decal/dirt,
@@ -50760,7 +50760,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ish" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -51261,7 +51261,7 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iwx" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Purple,
+/obj/structure/prop/urban/vehicles/meridian/purple,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "iwy" = (
@@ -53842,7 +53842,7 @@
 /obj/effect/decal/cleanable/blood/gibs/down,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	layer = 2.9;
 	pixel_y = 8
 	},
@@ -54331,7 +54331,7 @@
 /obj/item/reagent_containers/spray,
 /obj/machinery/light/spot/blue,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "iXa" = (
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -54372,7 +54372,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "iXz" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -54542,7 +54542,7 @@
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "iYR" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt/grime4{
@@ -56026,7 +56026,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "jkb" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/item/clothing/head/hardhat/dblue{
@@ -58002,7 +58002,7 @@
 	pixel_y = 22
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "jAI" = (
 /obj/structure/prop/urban/cavedecor/stalagmite0,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -58140,7 +58140,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/garage)
 "jBR" = (
-/obj/structure/prop/urban/vehicles/Meridian/Green{
+/obj/structure/prop/urban/vehicles/meridian/green{
 	pixel_x = 8;
 	pixel_y = -12
 	},
@@ -58418,7 +58418,7 @@
 	pixel_x = 12
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "jFh" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -58546,7 +58546,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "jGE" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
@@ -58977,7 +58977,7 @@
 /obj/machinery/light,
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "jKD" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -60004,7 +60004,7 @@
 	},
 /obj/effect/spawner/random/food_or_drink/beer,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "jTV" = (
 /obj/structure/prop/urban/vehicles/truck/truck3{
 	dir = 1;
@@ -60317,7 +60317,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "jWI" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
@@ -60592,7 +60592,7 @@
 "jYJ" = (
 /obj/structure/prop/urban/supermart/rack/longrack6,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "jYM" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/poddoor/mainship{
@@ -60812,7 +60812,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "kaE" = (
 /obj/structure/grille,
 /obj/effect/landmark/weed_node,
@@ -61816,7 +61816,7 @@
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagethree{
 	dir = 8;
 	pixel_x = -3;
 	pixel_y = 3
@@ -62010,7 +62010,7 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/westrestroom)
 "klK" = (
-/obj/structure/prop/urban/vehicles/Meridian/Purple{
+/obj/structure/prop/urban/vehicles/meridian/purple{
 	pixel_y = -4
 	},
 /turf/open/urban/street/sidewalk{
@@ -62867,7 +62867,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ktz" = (
 /obj/structure/window/framed/urban/colony/engineering,
 /obj/machinery/door/poddoor/urban/open_shutters{
@@ -63043,7 +63043,7 @@
 /area/lv759/indoors/meridian/meridian_office)
 "kvl" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "kvn" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines4,
@@ -64149,7 +64149,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "kFj" = (
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
+/obj/structure/prop/urban/vehicles/meridian/taxi{
 	dir = 4;
 	pixel_x = -8;
 	pixel_y = -5
@@ -64475,7 +64475,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "kIf" = (
 /obj/machinery/door_display/research_cell{
 	dir = 4;
@@ -64621,7 +64621,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "kJX" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/tool/crowbar,
@@ -64689,7 +64689,7 @@
 /obj/item/tool/wet_sign,
 /obj/item/tool/mop,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "kKJ" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
@@ -66140,7 +66140,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "kWY" = (
 /obj/effect/urban/decal/trash/two,
 /obj/structure/cable,
@@ -66420,7 +66420,7 @@
 "kZr" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "kZt" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 4
@@ -66612,7 +66612,7 @@
 	},
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer5,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "lbh" = (
 /obj/structure/closet/crate/miningcar{
 	layer = 3
@@ -67095,7 +67095,7 @@
 /turf/open/floor/prison/marked,
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
 "lfh" = (
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
+/obj/structure/prop/urban/vehicles/meridian/generic{
 	dir = 8;
 	layer = 3;
 	pixel_x = -8;
@@ -67854,7 +67854,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "llD" = (
 /turf/closed/shuttle/dropship4/enginethree{
 	dir = 8
@@ -68384,7 +68384,7 @@
 /obj/structure/closet/crate/plastic,
 /obj/machinery/conveyor,
 /turf/open/floor/plate,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "lqu" = (
 /turf/open/floor/prison/red{
 	dir = 5
@@ -69326,7 +69326,7 @@
 /obj/item/reagent_containers/food/drinks/cans/souto,
 /obj/item/reagent_containers/food/drinks/cans/souto,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "lze" = (
 /obj/item/tool/multitool,
 /obj/structure/cable,
@@ -69598,7 +69598,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "lCe" = (
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	dir = 1;
 	layer = 6;
 	pixel_y = 12
@@ -69961,7 +69961,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/spaceport/cargo)
 "lFf" = (
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/meridian/red{
 	pixel_x = -6;
 	pixel_y = 8
 	},
@@ -70012,7 +70012,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/prop/urban/vehicles/Meridian/Green{
+/obj/structure/prop/urban/vehicles/meridian/green{
 	layer = 3
 	},
 /obj/effect/urban/decal/road/lines3,
@@ -70188,7 +70188,7 @@
 /turf/closed/wall/urban/colony/hospital,
 /area/lv759/indoors/hospital/cryo_room)
 "lHs" = (
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 4
 	},
 /obj/structure/prop/urban/factory/conveyor_belt{
@@ -70386,7 +70386,7 @@
 	dir = 1
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "lIK" = (
 /obj/structure/window/framed/urban,
 /turf/open/floor/plating,
@@ -71125,7 +71125,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance)
 "lOp" = (
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	dir = 1;
 	pixel_y = 6
 	},
@@ -72057,7 +72057,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "lVe" = (
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
@@ -72209,7 +72209,7 @@
 /obj/machinery/light/spot/blue,
 /obj/structure/sign/safety/storage,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "lWv" = (
 /turf/open/floor/orange_edge{
 	dir = 8
@@ -72479,7 +72479,7 @@
 /area/lv759/indoors/casino)
 "lYY" = (
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "lZc" = (
 /obj/item/trash/cigbutt{
 	pixel_x = -10;
@@ -72745,7 +72745,7 @@
 	pixel_y = 18
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "mbn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -72969,7 +72969,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "mdI" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -73006,7 +73006,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "mea" = (
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
@@ -73856,7 +73856,7 @@
 /obj/effect/urban/decal/doubleroad/lines2{
 	pixel_y = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/orange/damagethree{
 	dir = 4
 	},
 /turf/open/urban/street/asphalt,
@@ -74135,7 +74135,7 @@
 /obj/item/tool/pen,
 /obj/structure/largecrate/random,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "mmZ" = (
 /obj/item/ammo_casing/bullet,
 /obj/structure/cable,
@@ -74202,7 +74202,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree,
+/obj/structure/prop/urban/vehicles/meridian/red/damagethree,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -75128,7 +75128,7 @@
 	pixel_y = 22
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "muO" = (
 /turf/closed/wall/urban/colony/hospital,
 /area/lv759/indoors/hospital/emergency_room)
@@ -77986,7 +77986,7 @@
 	layer = 3
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "mTA" = (
 /obj/structure/platform_decoration/urban/rockdark,
 /turf/open/floor/sandrock,
@@ -79547,7 +79547,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "nfP" = (
-/obj/structure/prop/urban/vehicles/Meridian/Cop{
+/obj/structure/prop/urban/vehicles/meridian/cop{
 	pixel_x = -6;
 	pixel_y = -8
 	},
@@ -79596,7 +79596,7 @@
 "ngf" = (
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ngh" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 1
@@ -79615,7 +79615,7 @@
 "ngm" = (
 /obj/structure/prop/urban/supermart/rack/longrack3,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ngn" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
@@ -80119,7 +80119,7 @@
 	pixel_y = 11
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "njK" = (
 /obj/machinery/disposal,
 /obj/machinery/light,
@@ -81038,7 +81038,7 @@
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "nri" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
@@ -82824,7 +82824,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "nGE" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Brown{
+/obj/structure/prop/urban/vehicles/meridian/brown{
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
@@ -82850,7 +82850,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "nGS" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -84011,7 +84011,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "nQK" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
+/obj/structure/prop/urban/vehicles/meridian/generic{
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/dirt/grime4,
@@ -85230,7 +85230,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "obb" = (
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall/urban,
@@ -85961,7 +85961,7 @@
 /turf/open/floor/orange_edge{
 	dir = 9
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ohI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
@@ -86500,7 +86500,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ome" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 1
@@ -86867,7 +86867,7 @@
 /obj/structure/rack,
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "oqL" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -87309,7 +87309,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ouK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/orange_edge{
@@ -87442,7 +87442,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "own" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -87453,7 +87453,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "owo" = (
-/obj/structure/prop/urban/vehicles/Meridian/Taxi{
+/obj/structure/prop/urban/vehicles/meridian/taxi{
 	pixel_x = 2;
 	pixel_y = -6
 	},
@@ -88109,7 +88109,7 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "oCH" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt,
@@ -89221,7 +89221,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oLE" = (
-/obj/structure/prop/urban/vehicles/Meridian/Purple,
+/obj/structure/prop/urban/vehicles/meridian/purple,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -89283,7 +89283,7 @@
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "oMD" = (
 /obj/structure/largecrate/random/barrel/brown,
 /turf/open/floor/plating/plating_catwalk{
@@ -89504,7 +89504,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "oOB" = (
 /obj/machinery/light{
 	dir = 4
@@ -89886,7 +89886,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/structure/rack,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "oRU" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 8
@@ -90079,7 +90079,7 @@
 "oTF" = (
 /obj/item/storage/bag/plasticbag,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "oTG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban_wood,
@@ -91184,7 +91184,7 @@
 	layer = 2
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "pdP" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack{
@@ -91559,7 +91559,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pgg" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -91848,7 +91848,7 @@
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/table/black,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pjg" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 4;
@@ -94154,7 +94154,7 @@
 "pBM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pBU" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -96148,7 +96148,7 @@
 	},
 /obj/item/clothing/head/soft/orange,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pTH" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
@@ -96233,7 +96233,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pUb" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -96995,7 +96995,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "pZE" = (
 /obj/structure/stairs{
 	color = "#a6aeab"
@@ -98032,7 +98032,7 @@
 /obj/machinery/light/spot/blue,
 /obj/structure/sign/safety/storage,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "qiq" = (
 /obj/structure/platform{
 	dir = 8
@@ -98677,7 +98677,7 @@
 /turf/open/floor/orange_edge{
 	dir = 5
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "qmY" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -98960,7 +98960,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "qpW" = (
 /obj/machinery/space_heater/radiator/red{
 	dir = 1;
@@ -99469,7 +99469,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "qvg" = (
 /turf/open/floor/multi_tiles{
 	dir = 8
@@ -99973,7 +99973,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "qzv" = (
 /obj/structure/platform{
 	dir = 4;
@@ -100125,7 +100125,7 @@
 /area/lv759/indoors/power_plant/power_storage)
 "qBh" = (
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "qBp" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/engineership/engineer_floor1,
@@ -100461,7 +100461,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "qFx" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
 /turf/closed/wall/urban/colony,
@@ -101450,7 +101450,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "qPr" = (
 /obj/structure/fence/dark,
 /obj/structure/platform/urban/metalplatform6,
@@ -101462,7 +101462,7 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "qPw" = (
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue{
+/obj/structure/prop/urban/vehicles/meridian/desat_blue{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
@@ -101915,7 +101915,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "qTd" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
@@ -102767,7 +102767,7 @@
 	layer = 3
 	},
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "rbt" = (
 /obj/item/stack/rods{
 	pixel_y = 14
@@ -103744,7 +103744,7 @@
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "rjB" = (
 /obj/structure/bed/urban/prisonbed{
 	dir = 6
@@ -103972,7 +103972,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "rlm" = (
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	pixel_x = -2;
 	pixel_y = 8
 	},
@@ -104179,7 +104179,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "rmR" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
@@ -104648,7 +104648,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "rqH" = (
 /obj/machinery/vending/snack{
 	pixel_y = 16
@@ -105114,7 +105114,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "ruX" = (
 /obj/item/trash/cigbutt{
 	pixel_x = 1;
@@ -107502,7 +107502,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "rPQ" = (
-/obj/structure/prop/urban/vehicles/Meridian/Brown{
+/obj/structure/prop/urban/vehicles/meridian/brown{
 	dir = 1;
 	pixel_x = 8
 	},
@@ -107595,7 +107595,7 @@
 	dir = 6;
 	pixel_y = -7
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Taxi/damagetwo{
+/obj/structure/prop/urban/vehicles/meridian/taxi/damagetwo{
 	dir = 8
 	},
 /turf/open/urban/street/asphalt,
@@ -109130,7 +109130,7 @@
 "seD" = (
 /obj/structure/prop/urban/supermart/rack/longrack5,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "seH" = (
 /obj/item/paper/crumpled{
 	pixel_x = 15;
@@ -111264,7 +111264,7 @@
 	},
 /obj/structure/sign/poster,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "svN" = (
 /obj/structure/barricade/handrail/wire{
 	dir = 1;
@@ -111451,7 +111451,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "sxQ" = (
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_1)
@@ -112701,7 +112701,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "sIi" = (
 /obj/effect/urban/decal/road/lines5,
 /obj/effect/urban/decal/road/lines3,
@@ -112829,7 +112829,7 @@
 	pixel_y = 11
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "sJf" = (
 /obj/structure/sign/poster,
 /obj/structure/sign/poster{
@@ -114196,7 +114196,7 @@
 /obj/item/stack/rods{
 	layer = 6
 	},
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/generic/damagethree{
 	pixel_y = 13
 	},
 /turf/open/urban/street/sidewalk{
@@ -114490,7 +114490,7 @@
 /area/lv759/indoors/north_caves)
 "sWI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Cop,
+/obj/structure/prop/urban/vehicles/meridian/cop,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "sWK" = (
@@ -115327,7 +115327,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tdQ" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/red{
@@ -115398,7 +115398,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/floorthree,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tek" = (
 /obj/structure/toilet{
 	dir = 8
@@ -115473,7 +115473,7 @@
 /turf/open/floor/orange_edge{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "teH" = (
 /obj/effect/urban/decal{
 	pixel_x = 15;
@@ -115489,7 +115489,7 @@
 "teS" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "teX" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/buildinggreeblies/greeble7,
@@ -115541,7 +115541,7 @@
 /area/lv759/indoors/apartment/westfoyer)
 "tfi" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	dir = 1;
 	pixel_x = 6
 	},
@@ -117497,7 +117497,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "twm" = (
 /obj/structure/platform/urban/metalplatform1{
 	dir = 8
@@ -118171,10 +118171,10 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tCs" = (
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "tCt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -118417,7 +118417,7 @@
 /turf/open/floor/orange_edge{
 	dir = 4
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tEP" = (
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 1
@@ -118570,7 +118570,7 @@
 /obj/item/stack/rods{
 	pixel_y = 14
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Light_Blue/damagethree,
+/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree,
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tFN" = (
@@ -119342,7 +119342,7 @@
 	},
 /obj/item/shard,
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tMl" = (
 /obj/effect/urban/decal/trash/four,
 /turf/open/urban/street/sidewalk{
@@ -119501,7 +119501,7 @@
 	pixel_y = 20
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "tNH" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban_wood,
@@ -119545,7 +119545,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "tOc" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
@@ -119719,7 +119719,7 @@
 	},
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "tPl" = (
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetbeige,
@@ -119744,7 +119744,7 @@
 	},
 /obj/structure/prop/urban/supermart/rack/longrack7,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "tPJ" = (
 /obj/structure/platform/urban/metalplatform2,
 /obj/structure/platform/urban/metalplatform2{
@@ -119887,7 +119887,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tQI" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/powercell,
@@ -120672,7 +120672,7 @@
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "tWT" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light{
@@ -120764,7 +120764,7 @@
 /obj/structure/closet/crate/freezer,
 /obj/machinery/conveyor,
 /turf/open/floor/plate,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "tXh" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -121034,7 +121034,7 @@
 	},
 /area/lv759/indoors/weyyu_office/pressroom)
 "tZc" = (
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue,
+/obj/structure/prop/urban/vehicles/meridian/desat_blue,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tZe" = (
@@ -121364,7 +121364,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "ubq" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt{
@@ -123396,7 +123396,7 @@
 /obj/structure/prop/urban/vehicles/crashedcarsright{
 	pixel_y = -9
 	},
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
+/obj/structure/prop/urban/vehicles/meridian/generic{
 	layer = 5
 	},
 /obj/effect/urban/decal/road/lines2,
@@ -123802,7 +123802,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "uvk" = (
-/obj/structure/prop/urban/vehicles/Meridian/Black{
+/obj/structure/prop/urban/vehicles/meridian/black{
 	pixel_y = -8
 	},
 /obj/effect/urban/decal/road/lines2,
@@ -123983,7 +123983,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "uwP" = (
-/obj/structure/prop/urban/vehicles/Meridian/Brown,
+/obj/structure/prop/urban/vehicles/meridian/brown,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "uwU" = (
@@ -124826,7 +124826,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uER" = (
 /turf/closed/wall/urban/colony,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "uET" = (
 /obj/item/stack/sheet/cardboard{
 	layer = 2
@@ -125155,7 +125155,7 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "uGX" = (
 /obj/structure/largecrate/random/barrel/brown,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -125890,7 +125890,7 @@
 	},
 /area/lv759/outdoors/caveplateau)
 "uMT" = (
-/obj/structure/prop/urban/vehicles/Meridian/Blue{
+/obj/structure/prop/urban/vehicles/meridian/blue{
 	dir = 1;
 	pixel_x = 8;
 	pixel_y = -7
@@ -125951,7 +125951,7 @@
 /turf/open/engineership/engineer_floor2,
 /area/lv759/indoors/derelict_ship)
 "uNw" = (
-/obj/structure/prop/urban/vehicles/Meridian/Red,
+/obj/structure/prop/urban/vehicles/meridian/red,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -126363,7 +126363,7 @@
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "uRb" = (
 /obj/structure/platform{
 	dir = 1
@@ -126657,7 +126657,7 @@
 	},
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "uUg" = (
 /obj/structure/barricade/handrail/kutjevo{
 	dir = 8;
@@ -127275,7 +127275,7 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/apartment/westbedrooms)
 "uZJ" = (
-/obj/structure/prop/urban/vehicles/Meridian/Pink{
+/obj/structure/prop/urban/vehicles/meridian/pink{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = 4
@@ -127812,7 +127812,7 @@
 /turf/open/floor/orange_edge{
 	dir = 5
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vdZ" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/drinks/cans/sodawater{
@@ -128133,7 +128133,7 @@
 	},
 /obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vgq" = (
 /obj/structure/platform{
 	dir = 8
@@ -128716,7 +128716,7 @@
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/generic,
-/obj/structure/prop/urban/vehicles/Meridian/Orange/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/orange/damagethree{
 	dir = 1;
 	pixel_x = 6
 	},
@@ -129676,7 +129676,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vsF" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -130282,7 +130282,7 @@
 	dir = 5
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vxT" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/four,
@@ -130781,7 +130781,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/kutjevo/colors/orange,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vCG" = (
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
@@ -131322,7 +131322,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "vHe" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	layer = 2.9;
 	pixel_y = 4
 	},
@@ -131748,7 +131748,7 @@
 	},
 /area/lv759/indoors/hospital/virology)
 "vLn" = (
-/obj/structure/prop/urban/vehicles/Meridian/Turquoise{
+/obj/structure/prop/urban/vehicles/meridian/turquoise{
 	dir = 1;
 	pixel_x = -4;
 	pixel_y = -8
@@ -132021,7 +132021,7 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagefour{
+/obj/structure/prop/urban/vehicles/meridian/red/damagefour{
 	pixel_x = -6;
 	pixel_y = -3
 	},
@@ -132772,11 +132772,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "vTq" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vTt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -132800,7 +132800,7 @@
 "vTz" = (
 /obj/structure/prop/urban/supermart/rack/longrack2,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "vTF" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -133452,7 +133452,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "vYn" = (
 /turf/closed/wall/r_wall/bunker,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
@@ -134346,7 +134346,7 @@
 	},
 /obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "wfD" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/carpet/carpetgreendeco,
@@ -135997,7 +135997,7 @@
 	dir = 8
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "wtv" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -136042,7 +136042,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal,
 /turf/open/floor/officesquares,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "wtQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/stoneplanterseats/empty{
@@ -136058,7 +136058,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "wuf" = (
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
@@ -136145,7 +136145,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/interrogation)
 "wuM" = (
-/obj/structure/prop/urban/vehicles/Meridian/Black{
+/obj/structure/prop/urban/vehicles/meridian/black{
 	pixel_y = 4
 	},
 /turf/open/urban/street/sidewalk,
@@ -136375,7 +136375,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "wxr" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk{
@@ -136595,7 +136595,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "wzA" = (
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/meridian/meridian_foyer)
@@ -138178,7 +138178,7 @@
 	dir = 1
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "wMi" = (
 /obj/structure/cable,
 /turf/open/floor/urban/tile/cementflat,
@@ -138296,7 +138296,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	layer = 4
 	},
-/obj/structure/prop/urban/vehicles/Meridian/WeylandYutani{
+/obj/structure/prop/urban/vehicles/meridian/generic{
 	dir = 8;
 	layer = 3
 	},
@@ -138999,7 +138999,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "wSu" = (
 /obj/effect/urban/decal/trash/eight{
 	pixel_y = 12
@@ -139614,7 +139614,7 @@
 	dir = 8;
 	pixel_y = 18
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/meridian/red{
 	layer = 2.9;
 	pixel_y = 4
 	},
@@ -139787,7 +139787,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "wZq" = (
-/obj/structure/prop/urban/vehicles/Meridian/Brown{
+/obj/structure/prop/urban/vehicles/meridian/brown{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
@@ -140031,7 +140031,7 @@
 	dir = 4;
 	pixel_y = 7
 	},
-/obj/structure/prop/urban/vehicles/Meridian/Desat_Blue{
+/obj/structure/prop/urban/vehicles/meridian/desat_blue{
 	dir = 1;
 	pixel_x = -6
 	},
@@ -140463,7 +140463,7 @@
 /turf/open/floor/urban/wood/redwood,
 /area/lv759/indoors/weyyu_office/floor)
 "xeC" = (
-/obj/structure/prop/urban/vehicles/Car/Car_chassis{
+/obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 1
 	},
 /turf/open/floor/plate,
@@ -140680,7 +140680,7 @@
 "xgM" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/structure/prop/urban/vehicles/Meridian/Red/damagethree{
+/obj/structure/prop/urban/vehicles/meridian/red/damagethree{
 	pixel_x = -1;
 	pixel_y = 2
 	},
@@ -140771,7 +140771,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "xhx" = (
 /obj/structure/prop/urban/misc/redmeter{
 	light_color = "#FF004A";
@@ -141338,7 +141338,7 @@
 /obj/structure/prop/urban/supermart/rack/longrack1,
 /obj/structure/sign/safety/storage,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "xmB" = (
 /obj/structure/stairs{
 	color = "#a6aeab";
@@ -142908,7 +142908,7 @@
 "xzJ" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/Meridian/Orange{
+/obj/structure/prop/urban/vehicles/meridian/orange{
 	dir = 1;
 	layer = 2.97;
 	pixel_x = 6
@@ -143369,7 +143369,7 @@
 "xEy" = (
 /obj/structure/sign/safety/maintenance,
 /turf/closed/wall/r_wall/bunker,
-/area/lv759/indoors/ntmart/maintenance)
+/area/lv759/indoors/NTmart/maintenance)
 "xEz" = (
 /obj/machinery/light{
 	dir = 8
@@ -143805,7 +143805,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "xHE" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -143883,7 +143883,7 @@
 	name = "Emergency Lockdown"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "xIk" = (
 /obj/structure/prop/urban/misc/redmeter{
 	light_color = "#FF004A";
@@ -144148,7 +144148,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "xKy" = (
 /turf/open/floor/urban/tile/supermartfloor1,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "xKz" = (
 /obj/machinery/floodlight/colony/street{
 	pixel_y = 6
@@ -144224,7 +144224,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "xLj" = (
-/obj/structure/prop/urban/vehicles/Meridian/Red{
+/obj/structure/prop/urban/vehicles/meridian/red{
 	layer = 6;
 	pixel_y = 12
 	},
@@ -145654,7 +145654,7 @@
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "xXV" = (
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart/backrooms)
+/area/lv759/indoors/NTmart/backrooms)
 "xXZ" = (
 /obj/structure/rack,
 /obj/item/clothing/under/marine/black_vest,
@@ -145826,7 +145826,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 8
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "xZE" = (
 /obj/item/tool/wet_sign{
 	pixel_x = -11;
@@ -145970,7 +145970,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "ybh" = (
-/obj/structure/prop/urban/vehicles/Meridian/Green{
+/obj/structure/prop/urban/vehicles/meridian/green{
 	name = "Mono-Spectra GT";
 	pixel_y = 2
 	},
@@ -146735,7 +146735,7 @@
 /obj/structure/table/reinforced/fabric,
 /obj/structure/prop/urban/supermart/supermartfruitbasketempty,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "yhf" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -147348,7 +147348,7 @@
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
-/area/lv759/indoors/ntmart)
+/area/lv759/indoors/NTmart)
 "ylG" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin,
