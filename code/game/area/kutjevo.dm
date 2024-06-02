@@ -4,7 +4,6 @@
 /area/kutjevo
 	name = "Kutjevo Refinery"
 	icon = 'icons/turf/area_kutjevo.dmi'
-	//ambience = list('figuresomethingout.ogg')
 	icon_state = "kutjevo"
 	temperature = 308.7 //kelvin, 35c, 95f
 	minimap_color = MINIMAP_AREA_ENGI

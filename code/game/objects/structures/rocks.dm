@@ -129,7 +129,7 @@
 /obj/structure/rock/tinyrock
 	name = "tiny rock pile"
 	desc = "A pile of tiny pebbles..."
-	icon_state = "tinyrock_3"
+	icon_state = "tinyrock"
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	max_integrity = 100
@@ -152,6 +152,15 @@
 	desc = "A large imposing rock."
 	icon_state = "basalt"
 	icon_variants = 4
+
+/obj/structure/rock/variable/tinyrock
+	name = "tiny rock pile"
+	desc = "A pile of tiny pebbles..."
+	icon_state = "tinyrock"
+	density = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	max_integrity = 100
+	icon_variants = 8
 
 /obj/structure/rock/variable/stalagmite
 	name = "stalagmite"
