@@ -33,9 +33,6 @@
 /obj/machinery/power/apc,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/lz1)
-"ah" = (
-/turf/closed/shuttle/cas/rightwingmid,
-/area/bigredv2/outside/c)
 "ai" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -91,11 +88,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
-"ar" = (
-/turf/closed/shuttle/cas{
-	icon_state = "44"
-	},
-/area/bigredv2/outside/c)
 "as" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/mainship,
@@ -106,12 +98,6 @@
 	on = 1
 	},
 /turf/open/floor/mainship,
-/area/bigredv2/outside/c)
-"au" = (
-/obj/structure/caspart{
-	icon_state = "46"
-	},
-/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "av" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -183,12 +169,6 @@
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"aM" = (
-/obj/structure/caspart{
-	icon_state = "66"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "aN" = (
 /obj/machinery/light{
 	dir = 1
@@ -201,11 +181,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/general_offices)
-"aP" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "28"
-	},
-/area/space)
 "aQ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/regular{
@@ -252,9 +227,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/carpet{
-	dir = 8
-	},
+/turf/open/floor/wood,
 /area/arrival/start)
 "aZ" = (
 /obj/machinery/light,
@@ -282,12 +255,6 @@
 	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/dorms)
-"bd" = (
-/turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "be" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -561,9 +528,6 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"cb" = (
-/turf/open/floor/carpet,
-/area/arrival/start)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -742,13 +706,6 @@
 "cL" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
-"cM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal1,
-/turf/open/floor/carpet{
-	dir = 4
-	},
-/area/crew_quarters/cafeteria)
 "cN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -933,11 +890,6 @@
 "dz" = (
 /turf/closed/wall/mainship,
 /area/crew_quarters/cafeteria)
-"dA" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "27"
-	},
-/area/space)
 "dB" = (
 /turf/open/floor/carpet{
 	dir = 8
@@ -951,12 +903,6 @@
 "dD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/bigredv2/outside/c)
-"dE" = (
-/obj/structure/caspart{
-	icon_state = "53"
-	},
-/turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "dF" = (
 /obj/structure/largecrate,
@@ -973,12 +919,6 @@
 /obj/structure/prop/mainship/pipeprop/manifold,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
-"dJ" = (
-/obj/structure/caspart{
-	icon_state = "26"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "dK" = (
 /obj/structure/showcase{
 	icon_state = "bus"
@@ -1018,7 +958,7 @@
 /area/daedalusprison/inside/westcomputerlab)
 "dT" = (
 /obj/machinery/light,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "dU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1091,10 +1031,6 @@
 "ek" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/plating,
-/area/bigredv2/outside/c)
-"el" = (
-/obj/structure/dropship_piece/two/front/right,
-/turf/open/floor/mainship_hull,
 /area/bigredv2/outside/c)
 "em" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1294,11 +1230,6 @@
 /obj/structure/cable,
 /turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/c)
-"eY" = (
-/turf/closed/shuttle/cas{
-	icon_state = "75"
-	},
-/area/bigredv2/outside/c)
 "eZ" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -1313,12 +1244,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/daedalusprison/inside/security)
-"fc" = (
-/obj/structure/caspart{
-	icon_state = "68"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "fd" = (
 /obj/structure/showcase/yaut,
 /turf/open/floor/tile/darkish,
@@ -1538,11 +1463,6 @@
 "fR" = (
 /turf/open/floor/prison/darkpurple/full,
 /area/bigredv2/caves/lambda_lab)
-"fS" = (
-/turf/closed/shuttle/cas{
-	icon_state = "41"
-	},
-/area/bigredv2/outside/c)
 "fT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1975,17 +1895,6 @@
 	dir = 6
 	},
 /area/daedalusprison/inside/security)
-"hw" = (
-/obj/structure/caspart{
-	icon_state = "31"
-	},
-/obj/effect/attach_point/weapon/cas{
-	equipment_offset_x = 5;
-	equipment_offset_y = 12;
-	icon_state = "31"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "hx" = (
 /obj/machinery/light{
 	dir = 8
@@ -2009,11 +1918,6 @@
 	dir = 9
 	},
 /area/bigredv2/outside/e)
-"hC" = (
-/obj/structure/dropship_piece/two/front/left,
-/obj/structure/dropship_piece/two/front,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "hD" = (
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/c)
@@ -2095,12 +1999,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"hV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 5
-	},
-/area/arrival/start)
 "hW" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -2115,11 +2013,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"hZ" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "33"
-	},
-/area/space)
 "ia" = (
 /obj/structure/bed/chair/comfy,
 /obj/structure/cable,
@@ -2169,9 +2062,7 @@
 "ii" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal6,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2308,12 +2199,6 @@
 	},
 /turf/open/floor/wood,
 /area/outpost/lz1)
-"iK" = (
-/obj/structure/caspart{
-	icon_state = "71"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "iL" = (
 /obj/structure/lattice,
 /obj/structure/monorail,
@@ -2408,13 +2293,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
-"jf" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
-	},
-/area/crew_quarters/cafeteria)
 "jg" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -2429,9 +2307,6 @@
 /obj/structure/dropship_piece/two/corner/rearright,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/drop2/lz2)
-"jj" = (
-/turf/closed/shuttle/cas/leftwingfar,
-/area/bigredv2/outside/c)
 "jk" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating,
@@ -2516,9 +2391,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/carpet{
-	dir = 8
-	},
+/turf/open/floor/wood,
 /area/arrival/start)
 "jC" = (
 /turf/open/floor/mainship/floor,
@@ -2576,11 +2449,6 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
-"jN" = (
-/turf/closed/shuttle/cas{
-	icon_state = "42"
-	},
 /area/bigredv2/outside/c)
 "jO" = (
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -2707,11 +2575,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
-"kn" = (
-/turf/closed/shuttle/cas{
-	icon_state = "22"
-	},
-/area/bigredv2/outside/c)
 "kp" = (
 /obj/structure/cargo_container/hd_blue{
 	dir = 1
@@ -2917,11 +2780,6 @@
 "lc" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/arrival/start)
-"ld" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "113"
-	},
-/area/space)
 "le" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2935,9 +2793,6 @@
 	dir = 1
 	},
 /area/space)
-"lg" = (
-/turf/closed/shuttle/cas/computer,
-/area/bigredv2/outside/c)
 "lh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2948,11 +2803,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
-"lj" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "22"
-	},
-/area/bigredv2/outside/c)
 "lk" = (
 /obj/structure/lattice,
 /turf/open/floor/mainship_hull/dir{
@@ -3113,12 +2963,6 @@
 "lR" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge,
 /area/bigredv2/caves/northeast)
-"lS" = (
-/obj/structure/caspart{
-	icon_state = "25"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "lT" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera,
@@ -3181,11 +3025,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
-"mh" = (
-/turf/closed/shuttle/cas{
-	icon_state = "63"
-	},
-/area/bigredv2/outside/c)
 "mi" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -3261,11 +3100,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/library)
-"mx" = (
-/turf/closed/shuttle/cas{
-	icon_state = "74"
-	},
-/area/bigredv2/outside/c)
 "my" = (
 /obj/machinery/light{
 	dir = 1
@@ -3442,12 +3276,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/outside/c)
-"ni" = (
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "nj" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -3511,10 +3339,6 @@
 	dir = 8
 	},
 /area/space)
-"nw" = (
-/obj/structure/caspart/internalengine/right,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "nx" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/mainship/red{
@@ -3565,9 +3389,7 @@
 "nH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/bed/chair/comfy,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
+/turf/open/floor/wood,
 /area/arrival/start)
 "nJ" = (
 /obj/machinery/door/airlock/centcom,
@@ -3740,12 +3562,6 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"ou" = (
-/obj/structure/caspart{
-	icon_state = "60"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "ov" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3932,12 +3748,6 @@
 /obj/effect/ai_node,
 /turf/open/liquid/water,
 /area/bigredv2/caves/northeast)
-"pf" = (
-/obj/structure/caspart{
-	icon_state = "48"
-	},
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
 "pg" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship,
@@ -4071,11 +3881,6 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
-"pG" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "28"
-	},
-/area/bigredv2/outside/c)
 "pH" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/mainship,
@@ -4291,18 +4096,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating,
 /area/arrival/start)
-"qz" = (
-/obj/structure/dropship_piece/two/front/right,
-/obj/structure/dropship_piece/two/front,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
-"qA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/carpet,
-/area/mainship/living/officer_study)
 "qC" = (
 /obj/machinery/computer/communications,
 /obj/structure/table/mainship,
@@ -4551,10 +4344,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"rD" = (
-/obj/structure/caspart/internalengine/left,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "rE" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4618,12 +4407,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
-"rS" = (
-/obj/structure/caspart{
-	icon_state = "45"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "rT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -4663,9 +4446,7 @@
 "rZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	dir = 8
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "sa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4738,12 +4519,6 @@
 "sm" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/southeast)
-"sn" = (
-/turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "so" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -4757,13 +4532,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"sq" = (
-/obj/structure/bed/chair/comfy,
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "sr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkred,
@@ -4926,12 +4694,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/bigredv2/caves/lambda_lab)
-"sZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 4
-	},
-/area/arrival/start)
 "ta" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -5062,28 +4824,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"tB" = (
-/obj/structure/caspart{
-	icon_state = "15"
-	},
-/obj/effect/attach_point/weapon/cas{
-	equipment_offset_x = -5;
-	equipment_offset_y = 12
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
-"tC" = (
-/obj/structure/caspart/rightprong,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "tD" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "114"
 	},
-/area/bigredv2/outside/c)
-"tF" = (
-/obj/structure/caspart/minigun,
-/turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "tG" = (
 /obj/structure/largecrate/random/case/small,
@@ -5118,11 +4862,6 @@
 	icon_state = "53"
 	},
 /area/bigredv2/outside/c)
-"tM" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "29"
-	},
-/area/space)
 "tN" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_1";
@@ -5212,11 +4951,6 @@
 "uf" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/basic,
-/area/space)
-"ug" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "112"
-	},
 /area/space)
 "uh" = (
 /obj/structure/closet/crate/hydroponics,
@@ -5354,12 +5088,6 @@
 "uH" = (
 /turf/closed/wall/wood,
 /area/bigredv2/outside/library)
-"uI" = (
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
-/area/crew_quarters/cafeteria)
 "uJ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -5425,11 +5153,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/stripesquare,
 /area/deltastation/engineering)
-"uU" = (
-/turf/open/floor/carpet{
-	dir = 5
-	},
-/area/crew_quarters/cafeteria)
 "uV" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -5467,12 +5190,6 @@
 	icon_state = "104"
 	},
 /area/shuttle/drop2/lz2)
-"vb" = (
-/obj/structure/caspart{
-	icon_state = "57"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "vc" = (
 /obj/structure/cable,
 /turf/open/floor/carpet{
@@ -5566,9 +5283,6 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating,
 /area/mainship/living/officer_study)
-"vu" = (
-/turf/closed/shuttle/cas/rightwingclose,
-/area/bigredv2/outside/c)
 "vv" = (
 /obj/structure/disposaloutlet,
 /turf/open/floor/mainship_hull/dir,
@@ -5648,10 +5362,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
-"vL" = (
-/obj/structure/caspart/caschair,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
 "vM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5840,7 +5550,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "wA" = (
 /obj/effect/landmark/corpsespawner/engineer,
@@ -5906,10 +5616,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "wL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5930,12 +5637,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"wP" = (
-/obj/structure/caspart{
-	icon_state = "69"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "wQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -6154,17 +5855,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
-"xK" = (
-/obj/structure/caspart{
-	icon_state = "30"
-	},
-/obj/effect/attach_point/weapon/cas{
-	equipment_offset_x = 5;
-	equipment_offset_y = 12;
-	icon_state = "30"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "xL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -6263,6 +5953,13 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"yf" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "tcomms"
+	},
+/turf/open/space/basic,
+/area/bigredv2/outside/c)
 "yg" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -6347,13 +6044,8 @@
 "yz" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"yA" = (
-/turf/closed/shuttle/cas{
-	icon_state = "55"
-	},
-/area/bigredv2/outside/c)
 "yB" = (
 /turf/open/space/basic,
 /area/mainship/living/officer_study)
@@ -6363,9 +6055,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
-"yD" = (
-/turf/open/floor/carpet,
-/area/crew_quarters/cafeteria)
 "yE" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating/mainship,
@@ -6433,17 +6122,6 @@
 "yO" = (
 /turf/open/floor/plating/mainship,
 /area/prison/security/checkpoint)
-"yP" = (
-/obj/effect/attach_point/weapon/cas{
-	equipment_offset_x = -5;
-	equipment_offset_y = 10;
-	icon_state = "16"
-	},
-/obj/structure/caspart{
-	icon_state = "16"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "yQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -6473,12 +6151,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
-"yW" = (
-/obj/structure/caspart{
-	icon_state = "72"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "yX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -6489,9 +6161,7 @@
 "yY" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5,
-/turf/open/floor/carpet{
-	dir = 4
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "yZ" = (
 /obj/structure/table/reinforced,
@@ -6554,10 +6224,6 @@
 "zi" = (
 /turf/open/floor/mainship/sterile/corner,
 /area/bigredv2/outside/medical)
-"zj" = (
-/obj/structure/dropship_piece/two/engine/leftbottom,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "zk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -6677,11 +6343,6 @@
 "zF" = (
 /turf/open/floor/mainship/tcomms,
 /area/daedalusprison/inside/westcomputerlab)
-"zG" = (
-/obj/effect/decal/cleanable/liquid_fuel,
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
 "zH" = (
 /obj/machinery/light{
 	dir = 8
@@ -6771,10 +6432,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"zY" = (
-/obj/structure/cable,
-/turf/closed/shuttle/cas/rightwingfar,
-/area/bigredv2/outside/c)
 "Aa" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 10
@@ -6791,11 +6448,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/daedalusprison/inside/security)
-"Ad" = (
-/turf/closed/shuttle/cas{
-	icon_state = "43"
-	},
-/area/bigredv2/outside/c)
 "Ae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -7067,11 +6719,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"Bg" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "23"
-	},
-/area/bigredv2/outside/c)
 "Bh" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -7200,11 +6847,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"BI" = (
-/turf/open/floor/carpet{
-	dir = 8
-	},
-/area/arrival/start)
 "BJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -7378,12 +7020,6 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/northeast)
-"Cr" = (
-/obj/structure/caspart{
-	icon_state = "49"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Cs" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -7473,12 +7109,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/dorms)
-"CJ" = (
-/obj/structure/caspart{
-	icon_state = "58"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "CK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7602,12 +7232,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"Dh" = (
-/obj/structure/caspart{
-	icon_state = "61"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Di" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plating/mainship,
@@ -7627,12 +7251,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/basic,
 /area/shuttle/drop2/lz2)
-"Dm" = (
-/obj/structure/caspart{
-	icon_state = "37"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Do" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -7828,9 +7446,6 @@
 "Eb" = (
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"Ec" = (
-/turf/closed/shuttle/cas/rightwingfar,
-/area/bigredv2/outside/c)
 "Ed" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -7986,10 +7601,6 @@
 	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/c)
-"EI" = (
-/obj/structure/dropship_piece/two/engine/leftbottom,
-/turf/open/floor/plating/mainship,
-/area/space)
 "EJ" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/medical)
@@ -8048,14 +7659,6 @@
 	},
 /turf/open/liquid/water,
 /area/bigredv2/caves/north)
-"EU" = (
-/turf/closed/shuttle/cas/centertop,
-/area/bigredv2/outside/c)
-"EV" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "33"
-	},
-/area/bigredv2/outside/c)
 "EW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -8083,11 +7686,6 @@
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
-"Fa" = (
-/turf/open/floor/carpet{
-	dir = 4
-	},
-/area/crew_quarters/cafeteria)
 "Fb" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship/cargo,
@@ -8096,14 +7694,6 @@
 /obj/structure/dropship_piece/one/cockpit/left,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Fd" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/carpet{
-	dir = 4
-	},
-/area/arrival/start)
 "Fe" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship,
@@ -8116,10 +7706,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"Fg" = (
-/obj/structure/dropship_piece/two/front/right,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "Fh" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -8309,12 +7895,6 @@
 /obj/item/radio,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
-"FU" = (
-/obj/structure/caspart{
-	icon_state = "27"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "FV" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8502,12 +8082,6 @@
 "GI" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/admin_building)
-"GJ" = (
-/obj/structure/caspart{
-	icon_state = "12"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "GK" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -8666,12 +8240,6 @@
 "Hm" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/e)
-"Hn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 8
-	},
-/area/crew_quarters/cafeteria)
 "Ho" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -8759,10 +8327,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/construction/qmaint)
-"HF" = (
-/obj/structure/dropship_piece/two/engine/rightbottom,
-/turf/open/floor/plating/mainship,
-/area/space)
 "HG" = (
 /turf/closed/wall/mainship,
 /area/arrival/start)
@@ -8918,9 +8482,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 8
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "Io" = (
 /obj/structure/cable,
@@ -8994,11 +8556,6 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
 /area/outpost/lz1)
-"IF" = (
-/turf/closed/shuttle/cas{
-	icon_state = "64"
-	},
-/area/bigredv2/outside/c)
 "IG" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/machinery/light{
@@ -9147,12 +8704,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"Ji" = (
-/obj/structure/caspart{
-	icon_state = "51"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Jj" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
@@ -9302,18 +8853,6 @@
 "JJ" = (
 /turf/closed/wall/wood,
 /area/outpost/lz1)
-"JK" = (
-/obj/effect/ai_node,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
-"JL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/arrival/start)
 "JM" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_study)
@@ -9345,7 +8884,7 @@
 /obj/structure/bed/chair/sofa/corner{
 	dir = 8
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "JV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -9431,11 +8970,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/daedalusprison/inside/security)
-"Kj" = (
-/turf/open/floor/carpet{
-	dir = 6
-	},
-/area/arrival/start)
 "Kk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -9620,11 +9154,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"KS" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
-/area/crew_quarters/cafeteria)
 "KT" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -9646,9 +9175,6 @@
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"KX" = (
-/turf/closed/shuttle/cas/leftwingclose,
-/area/bigredv2/outside/c)
 "KY" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
@@ -9662,14 +9188,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
-"La" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/bed/chair/comfy,
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "Lb" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -9779,10 +9297,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"Ly" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet,
-/area/arrival/start)
 "Lz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9890,10 +9404,6 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/general_offices)
-"LZ" = (
-/obj/structure/dropship_piece/two/engine/rightbottom,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "Mb" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship,
@@ -9992,11 +9502,6 @@
 "Mx" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/lambda_lab)
-"My" = (
-/turf/closed/shuttle/cas{
-	icon_state = "52"
-	},
-/area/bigredv2/outside/c)
 "Mz" = (
 /obj/structure/table/mainship,
 /obj/item/storage/surgical_tray,
@@ -10278,11 +9783,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
-"Ny" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "29"
-	},
-/area/bigredv2/outside/c)
 "Nz" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/stripesquare,
@@ -10314,12 +9814,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/e)
-"NG" = (
-/obj/structure/bed/chair/comfy,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
-/area/arrival/start)
 "NH" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/officer_study)
@@ -10406,9 +9900,7 @@
 /area/bigredv2/outside/cargo)
 "NY" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/carpet{
-	dir = 4
-	},
+/turf/open/floor/wood,
 /area/arrival/start)
 "NZ" = (
 /turf/open/floor/mainship/terragov/west,
@@ -10490,11 +9982,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"Oo" = (
-/turf/closed/shuttle/cas{
-	icon_state = "21"
-	},
-/area/bigredv2/outside/c)
 "Op" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10563,12 +10050,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"OD" = (
-/obj/structure/caspart{
-	icon_state = "73"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "OE" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data,
@@ -10650,11 +10131,6 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
 /area/outpost/lz1)
-"OS" = (
-/turf/closed/shuttle/cas{
-	icon_state = "47"
-	},
-/area/bigredv2/outside/c)
 "OT" = (
 /obj/structure/window/reinforced,
 /obj/structure/rack,
@@ -10802,12 +10278,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"Pw" = (
-/obj/structure/caspart{
-	icon_state = "59"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Px" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -10815,12 +10285,6 @@
 	},
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/bigredv2/outside/c)
-"Py" = (
-/obj/structure/caspart{
-	icon_state = "11"
-	},
-/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "Pz" = (
 /obj/machinery/power/apc/drained,
@@ -11343,10 +10807,6 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"Ry" = (
-/obj/structure/caspart/leftprong,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Rz" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/mainship,
@@ -11528,16 +10988,6 @@
 	},
 /turf/open/floor/mainship,
 /area/outpost/lz1)
-"Si" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/carpet{
-	dir = 8
-	},
-/area/crew_quarters/cafeteria)
 "Sj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11629,17 +11079,12 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "SA" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/closed/wall/sulaco/unmeltable,
 /area/shuttle/drop2/lz2)
-"SB" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "23"
-	},
-/area/space)
 "SC" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
@@ -11755,12 +11200,6 @@
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/wood,
 /area/arrival/start)
-"SY" = (
-/obj/structure/caspart{
-	icon_state = "56"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Ta" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -11945,9 +11384,7 @@
 /area/bigredv2/outside/dorms)
 "TH" = (
 /obj/structure/table,
-/turf/open/floor/carpet{
-	dir = 6
-	},
+/turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
 "TI" = (
 /obj/machinery/flasher/cell1,
@@ -12016,12 +11453,6 @@
 /area/daedalusprison/inside/security)
 "TT" = (
 /obj/structure/cargo_container/ch_red,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
-"TU" = (
-/obj/structure/caspart{
-	icon_state = "67"
-	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "TV" = (
@@ -12165,21 +11596,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/medical)
-"Uw" = (
-/obj/structure/caspart{
-	icon_state = "70"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Ux" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"Uy" = (
-/turf/open/floor/carpet,
-/area/mainship/living/officer_study)
 "Uz" = (
 /obj/machinery/light{
 	dir = 8
@@ -12230,11 +11652,6 @@
 "UI" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/e)
-"UJ" = (
-/turf/closed/shuttle/cas{
-	icon_state = "62"
-	},
-/area/bigredv2/outside/c)
 "UK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -12259,12 +11676,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/general_offices)
-"UR" = (
-/obj/structure/table,
-/turf/open/floor/carpet{
-	dir = 4
-	},
-/area/crew_quarters/cafeteria)
 "US" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -12481,11 +11892,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/lambda_lab)
-"VJ" = (
-/turf/open/floor/carpet{
-	dir = 5
-	},
-/area/arrival/start)
 "VK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12740,11 +12146,6 @@
 "WD" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/bigredv2/outside/engineering)
-"WE" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "22"
-	},
-/area/space)
 "WF" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -12792,9 +12193,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
-"WN" = (
-/turf/closed/shuttle/cas/leftwingmid,
-/area/bigredv2/outside/c)
 "WO" = (
 /turf/closed/wall/mainship,
 /area/daedalusprison/inside/westcomputerlab)
@@ -12856,7 +12254,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "Xa" = (
 /obj/structure/table/mainship,
@@ -12884,11 +12282,6 @@
 "Xe" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southeast)
-"Xf" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "27"
-	},
-/area/bigredv2/outside/c)
 "Xg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -13050,10 +12443,6 @@
 /obj/item/ashtray/glass,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"XJ" = (
-/obj/structure/dropship_piece/two/front,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "XK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -13084,10 +12473,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
-"XQ" = (
-/obj/structure/table,
-/turf/open/floor/carpet,
-/area/crew_quarters/cafeteria)
 "XR" = (
 /obj/machinery/door/window,
 /obj/structure/sign/directions/supply,
@@ -13123,11 +12508,6 @@
 /area/shuttle/drop2/lz2)
 "XW" = (
 /turf/open/floor/mainship/mono,
-/area/arrival/start)
-"XX" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
 /area/arrival/start)
 "XY" = (
 /obj/structure/table/mainship,
@@ -13182,12 +12562,6 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/c)
-"Yk" = (
-/obj/structure/caspart{
-	icon_state = "65"
-	},
-/turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "Yl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13250,12 +12624,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
-"Yy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 6
-	},
-/area/arrival/start)
 "YA" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/wood,
@@ -13548,12 +12916,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"ZD" = (
-/obj/structure/caspart{
-	icon_state = "38"
-	},
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "ZE" = (
 /obj/structure/closet/crate/secure,
 /obj/structure/cable,
@@ -13600,7 +12962,6 @@
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
 "ZN" = (
-/obj/structure/dropship_piece/two/front/left,
 /turf/open/floor/mainship_hull,
 /area/bigredv2/outside/c)
 "ZO" = (
@@ -23455,12 +22816,12 @@ SJ
 CR
 CR
 CR
-ug
-aP
-WE
-WE
-WE
-EI
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -23712,12 +23073,12 @@ SJ
 CR
 CR
 CR
-ld
-tM
-SB
-dA
-dA
-HF
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -26282,12 +25643,12 @@ SJ
 CR
 CR
 CR
-ug
-aP
-WE
-WE
-WE
-EI
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -26539,12 +25900,12 @@ SJ
 CR
 CR
 CR
-ld
-hZ
-dA
-dA
-dA
-HF
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -28914,14 +28275,14 @@ dz
 hu
 JV
 PF
-jf
+PF
 In
 In
-Hn
+PF
 In
 In
 rZ
-Si
+wK
 wK
 Pn
 hz
@@ -29171,14 +28532,14 @@ dz
 LH
 hz
 hz
-uI
-XQ
-XQ
-yD
+hz
+TH
+TH
+hz
 yz
-XQ
-yD
-XQ
+TH
+hz
+TH
 ii
 Je
 hz
@@ -29428,15 +28789,15 @@ dz
 Ik
 hz
 hz
-uI
-yD
-yD
-yD
-yD
-yD
-yD
-yD
-KS
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 Je
 Hs
 Hs
@@ -29685,14 +29046,14 @@ dz
 ye
 hz
 hz
-uU
-cM
-UR
-Fa
-UR
+hz
+yz
+TH
+hz
+TH
 yY
-Fa
-UR
+hz
+TH
 TH
 LX
 hz
@@ -37167,7 +36528,7 @@ Ti
 YA
 ID
 Ti
-Uy
+Ti
 gi
 gm
 NH
@@ -37938,7 +37299,7 @@ Ti
 Ti
 xh
 Ti
-Uy
+Ti
 XD
 Iq
 iE
@@ -38192,10 +37553,10 @@ Ei
 XD
 WY
 JU
-Uy
-qA
-Uy
-Uy
+Ti
+xh
+Ti
+Ti
 XD
 Iq
 NH
@@ -38727,13 +38088,13 @@ aG
 aG
 gL
 aG
-sn
-BI
+aG
+aG
 aY
 jB
-BI
-BI
-bd
+aG
+aG
+aG
 tH
 XW
 XW
@@ -38977,20 +38338,20 @@ uH
 aG
 aG
 gL
-sn
-BI
-bd
+aG
+aG
+aG
 sN
 aG
 gL
 aG
-ni
-cb
-JL
-cb
-cb
-cb
-JK
+aG
+aG
+gL
+aG
+aG
+aG
+sN
 FI
 wT
 wT
@@ -39234,20 +38595,20 @@ uH
 SX
 yR
 uQ
-sq
-cb
-NG
+jo
+aG
+jo
 JO
 lD
 xD
 aG
-ni
-cb
-JL
-cb
-cb
-cb
-XX
+aG
+aG
+gL
+aG
+aG
+aG
+aG
 mw
 XW
 XW
@@ -39491,20 +38852,20 @@ uH
 SX
 lD
 iD
-La
-Ly
+nH
+Vw
 nH
 EA
 kN
 oW
 Vw
-hV
-sZ
-Fd
-sZ
-sZ
-sZ
-Yy
+Vw
+Vw
+oW
+Vw
+Vw
+Vw
+Vw
 BO
 Vf
 Vf
@@ -39748,9 +39109,9 @@ uH
 oH
 aG
 ow
-VJ
+aG
 NY
-Kj
+aG
 aG
 oF
 aG
@@ -51594,14 +50955,14 @@ Ei
 Ei
 Ei
 Ei
-GD
 Ei
 Ei
 Ei
 Ei
 Ei
 Ei
-GD
+Ei
+Ei
 GD
 GD
 bT
@@ -51851,14 +51212,14 @@ Ei
 Ei
 Ei
 Ei
-jj
 Ei
 Ei
 Ei
 Ei
 Ei
 Ei
-GD
+Ei
+Ei
 NQ
 GD
 KZ
@@ -52107,15 +51468,15 @@ Ei
 Ei
 Ei
 Ei
-hw
-WN
 Ei
 Ei
 Ei
 Ei
 Ei
 Ei
-GD
+Ei
+Ei
+Ei
 Zp
 GD
 bT
@@ -52364,15 +51725,15 @@ Ei
 Ei
 Ei
 Ei
-xK
-KX
 Ei
 Ei
 Ei
-CJ
-OD
-yW
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 Zk
@@ -52621,15 +51982,15 @@ Ei
 Ei
 Ei
 Ei
-Ry
-fS
-Dm
-rS
-rD
-vb
-IF
-iK
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 bT
@@ -52878,15 +52239,15 @@ Ei
 Ei
 Ei
 Ei
-FU
-jN
-ZD
-au
-dE
-SY
-mh
-Uw
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 lH
@@ -53131,19 +52492,19 @@ GD
 PO
 GD
 Ei
-tF
-lg
-vL
-EU
-Py
-Ad
-ar
-OS
-My
-yA
-UJ
-wP
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 bT
@@ -53392,15 +52753,15 @@ Ei
 Ei
 Ei
 Ei
-GJ
-kn
-dJ
-pf
-Ji
-Pw
-mx
-fc
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 vU
@@ -53649,15 +53010,15 @@ oq
 Ei
 Ei
 Ei
-tC
-Oo
-lS
-Cr
-nw
-ou
-eY
-TU
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 kU
 kU
 bT
@@ -53906,15 +53267,15 @@ mJ
 Ei
 Ei
 Ei
-tB
-vu
 Ei
 Ei
 Ei
-Dh
-Yk
-aM
-GD
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 kU
 kU
 bT
@@ -54163,15 +53524,15 @@ Ei
 Ei
 Ei
 Ei
-yP
-ah
+Ei
+Ei
 Ei
 Ei
 Ei
 Ei
 mB
 mB
-zG
+Au
 kU
 GD
 bT
@@ -54359,14 +53720,14 @@ Do
 Wl
 Wl
 Wl
-yU
-pG
-lj
-lj
-lj
-lj
-lj
-zj
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 Wl
 Ut
 Wl
@@ -54421,7 +53782,7 @@ aq
 aq
 aq
 aq
-zY
+CP
 aq
 aq
 jv
@@ -54615,15 +53976,15 @@ oe
 Do
 Wl
 Wl
-Pm
-nl
-Ny
-Bg
-Xf
-Xf
-Xf
-Xf
-LZ
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 Wl
 PZ
 Wl
@@ -54872,7 +54233,7 @@ oe
 Do
 Wl
 Wl
-XJ
+Wl
 qq
 mU
 pP
@@ -55129,7 +54490,7 @@ oe
 Do
 Wl
 Wl
-qz
+Wl
 tD
 Xa
 qM
@@ -55386,7 +54747,7 @@ oe
 Do
 Wl
 Wl
-Fg
+Wl
 tD
 gG
 qM
@@ -55449,7 +54810,7 @@ Ei
 Ei
 Ei
 Ei
-jj
+Ei
 Ei
 Ei
 Ei
@@ -55705,8 +55066,8 @@ TT
 Ce
 Ei
 Ei
-hw
-WN
+Ei
+Ei
 Ei
 Ei
 Ei
@@ -55962,14 +55323,14 @@ qO
 Ei
 Ei
 Ei
-xK
-KX
 Ei
 Ei
 Ei
-CJ
-OD
-yW
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -56219,14 +55580,14 @@ ym
 Ei
 Ei
 Ei
-Ry
-fS
-Dm
-rS
-rD
-vb
-IF
-iK
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -56476,14 +55837,14 @@ Ei
 Ei
 Ei
 Ei
-FU
-jN
-ZD
-au
-dE
-SY
-mh
-Uw
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -56667,7 +56028,7 @@ na
 na
 na
 na
-el
+ZN
 iA
 iY
 cq
@@ -56729,18 +56090,18 @@ Wb
 Wb
 Wb
 jl
-tF
-lg
-vL
-EU
-Py
-Ad
-ar
-OS
-My
-yA
-UJ
-wP
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -56928,7 +56289,7 @@ oe
 Do
 Wl
 Wl
-Pm
+Wl
 tD
 FD
 tD
@@ -56990,14 +56351,14 @@ Ei
 Ei
 Ei
 Ei
-GJ
-kn
-dJ
-pf
-Ji
-Pw
-mx
-fc
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -57185,7 +56546,7 @@ oe
 Do
 UX
 Zg
-hC
+Pm
 tD
 FD
 iA
@@ -57247,14 +56608,14 @@ Ei
 Ei
 Ei
 Ei
-tC
-Oo
-lS
-Cr
-nw
-ou
-eY
-TU
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -57442,7 +56803,7 @@ oe
 Do
 Wl
 bY
-XJ
+Wl
 iA
 eA
 eH
@@ -57504,14 +56865,14 @@ Ei
 Ei
 Ei
 Ei
-tB
-vu
 Ei
 Ei
 Ei
-Dh
-Yk
-aM
+Ei
+Ei
+Ei
+Ei
+Ei
 GD
 GD
 GD
@@ -57699,15 +57060,15 @@ oe
 Do
 Wl
 bY
-Fg
-yU
-pG
-lj
-lj
-lj
-lj
-lj
-zj
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 Wl
 UX
 po
@@ -57761,8 +57122,8 @@ Ei
 Ei
 Ei
 Ei
-yP
-ah
+Ei
+Ei
 Ei
 Ei
 Ei
@@ -57953,18 +57314,18 @@ Pe
 Pe
 Pe
 oe
-Do
+yf
 Wl
 bY
 Wl
-nl
-EV
-Xf
-Xf
-Xf
-Xf
-Xf
-LZ
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 Wl
 Wl
 Wl
@@ -58019,7 +57380,7 @@ AX
 Ei
 Ei
 Ei
-Ec
+Ei
 Ei
 Ei
 Ei
