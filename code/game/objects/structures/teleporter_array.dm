@@ -1,7 +1,7 @@
 /obj/structure/teleporter_array
 	name = "TELEPORTER"
 	desc = "PLACEHOLDER."
-	icon = 'icons/Marine/teleporter.dmi'
+	icon = 'icons/obj/structures/teleporter.dmi'
 	icon_state = "teleporter"
 	obj_flags = NONE
 	density = FALSE
