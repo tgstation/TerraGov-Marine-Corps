@@ -22,7 +22,7 @@
 /obj/machinery/prop/structurelattice
 	name = "structural lattice"
 	desc = "Like rebar, but in space."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "structure_lattice"
 	coverage = 50
 	max_integrity = 750
@@ -32,7 +32,7 @@
 /obj/machinery/prop/fuel_enhancer
 	name = "fuel enhancer"
 	desc = "A fuel enhancement system for dropships. It improves the thrust produced by the fuel combustion for faster travels. Fits inside the engine attach points. You need a powerloader to lift it."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "fuel_enhancer"
 	coverage = 25
 	max_integrity = 350
