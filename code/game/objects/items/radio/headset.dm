@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
 	/// Current squad TTS mode the headset is switched to; defaults to no radio TTS
-	var/squad_tts_mode = HEADSET_TTS_NONE
+	var/squad_tts_mode = HEADSET_TTS_SL_ONLY
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
