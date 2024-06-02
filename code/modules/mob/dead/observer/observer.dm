@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if("Join as Larva")
 				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
 				if(SSticker.mode.attempt_to_join_as_larva(ghost.client))
-					original_corpse.set_undefibbable()
+					original_corpse?.set_undefibbable()
 		return
 
 	else if(href_list["preference"])
@@ -848,8 +848,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Noone will be able to revive you."
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
+		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
+		if(istype(human_current))
+			human_current.set_undefibbable(TRUE)
 		can_reenter_corpse = null
-		to_chat(usr, span_boldwarning("You can no longer enter your body to be revived."))
+		to_chat(usr, span_boldwarning("You can no longer be revived."))
 		return
 
 	to_chat(usr, span_warning("You already can't be revived."))

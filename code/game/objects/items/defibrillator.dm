@@ -97,7 +97,7 @@
 	if(!istype(user))
 		return
 	if(!COOLDOWN_CHECK(src, defib_cooldown))
-		user.visible_message(span_warning("You've toggled [src] too recently!"))
+		balloon_alert(user, "toggled too recently")
 		return
 
 	//Job knowledge requirement
@@ -141,7 +141,7 @@
 ///Proc for checking that the defib is ready to operate
 /obj/item/defibrillator/proc/defib_ready(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(!ready)
-		to_chat(user, span_warning("Take the paddles out to continue."))
+		balloon_alert(user, "take the paddles out")
 		return FALSE
 	if(!ishuman(patient))
 		to_chat(user, span_warning("The instructions on [src] don't mention how to resuscitate that..."))
@@ -157,11 +157,11 @@
 ///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
-		user.visible_message(span_warning("You're too busy to use \the [src]!"))
+		balloon_alert(user, "busy")
 		return
 
 	if(!COOLDOWN_CHECK(src, defib_cooldown))
-		user.visible_message(span_warning("\The [src] is recharging, wait a second!"))
+		balloon_alert(user, "recharging")
 		return
 
 	COOLDOWN_START(src, defib_cooldown, 2 SECONDS) // 2 seconds before you can try again, initially

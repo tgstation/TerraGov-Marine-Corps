@@ -264,7 +264,7 @@
 				if(!ghost)
 					status_hud.icon_state = "synthdnr"
 					return TRUE
-				if(!ghost.client) // AFK ghost detected
+				if(!ghost.client) // DC'd ghost detected
 					status_hud.overlays += "dead_noclient"
 			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
 				status_hud.overlays += "dead_noclient"
@@ -313,7 +313,7 @@
 				if(!ghost) // No ghost detected. DNR player or NPC
 					status_hud.icon_state = "dead_dnr"
 					return TRUE
-				if(!ghost.client) // AFK ghost detected
+				if(!ghost.client) // DC'd ghost detected
 					status_hud.overlays += "dead_noclient"
 			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
 				status_hud.overlays += "dead_noclient"
