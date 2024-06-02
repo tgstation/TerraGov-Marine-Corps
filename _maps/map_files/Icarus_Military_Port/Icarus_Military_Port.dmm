@@ -971,11 +971,6 @@
 /obj/structure/prop/mainship/pipeprop/manifold,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
-"dI" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating/mainship,
-/area/prison/security/briefing,
-/area/prison/security/briefing)
 "dK" = (
 /obj/structure/caspart/seventeen{
 	dir = 8
@@ -2088,7 +2083,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
+/area/arrival/start)
 "hV" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
@@ -3024,6 +3019,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/caves/northeast)
+"lF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall/sulaco/unmeltable,
+/area/construction/qmaint)
 "lG" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -3058,11 +3057,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship)
-"lN" = (
-/obj/structure/largecrate/random/case/double,
-/turf/open/floor/mainship/floor,
-/area/bigredv2/outside/cargo,
-/area/bigredv2/outside/cargo)
 "lO" = (
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -3215,12 +3209,6 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"mw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
 "mx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -3715,10 +3703,6 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"ou" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison/darkred/full,
-/area/space)
 "ov" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3940,7 +3924,7 @@
 "pn" = (
 /obj/structure/grille/fence,
 /turf/open/floor/wood,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "po" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
@@ -4331,7 +4315,7 @@
 "qK" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "qL" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -5054,10 +5038,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
-"tH" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
 "tI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5218,9 +5198,6 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
-"uo" = (
-/turf/open/floor/mainship/stripesquare,
-/area/space)
 "up" = (
 /obj/machinery/light{
 	dir = 4
@@ -5315,9 +5292,6 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
-"uH" = (
-/turf/closed/wall/wood,
-/area/bigredv2/outside/library)
 "uI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5731,7 +5705,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "wi" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -6383,10 +6357,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"yE" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
 "yF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6527,12 +6497,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/construction)
-"zd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/library)
 "ze" = (
 /obj/structure/cable,
 /obj/structure/table/mainship,
@@ -6989,7 +6953,7 @@
 "AT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "AU" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light{
@@ -7214,7 +7178,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "BP" = (
 /obj/structure/cargo_container/red,
 /obj/structure/cable,
@@ -7286,7 +7250,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "Cc" = (
 /obj/machinery/light{
 	dir = 4
@@ -7455,10 +7419,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/dorms)
-"CJ" = (
-/turf/open/floor/plating/mainship,
-/area/daedalusprison/inside/security,
-/area/daedalusprison/inside/security)
 "CK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7911,9 +7871,6 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"Ey" = (
-/turf/open/floor/mainship/mono,
-/area/space)
 "Ez" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -8206,7 +8163,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "FC" = (
 /obj/machinery/light{
 	dir = 8
@@ -8234,7 +8191,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "FJ" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -9096,7 +9053,7 @@
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "IW" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -9833,10 +9790,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"LI" = (
-/turf/open/floor/mainship/mono,
-/area/arrival/start,
-/area/arrival/start)
 "LJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -9918,10 +9871,6 @@
 	dir = 1
 	},
 /area/construction)
-"Ma" = (
-/turf/open/floor/plating,
-/area/outpost/lz1,
-/area/outpost/lz1)
 "Mb" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship,
@@ -10210,7 +10159,7 @@
 	},
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
+/area/arrival/start)
 "Ng" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship/gray,
@@ -10716,9 +10665,6 @@
 "OX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"OY" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/library)
 "OZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11055,7 +11001,7 @@
 "Qf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "Qg" = (
 /turf/open/shuttle/dropship/floor,
 /area/prison/security/briefing)
@@ -11113,12 +11059,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/storage)
-"Qr" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/library)
 "Qs" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -11144,10 +11084,6 @@
 	dir = 8
 	},
 /area/bigredv2/caves/southeast)
-"Qx" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
 "Qy" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2
@@ -11512,9 +11448,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship)
-"RT" = (
-/turf/open/floor/plating,
-/area/space)
 "RU" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -11905,9 +11838,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/construction/qmaint)
-"Tp" = (
-/turf/closed/wall/mainship,
-/area/bigredv2/outside/library)
 "Tq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/sulaco/unmeltable,
@@ -12579,7 +12509,7 @@
 	on = 1
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/library)
+/area/arrival/start)
 "VO" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -12766,11 +12696,6 @@
 /obj/item/storage/box/MRE,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"Ww" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
 "Wx" = (
 /turf/closed/shuttle/cas/centertop,
 /area/space)
@@ -26687,7 +26612,7 @@ pz
 gH
 To
 gH
-kR
+Jn
 CR
 CR
 CR
@@ -26944,7 +26869,7 @@ pz
 gH
 To
 gH
-kR
+Jn
 CR
 CR
 CR
@@ -27201,7 +27126,7 @@ mH
 YK
 kV
 Tn
-IE
+Ia
 CR
 CR
 CR
@@ -27458,7 +27383,7 @@ pz
 gH
 LU
 gH
-IE
+Ia
 CR
 CR
 CR
@@ -27715,7 +27640,7 @@ dO
 LU
 Qm
 gH
-IE
+Ia
 CR
 CR
 CR
@@ -27972,7 +27897,7 @@ pz
 gH
 LU
 gH
-IE
+Ia
 CR
 CR
 CR
@@ -28229,7 +28154,7 @@ pz
 gH
 LU
 Gc
-ce
+lF
 gh
 gh
 gh
@@ -29529,8 +29454,8 @@ FO
 gn
 gn
 gn
-RT
-Ma
+gn
+gn
 gn
 gn
 gn
@@ -31046,7 +30971,7 @@ HI
 Ke
 vE
 vE
-CJ
+vE
 vf
 vE
 Kt
@@ -31810,7 +31735,7 @@ GB
 NS
 sr
 Kx
-ou
+GB
 jm
 dR
 HI
@@ -38030,7 +37955,7 @@ XW
 XW
 dc
 XW
-Ey
+XW
 XW
 XW
 XW
@@ -38233,7 +38158,7 @@ gl
 YD
 gl
 Lj
-dI
+ca
 gT
 rp
 el
@@ -38515,18 +38440,18 @@ XD
 XD
 Ie
 NH
-yE
-yE
-yE
-Ax
-Ax
-Qx
-qL
-GD
+lu
+lu
+lu
+Dr
+Dr
+Rx
+ld
+XW
 hU
-qL
-Ax
-Qx
+ld
+Dr
+Rx
 Nf
 Dr
 HG
@@ -38747,7 +38672,7 @@ Nl
 Op
 aV
 BB
-uo
+BB
 cj
 tC
 nQ
@@ -38793,7 +38718,7 @@ jB
 aG
 aG
 aG
-tH
+ld
 XW
 XW
 XW
@@ -38801,7 +38726,7 @@ XW
 XW
 dc
 XW
-LI
+XW
 XW
 XW
 XW
@@ -39028,11 +38953,11 @@ ob
 ue
 ob
 ob
-Tp
-OY
-zd
-OY
-uH
+HG
+Og
+HK
+Og
+sh
 aG
 aG
 gL
@@ -39285,11 +39210,11 @@ ob
 nG
 ob
 kd
-Tp
-OY
-zd
-OY
-uH
+HG
+Og
+HK
+Og
+sh
 SX
 yR
 uQ
@@ -39307,7 +39232,7 @@ aG
 aG
 aG
 aG
-mw
+jF
 XW
 XW
 XW
@@ -39542,11 +39467,11 @@ KI
 RU
 FS
 KI
-Tp
-OY
+HG
+Og
 VN
 FB
-uH
+sh
 SX
 lD
 iD
@@ -39799,11 +39724,11 @@ ob
 TK
 ob
 KI
-Tp
+HG
 Qf
-OY
+Og
 qK
-uH
+sh
 oH
 aG
 ow
@@ -39815,13 +39740,13 @@ oF
 aG
 aG
 sh
-Ax
-Ax
-Ax
-Qx
-Qx
-Ax
-Ax
+Dr
+Dr
+Dr
+Rx
+Rx
+Dr
+Dr
 CR
 CR
 CR
@@ -40056,11 +39981,11 @@ ob
 nG
 ob
 KI
-Tp
-OY
-Qr
+HG
+Og
+zj
 qK
-uH
+sh
 GF
 aG
 aG
@@ -40072,7 +39997,7 @@ aG
 aG
 aG
 jo
-Qx
+Rx
 CR
 CR
 CR
@@ -40313,11 +40238,11 @@ gZ
 is
 Qh
 Qd
-Tp
-Tp
-Tp
+HG
+HG
+HG
 IV
-uH
+sh
 GF
 aG
 GU
@@ -40329,7 +40254,7 @@ GU
 GF
 aG
 jG
-Qx
+Rx
 CR
 CR
 CR
@@ -40574,19 +40499,19 @@ KI
 KI
 KI
 Ek
-Tp
-uH
+HG
+sh
 pn
-uH
-uH
-uH
-uH
-uH
-uH
-uH
-uH
-uH
-Ax
+sh
+sh
+sh
+sh
+sh
+sh
+sh
+sh
+sh
+Dr
 CR
 CR
 CR
@@ -41890,7 +41815,7 @@ ZM
 mj
 sK
 KW
-lN
+RC
 zt
 hQ
 sM
@@ -51912,7 +51837,7 @@ ec
 Ei
 tX
 FD
-Ww
+or
 Ny
 Ei
 Ei
@@ -55510,7 +55435,7 @@ Ei
 SA
 tX
 FD
-Ww
+or
 Ei
 Ei
 Ei
