@@ -31,7 +31,7 @@
 	dir = NORTH
 
 /obj/structure/bed/chair/alt
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "chair_alt"
 
 /obj/structure/bed/chair/nometal

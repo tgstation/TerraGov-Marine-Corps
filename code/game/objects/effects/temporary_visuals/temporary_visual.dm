@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	animate(src, time = duration, pixel_y = 0)
 
 /obj/effect/temp_visual/dropship_flyby
-	icon = 'icons/Marine/dropship_prop.dmi'
+	icon = 'icons/obj/structures/prop/dropship.dmi'
 	icon_state = "fighter_shadow"
 	layer = FLY_LAYER
 	resistance_flags = RESIST_ALL

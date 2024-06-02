@@ -130,6 +130,18 @@
 
 	return ..()
 
+/obj/structure/bed/roller/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!ishuman(user)) // Keep xenos from toggling the brake
+		return
+
+	if(!anchored)
+		balloon_alert(user, "Brakes on")
+		anchored = TRUE
+	else
+		balloon_alert(user, "Brakes off")
+		anchored = FALSE
+
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
@@ -215,7 +227,7 @@
 */
 /obj/structure/bed/roller
 	name = "roller bed"
-	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly."
+	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly. Has brakes to prevent the patient from rolling away."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
