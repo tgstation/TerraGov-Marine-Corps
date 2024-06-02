@@ -126,18 +126,6 @@
 	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
 	icon_state = "lavarocks3"
 
-/obj/structure/rock/tinyrock
-	name = "tiny rock pile"
-	desc = "A pile of tiny pebbles..."
-	icon_state = "tinyrock"
-	density = FALSE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	max_integrity = 100
-
-/obj/structure/rock/tinyrock/Initialize(mapload)
-	. = ..()
-	icon_state = "tinyrock_[rand(1,8)]"
-
 //randomised icons
 /obj/structure/rock/variable
 	///number of icon variants this object has
