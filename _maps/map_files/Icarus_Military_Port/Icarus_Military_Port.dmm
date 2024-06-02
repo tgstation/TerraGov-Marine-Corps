@@ -841,12 +841,6 @@
 /obj/structure/prop/mainship/pipeprop/manifold,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
-"dK" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
-/turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
 "dM" = (
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
@@ -868,12 +862,6 @@
 "dR" = (
 /turf/open/floor/prison/darkred,
 /area/daedalusprison/inside/security)
-"dS" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
-/turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
 "dT" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1124,6 +1112,10 @@
 /area/daedalusprison/inside/security)
 "fd" = (
 /obj/structure/showcase/yaut,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/tile/darkish,
 /area/prison/security/checkpoint)
 "fe" = (
@@ -2020,12 +2012,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"iP" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/prison/security/checkpoint)
 "iQ" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile/side{
@@ -3759,13 +3745,6 @@
 	dir = 10
 	},
 /area/space)
-"qv" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
-/area/space)
 "qw" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -4132,11 +4111,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/lambda_lab)
-"sd" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "se" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/closed/wall/mainship,
@@ -5585,6 +5559,9 @@
 /area/space)
 "yr" = (
 /obj/structure/showcase/two,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/tile/darkish,
 /area/prison/security/checkpoint)
 "ys" = (
@@ -7203,12 +7180,6 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
 /area/space)
-"Fk" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/prison/security/checkpoint)
 "Fm" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -7225,12 +7196,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"Fp" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/prison/security/checkpoint)
 "Fq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9055,12 +9020,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/mainship,
 /area/arrival/start)
-"Ne" = (
-/obj/structure/showcase{
-	icon_state = "mechfab1"
-	},
-/turf/open/floor/podhatch/floor,
-/area/daedalusprison/inside/westcomputerlab)
 "Nf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9593,6 +9552,9 @@
 /area/crew_quarters/cafeteria)
 "Po" = (
 /obj/structure/showcase/five,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/tile/darkish,
 /area/prison/security/checkpoint)
 "Pq" = (
@@ -9991,6 +9953,10 @@
 /area/deltastation/engineering)
 "QU" = (
 /obj/structure/showcase/six,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/tile/darkish,
 /area/prison/security/checkpoint)
 "QV" = (
@@ -10055,11 +10021,6 @@
 /obj/structure/closet/crate/science,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"Rj" = (
-/obj/structure/cable,
-/obj/structure/window/reinforced,
-/turf/closed/wall/mainship,
-/area/prison/security/checkpoint)
 "Rk" = (
 /obj/machinery/light{
 	dir = 4
@@ -10085,13 +10046,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"Rp" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/prison/security/checkpoint)
 "Rq" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -24602,11 +24556,11 @@ DV
 zA
 DV
 WO
-Ne
-dK
-dK
+nf
+nf
+nf
 OQ
-dK
+nf
 WO
 Aq
 EL
@@ -24863,7 +24817,7 @@ nf
 zF
 zF
 PC
-dS
+nf
 WO
 bk
 EL
@@ -25120,7 +25074,7 @@ zF
 zF
 KM
 PC
-dK
+nf
 WO
 KY
 EL
@@ -25377,7 +25331,7 @@ nf
 MB
 zF
 Ou
-Ne
+nf
 WO
 kX
 EL
@@ -25634,7 +25588,7 @@ iM
 zF
 zF
 PC
-dK
+nf
 WO
 XC
 EL
@@ -25888,10 +25842,10 @@ WO
 DV
 WO
 iM
-dS
-dS
+nf
+nf
 Bj
-dS
+nf
 WO
 ad
 EL
@@ -40052,8 +40006,8 @@ mz
 TK
 TN
 Jd
-Fk
-Fk
+ue
+ue
 ob
 te
 sy
@@ -40308,10 +40262,10 @@ MG
 rM
 TK
 TN
-Rj
+Jd
 Po
 fd
-Rp
+kd
 te
 Ob
 kB
@@ -40565,10 +40519,10 @@ MG
 ob
 TK
 TN
-Rj
+Jd
 yr
 QU
-Fp
+ob
 WT
 rO
 Yd
@@ -40823,8 +40777,8 @@ mz
 TK
 TN
 Jd
-iP
-iP
+ue
+ue
 ob
 WT
 sy
@@ -42647,7 +42601,7 @@ CR
 CR
 CR
 CR
-sd
+Rs
 Rs
 Rs
 Rs
@@ -42904,7 +42858,7 @@ CR
 CR
 CR
 CR
-sd
+Rs
 Rs
 Rs
 Rs
@@ -45457,7 +45411,7 @@ wN
 xA
 ts
 RI
-qv
+sC
 lf
 lB
 sC
@@ -45714,7 +45668,7 @@ wN
 xA
 Ui
 RI
-qv
+sC
 lf
 lB
 sC
