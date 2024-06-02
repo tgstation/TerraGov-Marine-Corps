@@ -208,6 +208,9 @@
 		if(speaker.assigned_squad.squad_leader == speaker)
 			headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
 
+		if(speaker in receive)
+			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
+
 		for(var/mob/living/carbon/human/potential_squadmate in receive)
 			var/obj/item/radio/headset/radio = potential_squadmate.wear_ear
 			if(speaker.assigned_squad != potential_squadmate.assigned_squad && radio.squad_tts_mode >= headset_target )
