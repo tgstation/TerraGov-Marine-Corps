@@ -205,6 +205,34 @@
 		return
 	return ..()
 
+/obj/machinery/computer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I,/obj/item/circuitboard/tadpole))
+		return
+	var/repair_time = 30 SECONDS
+	if(!(machine_stat & BROKEN))
+		to_chat(user,span_notice("The circuits don't need replacing"))
+		return
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
+		span_notice("You fumble around figuring out how to replace the electronics."))
+		repair_time += 5 SECONDS * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return
+	else
+		user.visible_message(span_notice("[user] begins replacing the electronics"),
+		span_notice("You begin replacing the electronics"))
+		if(!do_after(user,repair_time,NONE,src,BUSY_ICON_GENERIC))
+			return
+	user.visible_message(span_notice("[user] replaces the electronics."),
+	span_notice("You replace the electronics"))
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	repair()
+	qdel(I)
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
 

@@ -162,7 +162,7 @@
 	if(isnull(T))
 		return FALSE
 	. = TRUE
-	if(locate(/obj/flamer_fire) in T)
+	if(locate(/obj/fire/flamer) in T)
 		return FALSE
 	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
@@ -268,7 +268,7 @@
 	var/amount = round(health * 100 / maxHealth, 10)
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
-	holder.icon_state = "xenohealth[amount]"
+	holder.icon_state = "health[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -305,7 +305,7 @@
 /mob/living/carbon/xenomorph/hivemind/update_progression()
 	return
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/fire/flamer/CanAllowThrough(atom/movable/mover, turf/target)
 	if(isxenohivemind(mover))
 		return FALSE
 	return ..()
