@@ -8,13 +8,16 @@
 	var/obj/deploy_type
 	///Any extra checks required when trying to deploy this item
 	var/datum/callback/deploy_check_callback
+	///Helps to determine if the item should be deployable in areas like the tad and alamo
+	var/restricted_deployment = FALSE
 
-/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback)
+/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _restricted_deployment, _deploy_check_callback)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
+	restricted_deployment = _restricted_deployment
 	deploy_check_callback = _deploy_check_callback
 
 	var/obj/item/attached_item = parent
@@ -72,7 +75,7 @@
 
 		var/area/area = get_area(location)
 		var/turf/open/placement_loc = location
-		if(istype(item_to_deploy, /obj/item/weapon/shield/riot/marine/deployable) && (!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION)) // long ass check to prevent things like deployable shields on alamo
+		if(restricted_deployment && (!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION)) // long ass check to prevent things like deployable shields on alamo
 			user.balloon_alert(user, "Can't deploy here")
 			return
 
