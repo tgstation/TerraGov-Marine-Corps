@@ -972,7 +972,7 @@
 /area/bigredv2/outside/c)
 "eu" = (
 /obj/structure/window/framed/mainship/gray,
-/turf/closed/wall/sulaco/unmeltable,
+/turf/open/floor/plating/mainship,
 /area/shuttle/drop2/lz2)
 "ev" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1815,7 +1815,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "hW" = (
 /obj/structure/lattice,
@@ -2253,10 +2253,6 @@
 /obj/item/weapon/gun/rifle/sniper/antimaterial,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
-"jU" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/closed/wall/mainship,
-/area/bigredv2/outside/c)
 "jV" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -4479,10 +4475,6 @@
 	},
 /turf/open/liquid/water,
 /area/bigredv2/caves/northeast)
-"tK" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/closed/wall/sulaco/unmeltable,
-/area/arrival/start)
 "tO" = (
 /obj/machinery/door/poddoor/two_tile_ver/riotarmory,
 /turf/open/floor/mainship/mono,
@@ -8747,10 +8739,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"LS" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/plating,
-/area/bigredv2/outside/c)
 "LT" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10341,10 +10329,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"SA" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/closed/wall/sulaco/unmeltable,
-/area/shuttle/drop2/lz2)
 "SC" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
@@ -10560,10 +10544,6 @@
 "Tt" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/general_offices)
-"Tv" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/plating,
-/area/bigredv2/outside/c)
 "Tw" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
@@ -18600,10 +18580,10 @@ Oj
 oP
 oP
 oP
-SA
-SA
-SA
-SA
+kS
+kS
+kS
+kS
 oP
 oP
 oP
@@ -32072,7 +32052,7 @@ XW
 XW
 Iv
 Iv
-tK
+Rx
 CR
 CR
 CR
@@ -36928,13 +36908,13 @@ yE
 yE
 Ax
 Ax
-Tv
-LS
-FM
+Qx
+qL
+GD
 hU
-LS
+qL
 Ax
-Tv
+Qx
 Nf
 Dr
 HG
@@ -38226,8 +38206,8 @@ sh
 Ax
 Ax
 Ax
-jU
-jU
+Qx
+Qx
 Ax
 Ax
 CR
@@ -38480,7 +38460,7 @@ aG
 aG
 aG
 jo
-jU
+Qx
 CR
 CR
 CR
@@ -38737,7 +38717,7 @@ GU
 GF
 aG
 jG
-jU
+Qx
 CR
 CR
 CR
