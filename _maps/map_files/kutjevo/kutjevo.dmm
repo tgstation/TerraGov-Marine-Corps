@@ -70,7 +70,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/colony_South/power2)
 "adl" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
@@ -91,7 +91,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "aex" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform/rockcliff/red,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
@@ -295,7 +295,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "arr" = (
@@ -383,7 +383,7 @@
 	},
 /area/kutjevo/interior/complex/Northwest_Dorms)
 "avw" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
@@ -651,7 +651,7 @@
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/construction)
 "aLV" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -663,7 +663,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/complex/botany)
 "aNn" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/power/comms)
 "aNI" = (
@@ -759,7 +759,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/kutjevo/exterior/complex_border/med_park)
 "aWm" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_north)
@@ -991,7 +991,7 @@
 /obj/structure/platform_decoration/rockcliff_deco/red{
 	dir = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
 "bho" = (
@@ -1720,7 +1720,7 @@
 /area/kutjevo/exterior/runoff_river)
 "bXh" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/bigred,
 /area/kutjevo/interior/oob)
@@ -2318,7 +2318,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med)
 "cDx" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
 "cDU" = (
@@ -2327,7 +2327,7 @@
 /area/kutjevo/interior/oob)
 "cEg" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_South)
 "cEl" = (
@@ -2400,7 +2400,7 @@
 /area/kutjevo/interior/power)
 "cGw" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
 "cGz" = (
@@ -2446,7 +2446,7 @@
 /turf/open/floor/kutjevo/colors/purple,
 /area/kutjevo/interior/complex/med/locks)
 "cJg" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/south)
@@ -3358,7 +3358,7 @@
 /area/kutjevo/exterior/spring)
 "dFc" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "dFv" = (
@@ -3632,7 +3632,7 @@
 /area/kutjevo/interior/complex/med/operating)
 "dUc" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
 "dUu" = (
@@ -3937,7 +3937,7 @@
 /area/kutjevo/interior/complex/botany)
 "ein" = (
 /obj/effect/landmark/xeno_resin_wall,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
 "eiz" = (
@@ -4049,7 +4049,7 @@
 /area/kutjevo/interior/oob)
 "eok" = (
 /obj/structure/cable,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "eom" = (
@@ -4117,7 +4117,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
 "erX" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/complex/botany)
 "esi" = (
@@ -4264,7 +4264,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/complex_border/med_rec)
 "ezC" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/construction)
@@ -4360,11 +4360,11 @@
 /area/kutjevo/interior/complex/med/cells)
 "eDv" = (
 /obj/effect/forcefield,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/oob/dev_room)
 "eDP" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -4709,7 +4709,7 @@
 /turf/open/floor/kutjevo/colors/orange/inner_corner,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "eSP" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany)
 "eTy" = (
@@ -5312,7 +5312,7 @@
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 1
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/south)
@@ -5621,7 +5621,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "fTN" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -5704,7 +5704,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/colony_South/power2)
 "fXD" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
@@ -5834,7 +5834,7 @@
 	},
 /area/kutjevo/interior/filtration)
 "gfK" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
 	},
@@ -5899,7 +5899,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/complex/botany/east)
 "giI" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
@@ -6172,7 +6172,7 @@
 	},
 /area/kutjevo/exterior/runoff_bridge)
 "gyX" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
@@ -6229,7 +6229,7 @@
 	dir = 4;
 	pixel_y = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
 "gBA" = (
@@ -6484,7 +6484,7 @@
 	},
 /area/kutjevo/interior/construction/two)
 "gPf" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
@@ -6728,7 +6728,7 @@
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/construction/two)
 "hbK" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/power)
 "hbL" = (
@@ -6781,7 +6781,7 @@
 /turf/open/floor/kutjevo/colors/cyan,
 /area/kutjevo/interior/complex/med)
 "heI" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_South)
 "heL" = (
@@ -6790,7 +6790,7 @@
 /turf/open/floor/kutjevo/colors/purple,
 /area/kutjevo/interior/construction)
 "heM" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
@@ -6836,7 +6836,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/botany/east_tech)
 "hii" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
 "hix" = (
@@ -6868,7 +6868,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "hjo" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
@@ -7002,7 +7002,7 @@
 	},
 /area/kutjevo/interior/complex/med)
 "hrz" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 8
 	},
@@ -7090,7 +7090,7 @@
 /area/kutjevo/exterior/Northwest_Colony)
 "hwF" = (
 /obj/structure/xeno/tunnel,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany/east)
 "hwO" = (
@@ -7122,7 +7122,7 @@
 /turf/open/floor/kutjevo/colors/red,
 /area/kutjevo/interior/complex/botany)
 "hzG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -7256,7 +7256,7 @@
 /area/kutjevo/interior/complex/botany)
 "hHo" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/construction)
 "hIg" = (
@@ -7320,7 +7320,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "hLH" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform/rockcliff/red{
 	dir = 4
 	},
@@ -7398,7 +7398,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/construction)
 "hQS" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
 "hQZ" = (
@@ -7413,7 +7413,7 @@
 /area/kutjevo/exterior/scrubland/south)
 "hSC" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
 "hTn" = (
@@ -7538,11 +7538,11 @@
 /area/kutjevo/exterior/scrubland/south)
 "icr" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_South)
 "icL" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north)
@@ -7672,11 +7672,11 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/filtration)
 "ihK" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "iin" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "iiy" = (
@@ -7707,7 +7707,7 @@
 	},
 /area/kutjevo/interior/construction)
 "ile" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
 "imG" = (
@@ -7953,7 +7953,7 @@
 	},
 /area/kutjevo/interior/complex/Northwest_Flight_Control)
 "iCG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/south)
 "iCH" = (
@@ -7968,7 +7968,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "iDg" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
@@ -8033,7 +8033,7 @@
 /area/kutjevo/interior/power/comms)
 "iHw" = (
 /obj/structure/platform/metalplatform,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
 "iHI" = (
@@ -8111,7 +8111,7 @@
 /area/kutjevo/interior/complex/botany)
 "iKU" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -8329,7 +8329,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/med/auto_doc)
 "iYC" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
@@ -8464,7 +8464,7 @@
 /area/kutjevo/interior/complex/med/cells)
 "jfQ" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_north)
 "jgm" = (
@@ -8639,7 +8639,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "jos" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
@@ -8971,7 +8971,7 @@
 /area/kutjevo/interior/complex/botany)
 "jJe" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
 "jJj" = (
@@ -9173,7 +9173,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/med/cells)
 "jXq" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_river)
 "jXH" = (
@@ -9551,7 +9551,7 @@
 /turf/open/liquid/water/river/deep,
 /area/kutjevo/interior/oob)
 "kqp" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany/east)
 "kqA" = (
@@ -9567,7 +9567,7 @@
 	},
 /area/kutjevo/interior/complex/Northwest_Dorms)
 "kqR" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
@@ -9610,7 +9610,7 @@
 /area/kutjevo/interior/complex/botany)
 "ktf" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
 "kth" = (
@@ -9850,7 +9850,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/exterior/Northwest_Colony)
 "kEi" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9996,7 +9996,7 @@
 	},
 /area/kutjevo/interior/complex/botany/east_tech)
 "kMt" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
@@ -10446,7 +10446,7 @@
 	},
 /area/kutjevo/interior/complex/med/locks)
 "llg" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north)
 "llx" = (
@@ -10776,7 +10776,7 @@
 /turf/open/floor/kutjevo/colors/orange/edge,
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "lCH" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
 	},
@@ -10792,7 +10792,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/filtration)
 "lDS" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction/two)
 "lEe" = (
@@ -11083,7 +11083,7 @@
 /turf/open/floor/kutjevo/colors/cyan,
 /area/kutjevo/interior/complex/med/auto_doc)
 "lTG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -11156,7 +11156,7 @@
 /area/kutjevo/interior/filtration)
 "lXe" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north)
 "lXt" = (
@@ -11303,7 +11303,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/complex/botany)
 "mda" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
 "mdr" = (
@@ -11328,7 +11328,7 @@
 /turf/open/floor/kutjevo/colors/orange/edge,
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
 "meA" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
@@ -11365,7 +11365,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/stonyfields)
 "mfM" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
@@ -11762,7 +11762,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "mzn" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/telecomm/lz2_north)
 "mzv" = (
@@ -12080,7 +12080,7 @@
 	},
 /area/kutjevo/interior/complex/Northwest_Dorms)
 "mMf" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany/east_tech)
 "mMF" = (
@@ -12093,7 +12093,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "mNa" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/construction)
 "mNl" = (
@@ -12181,7 +12181,7 @@
 "mTk" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/cable,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction/two)
@@ -12243,7 +12243,7 @@
 /area/kutjevo/interior/power)
 "mWO" = (
 /obj/structure/platform_decoration/metalplatform_deco,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
 "mXZ" = (
@@ -12318,7 +12318,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/botany/east_tech)
 "nbH" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_central)
 "nbT" = (
@@ -12367,7 +12367,7 @@
 /turf/open/floor/kutjevo/colors/cyan,
 /area/kutjevo/interior/complex/med/cells)
 "neO" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
@@ -12437,7 +12437,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/telecomm/lz2_north)
 "nlv" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
 "nlA" = (
@@ -12479,7 +12479,7 @@
 /turf/open/floor/plating/rivergrate,
 /area/kutjevo/interior/filtration)
 "nnf" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "nni" = (
@@ -12714,7 +12714,7 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/kutjevo/interior/colony_central/mine_elevator)
 "nAc" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
 "nAo" = (
@@ -12875,7 +12875,7 @@
 /obj/structure/platform_decoration/rockcliff_deco/red{
 	dir = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
 "nHU" = (
@@ -12894,7 +12894,7 @@
 /turf/open/floor/kutjevo/colors,
 /area/kutjevo/interior/complex/botany)
 "nIo" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -13027,7 +13027,7 @@
 /turf/open/floor/kutjevo/tiles,
 /area/kutjevo/exterior/Northwest_Colony)
 "nMb" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/telecomm/lz2_north)
@@ -13037,7 +13037,7 @@
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "nOb" = (
 /obj/structure/cable,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
 "nOm" = (
@@ -13219,7 +13219,7 @@
 /turf/open/floor/kutjevo/colors,
 /area/kutjevo/interior/complex/botany)
 "nWo" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/Northwest_Colony)
 "nWu" = (
@@ -13586,7 +13586,7 @@
 /area/kutjevo/exterior/colony_central)
 "oqQ" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "oqU" = (
@@ -13616,7 +13616,7 @@
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "osB" = (
 /obj/effect/forcefield,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
 "otc" = (
@@ -14175,7 +14175,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "oZh" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/soundplayer/lowwindplayer,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
@@ -14212,7 +14212,7 @@
 /obj/structure/platform/rockcliff/red{
 	dir = 1
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dunes,
 /area/kutjevo/exterior/Northwest_Colony)
 "pae" = (
@@ -14507,7 +14507,7 @@
 /area/kutjevo/exterior/runoff_bridge)
 "plF" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
 "plQ" = (
@@ -14549,7 +14549,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "pnJ" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/kutjevo_sign,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -14568,7 +14568,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/exterior/colony_central)
 "pom" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
@@ -14639,7 +14639,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/lz_dunes)
 "psT" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
@@ -15170,7 +15170,7 @@
 /turf/open/floor/plating/ground/mars/dunes,
 /area/kutjevo/exterior/Northwest_Colony)
 "pSw" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/construction)
@@ -15353,7 +15353,7 @@
 "qev" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/cable,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction/two)
 "qfw" = (
@@ -15578,7 +15578,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/botany)
 "qtO" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -15832,7 +15832,7 @@
 	dir = 4
 	},
 /obj/structure/platform/rockcliff/red,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dunes,
 /area/kutjevo/exterior/Northwest_Colony)
 "qIK" = (
@@ -16185,7 +16185,7 @@
 /turf/open/floor/mainship/research/containment/floor2,
 /area/kutjevo/exterior/Northwest_Colony)
 "rei" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -16411,7 +16411,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/exterior/Northwest_Colony)
 "roS" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_bridge)
 "rpg" = (
@@ -16445,7 +16445,7 @@
 	},
 /area/kutjevo/interior/complex/botany/east_tech)
 "rrG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
@@ -16675,7 +16675,7 @@
 /area/kutjevo/interior/complex/med/locks)
 "rFq" = (
 /obj/effect/forcefield,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform/rockcliff/red,
 /obj/structure/platform/rockcliff/red{
 	dir = 4
@@ -16778,13 +16778,13 @@
 /turf/open/floor/kutjevo/tiles,
 /area/kutjevo/exterior/Northwest_Colony)
 "rKY" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "rLy" = (
 /obj/structure/flora/desert/grass,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "rMf" = (
@@ -16819,7 +16819,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/exterior/colony_central)
 "rNv" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany/east_tech)
@@ -17113,7 +17113,7 @@
 /obj/structure/platform_decoration/rockcliff_deco/red{
 	dir = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/south)
 "sbz" = (
@@ -17127,7 +17127,7 @@
 /turf/open/floor/kutjevo/plate,
 /area/kutjevo/exterior/runoff_dunes)
 "sbX" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_river)
 "sce" = (
@@ -17276,7 +17276,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "slx" = (
@@ -17475,12 +17475,12 @@
 /area/kutjevo/interior/complex/botany/east)
 "svh" = (
 /obj/structure/cable,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/scrubland/south)
 "svB" = (
 /obj/structure/platform_decoration/rockcliff_deco/red,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "svR" = (
@@ -17574,7 +17574,7 @@
 /turf/open/floor/kutjevo/plate,
 /area/kutjevo/exterior/colony_central)
 "sAN" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_river)
@@ -17790,7 +17790,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "sNZ" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
 "sOc" = (
@@ -17817,7 +17817,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/filtration)
 "sPp" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_N_East)
 "sPE" = (
@@ -17931,7 +17931,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
 "sUa" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/bigred,
 /area/kutjevo/interior/oob)
@@ -18047,7 +18047,7 @@
 	},
 /area/kutjevo/exterior/runoff_bridge)
 "sZG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_South)
@@ -18213,7 +18213,7 @@
 /obj/structure/platform_decoration/rockcliff_deco/red{
 	dir = 1
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "tiU" = (
@@ -18514,7 +18514,7 @@
 /area/kutjevo/exterior/colony_central)
 "txV" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_N_East)
@@ -18523,7 +18523,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/kutjevo/exterior/complex_border/med_park)
 "tyq" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_north)
 "tyJ" = (
@@ -18566,7 +18566,7 @@
 /turf/open/floor/carpet,
 /area/kutjevo/interior/colony_South/power2)
 "tCm" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_South)
 "tCK" = (
@@ -18658,7 +18658,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/colony_South/power2)
 "tFN" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/construction)
 "tGg" = (
@@ -18852,7 +18852,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/med/cells)
 "tSm" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
@@ -19103,7 +19103,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
 "ufy" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/complex/botany/east_tech)
@@ -19192,7 +19192,7 @@
 /obj/structure/platform_decoration/rockcliff_deco/red{
 	dir = 4
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "ujT" = (
@@ -19210,7 +19210,7 @@
 /area/kutjevo/interior/colony_South/power2)
 "ukq" = (
 /obj/effect/forcefield,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform/rockcliff/red,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
@@ -19522,7 +19522,7 @@
 	},
 /area/kutjevo/interior/colony_South/power2)
 "uze" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/runoff_river)
 "uzp" = (
@@ -19540,7 +19540,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "uzJ" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
 "uzP" = (
@@ -19646,7 +19646,7 @@
 	},
 /area/kutjevo/interior/complex/Northwest_Flight_Control)
 "uEM" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_central)
@@ -19722,7 +19722,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/kutjevo/exterior/complex_border/med_park)
 "uJc" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_S_East)
 "uJl" = (
@@ -19810,7 +19810,7 @@
 /obj/structure/platform/rockcliff/red{
 	dir = 8
 	},
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dunes,
 /area/kutjevo/exterior/Northwest_Colony)
 "uNW" = (
@@ -20192,7 +20192,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/power/comms)
 "vei" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "ven" = (
@@ -20330,7 +20330,7 @@
 /area/kutjevo/interior/colony_South/power2)
 "vla" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
 "vlg" = (
@@ -20385,7 +20385,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
 "vpq" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "vqQ" = (
@@ -20441,7 +20441,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/complex/botany/east_tech)
 "vtT" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/runoff_dunes)
 "vtW" = (
@@ -20776,7 +20776,7 @@
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/complex/Northwest_Dorms)
 "vKz" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/structure/platform/rockcliff/red,
 /obj/structure/platform/rockcliff/red{
 	dir = 8
@@ -20925,7 +20925,7 @@
 /area/kutjevo/interior/complex/med/cells)
 "vRx" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
 "vRH" = (
@@ -21128,7 +21128,7 @@
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/construction/two)
 "wbV" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/north)
 "wcj" = (
@@ -21236,7 +21236,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power/comms)
 "wjC" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_north)
@@ -21580,7 +21580,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/construction)
 "wAp" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction)
 "wAq" = (
@@ -21977,7 +21977,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_north)
 "wXy" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/telecomm/lz2_north)
 "wXJ" = (
@@ -22011,12 +22011,12 @@
 /turf/open/ground/grass/weedable,
 /area/kutjevo/exterior/complex_border/med_park)
 "wYv" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/Northwest_Colony)
 "wYE" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_S_East)
 "wZo" = (
@@ -22391,7 +22391,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/stonyfields)
 "xuM" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_South)
@@ -22593,7 +22593,7 @@
 /turf/open/floor/mainship/research/containment/floor2,
 /area/kutjevo/exterior/Northwest_Colony)
 "xFO" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/spring)
@@ -22696,12 +22696,12 @@
 /area/kutjevo/exterior/colony_South)
 "xMm" = (
 /obj/structure/largecrate/machine/autodoc,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/construction/two)
 "xMV" = (
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "xNf" = (
@@ -22743,7 +22743,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/complex/Northwest_Flight_Control)
 "xNG" = (
-/obj/structure/rock/tinyrock,
+/obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/telecomm/lz1_south)
 "xOc" = (
