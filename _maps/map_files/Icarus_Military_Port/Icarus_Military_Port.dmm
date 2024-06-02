@@ -17,11 +17,6 @@
 /obj/machinery/computer/guestpass,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
-"ae" = (
-/turf/closed/shuttle/dropship3/transparent{
-	icon_state = "97"
-	},
-/area/bigredv2/outside/c)
 "ag" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
@@ -539,11 +534,6 @@
 	},
 /turf/open/liquid/water,
 /area/bigredv2/caves/southwest)
-"cj" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "43"
-	},
-/area/bigredv2/outside/c)
 "ck" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/maint{
@@ -637,11 +627,6 @@
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/c)
-"cH" = (
-/turf/closed/shuttle/dropship3/transparent{
-	icon_state = "98"
-	},
 /area/bigredv2/outside/c)
 "cI" = (
 /turf/open/floor/mainship_hull/dir{
@@ -965,11 +950,6 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"eo" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "76"
-	},
-/area/bigredv2/outside/c)
 "ep" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1291,11 +1271,6 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"fH" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "14"
-	},
-/area/bigredv2/outside/c)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -2324,11 +2299,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"kb" = (
-/turf/closed/shuttle/dropship3/transparent{
-	icon_state = "96"
-	},
-/area/bigredv2/outside/c)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -2772,14 +2742,6 @@
 	},
 /turf/open/floor/mainship/blue{
 	dir = 8
-	},
-/area/bigredv2/outside/c)
-"lV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/closed/shuttle/dropship3{
-	icon_state = "42"
 	},
 /area/bigredv2/outside/c)
 "lW" = (
@@ -3317,15 +3279,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"or" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/closed/shuttle/dropship3{
-	icon_state = "43"
-	},
-/area/bigredv2/outside/c)
 "os" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
@@ -3690,11 +3643,6 @@
 /obj/effect/attach_point/crew_weapon/dropship1,
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop2/lz2)
-"pV" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "75"
-	},
-/area/bigredv2/outside/c)
 "pX" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -4561,11 +4509,6 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/closed/wall/sulaco/unmeltable,
 /area/arrival/start)
-"tL" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "53"
-	},
-/area/bigredv2/outside/c)
 "tO" = (
 /obj/machinery/door/poddoor/two_tile_ver/riotarmory,
 /turf/open/floor/mainship/mono,
@@ -5371,14 +5314,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
-"xd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/closed/shuttle/dropship3{
-	icon_state = "43"
-	},
-/area/bigredv2/outside/c)
 "xe" = (
 /obj/machinery/light{
 	dir = 4
@@ -8207,11 +8142,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"Jk" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "68"
-	},
-/area/bigredv2/outside/c)
 "Jl" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/darkred{
@@ -8523,11 +8453,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/security)
-"Ku" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "42"
-	},
-/area/bigredv2/outside/c)
 "Kv" = (
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/outside/c)
@@ -10630,11 +10555,6 @@
 "Ti" = (
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"Tj" = (
-/turf/closed/shuttle/dropship3{
-	icon_state = "83"
-	},
-/area/bigredv2/outside/c)
 "Tk" = (
 /obj/structure/monorail,
 /turf/open/liquid/water,
@@ -11366,11 +11286,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
-"Wp" = (
-/turf/closed/shuttle/dropship3/transparent{
-	icon_state = "86"
-	},
-/area/bigredv2/outside/c)
 "Wq" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship/floor,
@@ -12111,11 +12026,6 @@
 "Zu" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/plating/mainship,
-/area/bigredv2/outside/c)
-"Zv" = (
-/turf/closed/shuttle/dropship3/transparent{
-	icon_state = "89"
-	},
 /area/bigredv2/outside/c)
 "Zx" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
@@ -34197,15 +34107,15 @@ gd
 Or
 GD
 GD
-pV
+GD
 SG
-Ku
-Ku
-Ku
-Ku
-Ku
-Ku
-Ku
+GD
+GD
+GD
+GD
+GD
+GD
+GD
 Lj
 ca
 oL
@@ -34453,8 +34363,8 @@ kx
 aX
 Or
 Fc
-Wp
-eo
+GD
+GD
 Qg
 cQ
 SG
@@ -34463,7 +34373,7 @@ SG
 cQ
 SG
 cQ
-fH
+GD
 ca
 Wl
 JY
@@ -34709,7 +34619,7 @@ bH
 DG
 qW
 Or
-kb
+GD
 aV
 aV
 aV
@@ -34966,15 +34876,15 @@ by
 by
 by
 Or
-ae
+GD
 UF
 kl
 Qg
-Jk
-tL
+GD
+GD
 Qg
-Jk
-tL
+GD
+GD
 Qg
 Qg
 SG
@@ -35223,7 +35133,7 @@ NM
 aF
 Kb
 Or
-cH
+GD
 aV
 aV
 aV
@@ -35481,8 +35391,8 @@ cI
 hk
 Or
 SK
-Zv
-eo
+GD
+GD
 OW
 TE
 SG
@@ -35491,7 +35401,7 @@ SG
 TE
 SG
 TE
-fH
+GD
 ca
 Wl
 GD
@@ -35739,15 +35649,15 @@ gd
 Or
 GD
 GD
-Tj
+GD
 SG
-cj
-cj
-cj
-cj
-cj
-cj
-cj
+GD
+GD
+GD
+GD
+GD
+GD
+GD
 uR
 ca
 Wl
@@ -36767,15 +36677,15 @@ gd
 Or
 GD
 GD
-pV
+GD
 SG
-Ku
-Ku
-Ku
-Ku
-Ku
-lV
-Ku
+GD
+GD
+GD
+GD
+GD
+EM
+GD
 Lj
 ca
 gT
@@ -37023,8 +36933,8 @@ kx
 aX
 Or
 Fc
-Wp
-eo
+GD
+GD
 Qg
 cQ
 SG
@@ -37033,7 +36943,7 @@ SG
 cQ
 aw
 cQ
-fH
+GD
 ca
 Wl
 GD
@@ -37279,7 +37189,7 @@ bH
 DG
 qW
 Or
-kb
+GD
 aV
 aV
 aV
@@ -37536,15 +37446,15 @@ by
 by
 by
 Or
-ae
+GD
 UF
 kl
 Qg
-Jk
-tL
+GD
+GD
 Qg
-Jk
-tL
+GD
+GD
 ME
 Qg
 SG
@@ -37793,7 +37703,7 @@ NM
 aF
 Kb
 Or
-cH
+GD
 aV
 aV
 aV
@@ -38051,8 +37961,8 @@ cI
 hk
 Or
 SK
-Zv
-eo
+GD
+GD
 OW
 TE
 SG
@@ -38061,7 +37971,7 @@ SG
 TE
 aw
 TE
-fH
+GD
 ca
 Wl
 GD
@@ -38309,15 +38219,15 @@ gd
 Or
 GD
 GD
-Tj
+GD
 SG
-cj
-cj
-cj
-cj
-cj
-xd
-cj
+GD
+GD
+GD
+GD
+GD
+EM
+GD
 uR
 ca
 Wl
@@ -39337,15 +39247,15 @@ gd
 Or
 GD
 GD
-pV
+GD
 SG
-Ku
-Ku
-Ku
-Ku
-Ku
-lV
-Ku
+GD
+GD
+GD
+GD
+GD
+EM
+GD
 Lj
 ca
 Wl
@@ -39593,8 +39503,8 @@ kx
 aX
 Or
 Fc
-Wp
-eo
+GD
+GD
 Qg
 cQ
 SG
@@ -39603,7 +39513,7 @@ SG
 cQ
 aw
 cQ
-fH
+GD
 ca
 Wl
 GD
@@ -39849,7 +39759,7 @@ bH
 DG
 qW
 Or
-kb
+GD
 Tm
 xn
 xn
@@ -40106,15 +40016,15 @@ by
 by
 by
 Or
-ae
+GD
 UF
 kl
 Mo
-Jk
-tL
+GD
+GD
 Qg
-Jk
-tL
+GD
+GD
 gf
 Qg
 SG
@@ -40363,7 +40273,7 @@ NM
 aF
 Kb
 Or
-cH
+GD
 aV
 aV
 aV
@@ -40621,8 +40531,8 @@ cI
 hk
 Or
 SK
-Zv
-eo
+GD
+GD
 OW
 TE
 SG
@@ -40631,7 +40541,7 @@ SG
 TE
 gc
 TE
-fH
+GD
 ca
 Wl
 GD
@@ -40879,15 +40789,15 @@ cI
 Or
 GD
 GD
-Tj
+GD
 SG
-cj
-cj
-cj
-cj
-cj
-or
-cj
+GD
+GD
+GD
+GD
+GD
+Tf
+GD
 uR
 ca
 Wl
