@@ -87,6 +87,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
+"ar" = (
+/obj/structure/largecrate/supply/ammo/shotgun,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "as" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/mainship,
@@ -551,10 +555,6 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/mainship,
 /area/prison/security/briefing)
-"cb" = (
-/obj/structure/caspart/sixteen,
-/turf/open/space/basic,
-/area/space)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -620,10 +620,6 @@
 	dir = 9
 	},
 /area/deltastation/engineering)
-"co" = (
-/obj/structure/caspart/leftprong,
-/turf/open/space/basic,
-/area/space)
 "cp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -716,6 +712,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
+"cH" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/zx76/standard,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "cI" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -780,13 +781,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
-"cW" = (
-/obj/structure/lattice,
-/obj/structure/prop/mainship/cannon_cables,
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/space)
 "cX" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -923,6 +917,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
+"dx" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/prison/security/checkpoint)
 "dy" = (
 /turf/closed/shuttle/dropship1/enginetwo,
 /area/construction)
@@ -935,11 +935,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"dB" = (
-/turf/closed/shuttle/cas/twentytwo{
-	dir = 4
-	},
-/area/space)
 "dC" = (
 /turf/open/floor/prison/darkred{
 	dir = 8
@@ -971,12 +966,22 @@
 /obj/structure/prop/mainship/pipeprop/manifold,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
-"dK" = (
-/obj/structure/caspart/seventeen{
+"dI" = (
+/obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
+"dJ" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
+"dL" = (
+/obj/structure/closet/crate/mass_produced_crate/supply,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "dM" = (
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
@@ -1047,6 +1052,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
+"eb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/plating_catwalk,
+/area/gelida/indoors/a_block/hallway)
 "ec" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/mainship,
@@ -1075,9 +1087,6 @@
 /obj/structure/cargo_container/hd_blue,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"eh" = (
-/turf/closed/shuttle/cas/rightwingclose,
-/area/space)
 "ei" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop/secure_data,
@@ -1171,6 +1180,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
+"eA" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "eB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -1273,6 +1291,15 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"eV" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "eW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
@@ -1317,13 +1344,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/tile/darkish,
 /area/prison/security/checkpoint)
-"fe" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/mainship/generic/ert{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/prison/security/briefing)
 "ff" = (
 /turf/closed/shuttle/dropship1/interiormisc,
 /area/construction)
@@ -1373,6 +1393,15 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
+"fn" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999;
+	minimum_effect_delay = 3;
+	strength = 3
+	},
+/turf/open/liquid/water,
+/area/bigredv2/caves/northeast)
 "fo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear{
 	dir = 2
@@ -1471,12 +1500,6 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"fH" = (
-/obj/structure/caspart/nineteen{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1779,6 +1802,10 @@
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"gK" = (
+/obj/structure/closet/crate/mass_produced_crate/medical,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "gL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1826,18 +1853,21 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/prison/security/briefing)
+"gU" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/famas,
+/obj/item/ammo_magazine/rifle/famas,
+/obj/item/ammo_magazine/rifle/famas,
+/obj/item/ammo_magazine/rifle/famas,
+/obj/item/ammo_magazine/rifle/famas,
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/storage)
 "gV" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/hallway)
-"gW" = (
-/obj/structure/caspart/twelve{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "gX" = (
 /obj/structure/bed/chair/wood,
 /turf/open/floor/mainship/sterile/dark,
@@ -1920,12 +1950,6 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/red/full,
 /area/mainship)
-"ho" = (
-/obj/structure/caspart/nineteen{
-	dir = 5
-	},
-/turf/open/space/basic,
-/area/space)
 "hp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -2036,6 +2060,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"hM" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/prison/security/briefing)
 "hN" = (
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -2198,6 +2228,10 @@
 /obj/structure/cargo_container/red,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southwest)
+"iq" = (
+/obj/structure/closet/crate/mass_produced_crate/weapon,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "ir" = (
 /obj/structure/sign/directions/security,
 /turf/closed/wall/mainship,
@@ -2217,13 +2251,6 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/security)
-"iv" = (
-/obj/structure/caspart/nineteen,
-/obj/structure/caspart/nineteen{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "iw" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/prison/darkyellow/full,
@@ -2269,6 +2296,10 @@
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/plating/mainship,
 /area/construction)
+"iG" = (
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg,
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/storage)
 "iH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red/full,
@@ -2394,12 +2425,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/outpost/lz1)
-"jj" = (
-/obj/structure/caspart/nineteen,
-/turf/open/space/basic,
-/area/space)
 "jk" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating,
@@ -2416,10 +2444,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
-"jn" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating,
-/area/bigredv2/caves/north)
 "jo" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
@@ -2557,12 +2581,13 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"jT" = (
-/obj/structure/window/reinforced,
-/obj/structure/rack,
-/obj/item/weapon/gun/rifle/sniper/antimaterial,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast)
+"jS" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "jU" = (
 /obj/structure/caspart/thirteen{
 	dir = 8
@@ -2597,6 +2622,13 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
+"kb" = (
+/obj/structure/rack,
+/obj/item/explosive/grenade/sticky/trailblazer,
+/obj/item/explosive/grenade/sticky/trailblazer,
+/obj/item/explosive/grenade/sticky/trailblazer,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -2612,6 +2644,9 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/security)
+"kf" = (
+/turf/open/floor/mainship/red/full,
+/area/outpost/lz1)
 "kg" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -3040,6 +3075,12 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/arrival/start)
+"lJ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "lK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/light{
@@ -3057,6 +3098,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship)
+"lN" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/thirtyfive,
+/area/construction)
 "lO" = (
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -3115,6 +3160,10 @@
 /obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
+"lY" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/orange,
+/area/prison/security/briefing)
 "lZ" = (
 /turf/open/shuttle/dropship/three,
 /area/construction)
@@ -3169,6 +3218,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"ml" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/stripesquare,
+/area/outpost/lz1)
 "mm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3197,6 +3251,14 @@
 "mq" = (
 /turf/open/floor/plating/mainship,
 /area/janitor)
+"mr" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "ms" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating,
@@ -3209,6 +3271,11 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
+"mw" = (
+/turf/closed/shuttle/dropship1/window{
+	dir = 8
+	},
+/area/prison/security/briefing)
 "mx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -3256,6 +3323,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
 "mH" = (
@@ -3275,6 +3343,14 @@
 /obj/structure/caspart/leftprong,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"mL" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "mM" = (
 /obj/structure/monorail{
 	dir = 5
@@ -3414,6 +3490,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"nk" = (
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 1
+	},
+/area/prison/security/briefing)
 "nl" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -3490,10 +3571,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"nA" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/mainship/orange,
-/area/prison/security/checkpoint)
 "nB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
@@ -3703,6 +3780,10 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
+"ou" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/outpost/lz1)
 "ov" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -4141,10 +4222,6 @@
 /obj/item/tool/mop,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
-"qd" = (
-/obj/structure/caspart/rightprong,
-/turf/open/space/basic,
-/area/space)
 "qe" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/manifest,
@@ -4239,10 +4316,6 @@
 "qv" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/briefing)
-"qw" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating,
-/area/bigredv2/caves/north)
 "qx" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4443,10 +4516,6 @@
 "ri" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/briefing)
-"rj" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/mainship/cargo/arrow,
-/area/prison/security/briefing)
 "rk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -4531,9 +4600,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"rD" = (
-/turf/closed/shuttle/cas/computer,
-/area/space)
 "rE" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4608,6 +4674,10 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
+"rU" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "rV" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -4628,6 +4698,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/north)
+"rY" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/double/sawn,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "rZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -4659,6 +4734,10 @@
 /obj/structure/dropship_piece/one/engine/righttop,
 /turf/open/floor/plating/mainship,
 /area/construction)
+"se" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "sf" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -4697,6 +4776,10 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/caves/northeast)
 "sm" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/southeast)
 "sn" = (
@@ -4874,6 +4957,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/prison/security/briefing)
+"sV" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "sW" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -4881,6 +4970,10 @@
 "sX" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/bigredv2/outside/e)
+"sZ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/shuttle/dropship/thirtyfive,
+/area/construction)
 "ta" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -4992,9 +5085,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
-"tw" = (
-/turf/closed/shuttle/cas/leftwingclose,
-/area/space)
 "tx" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
@@ -5029,15 +5119,17 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
 /area/mainship)
-"tF" = (
-/obj/structure/caspart/internalengine/right,
-/turf/open/space/basic,
-/area/space)
 "tG" = (
 /obj/structure/largecrate/random/case/small,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
+"tH" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "tI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5067,16 +5159,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/construction)
-"tM" = (
-/obj/effect/attach_point/weapon/cas/left/alt{
-	equipment_offset_x = 5;
-	equipment_offset_y = 12
-	},
-/obj/structure/caspart/five{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "tN" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
@@ -5185,6 +5267,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
+"uk" = (
+/obj/structure/dropship_piece/one/corner/middleright,
+/turf/open/shuttle/dropship/floor,
+/area/prison/security/briefing)
 "ul" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge{
 	dir = 4
@@ -5264,10 +5350,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"uB" = (
-/obj/structure/caspart/caschair,
-/turf/open/space/basic,
-/area/space)
 "uC" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
@@ -5292,6 +5374,10 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
+"uH" = (
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/c)
 "uI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5361,6 +5447,14 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/stripesquare,
 /area/deltastation/engineering)
+"uU" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/sniper,
+/obj/item/ammo_magazine/sniper,
+/obj/item/ammo_magazine/sniper,
+/obj/item/ammo_magazine/sniper,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "uV" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -5396,12 +5490,6 @@
 "va" = (
 /turf/open/floor/plating/mainship,
 /area/gelida/indoors/a_block/hallway)
-"vb" = (
-/obj/structure/caspart/nineteen{
-	dir = 10
-	},
-/turf/open/space/basic,
-/area/space)
 "vc" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -5745,6 +5833,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
+"wp" = (
+/obj/structure/dropship_piece/one/corner/rearleft,
+/turf/open/shuttle/dropship/floor,
+/area/prison/security/briefing)
 "wq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5771,12 +5863,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
-"wv" = (
-/obj/structure/caspart/seventeen{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "ww" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "\improper Engineering Secure Storage"
@@ -5816,6 +5902,11 @@
 /obj/machinery/conveyor,
 /turf/open/floor/plating/mainship,
 /area/janitor)
+"wD" = (
+/turf/closed/shuttle/dropship1/window{
+	dir = 1
+	},
+/area/prison/security/briefing)
 "wE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5988,6 +6079,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/som_raiding/outpost/living/briefing)
 "xl" = (
@@ -6125,11 +6217,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southwest)
-"xJ" = (
-/turf/closed/shuttle/cas/eighteen{
-	dir = 1
-	},
-/area/space)
 "xK" = (
 /obj/structure/caspart/minigun,
 /turf/open/floor/mainship,
@@ -6146,6 +6233,14 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/mainship/mono,
 /area/outpost/lz1)
+"xO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/prison/security/briefing)
 "xP" = (
 /turf/closed/shuttle/dropship1/enginethree{
 	dir = 1
@@ -6232,6 +6327,15 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"yf" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "yg" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -6357,6 +6461,10 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
+"yE" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "yF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6420,6 +6528,11 @@
 "yO" = (
 /turf/open/floor/plating/mainship,
 /area/prison/security/checkpoint)
+"yP" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/combat,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "yQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -6590,6 +6703,11 @@
 	},
 /turf/open/floor/prison/darkpurple/full,
 /area/bigredv2/caves/lambda_lab)
+"zx" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/famas,
+/turf/open/floor/plating/plating_catwalk,
+/area/bigredv2/outside/storage)
 "zz" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -6649,9 +6767,6 @@
 /obj/structure/cable,
 /turf/closed/wall/mainship,
 /area/prison/security/briefing)
-"zL" = (
-/turf/closed/shuttle/cas/eighteen,
-/area/space)
 "zM" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge{
 	dir = 1
@@ -6701,6 +6816,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/prison/security/briefing)
+"zV" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "zW" = (
 /obj/structure/table/mainship,
 /obj/item/tool/wrench,
@@ -6710,10 +6832,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
 /area/construction)
-"zY" = (
-/obj/structure/caspart/internalengine/left,
-/turf/open/space/basic,
-/area/space)
 "zZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -6741,6 +6859,15 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
 /area/gelida/indoors/a_block/hallway)
+"Ae" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "Af" = (
 /obj/structure/dropship_piece/one/cockpit/right,
 /turf/open/floor/plating/mainship,
@@ -6853,15 +6980,6 @@
 "AB" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"AC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/prison/security/briefing)
 "AD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
@@ -7000,6 +7118,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/mainship)
+"Bd" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/prison/security/briefing)
 "Be" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
@@ -7054,6 +7177,13 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"Bn" = (
+/obj/structure/rack,
+/obj/item/explosive/grenade/phosphorus,
+/obj/item/explosive/grenade/phosphorus,
+/obj/item/explosive/grenade/phosphorus,
+/turf/open/floor/plating/plating_catwalk,
+/area/bigredv2/outside/storage)
 "Bo" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -7106,6 +7236,15 @@
 	dir = 4
 	},
 /area/bigredv2/caves/northeast)
+"Bz" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "BA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -7199,12 +7338,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
-"BS" = (
-/obj/structure/caspart/seven{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "BT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -7278,19 +7411,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
-"Ch" = (
-/turf/closed/shuttle/cas/rightwingmid,
-/area/space)
 "Ci" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
-"Cj" = (
-/obj/structure/caspart/fifteen{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "Ck" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
@@ -7334,6 +7458,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/arrival/start)
+"Cs" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "Ct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7347,6 +7477,11 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/cargo)
+"Cv" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/prison/security/briefing)
 "Cw" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
@@ -7484,11 +7619,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop2/lz2)
-"CX" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/mainship/mono,
-/area/prison/security/briefing)
 "CY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7561,12 +7691,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/basic,
 /area/shuttle/drop2/lz2)
-"Dm" = (
-/obj/structure/caspart/fifteen{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "Dn" = (
 /turf/closed/shuttle/dropship1/finright{
 	dir = 8
@@ -7624,15 +7748,14 @@
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
-"Dx" = (
-/obj/effect/forcefield,
-/obj/structure/prop/mainship/holobarrier/passthrough,
-/turf/open/floor/mainship/stripesquare,
-/area/outpost/lz1)
 "Dy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/bigredv2/caves/southwest)
+"Dz" = (
+/obj/machinery/door/airlock/mainship/marine,
+/turf/open/floor/mainship/stripesquare,
+/area/prison/security/briefing)
 "DA" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/open/floor/plating/mainship,
@@ -7729,6 +7852,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southwest)
+"DU" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "DV" = (
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
@@ -7855,12 +7984,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"Ev" = (
-/obj/structure/caspart/thirteen{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "Ew" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -7871,6 +7994,10 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"Ey" = (
+/obj/structure/prop/vehicle/big_truck,
+/turf/open/floor/mainship,
+/area/bigredv2/outside/c)
 "Ez" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -7912,12 +8039,6 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/mainship/mono,
 /area/outpost/lz1)
-"EH" = (
-/obj/structure/caspart/nineteen{
-	dir = 6
-	},
-/turf/open/space/basic,
-/area/space)
 "EI" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating/mainship,
@@ -7962,11 +8083,6 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/blue,
 /area/mainship)
-"EQ" = (
-/turf/closed/shuttle/cas/eleven{
-	dir = 1
-	},
-/area/space)
 "ER" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8036,10 +8152,6 @@
 "Fd" = (
 /turf/open/shuttle/dropship/thirtyone,
 /area/construction)
-"Fe" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/mainship,
-/area/prison/security/briefing)
 "Ff" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -8187,6 +8299,13 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/security)
+"FH" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "FI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8256,12 +8375,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"FW" = (
-/obj/structure/caspart/nineteen{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "FX" = (
 /obj/structure/closet/crate/secure/nanotrasen,
 /turf/open/floor/plating,
@@ -8314,6 +8427,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/prison/security/briefing)
+"Gg" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "Gh" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -8384,11 +8506,6 @@
 /obj/structure/largecrate/supply/powerloader,
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
-"Gv" = (
-/turf/closed/shuttle/cas/eighteen{
-	dir = 4
-	},
-/area/space)
 "Gw" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -8448,12 +8565,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
-"GI" = (
-/obj/structure/caspart/seventeen{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "GJ" = (
 /obj/structure/dropship_piece/one/corner/middleleft,
 /turf/open/floor/plating/mainship,
@@ -8608,6 +8719,15 @@
 "Hm" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/e)
+"Hn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/prison/security/briefing)
 "Ho" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -8810,6 +8930,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"HZ" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "Ia" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/mainship/mono,
@@ -8927,16 +9054,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/stripesquare,
 /area/arrival/start)
-"Iy" = (
-/obj/structure/caspart/sixteen{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "Iz" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"IA" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "IB" = (
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 1
@@ -8988,9 +9115,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
-"IK" = (
-/turf/closed/shuttle/cas/leftwingmid,
-/area/space)
 "IL" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -9083,9 +9207,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
-"Jb" = (
-/turf/closed/shuttle/cas/twentytwo,
-/area/space)
 "Jc" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/southeast)
@@ -9167,7 +9288,7 @@
 "Js" = (
 /obj/structure/bed/chair/dropship/pilot,
 /turf/open/floor/mainship,
-/area/space)
+/area/outpost/lz1)
 "Jt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 1
@@ -9264,6 +9385,15 @@
 "JJ" = (
 /turf/closed/wall/wood,
 /area/outpost/lz1)
+"JK" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "JL" = (
 /obj/machinery/light{
 	dir = 8
@@ -9288,6 +9418,13 @@
 	dir = 5
 	},
 /area/space)
+"JQ" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "JR" = (
 /obj/item/toy/plush/lizard,
 /turf/open/floor/grass,
@@ -9536,6 +9673,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/prison/security/checkpoint)
+"KJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/mainship/tcomms,
+/area/daedalusprison/inside/westcomputerlab)
 "KK" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/mainship/mono,
@@ -9571,6 +9712,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/rack,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/storage)
 "KR" = (
@@ -9780,12 +9926,6 @@
 	dir = 4
 	},
 /area/outpost/lz1)
-"LG" = (
-/obj/structure/caspart/twentyone{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "LH" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
@@ -9871,6 +10011,13 @@
 	dir = 1
 	},
 /area/construction)
+"Ma" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "Mb" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship,
@@ -9915,12 +10062,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/westcomputerlab)
-"Mk" = (
-/obj/structure/caspart/fourteen{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "Ml" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
@@ -9979,6 +10120,10 @@
 "Mx" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/lambda_lab)
+"My" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/caves/southeast)
 "Mz" = (
 /obj/structure/table/mainship,
 /obj/item/storage/surgical_tray,
@@ -10003,11 +10148,6 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
-"MD" = (
-/turf/closed/shuttle/cas/twentyone{
-	dir = 8
-	},
-/area/space)
 "ME" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10024,12 +10164,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/prison/security/checkpoint)
-"MH" = (
-/obj/structure/caspart/seven{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "MI" = (
 /obj/structure/dropship_piece/one/corner/rearright,
 /obj/effect/turf_overlay/shuttle/heater,
@@ -10056,16 +10190,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/shuttle/drop2/lz2)
-"MN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/prison/security/briefing)
 "MO" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/glasses/welding,
@@ -10102,6 +10226,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"MU" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/construction)
 "MV" = (
 /obj/machinery/light{
 	dir = 4
@@ -10294,7 +10422,9 @@
 /area/bigredv2/caves/southeast)
 "ND" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/mainship/orange,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
 /area/prison/security/checkpoint)
 "NE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10308,9 +10438,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/campaign/som_raiding/outpost/living/briefing)
-"NG" = (
-/turf/closed/shuttle/cas/fifteen,
-/area/space)
 "NH" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/officer_study)
@@ -10348,6 +10475,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"NN" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "NO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -10456,6 +10589,9 @@
 	},
 /turf/open/space/basic,
 /area/shuttle/drop2/lz2)
+"Ok" = (
+/turf/closed/shuttle/dropship1/edge/alt,
+/area/prison/security/briefing)
 "Ol" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
@@ -10496,6 +10632,15 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/prison/security/briefing)
+"Os" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
 "Ot" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
@@ -10555,11 +10700,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"OD" = (
-/turf/closed/shuttle/cas/twentytwo{
-	dir = 1
-	},
-/area/space)
 "OE" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data,
@@ -10642,11 +10782,6 @@
 /obj/structure/caspart/caschair,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"OT" = (
-/obj/structure/window/reinforced,
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/caves/southeast)
 "OU" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -10665,6 +10800,12 @@
 "OX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"OY" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "OZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -10791,9 +10932,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"Pw" = (
-/turf/closed/shuttle/cas/ten,
-/area/space)
 "Px" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -10849,16 +10987,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"PG" = (
-/obj/effect/attach_point/weapon/cas/right{
-	equipment_offset_x = -5;
-	equipment_offset_y = 10
-	},
-/obj/structure/caspart/four{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "PH" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -10871,16 +10999,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/space)
+/area/outpost/lz1)
 "PJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/prison/security/briefing)
-"PK" = (
-/obj/structure/caspart/three,
-/turf/open/space/basic,
-/area/space)
 "PL" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -11084,12 +11208,24 @@
 	dir = 8
 	},
 /area/bigredv2/caves/southeast)
+"Qx" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/shotgun/tracker,
+/obj/item/ammo_magazine/shotgun/tracker,
+/obj/item/ammo_magazine/shotgun/tracker,
+/obj/item/ammo_magazine/shotgun/tracker,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "Qy" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
+"Qz" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "QA" = (
 /turf/open/floor/plating/mainship,
 /area/construction)
@@ -11242,6 +11378,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkred,
 /area/mainship/living/briefing)
+"Rd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/construction)
 "Re" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/sterile/dark,
@@ -11251,12 +11394,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop2/lz2)
-"Rg" = (
-/obj/structure/caspart/fourteen{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "Rh" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11311,12 +11448,6 @@
 /area/bigredv2/outside/cargo)
 "Rs" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
-"Rt" = (
-/obj/structure/caspart/twentytwo{
-	dir = 8
-	},
 /turf/open/space/basic,
 /area/space)
 "Ru" = (
@@ -11448,6 +11579,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship)
+"RT" = (
+/obj/structure/closet/crate/secure/explosives,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "RU" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -11637,6 +11772,11 @@
 /obj/structure/prop/vehicle/crane,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"SB" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/sniper/antimaterial,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "SC" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
@@ -11706,6 +11846,13 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
+"SP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/c)
 "SQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/purple/side,
@@ -11720,7 +11867,7 @@
 /obj/machinery/power/monitor/grid,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/space)
+/area/outpost/lz1)
 "ST" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -11803,11 +11950,6 @@
 "Ti" = (
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
-"Tj" = (
-/turf/closed/shuttle/cas/ten{
-	dir = 1
-	},
-/area/space)
 "Tk" = (
 /obj/structure/monorail,
 /turf/open/liquid/water,
@@ -12066,6 +12208,13 @@
 /obj/item/toy/plush,
 /turf/open/floor/mainship/sterile/dark,
 /area/daedalusprison/inside/security)
+"Ue" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "Uf" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -12092,10 +12241,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
 /area/outpost/lz1)
-"Uk" = (
-/obj/structure/caspart/seventeen,
-/turf/open/space/basic,
-/area/space)
 "Ul" = (
 /obj/machinery/shower{
 	dir = 8
@@ -12139,12 +12284,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/janitor)
-"Us" = (
-/obj/structure/caspart/fourteen{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "Ut" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/mainship,
@@ -12273,6 +12412,11 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southeast)
+"UT" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/arrival/start)
 "UU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12343,9 +12487,6 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"Vj" = (
-/turf/closed/shuttle/cas/eleven,
-/area/space)
 "Vk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12435,16 +12576,7 @@
 "VA" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
-/area/space)
-"VB" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship)
+/area/outpost/lz1)
 "VC" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -12479,6 +12611,9 @@
 	},
 /turf/closed/wall/mainship,
 /area/bigredv2/caves/lambda_lab)
+"VJ" = (
+/turf/closed/shuttle/dropship1/window,
+/area/prison/security/briefing)
 "VK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12570,14 +12705,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"VZ" = (
-/obj/effect/attach_point/weapon/cas/left{
-	equipment_offset_x = 5;
-	equipment_offset_y = 12
-	},
-/obj/structure/caspart/five,
-/turf/open/space/basic,
-/area/space)
+"Wa" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "Wb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -12601,14 +12733,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/mainship/stripesquare,
 /area/outpost/lz1)
-"Wg" = (
-/obj/effect/attach_point/weapon/cas{
-	equipment_offset_x = -5;
-	equipment_offset_y = 12
-	},
-/obj/structure/caspart/four,
-/turf/open/space/basic,
-/area/space)
 "Wh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -12660,10 +12784,6 @@
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
-"Wr" = (
-/obj/structure/caspart/fourteen,
-/turf/open/space/basic,
-/area/space)
 "Ws" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -12691,9 +12811,6 @@
 /obj/item/storage/box/MRE,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"Wx" = (
-/turf/closed/shuttle/cas/centertop,
-/area/space)
 "Wy" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -12728,7 +12845,7 @@
 "WC" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship,
-/area/space)
+/area/outpost/lz1)
 "WD" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/bigredv2/outside/engineering)
@@ -12786,12 +12903,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/cargo)
-"WN" = (
-/obj/structure/caspart/nineteen{
-	dir = 9
-	},
-/turf/open/space/basic,
-/area/space)
 "WO" = (
 /turf/closed/wall/mainship,
 /area/daedalusprison/inside/westcomputerlab)
@@ -12852,12 +12963,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
 /area/prison/security/briefing)
-"Xa" = (
-/obj/structure/caspart/three{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "Xb" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -12890,10 +12995,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
-"Xh" = (
-/obj/structure/caspart/minigun,
-/turf/open/space/basic,
-/area/space)
 "Xi" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
@@ -12903,10 +13004,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
-"Xl" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/bigredv2/caves/north)
+"Xk" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/icc_battlecarbine,
+/obj/item/ammo_magazine/rifle/icc_battlecarbine,
+/obj/item/ammo_magazine/rifle/icc_battlecarbine,
+/obj/item/ammo_magazine/rifle/icc_battlecarbine,
+/obj/item/ammo_magazine/rifle/icc_battlecarbine,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "Xm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13071,6 +13177,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
+"XQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/prison/security/briefing)
 "XR" = (
 /obj/machinery/door/window,
 /obj/structure/sign/directions/supply,
@@ -13124,6 +13238,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"Ya" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/icc_battlecarbine,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "Yb" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/mainship,
@@ -13149,6 +13268,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/cargo/arrow,
 /area/prison/security/briefing)
+"Yh" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/southeast)
 "Yj" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2
@@ -13178,11 +13303,6 @@
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
-"Yp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/mainship/mono,
-/area/prison/security/briefing)
 "Yq" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/mainship,
@@ -13226,11 +13346,6 @@
 /obj/structure/dropship_piece/one/rearwing/righttop,
 /turf/open/floor/plating/mainship,
 /area/construction)
-"Yz" = (
-/turf/closed/shuttle/cas/twentyone{
-	dir = 4
-	},
-/area/space)
 "YA" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/wood,
@@ -13348,6 +13463,10 @@
 	dir = 8
 	},
 /area/construction)
+"YX" = (
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
+/turf/open/floor/mainship/cargo,
+/area/bigredv2/outside/storage)
 "YY" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
@@ -13484,11 +13603,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"Zw" = (
-/turf/closed/shuttle/cas/eighteen{
-	dir = 8
-	},
-/area/space)
 "Zx" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /obj/effect/forcefield,
@@ -13511,6 +13625,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/campaign/som_raiding/outpost/living/briefing)
+"ZA" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/caves/north)
 "ZB" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -13538,6 +13658,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/gelida/indoors/a_block/hallway)
+"ZG" = (
+/obj/structure/closet/crate/secure/gear,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/storage)
 "ZH" = (
 /obj/item/paper/crumpled,
 /obj/structure/cable,
@@ -23812,7 +23936,7 @@ CR
 CR
 dY
 vm
-cW
+vm
 vm
 lf
 aR
@@ -25870,10 +25994,10 @@ dY
 kr
 WC
 PI
-VD
-VD
-VD
-VD
+mQ
+mQ
+mQ
+mQ
 Gi
 dY
 CR
@@ -26127,9 +26251,9 @@ dY
 Gi
 VA
 PI
-VD
+mQ
 Js
-VD
+mQ
 PI
 Gi
 dY
@@ -26326,7 +26450,7 @@ WO
 WO
 WO
 nf
-zF
+KJ
 zF
 PC
 nf
@@ -26384,10 +26508,10 @@ dY
 Gi
 SS
 PI
-VD
-VD
-VD
-VD
+mQ
+mQ
+mQ
+mQ
 Gi
 gh
 gh
@@ -26641,8 +26765,8 @@ kR
 kR
 kR
 kR
-Dx
-Dx
+iz
+iz
 kR
 kR
 kR
@@ -28664,14 +28788,14 @@ gH
 LU
 ab
 iT
-wx
+kf
 kR
 CR
 CR
 CR
 CR
 kR
-wx
+FO
 hX
 hX
 FO
@@ -28921,14 +29045,14 @@ gH
 LU
 ab
 iT
+kf
+kR
+CR
+CR
+CR
+CR
+kR
 FO
-kR
-CR
-CR
-CR
-CR
-kR
-hX
 hX
 hX
 FO
@@ -29178,14 +29302,14 @@ zI
 Kk
 Jf
 HI
+kf
+kR
+kR
+IE
+IE
+kR
+kR
 FO
-kR
-kR
-IE
-IE
-kR
-kR
-hX
 hX
 hX
 FO
@@ -29435,14 +29559,14 @@ WV
 Yn
 sO
 HI
-FO
-hX
-hX
-hX
-hX
-hX
-hX
-hX
+kf
+eR
+eR
+eR
+eR
+eR
+eR
+wx
 hX
 hX
 FO
@@ -31234,14 +31358,14 @@ cT
 Yn
 sO
 HI
-FO
-hX
-hX
-hX
-hX
-hX
-hX
-hX
+kf
+GX
+GX
+GX
+GX
+GX
+GX
+tg
 hX
 hX
 hX
@@ -31491,14 +31615,14 @@ Yn
 Yn
 sO
 HI
+kf
+kR
+kR
+IE
+IE
+kR
+kR
 FO
-kR
-kR
-IE
-IE
-kR
-kR
-hX
 hX
 hX
 hX
@@ -31748,13 +31872,14 @@ cT
 cT
 sO
 HI
+kf
+kR
+CR
+CR
+CR
+CR
+kR
 FO
-kR
-CR
-CR
-CR
-CR
-kR
 hX
 hX
 hX
@@ -31763,8 +31888,7 @@ hX
 hX
 hX
 hX
-hX
-hX
+ou
 hX
 hX
 hX
@@ -32005,14 +32129,14 @@ cT
 cT
 sO
 HI
-tg
+kf
 kR
 CR
 CR
 CR
 CR
 kR
-tg
+FO
 hX
 hX
 hX
@@ -32020,7 +32144,7 @@ hX
 hX
 hX
 hX
-hX
+ou
 hX
 hX
 hX
@@ -32276,7 +32400,7 @@ hX
 hX
 hX
 hX
-hX
+ou
 hX
 hX
 hX
@@ -33555,9 +33679,9 @@ CR
 dY
 kR
 tg
-hX
-hX
-hX
+GX
+GX
+GX
 tg
 hX
 hX
@@ -34089,7 +34213,7 @@ Rx
 Rx
 Dr
 XW
-dc
+UT
 Dr
 Dr
 Rx
@@ -34560,7 +34684,7 @@ gl
 gl
 nQ
 gl
-pf
+gl
 gl
 gl
 gl
@@ -34817,7 +34941,7 @@ rp
 rp
 tn
 gl
-zS
+gl
 gl
 gl
 gl
@@ -35074,7 +35198,7 @@ gl
 gl
 nQ
 gl
-Rp
+gl
 gl
 gl
 gl
@@ -35331,7 +35455,7 @@ Rp
 gl
 nQ
 gl
-zS
+gl
 gl
 gl
 gl
@@ -35573,22 +35697,22 @@ gd
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-gl
-gl
+Fc
+Dz
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
 Lj
 ca
 oL
 BB
 QV
 BB
-rj
+XE
 gl
 gl
 gl
@@ -35617,7 +35741,7 @@ ce
 VM
 VM
 VM
-Wf
+ml
 Wf
 VM
 VM
@@ -35829,8 +35953,8 @@ kx
 aX
 Or
 Fc
-gl
-gl
+Cv
+uk
 Qg
 cQ
 BB
@@ -35839,7 +35963,7 @@ BB
 cQ
 BB
 cQ
-gl
+nk
 ca
 cj
 Yk
@@ -35873,7 +35997,7 @@ CR
 kR
 hX
 hX
-hX
+ou
 hX
 hX
 hX
@@ -36085,7 +36209,7 @@ bH
 DG
 qW
 Or
-gl
+VJ
 aV
 aV
 aV
@@ -36096,7 +36220,7 @@ aV
 Nl
 aV
 aV
-BB
+hM
 BB
 cj
 gl
@@ -36342,7 +36466,7 @@ by
 by
 by
 Or
-gl
+wD
 UF
 kl
 Qg
@@ -36353,7 +36477,7 @@ gl
 gl
 Qg
 Qg
-BB
+hM
 BB
 cj
 gl
@@ -36599,7 +36723,7 @@ NM
 aF
 Kb
 Or
-gl
+mw
 aV
 aV
 aV
@@ -36610,7 +36734,7 @@ aV
 hI
 aV
 aV
-BB
+hM
 BB
 cj
 gl
@@ -36857,8 +36981,8 @@ cI
 hk
 Or
 SK
-gl
-gl
+Bd
+wp
 OW
 TE
 BB
@@ -36867,7 +36991,7 @@ BB
 TE
 BB
 TE
-gl
+nk
 ca
 cj
 gl
@@ -36916,11 +37040,11 @@ XW
 XW
 XW
 XW
+UT
 dc
 dc
 dc
-dc
-dc
+UT
 XW
 XW
 XW
@@ -37115,15 +37239,15 @@ gd
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-gl
-gl
+SK
+Dz
+Bd
+Bd
+Bd
+Bd
+Bd
+Bd
+Bd
 uR
 ca
 cj
@@ -37131,7 +37255,7 @@ gl
 nQ
 BB
 bV
-pf
+gl
 ug
 gl
 Rp
@@ -37388,7 +37512,7 @@ gl
 Ku
 BB
 XE
-pf
+gl
 ug
 gl
 Rp
@@ -37645,7 +37769,7 @@ gl
 zn
 mt
 Yg
-fe
+ko
 rp
 rp
 WZ
@@ -37902,11 +38026,11 @@ gl
 nQ
 BB
 XE
-pf
+gl
 ug
 gl
 Rp
-lj
+lY
 lj
 Cl
 lj
@@ -38143,15 +38267,15 @@ gd
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-YD
-gl
+Fc
+Dz
+Cv
+Cv
+Cv
+Cv
+Cv
+xO
+Cv
 Lj
 ca
 gT
@@ -38159,7 +38283,7 @@ rp
 el
 BB
 XE
-pf
+gl
 sU
 gl
 Rp
@@ -38399,8 +38523,8 @@ kx
 aX
 Or
 Fc
-gl
-gl
+Cv
+uk
 Qg
 cQ
 BB
@@ -38409,7 +38533,7 @@ BB
 cQ
 aw
 cQ
-gl
+nk
 ca
 cj
 gl
@@ -38420,11 +38544,11 @@ Rp
 Rp
 wX
 Rp
-Fe
+lj
 gl
-MN
-Fe
-Rp
+Tf
+lj
+gl
 XD
 XD
 NP
@@ -38493,10 +38617,10 @@ mc
 mc
 mc
 mc
-KE
-KE
-KE
-KE
+yf
+dI
+dI
+JQ
 mc
 mc
 mc
@@ -38655,7 +38779,7 @@ bH
 DG
 qW
 Or
-gl
+VJ
 aV
 aV
 aV
@@ -38666,7 +38790,7 @@ aV
 Nl
 Op
 aV
-BB
+hM
 BB
 cj
 tC
@@ -38681,9 +38805,9 @@ aN
 BB
 gc
 lj
-Rp
+gl
 ND
-ob
+dx
 ob
 ob
 Qk
@@ -38750,10 +38874,10 @@ mc
 mc
 mc
 mc
-KE
+sV
 ci
 ci
-KE
+Qz
 mc
 mc
 mc
@@ -38912,7 +39036,7 @@ by
 by
 by
 Or
-gl
+wD
 UF
 kl
 Qg
@@ -38923,7 +39047,7 @@ gl
 gl
 ME
 Qg
-BB
+hM
 BB
 cj
 gl
@@ -38938,8 +39062,8 @@ lj
 tk
 Kq
 lj
-Rp
-nA
+gl
+ob
 ob
 ob
 ob
@@ -38957,7 +39081,7 @@ aG
 aG
 gL
 aG
-aG
+sN
 aG
 sN
 aG
@@ -39007,10 +39131,10 @@ dX
 dX
 dX
 mc
-KE
+sV
 ci
 ci
-KE
+Qz
 mc
 xx
 mc
@@ -39169,7 +39293,7 @@ NM
 aF
 Kb
 Or
-gl
+mw
 aV
 aV
 aV
@@ -39180,7 +39304,7 @@ aV
 hI
 Op
 aV
-BB
+hM
 BB
 cj
 gl
@@ -39195,7 +39319,7 @@ lj
 lj
 Cl
 lj
-pf
+gl
 ob
 ob
 ob
@@ -39264,10 +39388,10 @@ dX
 dX
 mc
 mc
-KE
-KE
-KE
-KE
+Gg
+dJ
+dJ
+zV
 mc
 mc
 mc
@@ -39427,8 +39551,8 @@ cI
 hk
 Or
 SK
-gl
-gl
+Ok
+wp
 OW
 TE
 BB
@@ -39437,7 +39561,7 @@ BB
 TE
 aw
 TE
-gl
+nk
 ca
 cj
 gl
@@ -39452,7 +39576,7 @@ ui
 ui
 Ag
 LA
-CX
+xF
 KI
 KI
 KI
@@ -39685,15 +39809,15 @@ gd
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-YD
-gl
+SK
+Dz
+Bd
+Bd
+Bd
+Bd
+Bd
+XQ
+Bd
 uR
 ca
 cj
@@ -39701,7 +39825,7 @@ gl
 nQ
 BB
 bV
-Rp
+gl
 Ed
 xF
 Rp
@@ -39958,7 +40082,7 @@ gl
 DQ
 BB
 pl
-pf
+gl
 ug
 gl
 Rp
@@ -39966,7 +40090,7 @@ lj
 lj
 zU
 rp
-Yp
+ko
 gZ
 gZ
 gZ
@@ -40215,7 +40339,7 @@ gl
 gl
 BB
 XE
-zS
+gl
 ug
 gl
 Rp
@@ -40223,7 +40347,7 @@ lj
 lj
 nQ
 lj
-Rp
+gl
 ob
 ob
 ob
@@ -40472,7 +40596,7 @@ gl
 gl
 BB
 XE
-pf
+gl
 ug
 gl
 Rp
@@ -40480,7 +40604,7 @@ lj
 We
 aw
 lj
-Rp
+gl
 ob
 ob
 ob
@@ -40713,15 +40837,15 @@ gd
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-YD
-gl
+Fc
+Dz
+Cv
+Cv
+Cv
+Cv
+Cv
+xO
+Cv
 Lj
 ca
 cj
@@ -40729,14 +40853,14 @@ gl
 gl
 BB
 XE
-Rp
-Ta
+gl
+ug
 gl
 Rp
-Fe
+lj
 gl
-AC
-Fe
+YD
+lj
 Rp
 mz
 mz
@@ -40969,8 +41093,8 @@ kx
 aX
 Or
 Fc
-gl
-gl
+Cv
+uk
 Qg
 cQ
 BB
@@ -40979,7 +41103,7 @@ BB
 cQ
 aw
 cQ
-gl
+nk
 ca
 cj
 gl
@@ -41225,7 +41349,7 @@ bH
 DG
 qW
 Or
-gl
+VJ
 Tm
 xn
 xn
@@ -41236,7 +41360,7 @@ xn
 eX
 Lz
 aV
-BB
+hM
 BB
 cj
 gl
@@ -41482,7 +41606,7 @@ by
 by
 by
 Or
-gl
+wD
 UF
 kl
 Mo
@@ -41493,7 +41617,7 @@ gl
 gl
 gf
 Qg
-BB
+hM
 BB
 cj
 gl
@@ -41739,7 +41863,7 @@ NM
 aF
 Kb
 Or
-gl
+mw
 aV
 aV
 aV
@@ -41750,7 +41874,7 @@ aV
 hI
 Lz
 aV
-BB
+hM
 BB
 cj
 gl
@@ -41997,8 +42121,8 @@ cI
 hk
 Or
 SK
-gl
-gl
+Ok
+wp
 OW
 TE
 BB
@@ -42007,7 +42131,7 @@ BB
 TE
 gc
 TE
-gl
+nk
 ca
 cj
 gl
@@ -42255,15 +42379,15 @@ cI
 Or
 gl
 gl
-gl
-BB
-gl
-gl
-gl
-gl
-gl
-Tf
-gl
+SK
+Dz
+Bd
+Bd
+Bd
+Bd
+Bd
+Hn
+Bd
 uR
 ca
 cj
@@ -45075,8 +45199,8 @@ Mc
 Mc
 Mc
 Mc
-Mc
-Mc
+OX
+OX
 Mc
 YO
 YO
@@ -45332,10 +45456,10 @@ OX
 OB
 OX
 OX
-Mc
-Mc
-Mc
-Mc
+OX
+OX
+OX
+OX
 YO
 YO
 YO
@@ -45587,12 +45711,12 @@ OX
 Vt
 OX
 OB
-NU
-NU
-NU
-NU
-Mc
-Mc
+JK
+IA
+IA
+jS
+OX
+OX
 YO
 YO
 YO
@@ -45627,7 +45751,7 @@ Eg
 Eg
 Eg
 Eg
-wN
+iY
 iY
 ni
 iY
@@ -45844,12 +45968,12 @@ OX
 Vt
 OX
 OB
-NU
+ZA
 ET
 ET
-NU
+se
 OX
-Mc
+OX
 YO
 YO
 YO
@@ -45884,7 +46008,7 @@ Eg
 Eg
 Eg
 Eg
-wN
+iY
 iY
 ni
 iY
@@ -46101,10 +46225,10 @@ OX
 Vt
 fT
 OB
-NU
+ZA
 ET
 ET
-NU
+se
 OX
 OX
 OB
@@ -46358,10 +46482,10 @@ OX
 Vt
 OX
 OB
-NU
-NU
-NU
-NU
+eV
+NN
+NN
+Ue
 OX
 OX
 OB
@@ -48453,7 +48577,7 @@ RI
 Eg
 Eg
 Eg
-VB
+XX
 iY
 iY
 iY
@@ -51293,18 +51417,18 @@ Pc
 Pc
 Pc
 sk
+yP
 TB
-TB
-TB
-TB
+ar
+ar
 Bi
 df
 Bi
 TB
 TB
-TB
-TB
-TB
+iG
+iG
+YX
 OA
 cS
 jM
@@ -51509,7 +51633,7 @@ GC
 GC
 EU
 GC
-GC
+EU
 GC
 GC
 GC
@@ -51550,7 +51674,7 @@ Uw
 Uw
 Pc
 sk
-TB
+cH
 TB
 TB
 Mi
@@ -51559,9 +51683,9 @@ Bw
 Bw
 TB
 rm
-TB
-TB
-TB
+gw
+gw
+gw
 XM
 cS
 GD
@@ -51812,9 +51936,9 @@ TB
 TB
 TB
 tR
+zx
 MW
-MW
-TB
+Ya
 TB
 Mm
 TB
@@ -51849,7 +51973,7 @@ mF
 GH
 mF
 mF
-mF
+My
 mF
 mF
 mF
@@ -52064,14 +52188,14 @@ ne
 Kh
 Pc
 sk
-TB
+mL
 TB
 TB
 TB
 It
-gw
+gU
 Ig
-TB
+Xk
 TB
 TB
 TB
@@ -52326,14 +52450,14 @@ TB
 TB
 TB
 tR
+Bn
 MW
-MW
-MW
-MW
-MW
-MW
-MW
-MW
+kb
+TB
+TB
+SB
+TB
+TB
 Yj
 GD
 PO
@@ -52523,10 +52647,10 @@ Vt
 Vt
 oX
 Vt
-jn
-NU
-NU
-Xl
+JK
+IA
+IA
+jS
 eD
 OX
 eD
@@ -52578,7 +52702,7 @@ wk
 fW
 wk
 sk
-TB
+mr
 TB
 TB
 TB
@@ -52588,7 +52712,7 @@ gw
 TB
 MK
 TB
-TB
+uU
 TB
 TB
 cS
@@ -52780,10 +52904,10 @@ OX
 OX
 OX
 OX
-NU
+ZA
 ET
 ET
-NU
+se
 OB
 OX
 fT
@@ -52835,7 +52959,7 @@ hh
 fW
 wk
 sk
-TB
+Qx
 TB
 TB
 TB
@@ -52847,7 +52971,7 @@ TB
 TB
 TB
 TB
-TB
+ZG
 cS
 yt
 PO
@@ -53037,10 +53161,10 @@ OX
 OX
 fT
 OX
-NU
+ZA
 ET
 ET
-qw
+se
 OB
 OX
 OX
@@ -53092,19 +53216,19 @@ IU
 rV
 wk
 sk
-TB
+rY
 TB
 TB
 TB
 tR
 Qq
 Qq
-TB
-TB
-TB
+iq
+gK
+dL
 fi
 TB
-TB
+RT
 cS
 GD
 PO
@@ -53294,10 +53418,10 @@ OX
 OX
 OX
 OX
-NU
-NU
-NU
-NU
+eV
+NN
+NN
+Ue
 OB
 OX
 OX
@@ -53822,11 +53946,11 @@ Pe
 oe
 Do
 Uz
+MU
 QA
 QA
-Am
 Uz
-QA
+MU
 QA
 QA
 QA
@@ -54142,7 +54266,7 @@ Ei
 Ei
 Ei
 Ei
-Ei
+Ey
 Ei
 nw
 Ei
@@ -54687,7 +54811,7 @@ mF
 Ee
 mF
 hR
-jT
+mF
 mF
 aI
 Zs
@@ -54944,7 +55068,7 @@ mF
 BC
 mF
 Jc
-OT
+mF
 mF
 bu
 Zs
@@ -55162,7 +55286,7 @@ MR
 aM
 pI
 cS
-jM
+SP
 GD
 GD
 Ei
@@ -55201,7 +55325,7 @@ BC
 KA
 mF
 hR
-OT
+mF
 mF
 Ai
 Zs
@@ -55419,7 +55543,7 @@ MR
 Ry
 MR
 cS
-GD
+uH
 GD
 GD
 Ei
@@ -55882,7 +56006,7 @@ Oz
 eo
 ZW
 ZW
-ZW
+sZ
 ZW
 WE
 lZ
@@ -55930,7 +56054,7 @@ LN
 xm
 UD
 cq
-Ry
+eb
 MR
 cS
 GD
@@ -56396,7 +56520,7 @@ pM
 eo
 ZW
 ZW
-ZW
+lN
 ZW
 WE
 lZ
@@ -57371,8 +57495,8 @@ CR
 CR
 CR
 CR
-tM
-IK
+CR
+CR
 CR
 CR
 CR
@@ -57628,14 +57752,14 @@ CR
 CR
 CR
 CR
-VZ
-tw
 CR
 CR
 CR
-wv
-WN
-vb
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -57885,14 +58009,14 @@ CR
 CR
 CR
 CR
-co
-Tj
-gW
-Wr
-zY
-Cj
-xJ
-jj
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -58142,14 +58266,14 @@ CR
 CR
 CR
 CR
-Xa
-EQ
-BS
-Mk
-Iy
-GI
-zL
-fH
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -58395,18 +58519,18 @@ CR
 CR
 CR
 CR
-Xh
-rD
-uB
-Wx
-LG
-Yz
-MD
-NG
-Jb
-OD
-dB
-Rt
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -58448,11 +58572,11 @@ Pe
 oe
 Do
 Va
-UU
+Rd
 QA
-Am
+QA
 Va
-QA
+MU
 QA
 QA
 Va
@@ -58656,14 +58780,14 @@ CR
 CR
 CR
 CR
-PK
-Vj
-MH
-Us
-cb
-Uk
-Gv
-FW
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -58691,8 +58815,8 @@ ov
 ov
 ov
 ov
-Xi
-Xi
+ov
+Wa
 ov
 ov
 Xi
@@ -58913,14 +59037,14 @@ CR
 CR
 CR
 CR
-qd
-Pw
-Ev
-Rg
-tF
-Dm
-Zw
-iv
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -59170,14 +59294,14 @@ CR
 CR
 CR
 CR
-Wg
-eh
 CR
 CR
 CR
-dK
-ho
-EH
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -59427,8 +59551,8 @@ CR
 CR
 CR
 CR
-PG
-Ch
+CR
+CR
 CR
 CR
 CR
@@ -60739,7 +60863,7 @@ sl
 AO
 AO
 Xi
-Ab
+Xi
 Xi
 Xi
 Xi
@@ -60756,7 +60880,7 @@ AO
 AO
 Ab
 Ab
-Xi
+ov
 Xi
 Xi
 Xi
@@ -60995,8 +61119,8 @@ CR
 sl
 AO
 AO
-AO
-Ab
+Xi
+Xi
 Xi
 Xi
 mk
@@ -61252,8 +61376,8 @@ CR
 sl
 AO
 AO
-AO
-Ab
+Xi
+Xi
 Xi
 Ro
 Xi
@@ -61604,9 +61728,9 @@ Ye
 Ye
 Ye
 Ye
-sm
-sm
-sm
+Bz
+OY
+OY
 sm
 Ye
 Jc
@@ -61785,10 +61909,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
-Xi
+eA
+lJ
+lJ
+FH
 Xi
 Xi
 mk
@@ -61861,10 +61985,10 @@ Ye
 Ye
 Ye
 Ye
-sm
+Yh
 px
 px
-sm
+yE
 Ye
 Ye
 Ye
@@ -62042,10 +62166,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
-Xi
+Cs
+fn
+fn
+rU
 Xi
 Xi
 Xi
@@ -62118,10 +62242,10 @@ Pj
 bC
 Ye
 Ye
-sm
+Yh
 px
 px
-sm
+yE
 Ye
 Ye
 cK
@@ -62299,10 +62423,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
-Xi
+Cs
+fn
+fn
+rU
 Xi
 Xi
 Xi
@@ -62375,10 +62499,10 @@ Ye
 bC
 iN
 Ye
-sm
-sm
-sm
-sm
+Ae
+tH
+tH
+HZ
 cK
 cK
 cK
@@ -62556,10 +62680,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
-Xi
+Os
+DU
+DU
+Ma
 Xi
 Xi
 Xi
@@ -65879,7 +66003,7 @@ sl
 AO
 AO
 AO
-Xi
+ov
 ov
 Xi
 Xi
@@ -66136,7 +66260,7 @@ sl
 AO
 AO
 AO
-Xi
+ov
 ov
 Xi
 Xi
@@ -67718,7 +67842,7 @@ Xi
 Xi
 Xi
 Xi
-Xi
+ov
 Xi
 Xi
 Xi
@@ -67742,10 +67866,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
-Xi
-Xi
+ov
+ov
+ov
+ov
 Xi
 Xi
 Xi
@@ -67975,8 +68099,8 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
+ov
+ov
 Xi
 Xi
 AO
@@ -68233,8 +68357,8 @@ Xi
 Xi
 Xi
 Xi
-Xi
-Xi
+ov
+ov
 AO
 AO
 AO
