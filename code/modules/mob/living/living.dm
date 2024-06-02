@@ -169,17 +169,17 @@
 	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direction, glide_size_override)
 	if(buckled)
 		if(buckled.loc != newloc) //not updating position
 			if(!buckled.anchored)
-				return buckled.Move(newloc, direct)
+				return buckled.Move(newloc, direction, glide_size)
 			else
 				return FALSE
 	else if(lying_angle)
-		if(direct & EAST)
+		if(direction & EAST)
 			set_lying_angle(90)
-		else if(direct & WEST)
+		else if(direction & WEST)
 			set_lying_angle(270)
 
 	. = ..()

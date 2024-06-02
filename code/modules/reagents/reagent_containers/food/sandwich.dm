@@ -295,7 +295,7 @@
 	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "bananabread"
 	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/drink/banana = 20)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/banana = 20)
 	filling_color = "#EDE5AD"
 	tastes = list("bread" = 10) // bananjuice will also flavour
 

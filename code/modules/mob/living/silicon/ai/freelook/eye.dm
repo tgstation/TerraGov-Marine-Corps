@@ -93,7 +93,7 @@
 	return ..()
 
 
-/mob/camera/aiEye/Move()
+/mob/camera/aiEye/Move(atom/newloc, direction, glide_size_override)
 	return FALSE
 
 

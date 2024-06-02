@@ -7547,12 +7547,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
-"cIT" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "cJu" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/cmo_office)
@@ -7665,12 +7659,6 @@
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
-"cTc" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "cTo" = (
 /obj/structure/closet,
 /obj/item/toy/plush/lizard,
@@ -8513,10 +8501,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
-"ehi" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "ehv" = (
 /obj/machinery/vending/tool,
 /obj/machinery/camera/autoname/mainship,
@@ -10345,7 +10329,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/flashlight/lamp/green,
 /obj/item/megaphone,
 /obj/item/whistle,
@@ -13074,10 +13058,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway)
-"lBc" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "lBr" = (
 /obj/effect/landmark/start/job/ai,
 /turf/open/floor/mainship/ai,
@@ -41599,7 +41579,7 @@ car
 aPL
 blA
 hHM
-cTc
+blA
 blA
 blA
 blA
@@ -44169,7 +44149,7 @@ hOA
 fgc
 blA
 hHM
-cIT
+blA
 blA
 blA
 blA
@@ -46991,7 +46971,7 @@ uGB
 blA
 blA
 qNu
-ehi
+blA
 blA
 blA
 blA
@@ -47248,7 +47228,7 @@ uGB
 srb
 srb
 aPL
-lBc
+blA
 blA
 blA
 blA
@@ -48790,7 +48770,7 @@ uGB
 xUV
 xUV
 fgc
-lBc
+blA
 blA
 blA
 blA
@@ -49047,7 +49027,7 @@ uGB
 blA
 blA
 qNu
-ehi
+blA
 blA
 blA
 blA

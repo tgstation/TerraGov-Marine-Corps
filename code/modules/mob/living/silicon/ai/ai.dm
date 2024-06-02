@@ -9,7 +9,7 @@
 	icon_state = "ai"
 	bubble_icon = "robot"
 	anchored = TRUE
-	move_resist = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_NORMAL
 	density = TRUE
 	canmove = FALSE
 	status_flags = CANSTUN|CANKNOCKOUT

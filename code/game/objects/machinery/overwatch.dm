@@ -482,6 +482,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
+			selected_target = locate(href_list["selected_target"])
 			var/atom/cam_target = locate(href_list["cam_target"])
 			if(!cam_target)
 				return

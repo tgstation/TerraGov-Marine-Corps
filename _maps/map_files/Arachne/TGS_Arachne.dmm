@@ -14281,10 +14281,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
-"lNQ" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "lOu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -22333,12 +22329,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/cafeteria_officer)
-"sqK" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "sqT" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -27241,12 +27231,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
-"wDJ" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "wDK" = (
 /obj/structure/cable,
 /obj/machinery/holopad,
@@ -27948,10 +27932,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
-"xkA" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xlh" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/cargo/arrow{
@@ -36402,7 +36382,7 @@ vAL
 mGC
 jfL
 jcy
-lNQ
+mGC
 mGC
 mGC
 mGC
@@ -36504,7 +36484,7 @@ vAL
 rik
 rik
 bHy
-xkA
+mGC
 mGC
 mGC
 mGC
@@ -37116,7 +37096,7 @@ vAL
 uST
 uST
 uhS
-xkA
+mGC
 mGC
 mGC
 mGC
@@ -37218,7 +37198,7 @@ vAL
 mGC
 jfL
 jcy
-lNQ
+mGC
 mGC
 mGC
 mGC
@@ -39365,7 +39345,7 @@ krc
 bHy
 mGC
 fjj
-sqK
+mGC
 mGC
 mGC
 mGC
@@ -40385,7 +40365,7 @@ mtP
 uhS
 mGC
 fjj
-wDJ
+mGC
 mGC
 mGC
 mGC

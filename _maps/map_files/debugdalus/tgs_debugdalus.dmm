@@ -1193,18 +1193,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"afC" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
-"afD" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "afE" = (
 /obj/machinery/computer/ordercomp,
 /obj/structure/cable,
@@ -5190,7 +5178,7 @@ bOu
 bOu
 bOu
 bOu
-afC
+bOu
 bOu
 bOu
 bOu
@@ -5790,7 +5778,7 @@ bOu
 bOu
 bOu
 bOu
-afD
+bOu
 bOu
 bOu
 bOu

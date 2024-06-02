@@ -207,6 +207,10 @@
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
 
+/obj/alien/weeds/AICtrlClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlClick(user)
+
 /* Xenos */
 /mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
