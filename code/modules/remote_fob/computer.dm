@@ -71,14 +71,14 @@
 	switch(mattype)
 		if(EJECT_METAL)
 			var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
-			while(metal_remaining>0)
+			while(metal_remaining > 0)
 				stack = new /obj/item/stack/sheet/metal(consolespot)
 				stack.amount = min(metal_remaining, 50)
 				metal_remaining -= stack.amount
 			return
 		if(EJECT_PLASTEEL)
 			var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
-			while(plasteel_remaining>0)
+			while(plasteel_remaining > 0)
 				stack = new /obj/item/stack/sheet/plasteel(consolespot)
 				stack.amount = min(plasteel_remaining, 50)
 				plasteel_remaining -= stack.amount
@@ -169,7 +169,7 @@
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
-	icon_state = "fob"
+	screen_overlay = "fob_emissive"
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)
