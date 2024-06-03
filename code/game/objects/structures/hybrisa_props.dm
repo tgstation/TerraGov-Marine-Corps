@@ -49,8 +49,6 @@
 	new /obj/effect/spawner/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
-	deconstruct(FALSE)
-
 /obj/structure/prop/urban/vehicles/suv
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
