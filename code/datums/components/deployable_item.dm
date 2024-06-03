@@ -75,9 +75,10 @@
 
 		var/area/area = get_area(location)
 		var/turf/open/placement_loc = location
-		if(restricted_deployment && (!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION)) // long ass check to prevent things like deployable shields on alamo
-			user.balloon_alert(user, "Can't deploy here")
-			return
+		if(restricted_deployment)
+			if(!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) // long ass series of checks to prevent things like deployable shields on alamo
+				user.balloon_alert(user, "Can't deploy here")
+				return
 
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
