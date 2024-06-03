@@ -28,6 +28,7 @@
 		if(WEST)
 			pixel_x = -30
 
+//automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
 /obj/structure/sign/proc/place_poster()
 	var/turf/locatedturf
 	switch(dir)
