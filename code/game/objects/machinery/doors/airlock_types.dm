@@ -817,7 +817,6 @@
 /obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
-	glass = FALSE
 
 /obj/machinery/door/airlock/prison/open
 	icon_state = "door_open"
@@ -836,7 +835,6 @@
 //Colony Mapped Doors
 /obj/machinery/door/airlock/colony
 
-
 /obj/machinery/door/airlock/colony/engineering
 	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	opacity = FALSE
@@ -853,7 +851,6 @@
 	icon_state = "door_open"
 	density = FALSE
 	opacity = FALSE
-
 
 /obj/machinery/door/airlock/colony/medical
 	icon = 'icons/obj/doors/mainship/medidoor_glass.dmi'
@@ -884,26 +881,23 @@
 	icon_state = "door_locked"
 	locked = TRUE
 
-// Hybrisa
+// urban doors
 
 /obj/machinery/door/airlock/urban
 	openspeed = 4
 	icon_state = "door_closed"
+	req_access = null
 
 /obj/machinery/door/airlock/urban/generic
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/hybrisa/hybrisa_generic_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 /obj/machinery/door/airlock/urban/generic_solid
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/hybrisa/hybrisa_generic.dmi'
-	opacity = TRUE
-	glass = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 // Medical
@@ -913,15 +907,11 @@
 	icon = 'icons/obj/doors/hybrisa/hybrisa_medidoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
 
 /obj/machinery/door/airlock/urban/medical_solid
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/hybrisa/hybrisa_medidoor.dmi'
-	opacity = TRUE
-	glass = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
 
 // Personal
@@ -930,15 +920,11 @@
 	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 /obj/machinery/door/airlock/urban/personal_solid
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor.dmi'
-	opacity = TRUE
-	glass = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 // Personal White
@@ -947,14 +933,10 @@
 	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_glass_white.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 /obj/machinery/door/airlock/urban/personal_solid_white
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_white.dmi'
-	opacity = TRUE
-	glass = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
