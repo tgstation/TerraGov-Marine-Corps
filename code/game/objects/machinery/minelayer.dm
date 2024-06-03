@@ -1,7 +1,7 @@
 /obj/item/minelayer
 	name = "\improper M21 APRDS \"Minelayer\""
 	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities. WARNING: Operating in tight places or existing mine fields will result in reduced efficiency."
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "minelayer"
 	max_integrity = 200
 	item_flags = IS_DEPLOYABLE
@@ -28,7 +28,6 @@
 	var/cooldown = 0.6 SECONDS
 	///stored iff signal
 	var/iff_signal
-
 
 /obj/machinery/deployable/minelayer/attack_hand(mob/living/user)
 	. = ..()
