@@ -349,7 +349,7 @@
 
 /obj/docking_port/mobile
 	name = "shuttle"
-	icon_state = "pinonclose"
+	icon_state = "pinpointer_close"
 
 	area_type = SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE
 
