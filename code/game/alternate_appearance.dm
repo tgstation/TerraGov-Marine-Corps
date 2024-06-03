@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/proc/copy_overlays(atom/other, cut_old)
 	return
 
-//an alternate appearance that attaches a single image to a single atom.
+//an alternate appearance that attaches a single image to a single atom
 /datum/atom_hud/alternate_appearance/basic
 	var/atom/target
 	var/image/image
