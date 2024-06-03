@@ -155,12 +155,10 @@
 	var/undeploy_time = 1 SECONDS
 	///Whether it is wired
 	var/is_wired = FALSE
-	///Wether it can be deployed on the tad/alamo
-	var/restricted_deployment = TRUE
 
 /obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time, null, restricted_deployment)
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time, null, TRUE)
 
 /obj/item/weapon/shield/riot/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
