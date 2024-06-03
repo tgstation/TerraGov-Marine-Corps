@@ -235,7 +235,7 @@
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
 			human_user.Knockdown(0.5 SECONDS)
 			human_user.set_throwing(FALSE)
-			INVOKE_NEXT_TICK(human_user, TYPE_PROC_REF(/atom/movable, knockback), human_target, 1, 5, knockback_force = MOVE_FORCE_VERY_STRONG)
+			INVOKE_NEXT_TICK(human_user, TYPE_PROC_REF(/atom/movable, knockback), human_target, 1, 5, null, MOVE_FORCE_VERY_STRONG)
 			human_user.visible_message(span_danger("[human_user] crashes into [hit_mob]!"))
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
