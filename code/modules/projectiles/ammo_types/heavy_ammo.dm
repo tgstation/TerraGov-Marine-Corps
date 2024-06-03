@@ -138,6 +138,10 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
+/datum/ammo/bullet/apfsds/ltb
+	damage = 350
+	max_range = 20
+
 /datum/ammo/bullet/coilgun // ICC coilgun
 	name = "high-velocity tungsten slug"
 	hud_state = "railgun_ap"

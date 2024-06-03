@@ -71,7 +71,7 @@
 /datum/ammo/rocket/ltb
 	name = "cannon round"
 	icon_state = "ltb"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 15
 	max_range = 40
 	penetration = 50

@@ -299,3 +299,57 @@
 	shell_speed = 0
 	max_range = -1
 	damage = 0
+
+/datum/ammo/bullet/ltb_canister
+	name = "canister shell"
+	handful_icon_state = "shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/ltb_canister_spread
+	bonus_projectiles_amount = 29
+	bonus_projectiles_scatter = 7
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 6
+	max_range = 11
+	damage = 17
+	penetration = 40
+	damage_falloff = 0.5
+
+/datum/ammo/bullet/ltb_canister_spread
+	name = "additional canister"
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 6
+	max_range = 10
+	damage = 17
+	penetration = 40
+	damage_falloff = 0.5
+
+/datum/ammo/bullet/ltb_flechette
+	name = "tank flechette shell"
+	handful_icon_state = "shotgun flechette shell"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/ltb_flechette_spread
+	bonus_projectiles_amount = 15
+	bonus_projectiles_scatter = 5
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 14
+	damage = 20
+	damage_falloff = 0.5
+	penetration = 30
+	sundering = 2.5
+
+/datum/ammo/bullet/ltb_flechette_spread
+	name = "additional flechette"
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 14
+	max_range = 10
+	damage = 20
+	penetration = 30
+	damage_falloff = 0.5
+	sundering = 2.5
