@@ -2027,7 +2027,7 @@
 	layer = 4
 	},
 /turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "aqR" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7714,10 +7714,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/central_caves)
-"bpu" = (
-/obj/effect/urban/decal/dirt,
-/turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant)
 "bpw" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/clothing/head/welding{
@@ -9299,6 +9295,9 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
+"bCM" = (
+/turf/closed/wall/r_wall/urban,
+/area/lv759/outdoors/colony_streets/east_central_street)
 "bCO" = (
 /obj/machinery/computer/security{
 	dir = 8
@@ -40612,7 +40611,7 @@
 "gIl" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
-/area/lv759/indoors/power_plant)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "gIp" = (
 /obj/machinery/bodyscanner,
 /obj/effect/landmark/weed_node,
@@ -107378,7 +107377,7 @@
 "rNo" = (
 /obj/effect/urban/decal/dirt,
 /turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant/power_storage)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "rNs" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 4;
@@ -111157,7 +111156,7 @@
 	layer = 4
 	},
 /turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "ssA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/metal/zbrownfloor1{
@@ -115966,7 +115965,7 @@
 	desc = null
 	},
 /turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant/power_storage)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "tgv" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/ashtray/glass{
@@ -120801,7 +120800,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/power_plant)
+/area/lv759/outdoors/colony_streets/east_central_street)
 "tVH" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
@@ -180084,15 +180083,15 @@ rvq
 mJW
 tVG
 gIl
-vUS
+bCM
 uYs
 uYs
 uYs
-vUS
+bCM
 uYs
 uYs
 uYs
-bpu
+rNo
 vUS
 gGZ
 sAs
@@ -180102,15 +180101,15 @@ rNo
 uYs
 uYs
 uYs
-tUj
+bCM
 uYs
 uYs
 uYs
-tUj
+bCM
 uYs
 uYs
 uYs
-tUj
+bCM
 tgu
 cTt
 mJW

@@ -20,3 +20,7 @@
 #define ALWAYS_RADIO (1<<5)
 ///prevents construction in area
 #define NO_CONSTRUCTION (1<<6)
+
+#define AREA_FLAVOR_NONE "area_regular"
+
+#define AREA_FLAVOR_URBAN "area_urban"
