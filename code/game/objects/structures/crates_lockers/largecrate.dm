@@ -183,7 +183,7 @@
 	)
 
 /obj/structure/largecrate/random/mini/med
-	desc = "A small metal crate. Here, Freeman take this medkit!" //https://www.youtube.com/watch?v=OMXan7GS8-Q
+	desc = "A small metal crate containing medical supplies."
 	icon_state = "mini_medcase"
 	name = "small medcase"
 	num_things = 1 //funny lootbox tho.

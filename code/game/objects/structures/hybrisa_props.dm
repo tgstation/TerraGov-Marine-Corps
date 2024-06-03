@@ -10,8 +10,6 @@
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
 	max_integrity = 3000
-	var/damage_state = 0
-	var/brute_multiplier = 1
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/urban/vehicles/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
@@ -88,12 +86,12 @@
 	bound_height = 64
 	bound_width = 96
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1
-	name = "Nanotrasen security truck"
+	name = "\improper Nanotrasen security truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_nt_security_1"
 
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_2
-	name = "Nanotrasen security truck"
+	name = "\improper Nanotrasen security truck"
 	desc = "Seems to be broken down."
 	icon_state = "armoredtruck_nt_security_2"
 
@@ -142,11 +140,11 @@
 
 //WY
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black
-	name = "Nanotrasen mega-hauler truck"
+	name = "\improper Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_nt_black"
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_blue
-	name = "Nanotrasen mega-hauler truck"
+	name = "\improper Nanotrasen mega-hauler truck"
 	icon_state = "longtruck_nt_blue"
 
 // SUV
@@ -179,7 +177,7 @@
 
 // Meridian Cars - Damage States
 /obj/structure/prop/urban/vehicles/meridian
-	name = "Mono-Spectra"
+	name = "\improper Mono-Spectra"
 	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
@@ -460,7 +458,7 @@
 	desc = "A Mono-Spectra chassis in the early stages of assembly."
 
 /obj/structure/prop/urban/vehicles/car/car_chassis
-	name = "Mono-Spectra Chassis"
+	name = "\improper Mono-Spectra Chassis"
 	icon_state = "MeridianCar_shell"
 
 // damaged suv
@@ -565,7 +563,7 @@
 	icon_state = "zenithlongtruckweyland1"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy
-	name = "Nanotrasen mega-hauler truck"
+	name = "\improper Nanotrasen mega-hauler truck"
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruckwy/wy1
 	icon_state = "zenithlongtruckweyland1"
@@ -605,7 +603,7 @@
 // science crawlers
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science
-	name = "Nanotrasen colony crawler"
+	name = "\improper Nanotrasen colony crawler"
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1
 	icon_state = "crawler_wy1"
@@ -639,7 +637,7 @@
 // Special SUV's
 
 /obj/structure/prop/urban/vehicles/suv/misc
-	name = "Nanotrasen rapid response vehicle"
+	name = "\improper Nanotrasen rapid response vehicle"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "WYSUV1"
@@ -1028,7 +1026,7 @@
 // Chairs
 /obj/structure/bed/urban/chairs
 	name = "expensive chair"
-	desc = "A expensive looking chair"
+	desc = "An expensive looking chair"
 
 /obj/structure/bed/urban/chairs/black
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
@@ -1501,7 +1499,7 @@
 // Misc
 
 /obj/structure/prop/urban/misc/commandosuitemptyprop
-	name = "Nanotrasen 'Ape-Suit' Showcase"
+	name = "\improper Nanotrasen 'Ape-Suit' Showcase"
 	desc = "A display model of the Nanotrasen 'Apesuit', shame it's only a model..."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "dogcatchersuitempty1"
@@ -1879,35 +1877,35 @@
 	icon_state = "redright"
 
 /obj/structure/prop/urban/containersextended/greywyleft
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "greywyleft"
 
 /obj/structure/prop/urban/containersextended/greywyright
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "greywyright"
 
 /obj/structure/prop/urban/containersextended/lightgreywyleft
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "lightgreywyleft"
 
 /obj/structure/prop/urban/containersextended/lightgreywyright
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "lightgreywyright"
 
 /obj/structure/prop/urban/containersextended/blackwyleft
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "blackwyleft"
 
 /obj/structure/prop/urban/containersextended/blackwyright
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "blackwyright"
 
 /obj/structure/prop/urban/containersextended/whitewyleft
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "whitewyleft"
 
 /obj/structure/prop/urban/containersextended/whitewyright
-	name = "Nanotrasen cargo container"
+	name = "\improper Nanotrasen cargo container"
 	icon_state = "whitewyright"
 
 /obj/structure/prop/urban/containersextended/tanwywingsleft

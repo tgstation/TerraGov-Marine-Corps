@@ -398,107 +398,53 @@
 	no_panel = TRUE
 	opacity = TRUE
 
-/obj/machinery/door/airlock/multi_tile/hybrisa
-	icon_state = "door_closed"
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic
+/obj/machinery/door/airlock/multi_tile/urban
 	name = "\improper Airlock"
+	icon_state = "door_closed"
+	req_access = null
+
+/obj/machinery/door/airlock/multi_tile/urban/generic
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1generic.dmi'
 	opacity = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname
-	req_access = null
-	opacity = FALSE
-	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1generic_solid.dmi'
 	opacity = TRUE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname
-	opacity = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 // Medical
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/medical
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1medidoor.dmi'
 	opacity = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname
-	opacity = FALSE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/medical_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1medidoor_solid.dmi'
 	opacity = TRUE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname
-	opacity = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
 
 // Personal
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/personal
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor_glass.dmi'
 	opacity = FALSE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname
-	opacity = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor.dmi'
 	opacity = TRUE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid/autoname
-	opacity = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 // Personal White
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/personal_white
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor_glass_white.dmi'
 	opacity = FALSE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname
-	opacity = FALSE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white
-	name = "\improper Airlock"
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor_white.dmi'
 	opacity = TRUE
-	req_access = null
-	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
-
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname
-	opacity = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)

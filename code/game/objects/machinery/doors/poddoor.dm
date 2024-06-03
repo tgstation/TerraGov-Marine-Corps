@@ -352,7 +352,6 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/urban/open_shutters
 	name = "\improper Shutters"
-	desc = null
 	icon_state = "almayer_pdoor1"
 	base_icon_state = "almayer_pdoor"
 	opacity = FALSE
@@ -361,7 +360,6 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/urban/shutters
 	name = "\improper Shutters"
-	desc = null
 	icon_state = "shutter1"
 	base_icon_state = "shutter"
 	layer = ABOVE_WINDOW_LAYER

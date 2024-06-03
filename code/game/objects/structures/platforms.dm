@@ -182,7 +182,6 @@
 	icon_state = "engineer_platform"
 	name = "raised metal edge"
 	desc =  "A raised level of metal, often used to elevate areas above others, or construct bridges. You could probably climb it."
-	climb_delay = 10
 
 /obj/structure/platform_decoration/urban/engineer_corner
 	name = "raised metal corner"

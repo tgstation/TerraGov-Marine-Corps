@@ -231,7 +231,7 @@
 	icon_state = "foodcart2"
 	icon_closed = "foodcart2"
 	icon_opened = "foodcart2_open"
-	name = "\improper food cart"
+	name = "food cart"
 
 /obj/structure/closet/crate/wayland
 	name = "Wayland crate"

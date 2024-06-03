@@ -245,10 +245,10 @@
 	brightness_on = 10
 
 /obj/machinery/floodlight/colony/street/update_icon_state()
-	var/area/A = get_area(src)
+	var/area/street_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "street_dmg"
-	else if(A.power_light)
+	else if(street_light_area.power_light)
 		icon_state = "street_on"
 		icon_state = "street_on"
 	else
@@ -270,11 +270,11 @@
 	brightness_on = 10
 
 /obj/machinery/floodlight/colony/traffic/update_icon_state()
-	var/area/A = get_area(src)
+	var/area/traffic_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "trafficlight_damaged"
 		set_light(0)
-	else if(A.power_light)
+	else if(traffic_light_area.power_light)
 		icon_state = "trafficlight_on"
 		set_light(2, 5, COLOR_WHITE)
 	else
@@ -316,11 +316,11 @@
 	light_power = 6
 
 /obj/machinery/colony_floodlight/engineer_circular/update_icon_state()
-	var/area/A = get_area(src)
+	var/area/engineer_circular_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "engineerlight_off"
 		set_light(0)
-	else if(A.power_light)
+	else if(engineer_circular_area.power_light)
 		icon_state = "engineerlight_on"
 		set_light(10, 5, COLOR_WHITE)
 	else

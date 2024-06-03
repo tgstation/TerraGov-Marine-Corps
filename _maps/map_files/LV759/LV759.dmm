@@ -4,7 +4,8 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "aan" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -324,7 +325,8 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/outdoors/colony_streets/central_streets)
 "adk" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -1187,7 +1189,8 @@
 	},
 /area/lv759/indoors/hospital/east_hallway)
 "akr" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 1;
 	locked = 1
 	},
@@ -1525,7 +1528,8 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
 "amX" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -1915,7 +1919,8 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "aqr" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /turf/open/floor/prison{
 	dir = 4
 	},
@@ -2780,7 +2785,8 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "axq" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -3220,7 +3226,8 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_east)
 "aCG" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -4518,7 +4525,8 @@
 "aMD" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -6252,7 +6260,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_white{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -8013,7 +8022,8 @@
 	},
 /area/lv759/indoors/hospital/operation)
 "brM" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -9086,7 +9096,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "bAK" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -9339,7 +9350,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bDA" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "bDN" = (
@@ -9852,7 +9864,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bHB" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -10687,7 +10700,8 @@
 /area/lv759/indoors/spaceport/heavyequip)
 "bNN" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -12171,7 +12185,8 @@
 /area/lv759/indoors/casino)
 "bZC" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white,
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13164,7 +13179,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "cip" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -14871,7 +14887,8 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "cwn" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15341,7 +15358,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -16113,7 +16131,8 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cHe" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -16868,7 +16887,8 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "cOo" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1;
 	locked = 1
 	},
@@ -17502,7 +17522,8 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "cSR" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -18204,7 +18225,8 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "cYl" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -18734,7 +18756,8 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "dbV" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19145,7 +19168,8 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "dfb" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -19657,7 +19681,8 @@
 /turf/open/shuttle/escapepod/seven,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "dji" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -20535,7 +20560,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -21234,7 +21260,8 @@
 /area/lv759/indoors/north_caves)
 "dwB" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -21254,7 +21281,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 1
 	},
-/obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21497,7 +21525,8 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/east_caves)
 "dzu" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -22820,7 +22849,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/icu)
 "dLH" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -23230,7 +23260,8 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/north_east_caves)
 "dPk" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -23240,7 +23271,8 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/hospital/operation)
 "dPp" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8;
 	locked = 1
 	},
@@ -24783,7 +24815,8 @@
 /turf/open/floor/plate,
 /area/lv759/indoors/colonial_marshals/garage)
 "edS" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25306,7 +25339,8 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "eig" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /turf/open/floor/urban/tile/tilebeige,
@@ -26179,7 +26213,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "epF" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -26269,7 +26304,8 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eqi" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -26464,7 +26500,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -26819,7 +26856,8 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/spaceport/security_office)
 "eut" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -26875,7 +26913,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "euS" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -28122,7 +28161,8 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "eFQ" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -28467,7 +28507,8 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/eastrestroomsshower)
 "eJn" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /turf/open/floor/urban/tile/blacktileshiny,
@@ -28675,7 +28716,8 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "eKZ" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/door/airlock/hybrisa/medical/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -29527,7 +29569,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "eRC" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/floor/plating,
 /area/lv759/indoors/weyyu_office/breakroom)
 "eRF" = (
@@ -29699,7 +29742,8 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "eTw" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /turf/open/floor/mainship{
 	allow_construction = 0
 	},
@@ -31086,7 +31130,8 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "fgn" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31350,7 +31395,8 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "fij" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -31560,7 +31606,8 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
 "fjZ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -31917,7 +31964,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_white{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -32444,7 +32492,8 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/heavyequip)
 "frw" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -32510,7 +32559,8 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "fsd" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -33309,7 +33359,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/NTmart)
 "fyU" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -34020,7 +34071,8 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fFs" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -34068,7 +34120,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fFA" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -34692,7 +34745,8 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/landing_zone_1)
 "fKo" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical_solid{
 	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -35141,7 +35195,8 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "fNK" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -35602,7 +35657,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fRc" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -36732,7 +36788,8 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/reception)
 "gaI" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -36912,7 +36969,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "gcQ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4;
 	locked = 1
 	},
@@ -38380,7 +38438,8 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "goi" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1;
 	locked = 1
 	},
@@ -39105,7 +39164,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gua" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -40303,7 +40363,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gEQ" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41260,7 +41321,8 @@
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -42166,7 +42228,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_west_caves)
 "gYq" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -42964,7 +43027,8 @@
 	},
 /area/lv759/indoors/NTmart/maintenance)
 "hdo" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -45018,7 +45082,8 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "htM" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -46290,7 +46355,8 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hDY" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -47886,7 +47952,8 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory)
 "hRU" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -48760,7 +48827,8 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hZD" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -48862,7 +48930,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 8
 	},
 /turf/open/floor/officetiles,
@@ -49660,7 +49729,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "ihZ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -51447,7 +51517,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "ixD" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -51727,7 +51798,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "izV" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -51775,7 +51847,8 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "iAm" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northapartments)
@@ -51859,7 +51932,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "iAT" = (
-/obj/machinery/door/airlock/hybrisa/medical_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical_solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -51987,7 +52061,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/power_storage)
 "iCu" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -52735,7 +52810,8 @@
 "iJr" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -52747,7 +52823,8 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "iJz" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical,
 /obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 10
@@ -53782,7 +53859,8 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/bar)
 "iSx" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -54842,7 +54920,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_caves)
 "jaR" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -55430,7 +55509,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_east_caves)
 "jfb" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -55850,7 +55930,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/emergency_room)
 "jiE" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northapartments)
 "jiK" = (
@@ -57855,7 +57936,8 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/central_streets)
 "jzp" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "jzr" = (
@@ -58410,7 +58492,8 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "jEB" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -58773,7 +58856,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "jIn" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -59081,7 +59165,8 @@
 /turf/closed/wall/urban/colony/ribbed,
 /area/lv759/indoors/nt_security/checkpoint_west)
 "jLC" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -59371,7 +59456,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "jNn" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -59712,7 +59798,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "jQL" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -59972,7 +60059,8 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "jTr" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -60089,7 +60177,8 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "jUv" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -60852,7 +60941,8 @@
 /turf/open/floor/urban/metal/greenmetalfull,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "kau" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -60975,7 +61065,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "kby" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant)
 "kbB" = (
@@ -61050,7 +61141,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_white{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -61131,7 +61223,8 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "kdi" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -61226,7 +61319,8 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/meridian/meridian_showroom)
 "ked" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -61794,7 +61888,8 @@
 	},
 /area/lv759/indoors/hospital/cryo_room)
 "kjl" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -64042,7 +64137,8 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
 "kDc" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical_solid{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -64229,7 +64325,8 @@
 /area/lv759/indoors/hospital/operation)
 "kFI" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -64768,7 +64865,8 @@
 /turf/open/floor/urban/carpet/carpetreddeco,
 /area/lv759/indoors/weyyu_office/supervisor)
 "kKS" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -65130,7 +65228,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "kNP" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -65643,7 +65742,8 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "kSS" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -66454,7 +66554,8 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/cargo)
 "kZp" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -67220,7 +67321,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "lfI" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -68622,7 +68724,8 @@
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/bar)
 "lsn" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -68807,7 +68910,8 @@
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "lug" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -69143,7 +69247,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "lwK" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	locked = 1
 	},
 /obj/structure/cable,
@@ -69240,7 +69345,8 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/mining_outpost/processing)
 "lxR" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -69341,7 +69447,8 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "lyG" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -69754,7 +69861,8 @@
 /area/lv759/indoors/weyyu_office/hallway)
 "lCL" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white,
-/obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -70577,7 +70685,8 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "lJB" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -71740,7 +71849,8 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "lSe" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -72771,7 +72881,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "mbc" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -73328,7 +73439,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 8
 	},
 /turf/open/floor/officetiles,
@@ -73845,7 +73957,8 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/power_plant/fusion_generators)
 "mkl" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -74709,7 +74822,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mqS" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -74926,7 +75040,8 @@
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastbedrooms)
 "msB" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westbedrooms)
@@ -76993,7 +77108,8 @@
 "mKG" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -77699,7 +77815,8 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_street)
 "mQj" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /turf/open/floor/plating,
 /area/lv759/indoors/recycling_plant)
 "mQr" = (
@@ -78183,7 +78300,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
 "mUO" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -78806,7 +78924,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "mZu" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -79016,7 +79135,8 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "nbm" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /turf/open/floor/prison{
@@ -79206,7 +79326,8 @@
 /turf/open/floor/urban/metal/grated,
 /area/lv759/outdoors/colony_streets/central_streets)
 "ncm" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -79748,7 +79869,8 @@
 /turf/open/floor/mainship/cargo,
 /area/lv759/indoors/nt_research_complex/cargo)
 "ngB" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -80358,7 +80480,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "nls" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -82127,7 +82250,8 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "nzA" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -83419,7 +83543,8 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "nLg" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -83699,7 +83824,8 @@
 /area/lv759/outdoors/landing_zone_2)
 "nNN" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -84253,7 +84379,8 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "nRT" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -84439,7 +84566,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -84620,7 +84748,8 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/spaceport/cargo)
 "nVh" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -84947,7 +85076,8 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "nYc" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -85075,7 +85205,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "nZm" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -85366,7 +85497,8 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "obC" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -85428,7 +85560,8 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "occ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -85996,7 +86129,8 @@
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "ohy" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -87536,7 +87670,8 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ows" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_security/checkpoint_central)
 "owt" = (
@@ -87863,7 +87998,8 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ozt" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -89570,7 +89706,8 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/heavyequip)
 "oOy" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -90686,7 +90823,8 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "oZf" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant)
@@ -90871,7 +91009,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "paJ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -91303,7 +91442,8 @@
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/central_streets)
 "peh" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
@@ -91732,7 +91872,8 @@
 /turf/open/floor/urban/carpet/carpetblue,
 /area/lv759/indoors/apartment/westentertainment)
 "phg" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -92110,7 +92251,8 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "ple" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -92201,7 +92343,8 @@
 /area/lv759/indoors/apartment/eastfoyer)
 "plR" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -92595,7 +92738,8 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "ppe" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -92736,7 +92880,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pqB" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -93118,7 +93263,8 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/reception)
 "ptA" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
@@ -93715,7 +93861,8 @@
 	},
 /area/lv759/indoors/spaceport/cargo)
 "pyt" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -93912,7 +94059,8 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "pzp" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 8
@@ -94828,7 +94976,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "pHk" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -95323,7 +95472,8 @@
 	id = "urbanLZ2_3";
 	name = "Emergency Lockdown"
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -97350,7 +97500,8 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/armory)
 "qcn" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -97967,7 +98118,7 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "qhg" = (
-/turf/closed/wall/r_wall/biodome/biodome_unmeltable,
+/turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/oob)
 "qhi" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
@@ -98071,7 +98222,8 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "qif" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -98081,7 +98233,8 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/janitor)
 "qih" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -98950,7 +99103,8 @@
 	},
 /area/lv759/indoors/mining_outpost/north_maint)
 "qpj" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -99304,7 +99458,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_white{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -100312,7 +100467,8 @@
 	},
 /area/lv759/indoors/central_caves)
 "qCE" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -100389,7 +100545,8 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "qDo" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical_solid{
 	dir = 1;
 	locked = 1
 	},
@@ -100556,7 +100713,8 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/apartment/eastfoyer)
 "qFF" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -100604,7 +100762,8 @@
 /turf/open/shuttle/dropship/three,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "qFY" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -100732,7 +100891,8 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westfoyer)
 "qHv" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -100812,7 +100972,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_west_caves)
 "qIx" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -101101,7 +101262,8 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/meridian/meridian_showroom)
 "qLa" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -101455,7 +101617,8 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/hospital/cmo_office)
 "qOr" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security)
@@ -101526,7 +101689,8 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "qPh" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -102037,7 +102201,8 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "qTq" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -102237,7 +102402,8 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "qVP" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/janitor)
@@ -104035,7 +104201,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "rlk" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 4;
 	locked = 1
 	},
@@ -104657,7 +104824,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "rpX" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -105777,7 +105945,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "rAH" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -106350,7 +106519,8 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "rFB" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -108399,7 +108569,8 @@
 /obj/machinery/door/poddoor/mainship/biohazard/white{
 	dir = 2
 	},
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 8
 	},
 /turf/open/floor/officetiles,
@@ -108579,7 +108750,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rYQ" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -109332,7 +109504,8 @@
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "sfL" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -110819,7 +110992,8 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/lv759/indoors/hospital/east_hallway)
 "srE" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic,
 /turf/open/floor/prison,
 /area/lv759/indoors/landing_zone_1/flight_control_room)
 "srG" = (
@@ -111286,7 +111460,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "svn" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1;
 	locked = 1
 	},
@@ -112644,7 +112819,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "sGK" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -112707,7 +112883,8 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/bar/bathroom)
 "sHE" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/officetiles,
@@ -112873,7 +113050,8 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "sIV" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -113073,7 +113251,8 @@
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -113575,7 +113754,8 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "sNQ" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/westbedrooms)
 "sNR" = (
@@ -114049,7 +114229,8 @@
 	},
 /area/lv759/indoors/recycling_plant)
 "sRF" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -114593,7 +114774,8 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/nt_research_complex_entrance)
 "sWO" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1;
 	locked = 1
 	},
@@ -114950,7 +115132,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "sZN" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -116325,7 +116508,8 @@
 	},
 /area/lv759/indoors/west_caves)
 "tlg" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northfoyer)
 "tlh" = (
@@ -116383,7 +116567,8 @@
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "tlF" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
@@ -116472,7 +116657,8 @@
 	},
 /area/lv759/indoors/weyyu_office/pressroom)
 "tmo" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -117264,14 +117450,16 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "ttN" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/floor)
 "ttT" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -117405,7 +117593,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaycentral)
 "tuX" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
@@ -117809,7 +117998,8 @@
 /turf/open/floor/carpet,
 /area/lv759/indoors/apartment/eastbedroomsstorage)
 "tyc" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -118077,7 +118267,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "tAs" = (
-/obj/machinery/door/airlock/hybrisa/medical_solid{
+/obj/machinery/door/airlock/urban/medical_solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -118111,7 +118301,8 @@
 	},
 /area/lv759/indoors/power_plant)
 "tAJ" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -118416,7 +118607,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tEf" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -118720,7 +118912,8 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "tGw" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/prison/cellstripe{
@@ -119985,7 +120178,8 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/equipment_east)
 "tQN" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northapartments)
@@ -121545,7 +121739,8 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ucl" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -121608,7 +121803,8 @@
 	},
 /area/lv759/indoors/hospital/east_hallway)
 "udf" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -122282,7 +122478,8 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/central_caves)
 "uil" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 8
 	},
 /turf/open/floor/officetiles,
@@ -122531,7 +122728,8 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/landing_zone_2)
 "ukx" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1;
 	locked = 1
 	},
@@ -123065,7 +123263,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uos" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northhallway)
 "uou" = (
@@ -123178,7 +123377,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "upu" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -123213,7 +123413,8 @@
 	},
 /area/lv759/indoors/hospital/reception)
 "upE" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -125049,7 +125250,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "uFN" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/prison{
@@ -125314,7 +125516,8 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "uHD" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -126255,7 +126458,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/jacks_surplus)
 "uPJ" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -126546,7 +126750,8 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "uSz" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -126929,7 +127134,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "uVI" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -127209,7 +127415,8 @@
 /obj/effect/decal/cleanable/blood{
 	dir = 4
 	},
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
 	},
 /turf/open/floor/urban/tile/darkgrey_bigtile,
@@ -129672,7 +129879,8 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vrM" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -130014,7 +130222,8 @@
 	},
 /area/lv759/indoors/power_plant)
 "vuX" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -130265,7 +130474,8 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "vxi" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 2;
 	name = "Emergency Lockdown"
 	},
@@ -131549,7 +131759,8 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "vIn" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical_solid{
 	dir = 1
 	},
 /obj/structure/sign/safety/storage,
@@ -131690,7 +131901,8 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "vJV" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -131912,7 +132124,8 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "vLZ" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/medical,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -131939,7 +132152,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vMh" = (
-/obj/machinery/door/airlock/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -132829,7 +133043,8 @@
 	dir = 4;
 	pixel_x = 1
 	},
-/obj/machinery/door/airlock/hybrisa/personal_solid_white/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 1
 	},
 /turf/open/floor/marked,
@@ -133339,7 +133554,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "vWJ" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -134956,7 +135172,8 @@
 /area/lv759/indoors/spaceport/security_office)
 "wjK" = (
 /obj/effect/urban/decal/bloodtrail,
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -135343,7 +135560,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "wmy" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 1
 	},
 /turf/open/floor/floorthree,
@@ -137816,7 +138034,8 @@
 	},
 /area/lv759/indoors/west_caves)
 "wIC" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -139657,7 +139876,8 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "wXF" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -140141,7 +140361,8 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/xeno,
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -140714,7 +140935,8 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_street)
 "xgq" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -141155,7 +141377,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xjF" = (
-/obj/machinery/door/airlock/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic_solid{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -141425,7 +141648,8 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/garage_workshop)
 "xmv" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -143200,7 +143424,8 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/mining_outpost/north)
 "xBI" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -144927,7 +145152,8 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "xQf" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -144980,7 +145206,8 @@
 /area/lv759/indoors/spaceport/cargo)
 "xQC" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/airlock/multi_tile/hybrisa/medical/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/medical{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -146304,7 +146531,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "ycN" = (
-/obj/machinery/door/airlock/hybrisa/generic/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/generic{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -146512,7 +146740,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/north_caves)
 "yeA" = (
-/obj/machinery/door/airlock/multi_tile/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/multi_tile/urban/personal{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -146671,7 +146900,8 @@
 /turf/open/floor/urban/carpet/carpetgreen,
 /area/lv759/indoors/recycling_plant_office)
 "yfS" = (
-/obj/machinery/door/airlock/hybrisa/personal/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal{
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -147183,7 +147413,8 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "yka" = (
-/obj/machinery/door/airlock/hybrisa/personal_solid/autoname{
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/machinery/door/airlock/urban/personal_solid{
 	dir = 1
 	},
 /obj/structure/cable,

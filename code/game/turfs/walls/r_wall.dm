@@ -61,8 +61,6 @@
 
 //Kutjevo
 
-//Kutjevo
-
 /turf/closed/wall/r_wall/kutjevo
 	icon = 'icons/turf/walls/kutjevo_rwall.dmi'
 	icon_state = "wall-reinforced"
@@ -100,10 +98,6 @@
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
-
-/turf/closed/wall/r_wall/biodome
-
-/turf/closed/wall/r_wall/biodome/biodome_unmeltable
 
 /turf/closed/wall/r_wall/bunker
 	icon = 'icons/turf/walls/junkwall.dmi'
