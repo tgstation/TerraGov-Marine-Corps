@@ -1,5 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - imageadd: "new tgmc skirt icon"
-  - imagedel: "old tgmc skirt icon"
