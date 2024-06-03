@@ -76,7 +76,7 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_on", 4.2)
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_on", 4.2)
 		engine_overlay.pixel_x = engine.x_offset
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
@@ -89,7 +89,7 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", 4.2)
 		engine_overlay.pixel_x = engine.x_offset
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
@@ -98,7 +98,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", 4.2)
 		engine_overlay.pixel_x = engine.x_offset
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
