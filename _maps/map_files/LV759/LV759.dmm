@@ -820,7 +820,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ahr" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -2486,7 +2486,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "auQ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -7094,7 +7094,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "bir" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -7619,7 +7619,7 @@
 /area/lv759/indoors/colonial_marshals/head_office)
 "boh" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2;
 	id = "medical_storage_lockdown"
 	},
@@ -9755,7 +9755,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "bGH" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -9974,7 +9974,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -12679,7 +12679,7 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/landing_zone_1)
 "cdm" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	name = "\improper Lockdown"
 	},
@@ -13088,7 +13088,7 @@
 	dir = 4
 	},
 /obj/structure/curtain/temple,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -13701,7 +13701,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cmV" = (
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/window/framed/urban/junk_window,
@@ -15156,7 +15156,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -15450,7 +15450,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -15490,7 +15490,7 @@
 /obj/structure/window/framed/urban/colony/engineering{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15523,7 +15523,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -15651,7 +15651,7 @@
 /obj/structure/window/framed/urban{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -18354,7 +18354,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -18554,7 +18554,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/platform/urban/metalplatform3{
@@ -18959,7 +18959,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ddz" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
 	},
@@ -21614,7 +21614,7 @@
 /area/lv759/indoors/casino)
 "dAk" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -21899,7 +21899,7 @@
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "dCy" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 1;
 	id = "virology_lockdown"
 	},
@@ -22851,7 +22851,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -23171,7 +23171,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/central_caves)
 "dOy" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	name = "\improper Lockdown"
 	},
@@ -23544,7 +23544,7 @@
 	light_power = 3;
 	light_range = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -24623,7 +24623,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "ebT" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -26478,7 +26478,7 @@
 	dir = 4;
 	layer = 4
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -26804,7 +26804,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -27271,7 +27271,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "eyg" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8;
 	id = "virology_lockdown"
 	},
@@ -28394,7 +28394,7 @@
 /area/lv759/indoors/apartment/westbedrooms)
 "eIs" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -28403,7 +28403,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/structure/platform/urban/metalplatform6{
@@ -28873,7 +28873,7 @@
 	pixel_x = -64;
 	pixel_y = -12
 	},
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -30462,7 +30462,7 @@
 "faI" = (
 /obj/structure/cable,
 /obj/structure/window/framed/urban/colony/engineering/hull,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/sign/safety/airlock,
@@ -31625,7 +31625,7 @@
 /area/lv759/indoors/hospital/operation)
 "fkc" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -31829,7 +31829,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "flV" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -34469,7 +34469,7 @@
 /area/lv759/indoors/power_plant)
 "fHI" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -34635,7 +34635,7 @@
 /obj/structure/window/framed/urban/colony{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -36931,7 +36931,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -37292,7 +37292,7 @@
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "gft" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -38127,7 +38127,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -39904,7 +39904,7 @@
 /area/lv759/indoors/power_plant/geothermal_generators)
 "gBh" = (
 /obj/structure/window/framed/urban/colony/engineering/hull,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -40533,7 +40533,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41149,7 +41149,7 @@
 /area/lv759/indoors/garage_workshop)
 "gNL" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -41480,7 +41480,7 @@
 /area/lv759/indoors/spaceport/kitchen)
 "gRb" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -41892,7 +41892,7 @@
 /turf/open/floor/urban/tile/cuppajoesfloor,
 /area/lv759/indoors/spaceport/cuppajoes)
 "gUR" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -41997,7 +41997,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "gVJ" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -43052,7 +43052,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -43286,7 +43286,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "hfZ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -45369,7 +45369,7 @@
 	},
 /area/lv759/indoors/weyyu_office/pressroom)
 "hwx" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -45921,7 +45921,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/platform/urban/metalplatform3{
@@ -46311,7 +46311,7 @@
 /area/lv759/indoors/colonial_marshals/changing_room)
 "hDD" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -46345,7 +46345,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "hDS" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -46449,7 +46449,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "hET" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -46561,7 +46561,7 @@
 /area/lv759/indoors/hospital/paramedics_garage)
 "hFS" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -46865,7 +46865,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -47567,7 +47567,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hOC" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -48066,7 +48066,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -48262,7 +48262,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "hTN" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -48414,7 +48414,7 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/bar)
 "hWc" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -50059,7 +50059,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "ikW" = (
 /obj/structure/window/framed/urban/colony/office,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -50370,7 +50370,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -52440,7 +52440,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52858,7 +52858,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -55934,7 +55934,7 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "jiB" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -56676,7 +56676,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "jnU" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -56696,7 +56696,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "jnZ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -56836,7 +56836,7 @@
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_reception)
 "jpQ" = (
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/sign/safety/storage,
@@ -57564,7 +57564,7 @@
 /area/lv759/indoors/north_caves)
 "jvF" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /obj/structure/platform/urban/metalplatform6{
@@ -57621,7 +57621,7 @@
 /area/lv759/indoors/central_caves)
 "jwE" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -57722,7 +57722,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -57979,7 +57979,7 @@
 	dir = 4;
 	name = "\improper Lockdown"
 	},
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -58402,7 +58402,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -59399,7 +59399,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -60199,7 +60199,7 @@
 /area/lv759/indoors/apartment/westfoyer)
 "jUx" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -60497,7 +60497,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/east_hallway)
 "jWZ" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	name = "\improper Lockdown"
 	},
@@ -60789,7 +60789,7 @@
 /area/lv759/indoors/apartment/northapartments)
 "jZb" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -61487,7 +61487,7 @@
 /area/lv759/indoors/colonial_marshals/reception)
 "kfx" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -61518,7 +61518,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -61532,7 +61532,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -62218,7 +62218,7 @@
 /area/lv759/indoors/central_caves)
 "kmm" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -63030,7 +63030,7 @@
 /area/lv759/indoors/NTmart)
 "ktz" = (
 /obj/structure/window/framed/urban/colony/engineering,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -63217,7 +63217,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -64508,7 +64508,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "kHb" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -66021,7 +66021,7 @@
 "kUO" = (
 /obj/structure/window/framed/urban/reinforced,
 /obj/structure/curtain/temple,
-/obj/machinery/door/poddoor/urban/open_shutters,
+/obj/machinery/door/poddoor/shutters/urban/open_shutters,
 /turf/open/floor/plating,
 /area/lv759/indoors/weyyu_office/supervisor)
 "kUQ" = (
@@ -66329,7 +66329,7 @@
 "kXi" = (
 /obj/structure/window/framed/urban,
 /obj/structure/lattice/autosmooth,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -66439,7 +66439,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "kXS" = (
 /obj/structure/window/framed/urban/colony/engineering/hull,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -66683,7 +66683,7 @@
 /area/lv759/indoors/west_caves)
 "laz" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/structure/sign/safety/hazard,
@@ -67903,7 +67903,7 @@
 /area/lv759/indoors/hospital/east_hallway)
 "lkt" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -68194,7 +68194,7 @@
 /area/lv759/indoors/spaceport/hallway_east)
 "lmU" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -68797,7 +68797,7 @@
 "lsP" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -68852,7 +68852,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -71207,7 +71207,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "lNz" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -71417,7 +71417,7 @@
 /area/lv759/indoors/weyyu_office/vip)
 "lPp" = (
 /obj/structure/window/framed/urban/colony/office,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/platform/urban/metalplatform6{
@@ -71895,7 +71895,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lSx" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -73206,7 +73206,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -73486,7 +73486,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mgD" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -74127,7 +74127,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -74480,7 +74480,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "mol" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -74761,7 +74761,7 @@
 /obj/structure/window/framed/urban{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -75133,7 +75133,7 @@
 /area/lv759/indoors/spaceport/engineering)
 "mtj" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -75148,7 +75148,7 @@
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "mtz" = (
 /obj/structure/window/framed/urban/colony/office,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -76263,7 +76263,7 @@
 /area/lv759/indoors/spaceport/cargo)
 "mCQ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -76915,7 +76915,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -77727,7 +77727,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "mPz" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -78533,7 +78533,7 @@
 /area/lv759/indoors/hospital/virology)
 "mWI" = (
 /obj/structure/window/framed/urban/colony/engineering/hull,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -79449,7 +79449,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "ndn" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/marked,
@@ -81750,7 +81750,7 @@
 /area/lv759/indoors/casino/casino_vault)
 "nvt" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -81840,7 +81840,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nwG" = (
-/obj/machinery/door/poddoor/urban/white{
+/obj/machinery/door/poddoor/shutters/urban/white{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -82200,7 +82200,7 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "nzf" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -82606,7 +82606,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -84371,7 +84371,7 @@
 	dir = 8;
 	layer = 4
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -86117,7 +86117,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -86527,7 +86527,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -86665,7 +86665,7 @@
 "olH" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -86951,7 +86951,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/reception)
 "opn" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	name = "\improper Lockdown"
 	},
@@ -88322,7 +88322,7 @@
 	},
 /area/lv759/indoors/north_east_caves)
 "oCF" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -88689,7 +88689,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -89427,7 +89427,7 @@
 /area/lv759/indoors/recycling_plant_office)
 "oKZ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -90360,7 +90360,7 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "oUl" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -90421,7 +90421,7 @@
 /area/lv759/indoors/hospital/reception)
 "oUL" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -91003,7 +91003,7 @@
 /obj/structure/window/framed/urban/colony/office{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/platform/urban/metalplatform3{
@@ -91357,7 +91357,7 @@
 	pixel_x = -28
 	},
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 1;
 	id = "medical_storage_lockdown"
 	},
@@ -92349,7 +92349,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "plP" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -93363,7 +93363,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -94726,7 +94726,7 @@
 	locked = 1;
 	name = "\improper Lockdown"
 	},
-/obj/machinery/door/poddoor/urban/white{
+/obj/machinery/door/poddoor/shutters/urban/white{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -94852,7 +94852,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -95267,7 +95267,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -95456,7 +95456,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "pKT" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/marked,
@@ -95794,10 +95794,10 @@
 /obj/structure/window/framed/urban/spaceport{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -96315,7 +96315,7 @@
 /turf/closed/wall/r_wall/bunker,
 /area/lv759/indoors/north_caves)
 "pSn" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -97721,7 +97721,7 @@
 /area/lv759/indoors/south_west_caves)
 "qdM" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -98037,7 +98037,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "qgb" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -98327,7 +98327,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qiM" = (
 /obj/structure/window/framed/urban/colony/office,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -98408,7 +98408,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qjD" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -99483,7 +99483,7 @@
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "qss" = (
 /obj/structure/window/framed/urban/colony/office,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/platform/urban/metalplatform6{
@@ -99801,7 +99801,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "qvV" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -100570,7 +100570,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -100937,7 +100937,7 @@
 /area/lv759/indoors/weyyu_office/vip)
 "qHG" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/platform/urban/metalplatform6{
@@ -101210,7 +101210,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qKk" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -102240,7 +102240,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -103233,7 +103233,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -104028,7 +104028,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -104037,7 +104037,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -104455,7 +104455,7 @@
 /obj/structure/curtain/temple{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -105006,7 +105006,7 @@
 /area/lv759/indoors/mining_outpost/east_dorms)
 "rrR" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -106542,7 +106542,7 @@
 /area/lv759/indoors/casino/casino_restroom)
 "rFF" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -107106,7 +107106,7 @@
 	},
 /area/lv759/indoors/hospital/east_hallway)
 "rKL" = (
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -107370,7 +107370,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "rNk" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -107754,7 +107754,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/hospital/patient_ward)
 "rPC" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -108539,7 +108539,7 @@
 /area/lv759/indoors/north_caves)
 "rWQ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -109040,7 +109040,7 @@
 /obj/structure/window/framed/urban/colony/engineering{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -109552,7 +109552,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "sfZ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -110023,7 +110023,7 @@
 /turf/open/floor/sandrock,
 /area/lv759/indoors/north_west_caves)
 "sjH" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -111173,7 +111173,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "ssM" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/sign/safety/hazard,
@@ -111679,7 +111679,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/processing)
 "sxv" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -112979,7 +112979,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "sIu" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -114446,7 +114446,7 @@
 /obj/structure/window/framed/urban{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -114881,7 +114881,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -115543,7 +115543,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/press_room)
 "tds" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -117361,7 +117361,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/weyyu_office/floor)
 "tsO" = (
-/obj/machinery/door/poddoor/urban/white{
+/obj/machinery/door/poddoor/shutters/urban/white{
 	dir = 2;
 	name = "\improper WY-LWI Horizon Runner HR-150 Cargo Hold"
 	},
@@ -118680,7 +118680,7 @@
 	},
 /area/lv759/indoors/power_plant/south_hallway)
 "tEM" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -119205,7 +119205,7 @@
 /area/lv759/indoors/hospital/maintenance)
 "tII" = (
 /obj/structure/window/framed/urban/colony,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -119306,7 +119306,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -122848,7 +122848,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ukY" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -123204,7 +123204,7 @@
 /obj/structure/window/framed/urban/colony/engineering{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -124034,7 +124034,7 @@
 /area/lv759/indoors/nt_research_complex/cargo)
 "uuz" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -124877,7 +124877,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uCC" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -124895,7 +124895,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "uCI" = (
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /obj/structure/sign/safety/laser,
@@ -128343,7 +128343,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "vfy" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -129696,7 +129696,7 @@
 	},
 /area/lv759/indoors/hospital/reception)
 "vqp" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -129850,7 +129850,7 @@
 /area/lv759/indoors/weyyu_office/floor)
 "vrz" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2;
 	id = "virology_lockdown"
 	},
@@ -130058,14 +130058,14 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/east_hallway)
 "vtl" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -130103,7 +130103,7 @@
 /obj/structure/window/framed/urban/colony/engineering{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -130551,7 +130551,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_2{
 	pixel_x = -26
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -131831,7 +131831,7 @@
 /area/lv759/indoors/hospital/outgoing)
 "vIQ" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -132031,7 +132031,7 @@
 /area/lv759/oob)
 "vKA" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -135742,7 +135742,7 @@
 /area/lv759/indoors/meridian/meridian_showroom)
 "wnY" = (
 /obj/structure/window/framed/urban/colony/engineering,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /obj/structure/platform/urban/metalplatform6,
@@ -135961,7 +135961,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "wpS" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -136038,7 +136038,7 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wqw" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 1;
 	name = "\improper Lockdown"
 	},
@@ -137245,7 +137245,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "wCa" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -137528,7 +137528,7 @@
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "wDP" = (
 /obj/structure/window/framed/urban/colony/engineering,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -137775,7 +137775,7 @@
 /area/lv759/indoors/meridian/meridian_managersoffice)
 "wFQ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -139096,7 +139096,7 @@
 	locked = 1;
 	name = "\improper Lockdown"
 	},
-/obj/machinery/door/poddoor/urban/white{
+/obj/machinery/door/poddoor/shutters/urban/white{
 	dir = 4;
 	name = "\improper Lockdown"
 	},
@@ -139831,7 +139831,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "wXc" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -140397,7 +140397,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xcx" = (
 /obj/structure/window/framed/urban,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -140431,7 +140431,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "xcI" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -142735,7 +142735,7 @@
 /obj/structure/window/framed/urban/marshalls/cell{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -143358,7 +143358,7 @@
 /obj/structure/window/framed/urban/colony/engineering{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -143729,7 +143729,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -144212,7 +144212,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "xIg" = (
-/obj/machinery/door/poddoor/urban/secure_red_door{
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -144380,7 +144380,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/urban/shutters{
+/obj/machinery/door/poddoor/shutters/urban/shutters{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -146638,7 +146638,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ydA" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/urban/open_shutters{
+/obj/machinery/door/poddoor/shutters/urban/open_shutters{
 	dir = 2
 	},
 /turf/open/floor/plating,

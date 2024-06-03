@@ -255,3 +255,31 @@
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell2
 	name = "\improper Containment Cell 2"
 	id = "Containment Cell 2"
+
+/// urban shutters
+/obj/machinery/door/poddoor/shutters/urban
+	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
+	icon_state = "almayer_pdoor1"
+	openspeed = 4
+
+/obj/machinery/door/poddoor/shutters/urban/open_shutters
+	icon_state = "almayer_pdoor1"
+	opacity = FALSE
+	layer = ABOVE_WINDOW_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/machinery/door/poddoor/shutters/urban/shutters
+	icon_state = "shutter1"
+	layer = ABOVE_WINDOW_LAYER
+
+/obj/machinery/door/poddoor/shutters/urban/white
+	desc = "That looks like it doesn't open easily."
+	icon_state = "w_almayer_pdoor1"
+
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door
+	desc = "That looks like it doesn't open easily."
+	icon_state = "pdoor1"
+
+/obj/machinery/door/poddoor/mainship/biohazard/white
+	icon_state = "w_almayer_pdoor1"
+	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
