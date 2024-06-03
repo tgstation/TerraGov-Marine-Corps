@@ -123,6 +123,8 @@
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION "!campaign_ob_beacon_activation"
 ///Campaign OB beacon going off
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
+///Enables the teleporter array
+#define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -411,9 +413,6 @@
 #define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
 #define COMSIG_ITEM_VARIANT_CHANGE "item_variant_change"			// called in color_item : (mob/user, variant)
-
-#define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (reagent_path, amount); it is sent when a reagent gets added for the first time to a holder
-#define COMSIG_REAGENT_DELETING "reagent_deleting"					//from /datum/reagents/del_reagent(): (reagent_path) When a reagent is entirely removed from its holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
@@ -969,6 +968,11 @@
 #define COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD "xenoability_trigger_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
+
+#define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
+#define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
+#define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
+#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"

@@ -51,7 +51,7 @@
 	var/obj/master_item = parent.loc
 	master_item?.update_icon()
 
-/datum/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
+/datum/storage/internal/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
 	. = ..()
 	var/obj/master_item = parent.loc
 	if(isturf(master_item) || ismob(master_item))

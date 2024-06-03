@@ -245,6 +245,30 @@
 		current_type = initial(current_type.parent_type)
 	return current_type
 
+/// basetype = list(strain1, strain2)
+GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
+/proc/init_glob_strain_list()
+	var/list/strain_list = list()
+	for(var/datum/xeno_caste/root_caste AS in GLOB.xeno_caste_datums)
+		if(root_caste.parent_type != /datum/xeno_caste)
+			continue
+		strain_list[root_caste] = list()
+		for(var/datum/xeno_caste/typepath AS in subtypesof(root_caste))
+			if(typepath::upgrade != XENO_UPGRADE_BASETYPE)
+				continue
+			if(typepath::caste_flags & CASTE_EXCLUDE_STRAINS)
+				continue
+			strain_list[root_caste] += typepath
+	return strain_list
+
+///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
+/datum/xeno_caste/proc/get_strain_options()
+	var/datum/xeno_caste/root_type = type
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	var/list/options = GLOB.strain_list[root_type]
+	return options?.Copy()
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -266,7 +290,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)

@@ -73,8 +73,8 @@
 	holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
-	holder.icon = 'icons/Marine/marine-items.dmi'
-	holder.icon_state = "detector_blip"
+	holder.icon = 'icons/effects/blips.dmi'
+	holder.icon_state = "close_blip_hostile"
 	tracker_target = target
 	tracker_target.overlays += holder
 	hud_list[XENO_TACTICAL_HUD] = holder
@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	animate(src, time = duration, pixel_y = 0)
 
 /obj/effect/temp_visual/dropship_flyby
-	icon = 'icons/Marine/dropship_prop.dmi'
+	icon = 'icons/obj/structures/prop/dropship.dmi'
 	icon_state = "fighter_shadow"
 	layer = FLY_LAYER
 	resistance_flags = RESIST_ALL

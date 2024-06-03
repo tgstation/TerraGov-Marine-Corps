@@ -399,7 +399,7 @@
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
 
-/obj/item/storage/holster/m25/full/Initialize(mapload)
+/obj/item/storage/holster/m25/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
 
@@ -428,7 +428,7 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	equip_slot_flags = ITEM_SLOT_POCKET
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "flare"
 	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
 	storage_type = /datum/storage/holster/flarepouch

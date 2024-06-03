@@ -8,7 +8,7 @@
 
 /obj/machinery/power/fusion_engine
 	name = "\improper S-52 fusion reactor"
-	icon = 'icons/Marine/fusion_eng.dmi'
+	icon = 'icons/obj/machines/fusion_engine.dmi'
 	icon_state = "off"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
 	resistance_flags = UNACIDABLE

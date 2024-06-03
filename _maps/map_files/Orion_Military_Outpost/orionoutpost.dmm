@@ -104,10 +104,6 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
-"aK" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad)
 "aM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6587,14 +6583,6 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/building/administration)
-"FL" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/orion_outpost/surface/landing_pad)
 "FM" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -6964,14 +6952,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
-"HG" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/orion_outpost/surface/landing_pad_2)
 "HJ" = (
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/ground/underground/caveS/garbledradio)
@@ -7300,10 +7280,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
-"Ju" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
 "Jw" = (
 /turf/open/floor/mainship/orange,
 /area/orion_outpost/surface/building/cargo)
@@ -9556,10 +9532,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveS)
-"TW" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad)
 "TX" = (
 /obj/structure/inflatable/popped/door,
 /turf/open/floor/mainship/mono,
@@ -10150,10 +10122,6 @@
 	dir = 8
 	},
 /area/orion_outpost/ground/underground/caveN)
-"WH" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
 "WI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -12444,7 +12412,7 @@ Gx
 Gx
 Gx
 Gx
-HG
+Gx
 Gx
 Gx
 Kz
@@ -12572,7 +12540,7 @@ EJ
 IH
 ft
 rS
-WH
+ft
 ft
 ft
 ft
@@ -12704,7 +12672,7 @@ nQ
 IH
 ft
 ft
-Ju
+ft
 ft
 ft
 ft
@@ -13496,7 +13464,7 @@ EJ
 IH
 ft
 ft
-Ju
+ft
 ft
 ft
 ft
@@ -13628,7 +13596,7 @@ EJ
 IH
 ft
 rS
-WH
+ft
 ft
 ft
 ft
@@ -13977,7 +13945,7 @@ bl
 bl
 bl
 bl
-FL
+bl
 bl
 bl
 ET
@@ -14105,7 +14073,7 @@ fj
 GQ
 gg
 SA
-TW
+gg
 gg
 gg
 gg
@@ -14237,7 +14205,7 @@ fj
 GQ
 gg
 gg
-aK
+gg
 gg
 gg
 gg
@@ -15029,7 +14997,7 @@ fj
 GQ
 gg
 gg
-aK
+gg
 gg
 gg
 gg
@@ -15161,7 +15129,7 @@ fj
 GQ
 gg
 SA
-TW
+gg
 gg
 gg
 gg

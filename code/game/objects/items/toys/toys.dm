@@ -112,7 +112,7 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "syndballoon"
 	worn_icon_state = "syndballoon"
 	w_class = WEIGHT_CLASS_BULKY
@@ -773,6 +773,7 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/side = ""
 	var/id = ""
 

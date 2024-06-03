@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.playsound_local(source, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 				if(hits >= 4 && prob(70))
-					target.playsound_local(source, get_sfx(pick(SFX_MALE_SCREAM, SFX_FEMALE_SCREAM)), 35, TRUE)
+					target.playsound_local(source, pick(SFX_MALE_SCREAM, SFX_FEMALE_SCREAM), 35, TRUE)
 					break
 	qdel(src)
 
@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("hugged")
 			target.playsound_local(source, 'sound/effects/alien_egg_move.ogg', 35, TRUE)
 			sleep(1 SECONDS)
-			target.playsound_local(source, get_sfx("[pick("male", "female")]_hugged"), 35, TRUE)
+			target.playsound_local(source, pick(SFX_MALE_HUGGED, SFX_FEMALE_HUGGED), 35, TRUE)
 		if("weed placed")
 			target.playsound_local(source, SFX_ALIEN_RESIN_BUILD, 35, TRUE)
 		if("gunshots")

@@ -112,6 +112,8 @@
 
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 	. = ..()
+	if(!.)
+		return
 
 	if(!ishuman(over_object))
 		return

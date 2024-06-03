@@ -463,6 +463,10 @@
 	name = "Marine spawner landmark"
 	spawns = "marine"
 
+/obj/effect/landmark/valhalla/vehicle_spawner_landmark
+	name = "Vehicle spawner landmark"
+	spawns = "vehicle"
+
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"
 

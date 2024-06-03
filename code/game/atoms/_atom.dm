@@ -731,8 +731,7 @@ directive is properly returned.
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
-	if(blood_color)
-		clean_blood()
+	if(clean_blood())
 		return TRUE
 	return FALSE
 
@@ -1055,7 +1054,7 @@ directive is properly returned.
 			if(HUD_LIST_LIST)
 				hud_list[hud] = list()
 			else
-				var/image/I = image('icons/mob/hud.dmi', src, "")
+				var/image/I = image('icons/mob/hud/human.dmi', src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
 				hud_list[hud] = I
 
