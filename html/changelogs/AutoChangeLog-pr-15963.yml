@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - code_imp: "Replaces CQC skill name with UNARMED skill"
