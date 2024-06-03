@@ -220,6 +220,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	save_keybinds()
 	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i

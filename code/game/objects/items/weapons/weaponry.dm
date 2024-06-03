@@ -1,5 +1,3 @@
-
-
 /obj/item/weapon/banhammer
 	desc = "A banhammer"
 	name = "banhammer"
@@ -10,6 +8,10 @@
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("banned")
+
+/obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
+	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
+	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
 
 /obj/item/weapon/banhammer/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is hitting [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to ban [p_them()]self from life."))
@@ -58,7 +60,6 @@
 	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
-
 /obj/item/weapon/baseballbat/metal
 	name = "\improper metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
@@ -70,6 +71,7 @@
 /obj/item/weapon/butterfly
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "butterflyknife"
 	worn_icon_state = null
 	hitsound = null
@@ -82,7 +84,6 @@
 	throwforce = 7
 	attack_verb = list("patted", "tapped")
 	attack_speed = 4
-
 
 /obj/item/weapon/butterfly/attack_self(mob/user)
 	active = !active
@@ -112,18 +113,17 @@
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
 
-
 /obj/item/weapon/wirerod
 	name = "wired rod"
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
 	worn_icon_state = "rods"
+	icon = 'icons/obj/items/weapons/batons.dmi'
 	atom_flags = CONDUCT
 	force = 8
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
-
 
 /obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()
