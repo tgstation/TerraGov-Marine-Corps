@@ -201,7 +201,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 //skill modifying perks
 /datum/perk/skill_mod
-	var/cqc
+	var/unarmed
 	var/melee_weapons
 	var/firearms
 	var/pistols
@@ -225,28 +225,28 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	. = ..()
 
 /datum/perk/skill_mod/apply_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(cqc, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	owner.set_skills(owner.skills.modifyRating(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 
 /datum/perk/skill_mod/remove_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(-cqc, -melee_weapons, -firearms, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
+	owner.set_skills(owner.skills.modifyRating(-unarmed, -melee_weapons, -firearms, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
 	-engineer, -construction, -leadership, -medical, -surgery, -pilot, -police, -powerloader, -large_vehicle, -stamina))
 
-/datum/perk/skill_mod/cqc
+/datum/perk/skill_mod/unarmed
 	name = "Hand to hand expertise"
 	desc = "Advanced hand to hand combat training gives you an edge when you need to punch someone in the face. Improved unarmed damage and stun chance."
 	ui_icon = "cqc_1"
-	cqc = 1
+	unarmed = 1
 	all_jobs = TRUE
 	unlock_cost = 250
 
-/datum/perk/skill_mod/cqc/two
+/datum/perk/skill_mod/unarmed/two
 	name = "Hand to hand specialisation"
 	desc = "Muscle augments combined with specialised hand to hand combat training turn your body into a lethal weapon. Greatly improved unarmed damage and stun chance."
 	req_desc = "Requires Hand to hand expertise."
 	ui_icon = "cqc_2"
 	unlock_cost = 350
-	prereq_perks = list(/datum/perk/skill_mod/cqc)
+	prereq_perks = list(/datum/perk/skill_mod/unarmed)
 
 /datum/perk/skill_mod/melee
 	name = "Melee expertise"

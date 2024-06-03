@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_words"
 	w_class = WEIGHT_CLASS_TINY
-	var/cqc
+	var/unarmed
 	var/melee_weapons
 	var/firearms
 	var/pistols
@@ -36,7 +36,7 @@
 			return
 	if(!do_after(user, 5 SECONDS, NONE, user))
 		return
-	user.set_skills(user.skills.modifyRating(cqc, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	user.set_skills(user.skills.modifyRating(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
