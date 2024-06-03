@@ -29,10 +29,7 @@
 /obj/structure/kutjevo_sign/Initialize(mapload)
 	. = ..()
 	icon_state = "kut_ingame"
-	var/image/sign_top = new(src.icon, "kut_sign_top")
-	sign_top.pixel_y += 32
-	sign_top.layer = ABOVE_ALL_MOB_LAYER
-	overlays += sign_top
+	overlays += image(icon, src, "kut_sign_top", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 32)
 
 /obj/structure/prison_sign
 	name = "UA Prison Docking Sign"
