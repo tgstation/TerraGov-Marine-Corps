@@ -410,7 +410,6 @@
 
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1generic_solid.dmi'
-	opacity = TRUE
 	req_one_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 // Medical
@@ -422,7 +421,6 @@
 
 /obj/machinery/door/airlock/multi_tile/urban/medical_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1medidoor_solid.dmi'
-	opacity = TRUE
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_PUBLIC)
 
 // Personal
@@ -434,7 +432,6 @@
 
 /obj/machinery/door/airlock/multi_tile/urban/personal_solid
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor.dmi'
-	opacity = TRUE
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
 
 // Personal White
@@ -446,5 +443,4 @@
 
 /obj/machinery/door/airlock/multi_tile/urban/personal_solid_white
 	icon = 'icons/obj/doors/hybrisa/hybrisa_2x1personaldoor_white.dmi'
-	opacity = TRUE
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH)
