@@ -514,6 +514,7 @@
 		shuttle.set_idle()
 		shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 		shuttle.do_start_hijack_timer()
+		shuttle.unlock_all()
 	interact(xeno_attacker) //Open the UI
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_state(mob/user)
