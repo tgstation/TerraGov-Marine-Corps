@@ -3135,7 +3135,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bjd" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
 "bji" = (
@@ -4602,7 +4602,7 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "bxH" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
 "bxM" = (
@@ -4795,7 +4795,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "bAg" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
 "bAh" = (
@@ -5357,7 +5357,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball)
 "bJw" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/basketball)
 "bJB" = (
@@ -9125,7 +9125,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "foW" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
 "fpi" = (
@@ -9173,7 +9173,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/officer_rnr)
 "fsQ" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "ftB" = (
@@ -9424,7 +9424,7 @@
 	},
 /area/mainship/command/cic)
 "fHN" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/delta)
 "fIS" = (
@@ -13563,7 +13563,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "mom" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship_hull,
 /area/space)
 "mpc" = (
@@ -14389,7 +14389,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "nCD" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hull/starboard_hull)
 "nCT" = (
@@ -15912,7 +15912,7 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "qeE" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
 "qfe" = (
@@ -18326,7 +18326,7 @@
 /turf/open/floor/wood,
 /area/mainship/engineering/ce_room)
 "tUf" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/starboard_garden)
 "tUM" = (
@@ -18390,7 +18390,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "tZc" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/grunt_rnr)
 "tZh" = (
@@ -19369,7 +19369,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "vAw" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engine_core)
 "vBi" = (
@@ -19667,7 +19667,7 @@
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "wfJ" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
 "wgD" = (

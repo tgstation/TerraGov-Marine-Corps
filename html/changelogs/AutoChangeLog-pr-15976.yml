@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Deployable shields can no longer be deployed on the alamo and the tad"

@@ -240,6 +240,10 @@
 	icon_state = "mars1"
 	icon_variants = 5
 
+/turf/open/floor/plating/ground/mars/dunes
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "sand"
+
 //Ice Colony grounds
 
 //Ice Floor
@@ -453,3 +457,11 @@
 	icon = 'icons/turf/floors/junglechasm.dmi'
 	icon_state = "junglechasm-0"
 	base_icon_state = "junglechasm"
+
+/turf/open/floor/plating/rivergrate
+	name = "grate"
+	icon = 'icons/turf/desertdam_map.dmi'
+	icon_state = "shallow_grate"
+	mediumxenofootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_PLATING
+	shoefootstep = FOOTSTEP_PLATING
