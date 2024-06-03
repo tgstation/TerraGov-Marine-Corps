@@ -566,7 +566,7 @@
 		if(CHARGE_BULL_HEADBUTT)
 			Paralyze(CHARGE_SPEED(charge_datum) * 1.5 SECONDS)
 		if(CHARGE_BULL)
-			Paralyze(CHARGE_SPEED(charge_datum) * 0.2 SECONDS)
+			Paralyze(0.2 SECONDS)
 		if(CHARGE_BULL_GORE)
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
 			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
