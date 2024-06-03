@@ -19,7 +19,7 @@
 	name = "LTB APFDS round (105mm)"
 	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."
 	icon_state = "ltbammo_apfds"
-	default_ammo = /datum/ammo/bullet/apfsds/ltb
+	default_ammo = /datum/ammo/bullet/isg_apfds/ltb
 
 /obj/item/ammo_magazine/tank/ltb_cannon/canister
 	name = "LTB Canister round (105mm)"

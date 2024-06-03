@@ -128,6 +128,9 @@
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
 
+/datum/ammo/bullet/isg_apfds/ltb
+	damage = 350
+
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
 	icon_state = "rocket_wp"
