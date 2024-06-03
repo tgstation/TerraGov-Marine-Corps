@@ -2,7 +2,6 @@
 /obj/item/stack/barbed_wire
 	name = "barbed wire"
 	desc = "A spiky length of wire."
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
 	item_flags = NOBLUDGEON
 	singular_name = "length"

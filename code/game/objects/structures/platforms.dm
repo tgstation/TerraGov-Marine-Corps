@@ -85,6 +85,12 @@
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 
+/obj/structure/platform/rockcliff/orange
+	icon_state = "rockcliff_orange"
+
+/obj/structure/platform/rockcliff/red
+	icon_state = "rockcliff_red"
+
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
 
@@ -147,6 +153,12 @@
 	icon_state = "rockcliff_deco"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform_decoration/rockcliff_deco/orange
+	icon_state = "rockcliff_orange_deco"
+
+/obj/structure/platform_decoration/rockcliff_deco/red
+	icon_state = "rockcliff_red_deco"
 
 /obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
 	icon_state = "icerock_deco"

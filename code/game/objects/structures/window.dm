@@ -136,7 +136,7 @@
 	var/state = user.grab_state
 	user.drop_held_item()
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
 			damage += base_damage
@@ -698,38 +698,6 @@
 	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
 	max_integrity = 600 // 25 hunter slashes
 
-/obj/structure/window/framed/urban
-	name = "window"
-	icon = 'icons/obj/smooth_objects/urban_window.dmi'
-	icon_state = "chigusa_wall-0"
-	base_icon_state = "chigusa_wall"
-	max_integrity = 100 //Was 600
-	reinf = TRUE
-	dir = 5
-	window_frame = /obj/structure/window_frame/urban
-
-/obj/structure/window/framed/urban/reinforced
-
-/obj/structure/window/framed/urban/marshalls/cell
-
-/obj/structure/window/framed/urban/colony/office
-
-/obj/structure/window/framed/urban/spaceport/reinforced
-
-/obj/structure/window/framed/urban/colony/hospital
-
-/obj/structure/window/framed/urban/colony/engineering/hull
-
-/obj/structure/window/framed/urban/junk_window
-	name = "window"
-	icon = 'icons/obj/smooth_objects/junk_window.dmi'
-	icon_state = "chigusa_wall-0"
-	base_icon_state = "chigusa_wall"
-	max_integrity = 100 //Was 600
-	reinf = TRUE
-	dir = 5
-	window_frame = /obj/structure/window_frame/junk_frame
-
 /obj/structure/window/framed/kutjevo
 	name = "window"
 	icon = 'icons/obj/smooth_objects/kutjevo_window_blue.dmi'
@@ -761,3 +729,35 @@
 	icon_state = "window-invincible"
 	base_icon_state = "chigusa_wall"
 	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/urban
+	name = "window"
+	icon = 'icons/obj/smooth_objects/urban_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/urban
+
+/obj/structure/window/framed/urban/reinforced
+
+/obj/structure/window/framed/urban/marshalls/cell
+
+/obj/structure/window/framed/urban/colony/office
+
+/obj/structure/window/framed/urban/spaceport/reinforced
+
+/obj/structure/window/framed/urban/colony/hospital
+
+/obj/structure/window/framed/urban/colony/engineering/hull
+
+/obj/structure/window/framed/urban/junk_window
+	name = "window"
+	icon = 'icons/obj/smooth_objects/junk_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/junk_frame

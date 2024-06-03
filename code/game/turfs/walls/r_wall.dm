@@ -61,6 +61,8 @@
 
 //Kutjevo
 
+//Kutjevo
+
 /turf/closed/wall/r_wall/kutjevo
 	icon = 'icons/turf/walls/kutjevo_rwall.dmi'
 	icon_state = "wall-reinforced"

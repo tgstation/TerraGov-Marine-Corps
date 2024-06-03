@@ -48,7 +48,7 @@
  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
-/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0)
+/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
 	var/turf/turf_source = get_turf(source)
 
 	if(!turf_source)
@@ -67,6 +67,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
 		if(!M.client && !istype(M, /mob/camera/aiEye))
 			continue
+		if(ambient_sound && !(M.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+			continue
 		var/turf/T = get_turf(M)
 		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
 			continue
@@ -76,6 +78,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
 		for(var/mob/crew AS in armor.interior.occupants)
+			if(!crew.client)
+				continue
+			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
+				continue
 			//turf source is null on purpose because it will not work properly since crew is on a different z
 			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
 
