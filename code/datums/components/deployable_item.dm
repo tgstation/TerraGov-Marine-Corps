@@ -11,14 +11,14 @@
 	///Helps to determine if the item should be deployable in areas like the tad and alamo
 	var/restricted_deployment = FALSE
 
-/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _restricted_deployment, _deploy_check_callback)
+/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback, _restricted_deployment)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
-	restricted_deployment = _restricted_deployment
 	deploy_check_callback = _deploy_check_callback
+	restricted_deployment = _restricted_deployment
 
 	var/obj/item/attached_item = parent
 	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
