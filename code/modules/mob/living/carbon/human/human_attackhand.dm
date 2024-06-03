@@ -108,7 +108,7 @@
 
 			var/attack_verb = pick(attack.attack_verb)
 			//if you're lying/buckled, the miss chance is ignored anyway
-			var/target_zone = get_zone_with_miss_chance(human_user.zone_selected, src, 10 - (human_user.skills.getRating(SKILL_CQC) - skills.getRating(SKILL_CQC)) * 5)
+			var/target_zone = get_zone_with_miss_chance(human_user.zone_selected, src, 10 - (human_user.skills.getRating(SKILL_UNARMED) - skills.getRating(SKILL_UNARMED)) * 5)
 
 			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
@@ -122,7 +122,7 @@
 				return FALSE
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = max(human_user.melee_damage + (human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD), 3)
+			var/max_dmg = max(human_user.melee_damage + (human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), 3)
 			var/damage = max_dmg
 			if(!lying_angle)
 				damage = rand(1, max_dmg)
@@ -153,7 +153,7 @@
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
 			//Accidental gun discharge
-			if(human_user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
+			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -175,7 +175,7 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD
+			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 
 			if (randn <= 25)
 				apply_effect(3 SECONDS, WEAKEN)
