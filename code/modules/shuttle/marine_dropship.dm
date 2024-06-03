@@ -490,9 +490,8 @@
 
 // control computer
 /obj/machinery/computer/shuttle/marine_dropship
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	screen_overlay = "console_emissive"
+	icon_state = "dropship_console"
+	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
@@ -764,7 +763,8 @@
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	icon_state = "console2"
+	icon_state = "dropship_console2"
+	screen_overlay = "dropship_console2_emissive"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
