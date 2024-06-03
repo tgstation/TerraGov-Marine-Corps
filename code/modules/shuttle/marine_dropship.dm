@@ -139,20 +139,15 @@
 	dheight = 10
 	width = 11
 	height = 21
-
 	ignitionTime = 10 SECONDS
 	callTime = 38 SECONDS // same as old transit time with flight optimisation
 	rechargeTime = 2 MINUTES
 	prearrivalTime = 12 SECONDS
-
 	var/list/left_airlocks = list()
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
-
 	var/obj/docking_port/stationary/hijack_request
-
 	var/list/equipments = list()
-
 	var/hijack_state = HIJACK_STATE_NORMAL
 	///If the automatic cycle system is activated
 	var/automatic_cycle_on = FALSE
@@ -307,10 +302,8 @@
 			playsound(loc,'sound/effects/alert.ogg', 50)
 			addtimer(CALLBACK(src, PROC_REF(request_to), S), 15 SECONDS)
 
-
 /obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
 	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
-
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
 	set_idle()
@@ -327,7 +320,6 @@
 	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
 		if(light.linked_port == destination)
 			light.turn_on()
-
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
@@ -747,7 +739,6 @@
 		else
 			to_chat(user, span_warning("ERROR. This shouldn't happen, please report it."))
 			CRASH("moveShuttleToDock() returned a non-zero-nor-one value.")
-
 
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
