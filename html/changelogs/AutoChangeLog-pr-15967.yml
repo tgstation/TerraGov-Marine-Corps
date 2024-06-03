@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "health analyzer revivable threshold no longer always says 20%"
