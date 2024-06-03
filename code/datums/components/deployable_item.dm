@@ -8,8 +8,6 @@
 	var/obj/deploy_type
 	///Any extra checks required when trying to deploy this item
 	var/datum/callback/deploy_check_callback
-	///Helps to determine if the item should be deployable in areas like the tad and alamo
-	var/restricted_deployment = FALSE
 
 /datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback, _restricted_deployment = FALSE)
 	if(!isitem(parent))
