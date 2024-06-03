@@ -73,9 +73,9 @@
 		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
-		var/area/area = get_area(location)
-		var/turf/open/placement_loc = location
 		if(restricted_deployment)
+			var/area/area = get_area(location)
+			var/turf/open/placement_loc = location
 			if(!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) // long ass series of checks to prevent things like deployable shields on alamo
 				user.balloon_alert(user, "Can't deploy here")
 				return
