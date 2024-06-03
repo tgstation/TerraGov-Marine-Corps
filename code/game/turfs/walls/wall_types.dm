@@ -482,18 +482,6 @@
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
-/turf/closed/wall/urban/colony/hospital
-
-/turf/closed/wall/urban/colony/reinforced
-
-/turf/closed/wall/urban/colony/office
-
-/turf/closed/wall/urban/spaceport_unmeltable
-
-/turf/closed/wall/urban/spaceport_reinforced
-
-/turf/closed/wall/urban/engineering
-
 /turf/closed/wall/urban/colony/engineering/ribbed
 	name = "bare metal walls"
 	desc = "A thick and chunky metal wall. The surface is barren and imposing."
@@ -501,22 +489,6 @@
 	icon_state = "wall-reinforced"
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
-
-/turf/closed/wall/urban/research/reinforced
-
-/turf/closed/wall/urban/colony/reinforced/hull
-
-/turf/closed/wall/urban/marhsalls_reinforced
-
-/turf/closed/wall/urban/colony/engineering/reinforced
-
-/turf/closed/wall/urban/spaceport
-
-/turf/closed/wall/urban/research/reinforced/hull
-
-/turf/closed/wall/urban/marhsalls_unmeltable
-
-/turf/closed/wall/urban/colony/engineering/reinforced/hull
 
 /turf/closed/wall/engineership
 	name = "strange metal wall"

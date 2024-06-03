@@ -345,11 +345,6 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	base_icon_state = "almayer_pdoor"
 	openspeed = 4
 
-/obj/machinery/door/poddoor/urban/open_shutters/Initialize()
-	. = ..()
-	if(opacity)
-		set_opacity(0)
-
 /obj/machinery/door/poddoor/urban/open_shutters
 	name = "\improper Shutters"
 	icon_state = "almayer_pdoor1"

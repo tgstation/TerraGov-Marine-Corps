@@ -89,7 +89,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "abm" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/central_hallway)
 "abp" = (
 /obj/structure/platform{
@@ -542,7 +542,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office)
 "afi" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -1306,7 +1306,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "akV" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -1686,7 +1686,7 @@
 /obj/machinery/vending/nanomed{
 	layer = 2
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "aop" = (
 /obj/effect/urban/decal/dirt,
@@ -2150,7 +2150,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "arR" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "arS" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -3375,7 +3375,7 @@
 	desc = "Semiotic Standard denoting the nearby presence of a  intensive care ward for a medbay.";
 	name = "intensive care ward semiotic"
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/icu)
 "aEd" = (
 /obj/structure/platform,
@@ -3882,8 +3882,18 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "aHA" = (
-/turf/closed/wall/r_wall/urban,
-/area/lv759/indoors/colonial_marshals/south_maintenance)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	layer = 3.33;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/prison{
+	dir = 1
+	},
+/area/lv759/indoors/power_plant/telecomms)
 "aHF" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_edge/three,
@@ -4405,7 +4415,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aLv" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cmo_office)
 "aLB" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -5291,7 +5301,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/north_caves)
 "aSN" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "aSS" = (
 /obj/item/trash/cigbutt{
@@ -7462,7 +7472,7 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "bmL" = (
 /obj/structure/sign/safety/blast_door,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "bmO" = (
 /obj/effect/urban/decal/dirt,
@@ -7501,7 +7511,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "bnf" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/paramedics_garage)
 "bnh" = (
 /obj/structure/largecrate/random/barrel{
@@ -8466,7 +8476,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "buY" = (
 /obj/machinery/door/poddoor,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "buZ" = (
 /obj/effect/urban/decal/dirt,
@@ -10717,7 +10727,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "bNU" = (
 /obj/machinery/light{
@@ -11202,6 +11212,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -12986,7 +12997,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "cgt" = (
 /obj/effect/urban/decal/dirt,
@@ -13547,7 +13558,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "clE" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/emergency_room)
 "clI" = (
 /turf/closed/wall/urban/colony,
@@ -15134,9 +15145,6 @@
 	},
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastentrance)
-"czg" = (
-/turf/closed/wall/urban/marhsalls_unmeltable,
-/area/lv759/oob)
 "czk" = (
 /obj/structure/platform/urban/metalplatform1{
 	dir = 1;
@@ -17170,7 +17178,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "cPY" = (
 /obj/structure/stairs/edge{
@@ -19243,7 +19251,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "dfW" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/reception)
 "dgf" = (
 /obj/structure/sign/poster,
@@ -20395,7 +20403,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "dpJ" = (
 /obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/marhsalls_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "dpK" = (
 /obj/structure/platform{
@@ -21225,7 +21233,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "dwk" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/maintenance)
 "dwl" = (
 /obj/structure/cable,
@@ -22151,7 +22159,7 @@
 	light_on = 1;
 	light_range = 2
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "dFk" = (
 /obj/machinery/computer/arcade,
@@ -23294,7 +23302,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "dPv" = (
 /obj/structure/bed/chair/sofa/corsat/left,
@@ -23361,7 +23369,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "dQz" = (
 /obj/structure/sign/safety/medical,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/central_hallway)
 "dQA" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -25271,7 +25279,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "ehd" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/central_hallway)
 "ehe" = (
 /obj/structure/curtain/black,
@@ -25320,7 +25328,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "ehO" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office)
 "ehQ" = (
 /obj/structure/extinguisher_cabinet,
@@ -25497,7 +25505,7 @@
 	light_range = 5;
 	pixel_x = 2
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "eju" = (
 /obj/effect/ai_node,
@@ -27961,7 +27969,7 @@
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "eEz" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/communications_office)
 "eED" = (
 /obj/structure/bed/chair{
@@ -28158,6 +28166,7 @@
 /area/lv759/indoors/colonial_marshals/office)
 "eFK" = (
 /obj/machinery/power/terminal,
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "eFQ" = (
@@ -30550,7 +30559,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "fbC" = (
 /obj/structure/prop/mainship/sensor_computer2,
@@ -32428,7 +32437,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fqV" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/storage)
 "fre" = (
 /obj/effect/urban/decal/dirt,
@@ -33728,7 +33737,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "fBT" = (
 /obj/machinery/conveyor,
@@ -36050,7 +36059,7 @@
 /area/lv759/indoors/west_caves)
 "fUI" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "fUN" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -36436,7 +36445,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "fYb" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "fYg" = (
 /obj/effect/urban/decal/dirt,
@@ -37309,7 +37318,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "gfD" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/janitor)
 "gfG" = (
 /turf/open/floor/wood,
@@ -38286,7 +38295,7 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "gmX" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -38952,7 +38961,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/bar/entertainment)
 "gsl" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/pharmacy)
 "gsn" = (
 /obj/machinery/floodlight/colony/street{
@@ -39518,7 +39527,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "gxA" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "gxD" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -40069,7 +40078,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/operation)
 "gCM" = (
 /obj/structure/prop/urban/containersextended/blackwyright,
@@ -40617,7 +40626,7 @@
 /area/lv759/indoors/spaceport/flight_control_room)
 "gIs" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cmo_office)
 "gIB" = (
 /obj/structure/platform/urban/metalplatform2{
@@ -41921,7 +41930,7 @@
 "gVb" = (
 /obj/structure/prop/urban/misc/machinery/screens/entertainment,
 /obj/structure/prop/urban/misc/machinery/screens/frame,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/vip)
 "gVe" = (
 /obj/effect/urban/decal/road/road_stop/three,
@@ -42216,7 +42225,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_off{
 	dir = 1
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "gYe" = (
 /obj/effect/urban/decal/road/road_edge,
@@ -42791,7 +42800,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "hce" = (
 /obj/effect/urban/decal/dirt,
@@ -43114,6 +43123,7 @@
 /obj/machinery/power/terminal{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/indoors/power_plant/power_storage)
 "her" = (
@@ -45543,7 +45553,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "hxF" = (
 /obj/structure/flora/pottedplant,
@@ -46445,7 +46455,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/north_office)
 "hEX" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/vip)
 "hFb" = (
 /obj/structure/largecrate/random/barrel{
@@ -46497,7 +46507,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "hFA" = (
 /obj/structure/prop/urban/lattice_prop/lattice_3{
@@ -46914,7 +46924,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_4{
 	pixel_y = 16
 	},
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/maintenance_east)
 "hJw" = (
 /obj/structure/extinguisher_cabinet{
@@ -47393,7 +47403,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/supervisor)
 "hNF" = (
 /obj/structure/platform{
@@ -48743,7 +48753,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "hYP" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreenbrokespark,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "hYQ" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -50953,7 +50963,7 @@
 "isK" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "isM" = (
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
@@ -52707,7 +52717,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "iIw" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/maintenance_east)
 "iIy" = (
 /obj/effect/urban/decal/dirt_2,
@@ -52989,7 +52999,7 @@
 /turf/closed/wall/r_wall/urban/invincible,
 /area/lv759/oob)
 "iLc" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office)
 "iLd" = (
 /obj/effect/urban/decal/dirt,
@@ -54173,7 +54183,7 @@
 /area/lv759/indoors/power_plant/equipment_east)
 "iVo" = (
 /obj/structure/sink,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/kitchen)
 "iVp" = (
 /obj/effect/ai_node,
@@ -54412,7 +54422,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "iWG" = (
 /obj/structure/sign/safety/cryogenic,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/paramedics_garage)
 "iWM" = (
 /obj/effect/urban/decal/dirt,
@@ -54477,7 +54487,7 @@
 /area/lv759/indoors/spaceport/security)
 "iXe" = (
 /obj/structure/sign/safety/breakroom,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "iXn" = (
 /obj/effect/urban/decal/dirt,
@@ -57437,7 +57447,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/reception)
 "jup" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/east_hallway)
 "juq" = (
 /obj/structure/bed/roller,
@@ -63664,7 +63674,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "kzo" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/hallway_east)
 "kzr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -65430,7 +65440,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "kPM" = (
 /obj/structure/sign/safety,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "kPT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -66802,7 +66812,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lbr" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/medical_storage)
 "lbs" = (
 /obj/structure/disposalpipe/segment{
@@ -66919,7 +66929,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "lcz" = (
 /obj/structure/platform{
@@ -67280,7 +67290,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "lfu" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "lfx" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -67648,7 +67658,7 @@
 /area/lv759/outdoors/caveplateau)
 "liy" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "liz" = (
 /obj/structure/cable,
@@ -69054,7 +69064,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "lvh" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/storage)
 "lvm" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -70356,7 +70366,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "lHp" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "lHs" = (
 /obj/structure/prop/urban/vehicles/car/car_chassis{
@@ -70719,7 +70729,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "lJZ" = (
 /obj/structure/cable,
@@ -70838,7 +70848,7 @@
 	dir = 1;
 	pixel_x = 3
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "lLb" = (
 /obj/effect/urban/decal/dirt,
@@ -72304,7 +72314,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "lVR" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/operation)
 "lVW" = (
 /obj/item/stock_parts/matter_bin,
@@ -72606,7 +72616,7 @@
 	light_power = 3;
 	light_range = 5
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "lYA" = (
 /obj/structure/largecrate/random/barrel/black,
@@ -73301,6 +73311,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
@@ -74763,7 +74774,7 @@
 /area/lv759/indoors/mining_outpost/northeast)
 "mqm" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/central_hallway)
 "mqn" = (
 /obj/structure/flora/pottedplant,
@@ -74920,7 +74931,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "mrU" = (
 /obj/structure/cable,
@@ -75129,7 +75140,7 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "mtq" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/kitchen)
 "mtr" = (
 /obj/structure/sign/poster,
@@ -75298,7 +75309,7 @@
 /obj/structure/platform/urban/metalplatform3{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "muL" = (
 /obj/structure/bed/stool{
@@ -75308,7 +75319,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/NTmart/backrooms)
 "muO" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/emergency_room)
 "muS" = (
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
@@ -75746,7 +75757,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "myo" = (
 /obj/machinery/light{
@@ -76287,7 +76298,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "mDl" = (
 /obj/structure/sign/safety/galley,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "mDn" = (
 /obj/effect/urban/decal/road/lines1,
@@ -79890,7 +79901,7 @@
 /area/lv759/indoors/garage_reception)
 "ngL" = (
 /obj/structure/sign/safety/airlock,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "ngM" = (
 /obj/structure/barricade/handrail/urban/handrail,
@@ -79943,7 +79954,7 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/outdoors/caveplateau)
 "nhe" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/supervisor)
 "nhj" = (
 /obj/effect/urban/decal/dirt,
@@ -82664,7 +82675,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "nDg" = (
 /turf/closed/shuttle/dropship4/fins{
@@ -83032,7 +83043,7 @@
 /obj/structure/sign/safety/pressure{
 	pixel_x = -17
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "nGI" = (
 /obj/structure/bed/chair{
@@ -84459,7 +84470,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "nSu" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/icu)
 "nSx" = (
 /obj/effect/urban/decal/dirt,
@@ -85138,7 +85149,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorbig_off{
 	dir = 1
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "nYQ" = (
 /obj/structure/largecrate/random/case/double,
@@ -85741,7 +85752,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "oeu" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "oez" = (
 /obj/effect/urban/decal/dirt,
@@ -88385,7 +88396,7 @@
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "oDn" = (
 /obj/structure/sign/safety/medical,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/pharmacy)
 "oDp" = (
 /obj/structure/closet/jcloset,
@@ -88427,7 +88438,7 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/meridian/meridian_office)
 "oDF" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/botany/botany_mainroom)
 "oDG" = (
 /obj/effect/ai_node,
@@ -88475,6 +88486,7 @@
 	pixel_y = 2
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 1
 	},
@@ -88520,6 +88532,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/excavation_site_spawner,
+/obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -89181,7 +89194,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oJG" = (
 /obj/structure/sign/safety/medical,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "oJI" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -89914,7 +89927,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/paramedics_garage)
 "oQe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -90077,7 +90090,7 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "oRG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "oRI" = (
 /turf/open/floor/plating,
@@ -91496,7 +91509,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "pey" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/kitchen)
 "pez" = (
 /obj/effect/urban/decal/dirt,
@@ -94909,7 +94922,7 @@
 /area/lv759/indoors/landing_zone_1/flight_control_room)
 "pGn" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office)
 "pGu" = (
 /obj/effect/urban/decal/dirt,
@@ -95455,7 +95468,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "pKW" = (
 /obj/structure/rack,
@@ -96314,7 +96327,7 @@
 /obj/structure/platform/urban/metalplatform3{
 	dir = 8
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "pSs" = (
 /obj/machinery/light{
@@ -96339,7 +96352,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "pSI" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/security)
 "pST" = (
 /turf/open/urbanshale/layer2,
@@ -97121,7 +97134,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/press_room)
 "pZb" = (
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "pZd" = (
 /obj/structure/fence/dark,
@@ -97362,6 +97375,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/prison{
 	dir = 1
 	},
@@ -97971,7 +97985,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "qfm" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "qfn" = (
 /obj/effect/urban/decal/trash/eleven{
@@ -98879,7 +98893,7 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "qmU" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/maintenance_east)
 "qmW" = (
 /obj/structure/disposalpipe/segment{
@@ -102668,7 +102682,7 @@
 /obj/structure/sign/poster{
 	layer = 3
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/storage)
 "qXX" = (
 /obj/item/tool/mop{
@@ -103453,7 +103467,7 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "rfb" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "rfe" = (
 /obj/structure/sign/poster,
@@ -105179,7 +105193,7 @@
 	name = "Virology lockdown";
 	pixel_x = 8
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "rtg" = (
 /obj/structure/stairs{
@@ -105460,7 +105474,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "rvy" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "rvA" = (
 /obj/structure/platform_decoration/urban/rockdark{
@@ -106955,7 +106969,7 @@
 "rJr" = (
 /obj/structure/sign/safety/breakroom,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "rJt" = (
 /obj/structure/closet/crate/miningcar{
@@ -108032,7 +108046,7 @@
 /area/lv759/indoors/meridian/meridian_office)
 "rSg" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "rSh" = (
 /obj/effect/ai_node,
@@ -108467,7 +108481,7 @@
 /area/lv759/indoors/power_plant/south_hallway)
 "rWq" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/patient_ward)
 "rWv" = (
 /turf/closed/wall/r_wall/urban,
@@ -109408,7 +109422,7 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "seS" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cmo_office)
 "seT" = (
 /obj/structure/platform/urban/metalplatform1,
@@ -110371,7 +110385,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/multimonitormedium_off{
 	dir = 1
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "smD" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -110462,7 +110476,7 @@
 	name = "Medical Storage lockdown";
 	pixel_x = 8
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/medical_storage)
 "sna" = (
 /obj/machinery/meter,
@@ -112263,7 +112277,7 @@
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "sBI" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "sBJ" = (
 /obj/structure/platform/urban/rockdark{
@@ -112481,7 +112495,7 @@
 /area/lv759/indoors/east_caves)
 "sDK" = (
 /obj/structure/extinguisher_cabinet,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/storage)
 "sDW" = (
 /obj/structure/platform{
@@ -112903,9 +112917,6 @@
 	dir = 9
 	},
 /area/lv759/indoors/hospital/paramedics_garage)
-"sHP" = (
-/turf/closed/wall/urban/spaceport_unmeltable,
-/area/lv759/oob)
 "sHR" = (
 /obj/structure/platform_decoration/shiva{
 	dir = 4
@@ -114380,7 +114391,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "sTq" = (
 /obj/effect/landmark/weed_node,
@@ -114639,7 +114650,7 @@
 	light_range = 5;
 	pixel_x = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "sVK" = (
 /obj/structure/largecrate/random/case/small,
@@ -115428,7 +115439,7 @@
 /area/lv759/indoors/spaceport/cargo)
 "tcL" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "tcN" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -116428,7 +116439,7 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "tkO" = (
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
@@ -118374,6 +118385,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/reception)
 "tBo" = (
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 5
 	},
@@ -119130,7 +119142,7 @@
 /area/lv759/indoors/hospital/virology)
 "tHT" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "tHU" = (
 /turf/open/urbanshale/layer1,
@@ -120144,7 +120156,7 @@
 /area/lv759/indoors/hospital/maintenance)
 "tQA" = (
 /obj/structure/sign/poster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/outgoing)
 "tQE" = (
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -120454,7 +120466,7 @@
 /area/lv759/outdoors/caveplateau)
 "tSD" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/operation)
 "tSE" = (
 /obj/structure/sign/poster,
@@ -120724,7 +120736,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "tVi" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -120779,7 +120791,7 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/press_room)
 "tVD" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/morgue)
 "tVG" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -122020,7 +122032,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ueA" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/pharmacy)
 "ueB" = (
 /obj/structure/table,
@@ -122142,7 +122154,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "ufw" = (
 /obj/structure/sign/safety/blast_door,
-/turf/closed/wall/urban/spaceport,
+/turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ufx" = (
 /obj/effect/urban/decal/road/roadmiddle{
@@ -123042,7 +123054,7 @@
 /area/lv759/indoors/central_caves)
 "umJ" = (
 /obj/structure/sign/safety/cryogenic,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/botany/botany_mainroom)
 "umK" = (
 /obj/structure/closet/crate/trashcart{
@@ -123629,7 +123641,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/oob)
 "urk" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/patient_ward)
 "urq" = (
 /obj/item/tool/mop{
@@ -124482,7 +124494,7 @@
 	light_range = 5;
 	pixel_x = 2
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "uzb" = (
 /obj/effect/urban/decal/doubleroad/lines1{
@@ -124789,7 +124801,7 @@
 /area/lv759/indoors/spaceport/cuppajoes)
 "uBL" = (
 /obj/machinery/meter,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/maintenance)
 "uBU" = (
 /obj/effect/ai_node,
@@ -127538,6 +127550,7 @@
 	layer = 3
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/multi_tiles{
 	dir = 6
 	},
@@ -127793,7 +127806,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/central_hallway)
 "vbT" = (
 /obj/structure/rack,
@@ -129833,7 +129846,7 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "vrw" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "vrz" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -132292,7 +132305,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "vNa" = (
-/turf/closed/wall/urban/marhsalls_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "vNc" = (
 /turf/open/floor/urban/metal/zbrownfloor1{
@@ -133525,7 +133538,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/weyyu_office)
 "vWA" = (
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "vWB" = (
 /turf/open/floor/prison/whitegreen{
@@ -133705,7 +133718,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "vXQ" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/patient_ward)
 "vXZ" = (
 /obj/structure/table/reinforced,
@@ -134190,7 +134203,7 @@
 /area/lv759/outdoors/caveplateau)
 "wbI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "wbM" = (
 /obj/structure/prop/urban/lattice_prop/lattice_5{
@@ -135220,6 +135233,7 @@
 "wke" = (
 /obj/machinery/power/terminal,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "wkf" = (
@@ -136223,7 +136237,7 @@
 /area/lv759/indoors/mining_outpost/east)
 "wsF" = (
 /obj/structure/closet/walllocker/hydrant,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "wsL" = (
 /obj/structure/table/fancywoodentable,
@@ -136577,7 +136591,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "wvK" = (
 /obj/structure/prop/urban/misc/machinery/screens/telescreen,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/maintenance)
 "wvQ" = (
 /obj/structure/window/framed/urban,
@@ -136734,7 +136748,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wxJ" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/virology)
 "wxP" = (
 /obj/effect/urban/decal/trash/two,
@@ -137076,7 +137090,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "wAL" = (
 /obj/effect/urban/decal/dirt,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/paramedics_garage)
 "wAN" = (
 /obj/structure/platform_decoration,
@@ -142454,7 +142468,7 @@
 /area/lv759/indoors/derelict_ship)
 "xsX" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "xsZ" = (
 /obj/structure/stairs/seamless{
@@ -142590,7 +142604,7 @@
 /obj/structure/platform/urban/metalplatform3{
 	dir = 8
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "xum" = (
 /obj/machinery/light,
@@ -142841,7 +142855,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "xvX" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/operation)
 "xvZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -142985,7 +142999,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "xxw" = (
 /obj/machinery/newscaster,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "xxz" = (
 /obj/structure/platform/urban/rockdark{
@@ -143239,7 +143253,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "xzT" = (
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cmo_office)
 "xzU" = (
 /obj/structure/prop/mainship/gelida/smallwire{
@@ -144119,7 +144133,7 @@
 	light_range = 5;
 	pixel_x = 2
 	},
-/turf/closed/wall/urban/spaceport_unmeltable,
+/turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "xHB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -145705,7 +145719,7 @@
 /area/lv759/indoors/mining_outpost/north_maint)
 "xUR" = (
 /obj/structure/sign/nosmoking_1,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/patient_ward)
 "xUS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -146427,7 +146441,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
 	},
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/breakroom)
 "ycq" = (
 /obj/item/tool/mop{
@@ -146756,7 +146770,7 @@
 /area/lv759/indoors/electical_systems/substation3)
 "yeP" = (
 /obj/structure/noticeboard,
-/turf/closed/wall/urban/colony/hospital,
+/turf/closed/wall/urban,
 /area/lv759/indoors/hospital/maintenance)
 "yeW" = (
 /obj/effect/urban/decal/road/lines3,
@@ -147176,7 +147190,7 @@
 "yik" = (
 /obj/structure/sign/poster,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/urban/colony/office,
+/turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/pressroom)
 "yio" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -147941,50 +147955,50 @@ oRG
 lJX
 oRG
 oRG
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
-sHP
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
 tVQ
 tVQ
 tVQ
@@ -148144,7 +148158,7 @@ mrk
 fQu
 wbT
 oRG
-sHP
+ldK
 oAK
 oAK
 oAK
@@ -148347,7 +148361,7 @@ lRl
 suR
 jYD
 oRG
-sHP
+ldK
 gIr
 bap
 grx
@@ -148359,36 +148373,36 @@ mVZ
 lMn
 uBf
 whR
-sHP
+ldK
 gLn
 gLn
-sHP
-sHP
-gLn
-gLn
-gLn
-sHP
-sHP
+ldK
+ldK
 gLn
 gLn
 gLn
-sHP
-sHP
+ldK
+ldK
 gLn
 gLn
 gLn
-sHP
-sHP
+ldK
+ldK
 gLn
 gLn
 gLn
-sHP
+ldK
+ldK
+gLn
+gLn
+gLn
+ldK
 kyZ
 tro
 tro
 tro
-sHP
-sHP
+ldK
+ldK
 tro
 ymg
 imt
@@ -148590,8 +148604,8 @@ mIs
 mRt
 dfT
 nbt
-sHP
-sHP
+ldK
+ldK
 tro
 doa
 bDS
@@ -149565,7 +149579,7 @@ dnn
 sWO
 sTK
 oRG
-sHP
+ldK
 oAK
 mLc
 oAK
@@ -149596,8 +149610,8 @@ bTB
 bTB
 dNA
 bTB
-sHP
-sHP
+ldK
+ldK
 adq
 wAY
 vkF
@@ -149758,7 +149772,7 @@ eqU
 "}
 (11,1,1) = {"
 lwn
-sHP
+ldK
 wHa
 tWQ
 tMs
@@ -149799,8 +149813,8 @@ jnn
 vug
 kjs
 bTB
-sHP
-sHP
+ldK
+ldK
 wlg
 ftP
 bbb
@@ -149961,7 +149975,7 @@ eqU
 "}
 (12,1,1) = {"
 lwn
-sHP
+ldK
 gpc
 gfM
 qcF
@@ -150164,13 +150178,13 @@ eqU
 "}
 (13,1,1) = {"
 lwn
-sHP
+ldK
 pqT
 uqh
 pqT
 pqT
 tPs
-sHP
+ldK
 rWv
 rnX
 rWv
@@ -150367,7 +150381,7 @@ eqU
 "}
 (14,1,1) = {"
 lwn
-sHP
+ldK
 rsO
 pDL
 cuk
@@ -150570,13 +150584,13 @@ eqU
 "}
 (15,1,1) = {"
 lwn
-sHP
+ldK
 vEY
 tOO
 wVd
 kbh
 kTH
-sHP
+ldK
 jcb
 fFE
 wjI
@@ -150773,7 +150787,7 @@ eqU
 "}
 (16,1,1) = {"
 lwn
-sHP
+ldK
 wCT
 xqA
 wmt
@@ -150976,15 +150990,15 @@ mRP
 "}
 (17,1,1) = {"
 lwn
-sHP
+ldK
 tPs
 jOn
 tPs
 rUL
-sHP
-sHP
-sHP
-sHP
+ldK
+ldK
+ldK
+ldK
 eQe
 qzf
 oIN
@@ -151179,13 +151193,13 @@ lwn
 "}
 (18,1,1) = {"
 lwn
-sHP
+ldK
 uGr
 kOc
 gAd
 oJO
-sHP
-sHP
+ldK
+ldK
 buY
 qaG
 iIk
@@ -151387,8 +151401,8 @@ sLe
 qwb
 jek
 jPU
-sHP
-sHP
+ldK
+ldK
 buY
 sFf
 xsZ
@@ -151590,8 +151604,8 @@ sLe
 tab
 jek
 uuZ
-sHP
-sHP
+ldK
+ldK
 buY
 oIi
 tMH
@@ -151793,10 +151807,10 @@ sLe
 aLK
 jek
 saI
-sHP
-sHP
-sHP
-sHP
+ldK
+ldK
+ldK
+ldK
 mTS
 pUL
 wyB
@@ -152200,7 +152214,7 @@ dBO
 tqw
 efF
 cYD
-sHP
+ldK
 oNe
 vjD
 jpu
@@ -152397,7 +152411,7 @@ cAM
 "}
 (24,1,1) = {"
 lwn
-sHP
+ldK
 oZB
 ese
 rWb
@@ -152600,7 +152614,7 @@ eqU
 "}
 (25,1,1) = {"
 lwn
-sHP
+ldK
 cnr
 eUp
 hSO
@@ -152803,13 +152817,13 @@ cAM
 "}
 (26,1,1) = {"
 lwn
-sHP
+ldK
 tPs
 tPs
 fGy
 yeA
 tPs
-sHP
+ldK
 bSd
 xxR
 goD
@@ -153047,8 +153061,8 @@ jnn
 vug
 vdT
 bTB
-sHP
-sHP
+ldK
+ldK
 jMB
 ftP
 rwG
@@ -153209,7 +153223,7 @@ eqU
 "}
 (28,1,1) = {"
 lwn
-sHP
+ldK
 pWV
 sXi
 wCj
@@ -153221,8 +153235,8 @@ pIs
 sJp
 oct
 iYg
-sHP
-sHP
+ldK
+ldK
 pSI
 xtD
 uOe
@@ -153250,8 +153264,8 @@ wuh
 bTB
 bTB
 bTB
-sHP
-sHP
+ldK
+ldK
 shY
 fxx
 oAa
@@ -153412,20 +153426,20 @@ eqU
 "}
 (29,1,1) = {"
 lwn
-sHP
+ldK
 pWV
 cnB
 kdk
 bXq
-sHP
-sHP
+ldK
+ldK
 wQU
 wQU
 wQU
 wQU
 wQU
-sHP
-sHP
+ldK
+ldK
 pSI
 vAp
 gSd
@@ -153615,13 +153629,13 @@ lwn
 "}
 (30,1,1) = {"
 lwn
-sHP
+ldK
 asS
 asS
 juh
 bHi
-sHP
-sHP
+ldK
+ldK
 wJJ
 rxZ
 rxZ
@@ -153818,7 +153832,7 @@ lwn
 "}
 (31,1,1) = {"
 lwn
-sHP
+ldK
 och
 ggN
 env
@@ -154021,7 +154035,7 @@ lwn
 "}
 (32,1,1) = {"
 lwn
-sHP
+ldK
 asS
 gQj
 nYi
@@ -154274,8 +154288,8 @@ hGh
 tFu
 mtD
 umA
-sHP
-sHP
+ldK
+ldK
 kqw
 uji
 sqk
@@ -154477,8 +154491,8 @@ guO
 eRY
 amX
 pNt
-sHP
-sHP
+ldK
+ldK
 cOG
 ymg
 ldR
@@ -157066,7 +157080,7 @@ lwn
 "}
 (47,1,1) = {"
 lwn
-sHP
+ldK
 aSN
 rFi
 iJF
@@ -157269,7 +157283,7 @@ lwn
 "}
 (48,1,1) = {"
 lwn
-sHP
+ldK
 aSN
 wkR
 vwm
@@ -157472,7 +157486,7 @@ lwn
 "}
 (49,1,1) = {"
 lwn
-sHP
+ldK
 dWF
 xJp
 xJp
@@ -159908,19 +159922,19 @@ lwn
 "}
 (61,1,1) = {"
 lwn
-sHP
-sHP
-sHP
-sHP
+ldK
+ldK
+ldK
+ldK
 dWF
 dWF
 sHF
 dWF
 dWF
 dWF
-sHP
-sHP
-sHP
+ldK
+ldK
+ldK
 laB
 laB
 laB
@@ -170981,16 +170995,16 @@ tVQ
 tVQ
 tVQ
 tVQ
-czg
-czg
+ldK
+ldK
 xvf
 xvf
-czg
+ldK
 xvf
 xvf
-czg
-czg
-czg
+ldK
+ldK
+ldK
 aWQ
 aWQ
 aWQ
@@ -171193,10 +171207,10 @@ own
 hSm
 dgm
 eiB
-czg
-czg
-czg
-czg
+ldK
+ldK
+ldK
+ldK
 aWQ
 aWQ
 aWQ
@@ -171399,7 +171413,7 @@ jjT
 ibY
 emM
 cBq
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -171602,7 +171616,7 @@ jjT
 cYB
 qxo
 mbv
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -171805,16 +171819,16 @@ jjT
 roP
 peP
 xkY
-czg
-czg
-czg
-czg
-czg
-czg
-czg
-czg
-czg
-czg
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
+ldK
 aWQ
 kRv
 gpA
@@ -172017,7 +172031,7 @@ eRb
 jVa
 rOE
 vYx
-czg
+ldK
 aWQ
 svA
 kgG
@@ -172220,7 +172234,7 @@ eRb
 fmR
 jre
 xFH
-czg
+ldK
 aWQ
 aWQ
 kRv
@@ -172423,7 +172437,7 @@ eRb
 eZv
 lgG
 mFg
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -172626,7 +172640,7 @@ eRb
 cqM
 qqi
 fyH
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -172829,7 +172843,7 @@ eRb
 lwK
 bBk
 bBk
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -173035,10 +173049,10 @@ rEU
 vNa
 vNa
 vNa
-czg
-czg
+ldK
+ldK
 dpJ
-czg
+ldK
 kaG
 ybU
 svA
@@ -173438,7 +173452,7 @@ abN
 gWi
 uxs
 wBg
-aHA
+vNa
 kUB
 mbn
 hOC
@@ -173641,13 +173655,13 @@ mWv
 poR
 uxs
 igZ
-aHA
+vNa
 mvh
 mYn
-czg
-czg
-czg
-czg
+ldK
+ldK
+ldK
+ldK
 xRP
 vzn
 vzn
@@ -173850,7 +173864,7 @@ pdQ
 rXK
 rXK
 rXK
-czg
+ldK
 fLj
 oxr
 rqg
@@ -174056,7 +174070,7 @@ eFD
 dpJ
 qgb
 pSn
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -174256,10 +174270,10 @@ qfP
 siV
 laJ
 bCO
-czg
+ldK
 vyv
 jBK
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -174459,10 +174473,10 @@ qfP
 bsl
 voP
 dzJ
-czg
+ldK
 gkM
 oxr
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -174665,9 +174679,9 @@ lUI
 dpJ
 pSn
 pSn
-czg
-czg
-czg
+ldK
+ldK
+ldK
 aWQ
 aWQ
 aWQ
@@ -174870,7 +174884,7 @@ qoy
 rnY
 pND
 pND
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -175073,7 +175087,7 @@ eTf
 uUT
 ajo
 pND
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -175276,7 +175290,7 @@ syA
 uUT
 xya
 pND
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -175479,9 +175493,9 @@ kPF
 dSv
 aBV
 pND
-czg
-czg
-czg
+ldK
+ldK
+ldK
 aWQ
 aWQ
 aWQ
@@ -175684,9 +175698,9 @@ sCh
 nwx
 nwx
 nwx
-czg
-czg
-czg
+ldK
+ldK
+ldK
 aWQ
 aWQ
 aWQ
@@ -175889,7 +175903,7 @@ pyI
 dZE
 cqf
 nsv
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -176092,7 +176106,7 @@ qtd
 dZE
 nwx
 nwx
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -176295,7 +176309,7 @@ uCN
 iNn
 abD
 nsv
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -176498,7 +176512,7 @@ bLb
 vHo
 nwx
 nwx
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -176701,7 +176715,7 @@ msd
 iyW
 aAJ
 wkX
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -176904,7 +176918,7 @@ nwx
 iyW
 aAJ
 bal
-czg
+ldK
 aWQ
 aWQ
 aWQ
@@ -181698,7 +181712,7 @@ sly
 oTR
 pCy
 aow
-thH
+aHA
 bkQ
 veK
 gvs
