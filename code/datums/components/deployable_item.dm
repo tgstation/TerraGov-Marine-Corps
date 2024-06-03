@@ -8,14 +8,17 @@
 	var/obj/deploy_type
 	///Any extra checks required when trying to deploy this item
 	var/datum/callback/deploy_check_callback
+	///Helps to determine if the item should be deployable in areas like the tad and alamo
+	var/restricted_deployment
 
-/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback)
+/datum/component/deployable_item/Initialize(_deploy_type, _deploy_time, _undeploy_time, _deploy_check_callback, _restricted_deployment = FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 	deploy_check_callback = _deploy_check_callback
+	restricted_deployment = _restricted_deployment
 
 	var/obj/item/attached_item = parent
 	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
@@ -69,6 +72,13 @@
 	if(user)
 		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
+
+		if(restricted_deployment)
+			var/area/area = get_area(location)
+			var/turf/open/placement_loc = location
+			if(!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) // long ass series of checks to prevent things like deployable shields on alamo
+				user.balloon_alert(user, "Can't deploy here")
+				return
 
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
