@@ -567,7 +567,7 @@
 
 /atom/movable/screen/SL_locator
 	name = "sl locator"
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/mob/screen/arrows.dmi'
 	icon_state = "Blue_arrow"
 	alpha = 0 //invisible
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -821,7 +821,7 @@
 #undef AMMO_HUD_ICON_EMPTY
 
 /atom/movable/screen/arrow
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/mob/screen/arrows.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 	alpha = 128 //translucent
@@ -874,7 +874,6 @@
 	tracker = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
-
 
 /atom/movable/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"

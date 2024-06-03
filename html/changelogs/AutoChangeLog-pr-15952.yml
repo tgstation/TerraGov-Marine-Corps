@@ -1,5 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Health analyzer: Synthetics actually don't show the user's defibrillator healing for revivable threshold. (this means that it shows -50 or -80 instead of -58 or something)"
-  - spellcheck: "Health analyzer reduced/increased max health tooltips say maximum health in the tooltip to reduce confusion"
