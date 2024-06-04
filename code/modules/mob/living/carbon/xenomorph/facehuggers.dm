@@ -398,6 +398,11 @@
 
 	leaping = FALSE
 
+/obj/item/clothing/mask/facehugger/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	if(ismob(hit_atom))
+		return
+	return ..()
+
 /obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
 	. = ..()
 	update_icon()

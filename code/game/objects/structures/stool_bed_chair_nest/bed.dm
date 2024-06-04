@@ -130,6 +130,18 @@
 
 	return ..()
 
+/obj/structure/bed/roller/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!ishuman(user)) // Keep xenos from toggling the brake
+		return
+
+	if(!anchored)
+		balloon_alert(user, "Brakes on")
+		anchored = TRUE
+	else
+		balloon_alert(user, "Brakes off")
+		anchored = FALSE
+
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
@@ -215,7 +227,7 @@
 */
 /obj/structure/bed/roller
 	name = "roller bed"
-	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly."
+	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly. Has brakes to prevent the patient from rolling away."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
@@ -587,8 +599,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/item/medevac_beacon
 	name = "medevac beacon"
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "med_beacon0"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "med_0"
 	var/planted = FALSE
 	var/locked = FALSE
 	var/list/obj/item/roller/medevac/linked_beds = list()
@@ -649,7 +661,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
-	icon_state = "med_beacon1"
+	icon_state = "med_1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 	faction = user.faction
 
@@ -664,7 +676,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
-		icon_state = "med_beacon0"
+		icon_state = "med_0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 
 /obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)

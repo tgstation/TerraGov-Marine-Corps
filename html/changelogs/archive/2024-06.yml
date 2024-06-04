@@ -1,0 +1,44 @@
+2024-06-01:
+  Notamaniac:
+  - bugfix: You can no longer pick up cats from a distance
+  Wisemonster:
+  - balance: Roller beds now have brakes that can be toggled with right click.
+2024-06-02:
+  Helg2:
+  - imagedel: deleted unused cm locker sprites.
+  Neocloudy:
+  - bugfix: 'Health analyzer: Synthetics actually don''t show the user''s defibrillator
+      healing for revivable threshold. (this means that it shows -50 or -80 instead
+      of -58 or something)'
+  - spellcheck: Health analyzer reduced/increased max health tooltips say maximum
+      health in the tooltip to reduce confusion
+  Wisemonster:
+  - bugfix: Xeno Valhalla is now more secure with a layer of forcefields.
+  Xander3359:
+  - qol: Liquifying a pill with a hypo no longer opens the pill bottle
+  blackdav123:
+  - bugfix: Fixed a disposals pipe in Sulaco medbay.
+  - bugfix: Readded forcefields to Riptide
+2024-06-03:
+  Helg2:
+  - bugfix: xeno-leaders rallying now properly puts a red blip hud on them for other
+      xenos in hive.
+  Neocloudy:
+  - bugfix: health analyzer revivable threshold no longer always says 20%
+  SomrNetwork:
+  - rscadd: faction dead people
+  Wisemonster:
+  - code_imp: Replaces CQC skill name with UNARMED skill
+  blackdav123:
+  - bugfix: Pyrogen can now be given plasma.
+2024-06-04:
+  Lumipharon:
+  - balance: Railgun changed back to 1 shot instead of 3
+  - balance: Reduced railgun effectiveness when piercing things
+  - bugfix: Fixed being able to remove railgun rounds of their magazine
+  Notamaniac:
+  - bugfix: Alamo now unlocks itself when a T4 touches the console (as it used to)
+  Wisemonster:
+  - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
+  Xander3359:
+  - bugfix: smg-25 holster can no longer hold every item
