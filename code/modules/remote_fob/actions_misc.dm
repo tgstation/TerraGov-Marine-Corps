@@ -1,7 +1,5 @@
 /////////////////////////////// Placement Actions
-
 /datum/action/innate/remote_fob //Parent stuff
-	action_icon = 'icons/Marine/remotefob.dmi'
 	var/mob/living/builder //the mob using the action
 	var/mob/camera/aiEye/remote/fobdrone //the drone belonging to the computer
 	var/obj/machinery/computer/camera_advanced/remote_fob/console //the computer itself
@@ -22,15 +20,12 @@
 /datum/action/innate/remote_fob/proc/check_spot()
 	var/turf/build_target = get_turf(fobdrone)
 	var/turf/build_area = get_area(build_target)
-
 	if(build_area.density)
-
 		fobdrone.balloon_alert(owner, "No space to build anything here.")
 		return FALSE
 	if(fobdrone.do_actions)
 		fobdrone.balloon_alert(owner, "You are already building something.")
 		return FALSE
-
 	return TRUE
 
 /datum/action/innate/camera_off/remote_fob
@@ -38,8 +33,8 @@
 
 /datum/action/innate/remote_fob/metal_cade
 	name = "Place Metal Barricade"
-	action_icon_state = "metal_cade"
-
+	action_icon = 'icons/obj/structures/barricades/metal.dmi'
+	action_icon_state = "metal_0"
 
 /datum/action/innate/remote_fob/metal_cade/Activate()
 	. = ..()
@@ -71,7 +66,6 @@
 		if(console.metal_remaining <= 1)
 			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring.")
 			return
-
 		console.metal_remaining -=2
 		cade.wire()
 		fobdrone.balloon_alert(owner, "Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.")
@@ -80,7 +74,8 @@
 
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
-	action_icon_state = "plast_cade"
+	action_icon = 'icons/obj/structures/barricades/plasteel.dmi'
+	action_icon_state = "plasteel_0"
 
 /datum/action/innate/remote_fob/plast_cade/Activate()
 	. = ..()
@@ -123,7 +118,8 @@
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
-	action_icon_state = "wire"
+	action_icon = 'icons/obj/stack_objects.dmi'
+	action_icon_state = "barbed_wire"
 
 /datum/action/innate/remote_fob/toggle_wiring/Activate()
 	. = ..()
@@ -133,7 +129,7 @@
 	to_chat(owner, span_notice("Will now [console.do_wiring ? "do wiring" : "stop wiring"]."))
 /datum/action/innate/remote_fob/eject_metal_action
 	name = "Eject All Metal"
-	action_icon_state = "fobpc-eject_m"
+	action_icon_state = "eject_metal"
 
 /datum/action/innate/remote_fob/eject_metal_action/Activate()
 	. = ..()
@@ -145,10 +141,9 @@
 	console.eject_mat(EJECT_METAL)
 	fobdrone.balloon_alert(owner, "Metal sheets ejected")
 
-
 /datum/action/innate/remote_fob/eject_plasteel_action
 	name = "Eject All Plasteel"
-	action_icon_state = "fobpc-eject_p"
+	action_icon_state = "eject_plasteel"
 
 /datum/action/innate/remote_fob/eject_plasteel_action/Activate()
 	. = ..()
