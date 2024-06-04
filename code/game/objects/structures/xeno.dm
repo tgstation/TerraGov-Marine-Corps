@@ -184,7 +184,7 @@
 	else
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 
-/obj/structure/door/resin/attempt_to_open(mob/user, instant, slammed, forced, direction_from_opener, bumped)
+/obj/structure/door/resin/attempt_to_open(mob/user, instant, slammed, forced, direction_from_opener, bumped, damage = 10)
 	if(!isxeno(user))	//Door's racist
 		if(user)
 			playsound(src, knocking_sound, 50, FALSE, 5, 1)

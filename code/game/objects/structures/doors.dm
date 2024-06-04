@@ -449,54 +449,87 @@
 ///Mob opening the door has no unbroken legs
 #define OPENER_ALL_LEGS_CRIPPLED 1<<2
 
-///Separated this proc so that individual doors can override this if they want to change how it is forced open; set leg_flags only if the opener is a carbon
-/obj/structure/door/proc/force_door_open(mob/user, bumped, leg_flags)
+///To prevent doing 5 kicks a second; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown
+/obj/structure/door/proc/handle_door_force_open_cooldown(mob/door_opener, cooldown = 1.5 SECONDS)
+	if(TIMER_COOLDOWN_CHECK(door_opener, COOLDOWN_FORCE_OPEN_DOOR))
+		return FALSE
+
+	TIMER_COOLDOWN_START(door_opener, COOLDOWN_FORCE_OPEN_DOOR, cooldown)
+	return TRUE
+
+///To prevent near instantly killing people with door slams; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown
+/obj/structure/door/proc/handle_door_force_close_cooldown(mob/door_opener, cooldown = 1 SECONDS)
+	if(TIMER_COOLDOWN_CHECK(door_opener, COOLDOWN_FORCE_CLOSE_DOOR))
+		return FALSE
+
+	TIMER_COOLDOWN_START(door_opener, COOLDOWN_FORCE_CLOSE_DOOR, cooldown)
+	return TRUE
+
+///Separated this proc so that individual doors can override this if they want to change how it is forced open; do not call this, use attempt_to_open()
+/obj/structure/door/proc/force_door_open(mob/user, forced, damage = 10, bumped, leg_flags)
+	if(!forced && user && !handle_door_force_open_cooldown(user))
+		return FALSE
+
+	playsound(src, slam_sound, 70, FALSE, 10, 2)
 	if(!CHECK_BITFIELD(door_flags, DOOR_FORCEABLE))
-		to_chat(user, span_warning("[src] is too sturdy to bash through!"))
+		if(user)
+			to_chat(user, span_warning("[src] is too sturdy for brute force!"))
 		return FALSE
 
-	//If not tackling the door, that means they are attempting to kick it with a broken leg, so let's see if we got any legs to break for being a fool
-	if(!bumped && CHECK_BITFIELD(leg_flags, OPENER_ALL_LEGS_CRIPPLED))
-		var/mob/living/kicker = user
-		kicker.apply_damage(15, BRUTE, CHECK_BITFIELD(leg_flags, OPENER_MISSING_RIGHT_LEG) ? BODY_ZONE_L_LEG : BODY_ZONE_R_LEG, penetration = 100)
-		kicker.Knockdown(2 SECONDS)	//Get floored, nerd
+	//Do all of this if there is a door kicker/tackler
+	if(user)
+		//If not tackling the door, that means they are attempting to kick it with a broken leg, so let's see if we got any legs to break for being a fool
+		if(!bumped && CHECK_BITFIELD(leg_flags, OPENER_ALL_LEGS_CRIPPLED))
+			var/mob/living/kicker = user
+			kicker.apply_damage(15, BRUTE, CHECK_BITFIELD(leg_flags, OPENER_MISSING_RIGHT_LEG) ? BODY_ZONE_L_LEG : BODY_ZONE_R_LEG, penetration = 100)
+			kicker.Knockdown(2 SECONDS)	//Get floored, nerd
 
-	else if(user.throwing && isliving(user))
-		var/mob/living/living_battering_ram = user
-		//Unlike kicking with a broken leg, getting thrown against a door damages your whole body but can be reduced with armor
-		living_battering_ram.take_overall_damage(40, BRUTE, MELEE, penetration = 50)
-		living_battering_ram.Knockdown(2 SECONDS)
+		else if(user.throwing && isliving(user))
+			var/mob/living/living_battering_ram = user
+			//Unlike kicking with a broken leg, getting thrown against a door damages your whole body but can be reduced with armor
+			living_battering_ram.take_overall_damage(40, BRUTE, MELEE, penetration = 50)
+			living_battering_ram.Knockdown(2 SECONDS)
 
-	//+1 because small mobs will have a value of 0...
-	take_damage(10 * (user.mob_size + 1))
-	lock?.take_damage(10 * (user.mob_size + 1))
-	//prob(null) is 0; the ?. is still necessary because the lock could be destroyed before getting to this line
-	if(prob(lock?.lock_strength))
-		return FALSE
+		//+1 because small mobs will have a value of 0...
+		damage *= user.mob_size + 1
+		take_damage(damage)
+		lock?.take_damage(damage)
 
-	if(bumped)
-		if(user.throwing)
-			visible_message(span_danger("[user]'s body flies through [src]!"),
-							span_danger("Your body slams through [src]!"),
-							span_danger("You hear someone's entire body crash through a door!"))
+		//The ?. is still necessary because the lock could be destroyed before getting to this line
+		if(lock?.lock_strength > damage)
+			return FALSE
+
+		if(bumped)
+			if(user.throwing)
+				visible_message(span_danger("[user]'s body flies through [src]!"),
+								span_danger("Your body slams through [src]!"),
+								span_danger("You hear someone's entire body crash through a door!"))
+			else
+				visible_message(span_danger("[user] bashes through [src]!"),
+								span_danger("You bash through [src]!"),
+								span_danger("You hear someone bash a door down!"))
 		else
-			visible_message(span_danger("[user] bashes through [src]!"),
-							span_danger("You bash through [src]!"),
-							span_danger("You hear someone bash a door down!"))
+			visible_message(span_danger("[user] kicks open [src]!"),
+							span_danger("You kick open [src]!"),
+							span_danger("You hear someone kick open a door!"))
+
+	//Abbreviated processes that will run if this door is being opened by something like an explosion
 	else
-		visible_message(span_danger("[user] kicks open [src]!"),
-						span_danger("You kick open [src]!"),
-						span_danger("You hear someone kick open a door!"))
+		take_damage(damage)
+		lock?.take_damage(damage)
+		if(lock?.lock_strength > damage)
+			return FALSE
 
 	return TRUE
 
-///Is used whenever the lock is forcibly removed from the door, like from an explosion or being kicked open
+///Is used whenever the lock is forcibly removed from the door, like from an explosion or being kicked open	//Nevermind, explosion code doesn't pass an origin
 /obj/structure/door/proc/eject_lock(direction, range = 5, speed = 2)
 	if(!lock)
 		return
 
 	lock.forceMove(get_turf(src))
-	lock.throw_at(get_ranged_target_turf(src, direction, range), range, speed, targetted_throw = FALSE)
+	if(direction)
+		lock.throw_at(get_ranged_target_turf(src, direction, range), range, speed, targetted_throw = FALSE)
 	lock = null
 
 /**
@@ -506,10 +539,11 @@
  * * instant - TRUE if you want to open it instantly
  * * slammed - TRUE if you want to open it through violent means
  * * forced - TRUE if you want to guarantee opening it
- * * direction_from_opener - use angle2dir(Get_Angle(src, opening_atom)) if it is being forcibly opened (like an explosion) or if a mob is opening this
+ * * direction_from_opener - use angle2dir(Get_Angle(src, opening_atom)) if it is being forcibly opened or if a mob is opening this
  * * bumped - TRUE if a mob is trying to open this door by walking into it; used for changing the visible message
+ * * damage - By default 10, use this to inflict damage on the door when forced open
  */
-/obj/structure/door/proc/attempt_to_open(mob/user, instant, slammed, forced, direction_from_opener, bumped)
+/obj/structure/door/proc/attempt_to_open(mob/user, instant, slammed, forced, direction_from_opener, bumped, damage = 10)
 	if(CHECK_BITFIELD(door_flags, DOOR_OPEN) || (CHECK_BITFIELD(door_flags, DOOR_OPENING) && !(instant || forced)))
 		return
 
@@ -520,11 +554,14 @@
 
 	//The code below feels like a sin but this seems to be the easiest way to get the conditions of the opener's legs
 	var/opener_leg_flags = NONE
-	//To avoid using 3 ternaries in 1 line
-	var/do_kicker_check = user ? !user.throwing : FALSE	//Will be TRUE if the user is not being thrown across the room; also why isn't this named THROWN???
+
+	//To avoid using 3 ternaries in 1 line...
+	//Will be TRUE if the user is not being thrown across the room and is on harm intent; also why isn't this named THROWN???
+	var/is_someone_forcing_door_open = user && user.a_intent == INTENT_HARM ? !user.throwing : FALSE
 	//It got even longer trying to accommodate for non-carbons so not going to deal with them
-	var/mob/living/carbon/kicker = do_kicker_check ? ((!isxeno(user) && iscarbon(user)) ? user : null) : null
+	var/mob/living/carbon/kicker = is_someone_forcing_door_open ? ((!isxeno(user) && iscarbon(user)) ? user : null) : null
 	if(kicker)
+		instant = TRUE	//Kicking or tackling a door will always be instant
 		var/mob/living/carbon/carbon = user
 		var/datum/limb/l_leg/left_leg = carbon.get_limb("l_leg")
 		var/datum/limb/r_leg/right_leg = carbon.get_limb("r_leg")
@@ -546,15 +583,16 @@
 
 	//If the opener is missing a leg, they need to walk into it; if missing all legs, they can't forcibly open it
 	//This was all one if check using a ternary operator but got wayyyyy too long
-	var/leg_flags_check
+	var/can_kicker_kick_this_door
 	if(bumped)
-		leg_flags_check = !CHECK_MULTIPLE_BITFIELDS(opener_leg_flags, OPENER_MISSING_LEFT_LEG|OPENER_MISSING_RIGHT_LEG)
+		can_kicker_kick_this_door = !CHECK_MULTIPLE_BITFIELDS(opener_leg_flags, OPENER_MISSING_LEFT_LEG|OPENER_MISSING_RIGHT_LEG)
 	else
-		leg_flags_check = !CHECK_BITFIELD(opener_leg_flags, OPENER_MISSING_LEFT_LEG) || !CHECK_BITFIELD(opener_leg_flags, OPENER_MISSING_RIGHT_LEG)
+		can_kicker_kick_this_door = !CHECK_BITFIELD(opener_leg_flags, OPENER_MISSING_LEFT_LEG) || !CHECK_BITFIELD(opener_leg_flags, OPENER_MISSING_RIGHT_LEG)
 
-	if(user?.throwing || (user?.a_intent == INTENT_HARM && leg_flags_check))
-		playsound(src, slam_sound, 70, FALSE, 10, 2)
-		if(!forced && !force_door_open(user, bumped, opener_leg_flags))
+	//When to actually force a door open?
+	//If a mob isn't opening it but instant or slammed is TRUE, if a mob is flying into it, or if a mob is kicking/tackling it
+	if((!user && (instant || slammed)) || user?.throwing || (kicker ? can_kicker_kick_this_door : is_someone_forcing_door_open))
+		if(!force_door_open(user, forced, damage, bumped, opener_leg_flags))
 			return
 
 		//Only eject the lock if it was actually keeping it from being opened
@@ -562,7 +600,7 @@
 			eject_lock(REVERSE_DIR(direction_from_opener))
 
 		//Not passing the slammed argument because we already play the slamming sound every attempt
-		open(TRUE)
+		open(instant)
 		return
 
 	if(!forced && lock?.locked)
@@ -609,11 +647,14 @@
  * * forced - TRUE if you want to guarantee closing it
  */
 /obj/structure/door/proc/attempt_to_close(mob/user, instant, slammed, forced)
+	//To allow slamming a door on someone
+	var/slam_the_door = user?.a_intent == INTENT_HARM
+
 	//In addition to making sure we're not closing an already closing door
 	//Check to see if a living mob is in the way of the door closing; if there is one, don't close the door (unless it's being forcibly closed)
 	//Do half of the checks on this variable so that it doesn't get too long
 	var/is_there_mob_on_full_tile_door = !CHECK_BITFIELD(atom_flags, ON_BORDER) && !(instant || forced) && (locate(/mob/living) in loc)
-	if(!CHECK_BITFIELD(door_flags, DOOR_OPEN) || CHECK_BITFIELD(door_flags, DOOR_CLOSING) || is_there_mob_on_full_tile_door)
+	if(!CHECK_BITFIELD(door_flags, DOOR_OPEN) || CHECK_BITFIELD(door_flags, DOOR_CLOSING) || (is_there_mob_on_full_tile_door && !slam_the_door))
 		return
 
 	if(construction_steps_index != 1)
@@ -621,7 +662,9 @@
 			balloon_alert(user, "Needs assembly!")
 		return
 
-	var/slam_the_door = user?.a_intent == INTENT_HARM
+	if(slam_the_door && !handle_door_force_close_cooldown(user))
+		return
+
 	close(slam_the_door, slam_the_door)
 
 /**
@@ -747,6 +790,33 @@
 			result += 1 * (they_let_the_door_hit_them_on_the_way_out.mob_size + 1)
 
 	return result
+
+//Explosions can open doors!
+/obj/structure/door/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+
+	//These numbers are arbitrary as hell... why can't severity be a damage amount instead, Tivi?!
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			deconstruct()	//Just die
+
+		/*
+		Yes I know these values are pretty low compared to mineral door healths but
+		1. Incredibly hard to find materials to build them
+		2. They are way too tanky, I'm only not touching them because of reason 1
+		Although this is all assuming 100 HP is a good standard for doors, so someone should change these values if that does not remain the case
+		Note: attempt_to_open will only deal their damage if the door was not open, so open doors in a way take half damage!
+		*/
+		if(EXPLODE_HEAVY)
+			take_damage(150)
+			attempt_to_open(null, TRUE, TRUE, damage = 150)
+		if(EXPLODE_LIGHT)
+			take_damage(75)
+			attempt_to_open(null, TRUE, TRUE, damage = 75)
+		if(EXPLODE_WEAK)
+			take_damage(25)
+			attempt_to_open(damage = 25)	//Pretty weak so not even forced open
 
 /obj/structure/door/mineral_door
 	name = "mineral door"

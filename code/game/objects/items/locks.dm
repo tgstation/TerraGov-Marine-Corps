@@ -9,8 +9,8 @@
 	var/attach_time = 2 SECONDS
 	///Time to detach this lock from a door
 	var/detach_time = 2 SECONDS
-	///The % chance of the lock stopping a forced opening; number from 0 to 100, where 100 always keeps the door closed
-	var/lock_strength = 50
+	///Damage threshold for bypassing this lock; for reference, a human kicking down a door does 20 damage
+	var/lock_strength = 20
 	///Boolean for if the lock is locked
 	var/locked = FALSE
 	///String ID for the lock; will be assigned a string if from a mapped-in door with a lock
@@ -32,6 +32,11 @@
 	. = ..()
 	//Delete the open and closed lines if there are ever sprites to represent these states
 	. += span_notice("It is [span_bold("[locked ? "closed" : "open"]")] and has [span_bold(personal_lock_id)] engraved on it.")
+	switch(obj_integrity/max_integrity)
+		if(0 to 0.5)
+			. += span_danger("It's severely damaged.")
+		if(0.5 to 0.99)
+			. += span_warning("It could use repairs.")
 
 /obj/item/lock/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -77,3 +82,6 @@
 		return
 
 	personal_lock_id = num2text(next_available_lock_id++)
+
+/obj/item/lock/welder_act(mob/living/user, obj/item/I)
+	return welder_repair_act(user, I, max_integrity/2, 2 SECONDS, fuel_req = 1)
