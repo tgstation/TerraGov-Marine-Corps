@@ -143,7 +143,7 @@
 	if(!do_after(user_xeno, 3 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
-	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
@@ -151,7 +151,7 @@
 	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/opaque()
 
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"

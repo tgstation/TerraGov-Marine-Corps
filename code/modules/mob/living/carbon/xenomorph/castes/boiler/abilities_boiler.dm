@@ -33,6 +33,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	var/tile_offset = 5
+	var/view_size = 4
+
+/datum/action/ability/xeno_action/toggle_long_range/bull
+	tile_offset = 11
+	view_size = 12
 
 /datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -43,9 +49,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
+		if(X.xeno_flags & XENO_ZOOMED)
 			return
-		X.zoom_in(11)
+		X.zoom_in(tile_offset, view_size)
 		..()
 
 // ***************************************
