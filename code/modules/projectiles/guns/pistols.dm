@@ -98,7 +98,7 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
 
