@@ -159,7 +159,6 @@
 			/obj/item/attachable/magnetic_harness = -1,
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
-			/obj/item/attachable/scope/marine = 4,
 			/obj/item/attachable/scope/mini = 4,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,
