@@ -14,8 +14,8 @@
 	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 600 //  75 is the cost of plant_weeds
-	plasma_gain = 60
+	plasma_max = 1000 //  75 is the cost of plant_weeds
+	plasma_gain = 120
 
 	// *** Health *** //
 	max_health = 100
