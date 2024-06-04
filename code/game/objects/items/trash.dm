@@ -175,12 +175,12 @@
 	icon_state = "som_mealpackempty"
 
 /obj/item/trash/nt_chips
-	name = "Nanotrasen Pepper Chips"
+	name = "\improper Nanotrasen Pepper Chips"
 	icon_state = "nt_chips_pepper"
 	desc = "An oily empty bag that once held Nanotrasen Chips."
 
 /obj/item/trash/nt_chips/pepper
-	name = "Nanotrasen Pepper Chips"
+	name = "\improper Nanotrasen Pepper Chips"
 	icon_state = "nt_chips_pepper"
 	desc = "An oily empty bag that once held Nanotrasen Pepper Chips."
 

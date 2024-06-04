@@ -1626,7 +1626,7 @@
 	layer = 3.2
 
 /obj/structure/prop/urban/misc/atm
-	name = "NanoTrasen Automatic Teller Machine"
+	name = "\improper NanoTrasen Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "atm"
