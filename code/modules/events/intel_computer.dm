@@ -1,7 +1,7 @@
 /datum/round_event_control/intel_computer
 	name = "Intel computer activation"
 	typepath = /datum/round_event/intel_computer
-	weight = 25
+	weight = 30
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture")
 

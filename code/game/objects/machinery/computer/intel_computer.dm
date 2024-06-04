@@ -2,10 +2,9 @@
 	name = "circuit board (intel computer)"
 	build_path = /obj/machinery/computer/intel_computer
 
-
 /obj/machinery/computer/intel_computer
-	name = "Intelligence computer"
-	desc = "A computer used to access the colonies central database. TGMC Intel division will occasionally request remote data retrieval from these computers"
+	name = "Secured equipment computer"
+	desc = "A computer used to access specialised equipment. TGMC Intel division will occasionally report the location of active computers"
 	icon_state = "intel_computer"
 	screen_overlay = "intel_computer_screen"
 	circuit = /obj/item/circuitboard/computer/intel_computer
@@ -15,10 +14,6 @@
 
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
-	///How much supply points you get for completing the terminal
-	var/supply_reward = 600
-	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 60
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 1
@@ -35,7 +30,6 @@
 	///What faction has launched the intel process
 	var/faction = FACTION_TERRAGOV
 
-
 /obj/machinery/computer/intel_computer/Initialize(mapload)
 	. = ..()
 	GLOB.intel_computers += src
@@ -51,9 +45,8 @@
 		STOP_PROCESSING(SSmachines, src)
 		printing = FALSE
 		printing_complete = TRUE
-		SSpoints.supply_points[faction] += supply_reward
-		SSpoints.dropship_points += dropship_reward
-		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
+		new /obj/item/loot_box/securelootcrate(get_turf(src))
+		visible_message(span_notice("[src] beeps as it finishes bypassing security protocols, the secure compartment opens up to reveal its contents"))
 		SSminimaps.remove_marker(src)
 
 /obj/machinery/computer/intel_computer/Destroy()
@@ -62,7 +55,7 @@
 
 /obj/machinery/computer/intel_computer/interact(mob/user)
 	if(!active)
-		to_chat(user, span_notice("This terminal has nothing of use on it."))
+		to_chat(user, span_notice("you aren't able to bypass the security protocols to use this terminal."))
 		return
 	return ..()
 
