@@ -1,8 +1,8 @@
 /obj/item/campaign_beacon
 	name = "default campaign beacon"
 	desc = "what smelly admin spawned this?"
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion4"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "motion_4"
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = IS_DEPLOYABLE
 	///Type path for what this deploys into
@@ -23,8 +23,7 @@
 /obj/item/campaign_beacon/bunker_buster
 	name = "orbital beacon"
 	desc = "A bulky device that is used to provide precision guidance to powerful orbital weapon systems."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion4"
+	icon_state = "motion_4"
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
@@ -74,8 +73,8 @@
 /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	name = "deployed orbital beacon"
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion1"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "motion_1"
 	faction = FACTION_TERRAGOV
 	density = FALSE
 	///How long the beacon takes to trigger its effect
