@@ -51,14 +51,6 @@
 	new /obj/effect/spawner/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
-/obj/structure/prop/urban/vehicles/suv
-	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
-	icon_state = "SUV"
-
-/obj/structure/prop/urban/vehicles/suvdamaged
-	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
-	icon_state = "SUV_damaged"
-
 /obj/structure/prop/urban/vehicles/largetruck
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "zenithlongtruck3"
@@ -90,6 +82,7 @@
 	icon_state = "armoredtruck_wy_security_1"
 	bound_height = 64
 	bound_width = 96
+
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1
 	name = "\improper Nanotrasen security truck"
 	desc = "Seems to be broken down."
@@ -179,6 +172,19 @@
 
 /obj/structure/prop/urban/vehicles/suv/suv_8
 	icon_state = "SUV8"
+
+// damaged suv
+
+/obj/structure/prop/urban/vehicles/suv/suvdamaged
+	name = "heavily damaged SUV"
+	desc = "A shell of a vehicle, broken down beyond repair."
+	icon_state = "SUV_damaged"
+
+/obj/structure/prop/urban/vehicles/suv/suvdamaged/suv_damaged1
+	icon_state = "SUV1_damaged"
+
+/obj/structure/prop/urban/vehicles/suv/suvdamaged/suv_damaged2
+	icon_state = "SUV2_damaged"
 
 // Meridian Cars - Damage States
 /obj/structure/prop/urban/vehicles/meridian
@@ -535,30 +541,6 @@
 /obj/structure/prop/urban/vehicles/car/car_chassis
 	name = "\improper Mono-Spectra Chassis"
 	icon_state = "MeridianCar_shell"
-
-// damaged suv
-
-/obj/structure/prop/urban/vehicles/suvdamaged
-	name = "heavily damaged SUV"
-	desc = "A shell of a vehicle, broken down beyond repair."
-
-/obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged0
-	icon_state = "SUV_damaged"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
-
-/obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged1
-	icon_state = "SUV1_damaged"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
-
-/obj/structure/prop/urban/vehicles/suvdamaged/suv_damaged2
-	icon_state = "SUV2_damaged"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
 
 // small trucks
 

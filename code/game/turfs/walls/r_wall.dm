@@ -70,7 +70,6 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
-
 //Prison
 
 /turf/closed/wall/r_wall/prison

@@ -30,8 +30,7 @@
 
 //automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
 /obj/structure/sign/proc/place_poster()
-	var/turf/closed/applied_turf = get_step(loc, dir)
-	if(istype(applied_turf))
+	if(isclosedturf(get_step(loc, dir)))
 		switch(dir)
 			if(NORTH)
 				pixel_y = 32
@@ -42,12 +41,12 @@
 			if(WEST)
 				pixel_x = -30
 		return
-	var/turf/locatedturf = get_turf(loc)
-	if(isclosedturf(locatedturf))
+	if(isclosedturf(get_turf(loc)))
 		return
 	for(var/i in CARDINAL_ALL_DIRS)
-		locatedturf = get_step(loc, i)
-		if(isclosedturf(locatedturf))
+		if(!isclosedturf(get_step(loc, i)))
+			continue
+		else
 			switch(i)
 				if(NORTH)
 					pixel_y = 32
@@ -69,6 +68,7 @@
 					pixel_x = 30
 				if(WEST)
 					pixel_x = -30
+			return
 
 /obj/structure/sign/ex_act(severity)
 	if(severity == EXPLODE_WEAK)
