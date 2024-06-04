@@ -31,3 +31,6 @@
   - code_imp: Replaces CQC skill name with UNARMED skill
   blackdav123:
   - bugfix: Pyrogen can now be given plasma.
+2024-06-04:
+  Xander3359:
+  - bugfix: smg-25 holster can no longer hold every item
