@@ -258,29 +258,29 @@
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -48
-			root.pixel_y = -32
+			root.pixel_x = -65
+			root.pixel_y = -80
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -64
-			root.pixel_x = -48
-			root.pixel_y = -64
+			root.pixel_x = -65
+			root.pixel_y = -80
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -64
 			bound_y = -32
-			root.pixel_x = -64
-			root.pixel_y = -48
+			root.pixel_x = -80
+			root.pixel_y = -56
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -32
-			root.pixel_y = -48
+			root.pixel_x = -48
+			root.pixel_y = -56
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
@@ -341,9 +341,18 @@
 			return NONE
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
-/obj/vehicle/sealed/armored/multitile/rectangle
-	pixel_x = -48
-	pixel_y = -64
+//Some hover specific stuff for the SOM tank
+/obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
+	. = ..()
+	if(!HAS_TRAIT(lander, TRAIT_TANK_DESANT))
+		return
+	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
+	tank.animate_hover()
 
-	hitbox = /obj/hitbox/rectangle
-
+/obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
+	. = ..()
+	if(HAS_TRAIT(AM, TRAIT_TANK_DESANT))
+		return
+	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
+	tank.animate_hover()
+	animate(AM)

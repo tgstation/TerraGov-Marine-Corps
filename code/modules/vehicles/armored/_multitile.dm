@@ -35,10 +35,3 @@
 	if(!.)
 		return
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
-
-//3x4
-/obj/vehicle/sealed/armored/multitile/rectangle
-	pixel_x = -48
-	pixel_y = -64
-
-	hitbox = /obj/hitbox/rectangle
