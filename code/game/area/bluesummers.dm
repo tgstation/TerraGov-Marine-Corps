@@ -1,1 +1,155 @@
-//Bluesummers Wreck Site
+//Bluesummers Wreck Site Areas
+
+//Caves
+/area/bluesummers/caves
+	name = "Caves"
+	icon_state = "cave"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
+
+/area/bluesummers/caves/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+
+/area/bluesummers/caves/northwest
+	name = "Northwestern Caves"
+	icon_state = "northwest2"
+
+/area/bluesummers/caves/northwest/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/north
+	name = "Northern Caves"
+	icon_state = "north2"
+
+/area/bluesummers/caves/north/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/mining
+	name = "North Terraforming Wing"
+	icon_state = "nuke_storage"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_REQ_CAVE
+	always_unpowered = FALSE
+
+/area/bluesummers/caves/mining/south
+	name = "South Terraforming Wing"
+	icon_state = "mining_storage"
+	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/bluesummers/caves/cryostorage
+	name = "Cryogenics Storage Wing"
+	icon_state = "research"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	always_unpowered = FALSE
+
+/area/bluesummers/caves/cryostorage/garbledradio
+	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/bluesummers/caves/cryostorage/gravity
+	name = "Gravity Generator Room"
+
+/area/bluesummers/caves/cloning
+	name = "Restricted Cloning Wing"
+	icon_state = "research"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	always_unpowered = FALSE
+
+/area/bluesummers/caves/dorms
+	name = "Crew Sleeping Quarters"
+	icon_state = "crew_quarters"
+	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
+	always_unpowered = FALSE
+
+/area/bluesummers/caves/martian
+	name = "Punisher-Class Boarding Ship"
+	icon_state = "shuttlered"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_SEC_CAVE
+	always_unpowered = FALSE
+
+/area/bluesummers/caves/northeast
+	name = "Northeastern Caves"
+	icon_state = "northeast2"
+
+/area/bluesummers/caves/northeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/southwest
+	name = "Southwestern Caves"
+	icon_state = "southwest2"
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/east
+	name = "Eastern Tunnel"
+	icon_state = "east2"
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/southeast
+	name = "Southeast Caves"
+	icon_state = "southeast2"
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/west
+	name = "West Tunnel"
+	icon_state = "west2"
+	ceiling = CEILING_UNDERGROUND
+
+//Outside Area
+/area/bluesummers/outside
+	name = "Desert Grounds"
+	icon_state = "cliff_blocked"
+	ceiling = CEILING_NONE
+	outside = TRUE
+	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
+
+/area/bluesummers/outside/southeast
+	name = "Southeastern Desert"
+	icon_state = "southeast"
+
+/area/bluesummers/outside/south
+	name = "Southern Desert"
+	icon_state = "south"
+
+/area/bluesummers/outside/southwest
+	name = "Southwestern Desert"
+	icon_state = "southeast"
+
+/area/bluesummers/outside/northeast
+	name = "Northeastern Desert"
+	icon_state = "northeast"
+
+/area/bluesummers/outside/north
+	name = "Northern Desert"
+	icon_state = "north"
+
+/area/bluesummers/outside/northwest
+	name = "Northwestern Desert"
+	icon_state = "northwest"
+
+//Indoor Areas
+/area/bluesummers/inside
+	name = "Inside"
+	icon_state = "red"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/bluesummers/inside/space_port
+	name = "Space Port"
+	icon_state = "landingzone1"
+	ceiling = NONE
+	area_flags = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/bluesummers/inside/telecomms
+	name = "Telecomms"
+	icon_state = "tcomsatcham"
+	area_flags = NO_DROPPOD
+	requires_power = FALSE

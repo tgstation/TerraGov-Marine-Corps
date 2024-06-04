@@ -826,6 +826,10 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/space)
+"Gg" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/space)
 "GD" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/drought,
@@ -1475,7 +1479,7 @@ dY
 dY
 dY
 dY
-dY
+Gg
 "}
 (2,1,1) = {"
 dY
@@ -1656,7 +1660,7 @@ Vp
 Vp
 Vp
 Vp
-Vp
+dY
 dY
 "}
 (3,1,1) = {"
@@ -15813,7 +15817,7 @@ rF
 Vp
 Vp
 Vp
-ip
+Vp
 Vp
 Vp
 Vp
@@ -16176,7 +16180,7 @@ Vp
 Vp
 Vp
 Vp
-ip
+Vp
 Vp
 Vp
 Vp
@@ -16720,7 +16724,7 @@ rF
 rF
 Vp
 Vp
-ip
+Vp
 Vp
 Vp
 Vp
