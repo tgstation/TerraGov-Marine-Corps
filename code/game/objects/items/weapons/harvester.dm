@@ -22,10 +22,12 @@
 /obj/item/weapon/sword/harvester/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
+	special_attack.give_action(user)
 
 /obj/item/weapon/sword/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
+	special_attack.remove_action(user)
 
 //Vali Knife
 /obj/item/weapon/combat_knife/harvester
