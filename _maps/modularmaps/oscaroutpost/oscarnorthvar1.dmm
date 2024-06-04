@@ -116,21 +116,6 @@
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
 /turf/open/floor,
 /area/oscar_outpost)
-"aU" = (
-/obj/structure/closet,
-/obj/item/clothing/gloves/green{
-	desc = "Always good to keep a green thumb";
-	name = "gardener gloves"
-	},
-/obj/structure/prop/propplaceholder,
-/obj/item/clothing/mask/cigarette/pipe,
-/obj/item/clothing/shoes/leather,
-/obj/item/clothing/under/color/green,
-/obj/item/tool/minihoe,
-/obj/item/tool/shovel,
-/obj/item/tool/plantspray/weeds,
-/turf/open/floor,
-/area/oscar_outpost)
 "aX" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -4422,7 +4407,6 @@
 	desc = "Always good to keep a green thumb";
 	name = "gardener gloves"
 	},
-/obj/structure/prop/propplaceholder,
 /obj/item/clothing/mask/cigarette/pipe,
 /obj/item/clothing/shoes/leather,
 /obj/item/clothing/under/color/green,
@@ -20326,7 +20310,7 @@ Ws
 YV
 dD
 Ws
-aU
+VS
 ce
 NL
 JY

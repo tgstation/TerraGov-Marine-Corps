@@ -38,6 +38,8 @@
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
 /obj/structure/prop/urban/vehicles/proc/explode()
 	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
+	if(prob(10))
+		explosion(loc, light_impact_range = 4, flame_range = 2)
 	playsound(loc, 'sound/effects/car_crush.ogg', 25)
 	var/turf/Tsec = get_turf(src)
 	new /obj/item/stack/rods(Tsec)
