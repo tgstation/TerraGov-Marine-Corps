@@ -259,7 +259,7 @@
 			bound_x = -32
 			bound_y = -32
 			root.pixel_x = -65
-			root.pixel_y = -80
+			root.pixel_y = -48
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
@@ -350,8 +350,9 @@
 	tank.animate_hover()
 
 /obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
+	var/is_desant = HAS_TRAIT(AM, TRAIT_TANK_DESANT)
 	. = ..()
-	if(HAS_TRAIT(AM, TRAIT_TANK_DESANT))
+	if(!is_desant || HAS_TRAIT(AM, TRAIT_TANK_DESANT))
 		return
 	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
 	tank.animate_hover()
