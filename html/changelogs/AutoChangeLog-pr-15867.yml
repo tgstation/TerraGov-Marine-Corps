@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Railgun changed back to 1 shot instead of 3"
-  - balance: "Reduced railgun effectiveness when piercing things"
-  - bugfix: "Fixed being able to remove railgun rounds of their magazine"

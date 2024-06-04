@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - bugfix: "Alamo now unlocks itself when a T4 touches the console (as it used to)"
