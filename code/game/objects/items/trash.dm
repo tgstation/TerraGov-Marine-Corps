@@ -68,6 +68,11 @@
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle4"
 
+/obj/item/trash/can
+	name = "crushed can"
+	icon_state = "cola"
+	resistance_flags = NONE
+
 /obj/item/trash/liquidfood
 	name = "\improper \"LiquidFood\" ration"
 	icon_state = "liquidfood"

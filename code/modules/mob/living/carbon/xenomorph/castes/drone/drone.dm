@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/drone
-	caste_base_type = /mob/living/carbon/xenomorph/drone
+	caste_base_type = /datum/xeno_caste/drone
 	name = "Drone"
 	desc = "An Alien Drone"
 	icon = 'icons/Xeno/castes/drone.dmi'

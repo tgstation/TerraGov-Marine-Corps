@@ -113,7 +113,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/particle_effect/sparks/Initialize(mapload)
 	. = ..()
-	playsound(src.loc, "sparks", 25, 1)
+	playsound(loc, SFX_SPARKS, 25, 1)
 	QDEL_IN(src, 10 SECONDS)
 
 

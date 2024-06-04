@@ -240,9 +240,9 @@
 	name = "\improper Privacy Shutters"
 	id = "cl_shutters"
 
-/obj/machinery/door/poddoor/shutters/mainship/corporate
+/obj/machinery/door/poddoor/shutters/mainship/fc_office
 	name = "\improper Privacy Shutters"
-	id = "cl_shutters"
+	id = "fc_shutters"
 
 /obj/machinery/door/poddoor/shutters/mainship/cell
 	name = "\improper Containment Cell"

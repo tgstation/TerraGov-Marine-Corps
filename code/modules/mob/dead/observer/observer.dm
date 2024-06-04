@@ -1,14 +1,12 @@
 GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
 GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
 
-
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
-
 
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!"
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = GHOST_LAYER
 	stat = DEAD
@@ -87,10 +85,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	update_icon()
 
-	if(!T)
+	if(!T && length(GLOB.latejoin))// e.g no shipmap spawn during unit tests or admit shittery
 		T = pick(GLOB.latejoin)
 
-	abstract_move(T)
+	if(T)
+		abstract_move(T)
 
 	if(!name)
 		name = random_unique_name(gender)
@@ -300,10 +299,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
 
 
-/mob/dead/observer/Move(atom/newloc, direct)
+/mob/dead/observer/Move(atom/newloc, direct, glide_size_override = 32)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
-
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 	if(newloc)
 		abstract_move(newloc)
 		update_parallax_contents()

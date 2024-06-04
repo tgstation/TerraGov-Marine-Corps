@@ -115,10 +115,11 @@
 					return FALSE
 
 				if(NON_ASCII_CHECK(input))
-					to_chat(usr, span_warning("That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules."))
+					to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 					return FALSE
 
-				priority_announce(input, subtitle = "Sent by [usr]", type = ANNOUNCEMENT_COMMAND)
+				var/mob/living/carbon/human/sender = usr
+				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(0) ? sender.get_paygrade(0) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time
@@ -149,11 +150,11 @@
 					to_chat(usr, span_warning("The ship must be under red alert in order to enact evacuation procedures."))
 					return FALSE
 
-				if(SSevacuation.flags_scuttle & FLAGS_SDEVAC_TIMELOCK)
+				if(SSevacuation.scuttle_flags & FLAGS_SDEVAC_TIMELOCK)
 					to_chat(usr, span_warning("The sensors do not detect a sufficient threat present."))
 					return FALSE
 
-				if(SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY)
+				if(SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY)
 					to_chat(usr, span_warning("The TGMC has placed a lock on deploying the evacuation pods."))
 					return FALSE
 

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/crusher
-	caste_base_type = /mob/living/carbon/xenomorph/crusher
+	caste_base_type = /datum/xeno_caste/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/castes/crusher.dmi'

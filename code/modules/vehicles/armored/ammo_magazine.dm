@@ -1,7 +1,7 @@
 //FEB 2024 NOTE: some of these are missing loading_sounds, fix it before using these ingame
 //Special ammo magazines for hardpoint modules. Some may not be here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
-	flags_magazine = NONE
+	magazine_flags = NONE
 	///loading sound to play when
 	var/loading_sound
 
@@ -45,7 +45,7 @@
 	max_rounds = 5
 
 /obj/item/ammo_magazine/tank/secondary_cupola
-	name = "M56 Cupola Magazine"
+	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
 	caliber = CALIBER_10X28
 	icon_state = "cupolaammo"

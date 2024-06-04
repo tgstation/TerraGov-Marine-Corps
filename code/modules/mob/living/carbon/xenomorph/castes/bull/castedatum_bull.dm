@@ -25,9 +25,7 @@
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = list(
-		/mob/living/carbon/xenomorph/runner,
-	)
+	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -48,6 +46,7 @@
 		/datum/action/ability/activable/xeno/bull_charge,
 		/datum/action/ability/activable/xeno/bull_charge/headbutt,
 		/datum/action/ability/activable/xeno/bull_charge/gore,
+		/datum/action/ability/xeno_action/toggle_long_range,
 	)
 
 /datum/xeno_caste/bull/normal

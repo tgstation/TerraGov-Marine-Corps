@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/ravager
-	caste_base_type = /mob/living/carbon/xenomorph/ravager
+	caste_base_type = /datum/xeno_caste/ravager
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/castes/ravager.dmi'
@@ -22,7 +22,7 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/ravager/fire_act(burn_level)
 	. = ..()
 	if(stat)
 		return

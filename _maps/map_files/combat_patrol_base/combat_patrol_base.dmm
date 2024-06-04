@@ -986,13 +986,6 @@
 	dir = 5
 	},
 /area/mainship/patrol_base/som)
-"pM" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/som)
 "pS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/purple{
@@ -1190,7 +1183,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "sd" = (
@@ -2509,12 +2501,6 @@
 /obj/structure/sign/double/map/left,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
-"Lq" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/som)
 "Lz" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/mainship,
@@ -3857,7 +3843,7 @@ VK
 cA
 OT
 OT
-pM
+ZQ
 sc
 OT
 OT
@@ -4470,7 +4456,7 @@ OT
 OT
 OT
 OT
-Lq
+EH
 JJ
 pT
 pT

@@ -90,7 +90,7 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown) //todo: make this less smelly, I have no idea why this is on the shield component, and could likely cause unintended double slowdown
-		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
+		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 
 ///Handles unequipping the shield
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)

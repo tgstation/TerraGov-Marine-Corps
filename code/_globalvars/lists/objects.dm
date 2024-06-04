@@ -1,5 +1,7 @@
-GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
-GLOBAL_LIST_INIT(ammo_list, init_ammo_list())						//List of all ammo types. Used by guns to tell the projectile how to act.
+///Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(cable_list)
+///List of all ammo types. Used by guns to tell the projectile how to act.
+GLOBAL_LIST_INIT(ammo_list, init_ammo_list())
 
 /proc/init_ammo_list()
 	. = list()
@@ -25,20 +27,29 @@ GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
 GLOBAL_LIST_EMPTY(eord_roomba_spawns)
 
-GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
+///NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
+GLOBAL_LIST_EMPTY(machines)
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(atmospumps)
-GLOBAL_LIST_EMPTY(mainship_lights)					//list of mainship lights, used for altering intensity and color during red and delta security levels
-GLOBAL_LIST_EMPTY(ship_alarms)						//list of shipside alarm effects used for delta level alert sirens
-GLOBAL_LIST_EMPTY(intel_computers)					//All the intel computers for the random events
+///list of mainship lights, used for altering intensity and color during red and delta security levels
+GLOBAL_LIST_EMPTY(mainship_lights)
+///list of shipside alarm effects used for delta level alert sirens
+GLOBAL_LIST_EMPTY(ship_alarms)
+///All the intel computers for the random events
+GLOBAL_LIST_EMPTY(intel_computers)
 GLOBAL_LIST_EMPTY(nuke_disk_generators)
-GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
+///list of all /obj/machinery/nuclearbomb
+GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
-GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke disk consoles
-GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
-GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
-GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
+///list of spawn locations for nuke disk consoles
+GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)
+//list of all /obj/item/disk/nuclear
+GLOBAL_LIST_EMPTY(nuke_disk_list)
+//list of all atoms which light can be shut down
+GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)
+//list of all main overwatch consoles
+GLOBAL_LIST_EMPTY(main_overwatch_consoles)
 ///List of all objectives in the campaign gamemode loaded in the current mission
 GLOBAL_LIST_EMPTY(campaign_objectives)
 ///List of non-objective campaign related structures loaded in the current mission
@@ -53,9 +64,22 @@ GLOBAL_LIST_EMPTY(teleporter_arrays)
 GLOBAL_LIST_EMPTY(droppod_bays)
 GLOBAL_LIST_EMPTY(landing_lights)
 
-GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
-GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
+///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
+GLOBAL_LIST_EMPTY(chemical_reactions_list)
+///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
+GLOBAL_LIST_EMPTY(chemical_reagents_list)
 GLOBAL_LIST_INIT(randomized_pill_icons, init_pill_icons())
+
+/// Global list of all non-cooking related crafting recipes.
+GLOBAL_LIST_EMPTY(crafting_recipes)
+/// This is a global list of typepaths, these typepaths are atoms or reagents that are associated with crafting recipes.
+/// This includes stuff like recipe components and results.
+GLOBAL_LIST_EMPTY(crafting_recipes_atoms)
+/// Global list of all cooking related crafting recipes.
+GLOBAL_LIST_EMPTY(cooking_recipes)
+/// This is a global list of typepaths, these typepaths are atoms or reagents that are associated with cooking recipes.
+/// This includes stuff like recipe components and results.
+GLOBAL_LIST_EMPTY(cooking_recipes_atoms)
 
 /proc/init_pill_icons()
 	. = list()
@@ -63,14 +87,17 @@ GLOBAL_LIST_INIT(randomized_pill_icons, init_pill_icons())
 		. += "pill[i]"
 	shuffle(.)
 
-GLOBAL_LIST_EMPTY(apcs_list)							//list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
+///list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
+GLOBAL_LIST_EMPTY(apcs_list)
 
 GLOBAL_LIST_EMPTY(wire_color_directory)
 
 GLOBAL_LIST_EMPTY(ai_status_displays)
-GLOBAL_LIST_EMPTY(alert_consoles)			// Station alert consoles, /obj/machinery/computer/station_alert
+/// Station alert consoles, /obj/machinery/computer/station_alert
+GLOBAL_LIST_EMPTY(alert_consoles)
 
-GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)						//list of all /obj/structure/xeno/tunnel
+///list of all /obj/structure/xeno/tunnel
+GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
@@ -98,7 +125,15 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/vehicle/unmanned)))
 
 //hypersleep related
-GLOBAL_LIST_EMPTY(cryoed_item_list)
+GLOBAL_LIST_EMPTY(cryoed_item_list_gun)
+GLOBAL_LIST_EMPTY(cryoed_item_list_ammo)
+GLOBAL_LIST_EMPTY(cryoed_item_list_explosive)
+GLOBAL_LIST_EMPTY(cryoed_item_list_melee)
+GLOBAL_LIST_EMPTY(cryoed_item_list_clothing)
+GLOBAL_LIST_EMPTY(cryoed_item_list_food)
+GLOBAL_LIST_EMPTY(cryoed_item_list_drugs)
+GLOBAL_LIST_EMPTY(cryoed_item_list_containers)
+GLOBAL_LIST_EMPTY(cryoed_item_list_other)
 
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/mask/cigarette,

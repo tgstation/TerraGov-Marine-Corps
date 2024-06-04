@@ -19,6 +19,8 @@
 #define OMNIDIRECTIONAL_ATTACKS (1<<10)
 ///Do you need mech skill to pilot this mech
 #define MECHA_SKILL_LOCKED (1<<11)
+///Is currently suffering from an EMP
+#define MECHA_EMPED (1<<12)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)

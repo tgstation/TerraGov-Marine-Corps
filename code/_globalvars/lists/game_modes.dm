@@ -26,3 +26,45 @@ GLOBAL_LIST_INIT(campaign_jobs, list(
 	SOM_STAFF_OFFICER,
 	SOM_COMMANDER,
 ))
+
+///Loot table if Marines win a major victory in a campaign mission
+GLOBAL_LIST_INIT(campaign_tgmc_major_loot, list(
+	/obj/effect/supply_drop/medical_basic = 7,
+	/obj/effect/supply_drop/marine_sentry = 5,
+	/obj/effect/supply_drop/recoilless_rifle = 3,
+	/obj/effect/supply_drop/armor_upgrades = 5,
+	/obj/effect/supply_drop/mmg = 4,
+	/obj/effect/supply_drop/zx_shotgun = 3,
+	/obj/effect/supply_drop/minigun = 3,
+	/obj/effect/supply_drop/scout = 3,
+))
+
+///Loot table if Marines win a minor victory in a campaign mission
+GLOBAL_LIST_INIT(campaign_tgmc_minor_loot, list(
+	/obj/effect/supply_drop/medical_basic = 7,
+	/obj/effect/supply_drop/marine_sentry = 5,
+	/obj/effect/supply_drop/recoilless_rifle = 3,
+	/obj/effect/supply_drop/armor_upgrades = 5,
+	/obj/effect/supply_drop/mmg = 4,
+))
+
+///Loot table if SOM win a major victory in a campaign mission
+GLOBAL_LIST_INIT(campaign_som_major_loot, list(
+	/obj/effect/supply_drop/medical_basic = 7,
+	/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
+	/obj/effect/supply_drop/som_rpg = 3,
+	/obj/effect/supply_drop/som_armor_upgrades = 5,
+	/obj/effect/supply_drop/charger = 4,
+	/obj/effect/supply_drop/culverin = 3,
+	/obj/effect/supply_drop/blink_kit = 3,
+	/obj/effect/supply_drop/som_shotgun_burst = 3,
+))
+
+///Loot table if SOM win a minor victory in a campaign mission
+GLOBAL_LIST_INIT(campaign_som_minor_loot, list(
+	/obj/effect/supply_drop/medical_basic = 7,
+	/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 5,
+	/obj/effect/supply_drop/som_rpg = 3,
+	/obj/effect/supply_drop/som_armor_upgrades = 5,
+	/obj/effect/supply_drop/charger = 4,
+))

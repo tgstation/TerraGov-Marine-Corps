@@ -328,13 +328,13 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	var/currTag = 0
 
 	w_class = WEIGHT_CLASS_SMALL
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "electronic"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/destTagger/proc/openwindow(mob/user as mob)
 	var/dat

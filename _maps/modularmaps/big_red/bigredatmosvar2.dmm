@@ -618,7 +618,7 @@
 "JO" = (
 /obj/structure/cryofeed,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "JQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -688,7 +688,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "PY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,

@@ -240,3 +240,29 @@
 	mapid = "EORG"
 	spawner_height = 46
 	spawner_width = 46
+
+/**********Jungle Outpost*******/
+/obj/effect/spawner/modularmap/jungle_outpost/westtower
+	mapid = "jowesttower"
+	spawner_width = 12
+	spawner_height = 14
+
+/obj/effect/spawner/modularmap/jungle_outpost/southcrates
+	mapid = "josouthcrates"
+	spawner_width = 12
+	spawner_height = 14
+
+/obj/effect/spawner/modularmap/jungle_outpost/hydroponics
+	mapid = "johydroponics"
+	spawner_width = 19
+	spawner_height = 18
+
+/obj/effect/spawner/modularmap/jungle_outpost/medbay
+	mapid = "jomedbay"
+	spawner_width = 16
+	spawner_height = 24
+
+/obj/effect/spawner/modularmap/jungle_outpost/engineering
+	mapid = "joengineering"
+	spawner_width = 21
+	spawner_height = 21

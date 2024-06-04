@@ -505,7 +505,7 @@
 /area/bigredv2/outside/se)
 "Uj" = (
 /turf/open/liquid/water/river,
-/area/bigredv2/caves/rock)
+/area/space)
 "Uu" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor,

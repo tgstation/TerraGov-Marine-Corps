@@ -4,7 +4,7 @@
 	icon_state = "wizard"
 	//Not given any special protective value since the magic robes are full-body protection --NEO
 	siemens_coefficient = 0.8
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
 
 /obj/item/clothing/head/wizard/red
 	name = "red wizard hat"
@@ -16,7 +16,7 @@
 	name = "wizard hat"
 	desc = "It has WIZZARD written across it in sequins. Comes with a cool beard."
 	icon_state = "wizard-fake"
-	flags_armor_protection = HEAD|FACE
+	armor_protection_flags = HEAD|FACE
 
 /obj/item/clothing/head/wizard/marisa
 	name = "Witch Hat"
@@ -28,9 +28,9 @@
 	name = "Magus Helm"
 	desc = "A mysterious helmet that hums with an unearthly power"
 	icon_state = "magus"
-	item_state = "magus"
+	worn_icon_state = "magus"
 	siemens_coefficient = 0.8
-	flags_armor_protection = HEAD|FACE|EYES
+	armor_protection_flags = HEAD|FACE|EYES
 
 /obj/item/clothing/head/wizard/amp
 	name = "psychic amplifier"
@@ -48,60 +48,60 @@
 	name = "wizard robe"
 	desc = "A magnificant, gem-lined robe that seems to radiate power."
 	icon_state = "wizard"
-	item_state = "wizrobe"
+	worn_icon_state = "wizrobe"
 	gas_transfer_coefficient = 0.01 // IT'S MAGICAL OKAY JEEZ +1 TO NOT DIE
 	permeability_coefficient = 0.01
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 20, ACID = 20)
 	allowed = list()
-	flags_inv_hide = HIDEJUMPSUIT
+	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/wizrobe/red
 	name = "red wizard robe"
 	desc = "A magnificant, red, gem-lined robe that seems to radiate power."
 	icon_state = "redwizard"
-	item_state = "redwizrobe"
+	worn_icon_state = "redwizrobe"
 
 
 /obj/item/clothing/suit/wizrobe/marisa
 	name = "Witch Robe"
 	desc = "Magic is all about the spell power, ZE!"
 	icon_state = "marisa"
-	item_state = "marisarobe"
+	worn_icon_state = "marisarobe"
 
 /obj/item/clothing/suit/wizrobe/magusblue
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusblue"
-	item_state = "magusblue"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	worn_icon_state = "magusblue"
+	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusred"
-	item_state = "magusred"
-	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	worn_icon_state = "magusred"
+	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/psypurple
 	name = "purple robes"
 	desc = "Heavy, royal purple robes threaded with psychic amplifiers and weird, bulbous lenses. Do not machine wash."
 	icon_state = "psyamp"
-	item_state = "psyamp"
+	worn_icon_state = "psyamp"
 
-/obj/item/clothing/suit/wizrobe/gentlecoat
+/obj/item/clothing/suit/storage/wizrobe/gentlecoat
 	name = "Gentlemans Coat"
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"
-	item_state = "gentlecoat"
-	flags_armor_protection = CHEST|GROIN|ARMS
-	flags_inv_hide = NONE
+	worn_icon_state = "gentlecoat"
+	armor_protection_flags = CHEST|GROIN|ARMS
+	inv_hide_flags = NONE
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"
 	desc = "A rather dull, blue robe meant to mimick real wizard robes."
 	icon_state = "wizard-fake"
-	item_state = "wizrobe"
+	worn_icon_state = "wizrobe"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 1
 
@@ -116,8 +116,8 @@
 	name = "Witch Robe"
 	desc = "Magic is all about the spell power, ZE!"
 	icon_state = "marisa"
-	item_state = "marisarobe"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	worn_icon_state = "marisarobe"
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 1
 

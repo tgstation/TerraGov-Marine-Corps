@@ -4,7 +4,8 @@
 	desc = "you shouldnt see this"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_words"
-	var/cqc
+	w_class = WEIGHT_CLASS_TINY
+	var/unarmed
 	var/melee_weapons
 	var/firearms
 	var/pistols
@@ -24,11 +25,18 @@
 	var/large_vehicle
 	var/stamina
 
+	///assoc list list(SKILL = MAXIMUM_INT) for when we dont want to let them read this
+	var/list/max_skills
+
 /obj/item/pamphlet/attack_self(mob/living/user)
 	. = ..()
+	for(var/skill in max_skills)
+		if(user.skills.getRating(skill) >= max_skills[skill])
+			balloon_alert(user, "nothing to learn!")
+			return
 	if(!do_after(user, 5 SECONDS, NONE, user))
 		return
-	user.set_skills(user.skills.modifyRating(cqc, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	user.set_skills(user.skills.modifyRating(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
@@ -38,4 +46,5 @@
 	name = "loader's instruction manual"
 	desc = "A crude drawing depicting what you think is loading a tank gun. Is that crayon?"
 	large_vehicle = 1
+	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_TRAINED)
 

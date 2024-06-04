@@ -7014,14 +7014,6 @@
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/red,
 /area/orion_outpost/surface/building/monitor)
-"HG" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/orion_outpost/surface/landing_pad_2)
 "HJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -7364,10 +7356,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
-"Ju" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
 "Jw" = (
 /turf/open/floor/mainship/orange,
 /area/orion_outpost/surface/building/cargo)
@@ -10209,10 +10197,6 @@
 /obj/structure/stairs/seamless/edge,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/vehicledepot)
-"WH" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
 "WI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -12526,7 +12510,7 @@ Gx
 Gx
 Gx
 Gx
-HG
+Gx
 Gx
 Gx
 Kz
@@ -12654,7 +12638,7 @@ EJ
 IH
 ft
 rS
-WH
+ft
 ft
 ft
 ft
@@ -12786,7 +12770,7 @@ nQ
 IH
 ft
 ft
-Ju
+ft
 ft
 ft
 ft
@@ -13578,7 +13562,7 @@ EJ
 IH
 ft
 ft
-Ju
+ft
 ft
 ft
 ft
@@ -13710,7 +13694,7 @@ EJ
 IH
 ft
 rS
-WH
+ft
 ft
 ft
 ft

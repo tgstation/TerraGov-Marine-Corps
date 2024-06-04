@@ -178,9 +178,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/loadout_data in global_list_to_use)
+	var/list/loadouts_list = isrobot(user) ? GLOB.robot_loadouts : global_list_to_use
+	for(var/loadout_data in loadouts_list)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
-		var/datum/outfit/quick/current_loadout = global_list_to_use[loadout_data]
+		var/datum/outfit/quick/current_loadout = loadouts_list[loadout_data]
 		next_loadout_data["job"] = current_loadout.jobtype
 		next_loadout_data["name"] = current_loadout.name
 		next_loadout_data["desc"] = current_loadout.desc
@@ -198,14 +199,13 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	data["vendor_categories"] = categories
 	return data
 
-
 /obj/machinery/quick_vendor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 	switch(action)
 		if("selectLoadout")
-			var/datum/outfit/quick/selected_loadout = global_list_to_use[text2path(params["loadout_outfit"])]
+			var/datum/outfit/quick/selected_loadout = isrobot(ui.user) ? GLOB.robot_loadouts[text2path(params["loadout_outfit"])] : global_list_to_use[text2path(params["loadout_outfit"])]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
@@ -218,15 +218,15 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(selected_loadout.jobtype != user_job)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
-			if(user_id.flags_id & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
+			if(user_id.id_flags & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
 				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 				return FALSE
-			if(user_id.flags_id & CAN_BUY_LOADOUT)
-				user_id.flags_id &= ~CAN_BUY_LOADOUT
+			if(user_id.id_flags & CAN_BUY_LOADOUT)
+				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)
 					for(var/obj/item/inventory_items in ui.user)
-						if(inventory_items.flags_equip_slot == ITEM_SLOT_ID)
+						if(inventory_items.equip_slot_flags == ITEM_SLOT_ID)
 							continue
 						ui.user.dropItemToGround(inventory_items)
 				selected_loadout.equip(ui.user) //actually equips the loadout

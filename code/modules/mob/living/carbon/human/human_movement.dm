@@ -1,4 +1,4 @@
-/mob/living/carbon/human/Move(NewLoc, direct)
+/mob/living/carbon/human/Move(atom/newloc, direction, glide_size_override)
 	. = ..()
 	if(!.)
 		return
@@ -22,7 +22,7 @@
 		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
 
 	//Do we have magboots or such on if so no slip
-	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.flags_inventory & NOSLIPPING))
+	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.inventory_flags & NOSLIPPING))
 		prob_slip = 0
 
 	//Check hands and mod slip
@@ -40,3 +40,10 @@
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
 	return ..()
+
+/mob/living/carbon/human/relaymove(mob/user, direction)
+	if(user.incapacitated(TRUE))
+		return
+	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
+		var/mob/living/carbon/xenomorph/larva/L = user
+		L.initiate_burst(src)

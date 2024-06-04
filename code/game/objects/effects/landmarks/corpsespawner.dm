@@ -34,7 +34,7 @@
 	var/corpsepocket2 = null
 	var/corpseback = null
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
-	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
+	var/corpseidjob = null //Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
@@ -75,7 +75,7 @@
 			victim.internal_organs_by_name -= "lungs"
 			victim.internal_organs -= heart
 			victim.internal_organs -= lungs
-			victim.chestburst = 2
+			victim.chestburst = CARBON_CHEST_BURSTED
 			victim.update_burst()
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)
@@ -259,7 +259,7 @@
 /obj/effect/landmark/corpsespawner/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
-	corpsesuit = /obj/item/clothing/suit/chef/classic
+	corpsesuit = /obj/item/clothing/suit/storage/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseback = /obj/item/storage/backpack
@@ -557,6 +557,85 @@
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/som_officer
+	name = "SOM staff officer"
+	corpseuniform = /obj/item/clothing/under/som/officer
+	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+
+//ICC
+/obj/effect/landmark/corpsespawner/icc
+	name = "ICC infantry"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/modular/som
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/icc_officer
+	name = "ICC leader"
+	corpseuniform = /obj/item/clothing/under/icc
+	corpsesuit = /obj/item/clothing/suit/storage/marine/icc/guard
+	corpsemask = /obj/item/clothing/mask/gas/icc
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/icc/guard
+	corpsegloves = /obj/item/clothing/gloves/marine/icc/guard
+	corpseshoes = /obj/item/clothing/shoes/marine/icc/guard/knife
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+// VSD
+/obj/effect/landmark/corpsespawner/vsd_standard
+	name = "Vyacheslav operative"
+	corpseuniform = /obj/item/clothing/under/vsd/webbing
+	corpsesuit = /obj/item/clothing/suit/storage/marine/vsd
+	corpsemask = /obj/item/clothing/mask/gas/vsd
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/vsd
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine/vsd
+
+/obj/effect/landmark/corpsespawner/vsd_command
+	name = "Vyacheslav officer"
+	corpseuniform = /obj/item/clothing/under/vsd/webbing
+	corpsesuit = /obj/item/clothing/suit/storage/marine/vsd/desert
+	corpsemask = /obj/item/clothing/mask/gas/vsd
+	corpsehelmet = /obj/item/clothing/head/vsd/beret
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine/vsd
+
+/obj/effect/landmark/corpsespawner/vsd_spy
+	name = "Unknown marine" // this guy is literally no different than a regular marine body btw
+	corpseuniform = /obj/item/clothing/under/marine
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/m10x
+	corpsegloves = /obj/item/clothing/gloves/marine
+	corpseshoes = /obj/item/clothing/shoes/marine
+
+// Freelancer
+/obj/effect/landmark/corpsespawner/freelancer
+	name = "Freelancer mercenary"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine
+
+/obj/effect/landmark/corpsespawner/freelancer_officer
+	name = "Freelancer mercenary"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer/beret
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH

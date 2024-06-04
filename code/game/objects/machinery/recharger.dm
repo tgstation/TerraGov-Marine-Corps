@@ -133,14 +133,13 @@
 
 /obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
-		..(severity)
-		return
+		return ..()
 
 	if(istype(charging, /obj/item/weapon/baton))
 		var/obj/item/weapon/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
-	..(severity)
+	return ..()
 
 /obj/machinery/recharger/update_overlays()
 	. = ..()

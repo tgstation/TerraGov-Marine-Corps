@@ -16,7 +16,7 @@
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
 		if("Combat Robot")
-			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
 				switch(prefs?.robot_type)
 					if("Basic")
 						return /mob/living/carbon/human/species/robot

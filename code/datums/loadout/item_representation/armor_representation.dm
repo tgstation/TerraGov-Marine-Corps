@@ -173,7 +173,7 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/module = .
-	if(colors && CHECK_BITFIELD(module.flags_attach_features, ATTACH_GREYSCALE_PARENT_COPY))
+	if(colors && CHECK_BITFIELD(module.attach_features_flags, ATTACH_GREYSCALE_PARENT_COPY))
 		module.set_greyscale_colors(colors)
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, module, user)
@@ -181,10 +181,10 @@
 ///Attach the instantiated item on an armor
 /datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/thing_to_install_on, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
-	//if(!item_type)
-	//	return
+	if(!item_type)
+		return
 	var/obj/item/armor_module/module_type = item_type
-	if(!CHECK_BITFIELD(initial(module_type.flags_attach_features), ATTACH_REMOVABLE))
+	if(!CHECK_BITFIELD(initial(module_type.attach_features_flags), ATTACH_REMOVABLE))
 		bypass_vendor_check = TRUE
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
 	if(!module)
@@ -204,17 +204,15 @@
 	if(!ismodulararmorstoragemodule(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
 	..()
-	var/obj/item/armor_module/storage/storage_module = item_to_copy
-	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage
-	storage = new(internal_storage)
+	storage = new(item_to_copy)
 
 /datum/item_representation/armor_module/storage/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/armor_module/storage/storage_module = .
+	if(!storage_module)
+		return
 	if(!storage)
 		return
-	qdel(storage_module.storage) //an empty storage item is generated when the module is initialised
-	storage_module.storage = storage.instantiate_object(seller, storage_module, user)
-
+	storage_module = storage.instantiate_current_storage_datum(seller, storage_module, user)

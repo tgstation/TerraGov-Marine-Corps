@@ -42,7 +42,7 @@
 				break_tile()
 	return ..()
 
-/turf/open/floor/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/fire_act(burn_level)
 	if(hull_floor)
 		return
 	if(!burnt && prob(5))

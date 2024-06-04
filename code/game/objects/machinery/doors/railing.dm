@@ -3,7 +3,7 @@
 	icon = 'icons/obj/doors/railing.dmi'
 	icon_state = "railing1"
 	use_power = 0
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	allow_pass_flags = PASSABLE
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
@@ -69,7 +69,7 @@
 	operating = FALSE
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.atom_flags &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/railing/close()
 	if (!SSticker || operating || density)
@@ -82,7 +82,7 @@
 	icon_state = "railing1"
 	var/turf/current_turf = get_turf(src)
 	if(current_turf)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 	addtimer(CALLBACK(src, PROC_REF(do_close)), 12)
 	return TRUE

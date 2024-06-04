@@ -1201,3 +1201,122 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+
+/datum/map_template/modular/jungle_outpost/westtowerone
+	name = "Western Dome"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower1.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowertwo
+	name = "Western Bar Dome"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower2.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowerthree
+	name = "Western Bungalow"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower3.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/westtowerfour
+	name = "Western Pond"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostwtower4.dmm"
+	modular_id = "jowesttower"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesone
+	name = "South Crates"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates1.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratestwo
+	name = "South Office"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates2.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesthree
+	name = "South Crates "
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates3.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/southcratesfour
+	name = "South Garage"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostscrates4.dmm"
+	modular_id = "josouthcrates"
+	template_width = 12
+	template_height = 14
+
+/datum/map_template/modular/jungle_outpost/hydroponicsone
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro1.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicstwo
+	name = "Hydroponics"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro2.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/hydroponicsthree
+	name = "Hydroponics Shack"
+	mappath = "_maps/modularmaps/jungle_outpost/joutposthydro3.dmm"
+	modular_id = "johydroponics"
+	template_width = 19
+	template_height = 18
+
+/datum/map_template/modular/jungle_outpost/medicalone
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay1.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicaltwo
+	name = "Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay2.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/medicalthree
+	name = "Outdoor Medical"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostmedbay3.dmm"
+	modular_id = "jomedbay"
+	template_width = 16
+	template_height = 24
+
+/datum/map_template/modular/jungle_outpost/engineeringone
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi1.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringtwo
+	name = "Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi2.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21
+
+/datum/map_template/modular/jungle_outpost/engineeringthree
+	name = "Outdoor Engineering"
+	mappath = "_maps/modularmaps/jungle_outpost/joutpostengi3.dmm"
+	modular_id = "joengineering"
+	template_width = 21
+	template_height = 21

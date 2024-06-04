@@ -174,3 +174,9 @@
 	full_name = "Issue Retreat Order"
 	description = "Order and rally marines to retreat"
 	keybind_signal = COMSIG_KB_RETREATORDER
+
+/datum/keybinding/human/vehicle_honk
+	name = "vehicle_honk"
+	full_name = "Honk Horn"
+	description = "Tell marines to move so that they don't get run over"
+	keybind_signal = COMSIG_KB_VEHICLEHONK

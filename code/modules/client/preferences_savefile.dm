@@ -223,6 +223,9 @@
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 
 	key_bindings = sanitize_islist(key_bindings, list())
+	if (!length(key_bindings))
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)

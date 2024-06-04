@@ -182,7 +182,7 @@
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
 	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
-	max_integrity = 350
+	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
@@ -195,8 +195,6 @@
 		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
-	max_integrity = owner.xeno_caste.shield_strength
-	obj_integrity = max_integrity
 	if(dir & (EAST|WEST))
 		bound_height = 96
 		bound_y = -32
@@ -212,7 +210,7 @@
 	return !uncrossing
 
 /obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
-	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
+	proj.projectile_behavior_flags |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
@@ -229,7 +227,7 @@
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
@@ -238,7 +236,7 @@
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.distance_travelled = 0 //we're effectively firing it fresh
 		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
 		if(new_angle < 0)
@@ -260,6 +258,8 @@
 // ***************************************
 // *********** psychic crush
 // ***************************************
+
+#define PSY_CRUSH_DAMAGE 50
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
@@ -399,13 +399,16 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 			else if(isvehicle(victim))
 				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
+				var/dam_mult = 1.5
+				if(ismecha(veh_victim))
+					dam_mult = 5
+				veh_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -485,6 +488,8 @@
 /obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
+
+#undef PSY_CRUSH_DAMAGE
 
 // ***************************************
 // *********** Psyblast

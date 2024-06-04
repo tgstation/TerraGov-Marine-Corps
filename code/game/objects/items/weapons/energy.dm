@@ -1,12 +1,11 @@
 /obj/item/weapon/energy
-	flags_atom = NOBLOODY
+	atom_flags = NOBLOODY
+	icon = 'icons/obj/items/weapons/energy.dmi'
 
 /obj/item/weapon/energy/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."), \
 						span_danger("[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.")))
 	return (BRUTELOSS|FIRELOSS)
-
-
 
 /obj/item/weapon/energy/axe
 	name = "energy axe"
@@ -17,7 +16,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_atom = CONDUCT|NOBLOODY
+	atom_flags = CONDUCT|NOBLOODY
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -41,8 +40,6 @@
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
 
-
-
 /obj/item/weapon/energy/sword
 	name = "energy sword"
 	desc = "May the force be within you."
@@ -52,11 +49,11 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = NOBLOODY
+	atom_flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	///Sword color, if applicable
 	var/sword_color
 	///Force of the weapon when activated

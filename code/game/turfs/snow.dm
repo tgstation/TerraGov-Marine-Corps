@@ -19,9 +19,18 @@
 	update_appearance()
 	update_sides()
 
-// Melting snow
-/turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
-	slayer = 0
+/turf/open/floor/plating/ground/snow/fire_act(burn_level)
+	if(!slayer || !burn_level)
+		return
+
+	switch(burn_level)
+		if(1 to 10)
+			slayer = max(0, slayer - 1)
+		if(11 to 24)
+			slayer = max(0, slayer - 2)
+		if(25 to INFINITY)
+			slayer = 0
+
 	update_appearance()
 	update_sides()
 
@@ -162,22 +171,6 @@
 	update_appearance()
 	update_sides()
 	return ..()
-
-//Fire act; fire now melts snow as it should; fire beats ice
-/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel)
-	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
-		return
-
-	switch(burnlevel)
-		if(1 to 10)
-			slayer = max(0, slayer - 1)
-		if(11 to 24)
-			slayer = max(0, slayer - 2)
-		if(25 to INFINITY)
-			slayer = 0
-
-	update_appearance()
-	update_sides()
 
 /turf/open/floor/plating/ground/snow/proc/acidspray_act()
 	SIGNAL_HANDLER

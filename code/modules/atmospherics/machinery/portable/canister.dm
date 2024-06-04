@@ -92,7 +92,7 @@
 
 
 /obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		if(!(machine_stat & BROKEN))
 			disconnect()
 			machine_stat |= BROKEN

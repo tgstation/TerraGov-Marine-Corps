@@ -273,10 +273,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
+					if(VM.map_name == SSmapping.configs[GROUND_MAP].map_name) //Current map is not votable
+						continue
 					if(next_gamemode.whitelist_ground_maps)
 						if(!(VM.map_name in next_gamemode.whitelist_ground_maps))
 							continue
-					else if(next_gamemode.blacklist_ground_maps) //can't blacklist and whitelist for the same map
+					else if(next_gamemode.blacklist_ground_maps) //Can't blacklist and whitelist for the same map
 						if(VM.map_name in next_gamemode.blacklist_ground_maps)
 							continue
 					if(VM.config_max_users || VM.config_min_users)

@@ -63,6 +63,12 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 
 /************************************Machine rotate procs************************************/
 
+//override to avoid rotating multitile vehicles
+/obj/vehicle/shuttleRotate(rotation, params)
+	if(hitbox)
+		params = NONE
+	return ..()
+
 /obj/machinery/atmospherics/shuttleRotate(rotation, params)
 	var/list/real_node_connect = getNodeConnects()
 	for(var/i in 1 to device_type)

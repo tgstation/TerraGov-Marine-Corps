@@ -98,11 +98,10 @@
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	ignite()
-	..(severity)
 
 /obj/machinery/ignition_switch/attack_ai(mob/user)
 	return attack_hand(user)

@@ -9,7 +9,7 @@
 	invisibility = INVISIBILITY_LIGHTING
 	minimap_color = null
 
-	var/flags_alarm_state = NONE
+	var/alarm_state_flags = NONE
 
 	var/unique = TRUE
 
@@ -45,7 +45,7 @@
 	///Is this area considered inside or outside
 	var/outside = TRUE
 
-	var/flags_area = NONE
+	var/area_flags = NONE
 	///Cameras in this area
 	var/list/cameras
 	///Keeps a lit of adjacent firelocks, used for alarms/ZAS
@@ -206,8 +206,8 @@
 /area/proc/firealert()
 	if(name == "Space") //no fire alarms in space
 		return
-	if(!(flags_alarm_state & ALARM_WARNING_FIRE))
-		flags_alarm_state |= ALARM_WARNING_FIRE
+	if(!(alarm_state_flags & ALARM_WARNING_FIRE))
+		alarm_state_flags |= ALARM_WARNING_FIRE
 		update_icon()
 		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
@@ -222,8 +222,8 @@
 
 
 /area/proc/firereset()
-	if(flags_alarm_state & ALARM_WARNING_FIRE)
-		flags_alarm_state &= ~ALARM_WARNING_FIRE
+	if(alarm_state_flags & ALARM_WARNING_FIRE)
+		alarm_state_flags &= ~ALARM_WARNING_FIRE
 		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		update_icon()
 
@@ -241,16 +241,16 @@
 /area/update_icon_state()
 	. = ..()
 	var/I //More important == bottom. Fire normally takes priority over everything.
-	if(flags_alarm_state && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
-		if(flags_alarm_state & ALARM_WARNING_READY)
+	if(alarm_state_flags && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
+		if(alarm_state_flags & ALARM_WARNING_READY)
 			I = "alarm_ready" //Area is ready for something.
-		if(flags_alarm_state & ALARM_WARNING_EVAC)
+		if(alarm_state_flags & ALARM_WARNING_EVAC)
 			I = "alarm_evac" //Evacuation happening.
-		if(flags_alarm_state & ALARM_WARNING_ATMOS)
+		if(alarm_state_flags & ALARM_WARNING_ATMOS)
 			I = "alarm_atmos"	//Atmos breach.
-		if(flags_alarm_state & ALARM_WARNING_FIRE)
+		if(alarm_state_flags & ALARM_WARNING_FIRE)
 			I = "alarm_fire" //Fire happening.
-		if(flags_alarm_state & ALARM_WARNING_DOWN)
+		if(alarm_state_flags & ALARM_WARNING_DOWN)
 			I = "alarm_down" //Area is shut down.
 
 	if(icon_state != I)

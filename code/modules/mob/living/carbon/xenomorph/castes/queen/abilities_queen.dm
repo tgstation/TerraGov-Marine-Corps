@@ -36,7 +36,7 @@
 	deadchat_broadcast(" has messaged the hive: \"[input]\"", Q, Q)
 	var/queens_word = "<span class='maptext' style=font-size:18pt;text-align:center valign='top'><u>HIVE MESSAGE:</u><br></span>" + input
 
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
+	var/sound/queen_sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		to_chat(X, assemble_alert(
@@ -45,10 +45,10 @@
 			message = input,
 			color_override = "purple"
 		))
-		switch(Q.caste_base_type)
-			if(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/shrike)
+		switch(Q.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
+			if(/datum/xeno_caste/queen, /datum/xeno_caste/shrike)
 				SEND_SOUND(X, queen_sound)
-			if(/mob/living/carbon/xenomorph/king)
+			if(/datum/xeno_caste/king)
 				SEND_SOUND(X, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
 		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
@@ -355,7 +355,7 @@
 	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
-	playsound(target, "alien_drool", 25)
+	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()

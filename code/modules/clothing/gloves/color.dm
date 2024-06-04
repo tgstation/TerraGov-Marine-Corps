@@ -4,9 +4,9 @@
 	icon_state = "insulated"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/yellow                             //Cheap Chinese Crap
@@ -24,9 +24,9 @@
 	desc = "These gloves are fire-resistant."
 	name = "black gloves"
 	icon_state = "black"
-	flags_cold_protection = HANDS
+	cold_protection_flags = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_heat_protection = HANDS
+	heat_protection_flags = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 
@@ -80,7 +80,7 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 
 /obj/item/clothing/gloves/sectoid/Initialize(mapload)

@@ -108,6 +108,7 @@
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
+#define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
@@ -136,6 +137,10 @@
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
+//atom/movable traits
+/// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
+#define TRAIT_WAS_RENAMED "was_renamed"
+
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
 #define TRAIT_BURROWED "burrowed" // Burrows the xeno
@@ -150,7 +155,7 @@
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
-#define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out
+#define TRAIT_WORKED_OUT "worked_out" //user has a unarmed buff from working out
 ///Makes no footsteps at all
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
 ///quieter footsteps
@@ -195,7 +200,8 @@
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
-#define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
+///The target xenomorph's wound overlays won't be visible
+#define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
 
@@ -258,3 +264,7 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+#define TRAIT_STRAIN_SWAP "strain swap"
+
+///Pauses campaign mission timer
+#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"

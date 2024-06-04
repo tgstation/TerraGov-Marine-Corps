@@ -2,7 +2,7 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable = FALSE
 	var/climb_delay = 50
-	var/flags_barrier = NONE
+	var/barrier_flags = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
@@ -73,7 +73,7 @@
 	if(!user.Adjacent(src))
 		return
 
-	if((flags_atom & ON_BORDER))
+	if((atom_flags & ON_BORDER))
 		if(user_turf != destination_turf && user_turf != get_step(destination_turf, dir))
 			to_chat(user, span_warning("You need to be up against [src] to leap over."))
 			return
@@ -88,7 +88,7 @@
 			var/obj/structure/structure = object
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(object.density && (!(object.flags_atom & ON_BORDER) || object.dir & get_dir(src,user)))
+		if(object.density && (!(object.atom_flags & ON_BORDER) || object.dir & get_dir(src,user)))
 			to_chat(user, span_warning("There's \a [object.name] in the way."))
 			return
 
@@ -97,7 +97,7 @@
 			var/obj/structure/structure = object
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(object.density && (object.flags_atom & ON_BORDER) && object.dir & get_dir(user, src))
+		if(object.density && (object.atom_flags & ON_BORDER) && object.dir & get_dir(user, src))
 			to_chat(user, span_warning("There's \a [object.name] in the way."))
 			return
 
@@ -108,7 +108,7 @@
 	if(user.do_actions || !can_climb(user))
 		return
 
-	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over" : "climbing onto"] \the [src]!"))
+	user.visible_message(span_warning("[user] starts [atom_flags & ON_BORDER ? "leaping over" : "climbing onto"] \the [src]!"))
 
 	if(!do_after(user, climb_delay, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return
@@ -121,7 +121,7 @@
 		user.unbuckle_mob(m)
 
 	user.forceMove(destination_turf)
-	user.visible_message(span_warning("[user] [flags_atom & ON_BORDER ? "leaps over" : "climbs onto"] \the [src]!"))
+	user.visible_message(span_warning("[user] [atom_flags & ON_BORDER ? "leaps over" : "climbs onto"] \the [src]!"))
 
 /obj/structure/proc/structure_shaken()
 

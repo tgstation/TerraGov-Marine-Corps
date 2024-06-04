@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/queen
-	caste_base_type = /mob/living/carbon/xenomorph/queen
+	caste_base_type = /datum/xeno_caste/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/Xeno/castes/queen.dmi'

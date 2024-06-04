@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/king
-	caste_base_type = /mob/living/carbon/xenomorph/king
+	caste_base_type = /datum/xeno_caste/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 	icon = 'icons/Xeno/castes/king.dmi'

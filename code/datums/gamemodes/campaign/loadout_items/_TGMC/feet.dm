@@ -5,6 +5,7 @@
 /datum/loadout_item/feet/empty
 	name = "no footwear"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -34,13 +35,13 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/feet/marine_brown_boots
-	name = "Brown combat boots"
+	name = "Brown boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	item_typepath = /obj/item/clothing/shoes/marine/brown/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/feet/white_dress
-	name = "White dress shoes"
+	name = "Dress shoes"
 	desc = "Fancy white shoes to go with your white dress uniform. Do not come with a combat knife."
 	item_typepath = /obj/item/clothing/shoes/white
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)

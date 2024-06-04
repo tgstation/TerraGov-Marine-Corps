@@ -766,7 +766,7 @@
 "OG" = (
 /obj/structure/cryofeed,
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "Qe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
@@ -898,7 +898,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "WO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,

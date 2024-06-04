@@ -70,8 +70,8 @@
 		immediate_effect()
 
 ///Handles the activated asset process
-/datum/campaign_asset/proc/attempt_activatation(mob/user)
-	if(activation_checks(user))
+/datum/campaign_asset/proc/attempt_activatation(mob/user, check_override = FALSE)
+	if(!check_override && activation_checks(user))
 		return FALSE
 
 	activated_effect()

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/warrior
-	caste_base_type = /mob/living/carbon/xenomorph/warrior
+	caste_base_type = /datum/xeno_caste/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
 	icon = 'icons/Xeno/castes/warrior.dmi'

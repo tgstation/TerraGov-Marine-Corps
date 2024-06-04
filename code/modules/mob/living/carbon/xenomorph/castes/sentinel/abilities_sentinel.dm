@@ -14,7 +14,7 @@
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	damage = 16
 	spit_cost = 30
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 

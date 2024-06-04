@@ -11,7 +11,7 @@
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
-	flags_magazine = NONE
+	magazine_flags = NONE
 	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
@@ -80,6 +80,10 @@
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
+/obj/item/ammo_magazine/flamer_tank/large/X/som
+	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
+	icon_state = "flametank_som_x"
+
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
 	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
@@ -91,13 +95,13 @@
 	name = "back fuel tank"
 	desc = "A specialized fuel tank for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "flamethrower_tank"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 500
 	current_rounds = 500
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
-	flags_magazine = MAGAZINE_WORN
+	magazine_flags = MAGAZINE_WORN
 	icon_state_mini = "tank"
 
 	default_ammo = /datum/ammo/flamethrower
@@ -118,7 +122,7 @@
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_WATER //Deep lore
-	flags_magazine = NONE
+	magazine_flags = NONE
 	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water

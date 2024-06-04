@@ -1,7 +1,6 @@
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
 	///Faction locks this item if specified
@@ -47,7 +46,6 @@
 	mode_list = null
 	return ..()
 
-
 /obj/item/binoculars/fire_support/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl") && pa.Find("shift"))
@@ -77,7 +75,6 @@
 	user.client.click_intercept = null
 	user.reset_perspective(user)
 	user.update_sight()
-
 
 /obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
 	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
@@ -137,7 +134,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	target_atom = target
-	laser_overlay = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "sniper_laser", layer =-LASER_LAYER)
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
@@ -224,6 +221,7 @@
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM,
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR,
 		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
+		FIRESUPPORT_TYPE_TELE_COPE,
 	)
 
 ///Sets a laser overlay for fire support binos

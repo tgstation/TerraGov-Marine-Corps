@@ -10,7 +10,7 @@
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	///What type of debuff do we apply when someone enters this area?
 	var/debuff_type = /datum/status_effect/spacefreeze
 
@@ -42,7 +42,7 @@
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = FALSE
 	outside = FALSE
-	flags_area = OB_CAS_IMMUNE
+	area_flags = OB_CAS_IMMUNE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/arrival
@@ -1201,7 +1201,7 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 
 
 //DJSTATION

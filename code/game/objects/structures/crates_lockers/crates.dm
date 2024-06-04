@@ -92,8 +92,7 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
-/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/explosives/whiskeyoutpost/PopulateContents()
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
@@ -112,8 +111,7 @@
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 
-/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/PopulateContents()
 	new /obj/structure/closet/crate/explosives(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
@@ -139,8 +137,7 @@
 	icon_opened = "open_hydro"
 	icon_closed = "closed_hydro"
 
-/obj/structure/closet/crate/hydroponics/prespawned/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/hydroponics/prespawned/PopulateContents()
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/tool/minihoe(src)
@@ -171,8 +168,7 @@
 	name = "RCD crate"
 	desc = "A crate for the storage of the RCD."
 
-/obj/structure/closet/crate/rcd/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/rcd/PopulateContents()
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
@@ -186,8 +182,7 @@
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-/obj/structure/closet/crate/freezer/rations/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/freezer/rations/PopulateContents()
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/donkpockets(src)
 
@@ -198,8 +193,7 @@
 	icon_opened = "open_radioactive"
 	icon_closed = "closed_radioactive"
 
-/obj/structure/closet/crate/radiation/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/radiation/PopulateContents()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/suit/radiation(src)

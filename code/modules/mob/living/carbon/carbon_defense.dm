@@ -63,28 +63,27 @@
 		S.pre_chem_effect(src)
 
 /mob/living/carbon/smoke_contact(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	var/protection = .
+	var/bio_protection = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO) && (internal || has_smoke_protection())) //either inhaled or this.
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_NEURO_LIGHT))
-			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
+			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
 		else
-			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
-		if(prob(10 * S.strength * protection))
+			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
+		if(prob(10 * S.strength * bio_protection))
 			to_chat(src, span_danger("Your body goes numb where the gas touches it!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE) && (internal || has_smoke_protection())) //either inhaled or this.
-		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
-		if(prob(10 * S.strength * protection))
+		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
+		if(prob(10 * S.strength * bio_protection))
 			to_chat(src, span_danger("Your muscles' strength drains away where the gas makes contact!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TRANSVITOX) && (internal || has_smoke_protection())) //either inhaled or this.
-		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
-		if(prob(10 * S.strength * protection))
+		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
+		if(prob(10 * S.strength * bio_protection))
 			to_chat(src, span_danger("Your exposed wounds coagulate with a dark green tint!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_SATRAPINE) && (internal || has_smoke_protection())) //either inhaled or this.
-		reagents.add_reagent(/datum/reagent/toxin/satrapine, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
-		if(prob(10 * S.strength * protection))
+		reagents.add_reagent(/datum/reagent/toxin/satrapine, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
+		if(prob(10 * S.strength * bio_protection))
 			to_chat(src, span_danger("Your whole body feels like it's burning!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_OZELOMELYN) && (internal || has_smoke_protection())) //either inhaled or this.
-		reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
-		if(prob(10 * S.strength * protection))
+		reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * bio_protection, 0.1))
+		if(prob(10 * S.strength * bio_protection))
 			to_chat(src, span_danger("Your veins and skin itch where the gas touches them!"))

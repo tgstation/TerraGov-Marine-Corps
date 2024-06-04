@@ -334,7 +334,7 @@
 	dir = 8;
 	pixel_x = 15
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -1
 	},
@@ -4675,15 +4675,15 @@
 /area/lv624/lazarus/research/caves)
 "yA" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -1
 	},
@@ -8491,7 +8491,7 @@
 "Ru" = (
 /obj/structure/table,
 /obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/storage/chef/classic,
 /obj/item/tool/kitchen/rollingpin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/barber,

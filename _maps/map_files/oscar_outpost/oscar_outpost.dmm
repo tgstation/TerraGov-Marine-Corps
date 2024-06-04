@@ -17,10 +17,6 @@
 /obj/effect/landmark/start/job/captain,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"ak" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "ao" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -1139,7 +1135,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/village/fairgrounds)
 "hX" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1367,29 +1363,29 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "jw" = (
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
@@ -1453,7 +1449,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "jS" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1876,7 +1872,6 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "np" = (
-/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
@@ -2449,29 +2444,29 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "qZ" = (
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
@@ -2615,29 +2610,29 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "rP" = (
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
@@ -2744,7 +2739,7 @@
 /area/oscar_outpost/base)
 "sK" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/claymore/mercsword/captain,
+/obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "sR" = (
@@ -3029,7 +3024,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "uA" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -3387,29 +3382,29 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "xd" = (
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
-/obj/item/ammo_magazine/tl102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
+/obj/item/ammo_magazine/hsg_102/hsg_nest,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/village/fairgrounds)
 "xe" = (
@@ -3625,7 +3620,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/underground)
 "yn" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -6761,7 +6756,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Md" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/hsg_102/hsg_nest{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -8785,10 +8780,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"UQ" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "UR" = (
 /obj/machinery/computer/camera_advanced/overwatch{
 	dir = 4
@@ -15856,7 +15847,7 @@ IV
 IV
 IV
 wE
-ak
+IV
 IV
 IV
 IV
@@ -16108,7 +16099,7 @@ IV
 IV
 IV
 IV
-UQ
+IV
 IV
 IV
 IV
@@ -17620,7 +17611,7 @@ IV
 IV
 IV
 IV
-UQ
+IV
 IV
 IV
 IV
@@ -17872,7 +17863,7 @@ IV
 IV
 IV
 wE
-ak
+IV
 IV
 IV
 IV

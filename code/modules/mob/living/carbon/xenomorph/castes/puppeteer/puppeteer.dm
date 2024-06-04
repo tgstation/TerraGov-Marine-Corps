@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/puppeteer
-	caste_base_type = /mob/living/carbon/xenomorph/puppeteer
+	caste_base_type = /datum/xeno_caste/puppeteer
 	name = "Puppeteer"
 	desc = "A xenomorph of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
 	icon = 'icons/Xeno/castes/puppeteer.dmi'

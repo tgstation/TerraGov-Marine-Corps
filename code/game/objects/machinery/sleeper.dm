@@ -338,16 +338,15 @@
 
 
 /obj/machinery/sleeper/emp_act(severity)
+	. = ..()
 	if(filtering)
 		toggle_filter()
 	if(stasis)
 		toggle_stasis()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(occupant)
 		go_out()
-	..()
 
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant)
@@ -408,7 +407,6 @@
 				t1 = "Unconscious"
 			if(2)
 				t1 = "*dead*"
-			else
 		var/health_ratio = occupant.health * 100 / occupant.maxHealth
 		to_chat(user, "[health_ratio > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t Health %: [health_ratio] ([t1])</font>")
 		to_chat(user, "[occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t -Core Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)</FONT><BR>")

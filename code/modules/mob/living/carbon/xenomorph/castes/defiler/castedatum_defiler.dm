@@ -26,7 +26,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/carrier
+	deevolves_to = /datum/xeno_caste/carrier
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/beetle
-	caste_base_type = /mob/living/carbon/xenomorph/beetle
+	caste_base_type = /datum/xeno_caste/beetle
 	name = "Beetle"
 	desc = "A bulky, six-legged alien with a horn. Its carapace seems quite durable."
 	icon = 'icons/Xeno/castes/beetle.dmi'

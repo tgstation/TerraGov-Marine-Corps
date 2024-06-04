@@ -57,12 +57,6 @@
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
-"l" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
 "q" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -193,9 +187,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "V" = (
@@ -250,8 +241,8 @@ k
 X
 F
 s
-l
-l
+q
+q
 F
 F
 X

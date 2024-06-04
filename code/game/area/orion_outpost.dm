@@ -30,7 +30,7 @@
 /area/orion_outpost/surface/landing_pad
 	name = "Landing Pad 1"
 	icon_state = "landing_pad"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
@@ -46,7 +46,7 @@
 /area/orion_outpost/surface/landing_pad_2
 	name = "Landing Pad 2"
 	icon_state = "landing_pad"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ

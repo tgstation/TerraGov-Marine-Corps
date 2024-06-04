@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/shrike
-	caste_base_type = /mob/living/carbon/xenomorph/shrike
+	caste_base_type = /datum/xeno_caste/shrike
 	name = "Shrike"
 	desc = "A large, lanky alien creature. It seems psychically unstable."
 	icon = 'icons/Xeno/castes/shrike.dmi'

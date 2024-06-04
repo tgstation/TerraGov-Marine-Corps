@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		/obj/structure/closet/crate/mortar_ammo/mlrs_kit = 2,
-		/obj/item/storage/box/mlrs_rockets_gas = 4,
+		/obj/item/storage/box/mlrs_rockets/gas = 4,
 	)
 
 /datum/season_datum/weapons/guns/heavy_explosions

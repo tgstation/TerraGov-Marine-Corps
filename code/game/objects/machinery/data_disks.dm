@@ -3,11 +3,11 @@
 /obj/item/disk/data
 	name = "Cloning Data Disk"
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
 	)
-	item_state = "card-id"
+	worn_icon_state = "card-id"
 	w_class = WEIGHT_CLASS_TINY
 	var/read_only = 0 //Well,it's still a floppy disk
 

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/defiler
-	caste_base_type = /mob/living/carbon/xenomorph/defiler
+	caste_base_type = /datum/xeno_caste/defiler
 	name = "Defiler"
 	desc = "A large, powerfully muscled xeno replete with dripping spines and gas leaking dorsal vents."
 	icon = 'icons/Xeno/castes/defiler.dmi'

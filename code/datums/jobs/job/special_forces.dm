@@ -183,8 +183,7 @@
 /datum/job/special_forces/medic
 	title = "Special Response Force Medic"
 	outfit = /datum/outfit/job/special_forces/medic
-	skills_type = /datum/skills/combat_medic/crafty
-
+	skills_type = /datum/skills/combat_medic/special_forces
 /datum/outfit/job/special_forces/medic
 	name = "Special Response Force Medic"
 	jobtype = /datum/job/special_forces/medic

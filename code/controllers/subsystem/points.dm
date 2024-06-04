@@ -82,13 +82,13 @@ SUBSYSTEM_DEF(points)
 
 ///Add amount of strategic psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_strategic_psy_points(hivenumber, amount)
-	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_PSY_POINTS))
 		return
 	xeno_strategic_points_by_hive[hivenumber] += amount
 
 ///Add amount of tactical psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_tactical_psy_points(hivenumber, amount)
-	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_PSY_POINTS))
 		return
 	xeno_tactical_points_by_hive[hivenumber] += amount
 
