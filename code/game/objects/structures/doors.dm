@@ -116,6 +116,7 @@
 /obj/structure/door/Destroy()
 	if(lock)
 		QDEL_NULL(lock)
+	deltimer(delay_timer)
 	return ..()
 
 ///Handle spawning materials when deconstructed/destroyed
@@ -559,9 +560,11 @@
 	//Will be TRUE if the user is not being thrown across the room and is on harm intent; also why isn't this named THROWN???
 	var/is_someone_forcing_door_open = user && user.a_intent == INTENT_HARM ? !user.throwing : FALSE
 	//It got even longer trying to accommodate for non-carbons so not going to deal with them
-	var/mob/living/carbon/kicker = is_someone_forcing_door_open ? ((!isxeno(user) && iscarbon(user)) ? user : null) : null
-	if(kicker)
+	var/mob/living/carbon/kicker
+	if(is_someone_forcing_door_open)
 		instant = TRUE	//Kicking or tackling a door will always be instant
+		kicker = (!isxeno(user) && iscarbon(user)) ? user : null
+	if(kicker)
 		var/mob/living/carbon/carbon = user
 		var/datum/limb/l_leg/left_leg = carbon.get_limb("l_leg")
 		var/datum/limb/r_leg/right_leg = carbon.get_limb("r_leg")
