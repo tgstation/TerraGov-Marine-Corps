@@ -42,9 +42,9 @@
 			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = -1,
 		),
 		"Marksman" = list(
-			/obj/item/weapon/gun/rifle/standard_dmr = 4,
+			/obj/item/weapon/gun/rifle/standard_dmr = -1,
 			/obj/item/ammo_magazine/rifle/standard_dmr = -1,
-			/obj/item/weapon/gun/rifle/standard_br = 4,
+			/obj/item/weapon/gun/rifle/standard_br = -1,
 			/obj/item/ammo_magazine/rifle/standard_br = -1,
 			/obj/item/weapon/gun/rifle/chambered = 4,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
