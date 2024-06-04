@@ -118,17 +118,17 @@
 	accurate_range = 24
 	max_range = 35
 
-/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/heavy_isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/heavy_isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 2
 	staggerstun(M, P, max_range = 20, slowdown = 0.5)
 
-/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/heavy_isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/ltb
+/datum/ammo/bullet/heavy_isg_apfds/ltb
 	damage = 350
 
 /datum/ammo/rocket/wp
