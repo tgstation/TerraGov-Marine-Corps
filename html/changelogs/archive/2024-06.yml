@@ -31,3 +31,14 @@
   - code_imp: Replaces CQC skill name with UNARMED skill
   blackdav123:
   - bugfix: Pyrogen can now be given plasma.
+2024-06-04:
+  Lumipharon:
+  - balance: Railgun changed back to 1 shot instead of 3
+  - balance: Reduced railgun effectiveness when piercing things
+  - bugfix: Fixed being able to remove railgun rounds of their magazine
+  Notamaniac:
+  - bugfix: Alamo now unlocks itself when a T4 touches the console (as it used to)
+  Wisemonster:
+  - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
+  Xander3359:
+  - bugfix: smg-25 holster can no longer hold every item
