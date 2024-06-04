@@ -167,13 +167,6 @@
 	zoom_tile_offset = 5
 	zoom_viewsize = 0
 
-/obj/item/attachable/scope/unremovable/standard_atgun
-	name = "AT-36 long range scope"
-	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
-	icon_state = "sniperscope_invisible"
-	scope_delay = 2 SECONDS
-	zoom_tile_offset = 7
-
 /obj/item/attachable/scope/unremovable/hsg_102
 	name = "HSG-102 smart sight"
 	desc = "An unremovable smart sight built for use with the HSG-102, it does nearly all the aiming work for the gun's integrated IFF systems."
