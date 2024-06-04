@@ -515,6 +515,7 @@
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
+	stack_amount += 1
 
 	balloon_alert_to_viewers("[choice] attached")
 
@@ -688,6 +689,7 @@
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
+			stack_amount -= 1
 			update_icon()
 			return TRUE
 
