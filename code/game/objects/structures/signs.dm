@@ -30,17 +30,8 @@
 
 //automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
 /obj/structure/sign/proc/place_poster()
-	var/turf/locatedturf
-	switch(dir)
-		if(NORTH)
-			locatedturf = get_step(loc, NORTH)
-		if(SOUTH)
-			locatedturf = get_step(loc, SOUTH)
-		if(EAST)
-			locatedturf = get_step(loc, EAST)
-		if(WEST)
-			locatedturf = get_step(loc, WEST)
-	if(isclosedturf(locatedturf))
+	var/turf/closed/applied_turf = get_step(loc, dir)
+	if(istype(applied_turf))
 		switch(dir)
 			if(NORTH)
 				pixel_y = 32
@@ -50,7 +41,7 @@
 				pixel_x = 30
 			if(WEST)
 				pixel_x = -30
-	else
+		return
 		locatedturf = get_turf(loc)
 		if(isclosedturf(locatedturf))
 			return
