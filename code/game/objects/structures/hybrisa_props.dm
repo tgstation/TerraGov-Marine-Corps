@@ -796,7 +796,7 @@
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "greyvan"
-	bound_height = 64
+	bound_height = 32
 	bound_width = 64
 	density = TRUE
 
@@ -804,33 +804,18 @@
 	name = "van"
 	desc = "A shell of a vehicle, broken down beyond repair."
 	icon_state = "greyvan_damaged"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/van/vanpizza
 	name = "pizza delivery van"
-	desc = "Seems to be broken down."
 	icon_state = "pizzavan"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/van/vanmining
 	name = "Kelland Mining van"
-	desc = "Seems to be broken down."
 	icon_state = "kellandminingvan"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/van/hyperdynevan
 	name = "Hyperdyne van"
-	desc = "Seems to be broken down."
 	icon_state = "hyperdynevan"
-	bound_height = 64
-	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/crashedcarsleft
 	name = "car pileup"
