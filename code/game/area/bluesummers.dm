@@ -123,9 +123,17 @@
 	name = "Southeastern Desert"
 	icon_state = "southeast"
 
+/area/bluesummers/outside/southeast/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 /area/bluesummers/outside/south
 	name = "Southern Desert"
 	icon_state = "south"
+
+/area/bluesummers/outside/south/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bluesummers/outside/southwest
 	name = "Southwestern Desert"
@@ -134,6 +142,10 @@
 /area/bluesummers/outside/northeast
 	name = "Northeastern Desert"
 	icon_state = "northeast"
+
+/area/bluesummers/outside/northeast/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bluesummers/outside/north
 	name = "Northern Desert"
@@ -165,7 +177,7 @@
 
 /area/bluesummers/inside/garage
 	name = "Vehicle Storage Wing"
-	icon_state = "hangar_storage"
+	icon_state = "garage"
 
 /area/bluesummers/inside/hydroponics
 	name = "Hydroponics Wing North"
@@ -175,3 +187,55 @@
 /area/bluesummers/inside/hydroponics/south
 	name = "Hydroponics Wing South"
 	icon_state = "hydro_south"
+
+/area/bluesummers/inside/biodome
+	name = "Biological Environment Dome"
+	icon_state = "garden"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/biodome/holes
+	ceiling = NONE
+	outside = TRUE
+
+/area/bluesummers/inside/engineering
+	name = "Electrical Wing"
+	icon_state = "engine_storage"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/bluesummers/inside/engineering/office
+	name = "Electrical Wing Office"
+	icon_state = "engine_monitoring"
+
+/area/bluesummers/inside/engineering/plant
+	name = "Electrial Wing Plant"
+	icon_state = "engine"
+	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+
+/area/bluesummers/inside/engineering/plant/control
+	name = "Electrial Wing Control"
+	icon_state = "engine_control"
+
+/area/bluesummers/inside/chapel
+	name = "Religious Wing Chapel"
+	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/chapel/office
+	name = "Religious Wing Office"
+	icon_state = "chapeloffice"
+
+/area/bluesummers/inside/recreation
+	name = "Recreation Wing"
+	icon_state = "courtroom"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/industrial
+	name = "Industrial Wing"
+	icon_state = "construction"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/bluesummers/inside/industrial/holes
+	ceiling = NONE
+	outside = TRUE
+
