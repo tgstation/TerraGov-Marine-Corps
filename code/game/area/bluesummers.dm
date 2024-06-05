@@ -153,3 +153,16 @@
 	icon_state = "tcomsatcham"
 	area_flags = NO_DROPPOD
 	requires_power = FALSE
+
+/area/bluesummers/inside/garage
+	name = "Vehicle Storage Wing"
+	icon_state = "hangar_storage"
+
+/area/bluesummers/inside/hydroponics
+	name = "Hydroponics Wing North"
+	icon_state = "hydro_north"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/hydroponics/south
+	name = "Hydroponics Wing South"
+	icon_state = "hydro_south"

@@ -5,7 +5,7 @@
 	name = "Vehicle Storage Shutters";
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/mainship,
 /area/space)
 "am" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -30,6 +30,42 @@
 "ax" = (
 /turf/open/floor/mainship_hull,
 /area/space)
+"ay" = (
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/turf/open/floor/mainship/green/full,
+/area/space)
+"az" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/mainship,
+/area/space)
+"aD" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/plating/mainship,
+/area/space)
+"aO" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/space)
+"aQ" = (
+/obj/structure/prop/vehicle/truck/destructible/damaged,
+/turf/open/floor/plating,
+/area/space)
+"bc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/space)
+"bf" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating,
+/area/space)
 "bg" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/warning_stripes,
@@ -45,9 +81,20 @@
 /obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/gcircuit,
 /area/space)
+"bP" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/plating,
+/area/space)
+"bV" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/mainship/floor,
+/area/space)
 "bW" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/mainship_hull,
+/area/space)
+"cc" = (
+/turf/open/floor/mainship/green/corner,
 /area/space)
 "cd" = (
 /obj/machinery/landinglight/lz1{
@@ -63,6 +110,10 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/space)
+"df" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating,
+/area/space)
 "di" = (
 /obj/structure/flora/drought/aster,
 /turf/open/floor/plating/ground/drought,
@@ -70,6 +121,10 @@
 "ds" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/plating,
+/area/space)
+"du" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mainship/green/full,
 /area/space)
 "dD" = (
 /obj/effect/turf_decal/trimline/red/end{
@@ -85,6 +140,20 @@
 /area/space)
 "dQ" = (
 /turf/closed/wall/r_wall/prison,
+/area/space)
+"dU" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
+"dX" = (
+/turf/open/floor/mainship/green/corner{
+	dir = 1
+	},
 /area/space)
 "dY" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
@@ -109,6 +178,12 @@
 	force_for_sets = list("basic")
 	},
 /turf/open/floor/plating,
+/area/space)
+"ei" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/green/corner{
+	dir = 8
+	},
 /area/space)
 "eq" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -159,6 +234,27 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"fn" = (
+/obj/effect/spawner/random/engineering/structure/random_tank_holder,
+/turf/open/floor/plating/mainship,
+/area/space)
+"fs" = (
+/obj/structure/prop/vehicle/big_truck/wrecked_tread{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
+"fv" = (
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense{
+	dir = 9
+	},
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/mainship/floor,
+/area/space)
+"fB" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/mainship/green/corner,
+/area/space)
 "fN" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
@@ -172,6 +268,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/drought,
+/area/space)
+"gr" = (
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
 /area/space)
 "gu" = (
 /obj/structure/flora/drought/grass,
@@ -188,6 +289,16 @@
 	dir = 8
 	},
 /area/space)
+"gJ" = (
+/obj/effect/spawner/random/machinery/hydrotray,
+/turf/open/floor/mainship/floor,
+/area/space)
+"gP" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
 "gT" = (
 /obj/machinery/door/window{
 	dir = 8;
@@ -197,6 +308,12 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/space)
+"hr" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/space)
 "hu" = (
 /obj/structure/table/mainship,
@@ -210,8 +327,40 @@
 	dir = 1
 	},
 /area/space)
+"hJ" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/plating/mainship,
+/area/space)
+"hM" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/space)
 "hU" = (
 /obj/structure/cryofeed/middle,
+/turf/open/floor/plating,
+/area/space)
+"hY" = (
+/obj/structure/prop/vehicle/big_truck{
+	dir = 4
+	},
+/turf/open/floor/plating/dmg3,
+/area/space)
+"ie" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/space)
 "ij" = (
@@ -273,7 +422,10 @@
 /obj/machinery/door/window/right{
 	dir = 2
 	},
-/obj/structure/xenoautopsy/tank/escaped,
+/obj/alien/egg/hugger{
+	maturity_stage = 3
+	},
+/obj/effect/landmark/weed_node,
 /turf/open/shuttle/elevator/grating,
 /area/space)
 "jB" = (
@@ -300,7 +452,7 @@
 	id = "Vehicle Storage";
 	name = "Vehicle Storage Shutters"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/mainship,
 /area/space)
 "kb" = (
 /obj/structure/window/reinforced{
@@ -316,11 +468,44 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/space)
+"ki" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "kt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/closed/wall/mainship,
+/area/space)
+"kw" = (
+/obj/effect/spawner/random/machinery/hydrotray,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"kE" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/gloves/botanic_leather,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/space)
+"kJ" = (
+/obj/effect/spawner/random/machinery/photocopier,
+/obj/structure/sign/safety/fridge{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"kK" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/green{
+	dir = 5
+	},
 /area/space)
 "kS" = (
 /obj/machinery/door_control{
@@ -328,7 +513,7 @@
 	id = "Vehicle Storage";
 	name = "Vehicle Storage Shutters"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/space)
 "kX" = (
 /obj/structure/flora/drought/yucca,
@@ -341,10 +526,30 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/space)
+"lh" = (
+/obj/machinery/botany/extractor,
+/turf/open/floor/mainship/floor,
+/area/space)
+"lx" = (
+/turf/open/floor/plating/dmg1,
+/area/space)
 "lH" = (
 /obj/effect/turf_decal/bot_white/right,
 /obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/iron/smooth_corner{
+	dir = 1
+	},
+/area/space)
+"lL" = (
+/obj/structure/table/mainship,
+/obj/item/tool/minihoe{
+	pixel_y = -2
+	},
+/obj/item/tool/shovel/spade{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/turf/open/floor/mainship/green{
 	dir = 1
 	},
 /area/space)
@@ -354,6 +559,20 @@
 /area/space)
 "lV" = (
 /turf/open/ground/grass/weedable/patch,
+/area/space)
+"lZ" = (
+/obj/structure/sign/safety/hydro,
+/turf/open/floor/mainship/green/full,
+/area/space)
+"mf" = (
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder{
+	pixel_x = -3;
+	pixel_y = 12
+	},
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
 /area/space)
 "mh" = (
 /obj/machinery/door/airlock/engineering{
@@ -366,11 +585,56 @@
 /obj/machinery/cloning/vats,
 /turf/open/floor/plating,
 /area/space)
+"mk" = (
+/obj/structure/closet/wardrobe/green,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"mt" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/mainship/floor,
+/area/space)
+"my" = (
+/obj/structure/largecrate/cow,
+/turf/open/floor/mainship/floor,
+/area/space)
+"mM" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
+"ne" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/storage/apron,
+/turf/open/floor/mainship/green/full,
+/area/space)
+"nj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating/mainship,
+/area/space)
 "nm" = (
 /obj/effect/turf_decal/trimline/red/end{
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
+/area/space)
+"ns" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/mainship,
+/area/space)
+"nt" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
+/turf/open/floor/mainship/green/corner{
+	dir = 8
+	},
 /area/space)
 "nV" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
@@ -382,6 +646,11 @@
 "om" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass/weedable/patch/grassyellow,
+/area/space)
+"oq" = (
+/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible,
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/plating/mainship,
 /area/space)
 "or" = (
 /obj/effect/turf_decal/trimline/red/end{
@@ -409,6 +678,10 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"oW" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/mainship/green/full,
+/area/space)
 "pf" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Exercise Wing";
@@ -416,6 +689,17 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
+/area/space)
+"pm" = (
+/turf/open/floor/mainship/green/corner{
+	dir = 8
+	},
+/area/space)
+"pL" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg3,
 /area/space)
 "pO" = (
 /obj/structure/prop/mainship/gelida/miner,
@@ -452,6 +736,10 @@
 "qX" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
+/area/space)
+"qZ" = (
+/obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread,
+/turf/open/floor/plating/plating_catwalk,
 /area/space)
 "ru" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -500,6 +788,32 @@
 /obj/effect/turf_decal/trimline/red/end,
 /turf/open/floor/mainship_hull,
 /area/space)
+"sr" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/space)
+"sy" = (
+/turf/open/floor/plating/mainship,
+/area/space)
+"sC" = (
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/space)
+"sQ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/space)
+"sT" = (
+/obj/structure/powerloader_wreckage,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/space)
 "sZ" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
@@ -519,6 +833,18 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"ti" = (
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/turf/open/floor/mainship/floor,
+/area/space)
+"tn" = (
+/obj/structure/sink{
+	dir = 8
+	},
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
 "to" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -531,10 +857,29 @@
 /obj/effect/forcefield,
 /turf/open/floor/plating,
 /area/space)
+"tv" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/mainship/green/full,
+/area/space)
 "tE" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/ground/grass/weedable/patch/grassyellow,
+/area/space)
+"tH" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/mainship/floor,
+/area/space)
+"tX" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/item/tool/lighter,
+/turf/open/floor/mainship/green,
+/area/space)
+"tY" = (
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/plating/mainship,
 /area/space)
 "ue" = (
 /obj/structure/window/framed/mainship,
@@ -553,14 +898,31 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/space)
+"uq" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/plating/mainship,
+/area/space)
 "ur" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/desertdamrockwall,
+/area/space)
+"us" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/mainship/green{
+	dir = 5
+	},
 /area/space)
 "uv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
 	name = "\improper Industrial Glass Airlock";
 	dir = 2
+	},
+/turf/open/floor/plating,
+/area/space)
+"uC" = (
+/obj/structure/prop/vehicle/crane/destructible/damaged{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/space)
@@ -570,6 +932,19 @@
 	dir = 5
 	},
 /area/space)
+"uX" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
+"vm" = (
+/obj/machinery/vending/hydronutrients,
+/obj/item/tool/lighter,
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
+/area/space)
 "vy" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Industrial Wing";
@@ -577,6 +952,10 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
+/area/space)
+"vB" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/mainship/floor,
 /area/space)
 "vJ" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -590,6 +969,12 @@
 "vN" = (
 /obj/effect/forcefield,
 /turf/closed/wall/mainship/outer,
+/area/space)
+"vS" = (
+/obj/structure/sign/hydro{
+	dir = 4
+	},
+/turf/open/floor/plating/dmg1,
 /area/space)
 "wj" = (
 /obj/machinery/door_control{
@@ -625,6 +1010,13 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
+"xg" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/misc/seeds,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
 "xw" = (
 /obj/machinery/door_control{
 	id = "Industrial Wing";
@@ -632,6 +1024,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/space)
+"xA" = (
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg3,
 /area/space)
 "xP" = (
 /obj/machinery/door_control{
@@ -654,6 +1053,9 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/space)
+"yd" = (
+/turf/open/floor/plating/scorched,
+/area/space)
 "yp" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -662,10 +1064,23 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"yw" = (
+/turf/open/floor/mainship/green,
+/area/space)
 "yJ" = (
 /obj/structure/table/black,
 /obj/item/weapon/banhammer,
 /turf/open/floor/mainship_hull,
+/area/space)
+"yY" = (
+/obj/structure/table/mainship,
+/obj/item/trash/cigbutt{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
 /area/space)
 "ze" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -681,6 +1096,13 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/space)
+"zw" = (
+/obj/structure/table/mainship,
+/obj/item/tool/soap,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
 "zH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -691,6 +1113,35 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/space)
+"zW" = (
+/obj/machinery/door_control{
+	id = "Vehicle Storage";
+	name = "Vehicle Storage Shutters";
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"Ai" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating/mainship,
+/area/space)
+"Aj" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
+/turf/open/floor/mainship/green/corner,
+/area/space)
+"Ap" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/scorched,
+/area/space)
+"As" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg1,
+/area/space)
 "AA" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -699,13 +1150,26 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
+"AT" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/plating/dmg1,
+/area/space)
 "Bi" = (
 /obj/structure/rock/variable/drought,
 /turf/open/floor/plating/ground/drought/cave,
 /area/space)
+"Bk" = (
+/turf/open/floor/mainship/floor,
+/area/space)
 "Bn" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/liquid/water/river,
+/area/space)
+"Bo" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/space)
 "Bp" = (
 /turf/open/floor/plating/ground/drought/cave,
@@ -770,6 +1234,11 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/liquid/water/river,
 /area/space)
+"Dw" = (
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
+/area/space)
 "DA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -783,6 +1252,13 @@
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
+/area/space)
+"Ef" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/misc/seeds,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
 /area/space)
 "En" = (
 /obj/item/shard,
@@ -800,9 +1276,32 @@
 	},
 /turf/open/floor/wood,
 /area/space)
+"EC" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"EF" = (
+/obj/machinery/door/airlock/mainship/marine,
+/turf/open/floor/mainship/green/full,
+/area/space)
 "EG" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
+/area/space)
+"EO" = (
+/turf/open/floor/mainship/green/full,
+/area/space)
+"EW" = (
+/obj/structure/prop/vehicle/crawler/destructible{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/plating/mainship,
 /area/space)
 "Fc" = (
 /obj/item/clothing/mask/facehugger/dead,
@@ -815,9 +1314,19 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/space)
+"Fe" = (
+/obj/effect/spawner/random/machinery/hydrotray,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
 "Ff" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
+/area/space)
+"Fm" = (
+/obj/mecha_wreckage/ripley/firefighter,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/space)
 "Fw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -826,22 +1335,69 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/space)
+"Fx" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/space)
+"FA" = (
+/obj/structure/prop/vehicle/van/destructible/wreck{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg1,
+/area/space)
+"FI" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating/mainship,
+/area/space)
+"FR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/dmg3,
+/area/space)
 "Gg" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/space)
+"GB" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
 "GD" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/drought,
+/area/space)
+"GV" = (
+/obj/structure/prop/vehicle/big_truck/wrecked{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
 /area/space)
 "Hd" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
 	},
 /area/space)
+"Hf" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/food_or_drink/packagedbar,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
 "Hi" = (
 /obj/structure/flora/drought/shroom,
 /turf/open/floor/plating/ground/drought,
+/area/space)
+"HM" = (
+/obj/structure/closet/crate/hydroponics,
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
 /area/space)
 "HN" = (
 /obj/machinery/door/airlock/mainship/marine{
@@ -859,6 +1415,11 @@
 "Ih" = (
 /obj/machinery/computer/gravity_control_computer,
 /turf/open/floor/plating,
+/area/space)
+"Iw" = (
+/obj/structure/rack,
+/obj/item/clothing/under/rank/hydroponics,
+/turf/open/floor/mainship/floor,
 /area/space)
 "IB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
@@ -881,6 +1442,11 @@
 	},
 /obj/item/shard,
 /turf/open/floor/wood,
+/area/space)
+"IM" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
 /area/space)
 "IP" = (
 /obj/structure/closet/secure_closet/engineering_welding,
@@ -917,16 +1483,43 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"JA" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/mainship,
+/area/space)
 "JK" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating,
 /area/space)
+"JT" = (
+/obj/structure/closet/crate/hydroponics,
+/turf/open/floor/mainship/floor,
+/area/space)
 "JV" = (
-/obj/machinery/hydroponics,
-/turf/open/floor/plating,
+/obj/effect/spawner/random/machinery/hydrotray,
+/turf/open/floor/plating/dmg3,
 /area/space)
 "Kb" = (
 /turf/open/floor/mainship_hull/dir,
+/area/space)
+"Ke" = (
+/obj/structure/table/mainship,
+/obj/item/trash/cigbutt,
+/obj/item/trash/cigbutt{
+	pixel_x = 4;
+	pixel_y = 9
+	},
+/obj/item/ashtray/bronze{
+	pixel_x = -3
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/turf/open/floor/mainship/green{
+	dir = 10
+	},
 /area/space)
 "KF" = (
 /obj/structure/cryopods,
@@ -935,6 +1528,18 @@
 "KG" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable/patch,
+/area/space)
+"KW" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/green/full,
+/area/space)
+"Ld" = (
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
 /area/space)
 "Le" = (
 /obj/effect/spawner/random/engineering/pickaxe,
@@ -950,6 +1555,20 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine{
 	name = "\improper Airlock"
 	},
+/turf/open/floor/mainship/green/full,
+/area/space)
+"Ln" = (
+/turf/open/floor/mainship/green{
+	dir = 5
+	},
+/area/space)
+"Lq" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/space)
 "Ly" = (
@@ -962,8 +1581,37 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"LP" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/mainship/green/corner,
+/area/space)
+"LR" = (
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/space)
 "LW" = (
 /turf/open/floor/plating/plating_catwalk,
+/area/space)
+"LZ" = (
+/obj/structure/table/mainship,
+/obj/item/tool/soap,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"Me" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg3,
+/area/space)
+"Mi" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/plating/mainship,
 /area/space)
 "Mj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -976,9 +1624,19 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/space)
+"My" = (
+/obj/structure/mecha_wreckage/clarke,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/space)
 "ME" = (
 /obj/structure/flora/tree/dead/drought,
 /turf/open/ground/grass/weedable/patch/grassyellow,
+/area/space)
+"MF" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
 /area/space)
 "MG" = (
 /obj/machinery/floodlight/landing,
@@ -993,9 +1651,23 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"MN" = (
+/obj/structure/nuke_disk_candidate{
+	force_for_sets = list("basic")
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Na" = (
+/obj/structure/largecrate/chick,
+/turf/open/floor/mainship/green/full,
+/area/space)
 "Nh" = (
 /obj/structure/cryofeed/right,
 /turf/open/shuttle/escapepod/five,
+/area/space)
+"Ni" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/plating/mainship,
 /area/space)
 "Nq" = (
 /obj/structure/window/framed/mainship,
@@ -1012,12 +1684,43 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"Ob" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/floor,
+/area/space)
+"Oe" = (
+/turf/open/floor/plating/dmg3,
+/area/space)
 "Oi" = (
 /turf/open/floor/plating/ground/drought,
 /area/space)
 "Ol" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
+	},
+/turf/open/floor/plating,
+/area/space)
+"Oz" = (
+/obj/structure/sign/hydro{
+	dir = 8
+	},
+/turf/open/floor/plating/scorched,
+/area/space)
+"OJ" = (
+/obj/structure/table/mainship,
+/obj/item/tool/lighter,
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
+/area/space)
+"OS" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dmg3,
+/area/space)
+"Pc" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/space)
@@ -1095,6 +1798,15 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"RS" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/mainship/green/full,
+/area/space)
+"RV" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/plating/mainship,
+/area/space)
 "Sc" = (
 /obj/machinery/landinglight/lz1{
 	dir = 8
@@ -1106,10 +1818,43 @@
 /obj/machinery/door/poddoor/mainship/open,
 /turf/open/floor/mainship_hull,
 /area/space)
+"St" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"SK" = (
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"SP" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
 "SR" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/effect/mapping_helpers/airlock/welded,
 /turf/open/floor/plating,
+/area/space)
+"SV" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"Tb" = (
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"Tc" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/mainship/floor,
 /area/space)
 "Tr" = (
 /obj/structure/window/reinforced{
@@ -1156,6 +1901,14 @@
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/plating,
 /area/space)
+"Uo" = (
+/obj/effect/spawner/random/engineering/structure/handheld_lighting,
+/turf/open/floor/plating/mainship,
+/area/space)
+"Up" = (
+/obj/mecha_wreckage/gygax,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/space)
 "Uq" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -1176,6 +1929,13 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable/patch,
 /area/space)
+"Vh" = (
+/obj/machinery/vending/hydroseeds,
+/obj/item/tool/lighter,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
 "Vp" = (
 /turf/closed/mineral/smooth/desertdamrockwall,
 /area/space)
@@ -1192,6 +1952,11 @@
 "Wm" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/drought,
+/area/space)
+"Wo" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/misc/seeds,
+/turf/open/floor/mainship/green/full,
 /area/space)
 "Wx" = (
 /obj/structure/window_frame/mainship,
@@ -1221,6 +1986,11 @@
 /obj/structure/prop/nt_computer/recorder,
 /turf/open/floor/mainship_hull,
 /area/space)
+"XF" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/spawner/random/machinery/motorbike,
+/turf/open/floor/plating/mainship,
+/area/space)
 "XL" = (
 /obj/effect/turf_decal/bot_white/right,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -1229,6 +1999,17 @@
 "Yd" = (
 /obj/structure/flora/tree/dead/drought,
 /turf/open/floor/plating/ground/drought,
+/area/space)
+"Ye" = (
+/turf/open/floor/mainship/green{
+	dir = 9
+	},
+/area/space)
+"Yg" = (
+/obj/machinery/door/airlock/mainship/marine{
+	dir = 2
+	},
+/turf/open/floor/mainship/green/full,
 /area/space)
 "YG" = (
 /obj/machinery/landinglight/lz1{
@@ -1252,6 +2033,19 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/space)
+"YX" = (
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/space)
+"Zi" = (
+/obj/structure/sign/hydro{
+	dir = 8
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/space)
 "Zn" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1;
@@ -1273,6 +2067,10 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"ZB" = (
+/obj/effect/spawner/random/machinery/hydrotray,
+/turf/open/floor/plating,
+/area/space)
 "ZD" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1285,6 +2083,11 @@
 	},
 /turf/open/floor/wood,
 /area/space)
+"ZE" = (
+/obj/structure/table/mainship,
+/obj/item/storage/bag/plants,
+/turf/open/floor/mainship/floor,
+/area/space)
 "ZI" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 4
@@ -1293,6 +2096,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship_hull,
+/area/space)
+"ZQ" = (
+/obj/structure/sign/hydro{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/drought,
 /area/space)
 "ZZ" = (
 /obj/machinery/miner/damaged,
@@ -27977,12 +28786,12 @@ Oi
 Oi
 ip
 ue
-ue
-ue
+fN
+fN
 ip
 ip
 Oi
-Oi
+Wm
 Oi
 Oi
 rN
@@ -28158,10 +28967,10 @@ Oi
 Oi
 ip
 ip
+gJ
 JV
-JV
-JV
-JV
+gJ
+gJ
 ip
 ip
 rN
@@ -28172,9 +28981,9 @@ ip
 ip
 rN
 rN
-rF
-rF
-rF
+gJ
+gJ
+gJ
 ip
 rN
 Oi
@@ -28339,23 +29148,23 @@ Oi
 Oi
 Oi
 ip
-JV
+gJ
 rF
 rN
-rF
-rF
+yd
+gr
 ip
 rF
 rN
 Oi
 rF
-rF
-rF
+Bk
+Oe
 ip
 Oi
-rF
-rF
-rF
+lx
+gr
+Dw
 rN
 ip
 rN
@@ -28521,22 +29330,22 @@ Oi
 Oi
 Oi
 ue
-JV
-rF
-rF
-rF
-rF
+gJ
+lx
+Ye
+gr
+zw
 ip
-rF
+Bk
 rF
 rN
 rN
 rF
-rF
-HN
-rF
-rF
-rF
+Bk
+Yg
+gr
+gr
+Oe
 Oi
 rF
 ip
@@ -28703,36 +29512,36 @@ Oi
 Oi
 Oi
 ip
-JV
-rF
-rF
-rF
-rF
+gJ
+sC
+sC
+Ye
+Ld
 ip
-rF
-rF
+Bk
+Oe
 rN
 Oi
 rF
-rF
+Bk
 ip
+Vh
+vm
+tX
 rF
-rF
-rF
-rF
-rF
-ip
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-rF
-rF
+gJ
 ip
 Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+rF
+rF
+ip
+LW
 Oi
 Oi
 Oi
@@ -28888,7 +29697,7 @@ ip
 ip
 ip
 ip
-Ul
+EF
 ip
 ip
 ip
@@ -28901,7 +29710,7 @@ ip
 ip
 ip
 ip
-Ul
+EF
 ip
 ip
 ip
@@ -28925,21 +29734,21 @@ Oi
 ip
 ip
 ip
-rF
-rF
-rF
-rF
+sy
+Up
+sy
+My
 ip
+sy
 rF
-rF
-rF
-rF
-rF
+sy
+az
+sy
 ip
-rF
-rF
-rF
-rF
+EW
+sy
+Ni
+XF
 ip
 ip
 Oi
@@ -29067,29 +29876,29 @@ Vp
 Vp
 rN
 rF
-rF
+Tc
 ip
-rF
-rF
-rF
-rF
+gJ
+Ye
+gr
+GB
 ip
-rF
+Oe
 rN
 Oi
 rF
-rF
-rF
-rF
+Fe
+Fe
+Fe
 ip
 rN
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+gr
+Zi
+gr
+gr
+gr
+gr
+lx
 rN
 Oi
 Oi
@@ -29105,23 +29914,23 @@ Oi
 Oi
 ip
 ip
-rF
-rF
-rF
-Oi
-rF
-rF
-ip
+sT
+sy
 rF
 Oi
-rF
-rF
-rF
+az
+Oe
 ip
+hY
+Oi
+lx
 rF
+GV
+ip
+Mi
+FI
 rF
-rF
-rF
+Oe
 Oi
 ip
 ip
@@ -29248,24 +30057,24 @@ Vp
 Vp
 Vp
 rN
-rF
-rF
+Bk
+Tc
 ip
-rF
+gJ
+sC
+rN
+Oe
+ip
+Dw
 rF
 rN
+Wm
 rF
-ip
-rF
-rF
-rN
-Oi
-rF
-rF
-rF
+Ye
+Ye
 Lg
-rF
-rF
+sC
+Bk
 rF
 rN
 Vp
@@ -29287,25 +30096,25 @@ Oi
 wj
 ip
 jU
+sy
 rF
-rF
-rF
-rF
+tY
+YH
 rF
 rN
 ip
 rF
-Oi
+Wm
 Oi
 rF
-rF
+sy
 ip
 rF
 rN
-rF
-rF
-rF
-rF
+sy
+aQ
+sy
+hr
 ip
 Oi
 Oi
@@ -29429,32 +30238,32 @@ Vp
 Vp
 Vp
 rN
-rF
-rF
-rF
+yd
+Bk
+JT
 ip
-rF
+yd
+Wm
 Oi
-Oi
-rF
-HN
-rF
-rF
-rF
+EO
+Yg
+EO
+yw
+lx
 rN
-rF
-rF
-rF
-rF
-rF
-rF
+sC
+yd
+EO
+EO
+sC
+Bk
 rN
 Vp
 Vp
 Vp
 Vp
 rN
-rF
+Oe
 rF
 rN
 rN
@@ -29468,26 +30277,26 @@ Oi
 Oi
 rN
 WK
-rF
+Fx
 rF
 rN
-rF
-rF
+sy
+lx
 Oi
 Oi
 ip
-rF
+sy
 rN
-rF
-rF
-rF
+Oe
+sy
+yd
 ip
-rF
+oq
 rF
 Oi
-rF
-rF
-rF
+sy
+lx
+Mi
 ip
 ip
 Oi
@@ -29610,35 +30419,35 @@ Vp
 Vp
 Vp
 rN
-rF
-rF
-rF
-rF
+YH
+Bk
+Bk
+JT
 ip
-rF
-rF
-rF
-rF
+gJ
+lx
+Ln
+mk
 ip
-rF
-rF
+LR
+Oe
 rN
 Oi
-rF
+Ln
 Oi
-rF
+Oe
 ip
-Oi
-rF
+ZQ
+Oe
 Oi
 Vp
 Vp
 Vp
 Vp
 rN
-rF
-rF
-rF
+YH
+sC
+lZ
 ip
 Oi
 Oi
@@ -29650,25 +30459,25 @@ Oi
 Oi
 Oi
 WK
+Fx
+yd
 rF
+sy
+az
 rF
-rF
-rF
-rF
-rF
-rF
+Fm
 ip
-rF
-rF
-rF
-rF
+JA
+Ap
+nj
+bc
 ai
 ip
-rF
-rF
-rF
-rF
-rF
+Mi
+sy
+bc
+ns
+bc
 ai
 rN
 ip
@@ -29792,35 +30601,35 @@ Oi
 rN
 ip
 ip
+fN
+EF
 ue
-Ul
-ue
 ip
 ip
-rF
-rF
-rF
-rF
+gJ
+Ln
+YX
+SV
 ip
-rF
-rF
+kw
+yd
 Oi
+kw
+lx
 rF
-rF
-rF
-rF
+kw
 ip
 rN
 rF
-rF
+Bk
 rN
 Vp
 Vp
 Vp
 Oi
 rF
-rF
-rF
+sC
+RS
 ip
 Oi
 Oi
@@ -29831,13 +30640,13 @@ Oi
 Oi
 rN
 rN
-WK
-rF
-rF
-rF
-rF
-rF
-rF
+ip
+uq
+JA
+fn
+bc
+bc
+bc
 ai
 ip
 ip
@@ -29973,15 +30782,15 @@ rN
 rN
 ip
 ip
-rF
-rF
-rF
-rF
-rF
+lh
+Bk
+Bk
+Bk
+kJ
 ip
 ip
-Ul
-ue
+EF
+tv
 ip
 ip
 ip
@@ -29992,17 +30801,17 @@ ip
 ip
 ip
 ip
-rF
-rF
-rF
+Ln
+YX
+YX
 rN
 Vp
 Vp
 rN
 rF
+yw
 rF
-rF
-rF
+EO
 ip
 Oi
 Oi
@@ -30022,19 +30831,19 @@ RH
 RH
 ip
 ip
-rF
-rF
-rF
-rF
+LW
+LW
+LW
+LW
 kS
-rF
-rF
-rF
+sy
+aO
+LW
 Oi
-rF
-rF
+LW
+LW
 kS
-rF
+Ai
 ip
 ip
 Oi
@@ -30154,25 +30963,25 @@ Oi
 Oi
 Oi
 ip
-rF
+Oe
 Oi
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+nt
+nt
+nt
+nt
+pm
+Oz
+pm
+pm
+ei
 ip
 rF
 rN
 rF
-rF
+lx
 rN
 rF
-rF
+KW
 ip
 ip
 ip
@@ -30181,10 +30990,10 @@ rF
 rN
 rN
 rF
-rF
+Ff
 rF
 Oi
-rF
+Oe
 ip
 rN
 rN
@@ -30196,28 +31005,28 @@ Oi
 Oi
 ip
 ip
-rF
-rF
-rF
-rF
+LW
+LW
+LW
+LW
 Oi
-rF
+LW
 kS
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+LW
+LW
+Lq
+Bo
+Pc
+LW
+Uo
+sy
+LW
+Me
+Bo
+Pc
+LW
+sy
+uq
 ip
 Oi
 Oi
@@ -30338,32 +31147,32 @@ Oi
 ue
 rN
 rF
-rF
-rF
-rF
-rF
-rF
+xg
+gP
+Hf
+gP
+St
 Oi
 Oi
-rF
-rF
+YX
+YX
 Lg
 rN
 Oi
+YH
 rF
 rF
-rF
-rF
-rF
-rF
-rF
+YX
+YX
+YX
+YX
 rF
 Oi
 rF
-rF
-rF
-rF
-rF
+YX
+St
+YX
+lx
 rN
 rN
 rF
@@ -30377,28 +31186,28 @@ Oi
 Oi
 Oi
 rF
-rF
+Lq
 Oi
 rN
-rF
-rF
-rF
-rF
-rF
-rF
+xA
+Bo
+Bo
+Bo
+pL
+Bo
 ip
 rN
 rN
-rF
+df
 ip
-rF
-rF
+LW
+LW
 ip
+SK
 rF
-rF
-rF
+df
 ip
-rF
+LW
 Oi
 ip
 Oi
@@ -30517,38 +31326,38 @@ Oi
 Oi
 Oi
 Oi
-ue
+fN
 Oi
-rF
-rF
-rF
+pm
+uX
+lx
 rN
-rF
-rF
+Ef
+gr
 rN
-rF
-rF
-rF
-rF
+gr
+gr
+gr
+EO
 rN
 Oi
+gr
+gr
+gr
+gr
+gr
+gr
+lx
 rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+OS
 rN
 rF
-rF
-rF
-rF
-rF
-rF
-rF
+gr
+gr
+gr
+YH
+dX
+EO
 ip
 Oi
 Oi
@@ -30559,8 +31368,8 @@ Oi
 Oi
 rN
 rF
-rF
-rF
+SP
+YH
 rF
 rF
 rF
@@ -30572,16 +31381,16 @@ Oi
 Oi
 rN
 rF
+Bo
+sQ
+Bo
+Bo
 rF
 rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+lx
+Bo
+Bo
+As
 rF
 Oi
 Oi
@@ -30700,37 +31509,37 @@ Oi
 Oi
 Oi
 ip
-rF
-rF
-rF
+Bk
+fB
+Aj
 Oi
 rF
-rF
-rF
-rF
-rF
-rF
-rF
+Aj
+cc
+cc
+cc
+fB
+LP
 ip
 rF
 rN
 rF
-rF
-rF
-rF
-rF
+EO
+EO
+EO
+YH
 rN
 Oi
 rF
 rF
 rF
-rF
-rF
+EO
+EO
 ip
-rF
-rF
-rF
-rF
+EO
+EO
+EO
+du
 ip
 Oi
 Oi
@@ -30741,29 +31550,29 @@ Oi
 Oi
 Oi
 rF
+dU
+mM
+mM
+mM
+mM
 rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+fs
+mM
+sr
 rN
 rN
-rF
+FA
 rF
 rF
 Oi
+lx
 rF
 rF
-rF
-rF
+uC
 rN
 Oi
 rF
-rF
+df
 rF
 Oi
 Oi
@@ -30883,69 +31692,69 @@ Oi
 Oi
 ip
 ip
-rF
-rF
-rF
-rF
-rF
-ee
+mt
+Bk
+Bk
+Bk
+Bk
+MN
 ip
-ue
-Ul
-ip
-ip
-ip
-Oi
-Ul
-ip
-ip
-ip
-ip
-ip
-ip
-rF
-rF
-rF
-rF
-ip
-ip
-ip
-Ul
+fN
+EF
 ip
 ip
 ip
 Oi
-Oi
+EF
+ip
+ip
+ip
+ip
+ip
+ip
+EO
+EO
+EO
+KW
+ip
+ip
+ip
+EF
+ip
+ip
+ip
 Oi
 Oi
 Oi
 Oi
 Oi
 Oi
+Oi
+Oi
 ip
 ip
-rF
-rF
-rF
-rF
+LW
+LW
+LW
+LW
 rN
+df
+LW
+LW
+LW
+LW
+SP
 rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+mM
+mM
+mM
+mM
+FR
 rF
 Oi
-rF
-rF
-rF
+FR
+mM
+ki
 rF
 rN
 Oi
@@ -31068,32 +31877,32 @@ ip
 ip
 ip
 ue
-Ul
-ue
+EF
+fN
 ip
 ip
-rF
-rF
-rF
-rF
-rF
+Bk
+EO
+Bk
+EO
+Oe
 Oi
-rF
+lx
 ip
+bV
 rF
-rF
-rF
-rF
-ip
-ip
-Ul
+my
+Na
 ip
 ip
+EF
 ip
+ip
+ip
+LR
 rF
-rF
-rF
-rF
+hM
+kK
 ip
 Oi
 Oi
@@ -31106,28 +31915,28 @@ Oi
 Oi
 Oi
 ip
-rF
-rF
+hJ
+sy
 Oi
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+LW
+ie
+df
+LW
+sy
+sy
+Tb
+SP
+df
+LW
+LW
+qZ
+LW
+LW
+SP
+df
+LW
+LW
+LW
 ip
 Oi
 Oi
@@ -31247,14 +32056,14 @@ Oi
 Oi
 rN
 ip
-rF
-rF
-rF
+ti
+Bk
+Bk
 rF
 Oi
-rF
+ZE
 ip
-rF
+EO
 rF
 rF
 Oi
@@ -31262,20 +32071,20 @@ rF
 rN
 rF
 ip
-rF
+Oe
 rN
 Oi
 rF
 ip
-rF
-rF
-rF
+oW
+Bk
+ay
 ip
-rF
+Ye
 rN
 rN
-rF
-rF
+AT
+OJ
 ip
 Oi
 Oi
@@ -31289,26 +32098,26 @@ Oi
 Oi
 ip
 ip
-rF
-rF
+tY
+sy
 rN
-rF
-rF
-rF
+SP
+df
+lx
 Oi
-rF
-rF
-rF
-rF
-rF
-rF
+sy
+LW
+SP
+df
+LW
+sy
 rN
-rF
-ai
-rF
-rF
-rF
-rF
+sy
+zW
+EC
+bf
+LW
+aD
 ip
 ip
 Oi
@@ -31430,58 +32239,58 @@ rN
 rN
 ip
 ip
+tH
 rF
 rF
-rF
-rF
-rF
+Bk
+fv
 ip
 rN
 rN
+lx
 rF
-rF
-rF
+Bk
 Oi
 rN
 ip
 rF
 rN
-rF
-rF
+lx
+EO
 ip
-rF
-rF
-rF
-HN
-rF
+oW
+Bk
+Bk
+Yg
+Oe
 Oi
-rF
-rF
-ip
-ip
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
-Oi
+bP
+yY
 ip
 ip
-rF
-rF
-rF
-rF
-rF
-rF
-rF
-ai
-rF
-rF
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+ip
+ip
+sy
+LW
+SP
+IM
+LW
+sy
+sy
+zW
+EC
+bf
 ip
 ip
 ip
@@ -31612,33 +32421,33 @@ Oi
 Oi
 Oi
 ip
-rF
+tH
 Oi
 rN
 rF
-rF
+Bk
 ip
 Vp
 Vp
 rN
 rF
+EO
 rF
-rF
+Wm
 Oi
-Oi
+yd
 rF
-rF
-rF
-rF
-HN
-rF
-rF
-rF
+EO
+Bk
+Yg
+Bk
+Bk
+mf
 ip
-rF
-rF
-rF
-rF
+Ye
+Dw
+MF
+Ke
 ip
 Oi
 Oi
@@ -31655,11 +32464,11 @@ Oi
 Oi
 ip
 ip
-ai
-rF
+zW
+EC
 Oi
-rF
-rF
+LW
+RV
 ip
 ip
 RH
@@ -31795,8 +32604,8 @@ Oi
 Oi
 ip
 ip
-rF
-rF
+Bk
+vS
 rF
 rN
 Vp
@@ -31804,21 +32613,21 @@ Vp
 Vp
 Vp
 rN
-rF
-rF
+yd
+EO
 ip
 rN
-rF
-rF
-rF
-rF
+vB
+Wo
+Iw
+ne
 ip
-rF
-rF
-rF
+HM
+Bk
+lL
 ip
-rF
-rF
+us
+yd
 rN
 ip
 ip
@@ -31979,7 +32788,7 @@ Oi
 ip
 ip
 ip
-Ul
+EF
 ip
 Vp
 Vp
@@ -31996,12 +32805,12 @@ ip
 ip
 ip
 ip
-Ul
+EF
 ip
 ip
 ip
-ue
-ue
+fN
+fN
 ip
 Oi
 Oi
@@ -32160,26 +32969,26 @@ Oi
 Oi
 rN
 ip
-rF
-rF
-rF
+gJ
+sC
+sC
 rN
 rN
 rN
 ip
 rF
 rN
-rF
+yd
 rF
 rN
-rF
-rF
+Oe
+Bk
 ip
-rF
-rF
-rF
-rF
-rF
+tn
+LZ
+kE
+Oe
+yw
 Oi
 ip
 Oi
@@ -32341,28 +33150,28 @@ Oi
 Oi
 Oi
 Oi
-ue
+fN
+ZB
+Oi
+Ln
+YX
 rF
+YX
+Yg
+Bk
+rF
+rF
+Oe
 Oi
 rF
-rF
-rF
-rF
-HN
-rF
-rF
-rF
-rF
-Oi
-rF
-rF
-HN
-rF
+Bk
+Yg
+YX
 Oi
 rN
 rN
-rF
-rF
+yw
+lx
 ip
 Oi
 Oi
@@ -32524,27 +33333,27 @@ Oi
 Oi
 Oi
 ip
-rF
-rF
+gJ
+Ln
 rN
-rF
-rF
-rF
+lx
+YX
+YX
 ip
-rF
-rF
-rF
+Bk
+Bk
+lx
 rN
 rF
-rF
-rF
+Bk
+Bk
 ip
-rF
-rF
+YX
+yd
 rN
-rF
-rF
-rF
+YX
+LR
+gJ
 ip
 rN
 Oi
@@ -32707,11 +33516,11 @@ Oi
 Oi
 ip
 ip
-rF
-rF
-rF
-rF
-rF
+gJ
+ZB
+gJ
+gJ
+gJ
 ip
 ip
 ip
@@ -32721,12 +33530,12 @@ fN
 ip
 ip
 ip
+Ob
+gJ
 rF
-rF
-rF
-rF
-rF
-rF
+gJ
+gJ
+gJ
 ip
 rN
 rN
@@ -32898,7 +33707,7 @@ ip
 rN
 rN
 Oi
-Oi
+Wm
 Oi
 rN
 rN
@@ -32906,7 +33715,7 @@ ip
 ip
 ip
 ue
-ue
+fN
 ip
 ip
 ip
