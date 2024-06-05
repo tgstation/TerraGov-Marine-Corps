@@ -25,15 +25,15 @@
 			icon_state = initial(icon_state)
 			return
 		if(2000 to 2500)
-			icon_state = "[initial(icon_state)]_damage_[1]"
+			icon_state = "[base_icon_state]_damage_[1]"
 		if(1500 to 2000)
-			icon_state = "[initial(icon_state)]_damage_[2]"
+			icon_state = "[base_icon_state]_damage_[2]"
 		if(1000 to 1500)
-			icon_state = "[initial(icon_state)]_damage_[3]"
+			icon_state = "[base_icon_state]_damage_[3]"
 		if(500 to 1000)
-			icon_state = "[initial(icon_state)]_damage_[4]"
+			icon_state = "[base_icon_state]_damage_[4]"
 		if(0 to 500)
-			icon_state = "[initial(icon_state)]_damage_[5]"
+			icon_state = "[base_icon_state]_damage_[5]"
 
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
 /obj/structure/prop/urban/vehicles/proc/explode()
@@ -116,10 +116,12 @@
 	icon_state = "longtruck_kellandmining"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/128x32_vehiclesexpanded.dmi'
-	bound_height = 64
+	bound_height = 32
 	bound_width = 128
-	resistance_flags = RESIST_ALL
+	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
+	max_integrity = 4000
+	coverage = 90
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
@@ -154,6 +156,7 @@
 	bound_height = 64
 	bound_width = 64
 	density = TRUE
+	coverage = 75
 
 /obj/structure/prop/urban/vehicles/suv/suv_1
 	icon_state = "SUV1"
@@ -196,10 +199,14 @@
 	bound_width = 64
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	coverage = 30
+	base_icon_state = "meridian_red"
 
 /obj/structure/prop/urban/vehicles/meridian/red
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
+	base_icon_state = "meridian_red"
 
 /obj/structure/prop/urban/vehicles/meridian/red/damageone
 	icon_state = "meridian_red_damage_1"
@@ -224,6 +231,7 @@
 /obj/structure/prop/urban/vehicles/meridian/black
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_black.dmi'
 	icon_state = "meridian_black"
+	base_icon_state = "meridian_black"
 
 /obj/structure/prop/urban/vehicles/meridian/black/damageone
 	icon_state = "meridian_black_damage_1"
@@ -248,6 +256,7 @@
 /obj/structure/prop/urban/vehicles/meridian/blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_blue.dmi'
 	icon_state = "meridian_blue"
+	base_icon_state = "meridian_blue"
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damageone
 	icon_state = "meridian_blue_damage_1"
@@ -272,6 +281,7 @@
 /obj/structure/prop/urban/vehicles/meridian/brown
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_brown.dmi'
 	icon_state = "meridian_brown"
+	base_icon_state = "meridian_brown"
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damageone
 	icon_state = "meridian_brown_damage_1"
@@ -296,6 +306,7 @@
 /obj/structure/prop/urban/vehicles/meridian/cop
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_cop.dmi'
 	icon_state = "meridian_cop"
+	base_icon_state = "meridian_cop"
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damageone
 	icon_state = "meridian_cop_damage_1"
@@ -320,6 +331,7 @@
 /obj/structure/prop/urban/vehicles/meridian/desat_blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_desatblue.dmi'
 	icon_state = "meridian_desatblue"
+	base_icon_state = "meridian_desatblue"
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damageone
 	icon_state = "meridian_desatblue_damage_1"
@@ -344,6 +356,7 @@
 /obj/structure/prop/urban/vehicles/meridian/green
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_green.dmi'
 	icon_state = "meridian_green"
+	base_icon_state = "meridian_green"
 
 /obj/structure/prop/urban/vehicles/meridian/green/damageone
 	icon_state = "meridian_green_damage_1"
@@ -368,6 +381,7 @@
 /obj/structure/prop/urban/vehicles/meridian/light_blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_lightblue.dmi'
 	icon_state = "meridian_lightblue"
+	base_icon_state = "meridian_lightblue"
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damageone
 	icon_state = "meridian_lightblue_damage_1"
@@ -392,6 +406,7 @@
 /obj/structure/prop/urban/vehicles/meridian/pink
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_pink.dmi'
 	icon_state = "meridian_pink"
+	base_icon_state = "meridian_pink"
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damageone
 	icon_state = "meridian_pink_damage_1"
@@ -416,6 +431,7 @@
 /obj/structure/prop/urban/vehicles/meridian/purple
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_purple.dmi'
 	icon_state = "meridian_purple"
+	base_icon_state = "meridian_purple"
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damageone
 	icon_state = "meridian_purple_damage_1"
@@ -440,6 +456,7 @@
 /obj/structure/prop/urban/vehicles/meridian/turquoise
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_turquoise.dmi'
 	icon_state = "meridian_turquoise"
+	base_icon_state = "meridian_turquoise"
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damageone
 	icon_state = "meridian_turquoise_damage_1"
@@ -464,6 +481,7 @@
 /obj/structure/prop/urban/vehicles/meridian/orange
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_orange.dmi'
 	icon_state = "meridian_orange"
+	base_icon_state = "meridian_orange"
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damageone
 	icon_state = "meridian_orange_damage_1"
@@ -488,6 +506,7 @@
 /obj/structure/prop/urban/vehicles/meridian/generic
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_wy.dmi'
 	icon_state = "meridian_wy"
+	base_icon_state = "meridian_wy"
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damageone
 	icon_state = "meridian_wy_damage_1"
@@ -512,6 +531,7 @@
 /obj/structure/prop/urban/vehicles/meridian/taxi
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_taxi.dmi'
 	icon_state = "meridian_taxi"
+	base_icon_state = "meridian_taxi"
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damageone
 	icon_state = "meridian_taxi_damage_1"
@@ -2204,6 +2224,8 @@
 	icon_state = "firehydrant"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 150
 
 /obj/structure/prop/urban/misc/phonebox
 	name = "phonebox"
@@ -2235,6 +2257,7 @@
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 
 // Signs
 

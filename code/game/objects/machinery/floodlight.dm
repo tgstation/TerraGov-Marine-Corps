@@ -243,6 +243,8 @@
 	icon_state = "street_off"
 	layer = ABOVE_MOB_LAYER
 	brightness_on = 10
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 220
 
 /obj/machinery/floodlight/colony/street/update_icon_state()
 	var/area/street_light_area = get_area(src)
@@ -291,6 +293,7 @@
 	density = TRUE
 	max_integrity = 200
 	layer = ABOVE_MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/machinery/floodlight/colony/traffic_alt/update_icon_state()
 	if(obj_integrity != initial(max_integrity))
