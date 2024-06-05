@@ -297,7 +297,7 @@
 	icon_state = "asteroidfloor"
 	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
-/turf/open/floor/sandrock
+/turf/open/ground/sandrock
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "varadero_0"
 

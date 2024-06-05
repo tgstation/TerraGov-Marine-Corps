@@ -132,7 +132,7 @@
 /area/lv759/indoors/hospital/emergency_room)
 "abx" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "abC" = (
 /obj/structure/platform{
@@ -729,7 +729,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "agv" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -2091,7 +2091,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "arF" = (
 /turf/open/floor/marked,
@@ -2647,7 +2647,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "awi" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty{
@@ -4673,7 +4673,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "aNS" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "aNY" = (
 /obj/structure/barricade/handrail/medical{
@@ -4987,7 +4987,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "aQx" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -5252,7 +5252,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "aSl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5266,7 +5266,7 @@
 "aSw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "aSz" = (
 /obj/effect/urban/decal/dirt,
@@ -5582,7 +5582,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "aUH" = (
 /obj/effect/urban/decal/grate,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "aUJ" = (
 /obj/effect/landmark/weed_node,
@@ -6587,7 +6587,7 @@
 "bdS" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "bdT" = (
 /obj/effect/urban/decal/dirt,
@@ -6851,7 +6851,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "bgs" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "bgw" = (
 /obj/effect/urban/decal/dirt,
@@ -6918,7 +6918,7 @@
 	light_power = 4;
 	light_range = 5
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bhe" = (
 /obj/structure/platform/urban/metalplatform6,
@@ -7800,7 +7800,7 @@
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "bqf" = (
 /obj/structure/cable,
@@ -9022,7 +9022,7 @@
 	pixel_y = 21
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "bAj" = (
 /obj/item/reagent_containers/food/drinks/milk,
@@ -9184,7 +9184,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "bBS" = (
 /obj/item/trash/cigbutt{
@@ -9354,7 +9354,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bDA" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -10991,7 +10991,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/hallway_central)
 "bQZ" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "bRe" = (
 /obj/machinery/meter,
@@ -11007,7 +11007,7 @@
 	pixel_x = -8;
 	pixel_y = 12
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bRm" = (
 /obj/structure/platform/urban/metalplatform2,
@@ -11049,7 +11049,7 @@
 	pixel_y = 12
 	},
 /obj/effect/urban/decal/trash/seven,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bRA" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -11395,7 +11395,7 @@
 "bUC" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "bUG" = (
 /obj/effect/urban/decal/dirt,
@@ -11516,7 +11516,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "bVj" = (
 /obj/item/stack/sandbags_empty,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "bVk" = (
 /obj/effect/urban/decal/engineership_corners{
@@ -11789,7 +11789,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "bXf" = (
 /obj/structure/girder/reinforced,
@@ -12104,7 +12104,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "bZg" = (
 /obj/structure/platform{
@@ -12625,7 +12625,7 @@
 	dir = 8
 	},
 /obj/structure/lattice/autosmooth,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "ccT" = (
 /obj/structure/table/reinforced/prison{
@@ -12721,7 +12721,7 @@
 /obj/structure/sign/safety/medical{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "cdC" = (
 /obj/structure/prop/urban/vehicles/meridian/orange{
@@ -13579,7 +13579,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "clS" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "clU" = (
 /obj/structure/prop/urban/vehicles/meridian/turquoise{
@@ -14683,7 +14683,7 @@
 	dir = 5
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "ctW" = (
 /obj/structure/bed/chair{
@@ -14841,7 +14841,7 @@
 "cvV" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "cvW" = (
 /obj/structure/table,
@@ -14909,7 +14909,7 @@
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "cwA" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -14930,7 +14930,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "cwL" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "cwM" = (
 /obj/effect/urban/decal/dirt,
@@ -15357,7 +15357,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "cBk" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_1)
 "cBp" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
@@ -15481,7 +15481,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cCg" = (
 /obj/item/flashlight,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "cCj" = (
 /obj/structure/window/framed/urban/colony/engineering{
@@ -16065,7 +16065,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "cGB" = (
 /obj/structure/barricade/handrail/urban/handrail{
@@ -17165,7 +17165,7 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "cPV" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "cPX" = (
 /obj/effect/urban/decal/dirt,
@@ -18544,7 +18544,7 @@
 	pixel_x = -7;
 	pixel_y = 13
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "daq" = (
 /obj/structure/window/framed/urban/colony/office,
@@ -19265,7 +19265,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "dgi" = (
 /obj/item/lightstick/anchored,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "dgj" = (
 /obj/structure/table/fancywoodentable,
@@ -20369,7 +20369,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "dpt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -21601,7 +21601,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "dAg" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "dAj" = (
 /obj/structure/sign/poster{
@@ -21692,13 +21692,13 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "dAZ" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "dBc" = (
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "dBd" = (
 /obj/effect/urban/decal/trash,
@@ -22002,7 +22002,7 @@
 /area/lv759/indoors/hospital/pharmacy)
 "dDr" = (
 /obj/item/stack/rods,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "dDu" = (
 /obj/structure/prop/urban/misc/trash/green{
@@ -22201,7 +22201,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 10
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "dFY" = (
 /turf/open/floor/prison/ramptop,
@@ -22602,7 +22602,7 @@
 	pixel_x = -10;
 	pixel_y = 14
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dJM" = (
 /obj/effect/urban/decal/road/road_edge/twelve,
@@ -22893,7 +22893,7 @@
 /area/lv759/indoors/hospital/central_hallway)
 "dLQ" = (
 /obj/structure/platform_decoration/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "dLS" = (
 /obj/machinery/door/airlock/vault{
@@ -23053,7 +23053,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "dNA" = (
 /obj/structure/largecrate/random/mini/small_case{
@@ -23683,7 +23683,7 @@
 /obj/structure/prop/mainship/gelida/smallwire{
 	layer = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "dSR" = (
 /obj/machinery/computer/security,
@@ -23940,7 +23940,7 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "dUV" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
@@ -25114,7 +25114,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "egc" = (
 /obj/structure/closet/secure_closet/detective,
@@ -25994,7 +25994,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "enw" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "enC" = (
 /obj/structure/cargo_container/hd_blue{
@@ -26713,7 +26713,7 @@
 /area/lv759/indoors/power_plant/south_hallway)
 "etc" = (
 /obj/structure/platform_decoration,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "eti" = (
 /obj/item/trash/cigbutt{
@@ -27157,7 +27157,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "exx" = (
 /obj/effect/urban/decal/dirt,
@@ -27223,7 +27223,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "exP" = (
 /obj/effect/urban/decal/dirt,
@@ -27314,7 +27314,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eys" = (
 /obj/effect/urban/decal/road/lines5,
@@ -27503,7 +27503,7 @@
 	dir = 8
 	},
 /obj/structure/lattice/autosmooth,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "eAv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -27556,7 +27556,7 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/trash/four,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eAZ" = (
 /obj/structure/dropship_piece/four/dropshipventthree,
@@ -28524,7 +28524,7 @@
 /area/lv759/indoors/nt_research_complex/weaponresearchlab)
 "eJp" = (
 /obj/structure/platform/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "eJv" = (
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice{
@@ -28911,7 +28911,7 @@
 	dir = 1;
 	layer = 2.1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "eMP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -29551,7 +29551,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eRA" = (
 /obj/structure/bed/chair{
@@ -29607,7 +29607,7 @@
 /obj/structure/prop/mainship/gelida/railbumper{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "eSe" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -29856,7 +29856,7 @@
 /area/lv759/indoors/apartment/northfoyer)
 "eUx" = (
 /obj/structure/largecrate/random/barrel/white,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "eUy" = (
 /obj/structure/prop/mainship/sensor_computer3/black,
@@ -30146,7 +30146,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "eXS" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "eXT" = (
 /obj/structure/cable,
@@ -30852,7 +30852,7 @@
 	},
 /area/lv759/indoors/hospital/reception)
 "fdM" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "fdP" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -31057,7 +31057,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/landing_zone_2)
 "ffF" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/south_west_caves)
 "ffH" = (
 /obj/structure/cable,
@@ -31556,7 +31556,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "fjd" = (
 /obj/structure/table/mainship,
@@ -33489,7 +33489,7 @@
 	dir = 8
 	},
 /obj/structure/lattice/autosmooth,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "fAf" = (
 /obj/item/trash/cigbutt{
@@ -34388,7 +34388,7 @@
 /area/lv759/indoors/spaceport/cuppajoes)
 "fGY" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "fHe" = (
 /obj/effect/urban/decal/dirt,
@@ -34602,7 +34602,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "fJd" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -34920,7 +34920,7 @@
 /area/lv759/indoors/south_public_restroom)
 "fLw" = (
 /obj/structure/cargo_container/gorg,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "fLz" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
@@ -35107,7 +35107,7 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform_decoration,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "fNe" = (
 /obj/effect/urban/decal/dirt,
@@ -35804,7 +35804,7 @@
 /obj/item/trash/cigbutt{
 	pixel_x = 7
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "fSp" = (
 /obj/structure/sign/poster,
@@ -35954,7 +35954,7 @@
 /area/lv759/indoors/derelict_ship)
 "fTI" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "fTU" = (
 /obj/structure/cable,
@@ -36786,7 +36786,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "gay" = (
 /obj/structure/girder,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "gaA" = (
 /obj/effect/ai_node,
@@ -37059,7 +37059,7 @@
 /obj/effect/urban/decal/trash/eleven{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "gdt" = (
 /obj/item/smallDelivery{
@@ -37799,7 +37799,7 @@
 /area/lv759/indoors/bar/bathroom)
 "giV" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "giW" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -37978,7 +37978,7 @@
 /area/lv759/oob)
 "gkK" = (
 /obj/item/tool/shovel,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "gkM" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -38157,7 +38157,7 @@
 /area/lv759/indoors/mining_outpost/north)
 "gme" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/south_west_caves)
 "gmg" = (
 /obj/item/trash/trashbag{
@@ -38196,7 +38196,7 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "gmq" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "gmr" = (
 /obj/effect/urban/decal/dirt,
@@ -38511,7 +38511,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "goD" = (
 /obj/structure/table/reinforced/prison,
@@ -38612,7 +38612,7 @@
 /area/lv759/indoors/spaceport/horizon_runner)
 "gpA" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "gpE" = (
 /turf/open/floor/urban/metal/bluemetal1{
@@ -38928,7 +38928,7 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "gsc" = (
 /obj/structure/barricade/handrail/kutjevo,
@@ -38945,7 +38945,7 @@
 /obj/machinery/light/blue{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "gsj" = (
 /obj/structure/cable,
@@ -40188,7 +40188,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "gDE" = (
 /obj/structure/table/reinforced,
@@ -40988,7 +40988,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "gLO" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco4,
@@ -41007,7 +41007,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "gLX" = (
 /obj/effect/urban/decal/dirt,
@@ -41271,7 +41271,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "gPc" = (
 /turf/open/floor/urban/metal/stripe_red{
@@ -41644,7 +41644,7 @@
 /area/lv759/indoors/nt_security/checkpoint_central)
 "gSJ" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "gSQ" = (
 /obj/effect/urban/decal/dirt,
@@ -41722,7 +41722,7 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/trash/sixteen,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gTu" = (
 /obj/structure/bed/urban/chairs/brown{
@@ -42228,7 +42228,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "gYm" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "gYq" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -43124,7 +43124,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 6
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "hex" = (
 /obj/machinery/light{
@@ -43191,7 +43191,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "hfb" = (
 /obj/structure/bed/chair/comfy{
@@ -44248,7 +44248,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "hnM" = (
 /obj/structure/morgue{
@@ -44295,7 +44295,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "hoh" = (
 /obj/effect/urban/decal/dirt_2,
@@ -44326,7 +44326,7 @@
 /area/lv759/indoors/apartment/westhallway)
 "hoo" = (
 /obj/structure/platform/urban/metalplatform6,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "hos" = (
 /obj/structure/sign/safety/breakroom{
@@ -45193,7 +45193,7 @@
 	pixel_y = 12
 	},
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/central_streets)
 "huO" = (
 /obj/structure/bed/chair/office/light,
@@ -45240,7 +45240,7 @@
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "hvd" = (
 /obj/item/stack/rods,
@@ -45570,7 +45570,7 @@
 	dir = 4
 	},
 /obj/structure/platform/urban/metalplatform6,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "hxY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -46078,7 +46078,7 @@
 "hBx" = (
 /obj/effect/urban/decal/grate,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "hBB" = (
 /obj/item/lightstick/anchored,
@@ -47064,7 +47064,7 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "hKA" = (
 /obj/effect/urban/decal/dirt,
@@ -47466,7 +47466,7 @@
 /area/lv759/indoors/meridian/meridian_managersoffice)
 "hNU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "hNZ" = (
 /obj/structure/bed/urban/prisonbed{
@@ -47606,7 +47606,7 @@
 "hOK" = (
 /obj/item/stack/rods,
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "hOO" = (
 /obj/item/reagent_containers/glass/beaker,
@@ -47852,7 +47852,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "hQP" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "hQQ" = (
 /turf/open/floor/plating/plating_catwalk{
@@ -48371,7 +48371,7 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "hVL" = (
 /obj/machinery/meter,
@@ -48530,7 +48530,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "hXi" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
@@ -48948,7 +48948,7 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "iaY" = (
 /obj/machinery/disposal,
@@ -49834,7 +49834,7 @@
 "iiF" = (
 /obj/structure/platform/urban/rockdark,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iiI" = (
 /obj/machinery/door/poddoor/mainship/biohazard/white{
@@ -50019,7 +50019,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "ikL" = (
 /obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
@@ -50154,7 +50154,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "ilO" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "ilS" = (
 /turf/open/floor/prison/yellow{
@@ -50623,7 +50623,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "iqm" = (
 /obj/item/flashlight/lantern,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "iqr" = (
 /turf/open/floor/urban/tile/tilegreen,
@@ -50858,7 +50858,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "irR" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "irU" = (
 /obj/effect/urban/decal/dirt,
@@ -51377,7 +51377,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iwx" = (
 /obj/effect/urban/decal/dirt,
@@ -51403,7 +51403,7 @@
 	dir = 1
 	},
 /obj/structure/lattice/autosmooth,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "iwO" = (
 /obj/structure/platform,
@@ -51634,7 +51634,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "iyz" = (
 /obj/effect/urban/decal/dirt,
@@ -51876,7 +51876,7 @@
 	},
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/caveplateau)
 "iAA" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -52296,13 +52296,13 @@
 /area/lv759/outdoors/landing_zone_2)
 "iEF" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "iEH" = (
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iEN" = (
 /obj/structure/platform{
@@ -52311,7 +52311,7 @@
 /obj/machinery/light/small/blue{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "iEQ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -53412,7 +53412,7 @@
 /obj/structure/prop/urban/misc/floorprops/grate{
 	layer = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "iOf" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
@@ -53485,7 +53485,7 @@
 	},
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "iOO" = (
 /obj/structure/closet/firecloset,
@@ -53709,7 +53709,7 @@
 "iQN" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "iQQ" = (
 /obj/effect/urban/decal/dirt,
@@ -53815,7 +53815,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iSb" = (
 /obj/structure/computer3frame{
@@ -53891,7 +53891,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "iSB" = (
 /obj/item/stack/rods,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "iSI" = (
 /obj/structure/bed/chair{
@@ -54164,7 +54164,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "iVj" = (
 /obj/structure/table/reinforced,
@@ -54329,7 +54329,7 @@
 /obj/effect/urban/decal/trash/twelve{
 	pixel_y = 12
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/oob)
 "iVZ" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -54888,7 +54888,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jaB" = (
 /obj/structure/bed/chair/wood/normal{
@@ -54923,7 +54923,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "jaR" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -55141,7 +55141,7 @@
 /area/lv759/indoors/spaceport/horizon_runner)
 "jcw" = (
 /obj/structure/platform/urban/metalplatform2,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jcE" = (
 /turf/open/floor/urban_wood,
@@ -55320,7 +55320,7 @@
 	level = 3;
 	pixel_x = 16
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "jdX" = (
 /obj/item/clothing/mask/facehugger/dead,
@@ -55488,7 +55488,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 9
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "jeS" = (
 /obj/effect/urban/decal/dirt,
@@ -56295,7 +56295,7 @@
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "jkX" = (
 /obj/structure/ore_box,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "jlb" = (
 /turf/open/urban/street/sidewalk{
@@ -56375,7 +56375,7 @@
 	dir = 4;
 	layer = 2.8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jlT" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark,
@@ -56463,7 +56463,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "jmB" = (
 /obj/structure/window/reinforced{
@@ -56606,7 +56606,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "jnD" = (
 /obj/structure/largecrate/random{
@@ -57078,7 +57078,7 @@
 /area/lv759/indoors/weyyu_office/breakroom)
 "jrw" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "jrx" = (
 /turf/open/floor/prison{
@@ -57248,7 +57248,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jsZ" = (
 /obj/structure/barricade/handrail/urban/handrail{
@@ -57687,7 +57687,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "jxd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "jxf" = (
 /turf/open/floor/plating,
@@ -57902,7 +57902,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/gibs/robot,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jyZ" = (
 /obj/structure/bed/urban/chairs/brown{
@@ -58126,7 +58126,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "jAB" = (
 /obj/structure/bed/stool{
@@ -58614,7 +58614,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "jFW" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark,
@@ -58801,7 +58801,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "jHI" = (
 /obj/machinery/floodlight,
@@ -59154,7 +59154,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "jLA" = (
 /obj/effect/urban/decal/dirt,
@@ -59246,7 +59246,7 @@
 /obj/item/trash/cigbutt{
 	pixel_x = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/central_streets)
 "jLP" = (
 /obj/structure/cargo_container{
@@ -60281,7 +60281,7 @@
 "jVl" = (
 /obj/structure/platform/urban/metalplatform6,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "jVp" = (
 /obj/structure/cable,
@@ -60430,7 +60430,7 @@
 	dir = 8
 	},
 /obj/machinery/light/small/blue,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "jWC" = (
 /obj/effect/urban/decal/dirt,
@@ -60534,7 +60534,7 @@
 "jXe" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "jXj" = (
 /obj/effect/urban/decal/dirt,
@@ -60651,7 +60651,7 @@
 "jXI" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "jXK" = (
 /obj/structure/closet/crate/trashcart{
@@ -60756,7 +60756,7 @@
 	pixel_x = 3;
 	pixel_y = 7
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "jYU" = (
 /obj/structure/closet,
@@ -61446,7 +61446,7 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "kfj" = (
 /obj/effect/decal/cleanable/blood,
@@ -61460,7 +61460,7 @@
 	pixel_x = -9;
 	pixel_y = 20
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "kft" = (
 /obj/effect/urban/decal/dirt,
@@ -61556,7 +61556,7 @@
 	},
 /area/lv759/indoors/hospital/pharmacy)
 "kgG" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "kgH" = (
 /obj/effect/urban/decal/dirt,
@@ -61681,7 +61681,7 @@
 /area/lv759/indoors/nt_research_complex/cargo)
 "khA" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "khE" = (
 /obj/effect/decal/cleanable/dirt{
@@ -61699,7 +61699,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "khO" = (
 /obj/effect/urban/decal/dirt,
@@ -62061,7 +62061,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "kkF" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "kkG" = (
 /obj/structure/platform/urban/rockdark{
@@ -62284,7 +62284,7 @@
 	layer = 2.1
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "kmL" = (
 /obj/effect/urban/decal/road/lines1,
@@ -63148,7 +63148,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "kuP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -63418,7 +63418,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "kxj" = (
 /obj/effect/urban/decal/dirt,
@@ -63745,7 +63745,7 @@
 	},
 /obj/structure/platform/urban/rockdark,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "kzI" = (
 /obj/item/stack/rods,
@@ -64025,7 +64025,7 @@
 	pixel_y = 9
 	},
 /obj/item/tool/shovel,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "kCp" = (
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -64171,7 +64171,7 @@
 "kDh" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/girder,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/hospital/morgue)
 "kDj" = (
 /obj/effect/ai_node,
@@ -64196,7 +64196,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "kDF" = (
 /obj/effect/urban/decal/dirt,
@@ -64280,7 +64280,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "kFb" = (
 /obj/effect/urban/decal/dirt,
@@ -64740,7 +64740,7 @@
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "kJD" = (
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "kJH" = (
 /obj/machinery/space_heater/radiator/red{
@@ -65169,7 +65169,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "kNE" = (
 /obj/effect/urban/decal/dirt,
@@ -65286,7 +65286,7 @@
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "kOt" = (
 /obj/structure/largecrate/random/mini/small_case{
@@ -65414,7 +65414,7 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "kPF" = (
 /turf/open/floor/prison,
@@ -65595,7 +65595,7 @@
 /obj/effect/urban/decal/trash/six{
 	pixel_y = 12
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "kRl" = (
 /obj/effect/urban/decal/road/lines3,
@@ -67757,7 +67757,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "ljn" = (
 /obj/item/trash/cigbutt{
@@ -68842,7 +68842,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "lto" = (
 /obj/structure/window/framed/urban/reinforced{
@@ -68904,7 +68904,7 @@
 /area/lv759/indoors/mining_outpost/northeast)
 "ltZ" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "lud" = (
 /obj/effect/ai_node,
@@ -68944,7 +68944,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "luw" = (
 /obj/effect/urban/decal/road/lines2,
@@ -69765,7 +69765,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "lCa" = (
 /obj/item/shard,
@@ -69899,7 +69899,7 @@
 /area/lv759/indoors/north_west_caves)
 "lCS" = (
 /obj/effect/landmark/nuke_spawn,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "lCT" = (
 /obj/structure/curtain/open/shower,
@@ -71344,7 +71344,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "lPa" = (
 /obj/machinery/light,
@@ -71887,7 +71887,7 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/trash/ten,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lSx" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -72271,7 +72271,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/south_public_restroom)
 "lVE" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "lVJ" = (
 /obj/item/clothing/head/warning_cone{
@@ -72334,7 +72334,7 @@
 "lWd" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "lWe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -72446,7 +72446,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lWN" = (
 /obj/structure/rack,
@@ -72981,7 +72981,7 @@
 /obj/structure/barricade/handrail/wire{
 	layer = 3
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "mcc" = (
 /obj/effect/urban/decal/dirt,
@@ -73794,7 +73794,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "miQ" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "miR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -74166,7 +74166,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "mlP" = (
 /obj/machinery/iv_drip{
@@ -74889,7 +74889,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mrx" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "mrA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -75381,7 +75381,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "mvG" = (
 /obj/structure/platform/urban/metalplatform6,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "mvJ" = (
 /obj/effect/urban/decal/dirt,
@@ -75681,7 +75681,7 @@
 "mxY" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "mxZ" = (
 /obj/structure/bed/chair{
@@ -76273,7 +76273,7 @@
 "mCW" = (
 /obj/item/trash/candy,
 /obj/item/trash/candy,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mDf" = (
 /obj/effect/ai_node,
@@ -77900,7 +77900,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "mRf" = (
 /obj/structure/table/reinforced/prison{
@@ -78176,7 +78176,7 @@
 /area/lv759/indoors/NTmart)
 "mTA" = (
 /obj/structure/platform_decoration/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "mTE" = (
 /obj/effect/urban/decal/dirt,
@@ -78253,7 +78253,7 @@
 /area/lv759/indoors/bar/entertainment)
 "mUu" = (
 /obj/item/trash/cigbutt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mUw" = (
 /obj/structure/platform/urban/rockdark{
@@ -80064,7 +80064,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nig" = (
 /obj/structure/barricade/handrail/strata,
@@ -80791,7 +80791,7 @@
 /area/lv759/indoors/garage_workshop)
 "nny" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "nnJ" = (
 /obj/structure/closet/l3closet/virology,
@@ -82405,7 +82405,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "nAQ" = (
 /obj/structure/stairs/seamless{
@@ -82759,7 +82759,7 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "nEl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -83401,7 +83401,7 @@
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining{
 	layer = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "nKh" = (
 /obj/effect/urban/decal/dirt,
@@ -84270,7 +84270,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "nRg" = (
 /obj/structure/platform{
@@ -84726,7 +84726,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "nUZ" = (
 /obj/effect/urban/decal/road/lines2,
@@ -85430,7 +85430,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "oaW" = (
 /obj/item/stack/rods,
@@ -85516,7 +85516,7 @@
 	dir = 8
 	},
 /obj/item/trash/cigbutt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "obF" = (
 /obj/structure/dropship_piece/four/rearwing/leftbottom,
@@ -86325,7 +86325,7 @@
 	dir = 4
 	},
 /obj/structure/lattice/autosmooth,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "oiA" = (
 /obj/effect/urban/decal/dirt,
@@ -86960,7 +86960,7 @@
 	},
 /obj/structure/platform/urban/metalplatform6,
 /obj/item/trash/cigbutt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "opz" = (
 /obj/effect/urban/decal/road/road_stop/five{
@@ -87719,7 +87719,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "owG" = (
 /obj/structure/barricade/handrail/strata{
@@ -87918,7 +87918,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 5
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "oyQ" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco6{
@@ -88376,7 +88376,7 @@
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "oDj" = (
 /obj/structure/extinguisher_cabinet{
@@ -88597,7 +88597,7 @@
 /area/lv759/indoors/spaceport/cargo)
 "oFo" = (
 /obj/structure/fence/dark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oFt" = (
 /obj/structure/bed/chair/dropship/doublewide/right,
@@ -89944,7 +89944,7 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/caveplateau)
 "oQp" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -89985,7 +89985,7 @@
 	dir = 1;
 	layer = 2.1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oQE" = (
 /obj/structure/platform/mineral{
@@ -90017,7 +90017,7 @@
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab"
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oQS" = (
 /obj/effect/ai_node,
@@ -90482,7 +90482,7 @@
 /obj/structure/platform{
 	layer = 2
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oVS" = (
 /obj/item/ammo_casing/bullet,
@@ -90690,7 +90690,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "oXA" = (
 /obj/structure/barricade/handrail/urban/road/plastic/red{
@@ -92142,7 +92142,7 @@
 /turf/open/floor/mainship/floor,
 /area/lv759/indoors/spaceport/baggagehandling)
 "pjR" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "pjS" = (
 /obj/effect/decal/cleanable/generic,
@@ -92378,7 +92378,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "pmj" = (
 /obj/effect/urban/decal/road/lines3,
@@ -93593,7 +93593,7 @@
 /area/lv759/indoors/bar/entertainment)
 "pwh" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "pwj" = (
 /obj/effect/urban/decal/dirt,
@@ -93979,7 +93979,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small/blue,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "pyZ" = (
 /obj/item/tool/wet_sign{
@@ -94626,7 +94626,7 @@
 /obj/structure/prop/mainship/gelida/powerccable{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pDJ" = (
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
@@ -95144,7 +95144,7 @@
 	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "pIA" = (
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
@@ -96262,7 +96262,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "pRQ" = (
 /obj/effect/urban/decal/dirt,
@@ -96610,7 +96610,7 @@
 "pVa" = (
 /obj/effect/spawner/random/engineering/metal,
 /obj/item/stack/rods,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "pVb" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco1,
@@ -96628,7 +96628,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/south_west_caves)
 "pVn" = (
 /obj/machinery/bodyscanner,
@@ -96660,7 +96660,7 @@
 	dir = 8
 	},
 /obj/item/device/flashlight/lamp/tripod,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "pVG" = (
 /obj/structure/platform_decoration/urban/rockdark{
@@ -96823,7 +96823,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "pWD" = (
 /obj/structure/toilet,
@@ -97321,7 +97321,7 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qam" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -97524,7 +97524,7 @@
 /obj/structure/prop/mainship/gelida/railbumper{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "qcC" = (
 /obj/effect/urban/decal/tiretrack{
@@ -97822,13 +97822,13 @@
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qek" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "qer" = (
 /obj/structure/table/woodentable,
@@ -97960,7 +97960,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "qfk" = (
 /obj/effect/urban/decal/dirt,
@@ -98087,7 +98087,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "qgP" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
@@ -98701,7 +98701,7 @@
 	},
 /obj/item/flashlight,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "qlr" = (
 /obj/machinery/vending/coffee{
@@ -99178,7 +99178,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "qpP" = (
 /obj/structure/barricade/handrail,
@@ -99508,7 +99508,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/weyyu_office/floor)
 "qsS" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qtd" = (
 /obj/structure/sink{
@@ -99582,7 +99582,7 @@
 /obj/structure/girder,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "qtK" = (
 /obj/item/lightstick/anchored,
@@ -99907,7 +99907,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north)
 "qwL" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "qwM" = (
 /obj/item/stack/sheet/cardboard,
@@ -100154,12 +100154,12 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qze" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "qzf" = (
 /obj/machinery/door/airlock/mainship/security{
@@ -100565,7 +100565,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/emergency_room)
 "qDt" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qDG" = (
 /obj/effect/urban/decal/dirt,
@@ -100648,7 +100648,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "qEZ" = (
 /obj/structure/prop/urban/misc/stoneplanterseats/empty{
@@ -100741,14 +100741,14 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "qFN" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qFO" = (
 /obj/structure/platform{
 	dir = 8;
 	layer = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_1)
 "qFS" = (
 /obj/item/stack/sheet/cardboard,
@@ -100972,7 +100972,7 @@
 	dir = 1;
 	layer = 2.1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "qIx" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -101195,7 +101195,7 @@
 	},
 /obj/item/trash/cigbutt,
 /obj/item/trash/cigbutt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qKk" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -101916,7 +101916,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "qRt" = (
 /obj/structure/bed/chair/office/dark{
@@ -102118,7 +102118,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "qSG" = (
 /obj/effect/decal/cleanable/blood,
@@ -102389,7 +102389,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "qVD" = (
 /obj/structure/closet/crate,
@@ -102878,7 +102878,7 @@
 	dir = 8
 	},
 /obj/structure/platform/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qZG" = (
 /obj/effect/urban/decal/road/road_edge/two,
@@ -103083,7 +103083,7 @@
 /obj/structure/largecrate/random/barrel/black{
 	pixel_x = -6
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "rbX" = (
 /obj/structure/cable,
@@ -103563,7 +103563,7 @@
 	pixel_y = 16
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "rfY" = (
 /obj/structure/fence{
@@ -103847,7 +103847,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ril" = (
 /obj/effect/urban/decal/grate,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "rio" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -104271,7 +104271,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rlH" = (
 /obj/structure/table/reinforced/prison,
@@ -104574,7 +104574,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "rol" = (
 /obj/structure/table/reinforced,
@@ -104606,7 +104606,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "ron" = (
 /obj/structure/platform,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "roq" = (
 /obj/effect/urban/decal/trash/six{
@@ -104647,7 +104647,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "roJ" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/south_west_caves)
 "roM" = (
 /obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_on{
@@ -104766,7 +104766,7 @@
 	dir = 4
 	},
 /obj/item/trash/cigbutt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rpu" = (
 /obj/structure/platform/urban/metalplatform6{
@@ -105074,7 +105074,7 @@
 /obj/structure/barricade/handrail/strata{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rsC" = (
 /obj/effect/urban/decal/dirt,
@@ -105477,7 +105477,7 @@
 /area/lv759/indoors/north_caves)
 "rvE" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "rvF" = (
 /obj/structure/cable,
@@ -105700,7 +105700,7 @@
 /area/lv759/indoors/north_caves)
 "ryd" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "ryl" = (
 /obj/effect/urban/decal/dirt,
@@ -106696,7 +106696,7 @@
 /area/lv759/indoors/derelict_ship)
 "rHn" = (
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "rHo" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -107058,7 +107058,7 @@
 /obj/structure/barricade/handrail/strata{
 	layer = 3.1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rKx" = (
 /obj/effect/urban/decal/road/lines3,
@@ -107725,7 +107725,7 @@
 	layer = 4;
 	pixel_x = 6
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "rPv" = (
 /obj/effect/urban/decal/dirt,
@@ -107940,7 +107940,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "rRj" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "rRt" = (
 /obj/effect/turf_decal/medical_decals/triage,
@@ -108436,7 +108436,7 @@
 	pixel_x = -8;
 	pixel_y = 12
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rWb" = (
 /obj/structure/platform{
@@ -108750,7 +108750,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rYQ" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -109065,7 +109065,7 @@
 "sch" = (
 /obj/item/lightstick/anchored,
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "sci" = (
 /obj/effect/urban/decal/dirt,
@@ -109116,7 +109116,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "scE" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "scY" = (
 /obj/effect/urban/decal/dirt,
@@ -109663,7 +109663,7 @@
 "sgS" = (
 /obj/structure/platform/urban/metalplatform6,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "shb" = (
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -109851,7 +109851,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "siK" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "siL" = (
 /obj/structure/table/reinforced/prison,
@@ -109923,7 +109923,7 @@
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "sjj" = (
 /obj/structure/noticeboard,
@@ -110009,7 +110009,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "sjH" = (
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door{
@@ -110529,7 +110529,7 @@
 /obj/structure/largecrate/random/case/double{
 	layer = 2
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "snu" = (
 /obj/effect/urban/decal/dirt,
@@ -111238,7 +111238,7 @@
 	},
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/caveplateau)
 "sto" = (
 /obj/machinery/chem_master,
@@ -111405,7 +111405,7 @@
 /obj/structure/platform/urban/metalplatform6,
 /obj/machinery/light,
 /obj/machinery/light/blue,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "suD" = (
 /obj/item/stack/rods,
@@ -111743,7 +111743,7 @@
 "sye" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt_2,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "syh" = (
 /obj/machinery/door/airlock/mainship/security/glass{
@@ -111759,7 +111759,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 5
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "syj" = (
 /obj/item/clothing/head/warning_cone{
@@ -111936,7 +111936,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "szk" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "szp" = (
 /obj/machinery/floodlight,
@@ -112325,7 +112325,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "sCy" = (
 /obj/structure/cable,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "sCz" = (
 /turf/open/urbanshale/layer1,
@@ -113489,7 +113489,7 @@
 /obj/item/trash/cigbutt{
 	pixel_x = 7
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "sMg" = (
 /obj/machinery/conveyor{
@@ -114167,7 +114167,7 @@
 /area/lv759/indoors/north_east_caves)
 "sRw" = (
 /obj/structure/platform,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_1)
 "sRx" = (
 /obj/structure/table/mainship,
@@ -114408,7 +114408,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "sTC" = (
 /obj/structure/largecrate/random/barrel/red{
@@ -114486,7 +114486,7 @@
 /area/lv759/outdoors/caveplateau)
 "sUf" = (
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "sUg" = (
 /obj/structure/largecrate/guns/russian,
@@ -114940,7 +114940,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 10
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "sYn" = (
 /obj/effect/urban/decal/dirt,
@@ -115081,7 +115081,7 @@
 /obj/machinery/light/blue{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "sZp" = (
 /obj/structure/platform_decoration/urban/engineer_corner,
@@ -115187,7 +115187,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "tai" = (
 /obj/structure/cable,
@@ -116239,7 +116239,7 @@
 	dir = 1
 	},
 /obj/structure/platform/urban/metalplatform2,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "tin" = (
 /obj/effect/decal/cleanable/dirt/grime3,
@@ -117296,7 +117296,7 @@
 	layer = 6;
 	pixel_y = 11
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "tsc" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -118120,7 +118120,7 @@
 "tzc" = (
 /obj/effect/urban/decal/grate,
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "tzd" = (
 /obj/structure/cable,
@@ -118865,7 +118865,7 @@
 	layer = 1
 	},
 /obj/item/trash/chunk,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tGa" = (
 /obj/effect/turf_decal/medical_decals/triage{
@@ -120224,7 +120224,7 @@
 	},
 /obj/item/trash/cigbutt,
 /obj/effect/urban/decal/trash/eleven,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tQX" = (
 /obj/effect/urban/decal/dirt,
@@ -120497,7 +120497,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "tTe" = (
 /turf/open/urban/street/cement3,
@@ -121842,7 +121842,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "udq" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -122469,7 +122469,7 @@
 /obj/effect/urban/decal/grate,
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "uil" = (
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -122975,7 +122975,7 @@
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "umj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -122989,7 +122989,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "umk" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "umn" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -123206,7 +123206,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "unY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -123859,7 +123859,7 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "usF" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "usH" = (
 /obj/structure/window/framed/urban/reinforced,
@@ -123870,7 +123870,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "usS" = (
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
@@ -124058,7 +124058,7 @@
 /area/lv759/indoors/spaceport/engineering)
 "uve" = (
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "uvi" = (
 /obj/effect/urban/decal/dirt,
@@ -124126,7 +124126,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/south_west_caves)
 "uvF" = (
 /obj/effect/decal/cleanable/blood,
@@ -124389,7 +124389,7 @@
 "uxT" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "uyh" = (
 /obj/machinery/meter,
@@ -126460,7 +126460,7 @@
 /area/lv759/indoors/weyyu_office/breakroom)
 "uPK" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "uPP" = (
 /turf/open/floor/urban/wood/redwood,
@@ -126553,7 +126553,7 @@
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/platform/urban/rockdark,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "uQI" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -128787,7 +128787,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/outdoors/landing_zone_2)
 "vjb" = (
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "vjc" = (
 /obj/item/trash/cigbutt,
@@ -128872,7 +128872,7 @@
 	},
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "vjM" = (
 /turf/open/floor/urban/metal/zbrownfloor1{
@@ -129021,7 +129021,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_1)
 "vkO" = (
 /obj/effect/urban/decal/dirt,
@@ -131923,7 +131923,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/east_caves)
 "vKe" = (
 /obj/structure/platform{
@@ -131934,7 +131934,7 @@
 	dir = 1;
 	layer = 1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vKi" = (
 /obj/structure/prop/mainship/sensor_computer1/black,
@@ -132607,7 +132607,7 @@
 /area/lv759/indoors/derelict_ship)
 "vPP" = (
 /obj/machinery/floodlight,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_east_caves)
 "vPQ" = (
 /obj/effect/ai_node,
@@ -132733,7 +132733,7 @@
 "vQB" = (
 /obj/structure/platform_decoration/urban/rockdark,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "vQF" = (
 /turf/open/floor/urban/tile/beige_bigtile,
@@ -132806,7 +132806,7 @@
 /area/lv759/indoors/bar/bathroom)
 "vRj" = (
 /obj/structure/platform/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "vRk" = (
 /obj/structure/window/reinforced{
@@ -133113,7 +133113,7 @@
 	},
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/caveplateau)
 "vTL" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -133195,7 +133195,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "vUr" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -134590,7 +134590,7 @@
 "wfm" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "wfn" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco3{
@@ -135147,7 +135147,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "wjG" = (
 /obj/item/clothing/mask/facehugger/dead,
@@ -135222,7 +135222,7 @@
 	},
 /obj/item/stock_parts/matter_bin,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "wkg" = (
 /obj/structure/fence/dark,
@@ -135525,7 +135525,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/north_street)
 "wmr" = (
 /obj/structure/barricade/handrail/kutjevo,
@@ -135874,7 +135874,7 @@
 /obj/structure/platform/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "wpu" = (
 /obj/effect/urban/decal/dirt,
@@ -136663,7 +136663,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "wxo" = (
 /obj/item/reagent_containers/glass/bucket{
@@ -136858,7 +136858,7 @@
 "wzk" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "wzo" = (
 /obj/structure/platform/urban/metalplatform1{
@@ -138058,7 +138058,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wIO" = (
 /obj/effect/urban/decal/dirt,
@@ -138405,7 +138405,7 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "wLI" = (
 /obj/machinery/door/window{
@@ -138831,7 +138831,7 @@
 /area/lv759/indoors/apartment/westbedrooms)
 "wPr" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "wPt" = (
 /obj/effect/landmark/weed_node,
@@ -139710,7 +139710,7 @@
 /obj/effect/urban/decal/grate{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "wWd" = (
 /obj/structure/window/framed/urban/spaceport,
@@ -140141,7 +140141,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration/urban/rockdark,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_west_caves)
 "wZS" = (
 /obj/structure/bed/chair{
@@ -140262,7 +140262,7 @@
 	pixel_x = -9;
 	pixel_y = -6
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_2)
 "xbM" = (
 /turf/open/floor/prison/darkbrown{
@@ -141450,7 +141450,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "xkz" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
@@ -141583,7 +141583,7 @@
 	level = 3;
 	pixel_x = 16
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xlZ" = (
 /obj/item/stack/rods,
@@ -142767,13 +142767,13 @@
 	dir = 4;
 	pixel_y = -1
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xvy" = (
 /obj/structure/platform/urban/rockdark{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xvA" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe,
@@ -142920,7 +142920,7 @@
 "xwW" = (
 /obj/structure/platform,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xwX" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaltan{
@@ -143102,7 +143102,7 @@
 /obj/structure/platform/urban/rockdark,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt_2,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "xyX" = (
 /obj/effect/urban/decal/road/road_edge,
@@ -143240,7 +143240,7 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/west_caves)
 "xzX" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -143315,7 +143315,7 @@
 /area/lv759/indoors/tcomms_northwest)
 "xAq" = (
 /obj/structure/largecrate/random/barrel/brown,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "xAB" = (
 /obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_off,
@@ -143538,7 +143538,7 @@
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "xDb" = (
 /obj/effect/urban/decal/dirt,
@@ -143662,7 +143662,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/nt_research_complex_entrance)
 "xEs" = (
 /turf/open/floor/tile/dark/brown3{
@@ -144604,7 +144604,7 @@
 "xLF" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "xLG" = (
 /obj/structure/barricade/handrail/strata{
@@ -144628,7 +144628,7 @@
 	},
 /obj/structure/platform/urban/metalplatform6,
 /obj/effect/urban/decal/trash,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "xLO" = (
 /obj/machinery/door/poddoor/mainship{
@@ -145522,7 +145522,7 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/central_caves)
 "xTq" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -147028,7 +147028,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/turf/open/floor/sandrock,
+/turf/open/ground/sandrock,
 /area/lv759/indoors/north_caves)
 "ygV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
