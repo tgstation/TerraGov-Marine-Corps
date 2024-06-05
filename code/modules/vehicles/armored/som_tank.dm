@@ -11,6 +11,7 @@
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT //leave as is or??
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS
+	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
 	pixel_y = -80
 	max_integrity = 900
@@ -47,6 +48,9 @@
 		return FALSE
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
+
+/obj/vehicle/sealed/armored/multitile/som_tank/lava_act()
+	return //we flying baby
 
 ///Animates the bob for the tank and its desants
 /obj/vehicle/sealed/armored/multitile/som_tank/proc/animate_hover()
