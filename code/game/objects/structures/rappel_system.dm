@@ -368,7 +368,7 @@
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
 		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
-				return
+			return
 
 	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
