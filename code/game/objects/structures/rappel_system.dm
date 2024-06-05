@@ -132,6 +132,11 @@
 	user.client.perspective = EYE_PERSPECTIVE
 	user.client.eye = target_turf
 
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
+		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
+		if(!do_after(user, 3 SECONDS, NONE, target_turf, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+			return
+
 	if(do_after(user, 2 SECONDS, NONE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
@@ -359,6 +364,12 @@
 
 	step(user, get_dir(user, src))
 	user.balloon_alert_to_viewers(user, "begins clipping to the rappel...")
+
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
+		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
+		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
+				return
+
 	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.forceMove(get_turf(parent_system))
