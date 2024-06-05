@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage/marine/boomvest
 	name = "tactical explosive vest"
-	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Control-Click to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest! Riot shields prevent detonation of the tactical explosive vest!!</span>"
+	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Right-Click with empty hand to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest! Riot shields and cloaking effects prevent detonation of the tactical explosive vest!!</span>"
 	icon_state = "boom_vest"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0
@@ -62,7 +62,7 @@
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
-	explosion(target, 2, 2, 6, 7, 5, 5)
+	explosion(target, 3, 3, 6, 7, 5, 5)
 	qdel(src)
 
 /obj/item/clothing/suit/storage/marine/boomvest/attack_hand_alternate(mob/living/user)
