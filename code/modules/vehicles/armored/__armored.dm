@@ -669,6 +669,8 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/vis_obj/turret_overlay/proc/set_flashing(new_flashing)
+	if(flashing == new_flashing)
+		return
 	flashing = new_flashing
 	update_appearance(UPDATE_OVERLAYS)
 
