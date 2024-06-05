@@ -27,7 +27,7 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
-	engine_sound = null
+	engine_sound = SFX_HOVER_TANK
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
 	. = ..()
