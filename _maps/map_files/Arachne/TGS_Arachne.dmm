@@ -652,7 +652,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "aDo" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
 "aDL" = (
@@ -907,7 +907,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "aOG" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "aOH" = (
@@ -1771,7 +1771,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "bCG" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lounge)
 "bCU" = (
@@ -2169,7 +2169,7 @@
 	},
 /area/mainship/squads/general)
 "bYV" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "bZg" = (
@@ -4022,7 +4022,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
 "duG" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar/droppod)
 "duO" = (
@@ -4599,7 +4599,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "dUA" = (
@@ -4727,7 +4727,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "ecb" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/starboard_garden)
 "ecg" = (
@@ -5131,7 +5131,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "etL" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/evacuation)
 "etU" = (
@@ -5429,7 +5429,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "eGk" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical)
 "eGQ" = (
@@ -5498,7 +5498,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/living/bridgebunks)
 "eLf" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
 "eLi" = (
@@ -6321,7 +6321,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "fqy" = (
@@ -6969,7 +6969,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/starboard_hallway)
 "fSD" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
 "fTn" = (
@@ -8128,7 +8128,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "gSi" = (
@@ -8195,7 +8195,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_ert)
 "gVu" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/shipboard/firing_range)
 "gVz" = (
@@ -11455,7 +11455,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "jAG" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/weapon_room)
 "jBl" = (
@@ -13898,7 +13898,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/commandbunks)
 "lvX" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "lwi" = (
@@ -14241,7 +14241,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "lLL" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engineering_workshop)
 "lLS" = (
@@ -14281,10 +14281,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
-"lNQ" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "lOu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -14532,7 +14528,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lXb" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
 "lXu" = (
@@ -14749,7 +14745,7 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells)
 "mef" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/chief_mp_office)
 "mel" = (
@@ -15014,7 +15010,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "mrs" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/repair_bay)
 "mrK" = (
@@ -15327,7 +15323,7 @@
 /turf/open/floor/mainship/silver,
 /area/mainship/living/evacuation)
 "mBI" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/morgue)
 "mCg" = (
@@ -15349,7 +15345,7 @@
 	},
 /area/mainship/command/cic)
 "mCs" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/starboard_ert)
 "mCy" = (
@@ -17083,7 +17079,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
 "oaM" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "oaU" = (
@@ -17747,7 +17743,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/port_hallway)
 "oCL" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "oCN" = (
@@ -17824,7 +17820,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "oFn" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
 "oFr" = (
@@ -18571,7 +18567,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "poz" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/cmo_office)
 "poI" = (
@@ -19671,7 +19667,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "qmG" = (
@@ -19797,7 +19793,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "qpR" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
 "qqq" = (
@@ -19938,7 +19934,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "qwU" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
 "qxI" = (
@@ -20014,7 +20010,7 @@
 /turf/open/floor/mainship/silver/full,
 /area/mainship/living/evacuation)
 "qCd" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
 "qCF" = (
@@ -20844,7 +20840,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "rkn" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
 "rkt" = (
@@ -22333,12 +22329,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/cafeteria_officer)
-"sqK" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "sqT" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -22371,7 +22361,7 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells)
 "ssO" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "ssR" = (
@@ -22664,7 +22654,7 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells)
 "sJS" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/brig_cells)
 "sKc" = (
@@ -23299,7 +23289,7 @@
 /area/mainship/hallways/hangar)
 "tuj" = (
 /obj/structure/cable,
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engine_core)
 "tuC" = (
@@ -25017,7 +25007,7 @@
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "uRm" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/grunt_rnr)
 "uRr" = (
@@ -25478,7 +25468,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/cic)
 "vkU" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_one)
 "vkZ" = (
@@ -27241,12 +27231,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
-"wDJ" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "wDK" = (
 /obj/structure/cable,
 /obj/machinery/holopad,
@@ -27839,7 +27823,7 @@
 	},
 /area/mainship/squads/general)
 "xgK" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/numbertwobunks)
 "xha" = (
@@ -27948,10 +27932,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
-"xkA" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xlh" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/cargo/arrow{
@@ -28001,7 +27981,7 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "xpP" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "xpW" = (
@@ -28757,7 +28737,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/medical{
 	dir = 8
 	},
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
@@ -36402,7 +36382,7 @@ vAL
 mGC
 jfL
 jcy
-lNQ
+mGC
 mGC
 mGC
 mGC
@@ -36504,7 +36484,7 @@ vAL
 rik
 rik
 bHy
-xkA
+mGC
 mGC
 mGC
 mGC
@@ -37116,7 +37096,7 @@ vAL
 uST
 uST
 uhS
-xkA
+mGC
 mGC
 mGC
 mGC
@@ -37218,7 +37198,7 @@ vAL
 mGC
 jfL
 jcy
-lNQ
+mGC
 mGC
 mGC
 mGC
@@ -39365,7 +39345,7 @@ krc
 bHy
 mGC
 fjj
-sqK
+mGC
 mGC
 mGC
 mGC
@@ -40385,7 +40365,7 @@ mtP
 uhS
 mGC
 fjj
-wDJ
+mGC
 mGC
 mGC
 mGC

@@ -161,6 +161,11 @@ OPERATIONS
 	contains = list(/obj/item/supplytablet)
 	cost = 50
 
+/datum/supply_packs/operations/tadpole_electronics
+	name = "Tadpole Navigation Electronics"
+	contains = list(/obj/item/circuitboard/tadpole)
+	cost = 750
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -487,17 +492,15 @@ WEAPONS
 /datum/supply_packs/weapons/railgun_ammo
 	name = "SR-220 Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/weapons/railgun_ammo/hvap
 	name = "SR-220 Railgun high velocity armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/hvap)
-	cost = 50
 
 /datum/supply_packs/weapons/railgun_ammo/smart
 	name = "SR-220 Railgun smart armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/smart)
-	cost = 50
 
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
@@ -1034,12 +1037,12 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/howitzer/incendiary)
 	cost = 40
 
-/datum/supply_packs/explosives/mortar_ammo_wp
+/datum/supply_packs/explosives/howitzer_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"
 	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
 	cost = 60
 
-/datum/supply_packs/explosives/mortar_ammo_plasmaloss
+/datum/supply_packs/explosives/howitzer_ammo_plasmaloss
 	name = "MG-100Y howitzer tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 60

@@ -542,8 +542,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "For the quenching of unfortunate mistakes."
 	icon_state = "hydrocannon_pepper"
 
-
-
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
 	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
@@ -967,6 +965,48 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
 		gun_user?.record_war_crime()
 
+//VSD RPG
+/obj/item/weapon/gun/launcher/rocket/vsd
+	name = "\improper C153 shoulder launcher"
+	desc = "An Anti-personnel Rocket Launcher made by Crash Core. Used mainly by V.S.D specialists, it can fire three specialized rounds. High Explosive, Incendiary Explosive, and a Chemical Capped High Explosive."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "c153"
+	worn_icon_state = "c153"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
+	caliber = CALIBER_84MM //codex
+	load_method = MAGAZINE //codex
+	default_ammo_type = /obj/item/ammo_magazine/rocket/vsd/he
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/vsd/he,
+		/obj/item/ammo_magazine/rocket/vsd/incendiary,
+		/obj/item/ammo_magazine/rocket/vsd/chemical,
+	)
+	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	attachable_allowed = list()
+	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	fire_sound = "rpg_fire"
+
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 44, "rail_y" = 21, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	windup_delay = 0.6 SECONDS
+	scatter = -1
+	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+
+/obj/item/weapon/gun/launcher/rocket/vsd/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/vsd/incendiary))
+		gun_user?.record_war_crime()
+
 //-------------------------------------------------------
 //RG-220 Railgun
 
@@ -980,7 +1020,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	max_shells = 3 //codex
+	max_shells = 1 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
@@ -1004,7 +1044,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 3 SECONDS
+	fire_delay = 2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3

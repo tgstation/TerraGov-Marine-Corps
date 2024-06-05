@@ -185,7 +185,7 @@
 /area/campaign/jungle_outpost/outpost/bar)
 "GX" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /obj/effect/spawner/random/misc/cigar,
@@ -276,7 +276,7 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "RP" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /turf/open/floor/grimy,

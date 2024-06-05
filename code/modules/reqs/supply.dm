@@ -211,7 +211,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/supplytablet
 	name = "ASRS tablet"
 	desc = "A tablet for an Automated Storage and Retrieval System"
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_MARINE_CARGO)
 	equip_slot_flags = ITEM_SLOT_POCKET
