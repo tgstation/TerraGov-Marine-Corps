@@ -1988,7 +1988,7 @@
 /area/space)
 "XF" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/spawner/random/machinery/motorbike,
+/obj/effect/spawner/random/machinery/motorbike/uncommon,
 /turf/open/floor/plating/mainship,
 /area/space)
 "XL" = (
