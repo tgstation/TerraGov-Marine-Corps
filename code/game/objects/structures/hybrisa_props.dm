@@ -25,15 +25,15 @@
 			icon_state = initial(icon_state)
 			return
 		if(2000 to 2500)
-			icon_state = icon_state = "[initial(icon_state)]_damage_[1]"
+			icon_state = "[initial(icon_state)]_damage_[1]"
 		if(1500 to 2000)
-			icon_state = icon_state = "[initial(icon_state)]_damage_[2]"
+			icon_state = "[initial(icon_state)]_damage_[2]"
 		if(1000 to 1500)
-			icon_state = icon_state = "[initial(icon_state)]_damage_[3]"
+			icon_state = "[initial(icon_state)]_damage_[3]"
 		if(500 to 1000)
-			icon_state = icon_state = "[initial(icon_state)]_damage_[4]"
+			icon_state = "[initial(icon_state)]_damage_[4]"
 		if(0 to 500)
-			icon_state = icon_state = "[initial(icon_state)]_damage_[5]"
+			icon_state = "[initial(icon_state)]_damage_[5]"
 
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
 /obj/structure/prop/urban/vehicles/proc/explode()
