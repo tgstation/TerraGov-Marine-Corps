@@ -47,6 +47,13 @@
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	always_unpowered = FALSE
 
+//Makes sure people dont glitch in
+/area/bluesummers/caves/cryostorage/enclosed
+	name = "Enclosed Cryostorage"
+	icon_state = "unknown"
+	var/debuff_type = /datum/status_effect/spacefreeze
+	always_unpowered = TRUE
+
 /area/bluesummers/caves/cryostorage/north
 	name = "Cryogenics Storage Wing North"
 
