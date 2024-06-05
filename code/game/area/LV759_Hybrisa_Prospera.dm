@@ -4,7 +4,6 @@
 	name = "LV-759 Hybrisa Prospera"
 	icon = 'icons/turf/hybrisareas.dmi'
 	icon_state = "hybrisa"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //parent types
 
@@ -95,12 +94,10 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center"
 	icon_state = "mining_cargo"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center - Maintenance"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Derelict Ship
 /area/lv759/indoors/derelict_ship
@@ -114,41 +111,41 @@
 	icon_state = "wylab"
 	ceiling = CEILING_UNDERGROUND
 
-/area/lv759/indoors/west_caves
-	name = "Caverns - West"
+/area/lv759/indoors/caves
+	name = "LV759 - Caverns"
 	icon_state = "caves_west"
 	always_unpowered = TRUE
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
-/area/lv759/indoors/west_caves_alarm
+/area/lv759/indoors/caves/west_caves
+	name = "Caverns - West"
+
+/area/lv759/indoors/caves/west_caves_alarm
 	name = "Caverns - West"
 	icon_state = "caves_west"
 
-/area/lv759/indoors/east_caves
+/area/lv759/indoors/caves/east_caves
 	name = "Caverns - East"
 	icon_state = "caves_east"
-	always_unpowered = TRUE
-	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/lv759/indoors/south_caves
+/area/lv759/indoors/caves/south_caves
 	name = "Caverns - South"
 	icon_state = "caves_south"
 
-/area/lv759/indoors/south_east_caves
+/area/lv759/indoors/caves/south_east_caves
 	name = "Caverns - Southeast"
 	icon_state = "caves_southeast"
 
-/area/lv759/indoors/south_west_caves
-	name = "Caverns - Southwest"
-	icon_state = "caves_southwest"
-	always_unpowered = TRUE
-	ceiling = CEILING_DEEP_UNDERGROUND
-
-/area/lv759/indoors/south_west_caves_alarm
+/area/lv759/indoors/caves/south_west_caves
 	name = "Caverns - Southwest"
 	icon_state = "caves_southwest"
 
-/area/lv759/indoors/north_west_caves
+/area/lv759/indoors/caves/south_west_caves_alarm
+	name = "Caverns - Southwest"
+	icon_state = "caves_southwest"
+
+/area/lv759/indoors/caves/north_west_caves
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
 	ceiling = CEILING_UNDERGROUND
@@ -158,22 +155,20 @@
 	icon_state = "caves_northwest"
 	ceiling = CEILING_UNDERGROUND
 
-/area/lv759/indoors/north_east_caves
+/area/lv759/indoors/caves/north_east_caves
 	name = "Caverns - Northeast"
 	icon_state = "caves_northeast"
 	ceiling = CEILING_UNDERGROUND
 
-/area/lv759/indoors/north_caves
+/area/lv759/indoors/caves/north_caves
 	name = "Caverns - North"
 	icon_state = "caves_north"
 	always_unpowered = TRUE
 	ceiling = CEILING_UNDERGROUND
 
-/area/lv759/indoors/central_caves
+/area/lv759/indoors/caves/central_caves
 	name = "Caverns - Central"
 	icon_state = "caves_central"
-	always_unpowered = TRUE
-	ceiling = CEILING_DEEP_UNDERGROUND
 
 // Caves Central Plateau
 /area/lv759/outdoors/caveplateau
@@ -189,6 +184,7 @@
 	ceiling = CEILING_NONE
 	always_unpowered = FALSE
 	area_flavor = AREA_FLAVOR_URBAN
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/outdoors/colony_streets/central_streets
 	name = "Central Street - West"
@@ -224,90 +220,76 @@
 	icon_state = "colonystreets_north"
 
 //Spaceport Indoors
+/area/lv759/indoors/spaceport
+	minimap_color = MINIMAP_AREA_ESCAPE
+
 /area/lv759/indoors/spaceport/hallway_northeast
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northeast"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/hallway_north
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - North"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/hallway_northwest
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northwest"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/hallway_east
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - East"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/heavyequip
 	name = "Nanotrasen Celestia Gateway Space-Port - Heavy Equipment Storage"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/engineering
 	name = "Nanotrasen Celestia Gateway Space-Port - Fuel Storage & Processing"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/janitor
 	name = "Nanotrasen Celestia Gateway Space-Port - Janitorial Storage Room"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/maintenance_east
 	name = "Nanotrasen Celestia Gateway Space-Port - Maintenance - East"
 	icon_state = "WYSpaceport"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/communications_office
 	name = "Nanotrasen Celestia Gateway Space-Port - Communications & Administration Office"
 	icon_state = "WYSpaceportadmin"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/flight_control_room
 	name = "Nanotrasen Celestia Gateway Space-Port - Flight Control Room"
 	icon_state = "WYSpaceportadmin"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/security
 	name = "Nanotrasen Celestia Gateway Space-Port - Security- Observation & Office"
 	icon_state = "security_checkpoint"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/security_office
 	name = "Nanotrasen Celestia Gateway Space-Port - Office"
 	icon_state = "security_checkpoint"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/cargo
 	name = "Nanotrasen Celestia Gateway Space-Port - Cargo"
 	icon_state = "WYSpaceportcargo"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/cargo_maintenance
 	name = "Nanotrasen Celestia Gateway Space-Port - Cargo - Maintenance"
 	icon_state = "WYSpaceportcargo"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/baggagehandling
 	name = "Nanotrasen Celestia Gateway Space-Port - Baggage Storage & Handling"
 	icon_state = "WYSpaceportbaggage"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/cuppajoes
 	name = "Nanotrasen Celestia Gateway Space-Port - Cuppa Joe's"
 	icon_state = "cuppajoes"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/kitchen
 	name = "Nanotrasen Celestia Gateway Space-Port - Kitchen"
 	icon_state = "WYSpaceportblue"
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv759/indoors/spaceport/docking_bay_2
 	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
@@ -358,115 +340,94 @@
 /area/lv759/indoors/meridian/meridian_foyer
 	name = "Meridian - Foyer"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_showroom
 	name = "Meridian - Showroom"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_office
 	name = "Meridian - Office"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_managersoffice
 	name = "Meridian - Manager's Office"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_factory
 	name = "Meridian - Factory Floor"
 	icon_state = "meridian_factory"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_restroom
 	name = "Meridian - Restroom"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_maintenance_south
 	name = "Meridian - Maintenance South"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/meridian/meridian_maintenance_east
 	name = "Meridian - Factory Floor - Maintenance"
 	icon_state = "meridian"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Apartments (Dorms)
+/area/lv759/indoors/apartment
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/lv759/indoors/apartment/westfoyer
 	name = "Westhaven Apartment Complex - West - Foyer"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/westhallway
 	name = "Westhaven Apartment Complex - West - Hallway"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/westbedrooms
 	name = "Westhaven Apartment Complex - West - Bedrooms"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/westshowers
 	name = "Westhaven Apartment Complex - West - Showers"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/westrestroom
 	name = "Westhaven Apartment Complex - West - Restrooms"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/westentertainment
 	name = "Westhaven Apartment Complex - West - Recreation Hub"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
-
-
 
 /area/lv759/indoors/apartment/eastentrance
 	name = "Westhaven Apartment Complex - East - Entrance Room"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/eastfoyer
 	name = "Westhaven Apartment Complex - East - Foyer"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/eastrestroomsshower
 	name = "Westhaven Apartment Complex - East - Restrooms & Showers"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/eastbedrooms
 	name = "Westhaven Apartment Complex - East - Bedrooms"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/eastbedroomsstorage
 	name = "Westhaven Apartment Complex - East - Bedrooms - Storage Room"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/northfoyer
 	name = "Westhaven Apartment Complex - North - Foyer"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/northhallway
 	name = "Westhaven Apartment Complex - North - Hallway"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/apartment/northapartments
 	name = "Westhaven Apartment Complex - North - Luxury Apartments"
 	icon_state = "apartments"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Nanotrasen Offices
 /area/lv759/indoors/weyyu_office
@@ -497,7 +458,7 @@
 /area/lv759/indoors/bar
 	name = "Bar"
 	icon_state = "bar"
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/bar/entertainment
 	name = "Bar - Entertainment Subsection"
@@ -512,6 +473,10 @@
 	name = "Bar - Kitchen"
 
 //Botany
+
+/area/lv759/indoors/botany
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
+
 /area/lv759/indoors/botany/botany_greenhouse
 	name = "Botany - Greenhouse"
 	icon_state = "botany"
@@ -597,84 +562,69 @@
 
 /area/lv759/indoors/mining_outpost
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/north
 	name = "KMCC - Mining Outpost - North"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/north_maint
 	name = "KMCC - Mining Outpost - North - Maintenance"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/northeast
 	name = "KMCC - Mining Outpost - Northeast"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/south
 	name = "KMCC - Mining Outpost - South"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/vehicledeployment
 	name = "KMCC - Mining Vehicle Deployment South"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/processing
 	name = "KMCC - Mining Processing & Storage"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/east
 	name = "KMCC - Mining Outpost - East"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/east_dorms
 	name = "KMCC - Mining Outpost - East Dorms"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/east_deploymentbay
 	name = "KMCC - Mining Outpost - East - Deployment Bay"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/east_command
 	name = "KMCC - Mining Outpost - East - Command Center"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/mining_outpost/cargo_maint
 	name = "KMCC - Mining Outpost - East - Maintenance"
 	icon_state = "mining"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Electrical Substations
 /area/lv759/indoors/electical_systems/substation1
 	name = "Electrical Systems - Substation One - Control Room"
 	icon_state = "power0"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/electical_systems/substation2
 	name = "Electrical Systems - Substation Two"
 	icon_state = "power0"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/electical_systems/substation3
 	name = "Electrical Systems - Substation Three"
 	icon_state = "power0"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Power-Plant (Engineering)
 /area/lv759/indoors/power_plant
 	name = "Nanotrasen DynaGrid Nexus - Central Hallway"
 	icon_state = "power0"
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/power_plant/south_hallway
 	name = "Nanotrasen DynaGrid Nexus - South Hallway"
@@ -802,69 +752,58 @@
 /area/lv759/indoors/jacks_surplus
 	name = "Jack's Military Surplus"
 	icon_state = "jacks"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //Nanotrasen - Resource Recovery Facility
 /area/lv759/indoors/recycling_plant
 	name = "Nanotrasen - Resource Recovery Facility"
 	icon_state = "recycling"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/recycling_plant/garage
 	name = "Nanotrasen - Resource Recovery Facility - Garage"
-	minimap_color = MINIMAP_AREA_COLONY
 /area/lv759/indoors/recycling_plant/synthetic_storage
 	name = "Synthetic Storage"
 	icon_state = "synthetic"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/recycling_plant_office
 	name = "Nanotrasen - Resource Recovery Facility - Office"
 	icon_state = "recycling"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator
 	name = "Nanotrasen - Resource Recovery Facility - Waste Disposal Incinerating Room"
 	icon_state = "recycling"
-	minimap_color = MINIMAP_AREA_COLONY
 
 // Restrooms
 /area/lv759/indoors/south_public_restroom
 	name = "Public Restroom - South"
 	icon_state = "restroom"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/southwest_public_restroom
 	name = "Public Restroom - Southwest"
 	icon_state = "restroom"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //Nightgold Casino
 /area/lv759/indoors/casino
 	name = "Night Gold Casino"
 	icon_state = "nightgold"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/indoors/casino/casino_office
 	name = "Night Gold Casino - Managers Office"
 	icon_state = "nightgold"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/casino/casino_restroom
 	name = "Night Gold Casino - Restroom"
 	icon_state = "nightgold"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/casino/casino_vault
 	name = "Night Gold Casino - Vault"
 	icon_state = "nightgold"
-	minimap_color = MINIMAP_AREA_ENGI
 
 // Pizza
 /area/lv759/indoors/pizzaria
 	name = "Pizza Galaxy - Outpost Zeta"
 	icon_state = "pizza"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_CELL_MED
 
 //T-comms
 /area/lv759/indoors/tcomms_northwest
@@ -876,23 +815,20 @@
 /area/lv759/indoors/NTmart
 	name = "NTmart"
 	icon_state = "NTmart"
-	minimap_color = MINIMAP_AREA_COMMAND
+	minimap_color = MINIMAP_AREA_CELL_MED
 
 /area/lv759/indoors/NTmart/backrooms
 	name = "NTmart - Backrooms"
 	icon_state = "NTmartbackrooms"
-	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/NTmart/maintenance
 	name = "NTmart - Maintenance"
 	icon_state = "NTmartbackrooms"
-	minimap_color = MINIMAP_AREA_COMMAND
 
 // NT Security Checkpoints
 /area/lv759/indoors/nt_security/checkpoint_northeast
 	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/nt_security/checkpoint_east
 	name = "Nanotrasen Security Checkpoint - East"
@@ -922,7 +858,7 @@
 /area/lv759/indoors/nt_research_complex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
-	minimap_color = MINIMAP_AREA_COMMAND
+	minimap_color = MINIMAP_AREA_RESEARCH
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/lv759/indoors/nt_research_complex/medical_annex
