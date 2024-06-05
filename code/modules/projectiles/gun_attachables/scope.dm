@@ -174,7 +174,6 @@
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 4
 
-
 /obj/item/attachable/scope/unremovable/hsg_102
 	name = "HSG-102 smart sight"
 	desc = "An unremovable smart sight built for use with the HSG-102, it does nearly all the aiming work for the gun's integrated IFF systems."
