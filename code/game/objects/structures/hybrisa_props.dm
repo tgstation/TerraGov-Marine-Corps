@@ -123,6 +123,13 @@
 	max_integrity = 4000
 	coverage = 90
 
+/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH || EAST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
+	if(dir == SOUTH || WEST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
+
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
 
