@@ -16,7 +16,7 @@
 	explode()
 	. = ..()
 
-/obj/structure/prop/urban/vehicles/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/prop/urban/vehicles/meridian/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	if(!.)
 		return

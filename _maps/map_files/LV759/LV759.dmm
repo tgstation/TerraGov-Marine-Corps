@@ -28341,7 +28341,7 @@
 "eHV" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/black_stone/indestructible,
-/area/lv759/oob)
+/area/storage/testroom)
 "eHW" = (
 /obj/structure/bed/roller,
 /turf/open/floor/prison/whitegreen,
@@ -32747,7 +32747,6 @@
 /obj/structure/closet/secure_closet/marshal,
 /obj/item/clothing/suit/storage/CMB,
 /obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/stunprod,
 /obj/item/storage/belt/security,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -37023,7 +37022,6 @@
 /obj/structure/closet/secure_closet/marshal,
 /obj/item/clothing/suit/storage/CMB,
 /obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/stunprod,
 /obj/item/storage/belt/security,
 /turf/open/floor/prison/red/corner,
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
@@ -41508,7 +41506,6 @@
 /obj/structure/closet/secure_closet/marshal,
 /obj/item/clothing/suit/storage/CMB,
 /obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/stunprod,
 /obj/item/storage/belt/security,
 /turf/open/floor/prison/red{
 	dir = 6
@@ -51106,10 +51103,12 @@
 /area/lv759/outdoors/landing_zone_2)
 "itW" = (
 /obj/structure/filingcabinet{
+	density = 0;
 	pixel_x = -8;
 	pixel_y = 20
 	},
 /obj/structure/filingcabinet{
+	density = 0;
 	layer = 4;
 	pixel_x = 8;
 	pixel_y = 20
@@ -122276,9 +122275,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ugo" = (
-/obj/machinery/miner/damaged,
-/turf/open/urbanshale/layer1,
-/area/lv759/indoors/north_east_caves)
+/turf/closed/mineral/smooth/black_stone/indestructible,
+/area/storage/testroom)
 "ugt" = (
 /obj/item/reagent_containers/syringe/antiviral,
 /obj/structure/bed/roller/hospital_empty/bigrollerempty,
@@ -141155,7 +141153,6 @@
 /obj/structure/closet/secure_closet/marshal,
 /obj/item/clothing/suit/storage/CMB,
 /obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/stunprod,
 /obj/item/storage/belt/security,
 /obj/machinery/light{
 	dir = 8
@@ -148637,9 +148634,9 @@ aWQ
 aWQ
 aWQ
 lwn
-lwn
-lwn
-lwn
+ugo
+ugo
+ugo
 lwn
 aWQ
 aWQ
@@ -148840,9 +148837,9 @@ aWQ
 aWQ
 aWQ
 lwn
-lwn
+ugo
 eHV
-lwn
+ugo
 lwn
 aWQ
 aWQ
@@ -149043,9 +149040,9 @@ aWQ
 aWQ
 aWQ
 lwn
-lwn
-lwn
-lwn
+ugo
+ugo
+ugo
 lwn
 aWQ
 aWQ
@@ -191633,7 +191630,7 @@ qJN
 hik
 uve
 lVE
-ugo
+qJN
 lVE
 qJN
 lVE

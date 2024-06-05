@@ -122,10 +122,20 @@
 	icon_state = "centerroadbarrier2"
 	barricade_type = "centerroadbarrier2"
 
+/obj/structure/barricade/handrail/urban/road/metal/metaldark/Initialize(mapload)
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		density = FALSE
+
 /obj/structure/barricade/handrail/urban/road/metal/metaldark2
 	name = "metal road barrier"
 	icon_state = "centerroadbarrier3"
 	barricade_type = "centerroadbarrier3"
+
+/obj/structure/barricade/handrail/urban/road/metal/metaldark2/Initialize(mapload)
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		density = FALSE
 
 /obj/structure/barricade/handrail/urban/road/metal/double
 	name = "metal road barrier"

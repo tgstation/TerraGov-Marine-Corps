@@ -1803,6 +1803,8 @@
 	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
 
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is empty."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "soil_grid"
 	layer = BELOW_OBJ_LAYER
