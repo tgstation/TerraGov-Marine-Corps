@@ -7,7 +7,6 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	atom_flags = ON_BORDER
-	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climbable = TRUE
@@ -134,7 +133,6 @@
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
 	atom_flags = ON_BORDER
-	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/platform_decoration/Initialize(mapload)
