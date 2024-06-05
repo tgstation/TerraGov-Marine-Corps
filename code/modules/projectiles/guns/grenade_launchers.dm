@@ -149,7 +149,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "grenade"
 	max_shells = 2 //codex
 	max_chamber_items = 1
@@ -200,7 +200,6 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "t64_grenade"
 	pixel_shift_x = 21
 	pixel_shift_y = 15

@@ -42,3 +42,10 @@
   - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
   Xander3359:
   - bugfix: smg-25 holster can no longer hold every item
+2024-06-05:
+  Lumipharon:
+  - bugfix: Huggers will no longer bounce if thrown into a mob
+  - bugfix: fixed a phantom attachment bug when swapping attachments in some cases.
+  Xander3359:
+  - bugfix: Merging stacks inside a backpack will no longer break
+  - bugfix: Deleting something inside a storage will no longer break
