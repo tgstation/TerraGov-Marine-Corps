@@ -18,7 +18,7 @@
 	soft_armor = list(MELEE = 65, BULLET = 75 , LASER = 80, ENERGY = 85, BOMB = 75, BIO = 100, FIRE = 100, ACID = 60)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.7, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
-	permitted_weapons = list(/obj/item/armored_weapon/volkite_cardanelle, /obj/item/armored_weapon/volkite_cardanelle/particle, /obj/item/armored_weapon/volkite_cardanelle/coilgun)
+	permitted_weapons = list(/obj/item/armored_weapon/volkite_cardanelle, /obj/item/armored_weapon/particle_lance, /obj/item/armored_weapon/coilgun)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom) //revisit
 	max_occupants = 4
 	move_delay = 0.3 SECONDS
@@ -65,38 +65,3 @@
 	for(var/atom/atom AS in hover_list)
 		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
 		animate(time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
-
-
-/obj/item/armored_weapon/volkite_cardanelle
-	name = "Volkite Cardanelle" //update
-	desc = "desc here" //update
-	icon_state = "volkite"
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
-	weapon_slot = MODULE_PRIMARY
-	ammo = /obj/item/ammo_magazine/tank/volkite_cardanelle
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_cardanelle)
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	variance = 5
-	projectile_delay = 0.1 SECONDS
-	rearm_time = 3 SECONDS
-	maximum_magazines = 5
-	hud_state_empty = "battery_empty_flash"
-
-/obj/item/ammo_magazine/tank/volkite_cardanelle
-	name = "volkite cardanelle cell" //update
-	desc = "A primary armament cannon magazine" //update
-	caliber = CALIBER_84MM
-	icon_state = "volkite_turret"
-	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/energy/volkite/heavy
-	max_rounds = 180
-
-/obj/item/armored_weapon/volkite_cardanelle/particle
-	name = "Volkite Cardanelle" //update
-	desc = "desc here" //update
-	icon_state = "particle_beam"
-
-/obj/item/armored_weapon/volkite_cardanelle/coilgun
-	name = "Volkite Cardanelle" //update
-	desc = "desc here" //update
-	icon_state = "coilgun"

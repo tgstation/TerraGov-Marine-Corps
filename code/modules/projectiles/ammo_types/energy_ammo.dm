@@ -739,3 +739,30 @@
 
 /datum/ammo/energy/plasma_pistol/do_at_max_range(turf/T, obj/projectile/proj)
 	drop_fire(T, proj)
+
+/datum/ammo/energy/particle_lance
+	name = "particle beam"
+	hitscan_effect_icon = "lance"
+	hud_state = "plasma_blast"
+	hud_state_empty = "battery_empty_flash"
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	bullet_color = COLOR_DISABLER_BLUE
+	armor_type = ENERGY
+	max_range = 21
+	accurate_range = 15
+	accuracy = 5
+
+	damage = 100
+	penetration = 150
+	sundering = 30
+
+/datum/ammo/energy/particle_lance/on_hit_obj(obj/O, obj/projectile/proj)
+	var/damage_mult = 3
+	if(isvehicle(O))
+		var/obj/vehicle/vehicle_target = O
+		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
+			damage_mult = 8
+		for(var/mob/living/living_victim AS in vehicle_target.occupants)//staggerstun will fail on tank occupants if we just use staggerstun
+			living_victim.Stagger(3 SECONDS)
+			to_chat(living_victim, "You are knocked about by the impact, staggering you!")
+	proj.damage *= damage_mult

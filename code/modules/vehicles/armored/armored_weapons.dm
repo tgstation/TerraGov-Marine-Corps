@@ -343,3 +343,37 @@
 	)
 	projectile_delay = 0.7 SECONDS
 	hud_state_empty = "grenade_empty"
+
+//SOM tank guns
+/obj/item/armored_weapon/volkite_cardanelle
+	name = "Volkite Cardanelle"
+	desc = "A massive volkite weapon seen on SOM battle tanks, the cardanelle is a devestating anti infantry weapon, able to mow down whole groups of soft targets with ease. \
+	Against armored targets however, it can prove less effective."
+	icon_state = "volkite"
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	weapon_slot = MODULE_PRIMARY
+	ammo = /obj/item/ammo_magazine/tank/volkite_cardanelle
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_cardanelle)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	variance = 5
+	projectile_delay = 0.1 SECONDS
+	rearm_time = 3 SECONDS
+	maximum_magazines = 5
+	hud_state_empty = "battery_empty_flash"
+
+/obj/item/armored_weapon/particle_lance
+	name = "particle lance"
+	desc = "The particle lance is a powerful energy beam weapon, able to tear apart anything in its path with a concentrated beam of charged particles. Particularly potent against armored targets."
+	icon_state = "particle_beam"
+	ammo = /obj/item/ammo_magazine/tank/particle_lance
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/particle_lance)
+	fire_sound = 'sound/vehicles/weapons/particle_fire.ogg'
+	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
+	windup_delay = 0.6 SECONDS
+	hud_state_empty = "battery_empty_flash"
+
+/obj/item/armored_weapon/coilgun
+	name = "battle tank coilgun"
+	desc = "The coilgun is considered the standard main weapon for SOM battle tanks. \
+	While technologically very different from a traditional cannon, fundamentally both serve the same purpose - to accelerate a large projectile at a high speed towards the enemy."
+	icon_state = "coilgun"
