@@ -21,7 +21,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable
 	name = "attachable item"
 	desc = "It's an attachment. You should never see this."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = null
 	worn_icon_state = null
 	atom_flags = CONDUCT

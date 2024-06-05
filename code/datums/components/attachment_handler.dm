@@ -83,10 +83,8 @@
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
 
-	//Re-try putting old attachment into hands, now that we've cleared them
-	if(old_attachment)
+	if(old_attachment && isturf(old_attachment.loc)) //if we didn't have space in our hands earlier, we try put the old attachment in hand now
 		attacher.put_in_hands(old_attachment)
-
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
 /datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
