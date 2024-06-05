@@ -310,8 +310,6 @@
 
 		desant.forceMove(locate(new_x, new_y, z))
 
-	SEND_SIGNAL(src, COMSIG_MULTITILE_ROTATED, loc, new_dir, null, old_locs) //this is fine for now but will need changing before release
-
 /obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction) //haven't baked in strafe into the base type since its only used by the SOM tank currently
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
