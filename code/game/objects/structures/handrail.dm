@@ -11,6 +11,7 @@
 	coverage = 10
 	can_change_dmg_state = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 /obj/structure/barricade/handrail/update_icon_state()
 	. = ..()
