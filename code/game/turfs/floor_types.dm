@@ -2157,6 +2157,7 @@
 // Hybrisa auto-turf
 
 /turf/open/urbanshale
+	name = "shale"
 	icon = 'icons/turf/auto_shaledesaturated.dmi'
 
 /turf/open/urbanshale/layer0

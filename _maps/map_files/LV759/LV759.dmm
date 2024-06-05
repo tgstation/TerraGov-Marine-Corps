@@ -41999,11 +41999,11 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "gVN" = (
-/obj/machinery/computer/med_data,
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2
 	},
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -86364,9 +86364,8 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "oiS" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/hospital/operation)
+/turf/closed/mineral/smooth/black_stone/indestructible,
+/area/storage/testroom)
 "oiT" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -122274,9 +122273,6 @@
 /obj/effect/urban/decal/road/lines4,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
-"ugo" = (
-/turf/closed/mineral/smooth/black_stone/indestructible,
-/area/storage/testroom)
 "ugt" = (
 /obj/item/reagent_containers/syringe/antiviral,
 /obj/structure/bed/roller/hospital_empty/bigrollerempty,
@@ -148634,9 +148630,9 @@ aWQ
 aWQ
 aWQ
 lwn
-ugo
-ugo
-ugo
+oiS
+oiS
+oiS
 lwn
 aWQ
 aWQ
@@ -148837,9 +148833,9 @@ aWQ
 aWQ
 aWQ
 lwn
-ugo
+oiS
 eHV
-ugo
+oiS
 lwn
 aWQ
 aWQ
@@ -149040,9 +149036,9 @@ aWQ
 aWQ
 aWQ
 lwn
-ugo
-ugo
-ugo
+oiS
+oiS
+oiS
 lwn
 aWQ
 aWQ
@@ -183698,7 +183694,7 @@ fhC
 kPw
 uiy
 lVR
-oiS
+qqZ
 xuX
 mbd
 xvX
