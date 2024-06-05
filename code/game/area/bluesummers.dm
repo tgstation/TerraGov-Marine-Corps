@@ -47,7 +47,11 @@
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	always_unpowered = FALSE
 
+/area/bluesummers/caves/cryostorage/north
+	name = "Cryogenics Storage Wing North"
+
 /area/bluesummers/caves/cryostorage/garbledradio
+	name = "Cryogenics Storage Wing South"
 	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bluesummers/caves/cryostorage/gravity
@@ -99,6 +103,11 @@
 /area/bluesummers/caves/west
 	name = "West Tunnel"
 	icon_state = "west2"
+	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/south
+	name = "Southern Caves"
+	icon_state = "south2"
 	ceiling = CEILING_UNDERGROUND
 
 //Outside Area
