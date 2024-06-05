@@ -192,6 +192,13 @@
 /obj/hitbox/ex_act(severity)
 	return
 
+///Returns the turf where primary weapon projectiles should source from
+/obj/hitbox/proc/get_projectile_loc(obj/item/armored_weapon/weapon)
+	if(!isarmoredvehicle(root))
+		return loc
+	var/obj/vehicle/sealed/armored/armored_root = root
+	return get_step(src, armored_root.turret_overlay.dir)
+
 ///2x2 hitbox version
 /obj/hitbox/medium
 	vehicle_length = 64
@@ -356,6 +363,9 @@
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
 //Some hover specific stuff for the SOM tank
+/obj/hitbox/rectangle/som_tank/get_projectile_loc(obj/item/armored_weapon/weapon)
+	return get_step(get_step(src, root.dir), root.dir)
+
 /obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
 	. = ..()
 	if(!HAS_TRAIT(lander, TRAIT_TANK_DESANT))
