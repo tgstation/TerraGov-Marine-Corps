@@ -143,7 +143,7 @@
 		root.setDir(direction)
 		if(isarmoredvehicle(root))
 			var/obj/vehicle/sealed/armored/armor = root
-			playsound(armor, armor.engine_sound, 100, TRUE, 20)
+			armor.play_engine_sound()
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	//Due to this being a hot proc this part here is inlined and set on a by-hitbox-size basis
 	/////////////////////////////
@@ -213,7 +213,7 @@
 		root.setDir(direction)
 		if(isarmoredvehicle(root))
 			var/obj/vehicle/sealed/armored/armor = root
-			playsound(armor, armor.engine_sound, 100, TRUE, 20)
+			armor.play_engine_sound()
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
 	var/turf/centerturf = get_step(root, direction)
@@ -324,7 +324,7 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(isarmoredvehicle(root) && !is_strafing) //we turn
-		playsound(armor, armor.engine_sound, 100, TRUE, 20)
+		armor.play_engine_sound()
 
 	/////////////////////////////
 	var/turf/centerturf = get_turf(root)

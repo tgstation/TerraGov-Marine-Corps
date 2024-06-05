@@ -211,9 +211,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-		playsound(get_turf(src), engine_sound, 100, TRUE, 20)
+	play_engine_sound()
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
@@ -258,6 +256,12 @@
 
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
+
+/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
+	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
+		return
+	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
+	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
