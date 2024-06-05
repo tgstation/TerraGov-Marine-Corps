@@ -25,6 +25,7 @@
 		#include "map_files\slumbridge\slumbridge.dmm"
 		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"
 		#include "map_files\riptide\riptide.dmm"
+		#include "map_files\Bluesummers\bluesummers.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
