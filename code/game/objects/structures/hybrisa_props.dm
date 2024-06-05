@@ -80,8 +80,19 @@
 
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks
 	icon_state = "armoredtruck_wy_security_1"
-	bound_height = 64
+	bound_height = 32
 	bound_width = 96
+
+/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH)
+		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
+	if(dir == SOUTH)
+		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
+	if(dir == WEST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_rb", layer = ABOVE_ALL_MOB_LAYER)
+	if(dir == EAST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_lb", layer = ABOVE_ALL_MOB_LAYER)
 
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1
 	name = "\improper Nanotrasen security truck"
