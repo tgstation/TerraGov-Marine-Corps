@@ -154,11 +154,6 @@
 		sentry?.set_on(TRUE)
 		return
 
-	if(istype(deployed_machine, /obj/machinery/deployable/mortar))
-		var/obj/machinery/deployable/mortar/mortar = deployed_machine
-		for(var/obj/loaded_item in mortar.chamber_items)
-			loaded_item.forceMove(get_turf(deployed_machine))
-
 	undeployed_item.toggle_deployment_flag()
 
 	user.unset_interaction()
