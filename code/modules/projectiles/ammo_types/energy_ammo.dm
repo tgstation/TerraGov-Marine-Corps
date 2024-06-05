@@ -758,9 +758,9 @@
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/O, obj/projectile/proj)
 	var/damage_mult = 3
-	if(ishitbox(vehicle_target)) //yes this is annoying.
+	if(ishitbox(O)) //yes this is annoying.
 		var/obj/hitbox/hitbox = O
-		O = O.root
+		O = hitbox.root
 	if(isvehicle(O))
 		var/obj/vehicle/vehicle_target = O
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
