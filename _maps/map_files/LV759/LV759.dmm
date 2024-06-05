@@ -106949,7 +106949,9 @@
 /area/lv759/indoors/hospital/storage)
 "rJn" = (
 /obj/structure/window/framed/urban/spaceport,
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
@@ -125474,7 +125476,9 @@
 /area/lv759/indoors/casino)
 "uHf" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "uHk" = (
@@ -128257,7 +128261,9 @@
 /area/lv759/outdoors/caveplateau)
 "veP" = (
 /obj/structure/window/framed/urban/spaceport,
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
 "veR" = (

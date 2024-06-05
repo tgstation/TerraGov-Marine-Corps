@@ -1,7 +1,7 @@
 /obj/machinery/door/poddoor/shutters
 	name = "\improper Shutters"
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
-	icon_state = "shutter1"
+	icon_state = "shutter"
 	power_channel = ENVIRON
 	resistance_flags = DROPSHIP_IMMUNE
 
@@ -42,7 +42,7 @@
 		return
 	operating = TRUE
 	do_animate("closing")
-	icon_state = "shutter1"
+	icon_state = "[initial(icon_state)]1"
 	layer = closed_layer
 	density = TRUE
 	if(visible)
@@ -59,15 +59,15 @@
 	. = ..()
 	if(operating)
 		return
-	icon_state = "shutter[density]"
+	icon_state = "[initial(icon_state)][density]"
 
 
 /obj/machinery/door/poddoor/shutters/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("shutterc0", src)
+			flick("[initial(icon_state)]c0", src)
 		if("closing")
-			flick("shutterc1", src)
+			flick("[initial(icon_state)]c1", src)
 
 
 /obj/machinery/door/poddoor/shutters/timed_late
@@ -95,7 +95,7 @@
 
 /obj/machinery/door/poddoor/shutters/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	icon_state = "shutter1"
+	icon_state = "shutter"
 	openspeed = 4 //shorter open animation.
 
 /obj/machinery/door/poddoor/shutters/mainship/thunderdome/one
@@ -259,27 +259,27 @@
 /// urban shutters
 /obj/machinery/door/poddoor/shutters/urban
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
-	icon_state = "almayer_pdoor1"
+	icon_state = "almayer_pdoor"
 	openspeed = 4
 
 /obj/machinery/door/poddoor/shutters/urban/open_shutters
-	icon_state = "almayer_pdoor1"
+	icon_state = "almayer_pdoor"
 	opacity = FALSE
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/machinery/door/poddoor/shutters/urban/shutters
-	icon_state = "shutter1"
+	icon_state = "shutter"
 	layer = ABOVE_WINDOW_LAYER
 
 /obj/machinery/door/poddoor/shutters/urban/white
 	desc = "That looks like it doesn't open easily."
-	icon_state = "w_almayer_pdoor1"
+	icon_state = "w_almayer_pdoor"
 
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door
 	desc = "That looks like it doesn't open easily."
-	icon_state = "pdoor1"
+	icon_state = "pdoor"
 
 /obj/machinery/door/poddoor/mainship/biohazard/white
-	icon_state = "w_almayer_pdoor1"
+	icon_state = "w_almayer_pdoor"
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'

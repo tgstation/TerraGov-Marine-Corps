@@ -3,7 +3,7 @@
 	desc = "A railing, for your hands. Woooow."
 	icon = 'icons/obj/structures/handrail.dmi'
 	icon_state = "handrail_a_0"
-	barricade_type = "handrail"
+	barricade_type = "handrail_a_0"
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 2
 	destroyed_stack_amount = 1
