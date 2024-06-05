@@ -185,6 +185,10 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/auto_cannon,
 		/obj/item/ammo_magazine/auto_cannon/flak,
@@ -554,6 +558,10 @@
 		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
 
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 
@@ -649,6 +657,14 @@
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/standard_atgun,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/standard_atgun,
+	)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_agls,
