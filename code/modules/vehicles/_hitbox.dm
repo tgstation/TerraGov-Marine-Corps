@@ -49,6 +49,9 @@
 	root = null
 	return ..()
 
+/obj/hitbox/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
+	root.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+
 ///signal handler for handling PASS_WALKOVER
 /obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)
 	SIGNAL_HANDLER
@@ -258,7 +261,6 @@
 	. = ..()
 	if(!.)
 		return
-	var/list/old_locs = locs.Copy()
 	switch(new_dir)
 		if(NORTH)
 			bound_height = vehicle_length
