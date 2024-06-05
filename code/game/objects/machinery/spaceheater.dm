@@ -25,7 +25,7 @@
 
 /obj/machinery/space_heater/update_icon_state()
 	. = ..()
-	icon_state = "sheater[on]"
+	icon_state = "[initial(icon_state)]_on"
 
 /obj/machinery/space_heater/update_overlays()
 	. = ..()

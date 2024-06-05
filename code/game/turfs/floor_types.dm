@@ -2159,6 +2159,10 @@
 /turf/open/urbanshale
 	name = "shale"
 	icon = 'icons/turf/auto_shaledesaturated.dmi'
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/urbanshale/layer0
 	icon_state = "shale_0"
