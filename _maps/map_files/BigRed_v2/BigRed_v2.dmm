@@ -16084,10 +16084,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"uWF" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "uXp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -29757,7 +29753,7 @@ qqG
 qqG
 qqG
 qqG
-uWF
+qqG
 qqG
 dSm
 aaa

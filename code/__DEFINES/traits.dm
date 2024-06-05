@@ -158,7 +158,7 @@
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
-#define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out
+#define TRAIT_WORKED_OUT "worked_out" //user has a unarmed buff from working out
 ///Makes no footsteps at all
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
 ///quieter footsteps
@@ -267,6 +267,7 @@
 //regress and caste swap UI
 #define TRAIT_CASTE_SWAP "caste_swap"
 #define TRAIT_REGRESSING "regressing"
+#define TRAIT_STRAIN_SWAP "strain swap"
 
 ///Pauses campaign mission timer
 #define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"

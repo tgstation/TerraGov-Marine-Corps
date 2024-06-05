@@ -35,7 +35,7 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+	if(H.health <= SYNTHETIC_CRIT_THRESHOLD && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
 		H.apply_effect(4 SECONDS, STUTTER) // Added flavor
 		H.adjustFireLoss(rand(5, 16)) // Melting!!!
 		if(prob(12))
@@ -46,7 +46,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health
+	H.health_threshold_crit = -100 // They overheat below SYNTHETIC_CRIT_THRESHOLD
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
@@ -107,7 +107,7 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health <= -30 && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
+	if(H.health <= SYNTHETIC_CRIT_THRESHOLD && H.stat != DEAD) // Instead of having a critical condition, they overheat and slowly die.
 		H.apply_effect(4 SECONDS, STUTTER) // Added flavor
 		H.adjustFireLoss(rand(7, 19)) // Melting even more!!!
 		if(prob(12))
@@ -118,7 +118,7 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100 // You overheat below -30 health
+	H.health_threshold_crit = -100 // They overheat below SYNTHETIC_CRIT_THRESHOLD
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
