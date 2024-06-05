@@ -149,6 +149,7 @@
 	name = "Caverns - Northwest"
 	icon_state = "caves_northwest"
 	ceiling = CEILING_UNDERGROUND
+	always_unpowered = FALSE
 
 /area/lv759/outdoors/north_west_caves_outdoors
 	name = "Caverns - Northwest"
@@ -159,6 +160,7 @@
 	name = "Caverns - Northeast"
 	icon_state = "caves_northeast"
 	ceiling = CEILING_UNDERGROUND
+	always_unpowered = FALSE
 
 /area/lv759/indoors/caves/north_caves
 	name = "Caverns - North"
