@@ -113,7 +113,7 @@
 	for(var/obj/loaded_item in chamber_items)
 		chamber_items -= loaded_item
 		loaded_item.forceMove(get_turf(src))
-	. = ..()
+	return ..()
 
 /obj/machinery/deployable/mortar/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
