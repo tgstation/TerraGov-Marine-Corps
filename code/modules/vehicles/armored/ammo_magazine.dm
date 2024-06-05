@@ -82,3 +82,23 @@
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
+
+//SOM tank
+/obj/item/ammo_magazine/tank/volkite_cardanelle
+	name = "volkite cardanelle cell"
+	desc = "A heavy, disposable cell used for powering a volkite cardanelle."
+	caliber = CALIBER_84MM
+	icon_state = "volkite_turret"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/energy/volkite/heavy
+	max_rounds = 180
+
+/obj/item/ammo_magazine/tank/particle_lance
+	name = "particle lance energy cell"
+	desc = "A heavy, disposable cell used for powering a tank mounted particle lance."
+	caliber = CALIBER_84MM
+	icon_state = "ltbammo"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/energy/particle_lance
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
