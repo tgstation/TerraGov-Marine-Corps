@@ -31,6 +31,10 @@
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	animate_hover()
 
+/obj/vehicle/sealed/armored/multitile/som_tank/generate_actions()
+	. = ..()
+	initialize_controller_action_type(/datum/action/vehicle/sealed/armored/strafe, VEHICLE_CONTROL_DRIVE)
+
 /obj/vehicle/sealed/armored/multitile/som_tank/setDir(newdir)
 	. = ..()
 	swivel_turret(null, newdir)

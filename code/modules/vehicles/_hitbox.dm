@@ -305,12 +305,22 @@
 
 	SEND_SIGNAL(src, COMSIG_MULTITILE_ROTATED, loc, new_dir, null, old_locs) //this is fine for now but will need changing before release
 
-/obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
+/obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction) //haven't baked in strafe into the base type since its only used by the SOM tank currently
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)) && isarmoredvehicle(root)) //turning
-		var/obj/vehicle/sealed/armored/armor = root
+	var/obj/vehicle/sealed/armored/armor = root
+	var/is_strafing = FALSE
+	if(armor?.strafe)
+		is_strafing = TRUE
+		for(var/mob/driver AS in armor.return_drivers())
+			if(driver.client?.keys_held["Alt"])
+				is_strafing = FALSE
+				break
+	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
+		is_strafing = FALSE
+	else if(isarmoredvehicle(root) && !is_strafing) //we turn
 		playsound(armor, armor.engine_sound, 100, TRUE, 20)
+
 	/////////////////////////////
 	var/turf/centerturf = get_turf(root)
 	var/dist_count = 3
@@ -322,6 +332,10 @@
 	enteringturfs += get_step(centerturf, turn(direction, 90))
 	enteringturfs += get_step(centerturf, turn(direction, -90))
 	/////////////////////////////
+	if(is_strafing)
+		centerturf = get_step(centerturf, root.dir)
+		centerturf = get_step(centerturf, root.dir)
+		enteringturfs += centerturf
 	var/canstep = TRUE
 	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
@@ -334,7 +348,7 @@
 			canstep = FALSE
 
 	if(canstep)
-		if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+		if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)) && (!is_strafing))
 			root.setDir(direction)
 			return COMPONENT_DRIVER_BLOCK_MOVE
 		else

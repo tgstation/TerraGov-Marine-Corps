@@ -70,6 +70,8 @@
 	 * This will be turned into a typeCache on  initialize
 	*/
 	var/list/easy_load_list
+	///Wether we are strafing
+	var/strafe = FALSE
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
