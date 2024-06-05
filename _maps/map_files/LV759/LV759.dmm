@@ -4053,7 +4053,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "aIZ" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8;
 	layer = 4
@@ -51243,7 +51243,7 @@
 /turf/open/floor/urban/carpet/carpetbluedeco,
 /area/lv759/indoors/colonial_marshals/north_office)
 "ivq" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /obj/structure/platform/urban/metalplatform6{
 	dir = 8;
 	layer = 4
@@ -65435,7 +65435,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_street)
 "kPM" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "kPT" = (
@@ -97277,7 +97277,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pZY" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/mining_outpost/east)
 "qac" = (
@@ -112074,7 +112074,7 @@
 	},
 /area/lv759/indoors/west_caves)
 "szW" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/power_plant/telecomms)
 "sAc" = (
@@ -116493,10 +116493,10 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/jacks_surplus)
 "tld" = (
-/obj/structure/sign/safety{
+/obj/structure/sign/safety/hazard{
 	pixel_x = 11
 	},
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/power_plant/fusion_generators)
 "tle" = (
@@ -131630,7 +131630,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vHj" = (
-/obj/structure/sign/safety,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/baggagehandling)
 "vHo" = (
