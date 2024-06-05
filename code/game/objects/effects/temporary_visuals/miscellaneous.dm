@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	flick("heavyimpact", src)
 
 /obj/effect/temp_visual/order
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
 	duration = ORDER_DURATION
@@ -203,7 +203,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
-	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon = 'icons/effects/orders.dmi'
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 
