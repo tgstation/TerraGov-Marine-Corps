@@ -1,6 +1,7 @@
 #define WARHEAD_FLY_TIME 1 SECONDS
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
+#define WARHEAD_FUEL_REQUIREMENT 6
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
@@ -24,14 +25,6 @@
 	. = ..()
 	if(!GLOB.marine_main_ship.orbital_cannon)
 		GLOB.marine_main_ship.orbital_cannon = src
-
-	if(!GLOB.marine_main_ship.ob_type_fuel_requirements)
-		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
-		var/list/L = list(3,4,5,6)
-		var/amt
-		for(var/i in 1 to 4)
-			amt = pick_n_take(L)
-			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
 	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
@@ -200,16 +193,7 @@
 	ob_cannon_busy = TRUE
 
 	var/inaccurate_fuel = 0
-
-	switch(tray.warhead.warhead_kind)
-		if("explosive")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[1] - tray.fuel_amt)
-		if("incendiary")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
-		if("cluster")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
-		if("plasma")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
+	inaccurate_fuel = abs(WARHEAD_FUEL_REQUIREMENT - tray.fuel_amt)
 
 	// Give marines a warning if misfuelled.
 	var/fuel_warning = "Warhead fuel level: safe."
@@ -477,10 +461,7 @@
 	else
 		if(orbital_window_page == 1)
 			dat += "<font size=3>Warhead Fuel Requirements:</font><BR>"
-			dat += "- HE Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
-			dat += "- Incendiary Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
-			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
-			dat += "- Plasma drain Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[4]] Solid Fuel blocks.</b><BR>"
+			dat += "All orbital warheads require <b>[WARHEAD_FUEL_REQUIREMENT] Solid Fuel blocks.</b><BR>"
 
 			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else

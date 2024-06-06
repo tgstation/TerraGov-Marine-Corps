@@ -49,3 +49,9 @@
   Xander3359:
   - bugfix: Merging stacks inside a backpack will no longer break
   - bugfix: Deleting something inside a storage will no longer break
+2024-06-06:
+  Lumipharon:
+  - rscdel: Removed a pref verb for gas mask equip sounds
+  novaepee:
+  - rscdel: Remove Big Red's two plat miners and 1 normal miner near LZ2
+  - balance: Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners
