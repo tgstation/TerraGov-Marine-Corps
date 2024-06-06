@@ -2187,9 +2187,7 @@
 	dir = 8
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader{
-	name = "\improper NTC command drop pod"
-	},
+/obj/structure/droppod/nonmob,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -3297,7 +3295,6 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/flashlight/lamp/green,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/carpet/side{
@@ -10496,10 +10493,10 @@
 	outside = 1
 	})
 "jFy" = (
-/obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob/turret_pod,
-/turf/open/shuttle/escapepod,
-/area/mainship/hallways/hangar/droppod)
+/obj/structure/drop_pod_launcher/leader,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "jGg" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/green{
@@ -16148,9 +16145,7 @@
 	dir = 4
 	},
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader{
-	name = "\improper NTC command drop pod"
-	},
+/obj/structure/droppod/nonmob,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -17277,16 +17272,6 @@
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
-"pOC" = (
-/obj/structure/droppod/leader{
-	name = "\improper NTC command drop pod"
-	},
-/obj/structure/drop_pod_launcher,
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/crew_quarters/cryo{
-	static_lighting = 1;
-	base_lighting_alpha = 0
-	})
 "pPt" = (
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	dir = 1
@@ -17385,8 +17370,8 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/drop_pod_launcher/supply,
 /obj/structure/droppod/nonmob/supply_pod,
-/obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -19487,9 +19472,7 @@
 /area/mainship/hallways/hangar)
 "rSe" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader{
-	name = "\improper NTC command drop pod"
-	},
+/obj/structure/droppod/nonmob,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/crew_quarters/cryo{
 	static_lighting = 1;
@@ -19641,13 +19624,6 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"say" = (
-/obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
 "saD" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
@@ -20357,7 +20333,6 @@
 /area/mainship/living/tankerbunks)
 "sIK" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod/leader,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "sJf" = (
@@ -20657,12 +20632,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "sTX" = (
-/obj/structure/droppod/nonmob/turret_pod,
-/obj/structure/drop_pod_launcher,
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "shipside_cic_lockdown";
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
+/area/mainship/living/cryo_cells)
 "sUW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -26012,6 +25988,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/drop_pod_launcher/leader,
+/obj/structure/droppod/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "xWP" = (
@@ -35046,9 +35024,9 @@ lau
 ljl
 hXu
 ive
-jFy
+bye
 nkv
-sIK
+bye
 fAL
 aYD
 aYD
@@ -35288,7 +35266,7 @@ rtT
 hJY
 hXu
 ive
-jFy
+bye
 nkv
 nkv
 nkv
@@ -35530,9 +35508,9 @@ hXu
 ljl
 hXu
 ive
-jFy
+bye
 nkv
-sIK
+bye
 aYD
 aYD
 aYD
@@ -36009,14 +35987,14 @@ tPq
 fBZ
 qWQ
 hnC
-pTu
+sTX
 lLi
 ljl
 gXZ
 kPG
 hcn
 nkv
-sIK
+bye
 aYD
 aYD
 aYD
@@ -36498,9 +36476,9 @@ hXu
 ljl
 hXu
 ive
-jFy
+bye
 nkv
-sIK
+bye
 aYD
 aYD
 aYD
@@ -36735,12 +36713,12 @@ bDK
 sZo
 hRE
 qeM
-pTu
+sTX
 hXu
 ljl
 hXu
 ive
-jFy
+bye
 nkv
 nkv
 nkv
@@ -36982,9 +36960,9 @@ hXu
 ljl
 hXu
 ive
-jFy
+bye
 nkv
-sIK
+bye
 aYD
 itf
 aYD
@@ -37459,8 +37437,8 @@ mzw
 baz
 hXu
 gXZ
-hXu
 baz
+hXu
 uIj
 hXu
 bCS
@@ -37942,8 +37920,8 @@ tkp
 kPZ
 ljl
 hXu
-say
-sTX
+hXu
+hXu
 hXu
 uIj
 gXZ
@@ -38064,7 +38042,7 @@ tZG
 sdV
 cMb
 nAP
-pOC
+rSe
 ePf
 hew
 kjD
@@ -38184,8 +38162,8 @@ gwf
 hXu
 ljl
 hXu
-opw
-opw
+hXu
+hXu
 hXu
 uIj
 gXZ
@@ -38426,8 +38404,8 @@ tkp
 vcT
 ljl
 hXu
-say
-sTX
+hXu
+hXu
 hXu
 uIj
 gXZ
@@ -38548,7 +38526,7 @@ tmd
 ifv
 cMb
 ddE
-pOC
+rSe
 ePf
 xqB
 xqB
@@ -38911,8 +38889,8 @@ idH
 dfL
 hXu
 gXZ
-hXu
 dfL
+hXu
 uIj
 gXZ
 hXu
@@ -39639,7 +39617,7 @@ tPq
 lxL
 fVs
 rBy
-pTu
+sTX
 shj
 gOK
 vkz
@@ -39994,7 +39972,7 @@ udV
 vKJ
 hom
 xJo
-kJv
+jFy
 ePf
 fhq
 fhq
@@ -40365,7 +40343,7 @@ bDK
 nlC
 oIc
 vCU
-pTu
+sTX
 sbt
 gOK
 vkz
