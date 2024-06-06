@@ -166,9 +166,7 @@
 /obj/vehicle/sealed/armored/proc/toggle_strafe()
 	strafe = !strafe
 
-	to_chat(occupants, "strafing mode [strafe?"on":"off"].")
-	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
-
 	for(var/occupant in occupants)
+		balloon_alert(occupant, "Strafing mode [strafe?"on":"off"].")
 		var/datum/action/action = LAZYACCESSASSOC(occupant_actions, occupant, /datum/action/vehicle/sealed/armored/strafe)
 		action?.update_button_icon()

@@ -62,5 +62,5 @@
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
-///Can only shoot forwards
+///Can only shoot in the direction of the turret
 #define MODULE_FIXED_FIRE_ARC (1<<2)

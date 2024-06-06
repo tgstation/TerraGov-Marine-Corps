@@ -751,7 +751,6 @@
 	max_range = 21
 	accurate_range = 15
 	accuracy = 5
-
 	damage = 100
 	penetration = 150
 	sundering = 30

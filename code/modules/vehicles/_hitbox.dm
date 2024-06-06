@@ -90,6 +90,7 @@
 	LAZYSET(tank_desants, lander, lander.layer)
 	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	lander.layer = ABOVE_MOB_PLATFORM_LAYER
+	root.add_desant(lander)
 
 ///signal handler when we leave a turf under the hitbox
 /obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)
@@ -101,6 +102,7 @@
 	AM.layer = LAZYACCESS(tank_desants, AM)
 	LAZYREMOVE(tank_desants, AM)
 	UnregisterSignal(AM, COMSIG_QDELETING)
+	root.remove_desant(AM)
 	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
 	if(!new_hitbox)
 		REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
@@ -108,6 +110,7 @@
 	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
 	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
+	new_hitbox.root.add_desant(lander)
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)

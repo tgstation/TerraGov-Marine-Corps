@@ -162,6 +162,14 @@
 			remove_controller_actions_by_flag(controller, i)
 	return TRUE
 
+///Any special behavior when a desant is added
+/obj/vehicle/proc/add_desant(mob/living/new_desant)
+	return
+
+///Any special behavior when a desant is removed
+/obj/vehicle/proc/remove_desant(mob/living/old_desant)
+	return
+
 /obj/vehicle/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	if(trailer)

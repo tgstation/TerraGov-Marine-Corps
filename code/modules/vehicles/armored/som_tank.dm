@@ -9,7 +9,7 @@
 	hitbox = /obj/hitbox/rectangle/som_tank
 	interior = /datum/interior/armored
 	minimap_icon_state = "tank"
-	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT //leave as is or??
+	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
@@ -67,12 +67,10 @@
 		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
 		animate(time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
 
-///Animates the bob for the tank and its desants
-/obj/vehicle/sealed/armored/multitile/som_tank/proc/add_desant(mob/living/new_desant)
-	new_desant.pass_flags |= pass_flags
+/obj/vehicle/sealed/armored/multitile/som_tank/add_desant(mob/living/new_desant)
+	. = ..()
 	animate_hover()
 
-///Animates the bob for the tank and its desants
-/obj/vehicle/sealed/armored/multitile/som_tank/proc/remove_desant(mob/living/old_desant)
-		old_desant.pass_flags &= ~pass_flags
-		animate(old_desant)
+/obj/vehicle/sealed/armored/multitile/som_tank/remove_desant(mob/living/old_desant)
+	. = ..()
+	animate(old_desant)
