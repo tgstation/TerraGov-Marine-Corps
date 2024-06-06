@@ -16,8 +16,8 @@
 /obj/item/key/door
 	name = "door key"
 	desc = "Used for unlocking locked doors. Or locking unlocked doors."
-	///ID for what lock(s) this key can open; can be assigned a string to open specific mapped-in locks
-	var/personal_lock_id
+	///ID for un/locking locks that match this string; override on a child key to make it start out compatible with certain locks
+	var/personal_lock_id = ""
 
 /obj/item/key/door/Initialize(mapload, unique_id)
 	. = ..()

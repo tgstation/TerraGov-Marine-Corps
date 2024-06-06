@@ -30,7 +30,7 @@
 			return "cut"
 		if(TOOL_WELDER)
 			return "weld"
-		if(TOOL_WELDER)
+		if(TOOL_WELD_CUTTER)
 			return "melt"	//I don't know what else to call it
 		if(TOOL_MULTITOOL)
 			return "pulse"

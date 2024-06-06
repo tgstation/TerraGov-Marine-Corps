@@ -73,7 +73,9 @@
 		if(!construction_steps_index)
 			stack_trace("A player built a door that cannot be de/constructed. This door should be deleted immediately to prevent runtimes.")
 
-	var/static/list/connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_try_exit), COMSIG_ATOM_EXITED = PROC_REF(on_exited))
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited))
 	AddElement(/datum/element/connect_loc, connections)
 
 ///Separate proc for creating a lock if a door is meant to spawn with one
@@ -438,10 +440,12 @@
 	//Don't care about the user if they're not a mob type
 	attempt_to_open(ismob(AM) ? AM : null, direction_from_opener = angle2dir(Get_Angle(src, AM)), bumped = TRUE)
 	var/is_open = CHECK_BITFIELD(door_flags, DOOR_OPEN)
+
+	//For non-full tile doors, this checks if a mob entered a tile with said door and the mob walked directly through the door so that it can be closed behind them
 	if(is_open && CHECK_BITFIELD(atom_flags, ON_BORDER) && REVERSE_DIR(dir) == AM.dir)
 		auto_close(AM)
 
-	return is_open
+	return is_open	//Will be TRUE if the door opened instantly to not delay a mob's movement
 
 ///Mob opening the door has no left leg
 #define OPENER_MISSING_LEFT_LEG 1<<0
