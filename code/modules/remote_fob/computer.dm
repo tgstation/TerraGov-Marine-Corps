@@ -1,11 +1,11 @@
-
 /////////////////////////////// the camera computer
-
 /obj/machinery/computer/camera_advanced/remote_fob
 	name = "FOB Construction Drone Control"
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
-	icon = 'icons/Marine/remotefob.dmi'
-	icon_state = "fobpc"
+	icon = 'icons/obj/machines/fob.dmi'
+	icon_state = "fob"
+	screen_overlay = "fob_emissive"
+	broken_icon = "fob_broken"
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER)
 	resistance_flags = RESIST_ALL
@@ -28,10 +28,8 @@
 	metal_cade = new()
 	plast_cade = new()
 	toggle_wiring = new()
-	/*sentry = new()*/
 	eject_metal_action = new()
 	eject_plasteel_action = new()
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, PROC_REF(disable_drone_creation))
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
@@ -41,29 +39,25 @@
 	eject_mat(EJECT_PLASTEEL)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
-
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()
 	spawn_spot = null
 	QDEL_NULL(metal_cade)
 	QDEL_NULL(plast_cade)
 	QDEL_NULL(toggle_wiring)
-	/*QDEL_NULL(sentry)*/
 	QDEL_NULL(eject_metal_action)
 	QDEL_NULL(eject_plasteel_action)
-
 	return ..()
-
 
 /obj/machinery/computer/camera_advanced/remote_fob/examine(mob/user)
 	. = ..()
 	var/list/details = list()
-	details +="It has [metal_remaining] sheets of metal remaining.</br>"
-	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
+	details += span_notice("It has [metal_remaining] sheets of metal remaining.</br>")
+	details += span_notice("It has [plasteel_remaining] sheets of plasteel remaining.</br>")
 	. += details.Join(" ")
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
-	icon_state = "fobpc-transfer"
+	screen_overlay = "fob_transfer_emissive"
 	user.lighting_alpha = 120
 	eyeobj.name = "Remote Construction Drone"
 	eyeobj.register_facedir_signals(user)
@@ -72,19 +66,19 @@
 
 ///Eject all of the selected mat from the fob drone console
 /obj/machinery/computer/camera_advanced/remote_fob/proc/eject_mat(mattype)
-	flick("fobpc-eject", src)
+	flick("fob_eject", src)
 	var/turf/consolespot = get_turf(loc)
 	switch(mattype)
 		if(EJECT_METAL)
 			var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
-			while(metal_remaining>0)
+			while(metal_remaining > 0)
 				stack = new /obj/item/stack/sheet/metal(consolespot)
 				stack.amount = min(metal_remaining, 50)
 				metal_remaining -= stack.amount
 			return
 		if(EJECT_PLASTEEL)
 			var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
-			while(plasteel_remaining>0)
+			while(plasteel_remaining > 0)
 				stack = new /obj/item/stack/sheet/plasteel(consolespot)
 				stack.amount = min(plasteel_remaining, 50)
 				plasteel_remaining -= stack.amount
@@ -127,15 +121,15 @@
 			var/useamount = attacking_stack.amount
 			metal_remaining += useamount
 			attacking_stack.use(useamount)
-			to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
-			flick("fobpc-insert", src)
+			to_chat(user, span_notice("Inserted [useamount] metal sheets."))
+			flick("fob_insert", src)
 			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/plasteel))
 			var/useamount = attacking_stack.amount
 			plasteel_remaining += useamount
 			attacking_stack.use(useamount)
-			to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
-			flick("fobpc-insert", src)
+			to_chat(user, span_notice("Inserted [useamount] plasteel sheets."))
+			flick("fob_insert", src)
 			return
 	return ..()
 
@@ -175,7 +169,7 @@
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
-	icon_state = "fobpc"
+	screen_overlay = "fob_emissive"
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)

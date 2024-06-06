@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 /mob/camera/aiEye/remote/fobdrone
 	name = "Remote Construction Drone"
-	icon = 'icons/Marine/remotefob.dmi'
+	icon = 'icons/obj/machines/fob.dmi'
 	icon_state = "drone"
 	use_static = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
@@ -36,7 +36,6 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 		if(is_type_in_typecache(thing, GLOB.blocked_remotebuild_objs))
 			return
 	return ..()
-
 
 /mob/camera/aiEye/remote/fobdrone/relaymove(mob/user, direct)
 	setDir(closest_cardinal_dir(direct)) //This camera eye is visible as a drone, and needs to keep the dir updated
