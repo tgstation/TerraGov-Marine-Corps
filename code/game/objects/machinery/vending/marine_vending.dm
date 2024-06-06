@@ -63,6 +63,7 @@
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
+			/obj/item/weapon/gun/shotgun/combat/shq6 = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/holster/belt/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
