@@ -741,7 +741,6 @@
 #include "code\game\atoms\_atom.dm"
 #include "code\game\atoms\atom_appearance.dm"
 #include "code\game\atoms\atom_movable.dm"
-#include "code\game\mecha\mech_bay.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\machinery.dm"
