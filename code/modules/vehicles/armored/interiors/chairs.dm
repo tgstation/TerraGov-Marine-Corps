@@ -37,7 +37,7 @@
 	buckling_mob.reset_perspective(owner)
 	buckling_mob.pixel_x = pixel_x
 	buckling_mob.pixel_y = pixel_y
-	if(vis_range_mod)
+	if(owner.vis_range_mod)
 		buckling_mob.client.view_size.set_view_radius_to("[owner.vis_range_mod]x[owner.vis_range_mod]")
 
 /obj/structure/bed/chair/vehicle_crew/post_unbuckle_mob(mob/buckled_mob)
@@ -45,7 +45,7 @@
 	buckled_mob.reset_perspective()
 	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
-	if(vis_range_mod)
+	if(owner.vis_range_mod)
 		buckled_mob.client.view_size.reset_to_default()
 
 /obj/structure/bed/chair/vehicle_crew/relaymove(mob/living/user, direct)

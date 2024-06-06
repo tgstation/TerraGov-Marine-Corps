@@ -110,7 +110,7 @@
 	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
 	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
-	new_hitbox.root.add_desant(lander)
+	new_hitbox.root.add_desant(AM)
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
