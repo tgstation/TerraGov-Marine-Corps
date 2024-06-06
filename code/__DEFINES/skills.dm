@@ -1,17 +1,17 @@
 // Skill defines
-///CQC skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.
-#define SKILL_CQC "cqc"
+///UNARMED skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.
+#define SKILL_UNARMED "unarmed"
 
-#define SKILL_CQC_WEAK -1
-#define SKILL_CQC_DEFAULT 0
-#define SKILL_CQC_TRAINED 1
-#define SKILL_CQC_MP 2
-#define SKILL_CQC_MASTER 5
+#define SKILL_UNARMED_WEAK -1
+#define SKILL_UNARMED_DEFAULT 0
+#define SKILL_UNARMED_TRAINED 1
+#define SKILL_UNARMED_MP 2
+#define SKILL_UNARMED_MASTER 5
 
-///Unarmed damage mod from CQC skill
-#define CQC_SKILL_DAMAGE_MOD 5
-///Disarm chance mod from CQC skill
-#define CQC_SKILL_DISARM_MOD 5
+///Unarmed damage mod from UNARMED skill
+#define UNARMED_SKILL_DAMAGE_MOD 5
+///Disarm chance mod from UNARMED skill
+#define UNARMED_SKILL_DISARM_MOD 5
 
 ///Melee skill; 15% extra damage per skill level
 #define SKILL_MELEE_WEAPONS "melee_weapons"

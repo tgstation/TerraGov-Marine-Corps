@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed being able to red alert from inside of Valhalla"

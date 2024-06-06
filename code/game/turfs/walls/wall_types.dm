@@ -159,6 +159,11 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/wall/kutjevo
+	icon = 'icons/turf/walls/kutjevo_wall.dmi'
+	icon_state = "kutjevo_wall-0"
+	base_icon_state = "kutjevo_wall"
+
 //tyson
 /turf/closed/wall/tyson
 	name = "outer wall"

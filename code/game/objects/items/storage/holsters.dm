@@ -399,7 +399,7 @@
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
 
-/obj/item/storage/holster/m25/full/Initialize(mapload)
+/obj/item/storage/holster/m25/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
 

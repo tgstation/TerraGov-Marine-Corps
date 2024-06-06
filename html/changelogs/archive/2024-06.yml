@@ -19,3 +19,39 @@
   blackdav123:
   - bugfix: Fixed a disposals pipe in Sulaco medbay.
   - bugfix: Readded forcefields to Riptide
+2024-06-03:
+  Helg2:
+  - bugfix: xeno-leaders rallying now properly puts a red blip hud on them for other
+      xenos in hive.
+  Neocloudy:
+  - bugfix: health analyzer revivable threshold no longer always says 20%
+  SomrNetwork:
+  - rscadd: faction dead people
+  Wisemonster:
+  - code_imp: Replaces CQC skill name with UNARMED skill
+  blackdav123:
+  - bugfix: Pyrogen can now be given plasma.
+2024-06-04:
+  Lumipharon:
+  - balance: Railgun changed back to 1 shot instead of 3
+  - balance: Reduced railgun effectiveness when piercing things
+  - bugfix: Fixed being able to remove railgun rounds of their magazine
+  Notamaniac:
+  - bugfix: Alamo now unlocks itself when a T4 touches the console (as it used to)
+  Wisemonster:
+  - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
+  Xander3359:
+  - bugfix: smg-25 holster can no longer hold every item
+2024-06-05:
+  Lumipharon:
+  - bugfix: Huggers will no longer bounce if thrown into a mob
+  - bugfix: fixed a phantom attachment bug when swapping attachments in some cases.
+  Xander3359:
+  - bugfix: Merging stacks inside a backpack will no longer break
+  - bugfix: Deleting something inside a storage will no longer break
+2024-06-06:
+  Lumipharon:
+  - rscdel: Removed a pref verb for gas mask equip sounds
+  novaepee:
+  - rscdel: Remove Big Red's two plat miners and 1 normal miner near LZ2
+  - balance: Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners

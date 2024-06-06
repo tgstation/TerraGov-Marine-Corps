@@ -599,8 +599,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/item/medevac_beacon
 	name = "medevac beacon"
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "med_beacon0"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "med_0"
 	var/planted = FALSE
 	var/locked = FALSE
 	var/list/obj/item/roller/medevac/linked_beds = list()
@@ -661,7 +661,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
-	icon_state = "med_beacon1"
+	icon_state = "med_1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 	faction = user.faction
 
@@ -676,7 +676,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
-		icon_state = "med_beacon0"
+		icon_state = "med_0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 
 /obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)

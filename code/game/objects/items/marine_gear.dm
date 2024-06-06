@@ -336,7 +336,6 @@
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "compass"
 	w_class = WEIGHT_CLASS_TINY
 
