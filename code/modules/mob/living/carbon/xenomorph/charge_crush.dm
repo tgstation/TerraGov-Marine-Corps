@@ -570,7 +570,7 @@
 		if(CHARGE_BULL_GORE)
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
 			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
-			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 25)
+			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
 			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
 
 	if(anchored)
