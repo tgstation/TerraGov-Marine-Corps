@@ -65,3 +65,13 @@
 	for(var/atom/atom AS in hover_list)
 		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
 		animate(time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
+
+///Animates the bob for the tank and its desants
+/obj/vehicle/sealed/armored/multitile/som_tank/proc/add_desant(mob/living/new_desant)
+	new_desant.pass_flags |= pass_flags
+	animate_hover()
+
+///Animates the bob for the tank and its desants
+/obj/vehicle/sealed/armored/multitile/som_tank/proc/remove_desant(mob/living/old_desant)
+		old_desant.pass_flags &= ~pass_flags
+		animate(old_desant)

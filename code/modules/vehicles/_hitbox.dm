@@ -367,11 +367,11 @@
 	return get_step(get_step(src, root.dir), root.dir)
 
 /obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
-	. = ..()
-	if(!HAS_TRAIT(lander, TRAIT_TANK_DESANT))
+	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
 		return
 	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.animate_hover()
+	tank.add_desant(lander)
+	return ..()
 
 /obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
 	var/is_desant = HAS_TRAIT(AM, TRAIT_TANK_DESANT)
@@ -379,5 +379,4 @@
 	if(!is_desant || HAS_TRAIT(AM, TRAIT_TANK_DESANT))
 		return
 	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.animate_hover()
-	animate(AM)
+	tank.remove_desant(AM)
