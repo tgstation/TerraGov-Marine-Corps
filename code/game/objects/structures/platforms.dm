@@ -177,6 +177,9 @@
 /obj/structure/platform_decoration/hybrisa
 	icon_state = "hybrisa"
 
+/obj/structure/platform/urban
+	max_integrity = 120
+
 /obj/structure/platform/urban/engineer
 	icon_state = "engineer_platform"
 	name = "raised metal edge"
@@ -208,6 +211,7 @@
 	icon_state = "hybrisastone"
 	name = "raised metal edge"
 	desc = "A raised level of metal, often used to elevate areas above others. You could probably climb it."
+
 /obj/structure/platform_decoration/urban/metalplatformdeco1
 	icon_state = "hybrisastone_deco"
 	name = "raised metal corner"
