@@ -148,12 +148,21 @@
 	SIGNAL_HANDLER
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+	var/obj/vehicle/sealed/armored/armor = root
+	var/is_strafing = FALSE
+	if(armor?.strafe)
+		is_strafing = TRUE
+		for(var/mob/driver AS in armor.return_drivers())
+			if(driver.client?.keys_held["Alt"])
+				is_strafing = FALSE
+				break
+	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
+		is_strafing = FALSE
+	else if(!is_strafing) //we turn
+		armor?.play_engine_sound()
 		root.setDir(direction)
-		if(isarmoredvehicle(root))
-			var/obj/vehicle/sealed/armored/armor = root
-			armor.play_engine_sound()
 		return COMPONENT_DRIVER_BLOCK_MOVE
+	///
 	//Due to this being a hot proc this part here is inlined and set on a by-hitbox-size basis
 	/////////////////////////////
 	var/turf/centerturf = get_step(get_step(root, direction), direction)
@@ -173,10 +182,7 @@
 				continue
 			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
-
-	if(canstep)
-		return NONE
-	return COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
 
 /obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -218,11 +224,19 @@
 /obj/hitbox/medium/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-	if((root.dir != direction) && (root.dir != REVERSE_DIR(direction)))
+	var/obj/vehicle/sealed/armored/armor = root
+	var/is_strafing = FALSE
+	if(armor?.strafe)
+		is_strafing = TRUE
+		for(var/mob/driver AS in armor.return_drivers())
+			if(driver.client?.keys_held["Alt"])
+				is_strafing = FALSE
+				break
+	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
+		is_strafing = FALSE
+	else if(!is_strafing) //we turn
+		armor?.play_engine_sound()
 		root.setDir(direction)
-		if(isarmoredvehicle(root))
-			var/obj/vehicle/sealed/armored/armor = root
-			armor.play_engine_sound()
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
 	var/turf/centerturf = get_step(root, direction)
@@ -251,9 +265,7 @@
 			root.Bump(O) //manually call bump on everything
 			canstep = FALSE
 
-	if(canstep)
-		return NONE
-	return COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
 
 //3x4
 /obj/hitbox/rectangle
