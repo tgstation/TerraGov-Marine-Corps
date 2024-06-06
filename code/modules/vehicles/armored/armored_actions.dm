@@ -157,6 +157,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_STRAFE,
 	)
+
 /datum/action/vehicle/sealed/armored/strafe/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
