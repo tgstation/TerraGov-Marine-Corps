@@ -21,18 +21,18 @@
 	if(!.)
 		return
 	switch(obj_integrity)
-		if(2500 to 3000)
+		if(850 to 1000)
 			icon_state = initial(icon_state)
 			return
-		if(2000 to 2500)
+		if(700 to 850)
 			icon_state = "[base_icon_state]_damage_[1]"
-		if(1500 to 2000)
+		if(550 to 700)
 			icon_state = "[base_icon_state]_damage_[2]"
-		if(1000 to 1500)
+		if(400 to 550)
 			icon_state = "[base_icon_state]_damage_[3]"
-		if(500 to 1000)
+		if(250 to 400)
 			icon_state = "[base_icon_state]_damage_[4]"
-		if(0 to 500)
+		if(0 to 250)
 			icon_state = "[base_icon_state]_damage_[5]"
 
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
@@ -73,8 +73,15 @@
 	name = "ambulance"
 	desc = "Seems to be broken down."
 	icon_state = "ambulance"
-	bound_height = 64
+	bound_height = 32
 	bound_width = 96
+
+/obj/structure/prop/urban/vehicles/large_vehicles/ambulance/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH || dir == EAST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
+	if(dir == SOUTH || dir == WEST)
+		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
 
 // Armored Truck
 
@@ -136,10 +143,12 @@
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/Initialize(mapload)
 	. = ..()
-	if(dir == NORTH || EAST)
+	if(dir == NORTH || dir == EAST)
 		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
-	if(dir == SOUTH || WEST)
+		return
+	if(dir == SOUTH || dir == WEST)
 		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
+		return
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
@@ -220,6 +229,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 30
 	base_icon_state = "meridian_red"
+	max_integrity = 1000
 
 /obj/structure/prop/urban/vehicles/meridian/red
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
@@ -228,23 +238,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/red/damageone
 	icon_state = "meridian_red_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/red/damagetwo
 	icon_state = "meridian_red_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/red/damagethree
 	icon_state = "meridian_red_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/red/damagefour
 	icon_state = "meridian_red_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/red/damagefive
 	icon_state = "meridian_red_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/black
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_black.dmi'
@@ -253,23 +263,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/black/damageone
 	icon_state = "meridian_black_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/black/damagetwo
 	icon_state = "meridian_black_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/black/damagethree
 	icon_state = "meridian_black_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/black/damagefour
 	icon_state = "meridian_black_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/black/damagefive
 	icon_state = "meridian_black_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_blue.dmi'
@@ -278,23 +288,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damageone
 	icon_state = "meridian_blue_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damagetwo
 	icon_state = "meridian_blue_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damagethree
 	icon_state = "meridian_blue_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damagefour
 	icon_state = "meridian_blue_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/blue/damagefive
 	icon_state = "meridian_blue_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/brown
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_brown.dmi'
@@ -303,23 +313,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damageone
 	icon_state = "meridian_brown_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damagetwo
 	icon_state = "meridian_brown_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damagethree
 	icon_state = "meridian_brown_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damagefour
 	icon_state = "meridian_brown_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/brown/damagefive
 	icon_state = "meridian_brown_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/cop
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_cop.dmi'
@@ -328,23 +338,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damageone
 	icon_state = "meridian_cop_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damagetwo
 	icon_state = "meridian_cop_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damagethree
 	icon_state = "meridian_cop_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damagefour
 	icon_state = "meridian_cop_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/cop/damagefive
 	icon_state = "meridian_cop_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_desatblue.dmi'
@@ -353,23 +363,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damageone
 	icon_state = "meridian_desatblue_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damagetwo
 	icon_state = "meridian_desatblue_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damagethree
 	icon_state = "meridian_desatblue_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefour
 	icon_state = "meridian_desatblue_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefive
 	icon_state = "meridian_desatblue_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/green
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_green.dmi'
@@ -378,23 +388,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/green/damageone
 	icon_state = "meridian_green_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/green/damagetwo
 	icon_state = "meridian_green_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/green/damagethree
 	icon_state = "meridian_green_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/green/damagefour
 	icon_state = "meridian_green_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/green/damagefive
 	icon_state = "meridian_green_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_lightblue.dmi'
@@ -403,23 +413,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damageone
 	icon_state = "meridian_lightblue_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damagetwo
 	icon_state = "meridian_lightblue_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree
 	icon_state = "meridian_lightblue_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damagefour
 	icon_state = "meridian_lightblue_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/light_blue/damagefive
 	icon_state = "meridian_lightblue_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/pink
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_pink.dmi'
@@ -428,23 +438,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damageone
 	icon_state = "meridian_pink_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damagetwo
 	icon_state = "meridian_pink_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damagethree
 	icon_state = "meridian_pink_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damagefour
 	icon_state = "meridian_pink_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/pink/damagefive
 	icon_state = "meridian_pink_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/purple
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_purple.dmi'
@@ -453,23 +463,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damageone
 	icon_state = "meridian_purple_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damagetwo
 	icon_state = "meridian_purple_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damagethree
 	icon_state = "meridian_purple_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damagefour
 	icon_state = "meridian_purple_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/purple/damagefive
 	icon_state = "meridian_purple_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_turquoise.dmi'
@@ -478,23 +488,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damageone
 	icon_state = "meridian_turquoise_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damagetwo
 	icon_state = "meridian_turquoise_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damagethree
 	icon_state = "meridian_turquoise_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damagefour
 	icon_state = "meridian_turquoise_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/turquoise/damagefive
 	icon_state = "meridian_turquoise_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/orange
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_orange.dmi'
@@ -503,23 +513,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damageone
 	icon_state = "meridian_orange_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damagetwo
 	icon_state = "meridian_orange_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damagethree
 	icon_state = "meridian_orange_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damagefour
 	icon_state = "meridian_orange_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/orange/damagefive
 	icon_state = "meridian_orange_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/generic
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_wy.dmi'
@@ -528,23 +538,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damageone
 	icon_state = "meridian_wy_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damagetwo
 	icon_state = "meridian_wy_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damagethree
 	icon_state = "meridian_wy_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damagefour
 	icon_state = "meridian_wy_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/generic/damagefive
 	icon_state = "meridian_wy_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 /obj/structure/prop/urban/vehicles/meridian/taxi
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_taxi.dmi'
@@ -553,23 +563,23 @@
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damageone
 	icon_state = "meridian_taxi_damage_1"
-	max_integrity = 2500
+	max_integrity = 850
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damagetwo
 	icon_state = "meridian_taxi_damage_2"
-	max_integrity = 2000
+	max_integrity = 700
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damagethree
 	icon_state = "meridian_taxi_damage_3"
-	max_integrity = 1500
+	max_integrity = 550
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damagefour
 	icon_state = "meridian_taxi_damage_4"
-	max_integrity = 1000
+	max_integrity = 400
 
 /obj/structure/prop/urban/vehicles/meridian/taxi/damagefive
 	icon_state = "meridian_taxi_damage_5"
-	max_integrity = 500
+	max_integrity = 250
 
 // Car Chassis
 
@@ -2225,7 +2235,7 @@
 	desc = "A fire hydrant public water outlet, designed for quick access to water."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "firehydrant"
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 150

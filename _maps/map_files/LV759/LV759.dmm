@@ -1191,7 +1191,7 @@
 "akr" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 1;
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -8243,9 +8243,9 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/NTmart)
 "btz" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/open/floor/plating,
-/area/lv759/indoors/jacks_surplus)
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison/darkyellow,
+/area/lv759/indoors/nt_research_complex/hallwaynorth)
 "btB" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 8
@@ -16891,7 +16891,7 @@
 "cOo" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/personal{
-	dir = 1;
+	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -23269,13 +23269,6 @@
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/hospital/operation)
-"dPp" = (
-/obj/effect/mapping_helpers/airlock_autoname,
-/obj/machinery/door/airlock/multi_tile/urban/generic{
-	dir = 8;
-	},
-/turf/open/floor/prison,
-/area/lv759/indoors/spaceport/docking_bay_1)
 "dPt" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -36967,7 +36960,7 @@
 "gcQ" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/lv759/indoors/spaceport/docking_bay_1)
@@ -38434,7 +38427,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/personal{
-	dir = 1;
+	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -41990,7 +41983,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/structure/nuke_disk_candidate,
+/obj/machinery/computer/med_data,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -100536,7 +100529,7 @@
 "qDo" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/medical_solid{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/virology)
@@ -104191,7 +104184,7 @@
 "rlk" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
-	dir = 4;
+	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/prison{
@@ -111449,7 +111442,7 @@
 "svn" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/hallway_east)
@@ -114757,7 +114750,7 @@
 "sWO" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/personal{
-	dir = 1;
+	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -122704,7 +122697,7 @@
 "ukx" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/generic_solid{
-	dir = 1;
+	dir = 1
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -151001,7 +150994,7 @@ mzE
 qih
 uVP
 uVP
-dPp
+qih
 cvr
 fqS
 jIG
@@ -153517,7 +153510,7 @@ mqg
 fib
 mqg
 fib
-qgD
+btz
 uoi
 deU
 esv
@@ -153842,7 +153835,7 @@ pnT
 izF
 vCI
 bMR
-dPp
+qih
 cvr
 mZG
 atW
@@ -178703,7 +178696,7 @@ tGL
 tGL
 tMT
 tGL
-btz
+sFz
 tGL
 ldK
 ldK
