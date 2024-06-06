@@ -182,7 +182,10 @@
 	return root.take_damage(arglist(args))
 
 /obj/hitbox/ex_act(severity)
-	return
+	root.ex_act(severity)
+
+/obj/hitbox/lava_act()
+	root.lava_act()
 
 ///2x2 hitbox version
 /obj/hitbox/medium
