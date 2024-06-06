@@ -13,6 +13,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/outdoors
 	name = "Hybrisa - Outdoors"
@@ -53,9 +54,12 @@
 	ceiling = CEILING_NONE
 	area_flavor = AREA_FLAVOR_URBAN
 
+/area/lv759/indoors/landing_zone_2
+	icon_state = "hybrisa"
+	minimap_color = MINIMAP_AREA_ESCAPE
+
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room
 	name = "KMCC Interstellar Freight Hub - Flight Control Room"
-	icon_state = "hybrisa"
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_security
 	name = "KMCC Interstellar Freight Hub - Security Checkpoint Office"
@@ -63,53 +67,50 @@
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Lounge North"
-	icon_state = "hybrisa"
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel
 	name = "KMCC Interstellar Freight Hub - Fuel Storage & Maintenance - North"
-	icon_state = "hybrisa"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Lounge South"
-	icon_state = "hybrisa"
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Hallway"
-	icon_state = "hybrisa"
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - South Office"
-	icon_state = "hybrisa"
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Maintenance"
-	icon_state = "hybrisa"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub/lz2_console
 	name = "KMCC Interstellar Freight Hub - Dropship Normandy Console"
-	icon_state = "hybrisa"
 	requires_power = FALSE
-	ceiling = CEILING_METAL
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center"
 	icon_state = "mining_cargo"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center - Maintenance"
 	icon_state = "mining"
+	minimap_color = MINIMAP_AREA_ENGI
 
 // Derelict Ship
 /area/lv759/indoors/derelict_ship
 	name = "Derelict Ship"
 	icon_state = "derelictship"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 // Caves
 /area/lv759/indoors/nt_research_complex_entrance
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Main Entrance"
-	icon_state = "wylab"
 	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/lv759/indoors/caves
 	name = "LV759 - Caverns"
@@ -178,6 +179,7 @@
 	icon_state = "caves_plateau"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 // Colony Streets
 /area/lv759/outdoors/colony_streets
@@ -228,18 +230,22 @@
 /area/lv759/indoors/spaceport/hallway_northeast
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northeast"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_north
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - North"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_northwest
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - Northwest"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/hallway_east
 	name = "Nanotrasen Celestia Gateway Space-Port - Hallway - East"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/heavyequip
 	name = "Nanotrasen Celestia Gateway Space-Port - Heavy Equipment Storage"
@@ -248,38 +254,47 @@
 /area/lv759/indoors/spaceport/engineering
 	name = "Nanotrasen Celestia Gateway Space-Port - Fuel Storage & Processing"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv759/indoors/spaceport/janitor
 	name = "Nanotrasen Celestia Gateway Space-Port - Janitorial Storage Room"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/maintenance_east
 	name = "Nanotrasen Celestia Gateway Space-Port - Maintenance - East"
 	icon_state = "WYSpaceport"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv759/indoors/spaceport/communications_office
 	name = "Nanotrasen Celestia Gateway Space-Port - Communications & Administration Office"
 	icon_state = "WYSpaceportadmin"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/spaceport/flight_control_room
 	name = "Nanotrasen Celestia Gateway Space-Port - Flight Control Room"
 	icon_state = "WYSpaceportadmin"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv759/indoors/spaceport/security
 	name = "Nanotrasen Celestia Gateway Space-Port - Security- Observation & Office"
 	icon_state = "security_checkpoint"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv759/indoors/spaceport/security_office
 	name = "Nanotrasen Celestia Gateway Space-Port - Office"
 	icon_state = "security_checkpoint"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv759/indoors/spaceport/cargo
 	name = "Nanotrasen Celestia Gateway Space-Port - Cargo"
 	icon_state = "WYSpaceportcargo"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/spaceport/cargo_maintenance
 	name = "Nanotrasen Celestia Gateway Space-Port - Cargo - Maintenance"
 	icon_state = "WYSpaceportcargo"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/spaceport/baggagehandling
 	name = "Nanotrasen Celestia Gateway Space-Port - Baggage Storage & Handling"
@@ -288,10 +303,12 @@
 /area/lv759/indoors/spaceport/cuppajoes
 	name = "Nanotrasen Celestia Gateway Space-Port - Cuppa Joe's"
 	icon_state = "cuppajoes"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/indoors/spaceport/kitchen
 	name = "Nanotrasen Celestia Gateway Space-Port - Kitchen"
 	icon_state = "WYSpaceportblue"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv759/indoors/spaceport/docking_bay_2
 	name = "Nanotrasen Celestia Gateway Space-Port - Docking Bay: 2 - Refueling and Maintenance"
@@ -339,21 +356,21 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 // Meridian Offices & Factory Floor
+/area/lv759/indoors/meridian
+	icon_state = "meridian"
+	minimap_color = MINIMAP_AREA_REQ
+
 /area/lv759/indoors/meridian/meridian_foyer
 	name = "Meridian - Foyer"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_showroom
 	name = "Meridian - Showroom"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_office
 	name = "Meridian - Office"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_managersoffice
 	name = "Meridian - Manager's Office"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_factory
 	name = "Meridian - Factory Floor"
@@ -361,15 +378,12 @@
 
 /area/lv759/indoors/meridian/meridian_restroom
 	name = "Meridian - Restroom"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_maintenance_south
 	name = "Meridian - Maintenance South"
-	icon_state = "meridian"
 
 /area/lv759/indoors/meridian/meridian_maintenance_east
 	name = "Meridian - Factory Floor - Maintenance"
-	icon_state = "meridian"
 
 // Apartments (Dorms)
 /area/lv759/indoors/apartment
@@ -460,7 +474,6 @@
 /area/lv759/indoors/bar
 	name = "Bar"
 	icon_state = "bar"
-	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/bar/entertainment
 	name = "Bar - Entertainment Subsection"
@@ -564,63 +577,54 @@
 
 /area/lv759/indoors/mining_outpost
 	icon_state = "mining"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv759/indoors/mining_outpost/north
 	name = "KMCC - Mining Outpost - North"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/north_maint
 	name = "KMCC - Mining Outpost - North - Maintenance"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/northeast
 	name = "KMCC - Mining Outpost - Northeast"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/south
 	name = "KMCC - Mining Outpost - South"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/vehicledeployment
 	name = "KMCC - Mining Vehicle Deployment South"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/processing
 	name = "KMCC - Mining Processing & Storage"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/east
 	name = "KMCC - Mining Outpost - East"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/east_dorms
 	name = "KMCC - Mining Outpost - East Dorms"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/east_deploymentbay
 	name = "KMCC - Mining Outpost - East - Deployment Bay"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/east_command
 	name = "KMCC - Mining Outpost - East - Command Center"
-	icon_state = "mining"
 
 /area/lv759/indoors/mining_outpost/cargo_maint
 	name = "KMCC - Mining Outpost - East - Maintenance"
-	icon_state = "mining"
 
 // Electrical Substations
+/area/lv759/indoors/electical_systems
+	icon_state = "power0"
+	minimap_color = MINIMAP_AREA_ENGI
+
 /area/lv759/indoors/electical_systems/substation1
 	name = "Electrical Systems - Substation One - Control Room"
-	icon_state = "power0"
 
 /area/lv759/indoors/electical_systems/substation2
 	name = "Electrical Systems - Substation Two"
-	icon_state = "power0"
 
 /area/lv759/indoors/electical_systems/substation3
 	name = "Electrical Systems - Substation Three"
-	icon_state = "power0"
 
 // Power-Plant (Engineering)
 /area/lv759/indoors/power_plant
@@ -828,6 +832,9 @@
 	icon_state = "NTmartbackrooms"
 
 // NT Security Checkpoints
+/area/lv759/indoors/nt_security
+	minimap_color = MINIMAP_AREA_SEC
+
 /area/lv759/indoors/nt_security/checkpoint_northeast
 	name = "Nanotrasen Security Checkpoint - North East"
 	icon_state = "security_checkpoint_northeast"
@@ -860,113 +867,105 @@
 /area/lv759/indoors/nt_research_complex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex"
 	icon_state = "wylab"
-	minimap_color = MINIMAP_AREA_RESEARCH
+	minimap_color = MINIMAP_AREA_CAVES
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/lv759/indoors/nt_research_complex/medical_annex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 
 /area/lv759/indoors/nt_research_complex/reception
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Reception & Administration"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/cargo
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Requisitions & Cargo"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/lv759/indoors/nt_research_complex/researchanddevelopment
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/mainlabs
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Chemical Testing & Research Lab"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/xenobiology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/weaponresearchlab
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab - Weapons Testing Range"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/xenoarcheology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Xenoarcheology Research Lab"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Vehicle Deployment & Maintenance Bay"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/lv759/indoors/nt_research_complex/janitor
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Janitorial Supplies Storage"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/cafeteria
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Cafeteria - Kitchen"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/dormsfoyer
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms Foyer"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/dormsbedroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Dorms"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/lv759/indoors/nt_research_complex/securitycommand
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Security Command Center & Deployment"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/lv759/indoors/nt_research_complex/securityarmory
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Armory"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/lv759/indoors/nt_research_complex/hangarbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
 
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
 
 /area/lv759/indoors/nt_research_complex/hallwaynorth
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/hallwayeast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/hallwaycentral
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/southeastexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
-	icon_state = "wylab"
 
 /area/lv759/indoors/nt_research_complex/changingroom
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Locker Room"
-	icon_state = "wylab"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE

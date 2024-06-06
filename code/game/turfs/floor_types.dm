@@ -300,6 +300,7 @@
 /turf/open/ground/sandrock
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "varadero_0"
+	minimap_color = MINIMAP_DIRT
 
 //////////////////////////////////////////////////////////////////////
 
@@ -1732,6 +1733,7 @@
 
 /turf/open/urban/street/asphalt
 	icon_state = "asphalt_old"
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/urban/street/sidewalk
 	icon_state = "sidewalk"
@@ -1744,6 +1746,7 @@
 
 /turf/open/urban/street/sidewalkcenter
 	icon_state = "sidewalkcenter"
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/urban/street/roadlines
 	icon_state = "asphalt_old_roadlines"
@@ -2162,7 +2165,7 @@
 	mediumxenofootstep = FOOTSTEP_GRAVEL
 	barefootstep = FOOTSTEP_GRAVEL
 	shoefootstep = FOOTSTEP_GRAVEL
-	minimap_color = MINIMAP_MARS_DIRT
+	minimap_color = MINIMAP_SHALE
 
 /turf/open/urbanshale/layer0
 	icon_state = "shale_0"
