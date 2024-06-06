@@ -4,9 +4,9 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 
-	total_health = 125 //more health than regular humans
+	total_health = 150 //more health than regular humans
 
-	brute_mod = 0.7
+	//brute_mod = 0.7
 	burn_mod = 0.8 // A slight amount of burn resistance. Changed from 0.7 due to their critical condition phase
 
 	cold_level_1 = -1
@@ -77,8 +77,8 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	slowdown = 1.15 //Slower than Late Synths
-	total_health = 200 //Tough boys, very tough boys
-	brute_mod = 0.6
+	total_health = 225 //Tough boys, very tough boys
+	//brute_mod = 0.6
 	burn_mod = 0.6
 
 	cold_level_1 = -1
@@ -119,7 +119,6 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 	H.health_threshold_crit = -100 // You overheat below -30 health
-
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
