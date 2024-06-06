@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscdel: "Remove Big Red's two plat miners and 1 normal miner near LZ2"
-  - balance: "Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners"
