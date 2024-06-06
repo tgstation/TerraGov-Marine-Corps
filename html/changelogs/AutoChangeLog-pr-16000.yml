@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Deconstructing an upgraded metal barricade now returns the actual cost of 5 sheets instead of 4."

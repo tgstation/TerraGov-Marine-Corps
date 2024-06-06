@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Merging stacks inside a backpack will no longer break"
-  - bugfix: "Deleting something inside a storage will no longer break"
