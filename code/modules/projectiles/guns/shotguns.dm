@@ -943,3 +943,65 @@
 
 /obj/item/weapon/gun/shotgun/pump/ksg/support
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flashlight/under, /obj/item/attachable/compensator,)
+
+//-------------------------------------------------------
+//SH-46 semi automatic shotgun.
+
+/obj/item/weapon/gun/shotgun/combat/shq6
+	name = "\improper SH-46 combat shotgun"
+	desc = "The SH-46, is a semi-automatic, 12 Gauge, gas piston-operated shotgun, released for TGMC by CAU."
+	force = 20 //Has a stock already
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "shq6"
+	worn_icon_state = "shq6"
+	worn_icon_list = list(
+		slot_s_store_str = 'icons/mob/suit_slot.dmi',
+		slot_back_str = 'icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
+		)
+	fire_sound = 		'sound/weapons/guns/fire/SH46.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/SH46_shell.ogg'
+	cocked_sound = 		'sound/weapons/guns/interact/SH46_boltpull.ogg'
+	max_chamber_items = 5
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+	)
+
+	starting_attachment_types = null
+	attachable_offset = list("muzzle_x" = 52, "muzzle_y" = 20,"rail_x" = 24, "rail_y" = 22, "under_x" = 35, "under_y" = 14, "stock_x" = 13, "stock_y" = 13)
+
+	fire_delay = 3 //one shot every 0.3 seconds.
+	accuracy_mult = 1.05
+	scatter = 3
+	damage_mult = 0.6  //40% less damage.
+	recoil = 0.5
+	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.2
+
+//It's very fast shogun, it's made to prevent stagger/weaken spam.
+/obj/item/weapon/gun/shotgun/combat/shq6/get_ammo()
+	. = ..()
+	switch(ammo_datum_type)
+		if(/datum/ammo/bullet/shotgun/buckshot)
+			return /datum/ammo/bullet/shotgun/buckshot
+		if(/datum/ammo/bullet/shotgun/slug)
+			return /datum/ammo/bullet/shotgun/slug
+		if(/datum/ammo/bullet/shotgun/flechette)
+			return /datum/ammo/bullet/shotgun/flechette
+		if(/datum/ammo/bullet/shotgun/incendiary)
+			return /datum/ammo/bullet/shotgun/incendiary
