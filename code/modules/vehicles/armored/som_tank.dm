@@ -29,6 +29,7 @@
 	)
 	engine_sound = SFX_HOVER_TANK
 	engine_sound_length = 1.2 SECONDS
+	vis_range_mod = 4
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
 	. = ..()
