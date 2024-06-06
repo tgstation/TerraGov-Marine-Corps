@@ -1062,6 +1062,7 @@
 /obj/structure/prop/urban/furniture
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "blackmetaltable"
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/urban/furniture/tables
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
@@ -1117,6 +1118,7 @@
 /obj/structure/bed/urban/chairs
 	name = "expensive chair"
 	desc = "An expensive looking chair"
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/bed/urban/chairs/black
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
