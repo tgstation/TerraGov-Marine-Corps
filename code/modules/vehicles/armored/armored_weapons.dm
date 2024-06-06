@@ -377,7 +377,7 @@
 
 /obj/item/armored_weapon/secondary_mlrs
 	name = "secondary MLRS"
-	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 rockets. Can unleash its entire payload in rapid succession."
+	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 homing rockets. Can unleash its entire payload in rapid succession."
 	icon_state = "mlrs"
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
