@@ -513,6 +513,8 @@
 	explosion(T, 0, 2, 3, 4, 1)
 
 /datum/ammo/rocket/homing/ammo_process(obj/projectile/proj, damage)
+	if(QDELETED(proj.original_target))
+		return
 	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
 	if((proj.dir_angle >= angle_to_target - angle_precision) && (proj.dir_angle <= angle_to_target + angle_precision))
 		return
