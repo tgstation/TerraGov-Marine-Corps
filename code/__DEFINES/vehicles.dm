@@ -62,3 +62,5 @@
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
+///Can only shoot forwards
+#define MODULE_FIXED_FIRE_ARC (1<<2)

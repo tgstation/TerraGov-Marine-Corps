@@ -496,3 +496,29 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
+
+/datum/ammo/rocket/homing
+	name = "homing HE rocket"
+	damage = 0
+	penetration = 0
+	max_range = 20
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS
+	shell_speed = 0.3
+	///If the projectile is pointing at the target with a variance of this number, we don't readjust the angle
+	var/angle_precision = 5
+	///Number in degrees that the projectile will change during each process
+	var/turn_rate = 5
+
+/datum/ammo/rocket/homing/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 4, 1)
+
+/datum/ammo/rocket/homing/ammo_process(obj/projectile/proj, damage)
+	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
+	if((proj.dir_angle >= angle_to_target - angle_precision) && (proj.dir_angle <= angle_to_target + angle_precision))
+		return
+	proj.dir_angle = clamp(angle_to_target, proj.dir_angle - turn_rate, proj.dir_angle + turn_rate)
+	proj.x_offset = round(sin(proj.dir_angle), 0.01)
+	proj.y_offset = round(cos(proj.dir_angle), 0.01)
+	var/matrix/rotate = matrix()
+	rotate.Turn(proj.dir_angle)
+	animate(proj, transform = rotate, time = SSprojectiles.wait)

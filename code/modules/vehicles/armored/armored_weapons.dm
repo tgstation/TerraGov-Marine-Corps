@@ -6,7 +6,7 @@
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
 	///Weapon slot this weapon fits in
-	var/weapon_slot = MODULE_PRIMARY
+	var/armored_weapon_flags = MODULE_PRIMARY|MODULE_FIXED_FIRE_ARC
 
 	///currently loaded ammo. initial value is ammo we start with
 	var/obj/item/ammo_magazine/ammo = /obj/item/ammo_magazine/tank/ltb_cannon
@@ -178,9 +178,8 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
-	var/turf/source_turf
-	if(chassis.primary_weapon == src)
-		source_turf = chassis.hitbox.get_projectile_loc(src)
+	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
+	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
 		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, current_target), dir2angle(chassis.turret_overlay.dir))
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
 			chassis.swivel_turret(current_target)
@@ -196,7 +195,7 @@
 
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammo.default_ammo.hitscan_effect_icon))
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, initial(ammo.default_ammo.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
@@ -304,7 +303,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_SECONDARY
+	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -321,7 +320,6 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_PRIMARY
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -351,7 +349,6 @@
 	Against armored targets however, it can prove less effective."
 	icon_state = "volkite"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
-	weapon_slot = MODULE_PRIMARY
 	ammo = /obj/item/ammo_magazine/tank/volkite_cardanelle
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_cardanelle)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -377,3 +374,18 @@
 	desc = "The coilgun is considered the standard main weapon for SOM battle tanks. \
 	While technologically very different from a traditional cannon, fundamentally both serve the same purpose - to accelerate a large projectile at a high speed towards the enemy."
 	icon_state = "coilgun"
+
+/obj/item/armored_weapon/secondary_mlrs
+	name = "secondary MLRS"
+	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 rockets. Can unleash its entire payload in rapid succession."
+	icon_state = "mlrs"
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
+	ammo = /obj/item/ammo_magazine/tank/secondary_mlrs
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_mlrs)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	projectile_delay = 0.2 SECONDS
+	variance = 40
+	rearm_time = 5 SECONDS
+	maximum_magazines = 5
+	hud_state_empty = "rocket_empty"

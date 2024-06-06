@@ -430,7 +430,7 @@
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.weapon_slot & MODULE_PRIMARY))
+		if(!(gun.armored_weapon_flags & MODULE_PRIMARY))
 			balloon_alert(user, "not a primary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
@@ -491,7 +491,7 @@
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.weapon_slot & MODULE_SECONDARY))
+		if(!(gun.armored_weapon_flags & MODULE_SECONDARY))
 			balloon_alert(user, "not a secondary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))

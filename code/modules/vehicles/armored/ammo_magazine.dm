@@ -102,3 +102,12 @@
 	default_ammo = /datum/ammo/energy/particle_lance
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/secondary_mlrs
+	name = "\improper MLRS magazine"
+	desc = "A secondary armament MLRS magazine"
+	caliber = CALIBER_40MM
+	icon_state = "glauncher_2"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing
+	max_rounds = 12
