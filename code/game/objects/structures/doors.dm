@@ -433,7 +433,7 @@
 	if(.)	//Non-full tile doors will not block the crosser, no need to continue below
 		if(CHECK_BITFIELD(atom_flags, ON_BORDER) && REVERSE_DIR(dir) == AM.dir)	//Auto close non-full tile doors if the crosser walked through the door
 			auto_close(AM)
-		return .
+		return
 
 	//Don't care about the user if they're not a mob type
 	attempt_to_open(ismob(AM) ? AM : null, direction_from_opener = angle2dir(Get_Angle(src, AM)), bumped = TRUE)
