@@ -4,10 +4,12 @@
 	slot = ATTACHMENT_SLOT_WEAPON
 	w_class = WEIGHT_CLASS_BULKY
 	attach_features_flags = ATTACH_ACTIVATION|ATTACH_REMOVABLE|ATTACH_NO_HANDS
-	///The gun mounted on a vehicle
+	///The gun mounted on a vehicle. Initial value is the type to use
 	var/obj/item/weapon/gun/mounted_gun
 
 /obj/item/vehicle_module/mounted_gun/Initialize(mapload)
+	if(!mounted_gun)
+		return INITIALIZE_HINT_QDEL
 	. = ..()
 	mounted_gun = new mounted_gun(src)
 	mounted_gun.gun_features_flags |= GUN_FORWARD_FIRE_ANGLE
