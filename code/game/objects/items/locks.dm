@@ -36,7 +36,7 @@
 		if(0 to 0.5)
 			. += span_danger("It's severely damaged.")
 		if(0.5 to 0.99)
-			. += span_warning("It could use repairs.")
+			. += span_warning("It could use some repairs.")
 
 /obj/item/lock/attackby(obj/item/I, mob/user, params)
 	. = ..()
