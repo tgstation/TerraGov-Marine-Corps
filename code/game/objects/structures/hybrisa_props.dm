@@ -1607,14 +1607,12 @@
 	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "trashgreen"
-	density = TRUE
 
 /obj/structure/prop/urban/misc/trash/blue
 	name = "trash bin"
 	desc = "A Nanotrasen trash bin used for disposing your unwanted items, or you can just throw your shit on the ground like every other asshole."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "trashblue"
-	density = TRUE
 
 /obj/structure/prop/urban/misc/redmeter
 	name = "meter"
@@ -2206,6 +2204,7 @@
 	density = TRUE
 	max_integrity = 200
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/urban/misc/stoneplanterseats/empty
 	name = "concrete planter"
