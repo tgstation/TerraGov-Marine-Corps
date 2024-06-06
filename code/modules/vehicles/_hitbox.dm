@@ -369,9 +369,9 @@
 /obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
 	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
 		return
+	. = ..()
 	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
 	tank.add_desant(lander)
-	return ..()
 
 /obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
 	var/is_desant = HAS_TRAIT(AM, TRAIT_TANK_DESANT)
