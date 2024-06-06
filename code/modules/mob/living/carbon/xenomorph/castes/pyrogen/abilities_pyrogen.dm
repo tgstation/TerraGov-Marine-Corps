@@ -4,7 +4,7 @@
 /datum/action/ability/activable/xeno/charge/fire_charge
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
-	desc = "Charge up to 3 tiles, inflicting a stack of melting flame and slashing them with a fiery claw. "
+	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
 	cooldown_duration = 4 SECONDS
 	ability_cost = 30
 	keybinding_signals = list(

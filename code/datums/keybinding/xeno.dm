@@ -1142,7 +1142,7 @@
 /datum/keybinding/xeno/firecharge
 	name = "Fire Charge"
 	full_name = "Pyrogen: Fire Charge"
-	description = "Charge with the power of the fire , burn the first marine you come across."
+	description = "Charge forward and attack a marine, extinguishing them if they're on fire, but dealing extra burn damage depending on how many firestacks they have."
 	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE
 
 /datum/keybinding/xeno/firenado

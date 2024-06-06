@@ -126,12 +126,8 @@
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
-	addtimer(CALLBACK(src, PROC_REF(remove_knockout), buckled_mob), rand(2 SECONDS, 4 SECONDS))
+	addtimer(TRAIT_CALLBACK_REMOVE(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT), rand(2 SECONDS, 4 SECONDS))
 	return ..()
-
-///Wakes the buckled mob back up after they're released
-/obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
-	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 
