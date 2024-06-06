@@ -49,4 +49,6 @@
 		//weak explosions do nothing
 
 /obj/vehicle/sealed/armored/multitile/lava_act()
+	if(QDELETED(src))
+		return
 	take_damage(30, BURN, FIRE)
