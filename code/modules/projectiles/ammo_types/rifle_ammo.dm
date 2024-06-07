@@ -25,8 +25,8 @@
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
 	damage = 20
-	penetration = 20
-	sundering = 1.25
+	penetration = 15
+	sundering = 1
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
