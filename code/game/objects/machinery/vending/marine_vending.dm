@@ -51,7 +51,7 @@
 			/obj/item/weapon/gun/shotgun/pump/bolt = 0,
 			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
-			/obj/item/weapon/gun/shotgun/double/martini = -1,
+			/obj/item/weapon/gun/shotgun/double/martini = 0,
 			/obj/item/ammo_magazine/rifle/martini = -1,
 		),
 		"Shotgun" = list(
@@ -265,11 +265,11 @@
 			/obj/item/ammo_magazine/rifle/standard_dmr = -1,
 			/obj/item/weapon/gun/rifle/standard_br = -1,
 			/obj/item/ammo_magazine/rifle/standard_br = -1,
-			/obj/item/weapon/gun/rifle/chambered = -1,
+			/obj/item/weapon/gun/rifle/chambered = 0,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
-			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/weapon/gun/shotgun/pump/bolt = 0,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
-			/obj/item/weapon/gun/shotgun/double/martini = -1,
+			/obj/item/weapon/gun/shotgun/double/martini = 0,
 			/obj/item/ammo_magazine/rifle/martini = -1,
 		),
 		"Shotgun" = list(
