@@ -296,6 +296,7 @@
 	handle_regular_hud_updates()
 	updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	dead_ticks = 0 //We reset the DNR timer
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 
 /**
  * Proc for checking parameters of a human for defibrillation.
