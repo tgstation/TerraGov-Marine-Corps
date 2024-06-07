@@ -92,7 +92,10 @@
 	SIGNAL_HANDLER
 	position = new_position
 	var/datum/hive_status/the_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	action.button.maptext = MAPTEXT_TINY_UNICODE("<span class='center'>[position]/[LAZYLEN(the_hive.candidates)]</span>")
+	if(!the_hive)
+		stack_trace("Where's the main hive? (XENO_HIVE_NORMAL NOT FOUND)")
+		return
+	action.button.maptext = MAPTEXT_TINY_UNICODE(CENTER_TEXT("[position]/[LAZYLEN(the_hive.candidates)]"))
 	action.button.maptext_x = 1
 	action.button.maptext_y = 3
 	if (position == 0) // No longer in queue
