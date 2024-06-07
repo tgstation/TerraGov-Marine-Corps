@@ -193,17 +193,8 @@
 		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
-
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, initial(ammo.default_ammo.hitscan_effect_icon))
-	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
-
-	apply_weapon_modifiers(projectile_to_fire, current_firer)
-	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
-
-	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE)
-	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED), loc_override = source_turf)
-
+	do_fire(source_turf)
+	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
@@ -228,6 +219,15 @@
 		return AUTOFIRE_SUCCESS
 	reload()
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
+
+///The actual firing of a projectile. Overridable for different effects
+/obj/item/armored_weapon/proc/do_fire(turf/source_turf)
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, initial(ammo.default_ammo.hitscan_effect_icon))
+	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
+	apply_weapon_modifiers(projectile_to_fire, current_firer)
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
+	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED), loc_override = source_turf)
 
 ///eject current ammo from tank
 /obj/item/armored_weapon/proc/eject_ammo()
@@ -341,51 +341,3 @@
 	)
 	projectile_delay = 0.7 SECONDS
 	hud_state_empty = "grenade_empty"
-
-//SOM tank guns
-/obj/item/armored_weapon/volkite_cardanelle
-	name = "Volkite Cardanelle"
-	desc = "A massive volkite weapon seen on SOM battle tanks, the cardanelle is a devestating anti infantry weapon, able to mow down whole groups of soft targets with ease. \
-	Against armored targets however, it can prove less effective."
-	icon_state = "volkite"
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
-	ammo = /obj/item/ammo_magazine/tank/volkite_cardanelle
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_cardanelle)
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	variance = 5
-	projectile_delay = 0.1 SECONDS
-	rearm_time = 3 SECONDS
-	maximum_magazines = 5
-	hud_state_empty = "battery_empty_flash"
-
-/obj/item/armored_weapon/particle_lance
-	name = "particle lance"
-	desc = "The particle lance is a powerful energy beam weapon, able to tear apart anything in its path with a concentrated beam of charged particles. Particularly potent against armored targets."
-	icon_state = "particle_beam"
-	ammo = /obj/item/ammo_magazine/tank/particle_lance
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/particle_lance)
-	fire_sound = 'sound/vehicles/weapons/particle_fire.ogg'
-	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
-	windup_delay = 0.6 SECONDS
-	hud_state_empty = "battery_empty_flash"
-
-/obj/item/armored_weapon/coilgun
-	name = "battle tank coilgun"
-	desc = "The coilgun is considered the standard main weapon for SOM battle tanks. \
-	While technologically very different from a traditional cannon, fundamentally both serve the same purpose - to accelerate a large projectile at a high speed towards the enemy."
-	icon_state = "coilgun"
-
-/obj/item/armored_weapon/secondary_mlrs
-	name = "secondary MLRS"
-	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 homing rockets. Can unleash its entire payload in rapid succession."
-	icon_state = "mlrs"
-	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
-	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
-	ammo = /obj/item/ammo_magazine/tank/secondary_mlrs
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_mlrs)
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	projectile_delay = 0.2 SECONDS
-	variance = 40
-	rearm_time = 5 SECONDS
-	maximum_magazines = 5
-	hud_state_empty = "rocket_empty"

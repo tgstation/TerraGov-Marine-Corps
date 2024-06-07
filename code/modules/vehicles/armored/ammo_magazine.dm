@@ -84,14 +84,14 @@
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
 
 //SOM tank
-/obj/item/ammo_magazine/tank/volkite_cardanelle
-	name = "volkite cardanelle cell"
-	desc = "A heavy, disposable cell used for powering a volkite cardanelle."
+/obj/item/ammo_magazine/tank/volkite_carronade
+	name = "volkite carronade cell"
+	desc = "A heavy, disposable cell used for powering a volkite carronade."
 	caliber = CALIBER_84MM
 	icon_state = "volkite_turret"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/energy/volkite/heavy
-	max_rounds = 180
+	max_rounds = 3
 
 /obj/item/ammo_magazine/tank/particle_lance
 	name = "particle lance energy cell"
