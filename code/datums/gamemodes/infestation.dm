@@ -43,10 +43,6 @@
 		if(mini == -1)
 			continue
 		mini = item_ratio
-	for(var/obj/item/weapon/gun AS in GLOB.vending_records["Marksman"])
-		if(gun == -1)
-			continue
-		gun = item_ratio
 
 /datum/game_mode/infestation/process()
 	if(round_finished)
