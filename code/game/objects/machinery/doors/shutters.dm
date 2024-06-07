@@ -192,7 +192,7 @@
 
 /obj/machinery/door/poddoor/shutters/mainship/req
 	name = "\improper Requisitions Shutters"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
@@ -208,7 +208,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
 	id = "containmentcell"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1
 	name = "\improper Containment Cell 1"
@@ -221,7 +221,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/brigarmory
 	name = "\improper Brig Armory Shutters"
 	id = "brig_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic
 	name = "\improper CIC Shutters"
@@ -229,12 +229,12 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"
 	id = "engi_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/corporate
 	name = "\improper Privacy Shutters"

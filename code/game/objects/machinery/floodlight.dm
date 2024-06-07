@@ -241,17 +241,17 @@
 	name = "Colony Streetlight"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "street_off"
-	layer = ABOVE_MOB_LAYER
+	layer = ABOVE_LYING_MOB_LAYER
 	brightness_on = 10
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 220
+	density = FALSE
 
 /obj/machinery/floodlight/colony/street/update_icon_state()
 	var/area/street_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "street_dmg"
 	else if(street_light_area.power_light)
-		icon_state = "street_on"
 		icon_state = "street_on"
 	else
 		icon_state = "street_off"
@@ -265,9 +265,9 @@
 	icon_state = "trafficlight"
 	bound_width = 32
 	bound_height = 32
-	density = TRUE
+	density = FALSE
 	max_integrity = 200
-	layer = ABOVE_MOB_LAYER
+	layer = ABOVE_LYING_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	brightness_on = 10
 
