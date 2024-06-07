@@ -155,7 +155,7 @@
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
 	icon_state = "sniper_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 5
+	zoom_tile_offset = 4
 
 /obj/item/attachable/scope/unremovable/mmg
 	name = "MG-27 rail scope"
@@ -165,7 +165,7 @@
 	aim_speed_mod = 0.2
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	zoom_slowdown = 0.3
-	zoom_tile_offset = 5
+	zoom_tile_offset = 4
 	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/standard_atgun
@@ -180,7 +180,7 @@
 	desc = "An unremovable smart sight built for use with the HSG-102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	icon_state = "sniper_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 5
+	zoom_tile_offset = 4
 	deployed_scope_rezoom = TRUE
 
 //all mounted guns with a nest use this
