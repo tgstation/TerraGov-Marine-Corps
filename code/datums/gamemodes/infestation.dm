@@ -37,7 +37,7 @@
 
 /datum/game_mode/infestation/proc/scale_weapons(pop_override)
 	if(!isnum(pop_override))
-		pop_override = length(GLOB.clients)
+		pop_override = length(GLOB.alive_human_list)
 	var/item_ratio = floor(pop_override / INFESTATION_MARINE_PER_SCOPE)
 	for(var/obj/item/attachable/scope/mini AS in GLOB.vending_records["Attachments"])
 		if(mini == -1)
