@@ -1389,7 +1389,6 @@
 		playsound(src, reload_sound, 25, 1)
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		cycle(user, FALSE)
-	RegisterSignal(obj_to_insert, COMSIG_CELL_SELF_RECHARGE, PROC_REF(update_ammo_count), override = TRUE)
 	get_ammo()
 	update_ammo_count()
 	update_icon()
