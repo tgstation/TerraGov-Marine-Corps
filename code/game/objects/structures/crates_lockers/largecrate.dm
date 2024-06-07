@@ -136,6 +136,7 @@
 	name = "small crate"
 	desc = "The large supply crate's cousin, 1st removed."
 	icon_state = "mini_crate"
+	density = FALSE
 
 /obj/structure/largecrate/random/mini/chest
 	desc = "A small plastic crate wrapped with securing elastic straps."
