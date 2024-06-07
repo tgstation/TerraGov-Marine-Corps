@@ -22,10 +22,6 @@
 		return
 	give(charge_amount)
 	update_icon()
-	if(!isgun(loc))
-		return
-	var/obj/item/weapon/gun/gun_loc = loc
-	gun_loc.update_ammo_count()
 
 /obj/item/cell/update_overlays()
 	. = ..()
@@ -193,10 +189,6 @@
 	. = ..()
 	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
 	update_icon()
-	if(!isgun(loc))
-		return
-	var/obj/item/weapon/gun/gun_loc = loc
-	gun_loc.update_ammo_count()
 
 /obj/item/cell/ex_act(severity)
 
