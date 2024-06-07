@@ -28,7 +28,7 @@
 /datum/action/ability/activable/xeno/bull_charge/gore
 	name = "Gore Charge"
 	action_icon_state = "bull_gore"
-	desc = "When you hit a host, stops your charge while piercing and injecting them with Neurotoxin."
+	desc = "When you hit a host, stops your charge while piercing and injecting them with Ozelomelon."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BULLGORE,
 	)
