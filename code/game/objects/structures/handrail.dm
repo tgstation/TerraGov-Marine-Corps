@@ -143,6 +143,11 @@
 	icon_state = "centerroadbarrierdouble"
 	barricade_type = "centerroadbarrierdouble"
 
+/obj/structure/barricade/handrail/urban/road/metal/double/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH || dir == SOUTH)
+		overlays += image(icon, src, "centerroadbarrierdouble_overlay", layer = ABOVE_ALL_MOB_LAYER)
+
 /obj/structure/barricade/handrail/urban/handrail
 	name = "haindrail"
 	icon_state = "handrail_hybrisa"

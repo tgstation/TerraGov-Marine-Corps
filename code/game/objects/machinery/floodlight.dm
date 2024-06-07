@@ -242,7 +242,7 @@
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "street_off"
 	layer = ABOVE_LYING_MOB_LAYER
-	brightness_on = 10
+	brightness_on = 5
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 220
 	density = FALSE
@@ -251,10 +251,13 @@
 	var/area/street_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "street_dmg"
+		set_light(0)
 	else if(street_light_area.power_light)
 		icon_state = "street_on"
+		set_light(5, 5, COLOR_WHITE)
 	else
 		icon_state = "street_off"
+		set_light(0)
 
 // Traffic
 
