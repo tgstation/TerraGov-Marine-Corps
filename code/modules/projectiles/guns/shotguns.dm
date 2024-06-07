@@ -219,7 +219,6 @@
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
 
@@ -414,7 +413,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mosin,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/foldable/bipod,
@@ -486,7 +484,6 @@
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
@@ -678,7 +675,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
