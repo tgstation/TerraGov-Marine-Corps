@@ -16639,10 +16639,10 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "cKP" = (
-/obj/effect/urban/decal/dirt,
-/obj/machinery/miner/damaged,
-/turf/open/floor/prison,
-/area/lv759/outdoors/landing_zone_2)
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/prison/darkyellow,
+/area/lv759/indoors/nt_research_complex/hallwaynorth)
 "cKQ" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/camera_film,
@@ -68104,15 +68104,6 @@
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/nt_research_complex_entrance)
-"liR" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/darkyellow{
-	dir = 10
-	},
-/area/lv759/indoors/nt_research_complex/hallwaynorth)
 "liU" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison{
@@ -75284,9 +75275,6 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "mqs" = (
-/obj/structure/closet/walllocker/hydrant{
-	pixel_y = 32
-	},
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/hallway_central)
@@ -151049,7 +151037,7 @@ cDx
 jJd
 cDx
 jJd
-qgD
+cKP
 dVk
 qYg
 dHl
@@ -151861,7 +151849,7 @@ hKj
 jkL
 uod
 tWE
-liR
+xAS
 opv
 kHd
 vNR
@@ -191065,7 +191053,7 @@ dog
 dog
 dog
 ecr
-cKP
+upd
 nNK
 wlP
 nYB

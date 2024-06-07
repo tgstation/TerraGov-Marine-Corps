@@ -324,5 +324,5 @@
 
 /obj/machinery/door/poddoor/shutters/urban/security_lockdown
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	icon_state = "pdoor1"
+	icon_state = "pdoor"
 	lift_time = 15 SECONDS
