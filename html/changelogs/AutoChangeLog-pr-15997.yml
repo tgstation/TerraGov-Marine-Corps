@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Probably fixes some cases where a surgery table could put you to sleep forever"
