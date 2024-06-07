@@ -787,7 +787,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "agY" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_4";
 	name = "Emergency Lockdown"
@@ -1075,7 +1075,6 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "ajA" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -3336,7 +3335,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/outdoors/landing_zone_2)
 "aDI" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -3997,12 +3996,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aIr" = (
-/obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/east_central_street)
+/turf/open/urban/street/sidewalkcenter,
+/area/lv759/outdoors/colony_streets/central_streets)
 "aIy" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -4617,7 +4612,6 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "aNa" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -5816,7 +5810,6 @@
 	layer = 2;
 	pixel_y = 2
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -6308,7 +6301,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "baL" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -7036,7 +7029,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
 "bhK" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -8727,7 +8720,6 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bwQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -9103,7 +9095,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/janitor)
 "bAl" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_west";
 	name = "\improper Lockdown"
@@ -9305,7 +9297,6 @@
 /area/lv759/indoors/power_plant)
 "bCm" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -9533,7 +9524,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "bEs" = (
 /obj/structure/cable,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -11433,7 +11424,7 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "bUm" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -11507,7 +11498,6 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bUS" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -11916,13 +11906,6 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
-"bXo" = (
-/obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/north_west_street)
 "bXq" = (
 /obj/item/fuel_cell,
 /obj/effect/turf_decal/medical_decals/triage,
@@ -11952,7 +11935,6 @@
 /area/lv759/indoors/colonial_marshals/interrogation)
 "bXG" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -11999,7 +11981,6 @@
 /area/lv759/indoors/nt_security/checkpoint_east)
 "bXU" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -12273,7 +12254,7 @@
 /turf/open/floor/urban/carpet/carpetred,
 /area/lv759/indoors/casino)
 "bZC" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white,
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white,
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
 	dir = 4
@@ -12401,7 +12382,7 @@
 "caq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urban_mining_lockdown1";
 	name = "Emergency Lockdown"
@@ -14011,7 +13992,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/caves/north_west_caves)
 "coz" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -14362,17 +14343,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
-"crb" = (
-/obj/effect/urban/decal/dirt,
-/obj/effect/urban/decal/tiretrack{
-	dir = 8;
-	pixel_y = 12
-	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/north_street)
 "crf" = (
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/south_public_restroom)
@@ -14597,7 +14567,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "csa" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -14917,7 +14886,6 @@
 /area/lv759/indoors/colonial_marshals/press_room)
 "cvB" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -14953,14 +14921,10 @@
 /turf/closed/wall/wood,
 /area/lv759/oob)
 "cvU" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/central_streets)
 "cvV" = (
@@ -15484,7 +15448,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/landing_zone_1)
 "cBp" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -15558,7 +15522,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmeridianfactory_1";
 	name = "\improper Factory Floor Shutters"
@@ -16179,7 +16143,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "cGx" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -16249,7 +16212,6 @@
 "cGX" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -16966,7 +16928,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_office)
 "cNF" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17461,7 +17423,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "cQL" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17827,7 +17789,7 @@
 	},
 /area/lv759/indoors/hospital/outgoing)
 "cTP" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -18302,7 +18264,6 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "cXE" = (
 /obj/item/shard,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -18392,7 +18353,6 @@
 /area/lv759/indoors/nt_security/checkpoint_east)
 "cYw" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -19143,12 +19103,8 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -19314,16 +19270,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/cuppajoes)
-"dfc" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 4;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
-/turf/open/urban/street/sidewalkcenter,
-/area/lv759/outdoors/colony_streets/north_west_street)
 "dfh" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -20142,7 +20088,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_2";
 	name = "\improper Garage"
@@ -20326,7 +20272,7 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "dny" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_west";
 	name = "\improper Lockdown"
@@ -20640,6 +20586,9 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/rods,
 /obj/effect/ai_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "dqM" = (
@@ -20697,7 +20646,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "drh" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -20934,7 +20883,6 @@
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -21329,16 +21277,6 @@
 /obj/item/shard,
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/xenobiology)
-"dwa" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
-/turf/open/urban/street/sidewalkcenter,
-/area/lv759/outdoors/colony_streets/central_streets)
 "dwb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -21418,7 +21356,7 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/westrestroom)
 "dwQ" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -21960,7 +21898,6 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "dBV" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -22071,7 +22008,7 @@
 	},
 /area/lv759/indoors/hospital/reception)
 "dCJ" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -22336,7 +22273,9 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/spaceport/heavyequip)
 "dGd" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -24194,7 +24133,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "dVX" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -24619,12 +24558,8 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "eaM" = (
 /obj/item/smallDelivery,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -24657,7 +24592,6 @@
 	dir = 8;
 	pixel_y = 12
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -24817,7 +24751,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast2";
 	name = "\improper Checkpoint Lock"
@@ -25783,7 +25717,6 @@
 "ekF" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -25791,7 +25724,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "ekH" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 18
 	},
@@ -26073,7 +26005,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "emS" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -26321,7 +26253,6 @@
 /area/lv759/oob)
 "eoQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -26376,7 +26307,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "epr" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -26682,7 +26612,7 @@
 /turf/open/floor/urban/tile/tilebeigecheckered,
 /area/lv759/indoors/colonial_marshals/north_office)
 "erZ" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -26911,14 +26841,10 @@
 	},
 /area/lv759/indoors/nt_research_complex/janitor)
 "eto" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/ai_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/central_streets)
 "etp" = (
@@ -27205,7 +27131,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "evM" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -27356,7 +27281,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -28189,7 +28113,7 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/landing_zone_2)
 "eEI" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast1";
 	name = "\improper Checkpoint Lock"
@@ -28266,7 +28190,6 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "eFd" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -29468,12 +29391,8 @@
 	},
 /area/lv759/indoors/spaceport/communications_office)
 "ePK" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -29481,7 +29400,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmeridianfactory_1";
 	name = "\improper Factory Floor Shutters"
@@ -29547,7 +29466,6 @@
 "eQo" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -29881,7 +29799,7 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "eSU" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
@@ -30681,7 +30599,6 @@
 	},
 /obj/item/shard,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -30761,7 +30678,7 @@
 	},
 /area/lv759/indoors/tcomms_northwest)
 "fbD" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 1;
 	id = "urban_mining_lockdown2";
 	name = "Emergency Lockdown"
@@ -30880,7 +30797,6 @@
 /area/lv759/indoors/power_plant/workers_canteen)
 "fcA" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -31026,7 +30942,6 @@
 	pixel_y = -2
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -32165,7 +32080,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "fni" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -32394,7 +32309,6 @@
 /area/lv759/indoors/jacks_surplus)
 "for" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -32578,7 +32492,6 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "fqn" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -33492,7 +33405,6 @@
 "fyj" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -34665,7 +34577,6 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/generic,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -35672,7 +35583,6 @@
 	pixel_y = 14
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -36230,7 +36140,6 @@
 "fUk" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -36312,7 +36221,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/outdoors/colony_streets/central_streets)
 "fUR" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -36485,7 +36394,6 @@
 /area/lv759/indoors/weyyu_office)
 "fWg" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -37657,7 +37565,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -38115,9 +38022,6 @@
 	dir = 8;
 	pixel_y = 12
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -38573,7 +38477,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "gnd" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -39212,7 +39115,6 @@
 /area/lv759/indoors/hospital/pharmacy)
 "gsn" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -39561,12 +39463,8 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "gvC" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -41115,7 +41013,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gKx" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -41613,7 +41510,7 @@
 	},
 /area/lv759/indoors/recycling_plant)
 "gPt" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -41757,7 +41654,6 @@
 	},
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "gQX" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -42430,6 +42326,11 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/north_street)
+"gXd" = (
+/turf/open/urban/street/sidewalkcenter{
+	dir = 1
+	},
+/area/lv759/outdoors/colony_streets/south_east_street)
 "gXf" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random/case/double,
@@ -42466,7 +42367,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/NTmart/maintenance)
 "gXz" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urban_mining_lockdown3";
 	name = "Emergency Lockdown"
@@ -42684,7 +42585,7 @@
 	},
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "gZe" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -42710,7 +42611,6 @@
 	layer = 2.9
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -42912,16 +42812,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/lv759/outdoors/colony_streets/east_central_street)
-"haZ" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
-/turf/open/urban/street/sidewalkcenter,
-/area/lv759/outdoors/colony_streets/east_central_street)
 "hbc" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -43024,7 +42914,6 @@
 /area/lv759/indoors/colonial_marshals/garage)
 "hbB" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -43045,7 +42934,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -44163,7 +44051,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_3";
 	name = "Emergency Lockdown"
@@ -44867,22 +44755,22 @@
 /turf/open/urban/street/roadlines4,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "hpI" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "secretlockdown1";
 	name = "Stuck Emergency Lockdown"
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "secretlockdown2";
 	name = "Stuck Emergency Lockdown"
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "secretlockdown3";
 	name = "Stuck Emergency Lockdown"
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "secretlockdown4";
 	name = "Stuck Emergency Lockdown"
@@ -45223,7 +45111,6 @@
 /area/lv759/indoors/caves/central_caves)
 "hsC" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -45359,7 +45246,6 @@
 /turf/open/floor/officetiles,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "htt" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -46096,7 +45982,6 @@
 	dir = 8;
 	pixel_y = 18
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -48012,16 +47897,6 @@
 	dir = 5
 	},
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
-"hPa" = (
-/obj/effect/urban/decal/tiretrack{
-	dir = 8;
-	pixel_y = 12
-	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/east_central_street)
 "hPe" = (
 /obj/machinery/power/geothermal,
 /obj/structure/barricade/handrail/strata{
@@ -48052,7 +47927,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "hPx" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -48531,7 +48405,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hTn" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -48940,7 +48814,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "hXz" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urban_mining_lockdown1";
 	name = "Emergency Lockdown"
@@ -49320,7 +49194,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "iaU" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -49429,7 +49303,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
@@ -49508,7 +49382,6 @@
 	dir = 8
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -50196,7 +50069,6 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "iim" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -50258,7 +50130,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "iiI" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -50826,7 +50698,6 @@
 "inE" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -51080,7 +50951,6 @@
 "iqv" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -51130,7 +51000,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "iqJ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -51786,9 +51655,6 @@
 	layer = 3;
 	pixel_y = 6
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -51845,7 +51711,7 @@
 /turf/open/shuttle/escapepod/six,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "iwQ" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_1";
 	name = "\improper Garage"
@@ -52220,6 +52086,16 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
+"izK" = (
+/obj/effect/urban/decal/road/roadmiddle{
+	dir = 1;
+	pixel_y = 14
+	},
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/central_streets)
 "izL" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
@@ -52912,7 +52788,6 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "iGh" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -54208,7 +54083,6 @@
 	pixel_y = 14
 	},
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -54668,7 +54542,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "iVv" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -54877,7 +54750,6 @@
 /area/lv759/indoors/caves/north_west_caves)
 "iWC" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -55514,7 +55386,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "jbW" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -58190,7 +58061,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/east_hallway)
 "jxg" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -58257,7 +58128,7 @@
 	},
 /area/lv759/indoors/caves/south_west_caves)
 "jxR" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -58503,7 +58374,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "jzS" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -59123,12 +58994,6 @@
 	},
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/north_west_caves_outdoors)
-"jFW" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/east_central_street)
 "jGb" = (
 /obj/structure/sink{
 	dir = 8;
@@ -59225,7 +59090,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -59941,7 +59806,6 @@
 /area/lv759/indoors/weyyu_office/floor)
 "jMW" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -61207,7 +61071,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jXL" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -61261,7 +61124,7 @@
 /area/lv759/indoors/NTmart)
 "jYM" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_1";
 	name = "\improper Garage"
@@ -61672,7 +61535,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/weaponresearchlab)
 "kcv" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -61876,12 +61739,10 @@
 /area/lv759/oob)
 "key" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 18
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 18
 	},
@@ -63346,7 +63207,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -63845,7 +63706,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 6
 	},
@@ -64114,7 +63974,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "kyx" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -64489,7 +64349,6 @@
 /obj/item/stack/sheet/cardboard{
 	layer = 1
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -65426,7 +65285,7 @@
 	dir = 4;
 	pixel_x = -6
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
@@ -66333,7 +66192,6 @@
 /area/lv759/indoors/derelict_ship)
 "kTq" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -66961,7 +66819,6 @@
 /area/lv759/indoors/hospital/outgoing)
 "kXN" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -67554,7 +67411,6 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "lcR" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -67856,12 +67712,6 @@
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
-"lfC" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/north_west_street)
 "lfF" = (
 /obj/structure/ore_box{
 	layer = 4;
@@ -68397,7 +68247,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -68625,7 +68475,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urban_mining_lockdown1";
 	name = "Emergency Lockdown"
@@ -69075,7 +68925,6 @@
 "lpW" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -69142,7 +68991,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
@@ -69606,7 +69455,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "luZ" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -69997,7 +69846,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -70174,7 +70022,6 @@
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "lAl" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -70432,7 +70279,7 @@
 	},
 /area/lv759/indoors/weyyu_office/hallway)
 "lCL" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white,
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white,
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/personal_solid_white{
 	dir = 1
@@ -70528,7 +70375,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_3";
 	name = "Emergency Lockdown"
@@ -71776,7 +71623,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lNx" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -73022,7 +72868,7 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "lWA" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancolonylockdown";
 	name = "Emergency Lockdown"
@@ -73193,10 +73039,8 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "lYd" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -73383,9 +73227,6 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
 "lZR" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -73482,7 +73323,6 @@
 /area/lv759/indoors/power_plant/gas_generators)
 "maQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -73579,7 +73419,6 @@
 	pixel_y = 21
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -74069,7 +73908,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "mgr" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -74633,7 +74472,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "mkq" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_1";
 	name = "\improper Garage"
@@ -75276,7 +75115,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urban_mining_lockdown3";
 	name = "Emergency Lockdown"
@@ -75289,7 +75128,6 @@
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "mpA" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -76555,7 +76393,6 @@
 "mzG" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -76622,7 +76459,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/telecomms)
 "mAc" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 1
 	},
 /turf/closed/wall/r_wall/bunker,
@@ -76968,14 +76805,10 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mDo" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/ai_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mDv" = (
@@ -78190,7 +78023,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "mOj" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -78976,7 +78808,6 @@
 /area/lv759/indoors/caves/north_caves)
 "mUM" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -79430,7 +79261,6 @@
 "mYg" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -80033,7 +79863,6 @@
 /area/lv759/indoors/hospital/operation)
 "ncr" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -80329,12 +80158,8 @@
 "neT" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/shard,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/central_streets)
@@ -81426,7 +81251,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nmQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -81561,7 +81385,7 @@
 "noj" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/xeno,
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -81582,7 +81406,7 @@
 /turf/open/floor/urban/metal/metalwhitefull,
 /area/lv759/indoors/spaceport/cuppajoes)
 "nor" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -83277,9 +83101,6 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 3
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -84577,7 +84398,6 @@
 /area/lv759/indoors/derelict_ship)
 "nNS" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -85121,7 +84941,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/breakroom)
 "nRU" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /turf/open/floor/officetiles,
@@ -85174,7 +84994,7 @@
 /area/lv759/indoors/power_plant/geothermal_generators)
 "nSr" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
@@ -85201,12 +85021,8 @@
 /obj/effect/decal/cleanable/blood{
 	pixel_y = -8
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -85298,7 +85114,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "nTy" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -85841,7 +85657,7 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "nYm" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -86268,9 +86084,6 @@
 /obj/effect/urban/decal/tiretrack{
 	dir = 8;
 	pixel_y = 12
-	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
 	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -86747,7 +86560,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urban_mining_lockdown3";
 	name = "Emergency Lockdown"
@@ -87143,7 +86956,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "oiY" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -87232,7 +87044,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/cafeteriakitchen)
 "oju" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -87802,7 +87614,7 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
 "oqs" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -87814,7 +87626,6 @@
 "oqA" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -88081,7 +87892,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "osQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -88576,18 +88386,14 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oxM" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/urban/decal/trash/three,
 /obj/effect/urban/decal/trash{
 	pixel_y = 12
 	},
 /obj/effect/ai_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "oxN" = (
@@ -89360,7 +89166,6 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "oEV" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -89945,7 +89750,6 @@
 /area/lv759/indoors/botany/botany_mainroom)
 "oJr" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -90030,7 +89834,6 @@
 "oJZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -90391,7 +90194,6 @@
 /area/lv759/indoors/botany/botany_mainroom)
 "oNg" = (
 /obj/item/stack/rods,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -90419,7 +90221,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_4";
 	name = "Emergency Lockdown"
@@ -91128,7 +90930,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oTZ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -92414,7 +92215,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "pfc" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -93820,12 +93620,8 @@
 /area/lv759/indoors/meridian/meridian_foyer)
 "prR" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -94105,6 +93901,9 @@
 /obj/effect/decal/cleanable/generic,
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/oil/streak,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ptI" = (
@@ -95666,7 +95465,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "pFI" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white,
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white,
 /obj/structure/cable,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
@@ -96304,7 +96103,7 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "pKY" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_3";
 	name = "Emergency Lockdown"
@@ -96752,7 +96551,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/janitor)
 "pOp" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -97113,7 +96912,7 @@
 /turf/open/floor/kutjevo/grey,
 /area/lv759/indoors/garage_workshop)
 "pRT" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -97220,7 +97019,6 @@
 "pTH" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -99398,7 +99196,6 @@
 /area/lv759/indoors/garage_workshop)
 "qky" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -99419,7 +99216,7 @@
 /area/lv759/indoors/power_plant/telecomms)
 "qkA" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast1";
 	name = "\improper Checkpoint Lock"
@@ -99587,7 +99384,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "qlC" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbancheckpoint_center";
 	name = "\improper Lockdown"
@@ -100163,12 +99960,8 @@
 /area/lv759/indoors/caves/central_caves)
 "qqC" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -100319,7 +100112,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
 "qsr" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -100761,7 +100554,7 @@
 /area/lv759/indoors/spaceport/maintenance_east)
 "qwK" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /obj/structure/cable,
@@ -102768,6 +102561,9 @@
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "qRj" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qRo" = (
@@ -103046,7 +102842,6 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/NTmart/backrooms)
 "qTd" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -103288,14 +103083,10 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "qVM" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qVP" = (
@@ -103359,7 +103150,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "qWi" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -103708,7 +103498,6 @@
 	dir = 8
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -104729,7 +104518,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rhZ" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast2";
 	name = "\improper Checkpoint Lock"
@@ -105961,7 +105750,7 @@
 /area/lv759/indoors/nt_research_complex/cargo)
 "rsi" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 1;
 	id = "urban_mining_lockdown2";
 	name = "Emergency Lockdown"
@@ -105978,7 +105767,6 @@
 /area/lv759/indoors/meridian/meridian_factory)
 "rsp" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -106704,7 +106492,6 @@
 /area/lv759/indoors/derelict_ship)
 "ryX" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -106941,7 +106728,6 @@
 /area/lv759/indoors/spaceport/flight_control_room)
 "rBo" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -107487,7 +107273,6 @@
 /area/lv759/indoors/apartment/westhallway)
 "rGf" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -107579,7 +107364,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -107778,7 +107563,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmeridianfactory_1";
 	name = "\improper Factory Floor Shutters"
@@ -109508,7 +109293,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
 "rXl" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 2
 	},
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -111913,7 +111698,6 @@
 "srg" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -112010,9 +111794,6 @@
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/hospital/morgue)
 "srY" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 3
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -112245,7 +112026,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "stQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -113022,7 +112802,6 @@
 /area/lv759/indoors/power_plant/telecomms)
 "sAc" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -113991,7 +113770,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/meridian/meridian_managersoffice)
 "sIR" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urban_mining_lockdown1";
 	name = "Emergency Lockdown"
@@ -114196,7 +113975,7 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/apartment/eastfoyer)
 "sKs" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
@@ -114728,9 +114507,6 @@
 	dir = 8;
 	pixel_y = 18
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -115037,7 +114813,6 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "sQQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -115078,7 +114853,6 @@
 /area/lv759/indoors/hospital/morgue)
 "sRf" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -115256,7 +115030,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "sSy" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -115761,7 +115535,7 @@
 	},
 /area/lv759/indoors/spaceport/heavyequip)
 "sWT" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -116980,7 +116754,6 @@
 /obj/item/reagent_containers/food/snacks/donkpocket{
 	layer = 2
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -117257,12 +117030,8 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "tiO" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_east_street)
@@ -117680,6 +117449,9 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/outdoors/caveplateau)
 "tng" = (
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tnh" = (
@@ -118354,7 +118126,7 @@
 /area/lv759/indoors/spaceport/cargo)
 "tsZ" = (
 /obj/structure/window/framed/urban/reinforced,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -119842,7 +119614,6 @@
 /area/lv759/indoors/caves/north_caves)
 "tFQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -120178,12 +119949,8 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tIA" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -120253,7 +120020,6 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "tJj" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 6
 	},
@@ -122161,7 +121927,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "tXT" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -122716,7 +122482,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_2";
 	name = "\improper Garage"
@@ -123322,7 +123088,6 @@
 	dir = 8
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -123432,9 +123197,6 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "uhL" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -124479,7 +124241,6 @@
 /obj/effect/decal/cleanable/blood/gibs/down,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -124609,7 +124370,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 6
 	},
@@ -125230,7 +124990,6 @@
 	dir = 4;
 	pixel_y = 7
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -125267,12 +125026,8 @@
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/westentertainment)
 "uwD" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -125946,6 +125701,19 @@
 	dir = 1
 	},
 /area/lv759/indoors/spaceport/starglider)
+"uDj" = (
+/obj/structure/barricade/handrail/urban/road/metal/metaldark{
+	dir = 1;
+	layer = 7;
+	level = 7;
+	pixel_y = 12;
+	plane = -5
+	},
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
+/turf/open/urban/street/sidewalkcenter,
+/area/lv759/outdoors/landing_zone_2)
 "uDm" = (
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
 	layer = 4
@@ -127000,7 +126768,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
@@ -127415,7 +127183,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/nt_research_complex_entrance)
 "uOO" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_2";
 	name = "\improper Garage"
@@ -128296,7 +128064,6 @@
 	dir = 6;
 	pixel_x = -14
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -129902,7 +129669,6 @@
 /area/lv759/indoors/colonial_marshals/south_maintenance)
 "vjl" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -130668,9 +130434,6 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "vpl" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 3
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -131060,7 +130823,6 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/landing_zone_2)
 "vsz" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -131094,7 +130856,6 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "vsH" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -131587,7 +131348,7 @@
 	dir = 2;
 	name = "Emergency Lockdown"
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_4";
 	name = "Emergency Lockdown"
@@ -131994,7 +131755,6 @@
 /area/lv759/indoors/spaceport/communications_office)
 "vAV" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -132275,7 +132035,6 @@
 	dir = 8;
 	pixel_y = 12
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -132437,7 +132196,6 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vEv" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -132740,7 +132498,6 @@
 	layer = 2.9;
 	pixel_y = 4
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -133404,7 +133161,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -133421,7 +133178,6 @@
 /area/lv759/indoors/meridian/meridian_showroom)
 "vNd" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -133640,7 +133396,6 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -133835,7 +133590,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "vQu" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -134658,7 +134413,6 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "vWD" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
@@ -135496,7 +135250,6 @@
 /area/lv759/outdoors/landing_zone_2)
 "wcT" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 18
 	},
@@ -135595,7 +135348,7 @@
 	dir = 4
 	},
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast1";
 	name = "\improper Checkpoint Lock"
@@ -135760,7 +135513,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "wfs" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -136163,7 +135916,6 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wiL" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -136643,7 +136395,6 @@
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "wmn" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -136907,7 +136658,6 @@
 /area/lv759/indoors/caves/east_caves)
 "woE" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -136924,7 +136674,6 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "woJ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -137808,7 +137557,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "wwL" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -138571,7 +138319,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wDe" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -138604,7 +138351,7 @@
 /turf/open/floor/plate,
 /area/lv759/indoors/meridian/meridian_factory)
 "wDo" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbancheckpoint_northwest";
 	name = "\improper Lockdown"
@@ -139969,7 +139716,6 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wOR" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -140055,7 +139801,7 @@
 /obj/structure/window/framed/urban/reinforced{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbanLZ2_1";
 	name = "Emergency Lockdown"
@@ -140074,7 +139820,6 @@
 	},
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -140383,7 +140128,6 @@
 /area/lv759/indoors/southwest_public_restroom)
 "wRK" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -140451,7 +140195,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "wSa" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urban_mining_lockdown3";
 	name = "Emergency Lockdown"
@@ -140608,7 +140352,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wTn" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -140777,7 +140521,6 @@
 /area/lv759/indoors/spaceport/baggagehandling)
 "wUT" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 6
 	},
@@ -141113,7 +140856,6 @@
 	layer = 2.9;
 	pixel_y = 4
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -141225,13 +140967,6 @@
 	dir = 4
 	},
 /area/lv759/indoors/hospital/outgoing)
-"wYT" = (
-/obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
-/turf/open/urban/street/sidewalkcenter{
-	dir = 1
-	},
-/area/lv759/outdoors/colony_streets/north_street)
 "wYY" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
@@ -144240,7 +143975,6 @@
 /area/lv759/indoors/colonial_marshals/changing_room)
 "xyh" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -144272,7 +144006,6 @@
 	pixel_x = -20
 	},
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -144418,7 +144151,6 @@
 	layer = 2.97;
 	pixel_x = 6
 	},
-/obj/structure/barricade/handrail/urban/road/metal/metaldark,
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -144464,9 +144196,6 @@
 /area/lv759/indoors/hospital/morgue)
 "xAi" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	layer = 4
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 1
 	},
@@ -144499,7 +144228,6 @@
 /area/lv759/indoors/nt_research_complex/changingroom)
 "xAn" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -144949,7 +144677,6 @@
 /area/lv759/indoors/casino)
 "xEO" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -145129,7 +144856,6 @@
 "xFO" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -145846,7 +145572,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "xLO" = (
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 4;
 	id = "urbanmining_northeast2";
 	name = "\improper Checkpoint Lock"
@@ -146798,7 +146524,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
 	dir = 2;
 	id = "urbangarage_1";
 	name = "\improper Garage"
@@ -147895,7 +147621,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/pharmacy)
 "ydZ" = (
-/obj/machinery/door/poddoor/mainship/biohazard/white{
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -148376,7 +148102,6 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "yhQ" = (
 /obj/machinery/floodlight/colony/street{
-	layer = 7;
 	level = 7;
 	pixel_y = 12
 	},
@@ -148653,14 +148378,10 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "ykb" = (
-/obj/structure/barricade/handrail/urban/road/metal/metaldark{
-	dir = 1;
-	layer = 7;
-	level = 7;
-	pixel_y = 12;
-	plane = -5
-	},
 /obj/effect/ai_node,
+/obj/structure/barricade/handrail/urban/road/metal/double{
+	pixel_y = 15
+	},
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "ykc" = (
@@ -151458,7 +151179,7 @@ keU
 plW
 bOk
 nCc
-dfc
+uwD
 dcT
 dqz
 mSe
@@ -152269,7 +151990,7 @@ fqS
 jIG
 laZ
 hmF
-lfC
+srY
 uwD
 whb
 aUG
@@ -152675,7 +152396,7 @@ oVV
 aUG
 vsH
 hmF
-lfC
+srY
 uwD
 pwz
 wde
@@ -153081,7 +152802,7 @@ xpY
 qdx
 laZ
 hmF
-bXo
+vpl
 uwD
 whb
 njo
@@ -153487,7 +153208,7 @@ ydz
 fKr
 mCo
 mBu
-lfC
+srY
 uwD
 xns
 aRQ
@@ -154502,7 +154223,7 @@ wML
 mBu
 bcs
 pYu
-lfC
+srY
 uwD
 xns
 sZQ
@@ -154705,7 +154426,7 @@ vqz
 rOs
 ybD
 pBc
-lfC
+srY
 uwD
 xns
 rBo
@@ -154908,7 +154629,7 @@ ydz
 bCK
 spy
 hmF
-lfC
+srY
 uwD
 whb
 aUG
@@ -155314,7 +155035,7 @@ gYt
 gih
 iPr
 kaZ
-lfC
+srY
 uwD
 pwz
 eDH
@@ -156329,7 +156050,7 @@ dfb
 aUG
 laZ
 hmF
-lfC
+srY
 uwD
 iSz
 bta
@@ -156532,7 +156253,7 @@ ciA
 gde
 laZ
 gxu
-lfC
+srY
 uwD
 whb
 bgl
@@ -156938,7 +156659,7 @@ wWd
 aUG
 laZ
 hmF
-lfC
+srY
 uwD
 pwz
 eNw
@@ -157141,7 +156862,7 @@ wWd
 aUG
 laZ
 hmF
-lfC
+srY
 uwD
 uFC
 eNw
@@ -157344,7 +157065,7 @@ wWd
 aUG
 ijS
 hmF
-lfC
+srY
 uwD
 sTz
 nyx
@@ -157750,7 +157471,7 @@ dYP
 rCG
 pgZ
 qca
-lfC
+srY
 uwD
 rtN
 jgh
@@ -157953,7 +157674,7 @@ oVV
 uNP
 qjk
 gxu
-bXo
+vpl
 uwD
 whb
 oqA
@@ -158156,7 +157877,7 @@ iAS
 fHe
 fpU
 jIw
-lfC
+srY
 uwD
 whb
 tpZ
@@ -158765,7 +158486,7 @@ sGj
 wCN
 laZ
 hmF
-lfC
+srY
 uwD
 whb
 wZm
@@ -158968,7 +158689,7 @@ qvk
 dLT
 uEW
 mBu
-lfC
+srY
 uwD
 xns
 tMV
@@ -160764,7 +160485,7 @@ xns
 nvZ
 wLv
 mBu
-lfC
+srY
 uwD
 xns
 aUG
@@ -160967,7 +160688,7 @@ xns
 qXy
 sVs
 hmF
-lfC
+srY
 uwD
 whb
 aUG
@@ -161170,7 +160891,7 @@ xns
 qXy
 pYD
 hmF
-lfC
+srY
 uwD
 vTN
 rSu
@@ -161576,7 +161297,7 @@ dcT
 vCP
 laZ
 hmF
-lfC
+srY
 uwD
 whb
 aUG
@@ -161779,7 +161500,7 @@ dcT
 vCP
 fST
 hmF
-lfC
+srY
 ykb
 whb
 riO
@@ -161982,7 +161703,7 @@ dcT
 qXy
 fST
 hmF
-lfC
+srY
 uwD
 whb
 iVA
@@ -162185,7 +161906,7 @@ gkG
 wOR
 jVH
 sXK
-lfC
+srY
 uwD
 xns
 lul
@@ -162248,7 +161969,7 @@ fgY
 nQn
 vCE
 qTd
-dwa
+lYd
 qfI
 bgQ
 cxl
@@ -162451,7 +162172,7 @@ onE
 nQn
 oTi
 aWl
-dwa
+lYd
 eKl
 bgQ
 nQn
@@ -162857,7 +162578,7 @@ uJM
 nRo
 fYi
 tgM
-dwa
+lYd
 vlM
 kZc
 nQn
@@ -163136,10 +162857,10 @@ aWQ
 aWQ
 oao
 lRa
-lRa
+lau
 aNS
 lRa
-lRa
+lau
 aNS
 aNS
 aNS
@@ -163263,7 +162984,7 @@ bgQ
 nQn
 oTi
 qTd
-dwa
+lYd
 eKl
 bgQ
 aWT
@@ -163466,7 +163187,7 @@ cAu
 kxj
 wKC
 qTd
-dwa
+lYd
 iYq
 wGc
 nQn
@@ -163669,7 +163390,7 @@ xZu
 vjc
 oTi
 qTd
-dwa
+lYd
 eKl
 xSw
 imS
@@ -164075,7 +163796,7 @@ kmB
 nQn
 oTi
 qTd
-dwa
+lYd
 eKl
 bgQ
 cxl
@@ -164278,7 +163999,7 @@ bXm
 nQn
 oTi
 qTd
-dwa
+lYd
 eKl
 bgQ
 hjr
@@ -164887,7 +164608,7 @@ dLe
 bXU
 oTi
 qTd
-dwa
+lYd
 eKl
 bgQ
 mhr
@@ -165027,7 +164748,7 @@ tpT
 geF
 xiF
 tuk
-crb
+gjK
 ePK
 vyp
 jlb
@@ -165090,7 +164811,7 @@ bNW
 nQn
 oTi
 qTd
-dwa
+lYd
 ill
 bgQ
 hjr
@@ -165230,7 +164951,7 @@ pST
 geF
 cgd
 tuk
-crb
+gjK
 ePK
 vyp
 wiL
@@ -165293,7 +165014,7 @@ aoi
 hkv
 qzs
 qTd
-dwa
+lYd
 ill
 uad
 hjr
@@ -165496,7 +165217,7 @@ qjI
 nQn
 vrE
 qTd
-dwa
+lYd
 qfI
 vjl
 gLO
@@ -166511,7 +166232,7 @@ cPJ
 inE
 mKa
 qTd
-dwa
+aIr
 wag
 jAO
 eys
@@ -166714,7 +166435,7 @@ bgQ
 fde
 yca
 gnd
-dwa
+aIr
 tTo
 jRt
 cvk
@@ -167323,7 +167044,7 @@ tQS
 eNg
 tQp
 vEv
-dwa
+lYd
 wag
 jbN
 pLx
@@ -167526,7 +167247,7 @@ dWU
 qoa
 oTi
 qTd
-dwa
+lYd
 wag
 jRt
 eJv
@@ -167608,7 +167329,7 @@ kgG
 aWQ
 aWQ
 kRv
-kgG
+gpA
 kgG
 kgG
 gpA
@@ -167729,7 +167450,7 @@ bgQ
 sWI
 oTi
 qTd
-dwa
+lYd
 wag
 bAj
 nLI
@@ -167932,7 +167653,7 @@ bgQ
 nQn
 oTi
 qTd
-dwa
+lYd
 wag
 jRt
 wGX
@@ -168338,7 +168059,7 @@ dqD
 xfh
 vCE
 cmc
-ddm
+izK
 cmc
 hOf
 jPj
@@ -168541,7 +168262,7 @@ bgQ
 qoa
 oTi
 qTd
-dwa
+lYd
 wag
 sXd
 wGX
@@ -168744,7 +168465,7 @@ bgQ
 kxj
 oTi
 qTd
-dwa
+lYd
 hfa
 jRt
 wGX
@@ -169696,7 +169417,7 @@ ndW
 iAZ
 dbE
 tuk
-wYT
+xAi
 nSx
 mvE
 fyj
@@ -169759,7 +169480,7 @@ gTn
 rhF
 vCE
 qTd
-dwa
+lYd
 qfI
 vjl
 wEu
@@ -169962,7 +169683,7 @@ bgQ
 fUk
 ycT
 qTd
-dwa
+lYd
 eKl
 ilL
 nQn
@@ -170165,7 +169886,7 @@ iMe
 xEH
 bVl
 qTd
-dwa
+lYd
 eKl
 onE
 bKJ
@@ -170774,7 +170495,7 @@ pnM
 nQn
 oTi
 rsp
-dwa
+lYd
 eKl
 onE
 nQn
@@ -171383,7 +171104,7 @@ enl
 ths
 vak
 uWT
-dwa
+lYd
 eKl
 bgQ
 nQn
@@ -171789,7 +171510,7 @@ iyz
 jBI
 wQL
 xzJ
-dwa
+lYd
 eWH
 ijq
 nQn
@@ -173585,7 +173306,7 @@ bgQ
 cLo
 vCE
 qTd
-dwa
+lYd
 qfI
 vjl
 nQn
@@ -173788,7 +173509,7 @@ onE
 nQn
 wKC
 qTd
-dwa
+lYd
 eKl
 onE
 fPm
@@ -173991,7 +173712,7 @@ bgQ
 kxj
 oTi
 qTd
-dwa
+lYd
 vlM
 eFZ
 fPm
@@ -174397,7 +174118,7 @@ bgQ
 nQn
 oTi
 qTd
-dwa
+lYd
 eKl
 bgQ
 nQn
@@ -174600,7 +174321,7 @@ bgQ
 uwP
 oTi
 qTd
-dwa
+lYd
 eKl
 onE
 kxj
@@ -175818,7 +175539,7 @@ unz
 kxj
 fSw
 vEv
-dwa
+lYd
 bHj
 cmc
 faH
@@ -176021,7 +175742,7 @@ hzp
 nQn
 qzs
 qTd
-dwa
+lYd
 mFf
 sLy
 rSw
@@ -176832,8 +176553,8 @@ qqy
 ase
 mJW
 pid
-jFW
-haZ
+uhL
+tng
 mOS
 dod
 tgs
@@ -177035,8 +176756,8 @@ ulp
 rvq
 evM
 sQU
-jFW
-haZ
+uhL
+tng
 uAK
 obH
 iuX
@@ -179066,7 +178787,7 @@ uSP
 oVz
 gkW
 vWD
-haZ
+tng
 tXu
 rvq
 mJW
@@ -179268,7 +178989,7 @@ gsl
 rDM
 wnD
 gfg
-aIr
+ldH
 tng
 cPF
 oPF
@@ -179918,8 +179639,8 @@ vdP
 coR
 ils
 hYE
-jFW
-haZ
+uhL
+tng
 lpa
 mgT
 fJH
@@ -180121,8 +179842,8 @@ vdP
 gyb
 gCd
 nmd
-jFW
-haZ
+uhL
+tng
 gsK
 mmy
 eCG
@@ -180324,8 +180045,8 @@ nIm
 baY
 cZh
 nhm
-jFW
-haZ
+uhL
+tng
 gsK
 peV
 lpf
@@ -180361,7 +180082,7 @@ jcT
 pDk
 gJm
 dAM
-dGd
+gXd
 tIA
 cwM
 kBx
@@ -180564,7 +180285,7 @@ ruX
 ksB
 tZc
 wdE
-dGd
+gXd
 qVM
 raC
 rWD
@@ -180892,7 +180613,7 @@ hfZ
 peV
 qOL
 rXV
-aIr
+ldH
 ptG
 fPy
 rvq
@@ -180933,8 +180654,8 @@ hDW
 jTT
 hlm
 pid
-jFW
-haZ
+uhL
+tng
 nmO
 tkY
 tTe
@@ -180970,7 +180691,7 @@ nJW
 pDk
 riw
 dAM
-dGd
+gXd
 tIA
 raC
 mdh
@@ -181136,8 +180857,8 @@ cCe
 tcZ
 iro
 pid
-jFW
-haZ
+uhL
+tng
 jvt
 bCm
 cTf
@@ -181173,7 +180894,7 @@ wfT
 aDd
 wuM
 dAM
-dGd
+gXd
 tIA
 raC
 iqv
@@ -181339,8 +181060,8 @@ xZM
 rvq
 tFQ
 pid
-jFW
-haZ
+uhL
+tng
 rro
 gji
 kLK
@@ -181376,7 +181097,7 @@ qez
 bmf
 rKo
 dAM
-dGd
+gXd
 tIA
 raC
 cRF
@@ -181542,8 +181263,8 @@ azo
 mUJ
 lYt
 pid
-jFW
-haZ
+uhL
+tng
 qjP
 ctc
 aTt
@@ -181705,7 +181426,7 @@ rvq
 mJW
 rXV
 uhL
-haZ
+tng
 tMQ
 rvq
 lgI
@@ -181782,7 +181503,7 @@ oRr
 pDk
 fMY
 dAM
-dGd
+gXd
 tIA
 raC
 nIO
@@ -181908,7 +181629,7 @@ aDV
 mJW
 rXV
 obK
-haZ
+tng
 cPF
 rvq
 pGg
@@ -181985,7 +181706,7 @@ buB
 mdh
 riw
 dAM
-dGd
+gXd
 tIA
 raC
 tOY
@@ -182111,7 +181832,7 @@ eer
 lUy
 rXV
 obK
-haZ
+tng
 cPF
 rvq
 mJW
@@ -182151,8 +181872,8 @@ taa
 bWo
 mJW
 pid
-jFW
-haZ
+uhL
+tng
 qjP
 kWm
 wFp
@@ -182188,7 +181909,7 @@ oRr
 pDk
 rGf
 dAM
-dGd
+gXd
 tIA
 raC
 hqG
@@ -182354,8 +182075,8 @@ dje
 bxO
 mJW
 pid
-jFW
-haZ
+uhL
+tng
 qjP
 nfP
 pqd
@@ -182516,8 +182237,8 @@ oeu
 rvq
 mJW
 rXV
-jFW
-haZ
+uhL
+tng
 cPF
 rvq
 mJW
@@ -182594,7 +182315,7 @@ xsn
 iNc
 lzI
 bjd
-dGd
+gXd
 tIA
 raC
 rWD
@@ -182719,8 +182440,8 @@ gmT
 aCr
 mJW
 rXV
-hPa
-haZ
+obK
+tng
 cPF
 fWg
 mJW
@@ -182797,7 +182518,7 @@ sim
 nhy
 lTK
 tcR
-dGd
+gXd
 tIA
 raC
 oXA
@@ -182922,8 +182643,8 @@ efH
 rvq
 mJW
 rXV
-hPa
-haZ
+obK
+tng
 cPF
 klK
 mJW
@@ -183000,7 +182721,7 @@ hPS
 miq
 rAI
 dAM
-dGd
+gXd
 tIA
 raC
 pDk
@@ -183328,7 +183049,7 @@ xHF
 rYy
 mJW
 rXV
-jFW
+uhL
 prR
 cPF
 rvq
@@ -183369,8 +183090,8 @@ eiL
 hwq
 gKx
 sQU
-jFW
-haZ
+uhL
+tng
 wIn
 rvq
 mJW
@@ -183406,7 +183127,7 @@ wtj
 nJi
 gtj
 bKD
-dGd
+gXd
 tIA
 kOK
 mhb
@@ -183531,7 +183252,7 @@ sOP
 grb
 mJW
 rXV
-jFW
+uhL
 prR
 cPF
 dai
@@ -183572,8 +183293,8 @@ umo
 htF
 keI
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 oLE
 jSZ
@@ -183609,7 +183330,7 @@ xPK
 eNM
 pqm
 laD
-dGd
+gXd
 tIA
 epX
 dOb
@@ -183734,8 +183455,8 @@ wni
 rvq
 mJW
 bSC
-jFW
-haZ
+uhL
+tng
 tXu
 rvq
 mJW
@@ -183776,7 +183497,7 @@ jrn
 mJW
 ghk
 htt
-haZ
+tng
 cPF
 rvq
 nUN
@@ -183812,7 +183533,7 @@ gJw
 vom
 gHL
 yfJ
-dGd
+gXd
 tIA
 qYj
 vSB
@@ -184181,8 +183902,8 @@ gcE
 peV
 mAT
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 fWg
 nUN
@@ -184384,8 +184105,8 @@ eug
 fGU
 pAp
 pid
-aIr
-haZ
+ldH
+tng
 cPF
 iZd
 nUN
@@ -184588,7 +184309,7 @@ rZK
 mJW
 pid
 vWD
-haZ
+tng
 cPF
 rvq
 mJW
@@ -184624,7 +184345,7 @@ tqV
 pDk
 riw
 wBl
-dGd
+gXd
 tIA
 qYj
 vSB
@@ -184827,7 +184548,7 @@ mlv
 pkx
 riw
 dAM
-dGd
+gXd
 tIA
 lEI
 vSB
@@ -184993,8 +184714,8 @@ uyv
 rvq
 mJW
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 fhi
 mJW
@@ -185155,7 +184876,7 @@ aAD
 oJF
 gJi
 cFr
-aIr
+ldH
 qRj
 fiH
 rvq
@@ -185196,8 +184917,8 @@ upk
 oPF
 evM
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 oPF
 mJW
@@ -185233,7 +184954,7 @@ xRI
 rqV
 riw
 dAM
-dGd
+gXd
 tIA
 raC
 wRK
@@ -185399,8 +185120,8 @@ spk
 rvq
 mJW
 sQU
-jFW
-haZ
+uhL
+tng
 tXu
 peV
 nUN
@@ -185436,7 +185157,7 @@ egT
 tzT
 riw
 wBl
-dGd
+gXd
 tIA
 fbo
 mdh
@@ -187185,8 +186906,8 @@ rzs
 lWI
 pkq
 sQU
-jFW
-haZ
+uhL
+tng
 tXu
 ygb
 nUN
@@ -187388,8 +187109,8 @@ gpI
 xvx
 pkq
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 rvq
 mJW
@@ -187591,8 +187312,8 @@ mWL
 qag
 pkq
 pid
-jFW
-haZ
+uhL
+tng
 cPF
 rvq
 nxq
@@ -190100,7 +189821,7 @@ mKR
 mNy
 iYE
 jlT
-dQO
+uDj
 tOf
 mEE
 qiX
@@ -190303,7 +190024,7 @@ sUk
 eLB
 qVX
 jlT
-dQO
+uDj
 fFw
 vJq
 wxV
@@ -190506,7 +190227,7 @@ jlH
 mNy
 qVX
 sdO
-dQO
+uDj
 jIm
 qUj
 dJM
@@ -190709,7 +190430,7 @@ baR
 ulX
 qVX
 jlT
-dQO
+uDj
 vEG
 cjY
 tOf
@@ -190912,7 +190633,7 @@ dCq
 ncP
 iYE
 jlT
-dQO
+uDj
 wEo
 goB
 fAn
@@ -191724,7 +191445,7 @@ tUN
 fXS
 cXr
 jlT
-dQO
+uDj
 wEo
 xiv
 qCs
@@ -191927,7 +191648,7 @@ xYv
 eLB
 ckd
 jlT
-dQO
+uDj
 hSI
 usS
 seU
@@ -192130,7 +191851,7 @@ hdd
 eLB
 eEG
 jlT
-dQO
+uDj
 rcn
 lgQ
 pgP
@@ -192333,7 +192054,7 @@ kqm
 pRq
 lsb
 jlT
-dQO
+uDj
 fFw
 vQI
 cFS
@@ -192536,7 +192257,7 @@ oRU
 btB
 uqS
 jlT
-dQO
+uDj
 tOf
 rvn
 kbt

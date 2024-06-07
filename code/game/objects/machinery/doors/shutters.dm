@@ -192,7 +192,7 @@
 
 /obj/machinery/door/poddoor/shutters/mainship/req
 	name = "\improper Requisitions Shutters"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
@@ -208,7 +208,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
 	id = "containmentcell"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1
 	name = "\improper Containment Cell 1"
@@ -221,7 +221,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/brigarmory
 	name = "\improper Brig Armory Shutters"
 	id = "brig_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic
 	name = "\improper CIC Shutters"
@@ -229,12 +229,12 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"
 	id = "engi_armory"
-	icon_state = "shutter1"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/mainship/corporate
 	name = "\improper Privacy Shutters"
@@ -262,7 +262,8 @@
 	icon_state = "almayer_pdoor"
 	openspeed = 4
 	///how long it takes xenos to open a shutter by hand
-	var/lift_time = 20 SECONDS
+	var/lift_time = 10 SECONDS
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/machinery/door/poddoor/shutters/urban/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
@@ -290,7 +291,8 @@
 	opacity = FALSE
 	layer = ABOVE_WINDOW_LAYER
 	max_integrity = 100
-	lift_time = 10 SECONDS
+	lift_time = 5 SECONDS
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 30, FIRE = 20, ACID = 20)
 
 /obj/machinery/door/poddoor/shutters/urban/open_shutters/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent == INTENT_HARM)
@@ -316,6 +318,11 @@
 	desc = "That looks like it doesn't open easily."
 	icon_state = "pdoor"
 
-/obj/machinery/door/poddoor/mainship/biohazard/white
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white
 	icon_state = "w_almayer_pdoor"
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
+
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	icon_state = "pdoor1"
+	lift_time = 15 SECONDS
