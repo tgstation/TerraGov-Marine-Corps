@@ -114,9 +114,9 @@
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
 	playsound(get_turf(src), SFX_SPARKS, 25, TRUE, 4)
 	if(ready)
-		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 35, 0)
 	else
-		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 35, 0)
 	update_icon()
 
 
@@ -214,7 +214,7 @@
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [patient]'s chest."),
 	span_notice("You start setting up the paddles on [patient]'s chest."))
-	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) // Don't vary this, it should be exactly 7 seconds
+	playsound(get_turf(src),'sound/items/defib_charge.ogg', 35, 0) // Don't vary this, it should be exactly 7 seconds
 
 	if(!do_after(user, 7 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		to_chat(user, span_warning("You stop setting up the paddles on [patient]'s chest."))
@@ -227,7 +227,7 @@
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
-	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
+	playsound(get_turf(src), 'sound/items/defib_release.ogg', 35, 1)
 	user.visible_message(span_notice("[user] shocks [patient] with the paddles."),
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
@@ -279,7 +279,7 @@
 
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - [fail_reason]"))
-		playsound(src, 'sound/items/defib_failed.ogg', 50, FALSE)
+		playsound(src, 'sound/items/defib_failed.ogg', 35, FALSE)
 		return
 
 	ghost = patient.get_ghost(TRUE)
@@ -291,7 +291,7 @@
 
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
-	playsound(get_turf(src), 'sound/items/defib_success.ogg', 50, 0)
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 35, 0)
 	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
