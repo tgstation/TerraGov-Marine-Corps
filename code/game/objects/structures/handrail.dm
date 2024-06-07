@@ -26,6 +26,7 @@
 		layer = initial(layer)
 
 /obj/structure/barricade/handrail/attackby(obj/item/item, mob/user)
+	. = ..()
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")

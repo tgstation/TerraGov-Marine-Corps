@@ -14945,6 +14945,7 @@
 "cvU" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -19125,6 +19126,7 @@
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -20608,6 +20610,7 @@
 /obj/item/stack/rods,
 /obj/effect/ai_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -22305,6 +22308,7 @@
 /area/lv759/indoors/spaceport/heavyequip)
 "dGd" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter{
@@ -24590,6 +24594,7 @@
 "eaM" = (
 /obj/item/smallDelivery,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -26887,6 +26892,7 @@
 "eto" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -29436,6 +29442,7 @@
 /area/lv759/indoors/spaceport/communications_office)
 "ePK" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -39524,6 +39531,7 @@
 "gvC" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -50617,6 +50625,7 @@
 "imz" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /obj/effect/landmark/xeno_resin_wall,
@@ -52189,6 +52198,7 @@
 	pixel_y = 14
 	},
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/asphalt,
@@ -73216,6 +73226,7 @@
 /area/lv759/indoors/caves/south_west_caves)
 "lYd" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -76987,6 +76998,7 @@
 "mDo" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -80358,6 +80370,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/shard,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -85221,6 +85234,7 @@
 	pixel_y = -8
 	},
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -88591,6 +88605,7 @@
 	},
 /obj/effect/ai_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -93838,6 +93853,7 @@
 "prR" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -94119,6 +94135,7 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -100179,6 +100196,7 @@
 "qqC" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -102786,6 +102804,7 @@
 "qRj" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -103309,6 +103328,7 @@
 "qVM" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -117278,6 +117298,7 @@
 "tiO" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -117697,6 +117718,7 @@
 /area/lv759/outdoors/caveplateau)
 "tng" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -120197,6 +120219,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tIA" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -125289,6 +125312,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "uwD" = (
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -125973,6 +125997,7 @@
 	plane = -5
 	},
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,
@@ -148689,6 +148714,7 @@
 "ykb" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/handrail/urban/road/metal/double{
+	dir = 1;
 	pixel_y = 15
 	},
 /turf/open/urban/street/sidewalkcenter,

@@ -230,7 +230,7 @@
 	coverage = 30
 	base_icon_state = "meridian_red"
 	max_integrity = 1000
-/obj/machiner
+
 /obj/structure/prop/urban/vehicles/meridian/red
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
@@ -2116,7 +2116,7 @@
 	icon_state = "buildingventbig1"
 	bound_width = 64
 	bound_height = 32
-	density = TRUE
+	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
 	layer = 5
