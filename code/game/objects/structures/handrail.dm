@@ -147,7 +147,15 @@
 /obj/structure/barricade/handrail/urban/road/metal/double/Initialize(mapload)
 	. = ..()
 	if(dir == NORTH || dir == SOUTH)
-		overlays += image(icon, src, "centerroadbarrierdouble_overlay", layer = ABOVE_ALL_MOB_LAYER)
+		overlays += image(icon, src, "[icon_state]_overlay", layer = ABOVE_ALL_MOB_LAYER)
+
+/obj/structure/barricade/handrail/urban/road/metal/double/white
+	icon_state = "centerroadbarrierdouble_white"
+	barricade_type = "centerroadbarrierdouble_white"
+
+/obj/structure/barricade/handrail/urban/road/metal/double/dark
+	icon_state = "centerroadbarrierdouble_dark"
+	barricade_type = "centerroadbarrierdouble_dark"
 
 /obj/structure/barricade/handrail/urban/handrail
 	name = "haindrail"
