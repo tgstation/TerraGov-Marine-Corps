@@ -39030,9 +39030,10 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "grh" = (
 /obj/item/storage/bag/plasticbag,
-/obj/item/reagent_containers/food/drinks/milk,
 /obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/milk,
 /obj/machinery/conveyor{
+	dir = 1;
 	layer = 3
 	},
 /turf/open/floor/floorthree,
@@ -49189,6 +49190,7 @@
 "hZO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/conveyor{
+	dir = 1;
 	layer = 3
 	},
 /turf/open/floor/floorthree,
@@ -78869,6 +78871,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/structure/table/reinforced,
 /obj/machinery/conveyor{
+	dir = 1;
 	layer = 3
 	},
 /turf/open/floor/floorthree,
@@ -97224,10 +97227,11 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "pTu" = (
 /obj/structure/table/reinforced,
+/obj/item/clothing/head/soft/orange,
 /obj/machinery/conveyor{
+	dir = 1;
 	layer = 3
 	},
-/obj/item/clothing/head/soft/orange,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/NTmart)
 "pTH" = (
@@ -103927,6 +103931,7 @@
 /obj/item/storage/bag/plasticbag,
 /obj/structure/table/reinforced,
 /obj/machinery/conveyor{
+	dir = 1;
 	layer = 3
 	},
 /turf/open/floor/floorthree,

@@ -293,7 +293,7 @@
 	icon_state = "trafficlight_alt"
 	bound_width = 32
 	bound_height = 32
-	density = TRUE
+	density = FALSE
 	max_integrity = 200
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
