@@ -226,7 +226,6 @@
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration."
 	icon_state = "antimat"
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
-	has_nightvision = TRUE
 	zoom_allow_movement = FALSE
 	attach_features_flags = ATTACH_ACTIVATION|ATTACH_REMOVABLE
 	pixel_shift_x = 0
