@@ -1366,6 +1366,8 @@
 	if(istype(hit_object, /obj/structure/reagent_dispensers/fueltank))
 		var/obj/structure/reagent_dispensers/fueltank/hit_tank = hit_object
 		hit_tank.explode()
+	if(istype(hit_object, /obj/hitbox)) // These don't hit the vehicles, but rather their hitboxes, so isarmored will not work here
+		return on_hit_anything(get_turf(hit_object), proj)
 	return rock_broke(get_turf(hit_object), proj)
 
 /datum/ammo/xeno/earth_pillar/on_hit_mob(mob/hit_mob, obj/projectile/proj)
