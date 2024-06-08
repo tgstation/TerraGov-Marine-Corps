@@ -1490,7 +1490,7 @@
 		/obj/item/ammo_magazine/rifle/chamberedrifle/flak,
 	)
 	attachable_allowed = list(
-		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/mini/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -1513,7 +1513,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 1 SECONDS
 
-	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock)
+	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock, /obj/item/attachable/scope/mini/unremovable/tl127)
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS

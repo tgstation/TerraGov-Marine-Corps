@@ -133,6 +133,9 @@
 /obj/item/attachable/scope/unremovable
 	attach_features_flags = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/mini/unremovable
+	attach_features_flags = ATTACH_ACTIVATION
+
 /obj/item/attachable/scope/unremovable/flaregun
 	name = "long range ironsights"
 	desc = "An unremovable set of long range ironsights for a flaregun."
@@ -143,7 +146,7 @@
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	zoom_slowdown = 0.50
 
-/obj/item/attachable/scope/unremovable/tl127
+/obj/item/attachable/scope/mini/unremovable/tl127
 	name = "T-45 rail scope"
 	icon_state = "tl127"
 	aim_speed_mod = 0
@@ -190,7 +193,7 @@
 	zoom_viewsize = 2
 	deployed_scope_rezoom = FALSE
 
-/obj/item/attachable/scope/unremovable/laser_sniper_scope
+/obj/item/attachable/scope/mini/unremovable/laser_sniper_scope
 	name = "Terra Experimental laser sniper rifle rail scope"
 	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
 	icon_state = "tes"
