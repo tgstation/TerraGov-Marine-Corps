@@ -169,6 +169,7 @@
 	maxcharge = 225
 	reload_delay = 5 SECONDS
 	icon_state = "hl_mag"
+	charge_overlay = null
 
 /obj/item/ammo_magazine/heavy_isg
 	name = "FK-88 shell (155mm Shell)"
