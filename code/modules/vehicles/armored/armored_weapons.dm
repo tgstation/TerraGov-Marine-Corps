@@ -26,6 +26,8 @@
 
 	///sound file to play when this weapon you know, fires
 	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
+	///Whether freq vary is applied to fire_sound
+	var/fire_sound_vary = TRUE
 	///Tracks windups
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	///windup sound played during windup
@@ -196,7 +198,7 @@
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 	do_fire(source_turf)
-	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME)
+	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(chassis.primary_weapon == src)

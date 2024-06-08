@@ -10,8 +10,10 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_carronade)
 	maximum_magazines = 5
 	hud_state_empty = "battery_empty_flash"
-	var/datum/beam/beam
+	fire_sound_vary = FALSE
+	///Range of this weapon
 	var/beam_range = 12
+	///Armor pen of this weapon
 	var/armor_pen = 30
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf)
@@ -80,6 +82,7 @@
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	hud_state_empty = "battery_empty_flash"
+	fire_sound_vary = FALSE
 
 /obj/item/armored_weapon/coilgun
 	name = "battle tank coilgun"
