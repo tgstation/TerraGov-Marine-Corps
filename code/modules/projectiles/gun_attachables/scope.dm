@@ -231,7 +231,7 @@
 	pixel_shift_x = 0
 	pixel_shift_y = 17
 
-/obj/item/attachable/scope/slavic
+/obj/item/attachable/scope/mini/slavic
 	icon_state = "slavic"
 
 /obj/item/attachable/scope/pmc
