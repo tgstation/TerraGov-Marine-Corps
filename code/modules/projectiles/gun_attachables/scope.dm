@@ -149,8 +149,6 @@
 /obj/item/attachable/scope/mini/unremovable/tl127
 	name = "T-45 rail scope"
 	icon_state = "tl127"
-	aim_speed_mod = 0
-	wield_delay_mod = 0
 	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment."
 
 /obj/item/attachable/scope/unremovable/heavymachinegun
