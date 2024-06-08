@@ -97,10 +97,10 @@
 	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment."
 	icon_state = "marine"
 
-/obj/item/attachable/scope/nightvision
-	name = "T-46 Night vision scope"
+/obj/item/attachable/scope/autosniper
+	name = "T-46 scope"
 	icon_state = "nv"
-	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
+	desc = "A rail-mounted scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 
 /obj/item/attachable/scope/optical
