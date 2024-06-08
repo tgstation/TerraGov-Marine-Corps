@@ -77,3 +77,11 @@
   - balance: changed bookcase integrity from 500 to 200
   yyzsong:
   - balance: ALL Orbital Bombardment types cost 6 solid fuel
+2024-06-08:
+  Lumipharon:
+  - balance: Explosions now effect tanks for every tile of tank impacted, but the
+      damage per tile has been reduced to compensate
+  Notamaniac:
+  - imageadd: Adds some shading to the Pyrogen's dead sprite
+  Wisemonster:
+  - balance: Increased surt's fire resistance per module piece from 35 to 45

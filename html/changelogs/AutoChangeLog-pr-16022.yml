@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Explosions now effect tanks for every tile of tank impacted, but the damage per tile has been reduced to compensate"
