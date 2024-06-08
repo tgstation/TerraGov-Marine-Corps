@@ -1,0 +1,6 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Reduced the ability delay on pyrogens fireball and fire tornado to 0.6 seconds, down from 1 second."
+  - balance: "Increased the fire charge range by 2 tiles (from 3 tiles to 5 tiles)"
+  - balance: "Changed pyros damage from acid to fire"
