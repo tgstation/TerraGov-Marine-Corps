@@ -178,6 +178,8 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
+	if(!current_target)
+		return
 	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
 		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, current_target), dir2angle(chassis.turret_overlay.dir))
@@ -197,9 +199,8 @@
 	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
-	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
-		chassis.turret_overlay.set_flashing(TRUE)
-		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, set_flashing), FALSE), 7, TIMER_CLIENT_TIME)
+	if(chassis.primary_weapon == src)
+		flick(chassis.turret_overlay.primary_overlay.icon_state + "_fire", chassis.turret_overlay.primary_overlay)
 		chassis.interior?.breech.on_main_fire(ammo)
 
 	ammo.current_rounds--
@@ -264,7 +265,7 @@
 		if(tank.turret_overlay)
 			// do not remove the dir = SOUTH becuase otherwise byond flips an internal flag so the dir is inherited from the turret
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
-			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
+			tank.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
@@ -286,8 +287,8 @@
 	else
 		chassis.secondary_weapon = null
 		if(chassis.turret_overlay)
-			chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
 			chassis.turret_overlay.secondary_overlay = null
+			chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			chassis.secondary_weapon_overlay = null
 			chassis.update_appearance(UPDATE_OVERLAYS)

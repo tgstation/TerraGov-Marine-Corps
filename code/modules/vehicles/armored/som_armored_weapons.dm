@@ -23,6 +23,7 @@
 
 	for(var/turf/line_turf AS in beam_turfs)
 		target_turf = line_turf //we redefine this so we can draw the beam to where the effect actually stops, if its stopped early
+		new /obj/effect/temp_visual/shockwave(line_turf, 4)
 		if(isclosedturf(line_turf))
 			break
 		for(var/range_turf in RANGE_TURFS(1, line_turf))

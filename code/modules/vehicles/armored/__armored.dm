@@ -654,42 +654,37 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	///overlay for the attached gun
-	var/image/gun_overlay
-	///overlay for the shooting version of that gun
-	var/image/flash_overlay
-	///currently using the flashing overlay
-	var/flashing = FALSE
+	vis_flags = VIS_INHERIT_ID
+	///overlay obj for for the attached gun
+	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary
 	var/image/secondary_overlay
 
-/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
-	cut_overlays()
-	if(!gun_icon_state)
-		flash_overlay = null
-		gun_overlay = null
-		return
-	flashing = FALSE
-	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -70, pixel_y = -69)
-	gun_overlay  = image(icon, gun_icon_state, pixel_x = -40, pixel_y = -48)
-	update_appearance(UPDATE_OVERLAYS)
+/atom/movable/vis_obj/turret_overlay/Destroy()
+	if(primary_overlay)
+		QDEL_NULL(primary_overlay)
+	return ..()
 
-/atom/movable/vis_obj/turret_overlay/proc/set_flashing(new_flashing)
-	if(flashing == new_flashing)
+/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
+	if(!gun_icon_state)
+		QDEL_NULL(primary_overlay)
 		return
-	flashing = new_flashing
-	update_appearance(UPDATE_OVERLAYS)
+
+	primary_overlay = new()
+	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
+	primary_overlay.icon_state = gun_icon_state
+	vis_contents += primary_overlay
 
 /atom/movable/vis_obj/turret_overlay/update_overlays()
 	. = ..()
-	. += (flashing ? flash_overlay : gun_overlay)
+	if(secondary_overlay)
+		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
+		. += secondary_overlay
 
 /atom/movable/vis_obj/turret_overlay/setDir(newdir)
 	. = ..()
 	if(secondary_overlay)
-		cut_overlay(secondary_overlay)
-		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
-		add_overlay(secondary_overlay)
+		update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"
@@ -697,3 +692,9 @@
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
 	vis_flags = VIS_INHERIT_DIR
+
+/atom/movable/vis_obj/tank_gun
+	name = "Tank weapon"
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	pixel_x = -70
+	pixel_y = -69
