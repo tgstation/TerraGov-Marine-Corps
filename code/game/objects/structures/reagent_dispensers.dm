@@ -263,6 +263,8 @@
 	list_reagents = list(/datum/reagent/water = 500)
 	coverage = 20
 
+/obj/structure/reagent_dispensers/water_cooler/nondense
+	density = FALSE
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
