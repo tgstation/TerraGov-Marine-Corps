@@ -33,7 +33,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	/// The offset in a direction for zoom_in
 	var/tile_offset = 5
+	/// The size of the zoom for zoom_in
 	var/view_size = 4
 
 /datum/action/ability/xeno_action/toggle_long_range/bull
@@ -49,8 +51,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(X.xeno_flags & XENO_ZOOMED)
-			return
 		X.zoom_in(tile_offset, view_size)
 		..()
 
