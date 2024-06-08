@@ -95,7 +95,7 @@
 	if(!the_hive)
 		stack_trace("Where's the main hive? (XENO_HIVE_NORMAL NOT FOUND)")
 		return
-	action.button.maptext = MAPTEXT_TINY_UNICODE(CENTER_TEXT("[position]/[LAZYLEN(the_hive.candidates)]"))
+	action.button.maptext = MAPTEXT_TINY_UNICODE(span_center("[position]/[LAZYLEN(the_hive.candidates)]"))
 	action.button.maptext_x = 1
 	action.button.maptext_y = 3
 	if (position == 0) // No longer in queue
