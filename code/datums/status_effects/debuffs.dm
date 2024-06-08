@@ -612,7 +612,7 @@
 	if(debuff_owner.stat == DEAD || debuff_owner.status_flags & GODMODE)
 		qdel(src)
 		return
-	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, ACID, updating_health = TRUE)
+	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, FIRE, updating_health = TRUE)
 	if(stacks > 4)
 		visual_fire.icon_state = "melting_high_stacks"
 	else
