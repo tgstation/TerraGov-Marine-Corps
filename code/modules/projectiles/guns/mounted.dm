@@ -213,7 +213,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/machines/deployable/heavy_laser.dmi'
-	icon_state = "heavylaser_deployed"
+	icon_state = "heavylaser"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -280,7 +280,6 @@
 	icon_state = "heavylaser"
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
-
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable
 	icon_state = "heavylaser_deployable"
