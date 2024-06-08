@@ -915,6 +915,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/spawn_type = valhalla_job.return_spawn_type(client.prefs)
 	var/mob/living/carbon/human/new_fallen = new spawn_type(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
 
+	var/mob/living/carbon/human/original_corpse = can_reenter_corpse.resolve()
+	original_corpse?.set_undefibbable(TRUE)
+
 	log_game("[key_name(usr)] has joined Valhalla as a Marine.")
 	client.prefs.copy_to(new_fallen)
 	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
