@@ -55,3 +55,33 @@
   novaepee:
   - rscdel: Remove Big Red's two plat miners and 1 normal miner near LZ2
   - balance: Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners
+2024-06-07:
+  Lumipharon:
+  - bugfix: fixed walking between multitile vehicles causing issues
+  - bugfix: fixed knockback working on somethings it shouldn't
+  - bugfix: fixed a bug with motorbike sidecars
+  - code_imp: Added attachment component support to vehicles
+  - bugfix: Probably fixes some cases where a surgery table could put you to sleep
+      forever
+  Notamaniac:
+  - spellcheck: Pyrogen Fire Charge ability now accurately describes what it does
+      - Extinguish the target and deal extra damage depending on their fire stacks
+  RipGrayson:
+  - bugfix: Fixed being able to red alert from inside of Valhalla
+  Runian:
+  - bugfix: Mortar's chambered items now drop onto the floor (instead of deleting
+      itself) when undeployment attempt is made.
+  - bugfix: Deconstructing an upgraded metal barricade now returns the actual cost
+      of 5 sheets instead of 4.
+  jonash07:
+  - balance: changed bookcase integrity from 500 to 200
+  yyzsong:
+  - balance: ALL Orbital Bombardment types cost 6 solid fuel
+2024-06-08:
+  Lumipharon:
+  - balance: Explosions now effect tanks for every tile of tank impacted, but the
+      damage per tile has been reduced to compensate
+  Notamaniac:
+  - imageadd: Adds some shading to the Pyrogen's dead sprite
+  Wisemonster:
+  - balance: Increased surt's fire resistance per module piece from 35 to 45
