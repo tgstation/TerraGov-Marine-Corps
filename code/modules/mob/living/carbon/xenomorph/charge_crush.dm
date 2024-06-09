@@ -29,7 +29,7 @@
 	var/charge_ability_on = FALSE
 	var/valid_steps_taken = 0
 	var/crush_sound = SFX_PUNCH
-	var/speed_per_step = 0.13
+	var/speed_per_step = 0.15
 	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 20
