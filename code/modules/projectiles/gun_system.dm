@@ -1344,7 +1344,7 @@
 		update_ammo_count()
 		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
-		RegisterSignal(new_mag, COMSIG_CELL_SELF_RECHARGE, TYPE_PROC_REF(/obj/item/weapon/gun, update_ammo_count))
+		RegisterSignals(new_mag, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT), TYPE_PROC_REF(/obj/item/weapon/gun, update_ammo_count))
 		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 		return TRUE
 

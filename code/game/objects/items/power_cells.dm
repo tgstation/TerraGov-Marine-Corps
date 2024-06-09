@@ -15,15 +15,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	/// note %age conveted to actual charge in New
 	var/charge = 0
-	/// maximum amountof charge the cell can hold
+	/// maximum amount of charge the cell can hold
 	var/maxcharge = 1000
-	/// true if rigged to explode
-	var/rigged = 0
+	/// BOOL, true if rigged to explode
+	var/rigged = FALSE
 	///If not 100% reliable, it will build up faults.
 	var/minor_fault = 0
-	/// If true, the cell will recharge itself.
+	/// BOOL, If true, the cell will recharge itself.
 	var/self_recharge = FALSE
-	/// How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
+	/// How much power to give, if self_recharge is true. The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/charge_amount = 25
 	/// A tracker for use in self-charging
 	var/last_use = 0
@@ -31,10 +31,6 @@
 	var/charge_delay = 0
 	///used to track what set of overlays to use to display charge level
 	var/charge_overlay = "cell"
-
-// the power cell
-// charge from 0 to 100%
-// fits in APC to provide backup power
 
 /obj/item/cell/Initialize(mapload)
 	. = ..()
@@ -65,36 +61,6 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	. += "[charge_overlay]_[remaining]"
 
-/obj/item/cell/proc/percent()		// return % charge of cell
-	return 100 * (charge / maxcharge)
-
-/obj/item/cell/proc/fully_charged()
-	return (charge == maxcharge)
-
-// use power from a cell
-/obj/item/cell/use(amount)
-	if(rigged && amount > 0)
-		explode()
-		return FALSE
-	last_use = world.time
-
-	if(charge < amount)
-		return FALSE
-	charge = (charge - amount)
-	return TRUE
-
-// recharge the cell
-/obj/item/cell/proc/give(amount)
-	if(rigged && amount > 0)
-		explode()
-		return 0
-
-	if(maxcharge < amount)
-		return 0
-	var/amount_used = min(maxcharge-charge,amount)
-	charge += amount_used
-	return amount_used
-
 /obj/item/cell/examine(mob/user)
 	. = ..()
 	if(maxcharge <= 2500)
@@ -106,27 +72,27 @@
 			. += span_danger("This power cell looks jury rigged to explode!")
 
 /obj/item/cell/attack_self(mob/user as mob)
-	if(rigged)
-		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
-			return
-		log_bomber(user, "primed a rigged", src)
-		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
-		span_danger("You destabilize [src]; it will detonate shortly!"))
-		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1, 6)
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			C.throw_mode_on()
-		overlays += new/obj/effect/overlay/danger
-		spawn(rand(3,50))
-			spark_system.start(src)
-			explode()
+	if(!rigged)
+		return ..()
 
-	return ..()
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, span_warning("Your programming restricts using rigged power cells."))
+		return
+	log_bomber(user, "primed a rigged", src)
+	user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
+	span_danger("You destabilize [src]; it will detonate shortly!"))
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start(src)
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1, 6)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.throw_mode_on()
+	overlays += new/obj/effect/overlay/danger
+	spawn(rand(3,50))
+		spark_system.start(src)
+		explode()
 
 /obj/item/cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -194,72 +160,108 @@
 			user.visible_message(span_notice("[user] finishes manipulating [src] with [I]."),
 			span_notice("You stabilize the [src] with [I]; it will no longer detonate on use."))
 
+/obj/item/cell/emp_act(severity)
+	. = ..()
+	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
+	update_appearance(UPDATE_ICON)
+
+/obj/item/cell/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			if(prob(50))
+				qdel(src)
+				return
+			if(prob(50))
+				corrupt()
+		if(EXPLODE_LIGHT)
+			if(prob(25))
+				qdel(src)
+				return
+			if(prob(25))
+				corrupt()
+		if(EXPLODE_WEAK)
+			if(prob(25))
+				corrupt()
+
+/obj/item/cell/suicide_act(mob/user)
+	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
+	return (FIRELOSS)
+
+/obj/item/cell/use(amount) // use power from a cell
+	if(rigged && amount > 0)
+		explode()
+		return FALSE
+	last_use = world.time
+
+	if(charge < amount)
+		return FALSE
+	charge = (charge - amount)
+	return TRUE
+
+///Adds power to the cell
+/obj/item/cell/proc/give(amount)
+	if(rigged && amount > 0)
+		explode()
+		return FALSE
+
+	if(maxcharge < amount)
+		return FALSE
+	var/amount_used = min(maxcharge-charge,amount)
+	charge += amount_used
+	return amount_used
+
+///return % charge of cell
+/obj/item/cell/proc/percent()
+	return 100 * (charge / maxcharge)
+
+///Returns TRUE if charge is equal to maxcharge
+/obj/item/cell/proc/fully_charged()
+	return (charge == maxcharge)
+
+/**
+ * Determines explosivity based on charge, then explodes
+ *
+ * * 1000-cell	explosion(epicenter, 0, 0, 1, 1)
+ * * 2500-cell	explosion(epicenter, 0, 0, 1, 1)
+ * * 10000-cell	explosion(epicenter, 0, 1, 3, 3)
+ * * 15000-cell	explosion(epicenter, 0, 2, 4, 4)
+ */
 /obj/item/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
-/*
-* 1000-cell	explosion(T, 0, 0, 1, 1)
-* 2500-cell	explosion(T, 0, 0, 1, 1)
-* 10000-cell	explosion(T, 0, 1, 3, 3)
-* 15000-cell	explosion(T, 0, 2, 4, 4)
-* */
+	var/turf/epicenter = get_turf(loc)
+
 	var/devastation_range = 0 //round(charge/11000)
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.15), -1, 4)
 
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
+///Divides charge and maxcharge, then has a 10% chance to be rigged to explode
 /obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
-	if (prob(10))
-		rigged = 1 //broken batterys are dangerous
+	if(prob(10))
+		rigged = TRUE //broken batterys are dangerous
 
-/obj/item/cell/emp_act(severity)
-	. = ..()
-	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
-
-/obj/item/cell/ex_act(severity)
-
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			if (prob(50))
-				qdel(src)
-				return
-			if (prob(50))
-				corrupt()
-		if(EXPLODE_LIGHT)
-			if (prob(25))
-				qdel(src)
-				return
-			if (prob(25))
-				corrupt()
-		if(EXPLODE_WEAK)
-			if (prob(25))
-				corrupt()
-
+///Returns a number based on the current charge of the power cell
 /obj/item/cell/proc/get_electrocute_damage()
-	switch (charge)
-		if (1000000 to INFINITY)
+	switch(charge)
+		if(1000000 to INFINITY)
 			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
+		if(200000 to 1000000-1)
 			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
+		if(100000 to 200000-1)//Ave powernet
 			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
+		if(50000 to 100000-1)
 			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
+		if(1000 to 50000-1)
 			return min(rand(10,20),rand(10,20))
 		else
 			return 0
-
-/obj/item/cell/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
-	return (FIRELOSS)
 
 /obj/item/cell/crap
 	name = "\improper Nanotrasen brand rechargable AA battery"
