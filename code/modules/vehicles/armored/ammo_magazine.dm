@@ -2,6 +2,7 @@
 //Special ammo magazines for hardpoint modules. Some may not be here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
 	magazine_flags = NONE
+	//magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	///loading sound to play when
 	var/loading_sound
 
@@ -88,7 +89,7 @@
 	name = "volkite carronade cell"
 	desc = "A heavy, disposable cell used for powering a volkite carronade."
 	caliber = CALIBER_84MM
-	icon_state = "volkite_turret"
+	icon_state = "som_tank_cell"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/energy/volkite/heavy
 	max_rounds = 3
@@ -97,7 +98,7 @@
 	name = "particle lance energy cell"
 	desc = "A heavy, disposable cell used for powering a tank mounted particle lance."
 	caliber = CALIBER_84MM
-	icon_state = "ltbammo"
+	icon_state = "particle_lance_cell"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/energy/particle_lance
 	max_rounds = 1
@@ -105,9 +106,9 @@
 
 /obj/item/ammo_magazine/tank/secondary_mlrs
 	name = "\improper MLRS magazine"
-	desc = "A secondary armament MLRS magazine"
+	desc = "A secondary armament MLRS magazine. Loaded with homing HE rockets"
 	caliber = CALIBER_40MM
-	icon_state = "glauncher_2"
+	icon_state = "secondary_mlrs"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/homing
 	max_rounds = 12
