@@ -101,6 +101,7 @@
 	icon_state = "coilgun"
 	ammo = /obj/item/ammo_magazine/tank/coilgun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
+	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
 	///Power setting toggle action
@@ -122,10 +123,13 @@
 	switch(power_level)
 		if(COILGUN_LOW_POWER)
 			ammo_override = /datum/ammo/rocket/coilgun/low
+			windup_delay = 0
 		if(COILGUN_MED_POWER)
 			ammo_override = /datum/ammo/rocket/coilgun
+			windup_delay = 0.3 SECONDS
 		if(COILGUN_HIGH_POWER)
 			ammo_override = /datum/ammo/rocket/coilgun/high
+			windup_delay = 0.6 SECONDS
 	return ..()
 
 /obj/item/armored_weapon/coilgun/eject_ammo()
