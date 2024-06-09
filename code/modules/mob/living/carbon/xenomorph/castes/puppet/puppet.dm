@@ -14,6 +14,7 @@
 	pull_speed = -1
 	allow_pass_flags = PASS_XENO
 	pass_flags = PASS_XENO
+	density = FALSE
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.9,aresample=%SAMPLE_RATE%,atempo=1/0.9,aformat=channel_layouts=mono,volume=0.2 [p0]; [out2] asetrate=%SAMPLE_RATE%*1.1,aresample=%SAMPLE_RATE%,atempo=1/1.1,aformat=channel_layouts=mono,volume=0.2[p2]; [p0][0][p2] amix=inputs=3"}
 	///our masters weakref
 	var/datum/weakref/weak_master
