@@ -32545,7 +32545,7 @@
 	},
 /area/ice_colony/underground/medical/lobby/garbledradio)
 "woG" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "woW" = (
