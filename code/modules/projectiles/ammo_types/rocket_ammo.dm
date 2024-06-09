@@ -527,8 +527,8 @@
 
 /datum/ammo/rocket/coilgun
 	name = "kinetic penetrator"
-	icon_state = "missile"
-	hud_state = "rocket_he"
+	icon_state = "tank_coilgun"
+	hud_state = "rocket_ap"
 	hud_state_empty = "rocket_empty"
 	ammo_behavior_flags = AMMO_SNIPER
 	armor_type = BULLET
@@ -549,7 +549,6 @@
 	ammo_behavior_flags = AMMO_ENERGY
 
 /datum/ammo/rocket/coilgun/low
-	hud_state = "rocket_he"
 	damage_falloff = 2
 	shell_speed = 2
 	damage = 50
@@ -561,7 +560,6 @@
 	explosion(T, 0, 0, 2, 3)
 
 /datum/ammo/rocket/coilgun/high
-	hud_state = "rocket_he"
 	damage_falloff = 0
 	shell_speed = 5
 	damage = 200
