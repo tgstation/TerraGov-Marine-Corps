@@ -285,6 +285,7 @@
 	. = ..()
 	if(!.)
 		return
+	var/list/old_locs = locs.Copy()
 	switch(new_dir)
 		if(NORTH)
 			bound_height = vehicle_length
@@ -335,6 +336,8 @@
 			new_y = root.y + (desant.x - root.x)
 
 		desant.forceMove(locate(new_x, new_y, z))
+
+	SEND_SIGNAL(src, COMSIG_MULTITILE_VEHICLE_ROTATED, loc, new_dir, null, old_locs)
 
 /obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction) //haven't baked in strafe into the base type since its only used by the SOM tank currently
 	if(ISDIAGONALDIR(direction))
