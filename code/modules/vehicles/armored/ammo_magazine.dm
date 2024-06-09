@@ -2,7 +2,6 @@
 //Special ammo magazines for hardpoint modules. Some may not be here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
 	magazine_flags = NONE
-	//magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	///loading sound to play when
 	var/loading_sound
 
