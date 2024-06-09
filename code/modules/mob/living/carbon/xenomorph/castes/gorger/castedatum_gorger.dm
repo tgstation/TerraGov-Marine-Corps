@@ -11,10 +11,10 @@
 	wound_type = "gorger" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.3
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
@@ -24,7 +24,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 750
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
