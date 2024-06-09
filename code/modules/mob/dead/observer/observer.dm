@@ -891,7 +891,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!choice)
 		return
 
-	var/mob/living/carbon/human/original_corpse = can_reenter_corpse.resolve()
+	var/mob/living/carbon/human/original_corpse = can_reenter_corpse?.resolve()
 	original_corpse?.set_undefibbable(TRUE)
 
 	if(choice == "Xenomorph")
