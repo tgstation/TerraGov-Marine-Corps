@@ -524,3 +524,50 @@
 	var/matrix/rotate = matrix()
 	rotate.Turn(proj.dir_angle)
 	animate(proj, transform = rotate, time = SSprojectiles.wait)
+
+/datum/ammo/rocket/coilgun
+	name = "kinetic penetrator"
+	icon_state = "missile"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
+	ammo_behavior_flags = AMMO_SNIPER
+	armor_type = BULLET
+	damage_falloff = 1
+	shell_speed = 3
+	accuracy = 0
+	accurate_range = 20
+	max_range = 14
+	damage = 80
+	penetration = 20
+	sundering = 10
+	bullet_color = LIGHT_COLOR_FIRE
+
+/datum/ammo/rocket/coilgun/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 4)
+
+/datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
+	ammo_behavior_flags = AMMO_ENERGY
+
+/datum/ammo/rocket/coilgun/low
+	hud_state = "rocket_he"
+	damage_falloff = 2
+	shell_speed = 2
+	damage = 50
+	penetration = 10
+	sundering = 5
+	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
+
+/datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 3)
+
+/datum/ammo/rocket/coilgun/high
+	hud_state = "rocket_he"
+	damage_falloff = 0
+	shell_speed = 5
+	damage = 200
+	penetration = 40
+	sundering = 20
+	bullet_color = LIGHT_COLOR_BLUE
+
+/datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
+	explosion(T, 1, 3, 4, 5)

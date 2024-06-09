@@ -16,7 +16,7 @@
 	///Armor pen of this weapon
 	var/armor_pen = 30
 
-/obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf)
+/obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
 	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
 
 	var/list/turf/beam_turfs = get_line(source_turf, target_turf)
@@ -84,17 +84,68 @@
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 
-/obj/item/armored_weapon/particle_lance/do_fire(turf/source_turf)
+/obj/item/armored_weapon/particle_lance/do_fire(turf/source_turf, ammo_override)
 	for(var/mob/living/viewer AS in cheap_get_living_near(source_turf, 9) + current_firer)
 		viewer.overlay_fullscreen("particle_flash", /atom/movable/screen/fullscreen/particle_flash, 2)
 		viewer.clear_fullscreen("particle_flash")
 	return ..()
+
+#define COILGUN_LOW_POWER 1
+#define COILGUN_MED_POWER 2
+#define COILGUN_HIGH_POWER 3
 
 /obj/item/armored_weapon/coilgun
 	name = "battle tank coilgun"
 	desc = "The coilgun is considered the standard main weapon for SOM battle tanks. \
 	While technologically very different from a traditional cannon, fundamentally both serve the same purpose - to accelerate a large projectile at a high speed towards the enemy."
 	icon_state = "coilgun"
+	ammo = /obj/item/ammo_magazine/tank/coilgun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
+	///Power setting of the weapon. Effect the projectile fired
+	var/power_level = COILGUN_MED_POWER
+	///Power setting toggle action
+	var/datum/action/item_action/coilgun_power/power_toggle
+
+/obj/item/armored_weapon/coilgun/Initialize(mapload)
+	. = ..()
+	power_toggle = new(src)
+
+/obj/item/armored_weapon/coilgun/attach(obj/vehicle/sealed/armored/tank, attach_primary)
+	. = ..()
+	RegisterSignal(tank, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, PROC_REF(give_action))
+
+/obj/item/armored_weapon/coilgun/detach(atom/moveto)
+	UnregisterSignal(chassis, COMSIG_VEHICLE_GRANT_CONTROL_FLAG)
+	. = ..()
+
+/obj/item/armored_weapon/coilgun/do_fire(turf/source_turf, ammo_override)
+	switch(power_level)
+		if(COILGUN_LOW_POWER)
+			ammo_override = /datum/ammo/rocket/coilgun/low
+		if(COILGUN_MED_POWER)
+			ammo_override = /datum/ammo/rocket/coilgun
+		if(COILGUN_HIGH_POWER)
+			ammo_override = /datum/ammo/rocket/coilgun/high
+	return ..()
+
+/obj/item/armored_weapon/coilgun/eject_ammo()
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
+	QDEL_NULL(ammo)
+
+///Gives the power setting action to the gunner
+/obj/item/armored_weapon/coilgun/proc/give_action(datum/source, mob/living/user, flags)
+	if(!(flags & VEHICLE_CONTROL_EQUIPMENT))
+		return
+	power_toggle.give_action(user)
+	RegisterSignal(chassis, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG, PROC_REF(remove_action))
+
+///Removes the power setting action from the gunner
+/obj/item/armored_weapon/coilgun/proc/remove_action(datum/source, mob/living/user, flags)
+	if(!(flags & VEHICLE_CONTROL_EQUIPMENT))
+		return
+	power_toggle.remove_action(user)
+	UnregisterSignal(chassis, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG)
 
 /obj/item/armored_weapon/secondary_mlrs
 	name = "secondary MLRS"
@@ -108,5 +159,64 @@
 	projectile_delay = 0.2 SECONDS
 	variance = 40
 	rearm_time = 5 SECONDS
-	maximum_magazines = 5
+	maximum_magazines = 1
 	hud_state_empty = "rocket_empty"
+
+/////
+/obj/item/armored_weapon/coilgun/ui_action_click(mob/user, datum/action/item_action/action)
+	var/datum/action/item_action/coilgun_power/power_action = action
+	if(!istype(power_action))
+		return ..()
+	return toggle_power_level(user)
+
+/obj/item/armored_weapon/coilgun/proc/toggle_power_level(mob/user)
+	power_level += 1
+	if(power_level > COILGUN_HIGH_POWER)
+		power_level = COILGUN_LOW_POWER
+	to_chat(user, "power level set to [power_level]")
+/////
+/datum/action/item_action/coilgun_power
+	keybinding_signals = list(
+		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+	)
+	use_obj_appeareance = FALSE
+	var/action_firemode
+	var/obj/item/armored_weapon/coilgun/holder_gun
+
+
+/datum/action/item_action/coilgun_power/New()
+	. = ..()
+	holder_gun = holder_item
+	update_button_icon()
+
+/datum/action/item_action/coilgun_power/action_activate()
+	. = ..()
+	if(!.)
+		return
+	update_button_icon()
+
+/datum/action/item_action/coilgun_power/update_button_icon()
+	/*
+	if(holder_gun.gun_firemode == action_firemode)
+		return
+	var/firemode_string = "fmode_"
+	switch(holder_gun.gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			button.name = "Semi-Automatic Firemode"
+			firemode_string += "single"
+		if(GUN_FIREMODE_BURSTFIRE)
+			button.name = "Burst Firemode"
+			firemode_string += "burst"
+		if(GUN_FIREMODE_AUTOMATIC)
+			button.name = "Automatic Firemode"
+			firemode_string += "single_auto"
+		if(GUN_FIREMODE_AUTOBURST)
+			button.name = "Automatic Burst Firemode"
+			firemode_string += "burst_auto"
+	action_icon_state = firemode_string
+	action_firemode = holder_gun.gun_firemode
+	**/
+	return ..()
+
+/datum/action/item_action/coilgun_power/handle_button_status_visuals()
+	button.color = rgb(255,255,255,255)

@@ -19,6 +19,7 @@
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
 		/obj/item/ammo_magazine/tank/volkite_carronade,
 		/obj/item/ammo_magazine/tank/particle_lance,
+		/obj/item/ammo_magazine/tank/coilgun,
 	))
 
 /datum/storage/tank/ammorack_secondary/New(atom/parent)

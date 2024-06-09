@@ -111,3 +111,13 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/homing
 	max_rounds = 12
+
+/obj/item/ammo_magazine/tank/coilgun
+	name = "coilgun projectiles"
+	desc = "A set of extremely dense kinetic penetrator rounds for a tank mounted coilgun."
+	caliber = CALIBER_84MM
+	icon_state = "tank_coilgun"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
+	max_rounds = 4
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
