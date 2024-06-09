@@ -69,6 +69,7 @@
 	stack_amount = 0 //we do not want it to drop any stuff when destroyed
 	destroyed_stack_amount = 0
 	barricade_type = "plasticroadbarrierred"
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 100, ACID = 10)
 
 // Plastic
 /obj/structure/barricade/handrail/urban/road/plastic

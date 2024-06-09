@@ -123,7 +123,7 @@
 	density = FALSE
 	opacity = FALSE
 	layer = PODDOOR_OPEN_LAYER
-	icon_state = "shutter0"
+	icon_state = "shutter"
 
 
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct
@@ -159,7 +159,7 @@
 	opacity = FALSE
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	layer = PODDOOR_OPEN_LAYER
-	icon_state = "shutter0"
+	icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/barren
 	resistance_flags = UNACIDABLE|DROPSHIP_IMMUNE
@@ -169,7 +169,7 @@
 	density = FALSE
 	opacity = FALSE
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
-	icon_state = "shutter0"
+	icon_state = "shutter"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 
@@ -177,7 +177,7 @@
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	icon_state = "shutter0"
+	icon_state = "shutter"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 

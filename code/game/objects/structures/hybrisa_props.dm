@@ -227,9 +227,10 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	coverage = 30
+	coverage = 40
 	base_icon_state = "meridian_red"
-	max_integrity = 1000
+	max_integrity = 600
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 /obj/structure/prop/urban/vehicles/meridian/red
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'

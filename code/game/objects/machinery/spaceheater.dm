@@ -2,7 +2,7 @@
 	anchored = FALSE
 	density = TRUE
 	icon = 'icons/obj/machines/atmos.dmi'
-	icon_state = "sheater0"
+	icon_state = "sheater"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
