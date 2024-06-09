@@ -437,30 +437,30 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(interior?.breech) // if interior handle by gun breech
-		// check for easy loading instead
+	if(!istype(I, /obj/item/ammo_magazine))
 		try_easy_load(I, user)
 		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!primary_weapon)
-			balloon_alert(user, "no primary weapon")
-			return
-		if(!(I.type in primary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(primary_weapon)
-		if(!primary_weapon.ammo)
-			primary_weapon.ammo = I
-			balloon_alert(user, "primary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant?.hud_used?.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
-		else
-			primary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
+	var/obj/item/armored_weapon/weapon_to_load
+	if(!interior?.breech && primary_weapon && I.type in primary_weapon.accepted_ammo)
+		weapon_to_load = primary_weapon
+	else if(!interior?.secondary_breech && secondary_weapon && I.type in secondary_weapon.accepted_ammo)
+		weapon_to_load = secondary_weapon
+	else
+		try_easy_load(I, user)
+		return
+	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+		balloon_alert(user, "magazine already full")
+		return
+	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(weapon_to_load)
+	if(!weapon_to_load.ammo)
+		weapon_to_load.ammo = I
+		balloon_alert(user, "primary gun loaded")
+		for(var/mob/occupant AS in occupants)
+			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
+	else
+		weapon_to_load.ammo_magazine += I
+		balloon_alert(user, "magazines [length(weapon_to_load.ammo_magazine)]/[weapon_to_load.maximum_magazines]")
 
 /obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
 	// Bypass to parent to handle mobs entering the vehicle.
