@@ -342,7 +342,7 @@
 	speed_per_step = 0.15
 	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 32
+	crush_living_damage = 37
 	plasma_use_multiplier = 2
 
 
