@@ -441,9 +441,9 @@
 		try_easy_load(I, user)
 		return
 	var/obj/item/armored_weapon/weapon_to_load
-	if(!interior?.breech && primary_weapon && I.type in primary_weapon.accepted_ammo)
+	if(!interior?.breech && primary_weapon && (I.type in primary_weapon.accepted_ammo))
 		weapon_to_load = primary_weapon
-	else if(!interior?.secondary_breech && secondary_weapon && I.type in secondary_weapon.accepted_ammo)
+	else if(!interior?.secondary_breech && secondary_weapon && (I.type in secondary_weapon.accepted_ammo))
 		weapon_to_load = secondary_weapon
 	else
 		try_easy_load(I, user)
