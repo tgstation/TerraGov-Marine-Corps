@@ -84,6 +84,12 @@
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 
+/obj/item/armored_weapon/particle_lance/do_fire(turf/source_turf)
+	for(var/mob/living/viewer AS in cheap_get_living_near(source_turf, 9) + current_firer)
+		viewer.overlay_fullscreen("particle_flash", /atom/movable/screen/fullscreen/particle_flash, 2)
+		viewer.clear_fullscreen("particle_flash")
+	return ..()
+
 /obj/item/armored_weapon/coilgun
 	name = "battle tank coilgun"
 	desc = "The coilgun is considered the standard main weapon for SOM battle tanks. \

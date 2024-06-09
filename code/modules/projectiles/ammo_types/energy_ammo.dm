@@ -742,11 +742,11 @@
 
 /datum/ammo/energy/particle_lance
 	name = "particle beam"
-	hitscan_effect_icon = "lance"
+	hitscan_effect_icon = "particle_lance"
 	hud_state = "plasma_blast"
 	hud_state_empty = "battery_empty_flash"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
-	bullet_color = COLOR_DISABLER_BLUE
+	bullet_color = LIGHT_COLOR_PURPLE_PINK
 	armor_type = ENERGY
 	max_range = 21
 	accurate_range = 15
@@ -766,6 +766,7 @@
 			damage_mult = 8
 		for(var/mob/living/living_victim AS in vehicle_target.occupants)//staggerstun will fail on tank occupants if we just use staggerstun
 			living_victim.Stagger(3 SECONDS)
+			living_victim.flash_pain()
 			shake_camera(living_victim, 0.3 SECONDS, 2)
 			to_chat(living_victim, "You are knocked about by the impact, staggering you!")
 	proj.damage *= damage_mult
