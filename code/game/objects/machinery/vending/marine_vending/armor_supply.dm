@@ -1,0 +1,155 @@
+//Surplus armor vendor
+
+/obj/machinery/vending/armor_supply
+	name = "\improper Surplus Armor Equipment Vendor"
+	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	icon_state = "surplus_armor"
+	icon_vend = "surplus_armor_vend"
+	icon_deny = "surplus_armor_deny"
+	isshared = TRUE
+	wrenchable = FALSE
+	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
+	products = list(
+		"Xenonauten" = list(
+			/obj/item/clothing/suit/modular/xenonauten/light = -1,
+			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
+			/obj/item/clothing/head/modular/m10x = -1,
+			/obj/item/clothing/head/modular/m10x/heavy = -1,
+		),
+		"Jaeger" = list(
+			/obj/item/clothing/suit/modular/jaeger/light = -1,
+			/obj/item/clothing/suit/modular/jaeger/light/skirmisher = -1,
+			/obj/item/clothing/suit/modular/jaeger/light/trooper = -1,
+			/obj/item/clothing/suit/modular/jaeger = -1,
+			/obj/item/clothing/suit/modular/jaeger/eva = -1,
+			/obj/item/clothing/suit/modular/jaeger/helljumper = -1,
+			/obj/item/clothing/suit/modular/jaeger/ranger = -1,
+			/obj/item/clothing/suit/modular/jaeger/heavy = -1,
+			/obj/item/clothing/suit/modular/jaeger/heavy/assault = -1,
+			/obj/item/clothing/suit/modular/jaeger/heavy/eod = -1,
+			/obj/item/clothing/head/modular/marine/skirmisher = -1,
+			/obj/item/clothing/head/modular/marine/scout = -1,
+			/obj/item/clothing/head/modular/marine = -1,
+			/obj/item/clothing/head/modular/marine/eva = -1,
+			/obj/item/clothing/head/modular/marine/eva/skull = -1,
+			/obj/item/clothing/head/modular/marine/helljumper = -1,
+			/obj/item/clothing/head/modular/marine/ranger = -1,
+			/obj/item/clothing/head/modular/marine/traditional = -1,
+			/obj/item/clothing/head/modular/marine/trooper = -1,
+			/obj/item/clothing/head/modular/marine/gungnir = -1,
+			/obj/item/clothing/head/modular/marine/assault = -1,
+			/obj/item/clothing/head/modular/marine/eod = -1,
+		),
+		"Combat Robot" = list(
+			/obj/item/clothing/suit/modular/robot/light = -1,
+			/obj/item/clothing/suit/modular/robot = -1,
+			/obj/item/clothing/suit/modular/robot/heavy = -1,
+			/obj/item/clothing/head/modular/robot/light = -1,
+			/obj/item/clothing/head/modular/robot = -1,
+			/obj/item/clothing/head/modular/robot/heavy = -1,
+		),
+		"General" = list(
+			/obj/item/clothing/suit/modular = -1,
+			/obj/item/clothing/suit/modular/rownin = -1,
+			/obj/item/clothing/suit/storage/marine/ballistic = -1,
+			/obj/item/facepaint/green = -1,
+		),
+		"Armor modules" = list(
+			/obj/item/armor_module/storage/general = -1,
+			/obj/item/armor_module/storage/engineering = -1,
+			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/injector = -1,
+			/obj/item/armor_module/storage/grenade = -1,
+			/obj/item/armor_module/module/welding = -1,
+			/obj/item/armor_module/module/binoculars = -1,
+			/obj/item/armor_module/module/artemis = -1,
+			/obj/item/armor_module/module/tyr_head = -1,
+			/obj/item/armor_module/module/antenna = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mark1 = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 = -1,
+			/obj/item/armor_module/module/tyr_extra_armor/mark1 = -1,
+			/obj/item/armor_module/module/ballistic_armor = -1,
+			/obj/item/armor_module/module/hod_head = -1,
+			/obj/item/armor_module/module/better_shoulder_lamp = -1,
+			/obj/item/armor_module/module/chemsystem = -1,
+			/obj/item/armor_module/module/eshield = -1,
+		),
+		"Style Line" = list(
+			/obj/item/clothing/suit/modular/style/leather_jacket = -1,
+			/obj/item/clothing/suit/modular/style/duster = -1,
+			/obj/item/armor_module/module/style/light_armor = -1,
+			/obj/item/armor_module/module/style/medium_armor = -1,
+			/obj/item/armor_module/module/style/heavy_armor = -1,
+		),
+		"Jaeger Mk.I chestpieces" = list(
+			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
+			/obj/item/armor_module/armor/chest/marine/skirmisher/scout = -1,
+			/obj/item/armor_module/armor/chest/marine/skirmisher/trooper = -1,
+			/obj/item/armor_module/armor/chest/marine = -1,
+			/obj/item/armor_module/armor/chest/marine/eva = -1,
+			/obj/item/armor_module/armor/chest/marine/assault = -1,
+			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
+			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
+			/obj/item/armor_module/armor/chest/marine/ranger = -1,
+			/obj/item/armor_module/armor/chest/marine/mjolnir = -1,
+		),
+		"Jaeger Mk.I armpiece" = list(
+			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
+			/obj/item/armor_module/armor/arms/marine/scout = -1,
+			/obj/item/armor_module/armor/arms/marine/trooper = -1,
+			/obj/item/armor_module/armor/arms/marine = -1,
+			/obj/item/armor_module/armor/arms/marine/eva = -1,
+			/obj/item/armor_module/armor/arms/marine/assault = -1,
+			/obj/item/armor_module/armor/arms/marine/eod = -1,
+			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
+			/obj/item/armor_module/armor/arms/marine/ranger = -1,
+			/obj/item/armor_module/armor/arms/marine/mjolnir = -1,
+		),
+		"Jaeger Mk.I legpiece" = list(
+			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
+			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/trooper = -1,
+			/obj/item/armor_module/armor/legs/marine = -1,
+			/obj/item/armor_module/armor/legs/marine/eva = -1,
+			/obj/item/armor_module/armor/legs/marine/assault = -1,
+			/obj/item/armor_module/armor/legs/marine/eod = -1,
+			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
+			/obj/item/armor_module/armor/legs/marine/ranger = -1,
+			/obj/item/armor_module/armor/legs/marine/mjolnir = -1,
+		),
+		"Jaeger Mk.I helmets" = list(
+			/obj/item/clothing/head/modular/marine/old/skirmisher = -1,
+			/obj/item/clothing/head/modular/marine/old/scout = -1,
+			/obj/item/clothing/head/modular/marine/old = -1,
+			/obj/item/clothing/head/modular/marine/old/open = -1,
+			/obj/item/clothing/head/modular/marine/old/eva = -1,
+			/obj/item/clothing/head/modular/marine/old/eva/skull = -1,
+			/obj/item/clothing/head/modular/marine/old/assault = -1,
+			/obj/item/clothing/head/modular/marine/old/eod = -1,
+			/obj/item/clothing/head/modular/marine/old/mjolnir = -1,
+			/obj/item/clothing/head/modular/marine/mjolnir_open = -1,
+		),
+		"Hardsuits" = list(
+			/obj/item/clothing/suit/modular/hardsuit_exoskeleton = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markfive = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markthree = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markone = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone = -1,
+		),
+	)
+
+	prices = list()
+
+/obj/machinery/vending/armor_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
