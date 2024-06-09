@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Mortar's chambered items now drop onto the floor (instead of deleting itself) when undeployment attempt is made."

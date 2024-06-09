@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a bug with motorbike sidecars"
-  - code_imp: "Added attachment component support to vehicles"

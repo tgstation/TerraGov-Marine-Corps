@@ -7542,7 +7542,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "Mc" = (
-/obj/mecha_wreckage/durand,
+/obj/structure/mecha_wreckage/durand,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},

@@ -388,7 +388,7 @@
 /area/bigredv2/caves/secomplex)
 "wO" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "xa" = (

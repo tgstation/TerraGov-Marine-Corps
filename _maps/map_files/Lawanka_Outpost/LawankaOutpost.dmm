@@ -15399,7 +15399,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "mMn" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/lawankaoutpost/colony/cargo)
 "mMH" = (
@@ -26548,7 +26548,7 @@
 /turf/open/floor/tile/red/whitered,
 /area/lawankaoutpost/colony/medbay)
 "vJJ" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/lawankaoutpost/colony/mining)
 "vJM" = (
@@ -27355,7 +27355,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "wns" = (
-/obj/mecha_wreckage/phazon,
+/obj/structure/mecha_wreckage/phazon,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/lawankaoutpost/colony/robotics)
 "wnK" = (
@@ -28840,7 +28840,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/southeast)
 "xxH" = (
-/obj/mecha_wreckage/seraph,
+/obj/structure/mecha_wreckage/seraph,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
