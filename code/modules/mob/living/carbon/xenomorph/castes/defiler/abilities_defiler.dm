@@ -64,6 +64,7 @@
 /datum/action/ability/activable/xeno/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -165,6 +166,7 @@
 /datum/action/ability/xeno_action/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
@@ -283,6 +285,7 @@
 /datum/action/ability/activable/xeno/inject_egg_neurogas
 	name = "Inject Gas"
 	action_icon_state = "inject_egg"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
@@ -354,6 +357,7 @@
 /datum/action/ability/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
@@ -419,6 +423,7 @@
 /datum/action/ability/xeno_action/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 100
@@ -520,6 +525,7 @@
 /datum/action/ability/activable/xeno/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175

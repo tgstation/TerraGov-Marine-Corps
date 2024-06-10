@@ -36,6 +36,7 @@
 /datum/action/ability/xeno_action/toxic_slash
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
@@ -126,6 +127,7 @@
 /datum/action/ability/activable/xeno/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
@@ -195,6 +197,7 @@
 /datum/action/ability/activable/xeno/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS

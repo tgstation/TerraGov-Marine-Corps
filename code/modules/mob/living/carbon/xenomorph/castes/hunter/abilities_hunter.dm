@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "hunter_invisibility"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_cost = 10
 	keybinding_signals = list(
@@ -272,6 +273,7 @@
 	name = "Pounce"
 	desc = "Leap at your target, tackling and disarming them."
 	action_icon_state = "pounce"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -378,6 +380,7 @@
 /datum/action/ability/activable/xeno/hunter_mark
 	name = "Hunter's Mark"
 	action_icon_state = "hunter_mark"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
 	ability_cost = 25
 	keybinding_signals = list(
@@ -461,6 +464,7 @@
 /datum/action/ability/xeno_action/psychic_trace
 	name = "Psychic Trace"
 	action_icon_state = "toggle_queen_zoom"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
 	ability_cost = 1 //Token amount
 	keybinding_signals = list(
@@ -530,6 +534,7 @@
 /datum/action/ability/xeno_action/mirage
 	name = "Mirage"
 	action_icon_state = "mirror_image"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_cost = 50
 	keybinding_signals = list(
@@ -602,6 +607,7 @@
 /datum/action/ability/activable/xeno/silence
 	name = "Silence"
 	action_icon_state = "silence"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_cost = 50
 	keybinding_signals = list(

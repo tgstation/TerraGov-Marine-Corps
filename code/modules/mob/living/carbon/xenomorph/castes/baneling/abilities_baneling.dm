@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/baneling_explode
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
+	action_icon = 'icons/Xeno/actions/baneling.dmi'
 	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You die."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
