@@ -33,18 +33,6 @@
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 
-	if(!isnum(pop_override))
-		pop_override = length(GLOB.alive_human_list)
-	var/item_ratio = floor(pop_override / INFESTATION_MARINE_PER_SCOPE)
-	for(var/obj/item/attachable/scope/mini AS in GLOB.vending_records["Attachments"])
-		if(mini == -1)
-			continue
-		mini = item_ratio
-	for(var/obj/item/weapon/gun AS in GLOB.vending_records["Marskman"])
-		if(gun == -1)
-			continue
-		gun = item_ratio
-
 /datum/game_mode/infestation/process()
 	if(round_finished)
 		return PROCESS_KILL
