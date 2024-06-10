@@ -1,11 +1,9 @@
 /obj/machinery/deployable/mounted/sentry
-
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE
-
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
 	///Camera for viewing with cam consoles
@@ -14,18 +12,14 @@
 	var/range = 7
 	///Damage required to knock the sentry over and disable it
 	var/knockdown_threshold = 150
-
 	///List of targets that can be shot at
 	var/list/atom/potential_targets = list()
-
 	///Time of last alert
 	var/last_alert = 0
 	///Time of last damage alert
 	var/last_damage_alert = 0
-
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
-
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
 	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
@@ -370,7 +364,6 @@
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
-
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
 	if((machine_stat & EMPED) || !scan())
@@ -533,7 +526,7 @@
 	var/obj/item/internal_sentry = get_internal_item()
 	if(internal_sentry)
 		name = "Deployed " + internal_sentry.name
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/build_a_sentry.dmi'
 	default_icon_state = "build_a_sentry"
 	update_icon()
 
@@ -541,8 +534,7 @@
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(internal_gun)
-		. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
-
+		. += image('icons/obj/machines/deployable/sentry/build_a_sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
 
 //Throwable turret
 /obj/machinery/deployable/mounted/sentry/cope

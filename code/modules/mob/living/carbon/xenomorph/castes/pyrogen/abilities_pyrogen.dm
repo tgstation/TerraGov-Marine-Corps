@@ -4,7 +4,7 @@
 /datum/action/ability/activable/xeno/charge/fire_charge
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
-	desc = "Charge up to 3 tiles, inflicting a stack of melting flame and slashing them with a fiery claw. "
+	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
 	cooldown_duration = 4 SECONDS
 	ability_cost = 30
 	keybinding_signals = list(
@@ -62,7 +62,7 @@
 		var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		fire_damage += debuff.stacks * PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
 		living_target.remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	living_target.take_overall_damage(fire_damage, BURN, ACID, max_limbs = 2)
+	living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
 	living_target.hitby(owner)
 
 
@@ -88,7 +88,7 @@
 /datum/action/ability/activable/xeno/fireball/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
 	playsound(get_turf(xeno), 'sound/effects/wind.ogg', 50)
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
@@ -179,7 +179,7 @@
 		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
 	else
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
-	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, ACID, max_limbs = 2)
+	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
 
 ///Effects applied to a mob that crosses a burning turf
 /obj/effect/xenomorph/firenado/proc/on_cross(datum/source, mob/living/carbon/human/target, oldloc, oldlocs)
@@ -241,7 +241,7 @@
 /datum/action/ability/activable/xeno/firestorm/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
 
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
@@ -351,13 +351,13 @@
 				if(debuff)
 					damage += debuff.stacks * PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK
 
-				human_victim.take_overall_damage(damage, BURN, ACID, updating_health = TRUE, max_limbs = 2)
+				human_victim.take_overall_damage(damage, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
 			else if(isvehicle(victim))
 				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, ACID)
+				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return
