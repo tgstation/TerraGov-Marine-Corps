@@ -530,6 +530,10 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/medic/pmc
+	vendor_role = /datum/job/pmc/squad/medic
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/specialist
 	name = "NEXUS Automated Specialist Equipment Rack"
 	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
@@ -593,6 +597,10 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/smartgun/pmc
+	vendor_role = /datum/job/pmc/squad/gunner
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -609,6 +617,10 @@
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/leader/pmc
+	vendor_role = /datum/job/pmc/squad/leader
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander
