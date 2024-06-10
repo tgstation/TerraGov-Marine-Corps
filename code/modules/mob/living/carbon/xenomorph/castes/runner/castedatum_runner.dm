@@ -16,14 +16,14 @@
 	attack_delay = 6
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 320
+	max_health = 300
 
 	// *** Evolution *** //
 	evolution_threshold = 100
