@@ -32,17 +32,17 @@
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_mob), det_turf)
 
 /datum/ammo/ags_shrapnel/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step(target_obj, proj) : target_obj
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_obj), det_turf)
 
 /datum/ammo/ags_shrapnel/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_turf), det_turf)
 
 /datum/ammo/ags_shrapnel/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 

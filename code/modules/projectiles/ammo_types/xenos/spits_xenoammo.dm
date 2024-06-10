@@ -197,12 +197,12 @@
 	max_range = 3
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/initial_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step(target_obj, proj) : target_obj
+	var/turf/initial_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
 	drop_resin(initial_turf)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	var/turf/initial_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
+	var/turf/initial_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	drop_resin(initial_turf)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), target_turf)
 
@@ -212,7 +212,7 @@
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
 
 /datum/ammo/xeno/sticky/globe/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/initial_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
+	var/turf/initial_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	drop_resin(initial_turf)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
 
