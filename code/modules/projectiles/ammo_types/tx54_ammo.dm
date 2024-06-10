@@ -118,10 +118,10 @@
 	drop_nade(get_turf(O))
 
 /datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 //The secondary projectiles
 /datum/ammo/bullet/tx54_spread

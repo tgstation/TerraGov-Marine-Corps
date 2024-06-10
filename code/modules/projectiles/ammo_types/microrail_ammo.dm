@@ -194,7 +194,7 @@
 	drop_nade(get_turf(P))
 
 /datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)

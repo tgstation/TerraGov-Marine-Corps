@@ -81,10 +81,10 @@
 	drop_nade(get_turf(M))
 
 /datum/ammo/flamer/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : O.loc)
+	drop_nade(O.density ? get_step(O, proj) : O.loc)
 
 /datum/ammo/flamer/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/flamer/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)

@@ -254,17 +254,16 @@
 	added_spit_delay = 0
 
 /datum/ammo/xeno/acid/auto/on_hit_mob(mob/M, obj/projectile/P)
-	var/turf/T = get_turf(M)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(get_turf(M), P)
 
 /datum/ammo/xeno/acid/auto/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : get_turf(O))
+	drop_nade(O.density ? get_step(O, proj) : get_turf(O))
 
 /datum/ammo/xeno/acid/auto/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/xeno/acid/auto/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
@@ -285,16 +284,17 @@
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M, obj/projectile/P)
 	var/turf/T = get_turf(M)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : get_turf(O))
+	drop_nade(O.density ? get_step(O, proj) : get_turf(O))
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step(T, proj) : T)
+
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
