@@ -556,13 +556,13 @@
 	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE)
 
 /datum/ammo/energy/plasma/blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step(target_obj, proj) : target_obj.loc)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
 /datum/ammo/energy/plasma/blast/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/plasma/blast/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/plasma/blast/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(target_mob.loc)

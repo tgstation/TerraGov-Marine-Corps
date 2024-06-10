@@ -258,13 +258,13 @@
 	drop_nade(get_turf(target_mob), proj)
 
 /datum/ammo/xeno/acid/auto/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step(target_obj, proj) : get_turf(target_obj))
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj))
 
 /datum/ammo/xeno/acid/auto/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/xeno/acid/auto/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
@@ -285,16 +285,16 @@
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/turf/target_turf = get_turf(target_mob)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step(target_obj, proj) : get_turf(target_obj))
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj))
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 
 ///For the Spitter's Scatterspit ability

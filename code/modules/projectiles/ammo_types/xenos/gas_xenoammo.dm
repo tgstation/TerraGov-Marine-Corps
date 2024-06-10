@@ -96,13 +96,13 @@
 	if(ismecha(target_obj))
 		proj.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(target_obj)
-	drop_nade(target_obj.density ? get_step(target_obj, proj) : target_turf, proj.firer)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf, proj.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf, proj.firer)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()

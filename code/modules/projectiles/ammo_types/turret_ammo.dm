@@ -81,10 +81,10 @@
 	drop_nade(get_turf(target_mob))
 
 /datum/ammo/flamer/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step(target_obj, proj) : target_obj.loc)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
 /datum/ammo/flamer/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/flamer/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
