@@ -963,6 +963,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
 	else
 		dir_angle = angle
+	setDir(angle2dir(dir_angle))
 
 	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		record_projectile_fire(shooter)
@@ -1021,6 +1022,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.1, effect_icon, ammo.bullet_color)
 			continue //Pixel movement only, didn't manage to change turf.
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
+		if(dir != movement_dir)
+			setDir(movement_dir)
 
 		if(ISDIAGONALDIR(movement_dir)) //Diagonal case. We need to check the turf to cross to get there.
 			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do it will cause an infinite processing loop due to division by zero, so better safe than sorry.

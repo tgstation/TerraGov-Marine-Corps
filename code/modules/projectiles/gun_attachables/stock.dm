@@ -25,8 +25,7 @@
 /obj/item/attachable/stock/t27
 	name = "MG-27 Body"
 	desc = "A stock for a MG-27 MMG."
-	icon = 'icons/Marine/marine-mmg.dmi'
-	icon_state = "t27body"
+	icon_state = "t27"
 	pixel_shift_x = 15
 	pixel_shift_y = 0
 
@@ -127,8 +126,7 @@
 /obj/item/attachable/stock/clf_heavyrifle
 	name = "PTR-41/1785 body"
 	desc = "A stock for a PTR-41/1785 A-MR."
-	icon = 'icons/Marine/clf_heavyrifle.dmi'
-	icon_state = "ptrs_stock"
+	icon_state = "ptrs"
 	pixel_shift_x = 15
 	pixel_shift_y = 0
 

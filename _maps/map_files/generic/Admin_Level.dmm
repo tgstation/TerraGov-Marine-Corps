@@ -366,10 +366,6 @@
 /area/centcom/valhalla)
 "axw" = (
 /obj/machinery/computer/secure_data,
-/obj/machinery/keycard_auth{
-	pixel_x = -8;
-	pixel_y = 24
-	},
 /obj/machinery/door_control/unmeltable{
 	id = "bridgewindows";
 	name = "Bridge View Blast doors";
@@ -3043,17 +3039,11 @@
 /area/centcom/valhalla)
 "dQh" = (
 /obj/structure/table,
-/obj/machinery/keycard_auth{
-	pixel_x = 24;
-	pixel_y = 38
-	},
 /obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom"
 	},
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
+/obj/machinery/computer/secure_data,
 /obj/effect/turf_decal/tile/black{
 	dir = 1
 	},
@@ -4654,10 +4644,6 @@
 "gmE" = (
 /obj/machinery/status_display{
 	pixel_y = -32
-	},
-/obj/machinery/keycard_auth{
-	pixel_x = -24;
-	pixel_y = -24
 	},
 /obj/structure/table,
 /obj/machinery/computer/guestpass,
