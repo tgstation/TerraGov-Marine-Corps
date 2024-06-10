@@ -257,5 +257,5 @@
 	map_text_broadcast(hostile_faction, "Bluespace beacon detected in [deployed_area]. Destroy that beacon before they can call in a strike!", "Overwatch", sound_effect = "sound/effects/alert.ogg")
 
 /datum/campaign_mission/raiding_base/som/beacon_effect(obj/structure/campaign_objective/destruction_objective/bunker_buster/beacon, turf/location)
-	playsound(beacon, 'sound/magic/lightningbolt.ogg', 150, 0)
+	playsound(beacon, 'sound/effects/lightningbolt.ogg', 150, 0)
 	return ..()

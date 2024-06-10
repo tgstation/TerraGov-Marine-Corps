@@ -15,7 +15,7 @@
 	delay_to_impact = 10 SECONDS
 
 /datum/fire_support/tele_cope/select_target(turf/target_turf)
-	playsound(target_turf, 'sound/magic/lightningbolt.ogg', 75, 0)
+	playsound(target_turf, 'sound/effects/lightningbolt.ogg', 75, 0)
 	new /obj/effect/temp_visual/teleporter_array(target_turf)
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed(target_turf)
 	var/list/destination_mobs = cheap_get_living_near(target_turf, 5)

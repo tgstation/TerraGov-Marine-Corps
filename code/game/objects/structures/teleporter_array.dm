@@ -128,8 +128,8 @@
 		victim.add_slowdown(3)
 		to_chat(victim, span_warning("You feel nauseous as reality warps around you!"))
 
-	playsound(target_turf, 'sound/magic/lightningbolt.ogg', 75, 0)
-	playsound(src, 'sound/magic/lightningbolt.ogg', 75, 0)
+	playsound(target_turf, 'sound/effects/lightningbolt.ogg', 75, 0)
+	playsound(src, 'sound/effects/lightningbolt.ogg', 75, 0)
 	new /obj/effect/temp_visual/teleporter_array(target_turf)
 
 	var/list/exit_turfs = RANGE_TURFS(range, target_turf)
