@@ -21,7 +21,7 @@
 	penetration = 20
 	sundering = 7.5
 
-/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
 
 
@@ -36,7 +36,7 @@
 	shrapnel_chance = 0
 	accuracy = 5
 
-/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 4 SECONDS, knockback = 1, slowdown = 2, hard_size_threshold = 1)
 
 /datum/ammo/bullet/shotgun/incendiary
@@ -51,7 +51,7 @@
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
@@ -91,7 +91,7 @@
 	damage = 40
 	damage_falloff = 4
 
-/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/hefa_buckshot
@@ -107,8 +107,8 @@
 	damage = 30
 	damage_falloff = 3
 
-/datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/mob_hit, obj/projectile/projectile)
-	staggerstun(mob_hit, projectile, knockback = 2, max_range = 4)
+/datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/mob, obj/projectile/proj)
+	staggerstun(mob, proj, knockback = 2, max_range = 4)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -139,16 +139,16 @@
 /datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 2)
 
-/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M))
 
-/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/shotgun/frag/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(O.density ? get_step(O, proj) : O.loc)
 
-/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/shotgun/frag/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/bullet/shotgun/frag/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/bullet/shotgun/frag/frag_spread
@@ -199,7 +199,7 @@
 	damage = 40
 	penetration = 20
 
-/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/shotgun/tx15_flechette
@@ -231,7 +231,7 @@
 	penetration = 30
 	sundering = 3.5
 
-/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, slowdown = 2, knockback = 1)
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
@@ -274,8 +274,8 @@
 	damage = 5
 	penetration = 100
 
-/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/mob, obj/projectile/proj)
+	mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
@@ -287,8 +287,8 @@
 	damage = 5
 	penetration = 100
 
-/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/mob, obj/projectile/proj)
+	mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 //I INSERT THE SHELLS IN AN UNKNOWN ORDER
 /datum/ammo/bullet/shotgun/blank

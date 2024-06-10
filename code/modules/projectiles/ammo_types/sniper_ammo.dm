@@ -38,7 +38,7 @@
 	sundering = 30
 	airburst_multiplier = 0.5
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(victim, proj,  max_range = 30)
 	airburst(victim, proj)
 
@@ -63,7 +63,7 @@
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 10 SECONDS
 
-/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/mob, obj/projectile/proj)
 	if(!isliving(M))
 		return
 
@@ -97,7 +97,7 @@
 	sundering = 10
 	damage_falloff = 0.25
 
-/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 2 SECONDS, max_range = 17)
 
 

@@ -34,22 +34,22 @@
 	projectile_greyscale_config = /datum/greyscale_config/projectile
 	projectile_greyscale_colors = COLOR_AMMO_AIRBURST
 
-/datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_mob(mob/mob, obj/projectile/proj)
 	var/turf/det_turf = get_turf(M)
 	staggerstun(M, proj, slowdown = 0.5, knockback = 1)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M), loc_override = get_turf(M), det_turf)
 
-/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_obj(obj/obj, obj/projectile/proj)
 	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O), det_turf)
 
-/datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_turf(turf/turf, obj/projectile/proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, T), det_turf)
 
-/datum/ammo/tx54/do_at_max_range(turf/T, obj/projectile/proj)
+/datum/ammo/tx54/do_at_max_range(turf/turf, obj/projectile/proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
 
@@ -111,16 +111,16 @@
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 1, 3, 1)
 
-/datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M))
 
-/datum/ammo/tx54/he/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(get_turf(O))
 
-/datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/tx54/he/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 //The secondary projectiles
@@ -136,7 +136,7 @@
 	sundering = 3
 	damage_falloff = 0
 
-/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 3, stagger = 0.6 SECONDS, slowdown = 0.3)
 
 /datum/ammo/bullet/tx54_spread/incendiary
@@ -146,7 +146,7 @@
 	penetration = 10
 	sundering = 1.5
 
-/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/mob, obj/projectile/proj)
 	return
 
 /datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
@@ -154,7 +154,7 @@
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/turf, obj/projectile/proj)
 	drop_flame(T)
 
 /datum/ammo/bullet/tx54_spread/smoke
@@ -177,10 +177,10 @@
 		QDEL_NULL(trail_spread_system)
 	return ..()
 
-/datum/ammo/bullet/tx54_spread/smoke/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/smoke/on_hit_mob(mob/mob, obj/projectile/proj)
 	return
 
-/datum/ammo/bullet/tx54_spread/smoke/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/smoke/on_leave_turf(turf/turf, obj/projectile/proj)
 	trail_spread_system.set_up(0, T)
 	trail_spread_system.start()
 
@@ -218,9 +218,9 @@
 		QDEL_NULL(chemical_payload)
 	return ..()
 
-/datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/mob, obj/projectile/proj)
 	return
 
-/datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/turf, obj/projectile/proj)
 	chemical_payload.set_up(0, T, reagent_list, RAZOR_FOAM)
 	chemical_payload.start()

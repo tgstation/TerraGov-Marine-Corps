@@ -36,7 +36,7 @@
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
 
-/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/turf, obj/projectile/proj)
 	if(isxeno(proj.firer))
 		var/mob/living/carbon/xenomorph/X = proj.firer
 		trail_spread_system.strength = X.xeno_caste.bomb_strength
@@ -73,7 +73,7 @@
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M), proj)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
@@ -93,16 +93,16 @@
 
 	carbon_victim.reagents.add_reagent_list(spit_reagents)
 
-/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/obj, obj/projectile/proj)
 	if(ismecha(O))
 		P.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(O)
 	drop_nade(O.density ? get_step(O, proj) : target_turf, P.firer)
 
-/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
-/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/boiler_gas/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T, P.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
@@ -146,7 +146,7 @@
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/mob, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()

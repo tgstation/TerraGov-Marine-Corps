@@ -93,27 +93,27 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
-/datum/ammo/proc/do_at_max_range(turf/T, obj/projectile/proj)
+/datum/ammo/proc/do_at_max_range(turf/turf, obj/projectile/proj)
 	return
 
 ///Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-/datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_shield_block(mob/mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting dense turfs.
-/datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_hit_turf(turf/turf, obj/projectile/proj)
 	return
 
 ///Special effects when hitting mobs.
-/datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_hit_mob(mob/mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting objects.
-/datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/proc/on_hit_obj(obj/obj, obj/projectile/proj)
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_leave_turf(turf/turf, obj/projectile/proj)
 	return
 
 ///Handles CC application on the victim

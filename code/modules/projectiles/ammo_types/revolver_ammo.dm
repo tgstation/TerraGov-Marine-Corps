@@ -14,7 +14,7 @@
 	penetration = 10
 	sundering = 3
 
-/datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/tp44
@@ -23,7 +23,7 @@
 	penetration = 15
 	sundering = 1
 
-/datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, knockback = 1)
 
 /datum/ammo/bullet/revolver/small
@@ -31,7 +31,7 @@
 	hud_state = "revolver_small"
 	damage = 30
 
-/datum/ammo/bullet/revolver/small/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/small/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/marksman
@@ -73,7 +73,7 @@
 	penetration = 40
 	sundering = 0.5
 
-/datum/ammo/bullet/revolver/t76/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/revolver/t76/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
@@ -84,7 +84,7 @@
 	penetration = 20
 	sundering = 3
 
-/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
@@ -103,8 +103,8 @@
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
 
-/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/mob, obj/projectile/proj)
 	staggerstun(M, P, slowdown = 0.5)
 
-/datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/turf, obj/projectile/proj)
 	reflect(T, proj, 10)

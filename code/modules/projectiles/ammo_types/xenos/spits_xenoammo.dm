@@ -55,14 +55,15 @@
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/carbon_victim, obj/projectile/proj)
-	drop_neuro_smoke(get_turf(carbon_victim))
+/datum/ammo/xeno/toxin/on_hit_mob(mob/mob, obj/projectile/proj)
+	drop_neuro_smoke(get_turf(mob))
 
 	if(isxeno(proj.firer))
 		var/mob/living/carbon/xenomorph/xeno = proj.firer
 		if(xeno.IsStaggered())
 			reagent_transfer_amount *= STAGGER_DAMAGE_MULTIPLIER
 
+	var/mob/living/carbon/carbon_victim = mob
 	if(!istype(carbon_victim) || carbon_victim.stat == DEAD || carbon_victim.issamexenohive(proj.firer) )
 		return
 
@@ -80,14 +81,14 @@
 
 	return ..()
 
-/datum/ammo/xeno/toxin/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/toxin/on_hit_obj(obj/obj, obj/projectile/proj)
 	var/turf/T = get_turf(O)
 	drop_neuro_smoke(T.density ? P.loc : T)
 
-/datum/ammo/xeno/toxin/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/toxin/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_neuro_smoke(T.density ? P.loc : T)
 
-/datum/ammo/xeno/toxin/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/toxin/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_neuro_smoke(T.density ? P.loc : T)
 
 /datum/ammo/xeno/toxin/set_smoke()
@@ -142,7 +143,7 @@
 	slowdown_stacks = 3
 
 
-/datum/ammo/xeno/sticky/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
@@ -152,17 +153,17 @@
 		C.add_slowdown(slowdown_stacks) //slow em down
 
 
-/datum/ammo/xeno/sticky/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_obj(obj/obj, obj/projectile/proj)
 	if(isarmoredvehicle(O))
 		var/obj/vehicle/sealed/armored/tank = O
 		COOLDOWN_START(tank, cooldown_vehicle_move, tank.move_delay)
 	var/turf/T = get_turf(O)
 	drop_resin(T.density ? P.loc : T)
 
-/datum/ammo/xeno/sticky/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_resin(T.density ? P.loc : T)
 
-/datum/ammo/xeno/sticky/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/sticky/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_resin(T.density ? P.loc : T)
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
@@ -195,22 +196,22 @@
 	damage = 5
 	max_range = 3
 
-/datum/ammo/xeno/sticky/globe/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/sticky/globe/on_hit_obj(obj/obj, obj/projectile/proj)
 	var/turf/initial_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, P) : O
 	drop_resin(initial_turf)
 	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
 
-/datum/ammo/xeno/sticky/globe/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/sticky/globe/on_hit_turf(turf/turf, obj/projectile/proj)
 	var/turf/initial_turf = T.density ? get_step(T, P) : T
 	drop_resin(initial_turf)
 	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), T)
 
-/datum/ammo/xeno/sticky/globe/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/sticky/globe/on_hit_mob(mob/mob, obj/projectile/proj)
 	var/turf/initial_turf = get_turf(M)
 	drop_resin(initial_turf)
 	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
 
-/datum/ammo/xeno/sticky/globe/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/sticky/globe/do_at_max_range(turf/turf, obj/projectile/proj)
 	var/turf/initial_turf = T.density ? get_step(T, P) : T
 	drop_resin(initial_turf)
 	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
@@ -233,7 +234,7 @@
 	///Damage dealt by acid puddles
 	var/puddle_acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
-/datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/acid/on_shield_block(mob/mob, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
@@ -253,16 +254,16 @@
 	spit_cost = 25
 	added_spit_delay = 0
 
-/datum/ammo/xeno/acid/auto/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/acid/auto/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M), P)
 
-/datum/ammo/xeno/acid/auto/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/acid/auto/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(O.density ? get_step(O, proj) : get_turf(O))
 
-/datum/ammo/xeno/acid/auto/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/acid/auto/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/xeno/acid/auto/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/acid/auto/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/xeno/acid/passthrough
@@ -282,17 +283,17 @@
 	shell_speed = 2
 	max_range = 9
 
-/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/mob, obj/projectile/proj)
 	var/turf/T = get_turf(M)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(O.density ? get_step(O, proj) : get_turf(O))
 
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 

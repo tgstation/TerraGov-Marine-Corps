@@ -27,16 +27,16 @@
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 0, 2)
 
-/datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/rocket/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M))
 
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/rocket/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(O.density ? get_step(O, proj) : O.loc)
 
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/rocket/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/rocket/do_at_max_range(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/rocket/he
@@ -82,7 +82,7 @@
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 2, 5, 0, 3)
 
-/datum/ammo/rocket/ltb/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/rocket/ltb/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(victim))
 	if(!isxeno(victim))
 		victim.gib()
@@ -118,14 +118,14 @@
 	accurate_range = 24
 	max_range = 35
 
-/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/turf, obj/projectile/proj)
 	P.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/mob, obj/projectile/proj)
 	P.proj_max_range -= 2
 	staggerstun(M, P, max_range = 20, slowdown = 0.5)
 
-/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/obj, obj/projectile/proj)
 	P.proj_max_range -= 5
 
 /datum/ammo/rocket/wp
@@ -230,7 +230,7 @@
 	accuracy = -10 //Not designed for anti human use
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
-/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(get_turf(O))
 	if(ismecha(O))
 		P.damage *= 3 //this is specifically designed to hurt mechs
@@ -358,7 +358,7 @@
 	accuracy = -10 //Not designed for anti human use
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
-/datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/rocket/som/heat/on_hit_obj(obj/obj, obj/projectile/proj)
 	drop_nade(get_turf(O))
 	if(ismecha(O))
 		P.damage *= 3 //this is specifically designed to hurt mechs
@@ -417,7 +417,7 @@
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 0, 2)
 
-/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P) //no explosion every time it hits a turf
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/turf, obj/projectile/proj) //no explosion every time it hits a turf
 	P.proj_max_range -= 10
 
 /datum/ammo/rocket/atgun_shell/apcr
@@ -432,15 +432,15 @@
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/mob, obj/projectile/proj)
 	drop_nade(get_turf(M))
 	P.proj_max_range -= 5
 	staggerstun(M, P, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/obj, obj/projectile/proj)
 	P.proj_max_range -= 5
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/turf, obj/projectile/proj)
 	P.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
@@ -454,7 +454,7 @@
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5)
 
-/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
 /datum/ammo/rocket/atgun_shell/beehive
@@ -472,24 +472,24 @@
 /datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/mob, obj/projectile/proj)
 	var/turf/det_turf = get_turf(M)
 	staggerstun(M, proj, slowdown = 0.2, knockback = 1)
 	drop_nade(det_turf)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, M), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/obj, obj/projectile/proj)
 	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, O), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/turf, obj/projectile/proj)
 	var/turf/det_turf = T.density ? get_step(T, proj) : T
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, T), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
+/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/turf, obj/projectile/proj)
 	var/turf/det_turf = T.density ? get_step(T, proj) : T
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
