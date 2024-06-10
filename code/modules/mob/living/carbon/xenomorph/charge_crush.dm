@@ -260,7 +260,6 @@
 		else
 			return NONE
 
-
 // Charge is divided into two acts: before and after the crushed thing taking damage, as that can cause it to be deleted.
 /datum/action/ability/xeno_action/ready_charge/proc/do_crush(datum/source, atom/crushed)
 	SIGNAL_HANDLER
