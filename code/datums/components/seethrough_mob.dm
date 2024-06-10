@@ -114,7 +114,7 @@
 /datum/action/ability/xeno_action/toggle_seethrough
 	name = "Toggle Seethrough"
 	desc = "Allows you to see behind your massive body and click through it."
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	action_icon_state = "xenohide"
 	cooldown_duration = 1 SECONDS
 	use_state_flags = ABILITY_USE_LYING
