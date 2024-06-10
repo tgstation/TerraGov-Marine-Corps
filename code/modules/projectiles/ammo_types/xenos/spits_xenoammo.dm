@@ -196,24 +196,24 @@
 	max_range = 3
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/O, obj/projectile/P)
-	var/turf/initial_turf = O.density ? P.loc : get_turf(O)
+	var/turf/initial_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, P) : O
 	drop_resin(initial_turf)
-	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_turf(turf/T, obj/projectile/P)
-	var/turf/initial_turf = T.density ? P.loc : T
+	var/turf/initial_turf = T.density ? get_step(T, P) : T
 	drop_resin(initial_turf)
-	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), T)
 
 /datum/ammo/xeno/sticky/globe/on_hit_mob(mob/M, obj/projectile/P)
 	var/turf/initial_turf = get_turf(M)
 	drop_resin(initial_turf)
-	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
 
 /datum/ammo/xeno/sticky/globe/do_at_max_range(turf/T, obj/projectile/P)
-	var/turf/initial_turf = T.density ? P.loc : T
+	var/turf/initial_turf = T.density ? get_step(T, P) : T
 	drop_resin(initial_turf)
-	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf), initial_turf)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"

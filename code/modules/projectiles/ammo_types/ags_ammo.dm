@@ -27,20 +27,24 @@
 
 
 /datum/ammo/ags_shrapnel/on_hit_mob(mob/M, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, M) )
+	var/turf/det_turf = get_turf(M)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, M), det_turf)
 
 /datum/ammo/ags_shrapnel/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, O) )
+	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, O), det_turf)
 
 /datum/ammo/ags_shrapnel/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, T) )
+	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, T), det_turf)
 
 /datum/ammo/ags_shrapnel/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 
 /datum/ammo/ags_shrapnel/incendiary
 	name = "white phosphorous grenade"

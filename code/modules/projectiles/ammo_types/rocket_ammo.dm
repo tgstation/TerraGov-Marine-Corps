@@ -473,22 +473,26 @@
 	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/M, obj/projectile/proj)
+	var/turf/det_turf = get_turf(M)
 	staggerstun(M, proj, slowdown = 0.2, knockback = 1)
-	drop_nade(get_turf(M))
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, M) )
+	drop_nade(det_turf)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, M), det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, O) )
+	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, O), det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, T) )
+	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, T), det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"

@@ -35,21 +35,23 @@
 	projectile_greyscale_colors = COLOR_AMMO_AIRBURST
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
+	var/turf/det_turf = get_turf(M)
 	staggerstun(M, proj, slowdown = 0.5, knockback = 1)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M) )
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M), loc_override = get_turf(M), det_turf)
 
 /datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O) )
+	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O), det_turf)
 
 /datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, T) )
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, T), det_turf)
 
 /datum/ammo/tx54/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
 
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"

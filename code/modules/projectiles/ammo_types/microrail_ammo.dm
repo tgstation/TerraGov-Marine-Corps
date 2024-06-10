@@ -22,11 +22,12 @@
 	var/bonus_projectile_speed = 3
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(0, get_turf(proj), 1)
+	smoke.set_up(0, det_turf, 1)
 	smoke.start()
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, get_turf(proj)) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 
 //piercing scatter shot
 /datum/ammo/bullet/micro_rail/airburst
