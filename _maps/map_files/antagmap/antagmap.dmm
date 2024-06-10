@@ -1,4 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/prop/mainship/prop_so{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "ac" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/bcircuit/anim,
@@ -9,6 +18,9 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"af" = (
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatestarboard)
 "ai" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -28,9 +40,17 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"as" = (
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "aw" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/command/telecomms)
+"az" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "aE" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_barracks{
@@ -92,6 +112,13 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"be" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
 "bf" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice{
 	req_access = list(209)
@@ -125,6 +152,13 @@
 "bm" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
+"bo" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "bv" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
@@ -321,11 +355,19 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"cU" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "cX" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"da" = (
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "db" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -347,6 +389,13 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"de" = (
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"df" = (
+/obj/machinery/bioprinter/stocked,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "dk" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/machinery/light/small,
@@ -371,6 +420,12 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"dz" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "dB" = (
 /turf/closed/shuttle/dropship_regular/backhatch{
 	dir = 4
@@ -424,6 +479,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"dX" = (
+/obj/structure/table/black,
+/obj/item/storage/box/crate/loot/materials_pack,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "dY" = (
 /turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
@@ -455,6 +515,16 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"eo" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
+"ep" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/vsd_medic,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "er" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/ground/dirt,
@@ -479,6 +549,9 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"eA" = (
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "eB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
@@ -489,6 +562,10 @@
 /obj/machinery/microwave,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"eD" = (
+/obj/machinery/marine_selector/gear/leader/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "eE" = (
 /obj/structure/inflatable/popped/door,
 /obj/structure/cable,
@@ -496,12 +573,22 @@
 	dir = 10
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"eH" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/space)
 "eI" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"eL" = (
+/obj/machinery/vending/uniform_supply/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "eN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -529,6 +616,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"eR" = (
+/obj/structure/table/black,
+/obj/machinery/computer/security/marinemainship,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "eT" = (
 /obj/item/lightstick/red/anchored,
 /obj/machinery/robotic_cradle,
@@ -536,6 +628,10 @@
 	dir = 5
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"eU" = (
+/obj/effect/landmark/start/job/pmc_leader,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "eY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -552,6 +648,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"fc" = (
+/obj/machinery/power/geothermal/reinforced,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "fe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharge_station,
@@ -588,6 +689,10 @@
 	outside = 0;
 	ceiling = 6
 	})
+"fw" = (
+/obj/effect/landmark/start/job/pmc,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "fx" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -607,6 +712,11 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"fC" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/food_or_drink/burger,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "fE" = (
 /turf/closed/shuttle/dropship_regular/top_corner/alt{
 	dir = 1
@@ -646,17 +756,35 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"fY" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "fZ" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"ga" = (
+/obj/machinery/sleeper,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatestarboard)
+"gb" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "gf" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"gg" = (
+/obj/machinery/vending/weapon/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "gh" = (
 /obj/effect/turf_decal/tile/transparent/dark_green,
 /obj/item/bedsheet/medical,
@@ -674,6 +802,11 @@
 /obj/item/storage/firstaid,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"gp" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/engineering/ore_box,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicategen)
 "gq" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
@@ -683,6 +816,10 @@
 /obj/structure/cable,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"gt" = (
+/obj/effect/landmark/start/job/vsd_engineer,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "gz" = (
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/structure/mirror,
@@ -759,6 +896,9 @@
 /turf/open/shuttle/dropship/three,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
+"gO" = (
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "gP" = (
 /obj/machinery/vending/hydroseeds,
 /obj/effect/turf_decal/siding/wood{
@@ -816,6 +956,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"hb" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "hd" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/plating_catwalk,
@@ -838,6 +983,36 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"hg" = (
+/obj/structure/table/mainship,
+/obj/machinery/chem_dispenser/beer,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
+"hl" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/table/black,
+/obj/item/paper/xenoresearch1,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
+"hs" = (
+/obj/machinery/computer/body_scanconsole,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
+"ht" = (
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "hw" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -859,6 +1034,12 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"hB" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "hH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -873,6 +1054,19 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"hM" = (
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
+"hN" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security/marinemainship,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "hP" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/dirt,
@@ -884,6 +1078,11 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"hZ" = (
+/obj/structure/table/black,
+/obj/machinery/computer/security/som_mainship,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "ia" = (
 /obj/structure/mirror,
 /turf/closed/wall/mainship/gray,
@@ -891,12 +1090,21 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"id" = (
+/obj/structure/table/black,
+/obj/effect/teleporter_linker,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "ig" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"ih" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
 "il" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -909,6 +1117,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"in" = (
+/obj/effect/landmark/start/job/vsd_medic,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "ip" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/bed/chair/sofa/left{
@@ -949,6 +1161,20 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"iC" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen,
+/area/riptide/caves/pmc/lobby)
+"iD" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "iE" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -986,6 +1212,12 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"iQ" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "iU" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -993,6 +1225,13 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"iX" = (
+/obj/machinery/vending/uniform_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "iY" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -1014,6 +1253,13 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"jb" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "jd" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/cic{
@@ -1035,6 +1281,13 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"jg" = (
+/obj/machinery/vending/uniform_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "ji" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_floortwomain{
@@ -1066,6 +1319,21 @@
 	outside = 0;
 	ceiling = 6
 	})
+"jv" = (
+/obj/machinery/vending/weapon/pmc,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"jz" = (
+/obj/effect/landmark/corpsespawner/syndicatecommando/regular,
+/turf/open/space/basic,
+/area/space)
+"jA" = (
+/obj/effect/landmark/start/job/pmc_gunner,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "jB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -1118,6 +1386,16 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"jL" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
+"jM" = (
+/obj/structure/table/black,
+/obj/item/clothing/head/helmet/space/syndicate/black,
+/obj/item/clothing/suit/space/syndicate/black,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "jP" = (
 /obj/machinery/cic_maptable/drawable/big/som,
 /turf/open/floor/mainship/red/full,
@@ -1152,6 +1430,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"kc" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/pmc_gunner,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "kd" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -1165,6 +1451,10 @@
 "kh" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/groundhq/som/command/telecomms)
+"ki" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "kj" = (
 /turf/closed/shuttle/dropship_regular/engine_corner,
 /area/shuttle/transport)
@@ -1199,6 +1489,13 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"ks" = (
+/obj/machinery/vending/uniform_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "kv" = (
 /obj/machinery/light{
 	dir = 8
@@ -1247,6 +1544,17 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"kN" = (
+/obj/machinery/door/airlock/external,
+/turf/open/space/basic,
+/area/space)
+"kR" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/space)
 "kT" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -1290,6 +1598,20 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"lf" = (
+/obj/structure/largecrate/supply/ammo/sentry,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"lg" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "lh" = (
 /obj/structure/prop/rappel_bay,
 /obj/structure/patrol_point/tgmc_14,
@@ -1302,6 +1624,14 @@
 /obj/machinery/telecomms/broadcaster/preset_left/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"ll" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "lm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1311,6 +1641,10 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"lq" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/space/basic,
+/area/riptide/inside/syndicatefoyer)
 "ls" = (
 /turf/open/floor/wood,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -1326,6 +1660,12 @@
 "lu" = (
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"lv" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "lz" = (
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
@@ -1371,6 +1711,14 @@
 "lH" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"lL" = (
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"lM" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "lN" = (
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/gimmick,
@@ -1424,6 +1772,14 @@
 	dir = 9
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"lT" = (
+/obj/item/storage/box/visual/grenade,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"lY" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "lZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -1448,6 +1804,12 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"mh" = (
+/obj/structure/table/black,
+/obj/item/clipboard,
+/obj/item/tool/pen,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "mi" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -1557,6 +1919,12 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"mG" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/riptide/caves/pmc/lobby)
 "mH" = (
 /turf/closed/shuttle/dropship_dark/backhatch{
 	dir = 4
@@ -1583,6 +1951,14 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"mS" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/table/black,
+/obj/item/disk/nuclear/green,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "mT" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -1629,6 +2005,15 @@
 /obj/item/lightreplacer,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/clf/squads/req)
+"nc" = (
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
+"nf" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/soap/nanotrasen,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "ng" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -1658,6 +2043,9 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"nk" = (
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "nl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -1686,6 +2074,12 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"nq" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "ns" = (
 /obj/structure/bed/chair/comfy/brown,
 /obj/effect/ai_node,
@@ -1745,6 +2139,13 @@
 /obj/machinery/telecomms/server/presets/medical/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"nF" = (
+/obj/effect/turf_decal/syndicateemblem/top/left,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "nG" = (
 /obj/structure/cable,
 /obj/item/storage/box/monkeycubes,
@@ -1799,6 +2200,13 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"oa" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/space)
 "od" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner,
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
@@ -1809,6 +2217,19 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"oe" = (
+/obj/structure/bed/fancy,
+/obj/item/bedsheet/brown,
+/obj/effect/landmark/start/job/pmc,
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
+"og" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"on" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "or" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -1830,6 +2251,19 @@
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"ou" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
+"ov" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "oy" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/fire{
@@ -1842,6 +2276,10 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"oD" = (
+/obj/structure/prop/mainship/juggernaut,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "oL" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 1
@@ -1857,6 +2295,10 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"oP" = (
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatehead)
 "oX" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -1887,6 +2329,14 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"pf" = (
+/obj/structure/rack,
+/obj/item/clothing/under/marine/veteran/pmc,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "pg" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/item/stool,
@@ -1897,6 +2347,15 @@
 /obj/machinery/griddle,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"pk" = (
+/obj/item/storage/box/visual/grenade/cloak,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"pm" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "pn" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -1909,6 +2368,9 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"pp" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/space)
 "pq" = (
 /obj/structure/bed/alien,
 /obj/effect/landmark/start/job/clf/breeder,
@@ -1996,6 +2458,10 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"pK" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/edge/black,
+/area/riptide/inside/syndicatefoyer)
 "pL" = (
 /obj/machinery/light/red{
 	dir = 1
@@ -2038,6 +2504,25 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"pX" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/table/black,
+/obj/item/disk/nuclear/blue,
+/obj/item/disk/nuclear,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
+"qb" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/riptide/caves/pmc/lobby)
 "qe" = (
 /obj/structure/rack,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -2069,9 +2554,20 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"qi" = (
+/obj/effect/landmark/start/job/vsd_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "qo" = (
 /turf/closed/wall,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"qs" = (
+/obj/effect/turf_decal/syndicateemblem/top/right,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "qu" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -2087,6 +2583,12 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"qy" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatestarboard)
 "qz" = (
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
@@ -2101,6 +2603,15 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"qC" = (
+/obj/effect/landmark/start/job/vsd_leader,
+/obj/structure/flora/pottedplant,
+/turf/open/floor/grayscale/edge/black,
+/area/riptide/inside/syndicatefoyer)
+"qG" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "qI" = (
 /obj/structure/urinal{
 	dir = 8
@@ -2113,6 +2624,22 @@
 "qM" = (
 /turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/transport)
+"qU" = (
+/obj/machinery/unboxer/syndicate,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"qV" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
+"qW" = (
+/obj/structure/table/black,
+/obj/machinery/computer/emails,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "qX" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -2198,6 +2725,18 @@
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"rG" = (
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
+"rH" = (
+/obj/structure/toilet,
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "rL" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
@@ -2227,6 +2766,23 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"rT" = (
+/obj/structure/largecrate/supply/ammo/m41a,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"rU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/riptide/caves/pmc/lobby)
 "rW" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2238,6 +2794,32 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"rX" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/table/black,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
+"rY" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "sd" = (
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
@@ -2253,6 +2835,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"sg" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "sh" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/structure/bed/roller,
@@ -2274,6 +2860,10 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"sn" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "sp" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/bcircuit/anim,
@@ -2311,11 +2901,17 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"sQ" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "sR" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/flashlight/lamp/green,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/door_control/old{
@@ -2356,6 +2952,23 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"sW" = (
+/obj/machinery/washing_machine,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
+"te" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
+"tf" = (
+/obj/structure/largecrate/supply/ammo/m41a,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "tg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2377,6 +2990,21 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"tk" = (
+/obj/structure/table/black,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"tn" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "tq" = (
 /obj/machinery/door_control/mainship/mech{
 	id = "mech_shutterssom";
@@ -2393,6 +3021,9 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"tu" = (
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "tD" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -2414,6 +3045,25 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"tG" = (
+/obj/machinery/vending/armor_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"tI" = (
+/obj/effect/turf_decal/syndicateemblem/middle/middle,
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
+"tN" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
 "tO" = (
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
@@ -2440,6 +3090,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"tS" = (
+/obj/structure/table/black,
+/obj/item/disk/nuclear/red,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "tT" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
@@ -2481,6 +3136,14 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"ug" = (
+/obj/structure/cable,
+/obj/structure/bed/chair/office/dark/east,
+/obj/structure/prop/mainship/prop_so/vsd/usl{
+	dir = 4
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatehead)
 "uh" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/structure/window/framed/mainship/gray/toughened/hull,
@@ -2525,6 +3188,16 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"ur" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"us" = (
+/obj/machinery/marine_selector/gear/smartgun/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "uu" = (
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
@@ -2585,6 +3258,12 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"uP" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "uR" = (
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/off,
@@ -2608,6 +3287,14 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"uY" = (
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatefoyer)
+"uZ" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/food_or_drink/beer,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "vc" = (
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
@@ -2707,6 +3394,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"vB" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security/marinemainship_network,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "vE" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
@@ -2762,6 +3454,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"vW" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/space/basic,
+/area/space)
 "vX" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -2780,6 +3476,15 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"wb" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/prop/mainship/prop_so/vsd{
+	dir = 1
+	},
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatehead)
 "wd" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -2839,6 +3544,10 @@
 /obj/machinery/optable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/medical/morgue)
+"wt" = (
+/obj/structure/table/black,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "wv" = (
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_prison{
@@ -2964,10 +3673,38 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"xe" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "xi" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"xj" = (
+/obj/structure/table/black,
+/obj/item/paper/arachneresearch1,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
+"xn" = (
+/obj/machinery/vending/uniform_supply/vsd,
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
+"xq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
+"xr" = (
+/obj/structure/table/black,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/soap/syndie,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "xu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2993,6 +3730,11 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"xA" = (
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "xB" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -3031,6 +3773,18 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"xL" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/pmc_medic,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"xN" = (
+/obj/machinery/iv_drip,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "xO" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -3051,6 +3805,10 @@
 "xT" = (
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/shuttle/transport)
+"xV" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "xX" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -3090,6 +3848,11 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"yj" = (
+/obj/structure/cable,
+/obj/structure/mecha_wreckage/mauler,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicategen)
 "yu" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -3107,6 +3870,11 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"yy" = (
+/obj/structure/prop/mainship/prop_sec,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "yA" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/bcircuit/anim,
@@ -3147,6 +3915,20 @@
 "yY" = (
 /turf/open/floor/plating,
 /area/mainship/groundhq/clf/squads/req)
+"yZ" = (
+/obj/structure/table/black,
+/obj/item/tool/weldingtool/experimental,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"zc" = (
+/obj/structure/prop/mainship/prop_sec,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
+"zd" = (
+/obj/structure/bed/chair/east,
+/obj/effect/landmark/start/job/pmc_medic,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "ze" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -3202,6 +3984,13 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"zA" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/space)
 "zE" = (
 /obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
@@ -3213,6 +4002,15 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"zI" = (
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 2;
+	req_one_access = null
+	},
+/obj/structure/cable,
+/obj/structure/sign/greencross,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "zJ" = (
 /obj/machinery/recharger,
 /turf/open/floor/plating/asteroidfloor,
@@ -3247,10 +4045,20 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"zX" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/generic,
+/obj/structure/sign/engie,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "Aa" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Ab" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Ad" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -3379,6 +4187,10 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"Bf" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
 "Bi" = (
 /obj/structure/morgue{
 	dir = 1
@@ -3452,6 +4264,17 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"BA" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "BB" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/CPToffice{
@@ -3531,6 +4354,12 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"BX" = (
+/obj/structure/table/black,
+/obj/item/clothing/suit/space/syndicate/black,
+/obj/item/clothing/head/helmet/space/syndicate/black,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Cd" = (
 /obj/structure/punching_bag,
 /obj/effect/turf_decal/box/white,
@@ -3570,6 +4399,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Co" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Cq" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/bcircuit/anim,
@@ -3598,6 +4433,33 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"Cw" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/table/black,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Cx" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -3616,6 +4478,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"CB" = (
+/obj/structure/largecrate/supply/supplies/coifs,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "CC" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -3643,6 +4509,9 @@
 /obj/item/reagent_containers/food/snacks/sausage,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"CL" = (
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "CN" = (
 /turf/open/space/basic,
 /area/space)
@@ -3684,6 +4553,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"CV" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "CX" = (
 /obj/machinery/vending/som/lasgun,
 /obj/machinery/light,
@@ -3711,6 +4584,17 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Df" = (
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Dg" = (
 /obj/machinery/light,
 /obj/structure/sink{
@@ -3748,6 +4632,10 @@
 /obj/machinery/light,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"Do" = (
+/obj/effect/turf_decal/syndicateemblem/bottom/right,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "Dq" = (
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -3807,6 +4695,10 @@
 /obj/structure/curtain/shower,
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"DR" = (
+/obj/structure/closet/crate/internals,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "DW" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -3817,6 +4709,18 @@
 	outside = 0;
 	ceiling = 6
 	})
+"Ea" = (
+/obj/effect/turf_decal/syndicateemblem/top/middle,
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
+"Eb" = (
+/obj/machinery/vending/armor_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Ec" = (
 /obj/machinery/light/small,
 /obj/structure/table,
@@ -3845,6 +4749,11 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Ei" = (
+/obj/machinery/power/geothermal/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "El" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
@@ -3933,6 +4842,9 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"EI" = (
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "EJ" = (
 /turf/closed/shuttle/dropship_dark/engine_corner,
 /area/shuttle/transport)
@@ -3954,6 +4866,13 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"EQ" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/pmc,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "ER" = (
 /obj/structure/bed/chair/east{
 	dir = 2
@@ -3963,6 +4882,34 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"ET" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
+"EX" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
+"Fc" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/table/black,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
+"Fd" = (
+/obj/effect/landmark/start/job/vsd_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"Fg" = (
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Fh" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/plating_catwalk,
@@ -3970,12 +4917,30 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Fi" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/table/black,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Fj" = (
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_torturechamber{
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"Fm" = (
+/obj/item/storage/box/ids,
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"Fs" = (
+/obj/structure/cable,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "Ft" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/backpack/marine/engineerpack,
@@ -4005,6 +4970,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"FA" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "FD" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -4027,6 +4996,9 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"FG" = (
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatehead)
 "FH" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/dirt,
@@ -4066,6 +5038,17 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"FS" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/table/black,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "FT" = (
 /obj/item/tool/pen/blue,
 /obj/structure/table/fancywoodentable,
@@ -4090,6 +5073,9 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Gj" = (
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatehead)
 "Gk" = (
 /turf/closed/shuttle/dropship_dark/interior_wall{
 	dir = 1
@@ -4099,6 +5085,31 @@
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
+"Gs" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
+"Gu" = (
+/obj/structure/bed/chair/east,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
+"Gv" = (
+/obj/structure/rack,
+/obj/item/tool/soap/nanotrasen,
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "Gw" = (
 /obj/structure/curtain/shower,
 /obj/structure/cable,
@@ -4151,6 +5162,11 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"GK" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/vsd_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "GL" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
@@ -4160,6 +5176,15 @@
 "GN" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"GQ" = (
+/obj/structure/table/black,
+/obj/item/explosive/grenade/phosphorus/upp,
+/obj/item/explosive/grenade/phosphorus/upp,
+/obj/item/explosive/grenade/phosphorus/upp,
+/obj/item/explosive/grenade/phosphorus/upp,
+/obj/item/explosive/grenade/phosphorus/upp,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "GR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4170,9 +5195,24 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"GS" = (
+/obj/structure/table/black,
+/obj/item/clothing/head/helmet/space/syndicate,
+/obj/item/clothing/suit/space/syndicate,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "GV" = (
 /turf/closed/shuttle/dropship_dark/top_corner/alt,
 /area/shuttle/transport)
+"GW" = (
+/obj/machinery/vending/armor_supply/vsd,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"GX" = (
+/obj/structure/rack,
+/obj/item/clothing/under/marine/veteran/pmc,
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "Hc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
@@ -4186,6 +5226,10 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Hh" = (
+/obj/structure/prop/mainship/invincibleshutter,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Hi" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -4199,6 +5243,10 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"Hn" = (
+/obj/machinery/autodoc,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Hr" = (
 /turf/closed/shuttle/dropship_dark/logo_wall,
 /area/shuttle/transport)
@@ -4231,6 +5279,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"HB" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
 "HD" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -4252,6 +5306,10 @@
 "HH" = (
 /turf/closed/shuttle/dropship_regular/interior_wall,
 /area/shuttle/transport)
+"HI" = (
+/obj/machinery/vending/weapon/vsd,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "HJ" = (
 /obj/structure/inflatable/popped,
 /turf/open/floor/plating/ground/dirt,
@@ -4345,6 +5403,18 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"Ip" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/chem_master,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"Ir" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/pmc_gunner,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Is" = (
 /obj/structure/platform{
 	dir = 1
@@ -4359,6 +5429,19 @@
 /obj/effect/step_trigger/teleporter/random,
 /turf/open/space/basic,
 /area/space)
+"Iu" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"Iv" = (
+/obj/effect/turf_decal/syndicateemblem/middle/left,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "Iw" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/hydroponics,
@@ -4367,6 +5450,13 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Iz" = (
+/obj/machinery/vending/MarineMed,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "IC" = (
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -4398,6 +5488,10 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"IJ" = (
+/obj/machinery/marine_selector/gear/medic/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "IN" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
@@ -4504,6 +5598,11 @@
 "Jf" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"Jg" = (
+/obj/structure/bed/chair/east,
+/obj/effect/landmark/start/job/pmc_sniper,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Jk" = (
 /obj/machinery/shower{
 	dir = 4
@@ -4523,6 +5622,11 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Jn" = (
+/obj/item/storage/box/rxglasses/spyglasskit,
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "Jp" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_smaint{
@@ -4573,12 +5677,26 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"JL" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "JM" = (
 /obj/structure/bed/chair/east{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"JQ" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"JT" = (
+/turf/open/floor/grayscale/edge/black,
+/area/riptide/inside/syndicatefoyer)
 "JV" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_admiral{
@@ -4636,6 +5754,10 @@
 "Kr" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Ky" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "KB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
@@ -4698,6 +5820,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"KT" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "KV" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -4719,6 +5845,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Lb" = (
+/obj/effect/landmark/start/job/pmc_medic,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "Lg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -4727,6 +5857,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Lh" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
 "Li" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4780,6 +5916,12 @@
 	outside = 0;
 	name = "SOM Security"
 	})
+"Ly" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "LA" = (
 /obj/machinery/cic_maptable/som_maptable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4804,6 +5946,10 @@
 "LF" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/medical/lounge)
+"LH" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/round/black,
+/area/space)
 "LK" = (
 /turf/closed/shuttle/dropship_regular/interior_corner,
 /area/shuttle/transport)
@@ -4822,6 +5968,14 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"LP" = (
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "LQ" = (
 /turf/closed/shuttle/dropship_dark/top_corner/alt{
 	dir = 8
@@ -4865,6 +6019,16 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"Mb" = (
+/obj/machinery/vending/armor_supply/pmc,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"Mf" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatestarboard)
 "Mh" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
@@ -4923,6 +6087,9 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
+"MG" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -4954,6 +6121,10 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"MO" = (
+/obj/structure/closet/crate,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
@@ -4962,6 +6133,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"MU" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "MX" = (
 /obj/machinery/vending/som/armor_supply,
 /turf/open/floor/mainship/mono,
@@ -5065,6 +6240,9 @@
 	outside = 0;
 	ceiling = 6
 	})
+"Nt" = (
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "Nv" = (
 /obj/effect/landmark/start/latejoinclf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -5147,6 +6325,10 @@
 /obj/machinery/telecomms/hub/preset/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"NP" = (
+/obj/machinery/vending/uniform_supply/vsd,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "NQ" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/plating/ground/dirt,
@@ -5167,6 +6349,10 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"NW" = (
+/obj/effect/turf_decal/syndicateemblem/middle/right,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "NX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -5250,6 +6436,12 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Ol" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Om" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -5257,6 +6449,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"On" = (
+/obj/structure/bed/chair/office/dark/west,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatehead)
 "Or" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
@@ -5298,6 +6494,10 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"OO" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "OP" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /obj/structure/largecrate/supply/supplies/plasteel{
@@ -5332,6 +6532,27 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"OU" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/pmc_sniper,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
+"OW" = (
+/obj/effect/landmark/start/job/pmc_sniper,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
+"OY" = (
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"Pa" = (
+/obj/structure/cable,
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
+"Pf" = (
+/obj/structure/prop/mainship/suit_storage_prop,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Pg" = (
 /obj/structure/bed/chair/sofa/corsat,
 /obj/machinery/light/small{
@@ -5341,6 +6562,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Pi" = (
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "Pk" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -5370,6 +6595,12 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"Po" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "Px" = (
 /obj/structure/largecrate/supply/generator,
 /obj/structure/cable,
@@ -5414,6 +6645,12 @@
 "PL" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"PM" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "PN" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/mpi_km/black,
@@ -5496,6 +6733,10 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"Qn" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control/mainship/mech{
@@ -5511,6 +6752,12 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"Qq" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "Qs" = (
 /obj/item/cell,
 /obj/item/cell,
@@ -5537,6 +6784,19 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"QD" = (
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
+"QE" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/space)
 "QF" = (
 /obj/structure/droppod/nonmob/mech_pod,
 /obj/structure/drop_pod_launcher,
@@ -5585,6 +6845,12 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"QR" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "QS" = (
 /obj/machinery/door/airlock/mainship/security/free_access{
 	dir = 2;
@@ -5594,6 +6860,10 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"QT" = (
+/obj/effect/landmark/start/job/vsd,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "QU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5619,6 +6889,15 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Rb" = (
+/obj/machinery/computer/body_scanconsole,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"Rd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber,
+/obj/structure/patrol_point/som_11,
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
 "Re" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -5626,6 +6905,14 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"Rj" = (
+/obj/structure/sink/bathroom{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 5
+	},
+/area/riptide/caves/pmc/lobby)
 "Rk" = (
 /obj/docking_port/stationary/crashmode{
 	name = "CLF Crashland point";
@@ -5641,6 +6928,18 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Ro" = (
+/obj/structure/table/black,
+/obj/item/clothing/suit/space/rig/syndi,
+/obj/item/clothing/head/helmet/space/rig/syndi,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"Rv" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/tool/pen,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Rz" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/squads/req{
@@ -5835,6 +7134,11 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Sq" = (
+/obj/effect/turf_decal/syndicateemblem/bottom/middle,
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "Sr" = (
 /obj/machinery/light{
 	dir = 1
@@ -5852,6 +7156,10 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"Sx" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes,
@@ -5919,6 +7227,14 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"ST" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
+"SU" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatefoyer)
 "SY" = (
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -5927,6 +7243,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"SZ" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Tf" = (
 /obj/effect/spawner/random/medical/bloodpack,
 /obj/machinery/iv_drip,
@@ -5934,6 +7254,10 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"Th" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Ti" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -6064,6 +7388,12 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"TK" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "TL" = (
 /obj/machinery/marine_selector/clothes/synth{
 	vendor_role = /datum/job/clf/silicon/synthetic/clf
@@ -6085,6 +7415,10 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"TW" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "TX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -6112,11 +7446,20 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Ub" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/wood/fancy,
+/area/riptide/caves/pmc/lobby)
 "Uc" = (
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"Ud" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/riptide/inside/syndicatefoyer)
 "Ue" = (
 /obj/machinery/light{
 	dir = 8
@@ -6129,6 +7472,14 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"Uf" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/riptide/inside/syndicatestarboard)
+"Ui" = (
+/obj/structure/table/black,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "Uk" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -6148,6 +7499,9 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Up" = (
+/turf/closed/wall/mainship/outer,
+/area/space)
 "Uq" = (
 /turf/closed/shuttle/dropship_dark/engine_corner{
 	dir = 1
@@ -6180,6 +7534,11 @@
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Ux" = (
+/obj/structure/cable,
+/obj/item/storage/box/handcuffs,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "UF" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -6189,6 +7548,13 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"UH" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "UJ" = (
 /turf/closed/shuttle/dropship_regular/cockpit_window,
 /area/shuttle/transport)
@@ -6206,6 +7572,10 @@
 /obj/structure/closet/secure_closet/medical3/colony,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"UQ" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/mainship/black/full,
+/area/space)
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/mainship/mono,
@@ -6230,6 +7600,10 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_ccw,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"UZ" = (
+/obj/effect/turf_decal/syndicateemblem/bottom/left,
+/turf/open/floor/prison/redfloor,
+/area/riptide/inside/syndicatefoyer)
 "Va" = (
 /obj/structure/bed/chair/sofa/left,
 /obj/effect/decal/cleanable/blood/splatter/cum,
@@ -6243,6 +7617,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Vc" = (
+/obj/structure/prop/mainship/juggernaut_two{
+	icon_state = "vsd_juggernaut_two"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "Vd" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/preset,
@@ -6250,6 +7630,15 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"Ve" = (
+/obj/structure/bed/chair/east,
+/obj/effect/landmark/start/job/pmc_leader,
+/obj/effect/landmark/start/job/pmc_sniper,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Vf" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/carpet/side{
@@ -6258,6 +7647,10 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"Vj" = (
+/obj/effect/landmark/start/job/vsd,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "Vk" = (
 /obj/structure/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirt,
@@ -6309,6 +7702,12 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"VA" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "VB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -6341,6 +7740,17 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"VI" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/riptide/caves/pmc/lobby)
 "VK" = (
 /obj/effect/step_trigger/teleporter/random,
 /turf/open/space/basic,
@@ -6350,6 +7760,10 @@
 /area/canora_desert/surface/building/som_nmaint{
 	name = "SOM North Maintenance"
 	})
+"VN" = (
+/obj/structure/closet/secure_closet/chemical,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "VO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -6390,6 +7804,13 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"Wf" = (
+/obj/machinery/vending/armor_supply/pmc,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Wh" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -6426,6 +7847,12 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"Wx" = (
+/obj/structure/table/black,
+/obj/item/clothing/suit/space/syndicate,
+/obj/item/clothing/head/helmet/space/syndicate,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "Wy" = (
 /obj/structure/cable,
 /obj/structure/sign/safety/storage,
@@ -6460,6 +7887,20 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"WM" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
+"WQ" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
+"WX" = (
+/obj/structure/largecrate/supply/ammo,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "Xc" = (
 /obj/machinery/button/door{
 	id = "clfarmoury";
@@ -6500,12 +7941,20 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Xg" = (
+/obj/structure/sign/prop2,
+/turf/open/space/basic,
+/area/space)
 "Xh" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/wood,
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"Xi" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/sterile/plain,
+/area/space)
 "Xj" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -6568,6 +8017,19 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Xv" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/riptide/caves/pmc/lobby)
 "XB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -6590,6 +8052,13 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"XG" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/table/black,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatehead)
 "XH" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -6605,6 +8074,14 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"XQ" = (
+/obj/structure/table/black,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/item/clothing/head/collectable/welding,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "XT" = (
 /obj/structure/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/dirt,
@@ -6627,6 +8104,10 @@
 /obj/machinery/telecomms/server/presets/common/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"Yc" = (
+/obj/structure/prop/mainship/suit_storage_prop,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
 "Yf" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -6794,18 +8275,49 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/som/medical/morgue)
+"YX" = (
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/riptide/caves/pmc/lobby)
+"YZ" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/vending/armor_supply/vsd,
+/turf/open/floor/prison/blackfloor,
+/area/riptide/inside/syndicateport)
+"Za" = (
+/obj/structure/prop/mainship/invincibleshutter,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/plain,
+/area/riptide/caves/pmc/lobby)
 "Zb" = (
 /obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"Zm" = (
+/obj/machinery/autodoc,
+/obj/structure/cable,
+/turf/open/floor/prison/sterilewhite,
+/area/riptide/caves/pmc/lobby)
 "Zo" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_smaint{
 	name = "SOM South Maintenance";
 	outside = 0
 	})
+"Zp" = (
+/obj/structure/prop/mainship/invincibleshutter,
+/turf/open/floor/mainship/black/full,
+/area/space)
 "Zq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform_decoration{
@@ -6845,6 +8357,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"ZK" = (
+/obj/effect/landmark/start/job/pmc,
+/turf/open/floor/iron/white/textured,
+/area/riptide/caves/pmc/lobby)
 "ZQ" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general/som{
@@ -6856,6 +8372,10 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
+"ZV" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/mainship/black/full,
+/area/riptide/caves/pmc/lobby)
 "ZW" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -6881,6 +8401,67 @@
 /area/mainship/groundhq/som/medical/morgue)
 
 (1,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 VK
 VK
@@ -6912,6 +8493,67 @@ VK
 VK
 "}
 (2,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -6943,6 +8585,67 @@ CN
 VK
 "}
 (3,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -6974,6 +8677,67 @@ CN
 VK
 "}
 (4,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7005,6 +8769,67 @@ CN
 VK
 "}
 (5,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7036,6 +8861,67 @@ CN
 VK
 "}
 (6,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7067,6 +8953,67 @@ CN
 VK
 "}
 (7,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7098,6 +9045,67 @@ CN
 VK
 "}
 (8,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7129,6 +9137,67 @@ CN
 VK
 "}
 (9,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7160,6 +9229,67 @@ CN
 VK
 "}
 (10,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7191,6 +9321,67 @@ CN
 VK
 "}
 (11,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7222,6 +9413,67 @@ CN
 VK
 "}
 (12,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7253,6 +9505,67 @@ CN
 VK
 "}
 (13,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7284,6 +9597,67 @@ CN
 VK
 "}
 (14,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7315,6 +9689,67 @@ CN
 VK
 "}
 (15,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7346,6 +9781,67 @@ CN
 VK
 "}
 (16,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7377,6 +9873,67 @@ CN
 VK
 "}
 (17,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7408,6 +9965,67 @@ CN
 VK
 "}
 (18,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7439,6 +10057,67 @@ CN
 VK
 "}
 (19,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7470,6 +10149,67 @@ CN
 VK
 "}
 (20,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7501,6 +10241,67 @@ CN
 VK
 "}
 (21,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7532,6 +10333,67 @@ CN
 VK
 "}
 (22,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7563,6 +10425,67 @@ CN
 VK
 "}
 (23,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7594,6 +10517,67 @@ CN
 VK
 "}
 (24,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7625,6 +10609,67 @@ CN
 VK
 "}
 (25,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7656,6 +10701,67 @@ CN
 VK
 "}
 (26,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7687,6 +10793,67 @@ CN
 VK
 "}
 (27,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7718,6 +10885,67 @@ CN
 VK
 "}
 (28,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7749,6 +10977,67 @@ CN
 VK
 "}
 (29,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -7780,6 +11069,67 @@ CN
 VK
 "}
 (30,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7811,6 +11161,67 @@ CN
 VK
 "}
 (31,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7842,6 +11253,67 @@ CN
 VK
 "}
 (32,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7873,6 +11345,67 @@ CN
 VK
 "}
 (33,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7904,6 +11437,67 @@ CN
 VK
 "}
 (34,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7935,6 +11529,67 @@ CN
 VK
 "}
 (35,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7966,6 +11621,67 @@ CN
 VK
 "}
 (36,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -7997,6 +11713,67 @@ CN
 VK
 "}
 (37,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8028,6 +11805,67 @@ CN
 VK
 "}
 (38,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8059,6 +11897,67 @@ CN
 VK
 "}
 (39,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8090,6 +11989,67 @@ CN
 VK
 "}
 (40,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8121,6 +12081,67 @@ CN
 VK
 "}
 (41,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8152,6 +12173,67 @@ CN
 VK
 "}
 (42,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8183,6 +12265,67 @@ CN
 VK
 "}
 (43,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8214,6 +12357,67 @@ CN
 VK
 "}
 (44,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8245,6 +12449,67 @@ CN
 VK
 "}
 (45,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8276,6 +12541,67 @@ CN
 VK
 "}
 (46,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8307,6 +12633,67 @@ CN
 VK
 "}
 (47,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Xi
+Up
+Xi
+Up
+Up
+ih
+Up
+Xi
+Up
+Up
+Zp
+Zp
+Zp
+Zp
+Zp
+Up
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8338,6 +12725,67 @@ CN
 VK
 "}
 (48,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+be
+oe
+Up
+oe
+be
+Up
+Iu
+Up
+Yc
+Up
+Up
+MO
+MO
+Ab
+Ab
+MO
+Up
+Up
+Xi
+Up
+Up
+Ei
+Ei
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8369,6 +12817,67 @@ CN
 VK
 "}
 (49,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+Ub
+Up
+Ub
+Up
+Up
+ih
+Up
+MG
+Up
+ks
+Ab
+WX
+rT
+lf
+de
+tG
+Up
+sg
+YX
+EX
+EX
+EX
+Up
+QE
+oa
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8400,6 +12909,67 @@ CN
 VK
 "}
 (50,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+hM
+Pa
+Pa
+Pa
+Pa
+Pa
+tN
+Pa
+EX
+EX
+EX
+sQ
+Ky
+JQ
+Ky
+Ky
+Ky
+Ir
+Ky
+sQ
+EX
+OU
+MG
+iD
+iD
+Up
+eH
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -8431,6 +13001,67 @@ CN
 VK
 "}
 (51,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+pf
+ZK
+nk
+nk
+Up
+fY
+Up
+Up
+rG
+EX
+te
+Up
+LP
+Ky
+Ky
+de
+de
+de
+de
+Up
+MU
+EX
+Po
+pm
+pm
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8462,6 +13093,67 @@ CN
 VK
 "}
 (52,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+GX
+Gv
+sW
+Up
+rH
+WM
+Up
+Up
+Ol
+Up
+Up
+Up
+jv
+Ky
+eL
+de
+gg
+nq
+Up
+Up
+zA
+Up
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8493,6 +13185,67 @@ CN
 VK
 "}
 (53,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+tn
+nc
+Jg
+Ve
+Up
+gg
+xL
+eD
+jA
+gg
+de
+Up
+jg
+cU
+nc
+nc
+Pf
+Xi
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8524,6 +13277,67 @@ CN
 VK
 "}
 (54,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xi
+vB
+PM
+de
+Xi
+UH
+nc
+fC
+uZ
+gb
+SZ
+Ky
+Mb
+de
+de
+de
+gb
+nc
+EX
+Df
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8555,6 +13369,67 @@ CN
 VK
 "}
 (55,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xi
+FA
+aa
+de
+Hh
+zc
+nc
+EQ
+JL
+gb
+lL
+Ky
+de
+OW
+IJ
+de
+gb
+nc
+EX
+nc
+ih
+og
+ih
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 It
 VK
 VK
@@ -8586,6 +13461,67 @@ VK
 VK
 "}
 (56,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xi
+hN
+Ky
+Ky
+Za
+yy
+cU
+Gu
+zd
+gb
+lY
+Ky
+eU
+de
+eL
+de
+gb
+nc
+EX
+nc
+ih
+og
+ih
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 tT
 tT
@@ -8617,6 +13553,67 @@ tT
 tT
 "}
 (57,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xi
+Rv
+rY
+de
+Xi
+hg
+cU
+uZ
+uZ
+gb
+ZV
+Ky
+Mb
+de
+de
+de
+gb
+nc
+EX
+iQ
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 JC
@@ -8648,6 +13645,67 @@ aF
 tT
 "}
 (58,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+tn
+cU
+kc
+Gs
+Up
+gg
+Ky
+us
+eU
+gg
+jA
+Up
+Wf
+cU
+nc
+nc
+Pf
+Xi
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 KM
@@ -8679,6 +13737,67 @@ aF
 tT
 "}
 (59,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+nf
+xN
+Qn
+KT
+QD
+Up
+Up
+Up
+jb
+Up
+Up
+Up
+jv
+Ky
+eL
+de
+gg
+nq
+Up
+Up
+zA
+Up
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 JY
@@ -8710,6 +13829,67 @@ aF
 tT
 "}
 (60,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Xv
+gO
+gO
+Lb
+gO
+gO
+Up
+Up
+rG
+EX
+fw
+Up
+LP
+Ky
+Ky
+de
+de
+de
+de
+Up
+MU
+EX
+dz
+pm
+pm
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 Hx
@@ -8741,6 +13921,67 @@ aF
 tT
 "}
 (61,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+VI
+gO
+CV
+Fs
+Zm
+Fs
+iC
+cU
+EX
+EX
+EX
+sQ
+Ky
+xL
+Ky
+Ky
+Ky
+JQ
+Ky
+sQ
+EX
+EX
+MG
+bo
+bo
+Up
+QE
+oa
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 Hx
@@ -8772,6 +14013,67 @@ aF
 tT
 "}
 (62,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Rj
+hs
+Fs
+OO
+gO
+Up
+Up
+ih
+Up
+te
+Up
+Eb
+MO
+CB
+de
+de
+de
+iX
+Up
+sg
+lg
+EX
+EX
+EX
+Up
+eH
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 pO
@@ -8803,6 +14105,67 @@ aF
 tT
 "}
 (63,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+qb
+rU
+mG
+qb
+Up
+Up
+Lh
+Up
+Yc
+Up
+Up
+Ab
+MO
+Ab
+lY
+lY
+Up
+Up
+Xi
+Up
+Up
+Ei
+Ei
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 JC
@@ -8834,6 +14197,67 @@ aF
 tT
 "}
 (64,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+ih
+Up
+vW
+Up
+Up
+Zp
+Zp
+Zp
+Zp
+Zp
+Up
+CN
+CN
+CN
+Up
+Up
+Up
+Up
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 JC
 JC
@@ -8865,6 +14289,67 @@ aF
 tT
 "}
 (65,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -8896,6 +14381,67 @@ aF
 tT
 "}
 (66,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -8927,6 +14473,67 @@ gW
 Kc
 "}
 (67,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -8958,6 +14565,67 @@ gW
 Kc
 "}
 (68,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -8989,6 +14657,67 @@ gW
 Kc
 "}
 (69,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9020,6 +14749,67 @@ gW
 Kc
 "}
 (70,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ZC
@@ -9051,6 +14841,67 @@ gW
 Kc
 "}
 (71,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9082,6 +14933,67 @@ gW
 Kc
 "}
 (72,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9113,6 +15025,67 @@ aF
 tT
 "}
 (73,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9144,6 +15117,67 @@ aF
 tT
 "}
 (74,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9175,6 +15209,67 @@ aF
 tT
 "}
 (75,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9206,6 +15301,67 @@ aF
 tT
 "}
 (76,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9237,6 +15393,67 @@ aF
 tT
 "}
 (77,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+kN
+pp
+pp
+pp
+pp
+fc
+CL
+ov
+XQ
+yZ
+OY
+CL
+hb
+pp
+QE
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9268,6 +15485,67 @@ aF
 tT
 "}
 (78,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+HB
+HB
+ou
+Rd
+YZ
+xn
+Bf
+pp
+fc
+WQ
+Ux
+gp
+gp
+yj
+WQ
+hb
+pp
+eH
+QE
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9299,6 +15577,67 @@ aF
 tT
 "}
 (79,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xg
+pp
+Vj
+Vj
+Vj
+Nt
+Nt
+Nt
+Nt
+pp
+lM
+gt
+DR
+qU
+lT
+pk
+CL
+ll
+pp
+eH
+eH
+oa
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9330,6 +15669,67 @@ tT
 tT
 "}
 (80,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+QR
+Nt
+Nt
+Nt
+Nt
+Nt
+ET
+pp
+BA
+CL
+CL
+Fm
+Jn
+Pi
+CL
+hb
+pp
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9361,6 +15761,67 @@ tT
 tT
 "}
 (81,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+id
+qi
+qi
+GK
+TW
+TW
+TW
+pp
+fc
+WQ
+WQ
+gp
+yj
+yj
+WQ
+hb
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9392,6 +15853,67 @@ tT
 tT
 "}
 (82,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+Fc
+xj
+mh
+hl
+EI
+pp
+pp
+dX
+GS
+jM
+rX
+xq
+Nt
+TW
+pp
+fc
+CL
+Qq
+CL
+WQ
+Qq
+CL
+hb
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9423,6 +15945,67 @@ aF
 tT
 "}
 (83,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+eR
+Gj
+On
+FG
+EI
+TK
+pp
+pp
+pp
+pp
+pp
+pp
+lq
+eo
+Ud
+Ud
+Ud
+Ud
+lq
+zX
+Ud
+Ud
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Kr
@@ -9454,6 +16037,67 @@ tT
 tT
 "}
 (84,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+hZ
+Gj
+FG
+FG
+FG
+oD
+Sx
+tu
+hB
+tu
+tu
+Sx
+qC
+as
+nF
+Iv
+UZ
+uP
+JT
+qG
+hB
+on
+UQ
+QE
+pp
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -9485,6 +16129,67 @@ tT
 tT
 "}
 (85,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+jz
+LH
+xe
+wb
+oP
+oP
+oP
+jL
+xA
+qG
+SU
+SU
+qG
+qV
+pK
+as
+Ea
+tI
+Sq
+as
+pK
+SU
+uY
+uY
+UQ
+QE
+QE
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 Kr
@@ -9516,6 +16221,67 @@ tT
 tT
 "}
 (86,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+qW
+Gj
+oP
+FG
+FG
+Vc
+Sx
+tu
+VA
+tu
+tu
+Sx
+qC
+as
+qs
+NW
+Do
+lv
+JT
+qG
+VA
+on
+UQ
+eH
+pp
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 Ml
@@ -9547,6 +16313,67 @@ tT
 tT
 "}
 (87,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+Ui
+Gj
+ug
+FG
+EI
+TK
+pp
+pp
+pp
+pp
+pp
+pp
+lq
+eo
+Ud
+Ud
+Ud
+Ud
+lq
+zI
+Ud
+Ud
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 Hc
@@ -9578,6 +16405,67 @@ tT
 tT
 "}
 (88,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+LH
+XG
+tS
+pX
+mS
+EI
+pp
+pp
+da
+Wx
+BX
+ht
+Fi
+eA
+sn
+Uf
+wt
+ST
+Ip
+eA
+sn
+Iz
+Fg
+wt
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9609,6 +16497,67 @@ Vk
 Go
 "}
 (89,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+GQ
+QT
+eA
+sn
+sn
+sn
+sn
+Uf
+FS
+ep
+sn
+sn
+sn
+eA
+eA
+wt
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 aZ
@@ -9640,6 +16589,67 @@ XT
 Go
 "}
 (90,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+Cw
+eA
+eA
+Fd
+eA
+eA
+Ly
+Uf
+wt
+VN
+xV
+eA
+Hn
+wt
+eA
+Th
+pp
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9671,6 +16681,67 @@ KL
 Go
 "}
 (91,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+Xg
+pp
+Ro
+eA
+QT
+eA
+eA
+Fd
+eA
+Uf
+qy
+qy
+Rb
+eA
+ki
+eA
+eA
+az
+pp
+QE
+QE
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9702,6 +16773,67 @@ tT
 tT
 "}
 (92,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+da
+HI
+HI
+HI
+NP
+GW
+tf
+Uf
+Mf
+af
+eA
+in
+eA
+eA
+eA
+ur
+pp
+QE
+eH
+kR
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 aZ
@@ -9733,6 +16865,67 @@ tT
 tT
 "}
 (93,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+ga
+ga
+eA
+eA
+Co
+xr
+df
+tk
+pp
+eH
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9764,6 +16957,67 @@ tT
 tT
 "}
 (94,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+pp
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9795,6 +17049,67 @@ aF
 tT
 "}
 (95,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 aZ
@@ -9826,6 +17141,67 @@ tT
 tT
 "}
 (96,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 lH
@@ -9857,6 +17233,67 @@ tT
 tT
 "}
 (97,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 dc
 Ml
@@ -9888,6 +17325,67 @@ tT
 tT
 "}
 (98,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -9919,6 +17417,67 @@ tT
 tT
 "}
 (99,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -9950,6 +17509,67 @@ tT
 tT
 "}
 (100,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -9981,6 +17601,67 @@ gW
 tT
 "}
 (101,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -10012,6 +17693,67 @@ ai
 tT
 "}
 (102,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -10043,6 +17785,67 @@ gW
 tT
 "}
 (103,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -10074,6 +17877,67 @@ gW
 tT
 "}
 (104,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 aF
 ko
@@ -10105,6 +17969,67 @@ gW
 tT
 "}
 (105,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 tT
 tT
 tT
@@ -10136,6 +18061,67 @@ tT
 tT
 "}
 (106,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 It
 VK
 VK
@@ -10167,6 +18153,67 @@ VK
 It
 "}
 (107,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 It
 fE
@@ -10198,6 +18245,67 @@ qz
 VK
 "}
 (108,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 VK
 qM
@@ -10229,6 +18337,67 @@ Ot
 VK
 "}
 (109,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 fE
 LK
@@ -10260,6 +18429,67 @@ Mi
 VK
 "}
 (110,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 UJ
 LT
@@ -10291,6 +18521,67 @@ FN
 VK
 "}
 (111,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 xT
 uO
@@ -10322,6 +18613,67 @@ Mi
 VK
 "}
 (112,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 It
 qM
@@ -10353,6 +18705,67 @@ mH
 VK
 "}
 (113,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 VK
 VK
 xT
@@ -10384,6 +18797,67 @@ XH
 VK
 "}
 (114,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 It
 VK
 VK
@@ -10413,4 +18887,2304 @@ VK
 VK
 VK
 VK
+"}
+(115,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(116,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(117,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(118,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(119,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(120,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(121,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(122,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(123,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(124,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(125,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(126,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(127,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(128,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(129,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(130,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(131,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(132,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(133,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(134,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(135,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(136,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(137,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(138,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(139,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 "}

@@ -546,3 +546,23 @@
 	icon_state = "vsd_juggernaut_two"
 	worn_icon_state = "vsd_juggernaut_two"
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 60, BIO = 10, FIRE = 20, ACID = 30)
+
+/obj/item/clothing/head/helmet/marine/vsd_two
+	name = "Crasher multi-threat ballistic helmet"
+	desc = "Vyacheslav's grunt helmet, doesn't protect your chrome-dome much though."
+	icon = 'icons/mob/clothing/headwear/marine_helmets.dmi'
+	icon_state = "vsd_helmet"
+	worn_icon_state = "vsd_helmet"
+	worn_icon_list =  list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+	)
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 20, ACID = 30)
+
+	icon_state_variants = list(
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "urban"

@@ -216,3 +216,45 @@
 /obj/effect/landmark/start/job/prisonersom
 	icon_state = "Shaft Miner"
 	job = /datum/job/other/prisonersom
+
+// pmc
+
+/obj/effect/landmark/start/job/pmc
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/standard
+
+/obj/effect/landmark/start/job/pmc_medic
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/medic
+
+/obj/effect/landmark/start/job/pmc_gunner
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/gunner
+
+/obj/effect/landmark/start/job/pmc_sniper
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/sniper
+
+/obj/effect/landmark/start/job/pmc_leader
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/leader
+
+/obj/effect/landmark/start/job/vsd
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/standard
+
+/obj/effect/landmark/start/job/vsd_medic
+	icon_state = "MP"
+	job = /datum/job/vsd/medic
+
+/obj/effect/landmark/start/job/vsd_engineer
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/engineer
+
+/obj/effect/landmark/start/job/vsd_spec
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/spec
+
+/obj/effect/landmark/start/job/vsd_leader
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/leader
