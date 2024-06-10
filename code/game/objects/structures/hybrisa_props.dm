@@ -1068,6 +1068,7 @@
 /obj/structure/prop/urban/furniture/tables
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_pool"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 /obj/structure/prop/urban/furniture/tables/tableblack
 	name = "large metal table"
