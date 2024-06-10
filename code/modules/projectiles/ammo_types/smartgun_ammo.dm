@@ -72,7 +72,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1, max_range = 12)
+	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/heavyrubber
 	name = "smart heavy-rubber spotting bullet"
@@ -81,7 +81,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
+	staggerstun(target_mob, proj, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"
@@ -90,9 +90,9 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(isxeno(victim))
-		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(20 + 0.2 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
+	if(isxeno(target_mob))
+		var/mob/living/carbon/xenomorph/target_xeno = target_mob
+		target_xeno.use_plasma(20 + 0.2 * target_xeno.xeno_caste.plasma_max * target_xeno.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
 
 /datum/ammo/bullet/spottingrifle/tungsten
 	name = "smart tungsten spotting bullet"
@@ -101,7 +101,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, knockback = 3, max_range = 12)
+	staggerstun(target_mob, proj, knockback = 3, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/flak
 	name = "smart flak spotting bullet"
@@ -111,7 +111,7 @@
 	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/spottingrifle/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	airburst(victim, proj)
+	airburst(target_mob, proj)
 
 /datum/ammo/bullet/spottingrifle/incendiary
 	name = "smart incendiary spotting  bullet"

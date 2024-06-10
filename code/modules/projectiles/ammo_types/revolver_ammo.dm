@@ -15,7 +15,7 @@
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
+	staggerstun(target_mob, proj, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
@@ -24,7 +24,7 @@
 	sundering = 1
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, knockback = 1)
+	staggerstun(target_mob, proj, knockback = 1)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -32,7 +32,7 @@
 	damage = 30
 
 /datum/ammo/bullet/revolver/small/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, slowdown = 0.5)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -74,7 +74,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, weaken = 2 SECONDS, knockback = 1)
+	staggerstun(target_mob, proj, weaken = 2 SECONDS, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -85,7 +85,7 @@
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -104,7 +104,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, slowdown = 0.5)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	reflect(T, proj, 10)
+	reflect(target_turf, proj, 10)

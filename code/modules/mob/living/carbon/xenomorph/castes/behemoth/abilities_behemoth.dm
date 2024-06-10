@@ -1357,28 +1357,28 @@
 	armor_type = MELEE
 
 /datum/ammo/xeno/earth_pillar/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	return rock_broke(hit_turf, proj)
+	return rock_broke(target_turf, proj)
 
 /datum/ammo/xeno/earth_pillar/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	return rock_broke(hit_turf, proj)
+	return rock_broke(target_turf, proj)
 
 /datum/ammo/xeno/earth_pillar/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(istype(hit_object, /obj/structure/reagent_dispensers/fueltank))
-		var/obj/structure/reagent_dispensers/fueltank/hit_tank = hit_object
+	if(istype(target_obj, /obj/structure/reagent_dispensers/fueltank))
+		var/obj/structure/reagent_dispensers/fueltank/hit_tank = target_obj
 		hit_tank.explode()
-	if(ishitbox(hit_object) || ismecha(hit_object)) // These don't hit the vehicles, but rather their hitboxes, so isarmored will not work here
-		return on_hit_anything(get_turf(hit_object), proj)
-	return rock_broke(get_turf(hit_object), proj)
+	if(ishitbox(target_obj) || ismecha(target_obj)) // These don't hit the vehicles, but rather their hitboxes, so isarmored will not work here
+		return on_hit_anything(get_turf(target_obj), proj)
+	return rock_broke(get_turf(target_obj), proj)
 
 /datum/ammo/xeno/earth_pillar/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isxeno(proj.firer) || !isliving(hit_mob))
+	if(!isxeno(proj.firer) || !isliving(target_mob))
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
-	var/mob/living/hit_living = hit_mob
+	var/mob/living/hit_living = target_mob
 	if(xeno_firer.issamexenohive(hit_living) || hit_living.stat == DEAD)
-		return on_hit_anything(get_turf(hit_mob), proj)
+		return on_hit_anything(get_turf(target_mob), proj)
 	step_away(hit_living, proj, 1, 1)
-	return on_hit_anything(get_turf(hit_mob), proj)
+	return on_hit_anything(get_turf(target_mob), proj)
 
 /// VFX + SFX for when the rock doesn't hit anything.
 /datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
@@ -1393,14 +1393,14 @@
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
 
 /datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	return on_hit_anything(hit_turf, proj)
+	return on_hit_anything(target_turf, proj)
 
 /datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	return on_hit_anything(hit_turf, proj)
+	return on_hit_anything(target_turf, proj)
 
 /datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	. = ..()
-	return on_hit_anything(get_turf(hit_object), proj)
+	return on_hit_anything(get_turf(target_obj), proj)
 
 
 // ***************************************

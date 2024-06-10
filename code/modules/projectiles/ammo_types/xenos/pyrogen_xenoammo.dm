@@ -7,19 +7,19 @@
 	bullet_color = null
 
 /datum/ammo/xeno/fireball/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_flame(mob)
+	drop_flame(target_mob)
 
 /datum/ammo/xeno/fireball/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	. = ..()
-	drop_flame(obj)
+	drop_flame(target_obj)
 
 /datum/ammo/xeno/fireball/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	. = ..()
-	drop_flame(turf.density ? proj : turf)
+	drop_flame(target_turf.density ? proj : target_turf)
 
 /datum/ammo/xeno/fireball/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	. = ..()
-	drop_flame(turf.density ? proj : turf)
+	drop_flame(target_turf.density ? proj : target_turf)
 
 /datum/ammo/xeno/fireball/drop_flame(atom/target_atom)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(target_atom))

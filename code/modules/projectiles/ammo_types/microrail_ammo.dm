@@ -22,7 +22,7 @@
 	var/bonus_projectile_speed = 3
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = T.density ? get_step(T, proj) : T
+	var/turf/det_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, det_turf, 1)
@@ -78,7 +78,7 @@
 	damage_falloff = 1
 
 /datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, stagger = 1 SECONDS, slowdown = 0.5)
+	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.5)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
@@ -89,7 +89,7 @@
 	max_range = 6
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, stagger = 0.4 SECONDS, slowdown = 0.2)
+	staggerstun(target_mob, proj, stagger = 0.4 SECONDS, slowdown = 0.2)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
@@ -98,7 +98,7 @@
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
 	if(prob(40))
-		drop_flame(T)
+		drop_flame(target_turf)
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
@@ -152,16 +152,16 @@
 		proj.proj_max_range = proj.distance_travelled
 
 /datum/ammo/micro_rail_cluster/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	detonate(get_turf(P), P)
+	detonate(get_turf(target_mob), proj)
 
 /datum/ammo/micro_rail_cluster/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	detonate(get_turf(P), P)
+	detonate(get_turf(target_obj), proj)
 
 /datum/ammo/micro_rail_cluster/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	detonate(T.density ? P.loc : T, P)
+	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
 /datum/ammo/micro_rail_cluster/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	detonate(T.density ? P.loc : T, P)
+	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
 /datum/ammo/smoke_burst
 	name = "micro smoke canister"
@@ -188,13 +188,13 @@
 	smoke.start()
 
 /datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(target_mob))
 
 /datum/ammo/smoke_burst/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(target_obj))
 
 /datum/ammo/smoke_burst/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/smoke_burst/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)

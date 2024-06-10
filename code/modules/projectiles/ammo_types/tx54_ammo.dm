@@ -35,21 +35,23 @@
 	projectile_greyscale_colors = COLOR_AMMO_AIRBURST
 
 /datum/ammo/tx54/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/turf/det_turf = get_turf(M)
-	staggerstun(M, proj, slowdown = 0.5, knockback = 1)
+	var/turf/det_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, slowdown = 0.5, knockback = 1)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M), loc_override = get_turf(M), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_mob), loc_override = det_turf)
 
 /datum/ammo/tx54/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/det_turf = O.allow_pass_flags & PASS_PROJECTILE ? get_step(O, proj) : O
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step(target_obj, proj) : target_obj
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_obj), det_turf)
 
 /datum/ammo/tx54/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, T), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_turf), det_turf)
 
 /datum/ammo/tx54/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
 
@@ -112,16 +114,16 @@
 	explosion(T, 0, 0, 1, 3, 1)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(M))
+	drop_nade(get_turf(target_mob))
 
 /datum/ammo/tx54/he/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(get_turf(O))
+	drop_nade(get_turf(target_obj))
 
 /datum/ammo/tx54/he/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 //The secondary projectiles
 /datum/ammo/bullet/tx54_spread
@@ -137,7 +139,7 @@
 	damage_falloff = 0
 
 /datum/ammo/bullet/tx54_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, stagger = 0.6 SECONDS, slowdown = 0.3)
+	staggerstun(target_mob, proj, max_range = 3, stagger = 0.6 SECONDS, slowdown = 0.3)
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
@@ -155,7 +157,7 @@
 	T.ignite(5, 10)
 
 /datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
-	drop_flame(T)
+	drop_flame(target_turf)
 
 /datum/ammo/bullet/tx54_spread/smoke
 	name = "chemical bomblet"
@@ -181,7 +183,7 @@
 	return
 
 /datum/ammo/bullet/tx54_spread/smoke/on_leave_turf(turf/target_turf, obj/projectile/proj)
-	trail_spread_system.set_up(0, T)
+	trail_spread_system.set_up(0, target_turf)
 	trail_spread_system.start()
 
 /datum/ammo/bullet/tx54_spread/smoke/dense
@@ -222,5 +224,5 @@
 	return
 
 /datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/target_turf, obj/projectile/proj)
-	chemical_payload.set_up(0, T, reagent_list, RAZOR_FOAM)
+	chemical_payload.set_up(0, target_turf, reagent_list, RAZOR_FOAM)
 	chemical_payload.start()

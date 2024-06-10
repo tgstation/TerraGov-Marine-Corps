@@ -56,18 +56,18 @@
 	var/autocannon_wall_bonus = 50
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	P.proj_max_range -= 20
+	proj.proj_max_range -= 20
 
-	if(istype(T, /turf/closed/wall))
-		var/turf/closed/wall/wall_victim = T
-		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
+	if(istype(target_turf, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = target_turf
+		wall_victim.take_damage(autocannon_wall_bonus, proj.damtype, proj.armor_type)
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	P.proj_max_range -= 5
-	staggerstun(M, P, max_range = 20, slowdown = 1)
+	proj.proj_max_range -= 5
+	staggerstun(target_mob, proj, max_range = 20, slowdown = 1)
 
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	P.proj_max_range -= 5
+	proj.proj_max_range -= 5
 
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
@@ -81,10 +81,10 @@
 	autocannon_wall_bonus = 25
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	airburst(mob, proj)
+	airburst(target_mob, proj)
 
 /datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	airburst(turf, proj)
+	airburst(target_turf, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
@@ -100,10 +100,10 @@
 	on_pierce_multiplier = 0.75
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
 
 /datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	P.proj_max_range -= 3
+	proj.proj_max_range -= 3
 
 /datum/ammo/bullet/railgun/hvap
 	name = "high velocity railgun slug"
@@ -115,7 +115,7 @@
 	sundering = 50
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 2 SECONDS, knockback = 3)
+	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
 
 /datum/ammo/bullet/railgun/smart
 	name = "smart armor piercing railgun slug"
@@ -126,7 +126,7 @@
 	sundering = 20
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 3 SECONDS, slowdown = 3)
+	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
 
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
@@ -155,4 +155,4 @@
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)
+	staggerstun(target_mob, proj, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)

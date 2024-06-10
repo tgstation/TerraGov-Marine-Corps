@@ -20,7 +20,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, slowdown = 0.2)
+	staggerstun(target_mob, proj, max_range = 3, slowdown = 0.2)
 
 /*
 //================================================
@@ -112,7 +112,7 @@
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"

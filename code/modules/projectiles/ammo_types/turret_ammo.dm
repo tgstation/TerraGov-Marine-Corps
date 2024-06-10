@@ -51,7 +51,7 @@
 	damage_falloff = 1
 
 /datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, knockback = 1, max_range = 4)
+	staggerstun(target_mob, proj, knockback = 1, max_range = 4)
 
 /datum/ammo/bullet/turret/spread
 	name = "additional buckshot"
@@ -78,13 +78,13 @@
 
 
 /datum/ammo/flamer/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(M))
+	drop_nade(get_turf(target_mob))
 
 /datum/ammo/flamer/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(O.density ? get_step(O, proj) : O.loc)
+	drop_nade(target_obj.density ? get_step(target_obj, proj) : target_obj.loc)
 
 /datum/ammo/flamer/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/flamer/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)

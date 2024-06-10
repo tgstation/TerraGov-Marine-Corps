@@ -43,7 +43,7 @@
 	sundering = 1.25
 
 /datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, max_range = 3, slowdown = 2, stagger = 1 SECONDS)
+	staggerstun(target_mob, proj, max_range = 3, slowdown = 2, stagger = 1 SECONDS)
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -68,7 +68,7 @@
 	sundering = 1
 
 /datum/ammo/bullet/rifle/som_machinegun/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, max_range = 20, slowdown = 0.5)
+	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
 
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
@@ -99,7 +99,7 @@
 	sundering = 6.5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, max_range = 14, slowdown = 1, knockback = 1)
+	staggerstun(target_mob, proj, max_range = 14, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"

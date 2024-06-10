@@ -40,7 +40,7 @@
 	bullet_color = COLOR_VIVID_YELLOW
 
 /datum/ammo/energy/taser/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stun = 20 SECONDS)
+	staggerstun(target_mob, proj, stun = 20 SECONDS)
 
 /datum/ammo/energy/tesla
 	name = "energy ball"
@@ -68,8 +68,8 @@
 
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(isxeno(M)) //need 1 second more than the actual effect time
-		var/mob/living/carbon/xenomorph/X = M
+	if(isxeno(target_mob)) //need 1 second more than the actual effect time
+		var/mob/living/carbon/xenomorph/X = target_mob
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 /datum/ammo/energy/lasburster
@@ -156,7 +156,7 @@
 	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/M43/disabler/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 0.75)
+	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.75)
 
 /datum/ammo/energy/lasgun/pulsebolt
 	name = "pulse bolt"
@@ -179,9 +179,9 @@
 	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(ishuman(mob))
+	if(ishuman(target_mob))
 		return
-	var/mob/living/carbon/human/human_victim = mob
+	var/mob/living/carbon/human/human_victim = target_mob
 	staggerstun(human_victim, proj, stagger = 2 SECONDS, slowdown = 1) //Staggers and slows down briefly
 
 // TE Lasers //
@@ -221,11 +221,11 @@
 	var/plasma_drain = 25
 
 /datum/ammo/energy/lasgun/marine/weakening/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 6, slowdown = 1)
+	staggerstun(target_mob, proj, max_range = 6, slowdown = 1)
 
-	if(!isxeno(M))
+	if(!isxeno(target_mob))
 		return
-	var/mob/living/carbon/xenomorph/xeno_victim = M
+	var/mob/living/carbon/xenomorph/xeno_victim = target_mob
 	xeno_victim.use_plasma(plasma_drain * xeno_victim.xeno_caste.plasma_regen_limit)
 
 /datum/ammo/energy/lasgun/marine/microwave
@@ -241,10 +241,10 @@
 	var/microwave_stacks = 1
 
 /datum/ammo/energy/lasgun/marine/microwave/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isliving(M))
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
 
 	if(debuff)
@@ -285,7 +285,7 @@
 
 /datum/ammo/energy/lasgun/marine/impact/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
-	staggerstun(M, proj, max_range = 6, knockback = knockback_dist)
+	staggerstun(target_mob, proj, max_range = 6, knockback = knockback_dist)
 
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
@@ -298,7 +298,7 @@
 	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/cripple/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, proj, slowdown = 1.5)
+	staggerstun(target_mob, proj, slowdown = 1.5)
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
@@ -321,8 +321,8 @@
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	if(istype(T, /turf/closed/wall))
-		var/turf/closed/wall/wall_victim = T
+	if(istype(target_turf, /turf/closed/wall))
+		var/turf/closed/wall/wall_victim = target_turf
 		wall_victim.take_damage(proj.damage, proj.damtype, proj.armor_type)
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
@@ -337,10 +337,10 @@
 	var/melt_stacks = 2
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isliving(M))
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
 
 	if(debuff)
@@ -386,10 +386,10 @@
 	var/shatter_duration = 5 SECONDS
 
 /datum/ammo/energy/lasgun/marine/shatter/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isliving(M))
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/energy/lasgun/marine/shatter/heavy_laser
@@ -425,10 +425,10 @@
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
 
 /datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	reflect(T, proj, 5)
+	reflect(target_turf, proj, 5)
 
 /datum/ammo/energy/lasgun/marine/ricochet/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	reflect(get_turf(O), proj, 5)
+	reflect(get_turf(target_obj), proj, 5)
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
@@ -461,7 +461,7 @@
 	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 0.75)
+	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.75)
 
 /datum/ammo/energy/lasgun/marine/xray
 	name = "xray heat bolt"
@@ -499,16 +499,16 @@
 	flame_radius(radius, T, 3, 3, 3, 3)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(M))
+	drop_nade(get_turf(target_mob))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(O.density ? get_step_towards(O, P) : O, P)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj, proj)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step_towards(T, P) : T)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step_towards(T, P) : T)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/plasma
 	name = "superheated plasma"
@@ -536,9 +536,9 @@
 	accurate_range = 25
 
 /datum/ammo/energy/plasma/rifle_marksman/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isliving(M))
+	if(!isliving(target_mob))
 		return
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 2 SECONDS)
 
 /datum/ammo/energy/plasma/blast
@@ -556,16 +556,16 @@
 	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE)
 
 /datum/ammo/energy/plasma/blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(O.density ? get_step(O, proj) : O.loc)
+	drop_nade(target_obj.density ? get_step(target_obj, proj) : target_obj.loc)
 
 /datum/ammo/energy/plasma/blast/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/plasma/blast/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step(T, proj) : T)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/plasma/blast/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(M.loc)
+	drop_nade(target_mob.loc)
 
 /datum/ammo/energy/plasma/blast/melting
 	damage = 40
@@ -622,24 +622,24 @@
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/damage_mult = 1
-	switch(M.mob_size)
+	switch(target_mob.mob_size)
 		if(MOB_SIZE_BIG)
 			damage_mult = 2
 		if(MOB_SIZE_XENO)
 			damage_mult = 1.5
 
 	proj.damage *= damage_mult
-	if(!isliving(M))
+	if(!isliving(target_mob))
 		return
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, PLASMA_CANNON_SHATTER_DURATION)
 	staggerstun(living_victim, proj, PLASMA_CANNON_INNER_STAGGERSTUN_RANGE, weaken = 0.5 SECONDS, knockback = 1, hard_size_threshold = 1)
 	staggerstun(living_victim, proj, PLASMA_CANNON_STAGGERSTUN_RANGE, stagger = PLASMA_CANNON_STAGGER_DURATION, slowdown = 2, knockback = 1, hard_size_threshold = 2)
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/damage_mult = 3
-	if(isvehicle(O))
-		var/obj/vehicle/vehicle_target = O
+	if(isvehicle(target_obj))
+		var/obj/vehicle/vehicle_target = target_obj
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
 			damage_mult = 4
 		if(get_dist_euclidean(proj.starting_turf, vehicle_target) <= PLASMA_CANNON_STAGGERSTUN_RANGE) //staggerstun will fail on tank occupants if we just use staggerstun
@@ -675,7 +675,7 @@
 	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
 
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	reflect(T, proj, 5)
+	reflect(target_turf, proj, 5)
 
 // Plasma //
 /datum/ammo/energy/sectoid_plasma
@@ -724,13 +724,13 @@
 		mob_caught.IgniteMob()
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_fire(T, proj)
+	drop_fire(target_turf, proj)
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_fire(M, proj)
+	drop_fire(target_mob, proj)
 
 /datum/ammo/energy/plasma_pistol/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_fire(O, proj)
+	drop_fire(target_obj, proj)
 
 /datum/ammo/energy/plasma_pistol/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_fire(T, proj)
+	drop_fire(target_turf, proj)

@@ -61,16 +61,16 @@
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(M), P)
+	drop_nade(get_turf(target_mob), proj)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(O.density ? get_step_towards(O, P) : O, P)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj, proj)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
 	name = "psychic lance"
@@ -87,14 +87,14 @@
 	glow_color = "#CB0166"
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(isvehicle(O))
-		var/obj/vehicle/veh_victim = O
+	if(isvehicle(target_obj))
+		var/obj/vehicle/veh_victim = target_obj
 		veh_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(isxeno(M))
+	if(isxeno(target_mob))
 		return
-	staggerstun(M, P, 9, stagger = 1 SECONDS, slowdown = 2, knockback = 1)
+	staggerstun(target_mob, proj, 9, stagger = 1 SECONDS, slowdown = 2, knockback = 1)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	return
