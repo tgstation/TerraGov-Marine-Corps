@@ -82,7 +82,7 @@
 
 
 /obj/machinery/door/poddoor/shutters/opened
-	icon_state = "shutter0"
+	icon_state = "shutter"
 	density = FALSE
 	opacity = FALSE
 

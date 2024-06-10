@@ -1831,6 +1831,8 @@
 	desc = "A deployable barrier used by security forces to cordone off an area."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "barrier0"
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/prop/mainship/gelida/heavycablenode
 	name = "heavy cable node"
