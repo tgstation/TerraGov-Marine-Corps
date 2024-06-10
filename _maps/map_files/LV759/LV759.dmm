@@ -41970,17 +41970,12 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "gOo" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
+/obj/effect/urban/decal/dirt,
 /obj/structure/cable,
-/turf/open/floor/prison/red{
-	dir = 4
+/turf/open/floor/prison/ramptop{
+	dir = 8
 	},
-/area/lv759/indoors/colonial_marshals/hallway_central)
+/area/lv759/indoors/colonial_marshals/hallway_south)
 "gOs" = (
 /obj/item/clothing/head/bio_hood/scientist,
 /obj/structure/cable,
@@ -60288,6 +60283,13 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/lv759/indoors/hospital/emergency_room)
+"jJN" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/prison/ramptop{
+	dir = 8
+	},
+/area/lv759/indoors/colonial_marshals/hallway_south)
 "jJO" = (
 /obj/structure/rack,
 /obj/item/megaphone,
@@ -179217,7 +179219,7 @@ uzx
 gnM
 jxY
 ftr
-gOo
+ftr
 npK
 dkc
 okl
@@ -179838,7 +179840,7 @@ ykv
 euc
 urq
 dTL
-onB
+gOo
 oxP
 pND
 tew
@@ -180041,7 +180043,7 @@ pdV
 jxr
 jxr
 aQJ
-oxP
+jJN
 onB
 pND
 pND
