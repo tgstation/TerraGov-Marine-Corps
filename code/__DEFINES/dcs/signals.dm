@@ -446,6 +446,8 @@
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"
 #define COMSIG_HELMET_MODULE_DETACHED "helmet_module_detached"
 
+// /obj/item/cell
+#define COMSIG_CELL_SELF_RECHARGE "cell_self_recharge"
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
