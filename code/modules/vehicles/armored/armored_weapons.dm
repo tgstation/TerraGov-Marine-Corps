@@ -79,7 +79,7 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(chassis.loc, windup_sound, 30, TRUE)
+		playsound(chassis.loc, windup_sound, 30)
 		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return

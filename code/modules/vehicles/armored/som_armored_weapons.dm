@@ -101,15 +101,23 @@
 	icon_state = "coilgun"
 	ammo = /obj/item/ammo_magazine/tank/coilgun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
-	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
+	fire_sound = 'sound/vehicles/weapons/coil_fire.ogg'
+	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
+	windup_delay = 0.6 SECONDS
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
+	///Current ammo override to use based on power level
+	var/current_ammo_type = /datum/ammo/rocket/coilgun
 	///Power setting toggle action
 	var/datum/action/item_action/coilgun_power/power_toggle
 
 /obj/item/armored_weapon/coilgun/Initialize(mapload)
 	. = ..()
 	power_toggle = new(src)
+
+/obj/item/armored_weapon/coilgun/Destroy()
+	QDEL_NULL(power_toggle)
+	return ..()
 
 /obj/item/armored_weapon/coilgun/attach(obj/vehicle/sealed/armored/tank, attach_primary)
 	. = ..()
@@ -120,22 +128,67 @@
 	. = ..()
 
 /obj/item/armored_weapon/coilgun/do_fire(turf/source_turf, ammo_override)
+	ammo_override = current_ammo_type
+	var/x_offset = 0
+	var/y_offset = 0
+	var/animation_duration = 0.9 SECONDS
 	switch(power_level)
-		if(COILGUN_LOW_POWER)
-			ammo_override = /datum/ammo/rocket/coilgun/low
-			windup_delay = 0
 		if(COILGUN_MED_POWER)
-			ammo_override = /datum/ammo/rocket/coilgun
-			windup_delay = 0.3 SECONDS
+			switch(chassis.dir)
+				if(NORTH)
+					y_offset = -15
+				if(SOUTH)
+					y_offset = 15
+				if(EAST)
+					x_offset = -15
+				if(WEST)
+					x_offset = 15
 		if(COILGUN_HIGH_POWER)
-			ammo_override = /datum/ammo/rocket/coilgun/high
-			windup_delay = 0.6 SECONDS
+			animation_duration = 1.2 SECONDS
+			switch(chassis.dir)
+				if(NORTH)
+					y_offset = -25
+				if(SOUTH)
+					y_offset = 25
+				if(EAST)
+					x_offset = -25
+				if(WEST)
+					x_offset = 25
+	if(x_offset || y_offset)
+		animate(chassis, time = 0.3 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_x = x_offset, pixel_y = y_offset)
+		animate(time = animation_duration -  0.3 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_x = -x_offset, pixel_y = -y_offset)
+		if(istype(chassis, /obj/vehicle/sealed/armored/multitile/som_tank)) //byond animations are very smelly, there is no way to have these two anims running together nicely
+			addtimer(CALLBACK(chassis, TYPE_PROC_REF(/obj/vehicle/sealed/armored/multitile/som_tank, animate_hover)), animation_duration SECONDS)
 	return ..()
 
 /obj/item/armored_weapon/coilgun/eject_ammo()
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
 	QDEL_NULL(ammo)
+
+/obj/item/armored_weapon/coilgun/ui_action_click(mob/user, datum/action/item_action/action)
+	var/datum/action/item_action/coilgun_power/power_action = action
+	if(!istype(power_action))
+		return ..()
+	toggle_power_level(user)
+	return TRUE
+
+///Switches between coil power levels
+/obj/item/armored_weapon/coilgun/proc/toggle_power_level(mob/user)
+	power_level += 1
+	if(power_level > COILGUN_HIGH_POWER)
+		power_level = COILGUN_LOW_POWER
+	switch(power_level)
+		if(COILGUN_LOW_POWER)
+			current_ammo_type = /datum/ammo/rocket/coilgun/low
+			windup_delay = 0
+		if(COILGUN_MED_POWER)
+			current_ammo_type = /datum/ammo/rocket/coilgun
+			windup_delay = 0.6 SECONDS
+		if(COILGUN_HIGH_POWER)
+			current_ammo_type = /datum/ammo/rocket/coilgun/high
+			windup_delay = 1 SECONDS
+	to_chat(user, "power level set to [power_level]")
 
 ///Gives the power setting action to the gunner
 /obj/item/armored_weapon/coilgun/proc/give_action(datum/source, mob/living/user, flags)
@@ -166,19 +219,6 @@
 	maximum_magazines = 1
 	hud_state_empty = "rocket_empty"
 
-/////
-/obj/item/armored_weapon/coilgun/ui_action_click(mob/user, datum/action/item_action/action)
-	var/datum/action/item_action/coilgun_power/power_action = action
-	if(!istype(power_action))
-		return ..()
-	return toggle_power_level(user)
-
-/obj/item/armored_weapon/coilgun/proc/toggle_power_level(mob/user)
-	power_level += 1
-	if(power_level > COILGUN_HIGH_POWER)
-		power_level = COILGUN_LOW_POWER
-	to_chat(user, "power level set to [power_level]")
-/////
 /datum/action/item_action/coilgun_power
 	keybinding_signals = list(
 		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
@@ -200,27 +240,19 @@
 	update_button_icon()
 
 /datum/action/item_action/coilgun_power/update_button_icon()
-	/*
-	if(holder_gun.gun_firemode == action_firemode)
-		return
-	var/firemode_string = "fmode_"
-	switch(holder_gun.gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			button.name = "Semi-Automatic Firemode"
-			firemode_string += "single"
-		if(GUN_FIREMODE_BURSTFIRE)
-			button.name = "Burst Firemode"
-			firemode_string += "burst"
-		if(GUN_FIREMODE_AUTOMATIC)
-			button.name = "Automatic Firemode"
-			firemode_string += "single_auto"
-		if(GUN_FIREMODE_AUTOBURST)
-			button.name = "Automatic Burst Firemode"
-			firemode_string += "burst_auto"
-	action_icon_state = firemode_string
-	action_firemode = holder_gun.gun_firemode
-	**/
+	action_icon_state = "coilgun_[holder_gun.power_level]"
+	switch(holder_gun.power_level)
+		if(COILGUN_LOW_POWER)
+			button.name = "Low power"
+		if(COILGUN_MED_POWER)
+			button.name = "Standard power"
+		if(COILGUN_HIGH_POWER)
+			button.name = "High power"
 	return ..()
 
 /datum/action/item_action/coilgun_power/handle_button_status_visuals()
 	button.color = rgb(255,255,255,255)
+
+#undef COILGUN_LOW_POWER
+#undef COILGUN_MED_POWER
+#undef COILGUN_HIGH_POWER
