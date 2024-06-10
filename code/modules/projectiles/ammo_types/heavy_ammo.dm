@@ -55,18 +55,18 @@
 	///Bonus flat damage to walls, balanced around resin walls.
 	var/autocannon_wall_bonus = 50
 
-/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/turf, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	P.proj_max_range -= 20
 
 	if(istype(T, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = T
 		wall_victim.take_damage(autocannon_wall_bonus, P.damtype, P.armor_type)
 
-/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	P.proj_max_range -= 5
 	staggerstun(M, P, max_range = 20, slowdown = 1)
 
-/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/obj, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	P.proj_max_range -= 5
 
 /datum/ammo/bullet/auto_cannon/flak
@@ -80,10 +80,10 @@
 	airburst_multiplier = 1
 	autocannon_wall_bonus = 25
 
-/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	airburst(mob, proj)
 
-/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/turf, obj/projectile/proj)
+/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	airburst(turf, proj)
 
 /datum/ammo/bullet/railgun
@@ -99,10 +99,10 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.75
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
 
-/datum/ammo/bullet/railgun/on_hit_turf(turf/turf, obj/projectile/proj)
+/datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	P.proj_max_range -= 3
 
 /datum/ammo/bullet/railgun/hvap
@@ -114,7 +114,7 @@
 	penetration = 30
 	sundering = 50
 
-/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, stagger = 2 SECONDS, knockback = 3)
 
 /datum/ammo/bullet/railgun/smart
@@ -125,7 +125,7 @@
 	penetration = 20
 	sundering = 20
 
-/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, stagger = 3 SECONDS, slowdown = 3)
 
 /datum/ammo/bullet/apfsds
@@ -154,5 +154,5 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/coilgun/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)

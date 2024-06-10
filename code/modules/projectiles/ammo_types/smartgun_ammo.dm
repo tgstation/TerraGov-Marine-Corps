@@ -71,7 +71,7 @@
 	damage = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/heavyrubber
@@ -80,7 +80,7 @@
 	damage = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
@@ -89,7 +89,7 @@
 	damage = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(20 + 0.2 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
@@ -100,7 +100,7 @@
 	damage = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, knockback = 3, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/flak
@@ -110,7 +110,7 @@
 	sundering = 0.5
 	airburst_multiplier = 0.5
 
-/datum/ammo/bullet/spottingrifle/flak/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/spottingrifle/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/spottingrifle/incendiary

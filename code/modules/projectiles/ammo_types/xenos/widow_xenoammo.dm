@@ -26,7 +26,7 @@
 	///List for bodyparts that upon being hit cause the target to become ensnared
 	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
-/datum/ammo/xeno/web/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/xeno/web/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	. = ..()
 	if(!ishuman(victim))
 		return
@@ -55,20 +55,20 @@
 	accurate_range = 8
 	max_range = 8
 
-/datum/ammo/xeno/leash_ball/on_hit_turf(turf/turf, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	drop_leashball(T.density ? proj.loc : T)
 
-/datum/ammo/xeno/leash_ball/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/turf/T = get_turf(victim)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
-/datum/ammo/xeno/leash_ball/on_hit_obj(obj/obj, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/turf/T = get_turf(O)
 	if(T.density || (O.density && !(O.allow_pass_flags & PASS_PROJECTILE)))
 		T = get_turf(proj)
 	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
-/datum/ammo/xeno/leash_ball/do_at_max_range(turf/turf, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_leashball(T.density ? proj.loc : T)
 
 /// This spawns a leash ball and checks if the turf is dense before doing so

@@ -50,7 +50,7 @@
 	penetration = 40
 	damage_falloff = 1
 
-/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(M, P, knockback = 1, max_range = 4)
 
 /datum/ammo/bullet/turret/spread
@@ -77,14 +77,14 @@
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 
 
-/datum/ammo/flamer/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(M))
 
-/datum/ammo/flamer/on_hit_obj(obj/obj, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(O.density ? get_step(O, proj) : O.loc)
 
-/datum/ammo/flamer/on_hit_turf(turf/turf, obj/projectile/proj)
+/datum/ammo/flamer/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)
 
-/datum/ammo/flamer/do_at_max_range(turf/turf, obj/projectile/proj)
+/datum/ammo/flamer/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(T.density ? get_step(T, proj) : T)

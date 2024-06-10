@@ -6,18 +6,18 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	bullet_color = null
 
-/datum/ammo/xeno/fireball/on_hit_mob(mob/mob, obj/projectile/proj)
+/datum/ammo/xeno/fireball/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_flame(mob)
 
-/datum/ammo/xeno/fireball/on_hit_obj(obj/obj, obj/projectile/proj)
+/datum/ammo/xeno/fireball/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	. = ..()
 	drop_flame(obj)
 
-/datum/ammo/xeno/fireball/on_hit_turf(turf/turf, obj/projectile/proj)
+/datum/ammo/xeno/fireball/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	. = ..()
 	drop_flame(turf.density ? proj : turf)
 
-/datum/ammo/xeno/fireball/do_at_max_range(turf/turf, obj/projectile/proj)
+/datum/ammo/xeno/fireball/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	. = ..()
 	drop_flame(turf.density ? proj : turf)
 
