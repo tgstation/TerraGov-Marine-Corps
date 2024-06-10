@@ -21,7 +21,7 @@
 		to_chat(user, span_warning("You can't use this right now!"))
 		return
 	if(user.client.eye != user || user.client.eye != user.loc)
-		to_chat(user, span_warning("you're looking through something else right now"))
+		to_chat(user, span_warning("You're looking through something else right now."))
 		return
 	zoom(user)
 
