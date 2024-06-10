@@ -675,7 +675,7 @@
 	switch(randomchoice)
 		if(1)
 			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
-			playsound(src, 'sound/misc/robotic scream.ogg', 35, TRUE),
+			playsound(src, 'sound/misc/robotic_scream.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/pred_laugh1.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/pred_laugh2.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/pred_laugh3.ogg', 35, TRUE),
