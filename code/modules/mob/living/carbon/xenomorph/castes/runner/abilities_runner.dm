@@ -147,7 +147,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
-	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.1 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/ai_should_start_consider()
 	return TRUE
