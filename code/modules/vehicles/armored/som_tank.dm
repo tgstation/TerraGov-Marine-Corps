@@ -19,7 +19,7 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.7, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 	permitted_weapons = list(/obj/item/armored_weapon/volkite_carronade, /obj/item/armored_weapon/particle_lance, /obj/item/armored_weapon/coilgun, /obj/item/armored_weapon/secondary_mlrs)
-	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom) //revisit
+	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher) //revisit
 	max_occupants = 4
 	move_delay = 0.3 SECONDS
 	glide_size = 4.333 //todo: Fix glidesize for vehicles. It generates visibly choppy glide, possibly related to how vehicles use cooldown for movedelay
