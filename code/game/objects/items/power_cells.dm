@@ -217,8 +217,8 @@
 	return 100 * (charge / maxcharge)
 
 ///Returns TRUE if charge is equal to maxcharge
-/obj/item/cell/proc/fully_charged()
-	return (charge == maxcharge)
+/obj/item/cell/proc/is_fully_charged()
+	return charge == maxcharge
 
 /**
  * Determines explosivity based on charge, then explodes
