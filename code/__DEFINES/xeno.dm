@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(weed_images_list, list(
 	WEED = image('icons/Xeno/actions/construction.dmi', icon_state = WEED),
 	STICKY_WEED = image('icons/Xeno/actions/construction.dmi', icon_state = STICKY_WEED),
 	RESTING_WEED = image('icons/Xeno/actions/construction.dmi', icon_state = RESTING_WEED),
-	AUTOMATIC_WEEDING = image('icons/Xeno/actions/construction.dmi', icon_state = AUTOMATIC_WEEDING)
+	AUTOMATIC_WEEDING = image('icons/Xeno/actions/general.dmi', icon_state = AUTOMATIC_WEEDING)
 ))
 
 //List of pheromone images
