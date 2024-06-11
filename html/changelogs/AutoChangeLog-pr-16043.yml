@@ -1,4 +1,0 @@
-author: "2whatever2"
-delete-after: True
-changes:
-  - balance: "Runner evasion can now be canceled at 0.3 seconds, instead of 1 second. (1 --> 0.3)"

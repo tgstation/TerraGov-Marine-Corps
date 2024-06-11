@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed ammohuds bugging out if you enter a vehicle when a gun has no ammo in it"

@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Reduced the slowdown of the amr from 3 to 2.25"
