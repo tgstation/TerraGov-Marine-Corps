@@ -3980,6 +3980,15 @@
 /obj/effect/urban/decal/road/lines3,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
+"aHG" = (
+/obj/effect/urban/decal/road/lines4,
+/obj/effect/urban/decal/road/road_edge/two,
+/obj/effect/urban/decal/road/road_stop/five{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "aHU" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -7067,6 +7076,14 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
+"bhg" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/cable,
+/turf/open/urban/street/cement1,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "bhi" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/colony,
@@ -30996,6 +31013,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/south_east_street)
+"faC" = (
+/obj/effect/turf_decal/medical_decals/triage,
+/obj/structure/cable,
+/turf/open/floor/plating/kutjevo,
+/area/lv759/outdoors/landing_zone_1)
 "faH" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/blue,
@@ -47506,6 +47528,7 @@
 "hGO" = (
 /obj/effect/turf_decal/medical_decals/triage,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_1)
 "hGW" = (
@@ -79777,6 +79800,15 @@
 /obj/effect/urban/decal/trash/two,
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/meridian/meridian_office)
+"mTe" = (
+/obj/effect/urban/decal/road/lines1,
+/obj/effect/urban/decal/road/road_edge,
+/obj/effect/urban/decal/road/road_stop/five{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "mTh" = (
 /obj/structure/prop/urban/misc/machinery/screens/redalert{
 	light_color = "#FF0000";
@@ -85176,6 +85208,10 @@
 	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_foyer)
+"nKt" = (
+/obj/structure/cable,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "nKx" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -88857,6 +88893,11 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/hallwaycentral)
+"oqz" = (
+/obj/effect/urban/decal/dirt,
+/obj/structure/cable,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "oqA" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/floodlight/colony/street{
@@ -105070,11 +105111,10 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "qZV" = (
-/obj/structure/barricade/handrail/medical{
-	dir = 4
-	},
-/turf/open/urban/street/cement1,
-/area/lv759/outdoors/colony_streets/north_east_street)
+/obj/effect/turf_decal/medical_decals/triage,
+/obj/structure/cable,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/landing_zone_1)
 "rac" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -13;
@@ -110225,6 +110265,8 @@
 /area/lv759/outdoors/north_west_caves_outdoors)
 "rRt" = (
 /obj/effect/turf_decal/medical_decals/triage,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_1)
 "rRu" = (
@@ -129014,6 +129056,7 @@
 "uOP" = (
 /obj/effect/urban/decal/road/lines5,
 /obj/effect/urban/decal/dirt,
+/obj/structure/cable,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uOW" = (
@@ -191090,11 +191133,11 @@ jsn
 jsn
 jsn
 jsn
-cbE
-qZV
-qZV
-qZV
-qZV
+rZw
+eCw
+eCw
+eCw
+eCw
 rZw
 irb
 rZw
@@ -191293,7 +191336,7 @@ sCR
 tTq
 ydD
 cTY
-jsn
+nFu
 srR
 lof
 ena
@@ -191496,7 +191539,7 @@ hYf
 tay
 tay
 bwM
-jsn
+nFu
 psQ
 vZn
 vZn
@@ -191699,7 +191742,7 @@ svh
 tay
 hgy
 puS
-jsn
+nFu
 psQ
 jXy
 jXy
@@ -191902,7 +191945,7 @@ dZe
 iLI
 iLI
 krn
-jsn
+nFu
 jIR
 dqY
 loL
@@ -192105,7 +192148,7 @@ qpl
 qpl
 qpl
 shV
-vIu
+bhg
 vIu
 vIu
 vIu
@@ -192308,7 +192351,7 @@ rpP
 xKx
 xKx
 rBT
-cbE
+rZw
 aWQ
 aWQ
 aWQ
@@ -192511,7 +192554,7 @@ svh
 tay
 tay
 noU
-cbE
+rZw
 tUK
 aWQ
 aWQ
@@ -192714,7 +192757,7 @@ svh
 ray
 hgM
 noU
-cbE
+rZw
 cbE
 ohG
 ofO
@@ -192917,7 +192960,7 @@ nsD
 hgM
 qqk
 nkl
-dhU
+mTe
 dhU
 dhU
 dhU
@@ -193120,7 +193163,7 @@ svh
 tay
 vqb
 xIe
-tay
+nKt
 tay
 hgM
 tay
@@ -193323,7 +193366,7 @@ svh
 tay
 gCo
 agJ
-hgM
+oqz
 bCE
 tay
 cqF
@@ -193526,7 +193569,7 @@ svh
 xDO
 dgT
 gVI
-tay
+nKt
 ray
 hgM
 tay
@@ -194135,7 +194178,7 @@ roQ
 ocT
 tnG
 tnG
-tnG
+aHG
 tnG
 tnG
 tnG
@@ -194336,9 +194379,9 @@ jnp
 aWQ
 rRt
 hGO
-rRt
+qZV
 hGO
-cli
+faC
 cli
 cli
 wGx

@@ -6,6 +6,21 @@
 
 // Vehicles
 
+/obj/structure/prop/urban
+	name = "GENERIC URBAN PROP NAME"
+	desc = "DESCRIPTION NOT SET REPORT TO MAP CREATOR"
+	///bound heigh to set on init
+	var/set_bound_height
+	///bound width to set on init
+	var/set_bound_width
+
+/obj/structure/prop/urban/Initialize(mapload) //if you're wondering why we're doing this on init instead of just using bound_height and width ask coderbus
+	. = ..()
+	if(!set_bound_height && !set_bound_width)
+		return
+	bound_height = set_bound_height
+	bound_width = set_bound_width
+
 /obj/structure/prop/urban/vehicles
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
@@ -84,8 +99,8 @@
 	name = "ambulance"
 	desc = "Seems to be broken down."
 	icon_state = "ambulance"
-	bound_height = 32
-	bound_width = 96
+	set_bound_height = 32
+	set_bound_width = 96
 
 /obj/structure/prop/urban/vehicles/large_vehicles/ambulance/Initialize(mapload)
 	. = ..()
@@ -98,8 +113,8 @@
 
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks
 	icon_state = "armoredtruck_wy_security_1"
-	bound_height = 32
-	bound_width = 96
+	set_bound_height = 32
+	set_bound_width = 96
 
 /obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1
 	name = "\improper Nanotrasen security truck"
@@ -134,8 +149,8 @@
 	icon_state = "longtruck_kellandmining"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/128x32_vehiclesexpanded.dmi'
-	bound_height = 32
-	bound_width = 128
+	set_bound_height = 32
+	set_bound_width = 128
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 	max_integrity = 4000
@@ -180,8 +195,8 @@
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 	coverage = 75
 
@@ -222,8 +237,8 @@
 	desc = "The 'Mono-Spectra', a mass-produced civilian vehicle for extraterrestrial markets, in and outside of Terra controlled space. Produced by 'Meridian' a car marque and associated operating division of the Nanotrasen Corporation."
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
@@ -602,8 +617,8 @@
 	icon_state = "zentruck1"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/truck/truck1
@@ -640,8 +655,8 @@
 	icon_state = "zenithlongtruck4"
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/largetruck/largetruck1
@@ -686,8 +701,8 @@
 /obj/structure/prop/urban/vehicles/colonycrawlers
 	icon_state = "crawler_wy2"
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/colonycrawlers/mining
@@ -751,8 +766,8 @@
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "WYSUV1"
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/suv/misc/wy1
@@ -811,8 +826,8 @@
 	desc = "Seems to be broken down."
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "greyvan"
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/van/vandamaged
@@ -837,8 +852,8 @@
 	desc = "Burned out wrecked vehicles block your path."
 	icon = 'icons/obj/structures/prop/urban/crashedcars.dmi'
 	icon_state = "crashedcarsleft"
-	bound_height = 64
-	bound_width = 64
+	set_bound_height = 64
+	set_bound_width = 64
 	density = TRUE
 	layer = 5
 
@@ -847,8 +862,8 @@
 	desc = "Burned out wrecked vehicles block your path."
 	icon = 'icons/obj/structures/prop/urban/crashedcars.dmi'
 	icon_state = "crashedcarsright"
-	bound_height = 64
-	bound_width = 64
+	set_bound_height = 64
+	set_bound_width = 64
 	density = TRUE
 	layer = 5
 
@@ -864,8 +879,8 @@
 	icon = 'icons/obj/structures/boulder_largedark.dmi'
 	icon_state = "boulder_largedark1"
 	density = TRUE
-	bound_height = 64
-	bound_width = 64
+	set_bound_height = 64
+	set_bound_width = 64
 
 /obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1
 	icon_state = "boulder_largedark1"
@@ -882,8 +897,8 @@
 	icon = 'icons/obj/structures/boulder_widedark.dmi'
 	icon_state = "boulderwidedark"
 	density = TRUE
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 
 /obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1
 	icon_state = "boulderwidedark"
@@ -1080,8 +1095,8 @@
 	icon_state = "blackmetaltable"
 	density = TRUE
 	climbable = TRUE
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tableblack/blacktablecomputer
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
@@ -1093,8 +1108,8 @@
 	icon_state = "brownlargetable"
 	density = TRUE
 	climbable = TRUE
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 
 /obj/structure/prop/urban/furniture/tables/tablewood/woodtablecomputer
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
@@ -1106,8 +1121,8 @@
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_pool"
 	density = TRUE
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	climbable = TRUE
 
 /obj/structure/prop/urban/furniture/tables/tablegambling
@@ -1116,8 +1131,8 @@
 	icon = 'icons/obj/structures/prop/urban/urbantables.dmi'
 	icon_state = "table_cards"
 	density = TRUE
-	bound_height = 32
-	bound_width = 64
+	set_bound_height = 32
+	set_bound_width = 64
 	climbable = TRUE
 
 // Chairs
@@ -1321,14 +1336,14 @@
 	desc = "A Giant Alien console of some kind, unlike anything you've ever seen before. Who knows the purpose of this strange technology..."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "engineerconsole"
-	bound_height = 32
-	bound_width = 32
+	set_bound_height = 32
+	set_bound_width = 32
 	density = TRUE
 /obj/structure/prop/urban/engineer/engineerpillar
 	icon = 'icons/obj/structures/prop/urban/urbanengineerpillarangled.dmi'
 	icon_state = "engineerpillar_SW1fade"
-	bound_height = 64
-	bound_width = 128
+	set_bound_height = 64
+	set_bound_width = 128
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop
@@ -1412,24 +1427,24 @@
 	desc = "the engine appears to have severe damage."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "dropship_engine_damage"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 
 /obj/structure/prop/urban/airport/dropshipenginedamagenofire
 	name = "dropship damage"
 	desc = "the engine appears to have severe damage."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "dropship_engine_damage_nofire"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 
 /obj/structure/prop/urban/airport/refuelinghose
 	name = "refueling hose"
 	desc = "A long refueling hose that connects to various types of dropships."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "fuelline1"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 	layer = BELOW_TABLE_LAYER
 
 
@@ -1438,8 +1453,8 @@
 	desc = "A long refueling hose that connects to various types of dropships."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "fuelline2"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 	layer = BELOW_TABLE_LAYER
 
 // Pilot body
@@ -1449,16 +1464,16 @@
 	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap1"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 
 /obj/structure/prop/urban/airport/deadpilot2
 	name = "decapitated Nanotrasen Pilot"
 	desc = "What remains of a Nanotrasen Pilot. Their entire head is missing. Where'd it roll off to?..."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "pilotbody_decap2"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 
 // Misc
 
@@ -1515,8 +1530,8 @@
 	name = "graffiti"
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zgraffiti4"
-	bound_height = 64
-	bound_width = 96
+	set_bound_height = 64
+	set_bound_width = 96
 
 /obj/structure/prop/urban/misc/graffiti/graffiti1
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
@@ -1640,8 +1655,8 @@
 	desc = "A slot machine."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "slotmachine"
-	bound_width = 32
-	bound_height = 32
+	set_bound_width = 32
+	set_bound_height = 32
 	anchored = TRUE
 	density = TRUE
 	layer = 3.2
@@ -1651,8 +1666,8 @@
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "atm"
-	bound_width = 32
-	bound_height = 32
+	set_bound_width = 32
+	set_bound_height = 32
 	anchored = TRUE
 	density = TRUE
 	layer = 3.2
@@ -1662,8 +1677,8 @@
 	desc = "A broken slot machine."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "slotmachine_broken"
-	bound_width = 32
-	bound_height = 32
+	set_bound_width = 32
+	set_bound_height = 32
 	anchored = TRUE
 	density = TRUE
 	layer = 3.2
@@ -1932,8 +1947,8 @@
 	desc = "a cargo container."
 	icon = 'icons/obj/structures/prop/urban/containersextended.dmi'
 	icon_state = "blackwyleft"
-	bound_width = 32
-	bound_height = 32
+	set_bound_width = 32
+	set_bound_height = 32
 	density = TRUE
 	max_integrity = 200
 	opacity = TRUE
@@ -2120,8 +2135,8 @@
 	name = "machinery"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "buildingventbig1"
-	bound_width = 64
-	bound_height = 32
+	set_bound_width = 64
+	set_bound_height = 32
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
@@ -2205,8 +2220,8 @@
 	desc = "A decorative concrete planter with seating attached, the seats are fitted with synthetic leather, they've faded in time.."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "planterseats"
-	bound_width = 32
-	bound_height = 64
+	set_bound_width = 32
+	set_bound_height = 64
 	density = TRUE
 	max_integrity = 200
 	anchored = TRUE
@@ -2222,8 +2237,8 @@
 	desc = "A decorative statue with the Nanotrasen 'Wings' adorned on it, A corporate brutalist piece of art."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "concretesculpture"
-	bound_width = 64
-	bound_height = 64
+	set_bound_width = 64
+	set_bound_height = 64
 	density = TRUE
 	anchored = TRUE
 
@@ -2253,8 +2268,8 @@
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "phonebox_closed"
 	layer = ABOVE_MOB_LAYER
-	bound_width = 32
-	bound_height = 32
+	set_bound_width = 32
+	set_bound_height = 32
 	density = TRUE
 	anchored = TRUE
 
@@ -2271,8 +2286,8 @@
 	desc = "A metal frame, with seats that are fitted with synthetic leather, they've faded in time."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "seatedbench"
-	bound_width = 32
-	bound_height = 64
+	set_bound_width = 32
+	set_bound_height = 64
 	layer = 4
 	density = FALSE
 	max_integrity = 200
@@ -2285,8 +2300,8 @@
 	name = "neon sign"
 	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "jacksopen_on"
-	bound_height = 64
-	bound_width = 64
+	set_bound_height = 64
+	set_bound_width = 64
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/urban/signs/casniosign
@@ -2354,8 +2369,8 @@
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard_bigger"
-	bound_width = 64
-	bound_height = 32
+	set_bound_width = 64
+	set_bound_height = 32
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
@@ -2390,8 +2405,8 @@
 	desc = "A road sign."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "roadsign_1"
-	bound_width = 64
-	bound_height = 32
+	set_bound_width = 64
+	set_bound_height = 32
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
@@ -2413,8 +2428,8 @@
 	name = "Robotic arm"
 	desc = "A robotic arm used in the construction of 'Meridian' Automobiles."
 	icon_state = "factory_roboticarm"
-	bound_width = 64
-	bound_height = 32
+	set_bound_width = 64
+	set_bound_height = 32
 	anchored = TRUE
 
 /obj/structure/prop/urban/factory/robotic_arm/flipped

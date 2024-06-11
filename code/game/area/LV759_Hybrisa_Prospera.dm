@@ -34,6 +34,7 @@
 	icon_state = "medical_lz1"
 	minimap_color = MINIMAP_AREA_LZ
 	ceiling = CEILING_NONE
+	always_unpowered = FALSE
 
 /area/lv759/indoors/landing_zone_1/flight_control_room
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One - Flight Control Room"
