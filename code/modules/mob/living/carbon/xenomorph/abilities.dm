@@ -902,7 +902,7 @@
 
 /datum/action/ability/activable/xeno/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	action_icon_state = "shift_spit_[initial(X.ammo.icon_state)]" // TODO: fix it
+	action_icon_state = "shift_spit_[initial(X.ammo.icon_state)]"
 	return ..()
 
 /datum/action/ability/activable/xeno/xeno_spit/action_activate()
