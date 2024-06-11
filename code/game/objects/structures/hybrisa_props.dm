@@ -232,6 +232,10 @@
 	max_integrity = 600
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
+/obj/structure/prop/urban/vehicles/meridian/Initialize(mapload)
+	. = ..()
+	overlays.Cut()
+
 /obj/structure/prop/urban/vehicles/meridian/red
 	icon = 'icons/obj/structures/prop/urban_vehicles/meridian_red.dmi'
 	icon_state = "meridian_red"
