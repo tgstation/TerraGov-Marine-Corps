@@ -6,6 +6,12 @@
 	resistance_flags = RESIST_ALL
 	dir = EAST
 
+/obj/structure/bed/chair/loader_seat/som
+	name = "loader seat"
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+	icon_state = "chair"
+	dir = NORTH
+
 /obj/structure/bed/chair/vehicle_crew
 	name = "driver seat"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
@@ -84,3 +90,13 @@
 /obj/structure/bed/chair/vehicle_crew/driver_gunner/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	owner.remove_control_flags(buckled_mob, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
+
+/obj/structure/bed/chair/vehicle_crew/driver/som
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+	icon_state = "driver_chair"
+	dir = NORTH
+
+/obj/structure/bed/chair/vehicle_crew/gunner/som
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+	icon_state = "chair"
+	dir = NORTH

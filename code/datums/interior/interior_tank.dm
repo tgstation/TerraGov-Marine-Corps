@@ -137,3 +137,82 @@
 /area/interior/tank
 	name = "Tank Interior"
 	icon_state = "shuttle"
+
+/turf/closed/interior/tank/som
+	name = "\improper Gorgon tank interior"
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+
+/turf/closed/interior/tank/som/sixteen
+	icon_state = "tank_interior_16"
+
+/turf/closed/interior/tank/som/seventeen
+	icon_state = "tank_interior_17"
+
+/turf/closed/interior/tank/som/eighteen
+	icon_state = "tank_interior_18"
+
+/turf/closed/interior/tank/som/nineteen
+	icon_state = "tank_interior_19"
+
+/turf/closed/interior/tank/som/twenty
+	icon_state = "tank_interior_20"
+
+/turf/closed/interior/tank/som/twentyone
+	icon_state = "tank_interior_21"
+
+/turf/open/interior/tank/som
+	name = "\improper Gorgon tank interior"
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+
+/turf/open/interior/tank/som/one
+	icon_state = "tank_interior_1"
+
+/turf/open/interior/tank/som/two
+	icon_state = "tank_interior_2"
+
+/turf/open/interior/tank/som/three
+	icon_state = "tank_interior_3"
+
+/turf/open/interior/tank/som/four
+	icon_state = "tank_interior_4"
+
+/turf/open/interior/tank/som/five
+	icon_state = "tank_interior_5"
+
+/turf/open/interior/tank/som/six
+	icon_state = "tank_interior_6"
+
+/turf/open/interior/tank/som/seven
+	icon_state = "tank_interior_7"
+
+/turf/open/interior/tank/som/eight
+	icon_state = "tank_interior_8"
+
+/turf/open/interior/tank/som/nine
+	icon_state = "tank_interior_9"
+
+/turf/open/interior/tank/som/ten
+	icon_state = "tank_interior_10"
+
+/turf/open/interior/tank/som/eleven
+	icon_state = "tank_interior_11"
+
+/turf/open/interior/tank/som/twelve
+	icon_state = "tank_interior_12"
+
+/turf/open/interior/tank/som/thirteen
+	icon_state = "tank_interior_13"
+
+/turf/open/interior/tank/som/fourteen
+	icon_state = "tank_interior_14"
+
+/turf/open/interior/tank/som/fifteen
+	icon_state = "tank_interior_15"
+
+/turf/closed/interior/tank/door/som
+	name = "exit hatch"
+	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+	icon_state = "hatch"
+
+/mob/proc/get_worldsize()
+	to_chat(src, "")

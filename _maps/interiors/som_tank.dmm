@@ -1,0 +1,144 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/interior/tank/som/eighteen,
+/area/space)
+"b" = (
+/turf/open/interior/tank/som/two,
+/area/space)
+"d" = (
+/turf/open/interior/tank/som/thirteen,
+/area/space)
+"e" = (
+/obj/structure/periscope/som,
+/turf/open/interior/tank/som/four,
+/area/space)
+"f" = (
+/turf/closed/interior/tank/door/som,
+/area/space)
+"h" = (
+/turf/closed/interior/tank/som/seventeen{
+	dir = 1
+	},
+/area/space)
+"i" = (
+/turf/closed/interior/tank/som/seventeen,
+/area/space)
+"m" = (
+/turf/open/interior/tank/som/fourteen,
+/area/space)
+"n" = (
+/obj/structure/bed/chair/vehicle_crew/driver/som{
+	pixel_y = 3
+	},
+/turf/open/interior/tank/som/eleven,
+/area/space)
+"o" = (
+/turf/closed/interior/tank/som/eighteen{
+	dir = 1
+	},
+/area/space)
+"q" = (
+/turf/open/interior/tank/som/five,
+/area/space)
+"r" = (
+/turf/closed/interior/tank/som/nineteen,
+/area/space)
+"v" = (
+/turf/open/interior/tank/som/ten,
+/area/space)
+"x" = (
+/obj/structure/bed/chair/loader_seat/som{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/structure/ammo_rack/secondary/som,
+/turf/open/interior/tank/som/one,
+/area/space)
+"z" = (
+/obj/structure/prop/som_tank/computer,
+/obj/structure/prop/som_tank/computer/alt,
+/turf/open/interior/tank/som/six,
+/area/space)
+"B" = (
+/turf/open/interior/tank/som/eight,
+/area/space)
+"D" = (
+/turf/open/space/basic,
+/area/space)
+"M" = (
+/turf/open/interior/tank/som/twelve,
+/area/space)
+"N" = (
+/turf/open/interior/tank/som/fifteen,
+/area/space)
+"U" = (
+/turf/open/interior/tank/som/seven,
+/area/space)
+"W" = (
+/turf/open/interior/tank/som/nine,
+/area/space)
+"X" = (
+/obj/structure/ammo_rack/primary/som,
+/turf/closed/interior/tank/som/nineteen,
+/area/space)
+"Z" = (
+/obj/structure/bed/chair/vehicle_crew/gunner/som{
+	pixel_y = 1
+	},
+/turf/open/interior/tank/som/three,
+/area/space)
+
+(1,1,1) = {"
+D
+f
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+D
+a
+h
+h
+h
+h
+h
+"}
+(3,1,1) = {"
+D
+d
+v
+U
+e
+x
+r
+"}
+(4,1,1) = {"
+D
+m
+n
+B
+q
+b
+X
+"}
+(5,1,1) = {"
+D
+N
+M
+W
+z
+Z
+r
+"}
+(6,1,1) = {"
+D
+o
+i
+i
+i
+i
+i
+"}
