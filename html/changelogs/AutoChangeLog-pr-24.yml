@@ -1,4 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - rscadd: "VSD and NTC pmc playable"
