@@ -25,6 +25,15 @@
 	if(!anchored)
 		layer = initial(layer)
 
+/obj/structure/barricade/handrail/Bumped(atom/bumpingcreature)
+	if(!isxeno(bumpingcreature))
+		return
+	balloon_alert_to_viewers("starts shoving [src]")
+	if(!do_after(bumpingcreature, 2 SECONDS, NONE, src,  BUSY_ICON_HOSTILE))
+		return
+	balloon_alert_to_viewers("breaks [src]")
+	qdel(src)
+
 /obj/structure/barricade/handrail/attackby(obj/item/item, mob/user)
 	. = ..()
 	for(var/obj/effect/xenomorph/acid/A in src.loc)

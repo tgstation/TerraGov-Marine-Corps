@@ -268,15 +268,15 @@
 /obj/machinery/door/poddoor/shutters/urban/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(iscrowbar(attacking_item))
-		user.balloon_alert(user, "lifting shutter...")
+		user.balloon_alert(user, "lifting [src]...")
 		if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 			return
-		balloon_alert_to_viewers("lifts the shutter")
+		balloon_alert_to_viewers("lifts [src]")
 		open()
 
 /obj/machinery/door/poddoor/shutters/urban/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent != INTENT_HELP)
-		xeno_attacker.balloon_alert(xeno_attacker, "lifting shutter...")
+		xeno_attacker.balloon_alert(xeno_attacker, "lifting [src]...")
 		if(!xeno_attacker.mob_size == MOB_SIZE_BIG)
 			if(!do_after(xeno_attacker, lift_time, NONE, src,  BUSY_ICON_HOSTILE))
 				return
@@ -284,7 +284,7 @@
 			if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 				return
 		open()
-		balloon_alert_to_viewers("lifts the shutter")
+		balloon_alert_to_viewers("lifts [src]")
 
 /obj/machinery/door/poddoor/shutters/urban/open_shutters
 	icon_state = "almayer_pdoor"
