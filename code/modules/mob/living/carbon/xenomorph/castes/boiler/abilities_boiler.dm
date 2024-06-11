@@ -54,7 +54,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
-	action_icon_state = "toggle_bomb0"
+	action_icon_state = "acid_globe"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Switches Boiler Bombard type between available glob types."
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
