@@ -4,8 +4,7 @@
 	icon = 'icons/obj/structures/handrail.dmi'
 	icon_state = "handrail_a_0"
 	barricade_type = "handrail_a_0"
-	stack_type = /obj/item/stack/sheet/metal
-	stack_amount = 2
+	stack_amount = 0
 	destroyed_stack_amount = 1
 	can_wire = FALSE
 	coverage = 10
@@ -168,6 +167,6 @@
 	barricade_type = "centerroadbarrierdouble_dark"
 
 /obj/structure/barricade/handrail/urban/handrail
-	name = "haindrail"
+	name = "handrail"
 	icon_state = "handrail_hybrisa"
 	barricade_type = "handrail_hybrisa"
