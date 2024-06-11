@@ -217,6 +217,7 @@
 /datum/action/ability/xeno_action/stealth/disguise
 	name = "Disguise"
 	action_icon_state = "xenohide"
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
