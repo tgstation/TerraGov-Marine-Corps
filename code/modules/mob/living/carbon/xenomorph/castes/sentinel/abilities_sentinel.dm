@@ -11,7 +11,6 @@
 /datum/ammo/xeno/acid/toxic_spit
 	name = "toxic spit"
 	icon_state = "xeno_toxic"
-	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	damage = 16
 	spit_cost = 30
