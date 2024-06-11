@@ -540,7 +540,7 @@
 	damage = 100
 	penetration = 20
 	sundering = 10
-	bullet_color = LIGHT_COLOR_FIRE
+	bullet_color = LIGHT_COLOR_TUNGSTEN
 
 /datum/ammo/rocket/coilgun/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 5, 1)
@@ -554,7 +554,6 @@
 	damage = 50
 	penetration = 10
 	sundering = 5
-	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 /datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
 	explosion(T, 0, 1, 2, 3)
@@ -565,7 +564,6 @@
 	damage = 300
 	penetration = 40
 	sundering = 20
-	bullet_color = LIGHT_COLOR_BLUE
 
 /datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
 	explosion(T, 1, 3, 5, 6, 2)

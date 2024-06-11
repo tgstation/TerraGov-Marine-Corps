@@ -158,7 +158,7 @@
 		animate(chassis, time = 0.3 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_x = x_offset, pixel_y = y_offset)
 		animate(time = animation_duration -  0.3 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_x = -x_offset, pixel_y = -y_offset)
 		if(istype(chassis, /obj/vehicle/sealed/armored/multitile/som_tank)) //byond animations are very smelly, there is no way to have these two anims running together nicely
-			addtimer(CALLBACK(chassis, TYPE_PROC_REF(/obj/vehicle/sealed/armored/multitile/som_tank, animate_hover)), animation_duration SECONDS)
+			addtimer(CALLBACK(chassis, TYPE_PROC_REF(/obj/vehicle/sealed/armored/multitile/som_tank, animate_hover)), animation_duration)
 	return ..()
 
 /obj/item/armored_weapon/coilgun/eject_ammo()
