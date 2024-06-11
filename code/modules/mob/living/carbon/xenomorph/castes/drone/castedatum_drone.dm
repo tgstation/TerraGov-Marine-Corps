@@ -15,7 +15,7 @@
 	melee_damage = 19
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1.1
 	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
@@ -23,7 +23,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 380
 
 	// *** Evolution *** //
 	evolution_threshold = 100

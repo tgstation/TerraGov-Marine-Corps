@@ -24,7 +24,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 750
+	max_health = 725
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
