@@ -16,10 +16,10 @@
 
 /obj/structure/prop/urban/Initialize(mapload) //if you're wondering why we're doing this on init instead of just using bound_height and width ask coderbus
 	. = ..()
-	if(!set_bound_height && !set_bound_width)
-		return
-	bound_height = set_bound_height
-	bound_width = set_bound_width
+	if(set_bound_height)
+		bound_height = set_bound_height
+	if(set_bound_width)
+		bound_height = set_bound_width
 
 /obj/structure/prop/urban/vehicles
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
