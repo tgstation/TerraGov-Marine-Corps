@@ -882,7 +882,7 @@
 /datum/action/ability/activable/xeno/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "shift_spit_neurotoxin"
-	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	action_icon = 'icons/Xeno/actions/spits.dmi'
 	desc = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
