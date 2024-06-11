@@ -339,7 +339,7 @@
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge
 	action_icon_state = "bull_ready_charge"
-	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	action_icon = 'icons/Xeno/actions/bull.dmi'
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.15
 	steps_for_charge = 5
