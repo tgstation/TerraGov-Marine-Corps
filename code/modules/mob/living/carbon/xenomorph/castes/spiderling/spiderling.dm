@@ -131,8 +131,6 @@
 		return
 	if(Adjacent(atom_to_walk_to))
 		return
-	if(isliving(atom_to_walk_to))
-		var/mob/living/victim = atom_to_walk_to
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 
