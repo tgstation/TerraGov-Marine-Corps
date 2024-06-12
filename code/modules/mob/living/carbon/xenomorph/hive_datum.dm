@@ -436,6 +436,9 @@
 
 	HS.living_xeno_queen = src
 
+	if(prevent_ruler_change)
+		return
+
 	HS.update_ruler()
 
 
@@ -444,6 +447,9 @@
 
 	if(HS.living_xeno_ruler)
 		return
+	if(prevent_ruler_change)
+		return
+
 	HS.update_ruler()
 
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE)
@@ -472,6 +478,9 @@
 
 	if(HS.living_xeno_ruler)
 		return
+	if(prevent_ruler_change)
+		return
+
 	HS.update_ruler()
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
