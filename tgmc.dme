@@ -2191,6 +2191,7 @@
 #include "code\modules\vehicles\armored\interiors\breech.dm"
 #include "code\modules\vehicles\armored\interiors\chairs.dm"
 #include "code\modules\vehicles\armored\interiors\periscope.dm"
+#include "code\modules\vehicles\armored\interiors\som_props.dm"
 #include "code\modules\vehicles\cars\car.dm"
 #include "code\modules\vehicles\mecha\_mecha.dm"
 #include "code\modules\vehicles\mecha\mech_bay.dm"

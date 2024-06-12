@@ -23,6 +23,9 @@
 	enterer.forceMove(pick(loaded_turfs))
 	return ..()
 
+/datum/interior/armored/som
+	template = /datum/map_template/interior/som_tank
+
 /turf/closed/interior/tank
 	name = "\improper Banteng tank interior"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
@@ -138,11 +141,28 @@
 	name = "Tank Interior"
 	icon_state = "shuttle"
 
+/area/interior/tank/som
+	name = "Tank Interior"
+	icon_state = "shuttle"
+	base_lighting_alpha = 90
+
 /turf/closed/interior/tank/som
 	name = "\improper Gorgon tank interior"
 	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
 
-/turf/closed/interior/tank/som/sixteen
+/turf/closed/interior/tank/som/thirteen
+	icon_state = "tank_interior_13"
+	plane = FLOOR_PLANE
+
+/turf/closed/interior/tank/som/fourteen
+	icon_state = "tank_interior_14"
+	plane = FLOOR_PLANE
+
+/turf/closed/interior/tank/som/fifteen
+	icon_state = "tank_interior_15"
+	plane = FLOOR_PLANE
+
+/turf/open/interior/tank/som/sixteen
 	icon_state = "tank_interior_16"
 
 /turf/closed/interior/tank/som/seventeen
@@ -200,19 +220,12 @@
 /turf/open/interior/tank/som/twelve
 	icon_state = "tank_interior_12"
 
-/turf/open/interior/tank/som/thirteen
-	icon_state = "tank_interior_13"
-
-/turf/open/interior/tank/som/fourteen
-	icon_state = "tank_interior_14"
-
-/turf/open/interior/tank/som/fifteen
-	icon_state = "tank_interior_15"
-
 /turf/closed/interior/tank/door/som
 	name = "exit hatch"
 	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
 	icon_state = "hatch"
+	pixel_y = -20
+	layer = ABOVE_ALL_MOB_LAYER
 
-/mob/proc/get_worldsize()
-	to_chat(src, "")
+/turf/closed/interior/tank/door/som/get_enter_location()
+	return get_step(src, NORTH)

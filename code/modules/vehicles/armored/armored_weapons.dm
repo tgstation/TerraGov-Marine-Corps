@@ -242,9 +242,9 @@
 	ammo = null
 	if(chassis.interior)
 		if(chassis.primary_weapon == src)
-			chassis.interior.breech.do_eject_ammo(old_ammo)
+			chassis.interior?.breech?.do_eject_ammo(old_ammo)
 		else
-			chassis.interior.secondary_breech.do_eject_ammo(old_ammo)
+			chassis.interior?.secondary_breech?.do_eject_ammo(old_ammo)
 		return
 	old_ammo.forceMove(chassis.exit_location())
 

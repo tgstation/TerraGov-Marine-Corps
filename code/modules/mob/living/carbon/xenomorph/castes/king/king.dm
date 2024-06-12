@@ -11,7 +11,6 @@
 	maxHealth = 500
 	plasma_stored = 300
 	pixel_x = -16
-	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.

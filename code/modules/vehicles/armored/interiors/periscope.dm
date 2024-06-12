@@ -37,18 +37,13 @@
 	name = "apc periscope"
 
 /obj/structure/periscope/som
-	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
+	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
 	icon_state = "periscope"
 
-/obj/structure/prop/som_tank/computer
-	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
-	icon_state = "computer_overhead"
-	density = FALSE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pixel_x = -11
-	pixel_y = -1
+/obj/structure/periscope/som/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
 
-/obj/structure/prop/som_tank/computer/alt
-	icon_state = "computer_overhead_alt"
-	pixel_x = 9
-	pixel_y = 3
+/obj/structure/periscope/som/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive")
