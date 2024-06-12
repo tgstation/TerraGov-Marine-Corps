@@ -10,17 +10,20 @@
 	wound_type = "king" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 33
 
 	// *** Speed *** //
 	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 70
+	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 700
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD

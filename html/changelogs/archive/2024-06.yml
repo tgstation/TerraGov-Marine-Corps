@@ -42,3 +42,89 @@
   - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
   Xander3359:
   - bugfix: smg-25 holster can no longer hold every item
+2024-06-05:
+  Lumipharon:
+  - bugfix: Huggers will no longer bounce if thrown into a mob
+  - bugfix: fixed a phantom attachment bug when swapping attachments in some cases.
+  Xander3359:
+  - bugfix: Merging stacks inside a backpack will no longer break
+  - bugfix: Deleting something inside a storage will no longer break
+2024-06-06:
+  Lumipharon:
+  - rscdel: Removed a pref verb for gas mask equip sounds
+  novaepee:
+  - rscdel: Remove Big Red's two plat miners and 1 normal miner near LZ2
+  - balance: Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners
+2024-06-07:
+  Lumipharon:
+  - bugfix: fixed walking between multitile vehicles causing issues
+  - bugfix: fixed knockback working on somethings it shouldn't
+  - bugfix: fixed a bug with motorbike sidecars
+  - code_imp: Added attachment component support to vehicles
+  - bugfix: Probably fixes some cases where a surgery table could put you to sleep
+      forever
+  Notamaniac:
+  - spellcheck: Pyrogen Fire Charge ability now accurately describes what it does
+      - Extinguish the target and deal extra damage depending on their fire stacks
+  RipGrayson:
+  - bugfix: Fixed being able to red alert from inside of Valhalla
+  Runian:
+  - bugfix: Mortar's chambered items now drop onto the floor (instead of deleting
+      itself) when undeployment attempt is made.
+  - bugfix: Deconstructing an upgraded metal barricade now returns the actual cost
+      of 5 sheets instead of 4.
+  jonash07:
+  - balance: changed bookcase integrity from 500 to 200
+  yyzsong:
+  - balance: ALL Orbital Bombardment types cost 6 solid fuel
+2024-06-08:
+  Lumipharon:
+  - balance: Explosions now effect tanks for every tile of tank impacted, but the
+      damage per tile has been reduced to compensate
+  Notamaniac:
+  - imageadd: Adds some shading to the Pyrogen's dead sprite
+  Wisemonster:
+  - balance: Increased surt's fire resistance per module piece from 35 to 45
+2024-06-09:
+  SandPoot:
+  - qol: The larva queue button shows your position when active.
+  Wisemonster:
+  - balance: Reduced the ability delay on pyrogens fireball and fire tornado to 0.6
+      seconds, down from 1 second.
+  - balance: Increased the fire charge range by 2 tiles (from 3 tiles to 5 tiles)
+  - balance: Changed pyros damage from acid to fire
+2024-06-10:
+  Helg2:
+  - bugfix: fixed a few sprites not working with the heavy mounted laser.
+  Kuro020:
+  - balance: TX11 Sunder reduced
+2024-06-11:
+  2whatever2:
+  - balance: Runner evasion can now be canceled at 0.3 seconds, instead of 1 second.
+      (1 --> 0.3)
+  Lumipharon:
+  - bugfix: Fixed ammohuds bugging out if you enter a vehicle when a gun has no ammo
+      in it
+  - bugfix: APC can load normal crates as intended
+  - bugfix: fixed hitscan projectiles not correctly setting their direction
+  - bugfix: fixed huggers bouncing off mobs (again)
+  Wisemonster:
+  - balance: Reduced the slowdown of the amr from 3 to 2.25
+  - bugfix: Behemoth's earth pillars should do damage to vehicles now if they are
+      tossed at them
+  - bugfix: Behemoth's AoE attacks will now damage all parts of the tank (previously
+      only damaged it's center)
+  - balance: Adjusted Behemoth's ability damage to compensate for attacks like meteor
+      doing damage per vehicle tile hit
+  Xander3359:
+  - bugfix: Recharger cells now update ammo count when it recharges
+  - bugfix: Recharger cells no longer break once they hit 0 ammo
+  - code_imp: delete cell.dm, merges the code into power_cells.dm
+2024-06-12:
+  blackdav123:
+  - balance: CAS now gets more points on low orbit instead of high.
+  - balance: Xenos can now see research digsites on the map.
+  chizzy376:
+  - qol: 'made Riptide breakable jungle walls zoned properly. Unga terms: You can
+      now talk in OB''d spots on Riptide.'
+  - bugfix: fixes a object fling trap in Slumbridge engineering

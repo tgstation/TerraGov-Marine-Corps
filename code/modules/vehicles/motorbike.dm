@@ -14,6 +14,10 @@
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
+	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
+	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
+
 	///Mutable appearance overlay that covers up the mob with the bike as needed
 	var/mutable_appearance/motorbike_cover
 	///Fuel count, fuel usage is one per tile moved
@@ -27,7 +31,6 @@
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
-	create_storage(/datum/storage/internal/motorbike_pack)
 	motorbike_cover = mutable_appearance(icon, "motorbike_cover", MOB_LAYER + 0.1)
 	fuel_count = fuel_max
 
@@ -172,6 +175,12 @@
 /obj/vehicle/ridden/motorbike/Destroy()
 	STOP_PROCESSING(SSobj,src)
 	return ..()
+
+//internal storage
+/obj/item/vehicle_module/storage/motorbike
+	name = "internal storage"
+	desc = "A set of handy compartments to store things in."
+	storage_type = /datum/storage/internal/motorbike_pack
 
 /**
  * Sidecar that when attached lets you put two people on the bike

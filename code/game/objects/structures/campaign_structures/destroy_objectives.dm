@@ -24,7 +24,7 @@
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
@@ -32,7 +32,7 @@
 /obj/structure/campaign_objective/destruction_objective/howitzer
 	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
 	faction = FACTION_SOM
@@ -148,7 +148,7 @@
 //Supply depot objectives
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 
 //Train

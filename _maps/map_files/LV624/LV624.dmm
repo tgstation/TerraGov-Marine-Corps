@@ -8874,7 +8874,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "iud" = (
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "iuM" = (
