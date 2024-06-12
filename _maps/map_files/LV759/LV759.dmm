@@ -66996,10 +66996,6 @@
 	dir = 4
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
-"kRM" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating,
-/area/lv759/indoors/colonial_marshals/south_maintenance)
 "kRS" = (
 /obj/structure/platform{
 	layer = 3.1
@@ -73281,7 +73277,7 @@
 /area/lv759/indoors/spaceport/security_office)
 "lRH" = (
 /obj/structure/foamedmetal,
-/turf/closed/wall/urban/colony/ribbed,
+/turf/open/floor/plating,
 /area/lv759/indoors/nt_security/checkpoint_east)
 "lRK" = (
 /obj/structure/platform{
@@ -104347,7 +104343,7 @@
 /area/lv759/indoors/caves/north_east_caves)
 "qTj" = (
 /obj/structure/foamedmetal,
-/turf/closed/wall/urban/colony,
+/turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north_maint)
 "qTm" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall/computer{
@@ -109588,6 +109584,10 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/mainship,
 /area/lv759/indoors/nt_research_complex/securityarmory)
+"rMx" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/lv759/indoors/colonial_marshals/south_maintenance)
 "rMA" = (
 /obj/effect/turf_decal/medical_decals/triage/bottom,
 /turf/open/urban/street/cement1,
@@ -176588,7 +176588,7 @@ wBg
 bpu
 kUB
 mbn
-kRM
+rMx
 lZI
 nsx
 eMp
@@ -177202,7 +177202,7 @@ duF
 eFD
 dpJ
 qgb
-kRM
+rMx
 qqT
 aWQ
 aWQ
@@ -177810,8 +177810,8 @@ gkS
 qfP
 lUI
 dpJ
-kRM
-kRM
+rMx
+rMx
 qqT
 qqT
 qqT

@@ -31,6 +31,45 @@
 	explode()
 	. = ..()
 
+/obj/structure/prop/densitychecker
+	name = "NOT VALID"
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "placeholderprop"
+	layer = ABOVE_ALL_MOB_LAYER
+	///ignore platforms when density checking
+	var/ignore_platforms = FALSE
+	///ignore handrails when density checking
+	var/ignore_handrails = FALSE
+	///we want a pixel offset to set false when density checking
+	var/demand_offset = FALSE
+
+/obj/structure/prop/densitychecker/Initialize(mapload)
+	. = ..()
+	var/turf/targetturf = get_turf(src)
+	if(isclosedturf(targetturf))
+		qdel(src)
+	for(var/atom/movable/object AS in targetturf.contents)
+		if(ignore_handrails && istype(object, /obj/structure/barricade/handrail))
+			continue
+		if(ignore_platforms && istype(object, /obj/structure/platform))
+			continue
+		if(object.density && !demand_offset)
+			name = object.name
+			icon_state = "blocker"
+			return
+		else if(object.density)
+			var/pixelx = object.pixel_x
+			var/pixely = object.pixel_y
+			if(pixelx <= -1)
+				pixelx = pixelx * -1 //we want only absolute values for comparison purposes
+			if(pixely <= -1)
+				pixely = pixely * -1
+			if(pixelx >= 16 || pixely >= 16) //16 pixels is roughly halfway out of a tile, enough to cause trouble if dense
+				name = object.name
+				icon_state = "blocker"
+				return
+	icon_state = "blocker_off"
+
 /obj/structure/prop/urban/vehicles/Initialize(mapload)
 	. = ..()
 	if(dir == NORTH)
