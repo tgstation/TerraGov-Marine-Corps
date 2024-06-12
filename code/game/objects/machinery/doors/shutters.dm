@@ -260,7 +260,7 @@
 /obj/machinery/door/poddoor/shutters/urban
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
 	icon_state = "almayer_pdoor"
-	desc = "It's a [src]. You can <B>open</b> the [src] with a <B>crowbar</b>, or with <B>claws</b>"
+	desc = "It's a shutter. You can <B>open</b> it with a <B>crowbar</b>, or with <B>claws</b>"
 	openspeed = 4
 	///how long it takes xenos to open a shutter by hand
 	var/lift_time = 10 SECONDS
