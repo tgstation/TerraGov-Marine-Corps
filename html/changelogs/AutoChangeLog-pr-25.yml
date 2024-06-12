@@ -1,4 +1,0 @@
-author: "SomrNetwork"
-delete-after: True
-changes:
-  - bugfix: "PMC spawning in NTC mainship"
