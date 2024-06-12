@@ -103,7 +103,7 @@
 	desc = "A rail-mounted scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 
-/obj/item/attachable/scope/optical
+/obj/item/attachable/scope/mini/optical
 	name = "T-49 Optical imaging scope"
 	icon_state = "imager"
 	desc = "A rail-mounted scope designed for the AR-55 and GL-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment."
@@ -114,7 +114,7 @@
 	zoom_viewsize = 2
 	add_aim_mode = TRUE
 
-/obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
+/obj/item/attachable/scope/mini/optical/update_remote_sight(mob/living/user)
 	. = ..()
 	user.see_in_dark = 2
 	return TRUE
