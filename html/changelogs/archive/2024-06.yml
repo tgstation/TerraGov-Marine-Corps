@@ -120,3 +120,11 @@
   - bugfix: Recharger cells now update ammo count when it recharges
   - bugfix: Recharger cells no longer break once they hit 0 ammo
   - code_imp: delete cell.dm, merges the code into power_cells.dm
+2024-06-12:
+  blackdav123:
+  - balance: CAS now gets more points on low orbit instead of high.
+  - balance: Xenos can now see research digsites on the map.
+  chizzy376:
+  - qol: 'made Riptide breakable jungle walls zoned properly. Unga terms: You can
+      now talk in OB''d spots on Riptide.'
+  - bugfix: fixes a object fling trap in Slumbridge engineering
