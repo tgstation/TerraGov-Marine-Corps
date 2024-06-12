@@ -32,6 +32,8 @@
 	///Faction of that squad
 	var/faction = FACTION_TERRAGOV
 
+	//Should this squad be initialised at roundstart?
+	var/starting_squad = TRUE
 
 /datum/squad/alpha
 	name = "Alpha"
@@ -47,6 +49,7 @@
 	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_BRAVO
+	starting_squad = FALSE
 
 
 /datum/squad/charlie
@@ -55,6 +58,7 @@
 	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_CHARLIE
+	starting_squad = FALSE
 
 /datum/squad/delta
 	name = "Delta"
@@ -62,6 +66,7 @@
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
+	starting_squad = FALSE
 
 //SOM squads
 /datum/squad/zulu

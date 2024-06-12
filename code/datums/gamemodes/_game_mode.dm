@@ -9,7 +9,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/votable = TRUE
 	var/required_players = 0
 	var/maximum_players = INFINITY
-	var/squads_max_number = 4
+	//Max number of starting squads on a shipmap
+	var/squads_max_number = 1
 
 	var/round_finished
 	var/list/round_end_states = list()
@@ -671,8 +672,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		if(squad.faction == FACTION_TERRAGOV)
 			preferred_squads[squad.name] = 0
 	if(!length(preferred_squads))
-		to_chat(world, span_boldnotice("Error, no squads found."))
-		return FALSE
+		preferred_squads["Alpha"] = 1 //Default to Alpha if there is no special preference
 	for(var/mob/new_player/player AS in GLOB.new_player_list)
 		if(!player.ready || !player.client?.prefs?.preferred_squad)
 			continue
