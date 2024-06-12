@@ -291,11 +291,17 @@
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
 
+	var/area/thisarea = get_area(W)
 	//static Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 
-		W.static_lighting_object = old_lighting_object
+		if(thisarea.static_lighting)
+			W.static_lighting_object = old_lighting_object || new /datum/static_lighting_object(src)
+		else
+			W.static_lighting_object = null
+			if(old_lighting_object)
+				qdel(old_lighting_object)
 
 		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
@@ -308,7 +314,6 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	var/area/thisarea = get_area(W)
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
