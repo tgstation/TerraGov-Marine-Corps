@@ -23,6 +23,9 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
 	var/initial_players_assigned = 0 	//Used for checking against population caps.
 
+	///
+	var/pop_count = 0
+
 	var/datum/job/overflow_role = /datum/job/terragov/squad/standard
 
 
@@ -106,6 +109,19 @@ SUBSYSTEM_DEF(job)
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
+		pop_count += SMARTIE_POINTS_REGULAR
+		if(pop_count >= 8) //About 8 marines per item
+			var/list/weapon_vendor_list = GLOB.vending_records[/obj/machinery/vending/weapon]
+			var/list/items_to_scale = list(/obj/item/attachable/scope/mini,
+			/obj/item/weapon/gun/rifle/chambered,
+			/obj/item/weapon/gun/shotgun/pump/bolt)
+			for(var/weapon_type in items_to_scale)
+				for(var/datum/vending_product/product AS in weapon_vendor_list)
+					if(product.product_path != weapon_type)
+						continue
+					product.amount += 1
+					pop_count -= 8
+					break
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
