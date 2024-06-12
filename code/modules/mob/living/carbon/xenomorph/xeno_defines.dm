@@ -327,8 +327,6 @@
 	var/regen_power = 0
 
 	var/zoom_turf = null
-	/// Prevents setting us from being set to ruler; only used to prevent setting ruler immediately.
-	var/prevent_ruler_change = TRUE
 
 	///Type of weeds the xeno is standing on, null when not on weeds
 	var/obj/alien/weeds/loc_weeds_type
