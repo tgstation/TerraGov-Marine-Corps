@@ -52,7 +52,16 @@
 	. = ..()
 	change_transfer_amount(user)
 
+/obj/item/reagent_containers/attack_self(mob/living/user)
+	. = ..()
+	afterattack(user, user) //If player uses the hypospray, try to inject themselves
+
+
 /obj/item/reagent_containers/attack_self_alternate(mob/living/user)
+	. = ..()
+	change_transfer_amount(user)
+
+/obj/item/reagent_containers/unique_action(mob/user, special_treatment)
 	. = ..()
 	change_transfer_amount(user)
 
