@@ -3319,7 +3319,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aES" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -11544,7 +11543,6 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/landing_zone_2)
 "bYF" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -12950,7 +12948,6 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/landing_zone_1)
 "clr" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -15724,7 +15721,6 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/caves/north_west_caves)
 "cJt" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -44839,7 +44835,6 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "hGM" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 1
@@ -47888,7 +47883,6 @@
 /turf/open/floor/urban/tile/lightbeige_bigtile,
 /area/lv759/indoors/hospital/paramedics_garage)
 "ihV" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -50791,7 +50785,6 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "iIF" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -52298,7 +52291,6 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/westrestroom)
 "iVE" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -81298,7 +81290,6 @@
 	},
 /area/lv759/indoors/caves/north_east_caves)
 "nQI" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -86484,7 +86475,6 @@
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant)
 "oMK" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/machinery/light/small,
 /obj/structure/stairs{
 	color = "#a6aeab";
@@ -104128,7 +104118,6 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "rOp" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -114578,7 +114567,6 @@
 /turf/closed/mineral/smooth/black_stone/indestructible,
 /area/lv759/oob)
 "tBB" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -117654,7 +117642,6 @@
 	color = "#a6aeab";
 	dir = 8
 	},
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -121283,7 +121270,6 @@
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_managersoffice)
 "uGp" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
@@ -134656,7 +134642,6 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "wQY" = (
-/obj/structure/platform/urban/metalplatformstair2,
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
 	dir = 4
