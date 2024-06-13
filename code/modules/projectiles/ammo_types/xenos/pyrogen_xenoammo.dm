@@ -27,3 +27,5 @@
 		new /obj/fire/melting_fire(affecting)
 		for(var/mob/living/carbon/fired in affecting)
 			fired.take_overall_damage(PYROGEN_FIREBALL_AOE_DAMAGE, BURN, ACID, FALSE, FALSE, TRUE, 0, , max_limbs = 2)
+		for(var/obj/hitbox/fired in affecting)
+			fired.take_damage(PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE, BURN, FIRE)
