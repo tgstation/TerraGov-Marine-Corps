@@ -24,6 +24,8 @@
 #define PASS_WALKOVER (1<<10)
 ///when jumping, mobs can pass onto tanks
 #define PASS_TANK (1<<11)
+///Can pass through small xenos, namely caste minions
+#define PASS_SMALL_XENO (1<<12)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)

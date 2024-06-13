@@ -9,6 +9,8 @@
 		return FALSE
 	if(!mover.density)
 		return TRUE
+	if((allow_pass_flags & PASS_SMALL_XENO) && (mover.pass_flags & PASS_SMALL_XENO))
+		return TRUE
 
 /client/verb/swap_hand()
 	set hidden = 1

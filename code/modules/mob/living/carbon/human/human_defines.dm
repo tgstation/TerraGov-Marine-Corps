@@ -11,6 +11,7 @@
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
 	resistance_flags = XENO_DAMAGEABLE|PORTAL_IMMUNE
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	pass_flags = PASS_SMALL_XENO
 
 	hud_type = /datum/hud/human
 
