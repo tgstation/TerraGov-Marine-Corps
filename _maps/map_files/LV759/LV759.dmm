@@ -16790,6 +16790,19 @@
 	},
 /turf/open/floor/urban/tile/tilebeigecheckered,
 /area/lv759/indoors/recycling_plant_office)
+"cTe" = (
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8;
+	layer = 4
+	},
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/indoors/derelict_ship)
 "cTf" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -4;
@@ -19200,6 +19213,18 @@
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"dnf" = (
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8;
+	layer = 4
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/indoors/derelict_ship)
 "dng" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
@@ -45490,6 +45515,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/lv759/outdoors/landing_zone_2)
+"hMI" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/indoors/derelict_ship)
 "hMJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -46006,6 +46039,9 @@
 	dir = 1
 	},
 /obj/item/device/flashlight/lamp/tripod/grey,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -53029,6 +53065,9 @@
 	dir = 1
 	},
 /obj/structure/largecrate/random/case/double,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -66246,6 +66285,9 @@
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 8;
 	layer = 4
+	},
+/obj/structure/platform{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -114690,6 +114732,9 @@
 	dir = 1
 	},
 /obj/structure/largecrate/random/secure,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -135372,6 +135417,9 @@
 	dir = 1
 	},
 /obj/structure/largecrate/random/case/small,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -140605,6 +140653,17 @@
 	dir = 1
 	},
 /area/lv759/indoors/hospital/reception)
+"xRf" = (
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk{
+	color = "#dfcfc0"
+	},
+/area/lv759/indoors/derelict_ship)
 "xRs" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines1,
@@ -159217,7 +159276,7 @@ oCi
 dOL
 rni
 vEb
-tmC
+xRf
 qLZ
 rni
 aQh
@@ -159420,7 +159479,7 @@ oCi
 dOL
 dOL
 crH
-tmC
+xRf
 qLZ
 hlw
 aQh
@@ -159825,7 +159884,7 @@ oCi
 oCi
 dOL
 dOL
-tmC
+xRf
 mYH
 jhG
 rni
@@ -160431,7 +160490,7 @@ iBA
 iMY
 gYW
 xsV
-jnF
+dnf
 aog
 dkk
 vvr
@@ -160832,10 +160891,10 @@ aWQ
 aWQ
 aWQ
 hQY
-ptt
-jnF
-jnF
-jiU
+hMI
+dnf
+dnf
+cTe
 ptt
 vSj
 fPM
