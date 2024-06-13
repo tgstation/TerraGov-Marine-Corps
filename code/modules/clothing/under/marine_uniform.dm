@@ -658,7 +658,7 @@
 
 /obj/item/clothing/under/marine/specops
 	name = "Tactical turtleneck"
-	desc = "A TGMC turtleneck issued to special operation units"
+	desc = "A turtleneck issued to special operation units"
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "specops_uniform"
 	worn_icon_list = list(
@@ -687,7 +687,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/secondary
-	name = "V.S.D jumpsuit"
+	name = "V.S.D 'mixed' jumpsuit"
 	icon_state = "vsd_uniform_secondary"
 	worn_icon_state = "vsd_uniform_secondary"
 
@@ -695,7 +695,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/upp
-	name = "V.S.D jumpsuit"
+	name = "V.S.D 'USL' jumpsuit"
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
@@ -711,7 +711,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/sleeveless
-	name = "V.S.D shirt"
+	name = "V.S.D sleeveless shirt"
 	icon_state = "vsd_shirt_sleeveless"
 	worn_icon_state = "vsd_shirt_sleeveless"
 

@@ -732,6 +732,32 @@
 /obj/structure/prop/mainship/som_scientist/alt
 	icon_state = "SOM_scientist_2"
 
+/obj/structure/prop/mainship/prop_so/vsd
+	name = "Vyacheslav officer"
+	desc = "He doesn't want to talk."
+	icon_state = "vsd_officer"
+
+/obj/structure/prop/mainship/prop_so/vsd/usl
+	name = "Vyacheslav officer"
+	desc = "He experiments with moths."
+	icon_state = "vsd_officer_usl"
+
+/obj/structure/prop/mainship/juggernaut
+	name = "Vyacheslav lieutenant"
+	desc = "He stares at you. Not a word comes from his mouth. Is he even breathing?"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "vsd_juggernaut"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/juggernaut_two
+	name = "Vyacheslav lieutenant"
+	desc = "The red visor glares at you soullessly."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "vsd_juggernaut_two"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
