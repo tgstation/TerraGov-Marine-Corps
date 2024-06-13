@@ -201,11 +201,12 @@
 	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
+	ammo.current_rounds--
+
 	if(chassis.primary_weapon == src)
 		flick(chassis.turret_overlay.primary_overlay.icon_state + "_fire", chassis.turret_overlay.primary_overlay)
 		chassis.interior?.breech.on_main_fire(ammo)
 
-	ammo.current_rounds--
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 	if(ammo.current_rounds > 0)

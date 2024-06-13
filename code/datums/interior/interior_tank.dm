@@ -230,7 +230,7 @@
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
 
-/turf/closed/interior/tank/door/som/update_overlays
+/turf/closed/interior/tank/door/som/update_overlays()
 	. = ..()
 	. += image(icon, "hatch_decal", layer = BELOW_OBJ_LAYER, pixel_y = 26)
 
