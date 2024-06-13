@@ -40,7 +40,7 @@
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, SFX_SHATTER, 50, 1)
 	return ..()
 
 

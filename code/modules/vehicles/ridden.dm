@@ -4,7 +4,19 @@
 	max_buckled_mobs = 1
 	buckle_lying = -1
 	allow_pass_flags = PASS_LOW_STRUCTURE
+	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
+	var/list/attachments_by_slot = list()
+	///Typepath list of allowed attachment types.
+	var/list/attachments_allowed = list()
+	///Pixel offsets for specific attachment slots. Is not used currently.
+	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
+	var/list/starting_attachments = list()
 	COOLDOWN_DECLARE(message_cooldown)
+
+/obj/vehicle/ridden/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()

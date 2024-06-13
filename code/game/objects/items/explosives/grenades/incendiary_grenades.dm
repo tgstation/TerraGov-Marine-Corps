@@ -9,7 +9,7 @@
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, "incendiary_explosion", 35)
+	playsound(loc, SFX_INCENDIARY_EXPLOSION, 35)
 	qdel(src)
 
 
@@ -41,7 +41,7 @@
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, "molotov", 35)
+	playsound(loc, SFX_MOLOTOV, 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)

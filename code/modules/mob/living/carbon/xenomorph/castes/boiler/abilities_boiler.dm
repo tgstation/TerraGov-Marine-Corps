@@ -130,14 +130,26 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/xeno_action/create_boiler_bomb
 	name = "Create bomb"
-	action_icon_state = "toggle_bomb0" //to be changed
-	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
+	action_icon_state = "create_bomb"
 	desc = "Creates a Boiler Bombard of the type currently selected."
 	ability_cost = 200
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
+/datum/action/ability/xeno_action/create_boiler_bomb/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	var/mutable_appearance/neuroglob_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER] = neuroglob_maptext
+	neuroglob_maptext.pixel_x = 25
+	neuroglob_maptext.pixel_y = -4
+	neuroglob_maptext.maptext = MAPTEXT("<font color=yellow>[X.neuro_ammo]")
+	var/mutable_appearance/corrosiveglob_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER] = corrosiveglob_maptext
+	corrosiveglob_maptext.pixel_x = 25
+	corrosiveglob_maptext.pixel_y = 8
+	corrosiveglob_maptext.maptext = MAPTEXT("<font color=green>[X.corrosive_ammo]")
 
 /datum/action/ability/xeno_action/create_boiler_bomb/New(Target)
 	. = ..()
@@ -147,27 +159,34 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
 	if(X.xeno_flags & XENO_ZOOMED)
-		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
+		X.balloon_alert(X,"Can't while zoomed in!")
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo >= X.xeno_caste.max_ammo)
-		to_chat(X, span_notice("We can carry no more globules."))
+		X.balloon_alert(X,"Globule storage full!")
 		return
 
 	succeed_activate()
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		X.corrosive_ammo++
-		to_chat(X, span_notice("We prepare a corrosive acid globule."))
+		X.balloon_alert(X,"Acid globule prepared")
 	else
 		X.neuro_ammo++
-		to_chat(X, span_notice("We prepare a neurotoxic gas globule."))
+		X.balloon_alert(X,"Neuro globule prepared")
 	X.update_boiler_glow()
 	update_button_icon()
 
 /datum/action/ability/xeno_action/create_boiler_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	action_icon_state = "bomb_count_[X.corrosive_ammo][X.neuro_ammo]"
+	button.cut_overlay(visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER])
+	var/mutable_appearance/corrosiveglobnumber = visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER]
+	corrosiveglobnumber.maptext = MAPTEXT("<font color=green>[X.corrosive_ammo]")
+	button.add_overlay(visual_references[VREF_MUTABLE_CORROSIVEGLOB_COUNTER])
+	button.cut_overlay(visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER])
+	var/mutable_appearance/neuroglobnumber = visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER]
+	neuroglobnumber.maptext = MAPTEXT("<font color=yellow>[X.neuro_ammo]")
+	button.add_overlay(visual_references[VREF_MUTABLE_NEUROGLOB_COUNTER])
 	return ..()
 
 // ***************************************

@@ -1,5 +1,5 @@
 /obj/structure/xeno
-	hit_sound = "alien_resin_break"
+	hit_sound = SFX_ALIEN_RESIN_BREAK
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 	///Bitflags specific to xeno structures
@@ -56,5 +56,5 @@
 		return
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	balloon_alert_to_viewers("\The [xeno_attacker] tears down \the [src]!", "We tear down \the [src].")
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity) // Ensure its destroyed

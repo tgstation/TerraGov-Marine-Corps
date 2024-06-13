@@ -124,7 +124,7 @@
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
 	attachable_allowed = list()
@@ -810,7 +810,7 @@
 	icon_state = "v51"
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_state = "v51"
-	fire_sound = "shotgun_som"
+	fire_sound = SFX_SHOTGUN_SOM
 	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
@@ -875,8 +875,8 @@
 /obj/item/weapon/gun/shotgun/micro_grenade
 	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
 	max_chamber_items = 2
 	gun_features_flags = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
@@ -890,3 +890,53 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+
+// KSG
+
+/obj/item/weapon/gun/shotgun/pump/ksg
+	name = "\improper L12 pump-action shotgun"
+	desc = "A fourteen-round pump action shotgun. A sight to behold. Fires 12 gauge shotgun rounds, it's fourteen-round capacity makes it smooth when clearing rooms. A label on the side says: 'ONLY FOR CQC!!'."
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "l12"
+	worn_icon_state = "l12"
+	cock_animation = "l12_pump"
+	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/verticalgrip,
+	)
+	item_map_variant_flags = NONE
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 22, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+
+	fire_delay = 2 SECONDS
+	max_chamber_items = 14
+	damage_mult = 0.85
+	accuracy_mult_unwielded = 1
+
+	scatter = 6
+	min_scatter = 4
+	scatter_increase = 8
+	scatter_decay = 3
+	scatter_decay_unwielded = 1
+
+	scatter_unwielded = 10
+	recoil = 0
+	recoil_unwielded = 0
+	cock_delay = 1.2 SECONDS
+	aim_slowdown = 0.55
+
+/obj/item/weapon/gun/shotgun/pump/ksg/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)
+
+/obj/item/weapon/gun/shotgun/pump/ksg/support
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flashlight/under, /obj/item/attachable/compensator,)

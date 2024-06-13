@@ -321,6 +321,15 @@
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
+//VSD chemical
+
+/obj/effect/particle_effect/smoke/vyacheslav
+	color = "#92a94d"
+	lifetime = 6
+	expansion_speed = 3
+	strength = 2
+	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
+
 /obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
@@ -431,6 +440,9 @@
 
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
+
+/datum/effect_system/smoke_spread/vyacheslav
+	smoke_type = /obj/effect/particle_effect/smoke/vyacheslav
 
 /datum/effect_system/smoke_spread/antigas
 	smoke_type = /obj/effect/particle_effect/smoke/antigas

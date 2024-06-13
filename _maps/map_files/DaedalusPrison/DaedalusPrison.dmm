@@ -22374,7 +22374,7 @@
 /turf/open/floor/freezer,
 /area/daedalusprison/inside/colonydorms)
 "sol" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/daedalusprison/inside/cargo)
 "sou" = (
@@ -22994,7 +22994,7 @@
 /area/daedalusprison/outside/southeast)
 "sJl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -2;
 	pixel_y = 4
 	},

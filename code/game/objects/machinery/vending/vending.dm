@@ -607,7 +607,7 @@
 /obj/machinery/vending/proc/release_item(datum/vending_product/product, mob/user)
 	SSblackbox.record_feedback("tally", "vendored", 1, product.product_name)
 	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
-	playsound(src, vending_sound ? vending_sound : "vending", 25, 0)
+	playsound(src, vending_sound ? vending_sound : SFX_VENDING, 25, 0)
 	var/obj/item/new_item
 	if(ispath(product.product_path,/obj/item/weapon/gun))
 		new_item = new product.product_path(get_turf(src), 1)

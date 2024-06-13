@@ -15,7 +15,7 @@
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/particle_effect/water/Move(turf/newloc)
+/obj/effect/particle_effect/water/Move(atom/newloc, direction, glide_size_override)
 	if (--life < 1)
 		qdel(src)
 	if(newloc.density)

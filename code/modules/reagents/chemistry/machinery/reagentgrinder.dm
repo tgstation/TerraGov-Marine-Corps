@@ -27,7 +27,7 @@
 		/obj/item/alien_embryo = list(/datum/reagent/consumable/larvajelly = 5),
 
 		//Blender Stuff
-		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
+		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/soymilk = 0),
 		/obj/item/reagent_containers/food/snacks/grown/tomato = list(/datum/reagent/consumable/ketchup = 0),
 		/obj/item/reagent_containers/food/snacks/grown/corn = list(/datum/reagent/consumable/cornoil = 0),
 		///obj/item/reagent_containers/food/snacks/grown/wheat = list("flour" = -5),
@@ -44,17 +44,17 @@
 	var/list/juice_items = list (
 
 		//Juicer Stuff
-		/obj/item/reagent_containers/food/snacks/grown/tomato = list(/datum/reagent/consumable/drink/tomatojuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/carrot = list(/datum/reagent/consumable/drink/carrotjuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/berries = list(/datum/reagent/consumable/drink/berryjuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/banana = list(/datum/reagent/consumable/drink/banana = 0),
+		/obj/item/reagent_containers/food/snacks/grown/tomato = list(/datum/reagent/consumable/tomatojuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/carrot = list(/datum/reagent/consumable/carrotjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/berries = list(/datum/reagent/consumable/berryjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/banana = list(/datum/reagent/consumable/banana = 0),
 		/obj/item/reagent_containers/food/snacks/grown/potato = list(/datum/reagent/consumable/nutriment = 0),
-		/obj/item/reagent_containers/food/snacks/grown/lemon = list(/datum/reagent/consumable/drink/lemonjuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/orange = list(/datum/reagent/consumable/drink/orangejuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/lime = list(/datum/reagent/consumable/drink/limejuice = 0),
-		/obj/item/reagent_containers/food/snacks/watermelonslice = list(/datum/reagent/consumable/drink/watermelonjuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/grapes = list(/datum/reagent/consumable/drink/grapejuice = 0),
-		/obj/item/reagent_containers/food/snacks/grown/poisonberries = list(/datum/reagent/consumable/drink/poisonberryjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/lemon = list(/datum/reagent/consumable/lemonjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/orange = list(/datum/reagent/consumable/orangejuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/lime = list(/datum/reagent/consumable/limejuice = 0),
+		/obj/item/reagent_containers/food/snacks/watermelonslice = list(/datum/reagent/consumable/watermelonjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/grapes = list(/datum/reagent/consumable/grapejuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/poisonberries = list(/datum/reagent/consumable/poisonberryjuice = 0),
 	)
 
 

@@ -36,7 +36,7 @@
 	///The currently loaded and ready to fire projectile
 	var/obj/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
-	var/gunnoise = "gun_smartgun"
+	var/gunnoise = SFX_GUN_SMARTGUN
 	/// Serial number of the vehicle
 	var/static/serial = 1
 	/// If the vehicle should spawn with a weapon allready installed

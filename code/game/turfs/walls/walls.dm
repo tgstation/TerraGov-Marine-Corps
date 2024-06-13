@@ -500,7 +500,7 @@
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	var/state = user.grab_state
 	switch(state)
 		if(GRAB_PASSIVE)
@@ -522,5 +522,5 @@
 			user.drop_held_item()
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, SFX_SLAM, 40)
 	return TRUE

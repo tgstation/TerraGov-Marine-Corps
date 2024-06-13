@@ -123,8 +123,8 @@
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
 	icon_state = "boiler_gas"
-	sound_hit 	 = "acid_hit"
-	sound_bounce = "acid_bounce"
+	sound_hit = SFX_ACID_HIT
+	sound_bounce = SFX_ACID_BOUNCE
 	icon_key = BOILER_GLOB_ACID
 	select_text = "We will now fire corrosive acid. This is lethal!"
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF

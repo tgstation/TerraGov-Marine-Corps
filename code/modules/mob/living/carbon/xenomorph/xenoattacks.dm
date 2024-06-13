@@ -131,5 +131,5 @@
 			log_combat(xeno_attacker, src, "slashed")
 
 			xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
-			playsound(loc, "alien_claw_flesh", 25, 1)
+			playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
 			apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)

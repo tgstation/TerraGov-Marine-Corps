@@ -11583,7 +11583,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "kuf" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -14434,7 +14434,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "rlw" = (
-/obj/mecha_wreckage/seraph,
+/obj/structure/mecha_wreckage/seraph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "rlA" = (
@@ -16084,10 +16084,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"uWF" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "uXp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -29757,7 +29753,7 @@ qqG
 qqG
 qqG
 qqG
-uWF
+qqG
 qqG
 dSm
 aaa

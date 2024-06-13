@@ -39,6 +39,7 @@
 	layer = ABOVE_FLY_LAYER
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/flora/tree/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
@@ -126,6 +127,7 @@
 	name = "xmas tree"
 	icon_state = "pine_c"
 	icon_variants = NONE
+	resistance_flags = null
 
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
@@ -246,6 +248,13 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
+/obj/structure/flora/grass/tallgrass/autosmooth/desert
+	color = "#ffbd72"
+
+/obj/structure/flora/grass/tallgrass/autosmooth/desert/Initialize(mapload)
+	. = ..()
+	layer = BUSH_LAYER //do this here instead of on type so it doesn't layer over things in map editor
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
@@ -363,6 +372,10 @@
 /obj/structure/flora/ausbushes/grassybush
 	icon_state = "grassybush"
 
+/obj/structure/flora/ausbushes/yellowbush
+	icon_state = "yellowbush"
+	icon_variants = 5
+
 /obj/structure/flora/ausbushes/fernybush
 	icon_state = "fernybush"
 	icon_variants = 3
@@ -390,6 +403,7 @@
 
 /obj/structure/flora/ausbushes/ppflowers
 	icon_state = "ppflowers"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass"
@@ -550,7 +564,7 @@
 	icon_state = "tall_cactus"
 	icon_variants = 3
 	density = TRUE
-
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/flora/drought/short_cactus
 	name = "cactus"
 	desc = "Some short, spikey looking cactus."

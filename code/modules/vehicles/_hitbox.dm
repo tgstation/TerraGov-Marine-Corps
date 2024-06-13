@@ -67,6 +67,7 @@
 			new_pos = get_step(root, turn(get_dir(desant, root), -90))
 		else
 			new_pos = get_step(root, turn(get_dir(desant, root), 90))
+		desant.set_glide_size(32)
 		desant.forceMove(new_pos)
 
 ///signal handler when someone jumping lands on us
@@ -84,12 +85,18 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(AM, TRAIT_TANK_DESANT))
 		return
-	if(locate(src) in AM.loc) //Î'd cut the locate but for some reason it wdoesnt work lol
+	if(AM.loc in locs)
 		return
-	REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	AM.layer = LAZYACCESS(tank_desants, AM)
 	LAZYREMOVE(tank_desants, AM)
 	UnregisterSignal(AM, COMSIG_QDELETING)
+	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
+	if(!new_hitbox)
+		REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+		return
+	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
+	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
+	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
@@ -109,6 +116,7 @@
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	for(var/mob/living/tank_desant AS in tank_desants)
+		tank_desant.set_glide_size(root.glide_size)
 		tank_desant.forceMove(get_step(tank_desant, direction))
 		if(isxeno(tank_desant) || move_dist > 1)
 			continue
@@ -147,10 +155,12 @@
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
-			if(O.CanPass(root))	// Then check for obstacles to crush
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
 				continue
-			root.Bump(O) //manually call bump on everything
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
 	if(canstep)
@@ -178,7 +188,10 @@
 	return root.take_damage(arglist(args))
 
 /obj/hitbox/ex_act(severity)
-	return
+	root.ex_act(severity)
+
+/obj/hitbox/lava_act()
+	root.lava_act()
 
 ///2x2 hitbox version
 /obj/hitbox/medium

@@ -125,7 +125,7 @@
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks > 0 && remaining_health <= health_threshold)
 			heal_multiplier = 3
-	playsound(target, "alien_drool", 25)
+	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)

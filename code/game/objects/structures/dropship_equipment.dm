@@ -12,7 +12,7 @@
 	name = "equipment attach point"
 	desc = "A place where heavy equipment can be installed with a powerloader."
 	anchored = TRUE
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "equip_base"
 	layer = ABOVE_OBJ_LAYER
 	dir = NORTH
@@ -87,7 +87,7 @@
 
 /obj/effect/attach_point/weapon/cas
 	ship_tag = SHUTTLE_CAS_DOCK
-	icon = 'icons/Marine/casship.dmi'
+	icon = 'icons/turf/cas.dmi'
 	icon_state = "15"
 
 /obj/effect/attach_point/weapon/cas/left
@@ -138,7 +138,7 @@
 
 /obj/effect/attach_point/fuel
 	name = "engine system attach point"
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "fuel_base"
 	base_category = DROPSHIP_FUEL_EQP
 
@@ -166,7 +166,7 @@
 /obj/structure/dropship_equipment
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
@@ -555,7 +555,7 @@
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	equip_category = DROPSHIP_FUEL_EQP
 
 
@@ -642,7 +642,7 @@
 
 /obj/structure/dropship_equipment/cas/weapon
 	name = "abstract weapon"
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	equip_category = DROPSHIP_WEAPON
 	bound_width = 32
 	bound_height = 64
@@ -774,7 +774,7 @@
 	name = "minirocket pod"
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 450
@@ -799,7 +799,7 @@
 	name = "laser beam gun"
 	icon_state = "laser_beam"
 	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 800
@@ -822,7 +822,7 @@
 	name = "launch bay"
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	firing_sound = 'sound/weapons/guns/fire/gunshot.ogg'
 	firing_delay = 10 //1 seconds
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
@@ -881,7 +881,7 @@
 	name = "bomblet pod"
 	icon_state = "bomblet_pod"
 	desc = "A pnuematic thrower machine capable of up to 40 smaller bombs, generally  called 'bomblets'. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 0.5 SECONDS
 	point_cost = 450
@@ -901,7 +901,7 @@
 	name = "bomb pod"
 	icon_state = "bomb_pod"
 	desc = "A bomb pod capable of launching several large bombs. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 2 SECONDS
 	point_cost = 450

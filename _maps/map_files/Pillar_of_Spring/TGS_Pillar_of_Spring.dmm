@@ -380,7 +380,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "aCd" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
 "aCn" = (
@@ -626,7 +626,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "aOY" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "aPJ" = (
@@ -1568,7 +1568,7 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/bottle/patron,
 /obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "bTS" = (
@@ -1790,12 +1790,6 @@
 "cjC" = (
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/squads/req)
-"cjU" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "ckd" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 1;
@@ -2062,12 +2056,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/mechpilotquarters)
-"cEZ" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "cFk" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship/tcomms,
@@ -4044,10 +4032,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/engine_core)
-"fbT" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "fcu" = (
 /obj/effect/landmark/corpsespawner/chef/regular,
 /turf/open/floor/mainship/mono,
@@ -4308,7 +4292,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
 "fsp" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_two)
 "fsZ" = (
@@ -5094,7 +5078,7 @@
 	},
 /area/mainship/living/pilotbunks)
 "gkL" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/grunt_rnr)
 "gkY" = (
@@ -5433,7 +5417,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "gLV" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "gMb" = (
@@ -6279,7 +6263,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "hRA" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
 	},
@@ -6328,7 +6312,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "hSQ" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
 "hSX" = (
@@ -6986,10 +6970,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"iMu" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "iMF" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -7502,7 +7482,7 @@
 /turf/closed/wall/mainship/white,
 /area/medical/morgue)
 "jAX" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "jBi" = (
@@ -9008,7 +8988,7 @@
 /area/mainship/hallways/starboard_hallway)
 "lpn" = (
 /obj/structure/sign/electricshock,
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "lpt" = (
@@ -9161,7 +9141,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "lxK" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "lyl" = (
@@ -9835,7 +9815,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "miR" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "mjl" = (
@@ -10080,7 +10060,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "mBc" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "mBi" = (
@@ -10900,7 +10880,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/living/briefing)
 "nyy" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /obj/structure/sign/science,
 /turf/closed/wall/mainship/white,
 /area/medical/morgue)
@@ -11177,7 +11157,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "nRz" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_one)
 "nRH" = (
@@ -11454,7 +11434,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "olX" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
 "omk" = (
@@ -11517,7 +11497,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "ope" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "opn" = (
@@ -11709,7 +11689,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "oDx" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
 "oEb" = (
@@ -12261,7 +12241,7 @@
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
 "pii" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/chemistry)
 "pjB" = (
@@ -14493,7 +14473,7 @@
 	},
 /area/mainship/medical/chemistry)
 "rRa" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "rSg" = (
@@ -16401,7 +16381,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ujw" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/medical/morgue)
 "ujQ" = (
@@ -17043,7 +17023,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "uXy" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
 "uYe" = (
@@ -17606,7 +17586,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/brig)
 "vMM" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /obj/structure/sign/evac,
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
@@ -18116,7 +18096,7 @@
 /area/mainship/hallways/hangar)
 "wtq" = (
 /obj/structure/table/reinforced,
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
 "wtv" = (
@@ -18630,7 +18610,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xar" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/starboard_hallway)
 "xbi" = (
@@ -18850,7 +18830,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "xlx" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "xmu" = (
@@ -19297,7 +19277,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "xJn" = (
-/obj/effect/soundplayer,
+/obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/numbertwobunks)
 "xKE" = (
@@ -47438,7 +47418,7 @@ xyA
 kDx
 kDx
 cfw
-fbT
+kDx
 kDx
 kDx
 kDx
@@ -47695,7 +47675,7 @@ xyA
 csW
 csW
 nzB
-iMu
+kDx
 kDx
 kDx
 kDx
@@ -49237,7 +49217,7 @@ cPE
 xDq
 xDq
 qWy
-iMu
+kDx
 kDx
 kDx
 kDx
@@ -49494,7 +49474,7 @@ cPE
 kDx
 kDx
 cfw
-fbT
+kDx
 kDx
 kDx
 kDx
@@ -52325,7 +52305,7 @@ tHk
 nzB
 kDx
 cxw
-cjU
+kDx
 kDx
 kDx
 kDx
@@ -54895,7 +54875,7 @@ nbW
 qWy
 kDx
 cxw
-cEZ
+kDx
 kDx
 kDx
 kDx

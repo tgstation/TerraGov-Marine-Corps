@@ -126,8 +126,7 @@
 			continue
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
-			if(!ravaged.anchored)
-				ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+			ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/human_victim = ravaged
 		if(human_victim.stat == DEAD)
@@ -379,7 +378,7 @@
 		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
 	for(var/mob/living/affected_mob in cheap_get_humans_near(X, rage_power_radius) + cheap_get_xenos_near(X, rage_power_radius)) //Roar that applies cool SFX
-		if(affected_mob.stat) //We don't care about the dead/unconsious
+		if(affected_mob.stat || affected_mob == X) //We don't care about the dead/unconsious
 			continue
 
 		shake_camera(affected_mob, 1 SECONDS, 1)
