@@ -295,9 +295,17 @@
 	lift_time = 5 SECONDS
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 30, FIRE = 20, ACID = 20)
 
+/obj/machinery/door/poddoor/shutters/urban/open_shutters/opened
+	icon_state = "almayer_pdoor0"
+	density = FALSE
+
 /obj/machinery/door/poddoor/shutters/urban/shutters
 	icon_state = "shutter"
 	layer = ABOVE_WINDOW_LAYER
+
+/obj/machinery/door/poddoor/shutters/urban/shutters/opened
+	icon_state = "shutter0"
+	density = FALSE
 
 /obj/machinery/door/poddoor/shutters/urban/white
 	desc = "That looks like it doesn't open easily."
