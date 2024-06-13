@@ -19,7 +19,7 @@
 	if(set_bound_height)
 		bound_height = set_bound_height
 	if(set_bound_width)
-		bound_height = set_bound_width
+		bound_width = set_bound_width
 
 /obj/structure/prop/urban/vehicles
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
@@ -194,15 +194,6 @@
 	density = TRUE
 	max_integrity = 4000
 	coverage = 90
-
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/Initialize(mapload)
-	. = ..()
-	if(dir == NORTH || dir == EAST)
-		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
-		return
-	if(dir == SOUTH || dir == WEST)
-		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
-		return
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
@@ -648,6 +639,10 @@
 /obj/structure/prop/urban/vehicles/car/car_chassis
 	name = "\improper Mono-Spectra Chassis"
 	icon_state = "MeridianCar_shell"
+
+/obj/structure/prop/urban/vehicles/car/car_chassis/Initialize(mapload)
+	. = ..()
+	overlays.Cut()
 
 // small trucks
 

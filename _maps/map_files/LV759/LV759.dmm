@@ -54561,7 +54561,8 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "iOB" = (
 /obj/machinery/vending/coffee{
-	pixel_y = 16
+	pixel_y = 16;
+	density = 0
 	},
 /turf/open/floor/prison/red{
 	dir = 6
@@ -69785,7 +69786,8 @@
 /area/lv759/indoors/hospital/paramedics_garage)
 "loH" = (
 /obj/machinery/vending/cola{
-	pixel_y = 16
+	pixel_y = 16;
+	density = 0
 	},
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/hallway_central)
@@ -79457,7 +79459,8 @@
 "mQr" = (
 /obj/structure/prop/urban/misc/atm{
 	pixel_x = 3;
-	pixel_y = 15
+	pixel_y = 15;
+	density = 0
 	},
 /obj/item/trash/cuppa_joes/lid,
 /obj/item/trash/cuppa_joes/empty_cup,
@@ -131700,7 +131703,8 @@
 "vkA" = (
 /obj/machinery/vending/cigarette{
 	pixel_x = -5;
-	pixel_y = 16
+	pixel_y = 16;
+	density = 0
 	},
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/hallway_central)

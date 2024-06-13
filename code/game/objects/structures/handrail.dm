@@ -11,6 +11,7 @@
 	can_change_dmg_state = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	max_integrity = 20
 
 /obj/structure/barricade/handrail/update_icon_state()
 	. = ..()
@@ -28,7 +29,7 @@
 	if(!isxeno(bumpingcreature))
 		return
 	balloon_alert_to_viewers("starts shoving [src]")
-	if(!do_after(bumpingcreature, 2 SECONDS, NONE, src,  BUSY_ICON_HOSTILE))
+	if(!do_after(bumpingcreature, 0.5 SECONDS, NONE, src,  BUSY_ICON_HOSTILE))
 		return
 	balloon_alert_to_viewers("breaks [src]")
 	qdel(src)
