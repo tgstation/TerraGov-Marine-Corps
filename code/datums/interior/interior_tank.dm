@@ -228,7 +228,11 @@
 
 /turf/closed/interior/tank/door/som/Initialize(mapload)
 	. = ..()
-	overlays += image(icon, "hatch_fail", layer = BELOW_OBJ_LAYER, pixel_y = 24)
+	update_appearance(UPDATE_OVERLAYS)
+
+/turf/closed/interior/tank/door/som/update_overlays
+	. = ..()
+	. += image(icon, "hatch_decal", layer = BELOW_OBJ_LAYER, pixel_y = 26)
 
 /turf/closed/interior/tank/door/som/get_enter_location()
 	return get_step(src, NORTH)
