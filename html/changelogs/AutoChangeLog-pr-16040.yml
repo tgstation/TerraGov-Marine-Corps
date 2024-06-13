@@ -1,6 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Behemoth's earth pillars should do damage to vehicles now if they are tossed at them"
-  - bugfix: "Behemoth's AoE attacks will now damage all parts of the tank (previously only damaged it's center)"
-  - balance: "Adjusted Behemoth's ability damage to compensate for attacks like meteor doing damage per vehicle tile hit"

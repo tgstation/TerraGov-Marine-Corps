@@ -98,3 +98,25 @@
   - bugfix: fixed a few sprites not working with the heavy mounted laser.
   Kuro020:
   - balance: TX11 Sunder reduced
+2024-06-11:
+  2whatever2:
+  - balance: Runner evasion can now be canceled at 0.3 seconds, instead of 1 second.
+      (1 --> 0.3)
+  Lumipharon:
+  - bugfix: Fixed ammohuds bugging out if you enter a vehicle when a gun has no ammo
+      in it
+  - bugfix: APC can load normal crates as intended
+  - bugfix: fixed hitscan projectiles not correctly setting their direction
+  - bugfix: fixed huggers bouncing off mobs (again)
+  Wisemonster:
+  - balance: Reduced the slowdown of the amr from 3 to 2.25
+  - bugfix: Behemoth's earth pillars should do damage to vehicles now if they are
+      tossed at them
+  - bugfix: Behemoth's AoE attacks will now damage all parts of the tank (previously
+      only damaged it's center)
+  - balance: Adjusted Behemoth's ability damage to compensate for attacks like meteor
+      doing damage per vehicle tile hit
+  Xander3359:
+  - bugfix: Recharger cells now update ammo count when it recharges
+  - bugfix: Recharger cells no longer break once they hit 0 ammo
+  - code_imp: delete cell.dm, merges the code into power_cells.dm
