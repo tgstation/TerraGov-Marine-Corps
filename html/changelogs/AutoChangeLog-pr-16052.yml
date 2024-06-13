@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Crusher's charge now does more damage to tanks and apcs (from between 18-21 to between 50-100) depending on the charge distance."
