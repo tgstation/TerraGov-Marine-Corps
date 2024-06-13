@@ -44,7 +44,7 @@
 	if(!weapon.ammo)
 		balloon_alert(user, "breech empty")
 		return
-	do_unload(user)
+	do_unload(user, weapon)
 
 /obj/structure/gun_breech/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -89,7 +89,7 @@
 		)
 
 ///Unloads the weapon attached to the breech
-/obj/structure/gun_breech/proc/do_unload(mob/living/user)
+/obj/structure/gun_breech/proc/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
 	owner.balloon_alert(user, "breech unloaded")
 	user.put_in_hands(weapon.ammo)
 	weapon.ammo.update_appearance()
@@ -218,7 +218,7 @@
 	. = ..()
 	update_gun_appearance(weapon_type)
 
-/obj/structure/gun_breech/som/do_unload(mob/living/user)
+/obj/structure/gun_breech/som/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
 	. = ..()
 	update_gun_appearance(weapon_type)
 
