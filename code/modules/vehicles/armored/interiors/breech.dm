@@ -129,11 +129,11 @@
 	QDEL_IN(smoke_visuals, 0.7 SECONDS)
 
 ///On attach effects
-/obj/structure/gun_breech/proc/on_weapon_attach(/obj/item/armored_weapon/new_weapon)
+/obj/structure/gun_breech/proc/on_weapon_attach(obj/item/armored_weapon/new_weapon)
 	return
 
 ///On detach effects
-/obj/structure/gun_breech/proc/on_weapon_detach(/obj/item/armored_weapon/old_weapon)
+/obj/structure/gun_breech/proc/on_weapon_detach(obj/item/armored_weapon/old_weapon)
 	return
 
 /particles/breech_smoke

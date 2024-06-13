@@ -224,8 +224,11 @@
 	name = "exit hatch"
 	icon = 'icons/obj/armored/3x4/som_tank_interior.dmi'
 	icon_state = "hatch"
-	pixel_y = -20
-	layer = ABOVE_ALL_MOB_LAYER
+	plane = FLOOR_PLANE
+
+/turf/closed/interior/tank/door/som/Initialize(mapload)
+	. = ..()
+	overlays += image(icon, "hatch_fail", layer = BELOW_OBJ_LAYER, pixel_y = 24)
 
 /turf/closed/interior/tank/door/som/get_enter_location()
 	return get_step(src, NORTH)

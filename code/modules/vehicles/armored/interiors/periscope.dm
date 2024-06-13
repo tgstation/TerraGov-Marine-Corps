@@ -40,6 +40,7 @@
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
 	icon_state = "periscope"
 	layer = ABOVE_LYING_MOB_LAYER
+	pixel_x = -5
 
 /obj/structure/periscope/som/Initialize(mapload)
 	. = ..()
