@@ -128,6 +128,14 @@
 	var/obj/effect/abstract/particle_holder/smoke_visuals = new(src, /particles/breech_smoke)
 	QDEL_IN(smoke_visuals, 0.7 SECONDS)
 
+///On attach effects
+/obj/structure/gun_breech/proc/on_weapon_attach(/obj/item/armored_weapon/new_weapon)
+	return
+
+///On detach effects
+/obj/structure/gun_breech/proc/on_weapon_detach(/obj/item/armored_weapon/old_weapon)
+	return
+
 /particles/breech_smoke
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -155,3 +163,69 @@
 	old_ammo.forceMove(get_turf(src))
 	old_ammo.pixel_x = rand(-10, 10)
 	old_ammo.pixel_y = rand(-10, 10)
+
+/obj/structure/gun_breech/som
+	icon_state = null
+	icon = 'icons/obj/armored/3x4/som_breech.dmi'
+	density = FALSE
+	layer = ABOVE_OBJ_LAYER
+	var/obj/item/armored_weapon/weapon_type
+	///overlay obj for for the attached gun
+	var/atom/movable/vis_obj/internal_barrel/barrel_overlay
+
+/obj/structure/gun_breech/som/Initialize(mapload)
+	. = ..()
+	barrel_overlay = new()
+	barrel_overlay.icon_state = "[icon_state]_barrel"
+	vis_contents += barrel_overlay
+
+/obj/structure/gun_breech/som/Destroy()
+	weapon_type = null
+	QDEL_NULL(barrel_overlay)
+	return ..()
+
+/obj/structure/gun_breech/som/on_weapon_attach(obj/item/armored_weapon/new_weapon)
+	update_gun_appearance(new_weapon)
+
+/obj/structure/gun_breech/som/on_weapon_detach(obj/item/armored_weapon/old_weapon)
+	update_gun_appearance(old_weapon)
+
+/obj/structure/gun_breech/som/update_icon_state()
+	. = ..()
+	icon_state = weapon_type.icon_state
+
+/obj/structure/gun_breech/som/update_overlays()
+	. = ..()
+	. += mutable_appearance(icon, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER)
+
+
+///Updates breech and barrel vis_obj appearance
+/obj/structure/gun_breech/som/proc/update_gun_appearance(obj/item/armored_weapon/current_weapon)
+	weapon_type = current_weapon
+	if(!weapon_type)
+		density = FALSE
+		barrel_overlay.icon_state = null
+		return
+
+	density = TRUE
+	update_appearance(UPDATE_ICON)
+	barrel_overlay.icon_state = "[icon_state]_barrel"
+	if(weapon_type.type == /obj/item/armored_weapon/volkite_carronade)
+		pixel_x = 4
+		pixel_y = -4
+		barrel_overlay.pixel_y = 46
+	else if(weapon_type.type == /obj/item/armored_weapon/coilgun)
+		pixel_x = -12
+		pixel_y = -32
+		barrel_overlay.pixel_y = 76
+	else if(weapon_type.type == /obj/item/armored_weapon/particle_lance)
+		pixel_x = -8
+		pixel_y = -7
+		barrel_overlay.pixel_y = 48
+
+/atom/movable/vis_obj/internal_barrel
+	name = "Tank weapon"
+	vis_flags = VIS_INHERIT_ICON
+	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_ALL_MOB_LAYER
+

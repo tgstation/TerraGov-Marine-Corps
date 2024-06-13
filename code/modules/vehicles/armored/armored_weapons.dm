@@ -262,6 +262,7 @@
 		tank.primary_weapon?.detach(tank.exit_location())
 		tank.primary_weapon = src
 		tank.turret_overlay.update_gun_overlay(icon_state)
+		tank?.interior?.breech?.on_weapon_attach(src)
 	else
 		tank.secondary_weapon?.detach(tank.exit_location())
 		tank.secondary_weapon = src
@@ -287,6 +288,7 @@
 	if(chassis.primary_weapon == src)
 		chassis.primary_weapon = null
 		chassis.turret_overlay.update_gun_overlay()
+		chassis?.interior?.breech?.on_weapon_detach(src)
 	else
 		chassis.secondary_weapon = null
 		if(chassis.turret_overlay)

@@ -11,7 +11,7 @@
 /turf/closed/interior/tank/som/fourteen,
 /area/interior/tank/som)
 "e" = (
-/obj/structure/gun_breech,
+/obj/structure/gun_breech/som,
 /turf/open/interior/tank/som/five,
 /area/interior/tank/som)
 "f" = (
