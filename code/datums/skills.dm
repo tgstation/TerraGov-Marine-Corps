@@ -222,7 +222,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/slut
 	name = SQUAD_SLUT
-	cqc = SKILL_MEDICAL_NOVICE //gotta keep that puss tended
+	medical = SKILL_MEDICAL_NOVICE //gotta keep that puss tended
 	firearms = SKILL_FIREARMS_DEFAULT //can still use guns
 	construction = SKILL_CONSTRUCTION_METAL //build a cum shack
 	stamina = SKILL_STAMINA_TRAINED //fucking is hard work
@@ -407,7 +407,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_MASTER
-	cqc = SKILL_CQC_MASTER
+	unarmed = SKILL_UNARMED_MASTER
 	melee_weapons = SKILL_MELEE_SUPER
 	firearms = SKILL_FIREARMS_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
@@ -880,7 +880,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/security_officer
 	name = SECURITY_OFFICER
 
-	cqc = SKILL_CQC_MP
+	unarmed = SKILL_UNARMED_MP
 	firearms = SKILL_FIREARMS_DEFAULT
 	smgs = SKILL_SMGS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED

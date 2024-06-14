@@ -297,7 +297,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	for(var/shadowlang AS in assigned_role.shadow_languages)
 		language_holder.grant_language(shadowlang, TRUE)
 	if(islist(job.job_traits))
-			add_traits(job.job_traits, INNATE_TRAIT)
+		add_traits(job.job_traits, INNATE_TRAIT)
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++

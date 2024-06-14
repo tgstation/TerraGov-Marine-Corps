@@ -404,10 +404,9 @@
 		if(!Attach(victim))
 			go_idle()
 	else
-		step(src, REVERSE_DIR(dir))
 		if(!issamexenohive(victim))
-			carbon_victim.adjust_stagger(3 SECONDS)
-			carbon_victim.add_slowdown(3)
+			victim.adjust_stagger(3 SECONDS)
+			victim.add_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
