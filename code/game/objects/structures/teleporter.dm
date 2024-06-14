@@ -7,7 +7,7 @@
 	///List of all teleportable types
 	var/static/list/teleportable_types = list(
 		/obj/structure/closet,
-		/mob/living/carbon/human,
+		/mob/living,
 		/obj/machinery,
 	)
 	///List of banned teleportable types
@@ -28,7 +28,9 @@
 
 /obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter", HIGH_FLOAT_LAYER))
+	if(!ownerflag)
+		ownerflag = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, ownerflag, image('icons/UI_icons/map_blips.dmi', null, "teleporter", HIGH_FLOAT_LAYER))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
@@ -114,8 +116,6 @@
 	update_icon()
 
 /obj/machinery/deployable/teleporter/attackby(obj/item/I, mob/user, params)
-	if(!ishuman(user))
-		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
 	var/obj/item/teleporter_kit/kit = get_internal_item()
