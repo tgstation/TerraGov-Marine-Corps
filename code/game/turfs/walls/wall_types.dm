@@ -267,7 +267,7 @@
 	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
-	name = "Space Station 13"
+	name = "NTF vs Alien"
 	icon = 'icons/misc/title.dmi'
 	icon_state = "title_painting1"
 //	icon_state = "title_holiday"
@@ -277,7 +277,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,11)]"
+		icon_state = "title_painting[rand(0,20)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

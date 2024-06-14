@@ -435,6 +435,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 	var/blunt_stab = FALSE
+	var/fiery_stab = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

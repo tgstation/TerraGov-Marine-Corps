@@ -745,7 +745,7 @@
 /obj/structure/prop/mainship/juggernaut
 	name = "Vyacheslav lieutenant"
 	desc = "He stares at you. Not a word comes from his mouth. Is he even breathing?"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "vsd_juggernaut"
 	resistance_flags = RESIST_ALL
 	density = TRUE
@@ -753,7 +753,7 @@
 /obj/structure/prop/mainship/juggernaut_two
 	name = "Vyacheslav lieutenant"
 	desc = "The red visor glares at you soullessly."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "vsd_juggernaut_two"
 	resistance_flags = RESIST_ALL
 	density = TRUE
