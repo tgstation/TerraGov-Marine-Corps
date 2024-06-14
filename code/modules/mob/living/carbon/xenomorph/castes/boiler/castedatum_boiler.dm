@@ -23,7 +23,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 380
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -54,8 +54,8 @@
 	bomb_delay = 32 SECONDS
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 30
+	acid_spray_damage_on_hit = 60
 	acid_spray_structure_damage = 45
 
 	actions = list(

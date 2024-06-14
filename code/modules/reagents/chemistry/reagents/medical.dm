@@ -83,7 +83,7 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor. Do not mix with Tramadol."
 	color = COLOR_REAGENT_PARACETAMOL
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)

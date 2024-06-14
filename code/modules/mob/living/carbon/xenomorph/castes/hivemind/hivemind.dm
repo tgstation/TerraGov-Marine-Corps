@@ -160,7 +160,7 @@
 	if(isnull(T))
 		return FALSE
 	. = TRUE
-	if(locate(/obj/flamer_fire) in T)
+	if(locate(/obj/fire/flamer) in T)
 		return FALSE
 	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
@@ -300,7 +300,7 @@
 /mob/living/carbon/xenomorph/hivemind/update_progression()
 	return
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/fire/flamer/CanAllowThrough(atom/movable/mover, turf/target)
 	if(isxenohivemind(mover))
 		return FALSE
 	return ..()

@@ -133,6 +133,15 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
 
+/turf/open/liquid/water/river/autosmooth/desert
+	icon = 'icons/turf/floors/river_desert.dmi'
+
+/turf/open/liquid/water/river/autosmooth/desert/deep
+	icon_state = "river_deep-icon"
+	mob_liquid_height = 18
+	mob_liquid_depth = -8
+	slowdown_multiplier = 1.5
+
 /turf/open/liquid/water/river/autosmooth/deep
 	icon_state = "river_deep-icon"
 	mob_liquid_height = 18
@@ -147,6 +156,9 @@
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
+
+/turf/open/liquid/water/river/desertdam/clean/shallow/dirty
+	icon_state = "shallow_water_dirty"
 
 //shallow water transition to deep
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge

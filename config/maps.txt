@@ -74,11 +74,11 @@ map desparity
 endmap
 
 map lawanka
-        minplayers 1
+	minplayers 1
 endmap
 
 map slumbridge
-        minplayers 1
+	minplayers 1
 endmap
 
 map daedalusprison
@@ -86,5 +86,9 @@ map daedalusprison
 endmap
 
 map riptide
-minplayers 40
+	minplayers 40
+endmap
+
+map kutjevo
+	minplayers 35
 endmap

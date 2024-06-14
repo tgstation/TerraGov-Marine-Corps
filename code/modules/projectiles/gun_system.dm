@@ -1344,7 +1344,8 @@
 		update_ammo_count()
 		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
-		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
+		RegisterSignals(new_mag, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT), PROC_REF(update_ammo_count))
+		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(drop_connected_mag))
 		return TRUE
 
 
@@ -1454,6 +1455,7 @@
 				obj_in_chamber.forceMove(get_turf(src))
 		in_chamber = null
 		obj_in_chamber.update_icon()
+		UnregisterSignal(obj_in_chamber, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT))
 		get_ammo()
 		update_ammo_count()
 		update_icon()
@@ -1480,7 +1482,7 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_magazine_features_flags(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		QDEL_NULL(in_chamber)
 		adjust_current_rounds(mag, rounds_per_shot)
-	UnregisterSignal(mag, COMSIG_ITEM_REMOVED_INVENTORY)
+	UnregisterSignal(mag, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT, COMSIG_ITEM_REMOVED_INVENTORY))
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
@@ -1764,12 +1766,12 @@
 	//Guns with low ammo have their firing sound
 	var/firing_sndfreq = CHECK_BITFIELD(gun_features_flags, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((max(rounds, 1) / (max_rounds ? max_rounds : max_shells ? max_shells : 1)) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+		playsound(user, fire_sound, GUN_FIRE_SOUND_VOLUME/2, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
 	if(firing_sndfreq && fire_rattle)
-		playsound(user, fire_rattle, 60, FALSE)
+		playsound(user, fire_rattle, GUN_FIRE_SOUND_VOLUME, FALSE)
 		return
-	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+	playsound(user, fire_sound, GUN_FIRE_SOUND_VOLUME, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 ///Applies gun modifiers to a projectile before firing
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)

@@ -16,10 +16,10 @@
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 80
+	plasma_gain = 100
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 420
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -39,8 +39,8 @@
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 5
-	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 47
+	acid_spray_damage = 25
+	acid_spray_damage_on_hit = 55
 	acid_spray_structure_damage = 69
 
 	// *** Pheromones *** //

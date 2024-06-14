@@ -22,7 +22,7 @@
 
 /obj/item/tool/pickaxe/hammer
 	name = "sledgehammer"
-	//icon_state = "sledgehammer" Waiting on sprite
+	icon_state = "sledgehammer"
 	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 
 /obj/item/tool/pickaxe/silver

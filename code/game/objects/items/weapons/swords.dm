@@ -2,6 +2,7 @@
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	worn_icon_state = "claymore"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -85,8 +86,7 @@
 	if(!ishuman(target))
 		var/obj/obj_victim = target
 		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
-		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
-			obj_victim.knockback(carbon_owner, 1, 2)
+		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 	else
 		var/mob/living/carbon/human/human_victim = target
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
@@ -127,7 +127,6 @@
 	icon_state = "machete_alt"
 
 //FC's sword.
-
 /obj/item/weapon/sword/officersword
 	name = "officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."

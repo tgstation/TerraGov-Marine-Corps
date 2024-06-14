@@ -366,10 +366,6 @@
 /area/centcom/valhalla)
 "axw" = (
 /obj/machinery/computer/secure_data,
-/obj/machinery/keycard_auth{
-	pixel_x = -8;
-	pixel_y = 24
-	},
 /obj/machinery/door_control/unmeltable{
 	id = "bridgewindows";
 	name = "Bridge View Blast doors";
@@ -3041,17 +3037,11 @@
 /area/centcom/valhalla)
 "dQh" = (
 /obj/structure/table,
-/obj/machinery/keycard_auth{
-	pixel_x = 24;
-	pixel_y = 38
-	},
 /obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom"
 	},
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
+/obj/machinery/computer/secure_data,
 /obj/effect/turf_decal/tile/black{
 	dir = 1
 	},
@@ -3929,6 +3919,19 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
+"fmN" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "fmR" = (
 /turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
@@ -4639,10 +4642,6 @@
 "gmE" = (
 /obj/machinery/status_display{
 	pixel_y = -32
-	},
-/obj/machinery/keycard_auth{
-	pixel_x = -24;
-	pixel_y = -24
 	},
 /obj/structure/table,
 /obj/machinery/computer/guestpass,
@@ -16654,6 +16653,21 @@
 /obj/item/reagent_containers/food/drinks/britcup,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"yaj" = (
+/obj/structure/lattice,
+/obj/structure/cable,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "yaZ" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -21182,24 +21196,24 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -21320,7 +21334,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -21337,7 +21351,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -21458,7 +21472,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 fog
@@ -21475,7 +21489,7 @@ fog
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -21596,7 +21610,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -21613,7 +21627,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -21734,7 +21748,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -21751,7 +21765,7 @@ kOY
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -21872,7 +21886,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -21889,7 +21903,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22010,7 +22024,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -22027,7 +22041,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22148,7 +22162,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -22165,7 +22179,7 @@ kOY
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22286,7 +22300,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 oXf
@@ -22303,7 +22317,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22424,7 +22438,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 fog
@@ -22441,7 +22455,7 @@ fog
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22562,7 +22576,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -22579,7 +22593,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22700,24 +22714,24 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 boC
 fog
 oXf
 oXf
 fog
 boC
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -22839,20 +22853,20 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 boC
 fog
 kOY
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -22975,9 +22989,9 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
 boC
 boC
 boC
@@ -22990,7 +23004,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -23112,8 +23126,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 boC
 boC
@@ -23128,7 +23142,7 @@ pqO
 pqO
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -23243,14 +23257,14 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 boC
 boC
 fog
@@ -23266,8 +23280,8 @@ oXf
 oXf
 fog
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -23381,7 +23395,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -23405,8 +23419,8 @@ oXf
 fog
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -23518,8 +23532,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 boC
 boC
@@ -23544,7 +23558,7 @@ fog
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -23655,8 +23669,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 boC
 fog
@@ -23682,7 +23696,7 @@ oXf
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -23793,7 +23807,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -23820,7 +23834,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -23931,7 +23945,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -23958,7 +23972,7 @@ kOY
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -24068,8 +24082,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 tqo
 fog
@@ -24096,7 +24110,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -24206,7 +24220,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24234,7 +24248,7 @@ oXf
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -24344,7 +24358,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24372,7 +24386,7 @@ fog
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -24482,7 +24496,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24509,8 +24523,8 @@ fog
 boC
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -24620,7 +24634,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24647,7 +24661,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -24758,7 +24772,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24785,8 +24799,8 @@ boC
 boC
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -24896,7 +24910,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -24924,7 +24938,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25034,7 +25048,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 tqo
@@ -25062,7 +25076,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25172,7 +25186,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25200,7 +25214,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25310,7 +25324,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25338,7 +25352,7 @@ fog
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25448,7 +25462,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25476,7 +25490,7 @@ oXf
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25586,7 +25600,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25614,8 +25628,8 @@ oXf
 fog
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -25724,7 +25738,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25753,7 +25767,7 @@ fog
 boC
 jWX
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -25862,7 +25876,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -25891,7 +25905,7 @@ fog
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -26000,7 +26014,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -26029,7 +26043,7 @@ fog
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -26138,7 +26152,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -26167,7 +26181,7 @@ fog
 boC
 boC
 boC
-xrI
+fmN
 izg
 xrI
 xrI
@@ -26276,7 +26290,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -26305,7 +26319,7 @@ fog
 boC
 boC
 boC
-wwD
+yaj
 xrI
 xXc
 xXc
@@ -26414,7 +26428,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -26443,7 +26457,7 @@ fog
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 izg
@@ -26552,7 +26566,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 tqo
@@ -26581,7 +26595,7 @@ fog
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -26690,7 +26704,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -26719,7 +26733,7 @@ fog
 boC
 jWX
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -26828,7 +26842,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -26855,8 +26869,8 @@ oXf
 oXf
 fog
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -26966,7 +26980,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -26993,7 +27007,7 @@ kOY
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27104,7 +27118,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -27131,7 +27145,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27242,7 +27256,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 fog
@@ -27269,7 +27283,7 @@ oXf
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27380,7 +27394,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 tqo
@@ -27407,7 +27421,7 @@ kOY
 oXf
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27518,7 +27532,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -27545,7 +27559,7 @@ fog
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27656,7 +27670,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -27683,7 +27697,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -27794,7 +27808,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -27818,10 +27832,10 @@ boC
 boC
 boC
 boC
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -27932,7 +27946,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -27953,10 +27967,10 @@ pqO
 fog
 fog
 boC
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -28070,7 +28084,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -28093,8 +28107,8 @@ boC
 boC
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -28208,7 +28222,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -28232,8 +28246,8 @@ fog
 boC
 boC
 boC
-xrI
-xrI
+fmN
+fmN
 xrI
 xrI
 xrI
@@ -28346,7 +28360,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -28371,7 +28385,7 @@ fog
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -28484,7 +28498,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 qLa
@@ -28509,7 +28523,7 @@ kOY
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -28622,7 +28636,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 fog
 fog
@@ -28647,7 +28661,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -28760,7 +28774,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 tqo
@@ -28785,7 +28799,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -28898,7 +28912,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -28923,7 +28937,7 @@ kOY
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29036,9 +29050,9 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
 boC
 boC
 boC
@@ -29061,7 +29075,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29176,8 +29190,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 boC
 boC
@@ -29199,7 +29213,7 @@ kOY
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29315,7 +29329,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -29337,7 +29351,7 @@ oXf
 qLa
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29453,7 +29467,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+fmN
 boC
 boC
 boC
@@ -29475,7 +29489,7 @@ kOY
 fog
 fog
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29591,13 +29605,13 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 boC
 boC
 boC
@@ -29613,7 +29627,7 @@ fog
 fog
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29735,8 +29749,8 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
+fmN
+fmN
 boC
 boC
 boC
@@ -29751,7 +29765,7 @@ boC
 boC
 boC
 boC
-xrI
+fmN
 xrI
 xrI
 xrI
@@ -29874,22 +29888,22 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
-xrI
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
+fmN
 xrI
 xrI
 xrI

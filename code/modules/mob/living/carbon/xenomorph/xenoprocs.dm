@@ -434,7 +434,7 @@
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
 
-/obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
+/obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X)
 	qdel(src)
 
 /obj/hitbox/acid_spray_act(mob/living/carbon/xenomorph/X)

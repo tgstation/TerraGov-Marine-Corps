@@ -103,7 +103,7 @@
 	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		return
 
-	if (charging && !charging.fully_charged())
+	if (charging && !charging.is_fully_charged())
 		charging.give(active_power_usage*GLOB.CELLRATE)
 
 		updateicon()

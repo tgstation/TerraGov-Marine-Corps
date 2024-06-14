@@ -1,7 +1,6 @@
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
 	///Faction locks this item if specified
@@ -47,7 +46,6 @@
 	mode_list = null
 	return ..()
 
-
 /obj/item/binoculars/fire_support/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl") && pa.Find("shift"))
@@ -77,7 +75,6 @@
 	user.client.click_intercept = null
 	user.reset_perspective(user)
 	user.update_sight()
-
 
 /obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
 	user.see_in_dark = 32 // Should include the offset from zoom and client viewport

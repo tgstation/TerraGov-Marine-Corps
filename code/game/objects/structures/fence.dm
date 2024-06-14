@@ -95,7 +95,7 @@
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	var/state = user.grab_state
 	user.drop_held_item()
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
 			damage += BASE_OBJ_SLAM_DAMAGE

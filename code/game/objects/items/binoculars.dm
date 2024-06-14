@@ -1,7 +1,7 @@
 /obj/item/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	icon = 'icons/Marine/marine-navigation.dmi'
+	icon = 'icons/obj/items/binoculars.dmi'
 	icon_state = "binoculars"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
@@ -15,7 +15,6 @@
 	throw_speed = 3
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
-
 
 /obj/item/binoculars/attack_self(mob/user)
 	if(user.interactee && istype(user.interactee, /obj/machinery/deployable))
@@ -31,7 +30,6 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
@@ -79,7 +77,6 @@
 	if(laser)
 		QDEL_NULL(laser)
 	return ..()
-
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)

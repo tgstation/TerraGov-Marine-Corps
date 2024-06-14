@@ -91,9 +91,16 @@
 /datum/component/larva_queue/proc/set_queue_position(waiter, new_position)
 	SIGNAL_HANDLER
 	position = new_position
+	var/datum/hive_status/the_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(!the_hive)
+		stack_trace("Where's the main hive? (XENO_HIVE_NORMAL NOT FOUND)")
+		return
+	action.button.maptext = MAPTEXT_TINY_UNICODE(span_center("[position]/[LAZYLEN(the_hive.candidates)]"))
+	action.button.maptext_x = 1
+	action.button.maptext_y = 3
 	if (position == 0) // No longer in queue
 		action.set_toggle(FALSE)
-
+		action.button.maptext = null
 
 /// Action for joining the larva queue
 /datum/action/join_larva_queue

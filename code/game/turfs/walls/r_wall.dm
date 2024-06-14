@@ -60,7 +60,16 @@
 	base_icon_state = "chigusa"
 
 
+//Kutjevo
 
+/turf/closed/wall/r_wall/kutjevo
+	icon = 'icons/turf/walls/kutjevo_rwall.dmi'
+	icon_state = "wall-reinforced"
+	base_icon_state = "kutjevo_rwall"
+
+/turf/closed/wall/r_wall/kutjevo/hull
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 //Prison
 
