@@ -2044,12 +2044,13 @@
 			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, FALSE, TRUE, penetration)
 		else
 			if(xeno.fiery_stab)
-				apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, penetration)
-			else
 				//fire tail burns and hurts but not much penetration
 				penetration *= 0.7
 				damage *= 1.6
 				apply_damage(damage, BURN, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, TRUE, TRUE, penetration)
+			else
+				//basic bitch stab
+				apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, penetration)
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
 
