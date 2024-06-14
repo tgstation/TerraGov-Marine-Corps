@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Fixed pyrogen's fireball AoE checking for armor's fire resistance instead of acid"
