@@ -2038,11 +2038,18 @@
 		if (!selectedlimb || (selectedlimb.limb_status & LIMB_DESTROYED))
 			selectedlimb = carbon_victim.get_limb(BODY_ZONE_CHEST)
 		if(xeno.blunt_stab)
-			penetration *= 1.2 //not as sharp but slightly more penetration, like maces in most games i guess.
-			damage -= 0.4
+			//not as sharp but macey penetration.
+			penetration *= 1.2
+			damage *= -0.4
 			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, FALSE, TRUE, penetration)
 		else
-			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, penetration)
+			if(xeno.fiery_stab)
+				apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_SHARP_ITEM_ACCURATE, TRUE, TRUE, penetration)
+			else
+				//fire tail burns and hurts but not much penetration
+				penetration *= -1.2
+				damage *= 0.4
+				apply_damage(damage, BURN, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, TRUE, TRUE, penetration)
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)
 
@@ -2053,12 +2060,20 @@
 			span_xenodanger("We hit [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
 		playsound(src, "alien_tail_swipe", 50, TRUE)
 		playsound(src, "punch", 25, TRUE)
-	else
-		xeno.visible_message(span_xenodanger("\The [xeno] stabs [src] in the [target_location_feedback] with a [stab_description]"), \
-			span_xenodanger("We stab [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
-		playsound(src, "alien_tail_swipe", 50, TRUE)
-		playsound(src,"alien_bite", 25, TRUE)
 		src.add_splatter_floor(loc)
+	else
+		if(xeno.fiery_stab)
+			stab_description = "fiery tail-jab!"
+			xeno.visible_message(span_xenodanger("\The [xeno] flares [src] in the [target_location_feedback] with a [stab_description]"), \
+				span_xenodanger("We burn [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+			playsound(src, "alien_tail_swipe", 50, TRUE)
+			playsound(src, 'sound/effects/firetail.ogg', 25, TRUE)
+		else
+			xeno.visible_message(span_xenodanger("\The [xeno] stabs [src] in the [target_location_feedback] with a [stab_description]"), \
+				span_xenodanger("We stab [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+			playsound(src, "alien_tail_swipe", 50, TRUE)
+			playsound(src,"alien_bite", 25, TRUE)
+			src.add_splatter_floor(loc)
 	if(line_of_sight(xeno, src, 1))
 		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	else

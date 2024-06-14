@@ -14,6 +14,7 @@
 	pixel_x = -16
 	old_x = -16
 	bubble_icon = "alienroyal"
+	fiery_stab = TRUE
 
 /mob/living/carbon/xenomorph/pyrogen/on_floored_trait_loss(datum/source)
 	. = ..()
