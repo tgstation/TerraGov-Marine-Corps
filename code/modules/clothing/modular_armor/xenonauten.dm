@@ -312,6 +312,48 @@
 		/obj/item/weapon/energy/sword,
 	)
 
+/obj/item/clothing/suit/storage/marine/vsd_two
+	name = "Crasher multi-threat light ballistic armor"
+	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+	)
+	icon_state = "vsd_vest"
+	worn_icon_state = "vsd_vest"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 20, ENERGY = 15, BOMB = 30, BIO = 10, FIRE = 25, ACID = 30)
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
+
+	icon_state_variants = list(
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "urban"
+
+/obj/item/clothing/suit/storage/marine/vsd_two/plate_carrier
+	name = "Crasher multi-threat light plate carrier"
+	icon_state = "vsd_plate_carrier"
+	worn_icon_state = "vsd_plate_carrier"
+
+/obj/item/clothing/suit/storage/marine/vsd_two/marmor
+	name = "Crasher multi-threat medium-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	icon_state = "vsd_marmor"
+	worn_icon_state = "vsd_marmor"
+	soft_armor = list(MELEE = 40, BULLET = 70, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd_two/harmor
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's leader set of armor, rarely given to the grunts. Protects the user from most bullet calibers."
+	icon_state = "vsd_harmor"
+	worn_icon_state = "vsd_harmor"
+	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
+
 //Xenonauten helmets
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"
