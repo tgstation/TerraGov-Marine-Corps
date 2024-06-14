@@ -802,7 +802,7 @@
 /obj/machinery/door/airlock/hatch/cockpit
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+//	req_access = list(ACCESS_MARINE_DROPSHIP)
 	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE

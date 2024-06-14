@@ -12,14 +12,14 @@
 	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 40
+	max_rounds = 80
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper PR-412 extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
 	icon_state = "m412_ext"
 	icon_state_mini = "mag_rifle_big_yellow"
-	max_rounds = 60
+	max_rounds = 120
 	bonus_overlay = "m412_ex"
 
 /obj/item/ammo_magazine/rifle/incendiary
@@ -49,7 +49,7 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 36
+	max_rounds = 66
 
 /obj/item/ammo_magazine/rifle/standard_carbine/ap
 	name = "\improper AR-18 AP magazine (10x24mm)"
@@ -69,7 +69,7 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 50
+	max_rounds = 100
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
 	name = "\improper AR-12 AP magazine (10x24mm)"
@@ -89,7 +89,7 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	max_rounds = 20
+	max_rounds = 40
 
 //-------------------------------------------------------
 //T64 BR
@@ -102,7 +102,7 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
-	max_rounds = 36
+	max_rounds = 66
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -112,7 +112,7 @@
 	desc = "A semi-rectangular box of rounds for the PR-11 Pulse Rifle."
 	icon_state = "m41a"
 	icon_state_mini = "mag_rifle_big_light"
-	max_rounds = 95
+	max_rounds = 190
 
 
 //-------------------------------------------------------
@@ -126,7 +126,7 @@
 	icon_state_mini = "mag_rifle_brown"
 	bonus_overlay = "ak_40"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
-	max_rounds = 40
+	max_rounds = 80
 	scatter_mod = 2
 	aim_speed_mod = 0.1
 	wield_delay_mod = 0.1 SECONDS
@@ -149,7 +149,7 @@
 	icon_state = "ak_30"
 	icon_state_mini = "mag_rifle_brown"
 	bonus_overlay = "ak_30"
-	max_rounds = 30
+	max_rounds = 60
 	scatter_mod = 0
 	aim_speed_mod = 0
 	wield_delay_mod = 0
@@ -172,7 +172,7 @@
 	icon_state = "ak47_ext"
 	icon_state_mini = "mag_rifle"
 	bonus_overlay = "ak47_ex"
-	max_rounds = 60
+	max_rounds = 120
 	aim_speed_mod = 0.2
 	wield_delay_mod = 0.2
 
@@ -186,7 +186,7 @@
 	icon_state = "rpd"
 	icon_state_mini = "mag_drum_big"
 	bonus_overlay = "rpd_100"
-	max_rounds = 100
+	max_rounds = 200
 
 //-------------------------------------------------------
 //DP-27
@@ -197,7 +197,7 @@
 	caliber = CALIBER_762X39
 	icon_state = "dp27"
 	default_ammo = /datum/ammo/bullet/rifle/ap
-	max_rounds = 47
+	max_rounds = 84
 	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
@@ -210,7 +210,7 @@
 	icon_state = "m16" //PLACEHOLDER
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
+	max_rounds = 60 //Also comes in 30 and 100 round Beta-C mag.
 
 //-------------------------------------------------------
 //FAMAS RIFLE
@@ -222,7 +222,7 @@
 	icon_state = "famas"
 	icon_state_mini = "mag_rifle_greyblue"
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 24
+	max_rounds = 48
 
 //-------------------------------------------------------
 //MG-42 Light Machine Gun
@@ -235,7 +235,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 120
+	max_rounds = 260
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -248,7 +248,7 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
+	max_rounds = 600
 	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
@@ -262,7 +262,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
+	max_rounds = 500
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
@@ -274,7 +274,7 @@
 	icon_state = "type_71"
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
-	max_rounds = 42
+	max_rounds = 82
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -285,7 +285,7 @@
 	icon_state = "tx15_flechette"
 	icon_state_mini = "mag_tx15_flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
-	max_rounds = 12
+	max_rounds = 24
 	bonus_overlay = "tx15_flech"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
@@ -295,7 +295,7 @@
 	icon_state = "tx15_slug"
 	icon_state_mini = "mag_tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
-	max_rounds = 12
+	max_rounds = 24
 	bonus_overlay = "tx15_slug"
 
 //-------------------------------------------------------
@@ -309,7 +309,7 @@
 	icon_state_mini = "mag_sg29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 250
+	max_rounds = 850
 	reload_delay = 2.5 SECONDS
 
 //-------------------------------------------------------
@@ -322,7 +322,7 @@
 	icon_state = "sg62"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smarttargetrifle
-	max_rounds = 40
+	max_rounds = 80
 	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
@@ -335,7 +335,7 @@
 	icon_state = "sg153"
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/spottingrifle
-	max_rounds = 5
+	max_rounds = 10
 	icon_state_mini = "mag_sg29"
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact
@@ -385,7 +385,7 @@
 	icon_state = "alien_rifle"
 	icon_state_mini = "mag_rifle_purple"
 	default_ammo = /datum/ammo/energy/sectoid_plasma
-	max_rounds = 20
+	max_rounds = 40
 
 //-------------------------------------------------------
 //Marine magazine sniper, or the SR-127.
@@ -396,7 +396,7 @@
 	icon_state = "tl127"
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	max_rounds = 10
+	max_rounds = 20
 	bonus_overlay = "tl127_mag"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
@@ -416,7 +416,7 @@
 	icon_state = "t81"
 	icon_state_mini = "mag_rifle_greyblue"
 	default_ammo = /datum/ammo/bullet/sniper/auto
-	max_rounds = 20
+	max_rounds = 40
 
 //-------------------------------------------------------
 //G-11, AR-11
@@ -427,7 +427,7 @@
 	icon_state = "tx11"
 	icon_state_mini = "mag_tx11"
 	default_ammo = /datum/ammo/bullet/rifle/hv
-	max_rounds = 70
+	max_rounds = 140
 
 //-------------------------------------------------------
 //AR-21
@@ -438,7 +438,7 @@
 	icon_state = "t21"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 40
+	max_rounds = 80
 
 //ALF-51B
 
@@ -450,7 +450,7 @@
 	caliber = CALIBER_10X25_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 80
+	max_rounds = 160
 	reload_delay = 1 SECONDS
 
 //-------------------------------------------------------
@@ -463,7 +463,7 @@
 	icon_state = "mkh98"
 	icon_state_mini = "mag_rifle_greyblue"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 60
 
 //-------------------------------------------------------
 //GL-54
@@ -475,7 +475,7 @@
 	icon_state_mini = "mag_sniper_blue"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx54
-	max_rounds = 8
+	max_rounds = 16
 	greyscale_config = /datum/greyscale_config/ammo
 	greyscale_colors = COLOR_AMMO_AIRBURST
 
@@ -545,7 +545,7 @@
 	icon_state = "garand"
 	icon_state_mini = "clips"
 	default_ammo = /datum/ammo/bullet/rifle/garand
-	max_rounds = 8
+	max_rounds = 16
 
 //-------------------------------------------------------
 //V-31 SOM rifle
@@ -558,7 +558,7 @@
 	icon_state_mini = "mag_thin_cyan"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 50
+	max_rounds = 100
 
 /obj/item/ammo_magazine/rifle/som/ap
 	name = "\improper V-31 AP magazine (10x24mm)"
@@ -568,7 +568,7 @@
 	icon_state_mini = "mag_thin_green"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/hv
-	max_rounds = 50
+	max_rounds = 100
 
 /obj/item/ammo_magazine/rifle/som/incendiary
 	name = "\improper V-31 incendiary magazine (10x24mm)"
@@ -588,7 +588,7 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
+	max_rounds = 400
 	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
@@ -602,7 +602,7 @@
 	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	max_rounds = 20
+	max_rounds = 40
 
 //-------------------------------------------------------
 //L-15 Battlecarbine
@@ -613,7 +613,7 @@
 	icon_state = "l15"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 30
+	max_rounds = 60
 
 //-------------------------------------------------------
 //ML-12 Confrontation Rifle
@@ -624,7 +624,7 @@
 	icon_state = "ml12"
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
-	max_rounds = 25
+	max_rounds = 50
 
 //-------------------------------------------------------
 //ML-41 Autoshotgun
@@ -634,7 +634,7 @@
 	caliber = CALIBER_12G
 	icon_state = "ml41"
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
-	max_rounds = 16
+	max_rounds = 25
 	icon_state_mini = "mag_rifle"
 
 /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag
@@ -643,7 +643,7 @@
 	caliber = CALIBER_12G
 	icon_state = "ml41_frag"
 	default_ammo = /datum/ammo/bullet/shotgun/frag
-	max_rounds = 12
+	max_rounds = 25
 
 //-------------------------------------------------------
 //L-88 Assault Carbine
@@ -654,8 +654,7 @@
 	icon_state = "aug"
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 30
-
+	max_rounds = 60
 /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
 	name = "\improper EM-88 assault carbine magazine (5.56x45mm)"
 	desc = "A magazine filled with 5.56x45mm rifle rounds for the EM-88 series of firearms."
@@ -670,7 +669,7 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 150
+	max_rounds = 300
 	reload_delay = 2 SECONDS
 
 // This is a 'belt'.
@@ -681,14 +680,14 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
-	max_rounds = 750
+	max_rounds = 1500
 
 /obj/item/ammo_magazine/icc_mg/packet
 	name = "box of 10x26mm"
 	desc = "A box containing 500 rounds of 10x26mm caseless."
 	icon_state = "box_minimi"
-	current_rounds = 500
-	max_rounds = 500
+	current_rounds = 1500
+	max_rounds = 1500
 
 // L26
 
@@ -700,7 +699,7 @@
 	icon_state = "l26"
 	icon_state_mini = "mag_gpmg"
 	bonus_overlay = "l26_100"
-	max_rounds = 200
+	max_rounds = 400
 
 /obj/item/ammo_magazine/rifle/vsd_rifle
 	name = "\improper C550 magazine (10x27mm)"
@@ -710,4 +709,4 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 30
+	max_rounds = 60

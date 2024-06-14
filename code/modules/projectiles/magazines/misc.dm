@@ -20,8 +20,8 @@
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "box_10x24mm"
 	default_ammo = /datum/ammo/bullet/rifle
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 550
+	max_rounds = 550
 
 /obj/item/ammo_magazine/packet/pnato
 	name = "box of 5.56x45mm"
@@ -29,8 +29,8 @@
 	caliber = CALIBER_556X45
 	icon_state = "box_556mm"
 	default_ammo = /datum/ammo/bullet/rifle
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 550
+	max_rounds = 550
 
 /obj/item/ammo_magazine/packet/pwarsaw
 	name = "box of 7.62x39mm"
@@ -38,8 +38,8 @@
 	caliber = CALIBER_762X39
 	icon_state = "box_76239mm"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
-	current_rounds = 120
-	max_rounds = 120
+	current_rounds = 320
+	max_rounds = 320
 
 /obj/item/ammo_magazine/packet/p10x265mm
 	name = "box of 10x26.5mm"
@@ -47,8 +47,8 @@
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "box_10x265mm"
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
-	current_rounds = 100
-	max_rounds = 100
+	current_rounds = 500
+	max_rounds = 500
 
 /obj/item/ammo_magazine/packet/p10x27mm
 	name = "box of 10x27mm"
@@ -56,8 +56,8 @@
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "box_10x27mm"
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	current_rounds = 100
-	max_rounds = 100
+	current_rounds = 400
+	max_rounds = 400
 
 /obj/item/ammo_magazine/packet/p10x25mm
 	name = "box of 10x25mm"
@@ -65,8 +65,8 @@
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "box_10x25mm"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	current_rounds = 125
-	max_rounds = 125
+	current_rounds = 425
+	max_rounds = 425
 
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
@@ -74,8 +74,8 @@
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "box_492x34mm"
 	default_ammo = /datum/ammo/bullet/rifle/hv
-	current_rounds = 210
-	max_rounds = 210
+	current_rounds = 510
+	max_rounds = 510
 
 /obj/item/ammo_magazine/packet/p86x70mm
 	name = "box of 8.6x70mm"
@@ -83,8 +83,8 @@
 	caliber = CALIBER_86X70
 	icon_state = "box_86x70mm"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	current_rounds = 50
-	max_rounds = 50
+	current_rounds = 550
+	max_rounds = 550
 
 /obj/item/ammo_magazine/packet/smart_minigun
 	name = "SG-85 ammo bin"
@@ -92,8 +92,8 @@
 	icon_state = "box_smartminigun"
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	caliber = CALIBER_10x26_CASELESS
-	current_rounds = 500
-	max_rounds = 500
+	current_rounds = 1500
+	max_rounds = 1500
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_magazine/packet/smart_targetrifle
@@ -102,8 +102,8 @@
 	icon_state = "box_smarttargetrifle"
 	default_ammo = /datum/ammo/bullet/smarttargetrifle
 	caliber = CALIBER_10x27_CASELESS
-	current_rounds = 200
-	max_rounds = 200
+	current_rounds = 800
+	max_rounds = 800
 
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
@@ -111,8 +111,8 @@
 	icon_state = "box_tx8"
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	caliber = CALIBER_10X28_CASELESS
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 850
+	max_rounds = 850
 
 /obj/item/ammo_magazine/packet/autosniper
 	name = "box of low-pressure 8.6x70mm"
@@ -120,8 +120,8 @@
 	icon_state = "box_t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	caliber = CALIBER_86X70
-	current_rounds = 100
-	max_rounds = 100
+	current_rounds = 200
+	max_rounds = 200
 
 /obj/item/ammo_magazine/packet/standardautoshotgun
 	name = "box of 16 Gauge shotgun slugs"
@@ -129,8 +129,8 @@
 	icon_state = "box_16gslug"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	caliber = CALIBER_16G
-	current_rounds = 60
-	max_rounds = 60
+	current_rounds = 160
+	max_rounds = 160
 
 /obj/item/ammo_magazine/packet/standardautoshotgun/flechette
 	name = "box of 16 Gauge shotgun flechette shells"
@@ -156,8 +156,8 @@
 	icon_state = "box_44mag" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver/tp44
 	caliber = CALIBER_44
-	current_rounds = 49
-	max_rounds = 49
+	current_rounds = 140
+	max_rounds = 140
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/packet/mateba
@@ -166,8 +166,8 @@
 	icon_state = "box_454"
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
 	caliber = CALIBER_454
-	current_rounds = 42
-	max_rounds = 42
+	current_rounds = 80
+	max_rounds = 80
 
 /obj/item/ammo_magazine/packet/acp
 	name = "packet of pistol .45 ACP"
@@ -176,8 +176,8 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_45ACP
-	current_rounds = 50
-	max_rounds = 50
+	current_rounds = 250
+	max_rounds = 250
 
 /obj/item/ammo_magazine/packet/p9mmap
 	name = "packet of 9mm AP"
@@ -186,8 +186,8 @@
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_9X19
-	current_rounds = 70
-	max_rounds = 70
+	current_rounds = 370
+	max_rounds = 370
 
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"
@@ -196,8 +196,8 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 100
-	max_rounds = 100
+	current_rounds = 300
+	max_rounds = 300
 
 /obj/item/ammo_magazine/packet/p10x20mm
 	name = "packet of 10x20mm"
@@ -206,8 +206,8 @@
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 350
+	max_rounds = 350
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -217,8 +217,8 @@
 	icon_state_mini = "ammo_packet_blue"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 50
-	max_rounds = 50
+	current_rounds = 550
+	max_rounds = 550
 
 /obj/item/ammo_magazine/packet/pthreeightyacp
 	name = "packet of .380 ACP"
@@ -227,5 +227,5 @@
 	icon_state = "box_380acp"
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 210
-	max_rounds = 210
+	current_rounds = 510
+	max_rounds = 510

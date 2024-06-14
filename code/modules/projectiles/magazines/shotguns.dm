@@ -13,7 +13,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "slugs"
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G //All shotgun rounds are 12g right now.
-	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
+	max_rounds = 120 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
 	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 	icon_state_mini = "slugs"
 
@@ -65,7 +65,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = CALIBER_762X54 //Cyka Blyat
-	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
+	max_rounds = 80 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 	icon_state_mini = "mosin"
 
@@ -75,7 +75,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "clip"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = CALIBER_762X54
-	max_rounds = 4
+	max_rounds = 12
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "clips"
 
@@ -85,7 +85,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = ".557"
 	default_ammo = /datum/ammo/bullet/sniper/martini
 	caliber = CALIBER_557
-	max_rounds = 20
+	max_rounds = 45
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "martini"
 
@@ -95,7 +95,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "derringer_box"
 	default_ammo = /datum/ammo/bullet/pistol/superheavy/derringer
 	caliber = CALIBER_41RIM
-	max_rounds = 10
+	max_rounds = 20
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "ammo_packet"
 
@@ -105,7 +105,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
 	caliber = CALIBER_410
-	max_rounds = 25
+	max_rounds = 55
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mbx900_sabot"
 

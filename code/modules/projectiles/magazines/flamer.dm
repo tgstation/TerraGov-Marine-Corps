@@ -6,8 +6,8 @@
 	name = "incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-240 incinerator unit. Handle with care."
 	icon_state = "flametank"
-	max_rounds = 50 //Per turf.
-	current_rounds = 50
+	max_rounds = 100 //Per turf.
+	current_rounds = 100
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
@@ -24,8 +24,8 @@
 	icon_state = "flametank_mini"
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 25
-	max_rounds = 25
+	current_rounds = 50
+	max_rounds = 50
 	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.

@@ -8,7 +8,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "tp14"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 21
+	max_rounds = 41
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 
@@ -19,7 +19,7 @@
 	desc = "An energy cell for the PP-7 plasma pistol."
 	caliber = CALIBER_PLASMA
 	icon_state = "tx7"
-	max_rounds = 10
+	max_rounds = 20
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	magazine_flags = NONE
@@ -33,7 +33,7 @@
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "m4a3"
-	max_rounds = 14
+	max_rounds = 28
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	icon_state_mini = "mag_pistol_orange"
@@ -58,7 +58,7 @@
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
-	max_rounds = 24
+	max_rounds = 42
 	icon_state = "m4a3_ext"
 	icon_state_mini = "mag_pistol_yellow"
 
@@ -71,7 +71,7 @@
 	caliber = CALIBER_45ACP
 	icon_state = "1911"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 10
+	max_rounds = 20
 
 
 
@@ -84,7 +84,7 @@
 	caliber = CALIBER_45ACP
 	icon_state = ".45"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 14
+	max_rounds = 28
 
 
 //-------------------------------------------------------
@@ -95,7 +95,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 15
+	max_rounds = 32
 	default_ammo = /datum/ammo/bullet/pistol
 
 /obj/item/ammo_magazine/pistol/g22tranq
@@ -103,7 +103,7 @@
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 12
+	max_rounds = 22
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 
 
@@ -115,7 +115,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/superheavy
 	caliber = CALIBER_50AE
 	icon_state = "50ae"
-	max_rounds = 7
+	max_rounds = 14
 
 
 
@@ -127,7 +127,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	caliber = CALIBER_22LR
 	icon_state = "pk-9_tranq"
-	max_rounds = 8
+	max_rounds = 16
 	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/c99
@@ -136,7 +136,7 @@
 	caliber = CALIBER_22LR
 	icon_state = "pk-9"
 	icon_state_mini = "mag_pistol_orange"
-	max_rounds = 12
+	max_rounds = 24
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -148,7 +148,7 @@
 	caliber = CALIBER_22LR
 	icon_state = ".22"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 5
+	max_rounds = 10
 	w_class = WEIGHT_CLASS_TINY
 
 //-------------------------------------------------------
@@ -161,7 +161,7 @@
 	caliber = CALIBER_380ACP
 	icon_state = "tp17"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 8
+	max_rounds = 16
 	w_class = WEIGHT_CLASS_TINY
 
 //-------------------------------------------------------
@@ -173,7 +173,7 @@
 	caliber = CALIBER_50AE
 	icon_state = "m4a3" //PLACEHOLDER
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 13
+	max_rounds = 24
 
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
@@ -184,7 +184,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "88m4"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 18
+	max_rounds = 28
 
 //-------------------------------------------------------
 //VP78
@@ -194,7 +194,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
 	icon_state = "50ae"
-	max_rounds = 18
+	max_rounds = 24
 
 //-------------------------------------------------------
 //SOM pistol
@@ -205,7 +205,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "v11"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 18
+	max_rounds = 26
 
 /obj/item/ammo_magazine/pistol/som/incendiary
 	name = "\improper V-11 incendiary magazine (9mm)"
@@ -215,7 +215,7 @@
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
-	max_rounds = 30
+	max_rounds = 50
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
 
@@ -228,7 +228,7 @@
 	caliber = CALIBER_45ACP
 	icon_state = "pl5"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 18
+	max_rounds = 24
 
 //-------------------------------------------------------
 
@@ -241,7 +241,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "tp17"
 	icon_state_mini = "mag_pistol"
-	max_rounds = 50
+	max_rounds = 80
 
 
 //-------------------------------------------------------
@@ -252,7 +252,7 @@
 	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
 	icon_state_mini = "Rule One: donotspeakofthis"
-	max_rounds = 300
+	max_rounds = 600
 
 //SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
@@ -260,7 +260,7 @@
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
 	icon_state_mini = "mag_pistol_tube"
-	max_rounds = 30
+	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol/ap
 
@@ -278,7 +278,7 @@
 	name = "\improper XM104 cylinder (.357)"
 	desc = "XM104 cylinder loaded with custom .357 incendiary rounds."
 	default_ammo = /datum/ammo/bullet/revolver/heavy/incen
-	max_rounds = 6
+	max_rounds = 12
 	caliber = CALIBER_357
 	icon_state = "xm104"
 	icon_state_mini = "mag_revolver_red"
@@ -291,4 +291,4 @@
 	caliber = CALIBER_9X19
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"
-	max_rounds = 15
+	max_rounds = 22

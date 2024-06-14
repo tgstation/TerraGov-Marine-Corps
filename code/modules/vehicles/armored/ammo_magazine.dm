@@ -12,7 +12,7 @@
 	icon_state = "ltbammo"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ltb
-	max_rounds = 1
+	max_rounds = 3
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
@@ -22,7 +22,7 @@
 	icon_state = "ltaap"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/minigun/ltaap
-	max_rounds = 150
+	max_rounds = 450
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
 
@@ -33,7 +33,7 @@
 	icon_state = "flametank_large"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
-	max_rounds = 120
+	max_rounds = 320
 
 /obj/item/ammo_magazine/tank/towlauncher
 	name = "TOW Launcher Magazine"
@@ -42,7 +42,7 @@
 	icon_state = "quad_rocket"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
-	max_rounds = 5
+	max_rounds = 15
 
 /obj/item/ammo_magazine/tank/secondary_cupola
 	name = "HSG-102 Cupola Magazine"
@@ -52,7 +52,7 @@
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/cupola
-	max_rounds = 75
+	max_rounds = 275
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
@@ -61,7 +61,7 @@
 	icon_state = "glauncher_2"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/grenade_container
-	max_rounds = 10
+	max_rounds = 50
 
 /obj/item/ammo_magazine/tank/tank_glauncher/update_icon_state()
 	if(current_rounds >= max_rounds)
@@ -78,7 +78,7 @@
 	icon_state = "slauncher_1"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/grenade_container/smoke
-	max_rounds = 6
+	max_rounds = 12
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
