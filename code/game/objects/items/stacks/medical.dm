@@ -226,6 +226,9 @@
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
 
+/obj/item/stack/medical/splint/attack_self(mob/user)
+	. = ..()
+	attack(user, user)
 
 /obj/item/stack/medical/splint/attack(mob/living/M, mob/living/user)
 	. = ..()
