@@ -26,4 +26,4 @@
 	for(var/turf/affecting AS in RANGE_TURFS(1, target_atom))
 		new /obj/fire/melting_fire(affecting)
 		for(var/mob/living/carbon/fired in affecting)
-			fired.take_overall_damage(PYROGEN_FIREBALL_AOE_DAMAGE, BURN, ACID, FALSE, FALSE, TRUE, 0, , max_limbs = 2)
+			fired.take_overall_damage(PYROGEN_FIREBALL_AOE_DAMAGE, BURN, FIRE, FALSE, FALSE, TRUE, 0, , max_limbs = 2)
