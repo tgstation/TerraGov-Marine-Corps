@@ -251,13 +251,10 @@
 	var/area/street_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "street_dmg"
-		set_light(0)
 	else if(street_light_area.power_light)
 		icon_state = "street_on"
-		set_light(5, 5, COLOR_WHITE)
 	else
 		icon_state = "street_off"
-		set_light(0)
 
 // Traffic
 
@@ -278,13 +275,10 @@
 	var/area/traffic_light_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "trafficlight_damaged"
-		set_light(0)
 	else if(traffic_light_area.power_light)
 		icon_state = "trafficlight_on"
-		set_light(2, 5, COLOR_WHITE)
 	else
 		icon_state = "trafficlight"
-		set_light(0)
 
 /obj/machinery/floodlight/colony/traffic_alt
 	name = "traffic light"
@@ -321,14 +315,11 @@
 	light_color =  "#00ffa0"
 	light_power = 6
 
-/obj/machinery/colony_floodlight/engineer_circular/update_icon_state()
+/obj/machinery/floodlight/colony/engineer_circular/update_icon_state()
 	var/area/engineer_circular_area = get_area(src)
 	if(obj_integrity != initial(max_integrity))
 		icon_state = "engineerlight_off"
-		set_light(0)
 	else if(engineer_circular_area.power_light)
 		icon_state = "engineerlight_on"
-		set_light(10, 5, COLOR_WHITE)
 	else
 		icon_state = "engineerlight_off"
-		set_light(0)
