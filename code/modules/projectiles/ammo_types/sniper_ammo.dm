@@ -58,7 +58,7 @@
 	handful_amount = 5
 	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 120
-	penetration = 20
+	penetration = 50
 	accurate_range_min = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 10 SECONDS
