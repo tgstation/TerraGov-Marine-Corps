@@ -248,6 +248,13 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
+/obj/structure/flora/grass/tallgrass/autosmooth/desert
+	color = "#ffbd72"
+
+/obj/structure/flora/grass/tallgrass/autosmooth/desert/Initialize(mapload)
+	. = ..()
+	layer = BUSH_LAYER //do this here instead of on type so it doesn't layer over things in map editor
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
@@ -365,6 +372,10 @@
 /obj/structure/flora/ausbushes/grassybush
 	icon_state = "grassybush"
 
+/obj/structure/flora/ausbushes/yellowbush
+	icon_state = "yellowbush"
+	icon_variants = 5
+
 /obj/structure/flora/ausbushes/fernybush
 	icon_state = "fernybush"
 	icon_variants = 3
@@ -392,6 +403,7 @@
 
 /obj/structure/flora/ausbushes/ppflowers
 	icon_state = "ppflowers"
+	icon_variants = 3
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass"

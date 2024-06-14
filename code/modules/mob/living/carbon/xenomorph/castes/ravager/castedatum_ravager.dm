@@ -14,7 +14,7 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1
+	speed = -1.0
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -23,7 +23,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD

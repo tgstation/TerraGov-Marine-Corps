@@ -1,6 +1,6 @@
 /obj/item/storage/pouch
 	name = "abstract pouch"
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "small_drop"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	equip_slot_flags = ITEM_SLOT_POCKET

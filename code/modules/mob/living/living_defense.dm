@@ -29,7 +29,7 @@
 		if(prob(grabbed_stun_chance))
 			grabbed_mob.Paralyze(1 SECONDS)
 
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
 			damage += base_damage
@@ -144,6 +144,9 @@
 
 ///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()
+	var/datum/status_effect/stacking/melting_fire/xeno_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(xeno_fire)
+		remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(!on_fire)
 		return FALSE
 	on_fire = FALSE

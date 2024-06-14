@@ -30,10 +30,9 @@
 /datum/ammo/bullet/rifle/hv
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
-	damage = 25
-	penetration = 10
-	sundering = 2
-	shell_speed = 4
+	damage = 20
+	penetration = 20
+	sundering = 0.5
 
 /datum/ammo/bullet/rifle/hv/rubber
 	name = "high-velocity rifle rubber bullet"

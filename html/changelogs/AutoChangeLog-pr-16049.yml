@@ -1,0 +1,4 @@
+author: "Kuro020"
+delete-after: True
+changes:
+  - balance: "Makes xenos tankier and a little slower plus some other assorted xeno changes, read the hackmd linked on the pr"

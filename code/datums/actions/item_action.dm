@@ -9,7 +9,11 @@
 	/// Defines wheter we overlay the image of the obj we are linked to
 	var/use_obj_appeareance = TRUE
 
-/datum/action/item_action/New(Target, obj/item/holder)
+/datum/action/item_action/New(Target, obj/item/holder, _action_icon, _action_icon_state)
+	if(_action_icon)
+		action_icon = _action_icon
+	if(_action_icon_state)
+		action_icon_state = _action_icon_state
 	. = ..()
 	if(!holder)
 		holder = target

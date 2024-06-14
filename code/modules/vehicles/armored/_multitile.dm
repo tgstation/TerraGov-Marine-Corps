@@ -35,3 +35,20 @@
 	if(!.)
 		return
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
+
+/obj/vehicle/sealed/armored/multitile/ex_act(severity)
+	if(QDELETED(src))
+		return
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+		if(EXPLODE_HEAVY)
+			take_damage(80, BRUTE, BOMB, 0)
+		if(EXPLODE_LIGHT)
+			take_damage(10, BRUTE, BOMB, 0)
+		//weak explosions do nothing
+
+/obj/vehicle/sealed/armored/multitile/lava_act()
+	if(QDELETED(src))
+		return
+	take_damage(30, BURN, FIRE)

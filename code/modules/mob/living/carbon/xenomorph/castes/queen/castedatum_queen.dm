@@ -11,17 +11,17 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 28
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 70
+	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 650
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8

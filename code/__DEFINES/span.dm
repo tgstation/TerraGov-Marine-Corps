@@ -15,6 +15,7 @@
 #define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>")
 #define span_boldnotice(str) ("<span class='boldnotice'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
+#define span_center(str) ("<span class='center'>" + str + "</span>")
 #define span_centerbold(str) ("<span class='centerbold'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_bigdeadsay(str) ("<span class='bigdeadsay'>" + str + "</span>")

@@ -1,3 +1,5 @@
+//! TODO: this needs a refactor/UI rewor at some point, we've probably bolted too much onto this over time
+
 /// Empty datum parent for use as evolution panel entrance.
 /datum/evolution_panel
 	// Empty
@@ -39,7 +41,7 @@
 			"type_path" = caste.type,
 			"name" = caste.display_name,
 			"abilities" = list(),
-			"instant_evolve" = (caste.caste_flags & CASTE_INSTANT_EVOLUTION || (HAS_TRAIT(xeno, TRAIT_CASTE_SWAP) || HAS_TRAIT(xeno, TRAIT_REGRESSING))),
+			"instant_evolve" = (caste.caste_flags & CASTE_INSTANT_EVOLUTION || (HAS_TRAIT(xeno, TRAIT_STRAIN_SWAP) || HAS_TRAIT(xeno, TRAIT_CASTE_SWAP) || HAS_TRAIT(xeno, TRAIT_REGRESSING))),
 		)
 		for(var/ability in caste.actions)
 			var/datum/action/ability/xeno_action/xeno_ability = ability
@@ -86,3 +88,4 @@
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
 	REMOVE_TRAIT(user, TRAIT_REGRESSING, TRAIT_REGRESSING)
+	REMOVE_TRAIT(user, TRAIT_STRAIN_SWAP, TRAIT_STRAIN_SWAP)

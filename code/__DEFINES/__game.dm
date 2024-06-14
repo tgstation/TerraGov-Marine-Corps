@@ -17,6 +17,7 @@
 #define MAP_DESPARITY "Desparity"
 #define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
 #define MAP_DAEDALUS_PRISON "Daedalus Prison"
+#define MAP_KUTJEVO_REFINERY "Kutjevo Refinery"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"

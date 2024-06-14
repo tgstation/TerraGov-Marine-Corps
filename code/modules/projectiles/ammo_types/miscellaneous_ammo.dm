@@ -152,11 +152,13 @@
 	bullet_color = null
 
 /datum/ammo/water/proc/splash(turf/extinguished_turf, splash_direction)
-	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in extinguished_turf
-	if(current_fire)
-		qdel(current_fire)
-	for(var/mob/living/mob_caught in extinguished_turf)
-		mob_caught.ExtinguishMob()
+	for(var/atom/relevant_atom AS in extinguished_turf)
+		if(isfire(relevant_atom))
+			qdel(relevant_atom)
+			continue
+		if(isliving(relevant_atom))
+			var/mob/living/caught_mob = relevant_atom
+			caught_mob.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
 /datum/ammo/water/on_hit_mob(mob/M, obj/projectile/P)

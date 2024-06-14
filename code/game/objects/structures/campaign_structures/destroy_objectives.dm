@@ -24,7 +24,7 @@
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
@@ -32,7 +32,7 @@
 /obj/structure/campaign_objective/destruction_objective/howitzer
 	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
 	faction = FACTION_SOM
@@ -148,7 +148,7 @@
 //Supply depot objectives
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 
 //Train
@@ -302,7 +302,7 @@
 /obj/structure/prop/som_fighter
 	name = "harbinger"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -311,7 +311,7 @@
 
 /obj/effect/landmark/campaign_structure/harbinger
 	name = "harbinger"
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -321,7 +321,7 @@
 /obj/structure/campaign_objective/destruction_objective/harbinger
 	name = "harbinger"
 	desc = "A state of the art harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -333,7 +333,7 @@
 
 /obj/effect/landmark/campaign_structure/viper
 	name = "\improper Viper"
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
@@ -343,7 +343,7 @@
 /obj/structure/campaign_objective/destruction_objective/viper
 	name = "\improper Viper"
 	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "fighter_loaded"
 	pixel_x = -33
 	pixel_y = -10
