@@ -1,3 +1,7 @@
+#define AMBIENT_LV759_OUTDOORS list('sound/effects/urban/outdoors/wind4.ogg','sound/effects/urban/outdoors/wind5.ogg','sound/effects/urban/outdoors/wind6.ogg','sound/effects/urban/outdoors/wind7.ogg','sound/effects/urban/outdoors/wind8.ogg','sound/effects/urban/outdoors/wind9.ogg','sound/effects/urban/outdoors/wind10.ogg','sound/effects/urban/outdoors/wind11.ogg','sound/effects/urban/outdoors/wind12.ogg','sound/effects/urban/outdoors/wind13.ogg','sound/effects/urban/outdoors/wind14.ogg','sound/effects/urban/outdoors/wind15.ogg','sound/effects/urban/outdoors/wind16.ogg','sound/effects/urban/outdoors/wind17.ogg','sound/effects/urban/outdoors/wind18.ogg','sound/effects/urban/outdoors/wind19.ogg','sound/effects/urban/outdoors/wind20.ogg','sound/effects/urban/outdoors/wind21.ogg','sound/effects/urban/outdoors/wind22.ogg','sound/effects/urban/outdoors/wind23.ogg','sound/effects/urban/outdoors/wind24.ogg','sound/effects/urban/outdoors/wind25.ogg','sound/effects/urban/outdoors/wind26.ogg','sound/effects/urban/outdoors/wind27.ogg','sound/effects/urban/outdoors/wind28.ogg',)
+#define AMBIENT_LV759_INDOORS list('sound/effects/urban/indoors/indoor_wind.ogg','sound/effects/urban/indoors/indoor_wind2.ogg','sound/effects/urban/indoors/vent_1.ogg','sound/effects/urban/indoors/vent_2.ogg','sound/effects/urban/indoors/vent_3.ogg','sound/effects/urban/indoors/vent_4.ogg','sound/effects/urban/indoors/vent_5.ogg','sound/effects/urban/indoors/vent_6.ogg','sound/effects/urban/indoors/vent_7.ogg','sound/effects/urban/indoors/vent_6.ogg','sound/effects/urban/indoors/distant_sounds_1.ogg','sound/effects/urban/indoors/distant_sounds_2.ogg','sound/effects/urban/indoors/distant_sounds_3.ogg','sound/effects/urban/indoors/distant_sounds_4.ogg','sound/effects/urban/indoors/distant_sounds_5.ogg','sound/effects/urban/indoors/distant_sounds_6.ogg','sound/effects/urban/indoors/distant_sounds_7.ogg','sound/effects/urban/indoors/distant_sounds_8.ogg','sound/effects/urban/indoors/distant_sounds_9.ogg','sound/effects/urban/indoors/distant_sounds_10.ogg','sound/effects/engamb1.ogg','sound/effects/engamb2.ogg','sound/effects/engamb3.ogg','sound/effects/engamb4.ogg','sound/effects/engamb5.ogg','sound/effects/engamb6.ogg','sound/effects/engamb7.ogg',)
+#define AMBIENT_LV759_DERELICTSHIP list('sound/effects/urban/indoors/derelict1.ogg','sound/effects/urban/indoors/derelict_ambience.ogg','sound/effects/urban/indoors/urban_interior.ogg','sound/effects/urban/indoors/derelict2.ogg','sound/effects/urban/indoors/derelict3.ogg','sound/effects/urban/indoors/derelict4.ogg','sound/effects/urban/indoors/derelict5.ogg','sound/effects/urban/indoors/derelict6.ogg','sound/effects/urban/indoors/derelict7.ogg','sound/effects/urban/indoors/derelict8.ogg')
+
 //lv759 AREAS--------------------------------------//
 
 /area/lv759
@@ -14,12 +18,14 @@
 	outside = FALSE
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
+	ambience = AMBIENT_LV759_INDOORS
 
 /area/lv759/outdoors
 	name = "Hybrisa - Outdoors"
 	icon_state = "cliff_blocked"//because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
 	always_unpowered = TRUE
+	ambience = AMBIENT_LV759_OUTDOORS
 
 /area/lv759/oob
 	name = "Out Of Bounds"
@@ -106,6 +112,7 @@
 	icon_state = "derelictship"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_SEC_CAVE
+	ambience = AMBIENT_LV759_DERELICTSHIP
 
 // Caves
 /area/lv759/indoors/nt_research_complex_entrance
@@ -119,6 +126,12 @@
 	always_unpowered = TRUE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	ambience = list('sound/effects/urban/outdoors/windy_caverns_1.ogg',
+	'sound/effects/urban/outdoors/windy_caverns_2.ogg',
+	'sound/effects/urban/outdoors/windy_caverns_3.ogg',
+	'sound/effects/urban/outdoors/deepcave1.ogg',
+	'sound/effects/urban/outdoors/deepcave2.ogg',
+	)
 
 /area/lv759/indoors/caves/west_caves
 	name = "Caverns - West"
@@ -181,6 +194,9 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
+	ambience = list('sound/effects/urban/outdoors/derelict_plateau_1.ogg',
+	'sound/effects/urban/outdoors/derelict_plateau_2.ogg',
+	)
 
 // Colony Streets
 /area/lv759/outdoors/colony_streets
@@ -823,6 +839,11 @@
 	name = "NTmart"
 	icon_state = "NTmart"
 	minimap_color = MINIMAP_AREA_CELL_MED
+	ambience = list('sound/effects/urban/indoors/weymart1.ogg',
+	'sound/effects/urban/indoors/weymart2.ogg',
+	'sound/effects/urban/indoors/weymart3.ogg',
+	'sound/effects/urban/indoors/weymart4.ogg'
+	)
 
 /area/lv759/indoors/NTmart/backrooms
 	name = "NTmart - Backrooms"
@@ -870,6 +891,7 @@
 	icon_state = "wylab"
 	minimap_color = MINIMAP_AREA_CAVES
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ambience = list('sound/effects/urban/indoors/lab_ambience.ogg')
 
 /area/lv759/indoors/nt_research_complex/medical_annex
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Medical Annex Building"
@@ -893,6 +915,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Xenobiology Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	ambience = list('sound/effects/urban/indoors/lab_ambience_2.ogg')
 
 /area/lv759/indoors/nt_research_complex/weaponresearchlab
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Advanced Weapon Research Lab"
@@ -941,28 +964,36 @@
 /area/lv759/indoors/nt_research_complex/hangarbay
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay"
 	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hangar Bay - Nanotrasen PMC ERT Shuttle"
 	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaynorth
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Technology Research & Development Lab"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - North Hallway - Personnel Exit East"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwayeast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Hallway East"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaycentral
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - Central Hallway"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South West Hallway"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Hallway"
+	ambience = list('sound/effects/urban/indoors/lab_ambience_hallway.ogg')
 
 /area/lv759/indoors/nt_research_complex/southeastexit
 	name = "Nanotrasen - Advanced Bio-Genomic Research Complex - South East Maintenace & Emergency Exit"
