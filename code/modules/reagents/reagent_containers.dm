@@ -54,8 +54,7 @@
 
 /obj/item/reagent_containers/attack_self(mob/living/user)
 	. = ..()
-	afterattack(user, user) //If player uses the hypospray, try to inject themselves
-
+	afterattack(user, user) //If player uses the container, use it on themselves
 
 /obj/item/reagent_containers/attack_self_alternate(mob/living/user)
 	. = ..()

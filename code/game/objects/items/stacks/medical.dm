@@ -19,7 +19,7 @@
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
 
-/obj/item/stack/medical/splint/attack_self(mob/user)
+/obj/item/stack/medical/attack_self(mob/user)
 	. = ..()
 	attack(user, user)
 
