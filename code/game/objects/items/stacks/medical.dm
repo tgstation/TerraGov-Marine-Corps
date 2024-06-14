@@ -19,6 +19,10 @@
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
 
+/obj/item/stack/medical/splint/attack_self(mob/user)
+	. = ..()
+	attack(user, user)
+
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(.)
@@ -62,10 +66,6 @@
 	var/heal_burn = 0
 	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
 	var/heal_flags = NONE
-
-/obj/item/stack/medical/heal_pack/attack_self(mob/user)
-	. = ..()
-	/obj/item/stack/medical/heal_pack/attack(user, user)
 
 /obj/item/stack/medical/heal_pack/attack(mob/living/M, mob/living/user)
 	. = ..()
@@ -225,10 +225,6 @@
 	unskilled_delay = SKILL_TASK_TOUGH
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
-
-/obj/item/stack/medical/splint/attack_self(mob/user)
-	. = ..()
-	attack(user, user)
 
 /obj/item/stack/medical/splint/attack(mob/living/M, mob/living/user)
 	. = ..()
