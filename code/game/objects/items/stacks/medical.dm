@@ -63,6 +63,9 @@
 	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
 	var/heal_flags = NONE
 
+/obj/item/stack/medical/heal_pack/attack_self(mob/user)
+	. = ..()
+	/obj/item/stack/medical/heal_pack/attack(user, user)
 
 /obj/item/stack/medical/heal_pack/attack(mob/living/M, mob/living/user)
 	. = ..()
