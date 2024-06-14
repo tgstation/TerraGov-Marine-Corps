@@ -47,12 +47,14 @@
 			can_sell = TRUE
 		if(is_research_product(onpad))
 			can_sell = TRUE
+		if(istype(onpad, /obj/item/xeno_remains))
+			can_sell = TRUE
 		if(!can_sell)
 			continue
 		var/datum/export_report/export_report = onpad.supply_export(user.faction)
 		if(export_report)
 			SSpoints.export_history += export_report
-		visible_message(span_notice("[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."))
+		visible_message(span_notice("[src] buzzes: \The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."))
 		qdel(onpad)
 
 	do_sparks(5, TRUE, src)

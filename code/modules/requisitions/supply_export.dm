@@ -50,6 +50,22 @@
 			. = list(1100, 100)
 	return
 
+/obj/item/xeno_remains/get_export_value()
+	switch(tier) //about 1/4
+		if(XENO_TIER_MINION)
+			. = list(10, 1)
+		if(XENO_TIER_ZERO)
+			. = list(20, 2)
+		if(XENO_TIER_ONE)
+			. = list(40, 3)
+		if(XENO_TIER_TWO)
+			. = list(90, 7)
+		if(XENO_TIER_THREE)
+			. = list(150, 12)
+		if(XENO_TIER_FOUR)
+			. = list(275, 25)
+	return
+
 //I hate it but it's how it was so I'm not touching it further than this
 /mob/living/carbon/xenomorph/shrike/get_export_value()
 	return list(600, 50)

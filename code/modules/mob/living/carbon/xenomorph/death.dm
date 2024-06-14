@@ -82,9 +82,11 @@
 
 /mob/living/carbon/xenomorph/gib()
 
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
+	var/obj/item/xeno_remains/remains = new(get_turf(src))
 	remains.icon = icon
-	remains.pixel_x = pixel_x //For 2x2.
+
+	remains.name = "remains - tier [tier]"
+	remains.tier = tier
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GIBBING)
 

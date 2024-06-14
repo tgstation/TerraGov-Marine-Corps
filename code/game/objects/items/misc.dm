@@ -131,3 +131,10 @@
 	icon_state = "rosary"
 	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/xeno_remains
+	name = "remains"
+	desc = "Scattered remains of a xenomorph. Might be worth something..."
+	gender = PLURAL
+	w_class = WEIGHT_CLASS_HUGE
+	var/tier
