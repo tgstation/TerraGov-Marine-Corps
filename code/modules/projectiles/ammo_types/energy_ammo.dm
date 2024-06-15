@@ -752,11 +752,11 @@
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/damage_mult = 3
-	if(ishitbox(O)) //yes this is annoying.
-		var/obj/hitbox/hitbox = O
-		O = hitbox.root
-	if(isvehicle(O))
-		var/obj/vehicle/vehicle_target = O
+	if(ishitbox(target_obj)) //yes this is annoying.
+		var/obj/hitbox/hitbox = target_obj
+		target_obj = hitbox.root
+	if(isvehicle(target_obj))
+		var/obj/vehicle/vehicle_target = target_obj
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
 			damage_mult = 8
 		for(var/mob/living/living_victim AS in vehicle_target.occupants)//staggerstun will fail on tank occupants if we just use staggerstun
@@ -765,4 +765,4 @@
 			shake_camera(living_victim, 0.3 SECONDS, 2)
 			to_chat(living_victim, "You are knocked about by the impact, staggering you!")
 	proj.damage *= damage_mult
-	O.Shake(4, 4, 0.6 SECONDS, 0.04 SECONDS)
+	target_obj.Shake(4, 4, 0.6 SECONDS, 0.04 SECONDS)

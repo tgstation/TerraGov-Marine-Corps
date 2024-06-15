@@ -224,7 +224,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
-	var/action_firemode
+	///The coilgun associated with this action
 	var/obj/item/armored_weapon/coilgun/holder_gun
 
 
