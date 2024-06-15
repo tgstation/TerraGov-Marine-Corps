@@ -428,9 +428,14 @@
 	switch(stat)
 		if(UNCONSCIOUS)
 			see_in_dark = xeno_caste.unconscious_see_in_dark
+			RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, TYPE_PROC_REF(/mob/living/carbon/xenomorph, oncrittakedamage))
 		if(DEAD, CONSCIOUS)
 			if(. == UNCONSCIOUS)
 				see_in_dark = xeno_caste.conscious_see_in_dark
+				UnregisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	if(new_stat == CONSCIOUS)
+		crit_damage_penalty = 0
+
 
 ///Kick the player from this mob, replace it by a more competent ai
 /mob/living/carbon/xenomorph/proc/replace_by_ai()

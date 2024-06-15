@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.8,aresample=%SAMPLE_RATE%,atempo=1/0.8,aformat=channel_layouts=mono [p0]; [out2] asetrate=%SAMPLE_RATE%*1.2,aresample=%SAMPLE_RATE%,atempo=1/1.2,aformat=channel_layouts=mono[p2]; [p0][0][p2] amix=inputs=3"}
-	gib_chance = 5
+	gib_chance = 0
 	light_system = MOVABLE_LIGHT
 
 	///Hive name define
@@ -419,6 +419,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	/// The amount of damage the xeno has taken while in crit, resets on exiting crit
+	var/crit_damage_penalty = 0
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

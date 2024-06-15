@@ -180,3 +180,22 @@
 /mob/living/carbon/proc/handle_disabilities()
 	handle_impaired_vision()
 	handle_impaired_hearing()
+
+/// instantly sends a mob into crit
+/mob/living/carbon/proc/insta_crit(damage_type = BRUTE, zone)
+	var/amt = max(health - get_crit_threshold() + 1, 0)
+	apply_damage(amt, damage_type, zone, updating_health = TRUE) //wound the target...
+	if(health > get_crit_threshold())
+		amt = max(health - get_crit_threshold() + 1, 0) //then deal the rest of the damage directly
+		switch(damage_type)
+			if(BRUTE)
+				adjustBruteLoss(amt)
+			if(BURN)
+				adjustFireLoss(amt)
+			if(TOX)
+				adjustToxLoss(amt)
+			if(OXY)
+				adjustOxyLoss(amt)
+			if(CLONE)
+				adjustCloneLoss(amt)
+	Paralyze(1 SECONDS, TRUE)

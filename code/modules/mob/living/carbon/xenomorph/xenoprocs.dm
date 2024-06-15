@@ -573,3 +573,7 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/mob/living/carbon/xenomorph/proc/oncrittakedamage(mob/living/carbon/xenomorph/X, damage_taken)
+	SIGNAL_HANDLER
+	X.crit_damage_penalty += damage_taken

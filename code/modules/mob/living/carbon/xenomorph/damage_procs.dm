@@ -28,8 +28,9 @@
 	if(bomb_armor_ratio <= 0) //we have 100 effective bomb armor
 		return
 
-	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
-		return gib() //Gibs unprotected benos
+	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_INSTACRIT_THRESHOLD))
+		if(health > 190)
+			return insta_crit() //Insta-crits unprotected benos
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
