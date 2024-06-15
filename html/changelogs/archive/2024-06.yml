@@ -147,3 +147,9 @@
       the center. Damage is 12 per tile at close range, 10 per tile at farther distances.
   - balance: Crusher's charge now does more damage to tanks and apcs (from between
       18-21 to between 50-100) depending on the charge distance.
+2024-06-15:
+  Lauwma:
+  - rscadd: Spiderlings can now attack uncouncious marines
+  Wisemonster:
+  - bugfix: Fixed pyrogen's fireball AoE checking for armor's fire resistance instead
+      of acid
