@@ -232,7 +232,7 @@
 
 /turf/closed/interior/tank/door/som/update_overlays()
 	. = ..()
-	. += image(icon, "hatch_decal", layer = BELOW_OBJ_LAYER, pixel_y = 26)
+	. += image(icon, "hatch_decal", layer = BELOW_OBJ_LAYER, pixel_y = 24)
 
 /turf/closed/interior/tank/door/som/get_enter_location()
 	return get_step(src, NORTH)
