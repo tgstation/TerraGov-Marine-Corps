@@ -260,7 +260,7 @@
 		return
 	var/area/area = get_area(src)
 	if(get_area_name(area) in GLOB.nuke_ineligible_site)
-		balloon_alert(user, "ineligible detonation site.")
+		balloon_alert(user, "ineligible detonation site")
 		return
 	if(!timer_enabled)
 		enable()
