@@ -122,8 +122,9 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
-		if(ishitbox(ravaged) || isarmoredvehicle(ravaged)) //Handles APC/Tank stuff in a different for loop
-			break
+		if(ishitbox(ravaged) || isarmoredvehicle(ravaged))
+			ravaged.attack_alien(X, X.xeno_caste.melee_damage) //Handles APC/Tank stuff
+			continue
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
 			continue
 		if(!ishuman(ravaged))
@@ -137,9 +138,6 @@
 		human_victim.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 		shake_camera(human_victim, 2, 1)
 		human_victim.Paralyze(1 SECONDS)
-
-	for(var/obj/hitbox/ravaged AS in atoms_to_ravage)
-		ravaged.attack_alien(X, X.xeno_caste.melee_damage)
 
 	succeed_activate()
 	add_cooldown()
