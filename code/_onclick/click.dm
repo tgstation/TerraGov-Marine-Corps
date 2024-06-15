@@ -2,11 +2,10 @@
  * Delays the mob's next click/action by num deciseconds
  * eg: 10 - 3 = 7 deciseconds of delay
  * eg: 10 * 0.5 = 5 deciseconds of delay
- * DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+ * DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF last_click
  */
 /mob/proc/changeNext_move(num)
 	next_move = world.time + ((num + next_move_adjust) * next_move_modifier)
-
 
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
@@ -47,10 +46,9 @@
  * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
  */
 /mob/proc/ClickOn(atom/A, location, params)
-
-	if(world.time <= next_click)
+	if(world.time <= last_click)
 		return
-	next_click = world.time + 1
+	last_click = world.time + 1
 
 	if(check_click_intercept(params, A))
 		return

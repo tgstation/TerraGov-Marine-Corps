@@ -52,7 +52,7 @@
 /proc/get_playable_species()
 	return GLOB.roundstart_species
 
-//some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
+///some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
 	if(check_clicks && next_move > world.time)
 		return FALSE

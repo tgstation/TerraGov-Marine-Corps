@@ -54,6 +54,8 @@
 
 /atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
+	if(user.last_attack > world.time)
+		return TRUE
 	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
@@ -168,7 +170,8 @@
 	. = ..()
 	if(.)
 		return TRUE
-	user.changeNext_move(I.attack_speed)
+	user.last_attack = world.time + I.attack_speed
+	//user.changeNext_move(I.attack_speed)
 	return I.attack(src, user)
 
 

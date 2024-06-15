@@ -34,20 +34,27 @@
 	var/feet_blood_color
 	var/datum/skills/skills
 
+	//Clicking vars
+	///integer, stores `world.time + 1` every time you click
+	var/last_click = 0
+	///integer, stores the time of whenever changeNext_move() gets ran
+	var/next_move = 0
+	///integer, stores world.time + attack_speed whenever attack is ran
+	var/last_attack = 0
+	///Amount to adjust action/click delays by, + or -
+	var/next_move_adjust = 0
+	//Value to multiply action/click delays by
+	var/next_move_modifier = 1
+
 
 	//Movement
 	///List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm
 	var/list/movespeed_modification
 	///The calculated mob speed slowdown based on the modifiers list.
 	var/cached_multiplicative_slowdown
-	var/next_click = 0
-	var/next_move = 0
 	///Amount added during the next movement_delay(), then is reset.
 	var/next_move_slowdown = 0
-	///Amount to adjust action/click delays by, + or -
-	var/next_move_adjust = 0
-	//Value to multiply action/click delays by
-	var/next_move_modifier = 1
+
 	var/last_move_intent
 	var/area/lastarea
 	var/old_x = 0
