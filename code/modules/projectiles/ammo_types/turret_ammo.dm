@@ -50,8 +50,8 @@
 	penetration = 40
 	damage_falloff = 1
 
-/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, knockback = 1, max_range = 4)
+/datum/ammo/bullet/turret/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, knockback = 1, max_range = 4)
 
 /datum/ammo/bullet/turret/spread
 	name = "additional buckshot"
@@ -77,14 +77,14 @@
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 
 
-/datum/ammo/flamer/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
+/datum/ammo/flamer/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
 
-/datum/ammo/flamer/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : O.loc)
+/datum/ammo/flamer/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/flamer/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/flamer/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/flamer/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/flamer/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
