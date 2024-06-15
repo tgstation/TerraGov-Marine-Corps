@@ -224,7 +224,7 @@
 		return
 
 	if(health <= get_death_threshold())
-		if(crit_damage_penalty > 20 && prob(crit_damage_penalty * 0.75)) //if above 20, chance to gib based on crit_damage_penalty
+		if(crit_damage_penalty > 20 && prob(crit_damage_penalty * 0.75 - 12)) //if above 20, chance to gib based on crit_damage_penalty
 			gib() //womp womp
 			return TRUE
 		crit_damage_penalty = 0
