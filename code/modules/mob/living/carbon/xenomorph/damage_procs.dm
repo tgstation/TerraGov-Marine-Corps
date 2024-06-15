@@ -29,8 +29,7 @@
 		return
 
 	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_INSTACRIT_THRESHOLD))
-		if(health > 190)
-			return insta_crit() //Insta-crits unprotected benos
+		return gib() //gibs unprotected benos
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
