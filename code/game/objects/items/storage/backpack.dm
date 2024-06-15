@@ -377,10 +377,6 @@
 	///How long it takes for the wearer to remove the duffelbag
 	var/self_strip_delay = 3 SECONDS
 
-/obj/item/storage/backpack/marine/duffelbag/Destroy()
-	. = ..()
-	UnregisterSignal(usr, COMSIG_CLICK_RIGHT)
-
 /obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
