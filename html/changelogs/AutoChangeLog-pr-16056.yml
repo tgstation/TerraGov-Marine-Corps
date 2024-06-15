@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some projectile on hit effects triggering on the wrong turfs in some cases"

@@ -26,21 +26,25 @@
 	var/bonus_projectile_quantity = 15
 
 
-/datum/ammo/ags_shrapnel/on_hit_mob(mob/M, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, M) )
+/datum/ammo/ags_shrapnel/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/turf/det_turf = get_turf(target_mob)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_mob), det_turf)
 
-/datum/ammo/ags_shrapnel/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, O) )
+/datum/ammo/ags_shrapnel/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_obj), det_turf)
 
-/datum/ammo/ags_shrapnel/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, T) )
+/datum/ammo/ags_shrapnel/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, target_turf), det_turf)
 
-/datum/ammo/ags_shrapnel/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, get_turf(proj)) )
+/datum/ammo/ags_shrapnel/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 2, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 
 /datum/ammo/ags_shrapnel/incendiary
 	name = "white phosphorous grenade"
@@ -66,17 +70,17 @@
 	sundering = 1.5
 	damage_falloff = 0
 
-/datum/ammo/bullet/ags_spread/incendiary/on_hit_mob(mob/M, obj/projectile/P)
-	drop_flame(get_turf(M))
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_flame(get_turf(target_mob))
 
-/datum/ammo/bullet/ags_spread/incendiary/on_hit_obj(obj/O, obj/projectile/P)
-	drop_flame(get_turf(O))
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_flame(get_turf(target_obj))
 
-/datum/ammo/bullet/ags_spread/incendiary/on_hit_turf(turf/T, obj/projectile/P)
-	drop_flame(get_turf(T))
+/datum/ammo/bullet/ags_spread/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_flame(get_turf(target_turf))
 
-/datum/ammo/bullet/ags_spread/incendiary/do_at_max_range(turf/T, obj/projectile/P)
-	drop_flame(get_turf(T))
+/datum/ammo/bullet/ags_spread/incendiary/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_flame(get_turf(target_turf))
 
 /datum/ammo/bullet/ags_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))

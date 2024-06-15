@@ -6755,7 +6755,7 @@
 "Hl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/LZ1)
 "Hm" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -6848,7 +6848,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/LZ1)
 "HJ" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/tile/dark/green2{
@@ -9357,7 +9357,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/LZ1)
 "TR" = (
 /obj/structure/table/flipped,
 /obj/structure/nuke_disk_candidate,
@@ -10616,7 +10616,7 @@
 "ZE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/LZ1)
 "ZF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
