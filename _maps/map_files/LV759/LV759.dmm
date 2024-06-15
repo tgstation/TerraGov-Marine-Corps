@@ -1008,7 +1008,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "ajA" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -2348,7 +2348,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/west_caves)
 "auK" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -4385,7 +4385,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "aNa" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -5670,7 +5670,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aXz" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	pixel_x = 8;
 	pixel_y = 5
 	},
@@ -8088,7 +8088,7 @@
 	},
 /area/lv759/indoors/caves/east_caves)
 "buW" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	pixel_x = 4;
 	pixel_y = 12
 	},
@@ -8302,7 +8302,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bwQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -8871,7 +8871,7 @@
 	},
 /area/lv759/indoors/power_plant)
 "bCm" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -10627,7 +10627,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_south_office)
 "bRU" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 1;
 	pixel_x = 2;
 	pixel_y = 12
@@ -10973,7 +10973,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "bUS" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -11404,7 +11404,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/interrogation)
 "bXG" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -11450,7 +11450,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_east)
 "bXU" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -13879,7 +13879,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "csa" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -14183,7 +14183,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/press_room)
 "cvB" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -15370,7 +15370,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "cGx" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -15420,7 +15420,7 @@
 /area/lv759/indoors/power_plant/telecomms)
 "cGX" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -17451,7 +17451,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_east)
 "cYw" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -17801,7 +17801,7 @@
 	pixel_x = -27;
 	pixel_y = 3
 	},
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 1;
 	pixel_x = 8;
 	pixel_y = 12
@@ -19882,7 +19882,7 @@
 	pixel_y = 21
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -20833,7 +20833,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "dBV" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -20919,7 +20919,7 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "dCC" = (
-/obj/machinery/floodlight/colony/engineer_circular,
+/obj/machinery/streetlight/engineer_circular,
 /turf/open/engineership/engineer_floor5,
 /area/lv759/oob)
 "dCD" = (
@@ -22102,7 +22102,7 @@
 	pixel_x = 10;
 	pixel_y = 21
 	},
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_y = 12
 	},
@@ -23186,7 +23186,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "dXU" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 1;
 	pixel_x = 2;
 	pixel_y = 8
@@ -24537,14 +24537,14 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ekF" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "ekH" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 18
 	},
@@ -25051,7 +25051,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "eoQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -25103,7 +25103,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "epr" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -25880,7 +25880,7 @@
 /turf/open/floor/plating/dmg1,
 /area/lv759/outdoors/colony_streets/north_street)
 "evM" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -25974,7 +25974,7 @@
 /turf/open/floor/urban/metal/bluemetal1,
 /area/lv759/indoors/spaceport/communications_office)
 "ewN" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_x = 8;
 	pixel_y = 12
@@ -26021,7 +26021,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "exy" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -26900,7 +26900,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "eFd" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -28116,7 +28116,7 @@
 /area/lv759/indoors/spaceport/horizon_runner)
 "eQo" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -29208,7 +29208,7 @@
 /area/lv759/indoors/electical_systems/substation1)
 "faP" = (
 /obj/item/shard,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -29402,7 +29402,7 @@
 /turf/open/floor/urban/tile/beige_bigtile,
 /area/lv759/indoors/power_plant/workers_canteen)
 "fcA" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -29548,7 +29548,7 @@
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -30846,7 +30846,7 @@
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
 "for" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -30950,7 +30950,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "fps" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 12
@@ -31624,7 +31624,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fvs" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -31914,7 +31914,7 @@
 /area/lv759/indoors/hospital/operation)
 "fyj" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -32456,7 +32456,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "fCD" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -33049,7 +33049,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/generic,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -33205,7 +33205,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "fIU" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	pixel_x = 5;
 	pixel_y = 15
 	},
@@ -33913,7 +33913,7 @@
 /turf/open/floor/urban/tile/lightbeige_bigtile,
 /area/lv759/indoors/hospital/paramedics_garage)
 "fOD" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 10
@@ -34567,7 +34567,7 @@
 /area/lv759/indoors/caves/north_west_caves)
 "fUk" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -34788,7 +34788,7 @@
 	},
 /area/lv759/indoors/weyyu_office)
 "fWg" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -35773,7 +35773,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gfj" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_y = 10
 	},
@@ -35924,7 +35924,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/virology)
 "ggs" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -37445,7 +37445,7 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/hospital/pharmacy)
 "gsn" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -38559,7 +38559,7 @@
 /turf/open/floor/orange_cover,
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "gCS" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	pixel_x = 8;
 	pixel_y = 15
 	},
@@ -39288,7 +39288,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gKx" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -39828,7 +39828,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "gPW" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 1;
 	pixel_x = 2;
 	pixel_y = 5
@@ -40813,7 +40813,7 @@
 	},
 /area/lv759/indoors/caves/north_east_caves)
 "gZr" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -41117,7 +41117,7 @@
 /turf/open/floor/plate,
 /area/lv759/indoors/colonial_marshals/garage)
 "hbB" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -41192,7 +41192,7 @@
 /area/lv759/indoors/caves/north_caves)
 "hce" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	pixel_x = 8;
 	pixel_y = 4
 	},
@@ -43207,7 +43207,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "hsC" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -44131,7 +44131,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "hAn" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 1;
 	pixel_x = 8;
 	pixel_y = 15
@@ -45660,7 +45660,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "hNH" = (
-/obj/machinery/floodlight/colony/engineer_circular,
+/obj/machinery/streetlight/engineer_circular,
 /turf/open/engineership/engineer_floor5,
 /area/lv759/indoors/derelict_ship)
 "hNJ" = (
@@ -45910,7 +45910,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "hPx" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -47302,7 +47302,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco1{
 	dir = 8
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -47971,7 +47971,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "iim" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -48580,7 +48580,7 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "inE" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -48818,7 +48818,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "iqv" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -48867,7 +48867,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "iqJ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -49979,7 +49979,7 @@
 /area/lv759/indoors/apartment/northapartments)
 "iAv" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_x = 8;
 	pixel_y = 12
@@ -50563,7 +50563,7 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/power_plant/gas_generators)
 "iGh" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -52260,7 +52260,7 @@
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_factory)
 "iVv" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -52451,7 +52451,7 @@
 	},
 /area/lv759/indoors/caves/north_west_caves)
 "iWC" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -53083,7 +53083,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "jbW" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -54905,7 +54905,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "jqR" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_y = 10
 	},
@@ -56240,7 +56240,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jBU" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -57312,7 +57312,7 @@
 /turf/open/floor/urban/wood/redwood,
 /area/lv759/indoors/weyyu_office/floor)
 "jMW" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -58032,7 +58032,7 @@
 /turf/closed/wall/engineership,
 /area/lv759/oob)
 "jUi" = (
-/obj/machinery/floodlight/colony/engineer_circular,
+/obj/machinery/streetlight/engineer_circular,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/engineership/engineer_floor2,
 /area/lv759/indoors/derelict_ship)
@@ -58524,7 +58524,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jXL" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -59191,11 +59191,11 @@
 /turf/open/engineership/ship_hull,
 /area/lv759/oob)
 "key" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 18
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 18
 	},
@@ -61066,7 +61066,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "kwv" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 6
 	},
@@ -63186,7 +63186,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "kPY" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -63512,7 +63512,7 @@
 /turf/open/engineership/engineer_floor2,
 /area/lv759/indoors/derelict_ship)
 "kTq" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -64155,7 +64155,7 @@
 	},
 /area/lv759/indoors/hospital/outgoing)
 "kXN" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -64705,7 +64705,7 @@
 /turf/open/floor/plate,
 /area/lv759/indoors/meridian/meridian_factory)
 "lcR" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -66181,7 +66181,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "lpW" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -67051,7 +67051,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "lyA" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -67205,7 +67205,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/wardens_office)
 "lAl" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -67920,7 +67920,7 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/botany/botany_mainroom)
 "lGM" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 4;
 	pixel_y = 12
@@ -68755,7 +68755,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "lNx" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -69882,7 +69882,7 @@
 /area/lv759/indoors/nt_research_complex/cafeteria)
 "lWs" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 12
@@ -70382,7 +70382,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/gas_generators)
 "maQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -70478,7 +70478,7 @@
 	pixel_x = 10;
 	pixel_y = 21
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -71669,7 +71669,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mlE" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_y = 12
 	},
@@ -72040,7 +72040,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
 "moH" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	layer = 9;
 	pixel_x = 2;
 	pixel_y = 5
@@ -72114,7 +72114,7 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "mpA" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -73299,7 +73299,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "mzG" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -74475,7 +74475,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
 "mKB" = (
-/obj/machinery/floodlight/colony/engineer_circular,
+/obj/machinery/streetlight/engineer_circular,
 /turf/open/engineership/engineer_floor2,
 /area/lv759/indoors/derelict_ship)
 "mKF" = (
@@ -74875,7 +74875,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "mOj" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -75629,7 +75629,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "mUM" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -76054,7 +76054,7 @@
 /area/lv759/indoors/hospital/morgue)
 "mYg" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -76129,7 +76129,7 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	pixel_y = 12
 	},
 /turf/open/urban/street/sidewalk{
@@ -76647,7 +76647,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/hospital/operation)
 "ncr" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -77971,7 +77971,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nmQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -78506,7 +78506,7 @@
 /turf/open/floor/carpet,
 /area/lv759/indoors/bar)
 "nrK" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 12
@@ -80991,7 +80991,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "nNS" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -83442,7 +83442,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "oiY" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -84086,7 +84086,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "oqA" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -84349,7 +84349,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "osQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -84511,7 +84511,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "our" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_y = 10
 	},
@@ -85602,7 +85602,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
 "oEV" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -86145,7 +86145,7 @@
 /turf/open/floor/urban/tile/greenfull_bigtile,
 /area/lv759/indoors/botany/botany_mainroom)
 "oJr" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -86215,7 +86215,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "oJZ" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -87271,7 +87271,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "oTZ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -87307,7 +87307,7 @@
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "oUs" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 8
@@ -88504,7 +88504,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "pfc" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -91921,7 +91921,7 @@
 /turf/open/shuttle/escapepod/ten,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "pHA" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 10
@@ -92053,7 +92053,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
 "pID" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 8;
 	pixel_y = 12
@@ -93214,7 +93214,7 @@
 /area/lv759/indoors/NTmart)
 "pTH" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -95292,7 +95292,7 @@
 	},
 /area/lv759/indoors/garage_workshop)
 "qky" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -95923,7 +95923,7 @@
 	layer = 4;
 	pixel_x = -20
 	},
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 15
@@ -98993,7 +98993,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "qUv" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_y = 10
 	},
@@ -99146,7 +99146,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "qWi" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -99468,7 +99468,7 @@
 /area/lv759/outdoors/landing_zone_1)
 "qYY" = (
 /obj/effect/urban/decal/dirt_2,
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_y = 10
 	},
@@ -99491,7 +99491,7 @@
 /obj/structure/platform_decoration/urban/metalplatformdeco1{
 	dir = 8
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -100365,7 +100365,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "rgQ" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_y = 12
 	},
@@ -102405,7 +102405,7 @@
 /turf/open/engineership/engineer_floor9,
 /area/lv759/indoors/derelict_ship)
 "ryX" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -102651,7 +102651,7 @@
 	},
 /area/lv759/indoors/spaceport/flight_control_room)
 "rBo" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -103181,7 +103181,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/westhallway)
 "rGf" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -107394,7 +107394,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "srg" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -107718,7 +107718,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "stQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -108218,7 +108218,7 @@
 "syF" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	pixel_x = 1;
 	pixel_y = 12
 	},
@@ -108463,7 +108463,7 @@
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/power_plant/telecomms)
 "sAc" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -110363,7 +110363,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "sQQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -110403,7 +110403,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/hospital/morgue)
 "sRf" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -110770,7 +110770,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "sUt" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -111491,7 +111491,7 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "tav" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 12
@@ -113655,7 +113655,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "ttC" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 12
@@ -114713,7 +114713,7 @@
 /area/lv759/indoors/derelict_ship)
 "tDb" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_x = 8;
 	pixel_y = 10
@@ -115029,7 +115029,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/north_caves)
 "tFQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -115424,7 +115424,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
 "tJj" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 6
 	},
@@ -116314,7 +116314,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "tQR" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 10
@@ -117072,7 +117072,7 @@
 /turf/open/floor/grimy,
 /area/lv759/indoors/apartment/northfoyer)
 "tWX" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -118330,7 +118330,7 @@
 /obj/structure/barricade/handrail/urban/road/plastic/red{
 	dir = 8
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -119578,7 +119578,7 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/landing_zone_2)
 "uqZ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 6
 	},
@@ -119997,7 +119997,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "uui" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 4;
 	pixel_x = 8;
 	pixel_y = 12
@@ -121968,7 +121968,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "uLG" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
 /obj/structure/prop/urban/misc/stoneplanterseats/empty{
@@ -124396,7 +124396,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "vgB" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
 /obj/structure/prop/urban/misc/stoneplanterseats/empty{
@@ -124748,7 +124748,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/central_caves)
 "vjl" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -125159,7 +125159,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northeast)
 "vmI" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 1;
 	layer = 4.1;
 	pixel_x = 5;
@@ -125878,7 +125878,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "vsH" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -126753,7 +126753,7 @@
 	},
 /area/lv759/indoors/spaceport/communications_office)
 "vAV" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -128114,7 +128114,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_showroom)
 "vNd" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -128702,7 +128702,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vRM" = (
-/obj/machinery/floodlight/colony/engineer_circular,
+/obj/machinery/streetlight/engineer_circular,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/engineership/engineer_floor5,
 /area/lv759/oob)
@@ -129486,7 +129486,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "vXP" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	layer = 10;
 	level = 10;
 	pixel_y = 12
@@ -130122,7 +130122,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/landing_zone_2)
 "wcT" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 18
 	},
@@ -130325,7 +130325,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "weJ" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 12
@@ -130743,7 +130743,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wiL" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -131186,7 +131186,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wmn" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -131434,7 +131434,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "woE" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -131450,7 +131450,7 @@
 /turf/open/floor/squares,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "woJ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -131693,7 +131693,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "wra" = (
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 4;
 	pixel_y = 12
 	},
@@ -132279,7 +132279,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/colony_streets/north_street)
 "wwL" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -133030,7 +133030,7 @@
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wDe" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -134383,7 +134383,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "wOR" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -134477,7 +134477,7 @@
 	dir = 8
 	},
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -134776,7 +134776,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/southwest_public_restroom)
 "wRK" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -135141,7 +135141,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/spaceport/baggagehandling)
 "wUT" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 6
 	},
@@ -137154,7 +137154,7 @@
 "xmM" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /obj/item/shard,
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = 10
@@ -138465,7 +138465,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/colonial_marshals/changing_room)
 "xyh" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -138496,7 +138496,7 @@
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -20
 	},
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -138717,7 +138717,7 @@
 /turf/open/urban/dropship/dropship3,
 /area/lv759/indoors/nt_research_complex/changingroom)
 "xAn" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -139143,7 +139143,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "xEO" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -139316,7 +139316,7 @@
 /area/lv759/indoors/recycling_plant/garage)
 "xFO" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},
@@ -139857,7 +139857,7 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/NTmart)
 "xKz" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	pixel_y = 6
 	},
 /obj/structure/barricade/handrail/strata{
@@ -139888,7 +139888,7 @@
 /area/lv759/indoors/hospital/central_hallway)
 "xKT" = (
 /obj/effect/urban/decal/dirt,
-/obj/machinery/floodlight/colony/traffic_alt{
+/obj/machinery/streetlight/traffic_alt{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = 15
@@ -142395,7 +142395,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "yhi" = (
-/obj/machinery/floodlight/colony/traffic{
+/obj/machinery/streetlight/traffic{
 	pixel_x = 5;
 	pixel_y = 12
 	},
@@ -142462,7 +142462,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "yhQ" = (
-/obj/machinery/floodlight/colony/street{
+/obj/machinery/streetlight/street{
 	level = 7;
 	pixel_y = 12
 	},

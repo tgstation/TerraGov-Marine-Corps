@@ -1050,6 +1050,7 @@
 #include "code\game\objects\machinery\squad_manager.dm"
 #include "code\game\objects\machinery\squad_selector.dm"
 #include "code\game\objects\machinery\status_display.dm"
+#include "code\game\objects\machinery\street_lamps.dm"
 #include "code\game\objects\machinery\suit_storage_unit.dm"
 #include "code\game\objects\machinery\teleporter.dm"
 #include "code\game\objects\machinery\washing_machine.dm"
