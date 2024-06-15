@@ -23,9 +23,7 @@
 	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
 
-
 	set_initial_hivenumber(prevent_ruler=do_not_set_as_ruler)
-
 	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
 	switch(stat)
