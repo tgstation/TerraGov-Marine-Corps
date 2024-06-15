@@ -301,7 +301,7 @@
 		else
 			W.static_lighting_object = null
 			if(old_lighting_object)
-				qdel(old_lighting_object)
+				qdel(old_lighting_object, TRUE)
 
 		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
