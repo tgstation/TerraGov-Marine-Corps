@@ -365,6 +365,71 @@
 	icon_state = "smock"
 	storage_type = /datum/storage/backpack/no_delay
 
+/obj/item/storage/backpack/marine/duffelbag
+	name = "\improper TGMC Duffelbag"
+	desc = "A massive bag designed for those interested in being the squad Mule. \
+	Features extra storage space at the cost of speed. \
+	Any squadmates can easily access the storage with right-click"
+	icon_state = "duffel"
+	worn_icon_state = "duffel"
+	storage_type = /datum/storage/backpack/duffelbag
+	slowdown = 0.2
+	///How long it takes for the wearer to remove the duffelbag
+	var/self_strip_delay = 3 SECONDS
+
+/obj/item/storage/backpack/marine/duffelbag/Destroy()
+	. = ..()
+	UnregisterSignal(usr, COMSIG_CLICK_RIGHT)
+
+/obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
+	. = ..()
+	if(slot == SLOT_BACK)
+		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		for(var/mob/M AS in storage_datum.content_watchers)
+			storage_datum.close(M)
+
+/obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
+
+/obj/item/storage/backpack/marine/duffelbag/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!usr || !over || QDELETED(src) || !ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+
+	//Taking off the duffelbag has a channel
+	if(user.back == src && !user.restrained() && !user.stat && do_after(user, self_strip_delay))
+		switch(over.name)
+			if("r_hand")
+				user.temporarilyRemoveItemFromInventory(src)
+				if(!user.put_in_r_hand(src))
+					user.dropItemToGround(src)
+			if("l_hand")
+				user.temporarilyRemoveItemFromInventory(src)
+				if(!user.put_in_l_hand(src))
+					user.dropItemToGround(src)
+
+///Allows non-wearers to access this inventory
+/obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
+	SIGNAL_HANDLER
+	if(clicker == loc) //Wearer can't open this inventory
+		return
+	storage_datum.open(clicker)
+
+/datum/storage/backpack/duffelbag/open(mob/user)
+	if(!iscarbon(user))
+		return TRUE
+	var/mob/living/carbon/carbon_user = user
+	if(carbon_user == parent.loc && carbon_user.back == parent)
+		return TRUE
+	return ..()
+
+/datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
+	if(user.back == parent)
+		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
+		return
+	return ..()
+
 //CLOAKS
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak

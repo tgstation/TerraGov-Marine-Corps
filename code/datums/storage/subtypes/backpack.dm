@@ -74,3 +74,8 @@
 
 /datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
 	to_chat(user, span_notice("You can't grab anything out of [parent] while it's not deployed."))
+
+/datum/storage/backpack/duffelbag
+	max_storage_space = 48
+	access_delay = 0
+
