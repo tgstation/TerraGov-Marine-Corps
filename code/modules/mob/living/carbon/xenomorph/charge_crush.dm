@@ -308,7 +308,10 @@
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush, BRUTE, MELEE)
+		var/vehicle_damage_mult = 1
+		if(isarmoredvehicle(crushed) || ishitbox(crushed))
+			vehicle_damage_mult = 5
+		crushed_obj.take_damage(precrush * vehicle_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
 			span_xenodanger("We crush [preserved_name]!"))
@@ -342,7 +345,7 @@
 	speed_per_step = 0.15
 	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 15
+	crush_living_damage = 37
 	plasma_use_multiplier = 2
 
 
@@ -564,11 +567,12 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
+			Paralyze(CHARGE_SPEED(charge_datum) * 1.5 SECONDS)
 		if(CHARGE_BULL)
-			Paralyze(CHARGE_SPEED(charge_datum) * 0.2 SECONDS)
+			Paralyze(0.2 SECONDS)
 		if(CHARGE_BULL_GORE)
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
+			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
 			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
 			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
 
@@ -603,8 +607,6 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				attack_alien_harm(charger, charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, charger.zone_selected, FALSE, TRUE, TRUE) //Free gore attack.
-				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)
 					throw_at(destination, 1, 1, charger, FALSE)

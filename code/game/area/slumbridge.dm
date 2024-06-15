@@ -12,6 +12,7 @@
 /area/slumbridge/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/slumbridge/caves/rock/nearlz
 	icon_state = "blue"

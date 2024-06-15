@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Fixed pyrogen's melting ground fire using ACID armor instead of FIRE"
