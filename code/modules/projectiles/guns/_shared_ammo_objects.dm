@@ -35,6 +35,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/submerge_modifier, 10)
 	set_fire(burn_ticks, burn_level, f_color, fire_stacks, fire_damage)
 
 /obj/fire/Destroy()
