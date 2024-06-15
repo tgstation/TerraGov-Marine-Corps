@@ -91,6 +91,7 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
+	icon = 'icons/obj/items/storage/backholster.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -293,6 +294,7 @@
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	icon_state = "machete_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
 		/obj/item/weapon/sword/machete,
@@ -321,6 +323,7 @@
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	icon_state = "katana_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
@@ -338,6 +341,7 @@
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
+	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(/obj/item/weapon/sword/officersword)
 
@@ -355,6 +359,7 @@
 	name = "\improper L44 shotgun scabbard"
 	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
@@ -375,8 +380,8 @@
 	name = "\improper L44 SH-35 scabbard"
 	desc = "A large leather holster allowing the storage of an SH-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
-
 
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
@@ -456,6 +461,7 @@
 	name = "\improper ML-41 scabbard (10x26mm)"
 	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 	)
