@@ -284,8 +284,11 @@
 	icon_state = "tiremarks"
 
 /obj/effect/urban/decal/trash //curse you zenith for never defining any of your 16 trash additions
+	name = "garbage"
+	desc = "Some trash plastered to the ground."
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "trash_1"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/urban/decal/trash/two
 	icon_state = "trash_2"

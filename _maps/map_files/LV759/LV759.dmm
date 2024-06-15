@@ -3967,7 +3967,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/table/black,
@@ -4059,8 +4059,8 @@
 /area/lv759/indoors/weyyu_office/pressroom)
 "aKv" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications{
-	dir = 4;
+/obj/machinery/prop/computer/communications{
+	dir = 8;
 	layer = 3;
 	pixel_y = -8
 	},
@@ -7004,7 +7004,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /turf/open/floor/officetiles,
@@ -8332,7 +8332,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /turf/open/floor/prison/yellow{
@@ -9995,7 +9995,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -10644,7 +10644,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications,
+/obj/machinery/prop/computer/communications,
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/spaceport/flight_control_room)
 "bRZ" = (
@@ -20136,7 +20136,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/table/reinforced/prison{
@@ -28392,7 +28392,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/reinforced/prison{
@@ -31945,7 +31945,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/black,
@@ -35952,7 +35952,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/table/black,
@@ -37366,7 +37366,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "grx" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8;
 	pixel_y = 5
 	},
@@ -49028,7 +49028,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -52571,7 +52571,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/black,
@@ -52777,7 +52777,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8;
 	layer = 4;
 	pixel_y = 5
@@ -58907,7 +58907,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	pixel_x = -12
 	},
 /obj/machinery/computer/marine_card{
@@ -66249,6 +66249,7 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/urban/security_lockdown{
+	dir = 2;
 	id = "urbanLZ2_2";
 	name = "Emergency Lockdown"
 	},
@@ -66633,7 +66634,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/black,
@@ -67000,7 +67001,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/black,
@@ -69240,8 +69241,8 @@
 /area/lv759/indoors/colonial_marshals/reception)
 "lQV" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications{
-	dir = 4;
+/obj/machinery/prop/computer/communications{
+	dir = 8;
 	layer = 4;
 	pixel_y = 5
 	},
@@ -69936,7 +69937,7 @@
 "lWD" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/security{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
@@ -75762,7 +75763,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "mVY" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8;
 	pixel_y = 5
 	},
@@ -77925,7 +77926,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/reinforced/prison{
@@ -78846,7 +78847,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nuu" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications,
+/obj/machinery/prop/computer/communications,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
@@ -84455,7 +84456,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "otQ" = (
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	pixel_x = 12
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -85466,7 +85467,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/table/reinforced/prison{
@@ -86771,7 +86772,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8;
 	pixel_y = 5
 	},
@@ -88635,7 +88636,7 @@
 /area/lv759/indoors/hospital/paramedics_garage)
 "pga" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications,
+/obj/machinery/prop/computer/communications,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/telecomms)
 "pgb" = (
@@ -105793,7 +105794,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -109475,7 +109476,7 @@
 /area/lv759/indoors/hospital/reception)
 "sJp" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /turf/open/floor/floorthree,
@@ -110337,7 +110338,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/table/black,
@@ -124556,6 +124557,7 @@
 "vhQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security{
+	dir = 8;
 	name = "Security Cameras - Operations";
 	network = list("chigusa_1")
 	},
@@ -127072,7 +127074,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/structure/window/reinforced{
@@ -128628,7 +128630,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/sillycup{
@@ -130484,7 +130486,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	pixel_x = 12
 	},
 /obj/structure/paper_bin{
@@ -134497,13 +134499,13 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wPY" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/marine_card{
-	dir = 4;
-	layer = 4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
 	layer = 2.5
+	},
+/obj/machinery/computer/marine_card{
+	dir = 8;
+	layer = 4
 	},
 /turf/open/floor/prison{
 	dir = 8
@@ -138410,7 +138412,7 @@
 	pixel_x = 9;
 	pixel_y = 10
 	},
-/obj/machinery/computer/communications{
+/obj/machinery/prop/computer/communications{
 	dir = 4
 	},
 /obj/structure/table/reinforced/prison{

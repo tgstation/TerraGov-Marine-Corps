@@ -4,6 +4,7 @@
 	icon_state = "shutter"
 	power_channel = ENVIRON
 	resistance_flags = DROPSHIP_IMMUNE
+	base_icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/Initialize(mapload)
 	. = ..()
@@ -13,6 +14,7 @@
 		layer = open_layer
 	else
 		layer = PODDOOR_CLOSED_LAYER
+	update_icon_state()
 
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating)
@@ -22,7 +24,7 @@
 	if(!operating)
 		operating = TRUE
 	do_animate("opening")
-	icon_state = "shutter0"
+	icon_state = "[base_icon_state]1"
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(do_open)), 1 SECONDS)
 	return TRUE
@@ -42,7 +44,7 @@
 		return
 	operating = TRUE
 	do_animate("closing")
-	icon_state = "[initial(icon_state)]1"
+	icon_state = "[base_icon_state]1"
 	layer = closed_layer
 	density = TRUE
 	if(visible)
@@ -59,15 +61,15 @@
 	. = ..()
 	if(operating)
 		return
-	icon_state = "[initial(icon_state)][density]"
+	icon_state = "[base_icon_state][density]"
 
 
 /obj/machinery/door/poddoor/shutters/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("[initial(icon_state)]c0", src)
+			flick("[base_icon_state]c0", src)
 		if("closing")
-			flick("[initial(icon_state)]c1", src)
+			flick("[base_icon_state]c1", src)
 
 
 /obj/machinery/door/poddoor/shutters/timed_late
@@ -260,6 +262,7 @@
 /obj/machinery/door/poddoor/shutters/urban
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
 	icon_state = "almayer_pdoor"
+	base_icon_state = "almayer_pdoor"
 	desc = "It's a shutter. You can <B>open</b> it with a <B>crowbar</b>, or with <B>claws</b>"
 	openspeed = 4
 	///how long it takes xenos to open a shutter by hand
@@ -289,6 +292,7 @@
 
 /obj/machinery/door/poddoor/shutters/urban/open_shutters
 	icon_state = "almayer_pdoor"
+	base_icon_state = "almayer_pdoor"
 	opacity = FALSE
 	layer = ABOVE_WINDOW_LAYER
 	max_integrity = 100
@@ -297,6 +301,7 @@
 
 /obj/machinery/door/poddoor/shutters/urban/open_shutters/opened
 	icon_state = "almayer_pdoor0"
+	base_icon_state = "almayer_pdoor"
 	density = FALSE
 
 /obj/machinery/door/poddoor/shutters/urban/shutters
@@ -305,21 +310,26 @@
 
 /obj/machinery/door/poddoor/shutters/urban/shutters/opened
 	icon_state = "shutter0"
+	base_icon_state = "shutter"
 	density = FALSE
 
 /obj/machinery/door/poddoor/shutters/urban/white
 	desc = "That looks like it doesn't open easily."
 	icon_state = "w_almayer_pdoor"
+	base_icon_state = "w_almayer_pdoor"
 
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door
 	desc = "That looks like it doesn't open easily."
 	icon_state = "pdoor"
+	base_icon_state = "pdoor"
 
 /obj/machinery/door/poddoor/shutters/urban/biohazard/white
 	icon_state = "w_almayer_pdoor"
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
+	base_icon_state = "w_almayer_pdoor"
 
 /obj/machinery/door/poddoor/shutters/urban/security_lockdown
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "pdoor"
+	base_icon_state = "pdoor"
 	lift_time = 15 SECONDS

@@ -8,7 +8,6 @@
 
 /obj/structure/prop/urban
 	name = "GENERIC URBAN PROP NAME"
-	desc = "DESCRIPTION NOT SET REPORT TO MAP CREATOR"
 	///bound heigh to set on init
 	var/set_bound_height
 	///bound width to set on init
@@ -33,6 +32,7 @@
 
 /obj/structure/prop/densitychecker
 	name = "NOT VALID"
+	desc = "A mapping helper for detecting dense objects, how are you seeing this anyway?"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "placeholderprop"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -1566,6 +1566,7 @@
 	icon_state = "zgraffiti4"
 	set_bound_height = 64
 	set_bound_width = 96
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/urban/misc/graffiti/graffiti1
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
@@ -1618,6 +1619,7 @@
 
 /obj/structure/prop/urban/misc/fire/fire1
 	name = "fire"
+	desc = "It's hot, smoking even."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zfire_smoke"
 	layer = 5
@@ -1627,6 +1629,7 @@
 
 /obj/structure/prop/urban/misc/fire/fire2
 	name = "fire"
+	desc = "It's hot, smoking even."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zfire_smoke2"
 	layer = 5
@@ -1636,6 +1639,7 @@
 
 /obj/structure/prop/urban/misc/fire/firebarrel
 	name = "barrel"
+	desc = "A flaming barrel filled with hazardous substances."
 	icon = 'icons/obj/structures/prop/urban/64x96-urbanrandomprops.dmi'
 	icon_state = "zbarrelfireon"
 	layer = 5
@@ -1777,6 +1781,7 @@
 
 /obj/structure/prop/urban/misc/machinery/screens
 	name = "monitor"
+	desc = "A screen, useful for broadcasting events. It looks like it's seen better days."
 
 /obj/structure/prop/urban/misc/machinery/screens/frame
 	icon_state = "frame"
@@ -1855,6 +1860,7 @@
 
 /obj/structure/prop/urban/misc/fake/pipes
 	name = "disposal pipe"
+	desc = "A small pipe."
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe1
 	layer = 2
@@ -1878,6 +1884,7 @@
 
 /obj/structure/prop/urban/misc/fake/wire
 	name = "power cable"
+	desc = "A small gauge wire for conducting electricity."
 
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
@@ -1894,6 +1901,7 @@
 
 /obj/structure/prop/urban/misc/fake/heavydutywire
 	name = "heavy duty wire"
+	desc = "A heavy duty wire for conducting electricity."
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy1
 	layer = 2
@@ -2141,6 +2149,7 @@
 
 /obj/structure/prop/urban/fakeplatforms
 	name = "platform"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/urban/fakeplatforms/platform1
 	icon_state = "engineer_platform"
@@ -2167,6 +2176,7 @@
 // Greeblies
 /obj/structure/prop/urban/misc/buildinggreeblies
 	name = "machinery"
+	desc = "A strange piece of machinery attached to a wall..."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "buildingventbig1"
 	set_bound_width = 64
@@ -2217,7 +2227,7 @@
 
 /obj/structure/prop/urban/misc/buildinggreebliessmall
 	name = "wall vent"
-	name = "wall vent"
+	desc = "A small piece of odd looking machinery..."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "smallwallvent1"
 	density = FALSE
@@ -2243,6 +2253,7 @@
 
 /obj/structure/prop/urban/misc/metergreen
 	name = "meter"
+	desc = "A power meter, useful for gauging energy fluctuations."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "biggreenmeter1"
 
