@@ -6243,7 +6243,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/outside/southeast)
+/area/lawankaoutpost/colony/landingzonetwo)
 "fjN" = (
 /obj/structure/sink{
 	dir = 8
@@ -6253,7 +6253,7 @@
 "fjO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/outside/northeast)
+/area/lawankaoutpost/colony/landingzoneone)
 "fkb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
 	dir = 1;
@@ -11771,6 +11771,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"jKF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/colony/landingzonetwo)
 "jKG" = (
 /obj/machinery/light{
 	dir = 1
@@ -17995,7 +18001,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/outside/northeast)
+/area/lawankaoutpost/colony/landingzoneone)
 "oOv" = (
 /obj/machinery/chem_dispenser/beer{
 	dir = 4
@@ -24401,7 +24407,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/outside/northeast)
+/area/lawankaoutpost/colony/landingzoneone)
 "tSX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
@@ -28628,6 +28634,10 @@
 	dir = 5
 	},
 /area/lawankaoutpost/colony/biologics)
+"xou" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/colony/landingzonetwo)
 "xox" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -71257,11 +71267,11 @@ llj
 llj
 mhj
 ddW
-cop
-cop
+xou
+xou
 cop
 fjK
-cop
+xou
 tWa
 tWa
 llj
@@ -72970,7 +72980,7 @@ vjm
 wiv
 vjm
 vjm
-qDC
+jKF
 vCz
 wEk
 wEk
@@ -73187,7 +73197,7 @@ vjm
 dJO
 vjm
 vjm
-qDC
+jKF
 wEk
 wEk
 wEk
@@ -73621,7 +73631,7 @@ vjm
 vjm
 vjm
 vjm
-qDC
+jKF
 vCz
 wEk
 wEk
@@ -73838,7 +73848,7 @@ vjm
 wiv
 vjm
 vjm
-qDC
+jKF
 wEk
 wEk
 wEk

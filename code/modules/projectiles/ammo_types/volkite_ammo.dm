@@ -32,8 +32,8 @@
 	sound_miss = SFX_BALLISTIC_MISS
 	sound_bounce = SFX_BALLISTIC_BOUNCE
 
-/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
-	deflagrate(M, P)
+/datum/ammo/energy/volkite/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	deflagrate(target_mob, proj)
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25

@@ -678,14 +678,9 @@ directive is properly returned.
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc))
-			if(opacity)
-				var/turf/T = loc
-				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
-
-			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-				QUEUE_SMOOTH(src)
-				QUEUE_SMOOTH_NEIGHBORS(src)
+		if(isturf(loc) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
+			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH_NEIGHBORS(src)
 
 	if(length(smoothing_groups))
 		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
