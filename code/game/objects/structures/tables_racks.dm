@@ -30,28 +30,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_TABLES_GENERAL)
 	canSmoothWith = list(SMOOTH_GROUP_TABLES_GENERAL)
 
-/obj/structure/table/deconstruct(disassembled)
-	if(disassembled)
-		new parts(loc)
-	else
-		if(reinforced)
-			if(prob(50))
-				new /obj/item/stack/rods(loc)
-		if(dropmetal)
-			new sheet_type(src)
-	return ..()
-
-/obj/structure/table/proc/update_adjacent(location = loc)
-	for(var/direction in CARDINAL_ALL_DIRS)
-		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
-		if(!table)
-			continue
-		INVOKE_NEXT_TICK(table, TYPE_PROC_REF(/atom, update_icon))
-
-/obj/structure/table/Destroy()
-	update_adjacent(loc) //so neighbouring tables get updated correctly
-	return ..()
-
 /obj/structure/table/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/table/evil_table in loc)
@@ -65,17 +43,25 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/table/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
-	SIGNAL_HANDLER
-	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
-		return
-	var/mob/living/carbon/xenomorph/M = O
-	if(!M.stat) //No dead xenos jumpin on the bed~
-		visible_message(span_danger("[O] plows straight through [src]!"))
-		deconstruct(FALSE)
+/obj/structure/table/Destroy()
+	update_adjacent(loc) //so neighbouring tables get updated correctly
+	return ..()
+
+/obj/structure/table/deconstruct(disassembled)
+	if(disassembled)
+		new parts(loc)
+	else
+		if(reinforced)
+			if(prob(50))
+				new /obj/item/stack/rods(loc)
+		if(dropmetal)
+			new sheet_type(src)
+	return ..()
 
 /obj/structure/table/update_icon_state()
 	. = ..()
@@ -166,6 +152,24 @@
 	user.visible_message(span_danger("[user] throws [grabbed_mob] on [src]."),
 	span_danger("You throw [grabbed_mob] on [src]."))
 	return TRUE
+
+///Updates connected tables when required
+/obj/structure/table/proc/update_adjacent(location = loc)
+	for(var/direction in CARDINAL_ALL_DIRS)
+		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
+		if(!table)
+			continue
+		INVOKE_NEXT_TICK(table, TYPE_PROC_REF(/atom, update_icon))
+
+///Snowflake check to let ravagers kill tables
+/obj/structure/table/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
+		return
+	var/mob/living/carbon/xenomorph/M = O
+	if(!M.stat) //No dead xenos jumpin on the bed~
+		visible_message(span_danger("[O] plows straight through [src]!"))
+		deconstruct(FALSE)
 
 /obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
@@ -336,6 +340,9 @@
 
 /obj/structure/table/woodentable/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
+/obj/structure/table/woodentable/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_PLATING] = layer
 
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
@@ -514,6 +521,8 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
