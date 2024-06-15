@@ -366,7 +366,7 @@
 	if(user.gender == FEMALE)
 		return 'sound/voice/human/female/laugh_1.ogg'
 	else
-		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
+		return pick('sound/voice/human/male/laugh_1.ogg', 'sound/voice/human/male/laugh_2.ogg')
 
 /datum/emote/living/carbon/human/warcry
 	key = "warcry"
@@ -479,9 +479,9 @@
 /datum/emote/living/carbon/human/medic/get_sound(mob/living/carbon/human/user)
 	if(user.gender == MALE)
 		if(prob(95))
-			return 'sound/voice/human_male_medic.ogg'
+			return 'sound/voice/human/male/medic.ogg'
 		else
-			return 'sound/voice/human_male_medic2.ogg'
+			return 'sound/voice/human/male/medic2.ogg'
 	else
 		return 'sound/voice/human/female/medic.ogg'
 
