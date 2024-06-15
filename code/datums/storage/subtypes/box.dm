@@ -17,7 +17,7 @@
 	. = ..()
 	set_holdable(list(/obj/item/reagent_containers/food/snacks/packaged_meal))
 
-/datum/storage/box/mre/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/box/mre/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
 	if(. && !length(parent.contents) && !gc_destroyed)
 		qdel(parent)

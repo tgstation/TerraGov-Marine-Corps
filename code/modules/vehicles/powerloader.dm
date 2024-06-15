@@ -28,12 +28,12 @@
 		PC.linked_powerloader = src
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/powerloader)
 
-/obj/vehicle/ridden/powerloader/Move(newloc, newdir)
-	if(dir == newdir)
+/obj/vehicle/ridden/powerloader/Move(atom/newloc, direction, glide_size_override)
+	if(dir == direction)
 		playsound(src, pick(move_sounds), 40, TRUE)
 		return ..()
 	playsound(src, pick(change_dir_sounds), 40, TRUE)
-	setDir(newdir)
+	setDir(direction)
 	return TRUE
 
 /obj/vehicle/ridden/powerloader/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)

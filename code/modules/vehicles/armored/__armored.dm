@@ -9,7 +9,7 @@
 	max_drivers = 1
 	move_resist = INFINITY
 	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER
+	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	move_delay = 0.7 SECONDS
@@ -321,14 +321,14 @@
 			primary_icons = list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			primary_icons = list(primary_weapon.hud_state_empty, primary_weapon.hud_state_empty)
-		M.hud_used.add_ammo_hud(primary_weapon, primary_icons, primary_weapon.ammo.current_rounds)
+		M?.hud_used?.add_ammo_hud(primary_weapon, primary_icons, primary_weapon?.ammo?.current_rounds)
 	if(secondary_weapon)
 		var/list/secondary_icons
 		if(secondary_weapon.ammo)
 			secondary_icons = list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
-		M.hud_used.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon.ammo.current_rounds)
+		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon?.ammo?.current_rounds)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -437,30 +437,30 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(interior?.breech) // if interior handle by gun breech
-		// check for easy loading instead
+	if(!istype(I, /obj/item/ammo_magazine))
 		try_easy_load(I, user)
 		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!primary_weapon)
-			balloon_alert(user, "no primary weapon")
-			return
-		if(!(I.type in primary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(primary_weapon)
-		if(!primary_weapon.ammo)
-			primary_weapon.ammo = I
-			balloon_alert(user, "primary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
-		else
-			primary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
+	var/obj/item/armored_weapon/weapon_to_load
+	if(!interior?.breech && primary_weapon && (I.type in primary_weapon.accepted_ammo))
+		weapon_to_load = primary_weapon
+	else if(!interior?.secondary_breech && secondary_weapon && (I.type in secondary_weapon.accepted_ammo))
+		weapon_to_load = secondary_weapon
+	else
+		try_easy_load(I, user)
+		return
+	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+		balloon_alert(user, "magazine already full")
+		return
+	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(weapon_to_load)
+	if(!weapon_to_load.ammo)
+		weapon_to_load.ammo = I
+		balloon_alert(user, "primary gun loaded")
+		for(var/mob/occupant AS in occupants)
+			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
+	else
+		weapon_to_load.ammo_magazine += I
+		balloon_alert(user, "magazines [length(weapon_to_load.ammo_magazine)]/[weapon_to_load.maximum_magazines]")
 
 /obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
 	// Bypass to parent to handle mobs entering the vehicle.
@@ -519,7 +519,7 @@
 			secondary_weapon.ammo = I
 			balloon_alert(user, "secondary gun loaded")
 			for(var/mob/occupant AS in occupants)
-				occupant.hud_used.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
+				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
 		else
 			secondary_weapon.ammo_magazine += I
 			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")

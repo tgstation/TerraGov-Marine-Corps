@@ -98,11 +98,20 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	if(!(to_check_flags & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
-		if(!silent)
-			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
-			to_chat(owner, span_warning("We can't do this while in a solid object!"))
-		return FALSE
+	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
+		var/turf/current_turf = get_turf(carbon_owner)
+		if(isclosedturf(current_turf))
+			if(!silent)
+				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
+		for(var/obj/turf_object in current_turf.contents)
+			if(!turf_object.density || !turf_object.opacity)
+				continue
+			if(!silent)
+				//Same as above.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
 
 	return TRUE
 

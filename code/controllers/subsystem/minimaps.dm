@@ -380,6 +380,8 @@ SUBSYSTEM_DEF(minimaps)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
 	var/list/mob/choices_by_mob
+	///should get_coords_from_click stop waiting for an input?
+	var/stop_polling = FALSE
 
 /atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
 	. = ..()
@@ -391,21 +393,25 @@ SUBSYSTEM_DEF(minimaps)
 
 /atom/movable/screen/minimap/Destroy()
 	SSminimaps.hashed_minimaps -= src
+	stop_polling = TRUE
 	return ..()
 
 /**
  * lets the user get coordinates by clicking the actual map
  * Returns a list(x_coord, y_coord)
- * note: sleeps until the user makes a choice or they disconnect
+ * note: sleeps until the user makes a choice, stop_polling is set to TRUE or they disconnect
  */
 /atom/movable/screen/minimap/proc/get_coords_from_click(mob/user)
 	//lord forgive my shitcode
-	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_click))
-	while(!choices_by_mob[user] && user.client)
+	var/signal_by_type = isobserver(user) ? COMSIG_OBSERVER_CLICKON : COMSIG_MOB_CLICKON
+	RegisterSignal(user, signal_by_type, PROC_REF(on_click))
+	while(!(choices_by_mob[user] || stop_polling) && user.client)
 		stoplag(1)
-	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+	UnregisterSignal(user, signal_by_type)
 	. = choices_by_mob[user]
 	choices_by_mob -= user
+	// I have an extra layer of shitcode for you
+	stop_polling = FALSE
 
 /**
  * Handles fetching the targetted coordinates when the mob tries to click on this map
@@ -492,23 +498,34 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/action_activate()
 	. = ..()
 	if(!map)
-		return
+		return FALSE
+
+	return toggle_minimap()
+
+/// Toggles the minimap, has a variable to force on or off (most likely only going to be used to close it)
+/datum/action/minimap/proc/toggle_minimap(force_state)
+	// No force state? Invert the current state
+	if(isnull(force_state))
+		force_state = !minimap_displayed
+	if(force_state == minimap_displayed)
+		return FALSE
 	if(!locator_override && ismovableatom(owner.loc))
 		override_locator(owner.loc)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
-	if(minimap_displayed)
-		owner.client.screen -= map
-		owner.client.screen -= locator
-		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
-	else
+	if(force_state)
 		if(locate(/atom/movable/screen/minimap) in owner.client.screen) //This seems like the most effective way to do this without some wacky code
 			to_chat(owner, span_warning("You already have a minimap open!"))
-			return
+			return FALSE
 		owner.client.screen += map
 		owner.client.screen += locator
 		locator.update(tracking)
 		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
-	minimap_displayed = !minimap_displayed
+	else
+		owner.client.screen -= map
+		owner.client.screen -= locator
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+	minimap_displayed = force_state
+	return TRUE
 
 ///Overrides the minimap locator to a given atom
 /datum/action/minimap/proc/override_locator(atom/movable/to_track)
@@ -553,10 +570,12 @@ SUBSYSTEM_DEF(minimaps)
 ///CLears the locator override in case the override target is deleted
 /datum/action/minimap/proc/clear_locator_override()
 	SIGNAL_HANDLER
+	if(!locator_override)
+		return
 	UnregisterSignal(locator_override, list(COMSIG_QDELETING, COMSIG_ATOM_EXITED))
 	if(owner)
 		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
-		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 		var/turf/owner_turf = get_turf(owner)
 		if(owner_turf.z != locator_override.z)
 			on_owner_z_change(owner, locator_override.z, owner_turf.z)
@@ -628,7 +647,7 @@ SUBSYSTEM_DEF(minimaps)
 
 
 /datum/action/minimap/xeno
-	minimap_flags = MINIMAP_FLAG_XENO
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE
 
 /datum/action/minimap/researcher
 	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
@@ -658,3 +677,22 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE
+
+/datum/action/minimap/observer/action_activate()
+	. = ..()
+	if(!.)
+		return
+	if(!minimap_displayed)
+		map.stop_polling = TRUE
+		return
+	var/list/clicked_coords = map.get_coords_from_click(owner)
+	if(!clicked_coords)
+		return
+	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
+	if(!clicked_turf)
+		return
+	// Taken directly from observer/DblClickOn
+	owner.abstract_move(clicked_turf)
+	owner.update_parallax_contents()
+	// Close minimap
+	toggle_minimap(FALSE)

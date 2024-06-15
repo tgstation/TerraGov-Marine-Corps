@@ -112,7 +112,7 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "syndballoon"
 	worn_icon_state = "syndballoon"
 	w_class = WEIGHT_CLASS_BULKY
@@ -745,13 +745,13 @@
 		if(length(GLOB.atmospumps))
 			var/obj/machinery/atmospherics/components/unary/vent_pump/targetpump = pick(GLOB.atmospumps)
 			forceMove(targetpump.loc)
-			playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+			playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 			pipe_mode = FALSE
 	else //if we're not in pipe mode check the ground for scrubbers/vents, if we find one enter it
 		for(var/atom/movable/object AS in targetturf.contents)
 			if(isatmosvent(object) || isatmosscrubber(object))
 				forceMove(object)
-				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+				playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 				pipe_mode = TRUE
 
 #undef HIGH_GNOME_MOVE_RANGE
@@ -773,6 +773,7 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/side = ""
 	var/id = ""
 

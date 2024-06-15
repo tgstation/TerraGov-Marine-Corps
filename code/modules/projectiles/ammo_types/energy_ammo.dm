@@ -6,10 +6,10 @@
 
 /datum/ammo/energy
 	ping = "ping_s"
-	sound_hit 	 = "energy_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_ENERGY_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_SOUND_PITCH

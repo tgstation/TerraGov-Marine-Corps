@@ -83,7 +83,7 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor. Do not mix with Tramadol."
 	color = COLOR_REAGENT_PARACETAMOL
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
@@ -354,7 +354,7 @@
 	name = "Dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = COLOR_REAGENT_DYLOVENE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -1256,7 +1256,7 @@
 		/datum/reagent/medicine/dermaline,
 		/datum/reagent/medicine/paracetamol,
 		/datum/reagent/medicine/russian_red,
-		/datum/reagent/consumable/drink/doctor_delight,
+		/datum/reagent/consumable/doctor_delight,
 	)
 	purge_rate = 5
 

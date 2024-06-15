@@ -133,7 +133,7 @@
 	max_integrity = 100
 	resistance_flags = UNACIDABLE
 	hit_sound = 'sound/effects/Glasshit.ogg'
-	destroy_sound = "shatter"
+	destroy_sound = SFX_SHATTER
 	///Whatever is contained in the tank
 	var/obj/occupant
 	///What this tank is replaced by when broken

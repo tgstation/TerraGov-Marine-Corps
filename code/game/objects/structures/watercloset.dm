@@ -171,10 +171,10 @@
 	if(on)
 		start_processing()
 		if (user.loc == loc)
-			wash(user)
+			wash_atom(user)
 			check_heat(user)
 		for (var/atom/movable/G in src.loc)
-			G.clean_blood()
+			G.wash()
 	else
 		stop_processing()
 
@@ -236,7 +236,7 @@
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
-	wash(O)
+	wash_atom(O)
 	if(ismob(O))
 		mobpresent += 1
 		check_heat(O)
@@ -246,7 +246,7 @@
 		mobpresent -= 1
 
 //Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
+/obj/machinery/shower/proc/wash_atom(atom/movable/O as obj|mob)
 	if(!on)
 		return
 
@@ -255,9 +255,9 @@
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 		to_chat(L, span_warning("You've been drenched in water!"))
-		L.clean_mob()
+		L.wash()
 	else
-		O.clean_blood()
+		O.wash()
 
 /obj/machinery/shower/process()
 	if(!on)
@@ -274,7 +274,7 @@
 	is_washing = TRUE
 	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 	var/turf/T = get_turf(src)
-	T.clean_turf()
+	T.wash()
 
 /obj/machinery/shower/proc/check_heat(mob/M)
 	if(!on || watertemp == WATER_TEMP_NORMAL)
@@ -344,7 +344,7 @@
 		return
 	busy = FALSE
 
-	user.clean_blood()
+	user.wash()
 	user:update_inv_gloves()
 	balloon_alert_to_viewers("Washes their hands")
 
@@ -398,7 +398,7 @@
 	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
-	I.clean_blood()
+	I.wash()
 	user.visible_message( \
 		span_notice(" [user] washes \a [I] using \the [src]."), \
 		span_notice(" You wash \a [I] using \the [src]."))

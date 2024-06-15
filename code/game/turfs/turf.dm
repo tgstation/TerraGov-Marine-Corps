@@ -508,12 +508,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/is_weedable()
 	return FALSE
 
-/turf/open/liquid/water/is_weedable()
-	return FALSE
-
 /turf/open/ground/coast/is_weedable()
 	return FALSE
-
 
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable/is_weedable()
 	return TRUE
@@ -929,7 +925,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return
 
 ///cleans any cleanable decals from the turf
-/turf/proc/clean_turf()
+/turf/wash()
+	. = ..()
 	for(var/obj/effect/decal/cleanable/filth in src)
 		qdel(filth) //dirty, filthy floor
 

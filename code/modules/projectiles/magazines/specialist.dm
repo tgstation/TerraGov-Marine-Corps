@@ -352,15 +352,40 @@
 	default_ammo = /datum/ammo/rocket/som/thermobaric
 	bonus_overlay = "iccrpg_thermobaric"
 
+//VSD RPG
+
+/obj/item/ammo_magazine/rocket/vsd/he
+	name = "\improper 84mm HE 'Anti-Personnel' case"
+	desc = "84mm Anti Personnel case. The label reads: 'Makes big boom'."
+	icon_state = "c153_he"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "c153_he"
+
+/obj/item/ammo_magazine/rocket/vsd/incendiary
+	name = "\improper 84mm Incendiary 'Anti-Personnel' case"
+	desc = "84mm Incendiary Anti Personnel case. The label reads: 'Makes people go AAAAAAAHH'."
+	icon_state = "c153_incendiary"
+	default_ammo = /datum/ammo/rocket/wp/quad/som
+	bonus_overlay = "c153_incendiary"
+
+/obj/item/ammo_magazine/rocket/vsd/chemical
+	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
+	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
+	icon_state = "c153_chemical"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
+	bonus_overlay = "c153_chemical"
+
 // railgun
 
 /obj/item/ammo_magazine/railgun
 	name = "railgun canister (Armor Piercing Discarding Sabot)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister, this round will penetrate through most armor, but will not leave much of a hole."
 	caliber = CALIBER_RAILGUN
+	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
-	max_rounds = 3
+	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"

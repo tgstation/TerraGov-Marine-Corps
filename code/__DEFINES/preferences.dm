@@ -46,9 +46,8 @@
 #define SOUND_AMBIENCE (1<<2)
 #define SOUND_LOBBY (1<<3)
 #define SOUND_INSTRUMENTS_OFF (1<<4)
-#define SOUND_GAS_MASK (1<<5)
-#define SOUND_WEATHER (1<<6)
-#define SOUND_NOENDOFROUND (1<<7)
+#define SOUND_WEATHER (1<<5)
+#define SOUND_NOENDOFROUND (1<<6)
 
 #define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|SOUND_WEATHER)
 
@@ -194,8 +193,8 @@
 	)
 
 #define BE_SPECIAL_FLAGS list(\
-	"Latejoin Xenomorph" = BE_ALIEN,\
-	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\
+	"Join as Chestburster" = BE_ALIEN,\
+	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)

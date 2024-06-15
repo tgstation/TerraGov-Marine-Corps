@@ -68,7 +68,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer/prime()
 	flame_radius(0.5, get_turf(src))
-	playsound(loc, "incendiary_explosion", 35)
+	playsound(loc, SFX_INCENDIARY_EXPLOSION, 35)
 	if(stuck_to)
 		clean_refs()
 	qdel(src)

@@ -85,6 +85,12 @@
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 
+/obj/structure/platform/rockcliff/orange
+	icon_state = "rockcliff_orange"
+
+/obj/structure/platform/rockcliff/red
+	icon_state = "rockcliff_red"
+
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
 
@@ -96,15 +102,30 @@
 /obj/structure/platform/metalplatform
 	icon_state = "metalplatform"
 
+/obj/structure/platform/metalplatform/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+	
 /obj/structure/platform/trench
 	icon_state = "platformtrench"
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
 
+/obj/structure/platform/trench/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+
 /obj/structure/platform/adobe
 	name = "brick wall"
 	desc = "A low adobe brick wall."
 	icon_state = "adobe"
+
+/obj/structure/platform/adobe/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
 
 //decorative corner platform bits
 /obj/structure/platform_decoration
@@ -132,6 +153,12 @@
 	icon_state = "rockcliff_deco"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform_decoration/rockcliff_deco/orange
+	icon_state = "rockcliff_orange_deco"
+
+/obj/structure/platform_decoration/rockcliff_deco/red
+	icon_state = "rockcliff_red_deco"
 
 /obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
 	icon_state = "icerock_deco"

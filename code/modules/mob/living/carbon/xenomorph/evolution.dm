@@ -16,12 +16,25 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (15 MINUTES))
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
+	GLOB.evo_panel.ui_interact(src)
+
+/mob/living/carbon/xenomorph/verb/strain_swap()
+	set name = "Strain Swap"
+	set desc = "Change into a strain of your current caste."
+	set category = "Alien"
+
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (5 MINUTES)) // yes this is shared
+		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+		return
+
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_STRAIN_SWAP, TRAIT_STRAIN_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
@@ -36,6 +49,8 @@
 ///Creates a list of possible /datum/xeno_caste options for a caste based on their tier.
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
+	if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
+		return xeno_caste.get_strain_options()
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
 			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
@@ -205,8 +220,6 @@
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
-
-	new_xeno.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()

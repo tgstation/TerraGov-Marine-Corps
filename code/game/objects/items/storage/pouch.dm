@@ -1,6 +1,6 @@
 /obj/item/storage/pouch
 	name = "abstract pouch"
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "small_drop"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	equip_slot_flags = ITEM_SLOT_POCKET
@@ -967,7 +967,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, TRUE, 6)
+			playsound(user.loc, SFX_RUSTLE, 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 

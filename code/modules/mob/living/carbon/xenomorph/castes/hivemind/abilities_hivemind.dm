@@ -2,7 +2,7 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	desc = "Teleport back to your core."
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
@@ -25,7 +25,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
@@ -99,7 +99,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	///Is the map being shown to the player right now?
 	var/showing_map = FALSE
 
@@ -115,17 +115,12 @@
 	owner.client?.screen += shown_map
 	showing_map = TRUE
 	var/list/polled_coords = shown_map.get_coords_from_click(owner)
-
-	if(!polled_coords)
-		owner.client?.screen -= shown_map
-		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-		showing_map = FALSE
-		return
-
 	owner.client?.screen -= shown_map
 	showing_map = FALSE
+	if(!polled_coords)
+		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		return
 	var/turf/turf_to_teleport_to = locate(polled_coords[1], polled_coords[2], owner.z)
-
 	if(!turf_to_teleport_to)
 		return
 

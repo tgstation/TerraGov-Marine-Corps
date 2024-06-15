@@ -229,6 +229,7 @@
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+				update_preview_icon()
 
 		if("tab_change")
 			tab_index = params["tabIndex"]
@@ -237,6 +238,7 @@
 		if("random")
 			randomize_appearance_for()
 			save_character()
+			update_preview_icon()
 
 		if("name_real")
 			var/newValue = params["newValue"]
@@ -255,6 +257,7 @@
 
 		if("randomize_appearance")
 			randomize_appearance_for()
+			update_preview_icon()
 
 		if("synthetic_name")
 			var/newValue = params["newValue"]
@@ -269,12 +272,14 @@
 			if(!choice)
 				return
 			synthetic_type = choice
+			update_preview_icon()
 
 		if("robot_type")
 			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
 			if(!choice)
 				return
 			robot_type = choice
+			update_preview_icon()
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -311,6 +316,7 @@
 				f_style = "Shaved"
 			else
 				underwear = 1
+			update_preview_icon()
 
 
 		if("ethnicity")
@@ -318,6 +324,7 @@
 			if(!choice)
 				return
 			ethnicity = choice
+			update_preview_icon()
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
@@ -326,6 +333,7 @@
 			species = choice
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
+			update_preview_icon()
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
@@ -336,6 +344,7 @@
 
 		if("jobselect")
 			UpdateJobPreference(user, params["job"], text2num(params["level"]))
+			update_preview_icon()
 
 		if("jobalternative")
 			var/newValue = text2num(params["newValue"])
@@ -346,6 +355,7 @@
 			preferred_squad = "None"
 			preferred_squad_som = "None"
 			alternate_option = 2 // return to lobby
+			update_preview_icon()
 
 		if("underwear")
 			var/list/underwear_options
@@ -358,6 +368,7 @@
 			if(!new_underwear)
 				return
 			underwear = new_underwear
+			update_preview_icon()
 
 		if("undershirt")
 			var/list/undershirt_options
@@ -370,12 +381,14 @@
 			if(!new_undershirt)
 				return
 			undershirt = new_undershirt
+			update_preview_icon()
 
 		if("backpack")
 			var/new_backpack = GLOB.backpacklist.Find(params["newValue"])
 			if(!new_backpack)
 				return
 			backpack = new_backpack
+			update_preview_icon()
 
 		if("loadoutadd")
 			var/choice = params["gear"]
@@ -444,6 +457,7 @@
 			if(!choice)
 				return
 			h_style = choice
+			update_preview_icon()
 
 		if("haircolor")
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
@@ -460,6 +474,7 @@
 			r_grad = hex2num(copytext(new_grad, 2, 4))
 			g_grad = hex2num(copytext(new_grad, 4, 6))
 			b_grad = hex2num(copytext(new_grad, 6, 8))
+			update_preview_icon()
 
 		if("grad_style")
 			var/list/valid_grads = list()
@@ -473,6 +488,7 @@
 			var/choice = tgui_input_list(ui.user, "What hair grad style do you want?", "Hair grad style choice", valid_grads)
 			if(choice)
 				grad_style = choice
+			update_preview_icon()
 
 		if("facial_style")
 			var/list/valid_facialhairstyles = list()
@@ -489,6 +505,7 @@
 			if(!choice)
 				return
 			f_style = choice
+			update_preview_icon()
 
 		if("facialcolor")
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
@@ -497,6 +514,7 @@
 			r_facial = hex2num(copytext(facial_color, 2, 4))
 			g_facial = hex2num(copytext(facial_color, 4, 6))
 			b_facial = hex2num(copytext(facial_color, 6, 8))
+			update_preview_icon()
 
 		if("eyecolor")
 			var/eyecolor = input(user, "Choose your character's eye colour:", "Character Preference") as null|color
@@ -505,6 +523,7 @@
 			r_eyes = hex2num(copytext(eyecolor, 2, 4))
 			g_eyes = hex2num(copytext(eyecolor, 4, 6))
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
+			update_preview_icon()
 
 		if("citizenship")
 			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
@@ -768,7 +787,7 @@
 			emote.spoken_emote = !emote.spoken_emote
 
 		if("reset-keybindings")
-			key_bindings = GLOB.hotkey_keybinding_list_by_key
+			key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 			current_client.set_macros()
 			save_keybinds()
 
@@ -789,9 +808,6 @@
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
 			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
-
-		if("update-character-preview")
-			update_preview_icon()
 
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
@@ -856,7 +872,6 @@
 	save_preferences()
 	save_character()
 	save_keybinds()
-	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)
 	return TRUE
