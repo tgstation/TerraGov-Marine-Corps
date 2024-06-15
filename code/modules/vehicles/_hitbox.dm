@@ -47,7 +47,7 @@
 	return ..()
 
 /obj/hitbox/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = 4.5
+	footstep_overrides[FOOTSTEP_HULL] = 4.5
 
 ///signal handler for handling PASS_WALKOVER
 /obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)
