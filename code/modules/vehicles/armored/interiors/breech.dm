@@ -208,6 +208,14 @@
 	QDEL_NULL(barrel_overlay)
 	return ..()
 
+/obj/structure/gun_breech/som/update_icon_state()
+	. = ..()
+	icon_state = weapon_type.icon_state
+
+/obj/structure/gun_breech/som/update_overlays()
+	. = ..()
+	. += mutable_appearance(icon, "[icon_state]_overlay", ABOVE_MOB_LAYER)
+
 /obj/structure/gun_breech/som/on_weapon_attach(obj/item/armored_weapon/new_weapon)
 	update_gun_appearance(new_weapon)
 
@@ -222,16 +230,11 @@
 	. = ..()
 	update_gun_appearance(weapon_type)
 
-/obj/structure/gun_breech/som/update_icon_state()
-	. = ..()
-	icon_state = weapon_type.icon_state
-
-/obj/structure/gun_breech/som/update_overlays()
-	. = ..()
-	. += mutable_appearance(icon, "[icon_state]_overlay", ABOVE_MOB_LAYER)
-
 /obj/structure/gun_breech/som/on_main_fire(obj/item/ammo_magazine/owner_ammo)
 	update_gun_appearance(weapon_type)
+	if(weapon_type.type == /obj/item/armored_weapon/coilgun)
+		flick("[ammo_overlay.icon_state]_flick", ammo_overlay)
+		playsound(src, 'sound/vehicles/weapons/coilgun_cycle.ogg', 60, FALSE)
 
 ///Updates breech and barrel vis_obj appearance
 /obj/structure/gun_breech/som/proc/update_gun_appearance(obj/item/armored_weapon/current_weapon)
@@ -252,10 +255,7 @@
 		pixel_x = -12
 		pixel_y = -32
 		barrel_overlay.pixel_y = 76
-
-		var/new_ammo_icon = "[icon_state]_[weapon_type?.ammo?.current_rounds]"
-		ammo_overlay.icon_state = new_ammo_icon
-		flick("[new_ammo_icon]_flick", ammo_overlay)
+		ammo_overlay.icon_state = "[icon_state]_[weapon_type?.ammo?.current_rounds]"
 	else if(weapon_type.type == /obj/item/armored_weapon/particle_lance)
 		pixel_x = -8
 		pixel_y = -7
