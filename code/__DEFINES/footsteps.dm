@@ -3,6 +3,7 @@
 #define FOOTSTEP_PLATING "plating"
 #define FOOTSTEP_CARPET "carpet"
 #define FOOTSTEP_SAND "sand"
+#define FOOTSTEP_DIRT "dirt"
 #define FOOTSTEP_GRASS "grass"
 #define FOOTSTEP_WET "wet"
 #define FOOTSTEP_WATER "water"
@@ -56,6 +57,12 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/sand2.ogg',
 		'sound/effects/footstep/sand3.ogg',
 		'sound/effects/footstep/asteroid4.ogg'), 75, 0),
+	FOOTSTEP_DIRT = list(list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'), 75, 0),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
@@ -158,6 +165,12 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/sand2.ogg',
 		'sound/effects/footstep/sand3.ogg',
 		'sound/effects/footstep/asteroid4.ogg'), 60, 0),
+	FOOTSTEP_DIRT = list(list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'), 60, 0),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
@@ -261,6 +274,12 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/sand2.ogg',
 		'sound/effects/footstep/sand3.ogg',
 		'sound/effects/footstep/asteroid4.ogg'), 55, 0),
+	FOOTSTEP_DIRT = list(list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'), 55, 0),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
@@ -363,6 +382,12 @@ GLOBAL_LIST_INIT(xenoheavystep, list(
 		'sound/effects/footstep/sand2.ogg',
 		'sound/effects/footstep/sand3.ogg',
 		'sound/effects/footstep/asteroid4.ogg'), 100, 0),
+	FOOTSTEP_DIRT = list(list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'), 100, 0),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
