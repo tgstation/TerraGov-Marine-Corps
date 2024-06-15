@@ -6,13 +6,15 @@
 	attach_features_flags = ATTACH_ACTIVATION|ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	///The gun mounted on a vehicle. Initial value is the type to use
 	var/obj/item/weapon/gun/mounted_gun
+	///Firing angle for the mounted weapon
+	var/firing_angle = 120
 
 /obj/item/vehicle_module/mounted_gun/Initialize(mapload)
 	if(!mounted_gun)
 		return INITIALIZE_HINT_QDEL
 	. = ..()
 	mounted_gun = new mounted_gun(src)
-	mounted_gun.gun_features_flags |= GUN_FORWARD_FIRE_ANGLE
+	mounted_gun.gun_fire_angle = firing_angle
 	//NODROP so that you can't just drop the gun or have someone take it off your hands
 	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
 	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
