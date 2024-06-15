@@ -35,6 +35,8 @@
 
 	if(!isliving(arrived) || arrived.throwing)
 		return
+	if(HAS_TRAIT(arrived, TRAIT_NOSUBMERGE))
+		return
 	var/mob/living/arrived_mob = arrived
 	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 

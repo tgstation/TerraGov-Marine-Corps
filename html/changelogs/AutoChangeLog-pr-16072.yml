@@ -1,0 +1,5 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - qol: "Using medical items in-hand will now apply them to yourself"
+  - qol: "Unique action now opens the injector menu"
