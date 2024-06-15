@@ -186,7 +186,7 @@
 ///Returns the playtime as a number, used for rank icons
 /mob/living/carbon/xenomorph/proc/playtime_as_number()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
-	if(!client?.prefs.show_xeno_rank)
+	if(!client?.prefs.show_xeno_rank || !client)
 		return 0
 	switch(playtime_mins)
 		if(0 to 600)
