@@ -326,7 +326,7 @@
 /*
 * Wooden tables
 */
-/obj/structure/table/woodentable
+/obj/structure/table/wood
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
@@ -338,13 +338,13 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
 
-/obj/structure/table/woodentable/add_debris_element()
+/obj/structure/table/wood/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
 
-/obj/structure/table/woodentable/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+/obj/structure/table/wood/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_WOOD] = layer
 
-/obj/structure/table/fancywoodentable
+/obj/structure/table/wood/fancy
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/smooth_objects/fancy_table.dmi'
@@ -353,10 +353,7 @@
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
-/obj/structure/table/fancywoodentable/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
-
-/obj/structure/table/rusticwoodentable
+/obj/structure/table/wood/rustic
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/smooth_objects/rustic_table.dmi'
@@ -365,22 +362,7 @@
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
 
-/obj/structure/table/rusticwoodentable/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
-
-/obj/structure/table/black
-	name = "black metal table"
-	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon = 'icons/obj/smooth_objects/black_table.dmi'
-	icon_state = "black_table-0"
-	base_icon_state = "black_table"
-	table_prefix = "black"
-	parts = /obj/item/frame/table
-
-/*
-* Gambling tables
-*/
-/obj/structure/table/gamblingtable
+/obj/structure/table/wood/gambling
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/smooth_objects/pool_table.dmi'
@@ -391,9 +373,16 @@
 	table_prefix = "gamble"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
-/*
-* Reinforced tables
-*/
+
+/obj/structure/table/black
+	name = "black metal table"
+	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon = 'icons/obj/smooth_objects/black_table.dmi'
+	icon_state = "black_table-0"
+	base_icon_state = "black_table"
+	table_prefix = "black"
+	parts = /obj/item/frame/table
+
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."

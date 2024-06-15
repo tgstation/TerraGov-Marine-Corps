@@ -996,7 +996,7 @@
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "fd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/lighter/zippo,
 /obj/item/storage/fancy/cigarettes/lady_finger,
 /turf/open/floor/wood,
@@ -1259,7 +1259,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "gn" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
@@ -1462,7 +1462,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "hj" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/book,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/command/captain)
@@ -2813,7 +2813,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "od" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/carpet,
 /area/campaign/jungle_outpost/outpost/command/captain)
@@ -4433,7 +4433,7 @@
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "wo" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "wp" = (
@@ -4585,7 +4585,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/landing)
 "xf" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/security,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -4652,7 +4652,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "xp" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/soup/boiledrice,
 /turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/outpost/outer/hermit)
@@ -4907,7 +4907,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "yC" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/outpost/science/office)
 "yD" = (
@@ -4962,7 +4962,7 @@
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/command/captain)
 "yQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light,
 /obj/item/clipboard,
 /obj/item/tool/pen/blue,
@@ -5326,7 +5326,7 @@
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
 "AC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
@@ -6073,7 +6073,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/command)
 "EA" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/camera,
 /obj/machinery/light{
 	dir = 1
@@ -6177,7 +6177,7 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Fa" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/security/wooden_tv,
 /obj/structure/cable,
 /turf/open/floor/carpet,
@@ -6445,7 +6445,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/living)
 "GD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security)
 "GE" = (
@@ -6570,7 +6570,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security/vault)
 "Hh" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light,
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /turf/open/floor/wood,
@@ -8039,7 +8039,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north)
 "Oy" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/binoculars,
 /obj/machinery/light{
 	dir = 1
@@ -8268,7 +8268,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "PJ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/storage/fancy/cigar,
 /obj/item/ashtray/bronze,
 /obj/item/storage/box/matches,
@@ -8428,7 +8428,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/living/canteen)
 "QD" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/pizzapasta/beefnoodle,
 /turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/outpost/outer/hermit)
@@ -8963,7 +8963,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/security)
 "Te" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/machinery/light{
@@ -9051,7 +9051,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/science/south)
 "TC" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/prop/computer/PC,
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/outpost/science/office)
@@ -9947,7 +9947,7 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
 "XL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/phone,
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/outpost/science/office)
@@ -10106,7 +10106,7 @@
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/command/captain)
 "YG" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
@@ -10259,7 +10259,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "Zw" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
 "Zx" = (

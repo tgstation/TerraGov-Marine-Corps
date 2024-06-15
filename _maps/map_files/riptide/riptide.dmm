@@ -13,7 +13,7 @@
 /turf/open/ground,
 /area/riptide/outside/westislands)
 "abe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double/derringer,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_nine,
@@ -68,7 +68,7 @@
 	},
 /area/riptide/inside/engineering)
 "adC" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/flash,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
@@ -369,7 +369,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/beachlzone)
 "aoe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
@@ -770,7 +770,7 @@
 /turf/open/floor/plating,
 /area/riptide/inside/landingzoneone)
 "aDY" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood/alt_four,
 /area/riptide/inside/abandonedcottage)
 "aEi" = (
@@ -1763,12 +1763,12 @@
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
 "bpL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/twobreadold,
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/syndicateport)
 "bpV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/inside/arena)
 "bpW" = (
@@ -2359,7 +2359,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/riptide/inside/landingzoneone)
 "bIK" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/cans/grape_juice,
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime{
 	pixel_x = -9;
@@ -2686,7 +2686,7 @@
 	},
 /area/riptide/inside/landingzoneone)
 "bTy" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/melonliquor,
 /obj/item/reagent_containers/food/drinks/bottle/rum{
 	pixel_x = 7
@@ -2842,7 +2842,7 @@
 /turf/open/floor/wood,
 /area/riptide/inside/syndicateport)
 "bZj" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/deck,
 /turf/open/floor/wood/variable/mosaic,
 /area/riptide/inside/beachden)
@@ -3973,7 +3973,7 @@
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
 "cNa" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
 "cNl" = (
@@ -4515,7 +4515,7 @@
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlzone)
 "dgC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/holy_cake,
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
@@ -5573,7 +5573,7 @@
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
 "dST" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_four,
 /area/riptide/inside/abandonedcottage)
@@ -6147,7 +6147,7 @@
 /turf/open/floor/wood/variable/wide,
 /area/riptide/inside/beachmotel)
 "eni" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/folder/red{
 	pixel_x = -3;
 	pixel_y = 2
@@ -6381,7 +6381,7 @@
 /turf/open/floor/plating,
 /area/riptide/inside/tikihut)
 "evu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/storage/box/cups{
 	pixel_x = 2;
 	pixel_y = 5
@@ -7141,7 +7141,7 @@
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
 "eXi" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/effect/spawner/random/misc/cigar,
 /obj/effect/spawner/random/misc/cigar,
 /turf/open/floor/wood,
@@ -7339,7 +7339,7 @@
 /area/riptide/caves/pmc/warehouse)
 "fdl" = (
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
 "fdu" = (
@@ -7419,7 +7419,7 @@
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
 "fgV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/pavlova,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
@@ -8100,7 +8100,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/riptide/inside/syndicatehead)
 "fGr" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/weapon/telebaton,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cmo,
@@ -8347,7 +8347,7 @@
 /turf/open/floor/tile/black/full,
 /area/riptide/inside/beachsushi)
 "fMo" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/syndicake,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -8741,7 +8741,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/caves/tram)
 "gaU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/pump/trenchgun,
 /obj/item/ammo_magazine/shotgun/tracker,
 /turf/open/floor/wood/darker,
@@ -8815,7 +8815,7 @@
 /turf/open/floor/plating,
 /area/riptide/inside/beachsushi)
 "gct" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/medical/health_analyzer,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
@@ -9220,7 +9220,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/riptide/caves/pmc/toxins)
 "grJ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/kahlua{
 	pixel_x = -6;
 	pixel_y = 4
@@ -10107,7 +10107,7 @@
 /turf/open/floor/plating/scorched,
 /area/riptide/inside/syndicateport)
 "hex" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/cups,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen)
@@ -10136,7 +10136,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/riptide/outside/southjungle)
 "hff" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/storage/pouch/pressurized_reagent_pouch/bktt,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
@@ -10725,7 +10725,7 @@
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/syndicateport)
 "hBc" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/microwave,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
@@ -12043,7 +12043,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
 "iBX" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/tankholder{
 	desc = "Steers the whole ship!";
 	name = "shipwheel";
@@ -12199,7 +12199,7 @@
 	pixel_x = -9;
 	pixel_y = -2
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -12617,7 +12617,7 @@
 /obj/machinery/chem_dispenser/soda{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
@@ -12888,7 +12888,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
 "jiE" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/storage/bag/cash,
 /obj/structure/window{
 	dir = 4
@@ -13069,7 +13069,7 @@
 /turf/open/floor/tile/dark,
 /area/riptide/inside/chapel)
 "jpk" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/paper{
 	pixel_x = -6;
 	pixel_y = 3
@@ -13224,7 +13224,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
 "jwg" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double/martini,
 /obj/item/weapon/gun/shotgun/double/martini{
 	pixel_x = 9;
@@ -13233,7 +13233,7 @@
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
 "jwL" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double/martini{
 	pixel_y = -7
 	},
@@ -13399,7 +13399,7 @@
 /turf/open/ground/coast,
 /area/riptide/outside/northbeach)
 "jDu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double{
 	pixel_y = -5
 	},
@@ -13429,7 +13429,7 @@
 /turf/closed/wall/r_wall,
 /area/riptide/caves/pmc/toxins)
 "jEC" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/gun,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
@@ -13838,7 +13838,7 @@
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
 "jPO" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double/martini{
 	pixel_x = -6;
 	pixel_y = 4
@@ -14207,7 +14207,7 @@
 	},
 /area/riptide/outside/volcano)
 "kfe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/cans/tonic{
 	pixel_x = -1;
 	pixel_y = 2
@@ -14973,7 +14973,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/caves/tram)
 "kEt" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/mine_structure/wooden/support_wall/t_bar/above,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/thatch,
@@ -14999,7 +14999,7 @@
 /turf/open/floor/mainship/red/full,
 /area/riptide/caves/north)
 "kFB" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/clipboard,
 /obj/item/paper,
 /obj/item/tool/pen/blue,
@@ -15388,7 +15388,7 @@
 /turf/open/floor/prison/plate,
 /area/riptide/caves/syndicatemining)
 "kSq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen/two)
 "kSH" = (
@@ -15633,7 +15633,7 @@
 /turf/open/floor/wood/alt_six,
 /area/riptide/outside/northislands)
 "kYi" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/limejuice,
 /turf/open/floor/wood/variable,
 /area/riptide/outside/northjungle)
@@ -16344,7 +16344,7 @@
 /turf/open/floor/mainship/black/corner,
 /area/riptide/inside/syndicatehead)
 "lyq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -16537,7 +16537,7 @@
 /turf/open/floor/wood/alt_nine,
 /area/riptide/inside/arena)
 "lES" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
@@ -17565,7 +17565,7 @@
 /turf/open/floor/plating,
 /area/riptide/caves/syndicatemining)
 "mrK" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
 "mrV" = (
@@ -18140,7 +18140,7 @@
 "mJb" = (
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/item/clothing/head/that,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/grown/lemon,
 /obj/item/reagent_containers/food/snacks/grown/lime{
 	pixel_x = 6;
@@ -18428,7 +18428,7 @@
 	},
 /area/riptide/inside/syndicateport)
 "mUR" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/bikehorn/rubberducky,
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
@@ -19379,7 +19379,7 @@
 	},
 /area/riptide/inside/hydroponics)
 "nDo" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -19476,7 +19476,7 @@
 /turf/open/floor/tile/damaged/thermite,
 /area/riptide/inside/medical/surgery)
 "nHs" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/deck,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
@@ -19574,7 +19574,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/volcano)
 "nJK" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/reagent_containers/food/drinks/soymilk,
 /turf/open/floor/tile/vault{
@@ -20030,7 +20030,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southbeach)
 "nZv" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/gun_ammo,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
@@ -20190,7 +20190,7 @@
 /turf/open/floor/prison/plate,
 /area/riptide/inside/abandonedsec)
 "ogq" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/intel_computer,
 /obj/machinery/light{
 	dir = 1
@@ -20198,7 +20198,7 @@
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
 "ogN" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/item/folder/black,
 /obj/effect/ai_node,
@@ -20723,7 +20723,7 @@
 /area/riptide/inside/engineering/bridge)
 "ozC" = (
 /obj/item/storage/box/visual/magazine/compact/martini/full,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ashtray/bronze{
 	pixel_y = 9
@@ -20992,7 +20992,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southislands)
 "oIS" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/tankholder{
 	desc = "Steers the whole ship!";
 	name = "shipwheel";
@@ -21124,7 +21124,7 @@
 	pixel_x = -6;
 	pixel_y = -3
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
 "oOx" = (
@@ -21368,7 +21368,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/north2/garbledradio)
 "oVp" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = 1;
 	pixel_y = 3
@@ -22038,7 +22038,7 @@
 /turf/open/floor/mainship,
 /area/riptide/inside/breachedfob)
 "pus" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice,
 /turf/open/floor/wood/darker,
@@ -22073,7 +22073,7 @@
 /area/riptide/caves/north)
 "puS" = (
 /obj/machinery/faxmachine,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/tile/dark,
 /area/riptide/inside/medical/offices)
 "puV" = (
@@ -22862,7 +22862,7 @@
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering/cave)
 "pTc" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread,
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/syndicateport)
@@ -23028,7 +23028,7 @@
 	pixel_x = 5;
 	pixel_y = 6
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/platform/nondense{
 	dir = 8
 	},
@@ -23765,7 +23765,7 @@
 	},
 /area/riptide/inside/engineering/bridge)
 "qvj" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/grenadine{
 	pixel_x = 6;
 	pixel_y = 6
@@ -24112,7 +24112,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/riptide/outside/volcano)
 "qEu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clothing/suit/chaplain_hoodie,
 /obj/item/clothing/head/chaplain_hood,
 /turf/open/floor/cult,
@@ -24174,7 +24174,7 @@
 /turf/open/floor/tile/dark2,
 /area/riptide/inside/southtower)
 "qGP" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/reagent_containers/pill/happy,
 /obj/item/toy/deck,
 /turf/open/floor/wood/variable/mosaic,
@@ -24907,7 +24907,7 @@
 /turf/closed/mineral/smooth/outdoor/phoron,
 /area/riptide/caves/rock)
 "rgQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/microwave,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen)
@@ -25049,7 +25049,7 @@
 /turf/closed/wall/variable/adobe,
 /area/riptide/inside/beachbar)
 "rmn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/vault{
 	dir = 5
@@ -25727,7 +25727,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/riptide/outside/beachlzone)
 "rGX" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c200,
 /obj/effect/ai_node,
 /turf/open/floor/wood/variable/mosaic,
@@ -25801,7 +25801,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular,
 /area/riptide/outside/volcano)
 "rJx" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin,
 /obj/machinery/light{
 	dir = 1
@@ -26322,7 +26322,7 @@
 /turf/open/floor/grime,
 /area/riptide/caves/pmc/warehouse)
 "saQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/mine_structure/wooden/support_wall/t_bar/above,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/thatch,
@@ -27062,7 +27062,7 @@
 /area/riptide/outside/southbeach)
 "szp" = (
 /obj/machinery/photocopier,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toner,
 /turf/open/floor/tile/dark,
 /area/riptide/inside/medical/offices)
@@ -27427,7 +27427,7 @@
 /turf/open/floor/wood/variable,
 /area/riptide/inside/luxurybaroverlook)
 "sMt" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/gin,
 /obj/item/reagent_containers/food/drinks/flask{
 	pixel_x = 7
@@ -27460,7 +27460,7 @@
 /area/riptide/outside/volcano)
 "sOe" = (
 /obj/item/storage/fancy/candle_box,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
 "sOf" = (
@@ -28009,7 +28009,7 @@
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/westislands)
 "tgu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/flask/detflask{
 	pixel_x = 2;
 	pixel_y = 4
@@ -29047,7 +29047,7 @@
 /turf/closed/wall/wood,
 /area/riptide/inside/riverblocker)
 "tSz" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/riptide/inside/tikihut)
 "tSD" = (
@@ -29732,7 +29732,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
 "urR" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c10,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood/variable/mosaic/damaged,
@@ -29760,7 +29760,7 @@
 /turf/open/floor/prison,
 /area/riptide/caves/pmc/prison)
 "uso" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/nuke_disk_candidate{
 	set_associations = list("set3")
 	},
@@ -31060,7 +31060,7 @@
 /turf/open/floor/rustyplating,
 /area/riptide/inside/syndicategen)
 "voF" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper/prison_station/chapel_program,
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
@@ -31240,7 +31240,7 @@
 /turf/open/floor/iron/dark,
 /area/riptide/caves/pmc/lobby)
 "vtt" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen)
 "vtw" = (
@@ -31836,7 +31836,7 @@
 /turf/open/ground,
 /area/riptide/outside/westislands)
 "vOU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/glass/rag,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/drinks/coconutmilk{
@@ -32653,7 +32653,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
 "wvV" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c50,
 /obj/structure/window{
 	dir = 4
@@ -32718,7 +32718,7 @@
 	},
 /area/riptide/outside/westjungle)
 "wyk" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ammo_magazine/pistol/derringer,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_nine,
@@ -34854,7 +34854,7 @@
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/warehouse)
 "yaQ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/crew,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
