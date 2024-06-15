@@ -28,7 +28,7 @@
 	if(bomb_armor_ratio <= 0) //we have 100 effective bomb armor
 		return
 
-	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_INSTACRIT_THRESHOLD))
+	if((severity == EXPLODE_DEVASTATE) && (bomb_armor_ratio > XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //gibs unprotected benos
 
 	switch(severity)
