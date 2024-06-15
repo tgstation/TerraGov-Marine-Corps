@@ -82,7 +82,8 @@
 
 /mob/living/carbon/xenomorph/gib()
 
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
+	var/turf/T = get_turf(src)
+	var/obj/effect/decal/remains/xeno/remains = new(T)
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
@@ -91,6 +92,9 @@
 	remains.icon_state = xeno_caste.gib_anim
 
 	check_blood_splash(35, BURN, 65, 2)
+
+	if(prob(1))
+		var/obj/item/reagent_containers/food/snacks/meat/xeno/I = new(T)
 
 	return ..()
 
