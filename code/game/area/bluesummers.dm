@@ -118,6 +118,9 @@
 	outside = TRUE
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = TRUE
+	ambience = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
+	min_ambience_cooldown = 10 SECONDS
+	max_ambience_cooldown = 12 SECONDS
 
 /area/bluesummers/outside/southeast
 	name = "Southeastern Desert"
@@ -137,7 +140,7 @@
 
 /area/bluesummers/outside/southwest
 	name = "Southwestern Desert"
-	icon_state = "southeast"
+	icon_state = "southwest"
 
 /area/bluesummers/outside/southwest/roofed
 	ceiling = CEILING_METAL
@@ -173,6 +176,9 @@
 	icon_state = "red"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	min_ambience_cooldown = 1 SECONDS
+	max_ambience_cooldown = 1 SECONDS
+	ambience = list('sound/ambience/ambienthum.ogg' = 1)
 
 /area/bluesummers/inside/space_port
 	name = "Space Port"
