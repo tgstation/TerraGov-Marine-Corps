@@ -1319,3 +1319,13 @@
 //Throws AM away from something
 /atom/movable/proc/knockback(source, distance, speed, dir, knockback_force = MOVE_FORCE_EXTREMELY_STRONG)
 	safe_throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source, FALSE, knockback_force)
+
+///overrides the turf's normal footstep sound
+/atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/atom/movable/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE
