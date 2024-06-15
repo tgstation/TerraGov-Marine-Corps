@@ -364,7 +364,7 @@
 
 /datum/emote/living/carbon/human/laugh/get_sound(mob/living/user)
 	if(user.gender == FEMALE)
-		return 'sound/voice/human_female_laugh_1.ogg'
+		return 'sound/voice/human/female/laugh_1.ogg'
 	else
 		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
 
@@ -483,7 +483,7 @@
 		else
 			return 'sound/voice/human_male_medic2.ogg'
 	else
-		return 'sound/voice/human_female_medic.ogg'
+		return 'sound/voice/human/female/medic.ogg'
 
 
 /datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
