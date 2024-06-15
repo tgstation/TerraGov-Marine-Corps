@@ -150,7 +150,7 @@
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a little one on [t_his] face!")]\n"
 			else
-				msg += "[span_warning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
+				msg += "[span_boldwarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
 		else if(wear_mask.blood_overlay)
 			msg += "[span_alert("[t_He] [t_has] [icon2html(wear_mask, user)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] on [t_his] face!")]\n"
 		else
@@ -185,9 +185,9 @@
 		var/datum/limb/o = get_limb(organ)
 		if(o)
 			if(o.limb_status & LIMB_SPLINTED)
-				msg += "[span_warning("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
+				msg += "[span_green("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
 			if(o.limb_status & LIMB_STABILIZED)
-				msg += "[span_warning("[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!")]\n"
+				msg += "[span_green("[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!")]\n"
 			if(o.limb_status & LIMB_NECROTIZED)
 				msg += "[span_deadsay("<b>An infection has rotted [t_his] [o.display_name] into uselessness!</b>")]\n"
 
@@ -223,7 +223,7 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
+			msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
@@ -235,27 +235,54 @@
 	var/total_clone = getCloneLoss()
 	if(total_brute)
 		if (total_brute < 25)
-			msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
 		else if (total_brute < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe bruising.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe denting!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe bruising!</B>")]\n"
 
 	if(total_burn)
 		if (total_burn < 25)
-			msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
 		else if (total_burn < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe burns.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe scorching!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe burns!</B>")]\n"
 
 	if(total_clone)
 		if(total_clone < 25)
-			msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage.</i></span>\n"
+			if(isrobot(src))
+				msg += "[span_tinydeadsay("<i>[t_He] has minor structural damage, with some solder visibly frayed...</i>")]\n"
+			else
+				msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i></span>\n"
 		else if (total_clone < 50)
-			msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage.</i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<i>[t_He] look[p_s()] very shaky, with significant damage to [t_his] overall structure...</i>")]\n"
+			else
+				msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage...</i>")]\n"
 		else
-			msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin.</b></i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<b><i>[t_He] look[p_s()] barely functional, nearly collapsing with each step!</b></i>")]\n"
+			else
+				msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin!</b></i>")]\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"

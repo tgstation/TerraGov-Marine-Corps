@@ -1026,51 +1026,51 @@ h2.alert {
 }
 
 $alert-stripe-colors: (
-  'default': #00283a,
-  'green': #003d00,
-  'blue': #00283a,
-  'pink': #30001b,
+  'default': #0e152c,
+  'green': #0f2e0f,
+  'blue': #121c3a,
+  'pink': #240c19,
   'yellow': #574a00,
-  'orange': #593400,
+  'orange': #431b16,
   'red': #420000,
-  'purple': #2c0030,
+  'purple': #220c24,
   'grey': #252525,
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #003045,
-  'green': #004700,
-  'blue': #003045,
-  'pink': #400025,
+  'default': #111934,
+  'green': #123512,
+  'blue': #151f41,
+  'pink': #301022,
   'yellow': #4d4100,
-  'orange': #6b4200,
+  'orange': #50211b,
   'red': #520000,
-  'purple': #38003d,
+  'purple': #2b0f2e,
   'grey': #292929,
 );
 
 $alert-major-header-colors: (
-  'default': #33d5ff,
-  'green': #00ff80,
-  'blue': #33d5ff,
-  'pink': #ff5297,
-  'yellow': #fff4e0,
-  'orange': #feefe7,
-  'red': #ff5297,
-  'purple': #c7a1f7,
-  'grey': #ff5297,
+  'default': #94a5db,
+  'green': #00a854,
+  'blue': #94a5db,
+  'pink': #e990c3,
+  'yellow': #e6af4c,
+  'orange': #e79f79,
+  'red': #ff4542,
+  'purple': #bf9cde,
+  'grey': #ff4542,
 );
 
 $alert-subheader-header-colors: (
-  'default': #ff5297,
-  'green': #ff85b5,
-  'blue': #ff5297,
-  'pink': #33d5ff,
-  'yellow': #33d5ff,
-  'orange': #33d5ff,
-  'red': #33d5ff,
-  'purple': #33d5ff,
-  'grey': #33d5ff,
+  'default': #c5ba7c,
+  'green': #d5a0a0,
+  'blue': #c5ba7c,
+  'pink': #f7cfcf,
+  'yellow': #ffddbd,
+  'orange': #ffddbd,
+  'red': #e9aa72,
+  'purple': #f7cfcf,
+  'grey': #e9aa72,
 );
 
 $border-width: 4;
@@ -1096,6 +1096,24 @@ $border-width-px: $border-width * 1px;
 }
 .alert_header {
   padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_alert {
+  background: #012753;
+  border: 1px solid #006deb;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_announcement_text {
+  color: #006deb;
+  padding: 0.5em 0 0 0.35em;
   display: flex;
   flex-direction: column;
 }

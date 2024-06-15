@@ -153,8 +153,7 @@
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.
 [numHostsTransit] human\s in transit."},
-			color_override = "purple",
-			minor = TRUE
+			color_override = "purple"
 		))
 
 	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")

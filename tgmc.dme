@@ -182,6 +182,7 @@
 #include "code\__HELPERS\matrices.dm"
 #include "code\__HELPERS\mech.dm"
 #include "code\__HELPERS\mobs.dm"
+#include "code\__HELPERS\ooc_announcement_helper.dm"
 #include "code\__HELPERS\patterns.dm"
 #include "code\__HELPERS\pencode.dm"
 #include "code\__HELPERS\pronouns.dm"

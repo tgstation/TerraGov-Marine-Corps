@@ -1059,50 +1059,50 @@ h2.alert {
 }
 
 $alert-stripe-colors: (
-  'default': #b3bfff,
-  'green': #adffad,
-  'blue': #b3bfff,
-  'pink': #ffb3df,
+  'default': #c6ccec,
+  'green': #ceebc2,
+  'blue': #c6ccec,
+  'pink': #ecc6d9,
   'yellow': #fff3b3,
   'orange': #ffe2b3,
-  'red': #ffb3b3,
-  'purple': #fac2ff,
+  'red': #ffbbb3,
+  'purple': #e6d1f0,
   'grey': #e3e3e3,
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #bdc8ff,
-  'green': #bdffbd,
-  'blue': #bdc8ff,
-  'pink': #ffc2e5,
+  'default': #ced3ef,
+  'green': #d8efce,
+  'blue': #ced3ef,
+  'pink': #f0d1e1,
   'yellow': #fff5c2,
   'orange': #ffe8c2,
-  'red': #ffc2c2,
-  'purple': #fbd1ff,
+  'red': #ffc8c2,
+  'purple': #ead9f2,
   'grey': #ebebeb,
 );
 
 $alert-major-header-colors: (
   'default': #003061,
-  'green': #005229,
+  'green': #1f440e,
   'blue': #003061,
-  'pink': #800033,
-  'yellow': #754900,
-  'orange': #823208,
-  'red': #800029,
-  'purple': #450d8c,
-  'grey': #800033,
+  'pink': #602040,
+  'yellow': #990f00,
+  'orange': #b14810,
+  'red': #a80e00,
+  'purple': #5b2673,
+  'grey': #a80e00,
 );
 
 $alert-subheader-header-colors: (
-  'default': #6b0020,
-  'green': #6b0020,
-  'blue': #6b0020,
+  'default': #991200,
+  'green': #002c85,
+  'blue': #991200,
   'pink': #002c85,
-  'yellow': #002c85,
+  'yellow': #214164,
   'orange': #002c85,
-  'red': #002c85,
-  'purple': #002c85,
+  'red': #483c3c,
+  'purple': #991200,
   'grey': #002c85,
 );
 
@@ -1130,6 +1130,24 @@ $border-width-px: $border-width * 1px;
 }
 .alert_header {
   padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_alert {
+  background: #bdc8ff;
+  border: 1px solid #002eb8;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  color: #00283a;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_announcement_text {
+  color: #002eb8;
+  padding: 0.5em 0 0 0.35em;
   display: flex;
   flex-direction: column;
 }
