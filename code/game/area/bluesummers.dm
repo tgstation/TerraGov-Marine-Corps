@@ -47,13 +47,6 @@
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	always_unpowered = FALSE
 
-//Makes sure people dont glitch in
-/area/bluesummers/caves/cryostorage/enclosed
-	name = "Enclosed Cryostorage"
-	icon_state = "unknown"
-	var/debuff_type = /datum/status_effect/spacefreeze
-	always_unpowered = TRUE
-
 /area/bluesummers/caves/cryostorage/north
 	name = "Cryogenics Storage Wing North"
 
@@ -146,6 +139,10 @@
 	name = "Southwestern Desert"
 	icon_state = "southeast"
 
+/area/bluesummers/outside/southwest/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 /area/bluesummers/outside/northeast
 	name = "Northeastern Desert"
 	icon_state = "northeast"
@@ -158,9 +155,17 @@
 	name = "Northern Desert"
 	icon_state = "north"
 
+/area/bluesummers/outside/north/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 /area/bluesummers/outside/northwest
 	name = "Northwestern Desert"
 	icon_state = "northwest"
+
+/area/bluesummers/outside/northwest/roofed
+	ceiling = CEILING_METAL
+	outside = FALSE
 
 //Indoor Areas
 /area/bluesummers/inside
