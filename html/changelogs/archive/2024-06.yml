@@ -139,3 +139,17 @@
   Kuro020:
   - balance: Makes xenos tankier and a little slower plus some other assorted xeno
       changes, read the hackmd linked on the pr
+2024-06-14:
+  Helg2:
+  - bugfix: T27 magazines have the correct sprite once again.
+  Wisemonster:
+  - balance: King's roar now deals damage to all parts of the tank instead of just
+      the center. Damage is 12 per tile at close range, 10 per tile at farther distances.
+  - balance: Crusher's charge now does more damage to tanks and apcs (from between
+      18-21 to between 50-100) depending on the charge distance.
+2024-06-15:
+  Lauwma:
+  - rscadd: Spiderlings can now attack uncouncious marines
+  Wisemonster:
+  - bugfix: Fixed pyrogen's fireball AoE checking for armor's fire resistance instead
+      of acid

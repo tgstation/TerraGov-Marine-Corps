@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "King's roar now deals damage to all parts of the tank instead of just the center. Damage is 12 per tile at close range, 10 per tile at farther distances."
