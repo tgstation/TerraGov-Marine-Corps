@@ -1184,9 +1184,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/tool_use_check(mob/living/user, amount)
 	return !amount
 
-
-// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
-// Returns TRUE on success, FALSE on failure.
+/**
+ * Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+ * Returns TRUE on success, FALSE on failure.
+ */
 /obj/item/proc/use(used)
 	return !used
 
