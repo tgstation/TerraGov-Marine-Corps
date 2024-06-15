@@ -340,7 +340,7 @@
 
 	SEND_SIGNAL(src, COMSIG_MULTITILE_VEHICLE_ROTATED, loc, new_dir, null, old_locs)
 
-/obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction) //haven't baked in strafe into the base type since its only used by the SOM tank currently
+/obj/hitbox/rectangle/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	if(ISDIAGONALDIR(direction))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/obj/vehicle/sealed/armored/armor = root
