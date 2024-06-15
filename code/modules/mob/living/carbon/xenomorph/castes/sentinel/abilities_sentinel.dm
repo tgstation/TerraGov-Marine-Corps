@@ -18,17 +18,18 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 
-/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		if(C.issamexenohive(P.firer))
-			return
-		if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-			return
-		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-			debuff.add_stacks(intoxication_stacks)
-		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	if(HAS_TRAIT(target_carbon, TRAIT_INTOXICATION_IMMUNE))
+		return
+	if(target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(intoxication_stacks)
+	target_carbon.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
 
 // ***************************************
 // *********** Toxic Slash
