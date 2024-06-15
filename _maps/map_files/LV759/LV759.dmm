@@ -16480,6 +16480,10 @@
 	},
 /turf/open/floor/prison,
 /area/lv759/outdoors/landing_zone_1)
+"cQu" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/urban,
+/area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "cQv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/engineership/ship_hull,
@@ -17965,6 +17969,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
+/obj/structure/prop/urban/fakeplatforms/platform3,
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "dcg" = (
@@ -20919,9 +20924,15 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "dCC" = (
-/obj/machinery/streetlight/engineer_circular,
-/turf/open/engineership/engineer_floor5,
-/area/lv759/oob)
+/obj/effect/urban/decal/dirt,
+/obj/structure/barricade/handrail/strata{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison{
+	dir = 10
+	},
+/area/lv759/outdoors/colony_streets/central_streets)
 "dCD" = (
 /obj/structure/lattice/autosmooth,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -28755,6 +28766,9 @@
 /area/lv759/indoors/spaceport/cargo)
 "eWO" = (
 /obj/effect/urban/decal/dirt,
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 1
+	},
 /turf/open/floor/prison/ramptop{
 	dir = 4
 	},
@@ -33670,6 +33684,11 @@
 /obj/effect/urban/decal/road/lines1,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
+"fMO" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/ground/sandrock,
+/area/lv759/indoors/caves/central_caves)
 "fMS" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -63385,6 +63404,7 @@
 	color = "#a6aeab";
 	dir = 4
 	},
+/obj/structure/prop/urban/fakeplatforms/platform3,
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "kSc" = (
@@ -70674,6 +70694,9 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/NTmart/maintenance)
+"mdC" = (
+/turf/open/ground/sandrock,
+/area/lv759/oob)
 "mdI" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -73020,6 +73043,11 @@
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
+"mxw" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/urbanshale/layer1,
+/area/lv759/indoors/caves/central_caves)
 "mxz" = (
 /obj/machinery/vending/coffee{
 	pixel_x = 11;
@@ -84303,6 +84331,16 @@
 	dir = 8
 	},
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
+"osB" = (
+/obj/structure/prop/mainship/gelida/smallwire{
+	dir = 1
+	},
+/obj/structure/prop/mainship/gelida/smallwire{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/urbanshale/layer0_plate,
+/area/lv759/outdoors/caveplateau)
 "osE" = (
 /obj/structure/closet/l3closet/scientist,
 /turf/open/floor/mainship/sterile/plain,
@@ -92140,6 +92178,9 @@
 /obj/structure/largecrate/random/case/double{
 	layer = 2
 	},
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 1
+	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "pJI" = (
@@ -97440,6 +97481,12 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
+"qGn" = (
+/obj/structure/prop/urban/fakeplatforms/platform3,
+/turf/open/floor/prison/ramptop{
+	dir = 4
+	},
+/area/lv759/indoors/meridian/meridian_factory)
 "qGq" = (
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/meridian/meridian_foyer)
@@ -108871,6 +108918,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
+/obj/structure/prop/urban/fakeplatforms/platform3,
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "sEb" = (
@@ -109919,6 +109967,10 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/starglider)
+"sMN" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/urban,
+/area/lv759/oob)
 "sMP" = (
 /obj/structure/prop/urban/fakeplatforms/platform1,
 /obj/structure/largecrate/random/mini/small_case{
@@ -111489,6 +111541,7 @@
 	pixel_x = -9;
 	pixel_y = 10
 	},
+/obj/effect/ai_node,
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "tav" = (
@@ -114279,6 +114332,10 @@
 	},
 /area/lv759/indoors/caves/west_caves)
 "tyO" = (
+/obj/structure/prop/urban/fakeplatforms/platform3,
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 4
+	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "tyU" = (
@@ -114312,10 +114369,14 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
 "tzc" = (
-/obj/effect/urban/decal/grate,
-/obj/effect/ai_node,
-/turf/open/ground/sandrock,
-/area/lv759/indoors/caves/central_caves)
+/obj/structure/prop/urban/fakeplatforms/platform3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab";
+	dir = 4
+	},
+/obj/structure/prop/urban/fakeplatforms/platform3,
+/turf/open/floor/urban/metal/zbrownfloor_full,
+/area/lv759/indoors/meridian/meridian_factory)
 "tzd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -120327,6 +120388,7 @@
 	pixel_x = -26;
 	pixel_y = -13
 	},
+/obj/structure/prop/urban/fakeplatforms/platform3,
 /turf/open/floor/prison/ramptop{
 	dir = 4
 	},
@@ -124375,6 +124437,12 @@
 	layer = 2;
 	pixel_x = -4;
 	pixel_y = 5
+	},
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 1
+	},
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 8
 	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
@@ -128707,7 +128775,7 @@
 /obj/machinery/streetlight/engineer_circular,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/engineership/engineer_floor5,
-/area/lv759/oob)
+/area/lv759/indoors/derelict_ship)
 "vRS" = (
 /obj/effect/spawner/random/weaponry/ammo/rifle,
 /obj/effect/urban/decal/dirt,
@@ -133655,6 +133723,10 @@
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
+"wIy" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/urban,
+/area/lv759/indoors/nt_research_complex/dormsbedroom)
 "wIC" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/personal_solid{
@@ -141373,6 +141445,10 @@
 /area/lv759/indoors/meridian/meridian_showroom)
 "xYy" = (
 /obj/structure/largecrate/random/barrel/white,
+/obj/structure/prop/urban/fakeplatforms/platform3,
+/obj/structure/prop/urban/fakeplatforms/platform3{
+	dir = 8
+	},
 /turf/open/floor/urban/metal/zbrownfloor_full,
 /area/lv759/indoors/meridian/meridian_factory)
 "xYM" = (
@@ -150344,7 +150420,7 @@ bes
 mjV
 mjV
 nVF
-mjV
+cQu
 mjV
 ldK
 eFF
@@ -150547,7 +150623,7 @@ mjV
 mjV
 mjV
 hcF
-ldK
+sMN
 ldK
 ldK
 mjY
@@ -152971,7 +153047,7 @@ iDp
 iDp
 iDp
 iDp
-iDp
+wIy
 iDp
 iDp
 iDp
@@ -153174,7 +153250,7 @@ ldK
 ldK
 ldK
 ldK
-ldK
+sMN
 ldK
 ldK
 ldK
@@ -153377,10 +153453,10 @@ lhZ
 lhZ
 ldK
 ldK
-aWQ
-aWQ
-aWQ
-aWQ
+taw
+ffF
+ffF
+ffF
 aWQ
 aWQ
 aWQ
@@ -153580,11 +153656,11 @@ lhZ
 ldK
 ldK
 aWQ
-aWQ
-aWQ
-aWQ
+uCf
+ffF
+ffF
 taw
-aWQ
+mdC
 aWQ
 aWQ
 lXY
@@ -153784,8 +153860,8 @@ ldK
 aWQ
 aWQ
 aWQ
-aWQ
-aWQ
+taw
+ffF
 uCf
 xnK
 aWQ
@@ -153987,7 +154063,7 @@ aWQ
 aWQ
 aWQ
 aWQ
-aWQ
+uCf
 taw
 uCf
 roJ
@@ -154566,7 +154642,7 @@ ldK
 ldK
 ldK
 ldK
-ldK
+sMN
 ldK
 ldK
 ldK
@@ -154768,9 +154844,9 @@ ldK
 ldK
 aWQ
 aWQ
-aWQ
-aWQ
-aWQ
+tHU
+tHU
+tHU
 aWQ
 aWQ
 aWQ
@@ -154972,8 +155048,8 @@ aWQ
 aWQ
 aWQ
 udt
-aWQ
-aWQ
+tHU
+tHU
 nds
 aWQ
 aWQ
@@ -155599,7 +155675,7 @@ tHU
 tHU
 eXS
 aNS
-aNS
+eXS
 tHU
 tHU
 aNS
@@ -156005,7 +156081,7 @@ tHU
 aWQ
 aWQ
 tHU
-udt
+jUH
 oXR
 oXR
 aNS
@@ -156209,7 +156285,7 @@ aWQ
 aWQ
 aWQ
 aNS
-aNS
+eXS
 tHU
 aNS
 tHU
@@ -157654,7 +157730,7 @@ nLp
 deK
 pnY
 pnY
-dCC
+hNH
 vcE
 uCf
 cat
@@ -157833,14 +157909,14 @@ aWQ
 bLL
 iaX
 dUJ
-aNS
+eXS
 lau
 lRa
 aNS
 aNS
 tHU
 aNS
-eXS
+aNS
 pwh
 tHU
 aWQ
@@ -157854,7 +157930,7 @@ dis
 nLp
 deK
 pnY
-dCC
+hNH
 vcE
 vcE
 vcE
@@ -158042,8 +158118,8 @@ lRa
 aNS
 udt
 psh
-pLX
-lRa
+tHU
+wxr
 lRa
 aNS
 tHU
@@ -158130,7 +158206,7 @@ xaN
 mtz
 mkm
 jep
-uOl
+dCC
 hFT
 hPG
 hud
@@ -158257,7 +158333,7 @@ aWQ
 dis
 nLp
 deK
-dCC
+hNH
 vcE
 keo
 cQv
@@ -158467,13 +158543,13 @@ cQv
 keo
 vcE
 tws
-dCC
+hNH
 rQx
 kMD
 kMD
 kMD
 wFj
-dCC
+hNH
 jTS
 lwn
 "}
@@ -158654,14 +158730,14 @@ aWQ
 kRv
 abx
 kgG
-kgG
-mDf
+abx
+kRv
 uFb
 kqj
 aWQ
 vzo
 deK
-dCC
+hNH
 vcE
 keo
 keo
@@ -158871,7 +158947,7 @@ keo
 keo
 jTS
 vcE
-dCC
+hNH
 rQx
 xOJ
 qcD
@@ -159269,7 +159345,7 @@ uii
 kRv
 odO
 jHs
-dCC
+hNH
 keo
 keo
 keo
@@ -159487,7 +159563,7 @@ hlw
 wAO
 sRu
 mYs
-kun
+hlw
 iAI
 dvj
 lwn
@@ -159670,7 +159746,7 @@ svA
 rbR
 svA
 wWc
-wpf
+dXr
 dXr
 jmz
 xld
@@ -159872,13 +159948,13 @@ aWQ
 cgu
 uDm
 oXi
-kgG
+abx
 wWc
 jmz
 kRv
 uNd
 jHs
-dCC
+hNH
 keo
 keo
 keo
@@ -160089,7 +160165,7 @@ keo
 keo
 jTS
 vcE
-dCC
+hNH
 erb
 wFj
 rni
@@ -160298,7 +160374,7 @@ erb
 wFj
 fsk
 rni
-rni
+sYj
 rQx
 xOJ
 ejF
@@ -160488,7 +160564,7 @@ kRv
 ocK
 iHj
 jHs
-dCC
+hNH
 vcE
 keo
 keo
@@ -160684,7 +160760,7 @@ aWQ
 aWQ
 uFb
 kgG
-kgG
+abx
 dXr
 dXr
 kgG
@@ -161481,7 +161557,7 @@ vcE
 vcE
 uYH
 cgD
-umq
+mxw
 kgG
 xPp
 kRv
@@ -162090,11 +162166,11 @@ kgG
 kgG
 wWc
 jmz
-gpA
+fMO
 kgG
 tNw
 jHs
-dCC
+hNH
 xsf
 fPa
 abx
@@ -162489,7 +162565,7 @@ aWQ
 aWQ
 tKo
 kgG
-kgG
+abx
 kgG
 vAJ
 cON
@@ -162693,7 +162769,7 @@ aWQ
 kRv
 epS
 epS
-kgG
+abx
 uNd
 deK
 pnY
@@ -162899,7 +162975,7 @@ epS
 kRv
 xZZ
 jHs
-dCC
+hNH
 vcE
 pnY
 xsf
@@ -162908,7 +162984,7 @@ iVi
 xDh
 jHs
 vcE
-dCC
+hNH
 xsf
 fPa
 hvb
@@ -163099,7 +163175,7 @@ kRv
 kgG
 kgG
 kgG
-gpA
+fMO
 uNd
 jHs
 vcE
@@ -163504,8 +163580,8 @@ aWQ
 vcV
 nNO
 heY
-tzc
-kRv
+ril
+mDf
 uNd
 jHs
 vcE
@@ -165340,13 +165416,13 @@ vcE
 keo
 vcE
 tws
-dCC
+hNH
 rQx
 kMD
 kMD
 kMD
 wFj
-dCC
+hNH
 vcE
 vcE
 vcE
@@ -165744,7 +165820,7 @@ jHs
 vcE
 vcE
 vcE
-dCC
+hNH
 rQx
 xOJ
 rni
@@ -165754,7 +165830,7 @@ quR
 rni
 erb
 wFj
-dCC
+hNH
 vcE
 vcE
 xsf
@@ -167165,7 +167241,7 @@ vzo
 djY
 vcE
 vcE
-dCC
+hNH
 erb
 wFj
 rni
@@ -167175,7 +167251,7 @@ hlw
 owC
 rQx
 xOJ
-dCC
+hNH
 vcE
 vcE
 rwp
@@ -167573,13 +167649,13 @@ fvu
 jHs
 vcE
 vcE
-dCC
+hNH
 erb
 vkx
 udx
 fnd
 xOJ
-dCC
+hNH
 vcE
 vcE
 vcE
@@ -167599,14 +167675,14 @@ huh
 cmr
 jll
 jll
+jvG
+jll
+osB
 jll
 jll
-hsQ
 jll
 jvG
 jll
-jll
-jvG
 jll
 aWQ
 aWQ
@@ -167921,7 +167997,7 @@ phE
 tyO
 eWO
 oTb
-oTb
+qGn
 pJC
 cHQ
 fCr
@@ -168932,7 +169008,7 @@ vEt
 gkO
 dLk
 kKW
-pkl
+tzc
 mgI
 fsN
 ueO
@@ -169135,7 +169211,7 @@ ycc
 iZx
 czK
 tvp
-pkl
+dce
 lpG
 atQ
 ueO

@@ -24,7 +24,7 @@
 	if(!operating)
 		operating = TRUE
 	do_animate("opening")
-	icon_state = "[base_icon_state]1"
+	icon_state = "[base_icon_state]0"
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(do_open)), 1 SECONDS)
 	return TRUE
