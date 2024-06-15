@@ -1,7 +1,7 @@
 #define DEBUG_XENO_LIFE 0
 #define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
-#define XENO_CRIT_DAMAGE 5
+#define XENO_CRIT_DAMAGE 7
 
 /mob/living/carbon/xenomorph/Life()
 
@@ -224,7 +224,7 @@
 		return
 
 	if(health <= get_death_threshold())
-		if(crit_damage_penalty > 20 && prob(crit_damage_penalty * 0.75 - 12)) //if above 20, chance to gib based on crit_damage_penalty
+		if(crit_damage_penalty > 70 && prob(crit_damage_penalty - 65)) //if above 20, chance to gib based on crit_damage_penalty
 			gib() //womp womp
 			return TRUE
 		crit_damage_penalty = 0

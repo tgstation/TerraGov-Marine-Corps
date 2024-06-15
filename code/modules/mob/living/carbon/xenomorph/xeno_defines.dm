@@ -55,7 +55,7 @@
 	///Maximum health a caste has.
 	var/max_health = 100
 	///What negative health amount they die at.
-	var/crit_health = -100
+	var/crit_health = -140
 
 	// *** Evolution *** //
 	///Threshold amount of evo points to next evolution
