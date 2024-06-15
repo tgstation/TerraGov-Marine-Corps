@@ -485,7 +485,7 @@
 	icon_state = "dropship_console"
 	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+//	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
 	opacity = FALSE
 
