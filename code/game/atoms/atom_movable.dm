@@ -1351,7 +1351,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 
 	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
-	animate(src, pixel_y = src.pixel_y + depth_diff, time = duration, flags = ANIMATION_PARALLEL)
+	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
 ///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
 /atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)
