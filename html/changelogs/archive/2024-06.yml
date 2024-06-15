@@ -120,3 +120,36 @@
   - bugfix: Recharger cells now update ammo count when it recharges
   - bugfix: Recharger cells no longer break once they hit 0 ammo
   - code_imp: delete cell.dm, merges the code into power_cells.dm
+2024-06-12:
+  blackdav123:
+  - balance: CAS now gets more points on low orbit instead of high.
+  - balance: Xenos can now see research digsites on the map.
+  chizzy376:
+  - qol: 'made Riptide breakable jungle walls zoned properly. Unga terms: You can
+      now talk in OB''d spots on Riptide.'
+  - bugfix: fixes a object fling trap in Slumbridge engineering
+2024-06-13:
+  Clay500z:
+  - balance: All of Bull's charges now deal exactly the same damage (2 slashes).
+  - balance: Gore now also deals 1 sec of slow in addition to the 1 sec of stagger.
+  - balance: Decreased Headbutt charges stun from 2 seconds to 1.5 seconds.
+  - balance: Slightly increased Bulls walking speed.
+  - sounddel: Removed the *gore emote from Bulls gore charge
+  - spellcheck: Updated Bulls ability descriptions
+  Kuro020:
+  - balance: Makes xenos tankier and a little slower plus some other assorted xeno
+      changes, read the hackmd linked on the pr
+2024-06-14:
+  Helg2:
+  - bugfix: T27 magazines have the correct sprite once again.
+  Wisemonster:
+  - balance: King's roar now deals damage to all parts of the tank instead of just
+      the center. Damage is 12 per tile at close range, 10 per tile at farther distances.
+  - balance: Crusher's charge now does more damage to tanks and apcs (from between
+      18-21 to between 50-100) depending on the charge distance.
+2024-06-15:
+  Lauwma:
+  - rscadd: Spiderlings can now attack uncouncious marines
+  Wisemonster:
+  - bugfix: Fixed pyrogen's fireball AoE checking for armor's fire resistance instead
+      of acid
