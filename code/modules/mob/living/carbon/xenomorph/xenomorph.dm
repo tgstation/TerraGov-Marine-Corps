@@ -485,7 +485,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	else
 		COOLDOWN_START(src, xeno_unresting_cooldown, XENO_UNRESTING_COOLDOWN)
 
-/mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+/mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
 		duration *= 2.5 - gravity

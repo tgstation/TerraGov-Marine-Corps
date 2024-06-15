@@ -3,7 +3,7 @@
 	name = "HSG-102 drum magazine (10x30mm Caseless)"
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the HSG-102 mounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "mag"
+	icon_state = "hsg102_mag"
 	magazine_flags = NONE
 	caliber = CALIBER_10X30
 	max_rounds = 300
@@ -42,7 +42,7 @@
 	name = "MG-27 box magazine (10x27m Caseless)"
 	desc = "A box of 150 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "mag"
+	icon_state = "t27_mag"
 	icon_state_mini = "mag_drum_big_armygreen"
 	magazine_flags = NONE
 	caliber = CALIBER_10x27_CASELESS

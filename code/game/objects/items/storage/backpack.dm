@@ -307,6 +307,7 @@
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
 				defib.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+				defib.update_icon()
 			else
 				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
 		else
