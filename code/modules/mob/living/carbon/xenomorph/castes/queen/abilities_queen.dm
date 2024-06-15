@@ -92,7 +92,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	playsound(xeno_owner.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")

@@ -47,4 +47,4 @@
 		mind.name = name
 
 /mob/living/carbon/xenomorph/king/death_cry()
-	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)
+	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
