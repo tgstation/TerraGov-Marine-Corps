@@ -124,7 +124,7 @@
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
 	attachable_allowed = list()
@@ -875,8 +875,8 @@
 /obj/item/weapon/gun/shotgun/micro_grenade
 	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
 	max_chamber_items = 2
 	gun_features_flags = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY

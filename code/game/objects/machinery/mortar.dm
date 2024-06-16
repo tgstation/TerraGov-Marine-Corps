@@ -109,6 +109,11 @@
 
 	ui_interact(user)
 
+/obj/machinery/deployable/mortar/disassemble(mob/user)
+	for(var/obj/loaded_item in chamber_items)
+		chamber_items -= loaded_item
+		loaded_item.forceMove(get_turf(src))
+	return ..()
 
 /obj/machinery/deployable/mortar/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -421,7 +426,7 @@
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
-	icon = 'icons/Marine/mortar.dmi'
+	icon = 'icons/obj/machines/deployable/mortar.dmi'
 	icon_state = "mortar"
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 0, ACID = 0)
@@ -472,7 +477,7 @@
 /obj/item/mortar_kit/howitzer
 	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -645,13 +650,12 @@
 		rocketsloaded++
 	user.balloon_alert(user, "Right click to fire")
 
-
 // Shells themselves //
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
-	icon = 'icons/Marine/mortar.dmi'
+	icon = 'icons/obj/items/ammo.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
@@ -695,7 +699,6 @@
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
 	desc = "An unlabeled 150mm shell, probably a casing."
-	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_ammo"
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -707,7 +710,7 @@
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
-	icon_state = "howitzer_ammo_purp"
+	icon_state = "howitzer_ammo_plasmaloss"
 	ammo_type = /datum/ammo/mortar/smoke/howi/plasmaloss
 
 /obj/item/mortal_shell/howitzer/incendiary
@@ -758,10 +761,9 @@
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
-	icon = 'icons/Marine/mortar.dmi'
-	icon_state = "closed_mortar_crate"
-	icon_opened = "open_mortar_crate"
-	icon_closed = "closed_mortar_crate"
+	icon_state = "closed_mortar"
+	icon_opened = "open_mortar"
+	icon_closed = "closed_mortar"
 
 /obj/structure/closet/crate/mortar_ammo/full/PopulateContents()
 	new /obj/item/mortal_shell/he(src)

@@ -1,12 +1,11 @@
 /obj/item/weapon/energy
 	atom_flags = NOBLOODY
+	icon = 'icons/obj/items/weapons/energy.dmi'
 
 /obj/item/weapon/energy/suicide_act(mob/user)
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."), \
 						span_danger("[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.")))
 	return (BRUTELOSS|FIRELOSS)
-
-
 
 /obj/item/weapon/energy/axe
 	name = "energy axe"
@@ -40,8 +39,6 @@
 		icon_state = "axe0"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
-
-
 
 /obj/item/weapon/energy/sword
 	name = "energy sword"

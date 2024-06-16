@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),
 	"barricade" = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
 	"razorwire" = image('icons/obj/structures/barricades/barbedwire.dmi', icon_state = "barbedwire_assembly"),
-	"barbedwire" = image('icons/Marine/marine-items.dmi', icon_state = "barbed_wire")
+	"barbedwire" = image('icons/obj/stack_objects.dmi', icon_state = "barbed_wire")
 	))
 
 /obj/item/stack/sheet/metal

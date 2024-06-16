@@ -10,6 +10,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_TURF_LAYER
+	allow_pass_flags = PASSABLE|PASS_DEFENSIVE_STRUCTURE
 
 /obj/structure/rock/ex_act(severity)
 	switch(severity)
@@ -39,6 +40,73 @@
 /obj/structure/rock/basalt/alt3
 	name = "volcanic rock"
 	icon_state = "basalt_4"
+
+/obj/structure/rock/basalt/alt4
+	name = "volcanic rock"
+	icon_state = "basalt_5"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt5
+	name = "volcanic rock"
+	icon_state = "basalt_6"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt6
+	name = "volcanic rock"
+	icon_state = "basalt_7"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt7
+	name = "volcanic rock"
+	icon_state = "basalt_8"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt8
+	name = "volcanic rock"
+	icon_state = "basalt_9"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt9
+	name = "volcanic rock"
+	icon_state = "basalt_10"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt10
+	name = "volcanic rock"
+	icon_state = "basalt_11"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt11
+	name = "volcanic rock"
+	icon_state = "basalt_12"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt12
+	name = "volcanic rock"
+	icon_state = "basalt_13"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/alt13
+	name = "volcanic rock"
+	icon_state = "basalt_14"
+	color = "#c7bdbd"
+
+/obj/structure/rock/basalt/large_boulder
+	name = "giant volcanic rock"
+	icon = 'icons/obj/flora/rock_large.dmi'
+	icon_state = "boulder_1"
+	color = "#c7bdbd"
+	bound_height = 64
+	bound_width = 64
+	max_integrity = 1200
+
+/obj/structure/rock/basalt/large_boulder/altone
+	icon_state = "boulder_2"
+
+/obj/structure/rock/basalt/large_boulder/alttwo
+	icon_state = "boulder_3"
+	bound_height = 32
+	bound_width = 64
 
 /obj/structure/rock/basalt/pile
 	name = "rock pile"
@@ -73,6 +141,15 @@
 	desc = "A large imposing rock."
 	icon_state = "basalt"
 	icon_variants = 4
+
+/obj/structure/rock/variable/tinyrock
+	name = "tiny rock pile"
+	desc = "A pile of tiny pebbles..."
+	icon_state = "tinyrock"
+	density = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	max_integrity = 100
+	icon_variants = 8
 
 /obj/structure/rock/variable/stalagmite
 	name = "stalagmite"

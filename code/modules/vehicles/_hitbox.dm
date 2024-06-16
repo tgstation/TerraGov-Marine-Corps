@@ -71,11 +71,12 @@
 		desant.forceMove(new_pos)
 
 ///signal handler when someone jumping lands on us
-/obj/hitbox/proc/on_jump_landed(datum/source, atom/lander)
+/obj/hitbox/proc/on_jump_landed(datum/source, atom/movable/lander)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
 		return
 	ADD_TRAIT(lander, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+	lander.add_nosubmerge_trait(VEHICLE_TRAIT)
 	LAZYSET(tank_desants, lander, lander.layer)
 	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	lander.layer = ABOVE_MOB_PLATFORM_LAYER
@@ -85,12 +86,18 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(AM, TRAIT_TANK_DESANT))
 		return
-	if(locate(src) in AM.loc) //Î'd cut the locate but for some reason it wdoesnt work lol
+	if(AM.loc in locs)
 		return
-	REMOVE_TRAIT(AM, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	AM.layer = LAZYACCESS(tank_desants, AM)
 	LAZYREMOVE(tank_desants, AM)
 	UnregisterSignal(AM, COMSIG_QDELETING)
+	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
+	if(!new_hitbox)
+		AM.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
+		return
+	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
+	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
+	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
@@ -182,7 +189,10 @@
 	return root.take_damage(arglist(args))
 
 /obj/hitbox/ex_act(severity)
-	return
+	root.ex_act(severity)
+
+/obj/hitbox/lava_act()
+	root.lava_act()
 
 ///2x2 hitbox version
 /obj/hitbox/medium

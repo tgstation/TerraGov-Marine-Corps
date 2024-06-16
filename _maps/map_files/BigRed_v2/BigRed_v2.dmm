@@ -7841,7 +7841,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
-/area/bigredv2/outside/w)
+/area/bigredv2/outside/space_port/two)
 "cfS" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8552,7 +8552,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
+/area/bigredv2/outside/space_port)
 "dPf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -11000,7 +11000,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
-/area/bigredv2/outside/w)
+/area/bigredv2/outside/space_port/two)
 "jkl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11176,6 +11176,14 @@
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
+"jBr" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/space_port)
 "jBy" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/excavation_site_spawner,
@@ -11583,7 +11591,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "kuf" = (
-/obj/mecha_wreckage/ripley,
+/obj/structure/mecha_wreckage/ripley,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -12362,7 +12370,7 @@
 "mrW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/w)
+/area/bigredv2/outside/space_port/two)
 "msa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/landmark/weed_node,
@@ -13245,7 +13253,7 @@
 	dir = 2
 	},
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/nw)
+/area/bigredv2/outside/space_port)
 "orP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -13271,7 +13279,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/w)
+/area/bigredv2/outside/space_port/two)
 "osM" = (
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
@@ -13340,6 +13348,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"oBb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/space_port)
 "oBp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13365,7 +13380,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
+/area/bigredv2/outside/space_port)
 "oDv" = (
 /obj/machinery/light{
 	dir = 8
@@ -14253,7 +14268,7 @@
 "qUp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/sw)
+/area/bigredv2/outside/space_port/two)
 "qVY" = (
 /obj/effect/spawner/modularmap/bigred/office,
 /turf/open/space/basic,
@@ -14434,7 +14449,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "rlw" = (
-/obj/mecha_wreckage/seraph,
+/obj/structure/mecha_wreckage/seraph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "rlA" = (
@@ -14688,6 +14703,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"rJu" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
 "rJA" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -15167,7 +15190,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/outside/sw)
+/area/bigredv2/outside/space_port/two)
 "sUg" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -15443,7 +15466,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
+/area/bigredv2/outside/space_port)
 "tGm" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/white,
@@ -16084,10 +16107,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"uWF" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "uXp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -16189,7 +16208,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
+/area/bigredv2/outside/space_port)
 "vii" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -16285,7 +16304,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/outside/w)
+/area/bigredv2/outside/space_port/two)
 "vrt" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -17041,10 +17060,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
-"xbt" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/w)
 "xbZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26391,7 +26406,7 @@ iwK
 iwK
 bTS
 djs
-heD
+jBr
 lvn
 lvn
 lvn
@@ -26825,7 +26840,7 @@ iwK
 iwK
 iKH
 cTd
-ygj
+rJu
 aiy
 aiy
 ajx
@@ -27108,7 +27123,7 @@ rdD
 vrd
 mrW
 osw
-xbt
+qUp
 gOu
 gOu
 ltk
@@ -27910,7 +27925,7 @@ iwK
 imS
 vYM
 geM
-gOU
+oBb
 yep
 ama
 ajy
@@ -28778,7 +28793,7 @@ iwK
 iwK
 jDF
 rSL
-gOU
+oBb
 mxa
 ama
 ajy
@@ -29757,7 +29772,7 @@ qqG
 qqG
 qqG
 qqG
-uWF
+qqG
 qqG
 dSm
 aaa

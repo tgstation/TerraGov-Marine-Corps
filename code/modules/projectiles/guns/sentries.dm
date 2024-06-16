@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/sentry
 	name = "sentry"
 	desc = "sentry"
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/sentry.dmi'
 
 	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
@@ -68,7 +68,7 @@
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"
 	desc = "A fully automatic turret with AI targeting capabilities, designed specifically for deploying inside a paired drop pod shell. Armed with a M30 autocannon and a 500-round drum magazine. Designed to sweeping a landing area to support orbital assaults."
-	icon_state = "podsentry"
+	icon_state = "pod_sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	sentry_iff_signal = TGMC_LOYALIST_IFF
@@ -89,7 +89,7 @@
 	name = "\improper COPE sentry"
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take normal volkite cells in a pinch."
 	icon_state = "cope"
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/cope.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
@@ -233,7 +233,8 @@
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper ST-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 300-round drum magazine."
-	icon_state = "minisentry"
+	icon_state = "mini_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/mini.dmi'
 
 	max_shells = 300
 	knockdown_threshold = 80
@@ -295,7 +296,8 @@
 /obj/item/weapon/gun/sentry/sniper_sentry
 	name = "\improper SRT-574 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
-	icon_state = "snipersentry"
+	icon_state = "sniper_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -347,7 +349,8 @@
 /obj/item/weapon/gun/sentry/shotgun_sentry
 	name = "\improper SHT-573 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
-	icon_state = "shotgunsentry"
+	icon_state = "shotgun_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -399,7 +402,8 @@
 /obj/item/weapon/gun/sentry/flamer_sentry
 	name = "\improper SFT-573 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
-	icon_state = "flamersentry"
+	icon_state = "flamer_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS

@@ -492,17 +492,15 @@ WEAPONS
 /datum/supply_packs/weapons/railgun_ammo
 	name = "SR-220 Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/weapons/railgun_ammo/hvap
 	name = "SR-220 Railgun high velocity armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/hvap)
-	cost = 50
 
 /datum/supply_packs/weapons/railgun_ammo/smart
 	name = "SR-220 Railgun smart armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/smart)
-	cost = 50
 
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"

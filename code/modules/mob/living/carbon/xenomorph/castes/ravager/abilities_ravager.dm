@@ -126,8 +126,7 @@
 			continue
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
-			if(!ravaged.anchored)
-				ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+			ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/human_victim = ravaged
 		if(human_victim.stat == DEAD)

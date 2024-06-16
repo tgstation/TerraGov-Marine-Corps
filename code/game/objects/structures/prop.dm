@@ -2203,6 +2203,40 @@
 	screen_overlay = "solar"
 	broken_icon = "computer_blue_broken"
 
+/obj/machinery/filtration_pipes
+	name = "Disinfection Filter"
+	desc = "A water filter specifically designed to separate micro-organisms, such as viruses and bacteria, from water."
+	icon = 'icons/obj/structures/pipe_multiple.dmi'
+	icon_state = "solo_tank_water"
+	density = TRUE
+
+/obj/machinery/filtration_pipes/water/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_water_top", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+
+/obj/machinery/filtration_pipes/empty
+	icon_state = "solo_tank_empty"
+
+/obj/machinery/filtration_pipes/empty/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_water_empty", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+
+/obj/machinery/filtration_pipes/waste
+	icon_state = "solo_tank_waste"
+
+/obj/machinery/filtration_pipes/waste/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_waste_top", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+
+/obj/machinery/filtration_pipes/multiple
+	icon_state = "disinfection"
+	bound_width = 96
+	bound_height = 64
+
+/obj/machinery/filtration_pipes/multiple/update_overlays()
+	. = ..()
+	. += image(icon, src, "disinfectiontop", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 63)
+
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"
 	desc = "If you see this object in game you should ahelp, something has broken."
@@ -2265,6 +2299,29 @@
 		Mariner Aerospace M350 SSTO family, the most widely used civilian SSTO family in SOM space. The latest generation hybrid engines, air-breathing hypersonic turbines into a radiation free NTR in a vacuum. 800 carrying capacity with flexible cargo capacity. M350 the technical benchmark in its field.;\
 		Orbital ring construction on Catakan continues smoothly with no major incidents, Phobos Manufacturing plays the biggest part of construction with its massive mobile construction platform able to produce any parts needed locally and housing a good amount of the construction workers, the orbital ring is expected to be finished in 3 years with 9 space elevators and 12 stations connecting to it along with dome gardens and cities along the skyhooks.;\
 		Shipyard work more attractive to young adults than office work? More and more young adults are flocking to shipyard and space related work as they want an escape from the monotony and rat race of the office world, here we are at New Malay Shipyards with Austin Li a 20 year old who gave up his managerial position for shipyard work 'I wanted to just escape from the boredom, feel challenged and accomplished from the work i do and i found that in shipyard work, it's a tough job and the pay is not as good but nothing beats the view from up here and the feeling of freedom from zero g, atleast thats my perspective. Sorry i gotta get to my EVA mech now, work calls."
+
+/obj/structure/prop/coagulation_arm
+	name = "coagulation arm"
+	desc = "An axel with four sides, made to spin to help filter the water."
+	icon = 'icons/obj/structures/coagulation_arm.dmi'
+	icon_state = "arm"
+	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	bound_height = 96
+	bound_width = 96
+	max_integrity = 1000
+
+/obj/structure/prop/filtration_exit
+	name = "Waste Exit Pipe"
+	desc = "This machine separates the leftover waste from the purification processes to be discarded into space, recycled for supplies, or used for research."
+	icon = 'icons/obj/structures/waste_pipe.dmi'
+	icon_state = "pipe"
+	anchored = TRUE
+	bound_height = 96
+	bound_width = 96
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

@@ -1356,27 +1356,29 @@
 	damage_type = BRUTE
 	armor_type = MELEE
 
-/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/hit_turf, obj/projectile/proj)
-	return rock_broke(hit_turf, proj)
+/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	return rock_broke(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
-	return rock_broke(hit_turf, proj)
+/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	return rock_broke(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
-	if(istype(hit_object, /obj/structure/reagent_dispensers/fueltank))
-		var/obj/structure/reagent_dispensers/fueltank/hit_tank = hit_object
+/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj, /obj/structure/reagent_dispensers/fueltank))
+		var/obj/structure/reagent_dispensers/fueltank/hit_tank = target_obj
 		hit_tank.explode()
-	return rock_broke(get_turf(hit_object), proj)
+	if(ishitbox(target_obj) || ismecha(target_obj)) // These don't hit the vehicles, but rather their hitboxes, so isarmored will not work here
+		return on_hit_anything(get_turf(target_obj), proj)
+	return rock_broke(get_turf(target_obj), proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/hit_mob, obj/projectile/proj)
-	if(!isxeno(proj.firer) || !isliving(hit_mob))
+/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isxeno(proj.firer) || !isliving(target_mob))
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
-	var/mob/living/hit_living = hit_mob
+	var/mob/living/hit_living = target_mob
 	if(xeno_firer.issamexenohive(hit_living) || hit_living.stat == DEAD)
-		return on_hit_anything(get_turf(hit_mob), proj)
+		return on_hit_anything(get_turf(target_mob), proj)
 	step_away(hit_living, proj, 1, 1)
-	return on_hit_anything(get_turf(hit_mob), proj)
+	return on_hit_anything(get_turf(target_mob), proj)
 
 /// VFX + SFX for when the rock doesn't hit anything.
 /datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
@@ -1390,21 +1392,21 @@
 	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
 
-/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/hit_turf, obj/projectile/proj)
-	return on_hit_anything(hit_turf, proj)
+/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	return on_hit_anything(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/hit_turf, obj/projectile/proj)
-	return on_hit_anything(hit_turf, proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	return on_hit_anything(target_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/hit_object, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	. = ..()
-	return on_hit_anything(get_turf(hit_object), proj)
+	return on_hit_anything(get_turf(target_obj), proj)
 
 
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 1.8
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 0.4
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
@@ -1435,7 +1437,7 @@
 				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(paralyze_duration)
 				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE)
-			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
+			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || ishitbox(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 				affected_atom.do_jitter_animation()
 				new /obj/effect/temp_visual/behemoth/landslide/hit(affected_atom.loc)
 				playsound(affected_atom.loc, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
@@ -1449,11 +1451,11 @@
 					do_warning(xeno_owner, spread_turfs, wind_up_duration)
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
-				if(isvehicle(affected_atom))
+				if(isvehicle(affected_atom) || ishitbox(affected_atom))
 					var/obj/vehicle/veh_victim = affected_atom
 					var/damage_add = 0
 					if(ismecha(veh_victim))
-						damage_add = 8.2
+						damage_add = 9.5
 					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))

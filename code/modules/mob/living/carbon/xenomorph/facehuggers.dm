@@ -390,13 +390,17 @@
 		if(!Attach(carbon_victim))
 			go_idle()
 	else
-		step(src, REVERSE_DIR(dir))
 		if(!issamexenohive(carbon_victim))
 			carbon_victim.adjust_stagger(3 SECONDS)
 			carbon_victim.add_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
+
+/obj/item/clothing/mask/facehugger/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	if(ismob(hit_atom))
+		return
+	return ..()
 
 /obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
 	. = ..()

@@ -1184,9 +1184,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/tool_use_check(mob/living/user, amount)
 	return !amount
 
-
-// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
-// Returns TRUE on success, FALSE on failure.
+/**
+ * Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+ * Returns TRUE on success, FALSE on failure.
+ */
 /obj/item/proc/use(used)
 	return !used
 
@@ -1512,3 +1513,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Returns whether this is considered beneficial if embedded in a mob
 /obj/item/proc/is_beneficial_implant()
 	return FALSE
+
+///Mult on submerge height for changing the alpha of submerged items
+#define ITEM_LIQUID_TURF_ALPHA_MULT 11
+
+/obj/item/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration)
+	var/old_alpha_mod = istype(old_loc) ? old_loc.get_submerge_height(TRUE) : 0
+	var/new_alpha_mod = istype(new_loc) ? new_loc.get_submerge_height(TRUE) : 0
+
+	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
+
+#undef ITEM_LIQUID_TURF_ALPHA_MULT
