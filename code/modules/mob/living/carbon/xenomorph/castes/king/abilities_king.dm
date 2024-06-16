@@ -303,7 +303,7 @@
 /datum/action/ability/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
-	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
+	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, hurting living beings and vehicles."
 	ability_cost = 25
 	cooldown_duration = 10 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
