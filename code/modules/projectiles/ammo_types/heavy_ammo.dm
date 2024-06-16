@@ -38,7 +38,7 @@
 	sundering = 1
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
 	damage_falloff = 1
-	accuracy = 90
+	accuracy = 80
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
