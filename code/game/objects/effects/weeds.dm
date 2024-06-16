@@ -40,11 +40,6 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-	var/static/list/slow_down_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
-	)
-	AddElement(/datum/element/connect_loc, slow_down_connections)
-
 	if(!isnull(node))
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
@@ -56,6 +51,11 @@
 		update_neighbours()
 	for(var/mob/living/living_mob in loc.contents)
 		SEND_SIGNAL(living_mob, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, src)
+
+	var/static/list/slow_down_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
+	)
+	AddElement(/datum/element/connect_loc, slow_down_connections)
 
 /obj/alien/weeds/Destroy()
 	parent_node = null
