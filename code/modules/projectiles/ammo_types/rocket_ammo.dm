@@ -486,7 +486,7 @@
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, on_hit_obj), loc_override = det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
