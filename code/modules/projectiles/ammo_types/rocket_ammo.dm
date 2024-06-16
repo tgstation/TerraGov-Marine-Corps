@@ -232,8 +232,8 @@
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(get_turf(target_obj))
-	if(ismecha(target_obj))
-		proj.damage *= 3 //this is specifically designed to hurt mechs
+	if(isvehicle(target_obj) || ishitbox(target_obj))
+		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
 /datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 0, 1)
@@ -360,8 +360,8 @@
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(get_turf(target_obj))
-	if(ismecha(target_obj))
-		proj.damage *= 3 //this is specifically designed to hurt mechs
+	if(isvehicle(target_obj) || ishitbox(target_obj))
+		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 0, 1)

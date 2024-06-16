@@ -638,6 +638,9 @@
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/damage_mult = 3
+	if(ishitbox(target_obj))
+		var/obj/hitbox/target_hitbox = target_obj
+		target_obj = target_hitbox.root
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
