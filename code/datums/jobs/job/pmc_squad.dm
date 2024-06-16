@@ -16,7 +16,7 @@
 	minimap_icon = "pmc"
 	total_positions = -1
 	skills_type = /datum/skills/pmc
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/pmc/squad/standard
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -32,7 +32,7 @@
 	jobtype = /datum/job/pmc/squad/standard
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/mainship/marine/pmc
+	ears = /obj/item/radio/headset/mainship/marine
 
 
 //PMC medic
@@ -45,7 +45,7 @@
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING)
 	total_positions = -1
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/pmc/squad/medic
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -61,7 +61,7 @@
 	jobtype = /datum/outfit/job/pmc/squad/medic
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/mainship/marine/pmc
+	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health
 
 
@@ -75,7 +75,7 @@
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING)
 	total_positions = -1
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/pmc/squad/gunner
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -91,7 +91,7 @@
 	jobtype = /datum/job/pmc/squad/gunner
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/mainship/marine/pmc
+	ears = /obj/item/radio/headset/mainship/marine
 
 
 //PMC Sniper
@@ -101,7 +101,7 @@
 	comm_title = "PMC"
 	minimap_icon = "pmc"
 	total_positions = 3
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/pmc/squad/sniper
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -117,7 +117,7 @@
 	jobtype = /datum/job/pmc/squad/sniper
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/mainship/marine/pmc
+	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health
 
 
@@ -131,7 +131,7 @@
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
 	skills_type = /datum/skills/sl
 	total_positions = 5
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/pmc/squad/leader
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
@@ -147,5 +147,5 @@
 	jobtype = /datum/job/pmc/squad/leader
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/mainship/marine/pmc
+	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health

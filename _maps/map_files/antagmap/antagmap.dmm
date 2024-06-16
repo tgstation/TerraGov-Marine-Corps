@@ -7,7 +7,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "ac" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/bcircuit/anim,
@@ -104,6 +104,13 @@
 /obj/structure/benchpress,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"bb" = (
+/obj/effect/landmark/start/job/som/icc_medic,
+/turf/open/floor/mainship/mono,
+/area/canora_desert/surface/building/command{
+	outside = 0;
+	name = "SOM Bridge"
+	})
 "bd" = (
 /turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
@@ -118,7 +125,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "bf" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice{
 	req_access = list(209)
@@ -158,7 +165,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "bv" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
@@ -358,7 +365,7 @@
 "cU" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "cX" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
@@ -391,7 +398,7 @@
 	})
 "de" = (
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "df" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/grayscale/round/black,
@@ -425,7 +432,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "dB" = (
 /turf/closed/shuttle/dropship_regular/backhatch{
 	dir = 4
@@ -529,6 +536,11 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"ex" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/usl_leader,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/riptide/inside/syndicatefoyer)
 "ey" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/closed/wall/mainship/gray,
@@ -565,7 +577,7 @@
 "eD" = (
 /obj/machinery/marine_selector/gear/leader/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "eE" = (
 /obj/structure/inflatable/popped/door,
 /obj/structure/cable,
@@ -588,7 +600,7 @@
 "eL" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "eN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -631,7 +643,7 @@
 "eU" = (
 /obj/effect/landmark/start/job/pmc_leader,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "eY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -692,7 +704,7 @@
 "fw" = (
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "fx" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -716,7 +728,7 @@
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "fE" = (
 /turf/closed/shuttle/dropship_regular/top_corner/alt{
 	dir = 1
@@ -761,7 +773,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "fZ" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/structure/cable,
@@ -774,7 +786,7 @@
 "gb" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "gf" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/mono,
@@ -784,7 +796,7 @@
 "gg" = (
 /obj/machinery/vending/weapon/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "gh" = (
 /obj/effect/turf_decal/tile/transparent/dark_green,
 /obj/item/bedsheet/medical,
@@ -898,7 +910,7 @@
 /area/mainship/groundhq/clf/squads/req)
 "gO" = (
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "gP" = (
 /obj/machinery/vending/hydroseeds,
 /obj/effect/turf_decal/siding/wood{
@@ -990,7 +1002,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "hl" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -1002,7 +1014,7 @@
 "hs" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ht" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -1061,12 +1073,12 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "hN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/marinemainship,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "hP" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/dirt,
@@ -1167,14 +1179,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "iD" = (
 /obj/machinery/power/terminal{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "iE" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -1217,7 +1229,7 @@
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "iU" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -1231,7 +1243,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "iY" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -1254,12 +1266,9 @@
 	name = "SOM Medbay"
 	})
 "jb" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/obj/structure/cable,
+/obj/structure/patrol_point/som_24,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "jd" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/cic{
@@ -1287,7 +1296,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ji" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_floortwomain{
@@ -1325,7 +1334,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "jz" = (
 /obj/effect/landmark/corpsespawner/syndicatecommando/regular,
 /turf/open/space/basic,
@@ -1333,7 +1342,7 @@
 "jA" = (
 /obj/effect/landmark/start/job/pmc_gunner,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "jB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -1437,7 +1446,7 @@
 /obj/effect/landmark/start/job/pmc_gunner,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "kd" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -1495,7 +1504,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "kv" = (
 /obj/machinery/light{
 	dir = 8
@@ -1601,7 +1610,7 @@
 "lf" = (
 /obj/structure/largecrate/supply/ammo/sentry,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "lg" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -1611,7 +1620,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "lh" = (
 /obj/structure/prop/rappel_bay,
 /obj/structure/patrol_point/tgmc_14,
@@ -1645,6 +1654,13 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/space/basic,
 /area/riptide/inside/syndicatefoyer)
+"lr" = (
+/obj/effect/landmark/start/job/som/icc_leader,
+/turf/open/floor/mainship/orange/full,
+/area/canora_desert/surface/building/command{
+	outside = 0;
+	name = "SOM Bridge"
+	})
 "ls" = (
 /turf/open/floor/wood,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -1714,7 +1730,7 @@
 "lL" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "lM" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/grayscale/round/black,
@@ -1779,7 +1795,7 @@
 "lY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "lZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -1924,7 +1940,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "mH" = (
 /turf/closed/shuttle/dropship_dark/backhatch{
 	dir = 4
@@ -2007,13 +2023,13 @@
 /area/mainship/groundhq/clf/squads/req)
 "nc" = (
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "nf" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/tool/soap/nanotrasen,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ng" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -2045,7 +2061,7 @@
 	})
 "nk" = (
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "nl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -2079,7 +2095,7 @@
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "ns" = (
 /obj/structure/bed/chair/comfy/brown,
 /obj/effect/ai_node,
@@ -2222,7 +2238,7 @@
 /obj/item/bedsheet/brown,
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "og" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
@@ -2336,7 +2352,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "pg" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/item/stool,
@@ -2355,7 +2371,7 @@
 /obj/machinery/power/smes,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "pn" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -2522,7 +2538,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "qe" = (
 /obj/structure/rack,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -2578,6 +2594,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/som/icc_guard,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -2732,11 +2749,11 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "rH" = (
 /obj/structure/toilet,
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "rL" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
@@ -2769,7 +2786,7 @@
 "rT" = (
 /obj/structure/largecrate/supply/ammo/m41a,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "rU" = (
 /obj/structure/table/reinforced,
 /obj/machinery/power/apc/mainship{
@@ -2782,7 +2799,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "rW" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2819,7 +2836,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "sd" = (
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
@@ -2838,7 +2855,7 @@
 "sg" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "sh" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/structure/bed/roller,
@@ -2907,7 +2924,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "sR" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
@@ -2958,13 +2975,13 @@
 	dir = 4
 	},
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "te" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "tf" = (
 /obj/structure/largecrate/supply/ammo/m41a,
 /turf/open/floor/grayscale/round/black,
@@ -3004,7 +3021,7 @@
 "tn" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "tq" = (
 /obj/machinery/door_control/mainship/mech{
 	id = "mech_shutterssom";
@@ -3051,7 +3068,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "tI" = (
 /obj/effect/turf_decal/syndicateemblem/middle/middle,
 /obj/structure/cable,
@@ -3063,7 +3080,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "tO" = (
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
@@ -3197,7 +3214,7 @@
 "us" = (
 /obj/machinery/marine_selector/gear/smartgun/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "uu" = (
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
@@ -3279,6 +3296,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"uV" = (
+/turf/open/floor/mainship/black/full,
+/area/mainship/groundhq/ntf/command/cic)
 "uW" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -3294,7 +3314,7 @@
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/beer,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "vc" = (
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
@@ -3398,7 +3418,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "vE" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
@@ -3471,6 +3491,7 @@
 	})
 "wa" = (
 /obj/structure/platform_decoration,
+/obj/effect/landmark/start/job/som/icc,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3532,6 +3553,7 @@
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "wn" = (
 /obj/structure/platform,
+/obj/effect/landmark/start/job/som/icc_guard,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3777,14 +3799,14 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc_medic,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "xN" = (
 /obj/machinery/iv_drip,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "xO" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -3874,7 +3896,7 @@
 /obj/structure/prop/mainship/prop_sec,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "yA" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/bcircuit/anim,
@@ -3923,12 +3945,12 @@
 "zc" = (
 /obj/structure/prop/mainship/prop_sec,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "zd" = (
 /obj/structure/bed/chair/east,
 /obj/effect/landmark/start/job/pmc_medic,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ze" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -3990,7 +4012,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
-/area/space)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "zE" = (
 /obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
@@ -4058,7 +4080,7 @@
 "Ab" = (
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Ad" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -4152,6 +4174,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"AO" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/usl_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "AV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4481,7 +4508,7 @@
 "CB" = (
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "CC" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -4556,7 +4583,7 @@
 "CV" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "CX" = (
 /obj/machinery/vending/som/lasgun,
 /obj/machinery/light,
@@ -4594,7 +4621,7 @@
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Dg" = (
 /obj/machinery/light,
 /obj/structure/sink{
@@ -4632,6 +4659,10 @@
 /obj/machinery/light,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"Dn" = (
+/obj/effect/landmark/start/job/usl,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicateport)
 "Do" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/right,
 /turf/open/floor/prison/redfloor,
@@ -4668,6 +4699,10 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"DA" = (
+/obj/effect/landmark/start/job/usl,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "DC" = (
 /obj/machinery/cryopod/right{
 	dir = 1
@@ -4720,7 +4755,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Ec" = (
 /obj/machinery/light/small,
 /obj/structure/table,
@@ -4753,7 +4788,7 @@
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "El" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
@@ -4762,6 +4797,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/som/command/telecomms)
+"Ep" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/mainship/groundhq/ntf/command/cic)
 "Et" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -4872,7 +4911,7 @@
 	},
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ER" = (
 /obj/structure/bed/chair/east{
 	dir = 2
@@ -4886,12 +4925,13 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/effect/landmark/start/job/usl,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
 "EX" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Fc" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -4940,7 +4980,7 @@
 "Fs" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Ft" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/backpack/marine/engineerpack,
@@ -4973,7 +5013,7 @@
 "FA" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "FD" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -5100,16 +5140,16 @@
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Gu" = (
 /obj/structure/bed/chair/east,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Gv" = (
 /obj/structure/rack,
 /obj/item/tool/soap/nanotrasen,
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Gw" = (
 /obj/structure/curtain/shower,
 /obj/structure/cable,
@@ -5212,7 +5252,7 @@
 /obj/structure/rack,
 /obj/item/clothing/under/marine/veteran/pmc,
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Hc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
@@ -5229,7 +5269,7 @@
 "Hh" = (
 /obj/structure/prop/mainship/invincibleshutter,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Hi" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -5414,7 +5454,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc_gunner,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Is" = (
 /obj/structure/platform{
 	dir = 1
@@ -5491,7 +5531,7 @@
 "IJ" = (
 /obj/machinery/marine_selector/gear/medic/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "IN" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
@@ -5602,7 +5642,7 @@
 /obj/structure/bed/chair/east,
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Jk" = (
 /obj/machinery/shower{
 	dir = 4
@@ -5682,7 +5722,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "JM" = (
 /obj/structure/bed/chair/east{
 	dir = 2
@@ -5693,7 +5733,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "JT" = (
 /turf/open/floor/grayscale/edge/black,
 /area/riptide/inside/syndicatefoyer)
@@ -5757,7 +5797,7 @@
 "Ky" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "KB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
@@ -5823,7 +5863,7 @@
 "KT" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "KV" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -5848,7 +5888,7 @@
 "Lb" = (
 /obj/effect/landmark/start/job/pmc_medic,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Lg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5975,7 +6015,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "LQ" = (
 /turf/closed/shuttle/dropship_dark/top_corner/alt{
 	dir = 8
@@ -6022,7 +6062,7 @@
 "Mb" = (
 /obj/machinery/vending/armor_supply/pmc,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Mf" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -6089,7 +6129,7 @@
 /area/shuttle/transport)
 "MG" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -6124,7 +6164,7 @@
 "MO" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
@@ -6136,7 +6176,7 @@
 "MU" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "MX" = (
 /obj/machinery/vending/som/armor_supply,
 /turf/open/floor/mainship/mono,
@@ -6441,7 +6481,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Om" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -6497,7 +6537,7 @@
 "OO" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "OP" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /obj/structure/largecrate/supply/supplies/plasteel{
@@ -6536,11 +6576,11 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "OW" = (
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "OY" = (
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/grayscale/round/black,
@@ -6548,11 +6588,11 @@
 "Pa" = (
 /obj/structure/cable,
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Pf" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Pg" = (
 /obj/structure/bed/chair/sofa/corsat,
 /obj/machinery/light/small{
@@ -6600,7 +6640,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Px" = (
 /obj/structure/largecrate/supply/generator,
 /obj/structure/cable,
@@ -6650,7 +6690,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "PN" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/mpi_km/black,
@@ -6736,7 +6776,7 @@
 "Qn" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control/mainship/mech{
@@ -6790,7 +6830,7 @@
 	req_access = list(206)
 	},
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "QE" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_2";
@@ -6912,7 +6952,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Rk" = (
 /obj/docking_port/stationary/crashmode{
 	name = "CLF Crashland point";
@@ -6939,7 +6979,7 @@
 /obj/item/clipboard,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/command/cic)
 "Rz" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/squads/req{
@@ -7190,6 +7230,13 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"SC" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/usl_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "SD" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -7218,6 +7265,13 @@
 "SN" = (
 /turf/closed/shuttle/dropship_regular/top_corner,
 /area/shuttle/transport)
+"SO" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/usl_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatefoyer)
 "SP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -7246,7 +7300,7 @@
 "SZ" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Tf" = (
 /obj/effect/spawner/random/medical/bloodpack,
 /obj/machinery/iv_drip,
@@ -7451,7 +7505,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/fancy,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Uc" = (
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/groundhq/som/medical/lounge{
@@ -7554,7 +7608,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "UJ" = (
 /turf/closed/shuttle/dropship_regular/cockpit_window,
 /area/shuttle/transport)
@@ -7580,6 +7634,10 @@
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"US" = (
+/obj/effect/landmark/start/job/usl_spec,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicatestarboard)
 "UT" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 1
@@ -7602,6 +7660,7 @@
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "UZ" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/left,
+/obj/effect/landmark/start/job/usl_leader,
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/syndicatefoyer)
 "Va" = (
@@ -7638,7 +7697,7 @@
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Vf" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/carpet/side{
@@ -7750,7 +7809,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "VK" = (
 /obj/effect/step_trigger/teleporter/random,
 /turf/open/space/basic,
@@ -7810,7 +7869,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Wh" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -7892,7 +7951,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "WQ" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -7900,7 +7959,7 @@
 "WX" = (
 /obj/structure/largecrate/supply/ammo,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "Xc" = (
 /obj/machinery/button/door{
 	id = "clfarmoury";
@@ -8029,7 +8088,7 @@
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "XB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -8107,7 +8166,7 @@
 "Yc" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Yf" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -8244,6 +8303,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/som/icc,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -8284,7 +8344,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "YZ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -8296,7 +8356,7 @@
 /obj/structure/prop/mainship/invincibleshutter,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Zb" = (
 /obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/plating/ground/dirt,
@@ -8307,7 +8367,7 @@
 /obj/machinery/autodoc,
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Zo" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_smaint{
@@ -8360,7 +8420,7 @@
 "ZK" = (
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/iron/white/textured,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ZQ" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general/som{
@@ -8375,7 +8435,7 @@
 "ZV" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/black/full,
-/area/riptide/caves/pmc/lobby)
+/area/mainship/groundhq/ntf/patrol_base/barracks)
 "ZW" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -8660,7 +8720,7 @@ pe
 aY
 pt
 qx
-jH
+lr
 wn
 uN
 uA
@@ -9028,7 +9088,7 @@ il
 dT
 Xf
 LL
-tO
+bb
 MS
 Rl
 dT
@@ -13308,7 +13368,7 @@ CN
 Xi
 vB
 PM
-de
+uV
 Xi
 UH
 nc
@@ -13400,7 +13460,7 @@ CN
 Xi
 FA
 aa
-de
+uV
 Hh
 zc
 nc
@@ -13416,7 +13476,7 @@ de
 gb
 nc
 EX
-nc
+jb
 ih
 og
 ih
@@ -13491,8 +13551,8 @@ CN
 CN
 Xi
 hN
-Ky
-Ky
+Ep
+Ep
 Za
 yy
 cU
@@ -13508,7 +13568,7 @@ de
 gb
 nc
 EX
-nc
+jb
 ih
 og
 ih
@@ -13584,7 +13644,7 @@ CN
 Xi
 Rv
 rY
-de
+uV
 Xi
 hg
 cU
@@ -13771,7 +13831,7 @@ QD
 Up
 Up
 Up
-jb
+zA
 Up
 Up
 Up
@@ -15614,8 +15674,8 @@ Vj
 Vj
 Nt
 Nt
-Nt
-Nt
+Dn
+Dn
 pp
 lM
 gt
@@ -16069,8 +16129,8 @@ FG
 FG
 oD
 Sx
-tu
-hB
+DA
+SO
 tu
 tu
 Sx
@@ -16163,7 +16223,7 @@ jL
 xA
 qG
 SU
-SU
+ex
 qG
 qV
 pK
@@ -16253,8 +16313,8 @@ FG
 FG
 Vc
 Sx
-tu
-VA
+DA
+SC
 tu
 tu
 Sx
@@ -16533,7 +16593,7 @@ GQ
 QT
 eA
 sn
-sn
+AO
 sn
 sn
 Uf
@@ -16714,7 +16774,7 @@ CN
 Xg
 pp
 Ro
-eA
+US
 QT
 eA
 eA
