@@ -40,6 +40,11 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+	var/static/list/slow_down_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
+	)
+	AddElement(/datum/element/connect_loc, slow_down_connections)
+
 	if(!isnull(node))
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
@@ -129,19 +134,8 @@
 	SIGNAL_HANDLER
 	footstep_overrides[FOOTSTEP_RESIN] = layer
 
-/obj/alien/weeds/sticky
-	name = "sticky weeds"
-	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
-	color_variant = STICKY_COLOR
-
-/obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+///Slows down crosser when they enter a tile with weeds on it
+/obj/alien/weeds/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(crosser.throwing || crosser.buckled)
 		return
@@ -168,7 +162,6 @@
 		return
 
 	victim.next_move_slowdown += WEED_SLOWDOWN
-
 
 /obj/alien/weeds/resting
 	name = "resting weeds"
@@ -299,45 +292,6 @@
 	. = ..()
 	overlays.Cut()
 	overlays += node_icon + "[rand(0,5)]"
-
-//Sticky weed node
-/obj/alien/weeds/node/sticky
-	name = STICKY_WEED
-	desc = "A weird, pulsating blue node."
-	weed_type = /obj/alien/weeds/sticky
-	color_variant = STICKY_COLOR
-	node_icon = "weednodegreen"
-	ability_cost_mult = 3
-
-/obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	SIGNAL_HANDLER
-	if(crosser.throwing || crosser.buckled)
-		return
-
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += WEED_SLOWDOWN
-		return
-
-	if(!ishuman(crosser))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
-		return
-
-	var/mob/living/carbon/human/victim = crosser
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += WEED_SLOWDOWN
 
 //Resting weed node
 /obj/alien/weeds/node/resting
