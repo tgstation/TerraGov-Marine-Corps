@@ -228,7 +228,7 @@
 	if(forced)
 		to_chat(user, "The teams are currently imbalanced, in favour of your team. Forced autobalance is on, so you may be swapped to the other team.")
 	else if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
-			return
+		return
 	var/list/current_ratio = autobalance_check(1)
 	if(!current_ratio || current_ratio[2] == user.faction)
 		to_chat(user, span_warning("Team balance already corrected."))
