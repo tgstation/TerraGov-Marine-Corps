@@ -58,3 +58,14 @@
 	if(QDELETED(src))
 		return
 	take_damage(30, BURN, FIRE)
+
+//THe HvX tank is not balanced at all for HvH
+/obj/vehicle/sealed/armored/multitile/campaign
+	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
+	max_integrity = 1400
+	soft_armor = list(MELEE = 80, BULLET = 85 , LASER = 85, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
+	hard_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.6, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
+	move_delay = 0.6 SECONDS
+	glide_size = 2.5
+	vis_range_mod = 4
