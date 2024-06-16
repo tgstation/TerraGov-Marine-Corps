@@ -1,0 +1,5 @@
+author: "SomrNetwork"
+delete-after: True
+changes:
+  - rscadd: "USL and ICC playables"
+  - bugfix: "Faction code"
