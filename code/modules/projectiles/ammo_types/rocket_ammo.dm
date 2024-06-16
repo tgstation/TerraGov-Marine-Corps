@@ -88,8 +88,6 @@
 	if(!isxeno(target_mob))
 		target_mob.gib()
 
-/datum/ammo/rocket/ltb/heavy
-
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
 	explosion(target_turf, 1, 4, 6, 0, 3)
 
