@@ -32,12 +32,18 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<span class='info'>This is "
+	var/msg = "<big><span class='info'>This is "
 
 	if(icon)
 		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
 
-	msg += "<EM>[src.name]</EM>!\n"
+	msg += "<EM>[src.name]!</EM></big></span>\n"
+	if(flavor_text)
+		msg += EXAMINE_SECTION_BREAK
+		msg += "[flavor_text]\n"
+
+	msg += EXAMINE_SECTION_BREAK
+	msg += "<span class='info'>"
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -170,6 +176,8 @@
 	//ID
 	if(wear_id)
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
+
+	msg += EXAMINE_SECTION_BREAK
 
 	//jitters
 	if(stat != DEAD)
@@ -494,12 +502,14 @@
 			msg += "[span_boldwarning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
 
 	for(var/i in embedded_objects)
+		msg += EXAMINE_SECTION_BREAK
 		var/obj/item/embedded = i
 		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
 	if(hasHUD(user,"security"))
+		msg += EXAMINE_SECTION_BREAK
 		var/perpname = "wot"
 		var/criminal = "None"
 
@@ -520,6 +530,7 @@
 			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
+		msg += EXAMINE_SECTION_BREAK
 		var/cardcolor = holo_card_color
 		if(!cardcolor)
 			cardcolor = "none"
@@ -538,12 +549,11 @@
 				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
+		msg += EXAMINE_SECTION_BREAK
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
-
-	msg += "[flavor_text]<br>"
 
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))

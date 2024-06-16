@@ -321,7 +321,13 @@ directive is properly returned.
 
 	if(length(result))
 		for(var/i in 1 to (length(result) - 1))
-			result[i] += "\n"
+			if(result[i] != EXAMINE_SECTION_BREAK)
+				result[i] += "\n"
+			else
+				// remove repeated <hr's> and ones on the ends.
+				if((i == 1) || (i == length(result)) || (result[i - 1] == EXAMINE_SECTION_BREAK))
+					result.Cut(i, i + 1)
+					i--
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
@@ -349,16 +355,18 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	var/examine_string = get_examine_string(user, thats = TRUE)
 	if(examine_string)
-		. = list("[examine_string].")
+		. = list("[examine_string].", EXAMINE_SECTION_BREAK)
 	else
 		. = list()
 
 	if(desc)
 		. += desc
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
+		. += EXAMINE_SECTION_BREAK
 		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
+		. += EXAMINE_SECTION_BREAK
 		if(reagents.reagent_flags & TRANSPARENT)
 			. += "It contains:"
 			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
