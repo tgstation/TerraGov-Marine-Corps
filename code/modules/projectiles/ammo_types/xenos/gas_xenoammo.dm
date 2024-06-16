@@ -75,7 +75,7 @@
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/turf/target_turf = get_turf(target_mob)
-	drop_nade(target_turf.density ? proj.loc : target_turf, proj.firer)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
 	var/mob/living/carbon/human/human_victim = target_mob
