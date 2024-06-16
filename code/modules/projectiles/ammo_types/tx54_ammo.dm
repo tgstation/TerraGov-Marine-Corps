@@ -38,22 +38,22 @@
 	var/turf/det_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, slowdown = 0.5, knockback = 1)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_mob), loc_override = det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_mob), loc_override = det_turf)
 
 /datum/ammo/tx54/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_obj), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_obj), det_turf)
 
 /datum/ammo/tx54/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, target_turf), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_turf), det_turf)
 
 /datum/ammo/tx54/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
 
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
@@ -238,7 +238,7 @@
 	max_range = 3
 	projectile_greyscale_colors = "#4f0303"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
-	bonus_projectiles_scatter = 8
+	bonus_projectiles_scatter = 6
 	bonus_projectile_quantity = 12
 
 /datum/ammo/bullet/tx54_spread/tank_cannister
