@@ -66,17 +66,6 @@
 			SEND_SOUND(player, sound(sound_override))
 
 /**
- * Inserts a span styled message into an alert box div
- *
- *
- * Arguments
- * * message - required, the message contents
- * * color - optional, set a div color other than default
- */
-/proc/create_announcement_div(message, color = "default")
-	return "<div class='chat_alert_[color]'>[message]</div>"
-
-/**
  * Inserts a span styled message into an OOC alert style div
  *
  *
