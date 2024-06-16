@@ -354,6 +354,53 @@
 	worn_icon_state = "vsd_harmor"
 	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
 
+/obj/item/clothing/suit/storage/marine/usl_squad
+	name = "UL5 personal armor"
+	desc = "Standard body armor of the USL operatives, the UL5 (United Light MK5) is a set of light body armor, roughly on par with the venerable Xenonauten in service with the NTC."
+	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	icon_state = "main_vest"
+	worn_icon_state = "main_vest"
+	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 55, BIO = 10, FIRE = 60, ACID = 60)
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
+
+	icon_state_variants = list(
+		"USL",
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "USL"
+
+/obj/item/clothing/suit/storage/marine/usl_squad/larmor_two
+	name = "UL5 stealth armor"
+	desc = "A modification of the UL5, designed for stealth operations."
+	icon_state = "secondary_vest"
+	worn_icon_state = "secondary_vest"
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+
+/obj/item/clothing/suit/storage/marine/usl_squad/marmor
+	name = "UM6 gunner armor"
+	desc = "A heavy duty set of body armor in service with the USL operatives, the UM6 (United Medium MK6) is known for being a rugged set of armor, capable of taking immesnse punishment."
+	icon_state = "marmor_vest"
+	worn_icon_state = "marmor_vest"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 10, FIRE = 60, ACID = 60)
+
+/obj/item/clothing/suit/storage/marine/usl_squad/harmor
+	name = "UH7 heavy plated armor"
+	desc = "An extremely heavy-duty set of body armor in service with the USL military, the UH7 (Union Heavy MK7) is known for having powerful ballistic protection, alongside a noticeable neck guard, fortified in order to allow the wearer to endure the stresses of the bulky helmet."
+	icon_state = "harmor_vest"
+	worn_icon_state = "harmor_vest"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 60, BOMB = 60, BIO = 10, FIRE = 60, ACID = 60)
+
 //Xenonauten helmets
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"
