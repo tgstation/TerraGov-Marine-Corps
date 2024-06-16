@@ -188,13 +188,13 @@
 	added_spit_delay = 8 SECONDS
 	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
 	bonus_projectiles_scatter = 22
+	///number of sticky resins made
 	var/bonus_projectile_quantity = 16
-	var/bonus_projectile_range = 3
-	var/bonus_projectile_speed = 1
 
 /datum/ammo/xeno/sticky/mini
 	damage = 5
 	max_range = 3
+	shell_speed = 1
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
