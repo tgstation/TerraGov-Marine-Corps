@@ -518,7 +518,8 @@
 
 /datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
-	staggerstun(target_mob, proj, max_range = 20, stagger = 2 SECONDS, slowdown = 0.5)
+	if(prob(35))
+		target_mob.gib()
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
 	if(!isvehicle(target_object) && !ishitbox)
