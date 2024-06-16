@@ -63,13 +63,11 @@
 ///Handle locking
 /obj/item/lock/proc/lock()
 	locked = TRUE
-	//icon_state = "[initial(icon_state)]_locked"
 	update_icon()
 
 ///Handle unlocking
 /obj/item/lock/proc/unlock()
 	locked = FALSE
-	//icon_state = initial(icon_state)
 	update_icon()
 
 ///For assigning locks their ID on creation; pass a unique_id to assign a specific ID, like "storage room"
