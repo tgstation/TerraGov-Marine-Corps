@@ -6,13 +6,13 @@
 	fire_sound = 'sound/weapons/guns/fire/volkite_4.ogg'
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
+	projectile_delay = 3 SECONDS
 	ammo = /obj/item/ammo_magazine/tank/volkite_carronade
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/volkite_carronade)
-	maximum_magazines = 5
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 	///Range of this weapon
-	var/beam_range = 12
+	var/beam_range = 15
 	///Armor pen of this weapon
 	var/armor_pen = 30
 
@@ -53,11 +53,12 @@
 				if(ismecha(obj_target))
 					obj_damage *= 3
 				obj_target.take_damage(obj_damage, BURN, beam_turf ? ENERGY : FIRE, FALSE, attack_dir, armor_pen, current_firer)
+				return
 			if(isliving(target))
 				var/mob/living/living_target = target
 				if(beam_turf)
 					living_target.apply_damage(50, BURN, blocked = ENERGY, penetration = armor_pen)
-				living_target.apply_damage(40, BURN, blocked = FIRE, updating_health = TRUE)
+				living_target.apply_damage(50, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
 				living_target.Stagger(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 2 : 1)
 				living_target.adjust_fire_stacks(beam_turf ? 12 : 6)
