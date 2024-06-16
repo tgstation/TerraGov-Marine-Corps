@@ -910,6 +910,7 @@
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
 			/obj/item/storage/pill_bottle = -1,
+			/obj/item/storage/pill_bottle/russian_red = 4,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,

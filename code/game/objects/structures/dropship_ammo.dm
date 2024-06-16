@@ -693,8 +693,8 @@
 	heavy_explosion_range = 8
 	light_explosion_range = 0
 	ammo_name = "bomb_1000"
-	travelling_time = 14 SECONDS
-	point_cost = 600 // This is literally a minituare OB.
+	travelling_time = 3 SECONDS
+	point_cost = 400 // This is literally a minituare OB.
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb_fat
 
 // Bomblets are small and numerious, with small paylods but high quantity.
