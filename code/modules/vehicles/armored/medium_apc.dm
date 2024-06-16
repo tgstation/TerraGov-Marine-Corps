@@ -5,7 +5,7 @@
 	turret_icon = 'icons/obj/armored/2x2/medium_vehicles.dmi'
 	turret_icon_state = "apc_turret"
 	damage_icon_path = null
-	interior = /datum/interior/armored/transport
+//	interior = /datum/interior/armored/transport
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = null
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT|ARMORED_HAS_UNDERLAY

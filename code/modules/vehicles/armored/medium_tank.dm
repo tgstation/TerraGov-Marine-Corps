@@ -6,7 +6,7 @@
 	turret_icon_state = "tank_turret"
 	hitbox = /obj/hitbox/medium
 	damage_icon_path = null
-	interior = /datum/interior/armored
+//	interior = /datum/interior/armored
 	icon_state = "tank"
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom)
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT

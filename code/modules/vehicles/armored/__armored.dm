@@ -72,7 +72,6 @@
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
-	GLOB.unmanned_vehicles += src
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
 	. = ..()

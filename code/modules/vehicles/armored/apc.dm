@@ -4,7 +4,7 @@
 	icon = 'icons/obj/armored/3x3/apc.dmi'
 	icon_state = "apc"
 	damage_icon_path = 'icons/obj/armored/3x3/apc_damage_overlay.dmi'
-	interior = /datum/interior/armored/transport
+//	interior = /datum/interior/armored/transport
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay)

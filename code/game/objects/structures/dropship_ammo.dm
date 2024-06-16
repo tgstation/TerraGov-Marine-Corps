@@ -708,7 +708,7 @@
 	max_ammo_count = 40
 	ammo_name = "bomb_50"
 	firing_voiceline = 'sound/voice/plane_vws/shot_bomb.ogg'
-	travelling_time = 10 SECONDS
+	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 150
 	ammo_type = CAS_BOMBLET
@@ -729,7 +729,7 @@
 	ammo_count = 20
 	max_ammo_count = 20
 	ammo_name = "bomb_75"
-	travelling_time = 12 SECONDS
+	travelling_time = 2 SECONDS
 	point_cost = 175
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE

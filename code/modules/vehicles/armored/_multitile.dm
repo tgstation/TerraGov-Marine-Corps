@@ -6,7 +6,7 @@
 	damage_icon_path = 'icons/obj/armored/3x3/tank_damage.dmi'
 	icon_state = "tank"
 	hitbox = /obj/hitbox
-	interior = /datum/interior/armored
+//	interior = /datum/interior/armored
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_TRAINED
 	atom_flags = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
