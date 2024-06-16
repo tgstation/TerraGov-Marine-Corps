@@ -128,9 +128,6 @@
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/ltb
-	damage = 350
-
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
 	icon_state = "rocket_wp"
@@ -499,3 +496,29 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
+
+/datum/ammo/bullet/tank_apfds
+	name = "8.8cm APFDS round"
+	icon_state = "apfds"
+	hud_state = "bigshell_apfds"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 300
+	penetration = 75
+	shell_speed = 5
+	accurate_range = 24
+	max_range = 30
+	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	proj.proj_max_range -= 10
+
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	proj.proj_max_range -= 2
+	staggerstun(target_mob, proj, max_range = 20, stagger = 2 SECONDS, slowdown = 0.5)
+
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
+	if(!isvehicle(target_object) && !ishitbox)
+		proj.proj_max_range -= 5
+		return
+	proj.proj_max_range -= 30 //we don't penetrate past a vehicle
+	damage *= 2.2

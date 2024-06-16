@@ -20,7 +20,6 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
-		/obj/item/ammo_magazine/tank/ltb_cannon/flechette,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target

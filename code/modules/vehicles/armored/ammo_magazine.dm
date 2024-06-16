@@ -19,19 +19,13 @@
 	name = "LTB APFDS round (105mm)"
 	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."
 	icon_state = "ltbammo_apfds"
-	default_ammo = /datum/ammo/bullet/isg_apfds/ltb
+	default_ammo = /datum/ammo/bullet/tank_apfds
 
 /obj/item/ammo_magazine/tank/ltb_cannon/canister
 	name = "LTB Canister round (105mm)"
 	desc = "A 105mm canister shell for demolishing soft targets the payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
 	icon_state = "ltbammo_canister"
-	default_ammo = /datum/ammo/bullet/ltb_canister
-
-/obj/item/ammo_magazine/tank/ltb_cannon/flechette
-	name = "LTB Canister round (105mm)"
-	desc = "A 105mm canister shell for demolishing soft targets the payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
-	icon_state = "ltbammo_flechette"
-	default_ammo = /datum/ammo/bullet/ltb_flechette
+	default_ammo = /datum/ammo/tx54/tank_cannister
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
 	name = "\improper LTA-AP chaingun Magazine"

@@ -1551,7 +1551,6 @@
 			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/apfds = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/canister = -1,
-			/obj/item/ammo_magazine/tank/ltb_cannon/flechette = -1,
 			/obj/item/ammo_magazine/tank/ltaap_chaingun = -1,
 			/obj/item/ammo_magazine/tank/secondary_cupola = -1,
 		),

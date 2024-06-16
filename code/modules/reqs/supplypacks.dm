@@ -855,11 +855,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_flechette_shell
-	name = "LTB Flechette tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/flechette)
-	cost = 10
-
 /datum/supply_packs/weapons/ltaap_rounds
 	name = "LTAAP tank magazine"
 	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
