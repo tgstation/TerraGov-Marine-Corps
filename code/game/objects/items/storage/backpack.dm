@@ -374,8 +374,6 @@
 	worn_icon_state = "duffel"
 	storage_type = /datum/storage/backpack/duffelbag
 	slowdown = 0.2
-	///How long it takes for the wearer to remove the duffelbag
-	var/self_strip_delay = 3 SECONDS
 
 /obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
 	. = ..()
@@ -388,29 +386,28 @@
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
 
-/obj/item/storage/backpack/marine/duffelbag/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	if(!usr || !over || QDELETED(src) || !ishuman(usr))
-		return
-	var/mob/living/carbon/human/user = usr
-
-	//Taking off the duffelbag has a channel
-	if(user.back == src && !user.restrained() && !user.stat && do_after(user, self_strip_delay))
-		switch(over.name)
-			if("r_hand")
-				user.temporarilyRemoveItemFromInventory(src)
-				if(!user.put_in_r_hand(src))
-					user.dropItemToGround(src)
-			if("l_hand")
-				user.temporarilyRemoveItemFromInventory(src)
-				if(!user.put_in_l_hand(src))
-					user.dropItemToGround(src)
-
 ///Allows non-wearers to access this inventory
 /obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
 	SIGNAL_HANDLER
 	if(clicker == loc) //Wearer can't open this inventory
 		return
 	storage_datum.open(clicker)
+
+/datum/storage/backpack/duffelbag
+	max_storage_space = 48
+	access_delay = 0
+
+/datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
+	//Taking off the duffelbag has a channel
+	if(user.back != parent || !do_after(user, 3 SECONDS))
+		return COMPONENT_NO_MOUSEDROP
+
+	switch(over_object.name)
+		if("r_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+		if("l_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+	return COMPONENT_NO_MOUSEDROP
 
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
