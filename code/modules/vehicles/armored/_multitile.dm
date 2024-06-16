@@ -13,16 +13,17 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT
 	pixel_x = -56
 	pixel_y = -48
-	max_integrity = 900
+	max_integrity = 1400
 	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom)
-	max_occupants = 4
+	max_occupants = 6
 	move_delay = 0.9 SECONDS
 	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
+	var/Faction = FACTION_TERRAGOV
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))

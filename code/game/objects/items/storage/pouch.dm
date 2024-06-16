@@ -53,7 +53,7 @@
 /obj/item/storage/pouch/general/medium/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = 6
-	storage_datum.sprite_slots = 6
+	storage_datum.sprite_slots = 2
 	storage_datum.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large
@@ -64,7 +64,7 @@
 	. = ..()
 	storage_datum.storage_slots = null
 	storage_datum.max_storage_space = 12
-	storage_datum.sprite_slots = 12
+	storage_datum.sprite_slots = 3
 	storage_datum.draw_mode = FALSE
 
 /obj/item/storage/pouch/general/large/command/PopulateContents()
@@ -121,7 +121,7 @@
 
 /obj/item/storage/pouch/survival/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 3
+	storage_datum.sprite_slots = 1
 	storage_datum.storage_slots = 12
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
 	storage_datum.set_holdable(can_hold_list = list(
@@ -148,7 +148,7 @@
 
 /obj/item/storage/pouch/firstaid/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 6
+	storage_datum.sprite_slots = 1
 	storage_datum.storage_slots = 12
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/reagent_containers/hypospray,
@@ -261,9 +261,9 @@
 
 /obj/item/storage/pouch/magazine/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 4
+	storage_datum.sprite_slots = 2
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
-	storage_datum.storage_slots = 4
+	storage_datum.storage_slots = 6
 	storage_datum.draw_mode = FALSE
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/rifle,
@@ -287,8 +287,8 @@
 
 /obj/item/storage/pouch/magazine/large/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 6
-	storage_datum.storage_slots = 6
+	storage_datum.sprite_slots = 3
+	storage_datum.storage_slots = 12
 
 /obj/item/storage/pouch/magazine/large/tx8full
 	fill_type = /obj/item/ammo_magazine/rifle/tx8
@@ -322,7 +322,7 @@
 /obj/item/storage/pouch/magazine/pistol/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.max_w_class = WEIGHT_CLASS_SMALL
-	storage_datum.sprite_slots = 6
+	storage_datum.sprite_slots = 3
 	storage_datum.storage_slots = 6
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/pistol,
@@ -339,7 +339,7 @@
 /obj/item/storage/pouch/magazine/pistol/large/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = 12
-	storage_datum.sprite_slots = 12
+	storage_datum.sprite_slots = 5
 
 /obj/item/storage/pouch/magazine/pistol/large/full
 	fill_type = /obj/item/ammo_magazine/pistol
@@ -414,7 +414,7 @@
 
 /obj/item/storage/pouch/explosive/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 4
+	storage_datum.sprite_slots = 2
 	storage_datum.storage_slots = 8
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
 	storage_datum.set_holdable(can_hold_list = list(
@@ -477,7 +477,7 @@
 
 /obj/item/storage/pouch/grenade/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 12
+	storage_datum.sprite_slots = 6
 	storage_datum.storage_slots = 12
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/explosive/grenade,
@@ -551,7 +551,7 @@
 
 /obj/item/storage/pouch/medkit/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 2
+	storage_datum.sprite_slots = 1
 	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
 	storage_datum.storage_slots = 14
 	storage_datum.set_holdable(can_hold_list = list(
@@ -602,7 +602,7 @@
 
 /obj/item/storage/pouch/medical_injectors/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 10
+	storage_datum.sprite_slots = 5
 	storage_datum.storage_slots = 16
 	storage_datum.max_storage_space = 24
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray/autoinjector))
@@ -693,7 +693,7 @@
 
 /obj/item/storage/pouch/med_lolipops/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 6
+	storage_datum.sprite_slots = 3
 	storage_datum.storage_slots = 6
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/storage/box/combat_lolipop))
 
@@ -711,7 +711,7 @@
 
 /obj/item/storage/pouch/berrypouch/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 6
+	storage_datum.sprite_slots = 3
 	storage_datum.storage_slots = 12
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar))
 
@@ -722,7 +722,7 @@
 
 /obj/item/storage/pouch/surgery/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.sprite_slots = 2
+	storage_datum.sprite_slots = 1
 	storage_datum.storage_slots = 24
 	storage_datum.max_storage_space = 42
 	storage_datum.set_holdable(can_hold_list = list(
@@ -767,7 +767,7 @@
 	. = ..()
 	storage_datum.storage_slots = 10
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
-	storage_datum.sprite_slots = 8
+	storage_datum.sprite_slots = 4
 	storage_datum.draw_mode = TRUE
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/attachable/motiondetector,
