@@ -36,9 +36,11 @@
 	damage = 30
 	penetration = 15
 	sundering = 0
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF|AMMO_SNIPER
 	damage_falloff = 2
-	accuracy = 80
+	accurate_range = 7
+	accuracy = 10
+	barricade_clear_distance = 4
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"

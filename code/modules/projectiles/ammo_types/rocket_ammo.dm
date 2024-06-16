@@ -78,6 +78,7 @@
 	damage = 200
 	hud_state = "bigshell_he"
 	sundering = 20
+	barricade_clear_distance = 4
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 2, 5, 0, 3)
@@ -512,6 +513,7 @@
 	accurate_range = 24
 	max_range = 30
 	on_pierce_multiplier = 0.85
+	barricade_clear_distance = 4
 
 /datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	proj.proj_max_range -= 10
@@ -522,7 +524,7 @@
 		target_mob.gib()
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
-	if(!isvehicle(target_object) && !ishitbox)
+	if(!isvehicle(target_object) && !ishitbox(target_object))
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range -= 30 //we don't penetrate past a vehicle
