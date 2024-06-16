@@ -88,6 +88,11 @@
 	if(!isxeno(target_mob))
 		target_mob.gib()
 
+/datum/ammo/rocket/ltb/heavy
+
+/datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
+	explosion(target_turf, 1, 4, 6, 0, 3)
+
 /datum/ammo/rocket/heavy_isg
 	name = "8.8cm round"
 	icon_state = "heavyrr"

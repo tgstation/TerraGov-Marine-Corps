@@ -15,6 +15,11 @@
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
+/obj/item/ammo_magazine/tank/ltb_cannon/heavy
+	name = "LTB HE+ shell (105mm)"
+	desc = "A 105mm high explosive shell filled with an incredibly explosive payload."
+	default_ammo = /datum/ammo/rocket/ltb/heavy
+
 /obj/item/ammo_magazine/tank/ltb_cannon/apfds
 	name = "LTB APFDS round (105mm)"
 	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."

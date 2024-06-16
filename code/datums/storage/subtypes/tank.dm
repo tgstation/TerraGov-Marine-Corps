@@ -17,6 +17,9 @@
 	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
 	))
 
 /datum/storage/tank/ammorack_secondary/New(atom/parent)
