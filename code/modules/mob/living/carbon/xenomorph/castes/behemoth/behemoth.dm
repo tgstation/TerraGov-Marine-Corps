@@ -41,3 +41,8 @@
 	. = ..()
 	if(xeno_caste.wrath_max > 0)
 		. += "Wrath: [wrath_stored] / [xeno_caste.wrath_max]"
+
+/mob/living/carbon/xenomorph/behemoth/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()

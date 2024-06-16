@@ -11,8 +11,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
-	melee_ap = 5
+	melee_damage = 12
+	melee_ap = 3
 
 	// *** Speed *** //
 	speed = -0.6

@@ -58,3 +58,8 @@
 	smoke.set_up(2, get_turf(src))
 	smoke.start()
 
+/mob/living/carbon/xenomorph/boiler/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()
+

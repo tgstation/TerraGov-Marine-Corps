@@ -122,6 +122,8 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
+		/obj/item/stack/medical/heal_pack/gauze/sectoid = list(CAT_MEDSUP, "Resin Healing Pack", 2 , "corps-meds"),
+		/obj/item/storage/pill_bottle/russian_red = list(CAT_MEDSUP, "Russian Red Pill Bottle", 4 , "corps-meds"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -151,6 +153,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = list(CAT_LEDSUP, "GL-54 Tanglefoot Magazine for AR-55/GL-54", 12, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
+		/obj/item/storage/pill_bottle/russian_red = list(CAT_LEDSUP, "Russian Red Pill Bottle", 4 , "orange")
 	))
 
 GLOBAL_LIST_INIT(commander_gear_listed_products, list(
