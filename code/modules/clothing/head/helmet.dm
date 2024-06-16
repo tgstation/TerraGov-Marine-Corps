@@ -566,3 +566,38 @@
 	)
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "urban"
+
+/obj/item/clothing/head/helmet/marine/usl_squad
+	name = "UL4 helmet"
+	desc = "A helmet designed for use with the UL/UM system."
+	icon = 'icons/mob/clothing/headwear/marine_helmets.dmi'
+	icon_state = "main_helmet"
+	worn_icon_state = "main_helmet"
+	worn_icon_list =  list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+	)
+	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 40, ENERGY = 35, BOMB = 35, BIO = 5, FIRE = 35, ACID = 35)
+
+	icon_state_variants = list(
+		"USL",
+		"urban",
+		"jungle",
+		"desert",
+		"snow",
+	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
+	current_variant = "USL"
+
+/obj/item/clothing/head/helmet/marine/usl_squad/marmor
+	name = "UM5 helmet"
+	desc = "A helmet designed for use with the UM/UH system."
+	icon_state = "marmor_helmet"
+	worn_icon_state = "marmor_helmet"
+	soft_armor = list(MELEE = 80, BULLET = 75, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)
+
+/obj/item/clothing/head/helmet/marine/usl_squad/harmor
+	name = "UH7 helmet"
+	desc = "A helmet designed for use with the UH system."
+	icon_state = "harmor_helmet"
+	worn_icon_state = "harmor_helmet"
+	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)

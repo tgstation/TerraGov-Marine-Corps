@@ -1,9 +1,10 @@
 /datum/job/vsd_squad
-	job_category =  JOB_CAT_MARINESOM
+	job_category =  JOB_CAT_VSD
 	supervisors = "SoM command and V.S.D command"
 	selection_color = "#ffeeee"
 	faction = FACTION_SOM
 	shadow_languages = list(/datum/language/russian)
+	minimap_icon = "pmc2"
 
 /datum/job/vsd_squad/radio_help_message(mob/M)
 	. = ..()
@@ -48,6 +49,7 @@
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
 	)
+	minimap_icon = "pmc2"
 
 /datum/outfit/job/vsd_squad/engineer
 	name = "VSD Engineer"
@@ -72,6 +74,7 @@
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/som/squad/veteran = VETERAN_POINTS_REGULAR,
 	)
+	minimap_icon = "pmc2"
 
 /datum/outfit/job/vsd_squad/medic
 	name = "VSD Medic"

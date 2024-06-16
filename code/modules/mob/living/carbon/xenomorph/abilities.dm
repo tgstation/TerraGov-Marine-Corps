@@ -2067,8 +2067,8 @@
 			stab_description = "fiery tail-jab!"
 			xeno.visible_message(span_xenodanger("\The [xeno] flares [src] in the [target_location_feedback] with a [stab_description]"), \
 				span_xenodanger("We burn [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
-			playsound(src, "alien_tail_swipe", 50, TRUE)
-			playsound(src, 'sound/effects/firetail.ogg', 25, TRUE)
+			playsound(src, "alien_tail_swipe", 25, TRUE)
+			playsound(src, 'sound/effects/firetail.ogg', 50, TRUE)
 		else
 			xeno.visible_message(span_xenodanger("\The [xeno] stabs [src] in the [target_location_feedback] with a [stab_description]"), \
 				span_xenodanger("We stab [src] in the [target_location_feedback] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)

@@ -78,6 +78,13 @@
 		/datum/job/vsd_squad/engineer = -1,
 		/datum/job/vsd_squad/spec = 5,
 		/datum/job/vsd_squad/leader = 5,
+		/datum/job/usl_squad/standard = -1,
+		/datum/job/usl_squad/spec = 5,
+		/datum/job/usl_squad/leader = 5,
+		/datum/job/icc_squad/standard = -1,
+		/datum/job/icc_squad/medic = -1,
+		/datum/job/icc_squad/spec = 5,
+		/datum/job/icc_squad/leader = 5,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES
