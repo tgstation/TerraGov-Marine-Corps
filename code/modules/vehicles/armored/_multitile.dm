@@ -41,7 +41,7 @@
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(INFINITY, BRUTE, BOMB, 0)
+			take_damage(500, BRUTE, BOMB, 0)
 		if(EXPLODE_HEAVY)
 			take_damage(80, BRUTE, BOMB, 0)
 		if(EXPLODE_LIGHT)
@@ -52,3 +52,12 @@
 	if(QDELETED(src))
 		return
 	take_damage(30, BURN, FIRE)
+
+/obj/vehicle/sealed/armored/multitile/Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+	. = ..()
+	hitbox.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+	for(var/mob/living/occupant AS in occupants)
+		var/strength = 1
+		if(occupant.buckled)
+			strength = 0.5
+		shake_camera(occupant, duration, strength)

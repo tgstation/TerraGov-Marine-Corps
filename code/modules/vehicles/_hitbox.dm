@@ -45,6 +45,10 @@
 	root = null
 	return ..()
 
+/obj/hitbox/Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+	for(var/atom/movable/desant AS in tank_desants)
+		desant.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+
 ///signal handler for handling PASS_WALKOVER
 /obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)
 	SIGNAL_HANDLER

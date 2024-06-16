@@ -575,7 +575,7 @@
 	balloon_alert(user, "detached")
 
 /obj/vehicle/sealed/armored/plastique_act(mob/living/plastique_user)
-	ex_act(EXPLODE_LIGHT)
+	take_damage(500, BRUTE, BOMB, TRUE, REVERSE_DIR(dir), 50, plastique_user)
 
 /**
  * Toggles Weapons Safety
