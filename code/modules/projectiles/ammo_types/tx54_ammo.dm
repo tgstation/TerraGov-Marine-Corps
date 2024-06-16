@@ -38,22 +38,22 @@
 	var/turf/det_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, slowdown = 0.5, knockback = 1)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_mob), loc_override = det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/tx54/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_obj), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
 /datum/ammo/tx54/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.firer, target_turf), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/tx54/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, angle = Get_Angle(proj.starting_turf, get_turf(proj)), det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
@@ -133,6 +133,7 @@
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
+	shell_speed = 3
 	damage = 20
 	penetration = 20
 	sundering = 3
@@ -246,10 +247,11 @@
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	max_range = 7
-	damage = 20
-	penetration = 10
+	damage = 40
+	penetration = 15
 	sundering = 2
-	damage_falloff = 0
+	damage_falloff = 1
+	shrapnel_chance = 15
 
 /datum/ammo/bullet/tx54_spread/tank_cannister/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 4, stagger = 2 SECONDS, slowdown = 0.2)
