@@ -520,15 +520,15 @@
 	on_pierce_multiplier = 0.85
 	barricade_clear_distance = 4
 
-/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/tank_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	proj.proj_max_range -= 10
 
-/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
 	if(prob(35))
 		target_mob.gib()
 
-/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
+/datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
 	if(!isvehicle(target_object) && !ishitbox(target_object))
 		proj.proj_max_range -= 5
 		return
