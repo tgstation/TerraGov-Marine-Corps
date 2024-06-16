@@ -18,6 +18,8 @@
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/tank_glauncher,
 		/obj/item/ammo_magazine/tank/ltb_cannon,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target

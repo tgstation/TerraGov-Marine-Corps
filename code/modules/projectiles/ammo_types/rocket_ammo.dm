@@ -71,7 +71,7 @@
 /datum/ammo/rocket/ltb
 	name = "cannon round"
 	icon_state = "ltb"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
@@ -500,3 +500,30 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
+
+/datum/ammo/bullet/tank_apfds
+	name = "8.8cm APFDS round"
+	icon_state = "apfds"
+	hud_state = "bigshell_apfds"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 300
+	penetration = 75
+	shell_speed = 5
+	accurate_range = 24
+	max_range = 30
+	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	proj.proj_max_range -= 10
+
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	proj.proj_max_range -= 2
+	if(prob(35))
+		target_mob.gib()
+
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
+	if(!isvehicle(target_object) && !ishitbox)
+		proj.proj_max_range -= 5
+		return
+	proj.proj_max_range -= 30 //we don't penetrate past a vehicle
+	damage *= 2.2
