@@ -91,7 +91,7 @@
 	name = "flame"
 	icon_state = "pulse0"
 	hud_state = "flame"
-	hud_state_empty = "§"
+	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_FLAME|AMMO_TARGET_TURF
 	armor_type = FIRE
