@@ -405,7 +405,7 @@
 				human_victim.take_overall_damage(15, BURN, updating_health = TRUE)
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim) || ishitbox(victim))
+			else if(ismecha(victim) || ishitbox(victim))
 				var/obj/vehicle/veh_victim = victim
 				var/damage_mult = 1
 				if(ismecha(veh_victim))
