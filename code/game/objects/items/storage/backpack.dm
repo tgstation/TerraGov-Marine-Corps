@@ -373,7 +373,6 @@
 	icon_state = "duffel"
 	worn_icon_state = "duffel"
 	storage_type = /datum/storage/backpack/duffelbag
-	slowdown = 0.2
 
 /obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
 	. = ..()
@@ -394,7 +393,6 @@
 	storage_datum.open(clicker)
 
 /datum/storage/backpack/duffelbag
-	max_storage_space = 48
 	access_delay = 0
 
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
