@@ -55,7 +55,8 @@
 
 	if(isliving(hit_atom))
 		var/mob/living/living_target = hit_atom
-		living_target.fire_stacks += FLARE_FIRE_STACKS
+		if(living_target.fire_stacks < FLARE_FIRE_STACKS)
+			living_target.fire_stacks = FLARE_FIRE_STACKS
 		living_target.IgniteMob()
 
 		var/target_zone = check_zone(living_target.zone_selected)
