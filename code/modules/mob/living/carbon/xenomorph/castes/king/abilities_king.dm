@@ -273,7 +273,7 @@
 			var/hitbox_penalty = 0
 			if(ishitbox(victim))
 				hitbox_penalty = 20
-			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - armored_vehicle_penalty) * 5 * severity, BRUTE, MELEE)
+			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
