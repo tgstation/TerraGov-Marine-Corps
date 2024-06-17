@@ -388,7 +388,7 @@
 ///Allows non-wearers to access this inventory
 /obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
 	SIGNAL_HANDLER
-	if(clicker == loc) //Wearer can't open this inventory
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't open this inventory
 		return
 	storage_datum.open(clicker)
 
@@ -398,20 +398,19 @@
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
 	//Taking off the duffelbag has a channel
 	if(user.back != parent || !do_after(user, 3 SECONDS))
-		return COMPONENT_NO_MOUSEDROP
+		return
 
 	switch(over_object.name)
 		if("r_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
 		if("l_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
-	return COMPONENT_NO_MOUSEDROP
 
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
 		return TRUE
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user == parent.loc && carbon_user.back == parent)
+	if(carbon_user.back == parent)
 		return TRUE
 	return ..()
 

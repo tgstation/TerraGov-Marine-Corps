@@ -404,7 +404,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.restrained() || user.stat)
 		return COMPONENT_NO_MOUSEDROP
 
-	return put_storage_in_hand(source, over_object, user)
+	put_storage_in_hand(source, over_object, user)
+	return COMPONENT_NO_MOUSEDROP
 
 ///Wrapper that puts the storage into our chosen hand
 /datum/storage/proc/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
@@ -413,7 +414,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
 		if("l_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
-	return COMPONENT_NO_MOUSEDROP
 
 ///Removes item_to_put_in_hand from the storage it's currently in, and then places it into our right hand
 /datum/storage/proc/put_item_in_r_hand(obj/item/item_to_put_in_hand, mob/user)
