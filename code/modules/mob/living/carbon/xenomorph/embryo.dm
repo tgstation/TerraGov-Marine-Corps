@@ -103,14 +103,14 @@
 
 	switch(stage)
 		if(1)
-			points = 0.0003
-			psy_points = 0.0125
+			points = 0.0006
+			psy_points = 0.025
 
 		if(2)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts a little bit", "Your stomach hurts")]."))
-			points = 0.0006
-			psy_points = 0.025
+			points = 0.0012
+			psy_points = 0.05
 		if(3)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your throat feels sore", "Mucous runs down the back of your throat")]."))
@@ -120,28 +120,28 @@
 					affected_mob.take_limb_damage(1)
 			else if(prob(2))
 				affected_mob.emote("[pick("sneeze", "cough")]")
-			points = 0.0012
-			psy_points = 0.05
+			points = 0.0024
+			psy_points = 0.01
 		if(4)
 			if(prob(1))
 				affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
 				span_danger("You start shaking uncontrollably!"))
 				affected_mob.jitter(50)
-			points = 0.0024
-			psy_points = 0.1
+			points = 0.0048
+			psy_points = 0.2
 		if(5)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
 				affected_mob.jitter(105)
 				affected_mob.take_limb_damage(1)
-			points = 0.0048
-			psy_points = 0.2
+			points = 0.0096
+			psy_points = 0.4
 		if(6)
 			if(prob(0.5))
 				affected_mob.Unconscious(4 SECONDS)
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
-			points = 0.0096
-			psy_points = 0.4
+			points = 0.0192
+			psy_points = 0.8
 	if(points > 0 && hivenumber == XENO_HIVE_NORMAL) // We check if points are greater than 0 and if your hive is normal in order to prevent valhalla embryos from generating points.
 		xeno_job.add_job_points(points)
 		SSpoints.add_strategic_psy_points(hivenumber, psy_points)
