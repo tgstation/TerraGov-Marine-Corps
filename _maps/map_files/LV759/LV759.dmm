@@ -3184,10 +3184,6 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaycentral)
 "aDT" = (
-/obj/structure/prop/urban/misc/atm{
-	pixel_x = -2;
-	pixel_y = 28
-	},
 /obj/item/spacecash/c1{
 	pixel_x = 12;
 	pixel_y = 4
@@ -10650,6 +10646,7 @@
 "bRZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
+/obj/machinery/miner/damaged,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bSa" = (
@@ -14380,6 +14377,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/weyyu_office/vip)
+"cxE" = (
+/obj/effect/urban/decal/dirt,
+/obj/machinery/miner/damaged,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/east_central_street)
 "cxH" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /obj/structure/prop/urban/misc/fake/wire/blue{
@@ -31582,6 +31584,12 @@
 	dir = 1
 	},
 /area/lv759/indoors/nt_research_complex/xenobiology)
+"fuL" = (
+/obj/structure/prop/urban/misc/atm{
+	pixel_y = -4
+	},
+/turf/closed/wall/urban,
+/area/lv759/indoors/spaceport/cuppajoes)
 "fuM" = (
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/recycling_plant_office)
@@ -81400,6 +81408,10 @@
 /obj/effect/ai_node,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
+"nQY" = (
+/obj/machinery/miner/damaged,
+/turf/open/urbanshale/layer1,
+/area/lv759/indoors/nt_research_complex_entrance)
 "nRd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -109354,6 +109366,7 @@
 /obj/effect/decal/cleanable/dirt/grime4{
 	dir = 4
 	},
+/obj/machinery/miner/damaged,
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/NTmart)
 "sIi" = (
@@ -135000,6 +135013,14 @@
 	},
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
+"wSQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab";
+	dir = 4
+	},
+/obj/machinery/miner/damaged,
+/turf/open/floor/urban_wood,
+/area/lv759/indoors/bar)
 "wSX" = (
 /obj/structure/prop/urban/misc/fake/lattice/full,
 /obj/structure/prop/urban/misc/fake/pipes/pipe1{
@@ -149126,7 +149147,7 @@ fVI
 gPk
 wcv
 qDt
-sCz
+nQY
 qDt
 jMi
 pAu
@@ -151707,7 +151728,7 @@ fGX
 dGe
 xTB
 pZb
-pZb
+fuL
 aDT
 laZ
 gyH
@@ -168733,7 +168754,7 @@ wbr
 pKm
 vUQ
 pKm
-fQJ
+wSQ
 pKm
 jaB
 pKm
@@ -179515,7 +179536,7 @@ lbr
 noS
 qWB
 ctc
-obH
+cxE
 aJH
 aJH
 kzD
