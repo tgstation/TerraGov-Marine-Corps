@@ -355,7 +355,7 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim) || ishitbox(victim))
+			else if(ismecha(victim) || ishitbox(victim))
 				var/obj/vehicle/veh_victim = victim
 				var/damage_add = 0
 				if(ismecha(veh_victim))
