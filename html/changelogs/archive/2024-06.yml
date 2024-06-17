@@ -153,3 +153,49 @@
   Wisemonster:
   - bugfix: Fixed pyrogen's fireball AoE checking for armor's fire resistance instead
       of acid
+2024-06-16:
+  Lumipharon:
+  - rscadd: Tall grass and fire now partially obscured you similar to water
+  - rscadd: Items now sink in water, partially obscuring them
+  - rscadd: Vehicles canbe submerged like mobs
+  - bugfix: fixed throws messing up pixel_y offset over bodies of water
+  - refactor: refactored submersion code
+  - bugfix: Jumpers, or those riding on tanks no longer sink into water
+  - bugfix: fixed some projectile on hit effects triggering on the wrong turfs in
+      some cases
+  - bugfix: fixed an exploit with binos
+  - balance: Reduced xeno jump CD from 2 seconds to 1 second
+  Neocloudy:
+  - refactor: Defibrillators have had thorough code changes. NPCs and disconnected
+      players are now revivable
+  - refactor: DC'd players are marked with a HUD outline and will re-enter their body
+      if they ever come back
+  - refactor: NPCs are marked with a flatline HUD icon
+  - code_imp: Disconnected ghosts aren't removed from the observer list
+  - imageadd: Animated ECG wave icons for revivable humans
+  - imageadd: New health HUD icons for synthetics
+  - imageadd: Flatline icon for dead DNR humans
+  - rscdel: NPCs and disconnected players are no longer DNR'd when they die
+  - bugfix: Becoming a Larva should now set your DNR
+  - rscadd: '"Revival Imminent" alert when you''re brought into your body from defibrillation'
+  - rscadd: You're only brought back into your body if you can be defibrillated. This
+      means you can't be brought into your body if you have too much damage or whatever
+  - rscdel: Moving out of your body while being revived will bring you back in when
+      the defib delivers a shock
+  - soundadd: Higher quality defibrillator shock sound from CM-SS13
+  - spellcheck: 'Defibrillator success/failure messages: "Defibrillation" -> "Resuscitation"'
+  - spellcheck: Defibrilaltor descriptions have been touched up to be more accurate
+  - qol: You can see the exact number of uses left in a defibrillator by examining
+      it
+  Vondiech/Citruses (with help from Neocloudy and SandPoot):
+  - balance: The nuke can now NOT be activated in areas like the LZs, enclosed areas
+      (the type plasmacutters cut into) and certain other areas as listed on the "Ineligible
+      detonation sites" part of the nuclear bomb UI.
+  - code_imp: Added CANNOT_NUKE area_flag for mappers/coders to designate areas where
+      the nuke timer can't be activated, also moves some areas around so NEAR_FOB
+      now accurately always includes FOB.
+  Wisemonster:
+  - bugfix: Fixed pyrogen's melting ground fire using ACID armor instead of FIRE
+  breadhunt:
+  - qol: Using medical items in-hand will now apply them to yourself
+  - qol: Unique action now opens the injector menu

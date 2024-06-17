@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Largecrates are jumpable"
+  - balance: "Large rocks can pouched over etc, similar to unwired cades"

@@ -42,6 +42,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
+/// List of area names where /obj/machinery/nuclearbomb cannot be activated
+GLOBAL_LIST_EMPTY(nuke_ineligible_site)
 ///list of spawn locations for nuke disk consoles
 GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)
 //list of all /obj/item/disk/nuclear
