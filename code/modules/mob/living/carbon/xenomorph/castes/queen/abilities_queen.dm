@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Announces a message to the hive."
 	ability_cost = 50
 	cooldown_duration = 10 SECONDS
@@ -63,6 +64,7 @@
 /datum/action/ability/activable/xeno/screech
 	name = "Screech"
 	action_icon_state = "screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
@@ -133,6 +135,7 @@
 /datum/action/ability/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	ability_cost = 0
 	use_state_flags = ABILITY_USE_LYING
@@ -223,6 +226,7 @@
 /datum/action/ability/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Zoom out for a larger view around wherever you are looking."
 	ability_cost = 0
 	keybinding_signals = list(
@@ -270,6 +274,7 @@
 /datum/action/ability/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Make a target Xenomorph a leader."
 	ability_cost = 200
 	use_state_flags = ABILITY_USE_LYING
@@ -340,6 +345,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Apply a minor heal to the target."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
@@ -382,6 +388,7 @@
 /datum/action/ability/activable/xeno/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	ability_cost = 150
 	cooldown_duration = 8 SECONDS
@@ -450,6 +457,7 @@
 /datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Creates a field of defensive energy, filling gaps in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS

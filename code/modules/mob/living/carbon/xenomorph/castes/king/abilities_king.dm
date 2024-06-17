@@ -5,6 +5,7 @@
 /datum/action/ability/activable/xeno/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_duration = 45 SECONDS
 	ability_cost = 100
@@ -39,6 +40,7 @@
 /datum/action/ability/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
@@ -135,6 +137,7 @@
 /datum/action/ability/activable/xeno/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -190,6 +193,7 @@
 /datum/action/ability/activable/xeno/shattering_roar
 	name = "Shattering roar"
 	action_icon_state = "shattering_roar"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
@@ -303,6 +307,7 @@
 /datum/action/ability/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
 	ability_cost = 25
 	cooldown_duration = 10 SECONDS
@@ -465,6 +470,7 @@
 /datum/action/ability/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_cost = 900
 	cooldown_duration = 10 MINUTES
