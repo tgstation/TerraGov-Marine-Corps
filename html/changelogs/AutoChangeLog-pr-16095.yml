@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Boiler globs getting a direct hit should no longer reduce their smoke size"
