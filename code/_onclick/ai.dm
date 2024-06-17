@@ -32,9 +32,9 @@
 
 
 /mob/living/silicon/ai/ClickOn(atom/A, location, params)
-	if(world.time <= last_click)
+	if(world.time <= next_click)
 		return
-	last_click = world.time + 1
+	next_click = world.time + 1
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
 		return

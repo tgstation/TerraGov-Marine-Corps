@@ -35,8 +35,8 @@
 	var/datum/skills/skills
 
 	//Clicking vars
-	///integer, stores `world.time + 1` every time you click
-	var/last_click = 0
+	///integer, stores the time at which you can click again
+	var/next_click = 0
 	///integer, stores the time of whenever changeNext_move() gets ran
 	var/next_move = 0
 	///integer, stores world.time + attack_speed whenever attack is ran
