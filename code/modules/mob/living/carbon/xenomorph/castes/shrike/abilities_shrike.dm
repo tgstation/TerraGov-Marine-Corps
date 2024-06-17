@@ -7,6 +7,7 @@
 	name = "Call of the Burrowed"
 	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	ability_cost = 400
 	cooldown_duration = 2 MINUTES
 	keybinding_signals = list(
@@ -57,6 +58,7 @@
 /datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
@@ -140,6 +142,7 @@
 /datum/action/ability/activable/xeno/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
@@ -225,6 +228,7 @@
 /datum/action/ability/activable/xeno/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Heal and remove debuffs from a target."
 	cooldown_duration = 1 MINUTES
 	ability_cost = 200
@@ -312,6 +316,7 @@
 /datum/action/ability/xeno_action/place_acidwell
 	name = "Place acid well"
 	action_icon_state = "place_trap"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Place an acid well that can put out fires."
 	ability_cost = 400
 	cooldown_duration = 2 MINUTES
@@ -362,6 +367,7 @@
 /datum/action/ability/activable/xeno/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES

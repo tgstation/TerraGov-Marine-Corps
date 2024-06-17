@@ -51,6 +51,7 @@
 /datum/action/ability/activable/xeno/psychic_shield
 	name = "Psychic Shield"
 	action_icon_state = "psy_shield"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 200
@@ -263,6 +264,7 @@
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
@@ -497,6 +499,7 @@
 /datum/action/ability/activable/xeno/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 230
