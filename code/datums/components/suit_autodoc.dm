@@ -1,4 +1,4 @@
-#define SUIT_AUTODOC_DAM_MIN 50
+#define SUIT_AUTODOC_DAM_MIN 15
 #define SUIT_AUTODOC_DAM_MAX 150
 #define COOLDOWN_CHEM_BURN "chem_burn"
 #define COOLDOWN_CHEM_OXY "oxy_chems"
@@ -28,7 +28,7 @@
 
 	var/enabled = FALSE
 
-	var/damage_threshold = 50
+	var/damage_threshold = 15
 	var/pain_threshold = 70
 
 	var/list/burn_chems

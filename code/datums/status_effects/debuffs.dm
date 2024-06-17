@@ -175,7 +175,7 @@
 	id = "repairing"
 	tick_interval = 1 SECONDS
 	///How much brute or burn per second
-	var/healing_per_tick = 4
+	var/healing_per_tick = 6
 	///Whether the last tick made a sound effect or not
 	var/last_sound
 
@@ -185,12 +185,12 @@
 		return
 	//Robots and synths are generally resistant to blinding, so we apply an overlay directly instead
 	owner.overlay_fullscreen("repair-mode", /atom/movable/screen/fullscreen/blind)
-	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+//	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/repair_mode/on_remove()
 	owner.clear_fullscreen("repair-mode")
-	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+//	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
