@@ -403,7 +403,7 @@
 				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
-			else if(isvehicle(victim) || ishitbox(victim))
+			else if(ismecha(victim) || ishitbox(victim))
 				var/obj/vehicle/veh_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(veh_victim))
