@@ -1174,7 +1174,7 @@
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
 	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
-	ability_cost = 200
+	ability_cost = 300
 	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
