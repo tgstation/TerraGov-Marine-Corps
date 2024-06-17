@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Place trap"
 	action_icon_state = "place_trap"
 	desc = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
-	ability_cost = 300
+	ability_cost = 400
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	desc = "Spawn a facehugger that is stored on your body."
-	ability_cost = 300
+	ability_cost = 200
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
