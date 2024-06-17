@@ -91,7 +91,7 @@
 	name = "flame"
 	icon_state = "pulse0"
 	hud_state = "flame"
-	hud_state_empty = "flame_empty"
+	hud_state_empty = "§"
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_FLAME|AMMO_TARGET_TURF
 	armor_type = FIRE
@@ -139,6 +139,14 @@
 	burntime = 40
 	burnlevel = 46
 	bullet_color = COLOR_NAVY
+
+/datum/ammo/flamethrower/armored_spray // armored vehicle flamer that sprays a visual continual flame
+	name = "spraying flames"
+	icon_state = "spray_flamer"
+	max_range = 7
+	shell_speed = 0.3
+	damage = 6
+	burntime = 0.3 SECONDS
 
 /datum/ammo/water
 	name = "water"

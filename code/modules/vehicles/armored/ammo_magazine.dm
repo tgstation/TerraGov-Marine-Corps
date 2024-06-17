@@ -82,3 +82,11 @@
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
+
+/obj/item/ammo_magazine/tank/secondary_flamer_tank
+	name = "napalm spray tank"
+	desc = "A fuel tank containing fuel for the secondary vehicle mounted flamer. This tank contains a more fluid mix that flows easier but flames less area at once."
+	caliber = CALIBER_FUEL_THICK
+	icon_state = "sflamer"
+	max_rounds = 150
+	default_ammo = /datum/ammo/flamethrower/armored_spray
