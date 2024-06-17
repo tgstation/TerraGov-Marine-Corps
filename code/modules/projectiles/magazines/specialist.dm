@@ -427,7 +427,6 @@
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper MG-100 Vindicator powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
-	icon = 'icons/obj/items/storage/powerpack.dmi'
 	icon_state = "powerpack"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
