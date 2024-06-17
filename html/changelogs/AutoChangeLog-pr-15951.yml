@@ -1,0 +1,7 @@
+author: "Lauwma"
+delete-after: True
+changes:
+  - rscadd: "Widow can now plant weed"
+  - rscadd: "Widow can now secrete resin walls"
+  - rscadd: "Spiderlings can be built on with resin structures"
+  - balance: "Widow gains mazing abilities, be careful when stepping in the Widow's nest"
