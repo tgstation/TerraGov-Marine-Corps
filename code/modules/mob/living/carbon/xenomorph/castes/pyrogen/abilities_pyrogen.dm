@@ -355,12 +355,12 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(ismecha(victim) || ishitbox(victim))
-				var/obj/vehicle/veh_victim = victim
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
 				var/damage_add = 0
-				if(ismecha(veh_victim))
+				if(ismecha(obj_victim))
 					damage_add = 20
-				veh_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return
