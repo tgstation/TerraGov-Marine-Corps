@@ -117,6 +117,7 @@
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
 	damage_falloff_mod = -0.2
+	damage_mod = 0.25
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"

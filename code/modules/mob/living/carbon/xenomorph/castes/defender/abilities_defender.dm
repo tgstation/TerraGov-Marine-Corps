@@ -97,7 +97,7 @@
 	)
 	charge_range = DEFENDER_CHARGE_RANGE
 	///How long is the windup before charging
-	var/windup_time = 0.5 SECONDS
+	var/windup_time = 0.8 SECONDS
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
@@ -141,7 +141,7 @@
 	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
 	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
-	carbon_victim.Paralyze(4 SECONDS)
+	carbon_victim.Paralyze(0.2 SECONDS)
 
 /datum/action/ability/activable/xeno/charge/forward_charge/ai_should_use(atom/target)
 	. = ..()

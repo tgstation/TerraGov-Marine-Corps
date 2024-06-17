@@ -281,12 +281,12 @@ WEAPONS
 	name = "AGLS-37 AGL Flare Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/flare)
 	cost = 30
-
+/*
 /datum/supply_packs/weapons/ags_cloak
 	name = "AGLS-37 AGL Cloak Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
 	cost = 30
-
+*/
 /datum/supply_packs/weapons/ags_tanglefoot
 	name = "AGLS-37 AGL Tanglefoot Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
@@ -1096,7 +1096,7 @@ ARMOR
 		/obj/item/clothing/head/helmet/marine/grenadier,
 	)
 	cost = B17_PRICE
-
+/*
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
@@ -1106,7 +1106,7 @@ ARMOR
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 500
-
+*/
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
 	contains = list(/obj/item/storage/belt/grenade/b17)
