@@ -13,6 +13,7 @@
 /area/riptide/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 //DO NOT GO HERE!!!
 /area/riptide/caves/sea

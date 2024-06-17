@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/charge/fire_charge
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
 	cooldown_duration = 4 SECONDS
 	ability_cost = 30
@@ -78,6 +79,7 @@
 /datum/action/ability/activable/xeno/fireball
 	name = "Fireball"
 	action_icon_state = "fireball"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
@@ -134,6 +136,7 @@
 /datum/action/ability/activable/xeno/firestorm
 	name = "Fire Storm"
 	action_icon_state = "whirlwind"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Unleash 3 fiery tornados. They will try to close on your target tile"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 50
@@ -278,6 +281,7 @@
 /datum/action/ability/xeno_action/heatray
 	name = "Heat Ray"
 	action_icon_state = "heatray"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Microwave any target infront of you in a range of 7 tiles"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 150

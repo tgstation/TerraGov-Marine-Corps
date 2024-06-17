@@ -8,6 +8,7 @@
 /datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
@@ -77,6 +78,7 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
 			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
@@ -275,6 +277,7 @@
 /datum/action/ability/activable/xeno/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
