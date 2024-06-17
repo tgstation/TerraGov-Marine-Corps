@@ -71,7 +71,7 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	if(stage <= 4)
+	if(stage <= 5)
 		counter += 2.5 //Free burst time in ~7/8 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
