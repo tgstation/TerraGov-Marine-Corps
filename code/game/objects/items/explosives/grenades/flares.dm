@@ -55,7 +55,7 @@
 
 	if(isliving(hit_atom))
 		var/mob/living/living_target = hit_atom
-		if(living_target.fire_stacks < FLARE_FIRE_STACKS)
+		if(living_target.fire_stacks < FLARE_FIRE_STACKS) // This is so we cannot exceed the firestacks necessary to make a facehugger drop off of their facehugged target.
 			living_target.fire_stacks = FLARE_FIRE_STACKS
 		living_target.IgniteMob()
 
