@@ -124,12 +124,10 @@
 			psy_points = 0.05
 		if(4)
 			if(prob(1))
-				if(!affected_mob.IsUnconscious())
-					affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
-												span_danger("You start shaking uncontrollably!"))
-					affected_mob.Unconscious(20 SECONDS)
-					affected_mob.jitter(105)
-					affected_mob.take_limb_damage(1)
+				affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
+				span_danger("You start shaking uncontrollably!"))
+				affected_mob.jitter(105)
+				affected_mob.take_limb_damage(1)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
 			points = 0.0024
