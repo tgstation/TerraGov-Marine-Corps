@@ -410,12 +410,12 @@
 				human_victim.take_overall_damage(15, BURN, updating_health = TRUE)
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(ismecha(victim) || ishitbox(victim))
-				var/obj/vehicle/veh_victim = victim
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
 				var/damage_mult = 1
-				if(ismecha(veh_victim))
+				if(ismecha(obj_victim))
 					damage_mult = 5
-				veh_victim.take_damage(15 * damage_mult, BURN, ENERGY, armour_penetration = 60)
+				obj_victim.take_damage(15 * damage_mult, BURN, ENERGY, armour_penetration = 60)
 	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
