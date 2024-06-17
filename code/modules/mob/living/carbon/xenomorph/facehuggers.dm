@@ -450,8 +450,8 @@
 		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
-	if(on_fire)
-		return FALSE
+//	if(on_fire)
+//		return FALSE
 
 	if(check_mask)
 		if(wear_mask)
@@ -649,8 +649,8 @@
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
 
-// /obj/item/clothing/mask/facehugger/fire_act(burn_level)
-//	kill_hugger()
+/obj/item/clothing/mask/facehugger/fire_act(burn_level)
+	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
