@@ -126,16 +126,20 @@
 			if(prob(1))
 				affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
 				span_danger("You start shaking uncontrollably!"))
-				affected_mob.jitter(105)
-				affected_mob.take_limb_damage(1)
-			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
+				affected_mob.jitter(50)
 			points = 0.0024
 			psy_points = 0.1
 		if(5)
+			if(prob(2))
+				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
+				affected_mob.jitter(105)
+				affected_mob.take_limb_damage(1)
 			points = 0.0048
 			psy_points = 0.2
 		if(6)
+			if(prob(0.5))
+				affected_mob.Unconscious(4 SECONDS)
+				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
 			points = 0.0096
 			psy_points = 0.4
 	if(points > 0 && hivenumber == XENO_HIVE_NORMAL) // We check if points are greater than 0 and if your hive is normal in order to prevent valhalla embryos from generating points.
