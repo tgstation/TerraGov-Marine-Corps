@@ -1,6 +1,7 @@
 /datum/action/rally_zombie
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 
 /datum/action/rally_zombie/action_activate()
 	owner.emote("roar")

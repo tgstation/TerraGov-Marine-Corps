@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/baneling_explode
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
+	action_icon = 'icons/Xeno/actions/baneling.dmi'
 	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You die."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
@@ -94,8 +95,8 @@
 	// This is cursed, don't copy this code its the WRONG way to do this.
 	// TODO: generate this from GLOB.baneling_chem_type_list
 	var/static/list/reagent_images_list = list(
-		DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-		BANELING_ACID = image('icons/Xeno/actions.dmi', icon_state = BANELING_ACID_ICON),
+		DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN),
+		BANELING_ACID = image('icons/Xeno/actions/boiler.dmi', icon_state = BANELING_ACID_ICON),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
 	if(!toxin_choice)
