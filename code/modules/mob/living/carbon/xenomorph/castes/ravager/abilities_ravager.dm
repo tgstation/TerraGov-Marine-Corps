@@ -122,7 +122,7 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
-		if(ishitbox(ravaged) || isarmoredvehicle(ravaged))
+		if(ishitbox(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage) //Handles APC/Tank stuff
 			continue
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
