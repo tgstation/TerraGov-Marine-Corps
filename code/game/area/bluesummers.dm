@@ -216,22 +216,22 @@
 	outside = TRUE
 
 /area/bluesummers/inside/engineering
-	name = "Electrical Wing"
+	name = "Engineering Wing"
 	icon_state = "engine_storage"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/bluesummers/inside/engineering/office
-	name = "Electrical Wing Office"
+	name = "Engineering Wing Office"
 	icon_state = "engine_monitoring"
 
 /area/bluesummers/inside/engineering/plant
-	name = "Electrial Wing Plant"
+	name = "Electrical Wing Plant"
 	icon_state = "engine"
 	ceiling = CEILING_UNDERGROUND_METAL
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/bluesummers/inside/engineering/plant/control
-	name = "Electrial Wing Control"
+	name = "Electrical Wing Control"
 	icon_state = "engine_control"
 
 /area/bluesummers/inside/chapel

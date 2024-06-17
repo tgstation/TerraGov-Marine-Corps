@@ -344,6 +344,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "di" = (
@@ -601,11 +604,18 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/office)
 "eF" = (
-/turf/open/floor/mainship/orange/full,
+/obj/structure/disposalpipe/trunk,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "eG" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/mining)
+"eK" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "eL" = (
 /obj/effect/spawner/random/engineering/bomb_supply,
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
@@ -642,6 +652,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "eY" = (
@@ -715,17 +726,15 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bluesummers/inside/recreation)
 "fD" = (
-/turf/open/floor/mainship/floor,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
+	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "fH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering)
-"fL" = (
-/turf/open/floor/mainship/orange{
-	dir = 5
-	},
-/area/bluesummers/inside/engineering/plant)
 "fN" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
@@ -802,6 +811,10 @@
 "gB" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/cloning)
+"gD" = (
+/obj/structure/disposalpipe/water_pipe,
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "gE" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
@@ -888,12 +901,12 @@
 /turf/open/floor/mainship/emerald,
 /area/bluesummers/caves/cloning)
 "hi" = (
+/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "Engineering Plant";
-	name = "\improper Engineering Plant Shutters";
+	id = "Electrical Plant";
+	name = "\improper Electrical Plant Shutters";
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/bluesummers/inside/engineering)
 "hn" = (
@@ -1341,9 +1354,10 @@
 /area/bluesummers/inside/hydroponics/south)
 "kf" = (
 /obj/machinery/light,
-/turf/open/floor/mainship/orange{
-	dir = 6
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "ki" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -1457,12 +1471,18 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/bluesummers/inside/recreation)
-"le" = (
-/obj/machinery/power/terminal{
-	dir = 8
+"lf" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/obj/structure/disposalpipe/broken{
+	dir = 2
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/inside/engineering/plant)
 "lg" = (
 /obj/machinery/light{
@@ -1620,11 +1640,6 @@
 	dir = 4
 	},
 /area/bluesummers/inside/hydroponics)
-"mr" = (
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/bluesummers/inside/engineering/plant)
 "mt" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/mainship/floor,
@@ -1816,8 +1831,8 @@
 /area/bluesummers/inside/recreation)
 "ob" = (
 /obj/machinery/door_control{
-	id = "Engineering Plant";
-	name = "Engineering Plant Shutters"
+	id = "Electrical Plant";
+	name = "Electrical Plant Shutters"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -1858,9 +1873,11 @@
 	name = "Core Power Monitoring"
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 10
-	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
+"op" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "oq" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo/destructible,
@@ -1901,9 +1918,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "oJ" = (
 /turf/closed/wall/mainship,
@@ -2068,6 +2084,10 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/recreation)
+"qj" = (
+/obj/structure/disposalpipe/segment/corner,
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "qo" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/floor,
@@ -2082,11 +2102,6 @@
 "qq" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/west)
-"qu" = (
-/turf/open/floor/mainship/orange{
-	dir = 9
-	},
-/area/bluesummers/inside/engineering/plant)
 "qy" = (
 /obj/effect/spawner/random/misc/structure/table_or_rack,
 /obj/item/storage/toolbox/mechanical,
@@ -2197,9 +2212,10 @@
 /turf/open/floor/plating,
 /area/bluesummers/caves/cloning)
 "rK" = (
-/turf/open/floor/mainship/orange/corner{
-	dir = 2
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "rL" = (
 /obj/structure/nuke_disk_candidate{
@@ -2242,21 +2258,35 @@
 /obj/effect/spawner/random/engineering/computercircuit,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering)
+"sf" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "sg" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/cryostorage/garbledradio)
 "sh" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/obj/structure/disposalpipe/junction/yjunc{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "sj" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/bluesummers/inside/industrial)
 "sk" = (
-/turf/open/floor/mainship/orange{
-	dir = 6
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "sn" = (
 /turf/open/floor/plating,
@@ -2418,13 +2448,20 @@
 	pixel_x = -6
 	},
 /obj/machinery/door_control{
-	id = "Engineering Plant";
-	name = "Engineering Plant Shutters"
+	id = "Electrical Plant";
+	name = "Electrical Plant Shutters"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
 /area/bluesummers/inside/engineering/plant/control)
+"tr" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "tv" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/green/full,
@@ -2686,10 +2723,6 @@
 	dir = 10
 	},
 /area/bluesummers/inside/hydroponics/south)
-"vo" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange/full,
-/area/bluesummers/inside/engineering/plant)
 "vp" = (
 /turf/open/floor/mainship/emerald{
 	dir = 8
@@ -2840,7 +2873,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "wA" = (
 /obj/structure/bed/chair/office/dark/east,
@@ -3000,7 +3033,10 @@
 /turf/closed/wall/mainship,
 /area/bluesummers/caves/north)
 "xK" = (
-/turf/open/floor/mainship/orange,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "xN" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -3202,6 +3238,12 @@
 "zt" = (
 /turf/open/floor/mainship/orange/full,
 /area/bluesummers/inside/engineering)
+"zv" = (
+/obj/structure/disposalpipe/water_pipe{
+	dir = 1
+	},
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "zw" = (
 /obj/structure/table/mainship,
 /obj/item/tool/soap,
@@ -3353,18 +3395,20 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics)
 "AW" = (
-/turf/open/floor/mainship/orange{
-	dir = 1
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "AZ" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining/south)
 "Ba" = (
-/turf/open/floor/mainship/orange{
-	dir = 4
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "Bb" = (
 /obj/structure/bookcase/manuals/engineering,
@@ -3476,6 +3520,16 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southwest)
+"BW" = (
+/obj/structure/disposalpipe/broken{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
+"BY" = (
+/obj/structure/disposalpipe/junction/yjunc,
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "BZ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -3545,9 +3599,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "CE" = (
 /obj/machinery/door_control{
@@ -3917,6 +3970,15 @@
 	dir = 1
 	},
 /area/bluesummers/inside/engineering/office)
+"FO" = (
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "FR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -3987,14 +4049,15 @@
 	},
 /area/bluesummers/inside/hydroponics)
 "GG" = (
-/obj/machinery/door_control{
-	id = "Engineering Plant";
-	name = "Engineering Plant Shutters";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange{
-	dir = 10
+/obj/machinery/door_control{
+	id = "Electrical Plant";
+	name = "Electrical Plant Shutters";
+	dir = 1
 	},
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "GH" = (
 /obj/machinery/light{
@@ -4295,6 +4358,10 @@
 /obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/mainship/orange,
 /area/bluesummers/inside/engineering)
+"Ji" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "Jj" = (
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/industrial)
@@ -4419,6 +4486,16 @@
 	dir = 10
 	},
 /area/bluesummers/inside/hydroponics/south)
+"Kl" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "Kp" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4431,13 +4508,6 @@
 	dir = 8
 	},
 /area/bluesummers/inside/engineering/office)
-"Kt" = (
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "Ku" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating,
@@ -4566,6 +4636,11 @@
 "Ls" = (
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/hydroponics)
+"Lt" = (
+/obj/structure/cable,
+/obj/structure/cryofeed/right,
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "Lu" = (
 /obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/green{
@@ -5145,6 +5220,13 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cloning)
+"PR" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "PS" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/inside/engineering/plant/control)
@@ -5210,10 +5292,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
-"Qx" = (
-/turf/open/floor/mainship/orange/corner{
-	dir = 1
-	},
+"QA" = (
+/obj/structure/cryofeed,
+/turf/open/liquid/water,
 /area/bluesummers/inside/engineering/plant)
 "QD" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5294,6 +5375,12 @@
 "Rp" = (
 /turf/open/floor/plating,
 /area/bluesummers/inside/industrial)
+"Rs" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "Ry" = (
 /obj/machinery/light{
 	dir = 4
@@ -5432,8 +5519,8 @@
 /area/bluesummers/inside/recreation)
 "SE" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "Engineering Plant";
-	name = "\improper Engineering Plant Shutters";
+	id = "Electrical Plant";
+	name = "\improper Electrical Plant Shutters";
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -5617,9 +5704,8 @@
 /area/bluesummers/caves/cryostorage/gravity)
 "Ud" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/orange/corner{
-	dir = 8
-	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
 "Uj" = (
 /obj/structure/window_frame/mainship,
@@ -5796,16 +5882,16 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bluesummers/inside/chapel)
-"VA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bluesummers/inside/engineering/plant)
 "VB" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/space_port)
+"VD" = (
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "VG" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/orange{
@@ -5837,6 +5923,12 @@
 	dir = 8
 	},
 /area/bluesummers/inside/space_port)
+"VV" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/engineering/plant)
 "VY" = (
 /turf/open/floor/mainship/green{
 	dir = 6
@@ -5863,6 +5955,13 @@
 /obj/effect/spawner/random/misc/seeds,
 /turf/open/floor/mainship/green/full,
 /area/bluesummers/inside/hydroponics/south)
+"Wr" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/inside/engineering/plant)
 "Ww" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid,
@@ -6014,6 +6113,10 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
+"XD" = (
+/obj/structure/cryofeed/right,
+/turf/open/liquid/water,
+/area/bluesummers/inside/engineering/plant)
 "XF" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/machinery/motorbike/uncommon,
@@ -6260,6 +6363,11 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/bluesummers/caves/martian)
+"Zy" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/inside/engineering/plant)
 "ZB" = (
 /obj/effect/spawner/random/machinery/hydrotray,
 /turf/open/floor/plating,
@@ -25510,11 +25618,11 @@ Vp
 yQ
 yQ
 yQ
-qu
-Kt
+rK
+CD
 eU
 CD
-NY
+Rs
 yQ
 Vp
 Vp
@@ -25690,14 +25798,14 @@ Vp
 Vp
 Vp
 yQ
-qu
-mr
-Qx
-le
+rK
+op
+sk
+gO
 EZ
 gO
-NY
-EZ
+fD
+PR
 Bp
 Vp
 Vp
@@ -25872,15 +25980,15 @@ Vp
 yQ
 yQ
 yQ
-AW
-fD
-fD
-vo
-vb
-vo
-fD
+xK
 NY
-EZ
+NY
+vb
+vb
+vb
+NY
+rK
+Kl
 yQ
 yQ
 yQ
@@ -26052,18 +26160,18 @@ sg
 Vp
 Vp
 yQ
-qu
+rK
+op
+FO
 NY
-Bp
-fD
-eF
+NY
 Nc
 dK
 Nc
 eF
-NY
-NY
-NY
+sk
+fD
+Rs
 oo
 yQ
 SW
@@ -26237,7 +26345,7 @@ yQ
 dg
 EZ
 NY
-NY
+Nc
 Nc
 Nc
 YP
@@ -26245,7 +26353,7 @@ dK
 dK
 dK
 NY
-fD
+xK
 wv
 yQ
 go
@@ -26415,18 +26523,18 @@ sg
 OZ
 OZ
 yQ
-qu
-Qx
-NY
-eF
+rK
+sk
+rK
+eK
 Nc
-pT
-pT
-YP
-pT
-pT
+XD
+XD
+Lt
+XD
+XD
 dK
-eF
+NY
 fD
 Ud
 GG
@@ -26597,20 +26705,20 @@ sg
 OZ
 OZ
 yQ
-AW
-fD
-eF
+xK
+NY
+xK
 Nc
 Nc
-pT
+QA
 Qv
 Qv
 Qv
-pT
+QA
 dK
 dK
-eF
-sh
+NY
+vb
 xK
 SE
 zt
@@ -26779,20 +26887,20 @@ sg
 OZ
 OZ
 na
-AW
-fD
-eF
-Nc
-pT
+xK
+NY
+BY
+Ji
+gD
 pT
 RN
 fO
 JO
 pT
-pT
-dK
-vo
-sh
+zv
+Zy
+Ud
+Ud
 sh
 hi
 BC
@@ -26962,20 +27070,20 @@ OZ
 OZ
 yQ
 AW
-fD
-eF
+op
+sk
 Nc
 Nc
-pT
+XD
 Qv
 Qv
 Qv
-pT
+XD
 Nc
 Nc
-eF
-fD
-rK
+NY
+NY
+xK
 SE
 em
 SE
@@ -27143,19 +27251,19 @@ ve
 OZ
 OZ
 yQ
-fL
-NY
 fD
-eF
+Rs
+NY
+NY
 Nc
-pT
-pT
-pT
-pT
-pT
+QA
+QA
+QA
+QA
+QA
 Nc
 NY
-fD
+NY
 rK
 kf
 go
@@ -27508,18 +27616,18 @@ Vp
 Vp
 Vp
 yQ
-Bp
-EZ
+VD
+tr
+Rs
 NY
-fD
-eF
+VV
 Nc
 Nc
 Nc
 eF
-NY
-EZ
-NY
+op
+lf
+op
 sk
 yQ
 Vp
@@ -27692,15 +27800,15 @@ Vp
 Vp
 Vp
 Vp
-EZ
+Wr
 NY
-fD
-eF
-NY
-NY
-fD
+qj
+op
+Rs
 NY
 NY
+NY
+xK
 yQ
 yQ
 yQ
@@ -27874,11 +27982,11 @@ Vp
 Vp
 Vp
 Vp
-Bp
-VA
+BW
+oG
+Rs
 NY
-fD
-EZ
+sf
 NY
 rK
 oG
@@ -28058,10 +28166,10 @@ mX
 mX
 mX
 mX
-fL
+fD
+op
 Ba
-Ba
-Ba
+op
 sk
 mX
 mX
