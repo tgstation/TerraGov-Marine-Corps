@@ -1,4 +1,0 @@
-author: "Helg2"
-delete-after: True
-changes:
-  - qol: "Ravagers vampirism now updates icon on toggling, instead of updating on attack."

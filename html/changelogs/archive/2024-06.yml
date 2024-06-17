@@ -199,3 +199,9 @@
   breadhunt:
   - qol: Using medical items in-hand will now apply them to yourself
   - qol: Unique action now opens the injector menu
+2024-06-17:
+  Helg2:
+  - qol: Ravagers vampirism now updates icon on toggling, instead of updating on attack.
+  Lumipharon:
+  - balance: Largecrates are jumpable
+  - balance: Large rocks can pouched over etc, similar to unwired cades
