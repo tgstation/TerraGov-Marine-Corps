@@ -6,20 +6,19 @@
 
 ///List of globs, keyed by icon state. Used for radial selection.
 GLOBAL_LIST_INIT(boiler_glob_list, list(
-		BOILER_GLOB_NEURO = /datum/ammo/xeno/boiler_gas,
-		BOILER_GLOB_ACID = /datum/ammo/xeno/boiler_gas/corrosive,
-		BOILER_GLOB_NEURO_LANCE = /datum/ammo/xeno/boiler_gas/lance,
-		BOILER_GLOB_ACID_LANCE = /datum/ammo/xeno/boiler_gas/corrosive/lance,
-		))
+	BOILER_GLOB_NEURO = /datum/ammo/xeno/boiler_gas,
+	BOILER_GLOB_ACID = /datum/ammo/xeno/boiler_gas/corrosive,
+	BOILER_GLOB_NEURO_LANCE = /datum/ammo/xeno/boiler_gas/lance,
+	BOILER_GLOB_ACID_LANCE = /datum/ammo/xeno/boiler_gas/corrosive/lance,
+))
 
 ///List of glob action button images, used for radial selection.
 GLOBAL_LIST_INIT(boiler_glob_image_list, list(
-		BOILER_GLOB_NEURO = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_NEURO),
-		BOILER_GLOB_ACID = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_ACID),
-		BOILER_GLOB_NEURO_LANCE = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_NEURO_LANCE),
-		BOILER_GLOB_ACID_LANCE = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_ACID_LANCE),
-		))
-
+	BOILER_GLOB_NEURO = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEURO),
+	BOILER_GLOB_ACID = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_ACID),
+	BOILER_GLOB_NEURO_LANCE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_NEURO_LANCE),
+	BOILER_GLOB_ACID_LANCE = image('icons/Xeno/actions/boiler.dmi', icon_state = BOILER_GLOB_ACID_LANCE),
+))
 
 // ***************************************
 // *********** Long range sight
@@ -28,6 +27,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/xeno_action/toggle_long_range
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	ability_cost = 20
 	keybinding_signals = list(
@@ -54,7 +54,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/ability/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
-	action_icon_state = "toggle_bomb0"
+	action_icon_state = "acid_globe"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Switches Boiler Bombard type between available glob types."
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
@@ -131,6 +132,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/xeno_action/create_boiler_bomb
 	name = "Create bomb"
 	action_icon_state = "create_bomb"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
 	ability_cost = 200
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
@@ -195,6 +197,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/ability/activable/xeno/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,

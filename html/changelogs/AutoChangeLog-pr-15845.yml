@@ -1,5 +1,0 @@
-author: "Vondiech/Citruses (with help from Neocloudy and SandPoot)"
-delete-after: True
-changes:
-  - balance: "The nuke can now NOT be activated in areas like the LZs, enclosed areas (the type plasmacutters cut into) and certain other areas as listed on the \"Ineligible detonation sites\" part of the nuclear bomb UI."
-  - code_imp: "Added CANNOT_NUKE area_flag for mappers/coders to designate areas where the nuke timer can't be activated, also moves some areas around so NEAR_FOB now accurately always includes FOB."
