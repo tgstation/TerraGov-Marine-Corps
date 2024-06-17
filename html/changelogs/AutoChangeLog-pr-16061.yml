@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Reduced xeno jump CD from 2 seconds to 1 second"

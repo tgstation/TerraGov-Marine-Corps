@@ -264,9 +264,12 @@
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
-		else if(isvehicle(victim))
+		else if(isvehicle(victim) || ishitbox(victim))
 			var/obj/vehicle/veh_victim = victim
-			veh_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
+			var/armored_vehicle_penalty = 0
+			if(ishitbox(victim))
+				armored_vehicle_penalty = 20
+			veh_victim.take_damage((SHATTERING_ROAR_DAMAGE - armored_vehicle_penalty) * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
