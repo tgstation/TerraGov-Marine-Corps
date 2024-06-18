@@ -209,7 +209,7 @@
 		return
 	owner.dir = get_cardinal_dir(owner, target)
 
-	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70, sound_range = 20)
+	playsound(owner, 'sound/voice/alien/king_roar.ogg', 70, sound_range = 20)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
@@ -223,7 +223,7 @@
 		return fail_activate()
 
 	finish_charging()
-	playsound(owner, 'sound/voice/xenos_roaring.ogg', 90, sound_range = 30)
+	playsound(owner, 'sound/voice/alien/xenos_roaring.ogg', 90, sound_range = 30)
 	for(var/mob/living/carbon/human/human_victim AS in GLOB.humans_by_zlevel["[owner.z]"])
 		if(get_dist(human_victim, owner) > 9)
 			continue
