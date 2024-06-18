@@ -372,6 +372,7 @@
 	desc = "A massive bag designed for those interested in being the squad Mule. \
 	Features extra storage space at the cost of speed. \
 	Any squadmates can easily access the storage with right-click"
+	icon = 'icons/obj/items/storage/duffelbag.dmi'
 	icon_state = "duffel"
 	worn_icon_state = "duffel"
 	storage_type = /datum/storage/backpack/duffelbag
