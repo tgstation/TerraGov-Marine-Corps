@@ -197,7 +197,7 @@
 	if(!autobalance_faction_list)
 		return
 
-	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
+	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
 		if(stat_list[faction_member.faction].faction_leader == faction_member)
 			continue
 		swap_player_team(faction_member, autobalance_faction_list[2])
