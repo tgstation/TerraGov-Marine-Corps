@@ -55,12 +55,13 @@
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
 		new parts(loc)
-	else
-		if(reinforced)
-			if(prob(50))
-				new /obj/item/stack/rods(loc)
-		if(dropmetal)
-			new sheet_type(src)
+		return ..()
+
+	if(reinforced)
+		if(prob(50))
+			new /obj/item/stack/rods(loc)
+	if(dropmetal)
+		new sheet_type(src)
 	return ..()
 
 /obj/structure/table/update_icon_state()
