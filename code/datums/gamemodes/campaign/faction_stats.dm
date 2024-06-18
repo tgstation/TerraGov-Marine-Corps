@@ -180,6 +180,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 ///Elects a new faction leader
 /datum/faction_stats/proc/choose_faction_leader()
 	faction_leader = null
+	list_clear_nulls(GLOB.alive_human_list_faction[faction]) //Try to avoid null entries, difficulty: Impossible
 	var/list/possible_candidates = GLOB.alive_human_list_faction[faction]
 	if(!length(possible_candidates))
 		return //army of ghosts
@@ -277,6 +278,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns faction members back to spawn or prepares them for respawn if deployed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
+	list_clear_nulls(GLOB.alive_human_list_faction[faction])
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
 		if((human_mob.z && human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client) //why is byond so cursed that being inside something makes you z = 0
 			human_mob.revive(TRUE)
