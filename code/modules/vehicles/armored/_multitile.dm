@@ -18,7 +18,8 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom)
 	max_occupants = 4
-	move_delay = 0.9 SECONDS
+	move_delay = 0.75 SECONDS
+	glide_size = 2.5
 	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
