@@ -3088,7 +3088,9 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "dRR" = (
-/obj/vehicle/sealed/armored/multitile,
+/obj/effect/landmark/valhalla/vehicle_spawner_landmark{
+	where = "marinecenter"
+	},
 /turf/open/floor/mainship/hexagon,
 /area/centcom/valhalla)
 "dSO" = (
@@ -3253,10 +3255,11 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla)
 "efF" = (
-/obj/structure/table/mainship,
-/obj/item/armored_weapon,
-/obj/item/armored_weapon/ltaap,
-/turf/open/floor/plating,
+/obj/machinery/button/valhalla/vehicle_button{
+	link = "vehiclemarineupper";
+	name = "North Vehicle Spawner"
+	},
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "efJ" = (
 /obj/item/radio/intercom{
@@ -4322,7 +4325,9 @@
 	},
 /area/centcom/valhalla)
 "fRn" = (
-/obj/vehicle/sealed/armored/multitile,
+/obj/effect/landmark/valhalla/vehicle_spawner_landmark{
+	where = "marineupper"
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "fRC" = (
@@ -4898,6 +4903,13 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/freezer,
+/area/centcom/valhalla)
+"gFO" = (
+/obj/machinery/button/valhalla/vehicle_button{
+	link = "vehiclemarinecenter";
+	name = "Center Vehicle Spawner"
+	},
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "gGv" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15324,9 +15336,7 @@
 /area/centcom/valhalla)
 "wlz" = (
 /obj/structure/table/mainship,
-/obj/item/armored_weapon/secondary_weapon,
-/obj/item/armored_weapon/secondary_weapon,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "wnL" = (
 /obj/effect/ai_node,
@@ -18762,10 +18772,10 @@ bbR
 boq
 boq
 boq
+wJM
 efF
-ivs
-ivs
-ivs
+wlz
+gFO
 xOn
 boq
 boq
@@ -18900,7 +18910,7 @@ bbR
 boq
 boq
 boq
-wlz
+wJM
 ivs
 ivs
 ivs
