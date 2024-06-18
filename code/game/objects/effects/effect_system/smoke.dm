@@ -368,6 +368,7 @@
 /obj/effect/particle_effect/smoke/xeno/burn/opaque
 	alpha = 255
 	opacity = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
