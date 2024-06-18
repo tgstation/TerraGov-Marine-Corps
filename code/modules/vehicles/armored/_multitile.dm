@@ -66,6 +66,11 @@
 	soft_armor = list(MELEE = 80, BULLET = 85 , LASER = 85, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.6, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
-	move_delay = 0.6 SECONDS
+	move_delay = 0.75 SECONDS
 	glide_size = 2.5
 	vis_range_mod = 4
+
+/obj/vehicle/sealed/armored/multitile/campaign/Initialize(mapload)
+	. = ..()
+	var/obj/item/tank_module/module = new /obj/item/tank_module/overdrive()
+	module.on_equip(src)
