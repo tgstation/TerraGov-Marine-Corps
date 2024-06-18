@@ -66,7 +66,6 @@
 	bonus_projectiles_type = /datum/ammo/smoke_burst/tank
 	bonus_projectile_quantity = 5
 	bonus_projectiles_scatter = 30
-	bonus_projectile_range = 7
 
 //submunitions for micro grenades
 /datum/ammo/bullet/micro_rail_spread
