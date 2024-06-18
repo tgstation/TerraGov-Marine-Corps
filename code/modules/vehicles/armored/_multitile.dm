@@ -16,7 +16,7 @@
 	max_integrity = 900
 	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom)
+	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher)
 	max_occupants = 4
 	move_delay = 0.9 SECONDS
 	ram_damage = 100
@@ -66,11 +66,11 @@
 	soft_armor = list(MELEE = 80, BULLET = 85 , LASER = 85, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.6, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
-	move_delay = 0.75 SECONDS
+	move_delay = 0.6 SECONDS
 	glide_size = 2.5
 	vis_range_mod = 4
 
 /obj/vehicle/sealed/armored/multitile/campaign/Initialize(mapload)
 	. = ..()
-	var/obj/item/tank_module/module = new /obj/item/tank_module/overdrive()
+	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
 	module.on_equip(src)
