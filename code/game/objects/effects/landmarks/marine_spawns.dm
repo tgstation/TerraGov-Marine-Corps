@@ -185,6 +185,22 @@
 	icon_state = "som_staff_officer"
 	job = /datum/job/som/command/staffofficer
 
+/obj/effect/landmark/start/job/som/icc
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/standard
+
+/obj/effect/landmark/start/job/som/icc_medic
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/medic
+
+/obj/effect/landmark/start/job/som/icc_guard
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/spec
+
+/obj/effect/landmark/start/job/som/icc_leader
+	icon_state = "som_staff_officer"
+	job = /datum/job/icc_squad/leader
+
 /obj/effect/landmark/start/job/clf/leader
 	icon_state = "Shaft Miner"
 	job = /datum/job/clf/leader
@@ -258,3 +274,15 @@
 /obj/effect/landmark/start/job/vsd_leader
 	icon_state = "MP"
 	job = /datum/job/vsd_squad/leader
+
+/obj/effect/landmark/start/job/usl
+	icon_state = "MP"
+	job = /datum/job/usl_squad/standard
+
+/obj/effect/landmark/start/job/usl_spec
+	icon_state = "MP"
+	job = /datum/job/usl_squad/spec
+
+/obj/effect/landmark/start/job/usl_leader
+	icon_state = "MP"
+	job = /datum/job/usl_squad/leader
