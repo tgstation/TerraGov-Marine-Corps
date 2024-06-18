@@ -1707,7 +1707,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "aSg" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
 /obj/effect/spawner/random/clothing/sunglasses,
 /turf/open/floor/wood,
@@ -2314,7 +2314,7 @@
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "bhp" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/matches,
 /obj/item/tool/candle,
 /turf/open/floor/tile/chapel{
@@ -3466,7 +3466,7 @@
 	},
 /area/lv624/ground/jungle5)
 "cgB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/bronze,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/cult/clock,
@@ -3695,7 +3695,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "cwk" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -3925,7 +3925,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/hydroponics/aux)
 "cIq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/atm{
 	pixel_y = 30
 	},
@@ -4162,7 +4162,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "cUZ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/megaphone,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -4278,7 +4278,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quart)
 "dda" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/chem_dispenser/beer{
 	pixel_y = 26
 	},
@@ -4619,7 +4619,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "dxb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "dxn" = (
@@ -4949,7 +4949,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "dPf" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/taperecorder,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -5031,7 +5031,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "dTk" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
@@ -5288,7 +5288,7 @@
 	},
 /area/lv624/lazarus/research)
 "egX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -5654,7 +5654,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "eJN" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -5680,7 +5680,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "eKG" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor,
 /area/lv624/lazarus/chapel)
@@ -6294,7 +6294,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "fvD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "fwb" = (
@@ -8073,7 +8073,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
 "hAx" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -8112,7 +8112,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "hDe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/bronze,
 /obj/item/clothing/mask/cigarette/tram,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8280,7 +8280,7 @@
 	},
 /area/lv624/lazarus/tablefort)
 "hNX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -8362,7 +8362,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "hRG" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/trash/chips,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -8414,7 +8414,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage/dome)
 "hUC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clothing/head/boonie,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle{
 	pixel_x = -10
@@ -9000,14 +9000,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "iBt" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
 /area/lv624/lazarus/chapel)
 "iBV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
 /obj/item/clothing/glasses/sunglasses/big{
 	pixel_y = 5
@@ -9369,7 +9369,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "iVC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "iVF" = (
@@ -9392,7 +9392,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "iWB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
 /obj/item/mecha_parts/part/gygax_head,
@@ -9721,7 +9721,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river1)
 "jtS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
@@ -11765,7 +11765,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "lIF" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/trash/candle,
 /turf/open/floor/tile/chapel{
 	dir = 1
@@ -12468,7 +12468,7 @@
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river2)
 "mun" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/bronze,
 /obj/item/toy/dice/d20,
 /obj/item/clothing/mask/cigarette/cigar,
@@ -13626,7 +13626,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "nQQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/candle,
 /obj/item/storage/box/matches,
 /obj/effect/spawner/random/weaponry/melee,
@@ -14275,7 +14275,7 @@
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
 "oGQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
 /obj/item/mecha_parts/part/gygax_head,
@@ -14360,7 +14360,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "oKX" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "oLb" = (
@@ -14373,7 +14373,7 @@
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "oMa" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "oMV" = (
@@ -15220,7 +15220,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "pSj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/med_data/laptop,
 /obj/machinery/light/small{
 	dir = 8
@@ -15722,7 +15722,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "qwn" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/machinery/cell_charger,
 /obj/effect/spawner/random/misc/cigarettes,
@@ -15859,7 +15859,7 @@
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/jungle4)
 "qEL" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/instrument/accordion,
 /obj/item/instrument/saxophone,
 /obj/item/clothing/mask/cigarette/pipe/cobpipe,
@@ -15928,7 +15928,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "qJo" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
@@ -15999,7 +15999,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "qNH" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -16535,7 +16535,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "rmA" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
@@ -17141,7 +17141,7 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
 "rRG" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/weapon/broken_bottle,
 /turf/open/floor/grimy,
@@ -18720,7 +18720,7 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/spaceport)
 "tGp" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/megaphone,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
@@ -21146,7 +21146,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "wor" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -21247,7 +21247,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "wvu" = (
@@ -21354,7 +21354,7 @@
 	},
 /area/lv624/ground/jungle5)
 "wAp" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/bible,
 /obj/machinery/light/small{
 	dir = 1
@@ -21440,7 +21440,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "wEB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light/small,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -22030,7 +22030,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "xgs" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -2;
 	pixel_y = 4
@@ -22218,7 +22218,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "xop" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
@@ -22501,7 +22501,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "xEh" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/photocopier{
 	pixel_y = 12
 	},
@@ -23013,7 +23013,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1/garbledradio)
 "yff" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/megaphone,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
