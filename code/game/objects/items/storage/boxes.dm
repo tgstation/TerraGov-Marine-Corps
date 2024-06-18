@@ -43,6 +43,7 @@
 	name = "box"
 	desc = "It's just an ordinary box."
 	icon_state = "box"
+	icon = 'icons/obj/items/storage/box.dmi'
 	worn_icon_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
 	var/obj/item/spawn_type
@@ -271,7 +272,6 @@
 
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	worn_icon_state = "syringe_kit"

@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Xeno acid smoke will deal damage per tile of apc/tanks hit, between 400-500 if completely enveloped the entire duration of a boiler cloud."

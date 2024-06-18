@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Warlock's crush now hits more parts of tanks/APCs, dealing 10 damage per part hit."

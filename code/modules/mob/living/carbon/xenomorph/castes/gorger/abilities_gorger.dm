@@ -7,6 +7,7 @@
 /datum/action/ability/activable/xeno/devour
 	name = "Devour"
 	action_icon_state = "abduct"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
@@ -89,6 +90,7 @@
 /datum/action/ability/activable/xeno/drain
 	name = "Drain"
 	action_icon_state = "drain"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
@@ -171,6 +173,7 @@
 /datum/action/ability/activable/xeno/transfusion
 	name = "Transfusion"
 	action_icon_state = "transfusion"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_duration = 2 SECONDS
@@ -247,6 +250,7 @@
 /datum/action/ability/activable/xeno/oppose
 	name = "Oppose"
 	action_icon_state = "rejuvenation"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
 	cooldown_duration = 30 SECONDS
 	ability_cost = GORGER_OPPOSE_COST
@@ -294,6 +298,7 @@
 /datum/action/ability/activable/xeno/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 0
@@ -390,6 +395,7 @@
 /datum/action/ability/activable/xeno/carnage
 	name = "Carnage"
 	action_icon_state = "carnage"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
@@ -422,6 +428,7 @@
 /datum/action/ability/activable/xeno/feast
 	name = "Feast"
 	action_icon_state = "feast"
+	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_duration = 180 SECONDS
 	ability_cost = 0

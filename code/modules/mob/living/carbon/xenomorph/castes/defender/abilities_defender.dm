@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Hit all adjacent units around you, knocking them away and down."
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
@@ -88,6 +89,7 @@
 /datum/action/ability/activable/xeno/charge/forward_charge
 	name = "Forward Charge"
 	action_icon_state = "pounce"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
@@ -161,6 +163,7 @@
 /datum/action/ability/xeno_action/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
@@ -238,9 +241,10 @@
 // ***************************************
 /datum/action/ability/xeno_action/fortify
 	name = "Fortify"
-	action_icon_state = "fortify"	// TODO
+	action_icon_state = "fortify"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Plant yourself for a large defensive boost."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
+	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
@@ -325,6 +329,7 @@
 /datum/action/ability/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY
 	ability_cost = 160
@@ -366,6 +371,7 @@
 /datum/action/ability/xeno_action/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
