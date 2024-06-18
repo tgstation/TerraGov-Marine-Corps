@@ -229,6 +229,7 @@
 /datum/action/ability/activable/xeno/landslide
 	name = "Landslide"
 	action_icon_state = "landslide"
+	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	ability_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_duration = 20 SECONDS
@@ -580,6 +581,7 @@
 /datum/action/ability/activable/xeno/earth_riser
 	name = "Earth Riser"
 	action_icon_state = "earth_riser"
+	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
@@ -770,6 +772,7 @@
 /datum/action/ability/xeno_action/seismic_fracture
 	name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
+	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -915,6 +918,7 @@
 /datum/action/ability/xeno_action/primal_wrath
 	name = "Primal Wrath"
 	action_icon_state = "primal_wrath"
+	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	cooldown_duration = 1 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
@@ -1452,11 +1456,11 @@
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
 				if(isvehicle(affected_atom) || ishitbox(affected_atom))
-					var/obj/vehicle/veh_victim = affected_atom
+					var/obj/obj_victim = affected_atom
 					var/damage_add = 0
-					if(ismecha(veh_victim))
+					if(ismecha(obj_victim))
 						damage_add = 9.5
-					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
+					obj_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom

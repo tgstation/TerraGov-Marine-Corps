@@ -199,3 +199,19 @@
   breadhunt:
   - qol: Using medical items in-hand will now apply them to yourself
   - qol: Unique action now opens the injector menu
+2024-06-17:
+  Helg2:
+  - qol: Ravagers vampirism now updates icon on toggling, instead of updating on attack.
+  Lumipharon:
+  - balance: Largecrates are jumpable
+  - balance: Large rocks can pouched over etc, similar to unwired cades
+2024-06-18:
+  Lauwma:
+  - rscadd: Widow can now plant weed
+  - rscadd: Widow can now secrete resin walls
+  - rscadd: Spiderlings can be built on with resin structures
+  - balance: Widow gains mazing abilities, be careful when stepping in the Widow's
+      nest
+  Wisemonster:
+  - bugfix: Boiler globs getting a direct hit should no longer reduce their smoke
+      size

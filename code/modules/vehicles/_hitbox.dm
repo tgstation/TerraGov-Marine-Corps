@@ -198,6 +198,11 @@
 /obj/hitbox/lava_act()
 	root.lava_act()
 
+/obj/hitbox/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(10 * S.strength, BURN, ACID)
+
 ///2x2 hitbox version
 /obj/hitbox/medium
 	bound_width = 64

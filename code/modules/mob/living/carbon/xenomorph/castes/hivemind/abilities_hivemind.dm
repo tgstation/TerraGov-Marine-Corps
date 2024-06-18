@@ -1,6 +1,7 @@
 /datum/action/ability/xeno_action/return_to_core
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
+	action_icon = 'icons/Xeno/actions/hivemind.dmi'
 	desc = "Teleport back to your core."
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
@@ -21,6 +22,7 @@
 /datum/action/ability/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"
+	action_icon = 'icons/Xeno/actions/hivemind.dmi'
 	desc = "Change from your incorporeal form to your physical on and vice-versa."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
@@ -34,6 +36,7 @@
 /datum/action/ability/activable/xeno/command_minions
 	name = "Command minions"
 	action_icon_state = "minion_agressive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
 	ability_cost = 100
 	keybinding_signals = list(
@@ -94,7 +97,7 @@
 
 /datum/action/ability/xeno_action/teleport
 	name = "Teleport"
-	action_icon_state = "resync"
+	action_icon_state = "resync" // TODO: i think i missed an icon
 	desc = "Pick a location on the map and instantly manifest there if possible."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
