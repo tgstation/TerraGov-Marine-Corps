@@ -22,7 +22,7 @@
 
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	action_icon_state = "watch_xeno"
 
 

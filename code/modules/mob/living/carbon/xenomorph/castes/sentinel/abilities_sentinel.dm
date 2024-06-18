@@ -18,17 +18,18 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 
-/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		if(C.issamexenohive(P.firer))
-			return
-		if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-			return
-		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-			debuff.add_stacks(intoxication_stacks)
-		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	if(HAS_TRAIT(target_carbon, TRAIT_INTOXICATION_IMMUNE))
+		return
+	if(target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(intoxication_stacks)
+	target_carbon.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
 
 // ***************************************
 // *********** Toxic Slash
@@ -36,6 +37,7 @@
 /datum/action/ability/xeno_action/toxic_slash
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
@@ -126,6 +128,7 @@
 /datum/action/ability/activable/xeno/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
@@ -195,6 +198,7 @@
 /datum/action/ability/activable/xeno/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS

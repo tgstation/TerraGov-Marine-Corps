@@ -36,9 +36,9 @@
 	damage = 25
 	damage_type = STAMINA
 
-/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
-	if(iscarbon(victim))
-		var/mob/living/carbon/carbon_victim = victim
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/carbon_victim = target_mob
 		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
 
 /datum/ammo/bullet/pistol/hollow
@@ -48,8 +48,8 @@
 	shrapnel_chance = 45
 	sundering = 2
 
-/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
+/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
@@ -75,15 +75,15 @@
 	sundering = 3
 	damage_falloff = 0.75
 
-/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
 
-/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5)
+/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -114,7 +114,7 @@
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
-	if(!M.stat && !ismonkey(M))
-		P.visible_message(span_danger("The [src] chimpers furiously!"))
-		new /mob/living/carbon/human/species/monkey(P.loc)
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!target_mob.stat && !ismonkey(target_mob))
+		proj.visible_message(span_danger("The [src] chimpers furiously!"))
+		new /mob/living/carbon/human/species/monkey(proj.loc)
