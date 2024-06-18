@@ -198,7 +198,8 @@
 		firer = shooter
 	if(source)
 		shot_from = source
-	loc = loc_override
+	if(loc_override)
+		loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -950,7 +951,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		firer = shooter
 	if(source)
 		shot_from = source
-	loc = loc_override
+	if(loc_override)
+		loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc

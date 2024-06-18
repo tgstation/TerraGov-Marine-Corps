@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added the SOM hover tank to the code"
+  - bugfix: "fixed a couple minor issues with multitile vehicles"

@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to projectile_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(loc_override, effect_icon)
+		var/obj/projectile/new_proj = new proj_type(loc_override ? loc_override : main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.

@@ -532,3 +532,74 @@
 		return
 	proj.proj_max_range -= 30 //we don't penetrate past a vehicle
 	damage *= 2.2
+
+/datum/ammo/rocket/homing
+	name = "homing HE rocket"
+	damage = 0
+	penetration = 0
+	max_range = 20
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS
+	shell_speed = 0.3
+	///If the projectile is pointing at the target with a variance of this number, we don't readjust the angle
+	var/angle_precision = 5
+	///Number in degrees that the projectile will change during each process
+	var/turn_rate = 5
+
+/datum/ammo/rocket/homing/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 4, 1)
+
+/datum/ammo/rocket/homing/ammo_process(obj/projectile/proj, damage)
+	if(QDELETED(proj.original_target))
+		return
+	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
+	if((proj.dir_angle >= angle_to_target - angle_precision) && (proj.dir_angle <= angle_to_target + angle_precision))
+		return
+	proj.dir_angle = clamp(angle_to_target, proj.dir_angle - turn_rate, proj.dir_angle + turn_rate)
+	proj.x_offset = round(sin(proj.dir_angle), 0.01)
+	proj.y_offset = round(cos(proj.dir_angle), 0.01)
+	var/matrix/rotate = matrix()
+	rotate.Turn(proj.dir_angle)
+	animate(proj, transform = rotate, time = SSprojectiles.wait)
+
+/datum/ammo/rocket/coilgun
+	name = "kinetic penetrator"
+	icon_state = "tank_coilgun"
+	hud_state = "rocket_ap"
+	hud_state_empty = "rocket_empty"
+	ammo_behavior_flags = AMMO_SNIPER
+	armor_type = BULLET
+	damage_falloff = 1
+	shell_speed = 3
+	accuracy = 10
+	accurate_range = 20
+	max_range = 40
+	damage = 180
+	penetration = 20
+	sundering = 10
+	bullet_color = LIGHT_COLOR_TUNGSTEN
+
+/datum/ammo/rocket/coilgun/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 5, 1)
+
+/datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
+	ammo_behavior_flags = AMMO_ENERGY
+
+/datum/ammo/rocket/coilgun/low
+	damage_falloff = 2
+	shell_speed = 2
+	damage = 90
+	penetration = 10
+	sundering = 5
+
+/datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
+	explosion(T, 0, 1, 2, 3)
+
+/datum/ammo/rocket/coilgun/high
+	damage_falloff = 0
+	shell_speed = 5
+	damage = 300
+	penetration = 40
+	sundering = 20
+
+/datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
+	explosion(T, 1, 3, 5, 6, 2)
