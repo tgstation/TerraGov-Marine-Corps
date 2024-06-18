@@ -309,10 +309,10 @@
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		var/vehicle_damage_mult = 1
+		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
-			vehicle_damage_mult = 5
-		crushed_obj.take_damage(precrush * vehicle_damage_mult, BRUTE, MELEE)
+			obj_damage_mult = 5
+		crushed_obj.take_damage(precrush * obj_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
 			span_xenodanger("We crush [preserved_name]!"))
