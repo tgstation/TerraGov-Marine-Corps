@@ -391,12 +391,21 @@
 			continue
 		potential_targets += nearby_xeno
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
-		if(!length(nearby_mech.occupants))
+		var/list/driver_list = nearby_mech.return_drivers()
+		if(!length(driver_list))
 			continue
-		var/mob/living/carbon/human/human_occupant = nearby_mech.occupants[1]
-		if(!istype(human_occupant) || (human_occupant.wear_id?.iff_signal & iff_signal))
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_mech
+	for(var/obj/vehicle/sealed/armored/nearby_tank AS in cheap_get_tanks_near(src, range))
+		var/list/driver_list = nearby_tank.return_drivers()
+		if(!length(driver_list))
+			continue
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_tank
 	return length(potential_targets)
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
