@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "King's laser now deals damage to tanks/APCs based on the tiles hit, 15 damage per tile every 0.3 seconds, down from 150 every 0.3 seconds."
