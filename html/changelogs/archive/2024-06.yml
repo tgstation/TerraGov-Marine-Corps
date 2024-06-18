@@ -205,3 +205,13 @@
   Lumipharon:
   - balance: Largecrates are jumpable
   - balance: Large rocks can pouched over etc, similar to unwired cades
+2024-06-18:
+  Lauwma:
+  - rscadd: Widow can now plant weed
+  - rscadd: Widow can now secrete resin walls
+  - rscadd: Spiderlings can be built on with resin structures
+  - balance: Widow gains mazing abilities, be careful when stepping in the Widow's
+      nest
+  Wisemonster:
+  - bugfix: Boiler globs getting a direct hit should no longer reduce their smoke
+      size
