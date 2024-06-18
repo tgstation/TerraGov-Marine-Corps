@@ -10,7 +10,7 @@
 	minimap_icon_state = null
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT|ARMORED_HAS_UNDERLAY
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
-	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay)
+	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom/*, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay*/)
 	icon_state = "apc"
 	minimap_icon_state = "apc"
 	move_delay = 0.6 SECONDS
