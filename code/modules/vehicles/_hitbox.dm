@@ -39,6 +39,7 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_cross_hitbox),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -51,6 +52,9 @@
 
 /obj/hitbox/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
 	root.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+
+/obj/hitbox/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_HULL] = 4.5
 
 ///signal handler for handling PASS_WALKOVER
 /obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)

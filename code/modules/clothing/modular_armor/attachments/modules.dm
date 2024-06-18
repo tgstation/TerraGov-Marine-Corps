@@ -567,7 +567,7 @@
 	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
-	if(user.client.eye != user || user.client.eye != user.loc)
+	if(!(user.client.eye == user) && !(user.client.eye == user.loc))
 		to_chat(user, span_warning("You're looking through something else right now."))
 		return
 	zoom(user)
