@@ -214,6 +214,11 @@
 /obj/hitbox/lava_act()
 	root.lava_act()
 
+/obj/hitbox/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(10 * S.strength, BURN, ACID)
+
 ///Returns the turf where primary weapon projectiles should source from
 /obj/hitbox/proc/get_projectile_loc(obj/item/armored_weapon/weapon)
 	if(!isarmoredvehicle(root))

@@ -220,7 +220,6 @@
 /obj/structure/closet/crate/trashcart
 	name = "Trash Cart"
 	desc = "A heavy, metal trashcart with wheels."
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "closed_trashcart"
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"
@@ -257,7 +256,6 @@
 /obj/structure/closet/crate/mass_produced_crate
 	name = "Mass Produced Crate"
 	desc = "A rectangular steel crate. Cannot be welded for metal."
-	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "closed_basic"
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
