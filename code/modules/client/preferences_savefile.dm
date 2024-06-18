@@ -55,7 +55,7 @@
 	if(current_version < 46)
 		toggles_sound |= SOUND_WEATHER
 		WRITE_FILE(S["toggles_sound"], toggles_sound)
-		to_chat(parent, span_userdanger("Preferences for sound toggles have been reverted to default settings; these are now on. Go into Preferences and set sound toggles to OFF if you wish to not hear these sounds."))
+		to_chat(parent, span_userdanger("Due to a fix, preferences for weather sound have been reverted to default settings; these are now ON. Go into Preferences and set sound toggles to OFF if you wish to not hear these sounds."))
 
 
 //handles converting savefiles to new formats
