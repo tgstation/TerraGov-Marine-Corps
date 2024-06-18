@@ -1551,6 +1551,9 @@
 			/obj/item/implanter/blade = -1,
 		),
 		"Assault Vehicle" = list(
+			/obj/item/armored_weapon = -1,
+			/obj/item/armored_weapon/ltaap = -1,
+			/obj/item/armored_weapon/secondary_weapon = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/apfds = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/canister = -1,

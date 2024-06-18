@@ -23,7 +23,7 @@
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
+	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
@@ -47,4 +47,4 @@
 		mind.name = name
 
 /mob/living/carbon/xenomorph/king/death_cry()
-	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)
+	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
