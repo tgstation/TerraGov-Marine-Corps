@@ -740,12 +740,12 @@
 	hitscan_effect_icon = "particle_lance"
 	hud_state = "plasma_blast"
 	hud_state_empty = "battery_empty_flash"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB|AMMO_SNIPER
 	bullet_color = LIGHT_COLOR_PURPLE_PINK
 	armor_type = ENERGY
-	max_range = 21
-	accurate_range = 15
-	accuracy = 5
+	max_range = 40
+	accurate_range = 10
+	accuracy = 15
 	damage = 100
 	penetration = 150
 	sundering = 30

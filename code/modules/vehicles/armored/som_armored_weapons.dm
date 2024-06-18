@@ -12,7 +12,7 @@
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 	///Range of this weapon
-	var/beam_range = 15
+	var/beam_range = 20
 	///Armor pen of this weapon
 	var/armor_pen = 30
 
@@ -32,7 +32,7 @@
 			impacted_turfs |= range_turf
 
 	for(var/turf/impacted_turf AS in impacted_turfs)
-		light_effects += new /atom/movable/hitscan_projectile_effect(impacted_turf, null, null, null, null, null, LIGHT_COLOR_ORANGE)
+		light_effects += new /atom/movable/hitscan_projectile_effect(impacted_turf, null, null, null, null, null, LIGHT_COLOR_EMISSIVE_ORANGE)
 		var/attack_dir = get_dir(source_turf, impacted_turf)
 		var/beam_turf = (impacted_turf in beam_turfs)
 		for(var/target in impacted_turf)
@@ -59,9 +59,9 @@
 				if(beam_turf)
 					living_target.apply_damage(50, BURN, blocked = ENERGY, penetration = armor_pen)
 				living_target.apply_damage(50, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
-				living_target.Stagger(beam_turf ? 2 SECONDS : 1 SECONDS)
-				living_target.adjust_slowdown(beam_turf ? 2 : 1)
-				living_target.adjust_fire_stacks(beam_turf ? 12 : 6)
+				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
+				living_target.adjust_slowdown(beam_turf ? 3 : 2)
+				living_target.adjust_fire_stacks(beam_turf ? 15 : 9)
 				living_target.IgniteMob()
 
 	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), 0.6 SECONDS)
@@ -105,6 +105,7 @@
 	fire_sound = 'sound/vehicles/weapons/coil_fire.ogg'
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
 	windup_delay = 0.6 SECONDS
+	projectile_delay = 3 SECONDS
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
 	///Current ammo override to use based on power level
@@ -183,12 +184,15 @@
 		if(COILGUN_LOW_POWER)
 			current_ammo_type = /datum/ammo/rocket/coilgun/low
 			windup_delay = 0
+			projectile_delay = 1 SECONDS
 		if(COILGUN_MED_POWER)
 			current_ammo_type = /datum/ammo/rocket/coilgun
 			windup_delay = 0.6 SECONDS
+			projectile_delay = 3 SECONDS
 		if(COILGUN_HIGH_POWER)
 			current_ammo_type = /datum/ammo/rocket/coilgun/high
 			windup_delay = 1 SECONDS
+			projectile_delay = 4.5 SECONDS
 	to_chat(user, "power level set to [power_level]")
 
 ///Gives the power setting action to the gunner

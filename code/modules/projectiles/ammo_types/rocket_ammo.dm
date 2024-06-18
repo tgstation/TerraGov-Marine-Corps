@@ -538,10 +538,10 @@
 	armor_type = BULLET
 	damage_falloff = 1
 	shell_speed = 3
-	accuracy = 0
+	accuracy = 10
 	accurate_range = 20
-	max_range = 14
-	damage = 100
+	max_range = 40
+	damage = 180
 	penetration = 20
 	sundering = 10
 	bullet_color = LIGHT_COLOR_TUNGSTEN
@@ -555,7 +555,7 @@
 /datum/ammo/rocket/coilgun/low
 	damage_falloff = 2
 	shell_speed = 2
-	damage = 50
+	damage = 90
 	penetration = 10
 	sundering = 5
 
