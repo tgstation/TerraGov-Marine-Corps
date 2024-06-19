@@ -523,7 +523,7 @@
 
 /datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
-	if(prob(35))
+	if(ishuman(target_mob) && prob(35))
 		target_mob.gib()
 
 /datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
@@ -606,7 +606,7 @@
 	explosion(T, 1, 4, 5, 6, 2)
 
 /datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(prob(50))
+	if(ishuman(target_mob) && prob(50))
 		target_mob.gib()
 		proj.proj_max_range -= 5
 		return
