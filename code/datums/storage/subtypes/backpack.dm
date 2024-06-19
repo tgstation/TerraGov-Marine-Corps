@@ -24,7 +24,7 @@
 	max_storage_space = 400 // can store a ton of shit!
 
 /datum/storage/backpack/satchel //Smaller, but no delay
-	max_storage_space = 20
+	max_storage_space = 30
 	access_delay = 0
 
 /datum/storage/backpack/tech/New(atom/parent)
