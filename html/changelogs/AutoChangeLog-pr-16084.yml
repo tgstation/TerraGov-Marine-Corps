@@ -1,6 +1,0 @@
-author: "Helg2"
-delete-after: True
-changes:
-  - imageadd: "lootboxes with rockets, sniper rifles and sentries now have corresponding icons."
-  - imageadd: "updated low cell charge icon state of corpsman satchels."
-  - code_imp: "Reorganized Storage.dmi file, which responded for all the backpacks and etc. Please report any missing icons."

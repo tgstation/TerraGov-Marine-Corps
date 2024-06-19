@@ -8,7 +8,7 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
@@ -70,6 +70,10 @@
 	 * This will be turned into a typeCache on  initialize
 	*/
 	var/list/easy_load_list
+	///Wether we are strafing
+	var/strafe = FALSE
+	///modifier to view range when manning a control chair
+	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -209,9 +213,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-		playsound(get_turf(src), engine_sound, 100, TRUE, 20)
+	play_engine_sound()
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
@@ -256,6 +258,12 @@
 
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
+
+/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
+	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
+		return
+	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
+	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
@@ -422,7 +430,7 @@
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.weapon_slot & MODULE_PRIMARY))
+		if(!(gun.armored_weapon_flags & MODULE_PRIMARY))
 			balloon_alert(user, "not a primary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
@@ -483,7 +491,7 @@
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.weapon_slot & MODULE_SECONDARY))
+		if(!(gun.armored_weapon_flags & MODULE_SECONDARY))
 			balloon_alert(user, "not a secondary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
@@ -646,40 +654,37 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	///overlay for the attached gun
-	var/image/gun_overlay
-	///overlay for the shooting version of that gun
-	var/image/flash_overlay
-	///currently using the flashing overlay
-	var/flashing = FALSE
+	vis_flags = VIS_INHERIT_ID
+	///overlay obj for for the attached gun
+	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary
 	var/image/secondary_overlay
 
-/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
-	cut_overlays()
-	if(!gun_icon_state)
-		flash_overlay = null
-		gun_overlay = null
-		return
-	flashing = FALSE
-	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -70, pixel_y = -69)
-	gun_overlay  = image(icon, gun_icon_state, pixel_x = -40, pixel_y = -48)
-	update_appearance(UPDATE_OVERLAYS)
+/atom/movable/vis_obj/turret_overlay/Destroy()
+	if(primary_overlay)
+		QDEL_NULL(primary_overlay)
+	return ..()
 
-/atom/movable/vis_obj/turret_overlay/proc/set_flashing(new_flashing)
-	flashing = new_flashing
-	update_appearance(UPDATE_OVERLAYS)
+/atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
+	if(!gun_icon_state)
+		QDEL_NULL(primary_overlay)
+		return
+
+	primary_overlay = new()
+	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
+	primary_overlay.icon_state = gun_icon_state
+	vis_contents += primary_overlay
 
 /atom/movable/vis_obj/turret_overlay/update_overlays()
 	. = ..()
-	. += (flashing ? flash_overlay : gun_overlay)
+	if(secondary_overlay)
+		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
+		. += secondary_overlay
 
 /atom/movable/vis_obj/turret_overlay/setDir(newdir)
 	. = ..()
 	if(secondary_overlay)
-		cut_overlay(secondary_overlay)
-		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
-		add_overlay(secondary_overlay)
+		update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"
@@ -687,3 +692,9 @@
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
 	vis_flags = VIS_INHERIT_DIR
+
+/atom/movable/vis_obj/tank_gun
+	name = "Tank weapon"
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	pixel_x = -70
+	pixel_y = -69

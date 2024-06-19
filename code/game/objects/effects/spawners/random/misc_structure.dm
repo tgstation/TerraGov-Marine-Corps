@@ -301,7 +301,7 @@
 	icon_state = "random_wood_table"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/table/woodentable = 99,
+		/obj/structure/table/wood = 99,
 		/obj/effect/spawner/random/engineering/wood = 1,
 	)
 

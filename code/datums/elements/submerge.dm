@@ -25,7 +25,7 @@
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(mover, TRAIT_NOSUBMERGE))
 		return
-	if(!source.get_submerge_height() || !source.get_submerge_depth())
+	if(!source.get_submerge_height() && !source.get_submerge_depth())
 		return
 	mover.set_submerge_level(mover.loc, old_loc)
 
