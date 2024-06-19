@@ -616,7 +616,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "afS" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/flora/pottedplant{
 	pixel_x = 7;
 	pixel_y = 14
@@ -2078,7 +2078,7 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/hallway_east)
 "arX" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblue,
 /area/lv759/indoors/colonial_marshals/press_room)
@@ -2184,7 +2184,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/bar/entertainment)
 "atk" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/camera_film,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -10;
@@ -3262,7 +3262,7 @@
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
 "aEm" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/paper{
 	pixel_x = 2;
 	pixel_y = 2
@@ -5900,7 +5900,7 @@
 /turf/open/floor/prison/whitered,
 /area/lv759/indoors/hospital/medical_storage)
 "bad" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/camera_film,
 /obj/item/camera,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -6737,7 +6737,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "bio" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 7
@@ -7275,7 +7275,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "bod" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/flask/detflask,
 /obj/item/clothing/mask/cigarette/cigar,
 /turf/open/floor/urban/carpet/carpetfadedred,
@@ -7479,7 +7479,7 @@
 	pixel_x = 9;
 	pixel_y = -10
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 6;
@@ -7723,7 +7723,7 @@
 /obj/machinery/computer/security{
 	dir = 4
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
 "bsm" = (
@@ -8529,7 +8529,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "byr" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/tool/stamp,
 /turf/open/floor/carpet/blue,
 /area/lv759/indoors/hospital/cmo_office)
@@ -8720,7 +8720,7 @@
 "bAN" = (
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/cable,
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastbedrooms)
@@ -8913,7 +8913,7 @@
 /obj/machinery/computer/security{
 	dir = 8
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -10368,7 +10368,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "bOS" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine1{
 	pixel_x = 1;
 	pixel_y = 3
@@ -10835,7 +10835,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/north_street)
 "bTU" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/photo,
 /obj/item/clothing/tie/medal{
 	layer = 3.03;
@@ -10944,7 +10944,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bUI" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/deck/kotahi,
 /obj/item/spacecash/c10,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
@@ -13044,7 +13044,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "cmn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/cigar{
 	pixel_x = -2;
 	pixel_y = 3
@@ -13644,7 +13644,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
 "cqY" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/carpet/blue,
 /area/lv759/indoors/hospital/cmo_office)
@@ -15829,7 +15829,7 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_street)
 "cKQ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/camera_film,
 /obj/item/tape,
 /obj/item/reagent_containers/food/drinks/sillycup{
@@ -16691,7 +16691,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
 "cSe" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 14;
 	pixel_y = 9
@@ -18402,7 +18402,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/west_caves)
 "dgj" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/photo{
 	pixel_y = 4
 	},
@@ -19074,7 +19074,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dmf" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/tool/hand_labeler,
 /obj/item/flashlight/lamp/green{
 	pixel_x = -8;
@@ -20587,7 +20587,7 @@
 /obj/machinery/computer/security{
 	dir = 4
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -21076,7 +21076,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "dDY" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/green{
 	pixel_y = 12
 	},
@@ -21931,7 +21931,7 @@
 /turf/open/floor/mainship/cargo,
 /area/lv759/indoors/nt_research_complex/cargo)
 "dMj" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/emails,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	color = "#a6aeab"
@@ -24423,7 +24423,7 @@
 /obj/machinery/computer/security{
 	dir = 4
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
@@ -26751,7 +26751,7 @@
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_reception)
 "eEl" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/clipboard{
 	pixel_y = 4
 	},
@@ -30680,7 +30680,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/garage_workshop)
 "fnn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 7;
 	pixel_y = 10
@@ -33911,7 +33911,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fOs" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/sillycup{
 	pixel_x = -5;
 	pixel_y = 10
@@ -36999,7 +36999,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "gou" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/clothing/head/det_hat,
 /obj/item/flashlight/lamp/green{
 	pixel_x = -6;
@@ -37796,7 +37796,7 @@
 	},
 /area/lv759/indoors/power_plant/telecomms)
 "gvu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/camera,
 /obj/item/paper/photograph,
 /turf/open/floor/urban/carpet/carpetbluedeco,
@@ -39605,7 +39605,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/lv759/outdoors/landing_zone_1)
 "gNE" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/machinery/random_broken_computer{
 	dir = 4;
 	pixel_x = 2
@@ -43599,7 +43599,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "hvj" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
@@ -47373,7 +47373,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/hospital/icu)
 "icM" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/security{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	layer = 3.2;
@@ -48111,7 +48111,7 @@
 /turf/open/floor/mainship/black,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "ijn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/north_office)
@@ -49427,7 +49427,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/reception)
 "ivp" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle{
 	pixel_x = 7;
 	pixel_y = 16
@@ -50977,7 +50977,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "iKi" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/flora/pottedplant{
 	pixel_y = 13
 	},
@@ -55313,7 +55313,7 @@
 /obj/item/phone{
 	pixel_y = 7
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -10;
 	pixel_y = 8
@@ -56922,7 +56922,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "jJi" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c500,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 13;
@@ -58648,7 +58648,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "jYZ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/attachable/bayonet,
 /obj/item/attachable/bayonet,
 /obj/item/attachable/bayonet,
@@ -59688,7 +59688,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "kiH" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/spacecash/ewallet,
 /obj/item/trash/candle,
 /obj/effect/landmark/weed_node,
@@ -64488,7 +64488,7 @@
 /obj/item/phone{
 	pixel_y = 7
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -6;
 	pixel_y = 6
@@ -65585,7 +65585,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "lkr" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/green{
 	pixel_y = 2
 	},
@@ -66696,7 +66696,7 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "luY" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/ashtray/bronze{
 	pixel_x = -7;
 	pixel_y = 4
@@ -66880,7 +66880,7 @@
 /area/lv759/indoors/casino/casino_vault)
 "lwD" = (
 /obj/item/paper/Court,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/tool/pen{
 	pixel_x = 4;
 	pixel_y = -4
@@ -66965,7 +66965,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "lxm" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/taperecorder,
 /turf/open/floor/urban/carpet/carpetfadedred,
 /area/lv759/indoors/colonial_marshals/head_office)
@@ -69556,7 +69556,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/apartment/westentertainment)
 "lTg" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/emails{
 	dir = 8;
 	pixel_y = 2
@@ -72550,7 +72550,7 @@
 	pixel_y = 10
 	},
 /obj/item/newspaper,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastbedrooms)
 "msB" = (
@@ -75970,7 +75970,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/landing_zone_2)
 "mWU" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/ashtray/glass,
 /obj/item/trash/cigbutt/cigarbutt{
 	pixel_x = 5;
@@ -77806,7 +77806,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "nlx" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -7;
 	pixel_y = 12
@@ -84592,7 +84592,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "ouB" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/newspaper,
 /obj/item/reagent_containers/food/drinks/sillycup{
 	pixel_x = -5;
@@ -85902,7 +85902,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "oHn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin,
 /obj/item/folder/red{
 	pixel_x = -5;
@@ -89473,7 +89473,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "pns" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 7;
 	pixel_y = 5
@@ -89705,7 +89705,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/mining_outpost/processing)
 "ppu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -7;
 	pixel_y = 4
@@ -90087,7 +90087,7 @@
 /area/lv759/indoors/hospital/operation)
 "psE" = (
 /obj/effect/spawner/random/misc/cigar,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/tool/candle{
 	pixel_x = -2;
 	pixel_y = 7
@@ -91788,7 +91788,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "pFF" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/urban/tile/tilegreen,
 /area/lv759/indoors/garage_managersoffice)
@@ -94662,7 +94662,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "qer" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light/small{
 	dir = 1;
 	pixel_y = 20
@@ -95040,7 +95040,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/bar/bathroom)
 "qic" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/security{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	dir = 4;
@@ -106466,7 +106466,7 @@
 /obj/machinery/computer/security{
 	dir = 8
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
 "siY" = (
@@ -107387,7 +107387,7 @@
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
 "sqH" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/camera,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/wood/darkerwood,
@@ -110216,7 +110216,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "sOX" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 7;
 	pixel_y = 14
@@ -113698,7 +113698,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "ttn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/recharger,
 /obj/machinery/light,
 /obj/structure/cable,
@@ -114048,7 +114048,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/hospital/medical_storage)
 "twi" = (
-/obj/structure/table/gamblingtable{
+/obj/structure/table/wood/gambling{
 	layer = 3
 	},
 /obj/item/toy/deck/kotahi,
@@ -114990,7 +114990,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tFa" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c200,
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -116937,7 +116937,7 @@
 /turf/open/floor/urban/wood/blackwood,
 /area/lv759/indoors/casino/casino_office)
 "tVt" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/prop/mainship/gelida/register{
 	dir = 4
 	},
@@ -117423,7 +117423,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
 "tYF" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -117587,7 +117587,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "tZT" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 12;
 	pixel_y = 17
@@ -119884,7 +119884,7 @@
 "usi" = (
 /obj/effect/spawner/random/misc/cigar,
 /obj/item/tool/lighter/zippo,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastbedrooms)
 "usl" = (
@@ -121227,7 +121227,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "uFq" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/paper/courtroom{
 	name = "A Crash Course in Legal SOP"
 	},
@@ -122069,7 +122069,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "uLR" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/storage/briefcase,
 /obj/item/clothing/head/cmo,
 /turf/open/floor/carpet/blue,
@@ -124085,7 +124085,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/cable,
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/apartment/eastbedrooms)
@@ -124662,7 +124662,7 @@
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
 "vib" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/urban/carpet/carpetgreendeco,
 /area/lv759/indoors/apartment/northapartments)
@@ -125497,7 +125497,7 @@
 	pixel_x = 7;
 	pixel_y = 14
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/plating/kutjevo,
 /area/lv759/indoors/colonial_marshals/office)
@@ -128161,7 +128161,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "vMS" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/emails{
 	dir = 8;
 	pixel_y = 2
@@ -130008,7 +130008,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "wbo" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 7
@@ -131953,7 +131953,7 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/weyyu_office/floor)
 "wsL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/green{
 	pixel_x = -8;
 	pixel_y = 15
@@ -132756,7 +132756,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 7
@@ -133472,7 +133472,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "wFP" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -135789,7 +135789,7 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "wZZ" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 7
@@ -137524,7 +137524,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "xpo" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/ashtray/bronze,
 /obj/item/trash/cigbutt{
 	pixel_x = 4;
@@ -138202,13 +138202,13 @@
 /turf/open/floor/urban/carpet/carpetred,
 /area/lv759/indoors/casino)
 "xuO" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/tool/hand_labeler,
 /obj/item/evidencebag,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "xuV" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/prop/urban/misc/coffeestuff/coffeemachine2,
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/north_office)
@@ -139224,7 +139224,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "xEN" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/dice,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 14;
@@ -141976,7 +141976,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/telecomms)
 "ycR" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/green{
 	pixel_x = 5;
 	pixel_y = 13
@@ -142242,7 +142242,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northwest)
 "yft" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
