@@ -201,6 +201,13 @@
 		return
 	if(target.stat == DEAD)
 		return
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return FALSE
+	if(pass_flags & PASS_FIRE)
+		return FALSE
 	var/damage = PYROGEN_MELTING_FIRE_DAMAGE
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
@@ -211,7 +218,5 @@
 
 /obj/fire/melting_fire/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
 	if(!ishuman(crosser))
-		return
-	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
 		return
 	affect_mob(crosser)

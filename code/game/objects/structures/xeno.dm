@@ -100,15 +100,15 @@
 	if(crosser.throwing || crosser.buckled)
 		return
 
-	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
-		return
-
 	if(isvehicle(crosser))
 		var/obj/vehicle/vehicle = crosser
 		vehicle.last_move_time += slow_amt
 		return
 
 	if(!ishuman(crosser))
+		return
+
+	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
 		return
 
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
