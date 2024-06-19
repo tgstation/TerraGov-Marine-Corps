@@ -568,38 +568,46 @@
 	hud_state_empty = "rocket_empty"
 	ammo_behavior_flags = AMMO_SNIPER
 	armor_type = BULLET
-	damage_falloff = 1
-	shell_speed = 3
+	damage_falloff = 2
+	shell_speed = 4
 	accuracy = 10
 	accurate_range = 20
 	max_range = 40
 	damage = 180
-	penetration = 20
+	penetration = 40
 	sundering = 10
 	bullet_color = LIGHT_COLOR_TUNGSTEN
+	barricade_clear_distance = 4
 
 /datum/ammo/rocket/coilgun/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 5, 1)
+	explosion(T, 0, 3, 5)
 
 /datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
 	ammo_behavior_flags = AMMO_ENERGY
 
 /datum/ammo/rocket/coilgun/low
-	damage_falloff = 2
-	shell_speed = 2
+	shell_speed = 3
 	damage = 90
-	penetration = 10
+	penetration = 25
 	sundering = 5
 
 /datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
-	explosion(T, 0, 1, 2, 3)
+	explosion(T, 0, 2, 3, 4)
 
 /datum/ammo/rocket/coilgun/high
 	damage_falloff = 0
 	shell_speed = 5
 	damage = 300
-	penetration = 40
+	penetration = 70
 	sundering = 20
+	ammo_behavior_flags = AMMO_SNIPER|AMMO_PASS_THROUGH_MOB
 
 /datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
-	explosion(T, 1, 3, 5, 6, 2)
+	explosion(T, 1, 4, 5, 6, 2)
+
+/datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(prob(50))
+		target_mob.gib()
+		proj.proj_max_range -= 5
+		return
+	proj.proj_max_range = 0

@@ -743,7 +743,7 @@
 	hitscan_effect_icon = "particle_lance"
 	hud_state = "plasma_blast"
 	hud_state_empty = "battery_empty_flash"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_SNIPER
 	bullet_color = LIGHT_COLOR_PURPLE_PINK
 	armor_type = ENERGY
 	max_range = 40
@@ -754,6 +754,7 @@
 	sundering = 30
 	damage_falloff = 5
 	on_pierce_multiplier = 0.95
+	barricade_clear_distance = 4
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(ishitbox(target_obj)) //yes this is annoying.
