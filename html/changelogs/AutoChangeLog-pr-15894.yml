@@ -1,8 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Tall grass and fire now partially obscured you similar to water"
-  - rscadd: "Items now sink in water, partially obscuring them"
-  - rscadd: "Vehicles canbe submerged like mobs"
-  - bugfix: "fixed throws messing up pixel_y offset over bodies of water"
-  - refactor: "refactored submersion code"

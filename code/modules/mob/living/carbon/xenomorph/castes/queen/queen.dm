@@ -11,7 +11,6 @@
 	maxHealth = 300
 	plasma_stored = 300
 	pixel_x = -16
-	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
@@ -30,7 +29,7 @@
 	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, PROC_REF(on_becoming_ruler))
 	. = ..()
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, TYPE_PROC_REF(/datum/hive_status, on_queen_death))
-	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
+	playsound(loc, 'sound/voice/alien/queen_command.ogg', 75, 0)
 
 // ***************************************
 // *********** Mob overrides
@@ -97,7 +96,7 @@
 // *********** Death
 // ***************************************
 /mob/living/carbon/xenomorph/queen/death_cry()
-	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
+	playsound(loc, 'sound/voice/alien/queen_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/queen/xeno_death_alert()
 	return
