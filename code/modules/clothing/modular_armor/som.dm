@@ -40,7 +40,9 @@
 
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 
 	allowed_uniform_type = /obj/item/clothing/under
@@ -250,7 +252,9 @@
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
+		"old",
 	)
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED
 	current_variant = "black"
 	visorless_offset_y = 0
 
