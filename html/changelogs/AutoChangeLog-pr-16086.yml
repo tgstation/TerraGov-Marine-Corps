@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Added the APC/tank weapons to the valhalla req vendor"
-  - qol: "Replaced the spawned vehicles in marine Valhalla with vehicle spawner buttons"
