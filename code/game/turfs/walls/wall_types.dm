@@ -490,14 +490,6 @@
 	walltype = "wall"
 	base_icon_state = "hybrisa_colony_walls"
 
-/turf/closed/wall/engineership
-	name = "strange metal wall"
-	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
-	icon = 'icons/turf/walls/engineer_walls.dmi'
-	icon_state = "engineer_walls-0"
-	walltype = "wall"
-	base_icon_state = "engineer_walls"
-
 /turf/closed/wall/hangar
 	name = "strange metal wall"
 	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."

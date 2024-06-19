@@ -2296,21 +2296,21 @@
 
 /obj/machinery/filtration_pipes/water/update_overlays()
 	. = ..()
-	. += image(icon, src, "tank_water_top", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+	. += image(icon, src, "tank_water_top", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
 
 /obj/machinery/filtration_pipes/empty
 	icon_state = "solo_tank_empty"
 
 /obj/machinery/filtration_pipes/empty/update_overlays()
 	. = ..()
-	. += image(icon, src, "tank_water_empty", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+	. += image(icon, src, "tank_water_empty", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
 
 /obj/machinery/filtration_pipes/waste
 	icon_state = "solo_tank_waste"
 
 /obj/machinery/filtration_pipes/waste/update_overlays()
 	. = ..()
-	. += image(icon, src, "tank_waste_top", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 31)
+	. += image(icon, src, "tank_waste_top", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
 
 /obj/machinery/filtration_pipes/multiple
 	icon_state = "disinfection"
@@ -2319,7 +2319,7 @@
 
 /obj/machinery/filtration_pipes/multiple/update_overlays()
 	. = ..()
-	. += image(icon, src, "disinfectiontop", layer = ABOVE_ALL_MOB_LAYER, pixel_x = 63)
+	. += image(icon, src, "disinfectiontop", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 63)
 
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"

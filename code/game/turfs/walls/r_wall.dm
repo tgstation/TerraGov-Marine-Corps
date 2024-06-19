@@ -119,3 +119,15 @@
 /turf/closed/wall/r_wall/urban/invincible
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
+
+/turf/closed/wall/r_wall/engineership
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls.dmi'
+	icon_state = "engineer_walls-0"
+	walltype = "wall"
+	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/r_wall/engineership/invincible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"

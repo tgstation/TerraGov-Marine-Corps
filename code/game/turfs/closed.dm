@@ -199,6 +199,18 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/engineerwall
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls_turf.dmi'
+	icon_state = "engineer_walls_turf-255"
+	walltype = "wall"
+	base_icon_state = "engineer_walls_turf"
+
+/turf/closed/mineral/smooth/engineerwall/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'

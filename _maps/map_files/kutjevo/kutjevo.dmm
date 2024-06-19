@@ -12382,7 +12382,7 @@
 /area/kutjevo/interior/complex/med/operating)
 "npx" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/kutjevo/colors/orange/edge{
 	dir = 1
 	},
@@ -13398,7 +13398,7 @@
 /area/kutjevo/exterior/complex_border/med_park)
 "oor" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/kutjevo/colors/orange/edge,
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
 "ooN" = (
@@ -22594,7 +22594,7 @@
 "xTw" = (
 /obj/structure/rack,
 /obj/machinery/light,
-/obj/item/stack/sheet/metal/small_stack,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/kutjevo/colors/orange/edge{
 	dir = 8
 	},

@@ -16488,7 +16488,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "cQv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/engineership/ship_hull,
+/turf/closed/mineral/smooth/engineerwall/indestructible,
 /area/lv759/oob)
 "cQw" = (
 /obj/structure/disposalpipe/segment{
@@ -22359,6 +22359,9 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
+"dQM" = (
+/turf/closed/wall/r_wall/engineership/invincible,
+/area/lv759/oob)
 "dQO" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 1;
@@ -58020,7 +58023,7 @@
 /area/lv759/indoors/derelict_ship)
 "jTS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "jTT" = (
 /obj/item/clothing/head/warning_cone{
@@ -58056,7 +58059,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "jUd" = (
 /obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest1,
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "jUi" = (
 /obj/machinery/streetlight/engineer_circular,
@@ -59215,7 +59218,7 @@
 	},
 /area/lv759/indoors/hospital/emergency_room)
 "keo" = (
-/turf/open/engineership/ship_hull,
+/turf/closed/mineral/smooth/engineerwall/indestructible,
 /area/lv759/oob)
 "key" = (
 /obj/machinery/streetlight/street{
@@ -64836,7 +64839,7 @@
 /obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest1{
 	dir = 8
 	},
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "ldZ" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
@@ -71740,6 +71743,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"mlU" = (
+/obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest1,
+/turf/closed/wall/r_wall/engineership/invincible,
+/area/lv759/oob)
 "mlY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -112258,7 +112265,7 @@
 "tgt" = (
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop,
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop,
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "tgu" = (
 /obj/structure/prop/urban/signs/high_voltage{
@@ -114073,7 +114080,7 @@
 /obj/structure/prop/urban/engineer/engineerpillar/smallsouthwest1{
 	dir = 1
 	},
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "twt" = (
 /turf/open/floor/prison/whitegreen,
@@ -123537,7 +123544,7 @@
 /turf/open/floor/wood,
 /area/lv759/indoors/hospital/cmo_office)
 "uZo" = (
-/turf/open/engineership/ship_hull,
+/turf/closed/mineral/smooth/engineerwall/indestructible,
 /area/lv759/indoors/derelict_ship)
 "uZq" = (
 /obj/structure/cable,
@@ -123936,7 +123943,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "vcE" = (
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "vcF" = (
 /obj/structure/bed/chair{
@@ -136136,7 +136143,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xdq" = (
 /obj/structure/prop/urban/engineer/engineerpillar/northwesttop,
-/turf/closed/wall/engineership,
+/turf/closed/wall/r_wall/engineership,
 /area/lv759/oob)
 "xds" = (
 /obj/effect/urban/decal/road/road_edge/three,
@@ -160994,9 +161001,9 @@ umH
 jHs
 vcE
 vcE
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -161197,9 +161204,9 @@ pmB
 jHs
 vcE
 vcE
-vcE
+dQM
 keo
-vcE
+dQM
 vcE
 vcE
 vcE
@@ -163403,7 +163410,7 @@ kgG
 xld
 jHs
 vcE
-vcE
+dQM
 vcE
 vcE
 vcE
@@ -163606,7 +163613,7 @@ mDf
 uNd
 jHs
 vcE
-vcE
+dQM
 keo
 vcE
 vcE
@@ -163809,7 +163816,7 @@ ril
 wDp
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 vcE
@@ -163818,8 +163825,8 @@ pnY
 vcE
 vcE
 keo
-vcE
-vcE
+dQM
+dQM
 xsf
 gnl
 aWQ
@@ -164012,7 +164019,7 @@ jmz
 xld
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 vcE
@@ -164215,7 +164222,7 @@ vcV
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 keo
@@ -164418,7 +164425,7 @@ kRv
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 keo
@@ -164621,7 +164628,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 keo
@@ -164824,7 +164831,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 keo
@@ -165027,7 +165034,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 keo
@@ -165230,7 +165237,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 keo
 vcE
@@ -165433,7 +165440,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 keo
 vcE
 tws
@@ -165636,7 +165643,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 vcE
 vcE
 fQM
@@ -165839,7 +165846,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 vcE
 hNH
 rQx
@@ -166042,7 +166049,7 @@ svA
 vzo
 djY
 vcE
-vcE
+dQM
 fvF
 rQx
 xOJ
@@ -166245,7 +166252,7 @@ aWQ
 uei
 hZc
 jHs
-vcE
+dQM
 rwp
 cny
 rni
@@ -166448,7 +166455,7 @@ aWQ
 aWQ
 vzo
 jHs
-vcE
+dQM
 rwp
 cny
 rni
@@ -166651,7 +166658,7 @@ aWQ
 aWQ
 vzo
 jHs
-vcE
+dQM
 rwp
 cny
 fsk
@@ -166854,7 +166861,7 @@ aWQ
 aWQ
 vzo
 jHs
-vcE
+dQM
 rwp
 cny
 rni
@@ -167057,7 +167064,7 @@ aWQ
 aWQ
 vzo
 jHs
-vcE
+dQM
 fvF
 erb
 wFj
@@ -167260,8 +167267,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 hNH
 erb
 wFj
@@ -167464,8 +167471,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 imu
 erb
 wFj
@@ -167668,7 +167675,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 vcE
 hNH
 erb
@@ -167871,9 +167878,9 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
 vcE
 gHh
 eBt
@@ -168076,7 +168083,7 @@ aWQ
 fvu
 jHs
 vcE
-vcE
+dQM
 vcE
 sTI
 tcF
@@ -168279,7 +168286,7 @@ aWQ
 vzo
 jHs
 vcE
-vcE
+dQM
 vcE
 sTI
 bTo
@@ -168482,7 +168489,7 @@ aWQ
 vzo
 djY
 vcE
-vcE
+dQM
 vcE
 sTI
 tcF
@@ -168685,7 +168692,7 @@ aWQ
 aWQ
 fvu
 djY
-vcE
+dQM
 vcE
 sTI
 cqS
@@ -169296,7 +169303,7 @@ gpA
 vjk
 svA
 kRv
-vcE
+dQM
 vcE
 wKW
 mDx
@@ -169499,7 +169506,7 @@ kgG
 wxj
 aWQ
 deK
-vcE
+dQM
 vcE
 vcE
 wKW
@@ -169702,8 +169709,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 nHx
@@ -169906,7 +169913,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 vcE
 vcE
 sTI
@@ -170109,7 +170116,7 @@ aWQ
 aWQ
 vzo
 jHs
-vcE
+dQM
 vcE
 vcE
 sTI
@@ -170312,8 +170319,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 hMX
 dkf
 nNR
@@ -170516,7 +170523,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 kaP
 mHI
 qrS
@@ -170719,8 +170726,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 hMX
 dkf
@@ -170923,8 +170930,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 kaP
 mHI
 wxD
@@ -171127,7 +171134,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 vcE
 vcE
 hMX
@@ -171143,7 +171150,7 @@ rTP
 mHI
 vcE
 vcE
-jUd
+mlU
 vcE
 xsf
 bDk
@@ -171330,8 +171337,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 kaP
 mHI
@@ -171346,8 +171353,8 @@ xeh
 sQn
 hMX
 sYa
-vcE
-vcE
+dQM
+dQM
 vcE
 xsf
 bDk
@@ -171534,7 +171541,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 vcE
 vcE
 vcE
@@ -171550,9 +171557,9 @@ hrH
 sZp
 mHI
 vcE
-vcE
-jUd
-vcE
+dQM
+mlU
+dQM
 xsf
 bDk
 xxz
@@ -171737,8 +171744,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 kaP
@@ -171755,7 +171762,7 @@ tVi
 ncF
 hXm
 vcE
-vcE
+dQM
 vcE
 pnY
 pnY
@@ -171941,8 +171948,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -171958,9 +171965,9 @@ hrH
 sZp
 lqM
 vcE
-vcE
-jUd
-vcE
+dQM
+mlU
+dQM
 vcE
 vcE
 pnY
@@ -172145,8 +172152,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 kaP
@@ -172163,9 +172170,9 @@ tVi
 hMX
 sYa
 vcE
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -172349,7 +172356,7 @@ aWQ
 aWQ
 fvu
 jHs
-vcE
+dQM
 vcE
 vcE
 vcE
@@ -172367,9 +172374,9 @@ sZp
 mHI
 vcE
 vcE
-jUd
-vcE
-vcE
+mlU
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -172552,8 +172559,8 @@ aWQ
 aWQ
 vzo
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -172572,9 +172579,9 @@ hMX
 sYa
 vcE
 vcE
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -172756,8 +172763,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 vcE
@@ -172777,9 +172784,9 @@ vcE
 vcE
 jUd
 vcE
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
 vcE
 vcE
 lwn
@@ -172960,8 +172967,8 @@ aWQ
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 vcE
 jTS
@@ -172982,8 +172989,8 @@ vcE
 vcE
 vcE
 vcE
-vcE
-vcE
+dQM
+dQM
 vcE
 lwn
 "}
@@ -173164,8 +173171,8 @@ xxz
 aWQ
 fvu
 djY
-vcE
-vcE
+dQM
+dQM
 vcE
 jTS
 jTS
@@ -173186,8 +173193,8 @@ vcE
 jUd
 vcE
 vcE
-vcE
-vcE
+dQM
+dQM
 lwn
 "}
 (149,1,1) = {"
@@ -173368,7 +173375,7 @@ xxz
 xxz
 mgb
 jHs
-vcE
+dQM
 vcE
 vcE
 vcE
@@ -173390,7 +173397,7 @@ vcE
 vcE
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (150,1,1) = {"
@@ -173571,7 +173578,7 @@ pnY
 pnY
 pnY
 vcE
-vcE
+dQM
 keo
 keo
 vcE
@@ -173593,7 +173600,7 @@ weq
 weq
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (151,1,1) = {"
@@ -173796,7 +173803,7 @@ iAI
 vyq
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (152,1,1) = {"
@@ -173999,7 +174006,7 @@ kkP
 vyq
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (153,1,1) = {"
@@ -174202,7 +174209,7 @@ aNO
 vcE
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (154,1,1) = {"
@@ -174405,7 +174412,7 @@ vcE
 vcE
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (155,1,1) = {"
@@ -174608,7 +174615,7 @@ vcE
 vcE
 vcE
 vcE
-vcE
+dQM
 lwn
 "}
 (156,1,1) = {"
@@ -174810,8 +174817,8 @@ vcE
 vcE
 vcE
 vcE
-vcE
-vcE
+dQM
+dQM
 lwn
 "}
 (157,1,1) = {"
@@ -175002,18 +175009,18 @@ vcE
 vcE
 keo
 keo
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
-vcE
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
+dQM
 vcE
 lwn
 "}
