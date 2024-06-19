@@ -40,7 +40,7 @@
 #define SS_NO_FIRE (1 << 1)
 
 /** subsystem only runs on spare cpu (after all non-background subsystems have ran that tick) */
-/// SS_BACKGROUND has its own priority bracket
+/// SS_BACKGROUND has its own priority bracket.
 #define SS_BACKGROUND (1 << 2)
 
 /** Treat wait as a tick count, not DS, run every wait ticks. */
