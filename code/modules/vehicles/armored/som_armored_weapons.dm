@@ -53,7 +53,7 @@
 				if(ismecha(obj_target))
 					obj_damage *= 3
 				obj_target.take_damage(obj_damage, BURN, beam_turf ? ENERGY : FIRE, FALSE, attack_dir, armor_pen, current_firer)
-				return
+				continue
 			if(isliving(target))
 				var/mob/living/living_target = target
 				if(beam_turf)
