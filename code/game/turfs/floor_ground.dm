@@ -164,6 +164,10 @@
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "mars_sand"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
 	name = "cave"
