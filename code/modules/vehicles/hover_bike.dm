@@ -1,10 +1,10 @@
 /obj/vehicle/ridden/hover_bike
 	name = "hover bike"
-	desc = "desc here"
+	desc = "A SOM light hovercraft. Used to swiftly carry up to 2 soldiers over the roughest of terrain, or light defences. Is typically armed with a pair of forwarded mounted weapons. Favoured for rapid assaults."
 	icon = 'icons/obj/vehicles/hover_bike.dmi'
 	icon_state = "hover_bike"
-	max_integrity = 300
-	soft_armor = list(MELEE = 35, BULLET = 45, LASER = 45, ENERGY = 60, BOMB = 50, FIRE = 75, ACID = 30)
+	max_integrity = 325
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 60, BOMB = 60, FIRE = 80, ACID = 40)
 	resistance_flags = XENO_DAMAGEABLE
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
@@ -20,6 +20,7 @@
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE, ATTACHMENT_SLOT_WEAPON)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/volkite, /obj/item/vehicle_module/mounted_gun/minigun)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike, /obj/item/vehicle_module/mounted_gun/volkite)
+	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/ridden/hover_bike/Initialize(mapload)
 	. = ..()
@@ -57,6 +58,15 @@
 	if(!is_driver(M))
 		return
 	add_control_flags(M, VEHICLE_CONTROL_EQUIPMENT)
+
+/obj/vehicle/ridden/hover_bike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(!LAZYLEN(buckled_mobs))
+		return
+
+	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+		COOLDOWN_START(src, enginesound_cooldown, 1.1 SECONDS)
+		playsound(get_turf(src), SFX_HOVER_TANK, 60, FALSE, 20)
 
 /obj/vehicle/ridden/hover_bike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
