@@ -73,7 +73,6 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), projectile_delay)
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
@@ -91,6 +90,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	current_firer = source
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), projectile_delay)
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
