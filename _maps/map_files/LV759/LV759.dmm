@@ -759,7 +759,7 @@
 	},
 /area/lv759/indoors/hospital/operation)
 "ahd" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 1;
 	pixel_y = 32
 	},
@@ -2405,7 +2405,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -4526,7 +4526,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "aOo" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	pixel_x = -16;
 	pixel_y = 34
 	},
@@ -7165,7 +7165,7 @@
 	layer = 5
 	},
 /obj/effect/urban/decal/dirt_2,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 5;
 	pixel_y = 34
 	},
@@ -9827,7 +9827,7 @@
 /turf/open/floor/urban/tile/tilegrey,
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "bJY" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -11149,7 +11149,7 @@
 /obj/structure/barricade/handrail/strata{
 	layer = 3.1
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -11365,7 +11365,7 @@
 	},
 /area/lv759/indoors/power_plant/south_hallway)
 "bXm" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -12282,7 +12282,7 @@
 	},
 /area/lv759/indoors/mining_outpost/northeast)
 "ceN" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 8;
 	pixel_y = 32
 	},
@@ -12611,7 +12611,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	layer = 8;
 	level = 8;
 	pixel_x = -8;
@@ -13363,7 +13363,7 @@
 /area/lv759/indoors/caves/north_caves)
 "coR" = (
 /obj/item/clothing/head/warning_cone,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk{
@@ -14353,7 +14353,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "cxo" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	layer = 8;
 	level = 8;
 	pixel_y = 20
@@ -15997,7 +15997,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "cMC" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 4;
 	pixel_y = 34
 	},
@@ -22407,7 +22407,7 @@
 	},
 /area/lv759/indoors/apartment/eastentrance)
 "dRn" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 1;
 	pixel_y = 32
 	},
@@ -23916,7 +23916,7 @@
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "eeQ" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 9;
 	pixel_y = 34
 	},
@@ -28632,7 +28632,7 @@
 /area/lv759/indoors/nt_research_complex/reception)
 "eUO" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -29175,7 +29175,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -46182,7 +46182,7 @@
 /area/lv759/indoors/caves/north_caves)
 "hRD" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 9;
 	pixel_y = 34
 	},
@@ -48254,7 +48254,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/north_east_caves)
 "ikL" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -49170,7 +49170,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/oob)
 "isM" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -50191,7 +50191,7 @@
 	},
 /area/lv759/indoors/spaceport/flight_control_room)
 "iCj" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 4;
 	pixel_x = -12;
 	pixel_y = 34
@@ -51259,7 +51259,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/garage_restroom)
 "iMC" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -56508,7 +56508,7 @@
 "jFh" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 4;
 	layer = 8;
 	level = 8;
@@ -63397,7 +63397,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -66179,7 +66179,7 @@
 /turf/open/floor/plate,
 /area/lv759/indoors/meridian/meridian_factory)
 "lpI" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -71501,7 +71501,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 5;
 	layer = 8;
 	level = 8;
@@ -75944,7 +75944,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mWM" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 6;
 	layer = 8;
 	level = 8;
@@ -78231,7 +78231,7 @@
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/prisoners_foyer)
 "noY" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	pixel_y = 34
 	},
 /turf/open/urban/street/sidewalk,
@@ -82381,7 +82381,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "nZC" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 4;
 	pixel_y = 34
 	},
@@ -82823,7 +82823,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "odY" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -88390,7 +88390,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "pek" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 1;
 	layer = 8;
 	level = 8;
@@ -94761,7 +94761,7 @@
 /obj/structure/bed/chair{
 	pixel_y = 13
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -109191,7 +109191,7 @@
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -109958,7 +109958,7 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "sMz" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -110959,7 +110959,7 @@
 /turf/open/floor/urban/carpet/carpetgreen,
 /area/lv759/indoors/apartment/eastbedrooms)
 "sVs" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -113101,7 +113101,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 5;
 	layer = 8;
 	level = 8;
@@ -115885,7 +115885,7 @@
 	},
 /area/lv759/indoors/weyyu_office)
 "tMv" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	pixel_y = 34
 	},
 /obj/effect/landmark/xeno_resin_wall,
@@ -123207,7 +123207,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/north_east_caves)
 "uWf" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 5;
 	pixel_y = 34
 	},
@@ -124608,7 +124608,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "vhF" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 1;
 	pixel_y = 34
 	},
@@ -126988,7 +126988,7 @@
 	pixel_x = -21;
 	pixel_y = 3
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2{
 	dir = 8;
 	pixel_y = 34
 	},
@@ -128412,7 +128412,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "vOL" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 4;
 	pixel_y = 32
 	},
@@ -132096,7 +132096,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -132868,7 +132868,7 @@
 /turf/open/floor/urban/carpet/carpetreddeco,
 /area/lv759/indoors/casino)
 "wBy" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 9;
 	layer = 8;
 	level = 8;
@@ -133605,7 +133605,7 @@
 /obj/structure/prop/urban/lattice_prop/lattice_6{
 	pixel_y = 16
 	},
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 10;
 	layer = 8;
 	level = 8;
@@ -134227,7 +134227,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_showroom)
 "wMn" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 6;
 	pixel_y = 34
 	},
@@ -138026,7 +138026,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "xtD" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -140564,7 +140564,7 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "xPK" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3{
 	dir = 8;
 	layer = 8;
 	level = 8;
@@ -142813,7 +142813,7 @@
 	},
 /area/lv759/indoors/caves/north_west_caves)
 "yjR" = (
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1{
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	dir = 10;
 	pixel_y = 34
 	},

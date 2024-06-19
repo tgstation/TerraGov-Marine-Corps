@@ -2414,35 +2414,24 @@
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard_bigger"
-	set_bound_width = 64
-	set_bound_height = 32
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
 
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard1
-	name = "billboard"
-	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1
 	icon_state = "billboard1"
 
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard2
-	name = "billboard"
-	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard2
 	icon_state = "billboard2"
 
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard3
-	name = "billboard"
-	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard3
 	icon_state = "billboard3"
 
-/obj/structure/prop/urban/billboardsandsigns/billboardsmedium/billboard4
-	name = "billboard"
-	desc = "A advertisement billboard."
-	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4
 	icon_state = "billboard4"
+
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard5
+	icon_state = "billboard5"
 
 // Big Road Signs
 /obj/structure/prop/urban/billboardsandsigns/bigroadsigns
