@@ -178,8 +178,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aN" = (
-/obj/structure/bed/chair/dropship/doublewide/right/bravo,
-/obj/structure/bed/chair/dropship/doublewide/left/alpha,
+/obj/machinery/vending/marineFood,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 8
 	},
@@ -236,7 +235,6 @@
 /obj/machinery/camera/autoname/mainship/dropship_one{
 	pixel_y = 32
 	},
-/obj/machinery/vending/marineFood,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "ba" = (
@@ -334,11 +332,10 @@
 /turf/closed/shuttle/dropship1/edge/alt,
 /area/shuttle/dropship/alamo)
 "bD" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/engivend,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -556,8 +553,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "og" = (
-/obj/structure/bed/chair/dropship/doublewide/right/delta,
-/obj/structure/bed/chair/dropship/doublewide/left/charlie,
+/obj/machinery/vending/tool,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 4
 	},
@@ -584,6 +580,11 @@
 /area/shuttle/dropship/alamo)
 "sk" = (
 /turf/open/shuttle/dropship/thirtyseven,
+/area/shuttle/dropship/alamo)
+"sD" = (
+/obj/structure/bed/chair/dropship/doublewide/right/delta,
+/obj/structure/bed/chair/dropship/doublewide/left/charlie,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "sQ" = (
 /obj/machinery/light{
@@ -622,6 +623,13 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"CH" = (
+/obj/structure/bed/chair/dropship/doublewide/left/alpha,
+/obj/structure/bed/chair/dropship/doublewide/right/bravo,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "Dp" = (
@@ -789,7 +797,7 @@ aB
 aZ
 aN
 aK
-jI
+CH
 aI
 aI
 me
@@ -837,7 +845,7 @@ og
 aK
 rm
 DK
-aI
+sD
 me
 DE
 aS

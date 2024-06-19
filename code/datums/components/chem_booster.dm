@@ -67,7 +67,7 @@
 	///Vali stamina regen is multiplied by this
 	var/stamina_regen_amp = 1.5
 	///Vali movement speed buff is this value
-	var/movement_boost = 2
+	var/movement_boost = -0.5
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
 
