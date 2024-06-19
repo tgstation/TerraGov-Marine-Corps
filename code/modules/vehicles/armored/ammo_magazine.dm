@@ -19,6 +19,7 @@
 	name = "LTB HE+ shell (105mm)"
 	desc = "A 105mm high explosive shell filled with an incredibly explosive payload."
 	default_ammo = /datum/ammo/rocket/ltb/heavy
+	magazine_flags = MAGAZINE_NOT_FABRICABLE
 
 /obj/item/ammo_magazine/tank/ltb_cannon/apfds
 	name = "LTB APFDS round (105mm)"
