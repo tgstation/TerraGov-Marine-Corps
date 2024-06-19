@@ -143,3 +143,6 @@
   SomrNetwork:
   - rscadd: USL and ICC playables
   - bugfix: Faction code
+2024-06-19:
+  SomrNetwork:
+  - rscadd: old sprite module and SoM armor
