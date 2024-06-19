@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - code_imp: "Changed vehicle_damage_mult in crusher charge ability to obj_damage_mult"
