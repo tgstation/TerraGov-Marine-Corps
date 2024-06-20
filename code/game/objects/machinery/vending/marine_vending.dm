@@ -1557,6 +1557,10 @@
 			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
 			/obj/item/ammo_magazine/tank/ltaap_chaingun = -1,
 			/obj/item/ammo_magazine/tank/secondary_cupola = -1,
+			/obj/item/tank_module/overdrive = -1,
+			/obj/item/tank_module/ability/zoom = -1,
+			/obj/item/tank_module/ability/smoke_launcher = -1,
+			/obj/item/tank_module/interior/medical = -1,
 		),
 	)
 
