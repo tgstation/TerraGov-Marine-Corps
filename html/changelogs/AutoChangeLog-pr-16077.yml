@@ -1,0 +1,6 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Xeno Ranks: Preference to toggle them on and off"
+  - bugfix: "Clientless xenos no longer have ranks"
+  - bugfix: "Xeno rank HUD no longer persists after death"
