@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added the overdrive, zoom, smoke launcher, and medical vehicle modules to the req vendor."
