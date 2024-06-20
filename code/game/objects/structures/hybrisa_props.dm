@@ -838,6 +838,10 @@
 	desc = "Seems to be broken down."
 	icon_state = "marshalls2"
 
+/obj/structure/prop/urban/vehicles/suv/misc/marshalls2/Initialize(mapload)
+	. = ..()
+	overlays.cut
+
 /obj/structure/prop/urban/vehicles/suv/misc/expensive
 	name = "Expensive looking SUV"
 	desc = "Seems to be broken down."
