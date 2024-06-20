@@ -295,7 +295,7 @@
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
-	SEND_SOUND(src, sound('sound/misc/bloop.ogg'))
+	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -315,7 +315,7 @@
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
-	SEND_SOUND(src, sound('sound/misc/bloop.ogg'))
+	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 
 /datum/admins/proc/sound_file(S as sound)
