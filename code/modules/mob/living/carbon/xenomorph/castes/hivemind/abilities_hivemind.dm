@@ -71,6 +71,29 @@
 		return FALSE
 	return ..()
 
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_after(owner, 1 SECONDS, do_after_flags, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(!can_use_ability(target, TRUE))
+		return FALSE
+	// Slight changes to favor to differentiate from Shrike's heal.
+	owner.visible_message(span_xenowarning("A faint psychic aura is suddenly emitted from \the [owner]!"), \
+	span_xenowarning("We cure [target] with the power of our mind!"))
+	target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
+	span_xenowarning("We feel a soothing chill."))
+	playsound(target, SFX_ALIEN_DROOL, 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
+
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
