@@ -1789,6 +1789,7 @@
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "planter_box_empty"
 	layer = BELOW_OBJ_LAYER
+	density = FALSE
 
 /obj/structure/prop/mainship/gelida/planterboxsoil
 	name = "plant box"

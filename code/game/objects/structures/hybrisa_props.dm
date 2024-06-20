@@ -1526,18 +1526,21 @@
 	desc = "A metal grate."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate1"
+	layer = LATTICE_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/grate2
 	name = "solid metal grate"
 	desc = "A metal grate."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "solidgrate5"
+	layer = LATTICE_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/grate3
 	name = "solid metal grate"
 	desc = "A metal grate."
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	icon_state = "zhalfgrate1"
+	layer = LATTICE_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/floorglass
 	name = "reinforced glass floor"
@@ -1885,6 +1888,7 @@
 /obj/structure/prop/urban/misc/fake/wire
 	name = "power cable"
 	desc = "A small gauge wire for conducting electricity."
+	layer = UNDER_TURF_LAYER
 
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
