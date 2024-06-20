@@ -512,7 +512,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 300
 	penetration = 75
-	shell_speed = 5
+	shell_speed = 4
 	accurate_range = 24
 	max_range = 30
 	on_pierce_multiplier = 0.85
@@ -530,8 +530,8 @@
 	if(!isvehicle(target_object) && !ishitbox(target_object))
 		proj.proj_max_range -= 5
 		return
-	proj.proj_max_range -= 30 //we don't penetrate past a vehicle
-	damage *= 2.2
+	proj.proj_max_range = 0 //we don't penetrate past a vehicle
+	proj.damage *= 2.2
 
 /datum/ammo/rocket/homing
 	name = "homing HE rocket"
