@@ -44,6 +44,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/syndicatefoyer)
+"at" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
+"av" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "aw" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/groundhq/som/command/telecomms)
@@ -51,6 +58,10 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"aD" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "aE" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_barracks{
@@ -77,9 +88,25 @@
 	outside = 0;
 	ceiling = 6
 	})
+"aL" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "aM" = (
 /turf/closed/shuttle/dropship_dark/top_corner,
 /area/shuttle/transport)
+"aN" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"aP" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "aU" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/squads/req)
@@ -105,12 +132,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
 "bb" = (
-/obj/effect/landmark/start/job/som/icc_medic,
-/turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
 "bd" = (
 /turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
@@ -166,6 +189,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"br" = (
+/obj/structure/prop/mainship/prop_iccinf/guard/armed,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "bv" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
@@ -225,6 +252,10 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"bK" = (
+/obj/effect/spawner/random/engineering/glass,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "bO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -304,6 +335,16 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"cp" = (
+/obj/structure/prop/mainship/prop_iccinf{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"cq" = (
+/obj/effect/landmark/start/job/som/icc,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "cr" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/personal/morgue,
@@ -321,11 +362,19 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"cw" = (
+/obj/structure/largecrate/guns/russian,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "cy" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"cD" = (
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "cE" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -344,6 +393,22 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"cI" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"cJ" = (
+/obj/structure/prop/vehicle/apc/decoration{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
+"cL" = (
+/obj/structure/prop/vehicle/crawler,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
 "cN" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship,
@@ -351,6 +416,12 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"cP" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "cR" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/bcircuit/anim,
@@ -371,6 +442,15 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"cZ" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "da" = (
 /obj/structure/largecrate/supply/explosives/disposable,
 /turf/open/floor/grayscale/round/black,
@@ -438,6 +518,11 @@
 	dir = 4
 	},
 /area/shuttle/transport)
+"dE" = (
+/obj/structure/table/mainship,
+/obj/item/storage/backpack/lightpack/icc,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "dF" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin,
@@ -452,6 +537,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"dH" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "dJ" = (
 /obj/effect/landmark/start/job/clf/specialist,
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_cw,
@@ -486,6 +575,13 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"dW" = (
+/obj/machinery/vending/MarineMed/Blood,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "dX" = (
 /obj/structure/table/black,
 /obj/item/storage/box/crate/loot/materials_pack,
@@ -499,6 +595,10 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"eh" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "ej" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -517,6 +617,14 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"el" = (
+/obj/structure/sign/prop3,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "en" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/som/squads/req{
@@ -536,6 +644,18 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"es" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"ew" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "ex" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/usl_leader,
@@ -597,6 +717,10 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"eK" = (
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "eL" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /turf/open/floor/mainship/black/full,
@@ -675,6 +799,9 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"ff" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "fh" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
@@ -701,6 +828,10 @@
 	outside = 0;
 	ceiling = 6
 	})
+"fv" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "fw" = (
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/plating/plating_catwalk,
@@ -745,6 +876,12 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"fI" = (
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "fR" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -800,7 +937,9 @@
 "gh" = (
 /obj/effect/turf_decal/tile/transparent/dark_green,
 /obj/item/bedsheet/medical,
-/obj/structure/bed,
+/obj/structure/bed{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
 "gk" = (
@@ -832,6 +971,10 @@
 /obj/effect/landmark/start/job/vsd_engineer,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"gy" = (
+/obj/machinery/bioprinter/stocked,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "gz" = (
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/structure/mirror,
@@ -933,6 +1076,11 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"gV" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/engineering/shovel,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "gW" = (
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
@@ -1083,6 +1231,13 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"hR" = (
+/obj/structure/table/mainship,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "hS" = (
 /obj/structure/paper_bin,
 /obj/structure/table/reinforced/prison,
@@ -1117,6 +1272,10 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"ik" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "il" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -1133,6 +1292,10 @@
 /obj/effect/landmark/start/job/vsd_medic,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"io" = (
+/obj/structure/prop/mainship/invincibleshutter,
+/turf/open/floor/plating/ground/concrete,
+/area/space)
 "ip" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/bed/chair/sofa/left{
@@ -1142,6 +1305,10 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"iq" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "iu" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1160,6 +1327,14 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/clf/squads/req)
+"ix" = (
+/obj/machinery/cic_maptable/droppod_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"iy" = (
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "iA" = (
 /obj/effect/landmark/resin_jelly_pod,
 /turf/open/floor/plating/ground/dirt,
@@ -1205,6 +1380,11 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"iJ" = (
+/obj/item/storage/toolbox,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "iL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -1214,6 +1394,11 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"iN" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "iO" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -1230,6 +1415,11 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"iS" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "iU" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -1245,7 +1435,9 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
 "iY" = (
-/obj/structure/bed,
+/obj/structure/bed{
+	dir = 8
+	},
 /obj/item/bedsheet/hos,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -1335,6 +1527,17 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
+"jw" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "jz" = (
 /obj/effect/landmark/corpsespawner/syndicatecommando/regular,
 /turf/open/space/basic,
@@ -1405,6 +1608,9 @@
 /obj/item/clothing/suit/space/syndicate/black,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
+"jO" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "jP" = (
 /obj/machinery/cic_maptable/drawable/big/som,
 /turf/open/floor/mainship/red/full,
@@ -1422,6 +1628,23 @@
 /area/canora_desert/surface/building/som_barracks{
 	outside = 0
 	})
+"jW" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"jX" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/effect/teleporter_linker,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"jY" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "jZ" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -1478,6 +1701,9 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"kn" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "ko" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -1498,6 +1724,17 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"kr" = (
+/obj/structure/table/mainship,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "ks" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /obj/machinery/light/mainship{
@@ -1532,6 +1769,16 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"kB" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
+"kC" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "kE" = (
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
@@ -1542,6 +1789,10 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"kI" = (
+/obj/effect/landmark/start/job/som/icc_leader,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "kJ" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -1557,6 +1808,12 @@
 /obj/machinery/door/airlock/external,
 /turf/open/space/basic,
 /area/space)
+"kP" = (
+/obj/structure/stairs/seamless/platform_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "kR" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_1";
@@ -1591,6 +1848,10 @@
 "kZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"la" = (
+/obj/structure/sign/nosmoking_2,
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/space)
 "lb" = (
 /obj/effect/landmark/start/job/clf/medic,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -1650,17 +1911,19 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"ln" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "lq" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/space/basic,
 /area/riptide/inside/syndicatefoyer)
 "lr" = (
-/obj/effect/landmark/start/job/som/icc_leader,
-/turf/open/floor/mainship/orange/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "ls" = (
 /turf/open/floor/wood,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -1757,6 +2020,14 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"lO" = (
+/obj/machinery/power/geothermal/reinforced,
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "lP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1792,6 +2063,12 @@
 /obj/item/storage/box/visual/grenade,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"lX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "lY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/black/full,
@@ -1903,6 +2180,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"mB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "mC" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
@@ -1967,6 +2248,20 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"mO" = (
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/obj/item/weapon/gun/rifle/icc_assaultcarbine,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"mP" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/cell_charger,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "mS" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -2042,6 +2337,9 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"nh" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "ni" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grayscale/edge/black{
@@ -2176,6 +2474,18 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"nJ" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
+"nK" = (
+/obj/structure/stairs/seamless/platform_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "nL" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/groundhq/som/medical/lounge{
@@ -2223,6 +2533,11 @@
 	dir = 1
 	},
 /area/space)
+"ob" = (
+/obj/structure/table/mainship,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "od" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner,
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
@@ -2234,7 +2549,9 @@
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
 "oe" = (
-/obj/structure/bed/fancy,
+/obj/structure/bed/fancy{
+	dir = 8
+	},
 /obj/item/bedsheet/brown,
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/wood/fancy,
@@ -2242,6 +2559,11 @@
 "og" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"om" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/riptide/inside/syndicategen)
 "on" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/grayscale/round/black,
@@ -2296,6 +2618,15 @@
 /obj/structure/prop/mainship/juggernaut,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatehead)
+"oE" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
+"oF" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/crate/loot/materials_pack,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "oL" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 1
@@ -2359,6 +2690,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"ph" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "pj" = (
 /obj/machinery/griddle,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -2384,6 +2719,14 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"po" = (
+/obj/structure/bed/chair/sofa/left,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/prop/mainship/prop_iccinf,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "pp" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/space)
@@ -2450,6 +2793,13 @@
 /obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
+"pD" = (
+/obj/structure/prop/mainship/mapping_computer,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "pE" = (
 /obj/alien/weeds/node/resting,
 /obj/structure/table/woodentable,
@@ -2486,6 +2836,10 @@
 	dir = 5
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"pM" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "pO" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -2520,6 +2874,11 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"pW" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "pX" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -2530,6 +2889,10 @@
 /obj/item/disk/nuclear,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatehead)
+"qa" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "qb" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/mainship{
@@ -2577,6 +2940,12 @@
 "qo" = (
 /turf/closed/wall,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"qr" = (
+/obj/structure/prop/mainship/prop_iccinf/guard{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "qs" = (
 /obj/effect/turf_decal/syndicateemblem/top/right,
 /obj/machinery/light/mainship{
@@ -2594,7 +2963,6 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/som/icc_guard,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -2625,6 +2993,14 @@
 /obj/structure/flora/pottedplant,
 /turf/open/floor/grayscale/edge/black,
 /area/riptide/inside/syndicatefoyer)
+"qF" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/largecrate/random,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "qG" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -2638,6 +3014,14 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"qK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "qM" = (
 /turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/transport)
@@ -2667,6 +3051,10 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"qY" = (
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "qZ" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 8
@@ -2677,6 +3065,9 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"ra" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "rf" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 1
@@ -2685,6 +3076,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"rh" = (
+/obj/effect/landmark/start/job/som/icc_leader,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "rl" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/table/reinforced/prison,
@@ -2706,6 +3101,12 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"rs" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "rv" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
@@ -2733,6 +3134,9 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"rE" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "rF" = (
 /obj/effect/landmark/start/job/clf/medic,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -2754,11 +3158,21 @@
 /obj/structure/toilet,
 /turf/open/floor/iron/white/textured,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"rK" = (
+/obj/structure/prop/mainship/prop_iccinf/armed,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "rL" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"rQ" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "rR" = (
 /obj/item/folder/black_random,
 /obj/item/tool/hand_labeler,
@@ -2837,6 +3251,10 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/command/cic)
+"rZ" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/turf/open/space/basic,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "sd" = (
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
@@ -2864,6 +3282,21 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
+"si" = (
+/obj/effect/spawner/random/engineering/assemblies,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
+"sj" = (
+/obj/machinery/vending/weapon/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"sk" = (
+/obj/structure/prop/mainship/prop_so/icc_two{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "sl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2885,6 +3318,12 @@
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"sr" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
 "sw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2918,6 +3357,11 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"sN" = (
+/obj/machinery/power/geothermal/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "sQ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -3079,6 +3523,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
 /turf/open/floor/wood/fancy,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "tO" = (
@@ -3241,6 +3688,10 @@
 "uB" = (
 /turf/open/shuttle/dropship/four,
 /area/shuttle/transport)
+"uE" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "uH" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
@@ -3392,6 +3843,14 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"vu" = (
+/obj/structure/sign/prop2,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "vv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3419,6 +3878,9 @@
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/command/cic)
+"vC" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "vE" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
@@ -3433,6 +3895,15 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"vG" = (
+/obj/machinery/optable,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/anesthetic,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "vJ" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/latejoinmoff,
@@ -3491,7 +3962,6 @@
 	})
 "wa" = (
 /obj/structure/platform_decoration,
-/obj/effect/landmark/start/job/som/icc,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3534,6 +4004,12 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"wi" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/tool/pen,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "wl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -3553,7 +4029,6 @@
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "wn" = (
 /obj/structure/platform,
-/obj/effect/landmark/start/job/som/icc_guard,
 /turf/open/floor/mainship/red/full,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -3681,12 +4156,22 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"wV" = (
+/obj/structure/table/mainship,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "wX" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/start/latejoinclf,
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"wZ" = (
+/obj/machinery/floodlight/outpost/oscar,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "xa" = (
 /obj/effect/landmark/start/job/clf/leader,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -3695,6 +4180,10 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"xc" = (
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "xe" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/grayscale/round/black,
@@ -3708,6 +4197,11 @@
 /obj/item/paper/arachneresearch1,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatehead)
+"xm" = (
+/obj/structure/stairs/seamless,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "xn" = (
 /obj/machinery/vending/uniform_supply/vsd,
 /turf/open/floor/prison/blackfloor,
@@ -3727,6 +4221,13 @@
 /obj/item/tool/soap/syndie,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"xt" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/structure/patrol_point/som_24,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "xu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -3787,6 +4288,14 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"xE" = (
+/obj/machinery/cic_maptable/drawable/big,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"xH" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "xJ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -3800,6 +4309,9 @@
 /obj/effect/landmark/start/job/pmc_medic,
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
+"xM" = (
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
 "xN" = (
 /obj/machinery/iv_drip,
 /obj/machinery/light/mainship{
@@ -3827,16 +4339,40 @@
 "xT" = (
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/shuttle/transport)
+"xU" = (
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "xV" = (
-/obj/machinery/bodyscanner,
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"xW" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "xX" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"xY" = (
+/obj/structure/prop/mainship/prop_so/icc_three{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "ya" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -3870,6 +4406,12 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"yh" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "yj" = (
 /obj/structure/cable,
 /obj/structure/mecha_wreckage/mauler,
@@ -3884,6 +4426,12 @@
 	dir = 8
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"yv" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "yw" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -3893,14 +4441,18 @@
 	outside = 0
 	})
 "yy" = (
-/obj/structure/prop/mainship/prop_sec,
 /obj/structure/cable,
+/obj/structure/prop/mainship/prop_sec,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "yA" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"yB" = (
+/obj/machinery/vending/armor_supply/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "yF" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
@@ -3911,6 +4463,9 @@
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"yI" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "yK" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/command{
@@ -3928,6 +4483,12 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"yP" = (
+/obj/structure/prop/vehicle/big_truck{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
 "yU" = (
 /obj/machinery/power/smes/preset,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -3940,8 +4501,12 @@
 "yZ" = (
 /obj/structure/table/black,
 /obj/item/tool/weldingtool/experimental,
+/obj/machinery/cell_charger,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"zb" = (
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/space)
 "zc" = (
 /obj/structure/prop/mainship/prop_sec,
 /turf/open/floor/mainship/sterile/plain,
@@ -3984,6 +4549,18 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"zq" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
+"zr" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "zs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/oil,
@@ -3994,6 +4571,12 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"zt" = (
+/obj/structure/prop/mainship/prop_iccinf/guard{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "zx" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -4085,6 +4668,15 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"Al" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "An" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -4101,6 +4693,11 @@
 "Ar" = (
 /turf/closed/shuttle/dropship_dark/interior_wall,
 /area/shuttle/transport)
+"As" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "Av" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -4179,6 +4776,10 @@
 /obj/effect/landmark/start/job/usl_spec,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"AP" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "AV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4242,6 +4843,14 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"Bo" = (
+/obj/machinery/vending/uniform_supply/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"Bp" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Br" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
@@ -4387,6 +4996,11 @@
 /obj/item/clothing/head/helmet/space/syndicate/black,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"Cc" = (
+/obj/structure/benchpress,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Cd" = (
 /obj/structure/punching_bag,
 /obj/effect/turf_decal/box/white,
@@ -4432,6 +5046,11 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"Cp" = (
+/obj/structure/cable,
+/obj/structure/prop/mainship/prop_iccinf/armed,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Cq" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/bcircuit/anim,
@@ -4498,6 +5117,11 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"Cy" = (
+/obj/structure/cable,
+/obj/structure/prop/mainship/prop_iccinf,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "CA" = (
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/plating_catwalk,
@@ -4667,6 +5291,9 @@
 /obj/effect/turf_decal/syndicateemblem/bottom/right,
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/syndicatefoyer)
+"Dp" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/space)
 "Dq" = (
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
@@ -4921,6 +5548,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"ES" = (
+/obj/structure/prop/mainship/prop_iccinf/guard/armed,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "ET" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -4928,6 +5559,11 @@
 /obj/effect/landmark/start/job/usl,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
+"EW" = (
+/obj/structure/sign/prop3,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "EX" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4977,6 +5613,21 @@
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"Fn" = (
+/obj/structure/prop/vehicle/apc{
+	dir = 8
+	},
+/obj/structure/prop/vehicle/apc/wheelszero{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
+"Fo" = (
+/obj/structure/prop/mainship/prop_iccinf{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Fs" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -5073,6 +5724,12 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"FM" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "FN" = (
 /turf/closed/shuttle/dropship_dark/backhatch{
 	dir = 1
@@ -5080,13 +5737,14 @@
 /area/shuttle/transport)
 "FS" = (
 /obj/machinery/power/apc/mainship,
-/obj/structure/table/black,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
 /obj/machinery/power/terminal{
 	dir = 1
 	},
+/obj/structure/cable,
+/obj/structure/table/black,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
 "FT" = (
@@ -5097,6 +5755,10 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"FU" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "FY" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -5113,6 +5775,10 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Gf" = (
+/obj/effect/spawner/random/engineering/computercircuit,
+/turf/open/floor/plating/plating_catwalk,
+/area/oscar_outpost/outside/road)
 "Gj" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/riptide/inside/syndicatehead)
@@ -5216,6 +5882,12 @@
 "GN" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"GP" = (
+/obj/structure/prop/mainship/prop_iccinf/guard/armed{
+	icon_state = "ICC_guard_specialist_armed"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "GQ" = (
 /obj/structure/table/black,
 /obj/item/explosive/grenade/phosphorus/upp,
@@ -5241,6 +5913,10 @@
 /obj/item/clothing/suit/space/syndicate,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
+"GU" = (
+/obj/machinery/computer,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "GV" = (
 /turf/closed/shuttle/dropship_dark/top_corner/alt,
 /area/shuttle/transport)
@@ -5380,6 +6056,13 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"HS" = (
+/obj/structure/prop/mainship/prop_sec{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "HW" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/mono,
@@ -5437,6 +6120,13 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"Im" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "In" = (
 /turf/open/floor/mainship/sterile/white,
 /area/canora_desert/surface/building/som_restrooms{
@@ -5522,6 +6212,11 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"IF" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/rifle/icc_mg,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "II" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -5624,6 +6319,16 @@
 	dir = 10
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Jd" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "Je" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -5643,6 +6348,15 @@
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"Jh" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
+"Ji" = (
+/obj/structure/prop/mainship/prop_iccinf{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "Jk" = (
 /obj/machinery/shower{
 	dir = 4
@@ -5673,6 +6387,10 @@
 	name = "SOM South Maintenance";
 	outside = 0
 	})
+"Jq" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "Jr" = (
 /obj/structure/table/mainship,
 /turf/open/floor/plating/plating_catwalk,
@@ -5680,6 +6398,17 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"Jt" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"Jv" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "JA" = (
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
@@ -5729,6 +6458,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"JP" = (
+/obj/effect/landmark/start/job/som/icc_medic,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "JQ" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc,
@@ -5757,6 +6490,15 @@
 /obj/effect/landmark/start/job/synthetic/clf,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"JZ" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
+"Ka" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "Kc" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
@@ -5794,6 +6536,15 @@
 "Kr" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Kt" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"Kx" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "Ky" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
@@ -5823,7 +6574,9 @@
 	ceiling = 6
 	})
 "KH" = (
-/obj/structure/bed,
+/obj/structure/bed{
+	dir = 8
+	},
 /obj/item/bedsheet/medical,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
@@ -5926,6 +6679,16 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Ln" = (
+/obj/machinery/prop/computer/crew,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"Lq" = (
+/obj/machinery/computer/body_scanconsole{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Lr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5937,6 +6700,13 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"Ls" = (
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Lv" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
@@ -6008,6 +6778,10 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"LO" = (
+/obj/structure/patrol_point/som_24,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "LP" = (
 /obj/machinery/power/apc/mainship,
 /obj/machinery/power/terminal{
@@ -6083,9 +6857,19 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"Mk" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "Ml" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"Mm" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp/green,
+/obj/item/newspaper,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "Mq" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/mono,
@@ -6161,6 +6945,14 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"MM" = (
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "MO" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/black/full,
@@ -6177,6 +6969,10 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"MV" = (
+/obj/machinery/vending/medical/shipside,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "MX" = (
 /obj/machinery/vending/som/armor_supply,
 /turf/open/floor/mainship/mono,
@@ -6262,6 +7058,10 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"No" = (
+/obj/structure/prop/mainship/prop_iccinf/guard_specialist,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Nq" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -6317,6 +7117,15 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"Nx" = (
+/obj/structure/largecrate/supply/ammo/shotgun,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"NB" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/shoes/marine/icc/guard/knife,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "ND" = (
 /obj/structure/platform,
 /obj/structure/platform{
@@ -6370,7 +7179,9 @@
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
 "NQ" = (
-/obj/structure/bed/chair/sofa/right,
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "NR" = (
@@ -6384,7 +7195,9 @@
 	name = "SOM Medbay"
 	})
 "NV" = (
-/obj/structure/bed/chair/sofa/right,
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
@@ -6522,6 +7335,15 @@
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
+"OA" = (
+/obj/structure/prop/mainship/prop_tech,
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "OG" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/office,
@@ -6589,6 +7411,11 @@
 /obj/structure/cable,
 /turf/open/floor/wood/fancy,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"Pd" = (
+/obj/structure/table/mainship,
+/obj/item/storage/pouch/tools/icc/full,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Pf" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/mainship/sterile/plain,
@@ -6602,10 +7429,23 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Ph" = (
+/obj/machinery/vending/MarineMed,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "Pi" = (
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"Pj" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/lower_engineering)
 "Pk" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -6647,6 +7487,11 @@
 /obj/effect/turf_decal/stripes/asteroid/box,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"Py" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/gloves/marine/icc/insulated,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Pz" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -6658,6 +7503,10 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"PB" = (
+/obj/structure/largecrate/supply/explosives/grenades,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "PD" = (
 /obj/effect/landmark/start/job/som,
 /obj/effect/landmark/start/job/som,
@@ -6767,6 +7616,10 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Qh" = (
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "Qi" = (
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/mono,
@@ -6798,6 +7651,15 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"Qr" = (
+/obj/structure/table/mainship,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/item/weapon/gun/rifle/icc_autoshotgun,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Qs" = (
 /obj/item/cell,
 /obj/item/cell,
@@ -6824,11 +7686,12 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
+"QC" = (
+/obj/effect/landmark/start/job/som/icc_guard,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "QD" = (
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "QE" = (
@@ -6847,6 +7710,11 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"QJ" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "QK" = (
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
@@ -6974,6 +7842,24 @@
 /obj/item/clothing/head/helmet/space/rig/syndi,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
+"Rq" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"Rr" = (
+/obj/machinery/vending/tool,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"Rs" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
 "Rv" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -7020,6 +7906,12 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"RE" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
 "RG" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -7120,6 +8012,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"RZ" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/vending/uniform_supply/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Sa" = (
 /obj/docking_port/stationary/supplysom,
 /turf/open/floor/mainship/empty,
@@ -7162,13 +8061,20 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
+"Sl" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/rifle/icc_sharpshooter,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "So" = (
 /obj/item/bedsheet/hos,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/prisonersom,
-/obj/structure/bed,
+/obj/structure/bed{
+	dir = 8
+	},
 /turf/open/floor/prison/darkyellow/full,
 /area/canora_desert/surface/building/som_prison{
 	outside = 0;
@@ -7190,6 +8096,11 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"Sv" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/som/icc_leader,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "Sw" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/mono,
@@ -7262,6 +8173,10 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
+"SL" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "SN" = (
 /turf/closed/shuttle/dropship_regular/top_corner,
 /area/shuttle/transport)
@@ -7301,6 +8216,12 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
+"Tb" = (
+/obj/structure/prop/vehicle/big_truck/enclosed{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/oscar_outpost/outside/road)
 "Tf" = (
 /obj/effect/spawner/random/medical/bloodpack,
 /obj/machinery/iv_drip,
@@ -7384,6 +8305,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Tr" = (
+/obj/machinery/prop/computer/aiupload,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "Ts" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/bcircuit/anim,
@@ -7500,6 +8425,11 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"TZ" = (
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
+/area/oscar_outpost/outside/road)
 "Ub" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -7578,6 +8508,10 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"Ut" = (
+/obj/machinery/autodoc,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Uv" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/mainship/mono,
@@ -7593,6 +8527,18 @@
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
+"UD" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
+	},
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/prop/mainship/prop_iccinf{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "UF" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -7618,6 +8564,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"UM" = (
+/obj/structure/bed/chair/sofa/right,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "UP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -7716,6 +8666,12 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"Vl" = (
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/obj/item/storage/belt/shotgun/icc/mixed,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "Vm" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/squads/general/som{
@@ -7727,6 +8683,19 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"Vo" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
+"Vq" = (
+/obj/structure/prop/mainship/prop_iccinf/guard/armed{
+	icon_state = "ICC_guard_specialist_armed"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "Vu" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/edge,
@@ -7752,6 +8721,14 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Vy" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "Vz" = (
 /obj/machinery/hydroponics,
 /obj/effect/turf_decal/siding/wood,
@@ -7810,10 +8787,22 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"VJ" = (
+/obj/structure/prop/vehicle/tank/east,
+/obj/structure/prop/vehicle/tank/east/decoration/armor,
+/turf/open/floor/plating/ground/desertdam/asphalt/open,
+/area/oscar_outpost/outside/road)
 "VK" = (
 /obj/effect/step_trigger/teleporter/random,
 /turf/open/space/basic,
 /area/space)
+"VL" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/vending/armor_supply/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "VM" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_nmaint{
@@ -7885,6 +8874,12 @@
 	dir = 1
 	},
 /area/shuttle/transport)
+"Wm" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/soap/syndie,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "Wn" = (
 /obj/machinery/computer,
 /turf/open/floor/plating/plating_catwalk,
@@ -7917,6 +8912,24 @@
 /obj/structure/sign/safety/storage,
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
+"Wz" = (
+/obj/structure/largecrate/supply/ammo/standard_hmg,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"WB" = (
+/obj/machinery/vending/engivend,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
+"WD" = (
+/obj/structure/prop/mainship/prop_so/icc_one,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"WF" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "WG" = (
 /obj/docking_port/stationary/supplyclf,
 /turf/open/floor/mainship/empty,
@@ -8034,6 +9047,15 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Xo" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "Xq" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -8133,6 +9155,10 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"XP" = (
+/obj/effect/landmark/start/job/som/icc_medic,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/medical/lounge)
 "XQ" = (
 /obj/structure/table/black,
 /obj/machinery/light/mainship{
@@ -8167,6 +9193,9 @@
 /obj/structure/prop/mainship/suit_storage_prop,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"Yd" = (
+/turf/closed/wall/mainship/gray,
+/area/oscar_outpost/outside/road)
 "Yf" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -8196,6 +9225,19 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Yi" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/hangar)
+"Yj" = (
+/obj/structure/prop/mainship/prop_sec{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "Yl" = (
 /obj/structure/cable,
 /obj/structure/stairs/seamless/edge{
@@ -8303,7 +9345,6 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/som/icc,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/command{
 	outside = 0;
@@ -8327,6 +9368,19 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"YR" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
+"YT" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "YV" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/morgue{
@@ -8363,6 +9417,11 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"Zk" = (
+/obj/item/storage/toolbox/electrical,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete,
+/area/oscar_outpost/outside/road)
 "Zm" = (
 /obj/machinery/autodoc,
 /obj/structure/cable,
@@ -8401,6 +9460,13 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"Zz" = (
+/obj/structure/bed/chair/sofa/right,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "ZB" = (
 /turf/open/floor/bcircuit/off,
 /area/mainship/groundhq/som/command/telecomms)
@@ -8417,10 +9483,21 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"ZJ" = (
+/obj/structure/prop/mainship/prop_iccinf{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/patrol_base/prep)
 "ZK" = (
 /obj/effect/landmark/start/job/pmc,
 /turf/open/floor/iron/white/textured,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"ZM" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/extinguisher,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/groundhq/ntf/patrol_base/command)
 "ZQ" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general/som{
@@ -8461,6 +9538,9 @@
 /area/mainship/groundhq/som/medical/morgue)
 
 (1,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -8614,6 +9694,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8706,6 +9789,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8720,7 +9806,7 @@ pe
 aY
 pt
 qx
-lr
+jH
 wn
 uN
 uA
@@ -8737,6 +9823,9 @@ CN
 VK
 "}
 (4,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -8890,6 +9979,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -8921,6 +10013,9 @@ CN
 VK
 "}
 (6,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9074,6 +10169,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -9088,7 +10186,7 @@ il
 dT
 Xf
 LL
-bb
+tO
 MS
 Rl
 dT
@@ -9105,6 +10203,9 @@ CN
 VK
 "}
 (8,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9258,6 +10359,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -9289,6 +10393,9 @@ CN
 VK
 "}
 (10,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9442,6 +10549,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -9473,6 +10583,9 @@ CN
 VK
 "}
 (12,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9626,6 +10739,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -9657,6 +10773,9 @@ CN
 VK
 "}
 (14,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9810,6 +10929,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -9841,6 +10963,9 @@ CN
 VK
 "}
 (16,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -9994,6 +11119,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10025,6 +11153,9 @@ CN
 VK
 "}
 (18,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -10178,6 +11309,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10209,6 +11343,9 @@ CN
 VK
 "}
 (20,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -10362,6 +11499,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10393,6 +11533,9 @@ CN
 VK
 "}
 (22,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -10546,6 +11689,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10577,6 +11723,9 @@ CN
 VK
 "}
 (24,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -10730,6 +11879,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10761,6 +11913,9 @@ CN
 VK
 "}
 (26,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -10914,6 +12069,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -10945,6 +12103,9 @@ CN
 VK
 "}
 (28,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -11098,6 +12259,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 CN
@@ -11129,6 +12293,9 @@ CN
 VK
 "}
 (30,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -11282,6 +12449,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -11313,6 +12483,9 @@ CN
 VK
 "}
 (32,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -11466,6 +12639,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -11497,6 +12673,9 @@ CN
 VK
 "}
 (34,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -11650,6 +12829,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -11681,6 +12863,9 @@ CN
 VK
 "}
 (36,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -11834,6 +13019,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -11865,6 +13053,9 @@ CN
 VK
 "}
 (38,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12018,6 +13209,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -12049,6 +13243,9 @@ CN
 VK
 "}
 (40,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12202,6 +13399,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -12233,6 +13433,9 @@ CN
 VK
 "}
 (42,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12386,6 +13589,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -12417,6 +13623,9 @@ CN
 VK
 "}
 (44,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12570,6 +13779,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 VK
 CN
 VM
@@ -12601,6 +13813,9 @@ CN
 VK
 "}
 (46,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12719,6 +13934,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Up
 Xi
@@ -12785,6 +14003,9 @@ CN
 VK
 "}
 (48,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -12901,6 +14122,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Up
 Up
@@ -12969,6 +14193,9 @@ CN
 VK
 "}
 (50,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13085,6 +14312,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 pf
 ZK
@@ -13177,6 +14407,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Up
 GX
@@ -13245,6 +14478,9 @@ CN
 VK
 "}
 (53,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13365,6 +14601,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Xi
 vB
 PM
@@ -13429,6 +14668,9 @@ CN
 VK
 "}
 (55,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13549,6 +14791,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Xi
 hN
 Ep
@@ -13613,6 +14858,9 @@ tT
 tT
 "}
 (57,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13730,6 +14978,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Up
 Up
@@ -13797,6 +15048,9 @@ aF
 tT
 "}
 (59,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13913,6 +15167,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Xv
 gO
@@ -14005,6 +15262,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 VI
 gO
@@ -14073,6 +15333,9 @@ aF
 tT
 "}
 (62,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -14190,6 +15453,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Up
 Up
 qb
@@ -14257,6 +15523,9 @@ aF
 tT
 "}
 (64,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -14410,6 +15679,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -14441,6 +15713,9 @@ aF
 tT
 "}
 (66,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -14594,6 +15869,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -14625,6 +15903,9 @@ gW
 Kc
 "}
 (68,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -14778,6 +16059,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -14809,6 +16093,9 @@ gW
 Kc
 "}
 (70,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -14962,6 +16249,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -14993,6 +16283,9 @@ gW
 Kc
 "}
 (72,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -15146,6 +16439,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -15177,6 +16473,9 @@ aF
 tT
 "}
 (74,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -15330,6 +16629,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 aF
 Ur
@@ -15361,6 +16663,9 @@ aF
 tT
 "}
 (76,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -15484,6 +16789,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 pp
 pp
@@ -15499,7 +16807,7 @@ ov
 XQ
 yZ
 OY
-CL
+om
 hb
 pp
 QE
@@ -15576,6 +16884,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 HB
 HB
@@ -15591,7 +16902,7 @@ Ux
 gp
 gp
 yj
-WQ
+iN
 hb
 pp
 eH
@@ -15667,6 +16978,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 Xg
 pp
 Vj
@@ -15683,7 +16997,7 @@ DR
 qU
 lT
 pk
-CL
+om
 ll
 pp
 eH
@@ -15760,6 +17074,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 QR
 Nt
@@ -15775,7 +17092,7 @@ CL
 Fm
 Jn
 Pi
-CL
+om
 hb
 pp
 pp
@@ -15845,6 +17162,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 pp
 pp
@@ -15867,7 +17187,7 @@ WQ
 gp
 yj
 yj
-WQ
+iN
 hb
 pp
 CN
@@ -15937,6 +17257,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 LH
 Fc
 xj
@@ -15959,7 +17282,7 @@ Qq
 CL
 WQ
 Qq
-CL
+om
 hb
 pp
 CN
@@ -16005,6 +17328,9 @@ aF
 tT
 "}
 (83,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16121,6 +17447,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 LH
 hZ
 Gj
@@ -16189,6 +17518,9 @@ tT
 tT
 "}
 (85,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16305,6 +17637,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 LH
 qW
 Gj
@@ -16373,6 +17708,9 @@ tT
 tT
 "}
 (87,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16489,6 +17827,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 LH
 XG
 tS
@@ -16557,6 +17898,9 @@ Vk
 Go
 "}
 (89,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16680,6 +18024,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 Cw
 eA
@@ -16741,6 +18088,9 @@ KL
 Go
 "}
 (91,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16864,6 +18214,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 da
 HI
@@ -16956,6 +18309,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 pp
 pp
 pp
@@ -17017,6 +18373,9 @@ tT
 tT
 "}
 (94,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
@@ -17170,6 +18529,9 @@ CN
 CN
 CN
 CN
+CN
+CN
+CN
 tT
 dc
 aZ
@@ -17205,21 +18567,24 @@ CN
 CN
 CN
 CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
 CN
 CN
 CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -17297,21 +18662,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+io
+io
+io
+io
+io
+io
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -17389,21 +18757,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+jW
+jW
+cZ
+rQ
+jW
+yh
+Jv
+Yj
+AP
+AP
+AP
+AP
+Yj
+wZ
+lr
+zb
+zb
 CN
 CN
 CN
@@ -17481,21 +18852,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+rZ
+GU
+xt
+LO
+jY
+jW
+ff
+Jq
+TZ
+xM
+xM
+bb
+at
+AP
+at
+Qh
+zb
 CN
 CN
 CN
@@ -17573,21 +18947,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+rZ
+ix
+LO
+LO
+lX
+jW
+ff
+Jq
+TZ
+xM
+xM
+bb
+at
+AP
+at
+lr
+zb
 CN
 CN
 CN
@@ -17665,21 +19042,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+jW
+jW
+Ka
+Ka
+jW
+aN
+Im
+As
+TZ
+kB
+xM
+bb
+at
+AP
+dH
+lr
+zb
 CN
 CN
 CN
@@ -17757,21 +19137,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+ra
+ES
+Kt
+Kt
+Kt
+Kt
+Kt
+AP
+TZ
+xM
+VJ
+bb
+at
+AP
+si
+bK
+zb
 CN
 CN
 CN
@@ -17849,21 +19232,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Up
+ff
+cP
+Jd
+ff
+oF
+es
+IF
+Jq
+TZ
+xM
+xM
+bb
+at
+AP
+at
+lr
+zb
 CN
 CN
 CN
@@ -17941,21 +19327,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Up
+kn
+kn
+kn
+kn
+kn
+kn
+kn
+Cy
+TZ
+xM
+xM
+bb
+at
+AP
+AP
+jw
+zb
 CN
 CN
 CN
@@ -18033,21 +19422,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Up
+ff
+Yi
+ff
+ff
+Sl
+jX
+oF
+Jq
+TZ
+xM
+xM
+Rs
+at
+gV
+at
+lr
+zb
 CN
 CN
 CN
@@ -18125,21 +19517,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+ra
+Vq
+ra
+ra
+Kt
+Kt
+Kt
+AP
+TZ
+xM
+xM
+bb
+at
+AP
+iy
+lr
+zb
 CN
 CN
 CN
@@ -18217,21 +19612,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+jW
+jW
+rQ
+rQ
+jW
+yh
+Jv
+AP
+TZ
+xM
+xM
+Fn
+dH
+AP
+at
+ik
+zb
 CN
 CN
 CN
@@ -18309,21 +19707,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+rZ
+GU
+xt
+LO
+jY
+jW
+ff
+lr
+TZ
+xM
+xM
+bb
+at
+AP
+Gf
+lr
+zb
 CN
 CN
 CN
@@ -18401,21 +19802,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+rZ
+ix
+LO
+LO
+lX
+jW
+ff
+lr
+TZ
+xM
+xM
+bb
+at
+AP
+at
+lr
+zb
 CN
 CN
 CN
@@ -18493,21 +19897,24 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+io
+jW
+jW
+Al
+Ka
+jW
+aN
+Im
+lr
+TZ
+xM
+cJ
+bb
+Jq
+wZ
+lr
+zb
+zb
 CN
 CN
 CN
@@ -18585,23 +19992,26 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+lr
+at
+at
+at
+at
+Jq
+zb
+zb
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -18677,25 +20087,28 @@ CN
 CN
 CN
 CN
+zb
 CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+la
+zb
+zr
+TZ
+xM
+cL
+bb
+vu
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -18775,19 +20188,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+lr
+TZ
+xM
+xM
+bb
+Jq
+Up
+zb
+zb
+sN
+Ji
+iS
+Kx
+zb
 CN
 CN
 CN
@@ -18867,19 +20283,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+Vy
+TZ
+xM
+xM
+bb
+Jq
+Up
+zb
+zb
+lO
+FU
+iS
+Kx
+zb
 CN
 CN
 CN
@@ -18959,19 +20378,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+Jq
+TZ
+sr
+xM
+bb
+Zk
+Up
+zb
+zb
+sN
+JZ
+zq
+Kx
+zb
 CN
 CN
 CN
@@ -19051,19 +20473,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+Jq
+TZ
+xM
+xM
+bb
+Vo
+Up
+zb
+zb
+xU
+kI
+JZ
+oE
+zb
 CN
 CN
 CN
@@ -19143,19 +20568,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+Jq
+TZ
+xM
+xM
+bb
+OA
+Up
+zb
+zb
+sN
+JZ
+aL
+Kx
+zb
 CN
 CN
 CN
@@ -19235,19 +20663,22 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Up
+Jq
+TZ
+xM
+xM
+bb
+iJ
+Up
+zb
+zb
+lO
+FU
+Pj
+Kx
+zb
 CN
 CN
 CN
@@ -19321,25 +20752,28 @@ CN
 CN
 CN
 CN
+zb
 CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+zb
+qF
+TZ
+xM
+xM
+bb
+el
+zb
+zb
+zb
+sN
+FU
+iS
+Kx
+zb
 CN
 CN
 CN
@@ -19413,26 +20847,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+Jq
+AP
+AP
+AP
+AP
+Jq
+zb
+zb
+zb
+yI
+ph
+Jh
+yI
+zb
+zb
 CN
 CN
 CN
@@ -19505,26 +20942,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+nh
+nh
+nh
+hR
+WF
+xH
+Jq
+TZ
+xM
+xM
+bb
+Jq
+Yd
+yB
+VL
+Jt
+uE
+rE
+RZ
+zb
+zb
 CN
 CN
 CN
@@ -19597,26 +21037,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+nh
+FM
+Xo
+nh
+br
+WF
+xH
+Jq
+TZ
+xM
+xM
+Tb
+Jq
+Yd
+MM
+qa
+qa
+qa
+vC
+vC
+Bo
+zb
 CN
 CN
 CN
@@ -19689,26 +21132,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+UM
+WF
+rh
+WF
+nK
+nK
+xH
+wZ
+TZ
+xM
+xM
+bb
+wZ
+Yd
+Vl
+vC
+fv
+cD
+vC
+cq
+sj
+zb
 CN
 CN
 CN
@@ -19781,26 +21227,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+po
+mB
+mB
+mB
+xm
+xm
+Mk
+lr
+TZ
+xM
+xM
+bb
+EW
+Yd
+Qr
+cq
+vC
+Cc
+cD
+vC
+sj
+zb
 CN
 CN
 CN
@@ -19873,26 +21322,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Mm
+mB
+WF
+WF
+kP
+kP
+Mk
+lr
+TZ
+xM
+xM
+bb
+Jq
+Yd
+mO
+vC
+cD
+vC
+fv
+vC
+sj
+zb
 CN
 CN
 CN
@@ -19965,29 +21417,32 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+av
+ew
+av
+nh
+mP
+WF
+Mk
+lr
+TZ
+xM
+xM
+yP
+Jq
+kC
+qa
+JP
+dE
+Py
+NB
+vC
+Ls
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -20056,31 +21511,34 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Dp
+Dp
+Tr
+xY
+br
+av
+wi
+aP
+Mk
+lr
+TZ
+xM
+xM
+bb
+Jq
+kC
+Cp
+vC
+Fo
+vC
+QC
+vC
+cp
+zb
+Ph
+MV
+zb
+zb
 CN
 CN
 CN
@@ -20148,31 +21606,34 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Dp
+xW
+WF
+mB
+WF
+av
+pW
+WF
+Mk
+AP
+TZ
+xM
+xM
+bb
+AP
+at
+qa
+vC
+QC
+vC
+vC
+Ut
+rE
+jO
+jO
+jO
+Wm
+zb
 CN
 CN
 CN
@@ -20240,31 +21701,34 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Dp
+pD
+WD
+xE
+WF
+av
+QJ
+WF
+WF
+AP
+AP
+AP
+AP
+AP
+AP
+AP
+qa
+vC
+xc
+PB
+iq
+SL
+rE
+jO
+XP
+jO
+kr
+zb
 CN
 CN
 CN
@@ -20332,31 +21796,34 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Dp
+YR
+mB
+mB
+WF
+av
+ZM
+aP
+Mk
+AP
+TZ
+xM
+xM
+yP
+AP
+at
+vC
+vC
+qY
+xc
+vC
+Lq
+rE
+jO
+jO
+jO
+vG
+zb
 CN
 CN
 CN
@@ -20424,31 +21891,34 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+Dp
+Dp
+Ln
+sk
+GP
+av
+Rq
+WF
+Mk
+lr
+TZ
+xM
+xM
+bb
+Jq
+kC
+rK
+cq
+vC
+vC
+vC
+yv
+rE
+jO
+jO
+XP
+fI
+zb
 CN
 CN
 CN
@@ -20517,30 +21987,33 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+av
+ew
+av
+nh
+qK
+aP
+Mk
+lr
+TZ
+xM
+xM
+Rs
+Jq
+kC
+vC
+vC
+vC
+QC
+zt
+vC
+qr
+zb
+dW
+gy
+zb
+zb
 CN
 CN
 CN
@@ -20609,29 +22082,32 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Mm
+mB
+WF
+WF
+nK
+nK
+Mk
+lr
+TZ
+xM
+xM
+bb
+EW
+Yd
+vC
+aD
+ob
+wV
+Pd
+eh
+rs
+zb
+zb
+zb
+zb
 CN
 CN
 CN
@@ -20701,26 +22177,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+Zz
+mB
+Sv
+mB
+xm
+xm
+Mk
+wZ
+TZ
+nJ
+xM
+RE
+wZ
+Yd
+ln
+vC
+vC
+ZJ
+vC
+vC
+rE
+zb
 CN
 CN
 CN
@@ -20793,26 +22272,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+pM
+WF
+WF
+WF
+kP
+kP
+xH
+Jq
+TZ
+xM
+xM
+bb
+Vo
+Yd
+No
+vC
+vC
+vC
+cq
+cw
+Wz
+zb
 CN
 CN
 CN
@@ -20885,26 +22367,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+nh
+cI
+UD
+nh
+br
+WF
+xH
+Jq
+TZ
+kB
+xM
+bb
+Jq
+Yd
+vC
+vC
+vC
+vC
+vC
+eK
+Nx
+zb
 CN
 CN
 CN
@@ -20977,26 +22462,29 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+zb
+zb
+nh
+nh
+nh
+hR
+WF
+xH
+HS
+AP
+AP
+AP
+AP
+HS
+Yd
+YT
+WB
+YT
+Bp
+Bp
+Rr
+zb
+zb
 CN
 CN
 CN
@@ -21069,6 +22557,199 @@ CN
 CN
 CN
 CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+io
+io
+io
+io
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(139,1,1) = {"
+CN
+CN
+CN
+CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+CN
+CN
+CN
+CN
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+zb
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(140,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -21156,7 +22837,200 @@ CN
 CN
 CN
 "}
-(139,1,1) = {"
+(141,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(142,1,1) = {"
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+CN
+"}
+(143,1,1) = {"
+CN
+CN
+CN
 CN
 CN
 CN
