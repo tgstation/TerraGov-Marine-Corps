@@ -119,7 +119,7 @@
 
 /datum/game_mode/hvh/combat_patrol/end_round_fluff()
 	send_ooc_announcement(
-		sender_override = "Combat Patrol",
+		sender_override = name,
 		title = round_finished,
 		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
 		play_sound = FALSE
