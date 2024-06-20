@@ -118,8 +118,11 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 /datum/game_mode/hvh/combat_patrol/end_round_fluff()
-	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	send_ooc_announcement(
+		sender_override = "Combat Patrol",
+		title = round_finished,
+		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."
+	)
 
 /datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
 	switch(user.faction)

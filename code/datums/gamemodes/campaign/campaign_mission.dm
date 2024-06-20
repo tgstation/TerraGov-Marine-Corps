@@ -351,10 +351,12 @@
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
-	to_chat(world, span_round_header("|[name]|"))
-	to_chat(world, span_round_body("Next mission selected by [starting_faction] as [name] on the battlefield of [map_name]."))
-	for(var/mob/player AS in GLOB.player_list)
-		player.playsound_local(null, 'sound/ambience/votestart.ogg', 10, 1)
+	send_ooc_announcement(
+		sender_override = "Campaign",
+		title = name,
+		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
+		sound_override = 'sound/ambience/votestart.ogg'
+	)
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro()
@@ -365,8 +367,12 @@
 /datum/campaign_mission/proc/play_outro()
 	log_game("[outcome]\nMission: [name]")
 
-	to_chat(world, span_round_header("[name] completed"))
-	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
+	send_ooc_announcement(
+		sender_override = "Campaign",
+		title = "Mission Complete: [name]",
+		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [outcome]!",
+		play_sound = FALSE
+	)
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
 	map_text_broadcast(hostile_faction, outro_message[outcome][MISSION_HOSTILE_FACTION], op_name_hostile)

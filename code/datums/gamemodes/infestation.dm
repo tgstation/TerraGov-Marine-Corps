@@ -217,8 +217,12 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 /datum/game_mode/infestation/end_round_fluff()
-	. = ..()
-	to_chat(world, span_round_header("|[round_finished]|"))
+	send_ooc_announcement(
+		sender_override = name,
+		title = round_finished,
+		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
+		play_sound = FALSE
+	)
 
 	var/sound/xeno_track
 	var/sound/human_track

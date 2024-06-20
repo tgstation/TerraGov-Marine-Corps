@@ -193,9 +193,9 @@
 		var/datum/limb/o = get_limb(organ)
 		if(o)
 			if(o.limb_status & LIMB_SPLINTED)
-				msg += "[span_green("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
+				msg += "[span_warning("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
 			if(o.limb_status & LIMB_STABILIZED)
-				msg += "[span_green("[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!")]\n"
+				msg += "[span_warning("[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!")]\n"
 			if(o.limb_status & LIMB_NECROTIZED)
 				msg += "[span_deadsay("<b>An infection has rotted [t_his] [o.display_name] into uselessness!</b>")]\n"
 
