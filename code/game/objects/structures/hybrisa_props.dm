@@ -840,7 +840,7 @@
 
 /obj/structure/prop/urban/vehicles/suv/misc/marshalls2/Initialize(mapload)
 	. = ..()
-	overlays.cut
+	overlays.Cut()
 
 /obj/structure/prop/urban/vehicles/suv/misc/expensive
 	name = "Expensive looking SUV"
