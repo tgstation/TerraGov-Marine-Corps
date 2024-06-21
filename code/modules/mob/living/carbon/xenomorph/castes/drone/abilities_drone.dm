@@ -98,14 +98,13 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	do_after_flags = NONE
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.do_actions)
 		return FALSE
-	if(!do_after(X, 1 SECONDS, do_after_flags, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(X, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	X.visible_message(span_xenowarning("\the [X] vomits acid over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)

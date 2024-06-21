@@ -63,9 +63,6 @@
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
-/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind
-	do_after_flags = IGNORE_TARGET_LOC_CHANGE
-
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
@@ -74,7 +71,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-	if(!do_after(owner, 1 SECONDS, do_after_flags, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	if(!can_use_ability(target, TRUE))
 		return FALSE

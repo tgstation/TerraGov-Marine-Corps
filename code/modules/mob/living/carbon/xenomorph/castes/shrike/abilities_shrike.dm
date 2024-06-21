@@ -232,7 +232,6 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	var/do_after_flags = IGNORE_TARGET_LOC_CHANGE
 	target_flags = ABILITY_MOB_TARGET
 
 
@@ -274,8 +273,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-
-	if(!do_after(owner, 1 SECONDS, do_after_flags, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	if(!can_use_ability(target, TRUE))
 		return FALSE
