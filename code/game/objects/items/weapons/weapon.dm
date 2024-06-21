@@ -17,4 +17,8 @@
 /obj/item/weapon/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(target == user && !user.do_self_harm)
 		return
+	var/mob/living/attacker = user
+	if(isliving(attacker) && attacker.resting)
+		user.balloon_alert(user, "Can't while prone!")
+		return
 	return ..()
