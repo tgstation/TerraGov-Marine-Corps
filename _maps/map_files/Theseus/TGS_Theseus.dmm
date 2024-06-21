@@ -1306,7 +1306,7 @@
 /obj/item/clothing/mask/cigarette/pipe{
 	pixel_y = 5
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/bronze,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -6351,7 +6351,7 @@
 /obj/item/ashtray/bronze,
 /obj/item/tool/lighter/zippo,
 /obj/machinery/door_control/mainship/corporate,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "bTE" = (
@@ -6565,7 +6565,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "bVF" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/donut_box,
 /obj/item/binoculars,
 /turf/open/floor/carpet,
@@ -8991,7 +8991,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/alpha)
 "fgj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck,
 /turf/open/floor/carpet/side,
 /area/mainship/living/officer_rnr)
@@ -10326,7 +10326,7 @@
 	},
 /area/mainship/living/tankerbunks)
 "hgk" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
@@ -11100,7 +11100,7 @@
 /area/mainship/living/officer_rnr)
 "irS" = (
 /obj/machinery/computer/skills,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "irZ" = (
@@ -13206,7 +13206,7 @@
 "lIZ" = (
 /obj/item/camera_film,
 /obj/item/camera,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "lJf" = (
@@ -15583,7 +15583,7 @@
 "pBu" = (
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen/blue,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "pBI" = (
@@ -16384,7 +16384,7 @@
 	},
 /area/mainship/hull/port_hull)
 "qKs" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat,
 /turf/open/floor/carpet/side{
 	dir = 10
@@ -16696,7 +16696,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "rkt" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/cigar,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = 8

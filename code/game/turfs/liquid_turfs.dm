@@ -64,6 +64,14 @@
 	heavyxenofootstep = FOOTSTEP_WATER
 	minimap_color = MINIMAP_WATER
 
+/turf/open/liquid/water/Initialize(mapload)
+	. = ..()
+	if(mob_liquid_height > 15)
+		shoefootstep = FOOTSTEP_SWIM
+		barefootstep = FOOTSTEP_SWIM
+		mediumxenofootstep = FOOTSTEP_SWIM
+		heavyxenofootstep = FOOTSTEP_SWIM
+
 /turf/open/liquid/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(!.)
