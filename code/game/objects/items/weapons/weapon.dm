@@ -17,7 +17,7 @@
 /obj/item/weapon/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(target == user && !user.do_self_harm)
 		return
-	if(user.lying_angle)
+	if(user.lying_angle == 90 || user.lying_angle == 270)
 		user.balloon_alert(user, "Can't while prone!")
 		return
 	return ..()
