@@ -26,7 +26,7 @@
 	GLOB.patrol_point_list -= src
 	return ..()
 
-//obj/effect/landmark/patrol_point/proc/do_deployment(atom/movable/movable_to_move, mob/living/user)
+///Moves the AM and sets up the effects
 /obj/effect/landmark/patrol_point/proc/do_deployment(atom/movable/movable_to_move, list/mobs_moving)
 	if(ismob(mobs_moving))
 		mobs_moving = list(mobs_moving)
