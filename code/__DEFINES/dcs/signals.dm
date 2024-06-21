@@ -315,8 +315,14 @@
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)
 	#define COMPONENT_MOVABLE_BUCKLE_STOPPED (1<<0)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"						//from base of atom/movable/unbuckle_mob(): (mob, force)
+///from /obj/vehicle/add_control_flags
+#define COMSIG_VEHICLE_GRANT_CONTROL_FLAG "vehicle_grant_control_flag"
+///from /obj/vehicle/remove_control_flags
+#define COMSIG_VEHICLE_REVOKE_CONTROL_FLAG "vehicle_revoke_control_flag"
 ///from /obj/vehicle/sealed/proc/driver_move
 #define COMSIG_VEHICLE_MOVE "vehicle_move"
+///From obj/hitbox/owner_turned
+#define  COMSIG_MULTITILE_VEHICLE_ROTATED "multitile_vehicle_rotated"
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
@@ -349,6 +355,7 @@
 #define COMSIG_TURF_PROJECTILE_MANIPULATED "projectile_manipulated"
 #define COMSIG_TURF_CHECK_COVERED "turf_check_covered" //from /turf/open/liquid/Entered checking if something is covering the turf
 #define COMSIG_TURF_TELEPORT_CHECK "turf_teleport_check" //from /turf/proc/can_teleport_here()
+#define COMSIG_TURF_SUBMERGE_CHECK "turf_submerge_check" //from /turf/proc/get_submerge_height() checking if something on the turf should submerge an AM
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)

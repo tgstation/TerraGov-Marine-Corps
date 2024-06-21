@@ -93,27 +93,27 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
-/datum/ammo/proc/do_at_max_range(turf/T, obj/projectile/proj)
+/datum/ammo/proc/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-/datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_shield_block(mob/target_mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting dense turfs.
-/datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Special effects when hitting mobs.
-/datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting objects.
-/datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/proc/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_leave_turf(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Handles CC application on the victim
@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
-/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, range, speed, angle, target)
+/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, range, speed, angle, target, loc_override)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to projectile_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		var/obj/projectile/new_proj = new proj_type(loc_override ? loc_override : main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, shooter, main_proj.loc, range, speed, new_angle, TRUE)
+		new_proj.fire_at(target, shooter, loc_override ? loc_override : main_proj.loc, range, speed, new_angle, TRUE)
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))

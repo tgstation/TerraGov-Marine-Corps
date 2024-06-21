@@ -74,7 +74,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
 "aT" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
@@ -468,7 +468,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "er" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -555,7 +555,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -752,7 +752,7 @@
 	},
 /area/oscar_outpost/outside/east)
 "gL" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -1026,7 +1026,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "kk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -1531,7 +1531,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "pk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -1558,7 +1558,7 @@
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost)
 "pz" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/storage/box/condimentbottles{
 	pixel_x = -5;
 	pixel_y = 12
@@ -1608,7 +1608,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost)
 "pE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -1874,7 +1874,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost)
 "rs" = (
@@ -1920,7 +1920,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "rG" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -2706,7 +2706,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2885,7 +2885,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "Dj" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -3518,7 +3518,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "Jn" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -3659,7 +3659,7 @@
 	},
 /area/oscar_outpost)
 "KD" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -3732,7 +3732,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -5155,7 +5155,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "Ye" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18

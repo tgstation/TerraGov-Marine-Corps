@@ -153,6 +153,7 @@
 	name = "syringe case"
 	desc = "It's a medical case for storing syringes and bottles."
 	icon_state = "syringe_case"
+	icon = 'icons/obj/items/storage/firstaid.dmi'
 	throw_speed = 2
 	throw_range = 8
 	w_class = WEIGHT_CLASS_SMALL

@@ -153,3 +153,4 @@
 #define SFX_ROBOT_SCREAM "robot_scream"
 #define SFX_ROBOT_PAIN "robot_pain"
 #define SFX_ROBOT_WARCRY "robot_warcry"
+#define SFX_HOVER_TANK "hover_tank"
