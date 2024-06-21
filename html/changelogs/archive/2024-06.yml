@@ -252,3 +252,16 @@
   - bugfix: 'Campaign: Fixed an edge case where a leader would not be chosen'
   - bugfix: fixed red sand minimap colour
   - bugfix: Mines and sentries will target hostile tanks
+2024-06-21:
+  Barnet2:
+  - rscadd: 'Xeno Ranks: Preference to toggle them on and off'
+  - bugfix: Clientless xenos no longer have ranks
+  - bugfix: Xeno rank HUD no longer persists after death
+  Notamaniac:
+  - bugfix: Mashing the confirm button on the dropship selector won't bug the Tad
+      out
+  Wisemonster:
+  - rscadd: Added the overdrive, zoom, smoke launcher, and medical vehicle modules
+      to the req vendor.
+  novaepee:
+  - rscdel: remove large metal stacks in Kutjevo
