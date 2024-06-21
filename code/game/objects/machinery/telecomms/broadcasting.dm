@@ -205,7 +205,7 @@
 	var/mob/living/carbon/human/speaker = virt.source
 	if(speaker?.assigned_squad && speaker.voice && !(speaker.client?.prefs.muted & MUTE_TTS) && !is_banned_from(speaker.ckey, "TTS"))
 		var/headset_target = HEADSET_TTS_ALL
-		if(frequency == speaker.assigned_squad.radio_freq)
+		if((FREQ_ALPHA < frequency && frequency < FREQ_CUSTOM_SQUAD_MAX) || (FREQ_ZULU < frequency && frequency < MAX_ERT_FREQ))
 			headset_target = HEADSET_TTS_SQUAD
 			if(speaker.assigned_squad.squad_leader == speaker)
 				headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
