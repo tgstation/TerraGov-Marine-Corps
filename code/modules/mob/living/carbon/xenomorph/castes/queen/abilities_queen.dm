@@ -347,7 +347,6 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	do_after_flags = NONE
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
