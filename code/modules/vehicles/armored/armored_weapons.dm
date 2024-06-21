@@ -354,7 +354,7 @@
 	icon_state = "sflamer"
 	fire_sound = "gun_flamethrower"
 	ammo = /obj/item/ammo_magazine/tank/secondary_flamer_tank
-	weapon_slot = MODULE_SECONDARY
+	armored_weapon_flags = MODULE_SECONDARY
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	rearm_time = 1 SECONDS
