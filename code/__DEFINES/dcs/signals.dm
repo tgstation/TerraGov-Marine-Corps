@@ -421,6 +421,8 @@
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
+#define COMSIG_TRY_STRIP "try_strip" //called in /mob/living/carbon/human/stripPanelUnequip()
+
 ///from base of obj/item/quick_equip(): (mob/user)
 #define COMSIG_ITEM_QUICK_EQUIP "item_quick_equip"
 // Return signals for /datum/storage/proc/on_quick_equip_request

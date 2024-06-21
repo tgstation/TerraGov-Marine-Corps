@@ -544,6 +544,7 @@
 	if(!I.canStrip(M))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
+	SEND_SIGNAL(I, COMSIG_TRY_STRIP, M)
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)

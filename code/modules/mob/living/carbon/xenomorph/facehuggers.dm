@@ -61,6 +61,8 @@
 	var/about_to_jump = FALSE
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
+	///Used for tracking the timer ID for facehugger impregnation
+	var/timerid = 0
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
@@ -568,7 +570,15 @@
 		user.Unconscious(2 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
-	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
+	timerid = addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME, TIMER_STOPPABLE)
+	RegisterSignal(src, COMSIG_TRY_STRIP, PROC_REF(on_strip))
+
+/obj/item/clothing/mask/facehugger/proc/on_strip(I, M)
+	SIGNAL_HANDLER
+	if(timeleft(timerid) <= HUMAN_STRIP_DELAY)
+		deltimer(timerid)
+		timerid = addtimer(CALLBACK(src, PROC_REF(Impregnate), M), HUMAN_STRIP_DELAY + 1, TIMER_STOPPABLE)
+
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
