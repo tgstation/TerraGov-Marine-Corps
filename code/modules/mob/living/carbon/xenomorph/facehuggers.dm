@@ -62,7 +62,7 @@
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
 	///Used for tracking the timer ID for facehugger impregnation
-	var/timerid = 0
+	var/timerid = null
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
@@ -100,6 +100,9 @@
 	remove_danger_overlay() //Remove the danger overlay
 	if(source)
 		clear_hugger_source()
+	if(timerid)
+		unreg_timer()
+
 	return ..()
 
 /obj/item/clothing/mask/facehugger/update_icon_state()
@@ -579,8 +582,12 @@
 		deltimer(timerid)
 		timerid = addtimer(CALLBACK(src, PROC_REF(Impregnate), M), HUMAN_STRIP_DELAY + 1, TIMER_STOPPABLE)
 
+/obj/item/clothing/mask/facehugger/proc/unreg_timer()
+	UnregisterSignal(src, COMSIG_TRY_STRIP)
+	timerid = null
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
+	unreg_timer()
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
