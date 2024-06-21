@@ -28,7 +28,7 @@
 	else
 		. += span_notice("It is spent.")
 
-	. += span_notice("Use to inject into yourself. Unique Action to configure injection settings.")
+	. += span_notice("Use to inject into yourself. Unique Action to configure injection amount.")
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
