@@ -123,7 +123,7 @@
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/secondary_flamer_tank
-	name = "napalm spray tank"
+	name = "napalm stream tank"
 	desc = "A fuel tank containing fuel for the secondary vehicle mounted flamer. This tank contains a more fluid mix that flows easier but flames less area at once."
 	caliber = CALIBER_FUEL_THICK
 	icon_state = "sflamer"
