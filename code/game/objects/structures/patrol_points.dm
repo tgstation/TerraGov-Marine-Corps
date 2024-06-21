@@ -132,8 +132,6 @@
 /obj/structure/patrol_point/tank
 	name = "vehicle deploy point"
 	desc = "A one way ticket to the combat zone for vehicles of all sizes."
-	icon = 'icons/effects/campaign_effects.dmi'
-	id = "TGMC_11"
 
 /obj/structure/patrol_point/tank/Initialize(mapload)
 	. = ..()
@@ -148,3 +146,19 @@
 	if(!isvehicle(entering))
 		return
 	activate_point(entering, null)
+
+/obj/structure/patrol_point/tank/tgmc_one
+	icon_state = "vehicle_point_1"
+	id = "TGMC_11"
+
+/obj/structure/patrol_point/tank/tgmc_two
+	icon_state = "vehicle_point_2"
+	id = "TGMC_21"
+
+/obj/structure/patrol_point/tank/som_one
+	icon_state = "vehicle_point_1"
+	id = "SOM_11"
+
+/obj/structure/patrol_point/tank/som_two
+	icon_state = "vehicle_point_2"
+	id = "SOM_21"
