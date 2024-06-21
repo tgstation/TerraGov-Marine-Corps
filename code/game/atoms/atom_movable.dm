@@ -1353,6 +1353,16 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
 	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
+///overrides the turf's normal footstep sound
+/atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/atom/movable/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE
+
 ///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
 /atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)
 	if(HAS_TRAIT(src, TRAIT_SUBMERGED))

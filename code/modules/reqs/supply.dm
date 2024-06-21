@@ -726,7 +726,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		for(var/obj/item/armored_weapon/gun AS in GLOB.armored_guntypes[vehtype])
 			var/primary_selected = (current_primary == gun)
 			var/secondary_selected = (current_secondary == gun)
-			if(initial(gun.weapon_slot) & MODULE_PRIMARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_PRIMARY)
 				data["primaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),
@@ -742,7 +742,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 							"max" = DEFAULT_MAX_ARMORED_AMMO, //TODO make vehicle ammo dynamic instead of fixed number
 						))
 
-			if(initial(gun.weapon_slot) & MODULE_SECONDARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_SECONDARY)
 				data["secondaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),

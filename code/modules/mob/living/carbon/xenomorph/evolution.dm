@@ -248,7 +248,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(length(get_evolution_options()) < 1 || (!HAS_TRAIT(src, TRAIT_STRAIN_SWAP) && !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO)) // todo: why does this flag still exist?
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 

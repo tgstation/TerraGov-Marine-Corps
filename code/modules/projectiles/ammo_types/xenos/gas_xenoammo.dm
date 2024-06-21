@@ -74,7 +74,7 @@
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob), proj)
+	drop_nade(get_turf(target_mob), proj.firer)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
 	var/mob/living/carbon/human/human_victim = target_mob
