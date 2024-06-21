@@ -352,10 +352,11 @@
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
 	send_ooc_announcement(
-		sender_override = "Campaign",
+		sender_override = "Mission Starting",
 		title = name,
 		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
-		sound_override = 'sound/ambience/votestart.ogg'
+		sound_override = 'sound/ambience/votestart.ogg',
+		style = "game"
 	)
 
 ///Intro when the mission is started
@@ -368,10 +369,11 @@
 	log_game("[outcome]\nMission: [name]")
 
 	send_ooc_announcement(
-		sender_override = "Campaign",
-		title = "Mission Complete: [name]",
+		sender_override = "Mission Complete",
+		title = name,
 		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [outcome]!",
-		play_sound = FALSE
+		play_sound = FALSE,
+		style = "game"
 	)
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)

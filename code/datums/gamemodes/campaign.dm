@@ -126,10 +126,11 @@
 			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."
 
 	send_ooc_announcement(
-		sender_override = "Campaign",
-		title = "Round Concluded - [round_finished]",
+		sender_override = "Round Concluded",
+		title = round_finished,
 		text = announcement_body,
-		play_sound = FALSE
+		play_sound = FALSE,
+		style = "game"
 	)
 
 	var/sound/som_track

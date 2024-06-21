@@ -218,10 +218,11 @@
 
 /datum/game_mode/infestation/end_round_fluff()
 	send_ooc_announcement(
-		sender_override = name,
+		sender_override = "Round Concluded",
 		title = round_finished,
 		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
-		play_sound = FALSE
+		play_sound = FALSE,
+		style = "game"
 	)
 
 	var/sound/xeno_track

@@ -1032,6 +1032,41 @@ h2.alert {
   border-bottom: 1px dashed #fff;
 }
 
+$ooc_alert_bg_colors: (
+  'ooc': #012753,
+  'game': #4b0000,
+);
+
+$ooc_alert_border_colors: (
+  'ooc': #006deb,
+  'game': #db0000,
+);
+
+$ooc_alert_text_colors: (
+  'ooc': #006deb,
+  'game': #db0000,
+);
+
+@each $color-type, $color in $ooc_alert_text_colors {
+  .ooc_alert_#{$color-type} {
+    background: map.get($ooc_alert_bg_colors, $color-type);
+    border: 1px solid map.get($ooc_alert_border_colors, $color-type);
+    margin: 0.5em;
+    padding: 0.5em 0.5em 0.5em 0.2em;
+    color: #ffffff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ooc_alert_#{$color-type} .ooc_announcement_text {
+    color: map.get($ooc_alert_text_colors, $color-type);
+    padding: 0.5em 0 0 0.35em;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 $alert-stripe-colors: (
   'default': #0e152c,
   'green': #0f2e0f,
@@ -1103,24 +1138,6 @@ $border-width-px: $border-width * 1px;
 }
 .alert_header {
   padding: 0.5rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.ooc_alert {
-  background: #012753;
-  border: 1px solid #006deb;
-  margin: 0.5em;
-  padding: 0.5em 0.5em 0.5em 0.2em;
-  color: #ffffff;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-}
-
-.ooc_announcement_text {
-  color: #006deb;
-  padding: 0.5em 0 0 0.35em;
   display: flex;
   flex-direction: column;
 }

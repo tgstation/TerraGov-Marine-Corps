@@ -17,13 +17,13 @@
  * * text - required, the text to announce
  * * title - optional, the title of the announcement.
  * * players - optional, a list of all players to send the message to. defaults to the entire world
- * * play_sound - if TRUE, play a sound with the announcement (based on player option)
+ * * play_sound - if TRUE, play a sound with the announcement
  * * sound_override - optional, override the default announcement sound
  * * sender_override - optional, modifies the sender of the announcement
+ * * style - optional, is this an `ooc` (blue, used for admin announcements) or `game` (red, used for round-related announcements) announcement
  * * encode_title - if TRUE, the title will be HTML encoded (escaped)
  * * encode_text - if TRUE, the text will be HTML encoded (escaped)
  */
-
 /proc/send_ooc_announcement(
 	text,
 	title = "",
@@ -31,6 +31,7 @@
 	play_sound = TRUE,
 	sound_override = 'sound/misc/adm_announce.ogg',
 	sender_override = "Server Admin Announcement",
+	style = "ooc",
 	encode_title = TRUE,
 	encode_text = FALSE,
 )
@@ -49,7 +50,7 @@
 	announcement_strings += span_major_announcement_title(sender_override)
 	announcement_strings += span_ooc_alert_subtitle(title)
 	announcement_strings += span_ooc_announcement_text(text)
-	var/finalized_announcement = create_ooc_announcement_div(jointext(announcement_strings, ""))
+	var/finalized_announcement = create_ooc_announcement_div(jointext(announcement_strings, ""), style)
 
 	if(islist(players))
 		for(var/mob/target in players)
@@ -71,9 +72,10 @@
  *
  * Arguments
  * * message - required, the message contents
+ * * style_override - required, set the div style
  */
-/proc/create_ooc_announcement_div(message)
-	return "<div class='ooc_alert'>[message]</div>"
+/proc/create_ooc_announcement_div(message, style_override)
+	return "<div class='ooc_alert_[style_override]'>[message]</div>"
 
 #undef span_ooc_announcement_text
 #undef span_ooc_alert_subtitle
