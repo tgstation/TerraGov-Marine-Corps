@@ -146,3 +146,6 @@
 2024-06-19:
   SomrNetwork:
   - rscadd: old sprite module and SoM armor
+2024-06-21:
+  SomrNetwork:
+  - bugfix: ICC and a bunch of other bugs
