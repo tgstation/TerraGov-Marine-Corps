@@ -150,6 +150,10 @@
 /mob/living/carbon/xenomorph/proc/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/rank_name
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	if(!client?.prefs.show_xeno_rank || !client)
+		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+		return
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Young"
@@ -163,7 +167,6 @@
 			rank_name = "Prime"
 		else
 			rank_name = "Young"
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
@@ -485,7 +488,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	else
 		COOLDOWN_START(src, xeno_unresting_cooldown, XENO_UNRESTING_COOLDOWN)
 
-/mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+/mob/living/carbon/xenomorph/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
 		duration *= 2.5 - gravity

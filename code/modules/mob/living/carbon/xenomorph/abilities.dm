@@ -24,6 +24,7 @@
 /datum/action/ability/activable/xeno/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	ability_cost = 75
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
@@ -134,7 +135,7 @@
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
 			// below maptext , above selected frames
-			visual_references[VREF_IMAGE_ONTOP] = image('icons/Xeno/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
+			visual_references[VREF_IMAGE_ONTOP] = image('icons/Xeno/actions/construction.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
 			button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
@@ -176,6 +177,7 @@
 /datum/action/ability/activable/xeno/secrete_resin
 	name = "Secrete Resin"
 	action_icon_state = RESIN_WALL
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Builds whatever resin you selected"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 75
@@ -443,6 +445,7 @@
 /datum/action/ability/activable/xeno/secrete_special_resin
 	name = "Secrete Special Resin"
 	action_icon_state = RESIN_WALL
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Builds whatever special resin you selected"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 75
@@ -678,6 +681,7 @@
 /datum/action/ability/activable/xeno/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Give some of your plasma to a teammate."
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
@@ -838,6 +842,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
+	action_icon_state = "spray_acid"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
 
 /datum/action/ability/activable/xeno/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -855,7 +861,7 @@
 
 
 /datum/action/ability/activable/xeno/spray_acid/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
 	return ..()
 
@@ -876,6 +882,7 @@
 /datum/action/ability/activable/xeno/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "shift_spit_neurotoxin"
+	action_icon = 'icons/Xeno/actions/spits.dmi'
 	desc = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
@@ -968,7 +975,7 @@
 /datum/action/ability/activable/xeno/xeno_spit/proc/fire()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/current_turf = get_turf(owner)
-	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien/spitacid.ogg' : 'sound/voice/alien/spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
@@ -1046,17 +1053,18 @@
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, span_notice("We are now hiding."))
-		button.add_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 	else
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
-		button.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 
 
 //Neurotox Sting
 /datum/action/ability/activable/xeno/neurotox_sting
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 150
@@ -1090,7 +1098,7 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/neurotox_sting/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [initial(name)] again."))
 	return ..()
 
@@ -1113,6 +1121,7 @@
 /datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn
 	name = "Ozelomelyn Sting"
 	action_icon_state = "drone_sting"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
@@ -1132,6 +1141,7 @@
 /datum/action/ability/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
+	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)
@@ -1173,6 +1183,7 @@
 /datum/action/ability/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
 	ability_cost = 200
 	cooldown_duration = 12 SECONDS
@@ -1215,6 +1226,7 @@
 /datum/action/ability/xeno_action/rally_hive
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
 	ability_cost = 0
 	keybinding_signals = list(
@@ -1227,7 +1239,7 @@
 /datum/action/ability/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien/distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
@@ -1239,6 +1251,7 @@
 /datum/action/ability/xeno_action/rally_minion
 	name = "Rally Minions"
 	action_icon_state = "minion_agressive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
 	ability_cost = 0
 	keybinding_signals = list(
@@ -1480,6 +1493,7 @@
 /datum/action/ability/xeno_action/blessing_menu
 	name = "Mothers Blessings"
 	action_icon_state = "hivestore"
+	action_icon = 'icons/Xeno/actions/construction.dmi' // TODO: fix it
 	desc = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,

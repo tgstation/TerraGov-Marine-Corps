@@ -10,6 +10,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_TURF_LAYER
+	allow_pass_flags = PASSABLE|PASS_DEFENSIVE_STRUCTURE
 
 /obj/structure/rock/ex_act(severity)
 	switch(severity)

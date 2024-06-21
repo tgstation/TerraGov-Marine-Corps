@@ -1,11 +1,9 @@
 /obj/machinery/deployable/mounted/sentry
-
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE
-
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
 	///Camera for viewing with cam consoles
@@ -14,18 +12,14 @@
 	var/range = 7
 	///Damage required to knock the sentry over and disable it
 	var/knockdown_threshold = 150
-
 	///List of targets that can be shot at
 	var/list/atom/potential_targets = list()
-
 	///Time of last alert
 	var/last_alert = 0
 	///Time of last damage alert
 	var/last_damage_alert = 0
-
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
-
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
 	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
@@ -370,7 +364,6 @@
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
-
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
 	if((machine_stat & EMPED) || !scan())
@@ -398,12 +391,21 @@
 			continue
 		potential_targets += nearby_xeno
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
-		if(!length(nearby_mech.occupants))
+		var/list/driver_list = nearby_mech.return_drivers()
+		if(!length(driver_list))
 			continue
-		var/mob/living/carbon/human/human_occupant = nearby_mech.occupants[1]
-		if(!istype(human_occupant) || (human_occupant.wear_id?.iff_signal & iff_signal))
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_mech
+	for(var/obj/vehicle/sealed/armored/nearby_tank AS in cheap_get_tanks_near(src, range))
+		var/list/driver_list = nearby_tank.return_drivers()
+		if(!length(driver_list))
+			continue
+		var/mob/living/carbon/human/human_occupant = driver_list[1]
+		if(human_occupant.wear_id?.iff_signal & iff_signal)
+			continue
+		potential_targets += nearby_tank
 	return length(potential_targets)
 
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
@@ -427,13 +429,13 @@
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	var/atom/target = get_target()
-	sentry_alert(SENTRY_ALERT_HOSTILE, target)
-	update_icon()
 	if(!target)
 		gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
 		return
+	sentry_alert(SENTRY_ALERT_HOSTILE, target)
+	update_icon()
 	if(target != gun.target)
 		gun.stop_fire()
 		firing = FALSE
@@ -480,14 +482,19 @@
 			return FALSE
 
 		for(var/atom/movable/AM AS in T)
+			if(AM == target)
+				continue
 			if(AM.opacity)
 				return FALSE
 			if(!AM.density)
 				continue
 			if(ismob(AM))
 				continue
-			if(!(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE) && !(AM.type in ignored_terrains))) //todo:accurately populate ignored_terrains
-				return FALSE
+			if(AM.type in ignored_terrains) //todo:accurately populate ignored_terrains
+				continue
+			if(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE))
+				continue
+			return FALSE
 
 	return TRUE
 
@@ -533,7 +540,7 @@
 	var/obj/item/internal_sentry = get_internal_item()
 	if(internal_sentry)
 		name = "Deployed " + internal_sentry.name
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/build_a_sentry.dmi'
 	default_icon_state = "build_a_sentry"
 	update_icon()
 
@@ -541,8 +548,7 @@
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(internal_gun)
-		. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
-
+		. += image('icons/obj/machines/deployable/sentry/build_a_sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
 
 //Throwable turret
 /obj/machinery/deployable/mounted/sentry/cope

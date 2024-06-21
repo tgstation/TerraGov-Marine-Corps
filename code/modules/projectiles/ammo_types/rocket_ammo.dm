@@ -27,17 +27,17 @@
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 0, 2)
 
-/datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
+/datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
 
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(O.density ? P.loc : O.loc)
+/datum/ammo/rocket/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/rocket/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/rocket/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/rocket/he
 	name = "high explosive rocket"
@@ -82,10 +82,10 @@
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 2, 5, 0, 3)
 
-/datum/ammo/rocket/ltb/on_hit_mob(mob/victim, obj/projectile/proj)
-	drop_nade(get_turf(victim))
-	if(!isxeno(victim))
-		victim.gib()
+/datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
+	if(!isxeno(target_mob))
+		target_mob.gib()
 
 /datum/ammo/rocket/heavy_isg
 	name = "8.8cm round"
@@ -118,15 +118,15 @@
 	accurate_range = 24
 	max_range = 35
 
-/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 5
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	proj.proj_max_range -= 5
 
-/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
-	P.proj_max_range -= 2
-	staggerstun(M, P, max_range = 20, slowdown = 0.5)
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	proj.proj_max_range -= 2
+	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
 
-/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
-	P.proj_max_range -= 5
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	proj.proj_max_range -= 5
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -230,10 +230,10 @@
 	accuracy = -10 //Not designed for anti human use
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
-/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
-	if(ismecha(O))
-		P.damage *= 3 //this is specifically designed to hurt mechs
+/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(get_turf(target_obj))
+	if(ismecha(target_obj))
+		proj.damage *= 3 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 0, 1)
@@ -358,10 +358,10 @@
 	accuracy = -10 //Not designed for anti human use
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
-/datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
-	if(ismecha(O))
-		P.damage *= 3 //this is specifically designed to hurt mechs
+/datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(get_turf(target_obj))
+	if(ismecha(target_obj))
+		proj.damage *= 3 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 0, 1)
@@ -417,8 +417,8 @@
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 0, 2)
 
-/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P) //no explosion every time it hits a turf
-	P.proj_max_range -= 10
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/target_turf, obj/projectile/proj) //no explosion every time it hits a turf
+	proj.proj_max_range -= 10
 
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
@@ -432,16 +432,16 @@
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
-	P.proj_max_range -= 5
-	staggerstun(M, P, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
+	proj.proj_max_range -= 5
+	staggerstun(target_mob, proj, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
-	P.proj_max_range -= 5
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	proj.proj_max_range -= 5
 
-/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 5
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	proj.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
 	name = "low velocity high explosive shell"
@@ -454,8 +454,8 @@
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5)
 
-/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive
 	name = "beehive shell"
@@ -472,23 +472,27 @@
 /datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, slowdown = 0.2, knockback = 1)
-	drop_nade(get_turf(M))
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, M) )
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/turf/det_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, slowdown = 0.2, knockback = 1)
+	drop_nade(det_turf)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, target_mob), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, O) )
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, target_obj), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, T) )
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, target_turf), det_turf)
 
-/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, get_turf(proj)) )
+/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 5, 3, Get_Angle(proj.firer, get_turf(proj)), det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"
@@ -496,3 +500,74 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
+
+/datum/ammo/rocket/homing
+	name = "homing HE rocket"
+	damage = 0
+	penetration = 0
+	max_range = 20
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS
+	shell_speed = 0.3
+	///If the projectile is pointing at the target with a variance of this number, we don't readjust the angle
+	var/angle_precision = 5
+	///Number in degrees that the projectile will change during each process
+	var/turn_rate = 5
+
+/datum/ammo/rocket/homing/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 4, 1)
+
+/datum/ammo/rocket/homing/ammo_process(obj/projectile/proj, damage)
+	if(QDELETED(proj.original_target))
+		return
+	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
+	if((proj.dir_angle >= angle_to_target - angle_precision) && (proj.dir_angle <= angle_to_target + angle_precision))
+		return
+	proj.dir_angle = clamp(angle_to_target, proj.dir_angle - turn_rate, proj.dir_angle + turn_rate)
+	proj.x_offset = round(sin(proj.dir_angle), 0.01)
+	proj.y_offset = round(cos(proj.dir_angle), 0.01)
+	var/matrix/rotate = matrix()
+	rotate.Turn(proj.dir_angle)
+	animate(proj, transform = rotate, time = SSprojectiles.wait)
+
+/datum/ammo/rocket/coilgun
+	name = "kinetic penetrator"
+	icon_state = "tank_coilgun"
+	hud_state = "rocket_ap"
+	hud_state_empty = "rocket_empty"
+	ammo_behavior_flags = AMMO_SNIPER
+	armor_type = BULLET
+	damage_falloff = 1
+	shell_speed = 3
+	accuracy = 10
+	accurate_range = 20
+	max_range = 40
+	damage = 180
+	penetration = 20
+	sundering = 10
+	bullet_color = LIGHT_COLOR_TUNGSTEN
+
+/datum/ammo/rocket/coilgun/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 5, 1)
+
+/datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
+	ammo_behavior_flags = AMMO_ENERGY
+
+/datum/ammo/rocket/coilgun/low
+	damage_falloff = 2
+	shell_speed = 2
+	damage = 90
+	penetration = 10
+	sundering = 5
+
+/datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
+	explosion(T, 0, 1, 2, 3)
+
+/datum/ammo/rocket/coilgun/high
+	damage_falloff = 0
+	shell_speed = 5
+	damage = 300
+	penetration = 40
+	sundering = 20
+
+/datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
+	explosion(T, 1, 3, 5, 6, 2)

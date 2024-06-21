@@ -724,7 +724,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(isitem(parent))
 		var/obj/item/parent_storage = parent
 		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(storage_type_limits)))
-			if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
+			if(!istype(src, /obj/item/storage/backpack/holding)) //bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
 					to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
 				return FALSE //To prevent the stacking of same sized storage items.
@@ -780,10 +780,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
-/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)
 	if(!istype(item))
 		return FALSE
-	if(!handle_access_delay(item, user, taking_out=FALSE))
+	if(!handle_access_delay(item, user, taking_out = FALSE))
 		item.forceMove(item.drop_location())
 		return FALSE
 	if(user && item.loc == user)
@@ -820,12 +820,21 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 						span_notice("You put \the [item] into \the [parent.name]."),\
 						null, visidist)
 
-///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
+/**
+ * Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
+ *
+ * Arguments:
+ * * item: the item that is getting removed
+ * * new_location: where the item is being sent to
+ * * user: whoever/whatever is calling this proc
+ * * silent: defaults to FALSE, on subtypes this is used to prevent a sound from being played
+ * * bypass_delay: if TRUE, will bypass draw delay
+ */
+/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	if(!istype(item))
 		return FALSE
 
-	if(!handle_access_delay(item, user))
+	if(!bypass_delay && !handle_access_delay(item, user))
 		return FALSE
 
 	for(var/mob/M AS in can_see_content())
@@ -978,7 +987,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/handle_atom_del(datum/source, atom/movable/movable_atom)
 	SIGNAL_HANDLER
 	if(isitem(movable_atom))
-		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, movable_atom.loc, usr, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, null, usr, silent = TRUE, bypass_delay = TRUE)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)

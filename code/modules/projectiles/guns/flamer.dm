@@ -363,7 +363,7 @@
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/flamer.dmi'
 	icon_state = "flamethrower"
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
@@ -508,7 +508,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"
 	desc = "For the quenching of unfortunate mistakes."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "hydrocannon"
 
 	fire_delay = 1.2 SECONDS

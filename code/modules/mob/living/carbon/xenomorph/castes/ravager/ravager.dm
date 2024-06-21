@@ -12,7 +12,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
-	old_x = -16
 	bubble_icon = "alienroyal"
 
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload)

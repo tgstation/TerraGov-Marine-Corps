@@ -35,3 +35,4 @@
 /area/whiskey_outpost/outside/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE

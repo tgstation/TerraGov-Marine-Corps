@@ -5,6 +5,7 @@
 /datum/action/ability/activable/xeno/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_duration = 45 SECONDS
 	ability_cost = 100
@@ -39,6 +40,7 @@
 /datum/action/ability/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
@@ -135,6 +137,7 @@
 /datum/action/ability/activable/xeno/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -190,6 +193,7 @@
 /datum/action/ability/activable/xeno/shattering_roar
 	name = "Shattering roar"
 	action_icon_state = "shattering_roar"
+	action_icon = 'icons/Xeno/actions/king.dmi'
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
@@ -205,7 +209,7 @@
 		return
 	owner.dir = get_cardinal_dir(owner, target)
 
-	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70, sound_range = 20)
+	playsound(owner, 'sound/voice/alien/king_roar.ogg', 70, sound_range = 20)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
@@ -219,7 +223,7 @@
 		return fail_activate()
 
 	finish_charging()
-	playsound(owner, 'sound/voice/xenos_roaring.ogg', 90, sound_range = 30)
+	playsound(owner, 'sound/voice/alien/xenos_roaring.ogg', 90, sound_range = 30)
 	for(var/mob/living/carbon/human/human_victim AS in GLOB.humans_by_zlevel["[owner.z]"])
 		if(get_dist(human_victim, owner) > 9)
 			continue
@@ -264,9 +268,12 @@
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
-		else if(isvehicle(victim))
-			var/obj/vehicle/veh_victim = victim
-			veh_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
+		else if(isvehicle(victim) || ishitbox(victim))
+			var/obj/obj_victim = victim
+			var/hitbox_penalty = 0
+			if(ishitbox(victim))
+				hitbox_penalty = 20
+			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
@@ -300,7 +307,8 @@
 /datum/action/ability/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
-	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
+	action_icon = 'icons/Xeno/actions/king.dmi'
+	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, hurting living beings and vehicles."
 	ability_cost = 25
 	cooldown_duration = 10 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -402,9 +410,12 @@
 				human_victim.take_overall_damage(15, BURN, updating_health = TRUE)
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(75, BURN, ENERGY, armour_penetration = 60)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_mult = 1
+				if(ismecha(obj_victim))
+					damage_mult = 5
+				obj_victim.take_damage(15 * damage_mult, BURN, ENERGY, armour_penetration = 60)
 	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
@@ -462,6 +473,7 @@
 /datum/action/ability/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_cost = 900
 	cooldown_duration = 10 MINUTES

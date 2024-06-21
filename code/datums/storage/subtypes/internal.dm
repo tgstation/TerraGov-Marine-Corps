@@ -51,7 +51,7 @@
 	var/obj/master_item = parent.loc
 	master_item?.update_icon()
 
-/datum/storage/internal/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE)
+/datum/storage/internal/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
 	var/obj/master_item = parent.loc
 	if(isturf(master_item) || ismob(master_item))
@@ -67,11 +67,12 @@
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 8
 
-/datum/storage/internal/motorbike_pack/attempt_draw_object()
-	return //the sidecar upgrade is in parent.contents, so I have to limit this functionality
-
 /datum/storage/internal/motorbike_pack/on_ctrl_click()
 	return //We want to be able to grab the bike without pulling something out
+
+/datum/storage/internal/motorbike_pack/on_attackby(datum/source, obj/item/attacking_item, mob/user, params)
+	if(!params) //we're clicking directly on storage, not the sprite. Avoids accidental storing
+		return ..()
 
 /datum/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
