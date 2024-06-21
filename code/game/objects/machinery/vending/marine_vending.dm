@@ -2094,7 +2094,7 @@
 			/obj/item/clothing/under/marine/squad/neck/alpha_skirt = -1,
 			/obj/item/clothing/under/marine/squad/neck/bravo_skirt = -1,
 			/obj/item/clothing/under/marine/squad/neck/charlie_skirt = -1,
-			/obj/item/clothing/gloves/marine/veteran/pmc = 1,
+			/obj/item/clothing/gloves/marine/veteran/pmc = -1,
 			/obj/item/clothing/gloves/marine/hyperscale = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/veteran/pmc = -1,
