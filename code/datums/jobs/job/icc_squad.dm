@@ -30,7 +30,7 @@
 	jobtype = /datum/job/vsd_squad/standard
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //VSD Medic
 /datum/job/icc_squad/medic
@@ -53,7 +53,7 @@
 	jobtype = /datum/job/vsd/medic
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 	w_uniform = /obj/item/clothing/under/icc
 	gloves = /obj/item/clothing/gloves/marine/icc
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
@@ -82,7 +82,7 @@
 	jobtype = /datum/job/vsd_squad/spec
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //VSD Squad Leader
 /datum/job/icc_squad/leader
@@ -105,7 +105,7 @@
 	jobtype = /datum/job/vsd_squad/leader
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 	glasses = /obj/item/clothing/glasses/hud/health
 
 
