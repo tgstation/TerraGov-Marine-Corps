@@ -173,6 +173,7 @@
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	READ_FILE(S["custom_emotes"], custom_emotes)
 	READ_FILE(S["chem_macros"], chem_macros)
 
@@ -355,6 +356,7 @@
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
+	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
