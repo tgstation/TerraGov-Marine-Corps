@@ -30,7 +30,7 @@
 	jobtype = /datum/job/vsd_squad/standard
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //VSD Medic
 /datum/job/icc_squad/medic
@@ -53,7 +53,7 @@
 	jobtype = /datum/job/vsd/medic
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 	w_uniform = /obj/item/clothing/under/icc
 	gloves = /obj/item/clothing/gloves/marine/icc
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
@@ -82,14 +82,14 @@
 	jobtype = /datum/job/vsd_squad/spec
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //VSD Squad Leader
 /datum/job/icc_squad/leader
 	title = "ICC Squad Leader"
 	paygrade = "ICC4"
 	comm_title = "ICC"
-	skills_type = /datum/skills/sl
+	skills_type = /datum/skills/sl/icc
 	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
@@ -105,7 +105,7 @@
 	jobtype = /datum/job/vsd_squad/leader
 
 	id = /obj/item/card/id/dogtag
-	ears = /obj/item/radio/headset/distress/icc
+	ears = /obj/item/radio/headset/mainship/marine/icc
 	glasses = /obj/item/clothing/glasses/hud/health
 
 
