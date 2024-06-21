@@ -221,7 +221,7 @@
 /obj/hitbox/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage((10 * S.strength) / 5, BURN, ACID)
+		take_damage((10 * S.strength) * 0.2 , BURN, ACID)
 
 ///Returns the turf where primary weapon projectiles should source from
 /obj/hitbox/proc/get_projectile_loc(obj/item/armored_weapon/weapon)
