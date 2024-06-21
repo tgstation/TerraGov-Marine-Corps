@@ -1,4 +1,4 @@
-#define TELEPORTING_COST 250
+#define TELEPORTING_COST 100
 /obj/machinery/deployable/teleporter
 	density = FALSE
 	max_integrity = 200
