@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/blink
 	name = "Blink"
 	action_icon_state = "blink"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = ABILITY_TURF_TARGET
 	ability_cost = 30
@@ -155,6 +156,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/banish
 	name = "Banish"
 	action_icon_state = "Banish"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = ABILITY_TARGET_SELF
 	ability_cost = 50
@@ -356,6 +358,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/recall
 	name = "Recall"
 	action_icon_state = "Recall"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_duration = 1 SECONDS //Token for anti-spam
@@ -416,6 +419,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/timestop
 	name = "Time stop"
 	action_icon_state = "time_stop"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	ability_cost = 100
 	cooldown_duration = 1 MINUTES
@@ -458,6 +462,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/portal
 	name = "Portal"
 	action_icon_state = "portal"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
 	ability_cost = 50
 	cooldown_duration = 5 SECONDS
@@ -655,6 +660,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/rewind
 	name = "Time Shift"
 	action_icon_state = "rewind"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS

@@ -35,6 +35,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/submerge_modifier, 10)
 	set_fire(burn_ticks, burn_level, f_color, fire_stacks, fire_damage)
 
 /obj/fire/Destroy()
@@ -204,7 +205,7 @@
 		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK)
 	else
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK)
-	target.take_overall_damage(damage, BURN, ACID, max_limbs = 2)
+	target.take_overall_damage(damage, BURN, FIRE, max_limbs = 2)
 
 /obj/fire/melting_fire/on_cross(datum/source, mob/living/carbon/human/crosser, oldloc, oldlocs)
 	if(istype(crosser))

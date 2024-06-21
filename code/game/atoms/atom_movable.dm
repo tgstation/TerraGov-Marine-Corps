@@ -105,7 +105,6 @@
 	if(light_system == MOVABLE_LIGHT)
 		AddComponent(/datum/component/overlay_lighting)
 
-
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
@@ -1319,3 +1318,60 @@
 //Throws AM away from something
 /atom/movable/proc/knockback(source, distance, speed, dir, knockback_force = MOVE_FORCE_EXTREMELY_STRONG)
 	safe_throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source, FALSE, knockback_force)
+
+///List of all filter removal timers. Glob to avoid an AM level var
+GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
+
+///Sets the submerged level of an AM based on its turf
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration = 0)
+	if(!submerge_icon) //catch all in case so people don't need to make child types just to specify a return
+		return
+	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
+	var/new_height = istype(new_loc) ? new_loc.get_submerge_height() : 0
+	var/height_diff = new_height - old_height
+
+	var/old_depth = istype(old_loc) ? old_loc.get_submerge_depth() : 0
+	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
+	var/depth_diff = new_depth - old_depth
+
+	if(!height_diff && !depth_diff)
+		return
+
+	var/icon/AM_icon = icon(icon)
+	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
+
+	if(!new_height && !new_depth)
+		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
+		REMOVE_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
+	else if(!HAS_TRAIT(src, TRAIT_SUBMERGED)) //we use a trait to avoid some edge cases if things are moving fast or unusually
+		if(GLOB.submerge_filter_timer_list[ref(src)])
+			deltimer(GLOB.submerge_filter_timer_list[ref(src)])
+		//The mask is spawned below the AM, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
+		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon(submerge_icon, submerge_icon_state), null, MASK_INVERSE))
+		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
+
+	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
+	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
+
+///overrides the turf's normal footstep sound
+/atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/atom/movable/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE
+
+///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
+/atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)
+	if(HAS_TRAIT(src, TRAIT_SUBMERGED))
+		set_submerge_level(old_loc = loc, duration = 0.1)
+	ADD_TRAIT(src, TRAIT_NOSUBMERGE, trait_source)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE), PROC_REF(_do_submerge))
+
+///Adds submerge effects to the AM. Should never be called directly
+/atom/movable/proc/_do_submerge(atom/movable/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE))
+	set_submerge_level(loc, duration = 0.1)

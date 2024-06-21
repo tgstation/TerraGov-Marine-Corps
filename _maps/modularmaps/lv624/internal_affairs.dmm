@@ -19,7 +19,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "bV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "cf" = (
@@ -44,7 +44,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/internal_affairs)
 "eq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -167,7 +167,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "no" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -182,7 +182,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "os" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -193,7 +193,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "rO" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/megaphone,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -302,7 +302,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "EI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
 /obj/item/clothing/glasses/sunglasses/big{
 	pixel_y = 5
@@ -355,7 +355,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "Jf" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
 /obj/item/mecha_parts/part/gygax_head,

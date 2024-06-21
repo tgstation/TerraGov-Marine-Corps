@@ -13,6 +13,7 @@
 /area/daedalusprison/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/daedalusprison/caves/northwest
 	name = "Northwestern Caves"
