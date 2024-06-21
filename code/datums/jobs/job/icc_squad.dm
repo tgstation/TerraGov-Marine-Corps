@@ -89,7 +89,7 @@
 	title = "ICC Squad Leader"
 	paygrade = "ICC4"
 	comm_title = "ICC"
-	skills_type = /datum/skills/sl
+	skills_type = /datum/skills/sl/icc
 	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
