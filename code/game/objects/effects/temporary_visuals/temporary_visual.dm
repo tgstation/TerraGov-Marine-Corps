@@ -73,8 +73,8 @@
 	holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
-	holder.icon = 'icons/Marine/marine-items.dmi'
-	holder.icon_state = "detector_blip"
+	holder.icon = 'icons/effects/blips.dmi'
+	holder.icon_state = "close_blip_hostile"
 	tracker_target = target
 	tracker_target.overlays += holder
 	hud_list[XENO_TACTICAL_HUD] = holder

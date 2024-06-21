@@ -10,7 +10,7 @@
 	wound_type = "widow"
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.5
@@ -28,7 +28,7 @@
 	deevolves_to = /datum/xeno_caste/puppeteer
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
@@ -42,11 +42,16 @@
 	max_spiderlings = 5
 
 	// *** Abilities *** ///
+	resin_max_range = 1 // Widow can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin/widow,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,
@@ -77,11 +82,16 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** ///
+	resin_max_range = 1 //Widow can place resin structures from 1 tile away
+	
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/secrete_resin/widow,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
 		/datum/action/ability/activable/xeno/leash_ball,

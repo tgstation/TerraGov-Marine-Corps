@@ -64,6 +64,7 @@
 /datum/action/ability/activable/xeno/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -73,7 +74,7 @@
 	)
 
 /datum/action/ability/activable/xeno/defile/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
@@ -110,7 +111,7 @@
 	X.face_atom(living_target)
 	X.do_attack_animation(living_target)
 	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
-	playsound(living_target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(X, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
 	living_target.apply_damage(50, STAMINA)
@@ -165,6 +166,7 @@
 /datum/action/ability/xeno_action/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
@@ -283,6 +285,7 @@
 /datum/action/ability/activable/xeno/inject_egg_neurogas
 	name = "Inject Gas"
 	action_icon_state = "inject_egg"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_cost = 100
 	cooldown_duration = 5 SECONDS
@@ -354,6 +357,7 @@
 /datum/action/ability/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
 	keybinding_signals = list(
@@ -395,10 +399,10 @@
 	// This is cursed, don't copy this code its the WRONG way to do this.
 	// TODO: generate this from GLOB.defiler_toxin_type_list
 	var/static/list/defiler_toxin_images_list = list(
-			DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-			DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
-			DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
-			DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
+			DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN),
+			DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
+			DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
+			DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
@@ -419,6 +423,7 @@
 /datum/action/ability/xeno_action/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 100
@@ -446,7 +451,7 @@
 	reagent_slash_reagent = X.selected_reagent
 
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
-	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
+	X.playsound_local(X, 'sound/voice/alien/drool2.ogg', 25)
 
 	toggle_particles(TRUE)
 	succeed_activate()
@@ -520,6 +525,7 @@
 /datum/action/ability/activable/xeno/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175

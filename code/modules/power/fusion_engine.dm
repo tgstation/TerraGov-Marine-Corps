@@ -355,7 +355,7 @@
 //FUEL CELL
 /obj/item/fuel_cell
 	name = "\improper WL-6 universal fuel cell"
-	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon = 'icons/obj/items/fuel_cell.dmi'
 	icon_state = "cell-empty"
 	desc = "A rechargable fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
 	/// The amount of fuel currently in the cell

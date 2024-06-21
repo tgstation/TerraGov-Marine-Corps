@@ -6,7 +6,7 @@
 	///owner this is attached to
 	var/obj/vehicle/sealed/armored/chassis
 	///Weapon slot this weapon fits in
-	var/weapon_slot = MODULE_PRIMARY
+	var/armored_weapon_flags = MODULE_PRIMARY|MODULE_FIXED_FIRE_ARC
 
 	///currently loaded ammo. initial value is ammo we start with
 	var/obj/item/ammo_magazine/ammo = /obj/item/ammo_magazine/tank/ltb_cannon
@@ -26,6 +26,8 @@
 
 	///sound file to play when this weapon you know, fires
 	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
+	///Whether freq vary is applied to fire_sound
+	var/fire_sound_vary = TRUE
 	///Tracks windups
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	///windup sound played during windup
@@ -77,7 +79,7 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(chassis.loc, windup_sound, 30, TRUE)
+		playsound(chassis.loc, windup_sound, 30)
 		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
@@ -178,8 +180,11 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
-	if(chassis.primary_weapon == src)
-		var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
+	if(!current_target)
+		return
+	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
+	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
+		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, current_target), dir2angle(chassis.turret_overlay.dir))
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
@@ -192,25 +197,16 @@
 		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
-
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammo.default_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammo.default_ammo.hitscan_effect_icon))
-	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo.default_ammo])
-
-	apply_weapon_modifiers(projectile_to_fire, current_firer)
-	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
-
-	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE)
-	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-
+	do_fire(source_turf)
+	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
-	if(chassis.primary_weapon == src && !chassis.turret_overlay.flashing)
-		chassis.turret_overlay.set_flashing(TRUE)
-		addtimer(CALLBACK(chassis.turret_overlay, TYPE_PROC_REF(/atom/movable/vis_obj/turret_overlay, set_flashing), FALSE), 7, TIMER_CLIENT_TIME)
+	ammo.current_rounds--
+
+	if(chassis.primary_weapon == src)
+		flick(chassis.turret_overlay.primary_overlay.icon_state + "_fire", chassis.turret_overlay.primary_overlay)
 		chassis.interior?.breech.on_main_fire(ammo)
 
-	ammo.current_rounds--
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 	if(ammo.current_rounds > 0)
@@ -228,6 +224,16 @@
 	reload()
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
+///The actual firing of a projectile. Overridable for different effects
+/obj/item/armored_weapon/proc/do_fire(turf/source_turf, ammo_override)
+	var/datum/ammo/ammo_type = ammo_override ? ammo_override : ammo.default_ammo
+	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
+	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
+	apply_weapon_modifiers(projectile_to_fire, current_firer)
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
+	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+
 ///eject current ammo from tank
 /obj/item/armored_weapon/proc/eject_ammo()
 	for(var/mob/occupant AS in chassis.occupants)
@@ -237,9 +243,9 @@
 	ammo = null
 	if(chassis.interior)
 		if(chassis.primary_weapon == src)
-			chassis.interior.breech.do_eject_ammo(old_ammo)
+			chassis.interior?.breech?.do_eject_ammo(old_ammo)
 		else
-			chassis.interior.secondary_breech.do_eject_ammo(old_ammo)
+			chassis.interior?.secondary_breech?.do_eject_ammo(old_ammo)
 		return
 	old_ammo.forceMove(chassis.exit_location())
 
@@ -257,13 +263,14 @@
 		tank.primary_weapon?.detach(tank.exit_location())
 		tank.primary_weapon = src
 		tank.turret_overlay.update_gun_overlay(icon_state)
+		tank?.interior?.breech?.on_weapon_attach(src)
 	else
 		tank.secondary_weapon?.detach(tank.exit_location())
 		tank.secondary_weapon = src
 		if(tank.turret_overlay)
 			// do not remove the dir = SOUTH becuase otherwise byond flips an internal flag so the dir is inherited from the turret
 			tank.turret_overlay.secondary_overlay = image(tank.turret_icon, icon_state = icon_state + "_" + "[tank.turret_overlay.dir]", dir = SOUTH)
-			tank.turret_overlay.add_overlay(tank.turret_overlay.secondary_overlay)
+			tank.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
 			tank.update_appearance(UPDATE_OVERLAYS)
@@ -282,11 +289,12 @@
 	if(chassis.primary_weapon == src)
 		chassis.primary_weapon = null
 		chassis.turret_overlay.update_gun_overlay()
+		chassis?.interior?.breech?.on_weapon_detach(src)
 	else
 		chassis.secondary_weapon = null
 		if(chassis.turret_overlay)
-			chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
 			chassis.turret_overlay.secondary_overlay = null
+			chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			chassis.secondary_weapon_overlay = null
 			chassis.update_appearance(UPDATE_OVERLAYS)
@@ -302,7 +310,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_SECONDARY
+	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -319,7 +327,6 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	weapon_slot = MODULE_PRIMARY
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC

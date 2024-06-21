@@ -118,6 +118,7 @@
 			data["see_rc_emotes"] = see_rc_emotes
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
+			data["show_xeno_rank"] = show_xeno_rank
 			data["show_typing"] = show_typing
 			data["tooltips"] = tooltips
 			data["widescreenpref"] = widescreenpref
@@ -671,6 +672,9 @@
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
 
+		if("show_xeno_rank")
+			show_xeno_rank = !show_xeno_rank
+
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
 			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
@@ -787,7 +791,7 @@
 			emote.spoken_emote = !emote.spoken_emote
 
 		if("reset-keybindings")
-			key_bindings = GLOB.hotkey_keybinding_list_by_key
+			key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 			current_client.set_macros()
 			save_keybinds()
 

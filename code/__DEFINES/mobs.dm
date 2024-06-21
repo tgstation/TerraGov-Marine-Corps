@@ -643,7 +643,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /// How fast the pyrogen moves when charging using fire charge
 #define PYROGEN_CHARGESPEED 3
 /// Maximum charge distance.
-#define PYROGEN_CHARGEDISTANCE 3
+#define PYROGEN_CHARGEDISTANCE 5
 /// Damage on hitting a mob using fire charge
 #define PYROGEN_FIRECHARGE_DAMAGE 10
 /// Bonus damage per fire stack

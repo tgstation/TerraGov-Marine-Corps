@@ -198,7 +198,7 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-	..()
+	return ..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -291,11 +291,17 @@
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
 
+	var/area/thisarea = get_area(W)
 	//static Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 
-		W.static_lighting_object = old_lighting_object
+		if(thisarea.static_lighting)
+			W.static_lighting_object = old_lighting_object || new /datum/static_lighting_object(src)
+		else
+			W.static_lighting_object = null
+			if(old_lighting_object)
+				qdel(old_lighting_object, TRUE)
 
 		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
@@ -308,7 +314,6 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	var/area/thisarea = get_area(W)
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
@@ -943,3 +948,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK))
 		return FALSE
 	return TRUE
+
+///Returns the number that represents how submerged an AM is by a turf and its contents
+/turf/proc/get_submerge_height(turf_only = FALSE)
+	. = 0
+	if(turf_only)
+		return
+	var/list/submerge_list = list()
+	SEND_SIGNAL(src, COMSIG_TURF_SUBMERGE_CHECK, submerge_list)
+	for(var/i in submerge_list)
+		. += i
+
+///Returns the number that shows how far an AM is offset when submerged in this turf
+/turf/proc/get_submerge_depth()
+	return 0

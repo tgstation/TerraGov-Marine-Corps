@@ -1,23 +1,17 @@
 /obj/item/hud_tablet
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_NT_CORPORATE)
 	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
-
 	interaction_flags = INTERACT_MACHINE_TGUI
-
-
 	/// How far can these tablets see around the cameras
 	var/max_view_dist = 3
-
 	var/obj/machinery/camera/active_camera
 	/// Used to keep a cache of the last location visible on the camera
 	var/turf/last_turf
 	var/list/network = list("marine")
-
 	// Stuff needed to render the map
 	var/map_name
 	var/const/default_map_size = 15
