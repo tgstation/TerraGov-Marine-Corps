@@ -260,6 +260,7 @@
 	name = "\improper PR-412L1 box magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the PR-412L1 heavy pulse rifle."
 	icon_state = "m412l1"
+	icon = 'icons/obj/items/ammo/rifle.dmi'
 	icon_state_mini = "mag_box"
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
