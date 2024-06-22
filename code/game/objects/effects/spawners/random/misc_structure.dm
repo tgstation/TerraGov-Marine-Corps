@@ -356,6 +356,7 @@
 /obj/effect/spawner/random/misc/structure/curtain
 	name = "curtain spawner"
 	icon_state = "random_curtain"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/curtain/temple = 9,
 		/obj/structure/curtain/open/temple = 1,
@@ -364,6 +365,7 @@
 /obj/effect/spawner/random/misc/structure/curtain/medical
 	name = "medical curtain spawner"
 	icon_state = "random_med_curtain"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/curtain/medical = 9,
 		/obj/structure/curtain/open/medical = 1,

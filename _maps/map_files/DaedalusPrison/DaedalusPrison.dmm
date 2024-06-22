@@ -10049,8 +10049,10 @@
 	},
 /area/daedalusprison/caves/research)
 "iwV" = (
-/obj/structure/curtain/medical,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
 "ixa" = (
@@ -10578,7 +10580,9 @@
 	},
 /area/daedalusprison/inside/easternhalls)
 "iRi" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
 "iRr" = (
@@ -20620,8 +20624,10 @@
 /turf/open/floor/tile/dark,
 /area/daedalusprison/inside/medical)
 "qVp" = (
-/obj/structure/curtain/medical,
 /obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/daedalusprison/inside/medical)
 "qVr" = (
@@ -23771,7 +23777,9 @@
 /turf/open/floor/tile/purple/taupepurple,
 /area/daedalusprison/inside/hydroponicstesting)
 "tqa" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/daedalusprison/inside/medical)
 "tqE" = (

@@ -23,7 +23,7 @@
 /obj/structure/prop/urban/vehicles
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	icon_state = "SUV"
-	max_integrity = 3000
+	max_integrity = 100
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/urban/vehicles/Destroy()
@@ -86,25 +86,25 @@
 	if(!.)
 		return
 	switch(obj_integrity)
-		if(500 to 600)
+		if(50 to 60)
 			icon_state = initial(icon_state)
 			return
-		if(400 to 500)
+		if(40 to 50)
 			icon_state = "[base_icon_state]_damage_[1]"
-		if(300 to 400)
+		if(30 to 40)
 			icon_state = "[base_icon_state]_damage_[2]"
-		if(200 to 300)
+		if(20 to 30)
 			icon_state = "[base_icon_state]_damage_[3]"
-		if(100 to 200)
+		if(10 to 20)
 			icon_state = "[base_icon_state]_damage_[4]"
-		if(0 to 100)
+		if(0 to 10)
 			icon_state = "[base_icon_state]_damage_[5]"
 
 ///spawns a bunch of debris and plays a sound when a vehicle is wrecked
 /obj/structure/prop/urban/vehicles/proc/explode()
 	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
-	if(prob(10))
-		explosion(loc, light_impact_range = 4, flame_range = 2)
+	if(prob(explosion_probability))
+		explosion(loc, light_impact_range = 3, flame_radius = 2)
 	playsound(loc, 'sound/effects/car_crush.ogg', 25)
 	var/turf/Tsec = get_turf(src)
 	new /obj/item/stack/rods(Tsec)
@@ -192,8 +192,10 @@
 	set_bound_width = 128
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	max_integrity = 4000
-	coverage = 90
+	max_integrity = 1000 //mega hauler trucks are still tanks that soak up fire
+	coverage = 95
+	soft_armor = list(MELEE = 30, BULLET = 90, LASER = 95, ENERGY = 55, BOMB = 60, BIO = 10, FIRE = 10, ACID = 10)
+
 
 /obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland
 	icon_state = "longtruck_kellandmining"
@@ -274,8 +276,11 @@
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 40
 	base_icon_state = "meridian_red"
-	max_integrity = 600
+	max_integrity = 60
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	///used to determine the probability that a car will detonate upon being destroyed
+	var/explosion_probability = 1
+	soft_armor = list(MELEE = 10, BULLET = 75, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 10, FIRE = 10, ACID = 10)
 
 /obj/structure/prop/urban/vehicles/meridian/Initialize(mapload)
 	. = ..()
@@ -653,6 +658,7 @@
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	set_bound_height = 32
 	set_bound_width = 64
+	max_integrity = 120
 	density = TRUE
 
 /obj/structure/prop/urban/vehicles/truck/truck1
@@ -2174,6 +2180,10 @@
 /obj/structure/prop/urban/fakeplatforms/platform4
 	icon_state = "zenithplatform3"
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+
+/obj/structure/prop/urban/fakeplatforms/rockplatform
+	icon_state = "kutjevo_rockdark_fake"
+	icon = 'icons/obj/structures/platforms.dmi'
 
 // Grille
 

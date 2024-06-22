@@ -28,9 +28,6 @@
 /obj/structure/barricade/handrail/Bumped(atom/bumpingcreature)
 	if(!isxeno(bumpingcreature))
 		return
-	balloon_alert_to_viewers("starts shoving [src]")
-	if(!do_after(bumpingcreature, 0.5 SECONDS, NONE, src,  BUSY_ICON_HOSTILE))
-		return
 	balloon_alert_to_viewers("breaks [src]")
 	qdel(src)
 

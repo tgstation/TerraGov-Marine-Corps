@@ -21519,8 +21519,10 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
 "eqG" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/curtain{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -68030,8 +68032,10 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos/storage)
 "nVN" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/curtain{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -77376,7 +77380,9 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
 "pMt" = (
-/obj/effect/spawner/random/misc/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/deltastation/service/theater)
 "pMx" = (
