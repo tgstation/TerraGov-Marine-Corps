@@ -47,22 +47,25 @@
 					continue
 				if(obj_target.resistance_flags & INDESTRUCTIBLE)
 					continue
-				var/obj_damage = beam_turf ? 120 : 50
+				var/obj_damage = beam_turf ? 120 : 60
 				if(isarmoredvehicle(obj_target) || ishitbox(obj_target))
 					obj_damage *= 0.25 //you can hit them a bunch of times
 				if(ismecha(obj_target))
 					obj_damage *= 3
-				obj_target.take_damage(obj_damage, BURN, beam_turf ? ENERGY : FIRE, FALSE, attack_dir, armor_pen, current_firer)
+				obj_target.take_damage(obj_damage * 0.5, BURN, ENERGY, attack_dir, armor_pen, current_firer)
+				obj_target.take_damage(obj_damage * 0 .5, BURN, FIRE, FALSE, attack_dir, armor_pen, current_firer)
 				continue
 			if(isliving(target))
 				var/mob/living/living_target = target
-				if(beam_turf)
-					living_target.apply_damage(50, BURN, blocked = ENERGY, penetration = armor_pen)
+				living_target.apply_damage(50, BURN, blocked = ENERGY, penetration = armor_pen)
 				living_target.apply_damage(50, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
+				living_target.flash_act(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 3 : 2)
 				living_target.adjust_fire_stacks(beam_turf ? 15 : 9)
 				living_target.IgniteMob()
+
+	explosion(target_turf, 0 2, 5, 0, 3, 4, 4)
 
 	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), 0.6 SECONDS)
 	QDEL_LIST_IN(light_effects, 0.6 SECONDS)
