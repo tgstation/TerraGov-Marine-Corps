@@ -6,11 +6,8 @@
  *
  * See `/datum/security_level` for additional usage.
  *
- * This replaces "ethereal" security levels on a global datum with a new system that makes new security levels
- * extremely easy to implement, and existing ones extremely easy to modify.
- *
- * In-world atoms reacting to a security level change may use the `COMSIG_SECURITY_LEVEL_CHANGED` signal to
- * do something when the security level is updated.
+ * This replaces "ethereal" security levels with a new system that makes new security levels extremely
+ * easy to implement, and existing ones extremely easy to modify.
  */
 SUBSYSTEM_DEF(security_level)
 	name = "Security Level"
@@ -18,7 +15,8 @@ SUBSYSTEM_DEF(security_level)
 	init_order = INIT_ORDER_SECURITY_LEVEL
 	/// Currently set security level
 	var/datum/security_level/current_security_level
-	/// The most recent security level
+	/// The most recent security level. Relevant if you want to avoid repeat actions
+	/// in situations like going from Green to Blue and vice versa (see: mainship lights)
 	var/most_recent_level = SEC_LEVEL_GREEN
 	/// A list of initialised security level datums.
 	var/list/available_levels = list()

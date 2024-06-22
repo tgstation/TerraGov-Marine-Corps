@@ -1,11 +1,12 @@
 /**
  * Security levels
  *
- * These are used by the security level subsystem. Each one of these represents a security level that a player can set.
+ * The base class for datumized security levels. These are used by `SSsecurity_level`.
+ *
+ * These represent possible security levels for the security level subsystem.
  *
  * Base type is abstract
  */
-
 /datum/security_level
 	/// The name of this security level.
 	var/name = "not set"
@@ -59,7 +60,7 @@
 /**
  * RED
  *
- * Hostile threats
+ * Hostile threats on ship
  */
 /datum/security_level/red
 	name = "red"
@@ -72,11 +73,11 @@
 /**
  * DELTA
  *
- * Station destruction is imminent
+ * Ship destruction is imminent
  */
 /datum/security_level/delta
 	name = "delta"
 	announcement_color = "purple"
-	sound = 'sound/misc/security_level/delta.ogg' // Air alarm to signify importance
+	sound = 'sound/misc/security_level/delta.ogg' // Absolutely terrifying alarm to signal importance
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
