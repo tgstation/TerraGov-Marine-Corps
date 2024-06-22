@@ -375,7 +375,7 @@
 
 	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 
-	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
+	. += "Current alert level: [SSsecurity_level.get_current_level_as_text()]"
 
 	if(SSticker.mode)
 		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"

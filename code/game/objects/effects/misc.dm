@@ -72,6 +72,14 @@
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
 	GLOB.ship_alarms += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_delta_alert))
+
+/// Start/stop our active sound player when the alert level changes to/from `SEC_LEVEL_DELTA`
+/obj/effect/soundplayer/deltaplayer/proc/on_delta_alert()
+	if(SSsecurity_level.get_current_level_as_number() != SEC_LEVEL_DELTA)
+		loop_sound.stop(src)
+	else
+		loop_sound.start(src)
 
 /obj/effect/soundplayer/deltaplayer/Destroy()
 	. = ..()

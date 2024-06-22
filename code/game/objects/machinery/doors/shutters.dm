@@ -131,6 +131,15 @@
 	id = "sd_lockdown"
 	resistance_flags = RESIST_ALL
 
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_delta_alert))
+
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/proc/on_delta_alert()
+	if(SSsecurity_level.get_current_level_as_number() != SEC_LEVEL_DELTA)
+		return
+	open()
+
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"

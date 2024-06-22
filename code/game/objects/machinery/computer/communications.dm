@@ -146,7 +146,7 @@
 					to_chat(usr, span_warning("The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place."))
 					return FALSE
 
-				if(GLOB.marine_main_ship.security_level < SEC_LEVEL_RED)
+				if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_RED)
 					to_chat(usr, span_warning("The ship must be under red alert in order to enact evacuation procedures."))
 					return FALSE
 
@@ -184,7 +184,7 @@
 						//if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
 						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
-							GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
+							SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
@@ -409,8 +409,8 @@
 			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
 
 		if(STATE_ALERT_LEVEL)
-			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
-			if(GLOB.marine_main_ship.security_level == SEC_LEVEL_DELTA)
+			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
+			if(SSsecurity_level.get_current_level_as_number() == SEC_LEVEL_DELTA)
 				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
 					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
 				switch(SSevacuation.evac_status)
@@ -425,8 +425,8 @@
 				dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 
 		if(STATE_CONFIRM_LEVEL)
-			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
-			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
+			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
+			dat += "Confirm the change to: [SSsecurity_level.number_level_to_text(tmp_alertlevel)]<BR>"
 			dat += "<A HREF='?src=[text_ref(src)];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=[text_ref(src)];operation=main'>Main Menu</A>|" : ""]\]"
@@ -440,12 +440,12 @@
 
 
 /obj/machinery/computer/communications/proc/switch_alert_level(new_level)
-	var/old_level = GLOB.marine_main_ship.security_level
-	GLOB.marine_main_ship.set_security_level(new_level)
-	if(GLOB.marine_main_ship.security_level == old_level)
+	var/old_level = SSsecurity_level.get_current_level_as_text()
+	SSsecurity_level.set_level(new_level)
+	if(SSsecurity_level.get_current_level_as_text() == old_level)
 		return //Only notify the admins if an actual change happened
-	log_game("[key_name(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
+	log_game("[key_name(usr)] has changed the security level from [old_level] to [SSsecurity_level.get_current_level_as_text()].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [old_level] to [SSsecurity_level.get_current_level_as_text()].")
 
 
 #undef STATE_DEFAULT

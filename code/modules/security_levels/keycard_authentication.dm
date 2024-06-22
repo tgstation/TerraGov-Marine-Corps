@@ -162,7 +162,7 @@
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
 		if("Red alert")
-			GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED)
+			SSsecurity_level.set_level(SEC_LEVEL_RED)
 		if("Grant Emergency Maintenance Access")
 			GLOB.marine_main_ship.make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")

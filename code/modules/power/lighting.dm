@@ -419,6 +419,7 @@
 /obj/machinery/light/mainship/Initialize(mapload)
 	. = ..()
 	GLOB.mainship_lights += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
 
 /obj/machinery/light/mainship/Destroy()
 	. = ..()
@@ -431,6 +432,56 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
+
+/// A wrapper for `alert_act`, with a random timer from 0.4 seconds to 5 seconds before changing the light's appearance
+/obj/machinery/light/mainship/proc/on_alert_change()
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, PROC_REF(alert_act), SSsecurity_level.get_current_level_as_number()), rand(0.4 SECONDS, 5 SECONDS))
+
+/// Called after the timer on `on_alert_change`. Changes the light's appearance based on alert level.
+/obj/machinery/light/mainship/proc/alert_act(current_level)
+	SIGNAL_HANDLER
+	var/bulb_type = "tube" // the base light sprite
+	if(istype(src, /obj/machinery/light/mainship/small))
+		bulb_type = "bulb"
+	switch(current_level)
+		if(SEC_LEVEL_GREEN, SEC_LEVEL_BLUE)
+			if(SSsecurity_level.most_recent_level == SEC_LEVEL_BLUE)
+				return
+			if(SSsecurity_level.most_recent_level == SEC_LEVEL_GREEN)
+				return
+			var/area/active_area = get_area(src)
+			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+				return
+			base_icon_state = bulb_type
+			light_color = bulb_colour
+			light_range = brightness
+			update_light()
+			update_appearance(UPDATE_ICON)
+			playsound(src, 'sound/effects/light_on.ogg', 33, TRUE)
+			balloon_alert_to_viewers("flickers")
+			do_sparks(4, TRUE, src)
+		if(SEC_LEVEL_RED, SEC_LEVEL_DELTA)
+			if(SSsecurity_level.most_recent_level == SEC_LEVEL_RED)
+				return
+			if(SSsecurity_level.most_recent_level == SEC_LEVEL_DELTA)
+				return
+			var/area/active_area = get_area(src)
+			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+				return
+			base_icon_state = "[bulb_type]_red"
+			light_color = COLOR_SOMEWHAT_LIGHTER_RED
+			light_range = 7.5
+			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
+				var/rangelevel = pick(5.5,6.0,6.5,7.0)
+				if(prob(15))
+					rangelevel -= pick(0.5,1.0,1.5,2.0)
+				light_range = rangelevel
+			update_light()
+			update_appearance(UPDATE_ICON)
+			playsound(src, 'sound/effects/light_on.ogg', 33, TRUE)
+			balloon_alert_to_viewers("flickers")
+			do_sparks(4, TRUE, src)
 
 /obj/machinery/light/red
 	base_icon_state = "tube_red"

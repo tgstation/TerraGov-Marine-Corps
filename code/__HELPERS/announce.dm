@@ -128,6 +128,31 @@
 		P.info = papermessage
 		P.update_icon()
 
+/// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
+/proc/level_announce(datum/security_level/selected_level, previous_level_number)
+	var/current_level_number = selected_level.number_level
+	var/current_level_name = selected_level.name
+	var/current_level_color = selected_level.announcement_color
+	var/current_level_sound = selected_level.sound
+
+	var/active_title
+	var/active_message
+
+	if(current_level_number > previous_level_number)
+		active_title = "Attention! Security level elevated to [current_level_name]:"
+		active_message = selected_level.elevating_body
+	else
+		active_title = "Attention! Security level lowered to [current_level_name]:"
+		active_message = selected_level.lowering_body
+
+	priority_announce(
+		type = ANNOUNCEMENT_PRIORITY,
+		title = active_title,
+		message = active_message,
+		sound = current_level_sound,
+		color_override = current_level_color
+	)
+
 /**
  * Make a minor announcement to a target
  *
