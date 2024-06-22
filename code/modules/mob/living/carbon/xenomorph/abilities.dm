@@ -1053,6 +1053,8 @@
 	if(!.)
 		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
+		if(!silent)
+			owner.balloon_alert(owner, "cannot while on vehicle")
 		return FALSE
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
