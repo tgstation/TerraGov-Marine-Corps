@@ -1,5 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes:
-  - imageadd: "added new (the OG) module icons and sprites"
-  - imagedel: "removed current module icons and sprites"

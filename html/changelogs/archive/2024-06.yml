@@ -265,3 +265,16 @@
       to the req vendor.
   novaepee:
   - rscdel: remove large metal stacks in Kutjevo
+2024-06-22:
+  Naaanii:
+  - imageadd: added new (the OG) module icons and sprites
+  - imagedel: removed current module icons and sprites
+  Runian:
+  - bugfix: Forced devolve works again.
+  TiviPlus, Kuro, Tyeagg:
+  - rscadd: Adds spray secondary flamer for tank
+  Wisemonster:
+  - balance: Divided the damage dealt from boiler gas to tanks/apcs by 5
+  Xander3359:
+  - bugfix: fix draw order not saving
+  - code_imp: moves signals.dm + signals_keybindings.dm
