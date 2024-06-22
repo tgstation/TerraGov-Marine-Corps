@@ -247,7 +247,7 @@
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	max_range = 7
-	damage = 40
+	damage = 50
 	penetration = 15
 	sundering = 2
 	damage_falloff = 1
