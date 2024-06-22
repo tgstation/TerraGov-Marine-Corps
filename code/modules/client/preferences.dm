@@ -135,6 +135,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
+	///Whether we generate a xeno name to show in the chatbox and on the mob.
+	var/show_xeno_rank = TRUE
 
 	///whether the user wants to hear tts
 	var/sound_tts = TTS_SOUND_ENABLED

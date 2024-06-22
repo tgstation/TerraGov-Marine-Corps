@@ -205,3 +205,76 @@
   Lumipharon:
   - balance: Largecrates are jumpable
   - balance: Large rocks can pouched over etc, similar to unwired cades
+2024-06-18:
+  Lauwma:
+  - rscadd: Widow can now plant weed
+  - rscadd: Widow can now secrete resin walls
+  - rscadd: Spiderlings can be built on with resin structures
+  - balance: Widow gains mazing abilities, be careful when stepping in the Widow's
+      nest
+  Wisemonster:
+  - bugfix: Boiler globs getting a direct hit should no longer reduce their smoke
+      size
+2024-06-19:
+  Helg2:
+  - imageadd: lootboxes with rockets, sniper rifles and sentries now have corresponding
+      icons.
+  - imageadd: updated low cell charge icon state of corpsman satchels.
+  - code_imp: Reorganized Storage.dmi file, which responded for all the backpacks
+      and etc. Please report any missing icons.
+  Lumipharon:
+  - bugfix: Binos actually work when they should
+  - rscadd: Added the SOM hover tank to the code
+  - bugfix: fixed a couple minor issues with multitile vehicles
+  - bugfix: Static lighting works in vehicle interiors, or other generated areas
+  - admin: You can force autobalance during Campaign
+  - bugfix: fixed an issue with grass or flames not submerging correctly in some cases
+  - qol: Deployables, vehicles and campaign objectives now activate transparency mode
+      on things like trees
+  - bugfix: fixed some status effects applying when they shouldn't
+  - rscadd: Various footstep additions and changes
+  - bugfix: The weather sound pref is no longer the wrong way around.
+  Wisemonster:
+  - code_imp: Changed vehicle_damage_mult in crusher charge ability to obj_damage_mult
+  - balance: King's laser now deals damage to tanks/APCs based on the tiles hit, 15
+      damage per tile every 0.3 seconds, down from 150 every 0.3 seconds.
+  - balance: The mech can now be shot through using IFF (aim mode, smart guns, etc)
+  - rscadd: Added the APC/tank weapons to the valhalla req vendor
+  - qol: Replaced the spawned vehicles in marine Valhalla with vehicle spawner buttons
+  - balance: Warlock's crush now hits more parts of tanks/APCs, dealing 10 damage
+      per part hit.
+  - balance: Xeno acid smoke will deal damage per tile of apc/tanks hit, between 400-500
+      if completely enveloped the entire duration of a boiler cloud.
+2024-06-20:
+  Kuro020:
+  - balance: Buffs the tank chaingun
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an edge case where a leader would not be chosen'
+  - bugfix: fixed red sand minimap colour
+  - bugfix: Mines and sentries will target hostile tanks
+2024-06-21:
+  Barnet2:
+  - rscadd: 'Xeno Ranks: Preference to toggle them on and off'
+  - bugfix: Clientless xenos no longer have ranks
+  - bugfix: Xeno rank HUD no longer persists after death
+  Notamaniac:
+  - bugfix: Mashing the confirm button on the dropship selector won't bug the Tad
+      out
+  Wisemonster:
+  - rscadd: Added the overdrive, zoom, smoke launcher, and medical vehicle modules
+      to the req vendor.
+  novaepee:
+  - rscdel: remove large metal stacks in Kutjevo
+2024-06-22:
+  Naaanii:
+  - imageadd: added new (the OG) module icons and sprites
+  - imagedel: removed current module icons and sprites
+  Runian:
+  - bugfix: Forced devolve works again.
+  TiviPlus, Kuro, Tyeagg:
+  - rscadd: Adds spray secondary flamer for tank
+  Wisemonster:
+  - balance: Divided the damage dealt from boiler gas to tanks/apcs by 5
+  Xander3359:
+  - bugfix: fix draw order not saving
+  - code_imp: moves signals.dm + signals_keybindings.dm

@@ -214,6 +214,15 @@ export const GameSettings = (props) => {
                 rightValue={1}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Show xeno rank"
+                value="show_xeno_rank"
+                action="show_xeno_rank"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
