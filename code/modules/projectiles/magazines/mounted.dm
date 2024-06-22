@@ -68,39 +68,38 @@
 /obj/item/ammo_magazine/standard_agls/fragmentation
 	name = "AGLS-37 Frag magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Fragmentation grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag_frag"
+	icon_state = "ags_frag"
 	default_ammo = /datum/ammo/ags_shrapnel
 
 /obj/item/ammo_magazine/standard_agls/incendiary
 	name = "AGLS-37 WP magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless White Phosphorous grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag_incend"
+	icon_state = "ags_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
 
 /obj/item/ammo_magazine/standard_agls/flare
 	name = "AGLS-37 Flare magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag_flare"
+	icon_state = "ags_flare"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
 
 /obj/item/ammo_magazine/standard_agls/cloak
 	name = "AGLS-37 Cloak magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag_cloak"
+	icon_state = "ags_cloak"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
 
 /obj/item/ammo_magazine/standard_agls/tanglefoot
 	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag_pgas"
+	icon_state = "ags_pgas"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
-
 
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."
 	w_class = WEIGHT_CLASS_BULKY
-	icon_state = "at36_shell"
+	icon_state = "at36"
 	icon = 'icons/obj/items/ammo/artillery.dmi'
 	worn_icon_state = "at36"
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
@@ -112,28 +111,28 @@
 /obj/item/ammo_magazine/standard_atgun/apcr
 	name = "AT-36 APCR shell (37mm Shell)"
 	desc = "A 37mm tungsten shell for light anti tank guns made to penetrate through just about everything, but it won't leave a big hole."
-	icon_state = "at36_shell_apcr"
+	icon_state = "at36_apcr"
 	worn_icon_state = "at36_apcr"
 	default_ammo = /datum/ammo/rocket/atgun_shell/apcr
 
 /obj/item/ammo_magazine/standard_atgun/he
 	name = "AT-36 HE (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns made to destroy fortifications, the high amount of payload gives it a slow speed. But it leaves quite a hole."
-	icon_state = "at36_shell_he"
+	icon_state = "at36_he"
 	worn_icon_state = "at36_he"
 	default_ammo = /datum/ammo/rocket/atgun_shell/he
 
 /obj/item/ammo_magazine/standard_atgun/beehive
 	name = "AT-36 Beehive (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns made to mince infantry, the light payload gives it moderate speed. Turns anyone into swiss cheese."
-	icon_state = "at36_shell_beehive"
+	icon_state = "at36_beehive"
 	worn_icon_state = "at36_beehive"
 	default_ammo = /datum/ammo/rocket/atgun_shell/beehive
 
 /obj/item/ammo_magazine/standard_atgun/incend
 	name = "AT-36 Napalm (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns made to set the battlefield ablaze, the light payload gives it a moderate speed. Will cook any target flambé."
-	icon_state = "at36_shell_incend"
+	icon_state = "at36_incend"
 	worn_icon_state = "at36_incend"
 	default_ammo = /datum/ammo/rocket/atgun_shell/beehive/incend
 
@@ -165,7 +164,7 @@
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
 	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will detonate upon hitting a target."
-	icon_state = "ac_mag_flak"
+	icon_state = "ac_flak"
 	worn_icon_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
 
@@ -181,9 +180,9 @@
 /obj/item/ammo_magazine/heavy_isg
 	name = "FK-88 shell (155mm Shell)"
 	desc = "A 15cm shell for the FK-88 mounted flak gun. How did you even get this?"
-	icon_state = "isg_ammo"
+	icon_state = "isg"
 	icon = 'icons/obj/items/ammo/artillery.dmi'
-	worn_icon_state = "isg_ammo"
+	worn_icon_state = "isg"
 	w_class = WEIGHT_CLASS_BULKY
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_15CM
@@ -210,7 +209,7 @@
 /obj/item/ammo_magazine/heavy_isg/sabot
 	name = "FK-88 APFDS shell (155mm Shell)"
 	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
-	icon_state = "isg_ammo_sabot"
+	icon_state = "isg_sabot"
 	default_ammo = /datum/ammo/bullet/heavy_isg_apfds
 
 ///Default ammo for the ML-91 and its export variants.
