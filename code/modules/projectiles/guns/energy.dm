@@ -83,6 +83,7 @@
 	desc = "A laser based firearm. Uses power cells."
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/energy_dry_fire.wav'
 	load_method = CELL //codex
 	ammo_datum_type = /datum/ammo/energy/lasgun
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -1234,3 +1235,124 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/beam_cannon
+	name = "\improper Light Beam Cannon"
+	desc = "A heavy and powerful weapon that fires an intense laser. Requires a stationary charger and can overheat if fired too quickly."
+	icon = 'icons/obj/items/guns/energy64.dmi'
+	icon_state = "beam_cannon"
+	muzzleflash_iconstate = "muzzle_flash_laser"
+	muzzle_flash_color = COLOR_LASER_RED
+
+	fire_sound = 'sound/weapons/guns/fire/laser_blast.wav'
+	dry_fire_sound = 'sound/weapons/guns/fire/energy_dry_fire.wav'
+	windup_sound = 'sound/weapons/guns/fire/energy_charge_up.wav'
+	reload_sound = 'sound/weapons/guns/interact/plasma_reload_3.ogg'
+	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
+	overheat_sound = 'sound/weapons/guns/interact/heavy_gun_overheat.wav'
+
+	w_class = WEIGHT_CLASS_HUGE
+	equip_slot_flags = ITEM_SLOT_BACK
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	gun_features_flags = GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_WIELDED_STABLE_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CLOSED
+	load_method = CELL
+	ammo_datum_type = /datum/ammo/energy/laser_blast
+	default_ammo_type = /obj/item/cell/lasgun/beam_cannon
+	allowed_ammo_types = list(/obj/item/cell/lasgun/beam_cannon)
+	rounds_per_shot = 2000	//CHARGE_COST LITERALLY DOESN'T MATTER WHY IS ENERGY WEAPON CODE LIKE THIS
+	max_shots = 5
+
+	force = 40
+	fire_delay = 0	//It takes a long while to charge up anyways
+	//windup_delay = 4 SECONDS
+	wield_delay = 2 SECONDS
+	aim_slowdown = 2	//Heavy
+	scatter = 0	//It's a laser cannon, Jimmy
+	scatter_unwielded = 0
+	akimbo_scatter_mod = 0
+	accuracy_mult = 2
+	accuracy_mult_unwielded = 0.5
+	damage_falloff_mult = 0
+
+	heat_per_fire = 50
+	cool_amount = 2.5
+
+	///Will halt the charging procedure if FALSE
+	var/continue_pre_fire = TRUE
+	///Reference to the pre-fire beam emitted by the gun
+	var/datum/beam/laser/beam
+
+/obj/item/weapon/gun/energy/beam_cannon/Destroy()
+	QDEL_NULL(beam)
+	return ..()
+
+//Change the beam's target to the new target
+/obj/item/weapon/gun/energy/beam_cannon/set_target(atom/object)
+	. = ..()
+	//Why am I checking target? Because Fire() is asynchronous and reset_fire() is called right after it, nulling the target which caused a lot of problems...
+	if(beam && target)
+		beam.target = get_turf(target)	//The beam will skew itself trying to aim for mobs that are offset, so aim for the turf
+		beam.redrawing()
+
+/obj/item/weapon/gun/energy/beam_cannon/stop_fire()
+	. = ..()
+	continue_pre_fire = FALSE
+
+/obj/item/weapon/gun/energy/beam_cannon/do_fire(obj/object_to_fire)
+	continue_pre_fire = TRUE
+	//Save a reference to the channel number we are about to use for the charge up sound
+	var/sound_channel = SSsounds.reserve_sound_channel_datumless()
+	playsound(src, windup_sound, 50, channel = sound_channel)
+
+	if(IS_DEPLOYED)	//Is the gun inside a deployable object? If so, make that the beam's origin
+		beam = create_beam(loc, target)
+	else	//Make the beam's origin the firer of this gun if there is one
+		beam = create_beam(gun_user? gun_user : src, target)
+	beam.visuals.particle_holder = new(beam.visuals, /particles/energy_beam_particles)
+
+	//Used to check if the gun can still fire during the charging process
+	var/datum/callback/pre_firing_check = CALLBACK(src, PROC_REF(pre_fire_functions))
+	if(!do_after(gun_user, 4 SECONDS, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = pre_firing_check))
+		QDEL_NULL(beam)
+		//Copied from playsound() to find mobs with clients so we can order the sound to stop playing for each one
+		for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
+			if(!M.client && !istype(M, /mob/camera/aiEye))
+				continue
+			var/turf/T = get_turf(M)
+			if(!T || T.z != loc.z)
+				continue
+			M.stop_sound_channel(sound_channel)	//Actually stop the sound
+
+		SSsounds.free_sound_channel(sound_channel)	//Need to free the channel that was reserved
+		return FALSE
+
+	QDEL_NULL(beam)
+	return ..()
+
+///Returns FALSE if something has halted the firing process
+/obj/item/weapon/gun/energy/beam_cannon/proc/pre_fire_functions()
+	return continue_pre_fire
+
+///Works similar to beam() but can be stopped by dense and opaque turfs, and will stop at max projectile distance instead of deleting itself
+/obj/item/weapon/gun/energy/beam_cannon/proc/create_beam(atom/movable/origin, atom/target)
+	var/datum/beam/laser/beam = new(origin, target, beam_icon_state = "sat_beam", maxdistance = ammo_datum_type.max_range)
+	INVOKE_ASYNC(beam, TYPE_PROC_REF(/datum/beam, Start))
+	return beam
+
+/particles/energy_beam_particles
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "snow"
+	color = "#FF3333"
+	width = 32
+	height = 48	//They can go a little bit past the end of the beam
+	count = 50
+	spawning = 2
+	gravity = list(0, 4)
+	lifespan = 0.5 SECONDS
+	fade = 0.2 SECONDS
+	fadein = 0.1 SECONDS
+	grow = -0.01
+	position = generator(GEN_BOX, list(-8, -16), list(8, 0), UNIFORM_RAND)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))

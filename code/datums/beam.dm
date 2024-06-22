@@ -23,7 +23,7 @@
 	///icon state of the main segments of the beam
 	var/icon_state = ""
 	///The beam will qdel if it's longer than this many tiles.
-	var/max_distance = 0
+	var/max_distance = 1
 	///the objects placed in the elements list
 	var/beam_type = /obj/effect/ebeam
 	///This is used as the visual_contents of beams, so you can apply one effect to this and the whole beam will look like that. never gets deleted on redrawing.
@@ -32,7 +32,10 @@
 /datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=INFINITY,maxdistance=INFINITY,btype = /obj/effect/ebeam)
 	origin = beam_origin
 	target = beam_target
-	max_distance = maxdistance
+	if(maxdistance < 1)
+		stack_trace("An attempt was made to make a beam with a max distance of 0 or negative.")
+	else
+		max_distance = maxdistance
 	icon = beam_icon
 	icon_state = beam_icon_state
 	beam_type = btype
@@ -47,6 +50,10 @@
 	visuals.icon = icon
 	visuals.icon_state = icon_state
 	Draw()
+	register_signals()
+
+///Handle setting up signals for the beam
+/datum/beam/proc/register_signals()
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 
@@ -69,11 +76,15 @@
 /datum/beam/Destroy()
 	QDEL_LIST(elements)
 	qdel(visuals)
-	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
+	unregister_signals()
 	target = null
 	origin = null
 	return ..()
+
+///Handle removing signals when the beam is destroyed
+/datum/beam/proc/unregister_signals()
+	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 
 /**
  * Creates the beam effects and places them in a line from the origin to the target. Sets their rotation to make the beams face the target, too.
@@ -134,15 +145,89 @@
 		X.pixel_y = Pixel_y
 		CHECK_TICK
 
+//This beam type does not go past dense and opaque turfs and will not delete itself if past the max range
+/datum/beam/laser/register_signals()
+	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
+
+/datum/beam/laser/unregister_signals()
+	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
+
+/datum/beam/laser/redrawing(atom/movable/mover, atom/oldloc, direction)
+	SIGNAL_HANDLER_DOES_SLEEP
+	if(origin && target && origin.z == target.z)
+		QDEL_LIST(elements)
+		Draw()
+	else
+		qdel(src)
+
+/datum/beam/laser/Draw()
+	var/angle = round(Get_Angle(origin,target))
+	var/matrix/rotation = matrix()
+	var/turf/origin_turf = get_turf(origin)
+	rotation.Turn(angle)
+
+	//Translation vector for origin and target
+	var/max_pixel_distance = 32 * max_distance
+	var/length = round(sqrt((max_pixel_distance) ** 2 + (max_pixel_distance) ** 2), 1)
+
+	for(var/i = 0; length > i; i += 32)	//Don't use fucking "step 32" in place of i += 32
+		if(QDELETED(src) || i / 32 >= max_distance)
+			break
+
+		var/obj/effect/ebeam/created_beam = new beam_type(origin_turf)
+		created_beam.owner = src
+		created_beam.vis_contents += visuals	//Every beam object has the same visual properties (including particles!) of the object assigned to visuals var
+		created_beam.transform = rotation
+		elements += created_beam
+
+		//Calculations for how to arrange the beam objects in a straight line
+		var/new_pixel_x = round(sin(angle) + 32 * sin(angle) * (i + 16) / 32, 1)
+		var/absolute_pixel_x = abs(new_pixel_x)
+		var/new_pixel_y = round(cos(angle) + 32 * cos(angle) * (i + 16) / 32, 1)
+		var/absolute_pixel_y = abs(new_pixel_y)
+
+		//This portion places the beam object on a tile to continue the beam line
+		if(absolute_pixel_x > 32)
+			created_beam.x += new_pixel_x > 0 ? round(new_pixel_x / 32) : CEILING(new_pixel_x / 32, 1)
+			new_pixel_x %= 32
+		if(absolute_pixel_y > 32)
+			created_beam.y += new_pixel_y > 0 ? round(new_pixel_y / 32) : CEILING(new_pixel_y / 32, 1)
+			new_pixel_y %= 32
+
+		created_beam.pixel_x = new_pixel_x
+		created_beam.pixel_y = new_pixel_y
+
+		//Trim the beam if it has reached the end or the max distance
+		if((i + 32 > length) || (i / 32 >= max_distance))
+			created_beam.add_filter("trim_beam", 1, alpha_mask_filter(0, length - i))
+			return
+
+		//It's not perfect but no idea how projectiles manage to do it precisely
+		var/turf/turf = get_turf_in_angle(angle, get_turf(created_beam), 1)
+		//Check if the beam hit a wall
+		if(turf.density)
+			created_beam.add_filter("trim_beam", 1, alpha_mask_filter(0, length - i))
+			return
+
+		//Check if the beam hit something lasers can't go through
+		for(var/obj/object in turf)
+			if(object.density && !CHECK_BITFIELD(object.allow_pass_flags, PASS_GLASS) && !CHECK_BITFIELD(object.allow_pass_flags, PASS_PROJECTILE))
+				created_beam.add_filter("trim_beam", 1, alpha_mask_filter(0, length - i))
+				return
+
+		CHECK_TICK
+
 /obj/effect/ebeam
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	var/datum/beam/owner
+	///Used for referencing spawned particles
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /obj/effect/ebeam/Destroy()
 	owner = null
+	QDEL_NULL(particle_holder)
 	return ..()
-
 
 /**
  * This is what you use to start a beam. Example: origin.Beam(target, args). **Store the return of this proc if you don't set maxdist or time, you need it to delete the beam.**

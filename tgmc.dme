@@ -1015,6 +1015,7 @@
 #include "code\game\objects\machinery\door_control.dm"
 #include "code\game\objects\machinery\dropship_part_fabricator.dm"
 #include "code\game\objects\machinery\fax.dm"
+#include "code\game\objects\machinery\field_charger.dm"
 #include "code\game\objects\machinery\fire_alarm.dm"
 #include "code\game\objects\machinery\flasher.dm"
 #include "code\game\objects\machinery\floodlight.dm"

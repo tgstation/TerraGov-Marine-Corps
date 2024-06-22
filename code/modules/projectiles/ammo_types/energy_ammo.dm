@@ -734,3 +734,18 @@
 
 /datum/ammo/energy/plasma_pistol/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_fire(target_turf, proj)
+
+//Laser Blast
+/datum/ammo/energy/laser_blast
+	name = "laser blast"
+	icon_state = "heavylaser"
+	hud_state = "laser_sniper"
+	hitscan_effect_icon = "beam_heavy"
+	sound_hit = 'sound/bullets/laser_blast_impact.wav'
+	armor_type = LASER
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_INCENDIARY
+	damage = 120
+	penetration = 40
+	sundering = 30
+	max_range = 10
+	accurate_range = 10
