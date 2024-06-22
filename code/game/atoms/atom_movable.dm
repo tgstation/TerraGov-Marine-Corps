@@ -1368,7 +1368,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	if(HAS_TRAIT(src, TRAIT_SUBMERGED))
 		set_submerge_level(old_loc = loc, duration = 0.1)
 	ADD_TRAIT(src, TRAIT_NOSUBMERGE, trait_source)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE), PROC_REF(_do_submerge))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE), PROC_REF(_do_submerge), override = TRUE) //we can get this trait from multiple sources, but sig is only sent when we lose the trait entirely
 
 ///Adds submerge effects to the AM. Should never be called directly
 /atom/movable/proc/_do_submerge(atom/movable/source)
