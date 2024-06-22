@@ -124,3 +124,11 @@
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
 	max_rounds = 4
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/secondary_flamer_tank
+	name = "napalm stream tank"
+	desc = "A fuel tank containing fuel for the secondary vehicle mounted flamer. This tank contains a more fluid mix that flows easier but flames less area at once."
+	caliber = CALIBER_FUEL_THICK
+	icon_state = "sflamer"
+	max_rounds = 150
+	default_ammo = /datum/ammo/flamethrower/armored_spray
