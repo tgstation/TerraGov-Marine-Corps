@@ -54,6 +54,7 @@
 	name = "\improper high velocity magazine (10x28mm)"
 	desc = "A magazine of overpressured high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
+	icon = 'icons/obj/items/ammo/sniper.dmi'
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25

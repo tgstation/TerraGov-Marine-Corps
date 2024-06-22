@@ -182,6 +182,7 @@
 	caliber = CALIBER_762X39
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	icon_state = "rpd"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big"
 	bonus_overlay = "rpd_100"
 	max_rounds = 100
@@ -194,6 +195,7 @@
 	desc = "A drum magazine for the Degtyaryov machine gun."
 	caliber = CALIBER_762X39
 	icon_state = "dp27"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 47
 	icon_state_mini = "mag_rifle"
@@ -395,6 +397,7 @@
 	desc = "A box magazine filled with 8.6x70mm rifle rounds for the SR-127."
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
+	icon = 'icons/obj/items/ammo/sniper.dmi'
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
@@ -702,6 +705,7 @@
 	caliber = CALIBER_556X45
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	icon_state = "l26"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	bonus_overlay = "l26_100"
 	max_rounds = 200
