@@ -16,8 +16,8 @@
 	pixel_x = -65
 	pixel_y = -80
 	max_integrity = 1200
-	soft_armor = list(MELEE = 65, BULLET = 75 , LASER = 80, ENERGY = 85, BOMB = 75, BIO = 100, FIRE = 100, ACID = 60)
-	hard_armor = list(MELEE = 10, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 70)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 10, BOMB = 30, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.55, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
 	permitted_weapons = list(/obj/item/armored_weapon/volkite_carronade, /obj/item/armored_weapon/particle_lance, /obj/item/armored_weapon/coilgun, /obj/item/armored_weapon/secondary_mlrs)
 	permitted_mods = list(/obj/item/tank_module/ability/smoke_launcher)
