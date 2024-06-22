@@ -451,6 +451,7 @@
 	name = "\improper ALF-51B box magazine (10x25mm)"
 	desc = "A box magazine for the ALF-51B machinecarbine."
 	icon_state = "t60"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10X25_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
