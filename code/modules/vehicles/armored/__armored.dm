@@ -158,7 +158,7 @@
 	. = ..()
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
 
-/obj/vehicle/sealed/armored/update_icon()
+/obj/vehicle/sealed/armored/update_icon_state()
 	. = ..()
 	if(!damage_overlay)
 		return
