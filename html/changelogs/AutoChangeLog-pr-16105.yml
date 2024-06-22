@@ -1,0 +1,4 @@
+author: "TiviPlus, Kuro, Tyeagg"
+delete-after: True
+changes:
+  - rscadd: "Adds spray secondary flamer for tank"
