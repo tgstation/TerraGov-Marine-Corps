@@ -9,8 +9,6 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 	var/maint_all_access = FALSE
 
-	var/security_level = SEC_LEVEL_GREEN
-
 /datum/marine_main_ship/proc/make_maint_all_access()
 	maint_all_access = TRUE
 	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", "Shipside emergency declared.", sound = 'sound/misc/notice1.ogg', color_override = "grey")
