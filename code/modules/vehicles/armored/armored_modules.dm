@@ -127,6 +127,14 @@
 	flag_controller = VEHICLE_CONTROL_EQUIPMENT
 	ability_to_grant = /datum/action/vehicle/sealed/armored/zoom
 
+/obj/item/tank_module/ability/smoke_launcher
+	name = "smoke launcher module"
+	desc = "Allows the driver to launch a smokescreen in front of the tank."
+	icon_state = "smoke_launcher"
+	is_driver_module = TRUE
+	flag_controller = VEHICLE_CONTROL_DRIVE
+	ability_to_grant = /datum/action/vehicle/sealed/armored/smoke_screen
+
 /obj/item/tank_module/interior
 	name = "generic interior module"
 	desc = "you shouldnt see this"

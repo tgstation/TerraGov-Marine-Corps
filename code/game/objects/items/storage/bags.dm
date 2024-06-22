@@ -16,6 +16,7 @@
 
 //  Generic non-item
 /obj/item/storage/bag
+	icon = 'icons/obj/items/storage/bag.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	storage_type = /datum/storage/bag
 
@@ -25,7 +26,6 @@
 /obj/item/storage/bag/trash
 	name = "trash bag"
 	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
-	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag0"
 	worn_icon_state = "trashbag"
 
@@ -65,7 +65,6 @@
 /obj/item/storage/bag/ore
 	name = "Mining Satchel"
 	desc = "This little bugger can be used to store and transport ores."
-	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
@@ -76,7 +75,6 @@
 // -----------------------------
 
 /obj/item/storage/bag/plants
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "plantbag"
 	name = "Plant Bag"
 	w_class = WEIGHT_CLASS_SMALL
@@ -89,7 +87,6 @@
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 	name = "Sheet Snatcher"
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
@@ -112,7 +109,6 @@
 // -----------------------------
 
 /obj/item/storage/bag/cash
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "cashbag"
 	name = "Cash bag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."

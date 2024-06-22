@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "New xenomorph ruler announcements now correctly announces your name."
+  - bugfix: "Numbered xenomorph names correctly display when evolving."
