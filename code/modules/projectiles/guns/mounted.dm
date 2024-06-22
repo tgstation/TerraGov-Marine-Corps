@@ -103,7 +103,7 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/obj/machines/deployable/misc.dmi'
+	icon = 'icons/obj/machines/deployable/minigun.dmi'
 	icon_state = "minigun"
 	caliber = CALIBER_762X51
 

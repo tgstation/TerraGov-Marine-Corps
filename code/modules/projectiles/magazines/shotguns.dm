@@ -64,6 +64,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of 7.62x54mmR rifle rounds"
 	desc = "A box filled with rifle bullets."
 	icon_state = "7.62" //Thank you Alterist
+	icon = 'icons/obj/items/ammo/packet.dmi'
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = CALIBER_762X54 //Cyka Blyat
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
@@ -84,6 +85,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of .557/440 rifle rounds"
 	desc = "A box filled with rifle bullets."
 	icon_state = ".557"
+	icon = 'icons/obj/items/ammo/packet.dmi'
 	default_ammo = /datum/ammo/bullet/sniper/martini
 	caliber = CALIBER_557
 	max_rounds = 20
@@ -93,7 +95,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/pistol/derringer
 	name = "box of .40 rimfire pistol rounds"
 	desc = "A box filled with pistol bullets."
-	icon_state = "derringer_box"
+	icon_state = "derringer"
+	icon = 'icons/obj/items/ammo/packet.dmi'
 	default_ammo = /datum/ammo/bullet/pistol/superheavy/derringer
 	caliber = CALIBER_41RIM
 	max_rounds = 10

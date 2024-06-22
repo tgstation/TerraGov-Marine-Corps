@@ -10,7 +10,7 @@
 	name = "high explosive LTB round"
 	desc = "A primary armament cannon magazine"
 	caliber = CALIBER_84MM
-	icon_state = "ltbammo"
+	icon_state = "ltb"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 1
@@ -42,6 +42,7 @@
 	desc = "A secondary armament rocket magazine"
 	caliber = CALIBER_68MM
 	icon_state = "quad_rocket"
+	icon = 'icons/obj/items/ammo/rocket.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
@@ -50,7 +51,7 @@
 	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
 	caliber = CALIBER_10X28
-	icon_state = "cupolaammo"
+	icon_state = "cupola"
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/cupola
@@ -118,7 +119,7 @@
 	name = "coilgun projectiles"
 	desc = "A set of extremely dense kinetic penetrator rounds for a tank mounted coilgun."
 	caliber = CALIBER_84MM
-	icon_state = "tank_coilgun"
+	icon_state = "coilgun"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
 	max_rounds = 4

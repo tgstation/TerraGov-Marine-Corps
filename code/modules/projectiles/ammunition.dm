@@ -237,28 +237,28 @@
 
 /obj/item/ammo_magazine/handful/slug
 	name = "handful of shotgun slug (12 gauge)"
-	icon_state = "shotgun slug"
+	icon_state = "shotgun_slug"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/buckshot
 	name = "handful of shotgun buckshot shells (12g)"
-	icon_state = "shotgun buckshot shell"
+	icon_state = "shotgun_buckshot"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/flechette
 	name = "handful of shotgun flechette shells (12g)"
-	icon_state = "shotgun flechette shell"
+	icon_state = "shotgun_flechette"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/incendiary
 	name = "handful of shotgun incendiary shells (12g)"
-	icon_state = "incendiary slug"
+	icon_state = "incendiary_slug"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
@@ -380,10 +380,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "A large ammo box. It comes with a leather strap."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo/box.dmi'
-	icon_state = "big_ammo_box"
+	icon_state = "big"
 	worn_icon_state = "big_ammo_box"
 	equip_slot_flags = ITEM_SLOT_BACK
-	base_icon_state = "big_ammo_box"
+	base_icon_state = "big"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 2400
 	var/max_bullet_amount = 2400
@@ -466,9 +466,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "Slug Ammo Box"
 	desc = "A large, deployable ammo box."
 	icon = 'icons/obj/items/ammo/box.dmi'
-	icon_state = "ammoboxslug"
+	icon_state = "slug"
 	worn_icon_state = "ammoboxslug"
-	base_icon_state = "ammoboxslug"
+	base_icon_state = "slug"
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	///Current stored rounds
@@ -553,7 +553,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 
 	if(current_rounds == max_rounds)
-		to_chat(user, "<span class='warning'>The [src] is already full.")
+		to_chat(user, span_warning("The [src] is already full."))
 		return
 
 	current_rounds = min(current_rounds + H.current_rounds, max_rounds)
@@ -562,8 +562,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
-	icon_state = "big_ammo_box_ap"
-	base_icon_state = "big_ammo_box_ap"
+	icon_state = "big_ap"
+	base_icon_state = "big_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	bullet_amount = 400 //AP is OP
 	max_bullet_amount = 400
@@ -571,8 +571,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = CALIBER_10X20
-	icon_state = "big_ammo_box_m25"
-	base_icon_state = "big_ammo_box_m25"
+	icon_state = "big_m25"
+	base_icon_state = "big_m25"
 	default_ammo = /datum/ammo/bullet/smg
 	bullet_amount = 4500
 	max_bullet_amount = 4500
@@ -580,38 +580,38 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
-	icon_state = "ammoboxbuckshot"
+	icon_state = "buckshot"
 	worn_icon_state = "ammoboxbuckshot"
-	base_icon_state = "ammoboxbuckshot"
+	base_icon_state = "buckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
-	icon_state = "ammoboxflechette"
+	icon_state = "flechette"
 	worn_icon_state = "ammoboxflechette"
-	base_icon_state = "ammoboxflechette"
+	base_icon_state = "flechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/shotgunbox/clf_heavyrifle
 	name = "big ammo box (14.5mm API)"
 	caliber = CALIBER_14X5
-	icon_state = "ammobox_145"
+	icon_state = "145"
 	worn_icon_state = "ammobox_145"
-	base_icon_state = "ammobox_145"
+	base_icon_state = "145"
 	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
 
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
-	icon_state = "ammoboxtracking"
+	icon_state = "tracking"
 	worn_icon_state = "ammoboxtracking"
-	base_icon_state = "ammoboxtracking"
+	base_icon_state = "tracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
 /obj/item/shotgunbox/blank
 	name = "blank ammo box"
-	icon_state = "ammoboxblank"
+	icon_state = "blank"
 	worn_icon_state = "ammoboxblank"
-	base_icon_state = "ammoboxblank"
+	base_icon_state = "blank"
 	ammo_type = /datum/ammo/bullet/shotgun/blank
 
 /obj/item/big_ammo_box/mg

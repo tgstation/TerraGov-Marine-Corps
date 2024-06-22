@@ -396,7 +396,7 @@
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
-	bonus_overlay = "tl127_mag"
+	bonus_overlay = "tl127"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
 	name = "SR-127 bolt action rifle flak magazine"
@@ -687,7 +687,8 @@
 /obj/item/ammo_magazine/icc_mg/packet
 	name = "box of 10x26mm"
 	desc = "A box containing 500 rounds of 10x26mm caseless."
-	icon_state = "box_minimi"
+	icon_state = "minimi"
+	icon = 'icons/obj/items/ammo/packet.dmi'
 	current_rounds = 500
 	max_rounds = 500
 

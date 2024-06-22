@@ -320,32 +320,32 @@
 /obj/item/ammo_magazine/rocket/icc
 	name = "\improper 84mm high-explosive tube"
 	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
-	icon_state = "iccrpg_he"
+	icon_state = "icc_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
-	bonus_overlay = "iccrpg_he"
+	bonus_overlay = "icc_he"
 
 /obj/item/ammo_magazine/rocket/icc/light
 	name = "\improper 84mm light-explosive tube"
 	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
-	icon_state = "iccrpg_le"
+	icon_state = "icc_le"
 	default_ammo = /datum/ammo/rocket/som/light
 	reload_delay = 1 SECONDS
-	bonus_overlay = "iccrpg_le"
+	bonus_overlay = "icc_le"
 
 /obj/item/ammo_magazine/rocket/icc/heat
 	name = "\improper 84mm HEAT tube"
 	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
-	icon_state = "iccrpg_heat"
+	icon_state = "icc_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
-	bonus_overlay = "iccrpg_heat"
+	bonus_overlay = "icc_heat"
 
 /obj/item/ammo_magazine/rocket/icc/thermobaric
 	name = "\improper 84mm thermobaric tube"
 	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
-	icon_state = "iccrpg_thermobaric"
+	icon_state = "icc_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
-	bonus_overlay = "iccrpg_thermobaric"
+	bonus_overlay = "icc_thermobaric"
 
 //VSD RPG
 
@@ -425,6 +425,7 @@
 	name = "\improper MG-100 Vindicator powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
 	icon_state = "powerpack"
+	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
 	magazine_flags = MAGAZINE_WORN
@@ -435,21 +436,21 @@
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
-	icon_state = "s_powerpack"
+	icon_state = "snow"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
-	icon_state = "w_powerpack"
+	icon_state = "fancy"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
-	icon_state = "p_powerpack"
+	icon_state = "merc"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
-	icon_state = "sg_powerpack"
+	icon_state = "sg"
 	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	current_rounds = 1000

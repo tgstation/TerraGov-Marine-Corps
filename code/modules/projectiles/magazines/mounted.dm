@@ -3,7 +3,7 @@
 	name = "HSG-102 drum magazine (10x30mm Caseless)"
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the HSG-102 mounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "hsg102_mag"
+	icon_state = "hsg102"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_10X30
@@ -21,7 +21,7 @@
 	desc = "A box of 500, 10x28mm caseless tungsten rounds for the HMG-08 mounted heavy machinegun. Is probably not going to fit in your backpack. Put it on your belt or back."
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	icon_state = "mg08_mag"
+	icon_state = "mg08"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big_green"
 	magazine_flags = NONE
@@ -44,7 +44,7 @@
 	name = "MG-27 box magazine (10x27m Caseless)"
 	desc = "A box of 150 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "t27_mag"
+	icon_state = "t27"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big_armygreen"
 	magazine_flags = NONE
@@ -57,7 +57,7 @@
 	name = "AGLS-37 HE magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless HE grenades for the AGLS-37 automatic grenade launcher."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "ags_mag"
+	icon_state = "ags"
 	icon = 'icons/obj/items/ammo/artillery.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_40MM
@@ -153,7 +153,7 @@
 	name = "autocannon high-velocity magazine(20mm)"
 	desc = "A box of 100 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "ac_mag"
+	icon_state = "ac"
 	icon = 'icons/obj/items/ammo/artillery.dmi'
 	worn_icon_state = "ac"
 	magazine_flags = NONE
@@ -175,7 +175,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	maxcharge = 225
 	reload_delay = 5 SECONDS
-	icon_state = "hl_mag"
+	icon_state = "hl"
 	charge_overlay = null
 
 /obj/item/ammo_magazine/heavy_isg
@@ -218,7 +218,7 @@
 	name = "KRD-61ES magazine (10x30mm Caseless)"
 	desc = "A box of 300, 10x30mm caseless tungsten rounds for the KRD-61ESmounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state = "kord_mag"
+	icon_state = "kord"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_10X30
