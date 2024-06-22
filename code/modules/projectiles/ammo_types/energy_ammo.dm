@@ -748,13 +748,20 @@
 	armor_type = ENERGY
 	max_range = 40
 	accurate_range = 10
-	accuracy = 15
-	damage = 800
+	accuracy = 25
+	damage = 850
 	penetration = 120
 	sundering = 30
 	damage_falloff = 5
 	on_pierce_multiplier = 0.95
 	barricade_clear_distance = 4
+
+/datum/ammo/energy/particle_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
+		return
+	var/mob/living/target_living = target_mob
+	target_living.apply_radiation(living_victim.modify_by_armor(15, BIO, 25), 3)
+
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(ishitbox(target_obj)) //yes this is annoying.
