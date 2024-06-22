@@ -175,11 +175,8 @@
   - rscadd: Added more materials to the debugabus engineering room
 2024-04-10:
   Lumipharon:
-<<<<<<< HEAD
-=======
   - balance: Gun skills no longer effect fire delay for semi auto firing
   - balance: Gun skills effect reload delay for magazines that have one
->>>>>>> 77cd9457623283826b48f9eb1032858d9f742463
   - qol: 'Campaign: Added some extra context around attrition and mission selection
       for faction leaders'
   - qol: 'Campaign: Deploy points have their corrosponding number on the sprite'
@@ -191,8 +188,6 @@
       and the default charges on the teleporter'
   - bugfix: 'Campaign: Fixed the incorrect mortar disabler being applied to TGMC on
       NT Base Rescue'
-<<<<<<< HEAD
-=======
   - rscadd: 'Campaign: Deploy and outro messages are now specific to each mission'
   - code_imp: reworked how hvh deploy points work
   - bugfix: You can no longer bypass innate order checks by using a keybind
@@ -473,4 +468,3 @@
   - rscadd: Preweeded Icy Caves.
   - bugfix: Fixed a big red modular south of ETA lab with a wrong area.
   - balance: Melting laser MG firerate reduced to .45
->>>>>>> 77cd9457623283826b48f9eb1032858d9f742463
