@@ -2240,6 +2240,7 @@
 #include "code\modules\xenomorph\acid_pools.dm"
 #include "code\modules\xenomorph\acidwell.dm"
 #include "code\modules\xenomorph\jellypod.dm"
+#include "code\modules\xenomorph\maw.dm"
 #include "code\modules\xenomorph\pherotower.dm"
 #include "code\modules\xenomorph\resin_gargoyle.dm"
 #include "code\modules\xenomorph\silo.dm"
