@@ -22,4 +22,5 @@
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,
 		/obj/structure/closet/crate,
+		/mob/living/carbon/human,
 	)
