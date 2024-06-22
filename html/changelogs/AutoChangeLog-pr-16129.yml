@@ -1,0 +1,4 @@
+author: "SomrNetwork"
+delete-after: True
+changes:
+  - bugfix: "vsd LMG icon and naked spawning specs in campaign"
