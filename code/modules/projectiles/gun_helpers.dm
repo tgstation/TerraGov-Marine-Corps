@@ -215,11 +215,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 ///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
 /proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
 	var/list/modifiers = params2list(params)
-	var/loctoget = user.client?.eye ? user.client.eye : user
 	if(!istype(target, /atom/movable/screen))
 		return target
 	if(!istype(target, /atom/movable/screen/click_catcher))
 		return null
+	var/loctoget = user.client?.eye ? user.client.eye : user
 	return params2turf(modifiers["screen-loc"], get_turf(loctoget), user.client)
 
 //----------------------------------------------------------
