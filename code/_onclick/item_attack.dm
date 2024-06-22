@@ -52,12 +52,12 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF_ALTERNATE, user)
 	add_fingerprint(user, "attack_self_alternate")
 
-/atom/proc/attackby(obj/item/I, mob/user, params)
+/atom/proc/attackby(obj/item/attacking_item, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
-	add_fingerprint(user, "attackby", I)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	add_fingerprint(user, "attackby", attacking_item)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
-	if(isgrabitem(I) && grab_interact(I, user))
+	if(isgrabitem(attacking_item) && grab_interact(attacking_item, user))
 		user.changeNext_move(GRAB_SLAM_DELAY)
 		return TRUE
 	return FALSE
@@ -295,18 +295,18 @@
 		return
 	afterattack_alternate(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
-/atom/proc/attackby_alternate(obj/item/I, mob/user, params)
-	add_fingerprint(user, "attackby_alternate", I)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
+/atom/proc/attackby_alternate(obj/item/attacking_item, mob/user, params)
+	add_fingerprint(user, "attackby_alternate", attacking_item)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY_ALTERNATE, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
-/mob/living/attackby_alternate(obj/item/I, mob/living/user, params)
+/mob/living/attackby_alternate(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
 	if(.)
 		return TRUE
-	user.changeNext_move(I.attack_speed_alternate)
-	return I.attack_alternate(src, user)
+	user.changeNext_move(attacking_item.attack_speed_alternate)
+	return attacking_item.attack_alternate(src, user)
 
 // has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
