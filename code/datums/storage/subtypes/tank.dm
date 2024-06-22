@@ -29,5 +29,6 @@
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/secondary_cupola,
+		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 		/obj/item/ammo_magazine/tank/secondary_mlrs,
 	))
