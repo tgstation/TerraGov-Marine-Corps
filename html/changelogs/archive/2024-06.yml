@@ -149,3 +149,6 @@
 2024-06-21:
   SomrNetwork:
   - bugfix: ICC and a bunch of other bugs
+2024-06-22:
+  SomrNetwork:
+  - bugfix: skill fix and vendor fixes to PMC and ICC
