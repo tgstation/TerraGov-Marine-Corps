@@ -6651,9 +6651,6 @@
 	},
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
 "bhK" = (
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2
-	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/east)
@@ -8613,12 +8610,6 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/prison/ramptop,
 /area/lv759/indoors/nt_research_complex_entrance)
-"bzU" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison{
-	dir = 4
-	},
-/area/lv759/indoors/nt_security/checkpoint_west)
 "bzW" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10027,9 +10018,6 @@
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = 1
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1
 	},
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -21835,9 +21823,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
 	pixel_x = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1
 	},
 /turf/open/floor/mainship/plate,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
@@ -40495,6 +40480,10 @@
 	},
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
+"gWJ" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/lv759/indoors/nt_research_complex/xenoarcheology)
 "gWK" = (
 /obj/structure/barricade/handrail/wire{
 	dir = 8
@@ -56632,12 +56621,6 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/north_street)
-"jHh" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison{
-	dir = 8
-	},
-/area/lv759/indoors/nt_security/checkpoint_west)
 "jHi" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -62873,6 +62856,12 @@
 	color = "#dfcfc0"
 	},
 /area/lv759/indoors/colonial_marshals/wardens_office)
+"kNp" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison{
+	dir = 8
+	},
+/area/lv759/indoors/nt_security/checkpoint_west)
 "kNv" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/light,
@@ -73507,6 +73496,10 @@
 	},
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
+"mBC" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/cellstripe,
+/area/lv759/indoors/nt_security/checkpoint_east)
 "mBD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -96651,13 +96644,6 @@
 	dir = 6
 	},
 /area/lv759/indoors/colonial_marshals/armory_foyer)
-"qxR" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/cellstripe{
-	dir = 1
-	},
-/area/lv759/indoors/nt_security/checkpoint_east)
 "qxZ" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating,
@@ -100504,6 +100490,12 @@
 "riw" = (
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/south_east_street)
+"rix" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison{
+	dir = 4
+	},
+/area/lv759/indoors/nt_security/checkpoint_west)
 "riz" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/flashlight/lantern,
@@ -103218,15 +103210,12 @@
 /turf/open/floor/freezer,
 /area/lv759/indoors/apartment/eastrestroomsshower)
 "rGQ" = (
-/obj/structure/prop/mainship/gelida/rails{
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/lv759/indoors/mining_outpost/east)
+/area/lv759/indoors/nt_security/checkpoint_east)
 "rGV" = (
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
 	layer = 4
@@ -115268,10 +115257,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_fuel)
-"tId" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating,
-/area/lv759/indoors/nt_research_complex/xenoarcheology)
 "tIe" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
@@ -119167,10 +119152,6 @@
 	dir = 4
 	},
 /area/lv759/indoors/nt_research_complex/reception)
-"uof" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/prison/cellstripe,
-/area/lv759/indoors/nt_security/checkpoint_east)
 "uoi" = (
 /obj/structure/cable,
 /turf/open/floor/urban/tile/tilegrey,
@@ -147384,7 +147365,7 @@ wGi
 eoa
 gTh
 xmc
-tId
+gWJ
 pOL
 wkD
 vSF
@@ -147587,7 +147568,7 @@ uBc
 eoa
 vkp
 xmc
-tId
+gWJ
 rus
 pcY
 vSF
@@ -147790,7 +147771,7 @@ oOo
 lbd
 gTh
 xmc
-tId
+gWJ
 kbx
 wkF
 ljM
@@ -152795,8 +152776,8 @@ whM
 ruf
 tPJ
 bAl
-jHh
-jHh
+kNp
+kNp
 bAl
 bAl
 bAl
@@ -154420,8 +154401,8 @@ evB
 idt
 dny
 dny
-bzU
-bzU
+rix
+rix
 dny
 dny
 jLB
@@ -180193,7 +180174,7 @@ kNz
 aAD
 meh
 dbh
-qxR
+rGQ
 iBc
 dvy
 dvy
@@ -180403,7 +180384,7 @@ dvy
 dvy
 dvy
 xTt
-uof
+mBC
 ejU
 uhg
 mIc
@@ -180606,7 +180587,7 @@ nel
 nel
 nel
 glC
-uof
+mBC
 ejU
 kZj
 jsQ
@@ -185679,7 +185660,7 @@ lVE
 lVE
 yaK
 naA
-aDI
+fIA
 fuA
 fYC
 fIA
@@ -185882,7 +185863,7 @@ qJN
 oyO
 dNq
 dtt
-rGQ
+hAW
 fqs
 tJC
 hAW
@@ -186090,7 +186071,7 @@ dak
 fYC
 fIA
 qpr
-aDI
+fIA
 ooW
 aUf
 aUf
