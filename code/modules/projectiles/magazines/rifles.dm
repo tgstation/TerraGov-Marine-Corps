@@ -1,6 +1,3 @@
-
-
-
 //-------------------------------------------------------
 //M41A PULSE RIFLE AMMUNITION
 
@@ -9,6 +6,7 @@
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "m412"
+	icon = 'icons/obj/items/ammo/rifle.dmi'
 	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
@@ -306,6 +304,7 @@
 	desc = "A wide drum magazine carefully filled to capacity with 10x26mm specialized smart rounds."
 	caliber = CALIBER_10x26_CASELESS
 	icon_state = "sg29"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_sg29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
@@ -584,6 +583,7 @@
 	name = "\improper V-41 box magazine (10x26mm)"
 	desc = "A drum magazine for the V-41 machinegun."
 	icon_state = "v41"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum_big_long"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
@@ -666,6 +666,7 @@
 	name = "\improper ML-41 GPMG box magazine (10x26mm)"
 	desc = "A belt box for the ML-41 assault machinegun."
 	icon_state = "minimi"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun

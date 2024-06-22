@@ -11,6 +11,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of 12 gauge shotgun slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "slugs"
+	icon = 'icons/obj/items/ammo/shotgun.dmi'
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G //All shotgun rounds are 12g right now.
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.

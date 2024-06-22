@@ -3,7 +3,7 @@
 /obj/item/cell/lasgun
 	name = "\improper lasgun Battery"
 	desc = "A specialized high density battery used to power lasguns."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/energy.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',

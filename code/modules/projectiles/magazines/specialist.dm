@@ -1,4 +1,3 @@
-//-------------------------------------------------------
 //SNIPER RIFLES
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
@@ -7,12 +6,12 @@
 	desc = "A magazine of antimaterial rifle ammo."
 	caliber = CALIBER_10X28
 	icon_state = "t26"
+	icon = 'icons/obj/items/ammo/sniper.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
-
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper SR-26 incendiary magazine (10x28mm)"
@@ -38,7 +37,6 @@
 	icon_state_mini = "mag_rifle_big_white"
 	max_rounds = 6
 
-
 //SVD //Based on the actual Dragunov sniper rifle.
 
 /obj/item/ammo_magazine/sniper/svd
@@ -49,8 +47,6 @@
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
 	icon_state_mini = "mag_rifle"
-
-
 
 //tx8 magazines
 
@@ -80,7 +76,6 @@
 	icon_state_mini = "mag_rifle_big_blue"
 	bonus_overlay = "tx8_impact"
 
-
 //-------------------------------------------------------
 //M5 RPG
 
@@ -89,6 +84,7 @@
 	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
+	icon = 'icons/obj/items/ammo/rocket.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
@@ -222,7 +218,6 @@
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
 	icon_state = "shell_tanglefoot"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
-
 
 //-------------------------------------------------------
 //one use rpg
@@ -384,6 +379,7 @@
 	caliber = CALIBER_RAILGUN
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	icon_state = "railgun"
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/railgun
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
@@ -411,6 +407,7 @@
 	desc = "A canister holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 100
 	w_class = WEIGHT_CLASS_NORMAL
@@ -464,7 +461,7 @@
 /obj/item/ammo_magazine/minigun_wheelchair
 	name = "\improper Mounted MG-100 Vindicator ammo rack"
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
 	atom_flags = CONDUCT
 	magazine_flags = MAGAZINE_REFILLABLE
@@ -486,4 +483,3 @@
 	max_rounds = 5
 	reload_delay = 10
 	icon_state_mini = "mag_dmr"
-

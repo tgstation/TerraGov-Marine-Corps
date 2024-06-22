@@ -2,7 +2,7 @@
 /obj/item/storage/box/hsg_102
 	name = "\improper HSG-102 crate"
 	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state = "hsg102_crate"
 	w_class = WEIGHT_CLASS_HUGE
 
@@ -103,7 +103,7 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/obj/machines/deployable/minigun.dmi'
+	icon = 'icons/obj/machines/deployable/misc.dmi'
 	icon_state = "minigun"
 	caliber = CALIBER_762X51
 
