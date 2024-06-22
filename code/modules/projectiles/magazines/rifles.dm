@@ -229,6 +229,7 @@
 	name = "\improper MG-42 drum magazine (10x24mm)"
 	desc = "A drum magazine for the MG-42 light machine gun."
 	icon_state = "t42"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_drum"
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
@@ -242,6 +243,7 @@
 	name = "\improper MG-60 GPMG box magazine (10x26mm)"
 	desc = "A belt box for the MG-60 general purpose machinegun."
 	icon_state = "t60"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
