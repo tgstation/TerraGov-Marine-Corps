@@ -396,7 +396,7 @@
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
-	bonus_overlay = "tl127"
+	bonus_overlay = "tl127_mag"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
 	name = "SR-127 bolt action rifle flak magazine"
