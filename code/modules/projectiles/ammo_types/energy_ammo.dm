@@ -759,8 +759,8 @@
 /datum/ammo/energy/particle_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(!isliving(target_mob))
 		return
-	var/mob/living/target_living = target_mob
-	target_living.apply_radiation(living_victim.modify_by_armor(15, BIO, 25), 3)
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_radiation(living_victim.modify_by_armor(15, BIO, 25), 3)
 
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
