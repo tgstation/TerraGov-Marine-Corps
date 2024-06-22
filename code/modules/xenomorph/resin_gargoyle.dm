@@ -28,7 +28,7 @@
 	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
 		return
 
-	if(!isliving(hostile))
+	if(!isliving(hostile) || issimpleanimal(hostile))
 		return
 
 	var/mob/living/living_triggerer = hostile
