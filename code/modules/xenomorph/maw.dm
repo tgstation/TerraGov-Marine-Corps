@@ -22,8 +22,9 @@
 	CRASH("UNIMPLEMENTED MAW OR CALLED PARENT")
 
 
-
 /datum/maw_ammo/smoke
+	name = "GENERIC_SMOKEAMMOTYPE"
+	cooldown_time = 4 MINUTES
 	///radius of the smoke we deploy
 	var/smokeradius = 4
 	///The duration of the smoke in 2 second ticks
@@ -112,8 +113,12 @@
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "cas_laser"
+	cooldown_time = 3 MINUTES
+	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 8
+	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
 	var/hugger_count = 30
+	///huggers to choose to spawn
 	var/list/hugger_options = list(
 		/obj/item/clothing/mask/facehugger,
 		/obj/item/clothing/mask/facehugger/combat/slash,
@@ -121,6 +126,7 @@
 		/obj/item/clothing/mask/facehugger/combat/resin,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
 	)
+	/// used to track our spawned huggers for animations and stuff
 	var/list/spawned_huggers = list()
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
@@ -158,6 +164,7 @@
 /datum/maw_ammo/xeno_fire
 	name = "plasma fire fireball"
 	radial_icon_state = "incendiary_mortar"
+	cooldown_time = 5 MINUTES
 
 /obj/effect/temp_visual/fireball
 	icon = 'icons/obj/items/projectiles.dmi'
@@ -196,6 +203,8 @@
 	max_integrity = 400
 	appearance_flags = PIXEL_SCALE|LONG_GLIDE
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
+	///icon state to use for minimap icon
+	var/minimap_icon = "acid_maw"
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
 		/datum/maw_ammo/smoke/acid_big,
@@ -203,7 +212,7 @@
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "acid_maw", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, ABOVE_FLOAT_LAYER))
 	var/list/parsed_maw_options = list()
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
@@ -270,6 +279,7 @@
 	bound_width = 64
 	bound_height = 64
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	minimap_icon = "acid jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
 		/datum/maw_ammo/hugger,
