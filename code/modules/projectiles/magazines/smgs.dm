@@ -74,7 +74,7 @@
 	desc = "A .45 ACP caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
 	default_ammo = /datum/ammo/bullet/smg/squash
 	icon_state = "t45_sh"
-	bonus_overlay = "t45_sh_mag"
+	bonus_overlay = "t45_mag_sh"
 
 //-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.
