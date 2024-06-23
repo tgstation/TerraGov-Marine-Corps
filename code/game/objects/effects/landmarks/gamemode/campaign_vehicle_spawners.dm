@@ -87,6 +87,13 @@
 	GLOB.campaign_tank_spawners[faction] -= src
 	return ..()
 
+/obj/effect/landmark/campaign/vehicle_spawner/tank/spawn_vehicle()
+	. = ..()
+	if(!.)
+		return
+	var/obj/vehicle/spawned_vehicle = .
+	spawned_vehicle.setDir(dir)
+
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner"
 	faction = FACTION_SOM

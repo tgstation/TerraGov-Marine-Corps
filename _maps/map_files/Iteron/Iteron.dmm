@@ -30,15 +30,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base/hanger)
-"aC" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "aL" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -533,10 +524,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/freezer,
 /area/mainship/patrol_base)
-"hm" = (
-/obj/vehicle/ridden/powerloader,
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "hA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -922,6 +909,10 @@
 /obj/structure/patrol_point/tgmc_21,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
+"mR" = (
+/obj/machinery/light,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "mU" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -938,6 +929,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base/hanger)
+"no" = (
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = -3
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "nz" = (
 /obj/structure/largecrate/packed,
 /turf/open/floor/mainship/orange{
@@ -1344,6 +1341,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
+"td" = (
+/obj/structure/patrol_point/tank/tgmc_one,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base/hanger)
 "tg" = (
 /obj/structure/sink{
 	dir = 1
@@ -1404,14 +1405,6 @@
 /obj/structure/patrol_point/tgmc_13,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
-"ui" = (
-/obj/machinery/vending/mech_vendor,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "um" = (
 /obj/structure/patrol_point/tgmc_23,
 /turf/open/floor/plating/plating_catwalk,
@@ -1921,13 +1914,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
-"Bd" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "Bh" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -2097,15 +2083,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"Dn" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "Ds" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
@@ -2163,17 +2140,6 @@
 "DY" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
-"Ec" = (
-/obj/effect/landmark/campaign/vehicle_spawner/mech,
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -2501,18 +2467,10 @@
 /obj/item/weapon/sword/machete,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/patrol_base/hanger)
-"HJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = -3
-	},
+"HE" = (
+/obj/structure/patrol_point/tank/tgmc_two,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
+/area/mainship/patrol_base/hanger)
 "HK" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/light{
@@ -2599,13 +2557,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base/command)
-"IK" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box/arrow,
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "IO" = (
 /turf/open/floor/mainship/terragov/west,
 /area/mainship/patrol_base/command)
@@ -2813,13 +2764,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base/prep)
-"LP" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "LR" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -3134,18 +3078,6 @@
 	},
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base)
-"Rj" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "Rt" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -3165,7 +3097,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "RL" = (
-/obj/effect/landmark/campaign/vehicle_spawner/tank,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -3176,10 +3107,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
-"RP" = (
-/obj/effect/landmark/campaign/vehicle_spawner/tank,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base)
 "RQ" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
@@ -3255,7 +3182,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "SG" = (
-/obj/effect/landmark/campaign/vehicle_spawner/tank,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
 "SI" = (
@@ -3544,11 +3470,8 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
-"Wk" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/light,
+"Wj" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "Wl" = (
@@ -3618,18 +3541,6 @@
 	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
-/area/mainship/patrol_base)
-"Xl" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "Xm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -29637,8 +29548,8 @@ eK
 eK
 bu
 bu
+bu
 XV
-ef
 ef
 ef
 ef
@@ -29874,13 +29785,13 @@ GR
 Pl
 fV
 Ff
-ui
-nB
-rb
-nB
+fH
+fH
+fH
+fH
+fH
 bu
 XV
-ef
 ef
 ef
 ef
@@ -30116,13 +30027,13 @@ RL
 UK
 fV
 FL
-Xl
-JB
-JB
-JB
+fH
+fH
+fH
+Wj
+mR
 bu
 XV
-ef
 ef
 ef
 ef
@@ -30358,13 +30269,13 @@ OR
 Ef
 fV
 Ff
-IK
+fH
+fH
 fH
 fH
 fH
 kb
 XV
-ef
 ef
 ef
 ef
@@ -30600,13 +30511,13 @@ GY
 fV
 fV
 Ff
-aC
-oU
-oU
-Bd
+fH
+fH
+fH
+fH
+fH
 bu
 XV
-ef
 ef
 ef
 ef
@@ -30838,17 +30749,17 @@ DY
 Ff
 fV
 fV
-RP
+fV
 fV
 fV
 Ff
-LP
-rJ
-rJ
-Ec
+fH
+fH
+fH
+Wj
+mR
 bu
 XV
-ef
 ef
 ef
 ef
@@ -31084,13 +30995,13 @@ fV
 fV
 fV
 Ff
-Dn
-JB
-JB
-Wk
+fH
+fH
+fH
+fH
+fH
 bu
 XV
-ef
 ef
 ef
 ef
@@ -31326,13 +31237,13 @@ Sb
 vd
 fV
 Ff
-IK
 fH
 fH
-hm
+fH
+fH
+fH
 kb
 XV
-ef
 ef
 ef
 ef
@@ -31568,13 +31479,13 @@ SG
 vd
 fV
 bE
-Rj
-oU
-oU
-oU
+fH
+fH
+fH
+Wj
+mR
 bu
 XV
-ef
 ef
 ef
 ef
@@ -31810,13 +31721,13 @@ sY
 vd
 fV
 Ff
-ui
-pj
-rU
-pj
+fH
+fH
+fH
+fH
+fH
 bu
 XV
-ef
 ef
 ef
 ef
@@ -32057,8 +31968,8 @@ bu
 bu
 bu
 bu
+bu
 XV
-ef
 ef
 ef
 ef
@@ -33258,12 +33169,12 @@ ur
 ta
 zS
 fV
-HJ
+Ff
 fV
 Jc
 OF
 OF
-fV
+no
 Uj
 Uj
 cc
@@ -35673,7 +35584,7 @@ dP
 fk
 qr
 tR
-rq
+td
 Rt
 ba
 Ox
@@ -37367,7 +37278,7 @@ dP
 fk
 qr
 tR
-rq
+HE
 Rt
 ba
 Ox
