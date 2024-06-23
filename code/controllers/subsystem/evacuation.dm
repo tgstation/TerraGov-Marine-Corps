@@ -93,7 +93,6 @@ SUBSYSTEM_DEF(evacuation)
 		sound = 'sound/misc/airraid.ogg',
 		color_override = "orange"
 	)
-	//priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.", title = "Emergency Evacuation", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/evacuate.ogg', color_override = "orange")
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA, FALSE)
 	pod_list = SSshuttle.escape_pods.Copy()
