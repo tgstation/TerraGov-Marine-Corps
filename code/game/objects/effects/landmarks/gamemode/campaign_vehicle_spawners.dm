@@ -81,12 +81,13 @@
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/Initialize(mapload)
 	. = ..()
-	GLOB.campaign_mech_spawners[faction] += list(src)
+	GLOB.campaign_tank_spawners[faction] += list(src)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/Destroy()
-	GLOB.campaign_mech_spawners[faction] -= src
+	GLOB.campaign_tank_spawners[faction] -= src
 	return ..()
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner"
+	faction = FACTION_SOM
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/som_tank

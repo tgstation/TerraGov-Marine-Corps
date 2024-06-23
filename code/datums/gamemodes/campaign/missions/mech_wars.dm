@@ -63,23 +63,23 @@
 	return ..()
 
 /datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
-	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
-	var/obj/effect/landmark/campaign/vehicle_spawner/mech/spawner
-	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech
-	var/faction_list = list(starting_faction, hostile_faction)
-	for(var/faction in faction_list)
-		for(var/i=1 to mechs_to_spawn)
-			spawner = pick(GLOB.campaign_mech_spawners[faction])
-			new_mech = spawner.spawn_vehicle()
-			GLOB.campaign_structures += new_mech
-			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(on_mech_destruction))
+	var/tanks_to_spawn = length(GLOB.clients) > 80 ? 3 : length(GLOB.clients) > 50 ? 2 : 1
+	spawn_tank(starting_faction, tanks_to_spawn)
+	spawn_tank(hostile_faction, tanks_to_spawn)
 
-			//anti mech infantry weapons
-			if(i % 2)
-				if(faction == FACTION_SOM)
-					new /obj/item/storage/holster/backholster/rpg/som/heat(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
-				else
-					new /obj/item/storage/holster/backholster/rpg/heam(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
+	var/mechs_to_spawn = floor(length(GLOB.clients) * 0.1) + 1
+	var/heavy_spawn = floor(mechs_to_spawn / 6)
+	var/med_spawn = floor(mechs_to_spawn / 4)
+	var/light_spawn = mechs_to_spawn - heavy_spawn - med_spawn
+	spawn_mech(starting_faction, heavy_spawn, med_spawn, light_spawn)
+	spawn_mech(hostile_faction, heavy_spawn, med_spawn, light_spawn)
+
+	for(var/faction in list(starting_faction, hostile_faction))
+		for(var/i=1 to mechs_to_spawn + tanks_to_spawn)
+			if(faction == FACTION_SOM)
+				new /obj/item/storage/holster/backholster/rpg/som/heat(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
+			else
+				new /obj/item/storage/holster/backholster/rpg/heam(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction

@@ -3041,6 +3041,10 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som/medical)
+"Mo" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Mv" = (
 /obj/structure/ship_ammo/cas/heavygun/highvelocity,
 /turf/open/floor/plating/ground/concrete,
@@ -3939,6 +3943,12 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
+"XV" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank/som,
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "XW" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -9550,7 +9560,7 @@ Aw
 Aw
 Aw
 Aw
-Aw
+Mo
 HV
 HC
 Bl
@@ -9916,7 +9926,7 @@ Aw
 Aw
 Aw
 Aw
-Aw
+Mo
 Aw
 Aw
 Mh
@@ -10404,7 +10414,7 @@ qc
 Aw
 xg
 sB
-sB
+XV
 sB
 ve
 Mh

@@ -3165,6 +3165,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "RL" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -3175,6 +3176,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
+"RP" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "RQ" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
@@ -3250,6 +3255,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "SG" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
 "SI" = (
@@ -30832,7 +30838,7 @@ DY
 Ff
 fV
 fV
-fV
+RP
 fV
 fV
 Ff
