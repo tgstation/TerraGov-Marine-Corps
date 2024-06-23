@@ -164,11 +164,11 @@
 		if("Red alert")
 			SSsecurity_level.set_level(SEC_LEVEL_RED)
 		if("Grant Emergency Maintenance Access")
-			GLOB.marine_main_ship.make_maint_all_access()
+			SSmarine_main_ship.make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")
-			GLOB.marine_main_ship.revoke_maint_all_access()
+			SSmarine_main_ship.revoke_maint_all_access()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
+	if(is_mainship_level(z) && SSmarine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
 		return TRUE
 	return ..(M)

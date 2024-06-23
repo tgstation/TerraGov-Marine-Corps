@@ -23,8 +23,8 @@
 
 /obj/structure/orbital_cannon/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.orbital_cannon)
-		GLOB.marine_main_ship.orbital_cannon = src
+	if(!SSmarine_main_ship.orbital_cannon)
+		SSmarine_main_ship.orbital_cannon = src
 
 	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
@@ -35,8 +35,8 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
-	if(GLOB.marine_main_ship.orbital_cannon == src)
-		GLOB.marine_main_ship.orbital_cannon = null
+	if(SSmarine_main_ship.orbital_cannon == src)
+		SSmarine_main_ship.orbital_cannon = null
 	QDEL_NULL(tray)
 	return ..()
 
@@ -454,9 +454,9 @@
 			return
 
 	var/dat
-	if(!GLOB.marine_main_ship?.orbital_cannon)
+	if(!SSmarine_main_ship.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
-	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
+	else if(!SSmarine_main_ship.orbital_cannon.tray)
 		dat += "Orbital Cannon System Tray is missing!<BR>"
 	else
 		if(orbital_window_page == 1)
@@ -466,16 +466,16 @@
 			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else
 			var/tray_status = "unloaded"
-			if(GLOB.marine_main_ship.orbital_cannon.chambered_tray)
+			if(SSmarine_main_ship.orbital_cannon.chambered_tray)
 				tray_status = "chambered"
-			else if(GLOB.marine_main_ship.orbital_cannon.loaded_tray)
+			else if(SSmarine_main_ship.orbital_cannon.loaded_tray)
 				tray_status = "loaded"
 			dat += "Orbital Cannon Tray is <b>[tray_status]</b><BR>"
-			if(GLOB.marine_main_ship.orbital_cannon.tray.warhead)
-				dat += "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
+			if(SSmarine_main_ship.orbital_cannon.tray.warhead)
+				dat += "[SSmarine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
 			else
 				dat += "No Warhead Detected<BR>"
-			dat += "[GLOB.marine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
+			dat += "[SSmarine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
 
 			dat += "<A href='?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
 			dat += "<A href='?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
@@ -496,13 +496,13 @@
 		return
 
 	if(href_list["load_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.load_tray(usr)
+		SSmarine_main_ship.orbital_cannon?.load_tray(usr)
 
 	else if(href_list["unload_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.unload_tray(usr)
+		SSmarine_main_ship.orbital_cannon?.unload_tray(usr)
 
 	else if(href_list["chamber_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.chamber_payload(usr)
+		SSmarine_main_ship.orbital_cannon?.chamber_payload(usr)
 
 	else if(href_list["check_req"])
 		orbital_window_page = 1
@@ -532,15 +532,15 @@
 
 /obj/structure/ship_rail_gun/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.rail_gun)
-		GLOB.marine_main_ship.rail_gun = src
+	if(!SSmarine_main_ship.rail_gun)
+		SSmarine_main_ship.rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/Destroy()
-	if(GLOB.marine_main_ship.rail_gun == src)
-		GLOB.marine_main_ship.rail_gun = null
+	if(SSmarine_main_ship.rail_gun == src)
+		SSmarine_main_ship.rail_gun = null
 	QDEL_NULL(rail_gun_ammo)
 	return ..()
 

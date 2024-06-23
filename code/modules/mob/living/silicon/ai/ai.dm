@@ -366,10 +366,10 @@
 	. += "- Operation information -"
 	. += "Current orbit: [GLOB.current_orbit]"
 
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+	if(!SSmarine_main_ship.orbital_cannon?.chambered_tray)
 		. += "Orbital bombardment status: No ammo chambered in the cannon."
 	else
-		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
+		. += "Orbital bombardment warhead: [SSmarine_main_ship.orbital_cannon.tray.warhead.name] Detected"
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
@@ -380,8 +380,8 @@
 	if(SSticker.mode)
 		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
-	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
-		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
+	if(SSmarine_main_ship.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+		. += "Railgun status: Cooling down, next fire in [(SSmarine_main_ship.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
 	else
 		. += "Railgun status: Railgun is ready to fire."
 
