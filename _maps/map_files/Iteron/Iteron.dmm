@@ -524,6 +524,12 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/freezer,
 /area/mainship/patrol_base)
+"hs" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "hA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -673,6 +679,12 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/hanger)
+"jD" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
 "jI" = (
 /obj/structure/drop_pod_launcher/leader,
 /obj/structure/droppod/leader,
@@ -911,7 +923,7 @@
 /area/mainship/patrol_base/hanger)
 "mR" = (
 /obj/machinery/light,
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating,
 /area/mainship/patrol_base)
 "mU" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -1228,6 +1240,12 @@
 "rq" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
+"rA" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
 "rB" = (
 /obj/structure/patrol_point/tgmc_22,
 /turf/open/floor/mainship/mono,
@@ -2070,6 +2088,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"CX" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "Dd" = (
 /turf/open/floor/mainship/blue{
 	dir = 9
@@ -2374,6 +2396,12 @@
 	dir = 10
 	},
 /area/mainship/patrol_base/prep)
+"Gx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "Gz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3445,6 +3473,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"VS" = (
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
 "VT" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -3472,7 +3503,7 @@
 /area/mainship/patrol_base)
 "Wj" = (
 /obj/effect/landmark/campaign/vehicle_spawner/tank,
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating,
 /area/mainship/patrol_base)
 "Wl" = (
 /obj/machinery/bodyscanner,
@@ -29786,10 +29817,10 @@ Pl
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+jD
+jD
+jD
 bu
 XV
 ef
@@ -30027,9 +30058,9 @@ RL
 UK
 fV
 FL
-fH
-fH
-fH
+Gx
+CX
+VS
 Wj
 mR
 bu
@@ -30270,10 +30301,10 @@ Ef
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+rA
+rA
+rA
 kb
 XV
 ef
@@ -30512,10 +30543,10 @@ fV
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+jD
+jD
+jD
 bu
 XV
 ef
@@ -30754,8 +30785,8 @@ fV
 fV
 Ff
 fH
-fH
-fH
+CX
+VS
 Wj
 mR
 bu
@@ -30996,10 +31027,10 @@ fV
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+rA
+rA
+rA
 bu
 XV
 ef
@@ -31238,10 +31269,10 @@ vd
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+jD
+jD
+jD
 kb
 XV
 ef
@@ -31479,9 +31510,9 @@ SG
 vd
 fV
 bE
-fH
-fH
-fH
+hs
+CX
+VS
 Wj
 mR
 bu
@@ -31722,10 +31753,10 @@ vd
 fV
 Ff
 fH
-fH
-fH
-fH
-fH
+CX
+rA
+rA
+rA
 bu
 XV
 ef

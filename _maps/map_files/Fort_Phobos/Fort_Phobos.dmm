@@ -552,6 +552,12 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
+"gR" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/patrol_base/som/equipment_bay)
 "gT" = (
 /turf/open/floor/mainship/white{
 	dir = 1
@@ -1094,6 +1100,10 @@
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"oh" = (
+/obj/structure/platform,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/patrol_base/som/equipment_bay)
 "oo" = (
 /obj/effect/landmark/campaign/vehicle_spawner/mech/som,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
@@ -1121,6 +1131,12 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
+"oJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base/som/equipment_bay)
 "oK" = (
 /obj/structure/platform/metalplatform{
 	dir = 5
@@ -2015,7 +2031,7 @@
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som{
 	dir = 8
 	},
-/turf/open/floor/plating/ground/concrete,
+/turf/open/floor/plating,
 /area/mainship/patrol_base/som/equipment_bay)
 "yY" = (
 /turf/closed/mineral/smooth/indestructible,
@@ -2784,6 +2800,9 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/barracks)
+"Ij" = (
+/turf/open/floor/plating,
+/area/mainship/patrol_base/som/equipment_bay)
 "Ik" = (
 /obj/structure/platform/metalplatform{
 	dir = 9
@@ -3306,6 +3325,15 @@
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som/hanger)
+"OT" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som/equipment_bay)
 "Pf" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3503,6 +3531,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/patrol_base/som/medical)
+"RG" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/patrol_base/som/equipment_bay)
 "RI" = (
 /obj/structure/somcas/five/left{
 	dir = 4
@@ -8616,15 +8650,15 @@ FA
 MX
 xj
 XI
-XI
-XI
-XI
-XI
-XI
-XI
-XI
-XI
-XI
+gR
+gR
+gR
+gR
+gR
+gR
+gR
+gR
+gR
 XI
 Uk
 Uk
@@ -8737,17 +8771,17 @@ MX
 FA
 MX
 oo
-XI
-FA
-ik
-FA
-FA
-ik
-FA
-FA
-ik
-FA
-XI
+oh
+Ij
+oJ
+Ij
+Ij
+oJ
+Ij
+Ij
+oJ
+Ij
+RG
 Uk
 Uk
 Uk
@@ -8859,17 +8893,17 @@ MX
 FA
 MX
 lN
-XI
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-XI
+oh
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+RG
 Uk
 Uk
 Uk
@@ -8981,17 +9015,17 @@ MX
 FA
 MX
 oo
-XI
-FA
+oh
+Ij
 yM
-FA
-FA
+Ij
+Ij
 yM
-FA
-FA
+Ij
+Ij
 yM
-FA
-XI
+Ij
+RG
 Uk
 Uk
 Uk
@@ -9103,17 +9137,17 @@ FA
 FA
 MX
 xj
-XI
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-XI
+oh
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+Ij
+RG
 Uk
 Uk
 Uk
@@ -9226,15 +9260,15 @@ FA
 FA
 Dd
 XI
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
-FA
+OT
+OT
+OT
+OT
+OT
+OT
+OT
+OT
+OT
 XI
 Uk
 Uk
