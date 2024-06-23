@@ -106,10 +106,7 @@
 	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
-///Removes the object from the campaign_structrures list if they are destroyed mid mission
 /datum/campaign_mission/tdm/mech_wars/remove_mission_object(obj/mission_obj)
-	SIGNAL_HANDLER
-	GLOB.campaign_structures -= mission_obj
 	. = ..()
 	if(outcome)
 		return

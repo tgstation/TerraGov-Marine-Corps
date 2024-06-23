@@ -83,7 +83,6 @@
 		/obj/item/armored_weapon/secondary_weapon = 1,
 		/obj/item/ammo_magazine/tank/ltb_cannon = 20,
 		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
-		/obj/item/pamphlet/tank_loader = 4,
 	)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/Initialize(mapload)
