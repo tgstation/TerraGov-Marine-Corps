@@ -31,6 +31,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 			/obj/item/cell/lasgun/plasma = -1,
+			/obj/item/weapon/gun/energy/beam_cannon = 3,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,

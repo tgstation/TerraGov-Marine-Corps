@@ -813,3 +813,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+
+/datum/loadout_item/suit_store/main_gun/marine/beam_cannon
+	name = "Light Beam Cannon"
+	desc = "Devastating laser weapon with a long pre-fire charging procedure. Has an internal battery that does not need recharging."
+	ui_icon = "vx33"
+	item_typepath = /obj/item/weapon/gun/energy/beam_cannon

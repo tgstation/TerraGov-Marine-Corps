@@ -390,6 +390,11 @@
 	var/image/warcry = image('icons/mob/talk.dmi', user, icon_state = "warcry")
 	user.add_emote_overlay(warcry)
 
+/datum/emote/living/carbon/human/warcry/spartan
+	key = "finishthefight"
+	key_third_person = "finishesthefight"
+	message = "is finishing the fight."
+
 /datum/emote/living/carbon/human/snap
 	key = "snap"
 	key_third_person = "snaps"

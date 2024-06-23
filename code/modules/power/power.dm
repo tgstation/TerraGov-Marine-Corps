@@ -103,23 +103,25 @@
 /obj/machinery/proc/removeStaticPower(value, powerchannel)
 	addStaticPower(-value, powerchannel)
 
-// connect the machine to a powernet if a node cable or a terminal is present on the turf
+///Connect the machine to a powernet if there is a cable node or terminal on the turf
 /obj/machinery/power/proc/connect_to_network()
-	var/turf/T = src.loc
-	if(!T || !istype(T))
+	var/turf/turf = get_turf(src)
+	if(!turf)
 		return FALSE
 
-	var/obj/structure/cable/C = T.get_cable_node(machinery_layer) //check if we have a node cable on the machine turf, the first found is picked
-	if(!C || !C.powernet)
-		var/obj/machinery/power/terminal/term = locate(/obj/machinery/power/terminal) in T
-		if(!term || !term.powernet)
-			return FALSE
-		else
-			term.powernet.add_machine(src)
-			return TRUE
+	//Look for a cable node connected to a powernet
+	var/obj/structure/cable/cable = turf.get_cable_node()
+	if(cable?.powernet)
+		cable.powernet.add_machine(src)
+		return TRUE
 
-	C.powernet.add_machine(src)
-	return TRUE
+	//Look for a terminal connected to a powernet
+	var/obj/machinery/power/terminal/terminal = locate(/obj/machinery/power/terminal) in turf
+	if(terminal?.powernet)
+		terminal.powernet.add_machine(src)
+		return TRUE
+
+	return FALSE
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()

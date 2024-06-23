@@ -1255,7 +1255,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	gun_features_flags = GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_WIELDED_STABLE_FIRING_ONLY
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CLOSED
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	load_method = CELL
 	ammo_datum_type = /datum/ammo/energy/laser_blast
 	default_ammo_type = /obj/item/cell/lasgun/beam_cannon
@@ -1265,8 +1265,7 @@
 
 	force = 40
 	fire_delay = 0	//It takes a long while to charge up anyways
-	//windup_delay = 4 SECONDS
-	wield_delay = 2 SECONDS
+	wield_delay = 0.2 SECONDS
 	aim_slowdown = 2	//Heavy
 	scatter = 0	//It's a laser cannon, Jimmy
 	scatter_unwielded = 0
@@ -1276,12 +1275,17 @@
 	damage_falloff_mult = 0
 
 	heat_per_fire = 50
-	cool_amount = 2.5
+	cool_amount = 5
 
 	///Will halt the charging procedure if FALSE
 	var/continue_pre_fire = TRUE
 	///Reference to the pre-fire beam emitted by the gun
 	var/datum/beam/laser/beam
+
+/obj/item/weapon/gun/energy/beam_cannon/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(spawn_empty)	//Vendors break this gun by making it spawn without it's power cell
+		INVOKE_ASYNC(src, PROC_REF(fill_gun))
 
 /obj/item/weapon/gun/energy/beam_cannon/Destroy()
 	QDEL_NULL(beam)
@@ -1312,7 +1316,7 @@
 	beam.visuals.particle_holder = new(beam.visuals, /particles/energy_beam_particles)
 
 	//Used to check if the gun can still fire during the charging process
-	var/datum/callback/pre_firing_check = CALLBACK(src, PROC_REF(pre_fire_functions))
+	var/datum/callback/pre_firing_check = CALLBACK(src, PROC_REF(pre_fire_check))
 	if(!do_after(gun_user, 4 SECONDS, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = pre_firing_check))
 		QDEL_NULL(beam)
 		//Copied from playsound() to find mobs with clients so we can order the sound to stop playing for each one
@@ -1325,13 +1329,15 @@
 			M.stop_sound_channel(sound_channel)	//Actually stop the sound
 
 		SSsounds.free_sound_channel(sound_channel)	//Need to free the channel that was reserved
-		return FALSE
+		var/obj/item/mag = chamber_items[current_chamber_position]
+		adjust_current_rounds(mag, rounds_per_shot)	//Refund the ammo because the gun cycles itself before this proc is called
+		return
 
 	QDEL_NULL(beam)
 	return ..()
 
 ///Returns FALSE if something has halted the firing process
-/obj/item/weapon/gun/energy/beam_cannon/proc/pre_fire_functions()
+/obj/item/weapon/gun/energy/beam_cannon/proc/pre_fire_check()
 	return continue_pre_fire
 
 ///Works similar to beam() but can be stopped by dense and opaque turfs, and will stop at max projectile distance instead of deleting itself
@@ -1339,6 +1345,23 @@
 	var/datum/beam/laser/beam = new(origin, target, beam_icon_state = "sat_beam", maxdistance = ammo_datum_type.max_range)
 	INVOKE_ASYNC(beam, TYPE_PROC_REF(/datum/beam, Start))
 	return beam
+
+/obj/item/weapon/gun/energy/beam_cannon/unique_action(mob/user, special_treatment)
+	var/mob/living/carbon/human/john_halo = ishuman(user) ? user : null
+	if(!john_halo)
+		return
+
+	john_halo.emote("finishthefight", intentional = TRUE)
+
+/obj/item/weapon/gun/energy/beam_cannon/equipped(mob/user, slot)
+	. = ..()
+	update_ammo_count()
+
+//For deathmatch modes
+/obj/item/weapon/gun/energy/beam_cannon/unlimited
+	gun_features_flags = GUN_ENERGY|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_WIELDED_STABLE_FIRING_ONLY	//No ammo counter needed if unlimited ammo
+	rounds_per_shot = 0
+	heat_per_fire = 0
 
 /particles/energy_beam_particles
 	icon = 'icons/effects/particles/generic_particles.dmi'

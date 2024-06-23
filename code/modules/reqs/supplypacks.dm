@@ -824,6 +824,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
 	cost = 400
 
+/datum/supply_packs/weapons/light_beam_cannon
+	name = "Light Beam Cannon"
+	contains = list(/obj/item/weapon/gun/energy/beam_cannon)
+	cost = 400
+
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
@@ -1532,6 +1537,12 @@ ENGINEERING
 	name = "Teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 500
+
+/datum/supply_packs/engineering/field_charger
+	name = "Mobile Field Charger"
+	contains = list(/obj/machinery/power/field_charger)
+	cost = 200
+	containertype = null
 
 /*******************************************************************************
 SUPPLIES
