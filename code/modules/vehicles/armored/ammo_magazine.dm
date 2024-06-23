@@ -82,3 +82,50 @@
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
+
+//SOM tank
+/obj/item/ammo_magazine/tank/volkite_carronade
+	name = "volkite carronade cell"
+	desc = "A heavy, disposable cell used for powering a volkite carronade."
+	caliber = CALIBER_84MM
+	icon_state = "som_tank_cell"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/energy/volkite/heavy
+	max_rounds = 3
+
+/obj/item/ammo_magazine/tank/particle_lance
+	name = "particle lance energy cell"
+	desc = "A heavy, disposable cell used for powering a tank mounted particle lance."
+	caliber = CALIBER_84MM
+	icon_state = "particle_lance_cell"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/energy/particle_lance
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/secondary_mlrs
+	name = "\improper MLRS magazine"
+	desc = "A secondary armament MLRS magazine. Loaded with homing HE rockets"
+	caliber = CALIBER_40MM
+	icon_state = "secondary_mlrs"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing
+	max_rounds = 12
+
+/obj/item/ammo_magazine/tank/coilgun
+	name = "coilgun projectiles"
+	desc = "A set of extremely dense kinetic penetrator rounds for a tank mounted coilgun."
+	caliber = CALIBER_84MM
+	icon_state = "tank_coilgun"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
+	max_rounds = 4
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/secondary_flamer_tank
+	name = "napalm stream tank"
+	desc = "A fuel tank containing fuel for the secondary vehicle mounted flamer. This tank contains a more fluid mix that flows easier but flames less area at once."
+	caliber = CALIBER_FUEL_THICK
+	icon_state = "sflamer"
+	max_rounds = 150
+	default_ammo = /datum/ammo/flamethrower/armored_spray

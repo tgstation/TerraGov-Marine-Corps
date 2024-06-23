@@ -192,15 +192,19 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///Checks team balance and tries to correct if possible
-/datum/game_mode/hvh/campaign/proc/autobalance_cycle()
+/datum/game_mode/hvh/campaign/proc/autobalance_cycle(forced = FALSE)
 	var/list/autobalance_faction_list = autobalance_check()
 	if(!autobalance_faction_list)
 		return
 
-	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
+	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[autobalance_faction_list[1]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[1]])] players, \
+	autobalance_faction_list[2] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
+	Forced autobalance is [forced ? "ON." : "OFF."]")
+
+	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
 		if(stat_list[faction_member.faction].faction_leader == faction_member)
 			continue
-		swap_player_team(faction_member, autobalance_faction_list[2])
+		swap_player_team(faction_member, autobalance_faction_list[2], forced)
 
 	addtimer(CALLBACK(src, PROC_REF(autobalance_bonus)), CAMPAIGN_AUTOBALANCE_DECISION_TIME + 1 SECONDS)
 
@@ -218,10 +222,12 @@
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
-/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction)
+/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE)
 	if(!user.client)
 		return
-	if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
+	if(forced)
+		to_chat(user, "The teams are currently imbalanced, in favour of your team. Forced autobalance is on, so you may be swapped to the other team.")
+	else if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
 		return
 	var/list/current_ratio = autobalance_check(1)
 	if(!current_ratio || current_ratio[2] == user.faction)
