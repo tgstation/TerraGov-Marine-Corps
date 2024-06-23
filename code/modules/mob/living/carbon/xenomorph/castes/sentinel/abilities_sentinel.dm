@@ -205,6 +205,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
+	///Type of nade to be thrown
 	var/nade_type = /obj/item/explosive/grenade/smokebomb/xeno
 
 /datum/action/ability/activable/xeno/toxic_grenade/use_ability(atom/A)
