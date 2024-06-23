@@ -72,12 +72,19 @@
 	head_colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
 	vehicle_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
 
-//tank
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank
 	name = "TGMC tank spawner"
 	icon_state = "tank_spawner"
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/campaign
+	///List of gear the tank spawns with
+	var/list/equipment_list = list(
+		/obj/item/armored_weapon = 1,
+		/obj/item/armored_weapon/secondary_weapon = 1,
+		/obj/item/ammo_magazine/tank/ltb_cannon = 20,
+		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
+		/obj/item/pamphlet/tank_loader = 4,
+	)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/Initialize(mapload)
 	. = ..()
@@ -95,44 +102,45 @@
 	spawned_vehicle.setDir(dir)
 	spawn_equipment()
 
+///Spawns all required gear for the tank
 /obj/effect/landmark/campaign/vehicle_spawner/tank/proc/spawn_equipment()
-	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
-	new /obj/item/armored_weapon(target_turf)
-	new /obj/item/armored_weapon/secondary_weapon(target_turf)
-	var/ammo_turf = get_step(target_turf, (turn(dir, 90)))
-	for(var/i = 1 to 8)
-		new /obj/item/ammo_magazine/tank/ltb_cannon(ammo_turf)
-	//repeat for other ammo types
-	for(var/i = 1 to 10)
-		new /obj/item/ammo_magazine/tank/secondary_cupola(ammo_turf)
-	var/pamphlet_turf = get_step(target_turf, turn(dir, -90))
+	var/turf/gun_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
+	var/ammo_turf = get_step(gun_turf, (turn(dir, 90)))
+	var/pamphlet_turf = get_step(gun_turf, turn(dir, -90))
+	for(var/obj/typepath AS in equipment_list)
+		for(var/num = 1 to equipment_list[typepath])
+			var/obj/new_item = new typepath(ammo_turf)
+			if(!istype(new_item, /obj/item/armored_weapon))
+				continue
+			new_item.forceMove(gun_turf)
 	for(var/i = 1 to 4)
 		new /obj/item/pamphlet/tank_loader(pamphlet_turf) //placeholder until crew version or skill lock removed
-
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner - coilgun"
 	faction = FACTION_SOM
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/som_tank
-	var/primary_weapon_type = /obj/item/armored_weapon/coilgun
-
-/obj/effect/landmark/campaign/vehicle_spawner/tank/som/spawn_equipment()
-	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
-	var/obj/item/armored_weapon/weapon = new primary_weapon_type(target_turf)
-	new /obj/item/armored_weapon/secondary_mlrs(target_turf)
-	var/ammo_turf = get_step(target_turf, (turn(dir, 90)))
-	for(var/i = 1 to 15)
-		new weapon.ammo.type //utterfucked
-	for(var/i = 1 to 10)
-		new /obj/item/ammo_magazine/tank/secondary_mlrs(ammo_turf)
-	var/pamphlet_turf = get_step(target_turf, turn(dir, -90))
-	for(var/i = 1 to 4)
-		new /obj/item/pamphlet/tank_loader(pamphlet_turf) //placeholder until crew version or skill lock removed
+	equipment_list = list(
+		/obj/item/armored_weapon/coilgun = 1,
+		/obj/item/armored_weapon/secondary_mlrs = 1,
+		/obj/item/ammo_magazine/tank/coilgun = 15,
+		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
+	)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som/particle_lance
 	name = "SOM tank spawner - particle lance"
-	primary_weapon_type = /obj/item/armored_weapon/particle_lance
+	equipment_list = list(
+		/obj/item/armored_weapon/particle_lance = 1,
+		/obj/item/armored_weapon/secondary_mlrs = 1,
+		/obj/item/ammo_magazine/tank/particle_lance = 20,
+		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
+	)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som/volkite_carronade
 	name = "SOM tank spawner - carronade"
-	primary_weapon_type = /obj/item/armored_weapon/volkite_carronade
+	equipment_list = list(
+		/obj/item/armored_weapon/volkite_carronade = 1,
+		/obj/item/armored_weapon/secondary_mlrs = 1,
+		/obj/item/ammo_magazine/tank/volkite_carronade = 18,
+		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
+	)
