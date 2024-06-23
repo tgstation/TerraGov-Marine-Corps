@@ -15371,7 +15371,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "tem" = (
-/obj/machinery/vending/lasgun,
+/obj/machinery/power/field_charger,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},

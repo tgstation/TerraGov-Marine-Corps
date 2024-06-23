@@ -17647,7 +17647,7 @@
 	},
 /area/mainship/squads/req)
 "sQs" = (
-/obj/machinery/vending/lasgun,
+/obj/machinery/power/field_charger,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "sSi" = (
