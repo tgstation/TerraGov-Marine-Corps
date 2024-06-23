@@ -205,12 +205,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
+	var/nade_type = /obj/item/explosive/grenade/smokebomb/xeno
 
 /datum/action/ability/activable/xeno/toxic_grenade/use_ability(atom/A)
 	. = ..()
 	succeed_activate()
 	add_cooldown()
-	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new(get_turf(owner))
+	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new nade_type(get_turf(owner))
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
 	owner.visible_message(span_warning("[owner] vomits up a bulbous lump and throws it at [A]!"), span_warning("We vomit up a bulbous lump and throw it at [A]!"))
@@ -231,3 +232,31 @@
 	. = ..()
 	if(active)
 		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
+
+//Neuro variant
+/datum/action/ability/activable/xeno/toxic_grenade/neuro
+	name = "Neuro grenade"
+	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
+	desc = "Throws a lump of compressed neurotoxin, which explodes into a small gas cloud."
+	ability_cost = 200
+	cooldown_duration = 50 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
+	)
+	nade_type = /obj/item/explosive/grenade/smokebomb/xeno/neuro
+
+/datum/action/ability/activable/xeno/toxic_grenade/neuro/use_ability(atom/A)
+	. = ..()
+
+/obj/item/explosive/grenade/smokebomb/xeno/neuro
+	name = "Neuro grenade"
+	desc = "A fleshy mass that bounces along the ground. It seems to be heating up."
+	greyscale_colors = "#bfc208"
+	greyscale_config = /datum/greyscale_config/xenogrenade
+	det_time = 15
+	smoke_duration = 4
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/light
+	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	smokeradius = 3
