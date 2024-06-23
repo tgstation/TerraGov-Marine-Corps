@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscadd: "Injectors/hyposprays now display instructions for using them in their description"

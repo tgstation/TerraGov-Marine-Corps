@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Can no longer attack with melee weapons while lying down."

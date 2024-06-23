@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Facepaint no longer opens pill bottles when trying to paint them"

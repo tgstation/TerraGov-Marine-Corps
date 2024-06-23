@@ -278,3 +278,22 @@
   Xander3359:
   - bugfix: fix draw order not saving
   - code_imp: moves signals.dm + signals_keybindings.dm
+2024-06-23:
+  Lumipharon:
+  - bugfix: Binos can be unzoomed again via attackself
+  - code_imp: Added a missing signal override
+  Runian:
+  - bugfix: New xenomorph ruler announcements now correctly announces your name.
+  - bugfix: Numbered xenomorph names correctly display when evolving.
+  SomrNetwork:
+  - bugfix: vsd LMG icon and naked spawning specs in campaign
+  TiviPlus:
+  - bugfix: Fixed tank not rendering in some cases
+  Wisemonster:
+  - bugfix: Can no longer attack with melee weapons while lying down.
+  Xander3359:
+  - bugfix: Fix trying to give a drink to someone other than yourself
+  - bugfix: Facepaint no longer opens pill bottles when trying to paint them
+  breadhunt:
+  - rscadd: Injectors/hyposprays now display instructions for using them in their
+      description
