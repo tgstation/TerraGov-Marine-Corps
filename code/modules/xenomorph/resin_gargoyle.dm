@@ -28,12 +28,13 @@
 	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
 		return
 
-	if(!isliving(hostile) || !iscarbon(hostile))
+	if(!isliving(hostile) && !iscarbon(hostile) && !isvehicle(hostile))
 		return
 
-	var/mob/living/living_triggerer = hostile
-	if(living_triggerer.stat == DEAD)
-		return
+	if(isliving(hostile))
+		var/mob/living/living_triggerer = hostile
+		if(living_triggerer.stat == DEAD)
+			return
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
