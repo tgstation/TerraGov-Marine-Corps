@@ -401,6 +401,12 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som/command)
+"fb" = (
+/obj/structure/stairs/seamless/platform_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som/equipment_bay)
 "fc" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -656,6 +662,12 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som/barracks)
+"ir" = (
+/obj/structure/stairs/seamless/platform_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som/equipment_bay)
 "ix" = (
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/hanger)
@@ -1909,6 +1921,10 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/barracks)
+"xI" = (
+/obj/structure/stairs/seamless,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som/equipment_bay)
 "xM" = (
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 8
@@ -9331,7 +9347,7 @@ Fj
 Fj
 Fj
 XI
-vz
+XI
 FA
 FA
 FA
@@ -9342,14 +9358,14 @@ FA
 FA
 FA
 XI
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
+vz
+vz
+vz
+vz
+vz
+vz
+vz
+vz
 Uk
 Uk
 Uk
@@ -9463,7 +9479,7 @@ FA
 FA
 FA
 xQ
-wf
+fb
 aV
 os
 Aw
@@ -9585,7 +9601,7 @@ FA
 FA
 FA
 FA
-jK
+xI
 Aw
 AE
 Aw
@@ -9707,7 +9723,7 @@ FA
 FA
 FA
 FA
-jK
+xI
 Aw
 AE
 Aw
@@ -9829,7 +9845,7 @@ FA
 FA
 FA
 FA
-hT
+ir
 cO
 os
 Aw
@@ -9951,15 +9967,15 @@ FA
 FA
 FA
 xQ
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
-Uk
+XI
+vz
+vz
+vz
+vz
+vz
+vz
+vz
+vz
 Uk
 Uk
 Uk
@@ -10063,17 +10079,17 @@ XI
 XI
 XI
 XI
-vz
-vz
-vz
-vz
-vz
-vz
-vz
-vz
-vz
-Uk
-Uk
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
 Uk
 Uk
 Uk
