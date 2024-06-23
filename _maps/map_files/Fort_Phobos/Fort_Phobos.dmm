@@ -664,7 +664,7 @@
 /turf/open/floor/mainship/silver,
 /area/mainship/patrol_base/som/command)
 "iB" = (
-/obj/effect/landmark/campaign/mech_spawner/som/light,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /obj/machinery/camera/autoname/mainship/somship,
 /turf/open/floor/plating/ground/concrete,
@@ -886,7 +886,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "lN" = (
-/obj/effect/landmark/campaign/mech_spawner/som,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 1
@@ -1076,7 +1076,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "oo" = (
-/obj/effect/landmark/campaign/mech_spawner/som,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/equipment_bay)
@@ -1187,7 +1187,7 @@
 	},
 /area/mainship/patrol_base/som/medical)
 "pH" = (
-/obj/effect/landmark/campaign/mech_spawner/som/light,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/equipment_bay)
@@ -1866,7 +1866,7 @@
 	},
 /area/mainship/patrol_base/som)
 "xj" = (
-/obj/effect/landmark/campaign/mech_spawner/som,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /obj/machinery/light,
 /turf/open/floor/plating/ground/concrete,
@@ -2234,7 +2234,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
 "BM" = (
-/obj/effect/landmark/campaign/mech_spawner/som/light,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /obj/machinery/light{
 	dir = 1
@@ -3564,7 +3564,7 @@
 	},
 /area/mainship/patrol_base/som/hanger)
 "Th" = (
-/obj/effect/landmark/campaign/mech_spawner/som/heavy,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/som/heavy,
 /obj/effect/turf_decal/warning_stripes/thick/autosmooth,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/equipment_bay)

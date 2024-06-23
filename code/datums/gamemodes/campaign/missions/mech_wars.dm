@@ -64,7 +64,7 @@
 
 /datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
-	var/obj/effect/landmark/campaign/mech_spawner/spawner
+	var/obj/effect/landmark/campaign/vehicle_spawner/mech/spawner
 	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech
 	var/faction_list = list(starting_faction, hostile_faction)
 	for(var/faction in faction_list)

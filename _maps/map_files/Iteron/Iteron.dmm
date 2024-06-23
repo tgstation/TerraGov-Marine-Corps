@@ -951,7 +951,7 @@
 	},
 /area/mainship/patrol_base)
 "nB" = (
-/obj/effect/landmark/campaign/mech_spawner/light,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
@@ -988,7 +988,7 @@
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "oj" = (
-/obj/effect/landmark/campaign/mech_spawner,
+/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/camera/autoname/mainship,
@@ -1076,7 +1076,7 @@
 	},
 /area/mainship/patrol_base/command)
 "pj" = (
-/obj/effect/landmark/campaign/mech_spawner/heavy,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
@@ -1196,7 +1196,7 @@
 /turf/open/space/basic,
 /area/space)
 "rb" = (
-/obj/effect/landmark/campaign/mech_spawner/light,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/light{
 	dir = 8
@@ -1236,7 +1236,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rJ" = (
-/obj/effect/landmark/campaign/mech_spawner,
+/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
@@ -1250,7 +1250,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/mainship/patrol_base/hanger)
 "rU" = (
-/obj/effect/landmark/campaign/mech_spawner/heavy,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/light{
 	dir = 4
@@ -2168,7 +2168,7 @@
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "Ec" = (
-/obj/effect/landmark/campaign/mech_spawner,
+/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
