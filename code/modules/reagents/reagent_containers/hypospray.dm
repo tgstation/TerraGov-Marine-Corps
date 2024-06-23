@@ -349,6 +349,7 @@
 	if(get_dist(user,src) > 2)
 		. += span_warning("You're too far away to see [src]'s reagent display!")
 		return
+	. += span_notice("Use to inject into yourself. Unique Action to open the hypospray menu.")
 
 	. += display_reagents(user)
 

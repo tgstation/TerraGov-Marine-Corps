@@ -245,3 +245,55 @@
       per part hit.
   - balance: Xeno acid smoke will deal damage per tile of apc/tanks hit, between 400-500
       if completely enveloped the entire duration of a boiler cloud.
+2024-06-20:
+  Kuro020:
+  - balance: Buffs the tank chaingun
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an edge case where a leader would not be chosen'
+  - bugfix: fixed red sand minimap colour
+  - bugfix: Mines and sentries will target hostile tanks
+2024-06-21:
+  Barnet2:
+  - rscadd: 'Xeno Ranks: Preference to toggle them on and off'
+  - bugfix: Clientless xenos no longer have ranks
+  - bugfix: Xeno rank HUD no longer persists after death
+  Notamaniac:
+  - bugfix: Mashing the confirm button on the dropship selector won't bug the Tad
+      out
+  Wisemonster:
+  - rscadd: Added the overdrive, zoom, smoke launcher, and medical vehicle modules
+      to the req vendor.
+  novaepee:
+  - rscdel: remove large metal stacks in Kutjevo
+2024-06-22:
+  Naaanii:
+  - imageadd: added new (the OG) module icons and sprites
+  - imagedel: removed current module icons and sprites
+  Runian:
+  - bugfix: Forced devolve works again.
+  TiviPlus, Kuro, Tyeagg:
+  - rscadd: Adds spray secondary flamer for tank
+  Wisemonster:
+  - balance: Divided the damage dealt from boiler gas to tanks/apcs by 5
+  Xander3359:
+  - bugfix: fix draw order not saving
+  - code_imp: moves signals.dm + signals_keybindings.dm
+2024-06-23:
+  Lumipharon:
+  - bugfix: Binos can be unzoomed again via attackself
+  - code_imp: Added a missing signal override
+  Runian:
+  - bugfix: New xenomorph ruler announcements now correctly announces your name.
+  - bugfix: Numbered xenomorph names correctly display when evolving.
+  SomrNetwork:
+  - bugfix: vsd LMG icon and naked spawning specs in campaign
+  TiviPlus:
+  - bugfix: Fixed tank not rendering in some cases
+  Wisemonster:
+  - bugfix: Can no longer attack with melee weapons while lying down.
+  Xander3359:
+  - bugfix: Fix trying to give a drink to someone other than yourself
+  - bugfix: Facepaint no longer opens pill bottles when trying to paint them
+  breadhunt:
+  - rscadd: Injectors/hyposprays now display instructions for using them in their
+      description
