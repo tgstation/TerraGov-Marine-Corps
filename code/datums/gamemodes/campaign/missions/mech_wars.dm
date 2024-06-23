@@ -1,6 +1,6 @@
 //mech on mech violence
 /datum/campaign_mission/tdm/mech_wars
-	name = "Mech war"
+	name = "Combined Arms"
 	mission_icon = "mech_war"
 	map_name = "Patrick's Rest"
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
@@ -84,13 +84,12 @@
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 	winning_team.add_asset(/datum/campaign_asset/mech)
 
 /datum/campaign_mission/tdm/mech_wars/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech)
 	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/apply_draw()
@@ -99,29 +98,31 @@
 /datum/campaign_mission/tdm/mech_wars/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
-///Cleans up after a mech is destroyed
-/datum/campaign_mission/tdm/mech_wars/proc/on_mech_destruction(obj/vehicle/sealed/mecha/combat/greyscale/dead_mech)
+///Removes the object from the campaign_structrures list if they are destroyed mid mission
+/datum/campaign_mission/tdm/mech_wars/remove_mission_object(obj/mission_obj)
 	SIGNAL_HANDLER
-	remove_mission_object(dead_mech)
+	GLOB.campaign_structures -= mission_obj
+	. = ..()
 	if(outcome)
 		return
-	if(dead_mech.faction == hostile_faction)
+	if(!ismecha(mission_obj) && !isarmoredvehicle(mission_obj))
+		return
+	var/obj/vehicle/sealed/obj_vehicle = mission_obj
+	if(obj_vehicle.faction == hostile_faction)
 		start_team_cap_points += 10
-	else if(dead_mech.faction == starting_faction)
+	else if(obj_vehicle.faction == starting_faction)
 		hostile_team_cap_points += 10
 
+
 /datum/campaign_mission/tdm/mech_wars/som
-	name = "Mech war"
-	mission_icon = "mech_war"
 	map_name = "Big Red"
 	map_file = '_maps/map_files/BigRed_v2/BigRed_v2.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SANDSTORM = TRUE)
@@ -132,23 +133,21 @@
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/som)
 	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech)
 	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 	winning_team.add_asset(/datum/campaign_asset/mech)
