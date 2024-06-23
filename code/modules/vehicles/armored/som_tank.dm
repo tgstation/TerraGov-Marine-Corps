@@ -35,6 +35,8 @@
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	animate_hover()
+	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
+	module.on_equip(src)
 
 /obj/vehicle/sealed/armored/multitile/som_tank/generate_actions()
 	. = ..()
