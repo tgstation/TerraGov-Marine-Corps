@@ -49,8 +49,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
-#define issimpleanimal(A) (istype(A, /mob/living/simple_animal))
-
 #define isbrain(A) (istype(A, /mob/living/brain))
 
 #define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
