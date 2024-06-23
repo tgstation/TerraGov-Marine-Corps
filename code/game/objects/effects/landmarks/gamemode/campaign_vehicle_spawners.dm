@@ -93,8 +93,31 @@
 		return
 	var/obj/vehicle/spawned_vehicle = .
 	spawned_vehicle.setDir(dir)
+	spawn_equipment()
+
+/obj/effect/landmark/campaign/vehicle_spawner/tank/proc/spawn_equipment()
+	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
+	new /obj/item/armored_weapon(target_turf)
+	new /obj/item/armored_weapon/secondary_weapon(target_turf)
+	target_turf = get_step(target_turf, (turn(dir, 90)))
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_magazine/tank/ltb_cannon(target_turf)
+	//repeat for other ammo types
+	for(var/i = 1 to 10)
+		new /obj/item/ammo_magazine/tank/secondary_cupola(target_turf)
+
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner"
 	faction = FACTION_SOM
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/som_tank
+
+/obj/effect/landmark/campaign/vehicle_spawner/tank/som/spawn_equipment()
+	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
+	new /obj/item/armored_weapon/coilgun(target_turf)
+	new /obj/item/armored_weapon/secondary_mlrs(target_turf)
+	target_turf = get_step(target_turf, (turn(dir, 90)))
+	for(var/i = 1 to 15)
+		new /obj/item/ammo_magazine/tank/coilgun(target_turf)
+	for(var/i = 1 to 10)
+		new /obj/item/ammo_magazine/tank/secondary_mlrs(target_turf)
