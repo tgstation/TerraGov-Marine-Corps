@@ -99,25 +99,40 @@
 	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
 	new /obj/item/armored_weapon(target_turf)
 	new /obj/item/armored_weapon/secondary_weapon(target_turf)
-	target_turf = get_step(target_turf, (turn(dir, 90)))
+	var/ammo_turf = get_step(target_turf, (turn(dir, 90)))
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_magazine/tank/ltb_cannon(target_turf)
+		new /obj/item/ammo_magazine/tank/ltb_cannon(ammo_turf)
 	//repeat for other ammo types
 	for(var/i = 1 to 10)
-		new /obj/item/ammo_magazine/tank/secondary_cupola(target_turf)
+		new /obj/item/ammo_magazine/tank/secondary_cupola(ammo_turf)
+	var/pamphlet_turf = get_step(target_turf, turn(dir, -90))
+	for(var/i = 1 to 4)
+		new /obj/item/pamphlet/tank_loader(pamphlet_turf) //placeholder until crew version or skill lock removed
 
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
-	name = "SOM tank spawner"
+	name = "SOM tank spawner - coilgun"
 	faction = FACTION_SOM
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/som_tank
+	var/primary_weapon_type = /obj/item/armored_weapon/coilgun
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som/spawn_equipment()
 	var/turf/target_turf = get_ranged_target_turf(src, REVERSE_DIR(dir), 3)
-	new /obj/item/armored_weapon/coilgun(target_turf)
+	var/obj/item/armored_weapon/weapon = new primary_weapon_type(target_turf)
 	new /obj/item/armored_weapon/secondary_mlrs(target_turf)
-	target_turf = get_step(target_turf, (turn(dir, 90)))
+	var/ammo_turf = get_step(target_turf, (turn(dir, 90)))
 	for(var/i = 1 to 15)
-		new /obj/item/ammo_magazine/tank/coilgun(target_turf)
+		new weapon.ammo.type //utterfucked
 	for(var/i = 1 to 10)
-		new /obj/item/ammo_magazine/tank/secondary_mlrs(target_turf)
+		new /obj/item/ammo_magazine/tank/secondary_mlrs(ammo_turf)
+	var/pamphlet_turf = get_step(target_turf, turn(dir, -90))
+	for(var/i = 1 to 4)
+		new /obj/item/pamphlet/tank_loader(pamphlet_turf) //placeholder until crew version or skill lock removed
+
+/obj/effect/landmark/campaign/vehicle_spawner/tank/som/particle_lance
+	name = "SOM tank spawner - particle lance"
+	primary_weapon_type = /obj/item/armored_weapon/particle_lance
+
+/obj/effect/landmark/campaign/vehicle_spawner/tank/som/volkite_carronade
+	name = "SOM tank spawner - carronade"
+	primary_weapon_type = /obj/item/armored_weapon/volkite_carronade

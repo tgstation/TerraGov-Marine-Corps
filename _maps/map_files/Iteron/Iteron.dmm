@@ -290,6 +290,13 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/hanger)
+"dQ" = (
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "dU" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/orange{
@@ -997,10 +1004,8 @@
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "oj" = (
-/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/machinery/camera/autoname/mainship,
-/obj/machinery/camera/autoname/mainship,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "om" = (
@@ -1085,8 +1090,8 @@
 	},
 /area/mainship/patrol_base/command)
 "pj" = (
-/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "pk" = (
@@ -1251,8 +1256,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rJ" = (
-/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/landmark/campaign/vehicle_spawner/mech,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "rK" = (
@@ -1264,14 +1269,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/patrol_base/hanger)
-"rU" = (
-/obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
-/obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/mainship/patrol_base)
 "rV" = (
 /obj/structure/prop/mainship/prop_so{
 	dir = 1
@@ -2077,6 +2074,14 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/command)
+"CK" = (
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/campaign/vehicle_spawner/mech/light,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "CM" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 5
@@ -29561,9 +29566,9 @@ ef
 ef
 ef
 ef
-aQ
 bu
 bu
+eK
 eK
 eK
 eK
@@ -29580,7 +29585,7 @@ eK
 bu
 bu
 bu
-XV
+ef
 ef
 ef
 ef
@@ -29803,10 +29808,10 @@ ef
 ef
 ef
 ef
-aQ
 bu
 nB
 rb
+nB
 nB
 oe
 Ff
@@ -29822,7 +29827,7 @@ jD
 jD
 jD
 bu
-XV
+ef
 ef
 ef
 ef
@@ -30045,8 +30050,8 @@ ef
 ef
 ef
 ef
-aQ
 bu
+JB
 JB
 JB
 JB
@@ -30064,7 +30069,7 @@ VS
 Wj
 mR
 bu
-XV
+ef
 ef
 ef
 ef
@@ -30287,8 +30292,8 @@ ef
 ef
 ef
 ef
-aQ
 kb
+fH
 fH
 fH
 fH
@@ -30306,7 +30311,7 @@ rA
 rA
 rA
 kb
-XV
+ef
 ef
 ef
 ef
@@ -30529,9 +30534,9 @@ ef
 ef
 ef
 ef
-aQ
 bu
 XY
+oU
 oU
 oU
 KB
@@ -30548,7 +30553,7 @@ jD
 jD
 jD
 bu
-XV
+ef
 ef
 ef
 ef
@@ -30771,8 +30776,8 @@ ef
 ef
 ef
 ef
-aQ
 bu
+dQ
 oj
 rJ
 rJ
@@ -30790,7 +30795,7 @@ VS
 Wj
 mR
 bu
-XV
+ef
 ef
 ef
 ef
@@ -31013,9 +31018,9 @@ ef
 ef
 ef
 ef
-aQ
 bu
 oA
+JB
 JB
 JB
 mU
@@ -31032,7 +31037,7 @@ rA
 rA
 rA
 bu
-XV
+ef
 ef
 ef
 ef
@@ -31255,8 +31260,8 @@ ef
 ef
 ef
 ef
-aQ
 kb
+fH
 fH
 fH
 fH
@@ -31274,7 +31279,7 @@ jD
 jD
 jD
 kb
-XV
+ef
 ef
 ef
 ef
@@ -31497,8 +31502,8 @@ ef
 ef
 ef
 ef
-aQ
 bu
+oU
 oU
 oU
 oU
@@ -31516,7 +31521,7 @@ VS
 Wj
 mR
 bu
-XV
+ef
 ef
 ef
 ef
@@ -31739,10 +31744,10 @@ ef
 ef
 ef
 ef
-aQ
 bu
 pj
-rU
+CK
+pj
 pj
 oe
 Ff
@@ -31758,7 +31763,7 @@ rA
 rA
 rA
 bu
-XV
+ef
 ef
 ef
 ef
@@ -31981,7 +31986,7 @@ ef
 ef
 ef
 ef
-aQ
+bu
 bu
 bu
 bu
@@ -32000,7 +32005,7 @@ bu
 bu
 bu
 bu
-XV
+ef
 ef
 ef
 ef
