@@ -12,8 +12,10 @@
 	reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
-	attack_speed = 1 //War against input locking while pill munching
-	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
+	attack_speed = 1
+	///the real description of the pill, shown when examined by a medically trained person
+	var/pill_desc = "An unknown pill."
+	///Used to determine which icon gets used for the sprite of the pill
 	var/pill_id
 
 /obj/item/reagent_containers/pill/Initialize(mapload)

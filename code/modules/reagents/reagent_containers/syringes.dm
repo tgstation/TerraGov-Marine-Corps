@@ -22,6 +22,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON
 	sharp = IS_SHARP_ITEM_SIMPLE
+	attack_speed = 1
 	var/mode = SYRINGE_DRAW
 
 /obj/item/reagent_containers/syringe/on_reagent_change()

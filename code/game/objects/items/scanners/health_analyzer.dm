@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
+	attack_speed = 1
 	///Skill required to bypass the fumble time.
 	var/skill_threshold = SKILL_MEDICAL_NOVICE
 	///Skill required to have the scanner auto refresh
