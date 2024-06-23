@@ -9,7 +9,7 @@
 /datum/campaign_asset/mech/activated_effect()
 	for(var/obj/effect/landmark/campaign/vehicle_spawner/mech/faction_spawner AS in GLOB.campaign_mech_spawners[faction.faction])
 		if(faction_spawner.type == spawner_type)
-			faction_spawner.spawn_mech()
+			faction_spawner.spawn_vehicle()
 			playsound(faction_spawner,'sound/effects/phasein.ogg', 80, FALSE)
 			return
 

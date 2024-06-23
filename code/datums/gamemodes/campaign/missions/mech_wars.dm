@@ -70,7 +70,7 @@
 	for(var/faction in faction_list)
 		for(var/i=1 to mechs_to_spawn)
 			spawner = pick(GLOB.campaign_mech_spawners[faction])
-			new_mech = spawner.spawn_mech()
+			new_mech = spawner.spawn_vehicle()
 			GLOB.campaign_structures += new_mech
 			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(on_mech_destruction))
 
