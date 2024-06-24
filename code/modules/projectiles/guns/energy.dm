@@ -1434,6 +1434,7 @@
 	gun_features_flags = GUN_ENERGY|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_WIELDED_STABLE_FIRING_ONLY	//No ammo counter needed if unlimited ammo
 	rounds_per_shot = 0
 	heat_per_fire = 0
+	starting_attachment_types = list(/obj/item/attachable/buildasentry)
 
 /particles/energy_beam_particles
 	icon = 'icons/effects/particles/generic_particles.dmi'
