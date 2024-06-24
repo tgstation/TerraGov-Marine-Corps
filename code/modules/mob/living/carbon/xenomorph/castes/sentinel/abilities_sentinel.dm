@@ -247,9 +247,6 @@
 	)
 	nade_type = /obj/item/explosive/grenade/smokebomb/xeno/neuro
 
-/datum/action/ability/activable/xeno/toxic_grenade/neuro/use_ability(atom/A)
-	. = ..()
-
 /obj/item/explosive/grenade/smokebomb/xeno/neuro
 	name = "Neuro grenade"
 	desc = "A fleshy mass that bounces along the ground. It seems to be heating up."
