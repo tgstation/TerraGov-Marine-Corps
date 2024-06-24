@@ -4,7 +4,7 @@
 //Just about ALL the procs are tied to the parent, not to the children
 //This is so they can be easily transferred between them without copypasta
 
-/mob/living/carbon/xenomorph/Initialize(mapload)
+/mob/living/carbon/xenomorph/Initialize(mapload, do_not_set_as_ruler)
 	if(mob_size == MOB_SIZE_BIG)
 		move_resist = MOVE_FORCE_EXTREMELY_STRONG
 		move_force = MOVE_FORCE_EXTREMELY_STRONG
@@ -23,7 +23,7 @@
 	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
 
-	set_initial_hivenumber()
+	set_initial_hivenumber(prevent_ruler=do_not_set_as_ruler)
 	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
 	switch(stat)
@@ -150,6 +150,10 @@
 /mob/living/carbon/xenomorph/proc/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/rank_name
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	if(!client?.prefs.show_xeno_rank || !client)
+		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+		return
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Young"
@@ -163,7 +167,6 @@
 			rank_name = "Prime"
 		else
 			rank_name = "Young"
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly

@@ -843,6 +843,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
 	cost = 10
 
+/datum/supply_packs/weapons/secondary_flamer_tank
+	name = "Spray flamer tank"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
+	cost = 10
+
 /datum/supply_packs/weapons/ltaap_rounds
 	name = "LTAAP tank magazine"
 	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)

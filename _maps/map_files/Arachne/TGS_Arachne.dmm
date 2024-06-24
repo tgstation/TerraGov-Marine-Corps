@@ -1386,7 +1386,7 @@
 "boc" = (
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/pen,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -2128,7 +2128,7 @@
 	},
 /area/mainship/hallways/port_hallway)
 "bWf" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/donut_box,
 /obj/structure/disposalpipe/junction/yjunc,
 /obj/machinery/light/mainship,
@@ -3949,7 +3949,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "drs" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -6652,7 +6652,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
 "fGx" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/prize/mauler{
 	pixel_y = 16
 	},
@@ -6777,7 +6777,7 @@
 	pixel_y = 6
 	},
 /obj/item/tool/pen,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/book/manual/security_space_law,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -7039,7 +7039,7 @@
 	},
 /area/mainship/squads/general)
 "fXs" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
 "fXz" = (
@@ -9034,7 +9034,7 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "hBs" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -9767,7 +9767,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "ifu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/ashtray/glass{
 	pixel_x = 8;
 	pixel_y = 9
@@ -9943,7 +9943,7 @@
 	},
 /area/mainship/living/pilotbunks)
 "iog" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "iou" = (
@@ -11981,7 +11981,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "jZW" = (
@@ -12157,7 +12157,7 @@
 	},
 /area/mainship/command/self_destruct)
 "kif" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -17338,7 +17338,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/starboard_hallway)
 "omN" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
 	pixel_x = 17
@@ -17389,7 +17389,7 @@
 /area/mainship/hull/port_hull)
 "ooP" = (
 /obj/machinery/computer/skills,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -17899,7 +17899,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "oIU" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -19784,7 +19784,7 @@
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "qpP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -21366,7 +21366,7 @@
 	},
 /area/mainship/squads/general)
 "rGN" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/plush/moth{
 	pixel_x = 7;
 	pixel_y = 9
@@ -21426,7 +21426,7 @@
 	pixel_y = 5
 	},
 /obj/item/reagent_containers/food/drinks/dry_ramen,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -21532,7 +21532,7 @@
 	pixel_x = 6;
 	pixel_y = 7
 	},
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
 "rMY" = (
@@ -23394,7 +23394,7 @@
 	pixel_x = 5;
 	pixel_y = 7
 	},
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
 "tzM" = (
@@ -24762,7 +24762,7 @@
 /area/mainship/hallways/hangar)
 "uGA" = (
 /obj/item/toy/deck,
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
 "uGN" = (
@@ -25318,7 +25318,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "veZ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/donut_box,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25802,7 +25802,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "vyD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/cigar,
 /obj/item/clothing/mask/cigarette/pipe{
 	pixel_y = 5
@@ -26008,7 +26008,7 @@
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/starboard_ert)
 "vGj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
@@ -26077,7 +26077,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/chief_mp_office)
 "vIE" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -27080,7 +27080,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "wza" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/emails,
 /obj/machinery/light/mainship{
 	dir = 4
@@ -27337,7 +27337,7 @@
 	id = "cl_shutters";
 	name = "Privacy Shutters"
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "wIF" = (
@@ -27712,7 +27712,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig_cells)
 "xcY" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/marine_card,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{

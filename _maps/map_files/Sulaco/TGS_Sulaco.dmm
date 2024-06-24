@@ -2431,7 +2431,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "aop" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/backpack/satchel/norm,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
@@ -3937,7 +3937,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/central_hall)
 "avp" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/sulaco/bridge/quarters)
 "avq" = (
@@ -4826,7 +4826,7 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aAa" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /obj/item/weapon/chainofcommand,
 /obj/machinery/camera/autoname,
@@ -5989,7 +5989,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/faxmachine/cic,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
@@ -7696,7 +7696,7 @@
 /area/sulaco/morgue)
 "aRo" = (
 /obj/machinery/faxmachine,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "aRq" = (
@@ -8481,7 +8481,7 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "aWW" = (
@@ -8610,7 +8610,7 @@
 "aYq" = (
 /obj/item/clipboard,
 /obj/item/tool/hand_labeler,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "aYu" = (
@@ -8879,7 +8879,7 @@
 	pixel_x = -1;
 	pixel_y = 6
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "baK" = (
@@ -8889,7 +8889,7 @@
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "baQ" = (
@@ -8959,7 +8959,7 @@
 /area/sulaco/telecomms/office)
 "bbH" = (
 /obj/machinery/computer/skills,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bbP" = (
@@ -8990,7 +8990,7 @@
 /obj/item/reagent_containers/food/drinks/tea,
 /obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcs" = (
@@ -9125,7 +9125,7 @@
 /obj/item/tool/lighter/zippo,
 /obj/item/cell/hyper,
 /obj/item/camera,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "bdM" = (
@@ -9486,7 +9486,7 @@
 /area/sulaco/engineering/engine_monitoring)
 "bzl" = (
 /obj/machinery/light/mainship,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/black,
 /area/sulaco/mechpilotquarters)
@@ -9562,7 +9562,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/firingrange)
 "bGY" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /obj/item/tool/pen,
 /obj/effect/spawner/random/misc/paperbin{
@@ -10179,7 +10179,7 @@
 /area/space)
 "cyR" = (
 /obj/effect/spawner/random/misc/table_lighting,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "cyU" = (
@@ -11407,7 +11407,7 @@
 /obj/structure/mirror{
 	dir = 8
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/effect/spawner/random/misc/clipboard,
 /obj/machinery/light/mainship{
@@ -12194,7 +12194,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "eWu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
@@ -12310,7 +12310,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cryosleep)
 "fdV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/effect/spawner/random/misc/soap,
 /obj/machinery/camera/autoname{
@@ -12361,7 +12361,7 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = 6
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
@@ -13590,7 +13590,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gRZ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/effect/spawner/random/misc/cigar,
@@ -16369,7 +16369,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "jZP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -17034,7 +17034,7 @@
 /area/sulaco/cryosleep)
 "kUD" = (
 /obj/item/tool/pen,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
@@ -17393,7 +17393,7 @@
 	},
 /area/sulaco/bridge)
 "lsP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
@@ -17698,7 +17698,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "lIS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/air_alarm{
 	dir = 1
 	},
@@ -18389,7 +18389,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "mCS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
@@ -18431,7 +18431,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "mDl" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/item/tool/pen,
 /turf/open/floor/mainship/black{
@@ -18758,7 +18758,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "naW" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/bible{
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
@@ -21346,7 +21346,7 @@
 "qtU" = (
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "quS" = (
@@ -21360,7 +21360,7 @@
 	},
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/item/tool/lighter/zippo,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "qvV" = (
@@ -22755,7 +22755,7 @@
 	},
 /area/sulaco/marine)
 "sfc" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/squad_changer{
 	density = 0
 	},
@@ -24383,7 +24383,7 @@
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "ucf" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /obj/effect/spawner/random/misc/hand_labeler,
 /turf/open/floor/wood,
@@ -24816,7 +24816,7 @@
 /area/sulaco/cargo/prep)
 "uCA" = (
 /obj/machinery/computer/security/wooden_tv,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "uCU" = (
@@ -26717,7 +26717,7 @@
 /area/sulaco/telecomms)
 "xcI" = (
 /obj/effect/spawner/random/misc/table_lighting,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "xds" = (

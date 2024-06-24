@@ -74,7 +74,7 @@
 	)
 
 /datum/action/ability/activable/xeno/defile/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
@@ -111,7 +111,7 @@
 	X.face_atom(living_target)
 	X.do_attack_animation(living_target)
 	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
-	playsound(living_target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(X, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
 	living_target.apply_damage(50, STAMINA)
@@ -451,7 +451,7 @@
 	reagent_slash_reagent = X.selected_reagent
 
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
-	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
+	X.playsound_local(X, 'sound/voice/alien/drool2.ogg', 25)
 
 	toggle_particles(TRUE)
 	succeed_activate()
