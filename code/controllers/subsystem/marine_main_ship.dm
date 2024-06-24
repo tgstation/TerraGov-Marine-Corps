@@ -20,7 +20,6 @@ SUBSYSTEM_DEF(marine_main_ship)
 		sound = 'sound/misc/notice1.ogg',
 		color_override = "grey"
 	)
-	log_game("Maintenance access has been disabled on all airlocks")
 
 /// Disables the `maint_all_access` var. Maintenance airlocks will refer to this.
 /datum/controller/subsystem/marine_main_ship/proc/revoke_maint_all_access()
@@ -32,4 +31,3 @@ SUBSYSTEM_DEF(marine_main_ship)
 		sound = 'sound/misc/notice2.ogg',
 		color_override = "grey"
 	)
-	log_game("Maintenance access has been enabled on all airlocks")
