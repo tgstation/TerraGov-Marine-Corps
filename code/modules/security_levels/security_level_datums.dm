@@ -51,8 +51,8 @@
  */
 /datum/security_level/blue
 	name = "blue"
-	lowering_body = "The Code Red threat has passed. A possible threat may still be on the ship. All shipside personnel are advised to carry a sidearm and wear a helmet."
-	elevating_body = "Code Blue directive issued. Possible threat on the ship. All shipside personnel are advised to carry a sidearm and wear a helmet."
+	lowering_body = "The Code Red threat has passed. A possible threat may still be on the ship. All shipside personnel should remain vigilant and wear a helmet."
+	elevating_body = "Code Blue directive issued. Possible threat on the ship. All shipside personnel should remain vigilant and wear a helmet."
 	announcement_color = "blue"
 	sound = 'sound/misc/security_level/blue.ogg' // Angry alarm
 	number_level = SEC_LEVEL_BLUE
@@ -64,8 +64,8 @@
  */
 /datum/security_level/red
 	name = "red"
-	lowering_body = "The destruction of the ship has been averted. A Code Red emergency will remain in place. There is still an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
-	elevating_body = "Code Red emergency declared. There is an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
+	lowering_body = "The destruction of the ship has been averted. A Code Red emergency will remain in place. Please prepare to evacuate immediately. There is still an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
+	elevating_body = "Code Red emergency declared. Please prepare to evacuate immediately. There is an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
 	announcement_color = "red"
 	sound = 'sound/misc/security_level/red.ogg' // More angry alarm
 	number_level = SEC_LEVEL_RED
@@ -78,6 +78,6 @@
 /datum/security_level/delta
 	name = "delta"
 	announcement_color = "purple"
-	sound = 'sound/misc/security_level/delta.ogg' // Absolutely terrifying alarm to signal importance
+	sound = 'sound/misc/airraid.ogg' // Scary siren
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
