@@ -12,7 +12,7 @@
 	icon_state = "ltbammo"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/rocket/ltb
-	max_rounds = 3
+	max_rounds = 6
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
@@ -78,7 +78,7 @@
 	icon_state = "slauncher_1"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/grenade_container/smoke
-	max_rounds = 12
+	max_rounds = 22
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon_state()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
@@ -91,7 +91,7 @@
 	icon_state = "som_tank_cell"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/energy/volkite/heavy
-	max_rounds = 3
+	max_rounds = 6
 
 /obj/item/ammo_magazine/tank/particle_lance
 	name = "particle lance energy cell"
@@ -100,7 +100,7 @@
 	icon_state = "particle_lance_cell"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/energy/particle_lance
-	max_rounds = 1
+	max_rounds = 4
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/secondary_mlrs
@@ -110,7 +110,7 @@
 	icon_state = "secondary_mlrs"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/homing
-	max_rounds = 12
+	max_rounds = 24
 
 /obj/item/ammo_magazine/tank/coilgun
 	name = "coilgun projectiles"
@@ -119,7 +119,7 @@
 	icon_state = "tank_coilgun"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
-	max_rounds = 4
+	max_rounds = 8
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/secondary_flamer_tank
@@ -127,5 +127,5 @@
 	desc = "A fuel tank containing fuel for the secondary vehicle mounted flamer. This tank contains a more fluid mix that flows easier but flames less area at once."
 	caliber = CALIBER_FUEL_THICK
 	icon_state = "sflamer"
-	max_rounds = 150
+	max_rounds = 350
 	default_ammo = /datum/ammo/flamethrower/armored_spray
