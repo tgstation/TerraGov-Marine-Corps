@@ -446,9 +446,7 @@
 		bulb_type = "bulb"
 	switch(current_level)
 		if(SEC_LEVEL_GREEN, SEC_LEVEL_BLUE)
-			if(SSsecurity_level.most_recent_level == SEC_LEVEL_BLUE)
-				return
-			if(SSsecurity_level.most_recent_level == SEC_LEVEL_GREEN)
+			if(SSsecurity_level.most_recent_level < SEC_LEVEL_RED)
 				return
 			var/area/active_area = get_area(src)
 			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
@@ -462,9 +460,7 @@
 			balloon_alert_to_viewers("flickers")
 			do_sparks(4, TRUE, src)
 		if(SEC_LEVEL_RED, SEC_LEVEL_DELTA)
-			if(SSsecurity_level.most_recent_level == SEC_LEVEL_RED)
-				return
-			if(SSsecurity_level.most_recent_level == SEC_LEVEL_DELTA)
+			if(SSsecurity_level.most_recent_level > SEC_LEVEL_BLUE)
 				return
 			var/area/active_area = get_area(src)
 			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
