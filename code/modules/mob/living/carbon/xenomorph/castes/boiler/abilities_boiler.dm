@@ -51,6 +51,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
+		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
+			return
 		X.zoom_in(tile_offset, view_size)
 		..()
 
@@ -266,11 +268,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
 			boiler_owner.balloon_alert(boiler_owner, "Invalid target.")
-		return FALSE
-
-	if(get_dist(T, S) <= 5) //Magic number
-		if(!silent)
-			boiler_owner.balloon_alert(boiler_owner, "Too close!")
 		return FALSE
 
 /datum/action/ability/activable/xeno/bombard/use_ability(atom/A)
