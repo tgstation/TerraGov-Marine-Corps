@@ -79,10 +79,10 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aw" = (
-/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/gibber/apc,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ax" = (
@@ -811,7 +811,6 @@
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
 "vY" = (
-/obj/machinery/computer/body_scanconsole,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -854,6 +853,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"zk" = (
+/obj/machinery/computer/body_scanconsole,
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "zy" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -916,6 +919,10 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"Gl" = (
+/obj/machinery/cloning/vats,
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "JM" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
@@ -996,6 +1003,15 @@
 	dir = 4
 	},
 /area/shuttle/canterbury/cic)
+"PJ" = (
+/obj/machinery/computer/cloning_console/vats{
+	dir = 2;
+	layer = 2.99;
+	pixel_x = 8;
+	pixel_y = 24
+	},
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "PW" = (
 /obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship/mono,
@@ -1220,9 +1236,9 @@ aS
 bj
 bk
 ap
+Gl
+PJ
 av
-aq
-ay
 aq
 ay
 az
@@ -1255,7 +1271,7 @@ bl
 ap
 aw
 aq
-aB
+zk
 aq
 aB
 az
@@ -1286,7 +1302,7 @@ bq
 mM
 oj
 ap
-av
+aq
 aq
 aC
 aq
