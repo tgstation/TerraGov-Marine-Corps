@@ -1277,8 +1277,15 @@
 	heat_per_fire = 50
 	cool_amount = 5
 
+	attachable_allowed = list(/obj/item/attachable/buildasentry)
+	attachable_offset = list("rail_x" = 7, "rail_y" = 28)
+
+	///How long the pre-fire phase lasts
+	var/pre_fire_delay = 4 SECONDS
 	///Will halt the charging procedure if FALSE
 	var/continue_pre_fire = TRUE
+	///Serves to track how long the gun has been pre-firing for; used for the pre-fire process when there is no gun_user
+	var/action_time_tracker = 0
 	///Reference to the pre-fire beam emitted by the gun
 	var/datum/beam/laser/beam
 
@@ -1296,12 +1303,18 @@
 	. = ..()
 	//Why am I checking target? Because Fire() is asynchronous and reset_fire() is called right after it, nulling the target which caused a lot of problems...
 	if(beam && target)
-		beam.target = get_turf(target)	//The beam will skew itself trying to aim for mobs that are offset, so aim for the turf
+		beam.set_target(target)
 		beam.redrawing()
 
 /obj/item/weapon/gun/energy/beam_cannon/stop_fire()
 	. = ..()
 	continue_pre_fire = FALSE
+
+//Prevent sentries from being stuck in a loop of starting to fire
+/obj/item/weapon/gun/energy/beam_cannon/gun_on_cooldown(mob/user)
+	if(beam || in_chamber)
+		return TRUE
+	return ..()
 
 /obj/item/weapon/gun/energy/beam_cannon/do_fire(obj/object_to_fire)
 	continue_pre_fire = TRUE
@@ -1309,15 +1322,15 @@
 	var/sound_channel = SSsounds.reserve_sound_channel_datumless()
 	playsound(src, windup_sound, 50, channel = sound_channel)
 
-	if(IS_DEPLOYED)	//Is the gun inside a deployable object? If so, make that the beam's origin
-		beam = create_beam(loc, target)
+	if(CHECK_BITFIELD(turret_flags, TURRET_ON))	//Is the gun inside a deployable object? If so, make that the beam's origin
+		beam = create_beam(loc, target, turret_range, TRUE)
 	else	//Make the beam's origin the firer of this gun if there is one
-		beam = create_beam(gun_user? gun_user : src, target)
+		beam = create_beam(gun_user? gun_user : src, target, ammo_datum_type.max_range)
 	beam.visuals.particle_holder = new(beam.visuals, /particles/energy_beam_particles)
 
 	//Used to check if the gun can still fire during the charging process
 	var/datum/callback/pre_firing_check = CALLBACK(src, PROC_REF(pre_fire_check))
-	if(!do_after(gun_user, 4 SECONDS, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = pre_firing_check))
+	if(!autonomous_pre_fire() && !do_after(gun_user, pre_fire_delay, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = pre_firing_check))
 		QDEL_NULL(beam)
 		//Copied from playsound() to find mobs with clients so we can order the sound to stop playing for each one
 		for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
@@ -1331,19 +1344,78 @@
 		SSsounds.free_sound_channel(sound_channel)	//Need to free the channel that was reserved
 		var/obj/item/mag = chamber_items[current_chamber_position]
 		adjust_current_rounds(mag, rounds_per_shot)	//Refund the ammo because the gun cycles itself before this proc is called
+		QDEL_NULL(in_chamber)	//Remove the "projectile" loaded or else it interferes with gun_on_cooldown()
 		return
 
 	QDEL_NULL(beam)
 	return ..()
+
+///A stripped down version of do_after() to handle pre-fire checks when there is no gun_user
+/obj/item/weapon/gun/energy/beam_cannon/proc/autonomous_pre_fire()
+	//Return FALSE if there is a gun_user so that the do_after() above is used instead
+	//Also FALSE if the gun is not inside a sentry; it was a real headache to account for the gun magically firing by itself
+	//Organizing this code to assume it is being used as a sentry weapon is a lot easier and less spaghetti
+	if(gun_user || !target || !istype(loc, /obj/machinery/deployable/mounted/sentry))
+		return FALSE
+
+	action_time_tracker++
+	var/time_when_ready_to_fire = world.time + pre_fire_delay
+
+	var/obj/machinery/deployable/mounted/sentry/sentry = loc	//Used for determining where the sentry is facing
+	var/atom/substitute_target = target
+	var/substitute_target_distance = get_dist(get_turf(src), substitute_target)
+	while(world.time < time_when_ready_to_fire)
+		stoplag(1)
+		if(QDELETED(src))	//In case the gun is deleted during the loop
+			return FALSE
+		if(!CHECK_BITFIELD(turret_flags, TURRET_ON))
+			return FALSE	//Comrade sentry is no longer operational
+
+		//Update the beam's max distance; it may need to change if someone dis/enabled radial mode
+		beam.max_distance = turret_range
+		beam.max_angle = CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? 0 : 170
+
+		//The sentry occassionally deletes its target, which causes it to snap to unsuspecting enemies it was not aiming at
+		if(!target)
+			if(QDELETED(substitute_target))
+				var/new_target = sentry.get_target()
+				set_target(new_target ? new_target : get_step(sentry, sentry.dir))
+			else
+				set_target(substitute_target)
+			substitute_target = target
+			continue
+
+		if(QDELETED(substitute_target) || (!CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !CHECK_BITFIELD(get_dir(sentry, substitute_target), sentry.dir)))
+			substitute_target = target	//Aim for the new target if the old one is deleted or behind the sentry
+			continue
+
+		var/target_distance = get_dist(sentry, target)
+		if(target_distance < substitute_target_distance && check_path(sentry, target, TRUE, TRUE))
+			substitute_target = target
+			substitute_target_distance = target_distance
+
+	action_time_tracker = 0
+
+	//Sentry's done pre-firing, one final set of checks to make sure the target is still valid
+	var/radial_mode = CHECK_BITFIELD(turret_flags, TURRET_RADIAL)
+	if(!target || get_dist(sentry, target) > turret_range || (!radial_mode && !CHECK_BITFIELD(get_dir(sentry, target), sentry.dir)))
+		substitute_target = sentry.get_target()
+		if(!substitute_target || get_dist(sentry, substitute_target) > turret_range || (!radial_mode && !CHECK_BITFIELD(get_dir(sentry, substitute_target), sentry.dir)))
+			return FALSE	//Both sets of targets are out of range or don't exist
+
+		set_target(substitute_target)
+
+	//Does not use pre_fire_check() because for some reason somewhere in the code keeps calling stop_fire() during this proc
+	return TRUE
 
 ///Returns FALSE if something has halted the firing process
 /obj/item/weapon/gun/energy/beam_cannon/proc/pre_fire_check()
 	return continue_pre_fire
 
 ///Works similar to beam() but can be stopped by dense and opaque turfs, and will stop at max projectile distance instead of deleting itself
-/obj/item/weapon/gun/energy/beam_cannon/proc/create_beam(atom/movable/origin, atom/target)
-	var/datum/beam/laser/beam = new(origin, target, beam_icon_state = "sat_beam", maxdistance = ammo_datum_type.max_range)
-	INVOKE_ASYNC(beam, TYPE_PROC_REF(/datum/beam, Start))
+/obj/item/weapon/gun/energy/beam_cannon/proc/create_beam(atom/movable/origin, atom/target, max_distance, automated)
+	var/datum/beam/laser/beam = new(origin, target, beam_icon_state = "sat_beam", maxdistance = max_distance, automated = automated)
+	beam.Start()
 	return beam
 
 /obj/item/weapon/gun/energy/beam_cannon/unique_action(mob/user, special_treatment)

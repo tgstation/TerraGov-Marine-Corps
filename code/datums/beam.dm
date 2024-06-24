@@ -145,11 +145,40 @@
 		X.pixel_y = Pixel_y
 		CHECK_TICK
 
+/datum/beam/laser
+	///Is TRUE when the beam is not from a player (like a sentry); if TRUE, will track targets
+	var/automated
+	///How far the beam can turn from the facing direction of the atom the beam originates from
+	var/max_angle = 0
+	///The angle the beam was previously at
+	var/previous_angle = -1
+
+/datum/beam/laser/New(beam_origin, beam_target, beam_icon, beam_icon_state, time, maxdistance, btype, automated)
+	. = ..()
+	src.automated = automated
+	set_target(beam_target)
+
+///Handles setting the target of the beam
+/datum/beam/laser/proc/set_target(new_target)
+	if(!visuals)	//Visuals is null if the beam has not been Start()ed yet, in which case don't un/register signals yet
+		target = new_target
+		return
+
+	if(automated)	//Only track targets if the beam is from a non-player source
+		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
+		RegisterSignal(new_target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
+
+	target = new_target
+
 //This beam type does not go past dense and opaque turfs and will not delete itself if past the max range
 /datum/beam/laser/register_signals()
+	if(automated)
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 
 /datum/beam/laser/unregister_signals()
+	if(automated)
+		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
 
 /datum/beam/laser/redrawing(atom/movable/mover, atom/oldloc, direction)
@@ -161,7 +190,24 @@
 		qdel(src)
 
 /datum/beam/laser/Draw()
-	var/angle = round(Get_Angle(origin,target))
+	//The beam will skew itself trying to aim for mobs that are offset, so aim for the turf
+	//If there is a max_angle value, aim the beam as far as it can turn
+	var/angle
+	if(max_angle)
+		//The direction the origin is facing, but in degrees
+		var/angle_of_direction = dir2angle(origin.dir)
+		//Get the angle between the target and the origin, calculate the difference, and normalize it
+		var/difference_in_degrees = ((round(Get_Angle(origin, get_turf(target))) - angle_of_direction + 180) % 360 + 360) % 360 - 180
+		//Add (or subtract) the difference to the angle the origin is facing to determine the beam's angle within the bounds of the max_angle
+		angle = angle_of_direction + clamp(difference_in_degrees, -max_angle/2, max_angle/2)
+	else
+		angle = round(Get_Angle(origin, get_turf(target)))
+
+	//If the beam's angle is unchanged, don't redraw the beam
+	if(angle == previous_angle)
+		return
+
+	QDEL_LIST(elements)	//Get rid of the previous beam objects
 	var/matrix/rotation = matrix()
 	var/turf/origin_turf = get_turf(origin)
 	rotation.Turn(angle)

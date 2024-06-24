@@ -238,6 +238,9 @@
 
 	var/angle = get_dir(src, target)
 	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(gun.overheat_timer)
+		balloon_alert(operator, "Overheated!")
+		return FALSE
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 		if(CHECK_BITFIELD(gun.item_flags, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
