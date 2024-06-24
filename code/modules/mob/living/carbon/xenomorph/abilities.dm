@@ -1048,6 +1048,15 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIDE,
 	)
 
+/datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
+		if(!silent)
+			owner.balloon_alert(owner, "cannot while on vehicle")
+		return FALSE
+
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)

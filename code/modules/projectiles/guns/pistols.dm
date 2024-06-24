@@ -672,7 +672,7 @@
 	worn_icon_state = "xm104"
 	fire_animation = "xm104_fire"
 	caliber = CALIBER_357 //codex
-	max_chamber_items = 6 //codex
+	max_shells = 6
 	default_ammo_type = /obj/item/ammo_magazine/pistol/xmdivider
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xmdivider)
 	force = 8

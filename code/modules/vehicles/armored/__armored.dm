@@ -158,7 +158,7 @@
 	. = ..()
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
 
-/obj/vehicle/sealed/armored/update_icon()
+/obj/vehicle/sealed/armored/update_icon_state()
 	. = ..()
 	if(!damage_overlay)
 		return
@@ -614,7 +614,7 @@
 	SIGNAL_HANDLER
 	modifiers = params2list(modifiers)
 	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
-		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+		target = params2turf(modifiers["screen-loc"], get_turf(src), user.client)
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
