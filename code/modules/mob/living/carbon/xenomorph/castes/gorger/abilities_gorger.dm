@@ -281,6 +281,9 @@
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
+			if(owner.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+				personal_statistics.heals++
 		else if(distance == 0) //if we're right on top of them, they take actual damage
 			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
