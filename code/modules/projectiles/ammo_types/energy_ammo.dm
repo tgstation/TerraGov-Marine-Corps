@@ -768,14 +768,11 @@
 		var/obj/hitbox/hitbox = target_obj
 		target_obj = hitbox.root
 
-	target_obj.Shake(4, 4, 0.6 SECONDS, 0.04 SECONDS)
-
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
 		for(var/mob/living/living_victim AS in vehicle_target.occupants)
 			living_victim.apply_radiation(living_victim.modify_by_armor(12, BIO, 25), 3)
 			living_victim.flash_pain()
-			shake_camera(living_victim, 0.3 SECONDS, 2)
 
 	if(target_obj.obj_integrity > target_obj.modify_by_armor(proj.damage, ENERGY, proj.penetration, attack_dir = get_dir(target_obj, proj)))
 		proj.proj_max_range = 0
