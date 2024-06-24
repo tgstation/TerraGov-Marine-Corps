@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(security_level)
 
 	SSsecurity_level.current_security_level = selected_level
 	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level.number_level)
-	SSblackbox.record_feedback("tally", "security_level_changes", 1, selected_level.name)
+	SSblackbox.record_feedback(FEEDBACK_TALLY, "security_level_changes", 1, selected_level.name)
 
 /**
  * Returns the current security level as a number
