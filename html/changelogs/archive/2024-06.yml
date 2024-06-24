@@ -297,3 +297,13 @@
   breadhunt:
   - rscadd: Injectors/hyposprays now display instructions for using them in their
       description
+2024-06-24:
+  TiviPlus:
+  - bugfix: fixed tank vendor ui not resetting on new purchase
+  - bugfix: Probably fixed secondary tank weapon overlays duplicating
+  - bugfix: Fixed hiding ability let you layer under tank
+  - bugfix: 'Fixed tank aiming at darkness trying to shoot across zlevels: aiming
+      at darkness now shoots at your actual target'
+  - bugfix: Fixed tank secondary flamer not being in valhalla
+  Xander3359:
+  - rscadd: Adds duffelbags
