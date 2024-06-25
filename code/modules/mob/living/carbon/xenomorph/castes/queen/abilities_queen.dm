@@ -357,7 +357,6 @@
 		if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return FALSE
 		target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
-
 	else
 		if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return FALSE
