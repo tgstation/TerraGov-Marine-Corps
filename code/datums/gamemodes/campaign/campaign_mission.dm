@@ -369,9 +369,9 @@
 	log_game("[outcome]\nMission: [name]")
 
 	send_ooc_announcement(
-		sender_override = "Mission Complete",
-		title = name,
-		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [outcome]!",
+		sender_override = "[name] Complete",
+		title = "[starting_faction] [outcome]",
+		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [starting_faction] [outcome]!",
 		play_sound = FALSE,
 		style = "game"
 	)
