@@ -883,7 +883,7 @@ GLOBAL_LIST_INIT(heavy_isg_recipe, list(
 
 /obj/item/factory_part/heavy_isg_sabot/Initialize(mapload)
 	. = ..()
-	recipe = GLOB.heavy_isg_recipe/obj/item/factory_part/heavy_isg_sabot
+	recipe = GLOB.heavy_isg_recipe
 	name = "\improper FK-88 HE shell assembly"
 	desc = "An incomplete FK-88 APFDS shell assembly."
 	result = /obj/item/ammo_magazine/heavy_isg/sabot
@@ -918,6 +918,6 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 	desc = "An incomplete pack of cigarettes."
 	result = /obj/item/clothing/mask/cigarette
 
-/obj/item/factory_part/drop_pod/Initialize(mapload)
+/obj/item/factory_part/cigarette/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.equipment_recipe
