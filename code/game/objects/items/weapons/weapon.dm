@@ -18,3 +18,15 @@
 	if(target == user && !user.do_self_harm)
 		return
 	return ..()
+
+/obj/item/weapon/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if((item_flags & WIELDED))
+		return
+	var/obj/item/weapon/gun/offhand_gun = (user.r_hand == src ? user.l_hand : user.r_hand)
+	if(!istype(offhand_gun))
+		return
+	var/list/modifiers = params2list(click_parameters)
+	modifiers -= "right"
+	click_parameters = list2params(modifiers)
+	offhand_gun.start_fire(null, src, target, null, click_parameters, TRUE)
