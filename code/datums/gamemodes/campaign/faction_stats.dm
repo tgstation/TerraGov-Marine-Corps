@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(ranks)
 		var/list/senior_rank_list = list()
 		for(var/senior_rank in ranks)
-			for(var/mob/living/carbon/human/candidate AS in possible_candidates)
+			for(var/mob/living/carbon/human/candidate in possible_candidates)
 				if(candidate.job.title != senior_rank)
 					continue
 				if(!candidate.client)
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	active_attrition_points = amount
 	stats_flags |= CAMPAIGN_TEAM_HAS_SET_ATTRITION
 
-	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
 		faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 		to_chat(faction_member, span_warning("[user ? user : "Auto selection"] has assigned [amount] attrition points for the next mission."))
 	update_static_data_for_all_viewers()
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns faction members back to spawn or prepares them for respawn if deployed
 /datum/faction_stats/proc/return_to_base(datum/campaign_mission/completed_mission)
-	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
+	for(var/mob/living/carbon/human/human_mob in GLOB.alive_human_list_faction[faction])
 		if((human_mob.z && human_mob.z != completed_mission.mission_z_level.z_value) && human_mob.job.job_cost && human_mob.client) //why is byond so cursed that being inside something makes you z = 0
 			human_mob.revive(TRUE)
 			human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
@@ -518,7 +518,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 					return
 			if(!choice.attempt_activatation(user))
 				return
-			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
 				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", portrait)
@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			add_asset(selected_asset)
 			total_attrition_points -= initial(selected_asset.cost)
-			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, span_warning("[user] has purchased the [initial(selected_asset.name)] campaign asset."))
 			update_static_data_for_all_viewers()
