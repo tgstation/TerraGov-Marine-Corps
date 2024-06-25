@@ -12,6 +12,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"e" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "minidropship_podlock";
+	name = "outer door-control"
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "f" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
@@ -270,7 +278,7 @@ a
 L
 "}
 (5,1,1) = {"
-a
+e
 a
 n
 E
