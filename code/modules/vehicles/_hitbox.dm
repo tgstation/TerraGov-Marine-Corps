@@ -145,10 +145,6 @@
 			continue
 		balloon_alert(tank_desant, "poor grip!")
 		var/away_dir = REVERSE_DIR(get_dir(tank_desant, root) || pick(GLOB.alldirs))
-		//if(!away_dir)
-		//	away_dir = pick(GLOB.alldirs)
-		//away_dir = REVERSE_DIR(away_dir)
-		//var/turf/target = get_step(get_step(root, away_dir), away_dir)
 		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, 3)
 		tank_desant.throw_at(target, 3, 3, root)
 

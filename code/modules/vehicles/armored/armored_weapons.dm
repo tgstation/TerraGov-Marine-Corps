@@ -109,15 +109,14 @@
 		return FALSE
 	if(!(armored_weapon_flags & MODULE_FIXED_FIRE_ARC))
 		return TRUE
-	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
-		var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
-		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, target), dir2angle(chassis.turret_overlay.dir))
+	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
+	var/dir_target_diff = get_between_angles(Get_Angle(source_turf, target), dir2angle(chassis.turret_overlay.dir))
+	if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
+		if(!chassis.swivel_turret(current_target))
+			return FALSE
+		dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
-			if(!chassis.swivel_turret(current_target))
-				return FALSE
-			dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
-			if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
-				return FALSE
+			return FALSE
 	return TRUE
 
 ///callback wrapper for adding/removing trait
