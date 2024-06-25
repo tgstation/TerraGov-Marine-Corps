@@ -307,3 +307,10 @@
   - bugfix: Fixed tank secondary flamer not being in valhalla
   Xander3359:
   - rscadd: Adds duffelbags
+2024-06-25:
+  Ldip999:
+  - rscadd: Gorger heals are now tracked
+  - bugfix: Fixes incorrect tip about larva growth being only slowed during stasis
+  Xander3359:
+  - spellcheck: fixed a typo "suddendly"
+  - qol: Syringes can now change injection size

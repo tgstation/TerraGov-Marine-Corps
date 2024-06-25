@@ -1,4 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - bugfix: "Fixes incorrect tip about larva growth being only slowed during stasis"
