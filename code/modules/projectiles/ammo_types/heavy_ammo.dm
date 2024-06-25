@@ -31,6 +31,17 @@
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/minigun_light
+	name = "minigun bullet"
+	hud_state = "minigun"
+	hud_state_empty = "smartgun_empty"
+	accurate_range = 6
+	damage = 16
+	penetration = 15
+	shrapnel_chance = 15
+	sundering = 1.5
+
+
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
 	damage = 30

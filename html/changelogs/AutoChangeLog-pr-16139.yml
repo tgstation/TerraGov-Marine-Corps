@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Gargoyles will no longer detect simple animals, such as mice or cows."
+  - balance: "Gargoyles will now detect vehicles, such as bikes, mechs, and tanks/apcs."
