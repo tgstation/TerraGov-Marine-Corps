@@ -61,3 +61,9 @@
 	accuracy_var_high = 3
 	penetration = 5
 	deflagrate_multiplier = 0.9
+
+/datum/ammo/energy/volkite/demi_culverin
+	max_range = 18
+	accurate_range = 7
+	damage = 15
+	fire_burst_damage = 15
