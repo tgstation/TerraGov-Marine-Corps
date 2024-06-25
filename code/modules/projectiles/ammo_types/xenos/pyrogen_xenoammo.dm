@@ -27,3 +27,10 @@
 		new /obj/fire/melting_fire(affecting)
 		for(var/mob/living/carbon/fired in affecting)
 			fired.take_overall_damage(PYROGEN_FIREBALL_AOE_DAMAGE, BURN, FIRE, FALSE, FALSE, TRUE, 0, , max_limbs = 2)
+			if(!isxeno(fired))
+				var/datum/status_effect/stacking/melting_fire/debuff = fired.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+				if(debuff)
+					debuff.add_stacks(PYROGEN_FIREBALL_MELTING_STACKS)
+				else
+					fired.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_FIREBALL_MELTING_STACKS)
+
