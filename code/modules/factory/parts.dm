@@ -879,14 +879,14 @@ GLOBAL_LIST_INIT(heavy_isg_recipe, list(
 	. = ..()
 	recipe = GLOB.heavy_isg_recipe
 
-/obj/item/factory_part/heavy_isg_sabot
-	name = "\improper FK-88 HE shell assembly"
-	desc = "An incomplete FK-88 APFDS shell assembly."
-	result = /obj/item/ammo_magazine/heavy_isg/sabot
+
 
 /obj/item/factory_part/heavy_isg_sabot/Initialize(mapload)
 	. = ..()
-	recipe = GLOB.heavy_isg_recipe
+	recipe = GLOB.heavy_isg_recipe/obj/item/factory_part/heavy_isg_sabot
+	name = "\improper FK-88 HE shell assembly"
+	desc = "An incomplete FK-88 APFDS shell assembly."
+	result = /obj/item/ammo_magazine/heavy_isg/sabot
 
 GLOBAL_LIST_INIT(ac_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "uncutplate"),
@@ -912,3 +912,12 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 /obj/item/factory_part/ac_flak/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/cigarette
+	name = "\improper Cigarette pack"
+	desc = "An incomplete pack of cigarettes."
+	result = /obj/item/clothing/mask/cigarette
+
+/obj/item/factory_part/drop_pod/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe
