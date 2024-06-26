@@ -120,6 +120,7 @@
 		return
 	pile.current_casings += 1
 	pile.update_appearance()
+	flick(icon_state + "_fire", src)
 
 ///when we run out of ammo; how do we eject the magazine?
 /obj/structure/gun_breech/proc/do_eject_ammo(obj/item/ammo_magazine/old_ammo)
