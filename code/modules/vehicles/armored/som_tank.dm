@@ -10,11 +10,11 @@
 //	interior = /datum/interior/armored/som
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
 	pixel_y = -80
-	max_integrity = 1100
+	max_integrity = 850 //Compensate for SPEED
 	soft_armor = list(MELEE = 65, BULLET = 75 , LASER = 80, ENERGY = 85, BOMB = 75, BIO = 100, FIRE = 100, ACID = 60)
 	hard_armor = list(MELEE = 10, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.7, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)

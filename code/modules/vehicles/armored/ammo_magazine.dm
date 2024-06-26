@@ -98,7 +98,7 @@
 	desc = "A heavy, disposable cell used for powering a tank mounted particle lance."
 	caliber = CALIBER_84MM
 	icon_state = "particle_lance_cell"
-	w_class = WEIGHT_CLASS_GIGANTIC
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/energy/particle_lance
 	max_rounds = 4
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
@@ -108,7 +108,7 @@
 	desc = "A secondary armament MLRS magazine. Loaded with homing HE rockets"
 	caliber = CALIBER_40MM
 	icon_state = "secondary_mlrs"
-	w_class = WEIGHT_CLASS_GIGANTIC
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/rocket/homing
 	max_rounds = 24
 
@@ -117,7 +117,7 @@
 	desc = "A set of extremely dense kinetic penetrator rounds for a tank mounted coilgun."
 	caliber = CALIBER_84MM
 	icon_state = "tank_coilgun"
-	w_class = WEIGHT_CLASS_GIGANTIC
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
 	max_rounds = 8
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'

@@ -16,7 +16,7 @@
 	placed_overlay_iconstate = "laser"
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	default_ammo_type = /obj/item/cell/lasgun
-	allowed_ammo_types = list(/obj/item/cell/lasgun)
+	allowed_ammo_types = list(/obj/item/cell/lasgun, /obj/item/cell/lasgun/volkite/powerpack)
 	muzzle_flash = null
 
 /obj/item/weapon/gun/energy/get_current_rounds(obj/item/mag)
@@ -280,7 +280,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/lasrifle/recharger)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/lasrifle/recharger, /obj/item/cell/lasgun/volkite/powerpack)
 	/// A list of available modes this gun can switch to
 	var/list/datum/lasrifle/mode_list = list()
 	/// The index of the current mode selected, used for non radial mode switches
@@ -379,7 +379,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/volkite/powerpack)
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	muzzle_flash_color = COLOR_TESLA_BLUE
 	ammo_level_icon = "tesla"
