@@ -175,6 +175,17 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+//resin bone wall
+/turf/closed/mineral/smooth/resin_hard
+	icon = 'icons/turf/walls/resin_bone_wall.dmi'
+	icon_state = "resin_bone_wall-0"
+	base_icon_state = "resin_bone_wall"
+
+/turf/closed/mineral/smooth/resin_hard/indestructible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+
 //new wall for lava maps
 /turf/closed/mineral/smooth/lavawall
 	icon = 'icons/turf/walls/lava_wall.dmi'

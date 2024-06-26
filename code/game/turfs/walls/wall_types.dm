@@ -412,6 +412,10 @@
 	max_integrity = 3000
 	explosion_block = 4
 
+/turf/closed/wall/dark_colony
+	icon = 'icons/turf/walls/dark_col_wall.dmi'
+	icon_state = "dark_col_wall-0"
+
 /turf/closed/wall/brick
 	name = "brick wall"
 	desc = "A wall made out of weathered brick."

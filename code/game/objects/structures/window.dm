@@ -564,6 +564,13 @@
 	reinf = 1
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
+/obj/structure/window/framed/colony/cmwindow
+	name = "window"
+	icon = 'icons/obj/smooth_objects/cmwindow.dmi'
+	icon_state = "cmwindow-0"
+	base_icon_state = "cmwindow"
+	window_frame = /obj/structure/window_frame/colony
+
 /obj/structure/window/framed/colony/reinforced/tinted
 	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."

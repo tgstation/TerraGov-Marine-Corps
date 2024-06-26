@@ -148,6 +148,13 @@
 /obj/structure/window_frame/colony/reinforced/weakened
 	max_integrity = 150
 
+/obj/structure/window_frame/colony/cm_frame
+	icon = 'icons/obj/smooth_objects/cmwindowframe.dmi'
+	icon_state = "cmwindowframe-0"
+	basestate = "cmwindowframe"
+	base_icon_state = "cmwindowframe"
+	max_integrity = 300
+
 /obj/structure/window_frame/chigusa
 	icon = 'icons/obj/smooth_objects/chigusa_window_frame.dmi'
 	icon_state = "chigusa_window_frame-0"
