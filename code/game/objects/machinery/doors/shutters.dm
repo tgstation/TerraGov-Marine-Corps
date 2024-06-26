@@ -303,6 +303,7 @@
 	icon_state = "almayer_pdoor0"
 	base_icon_state = "almayer_pdoor"
 	density = FALSE
+	opacity = FALSE
 
 /obj/machinery/door/poddoor/shutters/urban/shutters
 	icon_state = "shutter"
@@ -312,6 +313,7 @@
 	icon_state = "shutter0"
 	base_icon_state = "shutter"
 	density = FALSE
+	opacity = FALSE
 
 /obj/machinery/door/poddoor/shutters/urban/white
 	desc = "That looks like it doesn't open easily."
