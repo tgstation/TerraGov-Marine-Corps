@@ -161,6 +161,7 @@
 	color = "#c9a37b"
 	walltype = "cave"
 	base_icon_state = "cave"
+
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
@@ -222,6 +223,21 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/jungletree
+	name = "dense jungle trees"
+	icon = 'icons/turf/walls/junglewall.dmi'
+	icon_state = "wall-display"
+	base_icon_state = "junglewall"
+	desc = "Some thick jungle trees, it looks impassible"
+	open_turf_type = /turf/open/ground/jungle/clear
+
+/turf/closed/mineral/smooth/jungletree/invincible
+	icon_state = "wall-invincible"
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/jungletree/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
@@ -234,14 +250,6 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
-
-/turf/closed/gm/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_LEAF, -10, 5)
-
-/turf/closed/gm/tree
-	name = "dense jungle trees"
-	icon_state = "jungletree"
-	desc = "Some thick jungle trees."
 
 	//Not yet
 /turf/closed/gm/ex_act(severity)
