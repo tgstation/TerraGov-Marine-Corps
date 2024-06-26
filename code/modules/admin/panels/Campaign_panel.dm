@@ -61,7 +61,7 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 		faction_data["available_missions"] = faction_datum.available_missions
 		faction_data["assets"] = faction_datum.faction_assets
 
-		faction_data_list[faction] = faction_data
+		faction_data_list += list(faction_data)
 	data["faction_data"] = faction_data_list
 
 	return data
@@ -72,11 +72,35 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 		return
 	var/mob/living/user = usr
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-	var/datum/faction_stats/faction_datum = current_mode?.stat_list[text2path(params["faction"])]
+	var/datum/faction_stats/faction_datum = current_mode?.stat_list[params["target_faction"]]
 
 	switch(action)
 		if("set_attrition_points")
 			var/combined_attrition = faction_datum.total_attrition_points + faction_datum.active_attrition_points
 			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
 			faction_datum.set_attrition(choice, user)
+			return TRUE
+		if("add_attrition_points")
+			var/choice = tgui_input_number(user, "How much total attrition would you like to add?", "Attrition Point selection", 0, 9999, -9999)
+			faction_datum.total_attrition_points += choice
+			return TRUE
+		if("set_leader")
+			var/choice = tgui_input_list(user, "Who would you like to promote to faction leader?", "Leader selection", GLOB.alive_human_list_faction[faction_datum.faction], null)
+			faction_datum.faction_leader = choice
+			return TRUE
+		if("set_victory_points")
+			var/choice = tgui_input_number(user, "How many victory points would you like to add?", "Attrition Point selection", 0, CAMPAIGN_MAX_VICTORY_POINTS, -CAMPAIGN_MAX_VICTORY_POINTS)
+			faction_datum.victory_points += choice
+			return TRUE
+		if("add_mission")
+			var/choice = tgui_input_list(user, "What mission would you like to add?", "Add mission", subtypesof(/datum/campaign_mission), null)
+			if(!choice)
+				return FALSE
+			faction_datum.add_new_mission(choice)
+			return TRUE
+		if("add_asset")
+			var/choice = tgui_input_list(user, "What asset would you like to add?", "Add asset", subtypesof(/datum/campaign_asset), null)
+			if(!choice)
+				return FALSE
+			faction_datum.add_asset(choice)
 			return TRUE
