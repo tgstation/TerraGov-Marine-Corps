@@ -189,7 +189,8 @@
 
 	if(!(new_squaddie.job.title in current_positions)) //If the job title isn't already registered, register it
 		current_positions += new_squaddie.job.title
-		current_positions[new_squaddie.job.title] = 1
+		current_positions[new_squaddie.job.title] = 0
+	current_positions[new_squaddie.job.title]++
 
 	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
