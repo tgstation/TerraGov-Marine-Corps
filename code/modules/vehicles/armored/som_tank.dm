@@ -7,7 +7,7 @@
 	damage_icon_path = 'icons/obj/armored/3x4/tank_damage.dmi'
 	icon_state = "tank"
 	hitbox = /obj/hitbox/rectangle/som_tank
-	interior = /datum/interior/armored/som
+//	interior = /datum/interior/armored/som
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS
