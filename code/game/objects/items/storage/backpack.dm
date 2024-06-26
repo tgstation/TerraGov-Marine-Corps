@@ -369,9 +369,8 @@
 
 /obj/item/storage/backpack/marine/duffelbag
 	name = "\improper TGMC Duffelbag"
-	desc = "A massive bag designed for those interested in being the squad Mule. \
-	Features extra storage space at the cost of speed. \
-	Any squadmates can easily access the storage with right-click"
+	desc = "A hard to reach backpack with no draw delay but is hard to access. \
+	Any squadmates can easily access the storage with right-click."
 	icon = 'icons/obj/items/storage/duffelbag.dmi'
 	icon_state = "duffel"
 	worn_icon_state = "duffel"
@@ -381,19 +380,29 @@
 	. = ..()
 	if(slot == SLOT_BACK)
 		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		RegisterSignal(equipper, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_move))
 		for(var/mob/M AS in storage_datum.content_watchers)
 			storage_datum.close(M)
 
 /obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
 	. = ..()
-	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
+	UnregisterSignal(unequipper, list(COMSIG_CLICK_RIGHT, COMSIG_MOVABLE_MOVED))
 
 ///Allows non-wearers to access this inventory
 /obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
 	SIGNAL_HANDLER
-	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't open this inventory
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't use this to bypass restrictions
 		return
 	storage_datum.open(clicker)
+
+///Closes the duffelbag when our wearer moves if it's worn on user's back
+/obj/item/storage/backpack/marine/duffelbag/proc/on_wearer_move(datum/source)
+	SIGNAL_HANDLER
+	if(!iscarbon(source))
+		return
+	var/mob/living/carbon/carbon_user = source
+	if(carbon_user.back == src && carbon_user.s_active == storage_datum)
+		storage_datum.close(carbon_user)
 
 /datum/storage/backpack/duffelbag
 	access_delay = 0
@@ -413,12 +422,12 @@
 	if(!iscarbon(user))
 		return TRUE
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.back == parent)
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
 		return TRUE
 	return ..()
 
 /datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
-	if(user.back == parent)
+	if(user.back == parent && user.s_active != src)
 		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
 		return
 	return ..()
