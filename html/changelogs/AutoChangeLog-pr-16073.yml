@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Pyrogen's fireball and heat ray will now damage tanks and apcs based on how many tiles are hit, 5 damage per tile with fireball, and 15 damage per tile, per tick with heat ray."
+  - bugfix: "Fixed pyrogen's fireball dealing damage to friendly xenos"
