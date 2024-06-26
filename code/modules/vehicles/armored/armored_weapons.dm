@@ -64,7 +64,7 @@
 
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
-	if(!ammo || ammo.current_rounds < 0)
+	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
