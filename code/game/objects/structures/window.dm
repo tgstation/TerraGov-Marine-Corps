@@ -157,15 +157,15 @@
 	take_damage(damage * 2, BRUTE, MELEE)
 	return TRUE
 
-/obj/structure/window/attackby(obj/item/I, mob/user, params)
+/obj/structure/window/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(.)
+		return TRUE
+
+	if(attacking_item.item_flags & NOBLUDGEON)
 		return
 
-	if(I.item_flags & NOBLUDGEON)
-		return
-
-	else if(isscrewdriver(I) && deconstructable)
+	else if(isscrewdriver(attacking_item) && deconstructable)
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -184,12 +184,19 @@
 		else if(!reinf || (static_frame && state == 0))
 			deconstruct(TRUE)
 
-	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
+	else if(iscrowbar(attacking_item) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
 
 /obj/structure/window/deconstruct(disassembled = TRUE)
 	if(disassembled)
