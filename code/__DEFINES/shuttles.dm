@@ -34,6 +34,8 @@
 
 /// shuttle is immune to gamemode timer restrictions
 #define GAMEMODE_IMMUNE (1<<0)
+#define SHUTTLE_LAND_IN_BUILDINGS (1<<1)
+#define SHUTTLE_LAND_OVER_RESIN (1<<2)
 
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100
@@ -98,7 +100,7 @@
 #define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)
 
 //Shuttle name defines used for a whole load of stuff
-#define SHUTTLE_ALAMO "alamo"
+#define SHUTTLE_ALAMO "dropship"
 #define SHUTTLE_NORMANDY "normandy"
 #define SHUTTLE_TADPOLE "minidropship"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"

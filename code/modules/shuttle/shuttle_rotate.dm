@@ -61,12 +61,16 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 	params &= ~ROTATE_OFFSET
 	return ..()
 
+/obj/structure/bed/chair/dropship/doublewide/shuttleRotate(rotation, params)
+	params = NONE	//Breaks the chair offsets
+	return ..()
+
 /************************************Machine rotate procs************************************/
 
 //override to avoid rotating multitile vehicles
 /obj/vehicle/shuttleRotate(rotation, params)
 	if(hitbox)
-		params = NONE
+		params = ROTATE_DIR
 	return ..()
 
 /obj/machinery/atmospherics/shuttleRotate(rotation, params)
@@ -83,3 +87,6 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		var/new_pos = supposed_node_connect.Find(real_node_connect[i])
 		nodes[new_pos] = nodes_copy[i]
 
+/obj/machinery/light/shuttleRotate(rotation, params)
+	params = ROTATE_DIR	//Do not rotate offsets, light fixtures already handle them when changing direction
+	return ..()

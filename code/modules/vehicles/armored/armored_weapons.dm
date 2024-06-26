@@ -181,7 +181,7 @@
 /obj/item/armored_weapon/proc/fire()
 	if(!current_target)
 		return
-	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
+	var/turf/source_turf = chassis.primary_weapon == src && chassis.hitbox ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
 		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, current_target), dir2angle(chassis.turret_overlay.dir))
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
@@ -363,3 +363,20 @@
 	)
 	projectile_delay = 1 // spray visuals
 	hud_state_empty = "flame_empty"
+
+/obj/item/armored_weapon/dropship_machinegun
+	name = "turret machinegun"
+	desc = "It shoots things."
+	icon_state = "m56_cupola"
+	hud_state_empty = "rifle_empty"
+	fire_sound = 'sound/weapons/guns/fire/GPMG.ogg'
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	ammo = /obj/item/ammo_magazine/tank/dropship_machinegun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/dropship_machinegun)
+	projectile_delay = 0.3 SECONDS
+	rearm_time = 1 SECONDS
+
+/obj/item/armored_weapon/dropship_machinegun/attach(obj/vehicle/sealed/armored/tank, attach_primary)
+	. = ..()
+	tank.turret_overlay.pixel_x = -16
+	tank.turret_overlay.pixel_y = -16

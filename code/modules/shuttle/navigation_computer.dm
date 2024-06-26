@@ -126,8 +126,9 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_eye_control(mob/user)
 	. = ..()
-	if(QDELETED(user) || !user.client)
+	if(!.)
 		return
+
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/to_add = list()
 	to_add += the_eye.placement_images
@@ -135,7 +136,10 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
+	//Parent proc prevents any changes to view size, so got to toggle it; not using the toggle procs because they also do apply()
+	user.client.view_size.supress_changes = FALSE
 	user.client.view_size.set_view_radius_to(view_range)
+	user.client.view_size.supress_changes = TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
@@ -291,8 +295,9 @@
 
 /// Checks if the turf is valid for landing
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkLandingTurf(turf/T, list/overlappers)
-	// Too close to the map edge is never allowed
-	if(!T || T.x <= 10 || T.y <= 10 || T.x >= world.maxx - 10 || T.y >= world.maxy - 10)
+	//If a landing spot is on the edge of the map, it is likely the rest of it is clipped off
+	//Do not make non-contiguous shuttles or this may fail to catch it
+	if(!T || T.x == 1 || T.y == 1 || T.x == world.maxx - 1 || T.y == world.maxy - 1)
 		return SHUTTLE_DOCKER_BLOCKED
 	var/area/turf_area = get_area(T)
 	if(turf_area.ceiling >= CEILING_METAL)
@@ -316,22 +321,6 @@
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
 			return SHUTTLE_DOCKER_BLOCKED
-
-	// Checking for overlapping dock boundaries
-	for(var/i in 1 to length(overlappers))
-		var/obj/docking_port/port = overlappers[i]
-		if(port == my_port)
-			continue
-		var/port_hidden = !see_hidden && port.hidden
-		var/list/overlap = overlappers[port]
-		var/list/xs = overlap[1]
-		var/list/ys = overlap[2]
-		if(xs["[T.x]"] && ys["[T.y]"])
-			// The only hidden ports are for the crash ships
-			if(port_hidden)
-				. = SHUTTLE_DOCKER_LANDING_CLEAR
-			else
-				return SHUTTLE_DOCKER_BLOCKED
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	if(port)

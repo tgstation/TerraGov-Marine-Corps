@@ -178,8 +178,11 @@
 		give_eye_control(L)
 		eyeobj.setLoc(eyeobj.loc)
 
-
+///Functions for giving the user control of the spawned camera object and adjusting their view
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
+	if(QDELETED(user) || !user.client)
+		return FALSE
+
 	give_actions(user)
 	current_user = user
 	eyeobj.eye_user = user
@@ -188,6 +191,7 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 	user.client.view_size.supress()
+	return TRUE
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))

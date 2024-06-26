@@ -129,3 +129,13 @@
 	icon_state = "sflamer"
 	max_rounds = 150
 	default_ammo = /datum/ammo/flamethrower/armored_spray
+
+/obj/item/ammo_magazine/tank/dropship_machinegun
+	name = "turret machinegun magazine"
+	desc = "A secondary armament MG magazine"
+	caliber = CALIBER_10X28
+	icon_state = "cupolaammo"
+	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo = /datum/ammo/bullet/dropship_machinegun
+	max_rounds = 75

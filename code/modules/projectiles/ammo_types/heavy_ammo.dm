@@ -156,3 +156,11 @@
 
 /datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)
+
+/datum/ammo/bullet/dropship_machinegun
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	hud_state_empty = "rifle_empty"
+	accurate_range = 12
+	damage = 30
+	penetration = 20

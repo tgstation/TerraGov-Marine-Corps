@@ -88,17 +88,6 @@
 /obj/machinery/computer/shuttle/ert
 	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
 
-/obj/machinery/computer/shuttle/ert/valid_destinations()
-	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
-	if(!istype(M))
-		CRASH("ert shuttle computer used with non-ert shuttle")
-	var/list/valid_destination_ids = list()
-	for(var/i in M.get_destinations())
-		var/obj/docking_port/stationary/ert/target/target_dock = i
-		valid_destination_ids += target_dock.id
-	return valid_destination_ids
-
-
 /obj/machinery/computer/shuttle/ert/ui_interact(mob/user)
 	. = ..()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)

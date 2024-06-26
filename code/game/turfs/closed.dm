@@ -218,7 +218,7 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE|DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 

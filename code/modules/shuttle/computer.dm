@@ -7,19 +7,18 @@
 	req_access = list( )
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttleId
-	var/possible_destinations = ""
+	var/list/possible_destinations
 	var/admin_controlled
 
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
 	. = ..()
-	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		var/destination_found
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
+			if(!possible_destinations.Find(S.id))
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
@@ -34,9 +33,6 @@
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.open()
-
-/obj/machinery/computer/shuttle/proc/valid_destinations()
-	return params2list(possible_destinations)
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
 	. = ..()
@@ -59,7 +55,7 @@
 		#endif
 		if(!M.can_move_topic(usr))
 			return TRUE
-		if(!(href_list["move"] in valid_destinations()))
+		if(!(href_list["move"] in possible_destinations))
 			log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
 			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
 			return TRUE

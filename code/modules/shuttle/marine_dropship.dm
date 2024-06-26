@@ -263,6 +263,9 @@
 	name = "Alamo"
 	id = SHUTTLE_ALAMO
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
+	callTime = 1 SECONDS
+	rechargeTime = 1 SECONDS
+	prearrivalTime = 1 SECONDS
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
@@ -486,7 +489,7 @@
 	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	possible_destinations = "lz1;lz2;alamo"
+	possible_destinations = list("lz1", "lz2", SHUTTLE_ALAMO)
 	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -592,10 +595,9 @@
 	else
 		data["lockdown"] = 1
 
-	var/list/options = valid_destinations()
 	var/list/valid_destinations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!options.Find(S.id))
+		if(!possible_destinations.Find(S.id))
 			continue
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
@@ -744,20 +746,19 @@
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
-	possible_destinations = "lz1;lz2;alamo"
 
 /obj/machinery/computer/shuttle/marine_dropship/one/Initialize(mapload)
 	. = ..()
 	for(var/trait in SSmapping.configs[SHIP_MAP].environment_traits)
 		if(ZTRAIT_DOUBLE_SHIPS in trait)
-			possible_destinations = "lz2;alamo"
+			possible_destinations.Remove("lz1")
 
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon_state = "dropship_console2"
 	screen_overlay = "dropship_console2_emissive"
-	possible_destinations = "lz1;lz2;alamo;normandy"
+	possible_destinations = list("lz1", "lz2", SHUTTLE_ALAMO, SHUTTLE_NORMANDY)
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -1318,7 +1319,7 @@
 	if(!params["destination"])
 		return TRUE
 
-	if(!(params["destination"] in valid_destinations()))
+	if(!(params["destination"] in possible_destinations))
 		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
@@ -1346,33 +1347,31 @@
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_data(mob/user)
 	var/list/data = list()
-	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(!shuttle)
 		return data //empty but oh well
 
 	data["linked_shuttle_name"] = shuttle.name
 	data["shuttle_status"] = shuttle.getStatusText()
-	for(var/option in options)
-		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
-			if(option != S.id)
-				continue
-			var/list/dataset = list()
-			dataset["id"] = S.id
-			dataset["name"] = S.name
-			dataset["locked"] = !shuttle.check_dock(S, silent=TRUE)
-			data["destinations"] += list(dataset)
+
+	for(var/obj/docking_port/stationary/docking_port AS in SSshuttle.stationary)
+		//Is the shuttle landing spot in the possible_destinations list?
+		if(!(docking_port.id in possible_destinations))
+			continue
+
+		//Add the docking port's data for the computer to display it
+		var/list/dataset = list()
+		dataset["id"] = docking_port.id
+		dataset["name"] = docking_port.name
+		dataset["locked"] = !shuttle.check_dock(docking_port, silent=TRUE)
+		data["destinations"] += list(dataset)
+
 	return data
 
 /obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
-	var/list/all_destinations = splittext(possible_destinations,";")
-
-	if(length(all_destinations) < 2)
-		return
-
 	// Getting all valid destinations into an assoc list with "name" = "portid"
 	var/list/port_assoc = list()
-	for(var/destination in all_destinations)
+	for(var/destination in possible_destinations)
 		for(var/obj/docking_port/port AS in SSshuttle.stationary)
 			if(destination != port.id)
 				continue
@@ -1435,15 +1434,14 @@
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
-	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-
+	possible_destinations = list("lz1", "lz2", SHUTTLE_ALAMO)
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = SHUTTLE_NORMANDY
-	possible_destinations = "lz1;lz2;alamo;normandy"
+	possible_destinations = list("lz1", "lz2", SHUTTLE_ALAMO, SHUTTLE_NORMANDY)
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"
@@ -1453,7 +1451,7 @@
 	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
-	possible_destinations = "canterbury_loadingdock"
+	possible_destinations = list("canterbury_loadingdock")
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
 	if(!allowed(user))

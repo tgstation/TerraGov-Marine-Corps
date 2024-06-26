@@ -57,6 +57,9 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
+	if(!.)
+		return
+
 	screen_overlay = "fob_transfer_emissive"
 	user.lighting_alpha = 120
 	eyeobj.name = "Remote Construction Drone"

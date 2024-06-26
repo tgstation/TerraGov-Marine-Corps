@@ -916,3 +916,63 @@
 		icon_state = "bomb_pod_installed"
 	else
 		icon_state = "bomb_pod"
+
+/obj/structure/engine
+	name = "dropship fusion reactor"
+	desc = "Small reactor that provides power to small vessels."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "engine_left"
+	density = TRUE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	coverage = 100
+
+/obj/structure/engine/right
+	icon_state = "engine_right"
+
+/obj/structure/engine/thruster
+	name = "dropship ion thruster"
+	desc = "Electrically-powered engine used for space propulsion."
+	icon_state = "engine_thruster_left"
+
+/obj/structure/engine/thruster/right
+	icon_state = "engine_thruster_right"
+
+/obj/structure/engine/atmosphere
+	name = "dropship pulsejet engine"
+	desc = "Thrusters for atmospheric maneuvers."
+	icon_state = "engine"
+
+/obj/vehicle/sealed/armored/turret
+	name = "turret"
+	desc = "A covered turret emplacement."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "turretprop"
+	turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
+	turret_icon_state = "turret"
+	pixel_x = 0
+	pixel_y = 0
+	permitted_weapons = list(/obj/item/armored_weapon/dropship_machinegun)
+
+/obj/vehicle/sealed/armored/turret/Initialize(mapload)
+	. = ..()
+	//For some reason Tivi made all vehicles spawn in then quickly delete them and it causes a bad deletion since the code thinks there is an installed gun
+	//So can't do if(primary_weapon) here because this is ran before Initialize() and the gun is already trying to be deleted (which doesn't exist yet)
+	var/obj/item/armored_weapon/gun = new /obj/item/armored_weapon/dropship_machinegun()
+	gun.attach(src, TRUE)
+
+//Stationary turret, doesn't move
+/obj/vehicle/sealed/armored/turret/relaymove(mob/living/user, direction)
+	return FALSE
+
+//Override to remove the swivel delay and sound
+/obj/vehicle/sealed/armored/turret/swivel_turret(atom/A, new_weapon_dir)
+	if(!new_weapon_dir)
+		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
+	if(turret_overlay.dir == new_weapon_dir)
+		return FALSE
+	turret_overlay.setDir(new_weapon_dir)
+	return TRUE
+
+/obj/vehicle/sealed/armored/turret/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
+	. = ..()

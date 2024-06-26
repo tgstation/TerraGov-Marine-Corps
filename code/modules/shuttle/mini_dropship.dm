@@ -24,7 +24,6 @@
 	shuttleId = SHUTTLE_TADPOLE
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
-	view_range = "26x26"
 	x_offset = 0
 	y_offset = 0
 	open_prompt = FALSE
@@ -244,22 +243,36 @@
 
 	if(!ui)
 		ui_user = user
-		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
+		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(user_moved))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
 	. = ..()
+	if(!ui_user)
+		return
+
 	clean_ui_user()
 
-/// Set ui_user to null to prevent hard del
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user(datum/source)
+///Check if the user is still next to the shuttle computer
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/user_moved(datum/source)
 	SIGNAL_HANDLER
-	if(ui_user)
-		SStgui.close_user_uis(ui_user, src) //Close the tadpole UI
-		remove_eye_control(ui_user) //Boot the user out of the camera system
-		UnregisterSignal(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-		ui_user = null
+	if(!ui_user || ui_user.Adjacent(src))
+		return
+
+	clean_ui_user()
+
+///Handle removing the user from the camera and closing the UI
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
+	if(!ui_user)
+		return
+
+	//Prevents a runtime because close_user_uis() below will eventually call this proc again
+	var/old_user = ui_user
+	ui_user = null
+	SStgui.close_user_uis(old_user, src) //Close the tadpole UI
+	remove_eye_control(old_user) //Boot the user out of the camera system
+	UnregisterSignal(old_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
 	. = list()
@@ -318,3 +331,11 @@
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test
+	shuttleId = SHUTTLE_ALAMO
+	origin_port_id = SHUTTLE_ALAMO
+	launching_delay = 1 SECONDS
+	whitelist_turfs = list(/turf/open/ground, /turf/open/floor, /turf/open/liquid/water, /turf/closed/gm, /turf/closed/wall/resin)
+	view_range = 2
+	pixel_y = 12
