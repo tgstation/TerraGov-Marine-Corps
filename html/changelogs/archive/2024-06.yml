@@ -314,3 +314,15 @@
   Xander3359:
   - spellcheck: fixed a typo "suddendly"
   - qol: Syringes can now change injection size
+2024-06-26:
+  Ldip999:
+  - rscadd: Heavy SMG ammo boxes
+  Lumipharon:
+  - rscadd: Added the SOM hover bike
+  - bugfix: fixed a vehicle runtime
+  - bugfix: fixed some broken sprites
+  - code_imp: small perf improvement to light SS
+  Wisemonster:
+  - balance: Ravage will now hit any part of the tank and APC.
+  - balance: Gargoyles will no longer detect simple animals, such as mice or cows.
+  - balance: Gargoyles will now detect vehicles, such as bikes, mechs, and tanks/apcs.
