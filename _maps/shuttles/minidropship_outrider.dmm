@@ -138,14 +138,14 @@
 /area/shuttle/minidropship)
 "B" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8;
-	layer = 3
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "D" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4;
+	layer = 3
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
@@ -160,10 +160,6 @@
 /area/shuttle/minidropship)
 "F" = (
 /obj/machinery/holopad,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8;
-	layer = 3
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "G" = (
@@ -182,6 +178,13 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"I" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4;
+	layer = 3
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "J" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -205,6 +208,13 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"S" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4;
+	layer = 3
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "U" = (
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
@@ -272,8 +282,8 @@ K
 Y
 Y
 D
-c
-Y
+S
+I
 a
 L
 "}
@@ -284,7 +294,7 @@ n
 E
 F
 B
-R
+Y
 a
 o
 "}
