@@ -119,6 +119,7 @@
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_typing"] = show_typing
+			data["toggle_admin_music"] = !!(toggles_sound & SOUND_MIDI)
 			data["tooltips"] = tooltips
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
@@ -711,6 +712,9 @@
 				closeToolTip(usr)
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
+
+		if("toggle_admin_music")
+			toggles_sound ^= SOUND_MIDI
 
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode

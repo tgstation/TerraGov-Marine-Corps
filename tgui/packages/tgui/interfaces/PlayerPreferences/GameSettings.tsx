@@ -289,6 +289,19 @@ export const GameSettings = (props) => {
             </LabeledList>
           </Section>
         </Stack.Item>
+        <Stack.Item grow>
+          <Section title="Sound settings">
+            <LabeledList>
+              <ToggleFieldPreference
+                label="Toggle admin music"
+                value="toggle_admin_music"
+                action="toggle_admin_music"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+            </LabeledList>
+          </Section>
+        </Stack.Item>
       </Stack>
       {!!is_admin && (
         <Stack>
