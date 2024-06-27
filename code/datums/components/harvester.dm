@@ -210,40 +210,61 @@
 	SIGNAL_HANDLER
 	. = FALSE
 	weapon = user.get_active_held_item()
-	if(!loaded_reagent)
-		return
 
 	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	switch(loaded_reagent)
-		if(/datum/reagent/medicine/bicaridine)
-			if(user.a_intent == INTENT_HELP)
-				. = COMPONENT_ITEM_NO_ATTACK
-			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
+	if (ishuman(target) && user.a_intent == INTENT_HELP) // if we're hitting a human, don't actually hit them if we're on help intent
+		. = COMPONENT_ITEM_NO_ATTACK
 
-		if(/datum/reagent/medicine/kelotane)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.fire_act(10)
+	var/consume = TRUE
+	if (loaded_reagent)
+		switch(loaded_reagent)
+			if(/datum/reagent/medicine/bicaridine)
+				INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
 
-		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
+			if(/datum/reagent/medicine/kelotane)
+				if (. != COMPONENT_ITEM_NO_ATTACK) // we may want to kelo strike supportively, so only deal the extra damage if we're not on help intent
+					target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 
-		if(/datum/reagent/medicine/tricordrazine)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.adjust_sunder(7.5) //Same amount as a shotgun slug
-			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
+				target.fire_act(10)
+				to_chat(target, span_danger("[user] catches you with the edge of [weapon], setting you ablaze!"))
+				to_chat(user, span_rose("You catch [target] with the edge of [weapon], setting them ablaze!"))
 
-	if(!loaded_reagents[loaded_reagent])
-		update_selected_reagent(null)
-		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
-	loaded_reagent = null
+			if(/datum/reagent/medicine/tramadol)
+				if (. != COMPONENT_ITEM_NO_ATTACK)
+					target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+					target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
+					to_chat(target, span_danger("A sudden burst of numb sluggishness ripples through you as [user] digs [weapon] into your flesh!"))
+					to_chat(user, span_rose("You drive [weapon] into [target], releasing a numbing burst of narcotics!"))
+				else
+					consume = FALSE
 
-	var/obj/item/item_parent = parent
-	item_parent.update_icon()
-	user.update_inv_r_hand()
-	user.update_inv_l_hand()
+			if(/datum/reagent/medicine/tricordrazine)
+				if (. != COMPONENT_ITEM_NO_ATTACK)
+					target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+					target.adjust_sunder(7.5) //Same amount as a shotgun slug
+					target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
+					to_chat(target, span_danger("Your protection feels compromised as [user] carves into you with [weapon]!"))
+					to_chat(user, span_rose("The edge of [weapon] sizzles and hisses as it bites deeply into the protection surrounding [target]!"))
+				else
+					consume = FALSE
+
+		if(!loaded_reagents[loaded_reagent])
+			update_selected_reagent(null)
+			user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
+
+		if (consume) // only clear our loaded reagent if we did anything with it
+			loaded_reagent = null
+
+		var/obj/item/item_parent = parent
+		item_parent.update_icon()
+		user.update_inv_r_hand()
+		user.update_inv_l_hand()
+
+	if (. == COMPONENT_ITEM_NO_ATTACK) // just let them know if they're not hitting so they can adjust for hvh or whatever
+		user.balloon_alert(user, "you hold back from striking [target]")
+		to_chat(user, span_rose("You hold back from striking [target]."))
 
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
