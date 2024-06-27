@@ -1090,8 +1090,6 @@ $ooc_alert_text_colors: (
   .ooc_alert_#{$color-type} .ooc_announcement_text {
     color: map.get($ooc_alert_text_colors, $color-type);
     padding: 0.5em 0 0 0.35em;
-    display: flex;
-    flex-direction: column;
   }
 }
 
