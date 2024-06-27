@@ -354,20 +354,20 @@
 	)
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
+	/// Should this ability be usable on moving targets and use an alternative flavortext?
 	var/hivemind_heal = FALSE
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
+	if(!do_after(owner, 1 SECONDS, hivemind_heal ? IGNORE_TARGET_LOC_CHANGE : NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(!can_use_ability(target, TRUE))
+		return FALSE
+
 	if(!hivemind_heal)
-		if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			return FALSE
 		target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
 	else
-		if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			return FALSE
-		if(!can_use_ability(target, TRUE))
-			return FALSE
 		owner.visible_message(span_xenowarning("A faint psychic aura is suddenly emitted from \the [owner]!"), \
 		span_xenowarning("We cure [target] with the power of our mind!"))
 		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
