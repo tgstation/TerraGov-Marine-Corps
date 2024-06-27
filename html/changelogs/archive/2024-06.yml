@@ -314,3 +314,27 @@
   Xander3359:
   - spellcheck: fixed a typo "suddendly"
   - qol: Syringes can now change injection size
+2024-06-26:
+  Ldip999:
+  - rscadd: Heavy SMG ammo boxes
+  Lumipharon:
+  - rscadd: Added the SOM hover bike
+  - bugfix: fixed a vehicle runtime
+  - bugfix: fixed some broken sprites
+  - code_imp: small perf improvement to light SS
+  Wisemonster:
+  - balance: Ravage will now hit any part of the tank and APC.
+  - balance: Gargoyles will no longer detect simple animals, such as mice or cows.
+  - balance: Gargoyles will now detect vehicles, such as bikes, mechs, and tanks/apcs.
+2024-06-27:
+  Barnet2:
+  - bugfix: Fixed improper names showing when you played as a xeno without your rank
+      turned on
+  JackTheJackhammer:
+  - rscadd: Adds a weight check to the codex's text generation for all items that
+      act as storage
+  Wisemonster:
+  - balance: Pyrogen's fireball and heat ray will now damage tanks and apcs based
+      on how many tiles are hit, 5 damage per tile with fireball, and 15 damage per
+      tile, per tick with heat ray.
+  - bugfix: Fixed pyrogen's fireball dealing damage to friendly xenos
