@@ -1,5 +1,6 @@
 GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 
+///Opens the campaign specific admin panel
 /datum/admins/proc/open_campaign_panel()
 	set category = "Admin"
 	set name = "Campaign Panel"
@@ -26,23 +27,8 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 	ui = new(user, src, "CampaignAdminPanel")
 	ui.open()
 
-//UI stuff
-///datum/campaign_admin_panel/ui_assets(mob/user)
-	//return list(get_asset_datum(/datum/asset/spritesheet/campaign/perks), get_asset_datum(/datum/asset/spritesheet/campaign/loadout_items))
-
-
 /datum/campaign_admin_panel/ui_state(mob/user)
 	return GLOB.always_state
-
-/*
-/datum/campaign_admin_panel/ui_data(mob/user)
-	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-
-	var/list/data = list()
-
-
-	return data
-**/
 
 /datum/campaign_admin_panel/ui_static_data(mob/user)
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
