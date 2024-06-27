@@ -815,6 +815,21 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/pepperball
 
+
+/obj/item/storage/box/visual/magazine/compact/standard_heavysmg
+	name = "SMG-45 magazine box"
+	desc = "A box specifically designed to hold a large amount of SMG-45 magazines."
+
+/obj/item/storage/box/visual/magazine/compact/standard_heavysmg/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/ammo_magazine/smg/standard_heavysmg,
+	))
+
+/obj/item/storage/box/visual/magazine/compact/standard_heavysmg/full
+	spawn_number = 40
+	spawn_type = /obj/item/ammo_magazine/smg/standard_heavysmg
+
 // -Rifle-
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle

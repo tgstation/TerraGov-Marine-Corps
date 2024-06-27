@@ -652,6 +652,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define PYROGEN_FIREBALL_DIRECT_DAMAGE 30
 /// Damage in a 3x3 AOE when we hit anything
 #define PYROGEN_FIREBALL_AOE_DAMAGE 20
+/// Damage in a 3x3 AOE when we hit a vehicle
+#define PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE 10
 /// Fire stacks on FIREBALL burst in the 3x3 AOE
 #define PYROGEN_FIREBALL_MELTING_STACKS 2
 /// How many turfs can our fireball move
@@ -670,6 +672,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
 /// damage on direct hit with the heatray
 #define PYROGEN_HEATRAY_HIT_DAMAGE 50
+/// damage on vehicles with the heatray
+#define PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE 30
 /// damage per melting fire stack
 #define PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK 10
 /// Range for the heatray

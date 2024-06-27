@@ -118,6 +118,7 @@
 			data["see_rc_emotes"] = see_rc_emotes
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
+			data["show_xeno_rank"] = show_xeno_rank
 			data["show_typing"] = show_typing
 			data["toggle_adminhelp_sound"] = !!(toggles_sound & SOUND_ADMINHELP)
 			data["toggle_admin_music"] = !!(toggles_sound & SOUND_MIDI)
@@ -677,6 +678,9 @@
 
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
+
+		if("show_xeno_rank")
+			show_xeno_rank = !show_xeno_rank
 
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
