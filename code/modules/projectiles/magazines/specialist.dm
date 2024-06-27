@@ -477,7 +477,7 @@
 /obj/item/ammo_magazine/bike_minigun
 	name = "\improper Mounted MG-100 Vindicator ammo rack"
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun_light
