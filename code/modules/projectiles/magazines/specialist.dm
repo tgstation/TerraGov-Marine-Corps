@@ -475,6 +475,17 @@
 	max_rounds = 1000
 	reload_delay = 0.75 SECONDS
 
+/obj/item/ammo_magazine/bike_minigun
+	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "minigun"
+	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/minigun_light
+	current_rounds = 750
+	max_rounds = 750
+	reload_delay = 0.75 SECONDS
+
 // ICC coilgun
 
 /obj/item/ammo_magazine/rifle/icc_coilgun
