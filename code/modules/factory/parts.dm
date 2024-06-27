@@ -879,7 +879,7 @@ GLOBAL_LIST_INIT(heavy_isg_recipe, list(
 	. = ..()
 	recipe = GLOB.heavy_isg_recipe
 
-	recipe = GLOB.heavy_isg_recipe
+	/obj/item/factory_part/heavy_isg_sabot
 	name = "\improper FK-88 HE shell assembly"
 	desc = "An incomplete FK-88 APFDS shell assembly."
 	result = /obj/item/ammo_magazine/heavy_isg/sabot
