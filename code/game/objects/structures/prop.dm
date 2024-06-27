@@ -2212,6 +2212,12 @@
 /obj/structure/prop/computer
 	icon = 'icons/obj/machines/computer.dmi'
 
+/obj/structure/prop/computer/cryopod
+	name = "hypersleep bay console"
+	desc = "A large console controlling the ship's hypersleep bay. Mainly used for recovery of items from long-term hypersleeping crew."
+	icon_state = "cellconsole"
+	resistance_flags = RESIST_ALL
+
 /obj/structure/prop/computer/broken
 	name = "broken computer"
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
