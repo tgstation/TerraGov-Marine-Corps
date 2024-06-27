@@ -91,7 +91,7 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 			. = TRUE
 		if("set_leader")
 			var/choice = tgui_input_list(user, "Who would you like to promote to faction leader?", "Leader selection", GLOB.alive_human_list_faction[faction_datum.faction], null)
-			faction_datum.faction_leader = choice
+			faction_datum.set_faction_leader(choice)
 			message_admins("[usr.client] set faction leader of [faction_datum.faction] to [choice]")
 			log_admin("[usr.client] set faction leader of [faction_datum.faction] to [choice]")
 			. = TRUE
