@@ -100,7 +100,7 @@
 	name = "MK88 Mod 4"
 	desc = "An uncommon automatic handgun that fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire. \
 	Light and easy to use one handed, but still a sidearm. Comes in a holster that fits on your waist or armor. Uses 9mm AP ammunition."
-	ui_icon = "88m4"
+	ui_icon = "vp70"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
