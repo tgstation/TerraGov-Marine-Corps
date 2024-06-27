@@ -293,13 +293,6 @@ export const GameSettings = (props) => {
           <Section title="Sound settings">
             <LabeledList>
               <ToggleFieldPreference
-                label="Toggle adminhelp sound"
-                value="toggle_adminhelp_sound"
-                action="toggle_adminhelp_sound"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-              />
-              <ToggleFieldPreference
                 label="Toggle admin music"
                 value="toggle_admin_music"
                 action="toggle_admin_music"
@@ -361,6 +354,13 @@ export const GameSettings = (props) => {
                   label="Split admin tabs"
                   value="split_admin_tabs"
                   action="split_admin_tabs"
+                  leftLabel={'Enabled'}
+                  rightLabel={'Disabled'}
+                />
+                <ToggleFieldPreference
+                  label="Toggle adminhelp sound"
+                  value="toggle_adminhelp_sound"
+                  action="toggle_adminhelp_sound"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
                 />
