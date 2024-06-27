@@ -271,7 +271,7 @@
 
 ///Handles behavior when attacking a mob with bicaridine
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	if(user.a_intent != INTENT_HELP) //Self-heal on attacking
+	if(user.a_intent != INTENT_HELP || isxeno(target)) //Self-heal on attacking
 		new /obj/effect/temp_visual/telekinesis(get_turf(user))
 		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 		user.adjustStaminaLoss(-30)
