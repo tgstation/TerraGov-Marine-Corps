@@ -78,6 +78,8 @@
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
+	/// Timer for when the mission starts
+	var/start_timer
 	///The length of time until mission ends, if timed
 	var/max_game_time = 0
 	///Whether the max game time has been reached
@@ -181,7 +183,7 @@
 	play_selection_intro()
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
+	start_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay, TIMER_STOPPABLE)
 	load_pre_mission_bonuses()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED), PROC_REF(remove_mission_flag))
 
@@ -307,6 +309,7 @@
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED)
+	start_timer = null
 	if(!shutter_open_delay[MISSION_STARTING_FACTION])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else

@@ -68,25 +68,29 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 			faction_datum.set_attrition(choice, user)
 			message_admins("[usr.client] set the active attrition for [faction_datum.faction] to [choice]")
 			log_admin("[usr.client] set the active attrition for [faction_datum.faction] to [choice]")
-			. = TRUE
+			update_static_data_for_all_viewers()
+			return TRUE
 		if("add_attrition_points")
 			var/choice = tgui_input_number(user, "How much total attrition would you like to add?", "Attrition Point selection", 0, 9999, -9999)
 			faction_datum.total_attrition_points += choice
 			message_admins("[usr.client] added [choice] attrition to [faction_datum.faction]")
 			log_admin("[usr.client] added [choice] attrition to [faction_datum.faction]")
-			. = TRUE
+			update_static_data_for_all_viewers()
+			return TRUE
 		if("set_leader")
 			var/choice = tgui_input_list(user, "Who would you like to promote to faction leader?", "Leader selection", GLOB.alive_human_list_faction[faction_datum.faction], null)
 			faction_datum.set_faction_leader(choice)
 			message_admins("[usr.client] set faction leader of [faction_datum.faction] to [choice ? choice : "no one"]")
 			log_admin("[usr.client] set faction leader of [faction_datum.faction] to [choice ? choice : "no one"]")
-			. = TRUE
+			update_static_data_for_all_viewers()
+			return TRUE
 		if("set_victory_points")
 			var/choice = tgui_input_number(user, "How many victory points would you like to add?", "Attrition Point selection", 0, CAMPAIGN_MAX_VICTORY_POINTS, -CAMPAIGN_MAX_VICTORY_POINTS)
 			faction_datum.victory_points += choice
 			message_admins("[usr.client] set the victory points for [faction_datum.faction] to [choice]")
 			log_admin("[usr.client] set the victory points for [faction_datum.faction] to [choice]")
-			. = TRUE
+			update_static_data_for_all_viewers()
+			return TRUE
 		if("add_mission")
 			var/choice = tgui_input_list(user, "What mission would you like to add?", "Add mission", subtypesof(/datum/campaign_mission), null)
 			if(!choice)
@@ -94,7 +98,7 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 			faction_datum.add_new_mission(choice)
 			message_admins("[usr.client] added the mission [choice] to [faction_datum.faction]")
 			log_admin("[usr.client] added the mission [choice] to [faction_datum.faction]")
-			. = TRUE
+			return TRUE
 		if("add_asset")
 			var/choice = tgui_input_list(user, "What asset would you like to add?", "Add asset", subtypesof(/datum/campaign_asset), null)
 			if(!choice)
@@ -102,8 +106,42 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 			faction_datum.add_asset(choice)
 			message_admins("[usr.client] added the asset [choice] to [faction_datum.faction]")
 			log_admin("[usr.client] added the asst [choice] to [faction_datum.faction]")
-			. = TRUE
-
-	if(!.)
-		return
-	update_static_data_for_all_viewers()
+			return TRUE
+		if("force_autobalance")
+			current_mode.autobalance_cycle(TRUE)
+			message_admins("[usr.client] forced autobalance")
+			log_admin("[usr.client] forced autobalance")
+			return TRUE
+		if("mission_start_timer")
+			if(current_mode.current_mission.mission_state != MISSION_STATE_LOADED)
+				to_chat(user, "Mission is not in pregame.")
+				return FALSE
+			if(current_mode.current_mission.start_timer)
+				deltimer(current_mode.current_mission.start_timer)
+				current_mode.current_mission.start_timer = null
+				message_admins("[usr.client] cancelled the mission start timer")
+				log_admin("[usr.client] cancelled the mission start timer")
+				return TRUE
+			var/choice = tgui_input_number(user, "How long would you like to set the delay to?", "Mission start timer", current_mode.current_mission.mission_start_delay, 20 MINUTES, 1)
+			if(!choice)
+				return FALSE
+			current_mode.current_mission.start_timer = addtimer(CALLBACK(current_mode.current_mission, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), choice, TIMER_STOPPABLE)
+			message_admins("[usr.client] resumed the mission start timer at [choice * 0.1] seconds.")
+			log_admin("[usr.client] resumed the mission start timer at [choice * 0.1] seconds.")
+			return TRUE
+		if("mission_timer")
+			if(current_mode.current_mission.mission_state != MISSION_STATE_ACTIVE)
+				to_chat(user, "Mission is not active.")
+				return FALSE
+			if(current_mode.current_mission.game_timer)
+				current_mode.current_mission.pause_mission_timer()
+				message_admins("[usr.client] paused the mission timer")
+				log_admin("[usr.client] paused the mission timer")
+				return TRUE
+			var/choice = tgui_input_list(user, "Force timer on?", "Force timer", list("Yes", "No"), "No")
+			if(choice != "Yes")
+				choice = null
+			current_mode.current_mission.resume_mission_timer(forced = choice)
+			message_admins("[usr.client] resumed the mission timer")
+			log_admin("[usr.client] resumed the mission timer")
+			return TRUE
