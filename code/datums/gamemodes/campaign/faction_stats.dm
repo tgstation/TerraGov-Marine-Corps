@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/old_leader = faction_leader
 	faction_leader = new_leader
 
-	if(old_leader)
+	if(old_leader && old_leader != faction_leader)
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[old_leader] has been demoted from the role of faction commander", faction_portrait)
 	if(!faction_leader)
