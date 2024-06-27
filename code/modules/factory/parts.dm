@@ -879,13 +879,14 @@ GLOBAL_LIST_INIT(heavy_isg_recipe, list(
 	. = ..()
 	recipe = GLOB.heavy_isg_recipe
 
-	/obj/item/factory_part/heavy_isg_sabot
+/obj/item/factory_part/heavy_isg_sabot
 	name = "\improper FK-88 HE shell assembly"
 	desc = "An incomplete FK-88 APFDS shell assembly."
 	result = /obj/item/ammo_magazine/heavy_isg/sabot
 
 /obj/item/factory_part/heavy_isg_sabot/Initialize(mapload)
 	. = ..()
+	recipe = GLOB.heavy_isg_recipe
 
 GLOBAL_LIST_INIT(ac_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "uncutplate"),
