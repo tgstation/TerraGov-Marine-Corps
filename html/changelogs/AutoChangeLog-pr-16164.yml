@@ -1,4 +1,0 @@
-author: "JackTheJackhammer"
-delete-after: True
-changes:
-  - rscadd: "Adds a weight check to the codex's text generation for all items that act as storage"

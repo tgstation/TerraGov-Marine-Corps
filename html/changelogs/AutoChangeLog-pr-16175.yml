@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Fixed improper names showing when you played as a xeno without your rank turned on"
