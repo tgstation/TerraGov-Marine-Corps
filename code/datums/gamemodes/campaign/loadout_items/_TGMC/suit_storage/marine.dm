@@ -682,6 +682,7 @@
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full_alt
 	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = NONE
 
 /datum/loadout_item/suit_store/machete_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
