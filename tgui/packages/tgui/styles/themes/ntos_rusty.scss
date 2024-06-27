@@ -55,7 +55,6 @@
   );
 
   .Layout__content {
-    //background-image: none;
     background-image: repeating-linear-gradient(
         0deg,
         rgba(black, 0.15),
@@ -83,11 +82,8 @@
   }
 
   body {
-    //background-color: black;
     color: white;
     font: 1.3rem Inconsolata;
-
-    //font: bold 12px Arial, 'Helvetica Neue', Helvetica, sans-serif;
   }
   .Section__titleText {
     color: #e8aa24;
