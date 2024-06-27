@@ -188,9 +188,8 @@
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
 	else if(chassis.turret_overlay)
-		chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
 		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
-		chassis.turret_overlay.add_overlay(chassis.turret_overlay.secondary_overlay)
+		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
 		chassis.cut_overlay(chassis.secondary_weapon_overlay)
 		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
