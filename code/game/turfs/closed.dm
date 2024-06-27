@@ -225,11 +225,12 @@
 
 /turf/closed/mineral/smooth/jungletree
 	name = "dense jungle trees"
+	desc = "Some thick jungle trees, it looks impassible"
 	icon = 'icons/turf/walls/junglewall.dmi'
 	icon_state = "wall-display"
 	base_icon_state = "junglewall"
-	desc = "Some thick jungle trees, it looks impassible"
-	open_turf_type = /turf/open/ground/jungle/clear
+	open_turf_type = /turf/open/floor/plating/ground/dirt
+	plane = FLOOR_PLANE
 
 /turf/closed/mineral/smooth/jungletree/invincible
 	icon_state = "wall-invincible"

@@ -21268,6 +21268,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/urban/street/sidewalk{
 	dir = 8
 	},
@@ -42931,9 +42932,7 @@
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "hpZ" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
+/obj/item/trash/cigbutt,
 /obj/structure/cable,
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -56128,6 +56127,8 @@
 /obj/item/trash/cuppa_joes/empty_cup,
 /obj/item/trash/cuppa_joes/lid,
 /obj/item/trash/cigbutt,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "jBz" = (
@@ -138923,9 +138924,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "xDH" = (
-/obj/structure/prop/urban/lattice_prop/lattice_6{
-	pixel_y = 16
-	},
+/obj/effect/landmark/xeno_resin_door,
 /obj/structure/cable,
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -153141,13 +153140,13 @@ gOP
 gOP
 fqS
 eID
-eID
-dHb
-gDn
-fqS
-oHk
-xDH
 hpZ
+dHb
+xDH
+oHk
+oHk
+gOP
+fqS
 fqS
 qdx
 vsH
