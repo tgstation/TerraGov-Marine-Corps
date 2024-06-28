@@ -168,6 +168,10 @@
 "aW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage)
+"bb" = (
+/obj/machinery/factory/driller,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "bc" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -332,6 +336,15 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/bluesummers/inside/recreation)
+"cU" = (
+/obj/machinery/conveyor{
+	dir = 6;
+	id = "industrialwing"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 5
+	},
+/area/bluesummers/inside/industrial)
 "cV" = (
 /turf/closed/mineral/smooth/desertdamrockwall,
 /area/bluesummers/outside/south/roofed)
@@ -1838,6 +1851,10 @@
 	dir = 8
 	},
 /area/bluesummers/inside/biodome)
+"nP" = (
+/obj/machinery/factory/cutter,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "nS" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 2
@@ -1850,6 +1867,10 @@
 /obj/effect/mapping_helpers/airlock/welded,
 /turf/open/floor/plating,
 /area/bluesummers/inside/recreation)
+"nY" = (
+/obj/machinery/factory/flatter,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "ob" = (
 /obj/machinery/door_control{
 	id = "Electrical Plant";
@@ -2163,6 +2184,15 @@
 	dir = 1
 	},
 /area/bluesummers/inside/industrial)
+"qS" = (
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "industrialwing"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 9
+	},
+/area/bluesummers/inside/industrial)
 "qT" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought,
@@ -2375,6 +2405,17 @@
 	dir = 5
 	},
 /area/bluesummers/inside/recreation)
+"sB" = (
+/obj/machinery/door_control{
+	id = "Industrial Wing";
+	name = "Industrial Wing Shutters";
+	dir = 8
+	},
+/obj/machinery/factory/galvanizer,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/bluesummers/inside/industrial)
 "sC" = (
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -4325,6 +4366,10 @@
 /obj/machinery/computer/gravity_control_computer,
 /turf/open/floor/plating,
 /area/bluesummers/caves/cryostorage/gravity)
+"In" = (
+/obj/machinery/factory/compressor,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "Ip" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -4628,6 +4673,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering)
+"KV" = (
+/obj/machinery/door_control{
+	id = "Industrial Wing";
+	name = "Industrial Wing Shutters"
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/industrial)
 "KW" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/green/full,
@@ -5121,6 +5173,12 @@
 "Om" = (
 /turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
+"On" = (
+/obj/machinery/unboxer,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/bluesummers/inside/industrial)
 "Oq" = (
 /obj/structure/cryopods,
 /turf/open/floor/plating,
@@ -5230,6 +5288,15 @@
 "Pg" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/inside/biodome)
+"Ph" = (
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "industrialwing"
+	},
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 1
+	},
+/area/bluesummers/inside/industrial)
 "Pq" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -5543,6 +5610,10 @@
 	dir = 5
 	},
 /area/bluesummers/inside/engineering)
+"Sh" = (
+/obj/machinery/factory/heater,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "Si" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5573,6 +5644,14 @@
 	dir = 8
 	},
 /area/bluesummers/inside/engineering/office)
+"Sw" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "Industrial Wing";
+	name = "Industrial Wing Shutters"
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/industrial)
 "SB" = (
 /turf/open/floor/mainship_hull,
 /area/bluesummers/caves/martian)
@@ -5729,6 +5808,15 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/northwest/roofed)
+"Tw" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "industrialwing"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/bluesummers/inside/industrial)
 "Tz" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable/patch/grassyellow,
@@ -10838,7 +10926,7 @@ uo
 uo
 uo
 uo
-rP
+Sw
 uo
 uo
 xS
@@ -11010,7 +11098,7 @@ Vp
 Vp
 Jj
 LK
-uo
+Rp
 uo
 uo
 xS
@@ -11019,9 +11107,9 @@ Lx
 PZ
 PZ
 PZ
-PZ
+Rp
 Jj
-PZ
+Rp
 PZ
 fJ
 wf
@@ -11190,20 +11278,20 @@ wf
 Vp
 Vp
 LK
-Lx
-PZ
+Rp
+Rp
 LK
 PZ
 PZ
-fJ
+Rp
 Xi
 Lx
 PZ
+Rp
 PZ
 PZ
-PZ
-PZ
-PZ
+Rp
+Rp
 PZ
 fJ
 wf
@@ -11368,7 +11456,7 @@ wf
 Md
 uo
 uo
-uo
+Rp
 LK
 Jj
 wf
@@ -11376,7 +11464,7 @@ Lx
 PZ
 PZ
 PZ
-PZ
+Rp
 Jj
 wf
 Lx
@@ -11548,11 +11636,11 @@ Vl
 Wk
 vy
 Lx
-PZ
+Rp
 LK
 PZ
 PZ
-fJ
+Rp
 Xi
 Lx
 PZ
@@ -11731,9 +11819,9 @@ Vl
 vy
 Lx
 PZ
+Rp
 PZ
-PZ
-FQ
+Rp
 sa
 wf
 eI
@@ -11748,8 +11836,8 @@ wf
 wf
 wf
 PZ
-PZ
-PZ
+Rp
+Rp
 PZ
 PZ
 PZ
@@ -11914,7 +12002,7 @@ vy
 Lx
 PZ
 PZ
-PZ
+Rp
 Jj
 wf
 wf
@@ -11929,16 +12017,16 @@ PZ
 LK
 LK
 wf
-PZ
+Rp
 Jj
-PZ
-PZ
+Rp
+Rp
 PZ
 PZ
 Xi
-PZ
+Rp
 Jj
-PZ
+Rp
 wf
 vs
 xQ
@@ -12093,34 +12181,34 @@ Vl
 Vl
 iE
 wf
-wk
+KV
 LK
-PZ
+Rp
 PZ
 LK
 wf
 Jj
-PZ
-PZ
+Rp
+Rp
 PZ
 PZ
 Xi
 PZ
-PZ
-PZ
-PZ
+Rp
+Rp
+Rp
 LK
 wf
 PZ
-PZ
+Rp
 LK
 LK
 PZ
 PZ
 wf
-PZ
+Rp
 LK
-PZ
+Rp
 wf
 vs
 vs
@@ -12277,26 +12365,19 @@ Vl
 Vp
 Vp
 Jj
+Rp
 PZ
-PZ
-fJ
+Rp
 wf
-PZ
-PZ
+Rp
+Rp
 LK
 PZ
 PZ
 wf
-PZ
+Rp
 Jj
-PZ
-PZ
-PZ
-wf
-PZ
-PZ
-PZ
-PZ
+Rp
 PZ
 PZ
 wf
@@ -12304,6 +12385,13 @@ PZ
 PZ
 PZ
 PZ
+PZ
+PZ
+wf
+Rp
+Rp
+Rp
+Rp
 xQ
 vs
 vs
@@ -12460,7 +12548,7 @@ Vp
 Vp
 Vp
 LK
-CS
+Rp
 sa
 wf
 PZ
@@ -12483,7 +12571,7 @@ xw
 PZ
 wf
 LK
-PZ
+Rp
 Jj
 LK
 Rp
@@ -12825,7 +12913,7 @@ Vp
 Vp
 Vp
 LK
-PZ
+Rp
 wf
 PZ
 PZ
@@ -12850,14 +12938,14 @@ wf
 Md
 uo
 uo
+Rp
 uo
-uo
-uo
+Rp
 Gm
 Gm
 Gm
 Gm
-uo
+Rp
 uo
 uo
 xS
@@ -13006,7 +13094,7 @@ Vp
 Vp
 Vp
 LK
-PZ
+Rp
 PZ
 wf
 yp
@@ -13015,7 +13103,7 @@ wf
 wf
 Lx
 PZ
-PZ
+Rp
 PZ
 PZ
 PZ
@@ -13027,12 +13115,12 @@ PZ
 PZ
 PZ
 LK
-fJ
+Rp
 wf
 Lx
 PZ
-PZ
-PZ
+Rp
+Rp
 OI
 OI
 OI
@@ -13041,7 +13129,7 @@ Gm
 Gm
 Gm
 Gm
-PZ
+Rp
 we
 LK
 wf
@@ -13187,8 +13275,8 @@ Vl
 Vl
 Vl
 Wx
-PZ
-PZ
+Rp
+Rp
 PZ
 nq
 PZ
@@ -13196,9 +13284,9 @@ PZ
 ee
 wf
 Lx
-PZ
+Rp
 Jj
-PZ
+Rp
 PZ
 FQ
 CS
@@ -13208,11 +13296,11 @@ cK
 PZ
 PZ
 PZ
-PZ
-fJ
+Rp
+Rp
 wf
 Lx
-PZ
+Rp
 Gm
 Gm
 Gm
@@ -13224,7 +13312,7 @@ OI
 Gm
 Gm
 OI
-PZ
+Rp
 fJ
 wf
 wf
@@ -13369,9 +13457,9 @@ Vl
 Vl
 Wk
 Nq
-PZ
+Rp
 Jj
-PZ
+Rp
 PZ
 PZ
 PZ
@@ -13386,15 +13474,15 @@ fJ
 wf
 wf
 wf
-Lx
+Tw
 PZ
 PZ
-PZ
+nP
 PZ
 we
 uo
 qO
-PZ
+Rp
 Gm
 Gm
 OI
@@ -13406,7 +13494,7 @@ tR
 OI
 Gm
 Gm
-PZ
+Rp
 we
 xS
 wf
@@ -13551,8 +13639,8 @@ Vl
 Vl
 Vl
 wf
-PZ
-PZ
+Rp
+Rp
 PZ
 PZ
 PZ
@@ -13561,21 +13649,21 @@ PZ
 Nq
 Lx
 PZ
-PZ
+Rp
 PZ
 PZ
 we
 xS
 wf
-Md
-qO
+qS
+Ph
 PZ
 PZ
 PZ
 PZ
-PZ
-PZ
-PZ
+Rp
+Rp
+Rp
 OI
 OI
 Gm
@@ -13737,7 +13825,7 @@ wf
 PZ
 PZ
 PZ
-PZ
+Rp
 PZ
 PZ
 Nq
@@ -13749,14 +13837,14 @@ PZ
 PZ
 fJ
 wf
-Lx
+On
 PZ
+Rp
 PZ
-PZ
-PZ
-PZ
+nY
+Rp
 Jj
-PZ
+Rp
 PZ
 OI
 Gm
@@ -13770,7 +13858,7 @@ Gm
 Gm
 Gm
 Gm
-PZ
+Rp
 PZ
 fJ
 NC
@@ -13920,26 +14008,26 @@ PZ
 PZ
 LK
 LK
-PZ
+Rp
 PZ
 Wx
 Lx
 PZ
 PZ
 PZ
-PZ
-PZ
+Rp
+Rp
 fJ
 wf
-Lx
-PZ
+Tw
+Rp
 Jj
+Rp
+Rp
+Rp
+Rp
 PZ
-PZ
-PZ
-PZ
-PZ
-PZ
+Rp
 Gm
 Gm
 tR
@@ -13953,7 +14041,7 @@ tR
 Gm
 Gm
 OI
-PZ
+Rp
 fJ
 PZ
 Rp
@@ -14100,28 +14188,28 @@ Wk
 wf
 PZ
 PZ
-PZ
+Rp
 Jj
-PZ
+Rp
 PZ
 wf
 Lx
 PZ
 PZ
-PZ
+Rp
 Jj
-FQ
+Rp
 sa
 wf
-eI
-cK
-PZ
+cU
+Rp
+Rp
 LK
+Rp
 PZ
 PZ
 PZ
-PZ
-PZ
+Rp
 Gm
 Gm
 OI
@@ -14135,7 +14223,7 @@ tR
 OI
 Gm
 Gm
-PZ
+Rp
 fJ
 ws
 Rp
@@ -14289,22 +14377,22 @@ wf
 wf
 Lx
 PZ
-PZ
+Rp
 LK
 LK
-fJ
+Rp
 wf
 wf
 wf
 Lx
 PZ
+Rp
+bb
 PZ
-PZ
-PZ
-FQ
+Rp
 CS
 cK
-PZ
+Rp
 Gm
 Gm
 Gm
@@ -14316,7 +14404,7 @@ Gm
 Gm
 Gm
 Gm
-PZ
+Rp
 FQ
 sa
 wf
@@ -14471,22 +14559,22 @@ PZ
 NC
 Lx
 PZ
-PZ
-PZ
+Rp
+Rp
 LK
-we
+Rp
 uo
 uo
 uo
 qO
 PZ
 PZ
-PZ
-PZ
+Sh
+Rp
 LK
 wf
 Lx
-PZ
+Rp
 LK
 Gm
 Gm
@@ -14498,7 +14586,7 @@ Gm
 Gm
 Gm
 Gm
-PZ
+Rp
 fJ
 wf
 wf
@@ -14646,7 +14734,7 @@ Rp
 PZ
 PZ
 PZ
-PZ
+Rp
 LK
 PZ
 PZ
@@ -14655,6 +14743,7 @@ Lx
 PZ
 PZ
 PZ
+Rp
 PZ
 PZ
 PZ
@@ -14662,14 +14751,13 @@ PZ
 PZ
 PZ
 PZ
-PZ
-PZ
+In
 LK
 LK
 wf
 Lx
 PZ
-PZ
+Rp
 Gm
 OI
 OI
@@ -14679,7 +14767,7 @@ Gm
 Gm
 Gm
 OI
-PZ
+Rp
 FQ
 sa
 wf
@@ -14845,23 +14933,23 @@ CS
 CS
 CS
 CS
-th
-CS
+sB
+Rp
 Jj
 wf
 eI
 CS
 CS
-CS
-CS
+Rp
+Rp
 Gm
 Gm
 Gm
 Gm
 LK
+Rp
 CS
-CS
-CS
+Rp
 LK
 wf
 wf
@@ -15007,8 +15095,8 @@ Vl
 Vl
 Vl
 Wk
-PZ
-PZ
+Rp
+Rp
 PZ
 wf
 PZ
@@ -15190,12 +15278,12 @@ Vl
 Vl
 Vl
 Wk
-PZ
+Rp
 PZ
 NC
-PZ
+Rp
 LK
-PZ
+Rp
 PZ
 PZ
 wf
@@ -15218,7 +15306,7 @@ uo
 uo
 uo
 uo
-uo
+Rp
 xQ
 vs
 vs
@@ -15372,14 +15460,14 @@ Vl
 Vl
 Vl
 Vl
+Rp
+Rp
 PZ
 PZ
-PZ
-PZ
-PZ
-PZ
-PZ
-PZ
+Rp
+Rp
+Rp
+Rp
 wf
 LK
 LK
@@ -15397,10 +15485,10 @@ vy
 Lx
 PZ
 LK
-CS
+Rp
 PZ
 PZ
-PZ
+Rp
 vs
 vs
 vs
@@ -15555,15 +15643,15 @@ Vl
 Vl
 Vl
 Vl
-PZ
+Rp
 wf
 PZ
 PZ
-PZ
+Rp
 Jj
 LK
 mh
-PZ
+Rp
 LK
 PZ
 PZ
@@ -15571,17 +15659,17 @@ PZ
 wf
 PZ
 LK
-PZ
-PZ
+Rp
+Rp
 PZ
 PZ
 vy
-Lx
+Rp
 PZ
-fJ
+Rp
 wf
 PZ
-PZ
+Rp
 vs
 vs
 wc
@@ -15752,10 +15840,10 @@ PZ
 PZ
 wf
 PZ
-PZ
-PZ
+Rp
+Rp
 Jj
-PZ
+Rp
 PZ
 vy
 LK
@@ -15763,8 +15851,8 @@ PZ
 fJ
 wf
 LK
-PZ
-PZ
+Rp
+Rp
 vs
 xQ
 wc
@@ -15936,7 +16024,7 @@ wf
 PZ
 PZ
 PZ
-PZ
+Rp
 PZ
 IS
 wf
@@ -16111,7 +16199,7 @@ Vp
 Vp
 Vp
 LK
-uo
+Rp
 uo
 xS
 wf
@@ -16293,10 +16381,10 @@ Vp
 Vp
 Vp
 Jj
-PZ
+Rp
 PZ
 LK
-uo
+Rp
 xS
 wf
 Md
@@ -16306,7 +16394,7 @@ uo
 uo
 qO
 PZ
-PZ
+Rp
 Rp
 Rp
 LK
@@ -16474,7 +16562,7 @@ Vl
 Vp
 Vp
 wf
-Lx
+Rp
 PZ
 PZ
 PZ
@@ -16484,11 +16572,11 @@ wf
 Lx
 PZ
 PZ
+Rp
 PZ
 PZ
-PZ
-PZ
-PZ
+Rp
+Rp
 Jj
 Rp
 vs
@@ -16664,12 +16752,12 @@ PZ
 fJ
 wf
 Lx
-PZ
+Rp
 LK
 Jj
+Rp
 PZ
-PZ
-PZ
+Rp
 Jj
 LK
 vs
@@ -16838,7 +16926,7 @@ Vl
 Vl
 Wk
 Ad
-Lx
+Rp
 PZ
 PZ
 PZ
@@ -16847,11 +16935,11 @@ we
 uo
 qO
 PZ
-PZ
+Rp
 LK
+Rp
 PZ
-PZ
-fJ
+Rp
 wf
 Yi
 vs
@@ -17021,13 +17109,13 @@ Vl
 Vl
 Rp
 Jj
+Rp
 PZ
 PZ
 PZ
 PZ
 PZ
-PZ
-PZ
+Rp
 PZ
 PZ
 PZ
@@ -17202,8 +17290,8 @@ fy
 Wk
 Vl
 wf
-eI
-CS
+Rp
+Rp
 cK
 PZ
 PZ
