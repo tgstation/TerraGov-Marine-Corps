@@ -841,12 +841,12 @@ WEAPONS
 /datum/supply_packs/weapons/ltb_he_shell
 	name = "LTB High Explosive tank shell"
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 40
+	cost = 10
 
 /datum/supply_packs/weapons/ltb_apfds_shell
 	name = "LTB APFDS tank shell"
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 40
+	cost = 10
 
 /datum/supply_packs/weapons/ltb_canister_shell
 	name = "LTB Canister tank shell"
