@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - code_imp: "Ammo.dmi responding for all the ammo sprites in the game has been reorganizes, please report any missing icons."
