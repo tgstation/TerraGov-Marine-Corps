@@ -10,7 +10,7 @@
 	name = "LTB HE shell (105mm)"
 	desc = "A 105mm high explosive shell filled with a deadly explosive payload."
 	caliber = CALIBER_105MM
-	icon_state = "ltbammo"
+	icon_state = "ltb"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 1
@@ -25,13 +25,13 @@
 /obj/item/ammo_magazine/tank/ltb_cannon/apfds
 	name = "LTB APFDS round (105mm)"
 	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."
-	icon_state = "ltbammo_apfds"
+	icon_state = "ltb_apfds"
 	default_ammo = /datum/ammo/bullet/tank_apfds
 
 /obj/item/ammo_magazine/tank/ltb_cannon/canister
 	name = "LTB Canister round (105mm)"
 	desc = "A 105mm canister shell for demolishing soft targets the payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
-	icon_state = "ltbammo_canister"
+	icon_state = "ltb_canister"
 	default_ammo = /datum/ammo/tx54/tank_cannister
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
