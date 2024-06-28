@@ -25,6 +25,8 @@
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
 	var/list/stop_beam_turfs
+	//If the beam is stopped early, we only process the turfs in range of the (new) final turf
+	//We do this because we can't change the list the for loop is already cycling through
 
 	for(var/turf/line_turf AS in beam_turfs)
 		if(isclosedturf(line_turf))
