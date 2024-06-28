@@ -92,7 +92,7 @@
 		var/mob/living/spaceman = arrived
 		if(!spaceman.has_status_effect(debuff_type))
 			spaceman.apply_status_effect(debuff_type)
-		spaceman.ExtinguishMob()
+
 
 /turf/open/space/Exited(atom/movable/leaver, direction)
 	if(isliving(leaver))

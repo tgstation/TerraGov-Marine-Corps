@@ -432,6 +432,7 @@
 /datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
 	. = ..()
 	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+	new_owner.ExtinguishMob()
 
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
