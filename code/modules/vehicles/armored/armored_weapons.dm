@@ -67,7 +67,7 @@
 
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
-	if(!ammo || ammo.current_rounds < 0)
+	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
@@ -193,9 +193,8 @@
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
 	else if(chassis.turret_overlay)
-		chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
 		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
-		chassis.turret_overlay.add_overlay(chassis.turret_overlay.secondary_overlay)
+		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
 		chassis.cut_overlay(chassis.secondary_weapon_overlay)
 		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)

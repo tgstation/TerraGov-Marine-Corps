@@ -927,6 +927,13 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			supply_shuttle.buy(usr, src)
 			ui_act("send", params, ui, state)
 			SStgui.close_user_uis(usr, src)
+			current_veh_type = null
+			current_primary = null
+			current_secondary = null
+			current_driver_mod = null
+			current_gunner_mod = null
+			primary_ammo = list()
+			secondary_ammo = list()
 
 	if(.)
 		update_static_data(usr)
