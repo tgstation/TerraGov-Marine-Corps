@@ -338,3 +338,8 @@
       on how many tiles are hit, 5 damage per tile with fireball, and 15 damage per
       tile, per tick with heat ray.
   - bugfix: Fixed pyrogen's fireball dealing damage to friendly xenos
+2024-06-28:
+  Barnet2:
+  - balance: 'Daedalus Prison: Way more r walls, more rocks for xenos to heal, glass
+      ceilings in many prison areas (tad can land) and more RSR excavation sites in
+      the prison.'
