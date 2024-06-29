@@ -463,28 +463,28 @@
 	icon_state = "apartments"
 
 // Nanotrasen Offices
-/area/lv759/indoors/weyyu_office
+/area/lv759/indoors/nt_office
 	name = "Nanotrasen Offices - Reception Hallway"
 	icon_state = "wyoffice"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/lv759/indoors/weyyu_office/hallway
+/area/lv759/indoors/nt_office/hallway
 	name = "Nanotrasen Offices - West Foyer"
 	icon_state = "wyoffice"
 
-/area/lv759/indoors/weyyu_office/floor
+/area/lv759/indoors/nt_office/floor
 	name = "Nanotrasen Offices - Main Office Floor"
 
-/area/lv759/indoors/weyyu_office/breakroom
+/area/lv759/indoors/nt_office/breakroom
 	name = "Nanotrasen Offices - Breakroom"
 
-/area/lv759/indoors/weyyu_office/vip
+/area/lv759/indoors/nt_office/vip
 	name = "Nanotrasen Offices - Conference Room"
 
-/area/lv759/indoors/weyyu_office/pressroom
+/area/lv759/indoors/nt_office/pressroom
 	name = "Nanotrasen Offices - Assembly Hall"
 
-/area/lv759/indoors/weyyu_office/supervisor
+/area/lv759/indoors/nt_office/supervisor
 	name = "Nanotrasen Offices - Colony Supervisors Office"
 
 // Bar & Entertainment Complex

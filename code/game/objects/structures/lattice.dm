@@ -72,6 +72,7 @@
 	icon = 'icons/obj/smooth_objects/lattice.dmi'
 	icon_state = "lattice-0"
 	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE
 	base_icon_state = "lattice"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE_ABOVE)

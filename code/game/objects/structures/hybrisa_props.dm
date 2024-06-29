@@ -2392,7 +2392,7 @@
 	icon_state = "pizzaneon_on"
 
 /obj/structure/prop/urban/signs/weymartsign
-	name = "weymart sign"
+	name = "ntmart sign"
 	icon = 'icons/obj/structures/prop/urban/urban64x64_signs.dmi'
 	icon_state = "weymartsign2"
 

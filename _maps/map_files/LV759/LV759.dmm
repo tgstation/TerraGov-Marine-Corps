@@ -13,7 +13,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aax" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -475,7 +475,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "aeO" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -510,7 +510,7 @@
 	pixel_y = 16
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "afi" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
@@ -609,7 +609,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "afR" = (
 /turf/open/floor/prison/cellstripe{
 	dir = 1
@@ -740,15 +740,9 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "agY" = (
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 4;
-	id = "urbanLZ2_4";
-	name = "Emergency Lockdown"
-	},
-/turf/open/floor/mainship{
-	allow_construction = 0
-	},
-/area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
+/obj/structure/window/framed/urban/reinforced,
+/turf/open/floor/plating,
+/area/lv759/indoors/meridian/meridian_foyer)
 "ahb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -1511,7 +1505,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ant" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/bloodtrail,
@@ -2338,7 +2332,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "auG" = (
 /obj/item/stack/sheet/cardboard,
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -2380,7 +2374,7 @@
 "avh" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "avk" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/platform_decoration/shiva,
@@ -2432,7 +2426,7 @@
 	dir = 1
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "avu" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/mainship/gelida/rails{
@@ -2488,7 +2482,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "awc" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -21;
@@ -2700,7 +2694,7 @@
 	pixel_y = 26
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "axS" = (
 /obj/structure/barricade/handrail/strata,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2758,7 +2752,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "ayw" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -3647,7 +3641,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aHo" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -3675,7 +3669,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aHv" = (
 /obj/item/stool{
 	layer = 2;
@@ -3975,7 +3969,7 @@
 /obj/structure/table/black,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aJQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -4058,7 +4052,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "aKv" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
@@ -4202,7 +4196,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "aLe" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison{
@@ -4922,7 +4916,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "aRn" = (
 /obj/machinery/light{
 	dir = 8
@@ -5092,7 +5086,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "aTf" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/officetiles,
@@ -5502,7 +5496,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aWd" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -5693,7 +5687,7 @@
 	pixel_y = 12
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "aXL" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison/whitegreen,
@@ -5918,7 +5912,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "bak" = (
 /obj/effect/urban/decal/road/lines5,
 /obj/effect/urban/decal/dirt,
@@ -6156,7 +6150,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "bcC" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/binoculars,
@@ -6573,7 +6567,7 @@
 	dir = 1
 	},
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "bgQ" = (
 /turf/open/urban/street/sidewalk{
 	dir = 1
@@ -6690,7 +6684,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "bif" = (
 /obj/item/stack/sheet/cardboard{
 	layer = 2
@@ -6751,7 +6745,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "biq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -7110,7 +7104,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "bmC" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -7348,6 +7342,10 @@
 /obj/item/trash/cuppa_joes/empty_cup,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/central_streets)
+"bpe" = (
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
+/area/lv759/indoors/recycling_plant_office)
 "bpm" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -8618,7 +8616,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "bzZ" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
@@ -9135,7 +9133,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "bEW" = (
 /obj/machinery/light,
 /turf/open/floor/kutjevo/fake_wood,
@@ -9499,7 +9497,7 @@
 /area/lv759/indoors/NTmart)
 "bHF" = (
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "bHG" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/warning_cone{
@@ -9805,7 +9803,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "bJV" = (
 /obj/item/stack/rods{
 	pixel_y = 14
@@ -10137,7 +10135,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "bMP" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt,
@@ -10907,7 +10905,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "bUt" = (
 /obj/item/stool{
 	pixel_x = -4;
@@ -11955,7 +11953,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "cbY" = (
 /obj/item/trash/trashbag{
 	pixel_x = 2;
@@ -12454,7 +12452,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "cgt" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -12921,7 +12919,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "clc" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/light,
@@ -12944,7 +12942,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "clx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9;
@@ -13054,7 +13052,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "cmp" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -13088,7 +13086,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "cmK" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe{
 	dir = 4
@@ -13681,7 +13679,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "cro" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 1
@@ -13706,7 +13704,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "cru" = (
 /obj/item/shard,
 /obj/effect/urban/decal/dirt,
@@ -13926,7 +13924,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "csr" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/tie/stethoscope,
@@ -14370,7 +14368,7 @@
 "cxA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "cxE" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/miner/damaged,
@@ -14627,7 +14625,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "cAD" = (
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4
@@ -14767,7 +14765,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "cBH" = (
 /obj/effect/urban/decal/tiretrack{
 	pixel_y = 12
@@ -14866,7 +14864,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "cCy" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -15600,7 +15598,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "cIC" = (
 /obj/item/clothing/head/hardhat/white{
 	pixel_x = -8;
@@ -16752,7 +16750,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "cSY" = (
 /obj/structure/bed/stool{
 	buckling_y = 14;
@@ -17044,7 +17042,7 @@
 /obj/structure/bed/urban/chairs/black,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "cUX" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/plate,
@@ -17285,7 +17283,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "cXn" = (
 /obj/structure/prop/urban/vehicles/truck/garbage,
 /turf/open/urban/street/sidewalk{
@@ -17526,7 +17524,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "cZd" = (
 /turf/closed/shuttle/dropship4/brokenconsoleone,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -17729,7 +17727,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "dax" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -18080,7 +18078,7 @@
 	},
 /obj/effect/urban/decal/road/lines1,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "ddy" = (
 /obj/effect/urban/decal/road/road_stop/five,
 /obj/effect/urban/decal/road/lines4,
@@ -18787,7 +18785,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/pwine,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "djv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	pixel_y = -1
@@ -18982,7 +18980,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "dlz" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -19333,7 +19331,7 @@
 "doj" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "doq" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines1,
@@ -19377,7 +19375,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "doQ" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 9
@@ -20703,7 +20701,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "dBl" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -22395,7 +22393,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 9
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "dRz" = (
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_street)
@@ -22791,6 +22789,10 @@
 	dir = 8
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
+"dTZ" = (
+/obj/structure/window_frame/urban,
+/turf/open/floor/plating,
+/area/lv759/indoors/colonial_marshals/hallway_north)
 "dUb" = (
 /obj/structure/sink{
 	dir = 8;
@@ -23588,7 +23590,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "eco" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -23907,7 +23909,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "efg" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -24090,7 +24092,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "egA" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -24226,7 +24228,7 @@
 "ehO" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ehQ" = (
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/urban/colony,
@@ -24287,7 +24289,7 @@
 "eiI" = (
 /obj/effect/decal/cleanable/dirt/grime3,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "eiJ" = (
 /obj/machinery/light{
 	dir = 8;
@@ -24711,7 +24713,7 @@
 "eml" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "emr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -25077,7 +25079,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "epm" = (
 /obj/structure/closet/firecloset,
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
@@ -25107,7 +25109,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "epH" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -25255,7 +25257,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "eqx" = (
 /obj/machinery/light/small/blue{
 	dir = 8
@@ -25430,7 +25432,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "esl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25548,7 +25550,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "esZ" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -13;
@@ -25825,7 +25827,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "evz" = (
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab"
@@ -26224,7 +26226,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ezu" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 4;
@@ -26602,7 +26604,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "eDp" = (
 /obj/structure/sink{
 	dir = 1;
@@ -27253,7 +27255,7 @@
 	pixel_y = 6
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "eIM" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/red{
@@ -27622,7 +27624,7 @@
 /obj/item/tool/stamp,
 /obj/item/tool/pen,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "eLN" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	pixel_x = 30
@@ -27845,7 +27847,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "eOu" = (
 /obj/machinery/light/blue{
 	dir = 8
@@ -28334,7 +28336,7 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "eRF" = (
 /obj/machinery/space_heater/radiator/red{
 	dir = 1;
@@ -28853,6 +28855,13 @@
 /obj/item/shard,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/xenobiology)
+"eXF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab"
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/lv759/indoors/electical_systems/substation3)
 "eXG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	color = "#a6aeab"
@@ -29057,7 +29066,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 6
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "eZL" = (
 /obj/effect/spawner/random/engineering/metal,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -29266,7 +29275,7 @@
 	pixel_y = 16
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "fbC" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/prison/yellow{
@@ -30244,7 +30253,7 @@
 	},
 /obj/item/tool/pen,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "fje" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cellstripe{
@@ -31145,7 +31154,7 @@
 	dir = 2
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "frx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1;
@@ -31280,7 +31289,7 @@
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "fsE" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/road_edge/three,
@@ -31449,7 +31458,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "ftM" = (
 /obj/item/ammo_casing/bullet,
 /obj/structure/cable,
@@ -31602,7 +31611,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "fvc" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -31752,7 +31761,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "fwy" = (
 /obj/structure/prop/urban/cavedecor/stalagmite3,
 /turf/open/urbanshale/layer1,
@@ -31946,7 +31955,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "fyE" = (
 /obj/structure/window/framed/urban/colony/hospital,
 /obj/structure/sign/safety/medical,
@@ -32092,7 +32101,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "fzS" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -33285,7 +33294,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "fJF" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/paper/crumpled,
@@ -33413,7 +33422,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "fKI" = (
 /obj/structure/largecrate/random/barrel/black,
 /turf/open/urban/street/cement3,
@@ -33808,7 +33817,7 @@
 "fNM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "fNN" = (
 /turf/open/floor/prison{
 	dir = 8
@@ -34034,7 +34043,7 @@
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "fPE" = (
 /obj/effect/urban/decal/road/roadmiddle{
 	dir = 1;
@@ -34541,7 +34550,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "fTY" = (
 /obj/machinery/power/port_gen,
 /obj/structure/barricade/metal/deployable{
@@ -34753,7 +34762,7 @@
 	layer = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "fVT" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines3,
@@ -34783,7 +34792,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "fWg" = (
 /obj/machinery/streetlight/street{
 	level = 7;
@@ -35341,7 +35350,7 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "gba" = (
 /obj/effect/urban/decal/workers_decal{
 	dir = 4
@@ -35664,7 +35673,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "ged" = (
 /obj/structure/table/reinforced{
 	layer = 2
@@ -35950,7 +35959,7 @@
 /obj/structure/table/black,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "ggy" = (
 /obj/structure/filingcabinet/nondense{
 	pixel_x = -8;
@@ -36282,7 +36291,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "giU" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/door/airlock/mainship/generic{
@@ -37073,7 +37082,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "gpp" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 10;
@@ -37585,7 +37594,7 @@
 	pixel_y = 11
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "gtT" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -22;
@@ -37690,7 +37699,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "guO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -37842,7 +37851,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "gwe" = (
 /obj/machinery/vending/cola{
 	pixel_y = 16
@@ -38795,7 +38804,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "gEG" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_edge/four,
@@ -39043,7 +39052,7 @@
 "gHE" = (
 /obj/machinery/photocopier,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "gHL" = (
 /obj/structure/largecrate/random/barrel/black,
 /turf/open/urban/street/sidewalk,
@@ -39868,7 +39877,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "gQJ" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
@@ -40008,7 +40017,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "gSd" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe,
 /obj/structure/cable,
@@ -40323,7 +40332,7 @@
 /obj/structure/prop/urban/misc/machinery/screens/entertainment,
 /obj/structure/prop/urban/misc/machinery/screens/frame,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "gVe" = (
 /obj/effect/urban/decal/road/road_stop/three,
 /turf/open/urban/street/asphalt,
@@ -40723,7 +40732,7 @@
 /obj/item/clothing/tie/blue,
 /obj/item/clothing/tie/red,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "gYG" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/urban/street/sidewalk,
@@ -40901,7 +40910,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hai" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10;
@@ -41024,7 +41033,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "hbe" = (
 /obj/machinery/light,
 /obj/structure/largecrate/random/barrel/green,
@@ -41390,7 +41399,7 @@
 /area/lv759/indoors/spaceport/starglider)
 "hdi" = (
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "hdj" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -41482,7 +41491,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "hdZ" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -41689,7 +41698,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hgi" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 4;
@@ -41882,7 +41891,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hhL" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -42131,7 +42140,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "hke" = (
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2,
 /turf/open/floor/plating,
@@ -42688,7 +42697,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "hox" = (
 /obj/structure/cable,
 /obj/effect/landmark/xeno_resin_wall,
@@ -42753,7 +42762,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hoU" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4;
@@ -42762,7 +42771,7 @@
 	},
 /obj/effect/urban/decal/trash,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hoX" = (
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
 /turf/open/urbanshale/layer1,
@@ -42826,7 +42835,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "hpm" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/prop/urban/misc/buildinggreebliessmall{
@@ -43586,7 +43595,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hvw" = (
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/janitor)
@@ -43658,7 +43667,7 @@
 /turf/open/floor/mainship{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "hwG" = (
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/prison{
@@ -43774,7 +43783,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hxm" = (
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
@@ -43820,7 +43829,7 @@
 /obj/structure/sign/nosmoking_1,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "hxF" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -43893,7 +43902,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "hyk" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -44036,7 +44045,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "hzy" = (
 /turf/closed/shuttle/dropship4/corners,
 /area/lv759/indoors/spaceport/starglider)
@@ -44178,7 +44187,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "hAy" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/colony,
@@ -44280,7 +44289,7 @@
 	},
 /obj/effect/urban/decal/trash,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hBb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
@@ -44466,7 +44475,7 @@
 	},
 /obj/effect/urban/decal/road/lines3,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "hCP" = (
 /obj/structure/window/framed/urban/junk_window,
 /turf/open/floor/plating,
@@ -44607,7 +44616,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hEq" = (
 /obj/item/storage/briefcase,
 /obj/structure/largecrate/random/case/small{
@@ -44663,7 +44672,7 @@
 /area/lv759/indoors/colonial_marshals/north_office)
 "hEX" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "hFb" = (
 /obj/structure/largecrate/random/barrel{
 	layer = 2.8;
@@ -45637,7 +45646,7 @@
 	dir = 4
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "hNF" = (
 /turf/open/floor/bluethree{
 	dir = 1
@@ -46236,7 +46245,7 @@
 	dir = 6
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "hSA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tilewhite,
@@ -46355,7 +46364,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "hTp" = (
 /obj/structure/bed/chair{
 	dir = 8;
@@ -47425,7 +47434,7 @@
 	},
 /obj/effect/urban/decal/road/lines2,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "idN" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/officetiles,
@@ -47602,7 +47611,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 6
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ifv" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -9;
@@ -48245,7 +48254,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ila" = (
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
@@ -48527,7 +48536,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "int" = (
 /obj/item/trash/cigbutt,
 /turf/open/urban/street/sidewalk{
@@ -49119,7 +49128,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "isK" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -49226,7 +49235,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "itR" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/landmark/xeno_resin_wall,
@@ -49797,7 +49806,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/lines3,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "izc" = (
 /obj/structure/largecrate/random,
 /obj/effect/landmark/weed_node,
@@ -49818,7 +49827,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "izj" = (
 /obj/item/shard,
 /obj/structure/cable,
@@ -50450,7 +50459,7 @@
 	dir = 9
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "iFC" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -50477,7 +50486,7 @@
 	pixel_y = -7
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "iFM" = (
 /obj/structure/sink{
 	pixel_y = 24
@@ -50738,7 +50747,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "iIg" = (
 /obj/structure/cable,
 /turf/open/floor/plating/kutjevo,
@@ -50756,7 +50765,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "iIp" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/road/lines2,
@@ -51053,7 +51062,7 @@
 /area/lv759/oob)
 "iLc" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "iLd" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -51245,7 +51254,7 @@
 "iMM" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "iMQ" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 4
@@ -51817,7 +51826,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "iRs" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -52333,7 +52342,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "iVV" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -52502,7 +52511,7 @@
 "iXe" = (
 /obj/structure/sign/safety/breakroom,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "iXm" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison{
@@ -52561,7 +52570,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "iXR" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
@@ -52885,7 +52894,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "jav" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -52930,7 +52939,7 @@
 	},
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "jaQ" = (
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
@@ -53015,7 +53024,7 @@
 	layer = 2.9
 	},
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "jbp" = (
 /obj/machinery/vending/security,
 /turf/open/floor/prison/red{
@@ -53475,6 +53484,10 @@
 	dir = 8
 	},
 /area/lv759/indoors/meridian/meridian_factory)
+"jeO" = (
+/obj/structure/window_frame/urban,
+/turf/open/floor/plating,
+/area/lv759/indoors/colonial_marshals/hallway_central)
 "jeQ" = (
 /obj/effect/urban/decal/road/roadmiddle{
 	dir = 8;
@@ -54236,7 +54249,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "jkE" = (
 /obj/machinery/door/airlock/dropship_hatch/left/two,
 /turf/open/floor/officetiles,
@@ -54860,7 +54873,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "jqM" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/jerrycan,
@@ -54999,10 +55012,10 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "jrw" = (
 /obj/item/shard,
-/obj/structure/window_frame/urban,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northapartments)
 "jrx" = (
@@ -55028,7 +55041,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "jrM" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 5;
@@ -55414,7 +55427,7 @@
 /obj/item/trash/cigbutt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "juL" = (
 /obj/machinery/light/spot/blue{
 	dir = 8
@@ -56772,7 +56785,7 @@
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "jIw" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/ammo_casing/bullet,
@@ -56812,7 +56825,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "jIG" = (
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalkfull,
@@ -56979,7 +56992,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "jKw" = (
 /obj/machinery/light,
 /obj/structure/prop/urban/supermart/rack/longrackempty,
@@ -56997,7 +57010,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "jKI" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -57285,7 +57298,7 @@
 /area/lv759/indoors/casino)
 "jMV" = (
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "jMW" = (
 /obj/machinery/streetlight/street{
 	level = 7;
@@ -58136,7 +58149,7 @@
 	pixel_y = 20
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "jVy" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco2{
 	dir = 4
@@ -58174,7 +58187,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 10
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "jVQ" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/structure/prop/urban/misc/firehydrant{
@@ -58287,7 +58300,7 @@
 "jWI" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "jWL" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/ai_node,
@@ -58656,7 +58669,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "jZu" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/roller,
@@ -59536,7 +59549,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "khY" = (
 /obj/effect/urban/decal/road/roadmiddle{
 	dir = 8;
@@ -59720,7 +59733,7 @@
 "kjw" = (
 /obj/structure/cable,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "kjx" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -4;
@@ -59863,7 +59876,7 @@
 /turf/open/floor/urban/metal/bluemetalcorner{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "kle" = (
 /obj/machinery/landinglight/lz2,
 /obj/structure/barricade/handrail/strata,
@@ -60313,7 +60326,7 @@
 /area/lv759/indoors/colonial_marshals/armory)
 "kpx" = (
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "kpy" = (
 /obj/structure/cable,
 /turf/open/floor/urban/metal/bluemetal1{
@@ -61028,7 +61041,7 @@
 /obj/structure/bed/chair/office/dark,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "kwr" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
@@ -61483,7 +61496,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "kAb" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light{
@@ -62282,7 +62295,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "kHo" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/plating_catwalk{
@@ -62362,7 +62375,7 @@
 /area/lv759/indoors/spaceport/hallway_east)
 "kHT" = (
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "kHX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -62591,7 +62604,7 @@
 "kKO" = (
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "kKS" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
@@ -63745,7 +63758,7 @@
 /obj/structure/curtain/temple,
 /obj/machinery/door/poddoor/shutters/urban/open_shutters/opened,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "kUQ" = (
 /obj/item/pizzabox/margherita,
 /turf/open/urban/street/asphalt,
@@ -63894,7 +63907,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "kVv" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -64202,7 +64215,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "kYt" = (
 /turf/open/floor/prison/darkbrown{
 	dir = 1
@@ -64379,7 +64392,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "kZX" = (
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 4
@@ -64692,7 +64705,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lcQ" = (
 /obj/structure/window/reinforced{
 	layer = 5
@@ -64932,6 +64945,10 @@
 	dir = 8
 	},
 /area/lv759/indoors/landing_zone_1/flight_control_room)
+"lfb" = (
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
+/area/lv759/oob)
 "lfc" = (
 /obj/structure/prop/urban/containersextended/blueright,
 /turf/open/floor/mainship/cargo,
@@ -64980,7 +64997,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "lfu" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "lfA" = (
 /obj/structure/bed/urban/bunkbed4{
 	dir = 4
@@ -65014,7 +65031,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "lga" = (
 /obj/item/shard,
 /obj/effect/urban/decal/dirt,
@@ -65036,7 +65053,7 @@
 "lgc" = (
 /obj/structure/bed/chair,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "lgh" = (
 /obj/structure/closet/crate/trashcart{
 	opened = 1
@@ -65217,7 +65234,7 @@
 	dir = 6
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lhF" = (
 /obj/effect/ai_node,
 /turf/open/urban/street/sidewalk,
@@ -65236,7 +65253,7 @@
 /obj/machinery/faxmachine,
 /obj/structure/table/black,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lhR" = (
 /obj/structure/window/reinforced,
 /obj/machinery/prop/computer/PC{
@@ -65246,7 +65263,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lhW" = (
 /turf/open/floor/prison{
 	dir = 10
@@ -65318,7 +65335,7 @@
 /turf/open/floor/urban/metal/bluemetalcorner{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "liu" = (
 /obj/structure/stairs/seamless{
 	color = "#a6aeab";
@@ -65789,7 +65806,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "lmf" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -66047,7 +66064,7 @@
 	pixel_y = 14
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "loG" = (
 /obj/structure/prop/urban/containersextended/medicalleft,
 /obj/structure/cable,
@@ -66367,7 +66384,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "lsm" = (
 /obj/machinery/space_heater/radiator/red{
 	dir = 4;
@@ -66635,7 +66652,7 @@
 /obj/structure/table/black,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "luJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment{
@@ -66855,7 +66872,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 9
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "lwF" = (
 /obj/structure/barricade/handrail/kutjevo{
 	dir = 4
@@ -66905,7 +66922,7 @@
 	pixel_y = 6
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "lwY" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban/metal/bluemetalcorner{
@@ -66998,7 +67015,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lxZ" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -67434,7 +67451,7 @@
 /turf/open/floor/urban/metal/bluemetalcorner{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "lCL" = (
 /obj/machinery/door/poddoor/shutters/urban/biohazard/white,
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -67538,11 +67555,6 @@
 "lDz" = (
 /obj/effect/urban/decal/dirt{
 	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2;
-	id = "urbanLZ2_3";
-	name = "Emergency Lockdown"
 	},
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -68191,7 +68203,7 @@
 "lIX" = (
 /obj/machinery/photocopier,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lIZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -68233,7 +68245,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "lJn" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt{
@@ -68882,7 +68894,7 @@
 	},
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "lOK" = (
 /obj/structure/bed/chair,
 /obj/effect/urban/decal/dirt,
@@ -68968,14 +68980,14 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "lPp" = (
 /obj/structure/window/framed/urban/colony/office,
 /obj/machinery/door/poddoor/shutters/urban/open_shutters/opened{
 	dir = 2
 	},
 /turf/open/urban/street/sidewalk,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "lPr" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -68999,7 +69011,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "lPy" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/autopsy_scanner{
@@ -69065,7 +69077,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "lPU" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -69221,7 +69233,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "lQO" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt{
@@ -70256,7 +70268,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "lZG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -70777,7 +70789,7 @@
 /turf/open/floor/urban/metal/bluemetalcorner{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "mfb" = (
 /obj/structure/platform/urban/metalplatform4,
 /obj/structure/prop/urban/signs/weymartsign{
@@ -71025,7 +71037,7 @@
 /obj/structure/table/black,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "mgK" = (
 /obj/structure/closet/bodybag,
 /obj/effect/landmark/weed_node,
@@ -71581,7 +71593,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "mkW" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -71866,7 +71878,7 @@
 /obj/effect/landmark/weed_node,
 /obj/machinery/miner/damaged,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "mnu" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -72588,7 +72600,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "mtA" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -72623,7 +72635,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "mtL" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -72662,7 +72674,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "mui" = (
 /obj/structure/cable,
 /turf/open/urban/street/cement3,
@@ -72739,7 +72751,7 @@
 "muK" = (
 /obj/structure/sign/safety/breakroom,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "muL" = (
 /obj/structure/bed/stool{
 	buckling_y = 14;
@@ -72883,7 +72895,7 @@
 /obj/item/trash/cigbutt,
 /obj/effect/ai_node,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "mwt" = (
 /obj/structure/cable,
 /obj/item/clothing/glasses/regular/hipster,
@@ -73507,7 +73519,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "mBG" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -75234,7 +75246,7 @@
 /obj/item/storage/secure/briefcase,
 /obj/effect/spawner/random/misc/cigar,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "mRg" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/sign/safety/maintenance,
@@ -75592,7 +75604,7 @@
 	dir = 6
 	},
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "mUJ" = (
 /obj/item/trash/cigbutt{
 	pixel_x = -10;
@@ -76222,7 +76234,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "mZv" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/plating{
@@ -76709,7 +76721,7 @@
 "ncW" = (
 /obj/machinery/photocopier,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "ndb" = (
 /obj/effect/urban/decal/trash/eleven{
 	dir = 4
@@ -77200,7 +77212,7 @@
 /area/lv759/outdoors/caveplateau)
 "nhe" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "nhj" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -77562,7 +77574,7 @@
 	pixel_y = 12
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "njN" = (
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
@@ -77785,7 +77797,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "nmd" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 5;
@@ -78870,7 +78882,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nve" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -79092,7 +79104,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "nxy" = (
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
@@ -79534,7 +79546,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "nAJ" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -79738,7 +79750,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "nCD" = (
 /turf/open/floor/prison/red{
 	dir = 9
@@ -80154,7 +80166,7 @@
 	pixel_x = -17
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nGI" = (
 /obj/structure/bed/chair{
 	buckling_y = 6;
@@ -80332,7 +80344,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "nJe" = (
 /obj/structure/cable,
 /turf/open/floor/urban/tile/blacktileshiny,
@@ -80346,7 +80358,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nJg" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/radio/headset,
@@ -80623,7 +80635,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nKU" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/urban_wood,
@@ -81041,7 +81053,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nOq" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox{
@@ -81241,7 +81253,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "nQu" = (
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nQx" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -81454,7 +81466,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "nRU" = (
 /turf/open/floor/officetiles,
 /area/lv759/indoors/nt_research_complex/mainlabs)
@@ -81721,7 +81733,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "nUI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
@@ -81795,7 +81807,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nVt" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/platform/mineral{
@@ -81889,7 +81901,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nWm" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe{
 	dir = 4
@@ -82066,7 +82078,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nXz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -82123,7 +82135,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "nYg" = (
 /obj/structure/barricade/handrail/strata{
 	dir = 4;
@@ -82134,7 +82146,7 @@
 /turf/open/floor/prison{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "nYi" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -82486,7 +82498,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "obt" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
 	dir = 1
@@ -83422,7 +83434,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/pizzapasta/vegetablepizzaslice,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "ojf" = (
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
 	dir = 8
@@ -83527,7 +83539,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "ojZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -83634,7 +83646,7 @@
 	pixel_y = 18
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "olt" = (
 /obj/structure/bed/stool,
 /obj/machinery/space_heater/radiator/red{
@@ -84184,7 +84196,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "osb" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/clothing/head/warning_cone{
@@ -84255,7 +84267,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "osx" = (
 /obj/item/ammo_casing/bullet,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -84938,7 +84950,7 @@
 "oyS" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "oyW" = (
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 8
@@ -85684,7 +85696,7 @@
 /turf/open/floor/urban/metal/bluemetalcorner{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "oGg" = (
 /obj/structure/window/framed/urban/reinforced{
 	dir = 8
@@ -85735,7 +85747,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "oGP" = (
 /obj/effect/turf_decal/medical_decals/triage/edge,
 /turf/open/floor/prison{
@@ -85945,7 +85957,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "oIp" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -86463,7 +86475,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "oMO" = (
 /obj/structure/girder,
 /turf/open/urbanshale/layer1,
@@ -86594,7 +86606,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "oNZ" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/lines3,
@@ -86605,7 +86617,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "oOc" = (
 /obj/machinery/light/blue{
 	dir = 1
@@ -86774,7 +86786,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "oPm" = (
 /obj/item/shard,
 /obj/effect/turf_decal/medical_decals/triage{
@@ -86971,7 +86983,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "oRk" = (
 /obj/effect/turf_decal/medical_decals/triage,
 /turf/open/floor/urban/metal/stripe_red{
@@ -87717,7 +87729,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "oZz" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/food/drinks/cans/cola,
@@ -87849,7 +87861,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "paF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison{
@@ -90076,7 +90088,7 @@
 "ptp" = (
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "ptt" = (
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
@@ -90110,7 +90122,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "ptE" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -91779,7 +91791,7 @@
 "pGn" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "pGu" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/ore_box{
@@ -92233,7 +92245,7 @@
 "pKx" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "pKz" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -92313,11 +92325,6 @@
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
 "pKY" = (
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2;
-	id = "urbanLZ2_3";
-	name = "Emergency Lockdown"
-	},
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
 	dir = 4
@@ -93038,7 +93045,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "pRy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -93110,7 +93117,7 @@
 "pSq" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "pSs" = (
 /obj/machinery/light{
 	dir = 1
@@ -93257,7 +93264,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "pUx" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/road_stop/two,
@@ -93480,7 +93487,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "pWj" = (
 /obj/item/trash/mre,
 /obj/item/trash/cigbutt{
@@ -93551,7 +93558,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "pWG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -94123,7 +94130,7 @@
 "qaS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "qaT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -94177,7 +94184,7 @@
 /obj/item/trash/cigbutt,
 /obj/item/trash/cigbutt,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "qbt" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
@@ -94797,7 +94804,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "qgD" = (
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
@@ -95039,7 +95046,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "qiQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/road/lines1,
@@ -95160,7 +95167,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "qjS" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -95622,7 +95629,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "qoa" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/wood/blue,
@@ -96019,7 +96026,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "qrx" = (
 /obj/structure/lattice/autosmooth,
 /obj/structure/largecrate/random/mini/wooden,
@@ -96118,7 +96125,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "qst" = (
 /turf/closed/shuttle/dropship4/corners{
 	dir = 4
@@ -96145,7 +96152,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "qsS" = (
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
@@ -97040,7 +97047,11 @@
 	layer = 2.7
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
+"qCj" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/lv759/indoors/electical_systems/substation3)
 "qCo" = (
 /turf/open/floor/marked,
 /area/lv759/indoors/spaceport/cargo_maintenance)
@@ -97103,7 +97114,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "qCQ" = (
 /obj/machinery/prop/structurelattice{
 	dir = 4
@@ -97430,7 +97441,7 @@
 /obj/item/trash/cuppa_joes/lid,
 /obj/item/trash/cuppa_joes/empty_cup,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "qGV" = (
 /obj/machinery/vending/cola,
 /obj/machinery/light{
@@ -97541,7 +97552,7 @@
 /area/lv759/indoors/hospital/central_hallway)
 "qHE" = (
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "qHG" = (
 /obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/shutters/urban/open_shutters/opened{
@@ -97649,7 +97660,7 @@
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "qIU" = (
 /obj/item/device/flashlight/lamp/tripod/grey,
 /obj/effect/ai_node,
@@ -97910,7 +97921,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "qLs" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -97973,7 +97984,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "qLW" = (
 /obj/structure/closet/secure_closet/security,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -98636,7 +98647,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "qSh" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -98652,7 +98663,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "qSm" = (
 /obj/structure/prop/urban/misc/phonebox{
 	pixel_x = 6
@@ -98710,7 +98721,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "qSE" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -99221,7 +99232,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 9
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "qXx" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/urban/tile/cementflat,
@@ -99910,7 +99921,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "rdN" = (
 /obj/structure/disposaloutlet{
 	dir = 8
@@ -100097,7 +100108,7 @@
 "rfb" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "rfe" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/urban/colony,
@@ -100850,7 +100861,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "rlq" = (
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "rlw" = (
 /obj/structure/closet/crate/miningcar{
 	layer = 3
@@ -101430,7 +101441,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "rpZ" = (
 /obj/effect/urban/decal/trash/three,
 /turf/open/floor/urban/carpet/carpetbeigedeco,
@@ -101679,7 +101690,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "rsI" = (
 /obj/item/trash/cigbutt{
 	pixel_x = -10;
@@ -102111,6 +102122,9 @@
 "rwp" = (
 /turf/open/engineership/engineer_floor13,
 /area/lv759/oob)
+"rww" = (
+/turf/open/floor/plating,
+/area/lv759/indoors/recycling_plant_office)
 "rwA" = (
 /obj/structure/prop/urban/misc/fake/pipes/pipe1,
 /obj/effect/urban/decal/dirt,
@@ -102474,7 +102488,7 @@
 	pixel_y = -9
 	},
 /turf/open/floor/urban/metal/bluemetalcorner,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "rzZ" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/trash/four,
@@ -102633,7 +102647,7 @@
 /obj/effect/urban/decal/trash/three,
 /obj/effect/urban/decal/trash,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "rBA" = (
 /turf/closed/shuttle/dropship4/finright,
 /area/lv759/indoors/spaceport/horizon_runner)
@@ -103502,7 +103516,7 @@
 /obj/structure/sign/safety/breakroom,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "rJt" = (
 /obj/structure/closet/crate/miningcar{
 	layer = 3
@@ -103974,7 +103988,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "rNH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4;
@@ -104436,7 +104450,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "rRi" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt,
@@ -104739,7 +104753,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "rUd" = (
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/sidewalk{
@@ -104886,7 +104900,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "rVM" = (
 /obj/item/trash/trashbag{
 	pixel_x = 2;
@@ -105337,7 +105351,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "rZM" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
@@ -105418,7 +105432,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "saQ" = (
 /obj/item/device/flashlight/lamp/tripod,
 /turf/open/floor/plating,
@@ -105676,7 +105690,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sdN" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -105792,7 +105806,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "seo" = (
 /obj/structure/prop/urban/factory/robotic_arm/flipped{
 	dir = 1;
@@ -106529,7 +106543,7 @@
 	},
 /obj/structure/prop/urban/furniture/tables/tableblack,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "skA" = (
 /obj/structure/cable,
 /turf/open/floor/urban/metal/grated{
@@ -107211,7 +107225,7 @@
 	dir = 10
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "sqA" = (
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 8;
@@ -108215,7 +108229,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "syX" = (
 /obj/structure/closet/bodybag,
 /obj/effect/urban/decal/road/road_stop/five,
@@ -108269,7 +108283,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "szs" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/shuttle/dropship_white/interior_wall{
@@ -108697,7 +108711,7 @@
 	pixel_y = 16
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "sDg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -109462,7 +109476,7 @@
 "sJW" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "sKg" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 2;
@@ -109679,7 +109693,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sLv" = (
 /turf/open/floor/prison/ramptop{
 	dir = 4
@@ -109915,7 +109929,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "sNu" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/marine_card{
@@ -109987,7 +110001,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 9
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sNW" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/drip,
@@ -110271,7 +110285,7 @@
 /obj/structure/table/black,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "sQK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1
@@ -110279,7 +110293,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sQL" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -110375,7 +110389,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "sRy" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -110482,7 +110496,7 @@
 	},
 /obj/item/trash/cuppa_joes/lid,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "sSs" = (
 /obj/structure/bed/urban/prisonbed{
 	dir = 10
@@ -110570,7 +110584,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sTq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tilebeigecheckered,
@@ -110856,7 +110870,7 @@
 	pixel_x = 1
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sVK" = (
 /obj/structure/largecrate/random/case/small,
 /obj/structure/largecrate/random/mini/small_case{
@@ -111245,7 +111259,7 @@
 /turf/open/floor/mainship{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "sZa" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/generic,
@@ -111445,7 +111459,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "taG" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/largecrate/random/mini/small_case{
@@ -111514,7 +111528,7 @@
 	},
 /obj/item/storage/lockbox,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "tbs" = (
 /obj/structure/reagent_dispensers/fueltank/spacefuel,
 /turf/open/floor/plating,
@@ -112000,7 +112014,7 @@
 	dir = 2
 	},
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "tfo" = (
 /obj/structure/bed/stool{
 	buckling_y = 14;
@@ -112382,7 +112396,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "thY" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/urban/street/asphalt,
@@ -112815,7 +112829,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "tml" = (
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
@@ -112825,7 +112839,7 @@
 /turf/open/floor/mainship{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tmo" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
@@ -113509,7 +113523,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "tsO" = (
 /obj/machinery/door/poddoor/shutters/urban/white{
 	dir = 2;
@@ -113608,7 +113622,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "ttT" = (
 /obj/effect/mapping_helpers/airlock_autoname,
 /obj/machinery/door/airlock/multi_tile/urban/generic{
@@ -113789,7 +113803,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "tvA" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
@@ -113823,7 +113837,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "tvH" = (
 /obj/structure/closet,
 /obj/item/clothing/under/redpyjamas,
@@ -114523,7 +114537,7 @@
 	},
 /obj/item/folder/black,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "tBO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -115062,7 +115076,7 @@
 /obj/structure/table/black,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "tGL" = (
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/jacks_surplus)
@@ -115104,7 +115118,7 @@
 "tGZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tHa" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -115206,7 +115220,7 @@
 	},
 /obj/item/tool/mop,
 /turf/open/floor/urban/metal/bluemetalcorner,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tHM" = (
 /obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk{
@@ -115708,7 +115722,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tMs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -115724,7 +115738,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 6
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "tMv" = (
 /obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
 	pixel_y = 34
@@ -116027,7 +116041,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tPk" = (
 /obj/item/reagent_containers/food/drinks/cans/waterbottle{
 	pixel_x = 7;
@@ -117257,7 +117271,7 @@
 "tYK" = (
 /obj/structure/prop/urban/furniture/tables/tableblack,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "tYL" = (
 /obj/machinery/floodlight,
 /turf/open/floor/mech_bay_recharge_floor,
@@ -117296,7 +117310,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "tZc" = (
 /obj/effect/spawner/random/misc/structure/large/car/desat_blue{
 	dir = 4
@@ -117389,7 +117403,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "tZO" = (
 /obj/structure/platform_decoration/metalplatform_deco,
 /obj/effect/landmark/weed_node,
@@ -117668,11 +117682,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2;
-	id = "urbangarage_2";
-	name = "\improper Garage"
-	},
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
 "ubY" = (
@@ -117931,7 +117941,7 @@
 "uex" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "uey" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco1{
 	dir = 1
@@ -118736,7 +118746,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "ukQ" = (
 /obj/item/stack/sheet/cardboard,
 /obj/item/stack/sheet/wood,
@@ -119118,7 +119128,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "unW" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
@@ -119163,7 +119173,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "uol" = (
 /obj/item/toy/bikehorn/rubberducky,
 /obj/structure/platform/mineral,
@@ -119700,7 +119710,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "usi" = (
 /obj/effect/spawner/random/misc/cigar,
 /obj/item/tool/lighter/zippo,
@@ -119869,7 +119879,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "utU" = (
 /obj/structure/flora/pottedplant,
 /obj/structure/cable,
@@ -120012,7 +120022,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "uvw" = (
 /obj/structure/filingcabinet/nondense{
 	pixel_x = -8;
@@ -120059,7 +120069,7 @@
 /obj/effect/urban/decal/road/lines4,
 /obj/structure/cable,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "uvV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8;
@@ -120373,7 +120383,7 @@
 	pixel_x = 2
 	},
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "uzb" = (
 /obj/effect/urban/decal/doubleroad/lines1{
 	pixel_x = -4
@@ -121177,7 +121187,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "uGf" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/dirt/grime3{
@@ -121412,7 +121422,7 @@
 /turf/open/floor/prison{
 	dir = 1
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "uHF" = (
 /obj/machinery/door_control{
 	id = "hybrisacolonylockdown";
@@ -121696,7 +121706,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "uJT" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt/grime4{
@@ -121823,7 +121833,7 @@
 /obj/item/toner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "uLk" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty,
 /obj/effect/ai_node,
@@ -122081,7 +122091,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "uNl" = (
 /obj/item/tool/wet_sign{
 	pixel_y = 18
@@ -122214,6 +122224,12 @@
 /obj/item/trash/used_stasis_bag,
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/nt_research_complex/medical_annex)
+"uOq" = (
+/obj/structure/window/framed/urban/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv759/indoors/colonial_marshals/press_room)
 "uOt" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/spawner/random/engineering/metal,
@@ -122336,7 +122352,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "uPK" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/sandrock,
@@ -122580,7 +122596,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "uSi" = (
 /obj/structure/largecrate/random/case/small,
 /obj/machinery/power/apc/drained{
@@ -122873,7 +122889,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "uUv" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -123907,7 +123923,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/tile/tilewhite,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "vdz" = (
 /obj/item/reagent_containers/food/snacks/candy,
 /obj/item/binoculars,
@@ -124202,7 +124218,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "vfT" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -124244,7 +124260,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "vgh" = (
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vgj" = (
 /obj/structure/platform_decoration/urban/metalplatformdeco3{
 	dir = 4
@@ -124585,7 +124601,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "viF" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -124892,7 +124908,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vlc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1
@@ -125505,7 +125521,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vqo" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/chair/comfy{
@@ -125552,7 +125568,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vqD" = (
 /obj/structure/table,
 /obj/effect/urban/decal/dirt,
@@ -125624,7 +125640,7 @@
 	pixel_y = 20
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "vrg" = (
 /obj/structure/barricade/handrail/urban/road/metal/metaldark{
 	dir = 4
@@ -125651,7 +125667,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "vrw" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "vrz" = (
 /obj/structure/window/framed/urban/reinforced,
 /obj/machinery/door/poddoor/shutters/urban/shutters/opened{
@@ -125704,7 +125720,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vrP" = (
 /obj/structure/prop/urban/fakeplatforms/rockplatform,
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
@@ -125746,7 +125762,7 @@
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/lines1,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vrZ" = (
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/colonial_marshals/hallway_central)
@@ -126000,7 +126016,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vuU" = (
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_stop/five{
@@ -126298,7 +126314,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vxo" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/urban/colony,
@@ -126584,7 +126600,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vAp" = (
 /obj/item/device/flashlight/lamp/tripod,
 /obj/structure/xeno/tunnel,
@@ -126757,7 +126773,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vBD" = (
 /obj/structure/cable,
 /turf/open/floor/urban_plating,
@@ -127206,7 +127222,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "vFd" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -128202,7 +128218,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vOC" = (
 /obj/machinery/light{
 	dir = 4
@@ -128348,7 +128364,7 @@
 /obj/effect/landmark/weed_node,
 /obj/machinery/miner/damaged,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vQa" = (
 /obj/structure/platform_decoration/urban/engineer_corner{
 	dir = 4
@@ -128534,6 +128550,12 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/lv759/oob)
+"vRc" = (
+/obj/structure/window/framed/urban/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway)
 "vRe" = (
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/bar/bathroom)
@@ -128554,7 +128576,7 @@
 	},
 /obj/structure/table/black,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "vRp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -128997,7 +129019,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vUQ" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -129221,10 +129243,10 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vWA" = (
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "vWB" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 5
@@ -129587,7 +129609,7 @@
 	dir = 1
 	},
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "vZd" = (
 /obj/item/stock_parts/matter_bin/adv{
 	pixel_x = -5;
@@ -129876,7 +129898,7 @@
 "wbI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "wbM" = (
 /obj/structure/prop/urban/lattice_prop/lattice_5{
 	pixel_y = 16
@@ -130165,7 +130187,7 @@
 	color = "#b7b8b2"
 	},
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "wej" = (
 /obj/machinery/vending/coffee{
 	pixel_x = 3;
@@ -130269,7 +130291,7 @@
 	},
 /obj/effect/urban/decal/road/lines4,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "wfo" = (
 /obj/machinery/light,
 /obj/effect/ai_node,
@@ -130382,7 +130404,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "wgm" = (
 /obj/item/tool/surgery/circular_saw,
 /turf/open/floor/plating/plating_catwalk{
@@ -130588,7 +130610,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "wim" = (
 /obj/item/stock_parts/matter_bin,
 /obj/item/stock_parts/matter_bin/adv{
@@ -131771,7 +131793,7 @@
 "wsF" = (
 /obj/structure/closet/walllocker/hydrant,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "wsL" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/green{
@@ -132720,7 +132742,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 8
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "wBH" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -133222,7 +133244,7 @@
 /area/lv759/indoors/derelict_ship)
 "wFn" = (
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "wFp" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 5;
@@ -133617,7 +133639,7 @@
 /obj/effect/urban/decal/road/lines1,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "wIU" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/urban_plating,
@@ -133693,7 +133715,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "wJE" = (
 /obj/structure/barricade/handrail/urban/handrail{
 	dir = 4
@@ -133982,7 +134004,7 @@
 "wLQ" = (
 /obj/structure/bed/urban/chairs/black,
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "wLW" = (
 /obj/structure/table/mainship,
 /obj/item/explosive/plastique{
@@ -134144,7 +134166,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "wNa" = (
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "wNr" = (
 /obj/structure/closet,
 /obj/machinery/light,
@@ -135092,7 +135114,7 @@
 	pixel_y = 12
 	},
 /turf/open/floor/carpet/black,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "wVd" = (
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
@@ -135655,7 +135677,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "xbg" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/xeno,
@@ -135802,7 +135824,7 @@
 	},
 /obj/item/paper/crumpled,
 /turf/open/floor/urban/carpet/carpetblack,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "xcH" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/stack/sheet/cardboard{
@@ -136161,7 +136183,7 @@
 	color = "#a6aeab"
 	},
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "xeC" = (
 /obj/structure/prop/urban/vehicles/car/car_chassis{
 	dir = 1
@@ -136460,13 +136482,13 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office/hallway)
+/area/lv759/indoors/nt_office/hallway)
 "xhr" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "xhv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -137061,7 +137083,7 @@
 "xmG" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/urban/metal/bluemetal1,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "xmI" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/reagent_containers/spray/plantbgone,
@@ -137475,7 +137497,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "xqF" = (
 /obj/item/reagent_containers/glass/bucket{
 	pixel_x = 3;
@@ -137923,7 +137945,7 @@
 "xum" = (
 /obj/machinery/light,
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "xun" = (
 /obj/structure/prop/urban/fakeplatforms/rockplatform,
 /turf/open/urbanshale/layer1,
@@ -138400,7 +138422,7 @@
 /obj/machinery/light,
 /obj/structure/flora/pottedplant,
 /turf/open/floor/urban/wood/redwood,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "xyB" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = -20
@@ -138707,7 +138729,7 @@
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "xBh" = (
 /obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
 /turf/open/urbanshale/layer1,
@@ -138738,7 +138760,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "xBQ" = (
 /obj/structure/ore_box,
 /obj/structure/cable,
@@ -138782,7 +138804,7 @@
 "xCg" = (
 /obj/structure/window/framed/urban/colony/office,
 /turf/open/floor/plating,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "xCj" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -138795,7 +138817,7 @@
 	},
 /obj/item/tool/pen,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "xCk" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -139178,7 +139200,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "xFA" = (
 /turf/open/urban/street/sidewalk{
 	dir = 9
@@ -139697,7 +139719,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office/floor)
+/area/lv759/indoors/nt_office/floor)
 "xJR" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
@@ -140378,7 +140400,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/grime1,
 /turf/open/floor/urban/tile/tilewhitecheckered,
-/area/lv759/indoors/weyyu_office/breakroom)
+/area/lv759/indoors/nt_office/breakroom)
 "xPT" = (
 /obj/machinery/vending/cola{
 	pixel_y = 16
@@ -140816,7 +140838,7 @@
 /area/lv759/indoors/nt_security/checkpoint_east)
 "xTu" = (
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "xTv" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -140841,11 +140863,7 @@
 /obj/effect/urban/decal/dirt{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/urban/security_lockdown{
-	dir = 2;
-	id = "urbangarage_1";
-	name = "\improper Garage"
-	},
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/garage_workshop)
 "xTI" = (
@@ -141233,7 +141251,7 @@
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "xYj" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -141410,7 +141428,7 @@
 	dir = 4
 	},
 /turf/open/floor/officetiles,
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "xZP" = (
 /obj/structure/closet/l3closet/general,
 /turf/open/floor/prison/plate,
@@ -141422,7 +141440,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "xZW" = (
 /obj/machinery/floodlight,
 /obj/effect/urban/decal/dirt,
@@ -141795,7 +141813,7 @@
 	dir = 4
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "ycT" = (
 /obj/item/clothing/head/warning_cone{
 	pixel_x = 4;
@@ -142215,7 +142233,7 @@
 /turf/open/floor/mainship{
 	dir = 5
 	},
-/area/lv759/indoors/weyyu_office)
+/area/lv759/indoors/nt_office)
 "ygF" = (
 /obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
 	dir = 1
@@ -142238,7 +142256,7 @@
 	dir = 9
 	},
 /turf/open/floor/urban/carpet/carpetreddeco,
-/area/lv759/indoors/weyyu_office/supervisor)
+/area/lv759/indoors/nt_office/supervisor)
 "ygT" = (
 /obj/item/tool/pickaxe,
 /turf/open/urbanshale/layer1,
@@ -142372,7 +142390,7 @@
 	dir = 8
 	},
 /turf/open/floor/urban/wood/blackwood,
-/area/lv759/indoors/weyyu_office/vip)
+/area/lv759/indoors/nt_office/vip)
 "yig" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -142387,7 +142405,7 @@
 /obj/structure/sign/poster,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/urban,
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "yio" = (
 /obj/structure/closet/crate/trashcart{
 	opened = 1
@@ -142446,7 +142464,7 @@
 /turf/open/floor/prison{
 	dir = 4
 	},
-/area/lv759/indoors/weyyu_office/pressroom)
+/area/lv759/indoors/nt_office/pressroom)
 "yiG" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
@@ -166996,10 +167014,10 @@ awp
 awp
 awp
 wzA
-wzA
+agY
 vET
 nJV
-wzA
+agY
 wzA
 ycc
 qKf
@@ -174763,9 +174781,9 @@ gas
 tGL
 sFz
 xsz
-tGL
-ldK
-ldK
+hWc
+lfb
+lfb
 ldK
 hqO
 ylT
@@ -174967,7 +174985,7 @@ uHV
 tbK
 fBY
 gnA
-ldK
+lfb
 lwn
 lwn
 lwn
@@ -178182,9 +178200,9 @@ tJv
 tJv
 lke
 lke
-lke
+dTZ
 tgz
-vrZ
+jeO
 hNr
 hNr
 xbo
@@ -179184,10 +179202,10 @@ mJW
 vEt
 jGF
 jGF
-jGF
-jGF
-jGF
-jGF
+uOq
+uOq
+uOq
+uOq
 jGF
 jGF
 cBz
@@ -180852,8 +180870,8 @@ nKf
 uaF
 uaF
 twx
-oNA
-agY
+vRc
+ehb
 vxi
 oNA
 twx
@@ -184426,9 +184444,9 @@ aJI
 aPZ
 fuM
 rlO
-fuM
-fuM
-fuM
+rww
+rww
+rww
 fuM
 hbh
 qOy
@@ -184629,7 +184647,7 @@ lhx
 jxy
 fuM
 fuM
-fuM
+bpe
 iLK
 qOy
 qOy
@@ -185632,7 +185650,7 @@ jkI
 hqV
 hBF
 hBF
-hBF
+eXF
 hBF
 hBF
 iFX
@@ -186242,7 +186260,7 @@ jwF
 kEh
 jwW
 etR
-jwW
+qCj
 jwW
 jwW
 jwW
