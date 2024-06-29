@@ -7,14 +7,32 @@
 	var/loading_sound
 
 /obj/item/ammo_magazine/tank/ltb_cannon
-	name = "high explosive LTB round"
-	desc = "A primary armament cannon magazine"
-	caliber = CALIBER_84MM
+	name = "LTB HE shell (105mm)"
+	desc = "A 105mm high explosive shell filled with a deadly explosive payload."
+	caliber = CALIBER_105MM
 	icon_state = "ltb"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/ltb_cannon/heavy
+	name = "LTB HE+ shell (105mm)"
+	desc = "A 105mm high explosive shell filled with an incredibly explosive payload."
+	default_ammo = /datum/ammo/rocket/ltb/heavy
+	magazine_flags = MAGAZINE_NOT_FABRICABLE
+
+/obj/item/ammo_magazine/tank/ltb_cannon/apfds
+	name = "LTB APFDS round (105mm)"
+	desc = "A 105mm armor piercing shell with exceptional velocity and penetrating characteristics. Will pierce through walls and targets."
+	icon_state = "ltb_apfds"
+	default_ammo = /datum/ammo/bullet/tank_apfds
+
+/obj/item/ammo_magazine/tank/ltb_cannon/canister
+	name = "LTB Canister round (105mm)"
+	desc = "A 105mm canister shell for demolishing soft targets. The payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
+	icon_state = "ltb_canister"
+	default_ammo = /datum/ammo/tx54/tank_cannister
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
 	name = "\improper LTA-AP chaingun Magazine"
