@@ -295,8 +295,8 @@
 	},
 /area/bigredv2/caves/rustedpreparea)
 "iO" = (
-/obj/machinery/computer/cryopod,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "iQ" = (

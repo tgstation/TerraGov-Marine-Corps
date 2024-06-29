@@ -8,6 +8,9 @@
 	///the turf that our light is applied to
 	var/turf/affected_turf
 
+// Global list of lighting underlays, indexed by z level
+GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
+
 /datum/static_lighting_object/New(turf/source)
 	if(!isturf(source))
 		qdel(src, force=TRUE)
@@ -15,7 +18,7 @@
 		return
 	..()
 
-	current_underlay = mutable_appearance(LIGHTING_ICON, "transparent", source.z, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	current_underlay = new(GLOB.default_lighting_underlays_by_z[source.z])
 
 	affected_turf = source
 	if (affected_turf.static_lighting_object)
@@ -51,28 +54,13 @@
 
 	var/static/datum/static_lighting_corner/dummy/dummy_lighting_corner = new
 
+	var/turf/affected_turf = src.affected_turf
 	var/datum/static_lighting_corner/red_corner = affected_turf.lighting_corner_SW || dummy_lighting_corner
 	var/datum/static_lighting_corner/green_corner = affected_turf.lighting_corner_SE || dummy_lighting_corner
 	var/datum/static_lighting_corner/blue_corner = affected_turf.lighting_corner_NW || dummy_lighting_corner
 	var/datum/static_lighting_corner/alpha_corner = affected_turf.lighting_corner_NE || dummy_lighting_corner
 
 	var/max = max(red_corner.largest_color_luminosity, green_corner.largest_color_luminosity, blue_corner.largest_color_luminosity, alpha_corner.largest_color_luminosity)
-
-	var/rr = red_corner.cache_r
-	var/rg = red_corner.cache_g
-	var/rb = red_corner.cache_b
-
-	var/gr = green_corner.cache_r
-	var/gg = green_corner.cache_g
-	var/gb = green_corner.cache_b
-
-	var/br = blue_corner.cache_r
-	var/bg = blue_corner.cache_g
-	var/bb = blue_corner.cache_b
-
-	var/ar = alpha_corner.cache_r
-	var/ag = alpha_corner.cache_g
-	var/ab = alpha_corner.cache_b
 
 	#if LIGHTING_SOFT_THRESHOLD != 0
 	var/set_luminosity = max > LIGHTING_SOFT_THRESHOLD
@@ -82,34 +70,35 @@
 	var/set_luminosity = max > 1e-6
 	#endif
 
-	if((rr & gr & br & ar) && (rg + gg + bg + ag + rb + gb + bb + ab == 8))
+	var/mutable_appearance/current_underlay = src.current_underlay
+	affected_turf.underlays -= current_underlay
+	if(red_corner.cache_r & green_corner.cache_r & blue_corner.cache_r & alpha_corner.cache_r && \
+		(red_corner.cache_g + green_corner.cache_g + blue_corner.cache_g + alpha_corner.cache_g + \
+		red_corner.cache_b + green_corner.cache_b + blue_corner.cache_b + alpha_corner.cache_b == 8))
 		//anything that passes the first case is very likely to pass the second, and addition is a little faster in this case
-		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = "transparent"
 		current_underlay.color = null
-		affected_turf.underlays += current_underlay
 	else if(!set_luminosity)
-		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = "dark"
 		current_underlay.color = null
-		affected_turf.underlays += current_underlay
 	else
-		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = null
 		current_underlay.color = list(
-			rr, rg, rb, 00,
-			gr, gg, gb, 00,
-			br, bg, bb, 00,
-			ar, ag, ab, 00,
+			red_corner.cache_r, red_corner.cache_g, red_corner.cache_b, 00,
+			green_corner.cache_r, green_corner.cache_g, green_corner.cache_b, 00,
+			blue_corner.cache_r, blue_corner.cache_g, blue_corner.cache_b, 00,
+			alpha_corner.cache_r, alpha_corner.cache_g, alpha_corner.cache_b, 00,
 			00, 00, 00, 01
 		)
 
-		affected_turf.underlays += current_underlay
+	// Of note. Most of the cost in this proc is here, I think because color matrix'd underlays DO NOT cache well, which is what adding to underlays does
+	// We use underlays because objects on each tile would fuck with maptick. if that ever changes, use an object for this instead
+	affected_turf.underlays += current_underlay
 
-	var/area/A = affected_turf.loc
-	//We are luminous
 	if(set_luminosity)
 		affected_turf.luminosity = set_luminosity
+		return
+	var/area/turf_area = affected_turf.loc
 	//We are not lit by static light OR dynamic light.
-	else if(!LAZYLEN(affected_turf.hybrid_lights_affecting) && !A.base_lighting_alpha)
+	if(!LAZYLEN(affected_turf.hybrid_lights_affecting) && !turf_area.base_lighting_alpha)
 		affected_turf.luminosity = 0
