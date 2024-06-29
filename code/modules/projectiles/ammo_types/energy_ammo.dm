@@ -773,6 +773,7 @@
 		for(var/mob/living/living_victim AS in vehicle_target.occupants)
 			living_victim.apply_radiation(living_victim.modify_by_armor(12, BIO, 25), 3)
 			living_victim.flash_pain()
+
 	if(target_obj.obj_integrity > target_obj.modify_by_armor(proj.damage, ENERGY, proj.penetration, attack_dir = get_dir(target_obj, proj)))
 		proj.proj_max_range = 0
 
