@@ -97,6 +97,7 @@
 /obj/item/stack/examine(mob/user)
 	. = ..()
 	if(amount > 1)
+		. += EXAMINE_SECTION_BREAK
 		. += "There are [amount] [singular_name]\s in the [stack_name]."
 
 /obj/item/stack/equipped(mob/user, slot)
