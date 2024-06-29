@@ -14534,11 +14534,13 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/innerring)
 "kQw" = (
-/obj/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "kQI" = (
@@ -20976,7 +20978,9 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/prison/innerring)
 "pwt" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "pwA" = (

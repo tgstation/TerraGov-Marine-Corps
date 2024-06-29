@@ -564,6 +564,13 @@
 	reinf = 1
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
+/obj/structure/window/framed/colony/cmwindow
+	name = "window"
+	icon = 'icons/obj/smooth_objects/cmwindow.dmi'
+	icon_state = "cmwindow-0"
+	base_icon_state = "cmwindow"
+	window_frame = /obj/structure/window_frame/colony
+
 /obj/structure/window/framed/colony/reinforced/tinted
 	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
@@ -729,3 +736,35 @@
 	icon_state = "window-invincible"
 	base_icon_state = "chigusa_wall"
 	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/urban
+	name = "window"
+	icon = 'icons/obj/smooth_objects/urban_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/urban
+
+/obj/structure/window/framed/urban/reinforced
+
+/obj/structure/window/framed/urban/marshalls/cell
+
+/obj/structure/window/framed/urban/colony/office
+
+/obj/structure/window/framed/urban/spaceport/reinforced
+
+/obj/structure/window/framed/urban/colony/hospital
+
+/obj/structure/window/framed/urban/colony/engineering/hull
+
+/obj/structure/window/framed/urban/junk_window
+	name = "window"
+	icon = 'icons/obj/smooth_objects/junk_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/junk_frame
