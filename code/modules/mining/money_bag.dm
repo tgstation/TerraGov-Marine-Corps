@@ -1,10 +1,11 @@
 /obj/item/moneybag
-	icon = 'icons/obj/items/storage/bag.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
 	force = 10
 	throwforce = 2
 	w_class = WEIGHT_CLASS_BULKY
+
 
 /obj/item/moneybag/interact(mob/user)
 	. = ..()
@@ -50,6 +51,7 @@
 	popup.set_content(dat)
 	popup.open()
 
+
 /obj/item/moneybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -66,6 +68,7 @@
 		for(var/obj/O in C.contents)
 			O.forceMove(src)
 		to_chat(user, span_notice("You empty the [C] into the bag."))
+
 
 /obj/item/moneybag/Topic(href, href_list)
 	. = ..()
@@ -89,6 +92,7 @@
 		if(!C)
 			return
 		C.forceMove(loc)
+
 
 /obj/item/moneybag/vault/Initialize(mapload)
 	. = ..()

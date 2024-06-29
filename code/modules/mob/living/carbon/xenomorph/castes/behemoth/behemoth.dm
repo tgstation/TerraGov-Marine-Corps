@@ -14,6 +14,7 @@
 	mob_size = MOB_SIZE_BIG
 	max_buckled_mobs = 2
 	pixel_x = -28.5
+	old_x = -28.5
 	footstep_type = FOOTSTEP_XENO_HEAVY
 
 

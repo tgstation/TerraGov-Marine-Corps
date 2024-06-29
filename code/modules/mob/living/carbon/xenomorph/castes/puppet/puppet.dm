@@ -8,6 +8,7 @@
 	maxHealth = 250
 	plasma_stored = 0
 	pixel_x = 0
+	old_x = 0
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1

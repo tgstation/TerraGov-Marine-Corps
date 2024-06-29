@@ -96,14 +96,6 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 
-/datum/loadout_item/belt/standard_pistol
-	name = "MK88 Mod 4"
-	desc = "An uncommon automatic handgun that fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire. \
-	Light and easy to use one handed, but still a sidearm. Comes in a holster that fits on your waist or armor. Uses 9mm AP ammunition."
-	ui_icon = "vp70"
-	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
-
 //medic
 /datum/loadout_item/belt/lifesaver
 	name = "Lifesaver bag"
@@ -121,6 +113,7 @@
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/officer/full
 	jobs_supported = list(FIELD_COMMANDER)
+	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/belt/fc_pistol
 	name = "P-1911A1-C pistol"
@@ -129,6 +122,7 @@
 	ui_icon = "m1911c"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
+	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)
 
 //staff officer
 /datum/loadout_item/belt/so_pistol

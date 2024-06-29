@@ -152,7 +152,7 @@
 			T = get_step(src, i)
 			if(!istype(T))
 				continue
-			for(var/obj/structure/door/resin/R in T)
+			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
 
 /**

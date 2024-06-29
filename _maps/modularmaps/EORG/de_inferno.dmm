@@ -204,7 +204,7 @@
 /area/deathmatch)
 "dA" = (
 /obj/item/storage/bible,
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
@@ -216,7 +216,7 @@
 /turf/closed/wall/wood,
 /area/deathmatch)
 "dK" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -555,7 +555,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "jc" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/farwa,
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -569,7 +569,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jA" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -582,13 +582,13 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "kh" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "kq" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/rouny,
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -634,7 +634,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "lK" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -702,7 +702,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "nv" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
@@ -832,7 +832,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "rO" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -861,7 +861,7 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "sp" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
@@ -940,7 +940,7 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "uG" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/rouny{
 	dir = 4
 	},
@@ -956,7 +956,7 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "uS" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/lizard,
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -986,7 +986,7 @@
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "wu" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/machinery/light{
 	dir = 8
@@ -1138,7 +1138,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Dn" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1212,7 +1212,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "GE" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1404,7 +1404,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Mz" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/snake,
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -1521,7 +1521,7 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "PO" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/plush/moth,
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -1716,7 +1716,7 @@
 /area/deathmatch)
 "YJ" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/deathmatch)
 "YM" = (

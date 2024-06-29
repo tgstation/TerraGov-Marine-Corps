@@ -14,13 +14,13 @@
 
 	src.connections = connections
 
-	RegisterSignals(listener, list(COMSIG_MOVABLE_MOVED, COMSIG_MULTITILE_VEHICLE_ROTATED), PROC_REF(on_moved), override = TRUE)
+	RegisterSignal(listener, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved), override = TRUE)
 	update_signals(listener)
 
 /datum/element/connect_loc/Detach(atom/movable/listener)
 	. = ..()
 	unregister_signals(listener, listener.loc, listener.locs)
-	UnregisterSignal(listener, list(COMSIG_MOVABLE_MOVED, COMSIG_MULTITILE_VEHICLE_ROTATED))
+	UnregisterSignal(listener, COMSIG_MOVABLE_MOVED)
 
 /datum/element/connect_loc/proc/update_signals(atom/movable/listener)
 	var/atom/listener_loc = listener.loc

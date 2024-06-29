@@ -309,7 +309,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "bq" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/toy/dice,
 /obj/item/toy/dice/d20,
 /obj/item/toy/deck,
@@ -319,7 +319,7 @@
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "br" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -556,7 +556,7 @@
 /area/whiskey_outpost)
 "cG" = (
 /obj/item/clothing/suit/storage/marine/smartgunner,
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "cH" = (
@@ -750,7 +750,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "dw" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/flashlight/lamp{
@@ -3111,7 +3111,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "px" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/reagent_containers/pill/cyanide{
 	pixel_x = -3;
 	pixel_y = -4
@@ -3250,7 +3250,7 @@
 /area/whiskey_outpost/outside/north)
 "qc" = (
 /obj/item/storage/pill_bottle/happy,
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/xenos_claw,
 /turf/open/floor/wood,
 /area/whiskey_outpost/outside/north)

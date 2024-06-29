@@ -11,6 +11,7 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pixel_x = -16
+	old_x = -16
 
 /mob/living/carbon/xenomorph/baneling/UnarmedAttack(atom/A, has_proximity, modifiers)
 	/// We dont wanna be able to slash while balling

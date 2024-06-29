@@ -198,7 +198,7 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-	return ..()
+	..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -291,17 +291,11 @@
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
 
-	var/area/thisarea = get_area(W)
 	//static Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 
-		if(thisarea.static_lighting)
-			W.static_lighting_object = old_lighting_object || new /datum/static_lighting_object(src)
-		else
-			W.static_lighting_object = null
-			if(old_lighting_object)
-				qdel(old_lighting_object, TRUE)
+		W.static_lighting_object = old_lighting_object
 
 		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
@@ -314,6 +308,7 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
+	var/area/thisarea = get_area(W)
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
@@ -559,7 +554,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/door/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -648,9 +643,6 @@
 	return DIRT_TYPE_GROUND
 
 /turf/open/floor/plating/ground/get_dirt_type()
-	return DIRT_TYPE_GROUND
-
-/turf/open/urbanshale/get_dirt_type()
 	return DIRT_TYPE_GROUND
 
 /turf/open/floor/plating/ground/mars/get_dirt_type()
@@ -951,17 +943,3 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK))
 		return FALSE
 	return TRUE
-
-///Returns the number that represents how submerged an AM is by a turf and its contents
-/turf/proc/get_submerge_height(turf_only = FALSE)
-	. = 0
-	if(turf_only)
-		return
-	var/list/submerge_list = list()
-	SEND_SIGNAL(src, COMSIG_TURF_SUBMERGE_CHECK, submerge_list)
-	for(var/i in submerge_list)
-		. += i
-
-///Returns the number that shows how far an AM is offset when submerged in this turf
-/turf/proc/get_submerge_depth()
-	return 0

@@ -29,11 +29,11 @@
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "hN" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "im" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/radio/headset/survivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/engine/cult,
@@ -173,7 +173,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "xk" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/landmark/weed_node,
 /obj/item/tool/candle,
 /turf/open/floor/tile/darkish,
@@ -230,7 +230,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "Dk" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/spawner/random/weaponry/ammo,
 /obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/tile/darkish,
@@ -239,7 +239,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
@@ -264,7 +264,7 @@
 /turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "Lr" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/tool/candle,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
@@ -316,7 +316,7 @@
 /turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "Sv" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/weapon/chainofcommand,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)

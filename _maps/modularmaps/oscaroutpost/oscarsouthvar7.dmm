@@ -397,7 +397,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "lx" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/toy/deck,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -408,7 +408,7 @@
 /turf/open/floor/wood/broken,
 /area/oscar_outpost/village/abandonedbase)
 "lA" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
 /obj/item/trash/cigbutt,
 /obj/item/trash/cigbutt,
@@ -635,7 +635,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "pq" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/spacecash/c10,
 /obj/item/toy/deck,
 /turf/open/floor/wood,
@@ -808,7 +808,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "tT" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
@@ -837,7 +837,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "uv" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/pizzabox/margherita,
 /obj/item/trash/chips,
 /obj/machinery/light{
@@ -968,7 +968,7 @@
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
 "yX" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/structure/platform,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
@@ -1274,7 +1274,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ga" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/storage/donut_box,
 /obj/item/tool/lighter,
 /obj/machinery/light{
@@ -1696,7 +1696,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Qj" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "Qq" = (
@@ -1892,7 +1892,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ur" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/toy/deck,
 /obj/item/spacecash/c10,
 /turf/open/floor/wood,
@@ -2028,12 +2028,12 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "WA" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "WM" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
@@ -2132,7 +2132,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "XY" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/folder/blue,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
@@ -2169,7 +2169,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Yy" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/newspaper,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)

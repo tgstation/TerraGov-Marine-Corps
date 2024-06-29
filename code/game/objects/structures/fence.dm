@@ -18,8 +18,6 @@
 	canSmoothWith = list(SMOOTH_GROUP_FENCE)
 	///Chance for the fence to break on /init
 	var/chance_to_break = 80 //Defaults to 80%
-	///icon set we switch to when destroyed
-	var/destroyed_icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
@@ -69,7 +67,7 @@
 		repair_damage(max_integrity, user)
 		cut = 0
 		density = TRUE
-		icon = initial(icon)
+		icon = 'icons/obj/smooth_objects/fence.dmi'
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
@@ -124,7 +122,7 @@
 		new /obj/item/stack/rods(loc)
 	cut = TRUE
 	density = FALSE
-	icon = destroyed_icon
+	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
@@ -138,7 +136,7 @@
 
 /obj/structure/fence/Destroy()
 	density = FALSE
-	icon = destroyed_icon
+	icon = 'icons/obj/smooth_objects/brokenfence.dmi'
 	return ..()
 
 /obj/structure/fence/fire_act(burn_level)
@@ -146,7 +144,3 @@
 
 /obj/structure/fence/broken
 	chance_to_break = 100
-
-/obj/structure/fence/dark
-	icon = 'icons/obj/smooth_objects/dark_fence.dmi'
-	destroyed_icon = 'icons/obj/smooth_objects/brokenfence_dark.dmi'

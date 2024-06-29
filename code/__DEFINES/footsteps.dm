@@ -3,13 +3,9 @@
 #define FOOTSTEP_PLATING "plating"
 #define FOOTSTEP_CARPET "carpet"
 #define FOOTSTEP_SAND "sand"
-#define FOOTSTEP_DIRT "dirt"
 #define FOOTSTEP_GRASS "grass"
-#define FOOTSTEP_WET "wet"
 #define FOOTSTEP_WATER "water"
-#define FOOTSTEP_SWIM "swim"
 #define FOOTSTEP_RESIN "resin"
-#define FOOTSTEP_HULL "hull"
 #define FOOTSTEP_CATWALK "catwalk"
 #define FOOTSTEP_SNOW "snow"
 #define FOOTSTEP_ICE "ice"
@@ -53,11 +49,6 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/carpet4.ogg',
 		'sound/effects/footstep/carpet5.ogg'), 75, -1),
 	FOOTSTEP_SAND = list(list(
-		'sound/effects/footstep/sand1.ogg',
-		'sound/effects/footstep/sand2.ogg',
-		'sound/effects/footstep/sand3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'), 75, 0),
-	FOOTSTEP_DIRT = list(list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
@@ -68,28 +59,14 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
-	FOOTSTEP_WET = list(list(
-		'sound/effects/footstep/waterstep1.ogg',
-		'sound/effects/footstep/waterstep2.ogg',
-		'sound/effects/footstep/water3.ogg'), 100, 1),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
-	FOOTSTEP_SWIM = list(list(
-		'sound/effects/footstep/swimming1.ogg',
-		'sound/effects/footstep/swimming2.ogg',
-		'sound/effects/footstep/swimming3.ogg'), 100, 1),
 	FOOTSTEP_RESIN = list(list(
 		'sound/effects/footstep/alien_resin_move1.ogg',
 		'sound/effects/footstep/alien_resin_move2.ogg',), 50, 2),
-	FOOTSTEP_HULL = list(list(
-		'sound/effects/footstep/hull1.ogg',
-		'sound/effects/footstep/hull2.ogg',
-		'sound/effects/footstep/hull3.ogg',
-		'sound/effects/footstep/hull4.ogg',
-		'sound/effects/footstep/hull5.ogg'), 100, 1),
 	FOOTSTEP_CATWALK = list(list(
 		'sound/effects/footstep/catwalk1.ogg',
 		'sound/effects/footstep/catwalk2.ogg',
@@ -161,11 +138,6 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/carpetbarefoot4.ogg',
 		'sound/effects/footstep/carpetbarefoot5.ogg'), 75, -2),
 	FOOTSTEP_SAND = list(list(
-		'sound/effects/footstep/sand1.ogg',
-		'sound/effects/footstep/sand2.ogg',
-		'sound/effects/footstep/sand3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'), 60, 0),
-	FOOTSTEP_DIRT = list(list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
@@ -176,28 +148,14 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
-	FOOTSTEP_WET = list(list(
-		'sound/effects/footstep/waterstep1.ogg',
-		'sound/effects/footstep/waterstep2.ogg',
-		'sound/effects/footstep/water3.ogg'), 100, 1),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
-	FOOTSTEP_SWIM = list(list(
-		'sound/effects/footstep/swimming1.ogg',
-		'sound/effects/footstep/swimming2.ogg',
-		'sound/effects/footstep/swimming3.ogg'), 100, 1),
 	FOOTSTEP_RESIN = list(list(
 		'sound/effects/footstep/alien_resin_move1.ogg',
 		'sound/effects/footstep/alien_resin_move2.ogg',), 70, 2),
-	FOOTSTEP_HULL = list(list(
-		'sound/effects/footstep/hull1.ogg',
-		'sound/effects/footstep/hull2.ogg',
-		'sound/effects/footstep/hull3.ogg',
-		'sound/effects/footstep/hull4.ogg',
-		'sound/effects/footstep/hull5.ogg'), 80, 1),
 	FOOTSTEP_CATWALK = list(list(
 		'sound/effects/footstep/catwalk1.ogg',
 		'sound/effects/footstep/catwalk2.ogg',
@@ -270,43 +228,24 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/carpetbarefoot4.ogg',
 		'sound/effects/footstep/carpetbarefoot5.ogg'), 55, -1),
 	FOOTSTEP_SAND = list(list(
-		'sound/effects/footstep/sand1.ogg',
-		'sound/effects/footstep/sand2.ogg',
-		'sound/effects/footstep/sand3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'), 55, 0),
-	FOOTSTEP_DIRT = list(list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
 		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'), 55, 0),
+		'sound/effects/footstep/asteroid5.ogg'), 55, 1),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 65, 1),
-	FOOTSTEP_WET = list(list(
-		'sound/effects/footstep/waterstep1.ogg',
-		'sound/effects/footstep/waterstep2.ogg',
-		'sound/effects/footstep/water3.ogg'), 50, 1),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 50, 1),
-	FOOTSTEP_SWIM = list(list(
-		'sound/effects/footstep/swimming1.ogg',
-		'sound/effects/footstep/swimming2.ogg',
-		'sound/effects/footstep/swimming3.ogg'), 50, 1),
 	FOOTSTEP_RESIN = list(list(
 		'sound/effects/footstep/alien_resin_move1.ogg',
 		'sound/effects/footstep/alien_resin_move2.ogg',), 15, -4),
-	FOOTSTEP_HULL = list(list(
-		'sound/effects/footstep/hull1.ogg',
-		'sound/effects/footstep/hull2.ogg',
-		'sound/effects/footstep/hull3.ogg',
-		'sound/effects/footstep/hull4.ogg',
-		'sound/effects/footstep/hull5.ogg'), 70, 1),
 	FOOTSTEP_CATWALK = list(list(
 		'sound/effects/footstep/catwalk1.ogg',
 		'sound/effects/footstep/catwalk2.ogg',
@@ -378,43 +317,22 @@ GLOBAL_LIST_INIT(xenoheavystep, list(
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
 	FOOTSTEP_SAND = list(list(
-		'sound/effects/footstep/sand1.ogg',
-		'sound/effects/footstep/sand2.ogg',
-		'sound/effects/footstep/sand3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'), 100, 0),
-	FOOTSTEP_DIRT = list(list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'), 100, 0),
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg',
+		'sound/effects/footstep/heavy3.ogg'), 100, 2),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
-	FOOTSTEP_WET = list(list(
-		'sound/effects/footstep/waterstep1.ogg',
-		'sound/effects/footstep/waterstep2.ogg',
-		'sound/effects/footstep/water3.ogg'), 100, 1),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
-		'sound/effects/footstep/water4.ogg'), 100, 1),
-	FOOTSTEP_SWIM = list(list(
-		'sound/effects/footstep/swimming1.ogg',
-		'sound/effects/footstep/swimming2.ogg',
-		'sound/effects/footstep/swimming3.ogg'), 100, 1),
+		'sound/effects/footstep/water4.ogg'), 50, 1),
 	FOOTSTEP_RESIN = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
-	FOOTSTEP_HULL = list(list(
-		'sound/effects/footstep/hull1.ogg',
-		'sound/effects/footstep/hull2.ogg',
-		'sound/effects/footstep/hull3.ogg',
-		'sound/effects/footstep/hull4.ogg',
-		'sound/effects/footstep/hull5.ogg'), 100, 1),
 	FOOTSTEP_CATWALK = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',

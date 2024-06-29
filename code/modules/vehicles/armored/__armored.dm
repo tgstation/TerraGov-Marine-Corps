@@ -8,7 +8,7 @@
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
-	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
@@ -52,7 +52,7 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon)
 	///list of mods we allow to attach
 	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
 	///Minimap flags to use for this vehcile
@@ -70,10 +70,6 @@
 	 * This will be turned into a typeCache on  initialize
 	*/
 	var/list/easy_load_list
-	///Wether we are strafing
-	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -155,13 +151,10 @@
 		return list(get_turf(entering_thing))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
-	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
-	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
-	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
-		shake_camera(nearby_mob, 4, 2)
-	return ..()
+	. = ..()
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
 
-/obj/vehicle/sealed/armored/update_icon_state()
+/obj/vehicle/sealed/armored/update_icon()
 	. = ..()
 	if(!damage_overlay)
 		return
@@ -216,7 +209,9 @@
 	. = ..()
 	if(!.)
 		return
-	play_engine_sound()
+	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
+		playsound(get_turf(src), engine_sound, 100, TRUE, 20)
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
@@ -262,12 +257,6 @@
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
 
-/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
-	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
-		return
-	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
-
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
 	if(!teleport)
@@ -281,24 +270,24 @@
 		var/obj/item/grab/grab_item = thing_to_load
 		thing_to_load = grab_item.grabbed_thing
 	if(!isliving(thing_to_load) && !is_type_in_typecache(thing_to_load.type, easy_load_list))
-		return FALSE
+		return
 	if(!interior)
 		user.balloon_alert(user, "no interior")
-		return FALSE
+		return
 	if(!interior.door)
 		user.balloon_alert(user, "no door")
-		return FALSE
+		return
 	var/list/enter_locs = enter_locations(user)
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
 		user.balloon_alert(user, "not at entrance")
-		return FALSE
+		return
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
-		return mob_try_enter(thing_to_load, user, TRUE)
+		mob_try_enter(thing_to_load, user, TRUE)
+		return
 	user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
-	return TRUE
 
 /obj/vehicle/sealed/armored/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if(isobserver(entering_mob))
@@ -332,14 +321,14 @@
 			primary_icons = list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			primary_icons = list(primary_weapon.hud_state_empty, primary_weapon.hud_state_empty)
-		M?.hud_used?.add_ammo_hud(primary_weapon, primary_icons, primary_weapon?.ammo?.current_rounds)
+		M?.hud_used?.add_ammo_hud(primary_weapon, primary_icons, primary_weapon.ammo.current_rounds)
 	if(secondary_weapon)
 		var/list/secondary_icons
 		if(secondary_weapon.ammo)
 			secondary_icons = list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty)
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
-		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon?.ammo?.current_rounds)
+		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon.ammo.current_rounds)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -428,14 +417,12 @@
 
 /obj/vehicle/sealed/armored/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(.)
-		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.armored_weapon_flags & MODULE_PRIMARY))
+		if(!(gun.weapon_slot & MODULE_PRIMARY))
 			balloon_alert(user, "not a primary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
@@ -450,30 +437,30 @@
 		var/obj/item/tank_module/mod = I
 		mod.on_equip(src, user)
 		return
-	if(!istype(I, /obj/item/ammo_magazine))
+	if(interior?.breech) // if interior handle by gun breech
+		// check for easy loading instead
 		try_easy_load(I, user)
 		return
-	var/obj/item/armored_weapon/weapon_to_load
-	if(!interior?.breech && primary_weapon && (I.type in primary_weapon.accepted_ammo))
-		weapon_to_load = primary_weapon
-	else if(!interior?.secondary_breech && secondary_weapon && (I.type in secondary_weapon.accepted_ammo))
-		weapon_to_load = secondary_weapon
-	else
-		try_easy_load(I, user)
-		return
-	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
-		balloon_alert(user, "magazine already full")
-		return
-	user.temporarilyRemoveItemFromInventory(I)
-	I.forceMove(weapon_to_load)
-	if(!weapon_to_load.ammo)
-		weapon_to_load.ammo = I
-		balloon_alert(user, "primary gun loaded")
-		for(var/mob/occupant AS in occupants)
-			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
-	else
-		weapon_to_load.ammo_magazine += I
-		balloon_alert(user, "magazines [length(weapon_to_load.ammo_magazine)]/[weapon_to_load.maximum_magazines]")
+	if(istype(I, /obj/item/ammo_magazine))
+		if(!primary_weapon)
+			balloon_alert(user, "no primary weapon")
+			return
+		if(!(I.type in primary_weapon.accepted_ammo))
+			balloon_alert(user, "not accepted ammo")
+			return
+		if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+			balloon_alert(user, "magazine already full")
+			return
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(primary_weapon)
+		if(!primary_weapon.ammo)
+			primary_weapon.ammo = I
+			balloon_alert(user, "primary gun loaded")
+			for(var/mob/occupant AS in occupants)
+				occupant?.hud_used?.update_ammo_hud(primary_weapon, list(primary_weapon.ammo.default_ammo.hud_state, primary_weapon.ammo.default_ammo.hud_state_empty), primary_weapon.ammo.current_rounds)
+		else
+			primary_weapon.ammo_magazine += I
+			balloon_alert(user, "magazines [length(primary_weapon.ammo_magazine)]/[primary_weapon.maximum_magazines]")
 
 /obj/vehicle/sealed/armored/MouseDrop_T(atom/movable/dropping, mob/M)
 	// Bypass to parent to handle mobs entering the vehicle.
@@ -484,7 +471,7 @@
 	try_easy_load(dropping, M)
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
-	return try_easy_load(grab.grabbed_thing, user)
+	try_easy_load(grab.grabbed_thing, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -496,7 +483,7 @@
 		if(!(gun.type in permitted_weapons))
 			balloon_alert(user, "cannot attach")
 			return
-		if(!(gun.armored_weapon_flags & MODULE_SECONDARY))
+		if(!(gun.weapon_slot & MODULE_SECONDARY))
 			balloon_alert(user, "not a secondary weapon")
 			return
 		if(!do_after(user, 2 SECONDS, NONE, src))
@@ -588,7 +575,7 @@
 	balloon_alert(user, "detached")
 
 /obj/vehicle/sealed/armored/plastique_act(mob/living/plastique_user)
-	take_damage(500, BRUTE, BOMB, TRUE, REVERSE_DIR(dir), 50, plastique_user)
+	ex_act(EXPLODE_LIGHT)
 
 /**
  * Toggles Weapons Safety
@@ -619,7 +606,7 @@
 	SIGNAL_HANDLER
 	modifiers = params2list(modifiers)
 	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
-		target = params2turf(modifiers["screen-loc"], get_turf(src), user.client)
+		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
@@ -659,37 +646,40 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID
-	///overlay obj for for the attached gun
-	var/atom/movable/vis_obj/tank_gun/primary_overlay
+	///overlay for the attached gun
+	var/image/gun_overlay
+	///overlay for the shooting version of that gun
+	var/image/flash_overlay
+	///currently using the flashing overlay
+	var/flashing = FALSE
 	///icon state for the secondary
 	var/image/secondary_overlay
 
-/atom/movable/vis_obj/turret_overlay/Destroy()
-	if(primary_overlay)
-		QDEL_NULL(primary_overlay)
-	return ..()
-
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
+	cut_overlays()
 	if(!gun_icon_state)
-		QDEL_NULL(primary_overlay)
+		flash_overlay = null
+		gun_overlay = null
 		return
+	flashing = FALSE
+	flash_overlay = image(icon, gun_icon_state + "_fire", pixel_x = -70, pixel_y = -69)
+	gun_overlay  = image(icon, gun_icon_state, pixel_x = -40, pixel_y = -48)
+	update_appearance(UPDATE_OVERLAYS)
 
-	primary_overlay = new()
-	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
-	primary_overlay.icon_state = gun_icon_state
-	vis_contents += primary_overlay
+/atom/movable/vis_obj/turret_overlay/proc/set_flashing(new_flashing)
+	flashing = new_flashing
+	update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/vis_obj/turret_overlay/update_overlays()
 	. = ..()
-	if(secondary_overlay)
-		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
-		. += secondary_overlay
+	. += (flashing ? flash_overlay : gun_overlay)
 
 /atom/movable/vis_obj/turret_overlay/setDir(newdir)
 	. = ..()
 	if(secondary_overlay)
-		update_appearance(UPDATE_OVERLAYS)
+		cut_overlay(secondary_overlay)
+		secondary_overlay.icon_state = copytext(secondary_overlay.icon_state, 1, length(secondary_overlay.icon_state)) + "[dir]"
+		add_overlay(secondary_overlay)
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"
@@ -697,9 +687,3 @@
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
 	vis_flags = VIS_INHERIT_DIR
-
-/atom/movable/vis_obj/tank_gun
-	name = "Tank weapon"
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
-	pixel_x = -70
-	pixel_y = -69

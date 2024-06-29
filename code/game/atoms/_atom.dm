@@ -321,13 +321,7 @@ directive is properly returned.
 
 	if(length(result))
 		for(var/i in 1 to (length(result) - 1))
-			if(result[i] != EXAMINE_SECTION_BREAK)
-				result[i] += "\n"
-			else
-				// remove repeated <hr's> and ones on the ends.
-				if((i == 1) || (i == length(result)) || (result[i - 1] == EXAMINE_SECTION_BREAK))
-					result.Cut(i, i + 1)
-					i--
+			result[i] += "\n"
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
@@ -355,18 +349,16 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	var/examine_string = get_examine_string(user, thats = TRUE)
 	if(examine_string)
-		. = list("[examine_string].", EXAMINE_SECTION_BREAK)
+		. = list("[examine_string].")
 	else
 		. = list()
 
 	if(desc)
 		. += desc
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
-		. += EXAMINE_SECTION_BREAK
 		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
-		. += EXAMINE_SECTION_BREAK
 		if(reagents.reagent_flags & TRANSPARENT)
 			. += "It contains:"
 			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
@@ -686,9 +678,14 @@ directive is properly returned.
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
-			QUEUE_SMOOTH(src)
-			QUEUE_SMOOTH_NEIGHBORS(src)
+		if(isturf(loc))
+			if(opacity)
+				var/turf/T = loc
+				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+				QUEUE_SMOOTH(src)
+				QUEUE_SMOOTH_NEIGHBORS(src)
 
 	if(length(smoothing_groups))
 		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.

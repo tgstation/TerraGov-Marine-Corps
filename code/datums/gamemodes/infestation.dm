@@ -25,7 +25,7 @@
 	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
 		T.ChangeTurf(/turf/closed/wall/resin/regenerating, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)
-		new /obj/structure/door/resin(i)
+		new /obj/structure/mineral_door/resin(i)
 	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
 		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
 		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
@@ -153,7 +153,8 @@
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.
 [numHostsTransit] human\s in transit."},
-			color_override = "purple"
+			color_override = "purple",
+			minor = TRUE
 		))
 
 	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")
@@ -217,13 +218,8 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 /datum/game_mode/infestation/end_round_fluff()
-	send_ooc_announcement(
-		sender_override = "Round Concluded",
-		title = round_finished,
-		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
-		play_sound = FALSE,
-		style = "game"
-	)
+	. = ..()
+	to_chat(world, span_round_header("|[round_finished]|"))
 
 	var/sound/xeno_track
 	var/sound/human_track

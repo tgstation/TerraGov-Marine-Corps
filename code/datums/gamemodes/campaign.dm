@@ -116,22 +116,16 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 /datum/game_mode/hvh/campaign/end_round_fluff()
-	var/announcement_body = ""
+	to_chat(world, span_round_header("Campaign concluded"))
+	to_chat(world, span_round_header("|[round_finished]|"))
+
 	switch(round_finished)
 		if(MODE_COMBAT_PATROL_SOM_MINOR)
-			announcement_body = "Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
-			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."
+			to_chat(world, span_round_body("Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
+			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."))
 		if(MODE_COMBAT_PATROL_MARINE_MINOR)
-			announcement_body = "TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
-			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."
-
-	send_ooc_announcement(
-		sender_override = "Round Concluded",
-		title = round_finished,
-		text = announcement_body,
-		play_sound = FALSE,
-		style = "game"
-	)
+			to_chat(world, span_round_body("TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
+			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."))
 
 	var/sound/som_track
 	var/sound/tgmc_track
@@ -198,19 +192,15 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///Checks team balance and tries to correct if possible
-/datum/game_mode/hvh/campaign/proc/autobalance_cycle(forced = FALSE)
+/datum/game_mode/hvh/campaign/proc/autobalance_cycle()
 	var/list/autobalance_faction_list = autobalance_check()
 	if(!autobalance_faction_list)
 		return
 
-	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[autobalance_faction_list[1]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[1]])] players, \
-	autobalance_faction_list[2] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
-	Forced autobalance is [forced ? "ON." : "OFF."]")
-
-	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
+	for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
 		if(stat_list[faction_member.faction].faction_leader == faction_member)
 			continue
-		swap_player_team(faction_member, autobalance_faction_list[2], forced)
+		swap_player_team(faction_member, autobalance_faction_list[2])
 
 	addtimer(CALLBACK(src, PROC_REF(autobalance_bonus)), CAMPAIGN_AUTOBALANCE_DECISION_TIME + 1 SECONDS)
 
@@ -228,12 +218,10 @@
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
-/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE)
+/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction)
 	if(!user.client)
 		return
-	if(forced)
-		to_chat(user, "The teams are currently imbalanced, in favour of your team. Forced autobalance is on, so you may be swapped to the other team.")
-	else if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
+	if(tgui_alert(user, "The teams are currently imbalanced, in favour of your team.", "Join the other team?", list("Stay on team", "Change team"), CAMPAIGN_AUTOBALANCE_DECISION_TIME, FALSE) != "Change team")
 		return
 	var/list/current_ratio = autobalance_check(1)
 	if(!current_ratio || current_ratio[2] == user.faction)

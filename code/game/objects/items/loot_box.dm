@@ -470,9 +470,6 @@
 
 // Common
 
-/obj/item/storage/box/crate/loot/autosniper_pack
-	icon_state = "sniper_case"
-
 /obj/item/storage/box/crate/loot/autosniper_pack/PopulateContents()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
@@ -488,9 +485,6 @@
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src) //180 total and common, fine considering 3 autos is really strong.
-
-/obj/item/storage/box/crate/loot/thermobaric_pack
-	icon_state = "rocket_case"
 
 /obj/item/storage/box/crate/loot/thermobaric_pack/PopulateContents()
 	. = ..()
@@ -551,9 +545,6 @@
 	new /obj/item/tool/shovel/etool(src)
 	new /obj/item/tool/shovel/etool(src)
 
-/obj/item/storage/box/crate/loot/recoilless_pack
-	icon_state = "rocket_case"
-
 /obj/item/storage/box/crate/loot/recoilless_pack/PopulateContents()
 	. = ..()
 	new /obj/item/storage/holster/backholster/rpg/full(src)
@@ -583,9 +574,6 @@
 	new /obj/item/ammo_magazine/railgun(src)
 	new /obj/item/ammo_magazine/railgun(src)
 	new /obj/item/ammo_magazine/railgun(src)
-
-/obj/item/storage/box/crate/loot/scoutrifle_pack
-	icon_state = "sniper_case"
 
 /obj/item/storage/box/crate/loot/scoutrifle_pack/PopulateContents()
 	. = ..()
@@ -648,9 +636,6 @@
 	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 
-/obj/item/storage/box/crate/loot/sentry_pack
-	icon_state = "sentry_case"
-
 /obj/item/storage/box/crate/loot/sentry_pack/PopulateContents()
 	. = ..()
 	new /obj/item/storage/box/crate/sentry(src)
@@ -686,9 +671,6 @@
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
 	new /obj/item/armor_module/module/tyr_extra_armor(src)
 	new /obj/item/armor_module/module/tyr_extra_armor(src)
-
-/obj/item/storage/box/crate/loot/sadarclassic_pack
-	icon_state = "rocket_case"
 
 /obj/item/storage/box/crate/loot/sadarclassic_pack/PopulateContents()
 	. = ..()

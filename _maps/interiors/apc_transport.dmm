@@ -71,7 +71,7 @@
 /turf/closed/interior/apc/one,
 /area/interior/apc)
 "C" = (
-/obj/structure/bed/chair/vehicle_crew/driver_gunner{
+/obj/structure/bed/chair/driver_gunner_seat{
 	pixel_x = -3;
 	pixel_y = -5
 	},

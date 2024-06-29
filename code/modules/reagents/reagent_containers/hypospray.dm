@@ -9,12 +9,13 @@
 	worn_icon_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60)
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
 	volume = 60
 	reagent_flags = OPENCONTAINER
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
+	interaction_flags = INTERACT_OBJ_UI
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
@@ -205,9 +206,6 @@
 	desc.maptext_width = 16
 	. += desc
 
-/obj/item/reagent_containers/hypospray/unique_action(mob/user, special_treatment)
-	ui_interact(user)
-
 /obj/item/reagent_containers/hypospray/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -349,7 +347,6 @@
 	if(get_dist(user,src) > 2)
 		. += span_warning("You're too far away to see [src]'s reagent display!")
 		return
-	. += span_notice("Use to inject into yourself. Unique Action to open the hypospray menu.")
 
 	. += display_reagents(user)
 
@@ -506,7 +503,6 @@
 	icon_state = "hypomed"
 	core_name = "hypospray"
 	volume = 120
-	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60, 120)
 
 /obj/item/reagent_containers/hypospray/advanced/big/bicaridine
 	name = "big bicaridine hypospray"

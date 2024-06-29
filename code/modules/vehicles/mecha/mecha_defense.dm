@@ -50,6 +50,14 @@
 
 	return damage_taken
 
+/obj/vehicle/sealed/mecha/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
+	. = ..()
+	if(!.)
+		return
+	if(!attack_dir)
+		return
+	. *= get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
+
 /obj/vehicle/sealed/mecha/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)

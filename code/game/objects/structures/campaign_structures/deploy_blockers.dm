@@ -11,7 +11,6 @@
 	desc = "A cutting edge piece of technology designed to disrupt long range bluespace interference in a given radius. The SOM's long range teleporters are unlikely to work here while this is active."
 	density = TRUE
 	anchored = TRUE
-	atom_flags = CRITICAL_ATOM
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'

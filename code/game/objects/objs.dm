@@ -380,6 +380,3 @@
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
 	take_damage(damage, BRUTE, MELEE)
 	return TRUE
-
-/obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer

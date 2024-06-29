@@ -454,9 +454,6 @@
 	var/mob/living/carbon/carbon_owner
 
 /datum/status_effect/incapacitating/irradiated/on_creation(mob/living/new_owner, set_duration)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
-		qdel(src)
-		return
 	. = ..()
 	if(.)
 		if(iscarbon(owner))
@@ -503,12 +500,12 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/stacking/intoxicated/can_gain_stacks()
-	if(owner.status_flags & GODMODE || owner.stat == DEAD)
+	if(owner.status_flags & GODMODE)
 		return FALSE
 	return ..()
 
 /datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
 	. = ..()
@@ -615,7 +612,7 @@
 	if(debuff_owner.stat == DEAD || debuff_owner.status_flags & GODMODE)
 		qdel(src)
 		return
-	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, FIRE, updating_health = TRUE)
+	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, ACID, updating_health = TRUE)
 	if(stacks > 4)
 		visual_fire.icon_state = "melting_high_stacks"
 	else
@@ -705,12 +702,12 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/stacking/melting/can_gain_stacks()
-	if(owner.status_flags & GODMODE || owner.stat == DEAD)
+	if(owner.status_flags & GODMODE)
 		return FALSE
 	return ..()
 
 /datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
 	if(new_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
@@ -787,12 +784,12 @@
 	COOLDOWN_DECLARE(cooldown_microwave_status)
 
 /datum/status_effect/stacking/microwave/can_gain_stacks()
-	if(owner.status_flags & GODMODE || owner.stat == DEAD)
+	if(owner.status_flags & GODMODE)
 		return FALSE
 	return ..()
 
 /datum/status_effect/stacking/microwave/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
 	debuff_owner = new_owner
@@ -865,7 +862,7 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/shatter/on_creation(mob/living/new_owner, set_duration)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+	if(new_owner.status_flags & GODMODE)
 		qdel(src)
 		return
 

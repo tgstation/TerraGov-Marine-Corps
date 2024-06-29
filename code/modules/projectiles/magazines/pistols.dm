@@ -33,7 +33,6 @@
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "m4a3"
-	icon = 'icons/obj/items/ammo/pistol.dmi'
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol

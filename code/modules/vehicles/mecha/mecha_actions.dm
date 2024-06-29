@@ -106,13 +106,15 @@
 
 /obj/vehicle/sealed/mecha/proc/toggle_strafe()
 	if(!(mecha_flags & CANSTRAFE))
-		for(var/occupant in occupants)
-			balloon_alert(occupant, "No strafing mode")
+		to_chat(occupants, "this mecha doesn't support strafing!")
 		return
 
 	strafe = !strafe
+
+	to_chat(occupants, "strafing mode [strafe?"on":"off"].")
+	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
+
 	for(var/occupant in occupants)
-		balloon_alert(occupant, "Strafing mode [strafe?"on":"off"].")
 		var/datum/action/action = LAZYACCESSASSOC(occupant_actions, occupant, /datum/action/vehicle/sealed/mecha/strafe)
 		action?.update_button_icon()
 

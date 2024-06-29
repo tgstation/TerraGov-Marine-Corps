@@ -3,7 +3,6 @@
 	name = "GENERIC CAMPAIGN STRUCTURE"
 	desc = "THIS SHOULDN'T BE VISIBLE"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
-	atom_flags = CRITICAL_ATOM
 	///Missions that trigger this landmark to spawn an objective
 	var/list/mission_types
 	///Campaign structure spawned by this landmark

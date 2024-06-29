@@ -32,7 +32,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "e" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/item/radio,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
@@ -60,7 +60,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "k" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
@@ -143,7 +143,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "A" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/item/toy/plush/farwa,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
@@ -218,7 +218,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "P" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /obj/machinery/light{
 	dir = 1
@@ -231,7 +231,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "S" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/item/binoculars,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/outer/west)
@@ -269,7 +269,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "Z" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/machinery/light,
 /obj/machinery/light,
 /turf/open/floor/wood/alt_four,

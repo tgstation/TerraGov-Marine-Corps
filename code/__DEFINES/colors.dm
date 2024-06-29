@@ -245,8 +245,6 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_PURPLE "#952CF4"
 /// Less-saturated light purple. rgb(155, 81, 255)
 #define LIGHT_COLOR_LAVENDER "#9B51FF"
-///lighter, pinker purple
-#define LIGHT_COLOR_PURPLE_PINK "#e2a3ff"
 ///slightly desaturated bright yellow.
 #define LIGHT_COLOR_HOLY_MAGIC "#FFF743"
 /// deep crimson

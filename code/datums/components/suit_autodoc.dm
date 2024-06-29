@@ -183,7 +183,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "Automedical suite deactivates")
-		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
+		playsound(parent,'sound/voice/b18_deactivate.ogg', 15, 0, 1)
 
 /**
 	Enable processing and calls out to register signals from the user.
@@ -199,7 +199,7 @@
 	START_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "Automedical suite activates")
-		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
+		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 
 /**

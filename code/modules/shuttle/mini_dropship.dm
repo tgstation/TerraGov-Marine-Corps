@@ -99,6 +99,15 @@
 		land_action.give_action(user)
 		actions += land_action
 
+	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+	for(var/obj/structure/dropship_equipment/rappel_system/system in shuttle.equipments)
+		var/datum/action/innate/rappel_designate/rappel_action = new
+		rappel_action.target = user
+		rappel_action.origin = system
+		rappel_action.give_action(user)
+		actions += rappel_action
+
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_arrived()
 	if(fly_state == next_fly_state)
 		return
@@ -311,6 +320,8 @@
 	if(is_ground_level(origin.z)) //Safety check to prevent instant transmission
 		to_chat(owner, span_warning("The shuttle can't move while docked on the planet"))
 		return
+	origin.retract_rappels()
+
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE

@@ -48,8 +48,3 @@
 	large_vehicle = 1
 	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_TRAINED)
 
-/obj/item/pamphlet/tank_crew
-	name = "tank crew instruction manual"
-	desc = "Operating tanks for dummies."
-	large_vehicle = 3
-	max_skills = list(SKILL_LARGE_VEHICLE = SKILL_LARGE_VEHICLE_VETERAN)

@@ -190,6 +190,7 @@
 /obj/item/storage/box/pizza
 	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
+	icon = 'icons/obj/items/storage/storage.dmi'
 
 /obj/item/storage/box/pizza/Initialize(mapload, ...)
 	. = ..()

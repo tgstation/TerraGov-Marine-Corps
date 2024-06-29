@@ -141,6 +141,17 @@ OPERATIONS
 /datum/supply_packs/operations/droppod
 	name = "drop pod"
 	contains = list(/obj/structure/droppod)
+
+/datum/supply_packs/weapons/specdemo
+	name = "Spare rappel system cord"
+	contains = list()
+	cost = 30
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/operations/cas_voucher
+	name = "150 dropship fabricator points"
+	contains = list(/obj/item/dropship_points_voucher)
+	cost = 40
 	containertype = null
 	cost = 50
 
@@ -838,24 +849,9 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_he_shell
-	name = "LTB High Explosive tank shell"
+/datum/supply_packs/weapons/ltb_shells
+	name = "LTB tank shell"
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_apfds_shell
-	name = "LTB APFDS tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_canister_shell
-	name = "LTB Canister tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
-	cost = 10
-
-/datum/supply_packs/weapons/secondary_flamer_tank
-	name = "Spray flamer tank"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
 	cost = 10
 
 /datum/supply_packs/weapons/ltaap_rounds
@@ -2541,8 +2537,3 @@ FACTORY
 	name = "Deplyable security camera refill"
 	contains = list(/obj/item/factory_refill/deployable_camera_refill)
 	cost = 100
-
-/datum/supply_packs/factory/cigarette_refill
-	name = "500 Cigarettes refill"
-	contains = list(/obj/item/factory_refill/cigarette_refill)
-	cost = 500

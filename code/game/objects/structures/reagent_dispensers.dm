@@ -40,8 +40,6 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
-		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
-		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -248,11 +246,6 @@
 
 	qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/spacefuel
-	name = "spacecraft fuel-mix tank"
-	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
-	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
-
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
@@ -265,8 +258,6 @@
 	list_reagents = list(/datum/reagent/water = 500)
 	coverage = 20
 
-/obj/structure/reagent_dispensers/water_cooler/nondense
-	density = FALSE
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

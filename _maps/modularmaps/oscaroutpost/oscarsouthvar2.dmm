@@ -1386,7 +1386,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "rL" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/machinery/faxmachine,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
@@ -1722,7 +1722,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "wt" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/item/trash/cigbutt/cigarbutt{
 	pixel_y = 14
 	},
@@ -1738,7 +1738,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "wI" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
@@ -2215,7 +2215,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Ej" = (
-/obj/structure/table/wood/fancy{
+/obj/structure/table/fancywoodentable{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -2610,7 +2610,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "KL" = (
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
 	dir = 4
 	},
@@ -3007,7 +3007,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Rn" = (
-/obj/structure/table/wood/fancy{
+/obj/structure/table/fancywoodentable{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -3435,7 +3435,7 @@
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/structure/table/wood/fancy,
+/obj/structure/table/fancywoodentable,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)

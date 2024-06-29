@@ -36,7 +36,7 @@
 			var/turf/TS = get_step(target,D)
 			if(!TS)
 				continue
-			if(TS.density || locate(/obj/structure/door/resin) in TS)
+			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
 				return NO_ERROR
 		return ERROR_NO_SUPPORT
 	return NO_ERROR
