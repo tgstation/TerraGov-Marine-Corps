@@ -108,6 +108,9 @@
 	if(!ishuman(crosser))
 		return
 
+	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
+		return
+
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
 		return
 
