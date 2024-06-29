@@ -14515,11 +14515,13 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/innerring)
 "kQw" = (
-/obj/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "kQI" = (
@@ -20956,7 +20958,9 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/prison/innerring)
 "pwt" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "pwA" = (
@@ -23452,7 +23456,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "rkT" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood/variable/mosaic,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "rkU" = (
@@ -25528,7 +25532,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/minedrock)
 "sJw" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood/variable/wide/damaged,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "sJH" = (

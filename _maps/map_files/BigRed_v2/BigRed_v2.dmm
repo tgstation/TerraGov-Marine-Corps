@@ -4662,7 +4662,9 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSo" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -4682,7 +4684,9 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSt" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
@@ -4810,7 +4814,9 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aTI" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -4891,7 +4897,9 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aUI" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
@@ -4938,7 +4946,9 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/caves/lambda_lab)
 "aVB" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},

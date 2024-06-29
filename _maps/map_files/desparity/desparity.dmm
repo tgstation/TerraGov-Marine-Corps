@@ -6318,7 +6318,9 @@
 /area/lv624/ground/jungle9)
 "GR" = (
 /obj/structure/window/framed/wood,
-/obj/structure/curtain/temple,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/chapel)
 "GS" = (
@@ -7646,7 +7648,9 @@
 /area/lv624/lazarus/engineering)
 "Ng" = (
 /obj/structure/window/framed/wood,
-/obj/structure/curtain/open/temple,
+/obj/structure/curtain/open/temple{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/chapel)
 "Nh" = (

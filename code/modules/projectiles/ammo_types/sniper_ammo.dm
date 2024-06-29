@@ -43,7 +43,7 @@
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
-	handful_icon_state = "crude sniper bullet"
+	handful_icon_state = "crude_sniper"
 	hud_state = "sniper_crude"
 	handful_amount = 5
 	damage = 75
@@ -52,7 +52,7 @@
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
-	handful_icon_state = "crude heavy sniper bullet"
+	handful_icon_state = "crude_heavy_sniper"
 	hud_state = "sniper_crude"
 	handful_amount = 5
 	ammo_behavior_flags = AMMO_BALLISTIC

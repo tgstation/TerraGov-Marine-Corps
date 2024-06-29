@@ -164,6 +164,16 @@
 	worn_icon_state = "lampgreen"
 	light_range = 5
 
+/obj/item/device/flashlight/lamp/tripod
+	name = "tripod lamp"
+	desc = "An emergency light tube mounted onto a tripod. It seemingly lasts forever."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "tripod_lamp"
+	light_range = 6//pretty good
+
+/obj/item/device/flashlight/lamp/tripod/grey
+	icon_state = "tripod_lamp_grey"
+
 /obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"

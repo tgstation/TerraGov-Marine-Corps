@@ -114,7 +114,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 	randomdir = FALSE
-	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/after_image/Initialize(mapload, atom/owner, _duration = 0.5 SECONDS)
 	. = ..()

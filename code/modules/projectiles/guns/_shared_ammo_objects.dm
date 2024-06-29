@@ -156,10 +156,12 @@
 	burn_ticks = 12
 
 ///Effects applied to a mob that crosses a burning turf
-/obj/fire/flamer/on_cross(datum/source, mob/living/crosser, oldloc, oldlocs)
-	. = ..()
-	if(istype(crosser) || isobj(crosser))
-		crosser.fire_act(burn_level)
+/obj/fire/flamer/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
+	if(!isliving(crosser) || isobj(crosser))
+		return
+	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
+		return
+	crosser.fire_act(burn_level)
 
 /obj/fire/flamer/affect_mob(mob/living/carbon/affected)
 	. = ..()
@@ -199,6 +201,13 @@
 		return
 	if(target.stat == DEAD)
 		return
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return FALSE
+	if(pass_flags & PASS_FIRE)
+		return FALSE
 	var/damage = PYROGEN_MELTING_FIRE_DAMAGE
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
@@ -207,6 +216,7 @@
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK)
 	target.take_overall_damage(damage, BURN, FIRE, max_limbs = 2)
 
-/obj/fire/melting_fire/on_cross(datum/source, mob/living/carbon/human/crosser, oldloc, oldlocs)
-	if(istype(crosser))
-		affect_mob(crosser)
+/obj/fire/melting_fire/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
+	if(!ishuman(crosser))
+		return
+	affect_mob(crosser)

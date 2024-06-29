@@ -275,6 +275,11 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
+
+#define isdoorkey(A) istype(A, /obj/item/key/door)
+
+#define islock(A) istype(A, /obj/item/lock)
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

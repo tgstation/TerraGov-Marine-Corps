@@ -1053,11 +1053,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aLX" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/executive)
 "aMR" = (
@@ -6331,6 +6333,12 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
+"ems" = (
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/c_block/casino)
 "emD" = (
 /obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor/prison,
@@ -9314,10 +9322,12 @@
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "gmV" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood{
 	dir = 1
+	},
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
@@ -9485,6 +9495,12 @@
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
+"gtf" = (
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/a_block/executive)
 "gtj" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9600,8 +9616,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/outdoors/w_rockies)
 "gvO" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen,
 /area/gelida/indoors/a_block/medical)
 "gwj" = (
@@ -10923,7 +10941,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "hpl" = (
-/obj/effect/spawner/random/misc/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/executive)
 "hps" = (
@@ -15993,7 +16013,9 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/south_street)
 "kKh" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -18708,8 +18730,10 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "myk" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/curtain/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -20393,8 +20417,10 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "nHg" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/curtain/medical{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -20890,8 +20916,10 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "nXy" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/curtain{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -21394,7 +21422,9 @@
 	},
 /area/gelida/indoors/a_block/bridges)
 "oqb" = (
-/obj/effect/spawner/random/misc/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "oqj" = (
@@ -25075,7 +25105,9 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "qIV" = (
-/obj/effect/spawner/random/misc/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/fitness)
 "qJo" = (
@@ -26115,11 +26147,6 @@
 	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
-"rmL" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/sterilewhite,
-/area/gelida/indoors/a_block/medical)
 "rnb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -28227,11 +28254,13 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "sJD" = (
-/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -32476,6 +32505,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
+"vII" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/gelida/indoors/a_block/medical)
 "vIT" = (
 /obj/machinery/hydroponics,
 /obj/structure/window{
@@ -36080,6 +36115,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/west_caves/garbledradio)
+"ylj" = (
+/obj/effect/spawner/random/misc/structure/curtain{
+	dir = 4
+	},
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorms)
 "yly" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced{
@@ -48441,7 +48484,7 @@ icP
 eKY
 stq
 yfp
-jNG
+ylj
 gmV
 sJD
 yfp
@@ -62440,8 +62483,8 @@ jIb
 bUb
 xvC
 xvC
-pwK
-pwK
+ems
+ems
 xvC
 xvC
 xvC
@@ -65970,7 +66013,7 @@ bfd
 rIo
 xts
 mhj
-nEL
+vII
 myk
 kKh
 mhj
@@ -65992,8 +66035,8 @@ gKW
 hsx
 xvC
 xvC
-pwK
-pwK
+ems
+ems
 xvC
 xvC
 xvC
@@ -67046,9 +67089,9 @@ wsa
 wsa
 wsa
 wsa
-jfN
-jfN
-jfN
+gtf
+gtf
+gtf
 wsa
 wsa
 dtN
@@ -68856,7 +68899,7 @@ bfd
 fBW
 qpr
 mhj
-nEL
+vII
 nHg
 gvO
 mhj
@@ -70192,7 +70235,7 @@ wji
 fhc
 ojR
 ojR
-rmL
+sRi
 ojR
 wrR
 ojR
