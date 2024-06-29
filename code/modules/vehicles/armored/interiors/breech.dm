@@ -285,19 +285,28 @@
 	var/max_shells = 3
 	//time to load the ready rack
 	var/rack_reload_time = 2 SECONDS
+	//autoloader time to reload from readyrack
+	var/autoloader_reload_time = 1.5 SECONDS //is the reload time really 1 second for the breech? (ive never seen a man reload a tank that fast)
+	//check to see if loading is happening
+	var/loading = FALSE
 
 ///loads the autoloader's ready rack
 /obj/structure/gun_breech/autoloader/do_load(mob/living/user, obj/item/armored_weapon/weapon, obj/item/ammo_magazine/mag)
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(src)
 	shells += mag
-	flick("autoloader_breech_reload",src)
 
-/obj/structure/gun_breech/autoloader/proc/autoloader_load_gun()
+/obj/structure/gun_breech/autoloader/proc/begin_autoloader_load_gun()
 	if(shells.len <= 0)
 		return
 	if(owner.primary_weapon.ammo)
 		return
+	loading = TRUE
+	var/timer = addtimer(CALLBACK(src, PROC_REF(autoloader_load_gun)), autoloader_reload_time, TIMER_STOPPABLE)
+
+
+/obj/structure/gun_breech/autoloader/proc/autoloader_load_gun()
+
 	owner.primary_weapon.ammo = shells[1]
 
 	for(var/mob/occupant AS in owner.interior.occupants)
@@ -307,6 +316,10 @@
 			shells[1].current_rounds
 		)
 	shells -= shells[1]
+	loading = FALSE
+
+	playsound(src, 'sound/weapons/vehicles/weapons/ltb_reload.ogg', 60, FALSE)
+	flick("autoloader_breech_reload",src)
 
 
 ///checks to perform while reloading

@@ -204,6 +204,5 @@
 	. = ..()
 	if(!.)
 		return
-	vehicle.initialize_controller_action_type(/datum/action/vehicle/sealed/armored/load_autoloader)
-	vehicle.initialize_controller_action_type(/datum/action/vehicle/sealed/armored/load_autoloader, VEHICLE_CONTROL_SETTINGS)
+	vehicle.initialize_controller_action_type(/datum/action/vehicle/sealed/armored/load_autoloader, VEHICLE_CONTROL_EQUIPMENT)
 

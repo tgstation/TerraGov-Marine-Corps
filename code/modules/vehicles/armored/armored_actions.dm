@@ -233,4 +233,4 @@
 	if(!owner?.client || !chassis || !(owner in chassis.occupants) || !chassis.interior?.breech)
 		return
 	var/obj/structure/gun_breech/autoloader/weapon_breech = chassis.interior?.breech
-	weapon_breech.autoloader_load_gun()
+	weapon_breech.begin_autoloader_load_gun()
