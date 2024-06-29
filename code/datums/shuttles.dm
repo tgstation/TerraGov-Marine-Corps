@@ -202,12 +202,13 @@
 	display_name = "Tadpole Food Truck Model"
 	file_name = "minidropship_food"
 	suffix = "_food"
-/*---------------------------------------------------------------*/
 
-/datum/map_template/shuttle/minidropship/outrider
-	suffix = "_outrider"
+/datum/map_template/shuttle/flyable/mini/outrider
 	description = "An asymmetric tadpole designed with vehicle transport in mind. Built with a wide umbilical to allow fluid heavy-vehicle movement."
 	display_name = "Tadpole Outrider Model"
+	file_name = "minidropship_outrider"
+	suffix = "_outrider"
+/*---------------------------------------------------------------*/
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
