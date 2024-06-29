@@ -17,6 +17,7 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = 0
+	buckling_y = 0
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
