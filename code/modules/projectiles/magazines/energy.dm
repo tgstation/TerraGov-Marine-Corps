@@ -196,7 +196,7 @@
 	name = "\improper TE powerpack"
 	desc = "A recently developed mass produced side pouch which charges any TE technological achievement."
 	icon_state = "lasgun_pouch"
-	charge_overlay = null
+	charge_overlay = "lasgun_pouch"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_POCKET
 	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
