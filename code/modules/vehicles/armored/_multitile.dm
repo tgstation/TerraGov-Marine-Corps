@@ -20,7 +20,8 @@
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher)
 	permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
 	max_occupants = 4
-	move_delay = 0.9 SECONDS
+	move_delay = 0.75 SECONDS
+	glide_size = 2.5
 	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
@@ -49,7 +50,7 @@
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(INFINITY, BRUTE, BOMB, 0)
+			take_damage(500, BRUTE, BOMB, 0)
 		if(EXPLODE_HEAVY)
 			take_damage(80, BRUTE, BOMB, 0)
 		if(EXPLODE_LIGHT)
@@ -61,17 +62,29 @@
 		return
 	take_damage(30, BURN, FIRE)
 
+/obj/vehicle/sealed/armored/multitile/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
+	. = ..()
+	for(var/mob/living/occupant AS in occupants)
+		var/strength = 1
+		if(occupant.buckled)
+			strength = 0.5
+		shake_camera(occupant, duration, strength)
+	for(var/atom/movable/desant AS in hitbox?.tank_desants)
+		desant.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
+
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	max_integrity = 1400
-	soft_armor = list(MELEE = 80, BULLET = 85 , LASER = 85, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
-	hard_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
+	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.6, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS
 	move_delay = 0.6 SECONDS
 	glide_size = 2.5
 	vis_range_mod = 4
 	faction = FACTION_TERRAGOV
+	ram_damage = 130
 
 /obj/vehicle/sealed/armored/multitile/campaign/Initialize(mapload)
 	. = ..()

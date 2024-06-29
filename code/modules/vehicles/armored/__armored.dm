@@ -278,24 +278,24 @@
 		var/obj/item/grab/grab_item = thing_to_load
 		thing_to_load = grab_item.grabbed_thing
 	if(!isliving(thing_to_load) && !is_type_in_typecache(thing_to_load.type, easy_load_list))
-		return
+		return FALSE
 	if(!interior)
 		user.balloon_alert(user, "no interior")
-		return
+		return FALSE
 	if(!interior.door)
 		user.balloon_alert(user, "no door")
-		return
+		return FALSE
 	var/list/enter_locs = enter_locations(user)
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
 		user.balloon_alert(user, "not at entrance")
-		return
+		return FALSE
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
-		mob_try_enter(thing_to_load, user, TRUE)
-		return
+		return mob_try_enter(thing_to_load, user, TRUE)
 	user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
+	return TRUE
 
 /obj/vehicle/sealed/armored/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if(isobserver(entering_mob))
@@ -425,6 +425,8 @@
 
 /obj/vehicle/sealed/armored/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.type in permitted_weapons))
@@ -479,7 +481,7 @@
 	try_easy_load(dropping, M)
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
-	try_easy_load(grab.grabbed_thing, user)
+	return try_easy_load(grab.grabbed_thing, user)
 
 /obj/vehicle/sealed/armored/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -583,7 +585,7 @@
 	balloon_alert(user, "detached")
 
 /obj/vehicle/sealed/armored/plastique_act(mob/living/plastique_user)
-	ex_act(EXPLODE_LIGHT)
+	take_damage(500, BRUTE, BOMB, TRUE, REVERSE_DIR(dir), 50, plastique_user)
 
 /**
  * Toggles Weapons Safety

@@ -679,12 +679,27 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 	. = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		vehtype = new vehtype
-		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
-		.[vehtype.type] = vehtype.permitted_weapons
+
+		GLOB.armored_modtypes[vehtype.type] = list()
+		for(var/obj/item/tank_module/module AS in vehtype.permitted_mods)
+			if(module::tank_mod_flags & TANK_MOD_NOT_FABRICABLE)
+				continue
+			GLOB.armored_modtypes[vehtype.type] += module
+
+		.[vehtype.type] = list()
+		for(var/obj/item/armored_weapon/weapon AS in vehtype.permitted_weapons)
+			if(weapon::armored_weapon_flags & MODULE_NOT_FABRICABLE)
+				continue
+			.[vehtype.type] += weapon
 		qdel(vehtype)
+
 	for(var/obj/item/armored_weapon/gun AS in typesof(/obj/item/armored_weapon))
 		gun = new gun
-		GLOB.armored_gunammo[gun.type] = gun.accepted_ammo
+		GLOB.armored_gunammo[gun.type] = list()
+		for(var/obj/item/ammo_magazine/magazine AS in gun.accepted_ammo)
+			if(magazine::magazine_flags & MAGAZINE_NOT_FABRICABLE)
+				continue
+			GLOB.armored_gunammo[gun.type] += magazine
 		qdel(gun)
 
 /datum/supply_ui/vehicles
