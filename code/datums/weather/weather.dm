@@ -111,7 +111,7 @@
 			continue
 		if(telegraph_message)
 			to_chat(impacted_mob, telegraph_message)
-		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
 			continue
 		if(telegraph_sound)
 			SEND_SOUND(impacted_mob, sound(telegraph_sound, volume = 60))
@@ -135,7 +135,7 @@
 			continue
 		if(weather_message)
 			to_chat(impacted_mob, weather_message)
-		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
+		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
 			continue
 		if(weather_sound)
 			SEND_SOUND(impacted_mob, sound(weather_sound))
@@ -159,7 +159,7 @@
 			continue
 		if(end_message)
 			to_chat(impacted_mob, end_message)
-		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
+		if(impacted_mob.client?.prefs.toggles_sound & SOUND_WEATHER)
 			continue
 		if(end_sound)
 			SEND_SOUND(impacted_mob, sound(end_sound))

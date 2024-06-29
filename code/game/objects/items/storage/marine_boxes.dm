@@ -1,7 +1,7 @@
 /obj/item/storage/box/crate
 	name = "crate"
 	desc = "It's just an ordinary wooden crate."
-	icon = 'icons/obj/items/storage/marine_box.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "case"
 
 /obj/item/storage/box/crate/Initialize(mapload, ...)

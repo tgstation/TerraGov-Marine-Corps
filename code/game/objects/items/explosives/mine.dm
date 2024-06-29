@@ -140,16 +140,11 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/living_victim
 	if((target_mode & MINE_LIVING_ONLY) && isliving(victim))
 		living_victim = victim
-	else if(target_mode & MINE_VEHICLE_ONLY)
-		if(ishitbox(victim))
-			var/obj/hitbox/hitbox = victim
-			victim = hitbox.root
-		if(isvehicle(victim))
-			var/obj/vehicle/vehicle_victim = victim
-			var/list/driver_list = vehicle_victim.return_drivers()
-			if(!length(driver_list))
-				return FALSE
-			living_victim = driver_list[1]
+	else if((target_mode & MINE_VEHICLE_ONLY) && isvehicle(victim))
+		var/obj/vehicle/vehicle_victim = victim
+		if(!length(vehicle_victim.occupants))
+			return FALSE
+		living_victim = vehicle_victim.occupants[1]
 
 	if(!living_victim)
 		return FALSE

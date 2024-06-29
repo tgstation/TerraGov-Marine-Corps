@@ -82,6 +82,10 @@
 "V" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"Y" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south/garbledradio)
 "Z" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -1043,7 +1047,7 @@ B
 a
 a
 a
-a
+Y
 a
 Z
 u

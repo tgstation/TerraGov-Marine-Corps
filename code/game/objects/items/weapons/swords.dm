@@ -86,7 +86,8 @@
 	if(!ishuman(target))
 		var/obj/obj_victim = target
 		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
-		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
+		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
+			obj_victim.knockback(carbon_owner, 1, 2)
 	else
 		var/mob/living/carbon/human/human_victim = target
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)

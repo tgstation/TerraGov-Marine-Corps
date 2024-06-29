@@ -1161,7 +1161,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/hydro)
 "fm" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/deck,
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/prison/whitegreenfull2,
@@ -4007,7 +4007,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/hydro)
 "rP" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/spacecash/c500,
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
@@ -8734,7 +8734,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/patricks_rest/surface/building/residential_e)
 "OT" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
 "OU" = (

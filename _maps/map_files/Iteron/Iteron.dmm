@@ -784,7 +784,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
 "kz" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
 "kC" = (
@@ -1113,7 +1113,7 @@
 	},
 /area/mainship/patrol_base/command)
 "pH" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
 /turf/open/floor/mainship/mono,

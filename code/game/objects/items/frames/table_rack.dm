@@ -101,7 +101,7 @@
 	desc = "A kit for a table, including a large, flat wooden surface and four legs. Some assembly required."
 	icon_state = "wood_tableparts"
 	atom_flags = null
-	table_type = /obj/structure/table/wood
+	table_type = /obj/structure/table/woodentable
 	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
@@ -133,7 +133,7 @@
 	desc = "A kit for a table, including a large, flat wooden and carpet surface and four legs. Some assembly required."
 	icon_state = "gamble_tableparts"
 	atom_flags = null
-	table_type = /obj/structure/table/wood/gambling
+	table_type = /obj/structure/table/gamblingtable
 	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)

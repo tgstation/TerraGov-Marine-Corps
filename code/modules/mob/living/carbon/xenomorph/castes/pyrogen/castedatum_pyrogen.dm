@@ -10,18 +10,18 @@
 	evolution_threshold = 225
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 20
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 325
-	plasma_gain = 25
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_THRESHOLD

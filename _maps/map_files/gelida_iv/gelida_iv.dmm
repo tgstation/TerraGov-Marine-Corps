@@ -291,44 +291,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"ajj" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp{
-	pixel_x = 4;
-	pixel_y = 14
-	},
-/obj/item/binoculars,
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
-"ajq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/gelida/indoors/a_block/executive)
-"ajD" = (
-/obj/structure/table/reinforced/prison,
-/obj/item/reagent_containers/jerrycan{
-	desc = "A jerry can. In space! Or maybe a colony.";
-	name = "fuel can";
-	pixel_y = 10;
-	worn_icon_state = "caution"
-	},
-/obj/item/ashtray/bronze{
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/jerrycan{
-	desc = "A jerry can. In space! Or maybe a colony.";
-	name = "fuel can";
-	pixel_x = 2;
-	pixel_y = 3;
-	worn_icon_state = "caution"
-	},
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/garage)
 "ajE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -354,6 +316,10 @@
 	dir = 5
 	},
 /area/gelida/indoors/a_block/dorms)
+"akz" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/c_block/mining)
 "akT" = (
 /obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/prison,
@@ -670,6 +636,13 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"auD" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "auH" = (
 /obj/machinery/atm{
 	pixel_y = 32
@@ -728,11 +701,6 @@
 	dir = 8
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
-"awd" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/landing_zone_2)
 "awx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/cleanmarked,
@@ -874,6 +842,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/cavestructuretwo)
+"aCK" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/trash/plate{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/b_block/bar)
+"aCV" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "aDi" = (
 /obj/machinery/floodlight/colony,
 /obj/structure/platform_decoration{
@@ -979,6 +958,17 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"aHF" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 13
+	},
+/obj/item/ashtray/bronze{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "aHQ" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -1044,6 +1034,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
+"aKG" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/ashtray/bronze{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/cigarette/cigar,
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "aKK" = (
 /obj/structure/cable,
 /obj/structure/platform{
@@ -1093,11 +1092,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"aLw" = (
-/obj/structure/table/wood/gambling,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "aLN" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Bedroom"
@@ -1786,13 +1780,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/cavestructuretwo)
-"bgk" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/recharger{
-	pixel_y = 1
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "bgH" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -1825,6 +1812,13 @@
 "bhE" = (
 /turf/closed/shuttle/dropship2/fins,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
+"bhS" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/executive)
 "bhU" = (
 /obj/machinery/floodlight/colony{
 	pixel_y = 6
@@ -1833,13 +1827,6 @@
 	dir = 6
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
-"bhZ" = (
-/obj/structure/table/wood,
-/obj/item/storage/bible,
-/turf/open/floor/tile/dark2{
-	dir = 8
-	},
-/area/gelida/indoors/a_block/executive)
 "bic" = (
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/darkbrown/full,
@@ -2108,10 +2095,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
-"brt" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "bsh" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/kitchen,
@@ -2349,6 +2332,14 @@
 /obj/machinery/newscaster,
 /turf/closed/wall,
 /area/gelida/cavestructuretwo)
+"bAX" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/radio/off{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "bBz" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_street)
@@ -2660,6 +2651,10 @@
 /obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_street)
+"bLK" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/gelida/indoors/b_block/bar)
 "bMh" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -2918,6 +2913,23 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
+"bVs" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/clothing/suit/storage/snow_suit,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = -1;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "bVu" = (
 /obj/structure/closet/coffin,
 /turf/open/floor/prison/darkred/full,
@@ -2964,14 +2976,6 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/cavestructuretwo)
-"bXn" = (
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 12;
-	pixel_y = 16
-	},
-/obj/structure/table/wood/gambling,
-/turf/open/floor/carpet,
-/area/gelida/indoors/c_block/casino)
 "bXz" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/prison,
@@ -3277,6 +3281,13 @@
 	dir = 9
 	},
 /area/gelida/indoors/b_block/bridge)
+"chu" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/cigarettes{
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "chD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -3313,6 +3324,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
+"cjU" = (
+/obj/structure/table/woodentable,
+/obj/machinery/reagentgrinder{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "ckh" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -3394,6 +3413,16 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
+"cmR" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/storage/fancy/cigar{
+	pixel_y = 5
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "cnw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -3772,14 +3801,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
-"cBd" = (
-/obj/structure/table/wood/fancy,
-/obj/item/toy/deck{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "cBr" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine,
@@ -3885,6 +3906,10 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"cEv" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/turf/open/floor/prison/kitchen,
+/area/gelida/indoors/a_block/fitness)
 "cEW" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -3896,6 +3921,14 @@
 	dir = 8
 	},
 /area/gelida/indoors/a_block/admin)
+"cFj" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/executive)
 "cFC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -4030,14 +4063,6 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/cavestructuretwo)
-"cIN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 13;
-	pixel_y = 17
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "cIQ" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/caves/east_caves/garbledradio)
@@ -4361,6 +4386,17 @@
 	dir = 4
 	},
 /area/gelida/indoors/b_block/hydro)
+"cTI" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 13
+	},
+/obj/item/ashtray/bronze{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "cTL" = (
 /obj/structure/inflatable/wall,
 /obj/effect/spawner/gibspawner/xeno,
@@ -4549,17 +4585,6 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
-"cZD" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_y = 8
-	},
-/obj/item/tool/pen,
-/obj/item/tool/pen/red{
-	pixel_y = 6
-	},
-/turf/open/floor/prison/sterilewhite,
-/area/gelida/indoors/a_block/corpo)
 "cZL" = (
 /obj/structure/platform{
 	dir = 9
@@ -4722,30 +4747,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
-"dfc" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 15
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 14;
-	pixel_y = 17
-	},
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 14;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "dfq" = (
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 4
@@ -4817,16 +4818,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/casino)
-"dhg" = (
-/obj/effect/landmark/corpsespawner/scientist,
-/obj/effect/decal/cleanable/blood{
-	dir = 1
-	},
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/gelida/indoors/a_block/dorms)
 "dhr" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -4973,14 +4964,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
-"dmL" = (
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "dmP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5264,13 +5247,6 @@
 	},
 /turf/closed/wall,
 /area/gelida/indoors/c_block/bridge)
-"dxT" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/prop/computer/PC{
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "dxX" = (
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/prison/plate,
@@ -5792,11 +5768,6 @@
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
-"dQd" = (
-/obj/structure/table/wood/fancy,
-/obj/item/weapon/cane,
-/turf/open/floor/tile/yellow/patch,
-/area/gelida/indoors/a_block/corpo)
 "dQl" = (
 /obj/machinery/light,
 /turf/open/floor/prison/whitepurple/full{
@@ -5807,6 +5778,13 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/cavestructuretwo)
+"dQS" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/b_block/bar)
 "dQX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Eastlock"
@@ -5817,12 +5795,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/south_street)
-"dRf" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/executive)
 "dRq" = (
 /obj/structure/cable,
 /turf/open/floor/prison/whitepurple/full{
@@ -6444,26 +6416,6 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
-"eiY" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/pill_bottle/happy{
-	pixel_x = 7;
-	pixel_y = 17
-	},
-/obj/item/spacecash/c100,
-/obj/item/storage/pill_bottle/happy{
-	pixel_x = 2;
-	pixel_y = -5
-	},
-/obj/item/storage/pill_bottle/happy{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "ejE" = (
 /obj/item/clothing/head/welding{
 	pixel_y = 7
@@ -6897,6 +6849,11 @@
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
+"eyD" = (
+/obj/structure/table/gamblingtable,
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "eyF" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -7349,6 +7306,31 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"eLz" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 7;
+	pixel_y = 18
+	},
+/obj/item/storage/fancy/cigar{
+	pixel_y = 6
+	},
+/obj/item/tool/lighter/zippo{
+	pixel_x = 16;
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "eLB" = (
 /obj/structure/cable,
 /obj/vehicle/ridden/powerloader{
@@ -7506,6 +7488,14 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
+"eRq" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/prop/computer/PC{
+	dir = 4;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "eRD" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -7560,6 +7550,17 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/cavestructuretwo)
+"eSX" = (
+/obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/food/drinks/bottle/sake{
+	pixel_x = 3;
+	pixel_y = 13
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "eTa" = (
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
@@ -8095,6 +8096,26 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
+"fiS" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/jerrycan{
+	desc = "A jerry can. In space! Or maybe a colony.";
+	worn_icon_state = "caution";
+	name = "fuel can";
+	pixel_y = 10
+	},
+/obj/item/ashtray/bronze{
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/jerrycan{
+	desc = "A jerry can. In space! Or maybe a colony.";
+	worn_icon_state = "caution";
+	name = "fuel can";
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/prison/darkbrown/full,
+/area/gelida/indoors/c_block/garage)
 "fjn" = (
 /obj/structure/prop/mainship/gelida/rails,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -8207,6 +8228,13 @@
 	pixel_y = 3
 	},
 /obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
+"fnK" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/recharger{
+	pixel_y = 1
+	},
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "fnM" = (
@@ -8492,6 +8520,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"fBs" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 13;
+	pixel_y = 17
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "fBw" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -8534,13 +8570,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/lone_buildings/chunk)
-"fCI" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/gelida/indoors/b_block/bar)
 "fCJ" = (
 /turf/open/floor/prison{
 	dir = 1
@@ -8765,12 +8794,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"fNL" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/prison/sterilewhite/full,
-/area/gelida/indoors/a_block/medical)
 "fNW" = (
 /turf/closed/wall/r_wall,
 /area/gelida/indoors/c_block/mining)
@@ -8838,10 +8861,6 @@
 	dir = 1
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
-"fQs" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/prison/cleanmarked,
-/area/gelida/landing_zone_forecon/landing_zone_4)
 "fQt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -9083,6 +9102,17 @@
 	dir = 10
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
+"fZq" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_y = 8
+	},
+/obj/item/tool/pen,
+/obj/item/tool/pen/red{
+	pixel_y = 6
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/gelida/indoors/a_block/corpo)
 "fZv" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/folder/nooffset,
@@ -9267,15 +9297,6 @@
 /obj/effect/acid_hole,
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
-"ggv" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/flask/detflask{
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/clothing/head/det_hat,
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/security)
 "ggz" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable,
@@ -9381,6 +9402,15 @@
 	dir = 10
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
+"gjz" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 1
+	},
+/area/gelida/indoors/a_block/medical)
 "gjL" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/prison/whitegreen{
@@ -9497,14 +9527,6 @@
 	dir = 4
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
-"gmK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp{
-	pixel_x = 7;
-	pixel_y = 14
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "gnp" = (
 /obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating,
@@ -9639,14 +9661,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/cavestructuretwo)
-"gsc" = (
-/obj/structure/table/wood/fancy,
-/obj/item/radio/off{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "gse" = (
 /obj/structure/prop/mainship/gelida/rails,
 /turf/open/floor/tile/dark2,
@@ -10062,6 +10076,14 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/hallway)
+"gEn" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp{
+	pixel_x = 7;
+	pixel_y = 14
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "gEI" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/smooth/snowrock,
@@ -10153,10 +10175,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/east_central_street)
-"gIu" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/landing_zone_1)
 "gIL" = (
 /obj/structure/stairs/seamless,
 /obj/structure/cable,
@@ -10519,16 +10537,20 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
+"gRT" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/indoors/a_block/dorms)
 "gSb" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
 /area/gelida/landing_zone_forecon/landing_zone_4)
-"gSq" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall,
-/area/gelida/landing_zone_1)
 "gSx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/platform,
@@ -10574,18 +10596,6 @@
 /obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
-"gTr" = (
-/obj/structure/table/wood/fancy,
-/obj/item/ashtray/bronze{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/obj/machinery/prop/computer/PC{
-	dir = 8;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/security)
 "gTw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -10668,6 +10678,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/landing_zone_2)
+"gYr" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/ashtray/bronze{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/machinery/prop/computer/PC{
+	dir = 8;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/security)
 "gYz" = (
 /obj/structure/bed/roller,
 /obj/effect/decal/cleanable/blood,
@@ -11762,6 +11784,10 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
+"hMB" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/prison/cleanmarked,
+/area/gelida/landing_zone_forecon/landing_zone_4)
 "hMN" = (
 /obj/structure/bed{
 	pixel_y = 12
@@ -11811,6 +11837,21 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"hOh" = (
+/obj/machinery/computer/security/wooden_tv{
+	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
+	dir = 1;
+	name = "Television set";
+	network = null;
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/structure/table/woodentable,
+/obj/item/tool/wrench{
+	pixel_y = -6
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "hOj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11826,23 +11867,10 @@
 	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
-"hOI" = (
-/obj/structure/table/wood/gambling,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "hOM" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
 /area/gelida/powergen)
-"hPj" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/prop/computer/PC{
-	dir = 4;
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "hPB" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/plate,
@@ -11878,13 +11906,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
-"hRG" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green{
-	pixel_y = 2
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "hRI" = (
 /obj/machinery/light{
 	dir = 8
@@ -11966,6 +11987,26 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
+"hTr" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/storage/pill_bottle/happy{
+	pixel_x = 7;
+	pixel_y = 17
+	},
+/obj/item/spacecash/c100,
+/obj/item/storage/pill_bottle/happy{
+	pixel_x = 2;
+	pixel_y = -5
+	},
+/obj/item/storage/pill_bottle/happy{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "hTG" = (
 /turf/open/floor/prison/blue{
 	dir = 4
@@ -12464,11 +12505,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves/garbledradio)
-"ihJ" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "ihZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/engineering/cable,
@@ -12527,27 +12563,6 @@
 "ijt" = (
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
-"ijA" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 18
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 18
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 7;
-	pixel_y = 18
-	},
-/obj/item/storage/fancy/cigar{
-	pixel_y = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "ijC" = (
 /obj/structure/filingcabinet/chestdrawer{
 	pixel_x = -6;
@@ -13020,6 +13035,11 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
+"iAs" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "iAv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -13344,6 +13364,14 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"iLz" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 12;
+	pixel_y = 17
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "iLA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -13616,22 +13644,6 @@
 "iVU" = (
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
-"iWo" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/security/wooden_tv{
-	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
-	dir = 8;
-	name = "Television set";
-	network = list("military");
-	pixel_x = 3;
-	pixel_y = -5
-	},
-/obj/item/ashtray/bronze{
-	pixel_x = -7;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/security)
 "iWw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -13854,12 +13866,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
-"jcB" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/gelida/indoors/a_block/executive)
 "jcI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -14613,6 +14619,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
+"jJk" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 3
+	},
+/turf/open/floor/tile/yellow/patch,
+/area/gelida/indoors/a_block/corpo)
 "jJn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14830,6 +14843,27 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
+"jOu" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 7;
+	pixel_y = 18
+	},
+/obj/item/storage/fancy/cigar{
+	pixel_y = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "jOx" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Showeroom"
@@ -15054,17 +15088,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
-"jSV" = (
-/obj/structure/table/wood/gambling,
-/obj/item/reagent_containers/food/drinks/bottle/sake{
-	pixel_x = 3;
-	pixel_y = 13
-	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_y = 4
-	},
-/turf/open/floor/carpet,
-/area/gelida/indoors/c_block/casino)
 "jTb" = (
 /obj/item/trash/burger,
 /turf/open/floor/prison/blue,
@@ -15144,13 +15167,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
-"jVg" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/spawner/random/misc/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen,
-/area/gelida/indoors/a_block/medical)
 "jVI" = (
 /obj/item/shard,
 /obj/structure/window_frame/colony,
@@ -15256,12 +15272,11 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
-"jZR" = (
-/obj/effect/ai_node,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/structure/cable,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/landing_zone_1)
+"jZO" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "kab" = (
 /obj/structure/prop/mainship/gelida/lightstick{
 	pixel_x = -9;
@@ -15296,16 +15311,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/hallway)
-"kbG" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/fancy/cigar{
-	pixel_y = 5
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "kcf" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
@@ -15443,23 +15448,6 @@
 "kgP" = (
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/corpo_fitness)
-"kgQ" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/storage/snow_suit,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = -1;
-	pixel_y = 17
-	},
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "kgY" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -15775,6 +15763,20 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
+"ksz" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/storage/fancy/cigar{
+	pixel_y = 7
+	},
+/obj/item/clothing/mask/cigarette/cigar{
+	pixel_y = 6
+	},
+/obj/item/ashtray/bronze{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "ksC" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -16123,12 +16125,6 @@
 /obj/item/ore/uranium,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_street)
-"kGw" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/kitchen,
-/area/gelida/indoors/a_block/fitness)
 "kGz" = (
 /obj/effect/spawner/gibspawner/xeno,
 /obj/effect/landmark/weed_node,
@@ -16247,6 +16243,19 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/south_street)
+"kKb" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck{
+	pixel_x = 4;
+	pixel_y = 12
+	},
+/obj/item/toy/deck{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "kKi" = (
 /obj/structure/cargo_container,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16345,6 +16354,30 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
+"kMY" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 14;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 14;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "kNj" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -16809,6 +16842,15 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
+"leq" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/flask/detflask{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/det_hat,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/security)
 "lev" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -17158,6 +17200,10 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/east_central_street)
+"lpb" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/dorm_north)
 "lpr" = (
 /obj/structure/platform{
 	dir = 1
@@ -17181,15 +17227,6 @@
 /obj/item/tank/oxygen,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
-"lqF" = (
-/obj/structure/table/wood/fancy,
-/obj/item/trash/plate,
-/obj/item/trash/plate{
-	pixel_x = 3;
-	pixel_y = 10
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "lqI" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
@@ -17210,12 +17247,6 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/kitchen)
-"lra" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/gelida/indoors/a_block/dorm_north)
 "lrb" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle{
@@ -17405,6 +17436,11 @@
 "lxv" = (
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/bridges)
+"lxw" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/clothing/suit/storage/snow_suit,
+/turf/open/floor/carpet,
+/area/gelida/indoors/b_block/bar)
 "lyz" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable,
@@ -17550,18 +17586,6 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
-"lCv" = (
-/obj/structure/table/wood/fancy,
-/obj/item/trash/hotdog{
-	pixel_x = -2;
-	pixel_y = -4
-	},
-/obj/effect/spawner/random/engineering/radio/highspawn{
-	pixel_x = -4;
-	pixel_y = 13
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "lCJ" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -17634,6 +17658,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/b_block/bridge)
+"lEW" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/computer/security/wooden_tv,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "lEZ" = (
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
@@ -17662,21 +17691,6 @@
 	},
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
-"lFS" = (
-/obj/machinery/computer/security/wooden_tv{
-	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
-	dir = 1;
-	name = "Television set";
-	network = null;
-	pixel_x = -1;
-	pixel_y = 7
-	},
-/obj/structure/table/wood,
-/obj/item/tool/wrench{
-	pixel_y = -6
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "lGp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_door,
@@ -17716,6 +17730,14 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/south_street)
+"lHR" = (
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 12;
+	pixel_y = 16
+	},
+/obj/structure/table/gamblingtable,
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "lHZ" = (
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship/five,
@@ -18095,12 +18117,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plating,
 /area/gelida/cavestructuretwo)
-"lUk" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/gelida/landing_zone_2)
 "lVd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18254,6 +18270,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/bridge)
+"lZH" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical,
+/turf/open/floor/prison/whitegreen{
+	dir = 10
+	},
+/area/gelida/indoors/a_block/medical)
 "lZJ" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/lz1{
@@ -18351,6 +18373,18 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"mcw" = (
+/obj/structure/table/gamblingtable,
+/obj/item/spacecash/c500{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/sake{
+	pixel_x = 6;
+	pixel_y = 14
+	},
+/turf/open/floor/plating,
+/area/gelida/indoors/c_block/cargo)
 "mcL" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -18576,6 +18610,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
+"mjH" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "mjO" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/prison,
@@ -18831,6 +18869,22 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
+"mqG" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/computer/security/wooden_tv{
+	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
+	dir = 8;
+	name = "Television set";
+	network = list("military");
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/item/ashtray/bronze{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/security)
 "mqM" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -18989,15 +19043,6 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
-"mwS" = (
-/obj/structure/table/wood/fancy,
-/obj/item/ashtray/bronze{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/clothing/mask/cigarette/cigar,
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "mxd" = (
 /obj/structure/platform_decoration,
 /obj/effect/landmark/weed_node,
@@ -19533,17 +19578,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/powergen)
-"mQp" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green{
-	pixel_y = 13
-	},
-/obj/item/ashtray/bronze{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "mQy" = (
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
@@ -19839,6 +19873,12 @@
 /obj/structure/platform,
 /turf/closed/wall,
 /area/gelida/indoors/c_block/bridge)
+"ncN" = (
+/obj/effect/ai_node,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/c_block/mining)
 "ncQ" = (
 /turf/closed/shuttle/dropship2/enginefive{
 	dir = 1
@@ -21114,11 +21154,6 @@
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
-"nTt" = (
-/obj/structure/table/wood/fancy,
-/obj/item/trash/plate,
-/turf/open/floor/carpet,
-/area/gelida/indoors/b_block/bar)
 "nTK" = (
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
@@ -21151,10 +21186,6 @@
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/east_central_street)
-"nUx" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "nUy" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/rack,
@@ -21706,10 +21737,6 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
-"ooU" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/landing_zone_2)
 "opi" = (
 /obj/machinery/light{
 	dir = 8
@@ -21831,12 +21858,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/b_block/bar)
-"ouT" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/landing_zone_2)
 "ouX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -22334,17 +22355,6 @@
 	dir = 9
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
-"oJP" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -7;
-	pixel_y = 13
-	},
-/obj/item/tool/kitchen/tray{
-	pixel_y = 5
-	},
-/turf/open/floor/carpet,
-/area/gelida/indoors/c_block/casino)
 "oKe" = (
 /obj/item/clothing/shoes/jackboots{
 	pixel_x = -5;
@@ -22467,6 +22477,17 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
+"oNk" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/folder/nooffset{
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/misc/folder/nooffset{
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/misc/folder/nooffset,
+/turf/open/floor/tile/yellow/patch,
+/area/gelida/indoors/a_block/corpo)
 "oNl" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -22538,6 +22559,17 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
+"oQG" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -7;
+	pixel_y = 13
+	},
+/obj/item/tool/kitchen/tray{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "oRm" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 1
@@ -22621,12 +22653,6 @@
 	dir = 4
 	},
 /area/gelida/landing_zone_2)
-"oTt" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/c_block/casino)
 "oTy" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -23253,6 +23279,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/fitness)
+"pjH" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp{
+	pixel_x = 4;
+	pixel_y = 14
+	},
+/obj/item/binoculars,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "pjR" = (
 /obj/structure/platform{
 	dir = 8
@@ -23299,6 +23334,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/gelida/caves/central_caves/garbledradio)
+"pkU" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/gelida/outdoors/colony_streets/south_west_street)
 "pla" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
@@ -23313,11 +23353,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
-"plw" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/security/wooden_tv,
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "plT" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -23413,6 +23448,21 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"pqe" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorms)
+"pre" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/whitegreen,
+/area/gelida/indoors/a_block/medical)
 "prh" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -24225,14 +24275,6 @@
 	},
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
-"pRF" = (
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
 "pRN" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -24572,13 +24614,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
-"qcs" = (
-/obj/structure/table/wood/fancy,
-/obj/item/trash/plate{
-	pixel_y = 6
-	},
-/turf/open/floor/carpet,
-/area/gelida/indoors/b_block/bar)
 "qcB" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/ice,
@@ -24896,18 +24931,6 @@
 /obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
-"qox" = (
-/obj/structure/table/wood/gambling,
-/obj/item/spacecash/c500{
-	pixel_x = -7;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/drinks/bottle/sake{
-	pixel_x = 6;
-	pixel_y = 14
-	},
-/turf/open/floor/plating,
-/area/gelida/indoors/c_block/cargo)
 "qoN" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
@@ -25043,6 +25066,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
+"qvo" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/sterilewhite,
+/area/gelida/indoors/a_block/medical)
 "qvC" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/computer/PC{
@@ -25064,6 +25092,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/landing_zone_2)
+"qwu" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/weapon/cane,
+/turf/open/floor/tile/yellow/patch,
+/area/gelida/indoors/a_block/corpo)
 "qwH" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25598,6 +25631,13 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_1)
+"qNN" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/prop/computer/PC{
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "qNT" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -25753,6 +25793,10 @@
 /obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
+"qSD" = (
+/obj/effect/spawner/random/misc/structure/curtain,
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/a_block/executive)
 "qSH" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -26159,6 +26203,14 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
+"rfh" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "rfq" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/caves/west_caves/garbledradio)
@@ -26577,15 +26629,6 @@
 "rpT" = (
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
-"rqt" = (
-/obj/structure/rack/nometal,
-/obj/effect/spawner/random/misc/earmuffs,
-/obj/item/clothing/ears/earmuffs{
-	pixel_y = -4;
-	worn_icon_state = "earmuffs2"
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/gelida/outdoors/colony_streets/north_east_street)
 "rqw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -26599,14 +26642,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
-"rqB" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 12;
-	pixel_y = 17
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/b_block/bar)
 "rra" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -26894,6 +26929,10 @@
 /obj/machinery/light,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
+"rBw" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "rBz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -27781,13 +27820,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
-"siQ" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/cigarettes{
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "siX" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/cable,
@@ -28153,6 +28185,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
+"stY" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/trash/plate,
+/obj/item/trash/plate{
+	pixel_x = 3;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "suB" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -28638,17 +28679,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
-"sKs" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green{
-	pixel_y = 13
-	},
-/obj/item/ashtray/bronze{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "sKE" = (
 /obj/machinery/light{
 	dir = 8
@@ -29411,6 +29441,13 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"tlc" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/bible,
+/turf/open/floor/tile/dark2{
+	dir = 8
+	},
+/area/gelida/indoors/a_block/executive)
 "tlE" = (
 /obj/structure/closet/secure_closet/bar,
 /obj/machinery/light{
@@ -29490,15 +29527,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
-"tnx" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck{
-	pixel_x = 4;
-	pixel_y = 12
-	},
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "tnB" = (
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -29592,18 +29620,6 @@
 "tqF" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/south_west_street)
-"tqK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
 "tqM" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -29633,11 +29649,6 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorm_north)
-"tse" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/storage/snow_suit,
-/turf/open/floor/carpet,
-/area/gelida/indoors/b_block/bar)
 "tsA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -29707,31 +29718,6 @@
 /obj/structure/inflatable/wall,
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
-"txn" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 18
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 18
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 7;
-	pixel_y = 18
-	},
-/obj/item/storage/fancy/cigar{
-	pixel_y = 6
-	},
-/obj/item/tool/lighter/zippo{
-	pixel_x = 16;
-	pixel_y = 3
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/executive)
 "txq" = (
 /obj/item/shard,
 /turf/open/floor/prison/blue/plate{
@@ -30360,6 +30346,17 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
+"tVt" = (
+/obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 14;
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "tVH" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -30427,19 +30424,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
-"tXC" = (
-/obj/item/reagent_containers/jerrycan{
-	desc = "A jerry can. In space! Or maybe a colony.";
-	name = "fuel can";
-	pixel_x = 4;
-	pixel_y = 16;
-	worn_icon_state = "caution"
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
-/area/gelida/outdoors/colony_streets/north_street)
 "tXK" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
@@ -30630,6 +30614,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
+"ueG" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/trash/plate,
+/turf/open/floor/carpet,
+/area/gelida/indoors/b_block/bar)
 "ueJ" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 9
@@ -30751,19 +30740,6 @@
 "ujh" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_street)
-"ujs" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck{
-	pixel_x = 4;
-	pixel_y = 12
-	},
-/obj/item/toy/deck{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/carpet,
-/area/gelida/indoors/c_block/casino)
 "ujy" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/blood{
@@ -30887,17 +30863,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
-"umM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/spawner/random/misc/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 1
-	},
-/area/gelida/indoors/a_block/medical)
 "une" = (
 /obj/structure/closet/secure_closet/marshal,
 /turf/open/floor/prison/darkred/full,
@@ -30998,22 +30963,24 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
-"urR" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/structure/curtain{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/gelida/indoors/a_block/executive)
 "usn" = (
 /obj/structure/prop/vehicle/truck/destructible{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
+"uss" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/trash/hotdog{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/effect/spawner/random/engineering/radio/highspawn{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/executive)
 "usH" = (
 /obj/machinery/smartfridge/seeds,
 /turf/open/floor/prison/whitegreenfull2,
@@ -31102,10 +31069,6 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
-"uwR" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/gelida/indoors/b_block/bar)
 "uxf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -31513,20 +31476,6 @@
 	dir = 4
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
-"uJy" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/fancy/cigar{
-	pixel_y = 7
-	},
-/obj/item/clothing/mask/cigarette/cigar{
-	pixel_y = 6
-	},
-/obj/item/ashtray/bronze{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/turf/open/floor/wood,
-/area/gelida/indoors/c_block/casino)
 "uJO" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -31707,14 +31656,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
-"uRc" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "uRd" = (
 /obj/item/explosive/grenade,
 /turf/open/floor/prison,
@@ -32082,13 +32023,6 @@
 /obj/structure/platform_decoration,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
-"vcO" = (
-/obj/structure/table/wood/gambling,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "vcW" = (
 /obj/item/shard,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -32171,14 +32105,6 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
-"vfX" = (
-/obj/structure/table/wood/gambling,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 6;
-	pixel_y = 12
-	},
-/turf/open/floor/carpet,
-/area/gelida/indoors/c_block/casino)
 "vge" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -32321,10 +32247,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
-"vkp" = (
-/obj/structure/table/wood/gambling,
-/turf/open/floor/prison,
-/area/gelida/indoors/c_block/casino)
 "vku" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/effect/landmark/weed_node,
@@ -32434,6 +32356,15 @@
 "vpo" = (
 /turf/closed/shuttle/dropship2/corners,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
+"vpu" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/clothing/ears/earmuffs{
+	worn_icon_state = "earmuffs2";
+	pixel_y = -4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/gelida/outdoors/colony_streets/north_east_street)
 "vpI" = (
 /turf/closed/wall,
 /area/gelida/indoors/b_block/bar)
@@ -32850,6 +32781,15 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
+"vCB" = (
+/obj/effect/spawner/random/misc/structure/curtain/medical,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/gelida/indoors/a_block/medical)
 "vCE" = (
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
@@ -33302,6 +33242,13 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
+"vUD" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/c_block/casino)
 "vUI" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate,
@@ -33332,17 +33279,6 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
-"vVk" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/folder/nooffset{
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/misc/folder/nooffset{
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/misc/folder/nooffset,
-/turf/open/floor/tile/yellow/patch,
-/area/gelida/indoors/a_block/corpo)
 "vVm" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -33388,6 +33324,14 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"vXl" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/toy/deck{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/b_block/bar)
 "vXW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -33448,17 +33392,6 @@
 "wai" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/casino)
-"wam" = (
-/obj/structure/table/wood/gambling,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = 14;
-	pixel_y = 9
-	},
-/obj/effect/decal/cleanable/blood{
-	dir = 8
-	},
-/turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "waE" = (
 /obj/structure/inflatable/wall,
@@ -33872,14 +33805,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/outdoors/w_rockies)
-"wpR" = (
-/obj/effect/spawner/random/misc/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 10
-	},
-/area/gelida/indoors/a_block/medical)
 "wqy" = (
 /obj/structure/platform{
 	dir = 4
@@ -34911,6 +34836,15 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/north_street)
+"xhy" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck{
+	pixel_x = 4;
+	pixel_y = 12
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/casino)
 "xhE" = (
 /obj/item/tool/shovel/etool,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -34984,6 +34918,14 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"xlk" = (
+/obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/turf/open/floor/carpet,
+/area/gelida/indoors/c_block/casino)
 "xlo" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/sandwiches/sandwich{
@@ -35316,6 +35258,19 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
+"xwm" = (
+/obj/item/reagent_containers/jerrycan{
+	desc = "A jerry can. In space! Or maybe a colony.";
+	worn_icon_state = "caution";
+	name = "fuel can";
+	pixel_x = 4;
+	pixel_y = 16
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
+/area/gelida/outdoors/colony_streets/north_street)
 "xwq" = (
 /obj/structure/cargo_container{
 	dir = 1
@@ -35443,24 +35398,6 @@
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
-"xBj" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/spawner/random/misc/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 9
-	},
-/area/gelida/indoors/a_block/medical)
-"xBn" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 3
-	},
-/turf/open/floor/tile/yellow/patch,
-/area/gelida/indoors/a_block/corpo)
 "xBF" = (
 /obj/structure/window/framed/colony,
 /obj/structure/platform{
@@ -42149,7 +42086,7 @@ ndb
 ndb
 tqi
 tqi
-ouT
+ilJ
 npE
 ngP
 npE
@@ -42371,7 +42308,7 @@ qOV
 tqF
 tqi
 rMs
-ouT
+ilJ
 npE
 wDw
 npE
@@ -42593,7 +42530,7 @@ tqF
 tqi
 tqi
 mMH
-ouT
+ilJ
 npE
 npE
 npE
@@ -43037,7 +42974,7 @@ tqi
 tqi
 tqi
 tqi
-lUk
+hkj
 npE
 wDw
 npE
@@ -43259,7 +43196,7 @@ tqi
 rMs
 tqi
 tqi
-lUk
+hkj
 wDw
 wDw
 npE
@@ -43703,7 +43640,7 @@ tqi
 tqi
 tqi
 tqF
-lUk
+hkj
 wDw
 wDw
 npE
@@ -43925,7 +43862,7 @@ tqi
 tqi
 tqi
 tqF
-lUk
+hkj
 npE
 npE
 npE
@@ -44147,7 +44084,7 @@ tqi
 tqi
 tqi
 tqi
-lUk
+hkj
 npE
 npE
 wDw
@@ -44369,7 +44306,7 @@ tqF
 tqF
 bfO
 tqi
-ouT
+ilJ
 npE
 ngP
 npE
@@ -46379,14 +46316,14 @@ ndb
 ngP
 ndb
 ngP
-wOd
-wOd
-wOd
-wOd
-csz
-wOd
-wOd
-wOd
+tqi
+tqi
+tqi
+tqi
+vYQ
+tqi
+tqi
+tqi
 ngP
 ndb
 ngP
@@ -46601,14 +46538,14 @@ gEI
 gEI
 gEI
 oHe
-ooU
-ooU
-ooU
-ooU
-awd
-ooU
-ooU
-ooU
+oHe
+oHe
+oHe
+oHe
+pkU
+oHe
+oHe
+oHe
 gEI
 gEI
 gEI
@@ -47221,7 +47158,7 @@ tix
 bkX
 vpI
 vpI
-nTt
+ueG
 cAB
 hws
 ekD
@@ -47442,8 +47379,8 @@ tix
 vWZ
 vpI
 vpI
-tse
-nTt
+lxw
+ueG
 cAB
 hws
 vpe
@@ -48327,8 +48264,8 @@ vaN
 cZq
 uhx
 lCJ
-qcs
-uwR
+aCK
+bLK
 lQF
 ekD
 cvm
@@ -48337,7 +48274,7 @@ ien
 vpI
 wZr
 ekD
-cBd
+vXl
 vpI
 vpI
 gdv
@@ -48549,8 +48486,8 @@ vaN
 cZq
 uhx
 lCJ
-fCI
-nTt
+dQS
+ueG
 gLa
 ekD
 etI
@@ -48778,7 +48715,7 @@ ehl
 kuI
 jTU
 kBX
-kgQ
+bVs
 dDG
 ekD
 maO
@@ -48977,9 +48914,9 @@ icP
 eKY
 stq
 yfp
-pRF
-dhg
-tqK
+jNG
+gRT
+pqe
 yfp
 yfp
 yfp
@@ -49000,7 +48937,7 @@ blx
 etI
 jTU
 kBX
-rqB
+iLz
 lzZ
 lzZ
 maO
@@ -49218,11 +49155,11 @@ lCJ
 iiu
 bNU
 lCJ
-brt
+mjH
 etI
 xvn
 gyJ
-cIN
+fBs
 ekD
 ekD
 aPZ
@@ -49444,10 +49381,10 @@ jtM
 ekD
 hwl
 kWv
-gsc
+bAX
 ekD
 ekD
-lFS
+hOh
 lCJ
 jph
 nSf
@@ -50107,12 +50044,12 @@ fQL
 hZY
 vpI
 iIK
-uwR
-uwR
+bLK
+bLK
 lhD
 vpI
 dOl
-dmL
+cjU
 vpI
 vpI
 uhx
@@ -51591,11 +51528,11 @@ iZn
 sKa
 qDp
 vPO
-kGw
-kGw
+cEv
+cEv
 vPO
-kGw
-kGw
+cEv
+cEv
 vPO
 jvM
 fKy
@@ -57798,7 +57735,7 @@ ujh
 dpw
 txH
 txH
-cZD
+fZq
 ksC
 jvj
 iLU
@@ -57820,7 +57757,7 @@ awU
 vIq
 awU
 xQR
-tXC
+xwm
 jlM
 dpw
 haP
@@ -57880,7 +57817,7 @@ fWd
 nIU
 rdU
 rME
-qox
+mcw
 uFM
 sOb
 dbq
@@ -58020,9 +57957,9 @@ jlM
 dpw
 txH
 yjU
-xBn
-vVk
-dQd
+jJk
+oNk
+qwu
 iLU
 txH
 iZq
@@ -60057,7 +59994,7 @@ haP
 wXW
 cxy
 haP
-ggv
+leq
 cIZ
 qSW
 haP
@@ -60279,7 +60216,7 @@ kSs
 efT
 nDg
 haP
-gTr
+gYr
 gJQ
 cIZ
 xwV
@@ -60501,7 +60438,7 @@ kSs
 shI
 nBP
 haP
-iWo
+mqG
 mTK
 omq
 xwV
@@ -61427,7 +61364,7 @@ hOe
 xLY
 ejP
 ejP
-vkp
+rBw
 mQy
 mQy
 gwF
@@ -61648,8 +61585,8 @@ loB
 jgG
 jgG
 wNj
-aLw
-tnx
+eyD
+xhy
 jgG
 mQy
 xvC
@@ -62472,14 +62409,14 @@ ihl
 lZt
 wsa
 wsa
-bhZ
+tlc
 pHd
 wsa
 dPm
 lYK
 ukA
 hzn
-ihJ
+iAs
 wsa
 wsa
 nGk
@@ -62697,7 +62634,7 @@ cMk
 rDK
 qrA
 wsa
-txn
+eLz
 voT
 rkP
 xDF
@@ -62905,8 +62842,8 @@ hUQ
 oZU
 lqR
 ihl
-lra
-lra
+lpb
+lpb
 ihl
 ihl
 xUH
@@ -62919,7 +62856,7 @@ wsa
 wsa
 lia
 wsa
-ijA
+jOu
 qPj
 fhC
 jOD
@@ -62976,8 +62913,8 @@ jIb
 bUb
 xvC
 xvC
-oTt
-oTt
+pwK
+pwK
 xvC
 xvC
 xvC
@@ -63137,8 +63074,8 @@ oZU
 ihl
 nGk
 wsa
-ajj
-hPj
+pjH
+eRq
 rvx
 wsa
 ffr
@@ -63197,10 +63134,10 @@ jIb
 hKm
 xvC
 xvC
-hRG
-lqF
-nUx
-hRG
+vUD
+stY
+aCV
+vUD
 xvC
 ugE
 ugE
@@ -63793,8 +63730,8 @@ sxh
 oZU
 lqR
 ihl
-lra
-lra
+lpb
+lpb
 ihl
 ihl
 orc
@@ -63809,9 +63746,9 @@ faa
 bPQ
 hDG
 uDM
-eiY
-plw
-bgk
+hTr
+lEW
+fnK
 wsa
 wsa
 maC
@@ -63863,8 +63800,8 @@ jIb
 gKW
 pwK
 sOJ
-ujs
-bXn
+kKb
+lHR
 cCx
 jNn
 xvC
@@ -64029,8 +63966,8 @@ wsa
 wsa
 wsa
 wsa
-urR
-jcB
+cFj
+qSD
 wsa
 wsa
 wsa
@@ -64086,7 +64023,7 @@ gKW
 pwK
 sOJ
 fkv
-vfX
+xlk
 cCx
 sIV
 xvC
@@ -64307,8 +64244,8 @@ ayL
 gKW
 pwK
 sOJ
-jSV
-wam
+eSX
+tVt
 cCx
 hqp
 xvC
@@ -64757,8 +64694,8 @@ lhk
 lhk
 pCU
 sKS
-hOI
-vcO
+jZO
+auD
 kMF
 ilh
 iLX
@@ -64805,11 +64742,11 @@ hCY
 hCY
 hCY
 mth
-gSq
-gIu
-jZR
-gIu
-gSq
+mth
+akz
+ncN
+akz
+mth
 mth
 mth
 mth
@@ -64979,7 +64916,7 @@ vJV
 sOJ
 pwK
 wah
-uRc
+rfh
 mQy
 tAB
 xvC
@@ -65416,10 +65353,10 @@ jIb
 eux
 gKW
 pwK
-uJy
+ksz
 sWW
 gTM
-oJP
+oQG
 vMn
 xvC
 pBj
@@ -65805,8 +65742,8 @@ wsa
 wsa
 wsa
 wsa
-ajq
-jcB
+bhS
+qSD
 wsa
 wsa
 wsa
@@ -65910,7 +65847,7 @@ eWY
 eWY
 eWY
 eWY
-ngv
+mDs
 jDt
 jDt
 jDt
@@ -66013,8 +65950,8 @@ ped
 oZU
 lqR
 ihl
-lra
-lra
+lpb
+lpb
 ihl
 ihl
 oZU
@@ -66029,8 +65966,8 @@ wet
 wsa
 tie
 uDM
-kbG
-dfc
+cmR
+kMY
 nkv
 wsa
 wsa
@@ -66082,7 +66019,7 @@ eux
 eux
 gKW
 xvC
-sKs
+aHF
 dyq
 sOJ
 sOJ
@@ -66132,7 +66069,7 @@ eWY
 eWY
 eWY
 eWY
-ngv
+mDs
 jDt
 jDt
 jDt
@@ -66305,10 +66242,10 @@ jIb
 bUb
 xvC
 xvC
-mQp
+cTI
 gon
 gon
-mwS
+aKG
 xvC
 dga
 tAB
@@ -66354,7 +66291,7 @@ eWY
 eWY
 iAT
 eWY
-ngv
+mDs
 jDt
 jDt
 txG
@@ -66471,7 +66408,7 @@ wsa
 wsa
 jOx
 wsa
-lCv
+uss
 fxl
 rkP
 rkP
@@ -66506,9 +66443,9 @@ bfd
 rIo
 xts
 mhj
-fNL
-xBj
-wpR
+nEL
+vCB
+lZH
 mhj
 mhj
 mhj
@@ -66528,8 +66465,8 @@ gKW
 hsx
 xvC
 xvC
-oTt
-oTt
+pwK
+pwK
 xvC
 xvC
 xvC
@@ -66576,7 +66513,7 @@ eWY
 eWY
 eWY
 eWY
-ngv
+mDs
 jDt
 txG
 txG
@@ -66689,7 +66626,7 @@ oZU
 ihl
 wYJ
 wsa
-dxT
+qNN
 ddh
 tie
 wsa
@@ -66698,7 +66635,7 @@ ssE
 dJW
 wiL
 jJQ
-siQ
+chu
 wsa
 eMk
 ilb
@@ -66798,7 +66735,7 @@ eWY
 eWY
 eWY
 eWY
-ngv
+mDs
 jDt
 txG
 txG
@@ -66901,8 +66838,8 @@ dGj
 oZU
 lqR
 ihl
-lra
-lra
+lpb
+lpb
 ihl
 ihl
 uzg
@@ -66911,7 +66848,7 @@ eCC
 ihl
 nGk
 wsa
-gmK
+gEn
 wiL
 oFi
 wsa
@@ -66920,7 +66857,7 @@ xLo
 iJa
 jJQ
 jJQ
-plw
+lEW
 wsa
 maC
 pyF
@@ -67020,7 +66957,7 @@ eWY
 eWY
 eWY
 eWY
-ngv
+mDs
 jDt
 txG
 txG
@@ -67142,7 +67079,7 @@ eeZ
 jJQ
 xHE
 kat
-bgk
+fnK
 wsa
 maC
 ilb
@@ -67582,9 +67519,9 @@ wsa
 wsa
 wsa
 wsa
-dRf
-dRf
-dRf
+jfN
+jfN
+jfN
 wsa
 wsa
 dtN
@@ -69392,9 +69329,9 @@ bfd
 fBW
 qpr
 mhj
-fNL
-umM
-jVg
+nEL
+gjz
+pre
 mhj
 mhj
 mhj
@@ -70464,8 +70401,8 @@ pYo
 pYo
 vEM
 fhi
-fQs
-fQs
+hMB
+hMB
 qMR
 tBM
 jRM
@@ -70728,7 +70665,7 @@ wji
 fhc
 ojR
 ojR
-sRi
+qvo
 ojR
 wrR
 ojR
@@ -70741,7 +70678,7 @@ eux
 eux
 gKW
 xad
-ajD
+fiS
 ijt
 rQa
 dgz
@@ -73769,7 +73706,7 @@ eQn
 ndb
 ilb
 pKS
-rqt
+vpu
 jIg
 tyz
 tyz

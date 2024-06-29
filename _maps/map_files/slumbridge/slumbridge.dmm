@@ -101,11 +101,6 @@
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/southern)
-"aeW" = (
-/obj/structure/table/wood/gambling,
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/wood,
-/area/slumbridge/inside/colony/bar)
 "aeY" = (
 /turf/open/floor/prison/yellow,
 /area/slumbridge/inside/prison/innerring)
@@ -340,6 +335,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg3,
 /area/slumbridge/caves/mining/dropship)
+"aqt" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/reinforced,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/mainship/black/corner{
+	dir = 8
+	},
+/area/slumbridge/inside/sombase/west)
 "aqv" = (
 /obj/structure/prop/mainship/gelida/powerccable{
 	dir = 4
@@ -571,6 +574,13 @@
 	dir = 1
 	},
 /area/slumbridge/caves/mining/dropship)
+"aAv" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/slumbridge/inside/colony/bar)
 "aAz" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -982,6 +992,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/wood,
 /area/slumbridge/inside/houses/dorms)
+"aPF" = (
+/obj/structure/curtain/medical,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/slumbridge/inside/medical/foyer)
 "aPL" = (
 /obj/machinery/mineral/stacking_unit_console,
 /turf/closed/wall,
@@ -1256,13 +1274,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/slumbridge/inside/engi/south)
-"aYM" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced,
-/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/floor,
-/area/slumbridge/inside/sombase/west)
 "aYT" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -1273,13 +1284,6 @@
 	dir = 4
 	},
 /area/slumbridge/inside/houses/dorms)
-"aZj" = (
-/obj/structure/table/wood,
-/obj/structure/prop/mainship/gelida/register{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/slumbridge/inside/colony/kitchen)
 "aZs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -1671,13 +1675,6 @@
 /obj/machinery/computer/ordercomp,
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
-"bog" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/med_data/laptop,
-/obj/item/tool/screwdriver,
-/obj/machinery/light,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "bok" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -1921,6 +1918,10 @@
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/showroom,
 /area/slumbridge/inside/engi/central)
+"bwO" = (
+/obj/mecha_wreckage/durand,
+/turf/open/floor/plating/platebotc,
+/area/slumbridge/inside/engi/south)
 "bxk" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -2437,11 +2438,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/sombase/west)
-"bMx" = (
-/obj/structure/table/wood,
-/obj/item/newspaper,
-/turf/open/floor/prison,
-/area/slumbridge/inside/prison/outerringsouth)
 "bNd" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -2543,6 +2539,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/caves/northeastcaves)
+"bQA" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood/variable/mosaic,
+/area/slumbridge/caves/southeastcaves/garbledradio)
 "bQG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -2655,13 +2655,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
-"bVL" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/trash,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/slumbridge/inside/colony/bar)
 "bVT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/full,
@@ -3266,6 +3259,10 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
 /area/slumbridge/inside/houses/dorms)
+"cqS" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/turf/open/floor/engine,
+/area/slumbridge/inside/engi/engineroom)
 "cqW" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/effect/decal/cleanable/dirt,
@@ -3825,6 +3822,13 @@
 	dir = 9
 	},
 /area/slumbridge/inside/colony/southerndome)
+"cOt" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/slumbridge/inside/colony/bar)
 "cOy" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -4334,6 +4338,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/barber,
 /area/slumbridge/inside/houses/surgery)
+"dkY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/fancywoodentable,
+/obj/item/toy/dice/d20,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "dlm" = (
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison,
@@ -4920,6 +4930,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/freezer,
 /area/slumbridge/inside/colony/kitchen)
+"dIb" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/reinforced,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/floor,
+/area/slumbridge/inside/sombase/west)
 "dIg" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5471,11 +5488,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/inside/sombase/west)
-"edk" = (
-/obj/structure/prop/turbine,
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "edw" = (
 /turf/open/floor/prison,
 /area/slumbridge/outside/southwest)
@@ -5550,6 +5562,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringsouth)
+"eha" = (
+/obj/mecha_wreckage/ripley/lv624,
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 4
+	},
+/area/slumbridge/outside/southwest)
 "ehc" = (
 /turf/closed/wall,
 /area/slumbridge/outside/northeast)
@@ -5885,12 +5903,6 @@
 	dir = 1
 	},
 /area/slumbridge/inside/colony/orestorage)
-"evD" = (
-/obj/structure/table/wood,
-/obj/item/newspaper,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison,
-/area/slumbridge/inside/prison/outerringsouth)
 "evR" = (
 /turf/closed/wall,
 /area/slumbridge/inside/colony/orestorage)
@@ -5979,6 +5991,13 @@
 	dir = 10
 	},
 /area/slumbridge/inside/prison/innerring)
+"ezE" = (
+/obj/structure/prop/mainship/missile_tube{
+	desc = "Metal rotary device spins to create power out of water.";
+	name = "\improper turbine oversight system"
+	},
+/turf/open/floor/engine,
+/area/slumbridge/inside/engi/engineroom)
 "ezJ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -6074,16 +6093,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidplating,
 /area/slumbridge/outside/northeast/bridges)
-"eGT" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/slumbridge/inside/colony/bar)
 "eGV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -6143,13 +6152,6 @@
 /obj/structure/inflatable/wall,
 /turf/open/floor/tile/dark/purple2,
 /area/slumbridge/inside/zeta/south)
-"eJB" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/paperbin,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/slumbridge/inside/colony/bar)
 "eJF" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6694,6 +6696,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow,
 /area/slumbridge/inside/engi/central)
+"fgs" = (
+/obj/structure/prop/turbine,
+/turf/open/floor/engine,
+/area/slumbridge/inside/engi/engineroom)
 "fgu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/scorched,
@@ -7563,6 +7569,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/houses/recreational)
+"fPL" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/gun/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "fPQ" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/tile/blue/whiteblue,
@@ -7657,12 +7671,6 @@
 /obj/structure/sign/security,
 /turf/open/floor/mainship/ai,
 /area/slumbridge/inside/houses/recreational)
-"fRs" = (
-/obj/structure/table/wood,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/slumbridge/inside/colony/headoffice)
 "fRF" = (
 /obj/structure/sink,
 /obj/effect/decal/cleanable/dirt,
@@ -7784,6 +7792,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2,
 /area/slumbridge/inside/zeta/north)
+"fWj" = (
+/obj/mecha_wreckage/gygax,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/platebotc,
+/area/slumbridge/inside/engi/south)
 "fWD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -7968,6 +7981,13 @@
 	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/central)
+"gde" = (
+/obj/structure/table/woodentable,
+/obj/structure/prop/mainship/gelida/register{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/slumbridge/inside/colony/kitchen)
 "gdy" = (
 /obj/structure/fence,
 /obj/structure/platform/metalplatform/nondense,
@@ -8160,12 +8180,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/innerring)
-"gkX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood/fancy,
-/obj/item/toy/dice,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "gla" = (
 /obj/structure/filingcabinet/filingcabinet,
 /obj/structure/sign/safety/rad_shield{
@@ -8450,17 +8464,6 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/innerring)
-"gwT" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/cup/glass/drinkingglass{
-	pixel_x = -7;
-	pixel_y = -1
-	},
-/obj/machinery/chem_dispenser/beer{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2/corner,
-/area/slumbridge/inside/colony/headoffice)
 "gwY" = (
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -8602,6 +8605,12 @@
 "gBp" = (
 /turf/open/floor/tile/green,
 /area/slumbridge/inside/houses/recreational)
+"gBP" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/tile/cmo,
+/area/slumbridge/inside/medical/cmo)
 "gCf" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -8718,12 +8727,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/houses/recreational)
-"gGf" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/cmo,
-/area/slumbridge/inside/medical/cmo)
 "gGh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9610,6 +9613,10 @@
 /obj/machinery/vending/tool,
 /turf/open/floor,
 /area/slumbridge/inside/engi/south)
+"hoS" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/wood,
+/area/slumbridge/inside/prison/outerringsouth)
 "hpc" = (
 /turf/open/floor/plating,
 /area/slumbridge/outside/northeast)
@@ -10041,6 +10048,10 @@
 	},
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringsouth)
+"hBN" = (
+/obj/mecha_wreckage/ripley,
+/turf/open/floor/tile/dark,
+/area/slumbridge/inside/colony/construction)
 "hBS" = (
 /obj/structure/platform/nondense{
 	dir = 1
@@ -10259,6 +10270,13 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
+"hKD" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/med_data/laptop,
+/obj/item/tool/screwdriver,
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "hKV" = (
 /obj/structure/window/reinforced/east,
 /obj/structure/window/reinforced/west,
@@ -10774,10 +10792,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship_hull,
 /area/slumbridge/inside/zeta/north)
-"ibL" = (
-/obj/structure/mecha_wreckage/mauler,
-/turf/open/floor/plating/platebotc,
-/area/slumbridge/inside/engi/south)
 "ibP" = (
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/plating,
@@ -10803,11 +10817,6 @@
 	dir = 5
 	},
 /area/slumbridge/inside/medical/morgue)
-"ido" = (
-/obj/structure/mecha_wreckage/marauder,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/platebotc,
-/area/slumbridge/inside/engi/south)
 "idy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11530,6 +11539,10 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/west)
+"izZ" = (
+/obj/structure/curtain/medical,
+/turf/open/floor/plating,
+/area/slumbridge/inside/medical/foyer)
 "iAf" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -12223,6 +12236,16 @@
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
+"jdK" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/tray,
+/obj/item/tool/kitchen/utensil/pspoon{
+	pixel_x = -9
+	},
+/obj/item/tool/kitchen/utensil/pfork,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/turf/open/floor/plating,
+/area/slumbridge/inside/colony/kitchen)
 "jen" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/dirt{
@@ -12542,12 +12565,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/podhatch/floor,
 /area/slumbridge/inside/pmcdome/nukevault)
-"jqS" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/greytide,
-/obj/effect/spawner/random/misc/greytide,
-/turf/open/floor/wood/variable/mosaic,
-/area/slumbridge/caves/southeastcaves/garbledradio)
 "jrk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -13147,6 +13164,16 @@
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
+"jMf" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/slumbridge/inside/colony/bar)
 "jMC" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -13374,6 +13401,10 @@
 	dir = 8
 	},
 /area/slumbridge/inside/colony/pharmacy)
+"jXa" = (
+/obj/mecha_wreckage/mauler,
+/turf/open/floor/plating/platebotc,
+/area/slumbridge/inside/engi/south)
 "jXm" = (
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -15081,6 +15112,13 @@
 "liM" = (
 /turf/closed/wall,
 /area/slumbridge/inside/sombase/west)
+"lja" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/slumbridge/inside/colony/headoffice)
 "ljg" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/fake_space,
@@ -15119,17 +15157,16 @@
 	},
 /turf/open/floor/wood,
 /area/slumbridge/inside/sombase/east)
+"lkU" = (
+/obj/mecha_wreckage/ripley/lv624,
+/turf/open/floor/plating/ground/concrete/edge,
+/area/slumbridge/outside/southwest)
 "llt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
-"lmb" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/med_data,
-/turf/open/floor/tile/cmo,
-/area/slumbridge/inside/medical/cmo)
 "lms" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
@@ -15269,10 +15306,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome)
-"lrc" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/variable/mosaic,
-/area/slumbridge/caves/southeastcaves/garbledradio)
 "lrn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15280,10 +15313,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale,
 /area/slumbridge/outside/northeast/bridges)
-"lrr" = (
-/obj/structure/mecha_wreckage/ripley/lv624,
-/turf/open/floor/plating/ground/concrete,
-/area/slumbridge/outside/southwest)
 "lrz" = (
 /obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/tile/yellow/full,
@@ -15520,12 +15549,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside/southeast)
-"lAQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood/fancy,
-/obj/item/toy/dice/d20,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "lBc" = (
 /turf/closed/wall/sulaco,
 /area/slumbridge/caves/northeastcaves)
@@ -15986,6 +16009,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
+"lQt" = (
+/obj/structure/table/woodentable,
+/obj/item/newspaper,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison,
+/area/slumbridge/inside/prison/outerringsouth)
 "lQz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/xeno,
@@ -16068,10 +16097,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/kitchen)
-"lTj" = (
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "lTk" = (
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
@@ -16216,6 +16241,11 @@
 	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/southerndome)
+"lZM" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/wood,
+/area/slumbridge/inside/colony/bar)
 "lZZ" = (
 /obj/structure/lattice,
 /obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
@@ -16448,6 +16478,15 @@
 	dir = 1
 	},
 /area/slumbridge/inside/colony/southerndome)
+"mhr" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/dice/d20,
+/obj/item/trash/barcaridine,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/slumbridge/inside/colony/bar)
 "mhy" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -16572,10 +16611,6 @@
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
-"mlh" = (
-/obj/structure/mecha_wreckage/ripley/lv624,
-/turf/open/floor/plating/ground/concrete/edge,
-/area/slumbridge/outside/southwest)
 "mll" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -16624,13 +16659,6 @@
 /obj/item/ammo_casing,
 /turf/open/floor/tile/yellow,
 /area/slumbridge/inside/engi/west)
-"mnm" = (
-/obj/structure/table/wood,
-/obj/machinery/door/window/right{
-	dir = 2
-	},
-/turf/open/floor/mainship/floor,
-/area/slumbridge/inside/sombase/west)
 "mno" = (
 /obj/structure/catwalk,
 /obj/structure/platform/nondense{
@@ -16905,6 +16933,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/inside/sombase/west)
+"myp" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/emails,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "myx" = (
 /obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -19152,6 +19185,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/colony/kitchen)
+"ofr" = (
+/obj/structure/table/woodentable,
+/obj/item/newspaper,
+/turf/open/floor/prison,
+/area/slumbridge/inside/prison/outerringsouth)
 "ofG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/power/apc/drained{
@@ -19225,11 +19263,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/slumbridge/inside/colony/northerndome)
-"ohD" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "ohX" = (
 /turf/open/liquid/water/river,
 /area/slumbridge/inside/engi/west)
@@ -19327,6 +19360,10 @@
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
+/area/slumbridge/inside/engi/engineroom)
+"olz" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/engine,
 /area/slumbridge/inside/engi/engineroom)
 "olC" = (
 /obj/vehicle/train/cargo/trolley,
@@ -19752,13 +19789,6 @@
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor,
 /area/slumbridge/inside/engi/central)
-"oBP" = (
-/obj/structure/table/wood,
-/obj/item/taperecorder,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/slumbridge/inside/colony/headoffice)
 "oBQ" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/intel_computer,
@@ -19768,13 +19798,6 @@
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/tile/blue,
 /area/slumbridge/inside/houses/surgery)
-"oCi" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/slumbridge/inside/colony/bar)
 "oCs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20014,6 +20037,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/colony/kitchen)
+"oMb" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/computer/crew,
+/turf/open/floor/tile/cmo,
+/area/slumbridge/inside/medical/cmo)
 "oMm" = (
 /turf/closed/wall/sulaco,
 /area/slumbridge/caves/mining)
@@ -20062,13 +20090,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
-"oPc" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/blue2/corner,
-/area/slumbridge/inside/colony/headoffice)
 "oPm" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -20418,13 +20439,6 @@
 	dir = 8
 	},
 /area/slumbridge/inside/sombase/west)
-"pcx" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/med_data/laptop,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/slumbridge/inside/colony/headoffice)
 "pcX" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -20980,11 +20994,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringnorth)
-"pxJ" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/crew,
-/turf/open/floor/tile/cmo,
-/area/slumbridge/inside/medical/cmo)
 "pxM" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen{
@@ -21094,14 +21103,6 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
-"pBZ" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced,
-/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
-/turf/open/floor/mainship/black/corner{
-	dir = 8
-	},
-/area/slumbridge/inside/sombase/west)
 "pCn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/weldingtool,
@@ -21152,12 +21153,6 @@
 "pEK" = (
 /turf/open/ground/grass/weedable,
 /area/slumbridge/outside/southeast)
-"pEW" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "pFd" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow{
@@ -22376,10 +22371,6 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
-"qxY" = (
-/obj/structure/mecha_wreckage/seraph,
-/turf/open/floor/plating/platebotc,
-/area/slumbridge/inside/engi/south)
 "qxZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -22905,6 +22896,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
+"qQV" = (
+/obj/mecha_wreckage/seraph,
+/turf/open/floor/plating/platebotc,
+/area/slumbridge/inside/engi/south)
 "qQW" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -23260,6 +23255,13 @@
 	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/central)
+"rdS" = (
+/obj/structure/table/woodentable,
+/obj/machinery/door/window/right{
+	dir = 2
+	},
+/turf/open/floor/mainship/floor,
+/area/slumbridge/inside/sombase/west)
 "reM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -23650,14 +23652,6 @@
 "rrK" = (
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/zeta/south)
-"rrN" = (
-/obj/structure/prop/mainship/missile_tube{
-	desc = "Metal rotary device spins to create power out of water.";
-	name = "\improper turbine oversight system"
-	},
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "rsH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -23904,11 +23898,6 @@
 	dir = 8
 	},
 /area/slumbridge/inside/sombase/west)
-"rAT" = (
-/obj/structure/table/wood,
-/obj/machinery/computer3,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "rAU" = (
 /obj/structure/flora/pottedplant/one,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -24516,6 +24505,11 @@
 	dir = 1
 	},
 /area/slumbridge/inside/sombase/west)
+"rWG" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/computer/med_data,
+/turf/open/floor/tile/cmo,
+/area/slumbridge/inside/medical/cmo)
 "rWX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24744,6 +24738,12 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/central)
+"sdS" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/slumbridge/inside/colony/headoffice)
 "seb" = (
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/construction)
@@ -25010,6 +25010,17 @@
 	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/pharmacy)
+"sqd" = (
+/obj/structure/table/woodentable,
+/obj/item/ammo_magazine/shotgun/beanbag,
+/obj/item/weapon/gun/shotgun/pump/trenchgun,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 10
+	},
+/area/slumbridge/inside/colony/bar)
 "sqh" = (
 /obj/structure/table,
 /obj/item/book/manual/engineering_construction,
@@ -25196,6 +25207,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/pmcdome/nukevault)
+"sxd" = (
+/obj/mecha_wreckage/marauder,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/platebotc,
+/area/slumbridge/inside/engi/south)
 "sxe" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/weedable,
@@ -25278,11 +25294,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
-"sAI" = (
-/obj/structure/mecha_wreckage/gygax,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/platebotc,
-/area/slumbridge/inside/engi/south)
 "sAX" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/attachable/bayonetknife/som,
@@ -25841,6 +25852,12 @@
 	dir = 1
 	},
 /area/slumbridge/inside/zeta/south)
+"sWD" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/greytide,
+/obj/effect/spawner/random/misc/greytide,
+/turf/open/floor/wood/variable/mosaic,
+/area/slumbridge/caves/southeastcaves/garbledradio)
 "sXk" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/fake_space,
@@ -26083,15 +26100,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
-"thx" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/dice/d20,
-/obj/item/trash/barcaridine,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/slumbridge/inside/colony/bar)
 "thz" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/slumbridge/inside/prison/outerringsouth)
@@ -26164,6 +26172,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/inside/sombase/west)
+"tkE" = (
+/obj/mecha_wreckage/ripley/firefighter,
+/turf/open/floor/plating/ground/concrete,
+/area/slumbridge/outside/southwest)
 "tln" = (
 /obj/structure/desertdam/decals/road,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26309,10 +26321,6 @@
 	dir = 4
 	},
 /area/slumbridge/inside/engi/central)
-"tpo" = (
-/obj/structure/mecha_wreckage/ripley/firefighter,
-/turf/open/floor/plating/ground/concrete,
-/area/slumbridge/outside/southwest)
 "tpD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -26506,17 +26514,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/slumbridge/outside/southwest)
-"txp" = (
-/obj/structure/table/wood,
-/obj/item/ammo_magazine/shotgun/beanbag,
-/obj/item/weapon/gun/shotgun/pump/trenchgun,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/green2{
-	dir = 10
-	},
-/area/slumbridge/inside/colony/bar)
 "txA" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/glass,
@@ -26668,14 +26665,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
-"tCW" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/pistol/m1911,
-/obj/item/ammo_magazine/pistol/m1911,
-/obj/item/ammo_magazine/pistol/m1911,
-/obj/item/ammo_magazine/pistol/m1911,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "tDd" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor,
@@ -27439,10 +27428,6 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/slumbridge/caves/southwestcaves)
-"uiR" = (
-/obj/structure/mecha_wreckage/ripley,
-/turf/open/floor/tile/dark,
-/area/slumbridge/inside/colony/construction)
 "uiS" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/tile/dark,
@@ -27592,11 +27577,6 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/hydrotreatment)
-"unX" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/emails,
-/turf/open/floor/tile/white,
-/area/slumbridge/inside/pmcdome/dorms)
 "unY" = (
 /obj/item/ore/slag{
 	pixel_x = -1;
@@ -27713,16 +27693,16 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/construction)
+"utf" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/slumbridge/inside/colony/bar)
 "uth" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/slumbridge/inside/sombase/west)
-"utr" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/slumbridge/inside/engi/engineroom)
 "uts" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
@@ -28344,16 +28324,6 @@
 	},
 /turf/open/floor/freezer,
 /area/slumbridge/inside/medical/southern)
-"uSq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/slumbridge/inside/medical/foyer)
 "uSs" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -28886,6 +28856,13 @@
 	dir = 6
 	},
 /area/slumbridge/inside/colony/southerndome)
+"vmz" = (
+/obj/structure/table/woodentable,
+/obj/item/taperecorder,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/slumbridge/inside/colony/headoffice)
 "vmK" = (
 /obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/turf_decal/riverdecal,
@@ -29238,6 +29215,13 @@
 	},
 /turf/open/liquid/lava/catwalk,
 /area/slumbridge/outside/northwest)
+"vyz" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/slumbridge/inside/colony/headoffice)
 "vyM" = (
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/slumbridge/caves/rock)
@@ -29401,6 +29385,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/slumbridge/outside/northwest)
+"vDW" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood/variable/wide/damaged,
+/area/slumbridge/caves/southeastcaves/garbledradio)
 "vEa" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison/darkyellow{
@@ -29598,6 +29586,11 @@
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/north)
+"vKp" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer3,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "vKE" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -29613,12 +29606,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/darkred/full,
 /area/slumbridge/inside/prison/outerringnorth)
-"vLi" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced,
-/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
-/turf/open/floor/mainship/floor,
-/area/slumbridge/inside/sombase/west)
 "vLn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -29826,10 +29813,6 @@
 	},
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
-"vSw" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/variable/wide/damaged,
-/area/slumbridge/caves/southeastcaves/garbledradio)
 "vSG" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30023,6 +30006,17 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest/nearlz)
+"vYt" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/obj/machinery/chem_dispenser/beer{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/slumbridge/inside/colony/headoffice)
 "vYx" = (
 /obj/machinery/light{
 	dir = 8
@@ -30303,6 +30297,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/slumbridge/outside/southeast)
+"wii" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/fancywoodentable,
+/obj/item/toy/dice,
+/turf/open/floor/tile/white,
+/area/slumbridge/inside/pmcdome/dorms)
 "wiq" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -30318,12 +30318,6 @@
 /obj/effect/spawner/gibspawner/robot,
 /turf/open/floor/plating/platebot,
 /area/slumbridge/inside/engi/south)
-"wiO" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/slumbridge/inside/colony/bar)
 "wiR" = (
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison/green{
@@ -30426,10 +30420,6 @@
 "wlC" = (
 /turf/open/floor/scorched,
 /area/slumbridge/inside/prison/innerring)
-"wlV" = (
-/obj/structure/mecha_wreckage/durand,
-/turf/open/floor/plating/platebotc,
-/area/slumbridge/inside/engi/south)
 "wlY" = (
 /turf/closed/wall/mainship,
 /area/slumbridge/inside/hydrotreatment)
@@ -30733,6 +30723,10 @@
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating,
 /area/slumbridge/outside/northeast/bridges)
+"wwv" = (
+/obj/mecha_wreckage/ripley/lv624,
+/turf/open/floor/plating/ground/concrete,
+/area/slumbridge/outside/southwest)
 "wwH" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/glass/beaker/vial,
@@ -30987,24 +30981,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside/southeast)
-"wFv" = (
-/obj/structure/table/wood,
-/obj/item/trash/tray,
-/obj/item/tool/kitchen/utensil/pspoon{
-	pixel_x = -9
-	},
-/obj/item/tool/kitchen/utensil/pfork,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/turf/open/floor/plating,
-/area/slumbridge/inside/colony/kitchen)
 "wFx" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/slumbridge/inside/colony/northerndome)
-"wFZ" = (
-/obj/structure/table/wood/gambling,
-/turf/open/floor/wood,
-/area/slumbridge/inside/prison/outerringsouth)
 "wGl" = (
 /obj/structure/table,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -31732,6 +31712,12 @@
 	dir = 8
 	},
 /area/slumbridge/inside/prison/innerring)
+"xgi" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/reinforced,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/mainship/floor,
+/area/slumbridge/inside/sombase/west)
 "xgk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -31786,11 +31772,6 @@
 "xiI" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/slumbridge/inside/sombase/west)
-"xiP" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/food_or_drink/wine,
-/turf/open/floor/plating,
-/area/slumbridge/inside/colony/kitchen)
 "xiY" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 8
@@ -32319,12 +32300,6 @@
 	dir = 8
 	},
 /area/slumbridge/inside/sombase/east)
-"xFC" = (
-/obj/structure/mecha_wreckage/ripley/lv624,
-/turf/open/floor/plating/ground/concrete/edge{
-	dir = 4
-	},
-/area/slumbridge/outside/southwest)
 "xFH" = (
 /obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/tile/bar,
@@ -32428,6 +32403,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/showroom,
 /area/slumbridge/inside/engi/west)
+"xII" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/food_or_drink/wine,
+/turf/open/floor/plating,
+/area/slumbridge/inside/colony/kitchen)
 "xJc" = (
 /obj/machinery/computer/sleep_console,
 /obj/structure/cable,
@@ -32605,12 +32585,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/slumbridge/inside/houses/car)
-"xQa" = (
-/obj/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/slumbridge/inside/medical/foyer)
 "xQm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32886,6 +32860,13 @@
 "xZs" = (
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/sombase/west)
+"xZw" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/paperbin,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/slumbridge/inside/colony/bar)
 "xZD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -41165,7 +41146,7 @@ lRi
 dIK
 pff
 seb
-uiR
+hBN
 ebJ
 tHG
 aHR
@@ -43326,7 +43307,7 @@ bYo
 bYo
 gYQ
 gxe
-lrr
+wwv
 wpJ
 gxe
 gdy
@@ -43366,7 +43347,7 @@ alt
 nmr
 qMO
 cKw
-aeW
+lZM
 oRE
 oRE
 oRE
@@ -43533,9 +43514,9 @@ iDq
 alt
 nmr
 rFo
-aZj
-wFv
-xiP
+gde
+jdK
+xII
 rFo
 tTF
 dcm
@@ -43687,7 +43668,7 @@ bYo
 bYo
 bYo
 qaF
-lrr
+wwv
 gxe
 aJV
 sfK
@@ -44099,7 +44080,7 @@ fqI
 biP
 nCP
 tWt
-thx
+mhr
 oRE
 dKE
 bYo
@@ -44230,10 +44211,10 @@ lFH
 bYo
 pZW
 hbx
-xFC
-tpo
+eha
+tkE
 wpJ
-mlh
+lkU
 uBi
 dUW
 rfs
@@ -44454,11 +44435,11 @@ sHO
 sHO
 sHO
 sHO
-eJB
-wiO
-bVL
-eGT
-oCi
+xZw
+utf
+aAv
+jMf
+cOt
 sHO
 rLM
 xLA
@@ -44633,7 +44614,7 @@ alt
 nmr
 sHO
 ugJ
-txp
+sqd
 sHO
 joh
 lZh
@@ -46523,11 +46504,11 @@ mYE
 png
 vSq
 aYI
-qxY
+qQV
 afB
-wlV
+bwO
 tVQ
-ibL
+jXa
 mQR
 sLN
 lUg
@@ -46576,7 +46557,7 @@ nzn
 nCW
 oNT
 ter
-bMx
+ofr
 wVJ
 bYo
 bYo
@@ -46813,7 +46794,7 @@ alt
 alt
 nmr
 mkv
-pcx
+vyz
 azC
 hNk
 oTC
@@ -46885,10 +46866,10 @@ vSr
 bDZ
 oGR
 mKF
-ibL
-sAI
+jXa
+fWj
 iCo
-ido
+sxd
 wix
 wpl
 mKF
@@ -46938,7 +46919,7 @@ qKo
 qKl
 oNT
 ter
-evD
+lQt
 wVJ
 lXi
 bYo
@@ -46994,7 +46975,7 @@ alt
 alt
 nmr
 mkv
-oPc
+lja
 nDp
 mLD
 xRH
@@ -47175,7 +47156,7 @@ alt
 alt
 nmr
 mkv
-fRs
+sdS
 azC
 qif
 nES
@@ -47538,8 +47519,8 @@ alt
 nmr
 mkv
 mkv
-gwT
-oBP
+vYt
+vmz
 wgG
 nKw
 oTC
@@ -49048,9 +49029,9 @@ hNv
 vJd
 emb
 jBa
-oyU
-mwr
-oyU
+xEm
+cqS
+xEm
 whJ
 lhV
 ith
@@ -49229,9 +49210,9 @@ fBA
 jSt
 whJ
 saE
-utr
-utr
-pEW
+xEm
+bSF
+ezE
 whJ
 wpR
 ith
@@ -49412,7 +49393,7 @@ myy
 saE
 xEm
 bSF
-rrN
+fgs
 iZP
 wJk
 ith
@@ -49592,8 +49573,8 @@ ezl
 fvt
 saE
 xEm
-xEm
-lTj
+bSF
+fgs
 whJ
 cqo
 hIf
@@ -49774,7 +49755,7 @@ rnC
 saE
 xEm
 bSF
-edk
+fgs
 mff
 car
 ith
@@ -49955,7 +49936,7 @@ uIr
 saE
 saE
 uPQ
-ohD
+olz
 kQS
 eoB
 saE
@@ -50186,7 +50167,7 @@ qMS
 qMS
 qMS
 bNn
-wFZ
+hoS
 bEY
 qMS
 qMS
@@ -53023,7 +53004,7 @@ liM
 bXw
 fiB
 rAQ
-pBZ
+aqt
 rAQ
 ktw
 liM
@@ -53204,7 +53185,7 @@ yef
 bIl
 kTa
 dMd
-mnm
+rdS
 tUf
 piZ
 liM
@@ -53385,7 +53366,7 @@ yef
 pvH
 wZa
 lVM
-aYM
+dIb
 dJJ
 nzv
 ikR
@@ -53566,7 +53547,7 @@ yef
 eCM
 ieh
 elP
-vLi
+xgi
 elP
 elP
 liM
@@ -56913,7 +56894,7 @@ hJk
 vJW
 vJW
 ixU
-gGf
+gBP
 wcz
 rDU
 ixU
@@ -57094,7 +57075,7 @@ vgv
 vJW
 vJW
 ixU
-lmb
+rWG
 mfz
 rYm
 ixU
@@ -57275,7 +57256,7 @@ hJk
 hJk
 hJk
 wkQ
-pxJ
+oMb
 qYe
 cIc
 aBk
@@ -57823,8 +57804,8 @@ ixU
 ixU
 ixU
 mwo
-uSq
-xQa
+aPF
+izZ
 mwo
 tXg
 lDK
@@ -60400,7 +60381,7 @@ bRA
 mcg
 hJk
 xVy
-jqS
+sWD
 gKv
 xVy
 mWu
@@ -60581,7 +60562,7 @@ pEK
 pEK
 bRA
 wng
-jqS
+sWD
 vVw
 xVy
 mWu
@@ -61129,7 +61110,7 @@ vVw
 xDV
 jhF
 pZQ
-vSw
+vDW
 bAm
 wng
 pRb
@@ -61484,7 +61465,7 @@ pEK
 eqL
 bRA
 pEK
-lrc
+bQA
 wXb
 vVw
 wng
@@ -61666,7 +61647,7 @@ pEK
 bRA
 pEK
 wng
-jqS
+sWD
 kBJ
 wng
 qrU
@@ -64183,7 +64164,7 @@ niQ
 mZL
 gaJ
 lwC
-bog
+hKD
 niQ
 niQ
 oTq
@@ -64359,12 +64340,12 @@ lwC
 sia
 jyz
 rYo
-gkX
+wii
 jVf
 aLc
 wiq
 fJy
-rAT
+vKp
 niQ
 oTq
 oTq
@@ -64540,11 +64521,11 @@ flD
 rQs
 pGT
 wKI
-lAQ
+dkY
 jVf
 uxw
-unX
-tCW
+myp
+fPL
 niQ
 niQ
 oTq

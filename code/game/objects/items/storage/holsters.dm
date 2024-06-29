@@ -8,7 +8,7 @@
 /obj/item/storage/holster
 	name = "holster"
 	desc = "Holds stuff, and sometimes goes swoosh."
-	icon = 'icons/obj/items/storage/holster.dmi'
+	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK
 	storage_type = /datum/storage/holster
@@ -91,7 +91,6 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
-	icon = 'icons/obj/items/storage/backholster.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -311,10 +310,6 @@
 	var/obj/item/new_item = new /obj/item/weapon/sword/machete(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
-/obj/item/storage/holster/blade/machete/full_alt/PopulateContents()
-	var/obj/item/new_item = new /obj/item/weapon/sword/machete/alt(src)
-	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
-
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
@@ -382,6 +377,7 @@
 	icon_state = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
 
+
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
@@ -396,6 +392,7 @@
 	name = "\improper M276 pattern M25 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m25_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/m25,
@@ -414,6 +411,7 @@
 	name = "\improper M276 pattern MP-19 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
@@ -458,7 +456,6 @@
 	name = "\improper ML-41 scabbard (10x26mm)"
 	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
-	icon = 'icons/obj/items/storage/backholster.dmi'
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 	)
@@ -477,6 +474,7 @@
 /obj/item/storage/holster/belt
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "m4a3_holster"
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = HAS_UNDERLAY

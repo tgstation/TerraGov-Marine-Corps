@@ -291,11 +291,10 @@
 
 	to_chat(world, assemble_alert(
 		title = "Custom Information",
-		subtitle = "An admin set custom information for this round.",
+		subtitle = "The following custom information has been set for this round.",
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
-	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -311,11 +310,10 @@
 
 	to_chat(src, assemble_alert(
 		title = "Custom Information",
-		subtitle = "An admin set custom information for this round.",
+		subtitle = "The following custom information has been set for this round.",
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
-	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -489,7 +487,7 @@
 
 	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
+	to_chat(world, span_event_announcement("<b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]"))
 
 
 /datum/admins/proc/force_distress()

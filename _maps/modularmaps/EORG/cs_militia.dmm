@@ -22,7 +22,7 @@
 	},
 /area/deathmatch)
 "bQ" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /turf/open/floor/wood,
 /area/deathmatch)
 "bZ" = (
@@ -256,7 +256,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xF" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)

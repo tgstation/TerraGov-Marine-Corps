@@ -547,11 +547,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
-"cl" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "cm" = (
 /obj/structure/monorail,
 /turf/open/floor/plating/plating_catwalk,
@@ -591,6 +586,10 @@
 /obj/structure/prop/brokenvendor/brokenmarinemedvendor,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"ct" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "cu" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/blue/corner{
@@ -710,6 +709,13 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"cT" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/emails{
+	density = 0
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/library)
 "cU" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/glasses/hud/health,
@@ -757,11 +763,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command/east)
-"dg" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/paperbin,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "dh" = (
 /obj/structure/table/mainship,
 /obj/item/restraints/handcuffs,
@@ -1622,14 +1623,6 @@
 	},
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/kitchen)
-"gr" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/paperbin,
-/obj/item/tool/pen{
-	pixel_y = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/library)
 "gs" = (
 /obj/machinery/light{
 	dir = 8
@@ -2128,11 +2121,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
-"io" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/cup/glass/drinkingglass,
-/turf/open/floor/grimy,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "iq" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -2194,6 +2182,12 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security/central_outpost)
+"iD" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/living/chapel)
 "iE" = (
 /obj/structure/table/mainship,
 /obj/item/paper{
@@ -2283,14 +2277,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
-"iX" = (
-/obj/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/campaign/tgmc_raiding/underground/medbay)
 "iY" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics)
@@ -2453,11 +2439,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
-"jD" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "jE" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
@@ -3019,6 +3000,11 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/living/barracks)
+"lX" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "lY" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -3160,6 +3146,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security)
+"mD" = (
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "mE" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/green{
@@ -3251,6 +3241,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
+"mY" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/living/chapel)
 "mZ" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal3,
@@ -3492,11 +3489,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
-"nV" = (
-/obj/structure/table/wood,
-/obj/item/ashtray/bronze,
-/turf/open/floor/cult/clock,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "nW" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3583,13 +3575,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
-"oo" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/emails{
-	density = 0
-	},
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "oq" = (
 /obj/structure/table/mainship,
 /obj/structure/bedsheetbin,
@@ -3955,6 +3940,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
+"pV" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/dice/d20,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "pW" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 5
@@ -4205,6 +4195,13 @@
 "qX" = (
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/east)
+"qZ" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/computer/emails{
+	density = 0
+	},
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "ra" = (
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
@@ -4295,6 +4292,12 @@
 /obj/effect/spawner/random/engineering/radio,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"rr" = (
+/obj/structure/curtain/medical,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/campaign/tgmc_raiding/underground/medbay)
 "rt" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -4502,10 +4505,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/medbay)
-"se" = (
-/obj/structure/table/wood/gambling,
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "sf" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
@@ -4695,6 +4694,10 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"sS" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/grimy,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "sT" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 8
@@ -4888,6 +4891,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"tI" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "tJ" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/prison/darkbrown{
@@ -5108,6 +5116,18 @@
 "uA" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/storage)
+"uB" = (
+/obj/structure/table/gamblingtable,
+/obj/item/paper{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "uC" = (
 /obj/machinery/light{
 	dir = 8
@@ -5242,15 +5262,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/security)
-"vf" = (
-/obj/structure/table/wood/gambling,
-/obj/item/coin/silver,
-/obj/item/coin/gold{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "vg" = (
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/freezer,
@@ -5793,6 +5804,11 @@
 /obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command)
+"xo" = (
+/obj/structure/table/woodentable,
+/obj/item/book,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/library)
 "xp" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
@@ -5989,11 +6005,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
-"yd" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/cup/glass/drinkingglass,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "ye" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/orange/corner{
@@ -6468,6 +6479,11 @@
 "zW" = (
 /turf/closed/wall,
 /area/campaign/tgmc_raiding/colony/indoor/garage)
+"zY" = (
+/obj/structure/table/woodentable,
+/obj/item/clothing/shoes/cowboy,
+/turf/open/floor/cult/clock,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "zZ" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/living/bathroom/south)
@@ -6693,6 +6709,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
+"AQ" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "AR" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/blue{
@@ -6732,10 +6753,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
 "AZ" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/tool/pen{
+	pixel_y = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/library)
 "Ba" = (
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -6796,11 +6820,6 @@
 /obj/item/alienjar,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
-"Bn" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/barman_recipes,
-/turf/open/floor/grimy,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Bo" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
@@ -6863,6 +6882,12 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security)
+"BC" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/storage/bible/booze,
+/obj/item/reagent_containers/food/drinks/britcup,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "BD" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
@@ -6871,6 +6896,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
+"BF" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/living/chapel)
 "BG" = (
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/station)
@@ -6879,11 +6911,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command)
-"BI" = (
-/obj/structure/table/wood/gambling,
-/obj/item/coin/platinum,
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "BJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -6945,9 +6972,12 @@
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
 "BV" = (
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
+/obj/structure/table/woodentable,
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/campaign/tgmc_raiding/underground/living/chapel)
 "BW" = (
 /obj/item/storage/bag/trash,
 /obj/structure/rack,
@@ -6986,13 +7016,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway)
-"Cc" = (
-/obj/structure/table/wood/gambling,
-/obj/item/tool/pen{
-	pixel_y = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "Cd" = (
 /obj/machinery/light{
 	dir = 4
@@ -7156,6 +7179,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
+"CJ" = (
+/obj/structure/table/gamblingtable,
+/obj/item/coin/silver,
+/obj/item/coin/gold{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "CK" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/prison,
@@ -7182,10 +7214,6 @@
 /obj/item/bedsheet/red,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security)
-"CU" = (
-/obj/structure/table/wood,
-/turf/open/floor/grimy,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "CV" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -7281,18 +7309,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
-"Do" = (
-/obj/structure/table/wood/gambling,
-/obj/item/paper{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/paper{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "Dp" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
@@ -7645,6 +7661,13 @@
 "EF" = (
 /turf/open/liquid/water/river,
 /area/campaign/tgmc_raiding/colony/outdoor/southwest)
+"EG" = (
+/obj/structure/table/gamblingtable,
+/obj/item/tool/pen{
+	pixel_y = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "EH" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -8001,6 +8024,11 @@
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"Gd" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/turf/open/floor/grimy,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Ge" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/plating_catwalk,
@@ -8105,12 +8133,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/colony/indoor/station)
-"Gx" = (
-/obj/structure/curtain/medical{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/campaign/tgmc_raiding/underground/medbay)
 "Gy" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/campaign/tgmc_raiding/colony/indoor/station)
@@ -8526,12 +8548,6 @@
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/east)
-"Ik" = (
-/obj/structure/table/wood,
-/turf/open/floor/tile/chapel{
-	dir = 1
-	},
-/area/campaign/tgmc_raiding/underground/living/chapel)
 "Il" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
@@ -8814,6 +8830,11 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"Js" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/paperbin,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "Ju" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/cargo,
@@ -8844,13 +8865,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
-"JA" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/emails{
-	density = 0
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/library)
 "JB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
@@ -9416,12 +9430,6 @@
 "LD" = (
 /turf/open/floor/mainship/red/full,
 /area/campaign/tgmc_raiding/underground/living/boxing)
-"LF" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/bible/booze,
-/obj/item/reagent_containers/food/drinks/britcup,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "LG" = (
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
@@ -9789,6 +9797,11 @@
 	},
 /turf/open/floor/cult/clock,
 /area/campaign/tgmc_raiding/colony/indoor/bar)
+"Nd" = (
+/obj/structure/table/gamblingtable,
+/obj/item/coin/platinum,
+/turf/open/floor/mainship/floor,
+/area/campaign/tgmc_raiding/underground/living/barracks)
 "Ne" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/blue,
@@ -9825,6 +9838,11 @@
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
+"Nk" = (
+/obj/structure/table/woodentable,
+/obj/item/book/manual/barman_recipes,
+/turf/open/floor/grimy,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Nl" = (
 /turf/open/floor/prison/darkred{
 	dir = 10
@@ -9920,11 +9938,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
-"NI" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/dice/d20,
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "NJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -10047,11 +10060,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
-"Ok" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/revolver/standard_revolver,
-/turf/open/floor/cult/clock,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Ol" = (
 /obj/machinery/griddle,
 /turf/open/floor/mainship/floor,
@@ -10280,6 +10288,11 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/command/captain)
+"Pk" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "Pl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10409,6 +10422,11 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics)
+"PK" = (
+/obj/structure/table/woodentable,
+/obj/item/ashtray/bronze,
+/turf/open/floor/cult/clock,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "PL" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -10807,6 +10825,11 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/medbay)
+"Rw" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 "Rx" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -11428,13 +11451,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
-"TW" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/turf/open/floor/tile/chapel{
-	dir = 4
-	},
-/area/campaign/tgmc_raiding/underground/living/chapel)
+"TX" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/turf/open/floor/cult/clock,
+/area/campaign/tgmc_raiding/colony/indoor/bar)
 "TY" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/plating,
@@ -11578,13 +11599,6 @@
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/colony/indoor/station)
-"UF" = (
-/obj/structure/table/wood,
-/obj/structure/cable,
-/turf/open/floor/tile/chapel{
-	dir = 4
-	},
-/area/campaign/tgmc_raiding/underground/living/chapel)
 "UG" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -11932,11 +11946,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/barracks)
-"Wc" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck,
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/barracks)
 "Wd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
 /turf/open/floor/plating/plating_catwalk,
@@ -12046,11 +12055,6 @@
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/security)
-"WA" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "WB" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/earmuffs,
@@ -12150,11 +12154,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/east)
-"WU" = (
-/obj/structure/table/wood,
-/obj/item/book,
-/turf/open/floor/mainship/floor,
-/area/campaign/tgmc_raiding/underground/living/library)
 "WV" = (
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
@@ -12430,13 +12429,6 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
-"Yb" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
-/turf/open/floor/tile/chapel{
-	dir = 1
-	},
-/area/campaign/tgmc_raiding/underground/living/chapel)
 "Yc" = (
 /obj/machinery/light,
 /obj/structure/stairs/railstairs{
@@ -12503,11 +12495,6 @@
 /obj/structure/prop/vehicle/crawler/crawler_blue,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
-"Yu" = (
-/obj/structure/table/wood,
-/obj/item/clothing/shoes/cowboy,
-/turf/open/floor/cult/clock,
-/area/campaign/tgmc_raiding/colony/indoor/bar)
 "Yv" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -12903,6 +12890,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/engineering)
+"ZZ" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
+/turf/open/floor/carpet/blue,
+/area/campaign/tgmc_raiding/underground/command/captain)
 
 (1,1,1) = {"
 Qv
@@ -15700,8 +15692,8 @@ Of
 YA
 Si
 Kz
-Wc
-se
+tI
+ct
 Wb
 mW
 Si
@@ -15853,7 +15845,7 @@ zN
 Si
 YC
 bU
-vf
+CJ
 Wb
 Xj
 Si
@@ -16004,8 +15996,8 @@ Of
 Qm
 rj
 Fk
-BI
-se
+Nd
+ct
 Wb
 mW
 Si
@@ -16460,8 +16452,8 @@ Of
 YA
 Si
 Kz
-se
-NI
+ct
+pV
 Of
 nr
 Si
@@ -16612,8 +16604,8 @@ Of
 zN
 Si
 YC
-Do
-Cc
+uB
+EG
 Of
 rY
 Si
@@ -17815,9 +17807,9 @@ Px
 vH
 Un
 kr
-WU
-gr
-JA
+xo
+AZ
+cT
 KH
 fA
 QG
@@ -19032,7 +19024,7 @@ vH
 Un
 kr
 SN
-UF
+BV
 RJ
 tj
 Kc
@@ -19184,7 +19176,7 @@ bI
 uv
 kr
 NQ
-Yb
+mY
 xk
 DU
 EH
@@ -19336,7 +19328,7 @@ yA
 MA
 hh
 GB
-TW
+BF
 RJ
 tj
 Kc
@@ -19488,7 +19480,7 @@ NN
 MA
 hh
 pi
-Ik
+iD
 xk
 ZE
 xk
@@ -20669,9 +20661,9 @@ wq
 Gz
 Lm
 ma
-iX
-Gx
-Gx
+rr
+Bl
+Bl
 Bl
 Hw
 Hw
@@ -25229,8 +25221,8 @@ EW
 jb
 UI
 ra
-yd
-WA
+Pk
+lX
 ra
 kX
 qB
@@ -25385,9 +25377,9 @@ ra
 ra
 ra
 kX
-dg
-LF
-BV
+Js
+BC
+mD
 UI
 Pj
 vO
@@ -25537,9 +25529,9 @@ HF
 HF
 ph
 ty
-oo
+qZ
 gX
-oo
+qZ
 UI
 IH
 vO
@@ -26449,10 +26441,10 @@ IH
 IH
 IH
 Ee
-cl
-jD
+Rw
+ZZ
 rZ
-AZ
+AQ
 YU
 MU
 MU
@@ -30210,10 +30202,10 @@ iU
 iU
 yR
 XY
-CU
-io
-Bn
-CU
+sS
+Gd
+Nk
+sS
 PL
 XY
 yR
@@ -30660,15 +30652,15 @@ iU
 iU
 XY
 Nc
-Ok
+TX
 rG
 zO
 RL
-Yu
+zY
 rG
 zO
 RL
-nV
+PK
 rG
 zO
 XY

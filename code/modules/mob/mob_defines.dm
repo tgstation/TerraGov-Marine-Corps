@@ -50,6 +50,8 @@
 	var/next_move_modifier = 1
 	var/last_move_intent
 	var/area/lastarea
+	var/old_x = 0
+	var/old_y = 0
 	var/inertia_dir = 0
 	///Can move on the shuttle.
 	var/move_on_shuttle = TRUE

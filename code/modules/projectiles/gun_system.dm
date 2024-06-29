@@ -282,8 +282,6 @@
 	var/gun_accuracy_mod = 0
 	///The actual scatter value of the fired projectile
 	var/gun_scatter = 0
-	///If specified, the gun can only fire in a cone forwards with an angle of this var
-	var/gun_fire_angle = null
 
 /*
  *  HEAT MECHANIC VARS
@@ -831,8 +829,6 @@
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(item_flags, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return NONE
-	if(gun_fire_angle && (get_between_angles(Get_Angle(get_turf(src), target), dir2angle(loc.dir)) > (gun_fire_angle / 2)))
-		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(loc, windup_sound, 30, TRUE)
@@ -1348,8 +1344,7 @@
 		update_ammo_count()
 		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
-		RegisterSignals(new_mag, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT), PROC_REF(update_ammo_count))
-		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(drop_connected_mag))
+		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 		return TRUE
 
 
@@ -1459,7 +1454,6 @@
 				obj_in_chamber.forceMove(get_turf(src))
 		in_chamber = null
 		obj_in_chamber.update_icon()
-		UnregisterSignal(obj_in_chamber, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT))
 		get_ammo()
 		update_ammo_count()
 		update_icon()
@@ -1486,7 +1480,7 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_magazine_features_flags(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		QDEL_NULL(in_chamber)
 		adjust_current_rounds(mag, rounds_per_shot)
-	UnregisterSignal(mag, list(COMSIG_CELL_SELF_RECHARGE, COMSIG_ATOM_EMP_ACT, COMSIG_ITEM_REMOVED_INVENTORY))
+	UnregisterSignal(mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()

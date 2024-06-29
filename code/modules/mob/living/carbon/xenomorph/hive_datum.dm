@@ -412,7 +412,7 @@
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE)
+/mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
 		CRASH("trying to do a dirty add_to_hive")
 
@@ -429,30 +429,24 @@
 	SSdirection.start_tracking(HS.hivenumber, src)
 	hive.update_tier_limits() //Update our tier limits.
 
-/mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
+/mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
 	if(HS.living_xeno_queen) // theres already a queen
 		return
 
 	HS.living_xeno_queen = src
 
-	if(prevent_ruler)
-		return
-
 	HS.update_ruler()
 
 
-/mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE) // override to ensure proper queen/hive behaviour
+/mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
 
 	if(HS.living_xeno_ruler)
 		return
-	if(prevent_ruler)
-		return
-
 	HS.update_ruler()
 
-/mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
+/mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE)
 	. = ..()
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
 		GLOB.xeno_structures_by_hive[HS.hivenumber] = list()
@@ -473,26 +467,23 @@
 	hive_core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
 	hive_core.color = HS.color
 
-/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
+/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
 	. = ..()
 
 	if(HS.living_xeno_ruler)
 		return
-	if(prevent_ruler)
-		return
-
 	HS.update_ruler()
 
-/mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE, prevent_ruler=FALSE) // helper function to add by given hivenumber
+/mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	add_to_hive(HS, force, prevent_ruler)
+	add_to_hive(HS, force)
 	hive.update_tier_limits() //Update our tier limits.
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
-/mob/living/carbon/xenomorph/proc/set_initial_hivenumber(prevent_ruler=FALSE)
-	add_to_hive_by_hivenumber(hivenumber, force=TRUE, prevent_ruler=prevent_ruler)
+/mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
+	add_to_hive_by_hivenumber(hivenumber, force=TRUE)
 
 // ***************************************
 // *********** Removing xenos
@@ -661,7 +652,8 @@
 	if(!target.xeno_caste.deevolves_to)
 		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
 		return
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_BASETYPE]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_NORMAL]
+
 	var/confirm = tgui_alert(devolver, "Are you sure you want to deevolve [target] from [target.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -686,10 +678,15 @@
 	target.balloon_alert(target, "Forced deevolution")
 	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
 
-	target.do_evolve(new_caste.type, TRUE) // This already handles qdel and statistics.
+	target.do_evolve(new_caste.type, TRUE)
 
 	log_game("[key_name(devolver)] has deevolved [key_name(target)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(devolver)] has deevolved [ADMIN_TPMONTY(target)]. Reason: [reason]")
+
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
+	qdel(target)
+
 
 // ***************************************
 // *********** Xeno death

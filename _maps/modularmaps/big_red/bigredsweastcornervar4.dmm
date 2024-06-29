@@ -11,6 +11,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south/garbledradio)
+"f" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south/garbledradio)
 "h" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -1038,7 +1042,7 @@ O
 M
 M
 M
-M
+f
 M
 d
 Z

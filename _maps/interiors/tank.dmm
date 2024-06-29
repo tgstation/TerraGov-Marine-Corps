@@ -6,7 +6,7 @@
 /turf/closed/interior/tank/door,
 /area/interior/tank)
 "d" = (
-/obj/structure/bed/chair/vehicle_crew/driver{
+/obj/structure/bed/chair/vehicle_driver_seat{
 	pixel_x = 11;
 	pixel_y = -6
 	},
@@ -89,7 +89,7 @@
 /turf/open/interior/tank/ten,
 /area/interior/tank)
 "S" = (
-/obj/structure/bed/chair/vehicle_crew/gunner{
+/obj/structure/bed/chair/vehicle_gunner_seat{
 	pixel_x = -3;
 	pixel_y = -5
 	},

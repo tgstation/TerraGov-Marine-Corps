@@ -64,7 +64,7 @@
 		else if(code == l_code && l_set)
 			locked = FALSE
 			overlays = null
-			overlays += image('icons/obj/items/storage/briefcase.dmi', icon_opened)
+			overlays += image('icons/obj/items/storage/storage.dmi', icon_opened)
 			code = null
 		else
 			code = "ERROR"
@@ -115,7 +115,7 @@
 // -----------------------------
 /obj/item/storage/secure/briefcase
 	name = "secure briefcase"
-	icon = 'icons/obj/items/storage/briefcase.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
@@ -152,11 +152,11 @@
 
 /obj/item/storage/secure/safe
 	name = "secure safe"
-	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "wallsafe"
-	icon_opened = "wallsafe_0"
-	icon_locking = "wallsafe_b"
-	icon_sparking = "wallsafe_spark"
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "safe"
+	icon_opened = "safe0"
+	icon_locking = "safeb"
+	icon_sparking = "safespark"
 	atom_flags = CONDUCT
 	force = 8
 	w_class = WEIGHT_CLASS_GIGANTIC

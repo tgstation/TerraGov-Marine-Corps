@@ -275,6 +275,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LIVING
 
+
 // Brig
 
 /area/outpost/brig

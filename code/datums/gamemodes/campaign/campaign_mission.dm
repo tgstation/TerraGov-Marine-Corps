@@ -78,8 +78,6 @@
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
-	/// Timer for when the mission starts
-	var/start_timer
 	///The length of time until mission ends, if timed
 	var/max_game_time = 0
 	///Whether the max game time has been reached
@@ -183,7 +181,7 @@
 	play_selection_intro()
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	start_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
 	load_pre_mission_bonuses()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED), PROC_REF(remove_mission_flag))
 
@@ -309,7 +307,6 @@
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED)
-	start_timer = null
 	if(!shutter_open_delay[MISSION_STARTING_FACTION])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else
@@ -354,13 +351,10 @@
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
-	send_ooc_announcement(
-		sender_override = "Mission Starting",
-		title = name,
-		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
-		sound_override = 'sound/ambience/votestart.ogg',
-		style = "game"
-	)
+	to_chat(world, span_round_header("|[name]|"))
+	to_chat(world, span_round_body("Next mission selected by [starting_faction] as [name] on the battlefield of [map_name]."))
+	for(var/mob/player AS in GLOB.player_list)
+		player.playsound_local(null, 'sound/ambience/votestart.ogg', 10, 1)
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro()
@@ -371,13 +365,8 @@
 /datum/campaign_mission/proc/play_outro()
 	log_game("[outcome]\nMission: [name]")
 
-	send_ooc_announcement(
-		sender_override = "[name] Complete",
-		title = "[starting_faction] [outcome]",
-		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [starting_faction] [outcome]!",
-		play_sound = FALSE,
-		style = "game"
-	)
+	to_chat(world, span_round_header("[name] completed"))
+	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
 	map_text_broadcast(hostile_faction, outro_message[outcome][MISSION_HOSTILE_FACTION], op_name_hostile)

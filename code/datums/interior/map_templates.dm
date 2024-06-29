@@ -24,7 +24,3 @@
 /datum/map_template/interior/clone_bay
 	name = "clone bay apc interior template"
 	filename = "apc_cloner"
-
-/datum/map_template/interior/som_tank
-	name = "SOM tank interior template"
-	filename = "som_tank"

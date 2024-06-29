@@ -229,7 +229,6 @@
 /datum/action/ability/activable/xeno/landslide
 	name = "Landslide"
 	action_icon_state = "landslide"
-	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	ability_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_duration = 20 SECONDS
@@ -523,9 +522,9 @@
 		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
 		tank_target.explode()
 		return
-	if(istype(object_target, /obj/structure/door/resin))
-		var/obj/structure/door/resin/resin_door = object_target
-		resin_door.open(TRUE, TRUE)
+	if(istype(object_target, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/resin_door = object_target
+		resin_door.toggle_state()
 		return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
@@ -581,7 +580,6 @@
 /datum/action/ability/activable/xeno/earth_riser
 	name = "Earth Riser"
 	action_icon_state = "earth_riser"
-	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
@@ -772,7 +770,6 @@
 /datum/action/ability/xeno_action/seismic_fracture
 	name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
-	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -918,7 +915,6 @@
 /datum/action/ability/xeno_action/primal_wrath
 	name = "Primal Wrath"
 	action_icon_state = "primal_wrath"
-	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	cooldown_duration = 1 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
@@ -1360,29 +1356,27 @@
 	damage_type = BRUTE
 	armor_type = MELEE
 
-/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	return rock_broke(target_turf, proj)
+/datum/ammo/xeno/earth_pillar/do_at_max_range(turf/hit_turf, obj/projectile/proj)
+	return rock_broke(hit_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	return rock_broke(target_turf, proj)
+/datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
+	return rock_broke(hit_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(istype(target_obj, /obj/structure/reagent_dispensers/fueltank))
-		var/obj/structure/reagent_dispensers/fueltank/hit_tank = target_obj
+/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
+	if(istype(hit_object, /obj/structure/reagent_dispensers/fueltank))
+		var/obj/structure/reagent_dispensers/fueltank/hit_tank = hit_object
 		hit_tank.explode()
-	if(ishitbox(target_obj) || ismecha(target_obj)) // These don't hit the vehicles, but rather their hitboxes, so isarmored will not work here
-		return on_hit_anything(get_turf(target_obj), proj)
-	return rock_broke(get_turf(target_obj), proj)
+	return rock_broke(get_turf(hit_object), proj)
 
-/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!isxeno(proj.firer) || !isliving(target_mob))
+/datum/ammo/xeno/earth_pillar/on_hit_mob(mob/hit_mob, obj/projectile/proj)
+	if(!isxeno(proj.firer) || !isliving(hit_mob))
 		return
 	var/mob/living/carbon/xenomorph/xeno_firer = proj.firer
-	var/mob/living/hit_living = target_mob
+	var/mob/living/hit_living = hit_mob
 	if(xeno_firer.issamexenohive(hit_living) || hit_living.stat == DEAD)
-		return on_hit_anything(get_turf(target_mob), proj)
+		return on_hit_anything(get_turf(hit_mob), proj)
 	step_away(hit_living, proj, 1, 1)
-	return on_hit_anything(get_turf(target_mob), proj)
+	return on_hit_anything(get_turf(hit_mob), proj)
 
 /// VFX + SFX for when the rock doesn't hit anything.
 /datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
@@ -1396,21 +1390,21 @@
 	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
 
-/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	return on_hit_anything(target_turf, proj)
+/datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/hit_turf, obj/projectile/proj)
+	return on_hit_anything(hit_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	return on_hit_anything(target_turf, proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/hit_turf, obj/projectile/proj)
+	return on_hit_anything(hit_turf, proj)
 
-/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/hit_object, obj/projectile/proj)
 	. = ..()
-	return on_hit_anything(get_turf(target_obj), proj)
+	return on_hit_anything(get_turf(hit_object), proj)
 
 
 // ***************************************
 // *********** Global Procs
 // ***************************************
-#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 0.4
+#define AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER 1.8
 
 /**
  * Checks for any atoms caught in the attack's range, and applies several effects based on the atom's type.
@@ -1441,7 +1435,7 @@
 				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(paralyze_duration)
 				affected_living.apply_damage(attack_damage, BRUTE, blocked = MELEE)
-			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || ishitbox(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
+			else if(isearthpillar(affected_atom) || isvehicle(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 				affected_atom.do_jitter_animation()
 				new /obj/effect/temp_visual/behemoth/landslide/hit(affected_atom.loc)
 				playsound(affected_atom.loc, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 40)
@@ -1455,12 +1449,12 @@
 					do_warning(xeno_owner, spread_turfs, wind_up_duration)
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
-				if(isvehicle(affected_atom) || ishitbox(affected_atom))
-					var/obj/obj_victim = affected_atom
+				if(isvehicle(affected_atom))
+					var/obj/vehicle/veh_victim = affected_atom
 					var/damage_add = 0
-					if(ismecha(obj_victim))
-						damage_add = 9.5
-					obj_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
+					if(ismecha(veh_victim))
+						damage_add = 8.2
+					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom

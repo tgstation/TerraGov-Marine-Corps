@@ -147,11 +147,6 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
-/atom/movable/screen/fullscreen/particle_flash
-	icon = 'icons/mob/screen/full/particle_flash.dmi'
-	icon_state = "particle_flash"
-	layer = FULLSCREEN_FLASH_LAYER
-
 /atom/movable/screen/fullscreen/animated
 	icon = 'icons/mob/screen/full/animated.dmi'
 

@@ -3906,7 +3906,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/med)
 "ejT" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/interior/oob/dev_room)
 "ekh" = (
@@ -5537,7 +5537,7 @@
 /turf/open/floor/mainship/research/containment/floor1,
 /area/kutjevo/interior/filtration)
 "fSK" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/deck/kotahi,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -9601,7 +9601,7 @@
 /turf/open/floor/mainship/research/containment/floor1,
 /area/kutjevo/interior/complex/botany)
 "kzJ" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_N_East)
@@ -12382,6 +12382,7 @@
 /area/kutjevo/interior/complex/med/operating)
 "npx" = (
 /obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/kutjevo/colors/orange/edge{
 	dir = 1
 	},
@@ -13395,6 +13396,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/kutjevo/exterior/complex_border/med_park)
+"oor" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/kutjevo/colors/orange/edge,
+/area/kutjevo/interior/complex/Northwest_Security_Checkpoint)
 "ooN" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/corpsespawner/colonist/burst,
@@ -15631,7 +15637,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/power)
 "qIi" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/construction)
@@ -19371,7 +19377,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/power)
 "uDm" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/construction)
 "uDH" = (
@@ -21319,7 +21325,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/filtration)
 "wAo" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /obj/item/toy/deck/kotahi,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/kutjevo/tan,
@@ -22064,7 +22070,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/filtration)
 "xra" = (
-/obj/structure/table/wood/gambling,
+/obj/structure/table/gamblingtable,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/interior/oob/dev_room)
 "xrb" = (
@@ -22588,6 +22594,7 @@
 "xTw" = (
 /obj/structure/rack,
 /obj/machinery/light,
+/obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/kutjevo/colors/orange/edge{
 	dir = 8
 	},
@@ -23954,7 +23961,7 @@ xpz
 sWF
 kWd
 opQ
-akS
+oor
 sWF
 dxF
 dxF

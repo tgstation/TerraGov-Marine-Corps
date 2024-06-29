@@ -1,7 +1,7 @@
 /obj/item/attachable/foldable
 	name = "foldable stock"
 	desc = "A foldable stock. You shouldn't see this."
-	icon = 'icons/obj/items/guns/attachments/stock.dmi'
+	icon_state = ""
 	slot = ATTACHMENT_SLOT_STOCK
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
@@ -74,7 +74,7 @@
 /obj/item/attachable/foldable/skorpion_stock
 	name = "\improper Skorpion submachinegun wooden stock"
 	desc = "A foldable wire stock for a Skorpion submachinegun"
-	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
+	icon = 'icons/Marine/attachments_64.dmi'
 	icon_state = "skorpion"
 	attach_features_flags = ATTACH_ACTIVATION
 	pixel_shift_x = 0
@@ -94,7 +94,7 @@
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
-	icon_state = "t19"
+	icon_state = "t19stock"
 	accuracy_mod = 0.3
 	recoil_mod = -2
 	scatter_mod = -8
@@ -108,7 +108,7 @@
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
-	icon_state = "v34"
+	icon_state = "v34stock"
 	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
@@ -118,11 +118,11 @@
 	name = "\improper PL-38 machinepistol stock"
 	desc = "A submachinegun stock found on ICC subguns, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	attach_features_flags = ATTACH_ACTIVATION
+	icon = 'icons/Marine/attachments_64.dmi'
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
-	icon_state = "pl38"
-	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
+	icon_state = "pl38stock"
 	accuracy_mod = 0.3
 	recoil_mod = -2
 	scatter_mod = -8
@@ -132,8 +132,8 @@
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
-	icon_state = "t35"
+	icon = 'icons/Marine/attachments_64.dmi'
+	icon_state = "t35stock"
 	attach_features_flags = ATTACH_ACTIVATION
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.15
@@ -143,7 +143,6 @@
 /obj/item/attachable/foldable/bipod
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
-	icon = 'icons/obj/items/guns/attachments/underbarrel.dmi'
 	icon_state = "bipod"
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2

@@ -131,7 +131,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "u" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/paper,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -155,7 +155,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "y" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "z" = (
@@ -221,7 +221,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "K" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)

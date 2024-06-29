@@ -71,7 +71,6 @@
 /datum/action/ability/xeno_action/toggle_agility
 	name = "Agility"
 	action_icon_state = "agility_on"
-	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	cooldown_duration = 0.4 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
@@ -200,7 +199,6 @@
 /datum/action/ability/activable/xeno/warrior/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
-	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	ability_cost = 30
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -305,7 +303,6 @@
 /datum/action/ability/activable/xeno/warrior/fling
 	name = "Fling"
 	action_icon_state = "fling"
-	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	ability_cost = 20
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
@@ -392,7 +389,6 @@
 /datum/action/ability/activable/xeno/warrior/grapple_toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	ability_cost = 20
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
@@ -471,7 +467,6 @@
 /datum/action/ability/activable/xeno/warrior/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_cost = 15
 	cooldown_duration = 10 SECONDS
@@ -675,7 +670,6 @@
 /datum/action/ability/activable/xeno/warrior/punch/flurry
 	name = "Flurry"
 	action_icon_state = "flurry"
-	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	desc = "Strike at your target with blinding speed."
 	ability_cost = 10
 	cooldown_duration = 7 SECONDS

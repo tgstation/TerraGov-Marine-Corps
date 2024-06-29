@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "fixed being unable to take pills out of a pill bottle in someones duffel"
-  - code_imp: "items in storage now check a flag IN_STORAGE instead of type checking"

@@ -8412,12 +8412,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
-"aWs" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
-/obj/effect/turf_decal/warning_stripes,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "aWx" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/mainship/generic,
@@ -9134,6 +9128,22 @@
 	dir = 4
 	},
 /area/sulaco/firingrange)
+"bgc" = (
+/obj/effect/spawner/random/misc/plant,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/flora/pottedplant,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-05"
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hydro)
 "bgs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -9149,11 +9159,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"bgK" = (
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "bgN" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -9213,6 +9218,11 @@
 	dir = 1
 	},
 /area/mainship/living/basketball)
+"bji" = (
+/obj/machinery/computer/security/wooden_tv,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters)
 "bjj" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/lightreplacer,
@@ -9368,6 +9378,11 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/shipboard/weapon_room)
+"bxl" = (
+/obj/effect/turf_decal/warning_stripes,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "bxJ" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -9407,6 +9422,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"bzN" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/tadpole{
+	pixel_y = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "bBG" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9452,16 +9478,6 @@
 /obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
-"bFH" = (
-/obj/item/book/manual/security_space_law,
-/obj/item/tool/crowbar,
-/obj/item/tool/multitool,
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "bGH" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -9558,17 +9574,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"bKw" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/closet/crate/construction,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "bKI" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/prison/red,
@@ -9764,6 +9769,18 @@
 "bWL" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering)
+"bWN" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/tool/pen,
+/obj/item/folder/blue,
+/obj/item/megaphone,
+/obj/item/tool/pen,
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "bXC" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/mainship/gray,
@@ -9906,12 +9923,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ckl" = (
-/obj/item/clipboard,
-/obj/item/tool/hand_labeler,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison)
 "clj" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -9953,12 +9964,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
-"cma" = (
-/obj/structure/table/wood,
-/turf/open/floor/tile/chapel{
-	dir = 8
-	},
-/area/sulaco/marine/chapel)
 "cmN" = (
 /obj/machinery/firealarm,
 /turf/open/floor/prison,
@@ -9997,24 +10002,6 @@
 	dir = 9
 	},
 /area/sulaco/research)
-"cpy" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/dropship_equipment/rappel_system,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/closet/crate/construction,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/dropship_equipment/rappel_system,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "cqo" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/marked,
@@ -10116,6 +10103,11 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
+"cxm" = (
+/obj/machinery/computer/skills,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "cxB" = (
 /obj/effect/ai_node,
 /turf/open/floor/cult,
@@ -10522,12 +10514,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"cTY" = (
-/obj/item/reagent_containers/food/snacks/spacetwinkie,
-/obj/item/reagent_containers/food/drinks/bottle/sake,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "cVe" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -10658,6 +10644,16 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
+"dbm" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/tool/pen,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/sulaco/bridge/quarters)
 "dde" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
@@ -10666,6 +10662,14 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
+"del" = (
+/obj/machinery/light/mainship/small{
+	dir = 4
+	},
+/obj/structure/table/woodentable,
+/obj/machinery/faxmachine/cic,
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "dez" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -11053,22 +11057,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"dEh" = (
-/obj/item/folder/black_random,
-/obj/item/folder/black_random{
-	pixel_y = 2
-	},
-/obj/item/folder/black_random{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/obj/item/folder/black_random{
-	pixel_x = -1;
-	pixel_y = 6
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison)
 "dFM" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -11177,6 +11165,14 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/basketball)
+"dOf" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/squad_changer{
+	density = 0
+	},
+/obj/machinery/air_alarm,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "dOi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -11413,6 +11409,12 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
+"edC" = (
+/obj/machinery/light/mainship,
+/obj/structure/table/woodentable,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/black,
+/area/sulaco/mechpilotquarters)
 "eef" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -11446,19 +11448,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"egJ" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
 "egL" = (
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -11643,6 +11632,12 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
+"esz" = (
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
 "etB" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -11656,14 +11651,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
-"etI" = (
-/obj/structure/table/wood,
-/obj/item/storage/bible{
-	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
-	name = "Holy Bible"
-	},
-/turf/open/floor/tile/chapel,
-/area/sulaco/marine/chapel)
 "euz" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -11701,13 +11688,24 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
-"evq" = (
-/obj/structure/table/wood,
-/obj/item/paper,
-/obj/effect/spawner/random/misc/cigarettes,
-/obj/effect/spawner/random/misc/cigar,
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
+"evl" = (
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/closet/crate/construction,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint)
 "evY" = (
 /obj/structure/sink{
 	dir = 4
@@ -12135,22 +12133,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"eVi" = (
-/obj/effect/spawner/random/misc/plant,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/flora/pottedplant,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hydro)
 "eVy" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -12160,6 +12142,14 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/ce)
+"eVF" = (
+/obj/item/reagent_containers/food/drinks/flask/barflask{
+	pixel_x = 6
+	},
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/folder/nooffset,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "eVT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -12261,6 +12251,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"fbJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/obj/effect/turf_decal/warning_stripes,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "fbS" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -12316,14 +12312,26 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"fgZ" = (
-/obj/item/spare_cord,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "fhg" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"fiV" = (
+/obj/item/book/manual/security_space_law,
+/obj/item/tool/crowbar,
+/obj/item/tool/multitool,
+/obj/item/radio/intercom/general{
+	dir = 8
+	},
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
+"fje" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/sulaco/marine/chapel)
 "fjF" = (
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner,
@@ -12728,18 +12736,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/maintenance/lower_maint2)
-"fFS" = (
-/obj/structure/mirror{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/paper,
-/obj/effect/spawner/random/misc/clipboard,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "fGe" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -12835,6 +12831,29 @@
 	},
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/disposal)
+"fPz" = (
+/obj/item/folder/black_random,
+/obj/item/folder/black_random{
+	pixel_y = 2
+	},
+/obj/item/folder/black_random{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/folder/black_random{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison)
+"fQv" = (
+/obj/structure/table/woodentable,
+/obj/item/paper,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "fRw" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/hydro,
@@ -12863,11 +12882,6 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"fUM" = (
-/obj/effect/turf_decal/warning_stripes,
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "fUZ" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable,
@@ -13158,24 +13172,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/engineering/lower_engineering)
-"gks" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/closet/crate/construction,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint)
 "gkO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -13635,16 +13631,6 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
-"gUk" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/item/weapon/chainofcommand,
-/obj/machinery/camera/autoname,
-/obj/item/clothing/mask/cigarette/pipe{
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
 "gUn" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -13802,6 +13788,23 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"hdW" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/storage/box/ids,
+/obj/item/folder/blue,
+/obj/item/tool/pen,
+/obj/machinery/firealarm,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "hdZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13868,6 +13871,28 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall3)
+"hjm" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/obj/effect/spawner/random/misc/plant,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/obj/structure/flora/pottedplant,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-05"
+	},
+/turf/open/floor/tile/hydro,
+/area/sulaco/hydro)
 "hjK" = (
 /turf/closed/wall/mainship/white/outer,
 /area/mainship/living/starboard_garden)
@@ -14440,6 +14465,18 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"hSo" = (
+/obj/structure/mirror{
+	dir = 8
+	},
+/obj/structure/table/woodentable,
+/obj/item/paper,
+/obj/effect/spawner/random/misc/clipboard,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "hSC" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/machinery/camera/autoname{
@@ -15599,6 +15636,14 @@
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"jfB" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/bible{
+	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
+	name = "Holy Bible"
+	},
+/turf/open/floor/tile/chapel,
+/area/sulaco/marine/chapel)
 "jfN" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -15678,6 +15723,17 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"jjQ" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/closet/crate/construction,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jlB" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -15726,23 +15782,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
-"jqq" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/storage/box/ids,
-/obj/item/folder/blue,
-/obj/item/tool/pen,
-/obj/machinery/firealarm,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "jqy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -16034,6 +16073,15 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
+"jHv" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/item/tool/lighter/zippo,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters)
 "jHI" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -16200,12 +16248,6 @@
 /obj/structure/prop/mainship/sensor_computer1/sd,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"jRc" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/effect/spawner/random/misc/hand_labeler,
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "jRd" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/marine_selector/clothes/engi,
@@ -16392,24 +16434,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"kaP" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/landinglight/tadpole{
-	pixel_y = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
-"kbp" = (
-/obj/item/tool/stamp/internalaffairs{
-	pixel_y = 6
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "kbs" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
@@ -16550,11 +16574,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
-"kmQ" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
-/obj/effect/turf_decal/warning_stripes,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "knr" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
@@ -16620,16 +16639,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"koJ" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/item/tool/pen,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/sulaco/bridge/quarters)
 "koN" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -16758,14 +16767,6 @@
 /obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
-"kxb" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/squad_changer{
-	density = 0
-	},
-/obj/machinery/air_alarm,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "kxr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -16795,6 +16796,13 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"kyd" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/sulaco/marine/chapel)
 "kyM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -17071,6 +17079,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
+"kSD" = (
+/obj/structure/table/woodentable,
+/obj/machinery/air_alarm{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/table_lighting,
+/turf/open/floor/mainship/black,
+/area/sulaco/mechpilotquarters)
 "kTk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -17440,14 +17456,6 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
-"ltX" = (
-/obj/structure/table/wood,
-/obj/item/paper,
-/obj/item/tool/pen,
-/turf/open/floor/mainship/black{
-	dir = 10
-	},
-/area/sulaco/mechpilotquarters)
 "lve" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -17531,12 +17539,6 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"lyx" = (
-/obj/machinery/light/mainship,
-/obj/structure/table/wood,
-/obj/machinery/computer/emails,
-/turf/open/floor/mainship/black,
-/area/sulaco/mechpilotquarters)
 "lyJ" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin{
@@ -18374,6 +18376,10 @@
 "mzT" = (
 /turf/closed/wall/mainship/white/outer,
 /area/space)
+"mzZ" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/sulaco/bridge/quarters)
 "mAk" = (
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/prison,
@@ -18716,13 +18722,6 @@
 	dir = 8
 	},
 /area/sulaco/marine)
-"mWX" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/table_lighting,
-/turf/open/floor/tile/chapel{
-	dir = 8
-	},
-/area/sulaco/marine/chapel)
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
@@ -19251,13 +19250,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
-"nJN" = (
-/obj/item/reagent_containers/food/drinks/tea,
-/obj/item/storage/box/nt_mre,
-/obj/item/ashtray/bronze,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "nJV" = (
 /obj/machinery/vending/armor_supply,
 /obj/machinery/firealarm{
@@ -19590,6 +19582,13 @@
 /obj/machinery/quick_vendor/beginner,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"odj" = (
+/obj/item/tool/lighter/zippo,
+/obj/item/cell/hyper,
+/obj/item/camera,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters)
 "odW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -19631,15 +19630,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
-"ohK" = (
-/obj/structure/table/wood,
-/obj/item/storage/backpack/satchel/norm,
-/obj/item/storage/fancy/cigar,
-/obj/item/tool/lighter/zippo,
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "oiA" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/ai_node,
@@ -19766,6 +19756,12 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"orf" = (
+/obj/item/tool/pen,
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/misc/paperbin,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "orB" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19906,6 +19902,11 @@
 /obj/structure/sign/atmosplaque,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/atmos)
+"oze" = (
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
 "ozD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -20171,15 +20172,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall2)
-"oMp" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/cigarettes,
-/obj/effect/spawner/random/misc/soap,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "oMr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -20239,6 +20231,11 @@
 	dir = 4
 	},
 /area/sulaco/marine)
+"oQa" = (
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "oQt" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light/mainship/small{
@@ -20313,6 +20310,19 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
+"oVH" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "oWi" = (
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison/sterilewhite,
@@ -20354,6 +20364,13 @@
 "oYE" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/disposal)
+"paX" = (
+/obj/item/tool/stamp/internalaffairs{
+	pixel_y = 6
+	},
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "pbw" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -20594,6 +20611,19 @@
 	dir = 8
 	},
 /area/sulaco/medbay/cmo)
+"pmu" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "pni" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -20665,6 +20695,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"ppr" = (
+/obj/item/reagent_containers/food/drinks/tea,
+/obj/item/storage/box/nt_mre,
+/obj/item/ashtray/bronze,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "ppW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 4
@@ -20831,14 +20868,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
-"pBj" = (
-/obj/item/reagent_containers/food/drinks/flask/barflask{
-	pixel_x = 6
-	},
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/folder/nooffset,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "pBA" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/opened/sb,
@@ -21085,28 +21114,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"pRw" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
-/obj/effect/spawner/random/misc/plant,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
-/obj/structure/flora/pottedplant,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
-/turf/open/floor/tile/hydro,
-/area/sulaco/hydro)
 "pRK" = (
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/disposal)
@@ -21208,6 +21215,16 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"pZP" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/item/weapon/chainofcommand,
+/obj/machinery/camera/autoname,
+/obj/item/clothing/mask/cigarette/pipe{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "qaA" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -21418,11 +21435,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"quo" = (
-/obj/effect/spawner/random/misc/table_lighting,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "quS" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
@@ -22017,6 +22029,12 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"riU" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/table_lighting,
+/obj/effect/spawner/random/misc/hand_labeler,
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "rjf" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/cable,
@@ -22531,13 +22549,6 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"rOR" = (
-/obj/item/tool/lighter/zippo,
-/obj/item/cell/hyper,
-/obj/item/camera,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
 "rPe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -23011,6 +23022,15 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"snM" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/backpack/satchel/norm,
+/obj/item/storage/fancy/cigar,
+/obj/item/tool/lighter/zippo,
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "soQ" = (
 /obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/prison/red/full{
@@ -23416,6 +23436,15 @@
 	dir = 5
 	},
 /area/sulaco/bridge)
+"sMI" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/misc/soap,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "sML" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -23535,12 +23564,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
-"sTZ" = (
-/obj/item/tool/pen,
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/misc/paperbin,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "sUe" = (
 /obj/structure/target_stake,
 /turf/open/floor/prison/red{
@@ -23788,14 +23811,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
-"thf" = (
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/machinery/faxmachine/cic,
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
 "tiD" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/prop/computer{
@@ -24330,11 +24345,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"tQK" = (
-/obj/machinery/computer/security/wooden_tv,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
 "tRg" = (
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/prison,
@@ -24438,11 +24448,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"tXX" = (
-/obj/machinery/computer/skills,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/wood,
-/area/sulaco/liaison)
 "tXY" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
@@ -24770,10 +24775,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine_monitoring)
-"uwd" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/sulaco/bridge/quarters)
 "uwG" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
@@ -24827,15 +24828,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/cargo/office)
-"uyq" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/effect/spawner/random/misc/cigarettes,
-/obj/item/tool/lighter/zippo,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
 "uyv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -25036,6 +25028,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"uNd" = (
+/obj/structure/table/woodentable,
+/obj/item/paper,
+/obj/item/tool/pen,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/sulaco/mechpilotquarters)
 "uNh" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -25355,19 +25355,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"vil" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "viB" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
@@ -25538,19 +25525,12 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"vuq" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar/cas)
+"vtW" = (
+/obj/item/clipboard,
+/obj/item/tool/hand_labeler,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison)
 "vuy" = (
 /obj/machinery/door_control/mainship/engineering{
 	desc = "A remote control-switch for the engine control room blast doors.";
@@ -25568,11 +25548,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"vvk" = (
-/obj/machinery/faxmachine,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
 "vvG" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -25708,6 +25683,11 @@
 /obj/machinery/grill/unwrenched,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"vBp" = (
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/obj/effect/turf_decal/warning_stripes,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "vBD" = (
 /obj/machinery/air_alarm{
 	dir = 1
@@ -25851,6 +25831,19 @@
 /obj/structure/sign/prop3,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"vNa" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/hangar/cas)
 "vNm" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
@@ -26371,18 +26364,11 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/evac)
-"wvZ" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/tool/pen,
-/obj/item/folder/blue,
-/obj/item/megaphone,
-/obj/item/tool/pen,
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
+"wuD" = (
+/obj/machinery/faxmachine,
+/obj/structure/table/fancywoodentable,
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters)
 "wwM" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
@@ -26912,6 +26898,24 @@
 /obj/effect/landmark/start/job/transportofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"xhu" = (
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/dropship_equipment/rappel_system,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/closet/crate/construction,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/structure/dropship_equipment/rappel_system,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "xhY" = (
 /obj/machinery/door/poddoor/opened/sb,
 /turf/open/floor/mainship/stripesquare,
@@ -27197,14 +27201,6 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/firingrange)
-"xBC" = (
-/obj/structure/table/wood,
-/obj/machinery/air_alarm{
-	dir = 1
-	},
-/obj/effect/spawner/random/misc/table_lighting,
-/turf/open/floor/mainship/black,
-/area/sulaco/mechpilotquarters)
 "xCi" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/decal/cleanable/cobweb{
@@ -27579,6 +27575,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine/chapel/chapel_office)
+"ybF" = (
+/obj/item/spare_cord,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "ybZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -42899,7 +42899,7 @@ saZ
 qlJ
 oub
 vnU
-cma
+fje
 eXM
 xlh
 lEm
@@ -43156,7 +43156,7 @@ gNX
 oTn
 knZ
 xKI
-etI
+jfB
 mxF
 xlh
 lab
@@ -43413,7 +43413,7 @@ mUF
 qGm
 hNw
 vnU
-mWX
+kyd
 aHq
 xlh
 xfM
@@ -48548,7 +48548,7 @@ aKb
 iRd
 bjj
 aNy
-eVi
+bgc
 eGS
 uuN
 cSn
@@ -48795,7 +48795,7 @@ wYX
 aLk
 iOD
 aLf
-pRw
+hjm
 wVR
 rxh
 evY
@@ -49456,7 +49456,7 @@ hee
 aCx
 iGB
 tbJ
-wvZ
+bWN
 iNl
 lJS
 lJS
@@ -49713,7 +49713,7 @@ tbJ
 tbJ
 tbJ
 tbJ
-gUk
+pZP
 rBq
 aFq
 lJS
@@ -49956,7 +49956,7 @@ vDU
 vDU
 mDu
 aOk
-kxb
+dOf
 iTU
 kNy
 mmP
@@ -50213,7 +50213,7 @@ aaa
 aaa
 nzi
 aOk
-jqq
+hdW
 hrC
 rYR
 vlf
@@ -50470,7 +50470,7 @@ aaa
 aaa
 nzi
 aOk
-ohK
+snM
 rXM
 hwM
 xxx
@@ -50485,7 +50485,7 @@ awu
 aCy
 aDi
 dRm
-thf
+del
 aOK
 aDi
 aIy
@@ -52790,7 +52790,7 @@ aon
 arc
 vYY
 awC
-koJ
+dbm
 awC
 vYY
 ymf
@@ -53561,7 +53561,7 @@ jGA
 hhb
 vYY
 iTp
-uwd
+mzZ
 awC
 vYY
 awI
@@ -57516,7 +57516,7 @@ pwv
 lJm
 fsb
 pwv
-egJ
+oVH
 pwv
 kJu
 dal
@@ -60086,7 +60086,7 @@ pwv
 qES
 ylS
 pwv
-vuq
+vNa
 pwv
 pwv
 pwv
@@ -62151,7 +62151,7 @@ aPF
 aPF
 aPF
 aPF
-vil
+pmu
 aPF
 sFD
 jxF
@@ -64873,13 +64873,13 @@ rzi
 axO
 aZa
 aZY
-dEh
+fPz
 aTR
-ckl
-sTZ
+vtW
+orf
 bdj
-rOR
-uyq
+odj
+jHv
 bHC
 bdM
 beG
@@ -65135,7 +65135,7 @@ baK
 baK
 bcO
 aRc
-vvk
+wuD
 bdZ
 bea
 bdM
@@ -65392,7 +65392,7 @@ baK
 acN
 bcP
 bdj
-tQK
+bji
 bea
 bea
 bdM
@@ -66003,8 +66003,8 @@ aPF
 aPF
 aPF
 aPF
-cpy
-fgZ
+xhu
+ybF
 jVA
 aPF
 aPF
@@ -66163,7 +66163,7 @@ aTy
 baf
 baf
 bdj
-cTY
+esz
 rGP
 aTQ
 bdM
@@ -66415,16 +66415,16 @@ tqd
 axO
 jvc
 baf
-bgK
-tXX
-nJN
+oQa
+cxm
+ppr
 baf
 jLZ
 oOJ
 glp
 kvB
-bFH
-quo
+fiV
+oze
 lgl
 kKR
 kKR
@@ -66672,9 +66672,9 @@ skl
 axO
 jvc
 baf
-kbp
+paX
 aQW
-pBj
+eVF
 wwM
 pxY
 pxY
@@ -67029,7 +67029,7 @@ qqt
 aPF
 aPF
 aPF
-bKw
+jjQ
 bYM
 ktZ
 nNP
@@ -67529,7 +67529,7 @@ nzi
 bFa
 dHf
 aPF
-kaP
+bzN
 aPZ
 eQF
 aPZ
@@ -68572,8 +68572,8 @@ aPF
 aPF
 aPF
 wGp
-fUM
-kmQ
+bxl
+vBp
 pWS
 aLt
 swy
@@ -68829,8 +68829,8 @@ aPF
 aPF
 aPF
 wGp
-fUM
-aWs
+bxl
+fbJ
 pWS
 aUL
 pWS
@@ -69349,7 +69349,7 @@ iZD
 aUS
 iZD
 bYM
-gks
+evl
 aUu
 xeO
 aTM
@@ -69847,7 +69847,7 @@ saI
 mEj
 mEj
 sDv
-evq
+fQv
 sNp
 uoJ
 qwj
@@ -70104,7 +70104,7 @@ eBa
 mEj
 mEj
 mEj
-jRc
+riU
 sNp
 uoJ
 xLQ
@@ -70615,8 +70615,8 @@ aaa
 nzi
 ema
 gpt
-oMp
-fFS
+sMI
+hSo
 rQp
 jcm
 jYm
@@ -70895,7 +70895,7 @@ aXf
 glh
 glh
 cCT
-ltX
+uNd
 qTV
 fKE
 lTe
@@ -71152,7 +71152,7 @@ nGX
 cXj
 noW
 mpJ
-lyx
+edC
 qTV
 jRa
 lTe
@@ -71409,7 +71409,7 @@ kxQ
 jnt
 peD
 glh
-xBC
+kSD
 qTV
 sjE
 lTe

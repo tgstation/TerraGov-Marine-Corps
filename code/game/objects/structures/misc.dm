@@ -232,8 +232,8 @@
 	update_icon()
 
 	var/static/list/connections = list(
-		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
-		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
+		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

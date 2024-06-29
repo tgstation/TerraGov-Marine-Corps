@@ -28,13 +28,12 @@
 	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
 		return
 
-	if(!iscarbon(hostile) && !isvehicle(hostile))
+	if(!isliving(hostile))
 		return
 
-	if(iscarbon(hostile))
-		var/mob/living/carbon/carbon_triggerer = hostile
-		if(carbon_triggerer.stat == DEAD)
-			return
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD)
+		return
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
@@ -42,7 +41,7 @@
 			return
 
 	is_alerting = TRUE
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/talk2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, proxy_alert_cooldown, XENO_GARGOYLE_DETECTION_COOLDOWN)
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_GARGOYLE_DETECTION_COOLDOWN, TIMER_STOPPABLE)
 	update_minimap_icon()

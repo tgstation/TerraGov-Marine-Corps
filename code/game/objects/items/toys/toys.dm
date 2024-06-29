@@ -676,13 +676,13 @@
 		if(1)
 			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
 			playsound(src, 'sound/misc/robotic scream.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/predator/laugh1.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/predator/laugh2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/predator/laugh3.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh1.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh2.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/pred_laugh3.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/gnomelaugh.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon1.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/predator/helpme.ogg', 35, TRUE))
+			playsound(src, 'sound/voice/pred_helpme.ogg', 35, TRUE))
 		if(2)
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isfood(object))

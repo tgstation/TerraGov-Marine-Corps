@@ -1900,7 +1900,7 @@
 /obj/item/weapon/gun/rifle/tx54/mini
 	name = "\improper GL-55 20mm grenade launcher"
 	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
-	icon = 'icons/obj/items/guns/attachments/gun.dmi'
+	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "tx55gl"
 	placed_overlay_iconstate = "tx55gl"
 	attachable_allowed = list()
@@ -2694,10 +2694,6 @@
 	icon_state = "l26"
 	worn_icon_state = "l26"
 	fire_animation = "l26_fire"
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
-	)
 	caliber = CALIBER_556X45 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 200  //codex

@@ -35,7 +35,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "gS" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -94,7 +94,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
 "pV" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -240,7 +240,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Ft" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "FB" = (
@@ -325,7 +325,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "NR" = (
-/obj/structure/table/wood,
+/obj/structure/table/woodentable,
 /obj/item/paper,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)

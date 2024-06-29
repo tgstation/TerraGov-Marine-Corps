@@ -18,7 +18,7 @@
 
 /datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
-	if(!isobj(parent))
+	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.slots = slots
@@ -103,8 +103,7 @@
 	var/obj/parent_obj = parent
 	///The gun has another gun attached to it
 	if(isgun(attachment) && isgun(parent))
-		var/obj/item/weapon/gun/gun_parent = parent
-		gun_parent.gunattachment = attachment
+		parent_obj:gunattachment = attachment
 
 	on_attach?.Invoke(attachment, attacker)
 	if(attachment_data[ON_ATTACH])
@@ -292,11 +291,11 @@
 ///This updates the overlays of the parent and applies the right ones.
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
 	SIGNAL_HANDLER
-	var/obj/parent_obj = parent
+	var/obj/item/parent_item = parent
 	for(var/slot in slots) //Cycles through all the slots.
 		var/obj/item/attachment = slots[slot]
 		var/image/overlay = attachable_overlays[slot]
-		parent_obj.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
+		parent_item.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
 
 		if(!attachment) //No attachment, no overlay.
 			attachable_overlays[slot] = null
@@ -311,10 +310,10 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON) || CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_DIFFERENT_MOB_ICON_STATE))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-			overlay = image(icon, parent_obj, icon_state)
+			overlay = image(icon, parent_item, icon_state)
 			overlay.overlays += attachment.overlays
 		else
-			overlay = image(icon, parent_obj, icon_state)
+			overlay = image(icon, parent_item, icon_state)
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -332,15 +331,15 @@
 		overlay.pixel_y = slot_y - pixel_shift_y
 
 		attachable_overlays[slot] = overlay
-		parent_obj.overlays += overlay
+		parent_item.overlays += overlay
 
 ///Updates the mob sprite of the attachment.
 /datum/component/attachment_handler/proc/apply_custom(datum/source, mutable_appearance/standing)
 	SIGNAL_HANDLER
-	var/obj/parent_obj = parent
-	if(!ismob(parent_obj.loc))
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
 		return
-	var/mob/living/carbon/human/wearer = parent_obj.loc
+	var/mob/living/carbon/human/wearer = parent_item.loc
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)
@@ -380,10 +379,10 @@
 ///Handles the removal of attachment overlays when the item is unequipped
 /datum/component/attachment_handler/proc/remove_overlay()
 	SIGNAL_HANDLER
-	var/obj/parent_obj = parent
-	if(!ismob(parent_obj.loc))
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
 		return
-	var/mob/living/carbon/human/wearer = parent_obj.loc
+	var/mob/living/carbon/human/wearer = parent_item.loc
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)

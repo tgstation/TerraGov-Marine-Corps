@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"m240",
 	"m1911c",
 	"rt3",
-	"vp70",
+	"88m4",
 	"v11",
 	"t19",
 	"t90",
