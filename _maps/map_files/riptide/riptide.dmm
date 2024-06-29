@@ -3,10 +3,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central)
-"aau" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/plating,
-/area/riptide/outside/beachlzone)
 "aaQ" = (
 /obj/machinery/door/poddoor/shutters/opened,
 /obj/effect/decal/cleanable/dirt,
@@ -1038,12 +1034,6 @@
 	dir = 4
 	},
 /area/riptide/outside/beachlzone)
-"aOO" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/dice/d20,
-/obj/item/toy/dice,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "aOV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
@@ -1069,6 +1059,12 @@
 	dir = 8
 	},
 /area/riptide/inside/syndicateport)
+"aPl" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/riptide/inside/arena)
 "aPo" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/riptide/outside/eastbeach)
@@ -1084,6 +1080,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/arena)
+"aPK" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/machinery/microwave,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "aPZ" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/blue,
@@ -1106,6 +1107,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkred/corners,
 /area/riptide/inside/syndicateport)
+"aQq" = (
+/obj/structure/table/wood,
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "aQB" = (
 /turf/closed/wall/variable/adobe,
 /area/riptide/inside/beachbar)
@@ -1194,6 +1199,12 @@
 "aSv" = (
 /turf/open/floor/wood/alt_six,
 /area/riptide/outside/westislands)
+"aSA" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/chaplain_hoodie,
+/obj/item/clothing/head/chaplain_hood,
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "aSJ" = (
 /obj/item/shard,
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window,
@@ -1367,10 +1378,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
-"aZL" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen/two)
 "aZX" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/xeno,
@@ -1427,6 +1434,10 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
+"bdw" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/alt_nine,
+/area/riptide/inside/arena)
 "bdH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1462,6 +1473,24 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale,
 /area/riptide/caves/pmc/warehouse)
+"beE" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vermouth{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/riptide/inside/luxurybar)
 "bfa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -1726,13 +1755,6 @@
 /obj/structure/rock/basalt/alt,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
-"bpo" = (
-/obj/structure/curtain/open/temple,
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "bpw" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
@@ -1810,6 +1832,14 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central)
+"brZ" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/plate,
+/area/riptide/inside/syndicatefoyer)
 "bsa" = (
 /obj/structure/prop/mainship/gelida/powerccable{
 	dir = 4
@@ -2442,6 +2472,11 @@
 	dir = 4
 	},
 /area/riptide/outside/volcano)
+"bMq" = (
+/obj/structure/table/wood/rustic,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/alt_four,
+/area/riptide/inside/abandonedcottage)
 "bMt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/coast{
@@ -2472,28 +2507,28 @@
 /obj/structure/cable,
 /turf/open/ground,
 /area/riptide/outside/southjungle)
-"bNA" = (
-/obj/item/storage/box/visual/magazine/compact/martini/full,
+"bNm" = (
+/obj/item/storage/fancy/candle_box,
 /obj/structure/table/wood,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/ashtray/bronze{
-	pixel_y = 9
-	},
-/turf/open/floor/wood/alt_one,
-/area/riptide/caves/piratecove)
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "bNM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/riptide/inside/medical/offices)
+"bNO" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/double{
+	pixel_y = -5
+	},
+/obj/item/ammo_magazine/handful/buckshot,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "bNZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/riptide/caves/syndicatemining)
-"bOh" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood/alt_nine,
-/area/riptide/inside/arena)
 "bOn" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -2634,14 +2669,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/riptide/outside/beachlzone)
-"bSQ" = (
-/obj/machinery/chem_dispenser/soda{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/structure/cable,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "bSX" = (
 /obj/structure/flora/jungle/bush,
 /obj/machinery/light/spot{
@@ -2775,6 +2802,17 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/riptide/inside/hydroponics)
+"bXl" = (
+/obj/structure/table/wood/rustic,
+/obj/structure/tankholder{
+	desc = "Steers the whole ship!";
+	name = "shipwheel";
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
+/turf/open/floor/wood/alt_two,
+/area/riptide/inside/cargoboat)
 "bXq" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -3004,6 +3042,14 @@
 	},
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
+"cfB" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/flask/detflask{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/yellow,
+/area/riptide/inside/syndicatefoyer)
 "cfI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
@@ -3197,6 +3243,11 @@
 /obj/structure/table/mainship,
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
+"cnq" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/spawner/random/medical/health_analyzer,
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "cnA" = (
 /turf/open/floor/plating/ground/drought/alt,
 /area/riptide/caves/central/garbledradio)
@@ -3365,10 +3416,6 @@
 /obj/structure/rock/variable/stalagmite,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/south)
-"ctl" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/alt_nine,
-/area/riptide/outside/beachlzone)
 "ctv" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3944,18 +3991,6 @@
 	},
 /turf/open/floor/wood/alt_two,
 /area/riptide/inside/cargoboat)
-"cNm" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = 6;
-	pixel_y = 1
-	},
-/turf/open/floor/tile/vault,
-/area/riptide/inside/luxurybar)
 "cNx" = (
 /obj/structure/rock/basalt/pile,
 /obj/effect/ai_node,
@@ -3993,12 +4028,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/outside/southbeach)
-"cQb" = (
-/obj/structure/table/wood,
-/obj/item/ammo_magazine/pistol/derringer,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/alt_nine,
-/area/riptide/inside/arena)
 "cQc" = (
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/riptide/inside/cargoboat)
@@ -4013,6 +4042,14 @@
 /obj/effect/forcefield,
 /turf/open/floor/tile/darkish,
 /area/riptide/caves/sea)
+"cQG" = (
+/obj/structure/table/wood/fancy,
+/obj/structure/paper_bin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/riptide/inside/syndicatefoyer)
 "cQW" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -4250,21 +4287,6 @@
 /obj/structure/flora/drought/yucca,
 /turf/open/floor/plating/ground/drought/alt,
 /area/riptide/outside/volcano)
-"cYx" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/grenadine{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey{
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/bottle/absinthe{
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/turf/open/floor/tile/vault,
-/area/riptide/inside/luxurybar)
 "cYz" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4676,6 +4698,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/riptide/inside/engineering)
+"dmC" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/riptide/inside/observatory)
 "dnd" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner{
 	dir = 8
@@ -4765,6 +4793,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
+"dsz" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/gun_ammo,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "dsM" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
@@ -4849,31 +4882,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central)
-"dvO" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/cans/tonic{
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/drinks/cans/starkist{
-	pixel_x = 8;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/cans/thirteenloko{
-	pixel_x = 6;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice{
-	pixel_x = -7;
-	pixel_y = -7
-	},
-/obj/structure/platform/adobe,
-/obj/item/reagent_containers/food/drinks/coconutmilk/green{
-	pixel_x = -12;
-	pixel_y = 9
-	},
-/turf/open/floor/plating/ground/drought,
-/area/riptide/outside/westbeach)
 "dwa" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/blood/xeno,
@@ -4919,20 +4927,6 @@
 	dir = 4
 	},
 /area/riptide/inside/landingzoneone)
-"dwN" = (
-/obj/structure/table/wood,
-/obj/item/folder/red{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/folder/red{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/tool/stamp,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor/prison/plate,
-/area/riptide/inside/abandonedsec)
 "dwS" = (
 /obj/structure/platform_decoration,
 /turf/open/floor/plating/ground/desertdam/grate/alternate,
@@ -5174,10 +5168,25 @@
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
+"dDS" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/variable/wide,
+/area/riptide/inside/beachden)
 "dEi" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/alt_seven,
 /area/riptide/outside/westbeach)
+"dEm" = (
+/obj/structure/table/wood,
+/obj/item/paper,
+/obj/item/folder/black,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/riptide/inside/medical/offices)
 "dEq" = (
 /obj/structure/platform,
 /obj/effect/forcefield,
@@ -5361,14 +5370,6 @@
 /obj/effect/spawner/random/misc/seeds,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/riptide/inside/hydroponics)
-"dKB" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/flask/detflask{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/turf/open/floor/prison/yellow,
-/area/riptide/inside/syndicatefoyer)
 "dKH" = (
 /obj/structure/table,
 /obj/machinery/computer/secure_data{
@@ -5403,6 +5404,16 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicateport)
+"dLN" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/rag,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/coconutmilk{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "dMr" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
@@ -5472,11 +5483,12 @@
 	},
 /turf/open/ground,
 /area/riptide/outside/southjungle)
-"dOI" = (
+"dOF" = (
 /obj/structure/table/wood,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
+/area/riptide/inside/canteen)
 "dOT" = (
 /obj/structure/largecrate/supply/floodlights,
 /obj/effect/decal/cleanable/dirt,
@@ -5688,12 +5700,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/small,
 /area/riptide/caves/pmc/rnd)
-"dVz" = (
-/obj/structure/table/wood,
-/obj/item/toy/bikehorn/rubberducky,
-/obj/structure/cable,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "dVD" = (
 /obj/structure/flora/jungle/bush{
 	pixel_x = -6;
@@ -5858,11 +5864,6 @@
 /obj/item/blueprints,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
-"eas" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/cups,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen)
 "eaT" = (
 /obj/item/shard,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -5961,6 +5962,25 @@
 	dir = 4
 	},
 /area/riptide/outside/volcano)
+"eej" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/item/paper,
+/obj/item/toy/crayon{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/toy/crayon/purple,
+/obj/item/toy/crayon/orange{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/structure/table/wood/rustic,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "eeo" = (
 /obj/effect/spawner/random/misc/structure/broken_window,
 /turf/open/floor/iron/dark/textured_half{
@@ -5985,6 +6005,14 @@
 	dir = 4
 	},
 /area/riptide/outside/volcano)
+"efa" = (
+/obj/structure/table/wood/gambling,
+/obj/item/spacecash/c50,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/mosaic/damaged,
+/area/riptide/inside/beachden)
 "efd" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -6163,12 +6191,6 @@
 "elM" = (
 /turf/closed/mineral/smooth/outdoor,
 /area/riptide/caves/sea)
-"elY" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/syndicake,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/kitchen,
-/area/riptide/inside/syndicateport)
 "emu" = (
 /obj/item/fishing/reel/green{
 	pixel_x = -10;
@@ -6309,12 +6331,6 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicatecheckpoint)
-"ers" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
-/area/riptide/inside/arena)
 "erv" = (
 /obj/item/weapon/gun/pistol/holdout,
 /obj/item/ammo_casing/cartridge{
@@ -6720,6 +6736,14 @@
 	dir = 4
 	},
 /area/riptide/inside/landingzoneone)
+"eGC" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/canteen)
 "eGU" = (
 /turf/open/ground,
 /area/riptide/outside/northjungle)
@@ -7363,6 +7387,11 @@
 /obj/structure/rock/variable/jungle_large,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
+"fdw" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread,
+/turf/open/floor/prison/kitchen,
+/area/riptide/inside/syndicateport)
 "fdG" = (
 /obj/structure/flora/ausbushes/palebush{
 	pixel_x = 4;
@@ -7412,10 +7441,6 @@
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/riptide/caves/pmc/toxins)
-"fgw" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood,
-/area/riptide/outside/beachlzone)
 "fgL" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -7482,6 +7507,17 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/mineral/smooth/indestructible,
 /area/riptide/caves/rock)
+"fiC" = (
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/clothing/head/that,
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/grown/lemon,
+/obj/item/reagent_containers/food/snacks/grown/lime{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "fiK" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/firstaid/alwaysspawns,
@@ -7546,6 +7582,13 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/wood,
 /area/riptide/inside/southtower)
+"fkM" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood/alt_nine,
+/area/riptide/outside/beachlzone)
 "fla" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
@@ -7666,13 +7709,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/riptide/outside/westislands)
-"fpt" = (
-/obj/structure/table/wood,
-/obj/item/paper,
-/obj/item/folder/black,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/riptide/inside/medical/offices)
 "fpG" = (
 /obj/structure/bed/chair{
 	dir = 4;
@@ -7737,6 +7773,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
+"frm" = (
+/obj/structure/curtain/open/temple,
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "fru" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7751,6 +7794,10 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/tile/dark/gray,
 /area/riptide/inside/medical/offices)
+"fsk" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/wood/alt_one,
+/area/riptide/outside/southislands)
 "fsm" = (
 /obj/effect/landmark/corpsespawner/syndicatesoldier,
 /obj/effect/decal/cleanable/blood,
@@ -7804,13 +7851,6 @@
 "fvr" = (
 /turf/closed/wall/variable/adobe,
 /area/riptide/inside/beachtoilet)
-"fwc" = (
-/obj/structure/table/wood/fancy,
-/obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/riptide/inside/luxurybar)
 "fwh" = (
 /obj/structure/closet/secure_closet/security_empty,
 /obj/structure/window/reinforced{
@@ -8350,6 +8390,21 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/wood/fancy,
 /area/riptide/inside/luxurybar)
+"fMl" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/grenadine{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/absinthe{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/open/floor/tile/vault,
+/area/riptide/inside/luxurybar)
 "fMm" = (
 /obj/structure/table/black,
 /obj/structure/prop/mainship/gelida/smallwire,
@@ -8552,13 +8607,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/wood,
 /area/riptide/outside/westislands)
-"fSU" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood/alt_four,
-/area/riptide/inside/abandonedcottage)
 "fSY" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/effect/landmark/corpsespawner/colonist/regular,
@@ -8594,11 +8642,6 @@
 	dir = 1
 	},
 /area/riptide/caves/north2)
-"fTt" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/riptide/inside/recroom)
 "fUm" = (
 /obj/machinery/landinglight{
 	dir = 1
@@ -8766,6 +8809,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreen,
 /area/riptide/inside/hydroponics)
+"gbg" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/cups,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen)
 "gbj" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -8776,6 +8824,11 @@
 	},
 /turf/open/space/sea,
 /area/riptide/caves/sea)
+"gbk" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/holy_cake,
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "gbs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -8845,6 +8898,12 @@
 	dir = 1
 	},
 /area/riptide/outside/westbeach)
+"gdr" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/double/derringer,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/alt_nine,
+/area/riptide/inside/arena)
 "gdz" = (
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/plating,
@@ -9214,13 +9273,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlzone)
-"grA" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood/alt_nine,
-/area/riptide/outside/beachlzone)
 "grD" = (
 /obj/structure/platform/adobe,
 /turf/closed/wall/wood,
@@ -9459,6 +9511,19 @@
 	dir = 8
 	},
 /area/riptide/outside/river)
+"gAY" = (
+/obj/structure/table/wood/rustic,
+/turf/open/floor/wood/alt_four,
+/area/riptide/inside/abandonedcottage)
+"gBQ" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/box/cups{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/sillycup,
+/turf/open/floor/prison/plate,
+/area/riptide/inside/syndicatefoyer)
 "gBY" = (
 /obj/machinery/light{
 	dir = 4
@@ -9573,6 +9638,31 @@
 /obj/structure/platform/nondense,
 /turf/open/floor/wood/alt_seven,
 /area/riptide/outside/westislands)
+"gEE" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/cans/tonic{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/cans/starkist{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/obj/structure/platform/adobe,
+/obj/item/reagent_containers/food/drinks/coconutmilk/green{
+	pixel_x = -12;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/ground/drought,
+/area/riptide/outside/westbeach)
 "gEH" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/effect/ai_node,
@@ -9628,10 +9718,6 @@
 	},
 /turf/open/liquid/water/river,
 /area/riptide/inside/medical)
-"gGA" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/alt_nine,
-/area/riptide/outside/northislands)
 "gGS" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/prison/darkyellow{
@@ -9650,6 +9736,10 @@
 /obj/machinery/computer/prisoner,
 /turf/open/floor/prison/plate,
 /area/riptide/caves/pmc/prison)
+"gHk" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "gHT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_seven,
@@ -9661,13 +9751,6 @@
 /obj/effect/forcefield,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
-"gJt" = (
-/obj/structure/window/framed/wood,
-/obj/structure/curtain/temple{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/riptide/inside/chapel)
 "gJy" = (
 /obj/item/ammo_casing/cartridge{
 	dir = 9;
@@ -9725,11 +9808,38 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
+"gMQ" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/flask{
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/drinks/flask/barflask{
+	pixel_x = -8
+	},
+/turf/open/floor/wood/variable,
+/area/riptide/outside/northjungle)
 "gMZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought,
 /area/riptide/outside/northbeach)
+"gNw" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/cans/grape_juice,
+/obj/item/reagent_containers/food/drinks/cans/lemon_lime{
+	pixel_x = -9;
+	pixel_y = -2
+	},
+/obj/structure/platform/adobe{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/coconutmilk{
+	pixel_x = 8;
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/drought,
+/area/riptide/outside/westbeach)
 "gNP" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 5;
@@ -9864,15 +9974,6 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
-"gTc" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/double/martini,
-/obj/item/weapon/gun/shotgun/double/martini{
-	pixel_x = 9;
-	pixel_y = 9
-	},
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "gTD" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/plate,
@@ -9894,17 +9995,6 @@
 	},
 /turf/open/floor/wood/alt_seven,
 /area/riptide/outside/northislands)
-"gUo" = (
-/obj/structure/table/wood/rustic,
-/obj/structure/tankholder{
-	desc = "Steers the whole ship!";
-	name = "shipwheel";
-	pixel_y = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/food_or_drink/outdoors_snacks,
-/turf/open/floor/wood/alt_two,
-/area/riptide/inside/cargoboat)
 "gUq" = (
 /obj/item/ammo_casing/cartridge{
 	dir = 6;
@@ -10047,6 +10137,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/riptide/inside/beachtoilet)
+"hbN" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/riptide/inside/luxurybar)
 "hbP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -10073,6 +10171,11 @@
 "hcJ" = (
 /turf/open/floor/plating,
 /area/riptide/outside/northbeach)
+"hcS" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/pavlova,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "hcY" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -4;
@@ -10089,6 +10192,11 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/riptide/inside/medical/offices)
+"hdp" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/riptide/inside/luxurybaroverlook)
 "hdx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -10155,6 +10263,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/riptide/outside/southjungle)
+"heM" = (
+/obj/structure/table/wood/gambling,
+/obj/item/storage/bag/cash,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/variable/mosaic,
+/area/riptide/inside/beachden)
 "hft" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/structure/flora/jungle/vines,
@@ -10198,18 +10315,9 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/riptide/inside/riverblocker)
-"hgL" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/plating,
-/area/riptide/inside/guardcheck)
 "hgO" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/plating,
-/area/riptide/inside/medical/offices)
-"hhg" = (
-/obj/structure/table/wood/fancy,
-/obj/effect/spawner/random/medical/health_analyzer,
-/turf/open/floor/tile/cmo,
 /area/riptide/inside/medical/offices)
 "hhI" = (
 /obj/structure/bed/chair{
@@ -10259,12 +10367,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/westjungle)
-"hjr" = (
-/obj/structure/table/wood/gambling,
-/obj/effect/spawner/random/misc/cigar,
-/obj/effect/spawner/random/misc/cigar,
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "hjt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -10809,10 +10911,6 @@
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/wood/broken,
 /area/riptide/outside/beachlzone)
-"hDa" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen)
 "hDn" = (
 /turf/open/floor/wood/alt_ten,
 /area/riptide/outside/southjungle)
@@ -11366,6 +11464,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
+"hZT" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/kitchen,
+/area/riptide/inside/syndicateport)
 "iaz" = (
 /obj/structure/window_frame/wood,
 /obj/effect/turf_decal/sandytile,
@@ -11507,11 +11611,6 @@
 /obj/item/weapon/gun/grenade_launcher/single_shot,
 /turf/open/floor/prison/darkred/full,
 /area/riptide/inside/syndicatecheckpoint)
-"ifP" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/machinery/microwave,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "igs" = (
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/south)
@@ -11700,6 +11799,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central)
+"ioa" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/pouch/pressurized_reagent_pouch/bktt,
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "ioh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/glass,
@@ -11897,6 +12001,13 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/westjungle)
+"itX" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/tikihut)
 "iue" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker{
@@ -12018,15 +12129,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship,
 /area/riptide/outside/northislands)
-"izN" = (
-/mob/living/simple_animal/crab{
-	health = 500;
-	maxHealth = 500;
-	name = "Bubbles";
-	resize = 2
-	},
-/turf/open/ground,
-/area/riptide/outside/southbeach)
 "iAg" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_two,
@@ -12117,11 +12219,6 @@
 	dir = 4
 	},
 /area/riptide/outside/southislands)
-"iDs" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/pavlova,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "iDu" = (
 /obj/structure/flora/grass/green,
 /obj/effect/decal/cleanable/dirt,
@@ -12131,6 +12228,13 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
+"iDH" = (
+/obj/structure/window/framed/wood,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/beachden)
 "iDQ" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -12367,6 +12471,11 @@
 "iON" = (
 /turf/open/floor/plating/dmg1,
 /area/riptide/caves/central/garbledradio)
+"iPe" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "iPg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -12425,6 +12534,15 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
+"iRp" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/double/martini{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/wood,
+/area/riptide/caves/piratecove)
 "iRu" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -12461,13 +12579,6 @@
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering)
-"iSO" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/tikihut)
 "iSQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12631,6 +12742,10 @@
 /obj/structure/flora/drought/short_cactus,
 /turf/open/floor/plating/ground/drought/alt,
 /area/riptide/outside/eastbeach)
+"iXz" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen)
 "iXN" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river,
@@ -12816,14 +12931,6 @@
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating,
 /area/riptide/inside/engineering/cave)
-"jfK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clipboard,
-/obj/item/paper,
-/obj/item/tool/pen/blue,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/plate,
-/area/riptide/inside/syndicatefoyer)
 "jfQ" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -12909,6 +13016,9 @@
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
 /area/riptide/caves/pmc/rnd)
+"jiI" = (
+/turf/closed/gm,
+/area/riptide/outside/westjungle)
 "jiL" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/dirt,
@@ -13268,12 +13378,6 @@
 /obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
-"jyT" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
-/area/riptide/inside/observatory)
 "jzb" = (
 /obj/effect/ai_node,
 /obj/effect/decal/remains/xeno,
@@ -13767,6 +13871,11 @@
 	},
 /turf/open/floor/tile/green/full,
 /area/riptide/inside/medical)
+"jOC" = (
+/obj/structure/table/wood,
+/obj/item/paper/prison_station/chapel_program,
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "jOE" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window,
 /turf/open/floor/iron/dark/textured_half,
@@ -13891,6 +14000,10 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/caves/pmc/lobby)
+"jVe" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/plating,
+/area/riptide/inside/guardcheck)
 "jVl" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt_alt/random,
@@ -14472,6 +14585,10 @@
 "koH" = (
 /turf/open/floor/wood/broken,
 /area/riptide/outside/beachlzone)
+"koJ" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen/two)
 "koO" = (
 /turf/open/floor/tile/bar,
 /area/riptide/inside/beachdressing)
@@ -14639,14 +14756,6 @@
 /obj/structure/window,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/arena)
-"kvB" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/canteen)
 "kvG" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -14678,21 +14787,15 @@
 	dir = 1
 	},
 /area/riptide/outside/southislands)
-"kwp" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
-/area/riptide/inside/beachmotel)
 "kwH" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/riptide/outside/westislands)
+"kwW" = (
+/obj/structure/table/wood,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "kxa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -14810,6 +14913,21 @@
 "kBC" = (
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
+"kBQ" = (
+/obj/structure/table/wood/fancy,
+/obj/item/paper{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/paper{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/paper,
+/obj/item/trash/cigbutt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/plate,
+/area/riptide/inside/syndicatefoyer)
 "kBY" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -4;
@@ -14973,6 +15091,10 @@
 	dir = 8
 	},
 /area/riptide/inside/chapel)
+"kIv" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood/alt_nine,
+/area/riptide/outside/northislands)
 "kIx" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/concrete,
@@ -15081,11 +15203,6 @@
 "kLy" = (
 /turf/open/floor/tile/green/full,
 /area/riptide/inside/medical)
-"kLE" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/crew,
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "kLN" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/dirt,
@@ -15550,25 +15667,11 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/riptide/outside/northislands)
-"kXT" = (
-/obj/structure/table/wood/gambling,
-/obj/item/storage/bag/cash,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/variable/mosaic,
-/area/riptide/inside/beachden)
 "kYo" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/riptide/inside/hydroponics)
-"kYN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/limejuice,
-/turf/open/floor/wood/variable,
-/area/riptide/outside/northjungle)
 "kYP" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -6;
@@ -15911,11 +16014,6 @@
 	dir = 1
 	},
 /area/riptide/inside/medical/offices)
-"lkR" = (
-/obj/structure/table/wood,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "lkW" = (
 /obj/structure/rack{
 	color = "#808080"
@@ -15976,6 +16074,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/beachlzone)
+"lmB" = (
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/structure/table/wood,
+/turf/open/floor/cult,
+/area/riptide/inside/chapel)
 "lmL" = (
 /obj/structure/table/black,
 /obj/item/weapon/gun/rifle/m412,
@@ -16017,12 +16120,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
-"lou" = (
-/obj/structure/table/wood,
-/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen/two)
 "lox" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/vehicle/truck/truckcargo/destructible,
@@ -16446,24 +16543,6 @@
 /obj/structure/prop/sandman,
 /turf/open/ground,
 /area/riptide/outside/beachlzone)
-"lEr" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/kahlua{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vermouth{
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 7;
-	pixel_y = 2
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/riptide/inside/luxurybar)
 "lEw" = (
 /obj/effect/turf_decal/lvsanddecal{
 	dir = 8
@@ -16829,6 +16908,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/inside/arena)
+"lRQ" = (
+/obj/machinery/chem_dispenser/soda{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/structure/cable,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "lSa" = (
 /turf/open/ground/coast/corner{
 	dir = 4
@@ -17555,10 +17642,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
-"msW" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/broken,
-/area/riptide/outside/beachlzone)
 "mtz" = (
 /obj/structure/desertdam/decals/road{
 	dir = 8;
@@ -17789,25 +17872,11 @@
 	dir = 4
 	},
 /area/riptide/caves/central)
-"mAF" = (
-/obj/structure/table/wood/gambling,
-/obj/item/spacecash/c200,
-/obj/effect/ai_node,
-/turf/open/floor/wood/variable/mosaic,
-/area/riptide/inside/beachden)
 "mAG" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/riptide/inside/medical)
-"mAV" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/double{
-	pixel_y = -5
-	},
-/obj/item/ammo_magazine/handful/buckshot,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "mBq" = (
 /obj/machinery/door/airlock/prison/horizontal/open,
 /obj/effect/ai_node,
@@ -17843,14 +17912,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
-"mCn" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/double/martini{
-	pixel_y = -7
-	},
-/obj/effect/spawner/random/misc/cigar,
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "mCv" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/machinery/light/small{
@@ -18067,12 +18128,6 @@
 	color = "#737373"
 	},
 /area/riptide/caves/pmc/warehouse)
-"mIa" = (
-/obj/structure/table/wood/fancy,
-/obj/item/weapon/telebaton,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "mIg" = (
 /obj/structure/flora/drought/tall_cactus,
 /turf/open/ground,
@@ -18188,11 +18243,6 @@
 	},
 /turf/open/ground,
 /area/riptide/outside/southjungle)
-"mMJ" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/gun,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "mML" = (
 /obj/machinery/light{
 	dir = 1
@@ -18650,11 +18700,6 @@
 	},
 /turf/open/floor/wood/darker,
 /area/riptide/inside/riverblocker)
-"nhi" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/twobreadold,
-/turf/open/floor/prison/kitchen,
-/area/riptide/inside/syndicateport)
 "nho" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -18720,10 +18765,6 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical/surgery)
-"nip" = (
-/obj/structure/table/wood/rustic,
-/turf/open/floor/wood/alt_four,
-/area/riptide/inside/abandonedcottage)
 "niu" = (
 /obj/structure/flora/ausbushes/fernybush{
 	pixel_x = -7;
@@ -18768,17 +18809,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/riptide/outside/northislands)
-"njI" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/food/drinks/flask{
-	pixel_x = 7
-	},
-/obj/item/reagent_containers/food/drinks/flask/barflask{
-	pixel_x = -8
-	},
-/turf/open/floor/wood/variable,
-/area/riptide/outside/northjungle)
 "njM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -19023,6 +19053,17 @@
 	dir = 10
 	},
 /area/riptide/inside/southtower)
+"nrR" = (
+/obj/structure/table/wood,
+/obj/item/ammo_magazine/pistol/derringer,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/alt_nine,
+/area/riptide/inside/arena)
+"nrU" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/deck,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "nrZ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -19033,14 +19074,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/wood,
 /area/riptide/outside/southislands)
-"nsg" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/intel_computer,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "nsA" = (
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
@@ -19086,12 +19119,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/drought/alt,
 /area/riptide/caves/north/garbledradio)
-"nvp" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/pump/trenchgun,
-/obj/item/ammo_magazine/shotgun/tracker,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "nvJ" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge{
 	dir = 8
@@ -19199,19 +19226,17 @@
 	},
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen/two)
+"nyS" = (
+/obj/structure/door/mineral_door/sandstone,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/rock)
 "nyT" = (
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/drought/alt,
 /area/riptide/caves/central/garbledradio)
-"nyW" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/recroom)
 "nyZ" = (
 /obj/machinery/door/airlock/centcom,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19540,6 +19565,11 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/volcano)
+"nJO" = (
+/obj/structure/table/wood/fancy,
+/obj/item/flash,
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "nKf" = (
 /obj/structure/table,
 /obj/item/tool/shovel/spade,
@@ -19960,12 +19990,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen)
-"nYp" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/double/derringer,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/alt_nine,
-/area/riptide/inside/arena)
 "nYs" = (
 /obj/machinery/light{
 	dir = 1
@@ -20368,14 +20392,6 @@
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/iron/dark,
 /area/riptide/caves/pmc/warehouse)
-"opW" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/canteen/two)
 "opY" = (
 /obj/structure/girder,
 /turf/open/floor/prison,
@@ -20383,10 +20399,6 @@
 "oqe" = (
 /turf/open/floor/wood/alt_one,
 /area/riptide/caves/piratecove)
-"oqh" = (
-/obj/structure/table/wood,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "oqE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -20661,6 +20673,13 @@
 	dir = 1
 	},
 /area/riptide/caves/pmc/lobby)
+"ozv" = (
+/obj/structure/table/wood,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set3")
+	},
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen)
 "ozw" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
@@ -20747,14 +20766,6 @@
 	dir = 4
 	},
 /area/riptide/caves/south)
-"oCO" = (
-/obj/structure/door/mineral_door/wood,
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood/alt_four,
-/area/riptide/inside/abandonedcottage)
 "oCQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -21008,6 +21019,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
+"oLX" = (
+/obj/structure/table/wood/gambling,
+/obj/item/spacecash/c10,
+/obj/effect/spawner/random/misc/table_lighting,
+/turf/open/floor/wood/variable/mosaic/damaged,
+/area/riptide/inside/beachden)
 "oMc" = (
 /obj/structure/flora/drought/shroom/glow,
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_coast{
@@ -21074,14 +21091,6 @@
 	dir = 1
 	},
 /area/riptide/outside/northbeach)
-"oPu" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = 7
-	},
-/turf/open/floor/wood/variable,
-/area/riptide/outside/northjungle)
 "oPw" = (
 /obj/item/stack/sheet/wood,
 /turf/open/ground/coast{
@@ -21170,16 +21179,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/riptide/caves/pmc/lobby)
-"oRs" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/rag,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/coconutmilk{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "oRC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/largecrate/guns,
@@ -21240,21 +21239,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
-"oTd" = (
-/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/food/drinks/bottle/cream{
-	pixel_x = -9;
-	pixel_y = -2
-	},
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "oTn" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/desertdam/grate/alternate,
@@ -21317,6 +21301,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
 /area/riptide/inside/syndicatecheckpoint)
+"oVB" = (
+/obj/structure/table/wood/fancy,
+/obj/item/weapon/telebaton,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "oVI" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
@@ -21326,9 +21316,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/warehouse)
-"oWC" = (
-/turf/closed/gm,
-/area/riptide/outside/northjungle)
 "oWL" = (
 /obj/structure/closet/crate/freezer,
 /obj/effect/decal/cleanable/dirt,
@@ -21347,6 +21334,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/riptide/inside/beachdressing)
+"oXi" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 7
+	},
+/turf/open/floor/wood/variable,
+/area/riptide/outside/northjungle)
 "oXs" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen,
@@ -21567,15 +21562,6 @@
 	dir = 1
 	},
 /area/riptide/inside/medical/offices)
-"pfy" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/box/cups{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/sillycup,
-/turf/open/floor/prison/plate,
-/area/riptide/inside/syndicatefoyer)
 "pfK" = (
 /obj/structure/window{
 	dir = 4
@@ -21802,23 +21788,6 @@
 /obj/item/reagent_containers/food/snacks/soup/stew,
 /turf/open/floor/prison/sterilewhite,
 /area/riptide/caves/syndicatemining)
-"poc" = (
-/obj/item/reagent_containers/food/drinks/coconutmilk{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/food/drinks/coconutmilk/green{
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/food/drinks/coconutmilk/green{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/structure/table/wood,
-/obj/structure/platform/nondense{
-	dir = 8
-	},
-/turf/open/floor/wood/alt_nine,
-/area/riptide/outside/westislands)
 "pok" = (
 /obj/structure/flora/ausbushes/ppflowers{
 	pixel_x = -2;
@@ -22229,10 +22198,6 @@
 	},
 /turf/open/floor/wood/fancy,
 /area/riptide/inside/luxurybar)
-"pCb" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "pCf" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -22404,12 +22369,6 @@
 	},
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
-"pJo" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/kitchen,
-/area/riptide/inside/syndicateport)
 "pJy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -22479,11 +22438,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/boatdock)
-"pKM" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/gun_ammo,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "pKU" = (
 /obj/structure/flora/drought/shroom/gut,
 /turf/open/floor/plating/ground/dirt,
@@ -22723,6 +22677,9 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
+"pQG" = (
+/turf/closed/gm,
+/area/riptide/outside/southjungle)
 "pQL" = (
 /obj/structure/rack{
 	color = "#808080"
@@ -22876,6 +22833,14 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/dark2,
 /area/riptide/inside/warehouse)
+"pUB" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/canteen/two)
 "pUF" = (
 /obj/effect/turf_decal/grassdecal{
 	dir = 1
@@ -22911,11 +22876,6 @@
 	dir = 1
 	},
 /area/riptide/outside/northislands)
-"pWJ" = (
-/obj/structure/door/mineral_door/sandstone,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/rock)
 "pWL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -23182,11 +23142,6 @@
 /obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/prison/plate,
 /area/riptide/caves/syndicatemining)
-"qeP" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/pouch/pressurized_reagent_pouch/bktt,
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "qeS" = (
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
@@ -23261,6 +23216,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_one,
 /area/riptide/outside/southislands)
+"qgV" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/side{
+	dir = 5
+	},
+/area/riptide/inside/beachmotel)
 "qgX" = (
 /obj/structure/rack,
 /obj/item/restraints/handcuffs{
@@ -23482,15 +23448,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/south)
-"qnp" = (
-/obj/structure/table/wood/rustic,
-/obj/structure/tankholder{
-	desc = "Steers the whole ship!";
-	name = "shipwheel";
-	pixel_y = 10
-	},
-/turf/open/floor/wood/alt_one,
-/area/riptide/caves/piratecove)
 "qnr" = (
 /obj/structure/table/mainship,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -23687,6 +23644,11 @@
 	dir = 4
 	},
 /area/riptide/inside/syndicatestarboard)
+"quH" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/limejuice,
+/turf/open/floor/wood/variable,
+/area/riptide/outside/northjungle)
 "quK" = (
 /turf/open/ground/coast{
 	dir = 8
@@ -24009,23 +23971,29 @@
 "qDe" = (
 /turf/open/floor/prison/redfloor,
 /area/riptide/outside/volcano)
-"qDG" = (
-/obj/structure/window/framed/wood,
-/obj/structure/curtain/open/temple{
-	dir = 4
+"qDf" = (
+/obj/item/reagent_containers/food/drinks/coconutmilk{
+	pixel_x = -5
 	},
-/turf/open/floor/tile/dark,
-/area/riptide/inside/chapel)
+/obj/item/reagent_containers/food/drinks/coconutmilk/green{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/coconutmilk/green{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/structure/table/wood,
+/obj/structure/platform/nondense{
+	dir = 8
+	},
+/turf/open/floor/wood/alt_nine,
+/area/riptide/outside/westislands)
 "qDJ" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
 /area/riptide/outside/southjungle)
-"qDL" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/broken,
-/area/riptide/outside/northbeach)
 "qDM" = (
 /obj/structure/cargo_container/hd{
 	dir = 1
@@ -24552,9 +24520,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/riptide/inside/beachdressing)
-"qXp" = (
-/turf/closed/gm,
-/area/riptide/outside/southjungle)
 "qXs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24751,13 +24716,6 @@
 	dir = 8
 	},
 /area/riptide/inside/syndicatestarboard)
-"rdN" = (
-/obj/structure/window/framed/wood,
-/obj/structure/curtain/temple{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/beachden)
 "rdS" = (
 /obj/machinery/door/airlock/mainship/marine/general,
 /turf/open/floor/plating,
@@ -24844,6 +24802,13 @@
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/south)
+"rgG" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood/alt_four,
+/area/riptide/inside/abandonedcottage)
 "rgK" = (
 /turf/closed/mineral/smooth/outdoor/phoron,
 /area/riptide/caves/rock)
@@ -24856,11 +24821,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/riptide/caves/pmc/prison)
-"rgY" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck,
-/turf/open/floor/wood/variable/mosaic,
-/area/riptide/inside/beachden)
 "rhi" = (
 /obj/structure/cable,
 /turf/open/ground/grass/weedable,
@@ -24888,11 +24848,6 @@
 	dir = 1
 	},
 /area/riptide/inside/landingzoneone)
-"rim" = (
-/obj/machinery/faxmachine,
-/obj/structure/table/wood,
-/turf/open/floor/tile/dark,
-/area/riptide/inside/medical/offices)
 "rip" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/north2)
@@ -24901,6 +24856,20 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/riptide/outside/volcano)
+"riH" = (
+/obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/folder/red{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/tool/stamp,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/open/floor/prison/plate,
+/area/riptide/inside/abandonedsec)
 "riQ" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/right,
 /turf/open/floor/prison/redfloor,
@@ -24955,6 +24924,14 @@
 	dir = 4
 	},
 /area/riptide/outside/westislands)
+"rkB" = (
+/obj/structure/door/mineral_door/wood,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood/alt_four,
+/area/riptide/inside/abandonedcottage)
 "rkD" = (
 /obj/structure/prop/mainship/gelida/powerconnector{
 	dir = 8
@@ -25137,12 +25114,6 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicatecheckpoint)
-"rrW" = (
-/obj/structure/table/wood/gambling,
-/obj/item/reagent_containers/pill/happy,
-/obj/item/toy/deck,
-/turf/open/floor/wood/variable/mosaic,
-/area/riptide/inside/beachden)
 "rsa" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
@@ -25205,6 +25176,12 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
+"rvI" = (
+/obj/structure/table/wood/gambling,
+/obj/item/spacecash/c200,
+/obj/effect/ai_node,
+/turf/open/floor/wood/variable/mosaic,
+/area/riptide/inside/beachden)
 "rvJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25248,9 +25225,6 @@
 	dir = 4
 	},
 /area/riptide/outside/volcano)
-"rwg" = (
-/turf/closed/gm,
-/area/riptide/outside/westjungle)
 "rwr" = (
 /obj/structure/sign/safety/breakroom,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25304,6 +25278,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
+"rxo" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/luxurybar)
 "rxB" = (
 /turf/open/ground,
 /area/riptide/outside/westjungle)
@@ -25543,6 +25525,12 @@
 	},
 /turf/open/floor/wood/darker,
 /area/riptide/caves/piratecove)
+"rDj" = (
+/obj/structure/table/wood,
+/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen/two)
 "rDy" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced{
@@ -25710,6 +25698,15 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
+"rIh" = (
+/obj/item/storage/box/visual/magazine/compact/martini/full,
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ashtray/bronze{
+	pixel_y = 9
+	},
+/turf/open/floor/wood/alt_one,
+/area/riptide/caves/piratecove)
 "rIl" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26083,6 +26080,13 @@
 	dir = 4
 	},
 /area/riptide/inside/syndicatestarboard)
+"rVI" = (
+/obj/structure/table/wood/fancy,
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor/tile/vault{
+	dir = 5
+	},
+/area/riptide/inside/luxurybar)
 "rVP" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass/weedable,
@@ -26255,11 +26259,6 @@
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/rock)
-"saV" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/riptide/inside/luxurybaroverlook)
 "saX" = (
 /obj/item/fishing/bait_can/open{
 	pixel_x = 8;
@@ -26273,6 +26272,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/riptide/caves/central/garbledradio)
+"sbm" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/snacks/syndicake,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/kitchen,
+/area/riptide/inside/syndicateport)
 "sbT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/plant,
@@ -26358,6 +26363,9 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plating/scorched,
 /area/riptide/caves/pmc/warehouse)
+"seG" = (
+/turf/closed/gm,
+/area/riptide/outside/northjungle)
 "seL" = (
 /obj/structure/platform/adobe,
 /turf/closed/wall/variable/adobe,
@@ -26766,13 +26774,6 @@
 /obj/structure/flora/drought/short_cactus,
 /turf/open/floor/plating/ground/dirt,
 /area/riptide/outside/volcano)
-"srt" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/riptide/outside/beachlzone)
 "srC" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -26783,11 +26784,6 @@
 "srI" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/riptide/caves/tram)
-"srN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread,
-/turf/open/floor/prison/kitchen,
-/area/riptide/inside/syndicateport)
 "srU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -27000,6 +26996,11 @@
 	},
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
+"szT" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/deck,
+/turf/open/floor/wood/variable/mosaic,
+/area/riptide/inside/beachden)
 "szY" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/wood,
@@ -27057,13 +27058,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sandtemple,
 /area/riptide/caves/pmc/warehouse)
-"sBp" = (
-/obj/structure/table/wood,
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set3")
-	},
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen)
 "sBq" = (
 /obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/tile/dark,
@@ -27182,15 +27176,6 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
-"sFI" = (
-/obj/structure/table/wood,
-/obj/item/weapon/gun/shotgun/double/martini{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/misc/cigar,
-/turf/open/floor/wood,
-/area/riptide/caves/piratecove)
 "sFX" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -27211,21 +27196,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/smooth_large,
 /area/riptide/caves/pmc/toxins)
-"sGK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/paper{
-	pixel_x = -6;
-	pixel_y = 3
-	},
-/obj/item/paper{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/paper,
-/obj/item/trash/cigbutt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/plate,
-/area/riptide/inside/syndicatefoyer)
 "sGV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -27289,11 +27259,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/riptide/inside/hydroponics)
-"sIw" = (
-/obj/structure/table/wood/gambling,
-/obj/item/toy/deck,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "sIx" = (
 /obj/effect/landmark/corpsespawner/syndicatesoldier,
 /turf/open/floor/plating/ground/concrete,
@@ -27340,6 +27305,15 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/riptide/inside/engineering/cave)
+"sJT" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/double/martini,
+/obj/item/weapon/gun/shotgun/double/martini{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/riptide/caves/piratecove)
 "sJV" = (
 /obj/structure/flora/ausbushes/ppflowers{
 	pixel_x = 3;
@@ -27414,11 +27388,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/riptide/caves/tram)
-"sOi" = (
-/obj/structure/table/wood/fancy,
-/obj/item/flash,
-/turf/open/floor/tile/cmo,
-/area/riptide/inside/medical/offices)
 "sPd" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -8;
@@ -27492,6 +27461,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
+"sRc" = (
+/obj/structure/table/wood/fancy,
+/obj/machinery/computer/crew,
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "sRd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -27614,12 +27588,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/riptide/inside/syndicatestarboard)
-"sUa" = (
-/obj/structure/table/wood/gambling,
-/obj/item/spacecash/c10,
-/obj/effect/spawner/random/misc/table_lighting,
-/turf/open/floor/wood/variable/mosaic/damaged,
-/area/riptide/inside/beachden)
 "sUu" = (
 /obj/effect/landmark/corpsespawner/syndicatesoldier,
 /obj/effect/decal/cleanable/blood,
@@ -27799,6 +27767,9 @@
 /obj/machinery/light,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/pmc/prison)
+"sZS" = (
+/turf/closed/wall/wood,
+/area/riptide/outside/northjungle)
 "sZT" = (
 /obj/structure/xenoautopsy/tank/escaped,
 /turf/open/floor/prison/sterilewhite/full,
@@ -28367,6 +28338,12 @@
 	},
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/canteen)
+"tuH" = (
+/obj/structure/curtain/temple{
+	dir = 4
+	},
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/tikihut)
 "tvb" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower,
@@ -28381,11 +28358,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/sterilewhite,
 /area/riptide/caves/syndicatemining)
-"tvk" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/machinery/microwave,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen)
 "tvn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security{
@@ -28478,6 +28450,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/westislands)
+"tyB" = (
+/obj/structure/window/framed/wood,
+/obj/structure/curtain/open/temple{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/riptide/inside/chapel)
 "tyN" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/redfloor,
@@ -28596,12 +28575,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/outside/volcano)
-"tFo" = (
-/obj/structure/table/wood,
-/obj/item/clothing/suit/chaplain_hoodie,
-/obj/item/clothing/head/chaplain_hood,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "tFD" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/smg/m25,
@@ -28634,6 +28607,12 @@
 /obj/effect/turf_decal/syndicateemblem/top/middle,
 /turf/open/floor/prison/redfloor,
 /area/riptide/inside/syndicatefoyer)
+"tGx" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/pump/trenchgun,
+/obj/item/ammo_magazine/shotgun/tracker,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "tGH" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -28750,10 +28729,6 @@
 	},
 /turf/open/floor/grimy,
 /area/riptide/outside/westjungle)
-"tJT" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood/alt_one,
-/area/riptide/outside/northbeach)
 "tJV" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -28883,12 +28858,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/riptide/outside/eastbeach)
-"tOl" = (
-/obj/structure/curtain/temple{
-	dir = 4
-	},
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/tikihut)
 "tOp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28915,6 +28884,12 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/wood,
 /area/riptide/outside/southbeach)
+"tPj" = (
+/obj/structure/table/wood/gambling,
+/obj/item/reagent_containers/pill/happy,
+/obj/item/toy/deck,
+/turf/open/floor/wood/variable/mosaic,
+/area/riptide/inside/beachden)
 "tPm" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/effect/decal/cleanable/blood,
@@ -29356,9 +29331,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/syndicatemining)
-"ubY" = (
-/turf/closed/wall/wood,
-/area/riptide/outside/northjungle)
 "ucy" = (
 /obj/structure/window/framed/wood,
 /turf/open/floor/plating,
@@ -29521,6 +29493,15 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
+"ujr" = (
+/mob/living/simple_animal/crab{
+	health = 500;
+	maxHealth = 500;
+	name = "Bubbles";
+	resize = 2
+	},
+/turf/open/ground,
+/area/riptide/outside/southbeach)
 "ujH" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/cheesie,
@@ -29760,6 +29741,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
+"utW" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood/broken,
+/area/riptide/outside/northbeach)
 "uud" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
@@ -29809,6 +29794,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/riptide/inside/abandonedcottage)
+"uwa" = (
+/obj/structure/table/wood/fancy,
+/obj/machinery/computer/intel_computer,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/cmo,
+/area/riptide/inside/medical/offices)
 "uwb" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -11;
@@ -29871,6 +29864,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/dmg3,
 /area/riptide/caves/tram)
+"uyk" = (
+/obj/machinery/faxmachine,
+/obj/structure/table/wood,
+/turf/open/floor/tile/dark,
+/area/riptide/inside/medical/offices)
 "uym" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -30499,6 +30497,12 @@
 /obj/structure/desertdam/decals/road,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/inside/landingzoneone)
+"uWn" = (
+/obj/structure/table/wood,
+/obj/item/toy/bikehorn/rubberducky,
+/obj/structure/cable,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "uWF" = (
 /obj/machinery/light{
 	dir = 4
@@ -30564,11 +30568,6 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical/offices)
-"uZt" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/sliceable/pastries/holy_cake,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "uZE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -30984,6 +30983,12 @@
 /obj/item/tool/pen,
 /turf/open/floor/prison/darkred,
 /area/riptide/caves/syndicatemining)
+"vnk" = (
+/obj/structure/table/wood/gambling,
+/obj/effect/spawner/random/misc/cigar,
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/wood,
+/area/riptide/caves/piratecove)
 "vnG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/xeno_resin_wall,
@@ -30993,10 +30998,6 @@
 /obj/item/trash/hotdog,
 /turf/open/floor/plating/ground/drought,
 /area/riptide/outside/northbeach)
-"vnQ" = (
-/obj/effect/landmark/corpsespawner/colonist/burst,
-/turf/open/floor/wood/alt_one,
-/area/riptide/outside/southislands)
 "vom" = (
 /obj/structure/sign/nosmoking_2,
 /turf/open/floor/tile/green/whitegreen,
@@ -31061,22 +31062,6 @@
 "vpv" = (
 /turf/open/ground/coast,
 /area/riptide/outside/southbeach)
-"vpy" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/cans/grape_juice,
-/obj/item/reagent_containers/food/drinks/cans/lemon_lime{
-	pixel_x = -9;
-	pixel_y = -2
-	},
-/obj/structure/platform/adobe{
-	dir = 1
-	},
-/obj/item/reagent_containers/food/drinks/coconutmilk{
-	pixel_x = 8;
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/drought,
-/area/riptide/outside/westbeach)
 "vpL" = (
 /obj/structure/sign/poster,
 /turf/open/floor/tile/green/whitegreen,
@@ -31118,14 +31103,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/shuttle/dropship/floor,
 /area/riptide/caves/tram)
-"vqN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/riptide/inside/luxurybar)
 "vqT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -31137,6 +31114,11 @@
 	dir = 4
 	},
 /area/riptide/caves/north2/garbledradio)
+"vrc" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/snacks/twobreadold,
+/turf/open/floor/prison/kitchen,
+/area/riptide/inside/syndicateport)
 "vre" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/xeno_resin_door{
@@ -31516,6 +31498,13 @@
 	},
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
+"vDp" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/riptide/inside/recroom)
 "vDA" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
@@ -31558,10 +31547,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/riptide/caves/piratecove)
-"vFE" = (
-/obj/structure/table/wood,
-/turf/open/floor/plating,
-/area/riptide/inside/tikihut)
 "vFM" = (
 /obj/structure/flora/ausbushes/palebush{
 	pixel_x = 6;
@@ -31579,14 +31564,6 @@
 	dir = 8
 	},
 /area/riptide/outside/westislands)
-"vFU" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/riptide/inside/luxurybar)
 "vGq" = (
 /obj/structure/closet/coffin,
 /obj/item/weapon/sword,
@@ -31658,11 +31635,6 @@
 	},
 /turf/open/floor/cult,
 /area/riptide/inside/chapel)
-"vIF" = (
-/obj/structure/table/wood,
-/obj/item/paper/prison_station/chapel_program,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "vIK" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -31704,25 +31676,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
-"vKE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/paper{
-	pixel_x = 5;
-	pixel_y = -3
-	},
-/obj/item/paper,
-/obj/item/toy/crayon{
-	pixel_x = 3;
-	pixel_y = -4
-	},
-/obj/item/toy/crayon/purple,
-/obj/item/toy/crayon/orange{
-	pixel_x = -6;
-	pixel_y = -3
-	},
-/obj/structure/table/wood/rustic,
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "vKO" = (
 /obj/effect/landmark/corpsespawner/pirate,
 /obj/effect/decal/cleanable/blood,
@@ -31772,6 +31725,11 @@
 "vMp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
+"vMx" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/gun,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachbar)
 "vML" = (
@@ -31890,6 +31848,13 @@
 /obj/structure/cable,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/westjungle)
+"vRg" = (
+/obj/structure/door/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/riptide/outside/beachlzone)
 "vRX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -31932,18 +31897,17 @@
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/riptide/inside/hydroponics)
+"vTM" = (
+/obj/structure/window/framed/wood,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/riptide/inside/chapel)
 "vUh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
-"vUT" = (
-/obj/structure/door/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/wood/variable/wide,
-/area/riptide/inside/beachden)
 "vVn" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	dir = 1
@@ -32133,11 +32097,6 @@
 	dir = 1
 	},
 /area/riptide/outside/beachlzone)
-"waX" = (
-/obj/item/storage/fancy/candle_box,
-/obj/structure/table/wood,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "wbd" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -32217,6 +32176,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
+"wea" = (
+/obj/structure/table/wood/rustic,
+/obj/structure/tankholder{
+	desc = "Steers the whole ship!";
+	name = "shipwheel";
+	pixel_y = 10
+	},
+/turf/open/floor/wood/alt_one,
+/area/riptide/caves/piratecove)
 "wex" = (
 /turf/open/ground/coast,
 /area/riptide/outside/westbeach)
@@ -32283,12 +32251,6 @@
 "wiW" = (
 /turf/open/liquid/lava/catwalk,
 /area/riptide/inside/syndicateport)
-"wjd" = (
-/obj/machinery/photocopier,
-/obj/structure/table/wood,
-/obj/item/toner,
-/turf/open/floor/tile/dark,
-/area/riptide/inside/medical/offices)
 "wjh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -32533,6 +32495,12 @@
 "wsr" = (
 /turf/open/floor/bcircuit,
 /area/riptide/inside/engineering/bridge)
+"wst" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/dice/d20,
+/obj/item/toy/dice,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "wsB" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/mainship/sandtemple,
@@ -32818,6 +32786,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
+"wCf" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating,
+/area/riptide/inside/tikihut)
 "wCk" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/glass/plastic,
@@ -32834,12 +32806,6 @@
 /obj/effect/forcefield,
 /turf/open/space/sea,
 /area/riptide/caves/sea)
-"wCy" = (
-/obj/structure/table/wood,
-/obj/structure/mine_structure/wooden/support_wall/t_bar/above,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/thatch,
-/area/riptide/inside/canteen)
 "wCD" = (
 /obj/item/fishing/hook{
 	pixel_x = 3;
@@ -33132,17 +33098,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/prison,
 /area/riptide/inside/syndicatehead)
-"wLG" = (
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-/obj/item/clothing/head/that,
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/lemon,
-/obj/item/reagent_containers/food/snacks/grown/lime{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/turf/open/floor/wood/darker,
-/area/riptide/inside/beachbar)
 "wLU" = (
 /obj/structure/rock/variable/crystal_mound,
 /obj/effect/decal/cleanable/dirt,
@@ -33419,6 +33374,10 @@
 "wXG" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/shuttle/drop1/lz1)
+"wXI" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood,
+/area/riptide/outside/beachlzone)
 "wXR" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/weedable,
@@ -33794,11 +33753,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
-"xlK" = (
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/structure/table/wood,
-/turf/open/floor/cult,
-/area/riptide/inside/chapel)
 "xlP" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -33846,10 +33800,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/northislands)
+"xnd" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/machinery/microwave,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen)
 "xng" = (
 /obj/structure/cable,
 /turf/open/ground,
 /area/riptide/outside/eastbeach)
+"xnp" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood/broken,
+/area/riptide/outside/beachlzone)
 "xnv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform_decoration{
@@ -33857,6 +33820,10 @@
 	},
 /turf/open/floor/wood,
 /area/riptide/outside/southislands)
+"xnQ" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/plating,
+/area/riptide/outside/beachlzone)
 "xnU" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/effect/landmark/weed_node,
@@ -33992,6 +33959,21 @@
 	},
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
+"xrD" = (
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/cream{
+	pixel_x = -9;
+	pixel_y = -2
+	},
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood/darker,
+/area/riptide/inside/beachbar)
 "xrG" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/structure/bed/chair/office/dark{
@@ -34142,6 +34124,10 @@
 	dir = 8
 	},
 /area/riptide/outside/river)
+"xvK" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood/alt_one,
+/area/riptide/outside/northbeach)
 "xvY" = (
 /obj/item/instrument/glockenspiel,
 /turf/open/floor/wood/alt_seven,
@@ -34278,11 +34264,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatefoyer)
-"xAL" = (
-/obj/structure/table/wood/rustic,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/alt_four,
-/area/riptide/inside/abandonedcottage)
 "xBa" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -34325,14 +34306,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/riptide/inside/engineering)
-"xCl" = (
-/obj/structure/table/wood/gambling,
-/obj/item/spacecash/c50,
-/obj/structure/window{
-	dir = 4
-	},
-/turf/open/floor/wood/variable/mosaic/damaged,
-/area/riptide/inside/beachden)
 "xCu" = (
 /turf/closed/gm/dense,
 /area/riptide/caves/rock)
@@ -34446,6 +34419,11 @@
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
+"xGk" = (
+/obj/structure/door/mineral_door/wood,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/riptide/inside/recroom)
 "xGC" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
@@ -34590,6 +34568,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/riptide/inside/engineering)
+"xNI" = (
+/obj/structure/table/wood,
+/obj/item/weapon/gun/shotgun/double/martini{
+	pixel_y = -7
+	},
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/wood,
+/area/riptide/caves/piratecove)
 "xNT" = (
 /obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/plate,
@@ -34665,6 +34651,12 @@
 /obj/structure/flora/drought/xander,
 /turf/open/floor/plating/ground/dirt,
 /area/riptide/outside/volcano)
+"xRI" = (
+/obj/machinery/photocopier,
+/obj/structure/table/wood,
+/obj/item/toner,
+/turf/open/floor/tile/dark,
+/area/riptide/inside/medical/offices)
 "xRJ" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -34751,18 +34743,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt_alt/random,
 /area/riptide/caves/north)
+"xVD" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/turf/open/floor/tile/vault,
+/area/riptide/inside/luxurybar)
 "xVJ" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
 /turf/open/floor/prison/plate,
 /area/riptide/caves/syndicatemining)
-"xVN" = (
-/obj/structure/table/wood/fancy,
-/obj/structure/paper_bin,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison/plate,
-/area/riptide/inside/syndicatefoyer)
 "xVP" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/decal/cleanable/blood,
@@ -35102,6 +35098,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/inside/engineering/bridge)
+"yjx" = (
+/obj/structure/door/mineral_door/wood,
+/turf/open/floor/wood/alt_nine,
+/area/riptide/outside/beachlzone)
 "yjz" = (
 /turf/closed/wall/wood,
 /area/riptide/inside/beachsushi)
@@ -36441,7 +36441,7 @@ vdZ
 eix
 jMc
 jIv
-poc
+qDf
 kiR
 iPx
 rkg
@@ -36665,7 +36665,7 @@ rvF
 rvF
 cQc
 fIE
-gUo
+bXl
 fIE
 kDF
 wqC
@@ -37217,7 +37217,7 @@ xnV
 xnV
 xnV
 xnV
-gGA
+kIv
 qQi
 uQP
 uQP
@@ -37396,7 +37396,7 @@ xnV
 xnV
 xnV
 xnV
-gGA
+kIv
 qQi
 gri
 tIM
@@ -37759,8 +37759,8 @@ rvF
 uFg
 uFg
 uFg
-grA
-ctl
+fkM
+yjx
 uFg
 uFg
 rvF
@@ -38654,8 +38654,8 @@ kQu
 uFg
 uFg
 uFg
-srt
-fgw
+vRg
+wXI
 uFg
 uFg
 eLN
@@ -39072,9 +39072,9 @@ xke
 xke
 xmq
 xmq
-rdN
-rdN
-rdN
+iDH
+iDH
+iDH
 xmq
 xmq
 kTg
@@ -39362,7 +39362,7 @@ pdT
 pdT
 xnV
 xnV
-gGA
+kIv
 rFE
 qQi
 qQi
@@ -39430,9 +39430,9 @@ xke
 xke
 xmq
 jOj
-kXT
-rgY
-xCl
+heM
+szT
+efa
 pfK
 xmq
 kTg
@@ -39541,7 +39541,7 @@ pdT
 pdT
 xnV
 xnV
-gGA
+kIv
 qQi
 xdI
 qQi
@@ -39609,19 +39609,19 @@ xke
 xke
 xmq
 nru
-sUa
-mAF
-rrW
+oLX
+rvI
+tPj
 eYo
 xmq
 tsG
 lXp
 kTg
-vpy
+gNw
 dtA
 vmq
 cIc
-dvO
+gEE
 kji
 fbU
 ryI
@@ -39908,8 +39908,8 @@ uQP
 uFg
 uFg
 uFg
-ctl
-ctl
+yjx
+yjx
 uFg
 xCu
 xCu
@@ -40147,7 +40147,7 @@ swI
 xmq
 xmq
 xmq
-vUT
+dDS
 xmq
 xmq
 xmq
@@ -40392,7 +40392,7 @@ hHX
 qEa
 lFJ
 gqo
-dwN
+riH
 oTP
 qmP
 iOq
@@ -40512,11 +40512,11 @@ ebQ
 uIQ
 hjo
 orw
-vKE
+eej
 owp
 aGz
-sIw
-mMJ
+nrU
+vMx
 ceR
 xqw
 dvf
@@ -40694,8 +40694,8 @@ vkT
 bJK
 kjj
 tHd
-pKM
-aOO
+dsz
+wst
 owp
 xqw
 dvf
@@ -41325,7 +41325,7 @@ xnV
 eyC
 pdT
 pdT
-pWJ
+nyS
 wWh
 qSs
 qSs
@@ -41409,9 +41409,9 @@ xCu
 aQB
 jiP
 oSI
-dVz
-bSQ
-oRs
+uWn
+lRQ
+dLN
 hng
 xqw
 dvf
@@ -41542,7 +41542,7 @@ hOl
 kBC
 sZX
 xuv
-aau
+xnQ
 xke
 ePM
 xke
@@ -41742,13 +41742,13 @@ bfA
 bfA
 bfA
 bfA
-qDG
-gJt
+tyB
+vTM
 bfA
-gJt
-gJt
+vTM
+vTM
 bfA
-qDG
+tyB
 hbW
 bfA
 bfA
@@ -41768,9 +41768,9 @@ ahr
 nIl
 bqm
 aQB
-nvp
-oTd
-wLG
+tGx
+xrD
+fiC
 seL
 cgQ
 ksg
@@ -42096,9 +42096,9 @@ dGi
 qOU
 swI
 bfA
-waX
+bNm
 pjE
-oqh
+aQq
 gfj
 ihl
 fKH
@@ -42249,7 +42249,7 @@ pTA
 pLW
 sHm
 dDD
-msW
+xnp
 xke
 xke
 xke
@@ -42277,7 +42277,7 @@ ubt
 bfA
 dJb
 vaH
-uZt
+gbk
 eNv
 xbY
 tfx
@@ -42454,9 +42454,9 @@ crZ
 swI
 swI
 bfA
-xlK
+lmB
 uNb
-vIF
+jOC
 dxs
 dic
 bmY
@@ -42635,7 +42635,7 @@ swI
 bfA
 pjE
 eiZ
-tFo
+aSA
 gfj
 ihl
 qoG
@@ -42662,11 +42662,11 @@ itK
 ebQ
 ebQ
 oHp
-rwg
-rwg
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
+jiI
+jiI
 kji
 ksg
 sir
@@ -42842,10 +42842,10 @@ jDM
 jDM
 fHw
 uIQ
-rwg
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
+jiI
 kji
 ksg
 sir
@@ -42995,14 +42995,14 @@ bfA
 bfA
 bfA
 bfA
-gJt
+vTM
 hbW
 bfA
 hbW
-qDG
+tyB
 bfA
-qDG
-gJt
+tyB
+vTM
 bfA
 bfA
 lQO
@@ -43021,9 +43021,9 @@ bny
 fGV
 wDh
 jDM
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
 joh
 tiY
 ksg
@@ -43386,7 +43386,7 @@ kji
 ksg
 sir
 sir
-qXp
+pQG
 xCu
 xCu
 oyS
@@ -43546,14 +43546,14 @@ fob
 swI
 hyY
 swI
-rwg
-rwg
+jiI
+jiI
 oHp
 ebQ
 ebQ
 ebQ
-rwg
-rwg
+jiI
+jiI
 ebQ
 itK
 cJV
@@ -43564,8 +43564,8 @@ rxB
 kji
 ksg
 sir
-qXp
-qXp
+pQG
+pQG
 iRE
 iRE
 oyS
@@ -43723,18 +43723,18 @@ swI
 tzv
 tzv
 tzv
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
 fjo
 hiN
 fKG
@@ -43743,8 +43743,8 @@ tpE
 kji
 rPS
 sir
-qXp
-qXp
+pQG
+pQG
 tcY
 iRE
 oyS
@@ -43900,9 +43900,9 @@ swI
 swI
 nyk
 tzv
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
 xCu
 xCu
 xCu
@@ -43913,7 +43913,7 @@ lvi
 lvi
 xCu
 xCu
-rwg
+jiI
 bLv
 tsG
 fKG
@@ -44076,10 +44076,10 @@ ebQ
 uIQ
 cwO
 ebQ
-rwg
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
+jiI
 xCu
 xCu
 xCu
@@ -44092,7 +44092,7 @@ lvi
 lvi
 lvi
 lvi
-rwg
+jiI
 rcm
 tsG
 fKG
@@ -44247,15 +44247,15 @@ bny
 bny
 wJv
 cwO
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
-rwg
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
+jiI
 xCu
 xCu
 xCu
@@ -44462,8 +44462,8 @@ sir
 sir
 sir
 iRE
-qXp
-qXp
+pQG
+pQG
 dCY
 gRm
 erv
@@ -44504,7 +44504,7 @@ sir
 sir
 sir
 sir
-hgL
+jVe
 svH
 giG
 oWQ
@@ -44592,7 +44592,7 @@ aCu
 iZF
 aCu
 aCu
-rwg
+jiI
 ebQ
 pYN
 bny
@@ -44641,8 +44641,8 @@ sir
 sir
 sir
 iRE
-qXp
-qXp
+pQG
+pQG
 dCY
 slN
 xwr
@@ -44768,11 +44768,11 @@ cxu
 aCu
 aCu
 aCu
-oWC
-oWC
-rwg
-rwg
-rwg
+seG
+seG
+jiI
+jiI
+jiI
 pYN
 bny
 mSy
@@ -44821,7 +44821,7 @@ sir
 sir
 oyS
 oyS
-qXp
+pQG
 dCY
 dCY
 xDw
@@ -44945,13 +44945,13 @@ wRn
 wRn
 aCu
 aCu
-oWC
-oWC
-oWC
-oWC
-rwg
-rwg
-rwg
+seG
+seG
+seG
+seG
+jiI
+jiI
+jiI
 omw
 bny
 mSy
@@ -45121,16 +45121,16 @@ eGU
 eGU
 eGU
 clt
-oWC
-oWC
-oWC
-oWC
+seG
+seG
+seG
+seG
 xCu
-rwg
+jiI
 rFt
 rFt
 rFt
-rwg
+jiI
 pYN
 mSy
 mSy
@@ -45300,16 +45300,16 @@ qXA
 eGU
 mBv
 eGU
-oWC
+seG
 xCu
 xCu
 xCu
 xCu
-rwg
+jiI
 rFt
 rFt
 rFt
-rwg
+jiI
 vFN
 mSy
 mSy
@@ -45449,7 +45449,7 @@ iWe
 bHO
 jID
 vtx
-tJT
+xvK
 lGe
 qOR
 eeL
@@ -45479,7 +45479,7 @@ nZC
 eGU
 eGU
 eGU
-oWC
+seG
 xCu
 xCu
 xCu
@@ -45488,7 +45488,7 @@ lvi
 rFt
 rFt
 rFt
-rwg
+jiI
 xoH
 mSy
 mSy
@@ -45658,13 +45658,13 @@ eGU
 bCV
 eGU
 eGU
-oWC
+seG
 xCu
 xCu
 xCu
 lvi
-rwg
-rwg
+jiI
+jiI
 rFt
 rFt
 xoH
@@ -45716,9 +45716,9 @@ xCu
 aeL
 qeB
 bEm
-qXp
+pQG
 dCY
-kwp
+qgV
 qhL
 dRo
 dCY
@@ -45726,7 +45726,7 @@ dZr
 xtN
 wct
 dCY
-qXp
+pQG
 oyS
 fZh
 oyS
@@ -45837,13 +45837,13 @@ eGU
 eGU
 qXA
 eGU
-oWC
-oWC
+seG
+seG
 xCu
 lvi
 xCu
 xCu
-rwg
+jiI
 rFt
 rFt
 ebQ
@@ -45890,12 +45890,12 @@ luS
 luS
 kji
 ksg
-qXp
-qXp
+pQG
+pQG
 lDI
 oxv
 oyS
-qXp
+pQG
 dCY
 dCY
 tIj
@@ -45905,7 +45905,7 @@ dCY
 tIj
 dCY
 dCY
-qXp
+pQG
 oyS
 oyS
 iNj
@@ -46017,12 +46017,12 @@ bCV
 eGU
 eGU
 eGU
-oWC
+seG
 xCu
 xCu
 lvi
 xCu
-rwg
+jiI
 rFt
 xoH
 ebQ
@@ -46069,8 +46069,8 @@ luS
 luS
 kji
 ksg
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -46196,13 +46196,13 @@ eGU
 eGU
 clt
 eGU
-oWC
-oWC
+seG
+seG
 xCu
 lvi
 xCu
-rwg
-rwg
+jiI
+jiI
 ebQ
 mSy
 mSy
@@ -46376,13 +46376,13 @@ mBv
 eGU
 clt
 eGU
-oWC
-oWC
+seG
+seG
 xCu
 lvi
 xCu
-rwg
-rwg
+jiI
+jiI
 mSy
 eqc
 mSy
@@ -46437,9 +46437,9 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 lQo
 lQo
 oyS
@@ -46556,12 +46556,12 @@ jaR
 qXA
 eGU
 eGU
-oWC
-oWC
+seG
+seG
 xCu
 xCu
 xCu
-rwg
+jiI
 mSy
 mSy
 mSy
@@ -46615,15 +46615,15 @@ oyS
 jdc
 wUL
 iNj
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 lQo
 lQo
 lQo
 lQo
-qXp
-qXp
+pQG
+pQG
 sqP
 oyS
 oyS
@@ -46736,7 +46736,7 @@ eGU
 eGU
 eGU
 wRn
-oWC
+seG
 xCu
 xCu
 xCu
@@ -46769,8 +46769,8 @@ gFr
 dPS
 dGr
 avL
-srN
-nhi
+fdw
+vrc
 qzH
 mSy
 kCn
@@ -46789,22 +46789,22 @@ ryI
 sir
 iRE
 oyS
-qXp
-qXp
+pQG
+pQG
 wUL
 wUL
 wUL
-qXp
-qXp
+pQG
+pQG
 lQo
 lQo
 lQo
 lQo
 lQo
 lQo
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 mmH
 oyS
@@ -46915,7 +46915,7 @@ eGU
 eGU
 eGU
 wRn
-oWC
+seG
 luS
 xCu
 xCu
@@ -46949,7 +46949,7 @@ dPS
 hAY
 nOc
 suK
-pJo
+hZT
 iaF
 mSy
 bQq
@@ -46965,33 +46965,33 @@ luS
 luS
 sQv
 nWf
-qXp
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
+pQG
 wUL
 wUL
 wUL
 cYE
-qXp
+pQG
 lQo
 lQo
 lQo
 lQo
 lQo
 lQo
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -46999,7 +46999,7 @@ oyS
 oyS
 hba
 sPu
-kvB
+eGC
 sPu
 cYE
 oyS
@@ -47128,7 +47128,7 @@ pNe
 iqg
 hoU
 avL
-elY
+sbm
 qbI
 mSy
 aUs
@@ -47144,7 +47144,7 @@ xCu
 luS
 sQv
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -47153,25 +47153,25 @@ wUL
 wUL
 wUL
 oyS
-qXp
-qXp
+pQG
+pQG
 lQo
 lQo
 lQo
 lQo
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 oyS
 iNj
 oyS
-qXp
-qXp
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
+pQG
+pQG
 mmH
 oyS
 oyS
@@ -47323,7 +47323,7 @@ xCu
 luS
 sQv
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -47332,12 +47332,12 @@ oyS
 gEH
 wUL
 jdc
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 lQo
 lQo
-qXp
+pQG
 cYE
 oyS
 oyS
@@ -47345,12 +47345,12 @@ bEm
 mmH
 oyS
 oyS
-qXp
-qXp
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -47502,7 +47502,7 @@ xCu
 luS
 iXN
 iXN
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -47512,8 +47512,8 @@ hKK
 oyS
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 qom
 vaV
 vaV
@@ -47526,10 +47526,10 @@ gDr
 rJn
 xCu
 xCu
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -47537,7 +47537,7 @@ oyS
 sPu
 oRc
 xEm
-wCy
+dOF
 hGO
 oyS
 oyS
@@ -47681,7 +47681,7 @@ xCu
 luS
 sQv
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -47689,9 +47689,9 @@ iNj
 mmH
 oyS
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 xUp
 ohH
 leK
@@ -47707,8 +47707,8 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 mXZ
 oyS
 oyS
@@ -47716,7 +47716,7 @@ oyS
 sPu
 ntu
 oJY
-hDa
+iXz
 hGO
 mXZ
 jEP
@@ -47804,7 +47804,7 @@ tPI
 czb
 btM
 wKf
-rim
+uyk
 tPI
 aCu
 aCu
@@ -47860,7 +47860,7 @@ xCu
 luS
 ykj
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -47868,8 +47868,8 @@ oyS
 oyS
 oyS
 jdc
-qXp
-qXp
+pQG
+pQG
 nrb
 pFx
 ohH
@@ -47886,8 +47886,8 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 oyS
 iRE
 iRE
@@ -47981,9 +47981,9 @@ eJR
 xII
 nKQ
 lxB
-fpt
+dEm
 eYb
-wjd
+xRI
 tPI
 aCu
 aCu
@@ -48039,16 +48039,16 @@ luS
 luS
 lNX
 rGP
-qXp
-qXp
+pQG
+pQG
 xCu
 cYE
 oyS
 oyS
 iNj
 oyS
-qXp
-qXp
+pQG
+pQG
 pFx
 leK
 hpB
@@ -48066,13 +48066,13 @@ lQo
 xCu
 xCu
 xCu
-qXp
+pQG
 fZh
 iRE
 sir
 sir
 sPu
-tvk
+xnd
 sZV
 sRA
 sPu
@@ -48219,15 +48219,15 @@ qiO
 dFb
 hUP
 mmH
-qXp
-qXp
+pQG
+pQG
 oyS
 jdc
 oyS
 mmH
 oyS
-qXp
-qXp
+pQG
+pQG
 qNe
 hpB
 hpB
@@ -48245,17 +48245,17 @@ lQo
 lQo
 xCu
 xCu
-qXp
+pQG
 bEm
 iRE
 sir
 sir
 uHx
-sBp
+ozv
 cPy
 tRg
 pMf
-hDa
+iXz
 uHx
 czK
 iRE
@@ -48312,7 +48312,7 @@ pdT
 iWe
 jID
 lGe
-qDL
+utW
 lGe
 lGe
 qOR
@@ -48434,7 +48434,7 @@ lCn
 hbs
 cPy
 hpT
-hDa
+iXz
 uHx
 czK
 iRE
@@ -48610,7 +48610,7 @@ iRE
 sir
 sPu
 sPu
-eas
+gbg
 qjP
 huw
 sPu
@@ -48755,9 +48755,9 @@ luS
 luS
 fqK
 pRt
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 iNj
 mmH
 jdc
@@ -48933,8 +48933,8 @@ luS
 xCu
 luS
 sQv
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 oyS
@@ -48947,8 +48947,8 @@ leK
 qNe
 ayK
 oyS
-qXp
-qXp
+pQG
+pQG
 oyS
 brm
 uMk
@@ -49112,7 +49112,7 @@ luS
 xCu
 luS
 ykj
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -49126,8 +49126,8 @@ aTh
 sJo
 rkG
 jdc
-qXp
-qXp
+pQG
+pQG
 jdc
 oyS
 oyS
@@ -49240,7 +49240,7 @@ aCu
 gJC
 glW
 aCu
-oWC
+seG
 aCu
 hPI
 aCu
@@ -49291,7 +49291,7 @@ luS
 xCu
 luS
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -49305,9 +49305,9 @@ xCu
 xUp
 ayK
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -49373,7 +49373,7 @@ pdT
 nFe
 jam
 nFe
-fSU
+rgG
 nFe
 pdT
 pWv
@@ -49406,7 +49406,7 @@ tPI
 lJQ
 xSP
 tPI
-nsg
+uwa
 lLA
 lcI
 ofd
@@ -49418,9 +49418,9 @@ kWZ
 glW
 glW
 aCu
-oWC
-oWC
-oWC
+seG
+seG
+seG
 uQM
 uQM
 xCu
@@ -49470,7 +49470,7 @@ luS
 luS
 luS
 iXN
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -49484,9 +49484,9 @@ xCu
 xUp
 nkb
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 lnE
 goW
 mmH
@@ -49585,7 +49585,7 @@ tPI
 tPI
 nKY
 tPI
-kLE
+sRc
 xyZ
 dBN
 bdu
@@ -49595,11 +49595,11 @@ aCu
 glW
 aCu
 aCu
-oWC
-oWC
-oWC
+seG
+seG
+seG
 eVj
-oWC
+seG
 aZZ
 nLd
 wRn
@@ -49649,7 +49649,7 @@ luS
 luS
 sQv
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -49665,8 +49665,8 @@ mnF
 oyS
 cYE
 xCu
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 dpj
@@ -49764,21 +49764,21 @@ aCu
 tPI
 tPI
 tPI
-kLE
-qeP
-hhg
-sOi
-mIa
+sRc
+ioa
+cnq
+nJO
+oVB
 tPI
 pvJ
 jVO
 mpj
-oWC
-oWC
-oWC
+seG
+seG
+seG
 jAR
 vCT
-oWC
+seG
 uQM
 uQM
 aCu
@@ -49828,7 +49828,7 @@ luS
 luS
 sQv
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -49845,8 +49845,8 @@ uMk
 mwo
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 rJn
 qIv
 mQE
@@ -49911,7 +49911,7 @@ vYU
 qiK
 fmA
 fmA
-xAL
+bMq
 jam
 pdT
 pWv
@@ -49951,9 +49951,9 @@ tXd
 tPI
 glW
 glW
-oWC
-oWC
-ubY
+seG
+seG
+sZS
 jAR
 uuL
 aCu
@@ -49961,8 +49961,8 @@ tps
 xqd
 aCu
 nXx
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 aCu
@@ -50007,7 +50007,7 @@ luS
 luS
 iuj
 tYR
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -50025,9 +50025,9 @@ oyS
 dpj
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 rJn
 oyS
 oyS
@@ -50090,7 +50090,7 @@ uvH
 qxj
 duF
 fmA
-xAL
+bMq
 jam
 nNS
 xnV
@@ -50130,8 +50130,8 @@ qEe
 aCu
 xbI
 aCu
-oWC
-ubY
+seG
+sZS
 eVj
 pUF
 aCu
@@ -50140,8 +50140,8 @@ dda
 uQM
 aCu
 aCu
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 aCu
@@ -50205,8 +50205,8 @@ oyS
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 oyS
 mIo
 mmH
@@ -50268,7 +50268,7 @@ nFe
 nFe
 gql
 ash
-nip
+gAY
 nFe
 nFe
 pdT
@@ -50309,19 +50309,19 @@ kOp
 jVO
 jJB
 pvJ
-oWC
-ubY
+seG
+sZS
 uCv
 pUF
 aCu
 aCu
 fAT
 uQM
-oWC
-oWC
-oWC
-oWC
-oWC
+seG
+seG
+seG
+seG
+seG
 aCu
 xDC
 aCu
@@ -50384,8 +50384,8 @@ gEH
 iNj
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 oyS
@@ -50445,7 +50445,7 @@ eyC
 sBK
 lDm
 nFe
-oCO
+rkB
 nFe
 jam
 nFe
@@ -50487,20 +50487,20 @@ aCu
 aCu
 mpj
 aCu
-oWC
-oWC
-ubY
-njI
+seG
+seG
+sZS
+gMQ
 pUF
 aCu
 pRz
 hPI
 uQM
-oWC
+seG
 xCu
 xCu
 xCu
-oWC
+seG
 aCu
 aCu
 aCu
@@ -50557,16 +50557,16 @@ viL
 vaV
 hTw
 udO
-qXp
+pQG
 wUL
 wUL
 wUL
 xCu
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 jHT
 oyS
 ehj
@@ -50664,23 +50664,23 @@ aCu
 kKC
 aCu
 aCu
-oWC
-oWC
-oWC
+seG
+seG
+seG
 xCu
-ubY
-oPu
+sZS
+oXi
 pUF
 aCu
 uOp
 uQM
 hlQ
-oWC
+seG
 xCu
 xCu
 xCu
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 luS
@@ -50723,8 +50723,8 @@ luS
 luS
 fqK
 nWf
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 ugt
@@ -50735,17 +50735,17 @@ aTh
 pBI
 aTh
 aTh
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 gEH
 wUL
 xCu
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 mmH
 skr
 oyS
@@ -50820,7 +50820,7 @@ jID
 qOR
 nVU
 lGe
-qDL
+utW
 lGe
 qOR
 nVU
@@ -50843,23 +50843,23 @@ aCu
 sdi
 aCu
 pvJ
-oWC
+seG
 xCu
 xCu
 xCu
-ubY
-kYN
+sZS
+quH
 pUF
 aCu
 pDJ
 uQM
 bLO
-oWC
+seG
 xCu
 xCu
 xCu
 xCu
-oWC
+seG
 aCu
 aCu
 luS
@@ -50901,8 +50901,8 @@ luS
 luS
 luS
 sQv
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -50914,17 +50914,17 @@ oyS
 oyS
 mef
 jdc
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 wUL
 wUL
 xCu
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 skr
 jBJ
 lQo
@@ -50934,9 +50934,9 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 joh
 eCA
 hkB
@@ -51022,23 +51022,23 @@ aCu
 aCu
 aCu
 aCu
-oWC
-oWC
+seG
+seG
 xCu
 xCu
 xCu
-ubY
+sZS
 oHU
 pmj
 tps
 dRs
 mpj
-oWC
+seG
 xCu
 xCu
 xCu
 xCu
-oWC
+seG
 aCu
 aCu
 luS
@@ -51080,7 +51080,7 @@ luS
 luS
 luS
 sQv
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -51094,16 +51094,16 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 wUL
 ahA
 xCu
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 dpj
 oyS
 lQo
@@ -51111,10 +51111,10 @@ jdc
 mXZ
 oyS
 uMk
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
 sir
 kji
 slu
@@ -51201,8 +51201,8 @@ azQ
 aCu
 aCu
 aCu
-oWC
-oWC
+seG
+seG
 xCu
 xCu
 xCu
@@ -51212,12 +51212,12 @@ xCu
 fHi
 hPI
 uOp
-oWC
-oWC
+seG
+seG
 xCu
 xCu
 xCu
-oWC
+seG
 aCu
 aCu
 luS
@@ -51259,7 +51259,7 @@ luS
 luS
 iXN
 iXN
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -51273,16 +51273,16 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 oyS
 sTC
 xCu
 xCu
 xCu
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 oyS
 lQo
@@ -51290,9 +51290,9 @@ oyS
 oyS
 dpj
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 dlz
 hGi
 kji
@@ -51381,7 +51381,7 @@ mpj
 kKC
 aCu
 aCu
-oWC
+seG
 xCu
 xCu
 xCu
@@ -51392,11 +51392,11 @@ efD
 uQM
 ctJ
 aCu
-oWC
+seG
 xCu
 xCu
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 luS
@@ -51438,7 +51438,7 @@ luS
 luS
 sQv
 ykj
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -51452,7 +51452,7 @@ lQo
 xCu
 xCu
 xCu
-qXp
+pQG
 oyS
 uMk
 oyS
@@ -51460,8 +51460,8 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 nyl
 pmv
 lQo
@@ -51469,8 +51469,8 @@ xCu
 jdc
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 iRE
 sir
 sir
@@ -51560,7 +51560,7 @@ aCu
 sdi
 aCu
 aCu
-oWC
+seG
 xCu
 xCu
 xCu
@@ -51571,10 +51571,10 @@ xCu
 uQM
 uQM
 gzm
-oWC
+seG
 xCu
 xCu
-oWC
+seG
 aCu
 xDC
 aCu
@@ -51617,8 +51617,8 @@ luS
 luS
 sQv
 sQv
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -51639,16 +51639,16 @@ xCu
 xCu
 xCu
 xCu
-qXp
-qXp
+pQG
+pQG
 mmH
 xCu
 lQo
 xCu
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 oyS
 iRE
 iRE
@@ -51739,8 +51739,8 @@ aCu
 aCu
 aCu
 pvJ
-oWC
-oWC
+seG
+seG
 xCu
 xCu
 lPP
@@ -51750,10 +51750,10 @@ wBN
 nKS
 hVU
 aCu
-oWC
-oWC
-oWC
-oWC
+seG
+seG
+seG
+seG
 aCu
 aCu
 aCu
@@ -51777,7 +51777,7 @@ sbZ
 hne
 hne
 hne
-xVN
+cQG
 owL
 quM
 pER
@@ -51797,8 +51797,8 @@ luS
 dvf
 dvf
 ksg
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 nsA
@@ -51819,19 +51819,19 @@ xCu
 xCu
 xCu
 xCu
-qXp
+pQG
 oyS
 xCu
 lQo
 xCu
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 iRE
-qXp
+pQG
 xCu
 xCu
 lQo
@@ -51919,7 +51919,7 @@ aCu
 aCu
 kKC
 aCu
-oWC
+seG
 xCu
 lPP
 oiY
@@ -51956,7 +51956,7 @@ uAX
 pMY
 tvb
 hne
-pfy
+gBQ
 uZE
 joZ
 iIz
@@ -51998,19 +51998,19 @@ xCu
 xCu
 xCu
 xCu
-qXp
+pQG
 skr
 xCu
 xCu
 xCu
 dpj
 oyS
-qXp
+pQG
 oyS
 qew
 oyS
 oyS
-qXp
+pQG
 xCu
 lQo
 lQo
@@ -52098,7 +52098,7 @@ kOZ
 aCu
 aCu
 aCu
-oWC
+seG
 lPP
 lPP
 wuF
@@ -52177,19 +52177,19 @@ lQo
 lQo
 xCu
 xCu
-qXp
+pQG
 oyS
 xCu
 xCu
 cYE
 oyS
 mmH
-qXp
+pQG
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 lQo
@@ -52277,11 +52277,11 @@ kOZ
 aCu
 cVP
 pvJ
-oWC
-oWC
+seG
+seG
 lPP
-vFE
-vFE
+wCf
+wCf
 tnd
 lPP
 uQM
@@ -52290,8 +52290,8 @@ hVU
 uQM
 add
 gfa
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 aCu
@@ -52316,9 +52316,9 @@ aFQ
 czY
 hEn
 xAp
-sGK
-jfK
-dKB
+kBQ
+brZ
+cfB
 fPv
 mSy
 mSy
@@ -52336,8 +52336,8 @@ ksg
 sir
 sir
 kMT
-qXp
-qXp
+pQG
+pQG
 sGX
 rkG
 xCu
@@ -52356,7 +52356,7 @@ lQo
 lQo
 lQo
 xCu
-qXp
+pQG
 oyS
 mmH
 oyS
@@ -52366,8 +52366,8 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 lQo
 lQo
@@ -52470,7 +52470,7 @@ nLd
 uQM
 xCu
 xCu
-oWC
+seG
 aCu
 aCu
 aCu
@@ -52514,7 +52514,7 @@ dvf
 ksg
 sir
 sir
-qXp
+pQG
 xCu
 xCu
 sdH
@@ -52545,8 +52545,8 @@ swd
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 lQo
@@ -52649,8 +52649,8 @@ xmP
 hPI
 aCu
 xCu
-oWC
-oWC
+seG
+seG
 xDC
 aCu
 luS
@@ -52693,7 +52693,7 @@ pch
 ksg
 sir
 iRE
-qXp
+pQG
 xCu
 xCu
 xUp
@@ -52725,7 +52725,7 @@ oyS
 oyS
 oyS
 oyS
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -52828,8 +52828,8 @@ vyz
 dRs
 aCu
 xCu
-oWC
-oWC
+seG
+seG
 aCu
 aCu
 luS
@@ -52872,7 +52872,7 @@ dvf
 ksg
 sir
 iRE
-qXp
+pQG
 xCu
 xCu
 odg
@@ -52904,7 +52904,7 @@ mmH
 fAB
 oyS
 oyS
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -53008,7 +53008,7 @@ hVU
 uQM
 aCu
 xCu
-oWC
+seG
 aCu
 aCu
 luS
@@ -53049,9 +53049,9 @@ dvf
 dvf
 dvf
 ksg
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 xCu
 goW
 xUp
@@ -53072,7 +53072,7 @@ lQo
 lQo
 xCu
 xCu
-qXp
+pQG
 mmH
 dpj
 kOZ
@@ -53082,8 +53082,8 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -53187,7 +53187,7 @@ joI
 eFe
 aCu
 xCu
-oWC
+seG
 aCu
 aCu
 luS
@@ -53228,8 +53228,8 @@ luS
 dvf
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 mwo
@@ -53251,7 +53251,7 @@ xCu
 xCu
 xCu
 xCu
-qXp
+pQG
 oyS
 oyS
 kOZ
@@ -53260,8 +53260,8 @@ xCu
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 lQo
@@ -53350,11 +53350,11 @@ aCu
 mpj
 eUY
 qyW
-ifP
+aPK
 fzC
 xeh
 vmI
-bpo
+frm
 vOV
 djr
 lPP
@@ -53366,7 +53366,7 @@ lPP
 uQM
 uQM
 xCu
-oWC
+seG
 wRn
 wRn
 qqX
@@ -53407,8 +53407,8 @@ luS
 pch
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 mXZ
 oyS
@@ -53430,7 +53430,7 @@ mXZ
 xCu
 xCu
 xCu
-qXp
+pQG
 kFj
 oyS
 kOZ
@@ -53440,7 +53440,7 @@ oyS
 oyS
 oyS
 oyS
-qXp
+pQG
 xCu
 xCu
 lQo
@@ -53530,16 +53530,16 @@ aCu
 aCu
 lPP
 lPP
-iDs
+hcS
 hTk
 xrz
 cyw
 cxX
 qdQ
 lPP
-mAV
+bNO
 oSZ
-dOI
+kwW
 lPP
 uOp
 qOD
@@ -53586,8 +53586,8 @@ luS
 dvf
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 cYE
 oyS
@@ -53619,7 +53619,7 @@ oyS
 mmH
 fAB
 oyS
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -53710,7 +53710,7 @@ aCu
 aCu
 lPP
 lPP
-iSO
+itX
 lPP
 lPP
 cif
@@ -53765,8 +53765,8 @@ kji
 dvf
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 fWt
 swd
@@ -53798,7 +53798,7 @@ oyS
 oyS
 oyS
 oyS
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -53944,8 +53944,8 @@ kji
 dvf
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 dFl
 mmH
@@ -53976,8 +53976,8 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -54123,8 +54123,8 @@ jkJ
 cgQ
 dvf
 ewV
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 hcY
@@ -54155,11 +54155,11 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -54237,7 +54237,7 @@ mpj
 aCu
 sPd
 wpu
-opW
+pUB
 wpu
 nKS
 aCu
@@ -54302,8 +54302,8 @@ qiO
 kji
 dvf
 ksg
-qXp
-qXp
+pQG
+pQG
 xCu
 lQo
 lQo
@@ -54322,7 +54322,7 @@ xCu
 xCu
 wUL
 wUL
-qXp
+pQG
 xCu
 xCu
 aAn
@@ -54481,8 +54481,8 @@ qiO
 kji
 dvf
 ksg
-qXp
-qXp
+pQG
+pQG
 xCu
 lQo
 lQo
@@ -54501,8 +54501,8 @@ xCu
 xCu
 wUL
 wUL
-qXp
-qXp
+pQG
+pQG
 xCu
 oyS
 oyS
@@ -54610,7 +54610,7 @@ kKC
 vgU
 vgU
 lPP
-tOl
+tuH
 cyw
 gVY
 gzm
@@ -54619,7 +54619,7 @@ eGU
 nxc
 nxc
 rPA
-vFU
+rxo
 rPA
 nxc
 nxc
@@ -54680,8 +54680,8 @@ xCu
 xCu
 mXZ
 uMk
-qXp
-qXp
+pQG
+pQG
 oyS
 oyS
 swd
@@ -54775,7 +54775,7 @@ mLs
 esG
 ych
 qZP
-lou
+rDj
 bzS
 aCu
 aCu
@@ -54871,9 +54871,9 @@ fAB
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 oyS
 poE
@@ -54954,7 +54954,7 @@ mYl
 esG
 ych
 kKE
-aZL
+koJ
 bzS
 mpj
 wAc
@@ -54976,7 +54976,7 @@ eGU
 eGU
 rPA
 epr
-lEr
+beE
 gGk
 qmT
 aHv
@@ -55031,10 +55031,10 @@ lQo
 xCu
 xUp
 qDJ
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
 oyS
 oyS
 dpj
@@ -55049,11 +55049,11 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
+pQG
 skr
 rJn
 jTS
@@ -55146,16 +55146,16 @@ aCu
 aCu
 xCu
 lPP
-lkR
+iPe
 cwY
-pCb
+gHk
 lPP
 eGU
 eGU
 eGU
 rPA
 hPE
-cYx
+fMl
 tkr
 suG
 hNw
@@ -55210,9 +55210,9 @@ xCu
 xCu
 xUp
 ayK
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 mwo
 jdc
 iNj
@@ -55228,8 +55228,8 @@ oyS
 oyS
 oyS
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -55334,7 +55334,7 @@ eGU
 nxc
 nxc
 eIt
-cNm
+xVD
 pBS
 nUE
 lUu
@@ -55396,7 +55396,7 @@ oyS
 iNj
 skr
 xeO
-qXp
+pQG
 xCu
 xCu
 xCu
@@ -55406,8 +55406,8 @@ fAB
 oyS
 iRE
 iRE
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 xCu
@@ -55511,9 +55511,9 @@ gxH
 eGU
 eGU
 nxc
-fwc
+rVI
 ilL
-vqN
+hbN
 bgz
 uCg
 nUE
@@ -55574,8 +55574,8 @@ dAz
 oyS
 skr
 oyS
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 sir
@@ -55585,8 +55585,8 @@ iRE
 iRE
 iRE
 sir
-qXp
-qXp
+pQG
+pQG
 xCu
 xCu
 rJn
@@ -55745,16 +55745,16 @@ oyS
 uMk
 xUp
 cZw
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
 oyS
 rJn
 rGj
 oyS
 mmH
-qXp
-qXp
+pQG
+pQG
 xCu
 sir
 sir
@@ -55765,7 +55765,7 @@ sir
 sir
 sir
 sir
-qXp
+pQG
 xCu
 xCu
 qwh
@@ -55924,10 +55924,10 @@ oyS
 oyS
 ryW
 ayK
-qXp
-qXp
-qXp
-qXp
+pQG
+pQG
+pQG
+pQG
 iRE
 oyS
 swd
@@ -56426,14 +56426,14 @@ oBJ
 oBJ
 oBJ
 oBJ
-nyW
+vDp
 oBJ
 oBJ
 oBJ
 qiO
 qiO
 cRI
-jyT
+dmC
 jyl
 uet
 gqz
@@ -57679,7 +57679,7 @@ oBJ
 oBJ
 oBJ
 oBJ
-fTt
+xGk
 oBJ
 oBJ
 oBJ
@@ -57865,7 +57865,7 @@ wJG
 wJG
 azh
 sSo
-cQb
+nrR
 iOd
 oxB
 iGr
@@ -58024,7 +58024,7 @@ sLJ
 vCM
 nQG
 sLJ
-saV
+hdp
 pXP
 pXP
 pXP
@@ -58044,7 +58044,7 @@ aPo
 aPo
 aPo
 sSo
-nYp
+gdr
 lRN
 iGr
 xxa
@@ -58580,7 +58580,7 @@ aPo
 wJG
 wJG
 vAG
-bOh
+bdw
 qgd
 aPE
 wFH
@@ -58759,13 +58759,13 @@ wJG
 wJG
 wJG
 vAG
-cQb
+nrR
 lJZ
 lJZ
 sVT
 mvn
 eJW
-ers
+aPl
 erP
 wJG
 wJG
@@ -59186,7 +59186,7 @@ uJd
 mIg
 ckI
 uJd
-izN
+ujr
 uJd
 uJd
 uJd
@@ -59733,7 +59733,7 @@ uHF
 qgE
 uAK
 xlU
-vnQ
+fsk
 lQo
 sTP
 sTP
@@ -71403,9 +71403,9 @@ aWa
 czd
 edM
 fxX
-qnp
+wea
 ldv
-bNA
+rIh
 pQp
 roR
 nyr
@@ -72833,9 +72833,9 @@ iDQ
 aQL
 aWa
 der
-hjr
+vnk
 gUq
-gTc
+sJT
 nho
 pIg
 qPc
@@ -73014,7 +73014,7 @@ aWa
 dlV
 xDe
 hgs
-mCn
+xNI
 nni
 pIF
 xDe
@@ -73193,7 +73193,7 @@ aWa
 dBS
 wue
 hiY
-sFI
+iRp
 nAC
 xDe
 qVW
