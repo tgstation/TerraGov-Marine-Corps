@@ -1,3 +1,6 @@
+/datum/interior/armored/autoloader
+	template = /datum/map_template/interior/autoloader_tank
+
 /datum/interior/armored
 	template = /datum/map_template/interior/medium_tank
 	///main cannon ammo management
@@ -12,6 +15,8 @@
 	secondary_breech = null
 	door = null
 	return ..()
+
+
 
 /datum/interior/armored/mob_enter(mob/enterer)
 	if(door)

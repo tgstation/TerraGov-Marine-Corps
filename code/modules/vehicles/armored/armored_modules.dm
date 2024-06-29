@@ -190,3 +190,20 @@
 	icon_state = "cloner_interior"
 	interior_typepath = /datum/interior/armored/clone_bay
 	set_max_occupants = 12
+
+// Tank Module : Autoloader
+
+/obj/item/tank_module/interior/autoloader
+	name = "autoloader module"
+	desc = "An autoloader, designed to replace a tank loader at the cost of a slower reload time"
+	interior_typepath = /datum/interior/armored/autoloader
+	is_driver_module = FALSE
+
+
+/obj/item/tank_module/interior/autoloader/on_equip(obj/vehicle/sealed/armored/vehicle, attach_right)
+	. = ..()
+	if(!.)
+		return
+	vehicle.initialize_controller_action_type(/datum/action/vehicle/sealed/armored/load_autoloader)
+	vehicle.initialize_controller_action_type(/datum/action/vehicle/sealed/armored/load_autoloader, VEHICLE_CONTROL_SETTINGS)
+

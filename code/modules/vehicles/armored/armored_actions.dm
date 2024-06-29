@@ -223,3 +223,14 @@
 	visual_references[VREF_MUTABLE_AMMO_COUNTER] = ammo_counter
 	button.add_overlay(ammo_counter)
 	return ..()
+
+/datum/action/vehicle/sealed/armored/load_autoloader
+
+	name = "Reload"
+	action_icon_state = "mech_zoom_off"
+
+/datum/action/vehicle/sealed/armored/load_autoloader/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants) || !chassis.interior?.breech)
+		return
+	var/obj/structure/gun_breech/autoloader/weapon_breech = chassis.interior?.breech
+	weapon_breech.autoloader_load_gun()
