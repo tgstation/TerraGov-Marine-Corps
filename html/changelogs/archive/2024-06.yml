@@ -343,3 +343,28 @@
   - balance: 'Daedalus Prison: Way more r walls, more rocks for xenos to heal, glass
       ceilings in many prison areas (tad can land) and more RSR excavation sites in
       the prison.'
+2024-06-29:
+  Apple-107:
+  - rscadd: Added new tadpole- the Outrider- an asymmetric design for carrying large
+      vehicles.
+  Helg2:
+  - qol: sound preferences were moved from "Preferences" tab to "Game Preferences"
+  - code_imp: Ammo.dmi responding for all the ammo sprites in the game has been reorganizes,
+      please report any missing icons.
+  JackTheJackhammer:
+  - bugfix: Tanks can no longer fire the same shell twice
+  Joe13413:
+  - imageadd: added new rav rouny sprites
+  - imagedel: deleted old rav rouny sprites
+  Lumipharon:
+  - balance: 'Campaign: Axe loadouts no longer have access to Russian Red
+
+      balance Campaign: Added a sword and shield loadout for marine standards, unlocked
+      with Sword Mastery'
+  - balance: 'Campaign: Sword/pistol loadout options no longer prevent you from getting
+      two swords/pistols'
+  - imageadd: Readd visible module sprites for Xenonauten armour
+  Wisemonster:
+  - balance: Widow Primo now includes the sow ability
+  - balance: The impact AoE damage of pyrogen's fireball will now inflict 2 stacks
+      of melting fire on hit.

@@ -1,4 +1,0 @@
-author: "JackTheJackhammer"
-delete-after: True
-changes:
-  - bugfix: "Tanks can no longer fire the same shell twice"
