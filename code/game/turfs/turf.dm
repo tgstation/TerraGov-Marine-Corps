@@ -650,6 +650,9 @@
 /turf/open/floor/plating/ground/get_dirt_type()
 	return DIRT_TYPE_GROUND
 
+/turf/open/urbanshale/get_dirt_type()
+	return DIRT_TYPE_GROUND
+
 /turf/open/floor/plating/ground/mars/get_dirt_type()
 	return DIRT_TYPE_MARS
 

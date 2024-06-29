@@ -297,3 +297,74 @@
   breadhunt:
   - rscadd: Injectors/hyposprays now display instructions for using them in their
       description
+2024-06-24:
+  TiviPlus:
+  - bugfix: fixed tank vendor ui not resetting on new purchase
+  - bugfix: Probably fixed secondary tank weapon overlays duplicating
+  - bugfix: Fixed hiding ability let you layer under tank
+  - bugfix: 'Fixed tank aiming at darkness trying to shoot across zlevels: aiming
+      at darkness now shoots at your actual target'
+  - bugfix: Fixed tank secondary flamer not being in valhalla
+  Xander3359:
+  - rscadd: Adds duffelbags
+2024-06-25:
+  Ldip999:
+  - rscadd: Gorger heals are now tracked
+  - bugfix: Fixes incorrect tip about larva growth being only slowed during stasis
+  Xander3359:
+  - spellcheck: fixed a typo "suddendly"
+  - qol: Syringes can now change injection size
+2024-06-26:
+  Ldip999:
+  - rscadd: Heavy SMG ammo boxes
+  Lumipharon:
+  - rscadd: Added the SOM hover bike
+  - bugfix: fixed a vehicle runtime
+  - bugfix: fixed some broken sprites
+  - code_imp: small perf improvement to light SS
+  Wisemonster:
+  - balance: Ravage will now hit any part of the tank and APC.
+  - balance: Gargoyles will no longer detect simple animals, such as mice or cows.
+  - balance: Gargoyles will now detect vehicles, such as bikes, mechs, and tanks/apcs.
+2024-06-27:
+  Barnet2:
+  - bugfix: Fixed improper names showing when you played as a xeno without your rank
+      turned on
+  JackTheJackhammer:
+  - rscadd: Adds a weight check to the codex's text generation for all items that
+      act as storage
+  Wisemonster:
+  - balance: Pyrogen's fireball and heat ray will now damage tanks and apcs based
+      on how many tiles are hit, 5 damage per tile with fireball, and 15 damage per
+      tile, per tick with heat ray.
+  - bugfix: Fixed pyrogen's fireball dealing damage to friendly xenos
+2024-06-28:
+  Barnet2:
+  - balance: 'Daedalus Prison: Way more r walls, more rocks for xenos to heal, glass
+      ceilings in many prison areas (tad can land) and more RSR excavation sites in
+      the prison.'
+2024-06-29:
+  Apple-107:
+  - rscadd: Added new tadpole- the Outrider- an asymmetric design for carrying large
+      vehicles.
+  Helg2:
+  - qol: sound preferences were moved from "Preferences" tab to "Game Preferences"
+  - code_imp: Ammo.dmi responding for all the ammo sprites in the game has been reorganizes,
+      please report any missing icons.
+  JackTheJackhammer:
+  - bugfix: Tanks can no longer fire the same shell twice
+  Joe13413:
+  - imageadd: added new rav rouny sprites
+  - imagedel: deleted old rav rouny sprites
+  Lumipharon:
+  - balance: 'Campaign: Axe loadouts no longer have access to Russian Red
+
+      balance Campaign: Added a sword and shield loadout for marine standards, unlocked
+      with Sword Mastery'
+  - balance: 'Campaign: Sword/pistol loadout options no longer prevent you from getting
+      two swords/pistols'
+  - imageadd: Readd visible module sprites for Xenonauten armour
+  Wisemonster:
+  - balance: Widow Primo now includes the sow ability
+  - balance: The impact AoE damage of pyrogen's fireball will now inflict 2 stacks
+      of melting fire on hit.

@@ -7,6 +7,7 @@
 #define MAP_ICE_COLONY "Ice Colony"
 #define MAP_ICY_CAVES "Icy Caves"
 #define MAP_LV_624 "LV624"
+#define MAP_LV_759 "LV759"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"

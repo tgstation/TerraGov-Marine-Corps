@@ -65,6 +65,7 @@
 		"_combat_tad" = 'icons/ui_icons/dropshippicker/_combat_tad.png',
 		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
+		"_outrider" = 'icons/ui_icons/dropshippicker/_outrider.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)

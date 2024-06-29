@@ -1582,7 +1582,9 @@
 /area/riptide/inside/syndicatehead)
 "biH" = (
 /obj/structure/window/framed/wood,
-/obj/structure/curtain/temple,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/riptide/inside/beachden)
 "bjk" = (
@@ -13065,7 +13067,9 @@
 /area/riptide/inside/syndicatestarboard)
 "jpg" = (
 /obj/structure/window/framed/wood,
-/obj/structure/curtain/temple,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/riptide/inside/chapel)
 "jpk" = (
@@ -17347,7 +17351,9 @@
 	},
 /area/riptide/outside/northislands)
 "mjg" = (
-/obj/structure/curtain/temple,
+/obj/structure/curtain/temple{
+	dir = 4
+	},
 /turf/open/floor/wood/thatch,
 /area/riptide/inside/tikihut)
 "mjl" = (
@@ -21061,7 +21067,9 @@
 /area/riptide/outside/southjungle)
 "oLj" = (
 /obj/structure/window/framed/wood,
-/obj/structure/curtain/open/temple,
+/obj/structure/curtain/open/temple{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/riptide/inside/chapel)
 "oLs" = (

@@ -638,6 +638,9 @@
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/damage_mult = 3
+	if(ishitbox(target_obj))
+		var/obj/hitbox/target_hitbox = target_obj
+		target_obj = target_hitbox.root
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
@@ -740,29 +743,37 @@
 	hitscan_effect_icon = "particle_lance"
 	hud_state = "plasma_blast"
 	hud_state_empty = "battery_empty_flash"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_SNIPER
 	bullet_color = LIGHT_COLOR_PURPLE_PINK
 	armor_type = ENERGY
 	max_range = 40
 	accurate_range = 10
-	accuracy = 15
-	damage = 100
-	penetration = 150
+	accuracy = 25
+	damage = 850
+	penetration = 120
 	sundering = 30
+	damage_falloff = 5
+	on_pierce_multiplier = 0.95
+	barricade_clear_distance = 4
+
+/datum/ammo/energy/particle_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
+		return
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_radiation(living_victim.modify_by_armor(15, BIO, 25), 3)
+
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/damage_mult = 3
 	if(ishitbox(target_obj)) //yes this is annoying.
 		var/obj/hitbox/hitbox = target_obj
 		target_obj = hitbox.root
+
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
-		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
-			damage_mult = 8
-		for(var/mob/living/living_victim AS in vehicle_target.occupants)//staggerstun will fail on tank occupants if we just use staggerstun
-			living_victim.Stagger(3 SECONDS)
+		for(var/mob/living/living_victim AS in vehicle_target.occupants)
+			living_victim.apply_radiation(living_victim.modify_by_armor(12, BIO, 25), 3)
 			living_victim.flash_pain()
-			shake_camera(living_victim, 0.3 SECONDS, 2)
-			to_chat(living_victim, "You are knocked about by the impact, staggering you!")
-	proj.damage *= damage_mult
-	target_obj.Shake(4, 4, 0.6 SECONDS, 0.04 SECONDS)
+
+	if(target_obj.obj_integrity > target_obj.modify_by_armor(proj.damage, ENERGY, proj.penetration, attack_dir = get_dir(target_obj, proj)))
+		proj.proj_max_range = 0
+

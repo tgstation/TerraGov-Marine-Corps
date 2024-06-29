@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixed tank aiming at darkness trying to shoot across zlevels: aiming at darkness now shoots at your actual target"
