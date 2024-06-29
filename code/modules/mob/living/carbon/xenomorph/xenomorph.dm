@@ -153,6 +153,9 @@
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+		real_name = name
+		if(mind)
+			mind.name = name
 		return
 	switch(playtime_mins)
 		if(0 to 600)

@@ -120,6 +120,13 @@
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
 			data["show_typing"] = show_typing
+			data["toggle_adminhelp_sound"] = !!(toggles_sound & SOUND_ADMINHELP)
+			data["toggle_admin_music"] = !!(toggles_sound & SOUND_MIDI)
+			data["toggle_ambience_sound"] = !!(toggles_sound & SOUND_AMBIENCE)
+			data["toggle_lobby_music"] = !!(toggles_sound & SOUND_LOBBY)
+			data["toggle_instruments_sound"] = !(toggles_sound & SOUND_INSTRUMENTS_OFF)
+			data["toggle_weather_sound"] = !!(toggles_sound & SOUND_WEATHER)
+			data["toggle_round_end_sounds"] = !(toggles_sound & SOUND_NOENDOFROUND)
 			data["tooltips"] = tooltips
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
@@ -715,6 +722,37 @@
 				closeToolTip(usr)
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
+
+		if("toggle_adminhelp_sound")
+			toggles_sound ^= SOUND_ADMINHELP
+
+		if("toggle_admin_music")
+			toggles_sound ^= SOUND_MIDI
+			if(!(toggles_sound & SOUND_MIDI))
+				user.stop_sound_channel(CHANNEL_MIDI)
+
+		if("toggle_ambience_sound")
+			toggles_sound ^= SOUND_AMBIENCE
+			current_client.update_ambience_pref()
+			if(!(toggles_sound & SOUND_AMBIENCE))
+				user.stop_sound_channel(CHANNEL_AMBIENCE)
+
+		if("toggle_lobby_music")
+			toggles_sound ^= SOUND_LOBBY
+			if(isnewplayer(user)) // can't do early return here, because buttons won't update properly outside of lobby
+				if(toggles_sound & SOUND_LOBBY)
+					current_client.play_title_music()
+				else
+					user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+
+		if("toggle_instruments_sound")
+			toggles_sound ^= SOUND_INSTRUMENTS_OFF
+
+		if("toggle_weather_sound")
+			toggles_sound ^= SOUND_WEATHER
+
+		if("toggle_round_end_sounds")
+			toggles_sound ^= SOUND_NOENDOFROUND
 
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
