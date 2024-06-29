@@ -155,8 +155,11 @@
 		return list(get_turf(entering_thing))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
-	. = ..()
-	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, TRUE)
+	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
+	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
+		shake_camera(nearby_mob, 4, 2)
+	return ..()
 
 /obj/vehicle/sealed/armored/update_icon_state()
 	. = ..()
