@@ -405,7 +405,7 @@
 /area/daedalusprison/inside/landingzoneone
 	name = "Landing Zone One"
 	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD
+	area_flags = NO_DROPPOD|MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/daedalusprison/inside/telecomms

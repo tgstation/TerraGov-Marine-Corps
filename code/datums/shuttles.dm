@@ -1,6 +1,8 @@
 /datum/map_template/shuttle
 	name = "Base Shuttle Template"
 	var/prefix = "_maps/shuttles/"
+	///Name of the file to load (without the .dmm extension)
+	var/file_name
 	var/suffix
 	var/port_id
 	var/shuttle_id = "SHOULD NEVER EXIST"
@@ -24,7 +26,10 @@
 	if(shuttle_id == "SHOULD NEVER EXIST")
 		stack_trace("invalid shuttle datum")
 	//shuttle_id = "[port_id]_[suffix]"
-	mappath = "[prefix][shuttle_id][suffix].dmm"
+	if(file_name)
+		mappath = "[prefix][file_name].dmm"
+	else	//TO-DO: change all the other shuttles to use file_name so this else statement is no longer necessary
+		mappath = "[prefix][shuttle_id][suffix].dmm"
 	return ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
@@ -106,52 +111,98 @@
 
 // Shuttles start here:
 /datum/map_template/shuttle/dropship_one
-	shuttle_id = SHUTTLE_ALAMO
 	name = "Alamo"
+	file_name = "alamo"
+	shuttle_id = SHUTTLE_DROPSHIP
 
 /datum/map_template/shuttle/dropship_two
-	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
+	file_name = "normandy"
+	shuttle_id = SHUTTLE_NORMANDY
 
 /datum/map_template/shuttle/cas
-	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
+	file_name = "casplane"
+	shuttle_id = SHUTTLE_CAS
 
-/datum/map_template/shuttle/minidropship
-	shuttle_id = SHUTTLE_TADPOLE
-	name = "Tadpole Drop Shuttle"
-	suffix = "_standard" // remember to also add an image to icons/ui_icons/dropshippicker and /datum/asset/simple/dropshippicker
+/*----------------- Flyable shuttle types -----------------*/
+//The 2 variables in this type could go on /shuttle, but the reason this type exists is to use subtypesof() in the shuttle picker
+/datum/map_template/shuttle/flyable
+	shuttle_id = "ONLY PUTTING THIS BECAUSE IT RUNTIMES IF THIS IS NULL. AWFUL."
+	///Name used for the shuttle picker console
+	var/display_name = "Standard Shuttle"
+	///If TRUE, this type of shuttle is only available to players if the gamemode or an admin permits it
+	var/restricted = FALSE
+
+/datum/map_template/shuttle/flyable/dropship
+	name = "Alamo Dropship"
+	description = "A large and reliable vessel. The standard model of the Alamo has a large cargo and personnel capacity.\
+				It features 2 sentry deployment ports on the front and 2 manned side turrets."
+	display_name = "Standard Dropship"
+	file_name = "dropship"
+	shuttle_id = SHUTTLE_DROPSHIP
+
+/datum/map_template/shuttle/flyable/dropship/command
+	name = "Alamo Mobile Command Center"
+	description = "This configuration provides a posting for a commanding officer, trading some space for the installation of a small CIC. .\
+				The command center features a map table, an overwatch console, and an ion cannon for orbital bombardment.\
+				Armaments consist of 1 sentry deployment port and 2 manned turrets."
+	display_name = "Tactical Command Vessel"
+	file_name = "dropship_command"
+	suffix = "_command"
+	shuttle_id = null	//Variants null for now until all variants are ready; interferes with default dropship spawning
+
+/datum/map_template/shuttle/flyable/dropship/medical
+	name = "St. Alamo Marine's Hospital"
+	description = "Tightly packed with medical supplies and equipment, with less general space as a result.\
+				Features an advanced medbay capable of treating the worst wounds. Lacks any armaments and only has space for one vehicle."
+	display_name = "Mobile Field Hospital"
+	file_name = "dropship_medical"
+	suffix = "_medical"
+	shuttle_id = null
+
+/datum/map_template/shuttle/flyable/dropship/logistics
+	name = "Alamo Support Dropship"
+	description = "The largest shuttle available with a focus on deployment of supplies, troops, and vehicles.\
+				While it lacks any armaments and has reduced capacity, it has 2 airlift elevators for vehicles and personnel to be deployed or extracted without landing.\
+				A supply beacon comes pre-installed and has a supply pod launcher for manual supply drops."
+	display_name = "Logistical Support Specialist"
+	file_name = "dropship_logistics"
+	suffix = "_logistics"
+	shuttle_id = null
+
+/datum/map_template/shuttle/flyable/mini
+	name = "Tadpole Shuttle"
 	description = "The plain and simple old Tadpole-03 model."
-	///shuttle switch console name
-	var/display_name = "Tadpole Standard Model"
-	var/admin_enable = TRUE
+	display_name = "Tadpole Standard Model"
+	file_name = "minidropship_standard"
+	suffix = "_standard" // remember to also add an image to icons/ui_icons/dropshippicker and /datum/asset/simple/dropshippicker
+	shuttle_id = SHUTTLE_MINI
 
-/datum/map_template/shuttle/minidropship/old
-	suffix = "_big"
+/datum/map_template/shuttle/flyable/mini/old
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
+	file_name = "minidropship_big"
+	suffix = "_big"
 
-/datum/map_template/shuttle/minidropship/food
-	suffix = "_food"
-	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
-	display_name = "Tadpole Food-truck Model"
-	admin_enable = FALSE
-
-/datum/map_template/shuttle/minidropship/factorio
-	suffix = "_factorio"
+/datum/map_template/shuttle/flyable/mini/factorio
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
+	file_name = "minidropship_factorio"
+	suffix = "_factorio"
 
-/datum/map_template/shuttle/minidropship/mobile_bar
-	suffix = "_mobile_bar"
-	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
-	display_name =	"Tadpole Mobile-Bar Model"
-	admin_enable = FALSE
-
-/datum/map_template/shuttle/minidropship/umbilical
-	suffix = "_umbilical"
+/datum/map_template/shuttle/flyable/mini/umbilical
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
+	file_name = "minidropship_umbilical"
+	suffix = "_umbilical"
+
+/datum/map_template/shuttle/flyable/mini/food
+	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
+	display_name = "Tadpole Food Truck Model"
+	file_name = "minidropship_food"
+	suffix = "_food"
+/*---------------------------------------------------------------*/
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD

@@ -61,11 +61,11 @@
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
 				network = list("dropship1")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_SHUTTLE)
 			if(/datum/job/terragov/command/transportofficer)
 				dat += " transport officer's"
 				network = list("dropship2")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+				req_access = list(ACCESS_MARINE_PILOT)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -256,13 +256,13 @@
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
 	network = list("dropship1")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_SHUTTLE)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/transportofficer
 	name = "transport officer's hud tablet"
 	network = list("dropship2")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_SHUTTLE)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery

@@ -3326,8 +3326,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "ehf" = (
-/obj/docking_port/stationary/marine_dropship/hangar/one,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/dropship,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "eho" = (
@@ -3494,7 +3494,7 @@
 	dir = 1
 	},
 /obj/machinery/vending/weapon,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -5135,7 +5135,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "gmQ" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gnb" = (
@@ -11539,7 +11539,7 @@
 	dir = 4;
 	pixel_x = -4
 	},
-/obj/machinery/computer/dropship_picker,
+/obj/machinery/computer/shuttle_picker/mini,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "osb" = (
@@ -14253,7 +14253,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
 "rAZ" = (
-/obj/docking_port/stationary/marine_dropship/cas,
+/obj/docking_port/stationary/shuttle/cas,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "rBx" = (
@@ -16082,7 +16082,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "tTR" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/shuttle/minidropship,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "tTW" = (
@@ -19476,7 +19476,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /obj/structure/closet/secure_closet/freezer,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/sake,

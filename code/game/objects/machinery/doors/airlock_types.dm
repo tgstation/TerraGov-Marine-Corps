@@ -284,7 +284,7 @@
 	req_access = null
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_SHUTTLE)
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"
@@ -381,7 +381,7 @@
 
 /obj/machinery/door/airlock/mainship/maint/hangar
 	name = "\improper Hangar Control Room"
-	req_one_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_SHUTTLE)
 
 /obj/machinery/door/airlock/mainship/engineering
 	name = "\improper Engineering Airlock"
@@ -802,7 +802,7 @@
 /obj/machinery/door/airlock/hatch/cockpit
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_SHUTTLE)
 	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE

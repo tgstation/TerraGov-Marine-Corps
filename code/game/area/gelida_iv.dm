@@ -27,12 +27,14 @@
 /area/gelida/landing_zone_1
 	name = "Landing Zone One"
 	icon_state = "explored"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/drop1/gelida
 	name = "Gelida IV - Dropship Alamo Landing Zone"
 	icon_state = "away1"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -48,12 +50,14 @@
 /area/gelida/landing_zone_2
 	name = "Gelida IV - Landing Zone Two"
 	icon_state = "explored"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/drop2/gelida
 	name = "Gelida IV - Dropship Normandy Landing Zone"
 	icon_state = "away2"
+	area_flags = MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/gelida/landing_zone_2/lz2_console

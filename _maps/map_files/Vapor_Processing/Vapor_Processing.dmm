@@ -26,7 +26,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "as" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
@@ -270,7 +270,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cb" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
@@ -515,13 +515,8 @@
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "dF" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/shuttle_control,
-/turf/open/floor/marking/warning{
-	dir = 1
-	},
+/obj/structure/table/mainship,
+/turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "dI" = (
 /obj/structure/cable,
@@ -1092,9 +1087,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "hg" = (
-/obj/structure/computerframe{
-	anchored = 1
-	},
+/obj/structure/computerframe,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2716,13 +2709,8 @@
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qh" = (
-/obj/machinery/computer/shuttle/shuttle_control,
-/obj/structure/table/reinforced/flipped{
-	dir = 1
-	},
-/turf/open/floor/marking/warning{
-	dir = 1
-	},
+/obj/structure/table/mainship,
+/turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qj" = (
 /obj/machinery/landinglight/lz1{
@@ -5688,7 +5676,6 @@
 	dir = 1
 	},
 /obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Deputy Edgar Nogi"

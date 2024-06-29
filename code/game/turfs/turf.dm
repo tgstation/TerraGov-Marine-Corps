@@ -115,9 +115,8 @@
 
 	//Fixes a bug with copyTurf runtiming when it tries to copy a turf with the color var set but no atom_colours list
 	//This happens when shuttles are being loaded, causing any turfs painted to not be loaded at all
-	if(istype(src, /turf/open/floor/iron/textured))
-		if(color)
-			add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
 	return INITIALIZE_HINT_NORMAL
 

@@ -492,7 +492,7 @@
 	///ID of dropship
 	var/id
 	///port its linked to
-	var/obj/docking_port/stationary/marine_dropship/linked_port = null
+	var/obj/docking_port/stationary/shuttle/linked_port = null
 
 /obj/machinery/landinglight/Initialize(mapload)
 	. = ..()
@@ -511,7 +511,7 @@
 	set_light(0)
 
 /obj/machinery/landinglight/alamo
-	id = SHUTTLE_ALAMO
+	id = SHUTTLE_DROPSHIP
 
 /obj/machinery/landinglight/lz1
 	id = "lz1"
@@ -523,7 +523,7 @@
 	id = SHUTTLE_CAS_DOCK
 
 /obj/machinery/landinglight/tadpole
-	id = SHUTTLE_TADPOLE
+	id = SHUTTLE_MINI
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"

@@ -455,7 +455,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
 "cN" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cP" = (
@@ -1775,11 +1775,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
-"jt" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor,
-/area/lv624/lazarus/spaceport)
 "ju" = (
 /obj/item/shard/shrapnel{
 	name = "metal fragments"
@@ -3306,7 +3301,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
 "rz" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "rB" = (
@@ -3469,9 +3464,7 @@
 /area/lv624/ground/jungle10)
 "ss" = (
 /obj/effect/landmark/corpsespawner/pmc,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "st" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3702,14 +3695,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
-"tt" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor,
-/area/lv624/lazarus/spaceport2)
 "tv" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor,
@@ -4822,11 +4807,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_male)
-"zg" = (
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
-/area/lv624/ground/caves/west1)
 "zi" = (
 /obj/structure/window_frame/wood,
 /obj/item/shard,
@@ -6504,9 +6484,7 @@
 	dir = 1
 	},
 /obj/item/clothing/shoes/cult,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "HL" = (
 /obj/machinery/door/airlock/mainship/secure/free_access,
@@ -7815,9 +7793,7 @@
 /obj/machinery/computer3{
 	name = "Family Guy Reruns TV"
 	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "NW" = (
 /obj/effect/turf_decal/siding{
@@ -7921,9 +7897,7 @@
 	dir = 1
 	},
 /obj/item/storage/backpack/cultpack,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "Oz" = (
 /obj/structure/bed/chair{
@@ -9784,9 +9758,7 @@
 /area/lv624/ground/jungle10)
 "XM" = (
 /obj/machinery/floodlight/colony,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "XO" = (
 /turf/closed/wall,
@@ -12016,8 +11988,8 @@ vt
 vX
 sR
 sR
-zg
-zg
+Sh
+Sh
 sR
 sR
 vt
@@ -12120,9 +12092,9 @@ vt
 vt
 sR
 XM
-zg
-zg
-zg
+Sh
+Sh
+Sh
 sR
 lD
 vt
@@ -12222,12 +12194,12 @@ Lt
 vt
 lD
 vt
-zg
-zg
+Sh
+Sh
 ss
 tM
-zg
-zg
+Sh
+Sh
 vt
 vt
 dw
@@ -12326,12 +12298,12 @@ Lt
 vX
 vt
 vt
-zg
-zg
-zg
+Sh
+Sh
+Sh
 Jc
-zg
-zg
+Sh
+Sh
 vt
 vt
 FC
@@ -12383,7 +12355,7 @@ fn
 GF
 GF
 YE
-tt
+vn
 Yn
 TV
 vn
@@ -12432,7 +12404,7 @@ vt
 vt
 sR
 NV
-zg
+Sh
 Oy
 XM
 sR
@@ -12536,7 +12508,7 @@ vt
 vt
 sR
 QO
-zg
+Sh
 HK
 sR
 sR
@@ -18207,7 +18179,7 @@ xF
 jj
 np
 Om
-jt
+jj
 jj
 yq
 np

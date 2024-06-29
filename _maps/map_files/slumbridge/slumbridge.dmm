@@ -993,7 +993,6 @@
 /area/slumbridge/inside/colony/oreprocess)
 "aQQ" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 10
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -2617,13 +2616,6 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/elevatorshaft,
 /area/slumbridge/console)
-"bUW" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship{
-	pixel_y = -6
-	},
-/turf/open/floor/prison/cleanmarked,
-/area/slumbridge/landingzonetwo)
 "bVu" = (
 /obj/structure/girder/reinforced,
 /obj/structure/platform/metalplatform/nondense{
@@ -4788,7 +4780,6 @@
 /area/slumbridge/inside/prison/outerringsouth)
 "dDa" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 1
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -7428,7 +7419,6 @@
 /area/slumbridge/landingzonetwo)
 "fLE" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 4
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -8100,9 +8090,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/slumbridge/inside/medical/foyer)
 "gjG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9504,7 +9492,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringnorth)
 "hlB" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop1/lz1)
 "hlC" = (
@@ -11023,9 +11011,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/west)
 "ikU" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/snow/layer2{
 	dir = 6
@@ -13453,9 +13439,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 8
 	},
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow/corner,
 /area/slumbridge/inside/pmcdome)
 "jZT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13465,7 +13449,6 @@
 /area/slumbridge/inside/engi/south)
 "jZU" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -13479,9 +13462,7 @@
 /turf/open/floor/vault,
 /area/slumbridge/inside/pmcdome/nukevault)
 "kag" = (
-/obj/structure/flora/grass/tallgrass{
-	color = "#7a8c54"
-	},
+/obj/structure/flora/grass/tallgrass,
 /turf/open/ground/grass/weedable/patch,
 /area/slumbridge/outside/northeast)
 "kao" = (
@@ -17708,7 +17689,6 @@
 /area/slumbridge/inside/hydrotreatment)
 "ngL" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 5
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -21794,7 +21774,6 @@
 /area/slumbridge/inside/engi/west)
 "qck" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 9
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -22775,9 +22754,7 @@
 "qLC" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/whiteyellow{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow,
 /area/slumbridge/inside/pmcdome)
 "qLN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -23093,7 +23070,6 @@
 /area/slumbridge/inside/sombase/east)
 "qVN" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 6
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -23367,7 +23343,6 @@
 /area/slumbridge/inside/medical/surgery)
 "rgP" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
 	dir = 8
 	},
 /turf/open/ground/grass/weedable/patch,
@@ -28699,11 +28674,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/medical/southern)
-"veW" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/tile/dark/red2,
-/area/slumbridge/landingzoneone)
 "vfe" = (
 /obj/effect/landmark/corpsespawner/engineer/regular,
 /turf/open/floor,
@@ -29151,9 +29121,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
 "vtZ" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /turf/open/floor/wood,
 /area/slumbridge/inside/sombase/east)
 "vui" = (
@@ -29953,7 +29921,7 @@
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
 "vVe" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "vVk" = (
@@ -31009,9 +30977,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/slumbridge/inside/hydrotreatment)
 "wGm" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/slumbridge/inside/colony/vault)
 "wGx" = (
@@ -31041,9 +31007,7 @@
 	},
 /area/slumbridge/inside/colony/southerndome)
 "wHu" = (
-/obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54"
-	},
+/obj/structure/flora/grass/tallgrass/tallgrasscorner,
 /turf/open/ground/grass/weedable/patch,
 /area/slumbridge/outside/northeast)
 "wHO" = (
@@ -37222,7 +37186,7 @@ sfW
 sfW
 sfW
 sfW
-bUW
+sfW
 sfW
 uSH
 uSH
@@ -38549,7 +38513,7 @@ nwg
 aWu
 qKi
 nHt
-veW
+qKi
 bYh
 fjl
 kSa

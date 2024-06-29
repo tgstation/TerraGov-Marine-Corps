@@ -1746,11 +1746,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
-"jE" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/plating/ground/snow,
-/area/lv624/lazarus/console)
 "jI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -2244,7 +2239,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/icy_caves/caves/northwestmonorail)
 "mk" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "ml" = (
@@ -6135,11 +6130,6 @@
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
-"El" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/console)
 "En" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -8725,7 +8715,6 @@
 /area/icy_caves/caves/northwestmonorail)
 "QE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Cave Cafeteria"
 	},
 /turf/open/floor/wood,
@@ -9962,7 +9951,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/rock)
 "WK" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
 "WN" = (
@@ -14117,7 +14106,7 @@ ZI
 ZI
 ZI
 ZI
-jE
+WD
 Zm
 bq
 Ml
@@ -31863,7 +31852,7 @@ wa
 td
 IT
 IT
-El
+IT
 IT
 IT
 IT

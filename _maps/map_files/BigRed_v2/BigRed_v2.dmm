@@ -8313,11 +8313,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"dzw" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/lv624/lazarus/console)
 "dzA" = (
 /obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
@@ -10056,7 +10051,6 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "hse" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
@@ -14847,8 +14841,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "shc" = (
@@ -15230,7 +15222,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "tej" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "teq" = (
@@ -17217,7 +17209,7 @@
 	},
 /area/bigredv2/outside/s)
 "xvj" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "xvL" = (
@@ -26706,7 +26698,7 @@ eKH
 eKH
 eKH
 cfV
-dzw
+eKH
 iet
 nyy
 evZ

@@ -17221,7 +17221,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcF" = (
-/obj/docking_port/stationary/marine_dropship/lz1/prison,
+/obj/docking_port/stationary/shuttle/lz1/prison,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcH" = (
@@ -40172,14 +40172,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "dLE" = (
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -41210,11 +41208,10 @@
 /area/prison/canteen)
 "gsU" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/prison/darkred/full,
 /area/prison/hangar/main)
 "gtU" = (
-/obj/docking_port/stationary/marine_dropship/lz2/prison,
+/obj/docking_port/stationary/shuttle/lz2/prison,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "gux" = (

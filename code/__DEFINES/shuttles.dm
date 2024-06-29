@@ -100,9 +100,9 @@
 #define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)
 
 //Shuttle name defines used for a whole load of stuff
-#define SHUTTLE_ALAMO "dropship"
+#define SHUTTLE_DROPSHIP "Alamo"
 #define SHUTTLE_NORMANDY "normandy"
-#define SHUTTLE_TADPOLE "minidropship"
+#define SHUTTLE_MINI "Tadpole"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"
 #define SHUTTLE_CAS "casplane"
 #define SHUTTLE_CAS_DOCK "cas_dock"

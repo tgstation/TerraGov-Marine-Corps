@@ -344,7 +344,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
 "abC" = (
@@ -7140,8 +7140,8 @@
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "aMT" = (
-/obj/docking_port/stationary/marine_dropship/hangar/one,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/dropship,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aMV" = (
@@ -10452,7 +10452,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
 "cOs" = (
@@ -12466,7 +12466,7 @@
 /area/mainship/living/basketball)
 "fpa" = (
 /obj/structure/sign/nosmoking_2,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering)
 "fpC" = (
@@ -18844,7 +18844,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "niS" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/office)
 "nka" = (
@@ -21583,7 +21583,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "qKm" = (
-/obj/docking_port/stationary/marine_dropship/cas,
+/obj/docking_port/stationary/shuttle/cas,
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
 "qKP" = (
@@ -25417,7 +25417,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/computer/dropship_picker,
+/obj/machinery/computer/shuttle_picker/mini,
 /obj/machinery/landinglight/tadpole{
 	dir = 1;
 	pixel_y = -4
@@ -25530,7 +25530,7 @@
 	},
 /area/space)
 "vzl" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/shuttle/minidropship,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "vzA" = (
@@ -26101,7 +26101,7 @@
 "whS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/bot/roomba,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
 "whV" = (

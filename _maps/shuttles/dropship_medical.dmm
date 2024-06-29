@@ -80,7 +80,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test,
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test{
+	pixel_y = 12
+	},
 /turf/open/floor/iron/textured{
 	color = "#555555"
 	},
@@ -279,15 +281,6 @@
 	},
 /turf/open/floor/iron/textured,
 /area/shuttle/dropship/alamo)
-"V" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	dir = 8
-	},
-/turf/open/floor/iron/textured,
-/area/shuttle/dropship/alamo)
 "W" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -295,9 +288,6 @@
 /turf/open/floor/iron/textured{
 	color = "#555555"
 	},
-/area/shuttle/dropship/alamo)
-"X" = (
-/turf/closed/wall/mainship,
 /area/shuttle/dropship/alamo)
 "Y" = (
 /obj/structure/engine/thruster{
@@ -324,7 +314,7 @@ c
 c
 E
 x
-X
+J
 y
 Y
 "}
@@ -332,25 +322,25 @@ Y
 c
 c
 A
-X
-X
-X
-X
+J
+J
+J
+J
 t
-X
-X
+J
+J
 t
-X
-X
-X
-X
+J
+J
+J
+J
 c
 "}
 (3,1,1) = {"
 c
 c
-X
-X
+J
+J
 z
 z
 K
@@ -367,7 +357,7 @@ c
 (4,1,1) = {"
 c
 i
-X
+J
 I
 C
 C
@@ -412,10 +402,10 @@ B
 z
 z
 Q
-X
-X
-X
-X
+J
+J
+J
+J
 c
 "}
 (7,1,1) = {"
@@ -439,8 +429,8 @@ c
 (8,1,1) = {"
 c
 i
-X
-V
+J
+I
 C
 C
 C
@@ -457,8 +447,8 @@ c
 (9,1,1) = {"
 c
 c
-X
-X
+J
+J
 z
 z
 T
@@ -476,18 +466,18 @@ c
 c
 c
 A
-X
-X
-X
-X
+J
+J
+J
+J
 v
-X
-X
+J
+J
 v
-X
-X
-X
-X
+J
+J
+J
+J
 c
 "}
 (11,1,1) = {"

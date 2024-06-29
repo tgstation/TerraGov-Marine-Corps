@@ -15,6 +15,7 @@
 	name = "Landing Zone 1"
 	ceiling = CEILING_NONE
 	icon_state="red"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -22,6 +23,7 @@
 	name = "Landing Zone 2"
 	ceiling = CEILING_NONE
 	icon_state="red"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 

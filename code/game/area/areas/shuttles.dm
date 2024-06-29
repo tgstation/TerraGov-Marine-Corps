@@ -24,10 +24,9 @@
 		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)
 
 ////////////////////////////Single-area shuttles////////////////////////////
-/area/shuttle/dropship/Initialize(mapload, ...)
-	. = ..()
-	var/area/area = get_area(src)
-	area.area_flags |= MARINE_BASE
+/area/shuttle/dropship
+	area_flags = MARINE_BASE|NO_CONSTRUCTION
+	requires_power = TRUE
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
@@ -38,17 +37,11 @@
 /area/shuttle/dropship/triumph
 	name = "Dropship Triumph"
 
+/area/shuttle/dropship/mini
+	name = "Tadpole Drop Shuttle"
+
 /area/shuttle/cas
 	name = "Condor Jet"
-
-/area/shuttle/minidropship
-	name = "Tadpole Drop Shuttle"
-	area_flags = NO_CONSTRUCTION
-
-/area/shuttle/minidropship/Initialize(mapload, ...)
-	. = ..()
-	var/area/area = get_area(src)
-	area.area_flags |= MARINE_BASE
 
 /area/shuttle/ert
 	name = "Emergency Response Team"

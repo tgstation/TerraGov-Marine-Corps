@@ -304,6 +304,12 @@ All ShuttleMove procs go here
 	if(. & MOVE_AREA)
 		. |= MOVE_CONTENTS
 
+/obj/structure/dropship_piece/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
+	. = ..()
+	if(. & MOVE_AREA)
+		ENABLE_BITFIELD(., MOVE_CONTENTS)
+		DISABLE_BITFIELD(., MOVE_TURF)
+
 //Needed because if there is no floor below them, the engines are left behind
 /obj/structure/engine/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()

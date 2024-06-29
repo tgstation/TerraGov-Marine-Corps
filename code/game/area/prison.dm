@@ -512,12 +512,14 @@
 /area/prison/hangar/main
 	name = "Main Hangar"
 	icon_state = "hangar_alpha"
+	area_flags = MARINE_BASE
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/prison/hangar/civilian
 	name = "Civilian Hangar"
 	icon_state = "hangar_beta"
+	area_flags = MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/prison/hangar_storage/main

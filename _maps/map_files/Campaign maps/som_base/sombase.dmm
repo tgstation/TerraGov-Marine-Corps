@@ -5515,7 +5515,7 @@
 	},
 /area/rocinante_base/surface/building/administration/meeting)
 "hBY" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/landing/landing_pad_one)
 "hCQ" = (
@@ -13049,7 +13049,7 @@
 	},
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "suk" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/landing/landing_pad_two)
 "suS" = (

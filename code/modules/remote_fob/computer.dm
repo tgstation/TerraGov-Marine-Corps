@@ -13,7 +13,7 @@
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null
 	var/drone_creation_allowed = TRUE
-	var/obj/docking_port/stationary/marine_dropship/spawn_spot
+	var/obj/docking_port/stationary/shuttle/spawn_spot
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade
 	var/metal_remaining = 200
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
@@ -98,12 +98,12 @@
 	spawn_spot = FALSE
 	switch(tgui_alert(user, "Summon Drone in:", "FOB Construction Drone Control", list("LZ1","LZ2", "Cancel")))
 		if("LZ1")
-			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
+			spawn_spot = locate(/obj/docking_port/stationary/shuttle/lz1) in SSshuttle.stationary
 			if(!spawn_spot)
 				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		if("LZ2")
-			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
+			spawn_spot = locate(/obj/docking_port/stationary/shuttle/lz2) in SSshuttle.stationary
 			if(!spawn_spot)
 				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return

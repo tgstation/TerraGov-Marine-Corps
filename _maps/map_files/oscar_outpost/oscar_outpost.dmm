@@ -3577,7 +3577,6 @@
 /area/oscar_outpost/village/central)
 "yc" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "ye" = (
@@ -9082,7 +9081,7 @@
 	},
 /area/oscar_outpost/village/fairgrounds)
 "Wx" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)

@@ -79,7 +79,7 @@
 
 /obj/effect/attach_point/weapon/dropship1
 	icon_state = "equip_base_l_wing"
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/weapon/dropship2
 	icon_state = "equip_base_l_wing"
@@ -100,7 +100,7 @@
 	icon_state = "16"
 
 /obj/effect/attach_point/weapon/minidropship
-	ship_tag = SHUTTLE_TADPOLE
+	ship_tag = SHUTTLE_MINI
 	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
@@ -111,19 +111,19 @@
 	plane = FLOOR_PLANE //Doesn't layer under weeds unless it has this
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/crew_weapon/minidropship
-	ship_tag = SHUTTLE_TADPOLE
+	ship_tag = SHUTTLE_MINI
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/crew_weapon/dropship3
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -131,7 +131,7 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -143,7 +143,7 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -152,7 +152,7 @@
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/computer/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -417,7 +417,7 @@
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.id == SHUTTLE_ALAMO)
+				if(linked_shuttle.id == SHUTTLE_DROPSHIP)
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
 					deployed_turret.camera.network.Add("dropship2")

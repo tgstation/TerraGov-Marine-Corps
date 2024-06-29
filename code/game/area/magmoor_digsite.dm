@@ -10,6 +10,7 @@
 
 /area/magmoor/landing
 	name = "Landing Zone One"
+	area_flags = MARINE_BASE
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
 
