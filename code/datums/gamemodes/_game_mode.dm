@@ -695,8 +695,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/scale_roles()
 	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
 		return FALSE
-	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
-		scale_squad_jobs()
 	for(var/job_type in job_points_needed_by_job_type)
 		if(!(job_type in subtypesof(/datum/job)))
 			stack_trace("Invalid job type in job_points_needed_by_job_type. Current mode : [name], Invalid type: [job_type]")
