@@ -130,6 +130,7 @@
 	item_whitelist = list(
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
+		/obj/item/storage/holster/blade/machete/full_alt = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/suit_slot/heavy_tyr/smartgunner

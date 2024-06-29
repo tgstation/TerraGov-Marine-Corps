@@ -311,6 +311,10 @@
 	var/obj/item/new_item = new /obj/item/weapon/sword/machete(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
+/obj/item/storage/holster/blade/machete/full_alt/PopulateContents()
+	var/obj/item/new_item = new /obj/item/weapon/sword/machete/alt(src)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 

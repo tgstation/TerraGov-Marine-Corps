@@ -174,6 +174,8 @@
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
 	armor_type = ammo.armor_type
+	proj_max_range = ammo.max_range
+	projectile_speed = ammo.shell_speed
 
 //Target, firer, shot from. Ie the gun
 /obj/projectile/proc/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = source, scan_loc = FALSE)

@@ -34,10 +34,12 @@
 
 /obj/vehicle/ridden/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
+	REMOVE_TRAIT(M, TRAIT_NOSUBMERGE, VEHICLE_TRAIT)
 	return ..()
 
 /obj/vehicle/ridden/post_buckle_mob(mob/living/M)
 	add_occupant(M)
+	M.add_nosubmerge_trait(VEHICLE_TRAIT)
 	return ..()
 
 /obj/vehicle/ridden/attackby(obj/item/I, mob/user, params)
