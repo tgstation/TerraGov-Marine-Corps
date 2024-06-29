@@ -81,7 +81,9 @@
 	var/list/equipment_list = list(
 		/obj/item/armored_weapon = 1,
 		/obj/item/armored_weapon/secondary_weapon = 1,
-		/obj/item/ammo_magazine/tank/ltb_cannon = 20,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy = 15,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds = 10,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister = 5,
 		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
 	)
 
@@ -113,7 +115,7 @@
 				continue
 			new_item.forceMove(gun_turf)
 	for(var/i = 1 to 4)
-		new /obj/item/pamphlet/tank_loader(pamphlet_turf) //placeholder until crew version or skill lock removed
+		new /obj/item/pamphlet/tank_crew(pamphlet_turf)
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner - coilgun"
@@ -131,7 +133,7 @@
 	equipment_list = list(
 		/obj/item/armored_weapon/particle_lance = 1,
 		/obj/item/armored_weapon/secondary_mlrs = 1,
-		/obj/item/ammo_magazine/tank/particle_lance = 20,
+		/obj/item/ammo_magazine/tank/particle_lance = 30,
 		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
 	)
 
@@ -140,6 +142,6 @@
 	equipment_list = list(
 		/obj/item/armored_weapon/volkite_carronade = 1,
 		/obj/item/armored_weapon/secondary_mlrs = 1,
-		/obj/item/ammo_magazine/tank/volkite_carronade = 18,
+		/obj/item/ammo_magazine/tank/volkite_carronade = 20,
 		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
 	)
