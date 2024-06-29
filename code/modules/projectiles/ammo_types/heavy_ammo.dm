@@ -171,7 +171,7 @@
 	staggerstun(target_mob, proj, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)
 
 /datum/ammo/bullet/dropship_machinegun
-	name = "machinegun bullet"
+	name = "turret machinegun bullet"
 	hud_state = "rifle_heavy"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 12

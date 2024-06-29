@@ -128,6 +128,7 @@
 /*----------------- Flyable shuttle types -----------------*/
 //The 2 variables in this type could go on /shuttle, but the reason this type exists is to use subtypesof() in the shuttle picker
 /datum/map_template/shuttle/flyable
+	file_name = "dropship"	//Loads the standard dropship because the checker thing requires every map_template to have a valid file path
 	shuttle_id = "ONLY PUTTING THIS BECAUSE IT RUNTIMES IF THIS IS NULL. AWFUL."
 	///Name used for the shuttle picker console
 	var/display_name = "Standard Shuttle"

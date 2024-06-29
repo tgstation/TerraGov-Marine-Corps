@@ -3,6 +3,8 @@
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
 	var/headlights_toggle = FALSE
+	///What direction occupants will exit the vehicle in; if null, exit on the same tile as the vehicle
+	var/exit_direction
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
 
@@ -119,8 +121,9 @@
 		M.visible_message(span_notice("[M] drops out of \the [src]!"))
 	return TRUE
 
+///Determine the location the mob exits the vehicle relative to the vehicle's direction
 /obj/vehicle/sealed/proc/exit_location(mob/M)
-	return drop_location()
+	return exit_direction ? get_step(src, turn(dir, dir2angle(exit_direction))) : drop_location()
 
 /obj/vehicle/sealed/attackby(obj/item/I, mob/user, params)
 	if(key_type && !is_key(inserted_key) && is_key(I))

@@ -74,6 +74,7 @@
 			/obj/item/ammo_magazine/standard_gpmg = -1,
 			/obj/item/weapon/gun/standard_mmg = 5,
 			/obj/item/ammo_magazine/standard_mmg = -1,
+			/obj/item/ammo_magazine/tank/dropship_machinegun,
 		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,

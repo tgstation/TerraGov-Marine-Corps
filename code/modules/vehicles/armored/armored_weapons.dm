@@ -370,8 +370,8 @@
 	hud_state_empty = "flame_empty"
 
 /obj/item/armored_weapon/dropship_machinegun
-	name = "turret machinegun"
-	desc = "It shoots things."
+	name = "heavy turret machinegun"
+	desc = "A large machinegun that can be attached to mounts on shuttle turrets."
 	icon_state = "m56_cupola"
 	hud_state_empty = "rifle_empty"
 	fire_sound = 'sound/weapons/guns/fire/GPMG.ogg'

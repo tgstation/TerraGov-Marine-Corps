@@ -152,10 +152,10 @@
 	default_ammo = /datum/ammo/flamethrower/armored_spray
 
 /obj/item/ammo_magazine/tank/dropship_machinegun
-	name = "turret machinegun magazine"
-	desc = "A secondary armament MG magazine"
+	name = "heavy turret machinegun ammo"
+	desc = "Ammunition box for machineguns on military shuttles."
 	caliber = CALIBER_10X28
-	icon_state = "cupolaammo"
+	icon_state = "cupola"
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo = /datum/ammo/bullet/dropship_machinegun

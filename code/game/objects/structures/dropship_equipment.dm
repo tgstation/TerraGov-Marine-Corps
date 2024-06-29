@@ -944,14 +944,14 @@
 	icon_state = "engine"
 
 /obj/vehicle/sealed/armored/turret
-	name = "turret"
+	name = "shuttle turret"
 	desc = "A covered turret emplacement."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "turretprop"
-	turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
-	turret_icon_state = "turret"
 	pixel_x = 0
 	pixel_y = 0
+	layer = BELOW_OBJ_LAYER	//Covers almost the whole tile, don't want it to hide stuff below it
+	exit_direction = null
 	permitted_weapons = list(/obj/item/armored_weapon/dropship_machinegun)
 
 /obj/vehicle/sealed/armored/turret/Initialize(mapload)
@@ -973,6 +973,3 @@
 		return FALSE
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
-
-/obj/vehicle/sealed/armored/turret/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
-	. = ..()

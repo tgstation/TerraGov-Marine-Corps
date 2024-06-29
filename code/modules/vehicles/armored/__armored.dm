@@ -15,6 +15,7 @@
 	move_delay = 0.7 SECONDS
 	max_integrity = 600
 	light_range = 10
+	exit_direction = SOUTH
 	///Tank bitflags
 	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
 	///Sound file(s) to play when we drive around
@@ -258,9 +259,6 @@
 		add_control_flags(new_occupant, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 	else if(length(return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)) < 1)
 		add_control_flags(new_occupant, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
-
-/obj/vehicle/sealed/armored/exit_location(mob/M)
-	return get_step(src, REVERSE_DIR(dir))
 
 /obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
 	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
