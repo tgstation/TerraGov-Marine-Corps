@@ -1042,6 +1042,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "bgz" = (
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -1415,6 +1416,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"bMr" = (
+/obj/machinery/vending/MarineMed/valhalla,
+/turf/open/floor/mainship/sterile/corner,
 /area/centcom/valhalla)
 "bMv" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -4892,7 +4897,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "gEX" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marineright"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5171,7 +5176,7 @@
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "hda" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marinetop"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5185,7 +5190,7 @@
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "heB" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marineleft"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -6732,6 +6737,12 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
+"jvT" = (
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marinesurgeryright"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "jxN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -7531,6 +7542,12 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"kvr" = (
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marinesurgeryleft"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "kxq" = (
 /obj/structure/closet/crate,
 /obj/machinery/firealarm{
@@ -8244,6 +8261,10 @@
 /area/centcom/valhalla)
 "lIu" = (
 /obj/machinery/optable,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "surgeryleft"
+	},
+/obj/item/tank/anesthetic,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
 "lIC" = (
@@ -10733,7 +10754,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "pwE" = (
-/obj/machinery/vending/MarineMed/valhalla,
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -13956,6 +13977,14 @@
 	},
 /obj/effect/turf_decal/tile/pink,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"utb" = (
+/obj/machinery/optable,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "surgeryright"
+	},
+/obj/item/tank/anesthetic,
+/turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
 "utM" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -20189,7 +20218,7 @@ xrI
 xrI
 box
 uCL
-rfF
+kvr
 lIu
 sgT
 box
@@ -20465,8 +20494,8 @@ vQc
 fmR
 box
 uCL
-rfF
-lIu
+jvT
+utb
 sgT
 box
 nKg
@@ -20740,7 +20769,7 @@ fWu
 fWu
 fWu
 box
-ojf
+bMr
 fgO
 fgO
 bEo
