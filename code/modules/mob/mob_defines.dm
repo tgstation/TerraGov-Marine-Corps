@@ -40,7 +40,7 @@
 	///integer, stores the time of whenever changeNext_move() gets ran
 	var/next_move = 0
 	///integer, stores world.time + attack_speed whenever attack is ran
-	var/last_attack = 0
+	var/next_attack = 0
 	///Amount to adjust action/click delays by, + or -
 	var/next_move_adjust = 0
 	//Value to multiply action/click delays by
