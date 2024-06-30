@@ -723,6 +723,8 @@
 		if(gun_user.get_active_held_item() == src)
 			active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
 			return
+		if(gun_user.get_inactive_held_item() != src)
+			return
 		if(gun_user.Adjacent(object))
 			return
 		bypass_checks = TRUE
