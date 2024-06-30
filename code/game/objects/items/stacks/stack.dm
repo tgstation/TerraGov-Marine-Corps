@@ -97,6 +97,7 @@
 /obj/item/stack/examine(mob/user)
 	. = ..()
 	if(amount > 1)
+		. += EXAMINE_SECTION_BREAK
 		. += "There are [amount] [singular_name]\s in the [stack_name]."
 
 /obj/item/stack/equipped(mob/user, slot)
@@ -228,6 +229,8 @@
 		if(!isturf(T))
 			return
 		T.PlaceOnTop(R.result_type)
+	else if(ispath(R.result_type, /obj/structure/door))
+		O = new R.result_type(get_turf(user), TRUE)
 	else
 		O = new R.result_type(get_turf(user))
 	if(O)

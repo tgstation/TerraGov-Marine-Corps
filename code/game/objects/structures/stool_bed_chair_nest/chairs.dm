@@ -17,6 +17,7 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = 0
+	buckling_y = 0
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
@@ -185,20 +186,41 @@
 	desc = "It looks comfy."
 	icon_state = "couch_hori2"
 
+/obj/structure/bed/chair/sofa/corsat/white
+	icon_state = "bench_hor2"
+
+/obj/structure/bed/chair/sofa/corsat/single
+	icon_state = "sofa"
+
 /obj/structure/bed/chair/sofa/corsat/left
 	icon_state = "couch_hori1"
+
+/obj/structure/bed/chair/sofa/corsat/left/white
+	icon_state = "bench_hor1"
 
 /obj/structure/bed/chair/sofa/corsat/right
 	icon_state = "couch_hori3"
 
+/obj/structure/bed/chair/sofa/corsat/right/white
+	icon_state = "bench_hor3"
+
 /obj/structure/bed/chair/sofa/corsat/verticaltop
 	icon_state = "couch_vet3"
+
+/obj/structure/bed/chair/sofa/corsat/verticaltop/white
+	icon_state = "bench_vet3"
 
 /obj/structure/bed/chair/sofa/corsat/verticalmiddle
 	icon_state = "couch_vet2"
 
+/obj/structure/bed/chair/sofa/corsat/verticalmiddle/white
+	icon_state = "bench_vet2"
+
 /obj/structure/bed/chair/sofa/corsat/verticalsouth
 	icon_state = "couch_vet1"
+
+/obj/structure/bed/chair/sofa/corsat/verticalsouth/white
+	icon_state = "bench_vet1"
 
 //cm benches do not have corners
 
