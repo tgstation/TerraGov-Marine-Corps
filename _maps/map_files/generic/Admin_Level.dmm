@@ -1042,11 +1042,9 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "bgz" = (
-/obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
 	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "bgM" = (
 /obj/structure/table,
@@ -3564,6 +3562,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"eJc" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/centcom/valhalla)
 "eKo" = (
 /obj/structure/table,
 /obj/item/clothing/tie/medal/gold,
@@ -4128,6 +4132,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 5
+	},
+/area/centcom/valhalla)
+"fDs" = (
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
 	},
 /area/centcom/valhalla)
 "fEt" = (
@@ -10601,6 +10610,13 @@
 	dir = 8
 	},
 /area/centcom/valhalla)
+"pni" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "pon" = (
 /obj/machinery/light_switch{
 	pixel_x = 38;
@@ -10632,6 +10648,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/centcom/valhalla)
+"pqs" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
 /area/centcom/valhalla)
 "pqM" = (
 /obj/machinery/marine_selector/clothes/valhalla,
@@ -10731,6 +10753,13 @@
 /obj/item/book/manual/engineering_particle_accelerator,
 /obj/item/book/manual/engineering_singularity_safety,
 /turf/open/floor/tile/dark,
+/area/centcom/valhalla)
+"pzM" = (
+/obj/machinery/door/airlock/mainship/medical/or/free_access{
+	dir = 2;
+	name = "\improper Medical Airlock"
+	},
+/turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
 "pzZ" = (
 /obj/effect/turf_decal/tile/pink{
@@ -13154,6 +13183,10 @@
 	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla)
+"tjs" = (
+/obj/machinery/optable,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "tkB" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -13845,6 +13878,9 @@
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
+/area/centcom/valhalla)
+"ukF" = (
+/turf/open/floor/mainship/sterile/side,
 /area/centcom/valhalla)
 "ukJ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15379,6 +15415,12 @@
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
+	},
+/area/centcom/valhalla)
+"wqs" = (
+/obj/machinery/vending/MarineMed/valhalla,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
 	},
 /area/centcom/valhalla)
 "wqU" = (
@@ -19734,8 +19776,8 @@ xrI
 xrI
 xrI
 xrI
-vQc
-jYG
+xrI
+xrI
 jYG
 jYG
 jYG
@@ -19868,12 +19910,12 @@ xrI
 xrI
 xrI
 xrI
-wQi
 xrI
-xrI
-xrI
-jYG
-jYG
+box
+box
+box
+box
+box
 box
 box
 box
@@ -20007,11 +20049,11 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-jYG
-jYG
-jYG
+box
+bgz
+fDs
+fDs
+jKv
 box
 nKg
 jWH
@@ -20145,11 +20187,11 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-jYG
-jYG
+box
+eJc
+rfF
+tjs
+ukF
 box
 foh
 jWH
@@ -20283,11 +20325,11 @@ xrI
 vQc
 vQc
 xXc
-xXc
-vQc
-vQc
-jYG
-jYG
+box
+pqs
+rfF
+rfF
+ukF
 box
 lPX
 oNZ
@@ -20421,11 +20463,11 @@ fmR
 fmR
 vQc
 fmR
-vQc
-fmR
-fmR
-fmR
-jYG
+box
+eJc
+rfF
+tjs
+ukF
 box
 nKg
 jWH
@@ -20559,11 +20601,11 @@ fmR
 fmR
 fmR
 fmR
-fmR
-fmR
-fmR
-vQc
-fmR
+box
+wqs
+rfF
+rfF
+ukF
 box
 foh
 jWH
@@ -20697,19 +20739,19 @@ fWu
 fWu
 fWu
 fWu
-fWu
-fWu
-fWu
-fWu
-fWu
 box
-bgz
+ojf
+fgO
+fgO
+bEo
+pzM
+mCI
 rBJ
 mCI
 lMV
 xgU
 lMV
-mCI
+pni
 gMl
 gJS
 myT
@@ -20836,9 +20878,9 @@ fmR
 fmR
 fmR
 aEn
-bcm
-fmR
-fmR
+box
+bRv
+bRv
 bjQ
 box
 bog
