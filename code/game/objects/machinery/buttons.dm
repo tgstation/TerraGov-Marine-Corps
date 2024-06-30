@@ -336,7 +336,6 @@
 		return
 	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
-
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
 
