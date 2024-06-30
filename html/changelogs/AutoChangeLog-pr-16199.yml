@@ -1,4 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - bugfix: "Command now can talk on custom squad radios"

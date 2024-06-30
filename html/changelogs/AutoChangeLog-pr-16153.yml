@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Fixed a lighting runtime when late loading z-levels"
