@@ -17,7 +17,7 @@
 	)
 	var/max_positions = list(
 		SQUAD_MARINE = -1,
-		SQUAD_LEADER = 1)
+		SQUAD_LEADER = 4)
 
 	var/list/marines_list = list() // list of humans in that squad.
 
