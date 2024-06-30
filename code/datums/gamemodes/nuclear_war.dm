@@ -25,7 +25,7 @@
 		/datum/job/terragov/squad/engineer = 1,
 		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
-		/datum/job/terragov/squad/leader = 1,
+		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
