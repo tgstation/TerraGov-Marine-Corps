@@ -380,8 +380,6 @@
 		if(current_positions[job.title] >= max_positions[job.title])
 			return FALSE
 		return TRUE
-	if(current_positions[job.title] >= SQUAD_MAX_POSITIONS(job.total_positions))
-		return FALSE
 	return TRUE
 
 
