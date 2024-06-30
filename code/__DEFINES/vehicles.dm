@@ -16,6 +16,10 @@
 ///ez define for giving a single pilot mech all the flags it needs.
 #define FULL_MECHA_CONTROL ALL
 
+#define VEHICLE_FRONT_ARMOUR "vehicle_front"
+#define VEHICLE_SIDE_ARMOUR "vehicle_side"
+#define VEHICLE_BACK_ARMOUR "vehicle_back"
+
 //car_traits flags
 ///Will this car kidnap people by ramming into them?
 #define CAN_KIDNAP (1<<0)
@@ -58,3 +62,10 @@
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
+///Can only shoot in the direction of the turret
+#define MODULE_FIXED_FIRE_ARC (1<<2)
+///Not available in the tank fab
+#define MODULE_NOT_FABRICABLE (1<<3)
+
+///Not available in the tank fab
+#define TANK_MOD_NOT_FABRICABLE (1<<0)

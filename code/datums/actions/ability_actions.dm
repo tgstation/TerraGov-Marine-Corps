@@ -2,7 +2,7 @@
 /datum/action/ability
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	///The cost of using this ability. Typically a plasma cost for xenos
 	var/ability_cost = 0
 	///bypass use limitations checked by can_use_action()

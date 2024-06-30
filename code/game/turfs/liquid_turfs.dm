@@ -35,6 +35,8 @@
 
 	if(!isliving(arrived) || arrived.throwing)
 		return
+	if(HAS_TRAIT(arrived, TRAIT_NOSUBMERGE))
+		return
 	var/mob/living/arrived_mob = arrived
 	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 
@@ -61,6 +63,14 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 	minimap_color = MINIMAP_WATER
+
+/turf/open/liquid/water/Initialize(mapload)
+	. = ..()
+	if(mob_liquid_height > 15)
+		shoefootstep = FOOTSTEP_SWIM
+		barefootstep = FOOTSTEP_SWIM
+		mediumxenofootstep = FOOTSTEP_SWIM
+		heavyxenofootstep = FOOTSTEP_SWIM
 
 /turf/open/liquid/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()

@@ -174,6 +174,8 @@
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
 	armor_type = ammo.armor_type
+	proj_max_range = ammo.max_range
+	projectile_speed = ammo.shell_speed
 
 //Target, firer, shot from. Ie the gun
 /obj/projectile/proc/fire_at(atom/target, mob/living/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = source, scan_loc = FALSE)
@@ -196,7 +198,8 @@
 		firer = shooter
 	if(source)
 		shot_from = source
-	loc = loc_override
+	if(loc_override)
+		loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -948,7 +951,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		firer = shooter
 	if(source)
 		shot_from = source
-	loc = loc_override
+	if(loc_override)
+		loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc

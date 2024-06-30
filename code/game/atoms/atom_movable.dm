@@ -1343,7 +1343,6 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	if(!new_height && !new_depth)
 		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
 		REMOVE_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
-
 	else if(!HAS_TRAIT(src, TRAIT_SUBMERGED)) //we use a trait to avoid some edge cases if things are moving fast or unusually
 		if(GLOB.submerge_filter_timer_list[ref(src)])
 			deltimer(GLOB.submerge_filter_timer_list[ref(src)])
@@ -1352,4 +1351,27 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 
 	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
-	animate(src, pixel_y = src.pixel_y + depth_diff, time = duration, flags = ANIMATION_PARALLEL)
+	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
+
+///overrides the turf's normal footstep sound
+/atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/atom/movable/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE
+
+///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
+/atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)
+	if(HAS_TRAIT(src, TRAIT_SUBMERGED))
+		set_submerge_level(old_loc = loc, duration = 0.1)
+	ADD_TRAIT(src, TRAIT_NOSUBMERGE, trait_source)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE), PROC_REF(_do_submerge), override = TRUE) //we can get this trait from multiple sources, but sig is only sent when we lose the trait entirely
+
+///Adds submerge effects to the AM. Should never be called directly
+/atom/movable/proc/_do_submerge(atom/movable/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE))
+	set_submerge_level(loc, duration = 0.1)

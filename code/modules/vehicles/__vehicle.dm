@@ -9,6 +9,7 @@
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
+	atom_flags = CRITICAL_ATOM
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_AIR
@@ -145,23 +146,35 @@
 /obj/vehicle/proc/after_move(direction)
 	return
 
+///Adds control flags and any associated changes to a mob
 /obj/vehicle/proc/add_control_flags(mob/controller, flags)
 	if(!is_occupant(controller) || !flags)
 		return FALSE
 	occupants[controller] |= flags
+	SEND_SIGNAL(src, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, controller, flags)
 	for(var/i in GLOB.bitflags)
 		if(flags & i)
 			grant_controller_actions_by_flag(controller, i)
 	return TRUE
 
+///Removes control flags and any associated changes to a mob
 /obj/vehicle/proc/remove_control_flags(mob/controller, flags)
 	if(!is_occupant(controller) || !flags)
 		return FALSE
 	occupants[controller] &= ~flags
+	SEND_SIGNAL(src, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG, controller, flags)
 	for(var/i in GLOB.bitflags)
 		if(flags & i)
 			remove_controller_actions_by_flag(controller, i)
 	return TRUE
+
+///Any special behavior when a desant is added
+/obj/vehicle/proc/add_desant(mob/living/new_desant)
+	return
+
+///Any special behavior when a desant is removed
+/obj/vehicle/proc/remove_desant(mob/living/old_desant)
+	return
 
 /obj/vehicle/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
