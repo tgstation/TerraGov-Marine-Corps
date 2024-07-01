@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/beacon)
+	AddComponent(/datum/component/beacon, FALSE, 0, icon_state + "_active")
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
