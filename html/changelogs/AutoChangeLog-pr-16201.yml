@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - bugfix: "doubled-up windows on Outrider Tadpole"
