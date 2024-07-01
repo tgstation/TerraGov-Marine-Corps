@@ -83993,17 +83993,6 @@
 /obj/machinery/hydroponics/slashable,
 /turf/open/floor/urban/tile/darkgrey_bigtile,
 /area/lv759/indoors/botany/botany_greenhouse)
-"oqs" = (
-/obj/machinery/door/poddoor/shutters/urban/biohazard/white{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab"
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/officetiles,
-/area/lv759/indoors/nt_research_complex/hallwaycentral)
 "oqz" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -105028,13 +105017,6 @@
 	},
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/central_streets)
-"rXl" = (
-/obj/machinery/door/airlock/multi_tile/urban/personal_solid_white{
-	dir = 8
-	},
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/officetiles,
-/area/lv759/indoors/nt_research_complex/hallwaycentral)
 "rXn" = (
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
@@ -148136,7 +148118,7 @@ mbV
 iBf
 iBf
 rvN
-rXl
+erZ
 iBf
 iBf
 iBf
@@ -148339,7 +148321,7 @@ koZ
 qAi
 qAi
 pxf
-oqs
+xic
 pxf
 qAi
 pxf
