@@ -1316,8 +1316,8 @@
 	return
 
 //Throws AM away from something
-/atom/movable/proc/knockback(source, distance, speed, dir, knockback_force = MOVE_FORCE_EXTREMELY_STRONG)
-	safe_throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source, FALSE, knockback_force)
+/atom/movable/proc/knockback(source, distance, speed, dir, knockback_force = MOVE_FORCE_EXTREMELY_STRONG, spin = FALSE)
+	safe_throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source, spin, knockback_force)
 
 ///List of all filter removal timers. Glob to avoid an AM level var
 GLOBAL_LIST_EMPTY(submerge_filter_timer_list)

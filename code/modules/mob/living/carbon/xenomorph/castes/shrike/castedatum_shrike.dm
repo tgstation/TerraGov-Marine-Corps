@@ -2,7 +2,7 @@
 	caste_name = "Shrike"
 	display_name = "Shrike"
 	upgrade_name = ""
-	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
+	caste_desc = "A psychically unstable xeno. It controls the hive in the absence of a Queen, and acts as its successor when there is."
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
@@ -103,6 +103,82 @@
 		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/activable/xeno/psychic_fling,
 		/datum/action/ability/activable/xeno/unrelenting_force,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/psychic_vortex,
+	)
+
+
+// ***************************************
+// *********** Squall
+// ***************************************
+
+/datum/xeno_caste/shrike/squall
+	display_name = "Squall"
+	caste_type_path = /mob/living/carbon/xenomorph/shrike/squall
+	upgrade = XENO_UPGRADE_BASETYPE
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Health *** //
+	max_health = 425
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/psychic_fling/squall,
+		/datum/action/ability/activable/xeno/unrelenting_force/squall,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+	)
+
+/datum/xeno_caste/shrike/squall/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/shrike/squall/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "The unleashed repository of the hive's psychic power."
+	primordial_message = "We are the unbridled psychic power of the hive. Throw our enemies to their doom."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/xeno_action/sow,
+		/datum/action/ability/activable/xeno/psychic_fling/squall,
+		/datum/action/ability/activable/xeno/unrelenting_force/squall,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,

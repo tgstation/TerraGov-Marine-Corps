@@ -55,6 +55,8 @@
 // ***************************************
 // *********** Psychic Fling
 // ***************************************
+#define PSYCHIC_FLING_RANGE 3 // in tiles
+
 /datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
@@ -66,12 +68,14 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = ABILITY_MOB_TARGET
-
+	/// The duration of this ability's stun effect.
+	var/stun_duration = 2 SECONDS
+	/// The duration of this ability's weaken effect.
+	var/weaken_duration = 0.2 SECONDS
 
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
-	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
+	owner.balloon_alert(owner, "[initial(name)] ready")
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -79,66 +83,51 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
-		return FALSE
-	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
-	if(!line_of_sight(owner, target, max_dist))
+	if(!isitem(target) && !isliving(target) && !isdroid(target))
 		if(!silent)
-			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
+			owner.balloon_alert(owner, "Invalid target")
 		return FALSE
-	if(ishuman(target))
-		var/mob/living/carbon/human/victim = target
-		if(isnestedhost(victim))
+	if(!line_of_sight(owner, target, PSYCHIC_FLING_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of range")
+		return FALSE
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && living_target.stat == DEAD)
 			return FALSE
-		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
-			return FALSE
-
 
 /datum/action/ability/activable/xeno/psychic_fling/use_ability(atom/target)
-	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
-
-	owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [owner]!"), \
-	span_xenowarning("We violently fling [victim] with the power of our mind!"))
-	victim.visible_message(span_xenowarning("[victim] is violently flung away by an unseen force!"), \
-	span_xenowarning("You are violently flung to the side by an unseen force!"))
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
-	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
-
-		//Held facehuggers get killed for balance reasons
+	playsound(target,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	//Held facehuggers get killed for balance reasons
 	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
+		var/obj/item/clothing/mask/facehugger/held_hugger = owner.r_hand
+		if(held_hugger.stat != DEAD)
+			held_hugger.kill_hugger()
 	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
+		var/obj/item/clothing/mask/facehugger/held_hugger = owner.l_hand
+		if(held_hugger.stat != DEAD)
+			held_hugger.kill_hugger()
 	succeed_activate()
 	add_cooldown()
-	if(ishuman(victim))
-		victim.apply_effects(2 SECONDS, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
-		shake_camera(victim, 2, 1)
+	if(ismovableatom(target))
+		do_fling(target)
 
-	var/facing = get_dir(owner, victim)
-	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
-	var/turf/T = victim.loc
-	var/turf/temp
-
-	for(var/x in 1 to fling_distance)
-		temp = get_step(T, facing)
-		if(!temp)
-			break
-		T = temp
-	victim.throw_at(T, fling_distance, 1, owner, TRUE)
+/datum/action/ability/activable/xeno/psychic_fling/proc/do_fling(atom/movable/target)
+	target.knockback(owner, (isitem(target)) ? PSYCHIC_FLING_RANGE + 1 : PSYCHIC_FLING_RANGE, 1, spin = TRUE)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		living_target.apply_effects(stun_duration, weaken_duration)
+		shake_camera(living_target, 2, 1)
 
 
 // ***************************************
 // *********** Unrelenting Force
 // ***************************************
+#define UNRELENTING_FORCE_KNOCK_BACK 6 // in tiles
+
 /datum/action/ability/activable/xeno/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
@@ -151,25 +140,35 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
 	)
-
+	/// The duration of this ability's stun effect.
+	var/stun_duration = 2 SECONDS
+	/// The duration of this ability's weaken effect.
+	var/weaken_duration = 2 SECONDS
 
 /datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
-	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
+	owner.balloon_alert(owner, "[initial(name)] ready")
 	return ..()
-
 
 /datum/action/ability/activable/xeno/unrelenting_force/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
-	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
+	//Held facehuggers get killed for balance reasons
+	if(istype(xeno_owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/held_hugger = owner.r_hand
+		if(held_hugger.stat != DEAD)
+			held_hugger.kill_hugger()
+	if(istype(xeno_owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/held_hugger = owner.l_hand
+		if(held_hugger.stat != DEAD)
+			held_hugger.kill_hugger()
+	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
-		owner.face_atom(target)
-
+		xeno_owner.face_atom(target)
 	var/turf/lower_left
 	var/turf/upper_right
-	switch(owner.dir)
+	switch(xeno_owner.dir)
 		if(NORTH)
 			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
 			upper_right = locate(owner.x + 1, owner.y + 3, owner.z)
@@ -182,49 +181,36 @@
 		if(EAST)
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
 			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
+	do_screech(block(lower_left, upper_right))
 
+/datum/action/ability/activable/xeno/unrelenting_force/proc/do_screech(list/turf/affected_turfs)
 	var/list/things_to_throw = list()
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
-		affected_tile.Shake(duration = 0.5 SECONDS)
-		for(var/atom/movable/affected AS in affected_tile)
-			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(duration = 0.5 SECONDS)
+	for(var/turf/affected_turf in affected_turfs)
+		affected_turf.Shake(duration = 0.5 SECONDS)
+		for(var/atom/movable/affected_movable AS in affected_turf)
+			if(!isliving(affected_movable) && !isitem(affected_movable) && !isdroid(affected_movable))
+				affected_movable.Shake(duration = 0.5 SECONDS)
 				continue
-			if(ishuman(affected))
-				var/mob/living/carbon/human/H = affected
-				if(H.stat == DEAD)
+			if(isliving(affected_movable))
+				var/mob/living/affected_living = affected_movable
+				if(affected_living.stat == DEAD)
 					continue
-				H.apply_effects(2 SECONDS, 2 SECONDS)
-				shake_camera(H, 2, 1)
-			things_to_throw += affected
-
-	for(var/atom/movable/affected AS in things_to_throw)
-		var/throwlocation = affected.loc
-		for(var/x in 1 to 6)
-			throwlocation = get_step(throwlocation, owner.dir)
-		affected.throw_at(throwlocation, 6, 1, owner, TRUE)
-
-	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
-	span_xenowarning("We send out a huge blast of psychic energy!"))
-
+				affected_living.apply_effects(stun_duration, weaken_duration)
+				shake_camera(affected_living, 2, 1)
+			things_to_throw += affected_movable
+	for(var/atom/movable/affected_movable AS in things_to_throw)
+		affected_movable.knockback(affected_movable.loc, UNRELENTING_FORCE_KNOCK_BACK, 1, owner.dir, spin = TRUE)
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, SFX_ALIEN_ROAR, 50)
-
-			//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
 
 
 // ***************************************
 // *********** Psychic Cure
 // ***************************************
+#define PSYCHIC_CURE_HEAL_RANGE 3
+#define PSYCHIC_CURE_WIND_UP 1 SECONDS
+#define PSYCHIC_CURE_SHRIKE_HEAL_MULTIPLIER 10
+
 /datum/action/ability/activable/xeno/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
@@ -235,14 +221,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
-	var/heal_range = SHRIKE_HEAL_RANGE
+	var/heal_range = PSYCHIC_CURE_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
 
-
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
-	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
+	owner.balloon_alert(owner, "[initial(name)] ready")
 	return ..()
-
 
 /datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -254,58 +238,48 @@
 		return FALSE
 	if(!isxeno(target))
 		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	var/mob/living/carbon/xenomorph/xeno_target = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && xeno_target.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
+			owner.balloon_alert(owner, "Dead")
 		return FALSE
-
 
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
-	var/dist = get_dist(owner, target)
-	if(dist > heal_range)
-		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
+	var/distance = get_dist(owner, target)
+	if(distance > heal_range)
+		if(!silent)
+			owner.balloon_alert(owner, "Too far away, get [distance - heal_range] steps closer")
 		return FALSE
 	else if(!line_of_sight(owner, target))
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+		if(!silent)
+			owner.balloon_alert(owner, "No line of sight")
 		return FALSE
 	return TRUE
 
-
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
-	if(owner.do_actions)
+	if(owner.do_actions || !isxeno(target))
 		return FALSE
-
-	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	var/mob/living/carbon/xenomorph/xeno_target = target
+	if(!do_after(owner, PSYCHIC_CURE_WIND_UP, NONE, xeno_target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
-
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.heals++
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
-	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \
-	span_xenowarning("We cure [target] with the power of our mind!"))
-	target.visible_message(span_xenowarning("[target] suddenly shimmers in a chill light."), \
-	span_xenowarning("We feel a sudden soothing chill."))
-
-	playsound(target,'sound/effects/magic.ogg', 75, 1)
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
-	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetUnconscious(0)
-		patient.SetStun(0)
-		patient.SetParalyzed(0)
-		patient.set_stagger(0)
-		patient.set_slowdown(0)
-	patient.updatehealth()
-
+	playsound(xeno_target,'sound/effects/magic.ogg', 75, 1)
+	new /obj/effect/temp_visual/telekinesis(get_turf(xeno_target))
+	xeno_target.heal_wounds(PSYCHIC_CURE_SHRIKE_HEAL_MULTIPLIER)
+	xeno_target.adjust_sunder(-PSYCHIC_CURE_SHRIKE_HEAL_MULTIPLIER)
+	if(xeno_target.health > 0)
+		xeno_target.SetUnconscious(0)
+		xeno_target.SetStun(0)
+		xeno_target.SetParalyzed(0)
+		xeno_target.set_stagger(0)
+		xeno_target.set_slowdown(0)
+	xeno_target.updatehealth()
 	owner.changeNext_move(CLICK_CD_RANGE)
-
-	log_combat(owner, patient, "psychically cured")
-
+	log_combat(owner, xeno_target, "psychically cured")
 	succeed_activate()
 	add_cooldown()
 
