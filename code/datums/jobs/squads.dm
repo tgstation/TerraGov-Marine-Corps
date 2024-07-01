@@ -417,6 +417,7 @@
 GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
+	var/radio_whitelist = list(MODE_KEY_BINARY = MODE_KEY_BINARY)
 	//Create the squad
 	if(!squad_name)
 		return
@@ -443,15 +444,15 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
 	var/key_prefix = lowertext_name[1]
-	if(GLOB.department_radio_keys[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || radio_whitelist[key_prefix])
 		for(var/letter in splittext(lowertext_name, ""))
-			if(!GLOB.department_radio_keys[letter])
+			if(! (GLOB.department_radio_keys[letter] || radio_whitelist[letter]))
 				key_prefix = letter
 				break
-	if(GLOB.department_radio_keys[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || radio_whitelist[key_prefix])
 		//okay... mustve been a very short name, randomly pick things from the alphabet now
 		for(var/letter in shuffle(GLOB.alphabet))
-			if(!GLOB.department_radio_keys[letter])
+			if(! (GLOB.department_radio_keys[letter] || radio_whitelist[letter]))
 				key_prefix = letter
 				break
 
