@@ -116,7 +116,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
-	icon_state = "volkite"
+	icon_state = "volkite_powerpack"
 	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	charge_overlay = null
 	atom_flags = CONDUCT
