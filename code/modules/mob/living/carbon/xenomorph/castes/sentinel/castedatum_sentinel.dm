@@ -30,7 +30,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL,TRAIT_CASTE_SWAP)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)
