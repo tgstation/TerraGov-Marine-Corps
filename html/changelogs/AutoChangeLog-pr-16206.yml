@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - imageadd: "TE Powerpacks now has an overlay that changes color depending on their remanining charge"
