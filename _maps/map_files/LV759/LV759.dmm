@@ -12916,9 +12916,6 @@
 /area/lv759/indoors/hospital/medical_storage)
 "clf" = (
 /obj/item/stack/rods,
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cli" = (
@@ -15997,12 +15994,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
-"cMR" = (
-/obj/item/stack/sandbags_empty,
-/turf/open/floor/prison{
-	dir = 8
-	},
-/area/lv759/outdoors/landing_zone_2)
 "cMV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
@@ -20307,11 +20298,6 @@
 "dxi" = (
 /turf/closed/shuttle/dropship4/edge,
 /area/lv759/indoors/spaceport/starglider)
-"dxn" = (
-/obj/item/stack/sandbags,
-/obj/effect/urban/decal/dirt,
-/turf/open/urban/street/asphalt,
-/area/lv759/outdoors/landing_zone_2)
 "dxo" = (
 /obj/structure/closet/crate/trashcart{
 	opened = 1
@@ -37097,7 +37083,6 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gpI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/sandbags,
 /obj/structure/barricade/handrail/urban/road/plastic/blue,
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -45042,7 +45027,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/storage)
 "hIC" = (
-/obj/item/stack/sandbags,
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing/bullet,
@@ -55830,9 +55814,6 @@
 /obj/effect/urban/decal/doubleroad/lines4{
 	pixel_x = 4
 	},
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "jzd" = (
@@ -58977,9 +58958,6 @@
 "kcO" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/urban/road/plastic/red,
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
 /turf/open/urban/street/sidewalk{
 	dir = 4
 	},
@@ -60828,9 +60806,6 @@
 /turf/open/engineership/engineer_floor3,
 /area/lv759/indoors/derelict_ship)
 "kuo" = (
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/generic,
 /obj/structure/barricade/handrail/urban/road/plastic/red,
 /obj/structure/prop/mainship/gelida/smallwire,
@@ -74597,9 +74572,6 @@
 /area/lv759/indoors/nt_research_complex/researchanddevelopment)
 "mLH" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/sandbags{
-	dir = 8
-	},
 /turf/open/urban/street/sidewalkcenter{
 	dir = 4
 	},
@@ -82891,9 +82863,6 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "ofS" = (
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
 /obj/structure/barricade/handrail/urban/road/plastic/red,
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/effect/urban/decal/road/road_edge,
@@ -100969,10 +100938,6 @@
 	},
 /obj/item/storage/pouch/construction,
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	pixel_y = 6
-	},
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -165479,7 +165444,7 @@ pmk
 ylc
 hkM
 efq
-sZK
+hHl
 sZK
 kLR
 hkM
@@ -187111,7 +187076,7 @@ aMy
 blz
 eqE
 pdf
-dxn
+gjS
 hqJ
 kpN
 oHV
@@ -187514,7 +187479,7 @@ eQt
 eQt
 lgQ
 lXi
-cMR
+wOw
 tTI
 oVS
 dUh
