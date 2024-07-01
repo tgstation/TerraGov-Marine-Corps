@@ -131,7 +131,7 @@
 	speed = -0.8
 
 	// *** Health *** //
-	max_health = 425
+	max_health = 450
 
 	// *** Abilities *** //
 	actions = list(
