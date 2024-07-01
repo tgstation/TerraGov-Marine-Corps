@@ -269,12 +269,7 @@
 		return
 
 	if(GLOB.custom_info)
-		to_chat(src, assemble_alert(
-			title = "Custom Information",
-			subtitle = "The following custom information has been set for this round.",
-			message = GLOB.custom_info,
-			color_override = "red"
-		))
+		custom_info()
 
 	connection_time = world.time
 	connection_realtime = world.realtime

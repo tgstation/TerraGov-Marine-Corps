@@ -140,6 +140,73 @@
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
 
+/obj/structure/largecrate/random/mini
+	name = "small crate"
+	desc = "The large supply crate's cousin, 1st removed."
+	icon_state = "mini_crate"
+	density = FALSE
+
+/obj/structure/largecrate/random/mini/chest
+	desc = "A small plastic crate wrapped with securing elastic straps."
+	icon_state = "mini_chest"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/chest/b
+	icon_state = "mini_chest_b"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/chest/c
+	icon_state = "mini_chest_c"
+	name = "small chest"
+
+/obj/structure/largecrate/random/mini/wooden
+	desc = "A small wooden crate. Two supporting ribs cross this one's frame."
+	icon_state = "mini_wooden"
+	name = "wooden crate"
+
+/obj/structure/largecrate/random/mini/small_case
+	desc = "A small hard-shell case. What could be inside?"
+	icon_state = "mini_case"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/small_case/b
+	icon_state = "mini_case_b"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/small_case/c
+	icon_state = "mini_case_c"
+	name = "small case"
+
+/obj/structure/largecrate/random/mini/ammo
+	desc = "A small metal crate. Here, Freeman ammo!"
+	name = "small ammocase"
+	icon_state = "mini_ammo"
+	stuff = list(
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle/extended,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/ammo_magazine/shotgun/flechette,
+	)
+
+/obj/structure/largecrate/random/mini/med
+	desc = "A small metal crate containing medical supplies."
+	icon_state = "mini_medcase"
+	name = "small medcase"
+	num_things = 1 //funny lootbox tho.
+	stuff = list(
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
+		/obj/item/tool/crowbar/red,
+		/obj/item/flashlight,
+		/obj/item/storage/pill_bottle/packet/tramadol,
+		/obj/item/stack/medical/splint,
+		/obj/item/healthanalyzer,
+		/obj/item/tool/extinguisher/mini,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/screwdriver,
+	)
 
 /obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
 	if(dropmetal)
@@ -200,6 +267,16 @@
 	name = "white barrel"
 	desc = "A white storage barrel"
 	icon_state = "barrel_white"
+
+/obj/structure/largecrate/random/barrel/black
+	name = "black barrel"
+	desc = "A black storage barrel"
+	icon_state = "barrel_black"
+
+/obj/structure/largecrate/random/barrel/brown
+	name = "black brown"
+	desc = "A black storage barrel"
+	icon_state = "barrel_brown"
 
 /obj/structure/largecrate/random/secure
 	name = "secure supply crate"

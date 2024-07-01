@@ -593,3 +593,9 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/deployable_camera
 	refill_amount = 30
+
+/obj/item/factory_refill/cigarette_refill
+	name = "box of rounded metal plates"
+	desc = "A box with unfinished cigarettes inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/cigarette
+	refill_amount = 500

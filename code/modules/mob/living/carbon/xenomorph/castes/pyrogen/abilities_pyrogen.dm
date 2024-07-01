@@ -200,7 +200,7 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
+		if(!istype(target, /obj/structure/door/resin) && !istype(target, /obj/structure/xeno))
 			var/obj/object = target
 			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)
@@ -359,9 +359,12 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, FIRE)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_add = 0
+				if(ismecha(obj_victim))
+					damage_add = 20
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return
