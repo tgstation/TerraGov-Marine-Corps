@@ -284,9 +284,9 @@
 	//max shells
 	var/max_shells = 3
 	//time to load the ready rack
-	var/rack_reload_time = 2 SECONDS
+	var/rack_reload_time = 3 SECONDS
 	//autoloader time to reload from readyrack
-	var/autoloader_reload_time = 1.5 SECONDS //is the reload time really 1 second for the breech? (ive never seen a man reload a tank that fast)
+	var/autoloader_reload_time = 0.75 SECONDS //is the reload time really 1 second for the breech? (ive never seen a man reload a tank that fast)
 	//check to see if loading is happening
 	var/loading = FALSE
 
@@ -295,14 +295,25 @@
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(src)
 	shells += mag
+	for(var/mob/occupant AS in owner.interior.occupants)
+		occupant.hud_used.update_ammo_hud(owner.primary_weapon, list(
+			shells[1].default_ammo.hud_state,
+			shells[1].default_ammo.hud_state_empty),
+			shells.len
+		)
 
 /obj/structure/gun_breech/autoloader/proc/begin_autoloader_load_gun()
 	if(shells.len <= 0)
+		say("Autoloader Empty!" ) // Yeah localize this to the gunner. FIX!!
 		return
 	if(owner.primary_weapon.ammo)
 		return
+	if(loading)
+		say("Autoloader Busy!" )
+		return
 	loading = TRUE
 	var/timer = addtimer(CALLBACK(src, PROC_REF(autoloader_load_gun)), autoloader_reload_time, TIMER_STOPPABLE)
+	playsound(src, 'sound/vehicles/weapons/ltb_reload.ogg', 60, FALSE)
 
 
 /obj/structure/gun_breech/autoloader/proc/autoloader_load_gun()
@@ -313,12 +324,12 @@
 		occupant.hud_used.update_ammo_hud(owner.primary_weapon, list(
 			shells[1].default_ammo.hud_state,
 			shells[1].default_ammo.hud_state_empty),
-			shells[1].current_rounds
+			shells.len - 1
 		)
 	shells -= shells[1]
 	loading = FALSE
 
-	playsound(src, 'sound/weapons/vehicles/weapons/ltb_reload.ogg', 60, FALSE)
+
 	flick("autoloader_breech_reload",src)
 
 
@@ -329,5 +340,4 @@
 		balloon_alert(user, "no weapon")
 		return FALSE
 	return TRUE
-
 
