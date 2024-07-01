@@ -18,4 +18,3 @@
 
 /mob/living/carbon/xenomorph/sentinel/retrograde
 	caste_base_type = /datum/xeno_caste/sentinel/retrograde
-	upgrade = XENO_UPGRADE_BASETYPE

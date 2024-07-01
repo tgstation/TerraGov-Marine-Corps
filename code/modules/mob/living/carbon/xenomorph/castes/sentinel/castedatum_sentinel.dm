@@ -102,8 +102,6 @@
 
 /datum/xeno_caste/sentinel/retrograde/primordial
 	upgrade_name = "Primordial"
-	caste_name = "Retrograde Sentinel"
-	display_name = "Retrograde Sentinel"
 	upgrade = XENO_UPGRADE_PRIMO
 	caste_desc = "A neurotoxic nightmare. It's stingers drip with poison."
 
