@@ -523,9 +523,9 @@
 		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
 		tank_target.explode()
 		return
-	if(istype(object_target, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/resin_door = object_target
-		resin_door.toggle_state()
+	if(istype(object_target, /obj/structure/door/resin))
+		var/obj/structure/door/resin/resin_door = object_target
+		resin_door.open(TRUE, TRUE)
 		return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
@@ -1456,11 +1456,11 @@
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)
 					continue
 				if(isvehicle(affected_atom) || ishitbox(affected_atom))
-					var/obj/vehicle/veh_victim = affected_atom
+					var/obj/obj_victim = affected_atom
 					var/damage_add = 0
-					if(ismecha(veh_victim))
+					if(ismecha(obj_victim))
 						damage_add = 9.5
-					veh_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
+					obj_victim.take_damage(attack_damage * (AREA_ATTACK_DAMAGE_VEHICLE_MODIFIER + damage_add), MELEE)
 					continue
 				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom

@@ -544,7 +544,7 @@
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
 	var/image/holder = hud_list[XENO_RANK_HUD]
 	holder.icon_state = ""
-	if(stat != DEAD && playtime_as_number() > 0)
+	if(stat != DEAD && playtime_as_number() > 0 && client.prefs.show_xeno_rank)
 		holder.icon = 'icons/mob/hud/xeno.dmi'
 		holder.icon_state = "upgrade_[playtime_as_number()]"
 

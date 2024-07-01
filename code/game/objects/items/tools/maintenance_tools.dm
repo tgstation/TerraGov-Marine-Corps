@@ -131,6 +131,7 @@
 
 /obj/item/tool/weldingtool/examine(mob/user)
 	. += ..()
+	. += EXAMINE_SECTION_BREAK
 	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
 

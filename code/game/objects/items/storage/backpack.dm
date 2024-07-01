@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -365,6 +366,67 @@
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	storage_type = /datum/storage/backpack/no_delay
+
+/obj/item/storage/backpack/marine/duffelbag
+	name = "\improper TGMC Duffelbag"
+	desc = "A massive bag designed for those interested in being the squad Mule. \
+	Features extra storage space at the cost of speed. \
+	Any squadmates can easily access the storage with right-click"
+	icon = 'icons/obj/items/storage/duffelbag.dmi'
+	icon_state = "duffel"
+	worn_icon_state = "duffel"
+	storage_type = /datum/storage/backpack/duffelbag
+
+/obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
+	. = ..()
+	if(slot == SLOT_BACK)
+		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		for(var/mob/M AS in storage_datum.content_watchers)
+			storage_datum.close(M)
+
+/obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
+
+/obj/item/storage/backpack/marine/duffelbag/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(item_flags & IN_INVENTORY && loc.Adjacent(neighbor)) //Special check to ensure that worn duffels are adjacent
+		return TRUE
+	return ..()
+
+///Allows non-wearers to access this inventory
+/obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
+	SIGNAL_HANDLER
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't open this inventory
+		return
+	storage_datum.open(clicker)
+
+/datum/storage/backpack/duffelbag
+	access_delay = 0
+
+/datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
+	//Taking off the duffelbag has a channel
+	if(user.back != parent || !do_after(user, 3 SECONDS))
+		return
+
+	switch(over_object.name)
+		if("r_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+		if("l_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+
+/datum/storage/backpack/duffelbag/open(mob/user)
+	if(!iscarbon(user))
+		return TRUE
+	var/mob/living/carbon/carbon_user = user
+	if(carbon_user.back == parent)
+		return TRUE
+	return ..()
+
+/datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
+	if(user.back == parent)
+		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
+		return
+	return ..()
 
 //CLOAKS
 

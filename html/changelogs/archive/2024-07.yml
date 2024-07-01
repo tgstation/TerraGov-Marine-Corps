@@ -1,0 +1,9 @@
+2024-07-01:
+  Apple-107:
+  - bugfix: doubled-up windows on Outrider Tadpole
+  Ldip999:
+  - bugfix: Fixed inability to create squads on Sulaco
+  - bugfix: Webmap fixed
+  Notamaniac:
+  - imageadd: TE Powerpacks now has an overlay that changes color depending on their
+      remanining charge

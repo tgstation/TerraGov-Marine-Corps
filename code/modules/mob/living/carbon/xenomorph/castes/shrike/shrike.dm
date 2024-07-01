@@ -13,7 +13,6 @@
 	maxHealth = 500
 	plasma_stored = 925
 	pixel_x = -16
-	old_x = -16
 	drag_delay = 3 //pulling a medium dead xeno is hard
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_NORMAL
