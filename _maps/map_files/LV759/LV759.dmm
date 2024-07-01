@@ -12163,11 +12163,11 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "cdt" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 1
-	},
 /obj/effect/urban/decal/dirt,
+/obj/structure/platform_decoration/mineral{
+	color = "#7e7d72";
+	dir = 4
+	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "cdy" = (
@@ -36218,7 +36218,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "giM" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/platform/mineral{
+/obj/structure/platform_decoration/mineral{
 	color = "#7e7d72"
 	},
 /turf/open/urban/street/cement3,
@@ -37773,14 +37773,6 @@
 /turf/open/floor/plating{
 	dir = 8
 	},
-/area/lv759/outdoors/colony_streets/east_central_street)
-"gvR" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 8
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "gvS" = (
 /obj/structure/sign/poster,
@@ -40727,12 +40719,6 @@
 /obj/effect/ai_node,
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
-"gYS" = (
-/obj/structure/platform/mineral{
-	dir = 8
-	},
-/turf/open/liquid/water/river/autosmooth,
-/area/lv759/indoors/apartment/westentertainment)
 "gYT" = (
 /obj/item/stack/rods,
 /obj/structure/fence/dark,
@@ -43673,13 +43659,6 @@
 	dir = 6
 	},
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
-"hwM" = (
-/obj/structure/platform/mineral{
-	dir = 4
-	},
-/obj/structure/platform/mineral,
-/turf/open/liquid/water/river/autosmooth,
-/area/lv759/indoors/apartment/westentertainment)
 "hwN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -47460,13 +47439,12 @@
 /turf/open/floor/multi_tiles,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "iek" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 4
-	},
 /obj/item/trash/cigbutt{
 	pixel_x = -10;
 	pixel_y = 14
+	},
+/obj/structure/platform_decoration/mineral{
+	color = "#7e7d72"
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -47665,12 +47643,6 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "igc" = (
-/obj/structure/platform/mineral{
-	dir = 1
-	},
-/obj/structure/platform/mineral{
-	dir = 8
-	},
 /obj/structure/barricade/handrail/strata{
 	dir = 4;
 	layer = 3
@@ -53378,9 +53350,6 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/southwest_public_restroom)
 "jeo" = (
-/obj/structure/platform/mineral{
-	dir = 4
-	},
 /obj/machinery/light/blue{
 	dir = 4
 	},
@@ -56105,15 +56074,15 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jBG" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 8
-	},
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/item/trash/cigbutt{
 	pixel_x = -10;
 	pixel_y = 7
+	},
+/obj/structure/platform_decoration/mineral{
+	color = "#7e7d72";
+	dir = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -66079,10 +66048,11 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "lpf" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72"
-	},
 /obj/effect/urban/decal/dirt,
+/obj/structure/platform_decoration/mineral{
+	color = "#7e7d72";
+	dir = 1
+	},
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lpz" = (
@@ -82998,13 +82968,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
-"ogT" = (
-/obj/structure/platform/mineral{
-	dir = 8
-	},
-/obj/structure/platform/mineral,
-/turf/open/liquid/water/river/autosmooth,
-/area/lv759/indoors/apartment/westentertainment)
 "ogV" = (
 /obj/effect/urban/decal/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -86142,12 +86105,6 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "oKe" = (
-/obj/structure/platform/mineral{
-	dir = 1
-	},
-/obj/structure/platform/mineral{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -86839,14 +86796,6 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/central_streets)
-"oQE" = (
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 4
-	},
-/obj/effect/urban/decal/dirt,
-/turf/open/urban/street/cement2,
-/area/lv759/outdoors/colony_streets/east_central_street)
 "oQJ" = (
 /obj/structure/cable,
 /turf/open/floor/grimy,
@@ -119079,7 +119028,6 @@
 /area/lv759/indoors/nt_office/vip)
 "uol" = (
 /obj/item/toy/bikehorn/rubberducky,
-/obj/structure/platform/mineral,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv759/indoors/apartment/westentertainment)
 "uoo" = (
@@ -128330,9 +128278,6 @@
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
 "vQi" = (
 /obj/item/toy/beach_ball,
-/obj/structure/platform/mineral{
-	dir = 8
-	},
 /turf/open/liquid/water/river/autosmooth{
 	dir = 1
 	},
@@ -132847,14 +132792,14 @@
 /area/lv759/indoors/apartment/eastbedrooms)
 "wDc" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/platform/mineral{
-	color = "#7e7d72";
-	dir = 1
-	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 11;
 	pixel_y = 21
+	},
+/obj/structure/platform_decoration/mineral{
+	color = "#7e7d72";
+	dir = 8
 	},
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -137438,12 +137383,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/urban/tile/supermartfloor2,
 /area/lv759/indoors/power_plant/workers_canteen_kitchen)
-"xqQ" = (
-/obj/structure/platform/mineral{
-	dir = 4
-	},
-/turf/open/liquid/water/river/autosmooth,
-/area/lv759/indoors/apartment/westentertainment)
 "xqR" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2,
@@ -158164,9 +158103,9 @@ lpV
 aHa
 xbA
 igc
-gYS
+ltG
 vQi
-ogT
+ltG
 xbA
 lmU
 cjt
@@ -158570,9 +158509,9 @@ vgP
 jcE
 xbA
 oKe
-xqQ
+ltG
 jeo
-hwM
+ltG
 xbA
 ieN
 fCG
@@ -174027,7 +173966,7 @@ tng
 gsK
 mmy
 eCG
-oQE
+mBJ
 iek
 mBJ
 pop
@@ -174637,7 +174576,7 @@ tXu
 peV
 fsV
 jBG
-gvR
+lpf
 gMj
 mYZ
 fJF
