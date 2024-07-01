@@ -30,7 +30,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL,TRAIT_CASTE_SWAP)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)
@@ -59,6 +59,9 @@
 /datum/xeno_caste/sentinel/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
+/datum/xeno_caste/sentinel/retrograde/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
 /datum/xeno_caste/sentinel/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A doctors worst nightmare. It's stinger drips with poison."
@@ -83,6 +86,7 @@
 	display_name = "Retrograde Sentinel"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A weak ranged combat alien. This one seems to have a different kind of spit."
+
 		// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid/passthrough)
