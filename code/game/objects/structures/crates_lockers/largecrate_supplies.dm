@@ -221,6 +221,7 @@
 		/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_heavysmg/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,

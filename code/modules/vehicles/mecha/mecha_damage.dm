@@ -13,15 +13,6 @@
  * where they target the "dangerous" modules
  */
 
-/// returns a number for the damage multiplier for this relative angle/dir
-/obj/vehicle/sealed/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
-		if(180) // BACKSTAB!
-			return facing_modifiers[MECHA_BACK_ARMOUR]
-		if(0, 45) // direct or 45 degrees off
-			return facing_modifiers[MECHA_FRONT_ARMOUR]
-	return facing_modifiers[MECHA_SIDE_ARMOUR] //if its not a front hit or back hit then assume its from the side
-
 ///tries to deal internal damaget depending on the damage amount
 /obj/vehicle/sealed/mecha/proc/try_deal_internal_damage(damage)
 	if(damage < internal_damage_threshold)

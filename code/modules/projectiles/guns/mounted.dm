@@ -2,8 +2,8 @@
 /obj/item/storage/box/hsg_102
 	name = "\improper HSG-102 crate"
 	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = "crate"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state = "hsg102_crate"
 	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/storage/box/hsg_102/Initialize(mapload)

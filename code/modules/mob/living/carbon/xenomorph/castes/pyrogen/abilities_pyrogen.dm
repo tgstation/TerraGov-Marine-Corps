@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/charge/fire_charge
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
 	cooldown_duration = 4 SECONDS
 	ability_cost = 30
@@ -78,6 +79,7 @@
 /datum/action/ability/activable/xeno/fireball
 	name = "Fireball"
 	action_icon_state = "fireball"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
@@ -134,6 +136,7 @@
 /datum/action/ability/activable/xeno/firestorm
 	name = "Fire Storm"
 	action_icon_state = "whirlwind"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Unleash 3 fiery tornados. They will try to close on your target tile"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 50
@@ -197,7 +200,7 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
+		if(!istype(target, /obj/structure/door/resin) && !istype(target, /obj/structure/xeno))
 			var/obj/object = target
 			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)
@@ -278,6 +281,7 @@
 /datum/action/ability/xeno_action/heatray
 	name = "Heat Ray"
 	action_icon_state = "heatray"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Microwave any target infront of you in a range of 7 tiles"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 150
@@ -355,9 +359,12 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, FIRE)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_add = 0
+				if(ismecha(obj_victim))
+					damage_add = 20
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return

@@ -42,6 +42,8 @@
 	max_spiderlings = 8
 
 	// *** Abilities *** ///
+	resin_max_range = 1 // Widow can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/psychic_whisper,
@@ -52,7 +54,7 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_resin/widow,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
@@ -84,6 +86,8 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** ///
+	resin_max_range = 1 //Widow can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/psychic_whisper,
@@ -94,7 +98,7 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
-		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_resin/widow,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/activable/xeno/web_spit,
 		/datum/action/ability/xeno_action/burrow,
@@ -104,5 +108,6 @@
 		/datum/action/ability/xeno_action/attach_spiderlings,
 		/datum/action/ability/activable/xeno/cannibalise,
 		/datum/action/ability/activable/xeno/spiderling_mark,
+		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/activable/xeno/web_hook,
 	)

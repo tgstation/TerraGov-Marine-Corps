@@ -3,7 +3,6 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
-	action_icon_state = "spray_acid"
 	desc = "Spray a line of dangerous acid at your target."
 
 	ability_cost = 250
@@ -95,7 +94,7 @@
 
 /datum/action/ability/activable/xeno/spray_acid/line/on_cooldown_finish() //Give acid spray a proper cooldown notification
 	to_chat(owner, span_xenodanger("Our dermal pouches bloat with fresh acid; we can use acid spray again."))
-	owner.playsound_local(owner, 'sound/voice/alien_drool2.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/voice/alien/drool2.ogg', 25, 0, 1)
 	return ..()
 
 // ***************************************
@@ -104,6 +103,7 @@
 /datum/action/ability/activable/xeno/scatter_spit
 	name = "Scatter Spit"
 	action_icon_state = "scatter_spit"
+	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
 
 	ability_cost = 280
@@ -137,5 +137,5 @@
 
 /datum/action/ability/activable/xeno/scatter_spit/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our auxiliary sacks fill to bursting; we can use scatter spit again."))
-	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/voice/alien/drool1.ogg', 25, 0, 1)
 	return ..()

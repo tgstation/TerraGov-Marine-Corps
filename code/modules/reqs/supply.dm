@@ -394,11 +394,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = list()
 	var/id = 0
+	var/lastexport = ""
 	for(var/datum/export_report/report AS in SSpoints.export_history)
 		if(report.faction != user.faction)
 			continue
-		.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points))
-		id++
+		if(report.export_name == lastexport)
+			.["export_history"][id]["amount"] += 1
+			.["export_history"][id]["total"] += report.points
+		else
+			.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points, "amount" = 1, total = report.points))
+			id++
+			lastexport = report.export_name
 	.["shopping_history"] = list()
 	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)
 		if(SO.faction != user.faction)
@@ -737,12 +743,27 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 	. = list()
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		vehtype = new vehtype
-		GLOB.armored_modtypes[vehtype.type] = vehtype.permitted_mods
-		.[vehtype.type] = vehtype.permitted_weapons
+
+		GLOB.armored_modtypes[vehtype.type] = list()
+		for(var/obj/item/tank_module/module AS in vehtype.permitted_mods)
+			if(module::tank_mod_flags & TANK_MOD_NOT_FABRICABLE)
+				continue
+			GLOB.armored_modtypes[vehtype.type] += module
+
+		.[vehtype.type] = list()
+		for(var/obj/item/armored_weapon/weapon AS in vehtype.permitted_weapons)
+			if(weapon::armored_weapon_flags & MODULE_NOT_FABRICABLE)
+				continue
+			.[vehtype.type] += weapon
 		qdel(vehtype)
+
 	for(var/obj/item/armored_weapon/gun AS in typesof(/obj/item/armored_weapon))
 		gun = new gun
-		GLOB.armored_gunammo[gun.type] = gun.accepted_ammo
+		GLOB.armored_gunammo[gun.type] = list()
+		for(var/obj/item/ammo_magazine/magazine AS in gun.accepted_ammo)
+			if(magazine::magazine_flags & MAGAZINE_NOT_FABRICABLE)
+				continue
+			GLOB.armored_gunammo[gun.type] += magazine
 		qdel(gun)
 
 /datum/supply_ui/vehicles
@@ -784,7 +805,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		for(var/obj/item/armored_weapon/gun AS in GLOB.armored_guntypes[vehtype])
 			var/primary_selected = (current_primary == gun)
 			var/secondary_selected = (current_secondary == gun)
-			if(initial(gun.weapon_slot) & MODULE_PRIMARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_PRIMARY)
 				data["primaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),
@@ -800,7 +821,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 							"max" = DEFAULT_MAX_ARMORED_AMMO, //TODO make vehicle ammo dynamic instead of fixed number
 						))
 
-			if(initial(gun.weapon_slot) & MODULE_SECONDARY)
+			if(initial(gun.armored_weapon_flags) & MODULE_SECONDARY)
 				data["secondaryWeapons"] += list(list(
 					"name" = initial(gun.name),
 					"desc" = initial(gun.desc),
@@ -970,6 +991,13 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			supply_shuttle.buy(usr, src)
 			ui_act("send", params, ui, state)
 			SStgui.close_user_uis(usr, src)
+			current_veh_type = null
+			current_primary = null
+			current_secondary = null
+			current_driver_mod = null
+			current_gunner_mod = null
+			primary_ammo = list()
+			secondary_ammo = list()
 
 	if(.)
 		update_static_data(usr)

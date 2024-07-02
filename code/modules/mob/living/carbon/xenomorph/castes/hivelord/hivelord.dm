@@ -9,7 +9,6 @@
 	maxHealth = 250
 	plasma_stored = 200
 	pixel_x = -16
-	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_TWO
