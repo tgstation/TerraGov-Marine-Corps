@@ -1,4 +1,4 @@
-/obj/docking_port/stationary/marine_dropship/cas
+/obj/docking_port/stationary/shuttle/cas
 	name = "CAS plane hangar pad"
 	id = SHUTTLE_CAS_DOCK
 	roundstart_template = /datum/map_template/shuttle/cas

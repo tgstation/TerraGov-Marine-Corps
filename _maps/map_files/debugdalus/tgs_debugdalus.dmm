@@ -1018,7 +1018,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeI" = (
-/obj/docking_port/stationary/marine_dropship/hangar/one,
+/obj/docking_port/stationary/shuttle/dropship,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "aeJ" = (
@@ -2269,7 +2269,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "aPt" = (
-/obj/docking_port/stationary/marine_dropship/cas,
+/obj/docking_port/stationary/shuttle/cas,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bgb" = (
@@ -2287,7 +2287,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "blr" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/shuttle/minidropship,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bwS" = (
@@ -3071,7 +3071,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "xBy" = (
-/obj/machinery/computer/dropship_picker,
+/obj/machinery/computer/shuttle_picker/mini,
 /obj/machinery/landinglight/tadpole{
 	dir = 1
 	},

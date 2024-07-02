@@ -2332,7 +2332,6 @@
 	name = "ERROR"
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	icon_state = "error"
 
 /obj/prop/mainship/prop/news_tv
 	name = "TV"

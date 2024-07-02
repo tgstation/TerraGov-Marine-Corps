@@ -1343,19 +1343,20 @@
 
 /client/proc/toggle_admin_tads()
 	set category = "Admin.Fun"
-	set name = "Toggle Tadpole Restrictions"
+	set name = "Toggle Restricted Shuttles"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(SSticker.mode.enable_fun_tads)
-		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions off.")
-		log_admin("[key_name(usr)] toggled Tadpole restrictions off.")
-		SSticker.mode.enable_fun_tads = FALSE
-	else
-		SSticker.mode.enable_fun_tads = TRUE
-		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
-		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
+	if(SSticker.mode.enable_restricted_shuttles)
+		message_admins("[ADMIN_TPMONTY(usr)] toggled restricted shuttles OFF.")
+		log_admin("[key_name(usr)] toggled restricted shuttles OFF.")
+		SSticker.mode.enable_restricted_shuttles = FALSE
+		return
+
+	SSticker.mode.enable_restricted_shuttles = TRUE
+	message_admins("[ADMIN_TPMONTY(usr)] toggled restricted shuttles ON.")
+	log_admin("[key_name(usr)] toggled restricted shuttles ON.")
 
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event

@@ -1,0 +1,500 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 6
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"c" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"e" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"f" = (
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"g" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"h" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 10
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"i" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/dropship/alamo)
+"j" = (
+/obj/effect/turf_decal/loading_area/white{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"k" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"l" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 4;
+	pixel_x = -16
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test{
+	pixel_y = 12
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"m" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"n" = (
+/obj/structure/engine/thruster/right{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"p" = (
+/obj/vehicle/sealed/armored/turret{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/dropship/alamo)
+"q" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"r" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"s" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"t" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/obj/machinery/door/airlock/dropship_hatch/left/two{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/dropship/alamo)
+"u" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"v" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/airlock/dropship_hatch/right/two{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/dropship/alamo)
+"x" = (
+/obj/structure/engine/atmosphere{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"y" = (
+/obj/structure/engine{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"z" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"A" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial,
+/turf/open/floor/plating,
+/area/shuttle/dropship/alamo)
+"B" = (
+/obj/docking_port/mobile/marine_dropship/one,
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"C" = (
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"D" = (
+/obj/structure/engine/right{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"E" = (
+/obj/vehicle/sealed/armored/turret{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/dropship/alamo)
+"F" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"G" = (
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"H" = (
+/obj/structure/prop/mainship/railing{
+	dir = 1
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"I" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"J" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/dropship/alamo)
+"K" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/item/radio/intercom/dropship{
+	dir = 4
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"L" = (
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"N" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"O" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"Q" = (
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"R" = (
+/obj/machinery/vending/cola/alamo,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"S" = (
+/obj/machinery/vending/snack/alamo,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"T" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/item/radio/intercom/dropship{
+	dir = 8
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"U" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+"W" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/iron/textured{
+	color = "#555555"
+	},
+/area/shuttle/dropship/alamo)
+"Y" = (
+/obj/structure/engine/thruster{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"Z" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/iron/textured,
+/area/shuttle/dropship/alamo)
+
+(1,1,1) = {"
+c
+c
+c
+c
+x
+c
+c
+c
+c
+c
+c
+E
+x
+J
+y
+Y
+"}
+(2,1,1) = {"
+c
+c
+A
+J
+J
+J
+J
+t
+J
+J
+t
+J
+J
+J
+J
+c
+"}
+(3,1,1) = {"
+c
+c
+J
+J
+z
+z
+K
+C
+g
+f
+m
+H
+L
+e
+j
+c
+"}
+(4,1,1) = {"
+c
+i
+J
+I
+C
+C
+C
+C
+z
+z
+s
+L
+L
+L
+j
+c
+"}
+(5,1,1) = {"
+i
+i
+S
+C
+N
+W
+h
+C
+z
+z
+r
+H
+L
+d
+j
+c
+"}
+(6,1,1) = {"
+i
+l
+C
+F
+O
+L
+u
+B
+z
+z
+Q
+J
+J
+J
+J
+c
+"}
+(7,1,1) = {"
+i
+i
+R
+C
+q
+k
+a
+C
+z
+z
+m
+H
+L
+e
+j
+c
+"}
+(8,1,1) = {"
+c
+i
+J
+I
+C
+C
+C
+C
+z
+z
+Z
+L
+L
+L
+j
+c
+"}
+(9,1,1) = {"
+c
+c
+J
+J
+z
+z
+T
+C
+U
+G
+r
+H
+L
+d
+j
+c
+"}
+(10,1,1) = {"
+c
+c
+A
+J
+J
+J
+J
+v
+J
+J
+v
+J
+J
+J
+J
+c
+"}
+(11,1,1) = {"
+c
+c
+c
+c
+x
+c
+c
+c
+c
+c
+c
+p
+x
+J
+D
+n
+"}

@@ -150,3 +150,13 @@
 	icon_state = "sflamer"
 	max_rounds = 150
 	default_ammo = /datum/ammo/flamethrower/armored_spray
+
+/obj/item/ammo_magazine/tank/dropship_machinegun
+	name = "heavy turret machinegun ammo"
+	desc = "Ammunition box for machineguns on military shuttles."
+	caliber = CALIBER_10X28
+	icon_state = "cupola"
+	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo = /datum/ammo/bullet/dropship_machinegun
+	max_rounds = 75

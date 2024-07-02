@@ -484,11 +484,11 @@
 /area/lv624/lazarus/spaceport
 	name = "\improper Eastern Space Port"
 	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD
+	area_flags = NO_DROPPOD|MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv624/lazarus/spaceport2
 	name = "\improper Western Space Port"
 	icon_state = "landingzone2"
-	area_flags = NO_DROPPOD
+	area_flags = NO_DROPPOD|MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ

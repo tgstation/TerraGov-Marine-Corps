@@ -56,6 +56,7 @@
 /area/ice_colony/exterior/surface/landing_pad
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_LZ
@@ -64,6 +65,7 @@
 /area/ice_colony/exterior/surface/landing_pad2
 	name = "Emergency Landing Pad"
 	icon_state = "landing_pad"
+	area_flags = MARINE_BASE
 	outside = FALSE
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_LZ

@@ -167,12 +167,14 @@
 /area/icy_caves/outpost/LZ1
 	name = "\improper Landing Zone One"
 	icon_state = "green"
+	area_flags = MARINE_BASE
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/icy_caves/outpost/LZ2
 	name = "\improper Landing Zone Two"
 	icon_state = "blue"
+	area_flags = MARINE_BASE
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
 

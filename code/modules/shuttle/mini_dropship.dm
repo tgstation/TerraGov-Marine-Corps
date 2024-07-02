@@ -1,11 +1,11 @@
-/obj/docking_port/stationary/marine_dropship/minidropship
+/obj/docking_port/stationary/shuttle/minidropship
 	name = "Minidropship hangar pad"
-	id = SHUTTLE_TADPOLE
+	id = SHUTTLE_MINI
 	roundstart_template = null
 
 /obj/docking_port/mobile/marine_dropship/minidropship
 	name = "Tadpole"
-	id = SHUTTLE_TADPOLE
+	id = SHUTTLE_MINI
 	dwidth = 0
 	dheight = 0
 	width = 7
@@ -17,18 +17,14 @@
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
 	screen_overlay = "shuttlecomputer_screen"
-	req_access = list(ACCESS_MARINE_TADPOLE)
+	req_access = list(ACCESS_MARINE_SHUTTLE)
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL
-	shuttleId = SHUTTLE_TADPOLE
+	shuttleId = SHUTTLE_MINI
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
-	view_range = "26x26"
-	x_offset = 0
-	y_offset = 0
 	open_prompt = FALSE
-	nvg_vision_mode = FALSE
 	/// Action of landing to a custom zone
 	var/datum/action/innate/shuttledocker_land/land_action
 	/// The current flying state of the shuttle
@@ -40,7 +36,7 @@
 	/// If the next destination is a transit
 	var/to_transit = TRUE
 	/// The id of the stationary docking port on the ship
-	var/origin_port_id = SHUTTLE_TADPOLE
+	var/origin_port_id = SHUTTLE_MINI
 	/// The user of the ui
 	var/mob/living/ui_user
 	/// How long before you can launch tadpole after a landing
@@ -52,6 +48,7 @@
 	..()
 	start_processing()
 	set_light(3,3, LIGHT_COLOR_RED)
+	update_offsets()
 	land_action = new
 	tadmap = new
 	return INITIALIZE_HINT_LATELOAD
@@ -60,6 +57,29 @@
 	QDEL_NULL(land_action)
 	QDEL_NULL(tadmap)
 	return ..()
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/setDir(newdir)
+	. = ..()
+	update_offsets()
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/update_offsets()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -12
+			pixel_x = 0
+			layer = ABOVE_MOB_LAYER
+		if(SOUTH)
+			pixel_y = 12
+			pixel_x = 0
+			layer = BELOW_OBJ_LAYER	//Appear below every other item and object so it can look cluttered if there are items on the tile
+		if(EAST)
+			pixel_y = 0
+			pixel_x = -12
+			layer = UPPER_ITEM_LAYER
+		if(WEST)
+			pixel_y = 0
+			pixel_x = 12
+			layer = UPPER_ITEM_LAYER
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/CreateEye()
 	. = ..()
@@ -237,29 +257,42 @@
 	return GLOB.dropship_state
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
-	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui_user)
 		return
 
 	if(!ui)
 		ui_user = user
-		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
+		RegisterSignals(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(user_moved))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
 	. = ..()
+	if(!ui_user)
+		return
+
 	clean_ui_user()
 
-/// Set ui_user to null to prevent hard del
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user(datum/source)
+///Check if the user is still next to the shuttle computer
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/user_moved(datum/source)
 	SIGNAL_HANDLER
-	if(ui_user)
-		SStgui.close_user_uis(ui_user, src) //Close the tadpole UI
-		remove_eye_control(ui_user) //Boot the user out of the camera system
-		UnregisterSignal(ui_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-		ui_user = null
+	if(!ui_user || ui_user.Adjacent(src))
+		return
+
+	clean_ui_user()
+
+///Handle removing the user from the camera and closing the UI
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
+	if(!ui_user)
+		return
+
+	//Prevents a runtime because close_user_uis() below will eventually call this proc again
+	var/old_user = ui_user
+	ui_user = null
+	SStgui.close_user_uis(old_user, src) //Close the tadpole UI
+	remove_eye_control(old_user) //Boot the user out of the camera system
+	UnregisterSignal(old_user, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
 	. = list()
@@ -318,3 +351,10 @@
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test
+	shuttleId = SHUTTLE_DROPSHIP
+	origin_port_id = SHUTTLE_DROPSHIP
+	launching_delay = 1 SECONDS
+	whitelist_turfs = list(/turf/open/ground, /turf/open/floor, /turf/open/liquid/water, /turf/closed/gm)
+	view_range = 2

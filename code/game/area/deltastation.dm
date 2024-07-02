@@ -1363,6 +1363,7 @@
 /area/deltastation/external/landingzone
 	name = "\improper Delta Station landing zone"
 	icon_state = "ship"
+	area_flags = MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/deltastation/asteroidcaves

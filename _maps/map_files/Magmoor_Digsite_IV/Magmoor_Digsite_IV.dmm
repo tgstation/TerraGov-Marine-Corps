@@ -7902,7 +7902,7 @@
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/atmos)
 "fpI" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
 "frh" = (
@@ -15796,7 +15796,7 @@
 	},
 /area/magmoor/civilian/jani)
 "kWj" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "kWk" = (

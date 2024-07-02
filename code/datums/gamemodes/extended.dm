@@ -26,7 +26,7 @@
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1
 	)
-	enable_fun_tads = TRUE
+	enable_restricted_shuttles = TRUE
 	xenorespawn_time = 1 MINUTES
 
 /datum/game_mode/extended/announce()

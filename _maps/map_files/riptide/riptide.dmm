@@ -15715,9 +15715,7 @@
 /turf/open/floor/iron/herringbone,
 /area/riptide/caves/pmc/rnd)
 "laA" = (
-/obj/machinery/vending/phoronresearch{
-	req_one_access = null
-	},
+/obj/machinery/vending/phoronresearch,
 /turf/open/floor/iron/smooth_large,
 /area/riptide/caves/pmc/toxins)
 "laB" = (
@@ -18729,9 +18727,7 @@
 /area/riptide/inside/engineering/bridge)
 "nhq" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window{
-	dir = 4
-	},
+/obj/machinery/door/window,
 /obj/machinery/door/window{
 	dir = 8
 	},
@@ -20904,9 +20900,7 @@
 /area/riptide/outside/northbeach)
 "oFD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/medevac_beacon{
-	faction = null
-	},
+/obj/item/medevac_beacon,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -32711,11 +32705,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/riptide/outside/volcano)
-"wxp" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/elevatorshaft,
-/area/riptide/inside/landingzoneone)
 "wxD" = (
 /obj/structure/flora/pottedplant/five,
 /turf/open/floor/tile/brown,
@@ -33074,7 +33063,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/riptide/inside/hydroponics)
 "wIX" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop1/lz1)
 "wJb" = (
@@ -40105,8 +40094,8 @@ ggO
 ggO
 ggO
 ggO
+ggO
 pec
-wxp
 xpy
 avX
 pzo

@@ -318,7 +318,7 @@
 "anI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical)
 "aoJ" = (
@@ -3633,7 +3633,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "dfL" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/shuttle/minidropship,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "dfN" = (
@@ -4583,7 +4583,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "dSy" = (
-/obj/machinery/computer/dropship_picker,
+/obj/machinery/computer/shuttle_picker/mini,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -6792,7 +6792,7 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "fMs" = (
@@ -8952,7 +8952,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
 "hyU" = (
@@ -16327,7 +16327,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/starboard_hallway)
 "nwb" = (
-/obj/docking_port/stationary/marine_dropship/cas,
+/obj/docking_port/stationary/shuttle/cas,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "nwd" = (
@@ -22764,7 +22764,7 @@
 	},
 /area/mainship/command/self_destruct)
 "sPf" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical)
 "sPi" = (
@@ -27696,7 +27696,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "xaX" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/crash_target,
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
@@ -27967,8 +27967,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/shipboard/weapon_room)
 "xnz" = (
-/obj/docking_port/stationary/marine_dropship/hangar/one,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/shuttle/dropship,
+/obj/docking_port/stationary/shuttle/crash_target,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "xnM" = (

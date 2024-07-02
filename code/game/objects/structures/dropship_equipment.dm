@@ -79,7 +79,7 @@
 
 /obj/effect/attach_point/weapon/dropship1
 	icon_state = "equip_base_l_wing"
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/weapon/dropship2
 	icon_state = "equip_base_l_wing"
@@ -100,7 +100,7 @@
 	icon_state = "16"
 
 /obj/effect/attach_point/weapon/minidropship
-	ship_tag = SHUTTLE_TADPOLE
+	ship_tag = SHUTTLE_MINI
 	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
@@ -111,19 +111,19 @@
 	plane = FLOOR_PLANE //Doesn't layer under weeds unless it has this
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/crew_weapon/minidropship
-	ship_tag = SHUTTLE_TADPOLE
+	ship_tag = SHUTTLE_MINI
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/crew_weapon/dropship3
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -131,7 +131,7 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -143,7 +143,7 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -152,7 +152,7 @@
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = SHUTTLE_ALAMO
+	ship_tag = SHUTTLE_DROPSHIP
 
 /obj/effect/attach_point/computer/dropship2
 	ship_tag = SHUTTLE_NORMANDY
@@ -417,7 +417,7 @@
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.id == SHUTTLE_ALAMO)
+				if(linked_shuttle.id == SHUTTLE_DROPSHIP)
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
 					deployed_turret.camera.network.Add("dropship2")
@@ -916,3 +916,60 @@
 		icon_state = "bomb_pod_installed"
 	else
 		icon_state = "bomb_pod"
+
+/obj/structure/engine
+	name = "dropship fusion reactor"
+	desc = "Small reactor that provides power to small vessels."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "engine_left"
+	density = TRUE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	coverage = 100
+
+/obj/structure/engine/right
+	icon_state = "engine_right"
+
+/obj/structure/engine/thruster
+	name = "dropship ion thruster"
+	desc = "Electrically-powered engine used for space propulsion."
+	icon_state = "engine_thruster_left"
+
+/obj/structure/engine/thruster/right
+	icon_state = "engine_thruster_right"
+
+/obj/structure/engine/atmosphere
+	name = "dropship pulsejet engine"
+	desc = "Thrusters for atmospheric maneuvers."
+	icon_state = "engine"
+
+/obj/vehicle/sealed/armored/turret
+	name = "shuttle turret"
+	desc = "A covered turret emplacement."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "turretprop"
+	pixel_x = 0
+	pixel_y = 0
+	layer = BELOW_OBJ_LAYER	//Covers almost the whole tile, don't want it to hide stuff below it
+	exit_direction = null
+	permitted_weapons = list(/obj/item/armored_weapon/dropship_machinegun)
+
+/obj/vehicle/sealed/armored/turret/Initialize(mapload)
+	. = ..()
+	//For some reason Tivi made all vehicles spawn in then quickly delete them and it causes a bad deletion since the code thinks there is an installed gun
+	//So can't do if(primary_weapon) here because this is ran before Initialize() and the gun is already trying to be deleted (which doesn't exist yet)
+	var/obj/item/armored_weapon/gun = new /obj/item/armored_weapon/dropship_machinegun()
+	gun.attach(src, TRUE)
+
+//Stationary turret, doesn't move
+/obj/vehicle/sealed/armored/turret/relaymove(mob/living/user, direction)
+	return FALSE
+
+//Override to remove the swivel delay and sound
+/obj/vehicle/sealed/armored/turret/swivel_turret(atom/A, new_weapon_dir)
+	if(!new_weapon_dir)
+		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
+	if(turret_overlay.dir == new_weapon_dir)
+		return FALSE
+	turret_overlay.setDir(new_weapon_dir)
+	return TRUE

@@ -1499,13 +1499,6 @@
 	dir = 4
 	},
 /area/outpost/brig/gear_room)
-"hm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 5
-	},
-/area/outpost/lz2)
 "hn" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -2589,7 +2582,7 @@
 	},
 /area/outpost/lz2)
 "me" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
 /area/outpost/lz1)
 "mg" = (
@@ -3496,11 +3489,6 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
-"qp" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/lz1)
 "qr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -10095,7 +10083,7 @@
 	},
 /area/outpost/medbay/surgery)
 "Vw" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
 /area/outpost/lz2)
 "Vx" = (
@@ -17130,7 +17118,7 @@ Vj
 Vj
 RN
 Hc
-qp
+Hc
 Hc
 Hc
 Hc
@@ -28212,7 +28200,7 @@ Hr
 hY
 hY
 hY
-hm
+rD
 Qz
 EC
 lz

@@ -13,9 +13,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "aaz" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -63,7 +61,6 @@
 /area/gelida/indoors/a_block/bridges)
 "abN" = (
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -1154,9 +1151,7 @@
 /area/gelida/landing_zone_2)
 "aTH" = (
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -1384,9 +1379,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "bbT" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
@@ -2203,9 +2196,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "bGC" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/garden)
 "bHd" = (
@@ -2476,12 +2467,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
-"bQE" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/gelida/outdoors/colony_streets/central_streets)
 "bQY" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -2816,9 +2801,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "cfj" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "cfr" = (
@@ -4107,9 +4090,7 @@
 /turf/open/floor/prison,
 /area/gelida/cavestructuretwo)
 "daV" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "dbd" = (
@@ -4317,9 +4298,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "diw" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -5139,7 +5118,6 @@
 	},
 /obj/machinery/door_control{
 	id = "Sec-Kitchen-Lockdown";
-	name = "remote door-control";
 	pixel_x = -7;
 	pixel_y = 9
 	},
@@ -5727,9 +5705,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "eii" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "eiQ" = (
@@ -6823,8 +6799,7 @@
 	pixel_y = 12
 	},
 /obj/machinery/door_control{
-	id = "Secure_Master_Armoury_2";
-	name = "remote door-control"
+	id = "Secure_Master_Armoury_2"
 	},
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark2,
@@ -7212,7 +7187,6 @@
 /area/gelida/indoors/a_block/admin)
 "fhI" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Sec-Kitchen-Lockdown"
 	},
 /obj/structure/window/framed/colony,
@@ -7405,9 +7379,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "fqR" = (
@@ -8280,7 +8252,6 @@
 /area/gelida/indoors/a_block/bridges)
 "ggZ" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "fitness_dorm_bridge"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8307,7 +8278,6 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Sec-Kitchen-Lockdown"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -9491,9 +9461,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
 "gZo" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -10241,9 +10209,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "hBJ" = (
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -10295,9 +10261,7 @@
 /turf/open/liquid/water/river,
 /area/gelida/indoors/a_block/fitness)
 "hDw" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "hDD" = (
@@ -11179,9 +11143,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "ikW" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -11519,9 +11481,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/lone_buildings/chunk)
 "iyf" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -11640,13 +11600,6 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
-"iCS" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship{
-	pixel_y = -6
-	},
-/obj/structure/table/mainship,
-/turf/open/floor/prison,
-/area/lv624/lazarus/console)
 "iDj" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
@@ -12205,7 +12158,6 @@
 /area/gelida/indoors/a_block/corpo)
 "iZz" = (
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison/blue/plate{
@@ -12813,9 +12765,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "jxI" = (
@@ -12894,13 +12844,6 @@
 "jBU" = (
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
-"jCt" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship{
-	pixel_y = -9
-	},
-/obj/structure/table/mainship,
-/turf/open/floor/prison/cleanmarked,
-/area/lv624/lazarus/console)
 "jDu" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -13244,7 +13187,6 @@
 /area/gelida/powergen)
 "jQe" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "fitness_dorm_bridge"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -13844,9 +13786,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "knc" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -13978,9 +13918,7 @@
 /area/gelida/powergen)
 "krK" = (
 /obj/structure/fence,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -14463,7 +14401,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kKk" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop2/gelida)
@@ -14861,9 +14799,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "kZA" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -16308,9 +16244,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "maT" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/garden)
@@ -19097,9 +19031,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/gelida/indoors/c_block/mining)
 "nZH" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -19619,8 +19551,7 @@
 /area/gelida/landing_zone_2)
 "ovj" = (
 /obj/machinery/power/apc/drained{
-	name = "Mining APC";
-	start_charge = 0
+	name = "Mining APC"
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/darkbrown/full,
@@ -19663,8 +19594,7 @@
 "owm" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
-	name = "\improper Chunk 'N Dump";
-	req_access = null
+	name = "\improper Chunk 'N Dump"
 	},
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/lone_buildings/chunk)
@@ -20702,15 +20632,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
-"pfk" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "pfm" = (
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
@@ -20802,9 +20723,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "pht" = (
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "phw" = (
@@ -20870,9 +20789,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "piS" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -21333,15 +21250,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
-"pEA" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "pEB" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitepurple/full{
@@ -21713,9 +21621,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/central_streets)
 "pRb" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -22283,7 +22189,6 @@
 	dir = 4
 	},
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison,
@@ -22334,9 +22239,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "qnR" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -22970,7 +22873,6 @@
 	dir = 1
 	},
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -23861,9 +23763,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "rqw" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -25754,9 +25654,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "sKE" = (
@@ -25938,9 +25836,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "sQp" = (
@@ -26547,9 +26443,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "tmH" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -26929,9 +26823,7 @@
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "tCc" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -28352,7 +28244,6 @@
 /area/gelida/indoors/a_block/security)
 "uIl" = (
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison,
@@ -29822,9 +29713,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "vLL" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -30214,9 +30103,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -31379,12 +31266,6 @@
 	dir = 10
 	},
 /area/gelida/landing_zone_2)
-"wVC" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/prison,
-/area/gelida/outdoors/colony_streets/south_west_street)
 "wVF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/prop/mainship/gelida/railbumper{
@@ -32004,7 +31885,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "xxb" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/shuttle/lz1,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop1/gelida)
@@ -32191,7 +32072,6 @@
 	},
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/suit_storage_unit{
-	name = "Suit Storage Unit";
 	pixel_x = 3
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -33000,9 +32880,7 @@
 "ych" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "yco" = (
@@ -33016,9 +32894,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "ycD" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/central_streets)
 "ycN" = (
@@ -38238,7 +38114,7 @@ mXx
 sVj
 ueY
 hHY
-bQE
+fxu
 nhz
 nhz
 ewj
@@ -38460,7 +38336,7 @@ wjf
 wjf
 ueY
 hoS
-bQE
+fxu
 ewj
 ewj
 ewj
@@ -38682,7 +38558,7 @@ daK
 wjf
 ueY
 hoS
-bQE
+fxu
 ewj
 ewj
 wrn
@@ -38904,7 +38780,7 @@ nHQ
 rpT
 ueY
 hoS
-bQE
+fxu
 ewj
 ewj
 wrn
@@ -38966,7 +38842,7 @@ nSH
 mAu
 pHY
 uDG
-iCS
+gve
 jQE
 fPw
 jQE
@@ -39374,7 +39250,7 @@ mMH
 tqi
 dqv
 nAi
-pEA
+sWt
 qOV
 tqF
 tqF
@@ -39596,7 +39472,7 @@ tqi
 tqi
 wcb
 cek
-wVC
+sJg
 tqF
 tqF
 tqF
@@ -39818,7 +39694,7 @@ tqi
 tqi
 qRn
 oUg
-pfk
+ada
 tqF
 qOV
 tqF
@@ -66941,7 +66817,7 @@ gCK
 ioI
 kPa
 xRX
-jCt
+mWd
 mWd
 xyj
 mWd

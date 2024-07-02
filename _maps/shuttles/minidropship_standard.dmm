@@ -13,7 +13,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "b" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -29,7 +29,7 @@
 /turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
 	dir = 1
 	},
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "c" = (
 /obj/structure/dropship_piece/two/weapon/rightright{
 	dir = 1;
@@ -45,7 +45,7 @@
 /turf/closed/shuttle/dropship2/rearcorner/tadpole{
 	dir = 1
 	},
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "j" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
@@ -56,7 +56,7 @@
 	pixel_x = -25
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "n" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose{
 	dir = 1;
@@ -66,21 +66,21 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "q" = (
 /obj/machinery/vending/nanomed/tadpolemed{
 	pixel_x = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "s" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "v" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -90,24 +90,24 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "w" = (
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "y" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "A" = (
 /obj/structure/dropship_piece/glassone/tadpole{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "B" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -120,7 +120,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "C" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -133,7 +133,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "E" = (
 /turf/template_noop,
 /area/space)
@@ -143,19 +143,19 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "L" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
 	dir = 1
 	},
 /turf/template_noop,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "N" = (
 /obj/structure/dropship_piece/glasstwo/tadpole{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "Q" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -165,7 +165,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "S" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
 	dir = 1;
@@ -175,7 +175,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "T" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
@@ -185,21 +185,21 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "U" = (
 /obj/structure/dropship_piece/tadpole/rearright{
 	dir = 1
 	},
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/template_noop,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "V" = (
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 "Y" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
+/area/shuttle/dropship/mini)
 
 (1,1,1) = {"
 E
