@@ -15844,7 +15844,7 @@
 	},
 /obj/structure/window/framed/mainship/requisitions{
 	basestate = "gray_rwindow";
-	name = "Corporate Liason's Office Window"
+	name = "Operations Officer's Office Window"
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison)

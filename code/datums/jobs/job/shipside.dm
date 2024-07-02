@@ -1396,7 +1396,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/job/terragov/civilian/liaison
 	title = CORPORATE_LIAISON
 	paygrade = "NT1"
-	comm_title = "CL"
+	comm_title = "OO"
 	supervisors = "the NT corporate office"
 	total_positions = 1
 	shadow_languages = list(/datum/language/xenocommon)
@@ -1414,10 +1414,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office<br /><br />
+		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage relations between Ninetails and Nine Tailed Fox. Report your findings via faxes. Reply if you’re called.
+		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
 	"}
 	minimap_icon = "cl"
 

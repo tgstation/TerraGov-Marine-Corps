@@ -66,7 +66,7 @@
 #define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
 #define SECURITY_OFFICER "CorpSec Officer"
 #define CHIEF_EXECUTIVE_OFFICER "Chief Executive Officer"
-#define CORPORATE_LIAISON "Corporate Liaison"
+#define CORPORATE_LIAISON "Operations Officer"
 #define SYNTHETIC "Synthetic"
 #define SHIP_TECH "Ship Technician"
 #define MEDICAL_DOCTOR "Medical Doctor"

@@ -37,7 +37,7 @@
 
 
 /area/mainship/command/corporateliaison
-	name = "Corporate Liaison Office"
+	name = "Operations Officer Office"
 	icon_state = "corporatespace"
 
 
@@ -629,7 +629,7 @@
 
 
 /area/mainship/groundhq/ntf/command/corporateliaison
-	name = "Corporate Liaison Office"
+	name = "Operations Officer Office"
 	icon_state = "corporatespace"
 
 
@@ -1186,7 +1186,7 @@
 
 
 /area/mainship/groundhq/som/command/corporateliaison
-	name = "Corporate Liaison Office"
+	name = "Operations Officer Office"
 	icon_state = "corporatespace"
 
 
@@ -1718,7 +1718,7 @@
 
 
 /area/mainship/groundhq/clf/command/corporateliaison
-	name = "Corporate Liaison Office"
+	name = "Operations Officer Office"
 	icon_state = "corporatespace"
 
 

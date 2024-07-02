@@ -10556,7 +10556,7 @@
 "gUs" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -20957,7 +20957,7 @@
 /area/gelida/indoors/b_block/hydro)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Corporate Liason"
+	name = "\improper Operations Officer"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
