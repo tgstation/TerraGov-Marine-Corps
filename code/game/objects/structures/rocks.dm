@@ -127,6 +127,64 @@
 	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
 	icon_state = "lavarocks3"
 
+/obj/structure/rock/dark
+	name = "boulder"
+	desc = "A large rock. It's not cooking anything."
+
+/obj/structure/rock/dark/large
+	icon = 'icons/obj/structures/boulder_largedark.dmi'
+	icon_state = "boulder_largedark1"
+	bound_height = 64
+	bound_width = 64
+
+/obj/structure/rock/dark/large/two
+	icon_state = "boulder_largedark2"
+
+/obj/structure/rock/dark/large/three
+	icon_state = "boulder_largedark3"
+
+/obj/structure/rock/dark/wide
+	icon = 'icons/obj/structures/boulder_widedark.dmi'
+	icon_state = "boulderwidedark"
+	bound_height = 32
+	bound_width = 64
+
+/obj/structure/rock/dark/wide/two
+	icon_state = "boulderwidedark2"
+
+/obj/structure/rock/dark/small
+	icon_state = "bouldersmalldark1"
+	icon = 'icons/obj/structures/boulder_small.dmi'
+
+/obj/structure/rock/dark/small/two
+	icon_state = "bouldersmalldark2"
+
+/obj/structure/rock/dark/small/three
+	icon_state = "bouldersmalldark3"
+
+// Cave props
+/obj/structure/rock/dark/stalagmite
+/obj/structure/prop/urban/cavedecor
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+	name = "stalagmite"
+	icon_state = "stalagmite"
+	desc = "A cave stalagmite."
+
+/obj/structure/rock/dark/stalagmite/one
+	icon_state = "stalagmite1"
+
+/obj/structure/rock/dark/stalagmite/two
+	icon_state = "stalagmite2"
+
+/obj/structure/rock/dark/stalagmite/three
+	icon_state = "stalagmite3"
+
+/obj/structure/rock/dark/stalagmite/four
+	icon_state = "stalagmite4"
+
+/obj/structure/rock/dark/stalagmite/five
+	icon_state = "stalagmite5"
+
 //randomised icons
 /obj/structure/rock/variable
 	///number of icon variants this object has

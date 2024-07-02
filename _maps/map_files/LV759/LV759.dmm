@@ -353,7 +353,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "adB" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "adE" = (
@@ -678,7 +678,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "agk" = (
@@ -835,7 +835,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "ahH" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/north_caves)
 "ahM" = (
@@ -1357,7 +1357,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "aml" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "amo" = (
@@ -2189,7 +2189,7 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "atl" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -2453,7 +2453,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "avI" = (
-/obj/structure/prop/urban/vehicles/van/hyperdynevan{
+/obj/structure/prop/urban/vehicles/large/van/hyperdynevan{
 	dir = 1
 	},
 /obj/effect/urban/decal/road/lines3,
@@ -2707,7 +2707,7 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "axX" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vanpizza,
+/obj/structure/prop/urban/vehicles/large/van/vanpizza,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -3108,7 +3108,7 @@
 	name = "impact"
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 1
 	},
 /turf/open/floor/plating{
@@ -3562,7 +3562,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/power_plant/fusion_generators)
 "aGQ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "aGR" = (
@@ -3945,7 +3945,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "aJI" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	dir = 1;
 	pixel_x = -6
 	},
@@ -4025,10 +4025,9 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aKr" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 4
@@ -4444,7 +4443,7 @@
 	},
 /area/lv759/indoors/spaceport/communications_office)
 "aNL" = (
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	pixel_y = 18
 	},
 /obj/effect/urban/decal/road/lines5,
@@ -5033,7 +5032,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "aSG" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "aSJ" = (
@@ -5458,7 +5457,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "aVL" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1,
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1,
 /turf/open/floor/orange_edge{
 	dir = 1
 	},
@@ -6028,7 +6027,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "baS" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "baT" = (
@@ -6332,7 +6331,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northeast)
 "beq" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -6426,9 +6425,8 @@
 	},
 /area/lv759/indoors/hospital/outgoing)
 "bfs" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/concrete_planter{
+	dir = 8
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -6518,7 +6516,7 @@
 /area/lv759/indoors/power_plant/telecomms)
 "bgl" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black,
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/nt_black,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -7291,7 +7289,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/medical_storage)
 "boi" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "boq" = (
@@ -7915,7 +7913,7 @@
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/casino/casino_vault)
 "btO" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/kelland{
 	dir = 1
 	},
 /obj/effect/urban/decal/road/road_stop/three,
@@ -8343,7 +8341,7 @@
 /area/lv759/indoors/tcomms_northwest)
 "bwW" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/maintenance,
+/obj/structure/prop/urban/vehicles/large/suv/misc/maintenance,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "bwX" = (
@@ -8565,7 +8563,7 @@
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
 "bzo" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "bzq" = (
@@ -9050,7 +9048,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_factory)
 "bEk" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bEm" = (
@@ -9248,7 +9246,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bFU" = (
@@ -9276,7 +9274,7 @@
 /obj/item/stack/rods{
 	pixel_y = 14
 	},
-/obj/structure/prop/urban/vehicles/van/vandamaged{
+/obj/structure/prop/urban/vehicles/large/van/vandamaged{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = 4
@@ -10271,8 +10269,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -27;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 4
 	},
 /turf/open/urban/street/cement3,
@@ -10355,7 +10353,7 @@
 /area/lv759/indoors/spaceport/cargo_maintenance)
 "bOL" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_black{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/nt_black{
 	layer = 4;
 	pixel_x = -4;
 	pixel_y = 4
@@ -10733,7 +10731,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bSY" = (
-/obj/structure/prop/urban/vehicles/van/vanpizza{
+/obj/structure/prop/urban/vehicles/large/van/vanpizza{
 	layer = 4.2;
 	pixel_y = 5
 	},
@@ -11087,7 +11085,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "bVA" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/blue_white{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/blue_white{
 	dir = 8;
 	pixel_y = 6
 	},
@@ -11228,7 +11226,7 @@
 /obj/item/tool/pickaxe{
 	pixel_y = -3
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bWH" = (
@@ -12220,7 +12218,7 @@
 "cdU" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck{
+/obj/structure/prop/urban/vehicles/large/truck{
 	pixel_x = 3
 	},
 /turf/open/urban/street/roadlines4,
@@ -12286,7 +12284,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "ceV" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "ceZ" = (
@@ -12406,7 +12404,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "cge" = (
 /obj/structure/platform/urban/metalplatform2,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "cgf" = (
@@ -12448,7 +12446,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance)
 "cgu" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "cgw" = (
@@ -12584,7 +12582,7 @@
 /area/lv759/indoors/mining_outpost/north_maint)
 "chM" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/maintenance,
+/obj/structure/prop/urban/vehicles/large/suv/misc/maintenance,
 /obj/effect/urban/decal/dirt,
 /turf/open/urban/street/sidewalk{
 	dir = 4
@@ -13558,7 +13556,7 @@
 	},
 /area/lv759/indoors/spaceport/heavyequip)
 "cqF" = (
-/obj/structure/prop/urban/vehicles/van/hyperdynevan,
+/obj/structure/prop/urban/vehicles/large/van/hyperdynevan,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
 "cqI" = (
@@ -13842,7 +13840,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/structure/girder/reinforced,
-/obj/structure/prop/urban/vehicles/crashedcarsleft{
+/obj/structure/prop/urban/vehicles/large/crashedcarsleft{
 	layer = 4
 	},
 /obj/effect/urban/decal/road/road_edge/three,
@@ -14265,7 +14263,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "cwt" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining{
 	dir = 4
 	},
 /turf/open/ground/sandrock,
@@ -14443,7 +14441,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "cyF" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science2{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science2{
 	layer = 4
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -14548,7 +14546,7 @@
 	pixel_x = 20;
 	pixel_y = 28
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "czK" = (
@@ -15866,7 +15864,7 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "cLp" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "cLt" = (
@@ -17260,7 +17258,7 @@
 /turf/open/floor/urban/carpet/carpetreddeco,
 /area/lv759/indoors/nt_office/supervisor)
 "cXn" = (
-/obj/structure/prop/urban/vehicles/truck/garbage,
+/obj/structure/prop/urban/vehicles/large/truck/garbage,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -17504,7 +17502,7 @@
 /turf/closed/shuttle/dropship4/brokenconsoleone,
 /area/lv759/indoors/spaceport/horizon_runner)
 "cZh" = (
-/obj/structure/prop/urban/vehicles/truck/truck4{
+/obj/structure/prop/urban/vehicles/large/truck/truck4{
 	dir = 1;
 	layer = 4
 	},
@@ -17895,7 +17893,7 @@
 "dca" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/shard,
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	dir = 1;
 	pixel_x = -6
 	},
@@ -18272,7 +18270,7 @@
 "dfh" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/urban/vehicles/van/vandamaged{
+/obj/structure/prop/urban/vehicles/large/van/vandamaged{
 	dir = 1;
 	pixel_y = 2
 	},
@@ -18310,7 +18308,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/east_hallway)
 "dfK" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "dfQ" = (
@@ -18372,9 +18370,9 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "dgo" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /obj/structure/prop/urban/misc/fake/pipes/pipe1,
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/floor/officetiles,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dgq" = (
@@ -18399,7 +18397,7 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "dgz" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "dgB" = (
@@ -18480,7 +18478,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "dhk" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/mining{
+/obj/structure/prop/urban/vehicles/large/truck/mining{
 	dir = 1
 	},
 /obj/effect/urban/decal/road/road_stop/five,
@@ -19286,7 +19284,7 @@
 /area/lv759/indoors/spaceport/docking_bay_2)
 "dod" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/truck4{
+/obj/structure/prop/urban/vehicles/large/truck/truck4{
 	dir = 1;
 	pixel_y = -12
 	},
@@ -19480,7 +19478,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaynorthexit)
 "dqq" = (
-/obj/structure/prop/urban/vehicles/suv/misc/maintenance{
+/obj/structure/prop/urban/vehicles/large/suv/misc/maintenance{
 	layer = 6
 	},
 /turf/open/urban/street/asphalt,
@@ -19665,7 +19663,7 @@
 "drv" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	dir = 1;
 	pixel_x = -4
 	},
@@ -19814,7 +19812,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "dsI" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 1
 	},
 /obj/effect/urban/decal/road/road_edge/four,
@@ -20181,7 +20179,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "dvQ" = (
 /obj/structure/platform_decoration/urban/rockdark,
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "dvY" = (
@@ -20248,7 +20246,7 @@
 /turf/open/floor/urban/tile/tilered,
 /area/lv759/indoors/bar)
 "dwA" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "dwB" = (
@@ -20828,7 +20826,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "dCq" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/mining{
+/obj/structure/prop/urban/vehicles/large/truck/mining{
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
@@ -20977,7 +20975,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "dDB" = (
@@ -21190,7 +21188,7 @@
 /turf/open/urban/dropship/dropship3,
 /area/lv759/indoors/nt_research_complex/changingroom)
 "dGv" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "dGy" = (
@@ -21739,7 +21737,7 @@
 	desc = "It's dried to the floor.";
 	name = "spilled paint"
 	},
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 4;
 	pixel_y = -12
 	},
@@ -22085,7 +22083,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/equipment_east)
 "dOt" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "dOy" = (
@@ -22321,7 +22319,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/northapartments)
 "dQZ" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining3{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining/mining3{
 	dir = 4;
 	pixel_x = -8
 	},
@@ -22365,7 +22363,7 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_street)
 "dRA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "dRI" = (
@@ -22692,7 +22690,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dTJ" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "dTK" = (
@@ -23346,7 +23344,7 @@
 /turf/open/floor/urban/carpet/carpetdarkerblue,
 /area/lv759/indoors/mining_outpost/east_dorms)
 "eaK" = (
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -25866,7 +25864,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "ewu" = (
@@ -26292,7 +26290,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/east_caves)
 "eAG" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	pixel_x = -8;
 	pixel_y = 6
 	},
@@ -26370,7 +26368,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "eBK" = (
@@ -26903,7 +26901,7 @@
 "eFu" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vandamaged{
+/obj/structure/prop/urban/vehicles/large/van/vandamaged{
 	pixel_x = 4
 	},
 /turf/open/urban/street/sidewalkcenter{
@@ -27588,7 +27586,7 @@
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "eLS" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "eLT" = (
@@ -27656,7 +27654,7 @@
 	dir = 8
 	},
 /obj/structure/prop/urban/fakeplatforms/rockplatform,
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "eMz" = (
@@ -27774,8 +27772,8 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eNV" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "eNW" = (
@@ -28024,7 +28022,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eQb" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "eQe" = (
@@ -28469,9 +28467,8 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/janitor)
 "eTH" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -6
+/obj/structure/concrete_planter/seat{
+	dir = 4
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -29480,7 +29477,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "fdv" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vanmining,
+/obj/structure/prop/urban/vehicles/large/van/vanmining,
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/road/road_stop/five{
 	dir = 8
@@ -30116,7 +30113,7 @@
 	},
 /area/lv759/indoors/bar)
 "fiD" = (
-/obj/structure/prop/urban/vehicles/van/vanmining{
+/obj/structure/prop/urban/vehicles/large/van/vanmining{
 	dir = 1;
 	pixel_x = -8
 	},
@@ -31012,7 +31009,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "fqE" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "fqJ" = (
@@ -31364,7 +31361,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "ftk" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/colony_streets/north_street)
 "ftl" = (
@@ -31420,7 +31417,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/nt_research_complex_entrance)
 "ftN" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "ftO" = (
@@ -31718,7 +31715,7 @@
 	},
 /area/lv759/indoors/nt_office/pressroom)
 "fwy" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "fwF" = (
@@ -32967,7 +32964,7 @@
 	dir = 8;
 	pixel_y = 12
 	},
-/obj/structure/prop/urban/vehicles/van/vandamaged{
+/obj/structure/prop/urban/vehicles/large/van/vandamaged{
 	dir = 1;
 	pixel_x = 5;
 	pixel_y = 4
@@ -33363,13 +33360,13 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_foyer)
 "fKA" = (
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 1
 	},
 /obj/structure/prop/urban/factory/conveyor_belt{
 	layer = 2
 	},
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 1
 	},
 /turf/open/floor/plate,
@@ -33553,7 +33550,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "fLZ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/white_teal{
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
@@ -33902,7 +33899,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "fOF" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/brown{
 	dir = 8;
 	pixel_x = 2;
 	pixel_y = 6
@@ -33912,7 +33909,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fOM" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "fON" = (
@@ -33927,7 +33924,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "fOY" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_2{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/nt_security/truck_2{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -34544,7 +34541,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "fUq" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "fUs" = (
@@ -34907,7 +34904,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "fXS" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/nt_blue{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/nt_blue{
 	layer = 6
 	},
 /obj/effect/urban/decal/road/lines3,
@@ -35045,7 +35042,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "fYM" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "fYN" = (
@@ -35108,8 +35105,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "fZD" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -25;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/cement1,
@@ -35329,7 +35326,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "gbv" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "gbw" = (
@@ -36045,10 +36042,9 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ghs" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /obj/item/trash/cigbutt{
@@ -36952,7 +36948,7 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "goB" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/blue_white{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/blue_white{
 	dir = 4
 	},
 /turf/open/urban/street/asphalt,
@@ -39346,8 +39342,8 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "gLB" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -27;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/sidewalk{
@@ -39839,7 +39835,7 @@
 /area/lv759/indoors/nt_office/pressroom)
 "gQJ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 1
 	},
 /obj/effect/turf_decal/medical_decals/doc,
@@ -40056,7 +40052,7 @@
 	color = "#140400";
 	name = "dirt"
 	},
-/obj/structure/prop/urban/vehicles/crashedcarsleft{
+/obj/structure/prop/urban/vehicles/large/crashedcarsleft{
 	pixel_y = -9
 	},
 /obj/effect/urban/decal/road/lines2,
@@ -40189,10 +40185,9 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "gUc" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/lv759/indoors/hospital/pharmacy)
@@ -40761,7 +40756,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northeast)
 "gZp" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining2{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining2{
 	dir = 1;
 	layer = 4;
 	pixel_x = 4
@@ -41090,8 +41085,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "hbD" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
+/obj/structure/rock/dark/small/three,
 /obj/machinery/light/small/blue{
 	dir = 8
 	},
@@ -42734,7 +42729,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/nt_office/floor)
 "hoX" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "hoY" = (
@@ -43507,7 +43502,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "hvb" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 1
 	},
 /turf/open/ground/sandrock,
@@ -45298,7 +45293,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_cells)
 "hLc" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck{
+/obj/structure/prop/urban/vehicles/large/truck{
 	dir = 1;
 	pixel_y = 9
 	},
@@ -45482,7 +45477,7 @@
 /turf/open/urbanshale/layer0_plate,
 /area/lv759/outdoors/caveplateau)
 "hML" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	pixel_x = -6
 	},
 /obj/effect/turf_decal/medical_decals/doc/two,
@@ -45605,7 +45600,7 @@
 /turf/open/engineership/engineer_floor5,
 /area/lv759/indoors/derelict_ship)
 "hNJ" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "hNM" = (
@@ -46253,11 +46248,11 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "hSZ" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/blue_white{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/blue_white{
 	pixel_x = -18
 	},
 /obj/effect/urban/decal/road/lines3,
@@ -46628,7 +46623,7 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors)
 "hWI" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "hWO" = (
@@ -46711,7 +46706,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "hXX" = (
-/obj/structure/prop/urban/vehicles/van/hyperdynevan{
+/obj/structure/prop/urban/vehicles/large/van/hyperdynevan{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -47173,7 +47168,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/reception)
 "ibU" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "ibW" = (
@@ -47321,7 +47316,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "idn" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -47599,10 +47594,9 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/bar/kitchen)
 "ifK" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 4;
-	pixel_x = -7
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -47806,7 +47800,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "ihH" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/nt_security/truck_1{
 	pixel_y = 6
 	},
 /turf/open/urban/street/asphalt,
@@ -48097,7 +48091,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "ikf" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/brown{
 	dir = 1;
 	layer = 3;
 	pixel_x = -4;
@@ -48158,7 +48152,7 @@
 	dir = 6;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "ikM" = (
@@ -48501,7 +48495,7 @@
 /area/lv759/indoors/mining_outpost/vehicledeployment)
 "inD" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining/mining1{
 	layer = 2
 	},
 /turf/open/floor/mainship{
@@ -48642,7 +48636,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ioG" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "ioL" = (
@@ -49435,7 +49429,7 @@
 /area/lv759/indoors/recycling_plant/garage)
 "iwh" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/red_stripe{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/red_stripe{
 	layer = 3;
 	pixel_y = 6
 	},
@@ -50346,7 +50340,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "iFb" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "iFe" = (
@@ -50691,7 +50685,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "iIo" = (
@@ -51799,7 +51793,7 @@
 /turf/open/floor/orange_edge,
 /area/lv759/indoors/spaceport/hallway_east)
 "iRD" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/white_teal{
 	dir = 4;
 	pixel_x = -8;
 	pixel_y = 6
@@ -52030,7 +52024,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "iTW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "iTY" = (
@@ -52065,7 +52059,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/operation)
 "iUo" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "iUt" = (
@@ -52150,7 +52144,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/urban/vehicles/van/hyperdynevan{
+/obj/structure/prop/urban/vehicles/large/van/hyperdynevan{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk,
@@ -52662,7 +52656,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "iZd" = (
-/obj/structure/prop/urban/vehicles/truck{
+/obj/structure/prop/urban/vehicles/large/truck{
 	pixel_y = 12
 	},
 /turf/open/urban/street/sidewalk{
@@ -52905,7 +52899,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "jaU" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining2,
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining2,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "jaX" = (
@@ -53002,7 +52996,7 @@
 	},
 /area/lv759/indoors/recycling_plant/garage)
 "jbN" = (
-/obj/structure/prop/urban/vehicles/truck/truck3{
+/obj/structure/prop/urban/vehicles/large/truck/truck3{
 	pixel_y = -4
 	},
 /obj/effect/urban/decal/road/lines2,
@@ -53590,7 +53584,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/crashedcarsright,
+/obj/structure/prop/urban/vehicles/large/crashedcarsright,
 /obj/effect/urban/decal/road/road_edge/three,
 /obj/effect/urban/decal/road/lines3,
 /obj/effect/urban/decal/doubleroad/lines2{
@@ -53942,7 +53936,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "jjp" = (
-/obj/structure/prop/urban/vehicles/truck/mining{
+/obj/structure/prop/urban/vehicles/large/truck/mining{
 	dir = 8;
 	layer = 4.2
 	},
@@ -54042,7 +54036,7 @@
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/spaceport/flight_control_room)
 "jjN" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "jjQ" = (
@@ -55110,7 +55104,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "jsY" = (
@@ -55394,7 +55388,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jvj" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
@@ -55988,7 +55982,7 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/NTmart)
 "jAI" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 6
@@ -57451,7 +57445,7 @@
 /obj/effect/urban/decal/doubleroad/lines3{
 	pixel_y = -4
 	},
-/obj/structure/prop/urban/vehicles/van/hyperdynevan{
+/obj/structure/prop/urban/vehicles/large/van/hyperdynevan{
 	layer = 4.2
 	},
 /turf/open/urban/street/asphalt,
@@ -57786,11 +57780,11 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jSX" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/kelland{
 	layer = 4;
 	pixel_y = -6
 	},
@@ -57923,7 +57917,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/NTmart)
 "jTV" = (
-/obj/structure/prop/urban/vehicles/truck/truck3{
+/obj/structure/prop/urban/vehicles/large/truck/truck3{
 	dir = 1;
 	pixel_y = 9
 	},
@@ -58236,7 +58230,7 @@
 /area/lv759/indoors/garage_workshop_storage)
 "jWO" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jWU" = (
@@ -58568,7 +58562,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/structure/prop/urban/vehicles/van/vandamaged{
+/obj/structure/prop/urban/vehicles/large/van/vandamaged{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -58840,7 +58834,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "kbW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "kch" = (
@@ -59120,7 +59114,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/caveplateau)
 "keI" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white,
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/white,
 /obj/effect/urban/decal/trash/four,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -59490,7 +59484,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/garage_workshop)
 "kih" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "kio" = (
@@ -59516,7 +59510,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "kiA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "kiD" = (
@@ -60660,7 +60654,7 @@
 /turf/open/floor/urban/tile/cuppajoesfloor,
 /area/lv759/indoors/spaceport/cuppajoes)
 "ktk" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 8;
 	layer = 4;
 	pixel_y = 14
@@ -60817,7 +60811,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "kuR" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "kvd" = (
@@ -60886,7 +60880,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "kvG" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "kvP" = (
@@ -61160,7 +61154,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "kxW" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "kxZ" = (
@@ -62599,7 +62593,7 @@
 	},
 /area/lv759/indoors/caves/north_west_caves)
 "kLB" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "kLF" = (
@@ -64479,7 +64473,7 @@
 	},
 /area/lv759/indoors/hospital/pharmacy)
 "lbH" = (
-/obj/structure/prop/urban/vehicles/truck/mining{
+/obj/structure/prop/urban/vehicles/large/truck/mining{
 	dir = 1
 	},
 /turf/open/floor/urban/tile/asteroidfloor_bigtile,
@@ -65890,7 +65884,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "lnQ" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "lnU" = (
@@ -65937,7 +65931,7 @@
 "loh" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 1
 	},
 /turf/open/floor/plating{
@@ -66437,7 +66431,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "ltL" = (
@@ -67892,7 +67886,7 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/hospital/cryo_room)
 "lHs" = (
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 4
 	},
 /obj/structure/prop/urban/factory/conveyor_belt{
@@ -68234,7 +68228,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lJS" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "lJX" = (
@@ -68281,7 +68275,7 @@
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "lKs" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1{
+/obj/structure/rock/dark/large{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -68364,7 +68358,7 @@
 	layer = 2.9;
 	pixel_y = 28
 	},
-/obj/structure/prop/urban/vehicles/truck/truck6{
+/obj/structure/prop/urban/vehicles/large/truck/truck6{
 	dir = 4;
 	pixel_y = 8
 	},
@@ -68747,7 +68741,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lNW" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lNY" = (
@@ -69525,7 +69519,7 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "lTS" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vanpizza{
+/obj/structure/prop/urban/vehicles/large/van/vanpizza{
 	dir = 1;
 	pixel_y = 12
 	},
@@ -70009,7 +70003,7 @@
 /turf/open/floor/officesquares,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "lXY" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "lYd" = (
@@ -70079,7 +70073,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "lYR" = (
@@ -70487,7 +70481,7 @@
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mcD" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mcI" = (
@@ -70990,7 +70984,7 @@
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/prop/urban/vehicles/truck/truck5{
+/obj/structure/prop/urban/vehicles/large/truck/truck5{
 	layer = 2.9
 	},
 /turf/open/urban/street/sidewalkcenter{
@@ -71131,7 +71125,7 @@
 	},
 /area/lv759/indoors/spaceport/starglider)
 "mii" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/kelland{
 	dir = 4
 	},
 /turf/open/urban/street/sidewalk,
@@ -71330,8 +71324,8 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mjN" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "mjV" = (
@@ -71749,10 +71743,9 @@
 "mnb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /obj/effect/turf_decal/medical_decals/doc/stripe,
 /obj/effect/turf_decal/medical_decals/doc/stripe,
@@ -71955,8 +71948,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "moL" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "moS" = (
@@ -71981,7 +71974,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_mainroom)
 "moW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "moZ" = (
@@ -72676,7 +72669,7 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/hospital/emergency_room)
 "muS" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "mva" = (
@@ -74795,7 +74788,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "mOo" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 1
 	},
 /turf/open/urbanshale/layer1,
@@ -75122,7 +75115,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "mQK" = (
-/obj/structure/prop/urban/vehicles/van/vanmining,
+/obj/structure/prop/urban/vehicles/large/van/vanmining,
 /obj/effect/urban/decal/road/road_edge/four,
 /obj/effect/urban/decal/road/lines2,
 /obj/effect/urban/decal/doubleroad/lines3{
@@ -75673,7 +75666,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/flight_control_room)
 "mWh" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "mWi" = (
@@ -76233,7 +76226,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "nad" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "nam" = (
@@ -76657,7 +76650,7 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/gas_generators)
 "nds" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "ndy" = (
@@ -76915,7 +76908,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nfV" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
@@ -77574,7 +77567,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "nkt" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "nkw" = (
@@ -77686,7 +77679,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/north_caves)
 "nlT" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "nlU" = (
@@ -78221,7 +78214,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "nqk" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/truck3{
+/obj/structure/prop/urban/vehicles/large/truck/truck3{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk{
@@ -79178,7 +79171,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/maintenance_east)
 "nyw" = (
-/obj/structure/prop/urban/vehicles/truck{
+/obj/structure/prop/urban/vehicles/large/truck{
 	dir = 4;
 	layer = 6
 	},
@@ -79242,7 +79235,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "nyZ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "nzd" = (
@@ -79600,7 +79593,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "nCc" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/brown{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/brown{
 	dir = 4;
 	layer = 3;
 	pixel_x = 2;
@@ -79847,7 +79840,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "nEG" = (
@@ -79856,7 +79849,7 @@
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/lv759/indoors/casino)
 "nEI" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "nEK" = (
@@ -80406,7 +80399,7 @@
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
 "nKg" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining{
 	layer = 4
 	},
 /turf/open/ground/sandrock,
@@ -80427,7 +80420,7 @@
 /turf/open/shuttle/escapepod,
 /area/lv759/indoors/electical_systems/substation2)
 "nKq" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "nKs" = (
@@ -80823,7 +80816,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/power_plant/south_hallway)
 "nNI" = (
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	pixel_x = -12
 	},
 /obj/structure/lattice/autosmooth,
@@ -81072,7 +81065,7 @@
 /area/lv759/indoors/caves/south_west_caves)
 "nPO" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining2{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining/mining2{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -81779,7 +81772,7 @@
 /area/lv759/indoors/spaceport/cuppajoes)
 "nWc" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/maintenance{
+/obj/structure/prop/urban/vehicles/large/suv/misc/maintenance{
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
@@ -82293,7 +82286,7 @@
 /turf/open/shuttle/dropship/five,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "oao" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 8
 	},
 /turf/open/urbanshale/layer1,
@@ -83326,7 +83319,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/nt_office/breakroom)
 "ojf" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -83481,7 +83474,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "okK" = (
@@ -83576,7 +83569,7 @@
 "olI" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/marshalls2,
+/obj/structure/prop/urban/vehicles/meridian/marshalls,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/lv759/indoors/colonial_marshals/garage)
@@ -83721,10 +83714,9 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/central_caves)
 "onQ" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalk{
@@ -83735,7 +83727,7 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/item/shard,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vandamaged,
+/obj/structure/prop/urban/vehicles/large/van/vandamaged,
 /turf/open/urban/street/sidewalk{
 	dir = 8
 	},
@@ -84100,7 +84092,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/prop/urban/vehicles/van/vanmining{
+/obj/structure/prop/urban/vehicles/large/van/vanmining{
 	dir = 1;
 	pixel_y = 12
 	},
@@ -85216,7 +85208,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/mining_outpost/east_command)
 "oCB" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oCD" = (
@@ -87632,9 +87624,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter/seat{
+	dir = 4;
 	pixel_y = 4
 	},
 /turf/open/urban/street/cement3,
@@ -88097,7 +88088,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "pdD" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/north_caves)
 "pdH" = (
@@ -89096,7 +89087,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "plT" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1{
+/obj/structure/rock/dark/large{
 	layer = 2.9
 	},
 /obj/effect/landmark/weed_node,
@@ -90050,7 +90041,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_office)
 "ptZ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "pug" = (
@@ -90189,7 +90180,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "pvr" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/blue_stripe{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/blue_stripe{
 	layer = 3;
 	pixel_y = 6
 	},
@@ -90872,7 +90863,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pzR" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "pzX" = (
@@ -91293,7 +91284,7 @@
 	},
 /area/lv759/indoors/hospital/pharmacy)
 "pDi" = (
-/obj/structure/prop/urban/vehicles/truck/mining{
+/obj/structure/prop/urban/vehicles/large/truck/mining{
 	dir = 1
 	},
 /turf/open/urban/street/asphalt,
@@ -91369,7 +91360,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pDJ" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 1;
 	layer = 4
 	},
@@ -91543,7 +91534,7 @@
 /area/lv759/outdoors/colony_streets/south_west_street)
 "pFv" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vanpizza{
+/obj/structure/prop/urban/vehicles/large/van/vanpizza{
 	layer = 6
 	},
 /obj/effect/urban/decal/road/lines2,
@@ -91698,7 +91689,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/power_plant/gas_generators)
 "pGL" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science2{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science2{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -91798,7 +91789,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/hospital/virology)
 "pHZ" = (
-/obj/structure/prop/urban/vehicles/van/vanmining{
+/obj/structure/prop/urban/vehicles/large/van/vanmining{
 	dir = 1;
 	layer = 4;
 	pixel_x = 4
@@ -91881,7 +91872,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/central_caves)
 "pIA" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
 "pID" = (
@@ -93137,7 +93128,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "pUy" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "pUE" = (
@@ -93832,7 +93823,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "pZK" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "pZM" = (
@@ -94159,7 +94150,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qcM" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "qcO" = (
@@ -95146,11 +95137,11 @@
 	dir = 8
 	},
 /obj/structure/platform/urban/metalplatform2,
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qkH" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
 "qkJ" = (
@@ -95165,7 +95156,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/power_plant/fusion_generators)
 "qkS" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining3{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining3{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -96998,7 +96989,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
 "qCS" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/whitevan,
+/obj/structure/prop/urban/vehicles/large/suv/misc/whitevan,
 /obj/structure/barricade/handrail/urban/road/plastic/red,
 /turf/open/urban/street/sidewalk{
 	dir = 1
@@ -97141,10 +97132,9 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/west_caves)
 "qEZ" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 14
 	},
 /turf/open/urban/street/sidewalk{
@@ -97432,7 +97422,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
 "qHO" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "qHQ" = (
@@ -97457,7 +97447,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "qIt" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -99131,7 +99121,7 @@
 /area/lv759/indoors/hospital/cryo_room)
 "qXG" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/truck/garbage{
+/obj/structure/prop/urban/vehicles/large/truck/garbage{
 	layer = 4
 	},
 /obj/effect/urban/decal/road/lines1,
@@ -99684,7 +99674,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "rcI" = (
@@ -99854,7 +99844,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "res" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -100712,7 +100702,7 @@
 	},
 /area/lv759/indoors/apartment/eastbedrooms)
 "rll" = (
-/obj/structure/prop/urban/vehicles/truck{
+/obj/structure/prop/urban/vehicles/large/truck{
 	dir = 1;
 	pixel_y = 12
 	},
@@ -100855,7 +100845,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/eastbedroomsstorage)
 "rmq" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -101933,7 +101923,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "rvE" = (
@@ -102150,7 +102140,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ryb" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -102258,9 +102248,8 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/bar/entertainment)
 "rze" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -6;
+/obj/structure/concrete_planter/seat{
+	dir = 4;
 	pixel_y = -12
 	},
 /turf/open/urban/street/sidewalk{
@@ -102703,7 +102692,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "rDd" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 1;
 	layer = 4
 	},
@@ -102718,7 +102707,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "rDj" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 8;
 	layer = 4
 	},
@@ -103095,14 +103084,14 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_east)
 "rGV" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4;
 	layer = 4
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -103643,7 +103632,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "rLV" = (
@@ -104348,7 +104337,7 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/colony_streets/central_streets)
 "rRI" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/white_teal{
 	layer = 4
 	},
 /turf/open/floor/marked,
@@ -105304,7 +105293,7 @@
 /turf/open/floor/urban_wood,
 /area/lv759/indoors/bar)
 "sbh" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 4
 	},
 /turf/open/floor/squares,
@@ -106109,7 +106098,7 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors)
 "sis" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/nt_security/truck_1{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -106377,7 +106366,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "skr" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
@@ -106418,7 +106407,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "skN" = (
@@ -107124,7 +107113,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "sqL" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "sqM" = (
@@ -107802,7 +107791,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "swN" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "swP" = (
@@ -108086,7 +108075,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "syY" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "szd" = (
@@ -109244,7 +109233,7 @@
 /turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "sJj" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -110229,7 +110218,7 @@
 /turf/open/engineership/engineer_floor4,
 /area/lv759/indoors/derelict_ship)
 "sRv" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "sRx" = (
@@ -110897,7 +110886,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "sXd" = (
-/obj/structure/prop/urban/vehicles/van{
+/obj/structure/prop/urban/vehicles/large/van{
 	dir = 1;
 	pixel_y = -12
 	},
@@ -111505,7 +111494,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/central_streets)
 "tcR" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/nt_security/truck_1{
+/obj/structure/prop/urban/vehicles/large/armored_trucks/nt_security/truck_1{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -112309,7 +112298,7 @@
 /obj/structure/barricade/handrail/strata{
 	layer = 3.1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tix" = (
@@ -112477,8 +112466,8 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "tkO" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
+/obj/structure/rock/dark/large/two,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
@@ -113133,10 +113122,9 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "tqC" = (
 /obj/machinery/light,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /obj/machinery/light/blue,
@@ -113435,8 +113423,8 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northwest)
 "ttw" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -25;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/cement1,
@@ -113933,10 +113921,9 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "txz" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 16
 	},
 /turf/open/urban/street/sidewalk{
@@ -114270,7 +114257,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tAD" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -114569,7 +114556,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/landing_zone_2)
 "tDO" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "tEa" = (
@@ -115258,7 +115245,7 @@
 /area/lv759/indoors/colonial_marshals/hallway_north)
 "tJw" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/large_vehicles/armored_trucks/heavy_loader/white_teal,
+/obj/structure/prop/urban/vehicles/large/armored_trucks/heavy_loader/white_teal,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tJy" = (
@@ -115339,7 +115326,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tKo" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "tKu" = (
@@ -115388,7 +115375,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/power_storage)
 "tKM" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/kelland,
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/kelland,
 /turf/open/urban/street/sidewalk{
 	dir = 1
 	},
@@ -116332,7 +116319,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "tSA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "tSD" = (
@@ -116499,7 +116486,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "tUc" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/prop/urban/vehicles/van/vanmining{
+/obj/structure/prop/urban/vehicles/large/van/vanmining{
 	dir = 1
 	},
 /turf/open/urban/street/sidewalk{
@@ -116564,7 +116551,7 @@
 	},
 /area/lv759/indoors/hospital/maintenance_north)
 "tUB" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "tUG" = (
@@ -117337,7 +117324,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/nt_research_complex/cargo)
 "uax" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science2{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science2{
 	dir = 1
 	},
 /obj/structure/lattice/autosmooth,
@@ -117402,7 +117389,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "uaS" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "uaX" = (
@@ -117599,7 +117586,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "ucU" = (
-/obj/structure/prop/urban/vehicles/truck/truck2{
+/obj/structure/prop/urban/vehicles/large/truck/truck2{
 	dir = 1;
 	pixel_y = 17
 	},
@@ -118275,7 +118262,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/east_hallway)
 "uiz" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "uiD" = (
@@ -118606,7 +118593,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "ukT" = (
-/obj/structure/prop/urban/vehicles/truck/truck6{
+/obj/structure/prop/urban/vehicles/large/truck/truck6{
 	dir = 4;
 	pixel_y = 8
 	},
@@ -119434,7 +119421,7 @@
 	},
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood/oil/streak,
-/obj/structure/prop/urban/vehicles/crashedcarsright{
+/obj/structure/prop/urban/vehicles/large/crashedcarsright{
 	pixel_y = -9
 	},
 /obj/structure/prop/urban/vehicles/meridian/generic{
@@ -120681,7 +120668,7 @@
 /turf/open/urban/street/sidewalkcenter,
 /area/lv759/outdoors/landing_zone_2)
 "uDm" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -121718,7 +121705,7 @@
 	},
 /area/lv759/indoors/power_plant/fusion_generators)
 "uLt" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "uLy" = (
@@ -121742,9 +121729,8 @@
 /obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter{
+	dir = 8;
 	pixel_y = 8
 	},
 /turf/open/urban/street/cement3,
@@ -123525,7 +123511,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vbO" = (
@@ -123935,7 +123921,7 @@
 "veF" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/van/vandamaged,
+/obj/structure/prop/urban/vehicles/large/van/vandamaged,
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "veG" = (
@@ -123987,7 +123973,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
 "veR" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "veS" = (
@@ -124175,16 +124161,15 @@
 	},
 /area/lv759/indoors/recycling_plant)
 "vgz" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "vgB" = (
 /obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter{
+	dir = 8;
 	pixel_y = 8
 	},
 /turf/open/urban/street/cement2,
@@ -125681,7 +125666,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "vsW" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vta" = (
@@ -126170,7 +126155,7 @@
 /area/lv759/indoors/apartment/westbedrooms)
 "vxr" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/suv/misc/marshalls2,
+/obj/structure/prop/urban/vehicles/meridian/marshalls,
 /turf/open/floor/plating{
 	dir = 8
 	},
@@ -126433,7 +126418,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "vAj" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/vehicles/colonycrawlers/mining/mining1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/mining/mining1{
 	dir = 4;
 	layer = 2
 	},
@@ -126841,7 +126826,7 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "vDJ" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "vDL" = (
@@ -127007,7 +126992,7 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "vEJ" = (
-/obj/structure/prop/urban/vehicles/truck/truck3{
+/obj/structure/prop/urban/vehicles/large/truck/truck3{
 	dir = 4
 	},
 /turf/open/urban/street/sidewalk{
@@ -127672,7 +127657,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_foyer)
 "vLw" = (
-/obj/structure/prop/urban/vehicles/truck/truck2,
+/obj/structure/prop/urban/vehicles/large/truck/truck2,
 /obj/effect/urban/decal/road/lines1,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_east_street)
@@ -127909,7 +127894,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "vNf" = (
-/obj/structure/prop/hybrisa/engineer/spacejockey,
+/obj/structure/prop/urban/engineer/spacejockey,
 /turf/open/engineership/engineer_floor1,
 /area/lv759/indoors/derelict_ship)
 "vNh" = (
@@ -128137,7 +128122,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/central_caves)
 "vOS" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -128450,10 +128435,9 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "vRA" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 14
 	},
 /turf/open/urban/street/sidewalk{
@@ -129845,7 +129829,7 @@
 /area/lv759/indoors/recycling_plant)
 "wcv" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wcx" = (
@@ -130876,7 +130860,7 @@
 	},
 /area/lv759/indoors/power_plant/fusion_generators)
 "wls" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "wly" = (
@@ -131208,7 +131192,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "woB" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "woE" = (
@@ -131764,9 +131748,8 @@
 /area/lv759/indoors/NTmart)
 "wtQ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/concrete_planter{
+	dir = 8
 	},
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -132185,7 +132168,7 @@
 	},
 /area/lv759/outdoors/landing_zone_2)
 "wxW" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/mega_hauler_truck/donk{
+/obj/structure/prop/urban/vehicles/large/mega_hauler_truck/donk{
 	pixel_y = -6
 	},
 /turf/open/urban/street/sidewalk,
@@ -132269,7 +132252,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
 "wzb" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "wze" = (
@@ -132513,7 +132496,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wBc" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "wBg" = (
@@ -135759,7 +135742,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "xda" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "xdc" = (
@@ -136034,7 +136017,7 @@
 /turf/open/floor/urban/wood/redwood,
 /area/lv759/indoors/nt_office/floor)
 "xeC" = (
-/obj/structure/prop/urban/vehicles/car/car_chassis{
+/obj/structure/prop/urban/vehicles/meridian/chassis{
 	dir = 1
 	},
 /turf/open/floor/plate,
@@ -136615,7 +136598,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "xjv" = (
@@ -136789,7 +136772,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/indoors/caves/west_caves)
 "xlm" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xls" = (
@@ -137062,7 +137045,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "xnK" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "xnM" = (
@@ -137251,7 +137234,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "xpD" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xpF" = (
@@ -138574,7 +138557,7 @@
 	},
 /area/lv759/indoors/nt_office)
 "xBh" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "xBm" = (
@@ -141111,7 +141094,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/telecomms)
 "xYr" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xYv" = (
@@ -141584,10 +141567,9 @@
 	},
 /area/lv759/indoors/caves/east_caves)
 "ycI" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /turf/open/floor/prison{
@@ -141788,7 +141770,7 @@
 /turf/open/urban/street/cement1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "yem" = (
-/obj/structure/prop/urban/vehicles/large_vehicles/ambulance{
+/obj/structure/prop/urban/vehicles/large/ambulance{
 	dir = 8;
 	pixel_x = 6;
 	pixel_y = -4
@@ -141871,7 +141853,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "yfm" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "yfs" = (
@@ -142077,7 +142059,7 @@
 	},
 /area/lv759/indoors/nt_office)
 "ygF" = (
-/obj/structure/prop/urban/vehicles/colonycrawlers/science/science1{
+/obj/structure/prop/urban/vehicles/large/colonycrawlers/science/science1{
 	dir = 1
 	},
 /obj/structure/lattice/autosmooth,
