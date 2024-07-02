@@ -87,7 +87,7 @@
 
 /obj/effect/attach_point/weapon/cas
 	ship_tag = SHUTTLE_CAS_DOCK
-	icon = 'icons/Marine/casship.dmi'
+	icon = 'icons/turf/cas.dmi'
 	icon_state = "15"
 
 /obj/effect/attach_point/weapon/cas/left

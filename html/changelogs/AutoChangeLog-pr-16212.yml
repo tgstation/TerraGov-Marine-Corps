@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added a surgery practice area to marine Valhalla."
+  - code_imp: "Modified the marine spawner buttons in xeno Valhalla to be usable by marines."

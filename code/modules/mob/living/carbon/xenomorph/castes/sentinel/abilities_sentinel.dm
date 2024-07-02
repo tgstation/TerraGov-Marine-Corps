@@ -18,17 +18,18 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = 5
 
-/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		if(C.issamexenohive(P.firer))
-			return
-		if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-			return
-		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-			debuff.add_stacks(intoxication_stacks)
-		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	if(HAS_TRAIT(target_carbon, TRAIT_INTOXICATION_IMMUNE))
+		return
+	if(target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = target_carbon.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(intoxication_stacks)
+	target_carbon.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
 
 // ***************************************
 // *********** Toxic Slash
@@ -36,6 +37,7 @@
 /datum/action/ability/xeno_action/toxic_slash
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
@@ -60,7 +62,7 @@
 	ability_duration = addtimer(CALLBACK(src, PROC_REF(toxic_slash_deactivate), xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(toxic_slash))
 	xeno_owner.balloon_alert(xeno_owner, "Toxic Slash active")
-	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien_drool2.ogg', 25)
+	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien/drool2.ogg', 25)
 	action_icon_state = "neuroclaws_on"
 	particle_holder = new(owner, /particles/toxic_slash)
 	particle_holder.pixel_x = 9
@@ -126,6 +128,7 @@
 /datum/action/ability/activable/xeno/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
@@ -177,7 +180,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_drain_stings")
 
 /datum/action/ability/activable/xeno/drain_sting/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, 'sound/voice/alien/drool1.ogg', 50, 1)
 	owner.balloon_alert(owner, "Drain Sting ready")
 	return ..()
 
@@ -195,6 +198,7 @@
 /datum/action/ability/activable/xeno/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS
@@ -220,7 +224,7 @@
 	smoke_duration = 4
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/toxic
-	arm_sound = 'sound/voice/alien_yell_alt.ogg'
+	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 	smokeradius = 3
 
 /obj/item/explosive/grenade/smokebomb/xeno/update_overlays()

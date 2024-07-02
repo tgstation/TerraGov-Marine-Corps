@@ -1,0 +1,10 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "The research facility on LV-759 has been significantly damaged by the xeno outbreak there, making it easier for the xenos to move around."
+  - balance: "Removed most of the sandbags by the area just outside of the research facility on LV-759"
+  - balance: "Removed some sandbags scattered around the streets of LV-759"
+  - balance: "Removed some more shutters at the road security checkpoints on LV-759"
+  - balance: "Signs, computers/machinery, and monitors on LV-759 have had their health decreased from 500 to between 50-80, and can now be slashed."
+  - rscdel: "Removed a pair of tactical binoculars from LV-759"
+  - rscdel: "Removed some platforms by east colony street and the pool on LV-759"

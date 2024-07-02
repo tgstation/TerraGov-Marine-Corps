@@ -45,15 +45,15 @@
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)
 	cut_overlays()
-	cockpit = image('icons/Marine/cas_plane_cockpit.dmi', src, new_state)
+	cockpit = image('icons/obj/structures/cas_cockpit.dmi', src, new_state)
 	cockpit.pixel_x = -16
 	cockpit.pixel_y = -32
 	cockpit.layer = ABOVE_ALL_MOB_LAYER
 	add_overlay(cockpit)
-	var/image/side = image('icons/Marine/casship.dmi', src, "3")
+	var/image/side = image('icons/turf/cas.dmi', src, "3")
 	side.pixel_x = 32
 	add_overlay(side)
-	side = image('icons/Marine/casship.dmi', src, "6")
+	side = image('icons/turf/cas.dmi', src, "6")
 	side.pixel_x = -32
 	add_overlay(side)
 

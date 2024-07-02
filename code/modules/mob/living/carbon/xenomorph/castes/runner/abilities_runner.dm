@@ -8,6 +8,7 @@
 /datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
@@ -77,6 +78,7 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
 			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
@@ -147,7 +149,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
-	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/ai_should_start_consider()
 	return TRUE
@@ -275,6 +277,7 @@
 /datum/action/ability/activable/xeno/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
@@ -335,7 +338,7 @@
 	if(!stolen_item)
 		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
@@ -383,6 +386,6 @@
 	stolen_item.forceMove(get_turf(owner))
 	stolen_item = null
 	owner.overlays -= stolen_appearance
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
