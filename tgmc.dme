@@ -1152,6 +1152,7 @@
 #include "code\game\objects\structures\cargo_container.dm"
 #include "code\game\objects\structures\cas_plane_parts.dm"
 #include "code\game\objects\structures\coathanger.dm"
+#include "code\game\objects\structures\concrete_planter.dm"
 #include "code\game\objects\structures\curtains.dm"
 #include "code\game\objects\structures\desertdam.dm"
 #include "code\game\objects\structures\displaycase.dm"

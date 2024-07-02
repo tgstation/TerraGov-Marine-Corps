@@ -4025,10 +4025,9 @@
 /area/lv759/outdoors/colony_streets/north_east_street)
 "aKr" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 4
@@ -6419,9 +6418,8 @@
 	},
 /area/lv759/indoors/hospital/outgoing)
 "bfs" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/concrete_planter{
+	dir = 8
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -10267,8 +10265,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -27;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 4
 	},
 /turf/open/urban/street/cement3,
@@ -28513,9 +28511,8 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/spaceport/janitor)
 "eTH" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -6
+/obj/structure/concrete_planter/seat{
+	dir = 4
 	},
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -35147,8 +35144,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "fZD" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -25;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/cement1,
@@ -36084,10 +36081,9 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ghs" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /obj/item/trash/cigbutt{
@@ -39387,8 +39383,8 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "gLB" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -27;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/sidewalk{
@@ -40230,10 +40226,9 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "gUc" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/lv759/indoors/hospital/pharmacy)
@@ -47658,10 +47653,9 @@
 /turf/open/floor/urban/tile/supermartfloor1,
 /area/lv759/indoors/bar/kitchen)
 "ifK" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 4;
-	pixel_x = -7
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 4
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/colony_streets/north_west_street)
@@ -71836,10 +71830,9 @@
 "mnb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /obj/effect/turf_decal/medical_decals/doc/stripe,
 /obj/effect/turf_decal/medical_decals/doc/stripe,
@@ -83831,10 +83824,9 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/central_caves)
 "onQ" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	layer = 5;
-	pixel_x = -6
+/obj/structure/concrete_planter{
+	dir = 8;
+	layer = 5
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalk{
@@ -87768,9 +87760,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter/seat{
+	dir = 4;
 	pixel_y = 4
 	},
 /turf/open/urban/street/cement3,
@@ -97278,10 +97269,9 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/west_caves)
 "qEZ" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 14
 	},
 /turf/open/urban/street/sidewalk{
@@ -102395,9 +102385,8 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/bar/entertainment)
 "rze" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -6;
+/obj/structure/concrete_planter/seat{
+	dir = 4;
 	pixel_y = -12
 	},
 /turf/open/urban/street/sidewalk{
@@ -113283,10 +113272,9 @@
 /area/lv759/indoors/spaceport/docking_bay_1)
 "tqC" = (
 /obj/machinery/light,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /obj/machinery/light/blue,
@@ -113585,8 +113573,8 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northwest)
 "ttw" = (
-/obj/structure/prop/urban/misc/stoneplanterseats{
-	pixel_x = -25;
+/obj/structure/concrete_planter/seat{
+	dir = 8;
 	pixel_y = 6
 	},
 /turf/open/urban/street/cement1,
@@ -114083,10 +114071,9 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "txz" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 16
 	},
 /turf/open/urban/street/sidewalk{
@@ -121893,9 +121880,8 @@
 /obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter{
+	dir = 8;
 	pixel_y = 8
 	},
 /turf/open/urban/street/cement3,
@@ -124333,9 +124319,8 @@
 /obj/machinery/streetlight/street{
 	pixel_y = -8
 	},
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8;
+/obj/structure/concrete_planter{
+	dir = 8;
 	pixel_y = 8
 	},
 /turf/open/urban/street/cement2,
@@ -128606,10 +128591,9 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "vRA" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 5;
-	pixel_x = -6;
 	pixel_y = 14
 	},
 /turf/open/urban/street/sidewalk{
@@ -131920,9 +131904,8 @@
 /area/lv759/indoors/NTmart)
 "wtQ" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/concrete_planter{
+	dir = 8,
 	},
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
@@ -141742,10 +141725,9 @@
 	},
 /area/lv759/indoors/caves/east_caves)
 "ycI" = (
-/obj/structure/prop/urban/misc/stoneplanterseats/empty{
-	dir = 1;
+/obj/structure/concrete_planter{
+	dir = 8;
 	layer = 4;
-	pixel_x = -8;
 	pixel_y = 4
 	},
 /turf/open/floor/prison{
