@@ -777,3 +777,17 @@
 	if(target_obj.obj_integrity > target_obj.modify_by_armor(proj.damage, ENERGY, proj.penetration, attack_dir = get_dir(target_obj, proj)))
 		proj.proj_max_range = 0
 
+//Laser Blast
+/datum/ammo/energy/laser_blast
+	name = "laser blast"
+	icon_state = "heavylaser"
+	hud_state = "laser_sniper"
+	hitscan_effect_icon = "beam_heavy"
+	sound_hit = 'sound/bullets/laser_blast_impact.wav'
+	armor_type = LASER
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_INCENDIARY
+	damage = 280
+	penetration = 80
+	sundering = 30
+	max_range = 12
+	accurate_range = 12

@@ -299,6 +299,8 @@
 	var/overheat_timer
 	///multiplier on cool amount to determine overheat time
 	var/overheat_multiplier = 1.1
+	///Sound played when gun overheats
+	var/overheat_sound = 'sound/weapons/guns/interact/gun_overheat.ogg'
 	///image we create to keep track of heat
 	var/image/heat_bar/heat_meter
 
@@ -501,7 +503,7 @@
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(gun_features_flags & GUN_AMMO_COUNTER)
 		gun_user.hud_used?.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	if(heat_per_fire)
+	if(heat_per_fire && gun_user?.client)
 		heat_meter = new(loc=gun_user)
 		heat_meter.animate_change(heat_amount/100, 5)
 		gun_user.client.images += heat_meter
@@ -896,14 +898,15 @@
 		return AUTOFIRE_CONTINUE
 	if(heat_amount >= 100)
 		STOP_PROCESSING(SSprocessing, src)
-		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
-		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
+		//Show the smoke particles on the gun or on whatever deployable object is holding the gun
+		var/obj/effect/abstract/particle_holder/overheat_smoke = new(CHECK_BITFIELD(item_flags, IS_DEPLOYED) ? loc : src, /particles/overheat_smoke)
+		playsound(get_turf(src), overheat_sound, 25, 1, 5)
 		//overheat gives either you a bonus or penalty depending on gun, by default it is +10% time.
 		var/overheat_time = (heat_amount/cool_amount*overheat_multiplier) SECONDS
 		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
-		heat_meter.animate_change(0, overheat_time)
+		heat_meter?.animate_change(0, overheat_time)
 		return NONE
-	heat_meter.animate_change(heat_amount/100, fire_delay)
+	heat_meter?.animate_change(heat_amount/100, fire_delay)
 	return AUTOFIRE_CONTINUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
