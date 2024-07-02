@@ -368,6 +368,7 @@
 /obj/effect/particle_effect/smoke/xeno/burn/opaque
 	alpha = 255
 	opacity = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
@@ -375,20 +376,19 @@
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
-	alpha = 120
-	opacity = FALSE
+	alpha = 255
+	opacity = TRUE
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	alpha = 255
-	opacity = TRUE
-	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
+	alpha = 120
+	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/toxic

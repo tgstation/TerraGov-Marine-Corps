@@ -30,7 +30,7 @@
 	///On a direct hit, how much drowsyness gets added to the target?
 	var/hit_drowsyness = 12
 	///Base spread range
-	var/fixed_spread_range = 4
+	var/fixed_spread_range = 3
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
 	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
@@ -141,7 +141,7 @@
 	if(!do_after(user_xeno, 3 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
-	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
@@ -149,7 +149,7 @@
 	airburst(target_mob, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/opaque()
 
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"
@@ -158,7 +158,7 @@
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
-	max_range = 25
+	max_range = 14
 	damage = 75
 	penetration = 70
 	reagent_transfer_amount = 55
@@ -178,7 +178,7 @@
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
-	max_range = 25
+	max_range = 14
 	damage = 75
 	penetration = 70
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light

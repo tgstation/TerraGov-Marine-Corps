@@ -33,6 +33,14 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	/// The offset in a direction for zoom_in
+	var/tile_offset = 5
+	/// The size of the zoom for zoom_in
+	var/view_size = 4
+
+/datum/action/ability/xeno_action/toggle_long_range/bull
+	tile_offset = 11
+	view_size = 12
 
 /datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -45,7 +53,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
 		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (X.xeno_flags & XENO_ZOOMED))
 			return
-		X.zoom_in(11)
+		X.zoom_in(tile_offset, view_size)
 		..()
 
 // ***************************************
@@ -263,11 +271,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
 			boiler_owner.balloon_alert(boiler_owner, "Invalid target.")
-		return FALSE
-
-	if(get_dist(T, S) <= 5) //Magic number
-		if(!silent)
-			boiler_owner.balloon_alert(boiler_owner, "Too close!")
 		return FALSE
 
 /datum/action/ability/activable/xeno/bombard/use_ability(atom/A)
